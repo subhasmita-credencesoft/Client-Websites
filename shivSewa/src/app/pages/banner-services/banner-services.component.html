@@ -1,0 +1,8 @@
+  <section class="shivsewa-services-section" id="services">
+      <div class="shivsewa-services-wrapper">
+        <div class="shivsewa-service-item" *ngFor="let item of servicesList">
+          <div class="shivsewa-service-icon-wrapper"><img [src]="item.icon"  /> </div>
+          <h3 class="shivsewa-service-item-title">{{ item.title }}</h3>
+        </div>
+      </div>
+    </section>

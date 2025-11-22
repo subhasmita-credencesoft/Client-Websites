@@ -1,0 +1,26 @@
+ <header class="shivsewa-navbar">
+      <div class="shivsewa-navbar-wrapper">
+        <div class="shivsewa-logo-section">
+          <img src="assets/shiv-sewa-logo.svg" alt="ShivSewa Logo" class="shivsewa-logo" />
+        </div>
+
+        <button class="shivsewa-menu-button" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen">
+          <span class="shivsewa-hamburger-line"></span>
+          <span class="shivsewa-hamburger-line"></span>
+          <span class="shivsewa-hamburger-line"></span>
+        </button>
+
+        <nav class="shivsewa-navigation" [class.shivsewa-navigation-active]="menuOpen">
+          <a href="#trips" class="shivsewa-nav-item">Popular Trips</a>
+          <a href="#fleet" class="shivsewa-nav-item">Our Fleet</a>
+          <a href="#about" class="shivsewa-nav-item">About Us</a>
+          <button class="shivsewa-btn-whatsapp">
+            <img src="assets/whatsapp-icon.svg" class="ms-2" /> Book on WhatsApp
+          </button>
+          <button class="shivsewa-btn-book">
+            <img src="assets/car-icon.svg" class="ms-2" />
+            Book Your Ride
+          </button>
+        </nav>
+      </div>
+    </header>

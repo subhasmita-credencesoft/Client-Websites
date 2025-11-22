@@ -1,0 +1,201 @@
+  .shivsewa-navbar {
+    background-color: #000;
+    padding: 1.25rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    font-family: "DM Sans";
+    }
+
+    .shivsewa-navbar-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .shivsewa-logo-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .shivsewa-logo-icon {
+      font-size: 1.75rem;
+      background: #ff6b35;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+    }
+
+    .shivsewa-logo-brand {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .shivsewa-logo-primary {
+      color: #fff;
+    }
+
+    .shivsewa-logo-accent {
+      color: #ff6b35;
+    }
+
+    .shivsewa-menu-button {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .shivsewa-hamburger-line {
+      width: 26px;
+      height: 2.5px;
+      background-color: #fff;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .shivsewa-navigation {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .shivsewa-nav-item {
+color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+    letter-spacing: 0.8px;
+    }
+
+    .shivsewa-nav-item:hover {
+      color: #ff6b35;
+    }
+
+    .shivsewa-nav-item::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #ff6b35;
+      transition: width 0.3s ease;
+    }
+
+    .shivsewa-nav-item:hover::after {
+      width: 100%;
+    }
+
+    .shivsewa-btn-whatsapp,
+    .shivsewa-btn-book {
+    padding: 0.65rem 1.75rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: "DM Sans";
+    letter-spacing: 0.6px;
+    letter-spacing: 0.8px;
+    }
+
+    .shivsewa-btn-whatsapp {
+     background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    }
+
+    .shivsewa-btn-whatsapp:hover {
+      background-color: #25D366;
+      border-color: #25D366;
+      color: #fff;
+    }
+
+    .shivsewa-btn-book {
+      background: linear-gradient(90deg, #CC4C00 0%, #C67F00 100%);
+      color: #fff;
+    }
+
+    .shivsewa-btn-book:hover {
+      background-color: #e55a25;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
+    }
+
+    @media (max-width: 968px) {
+      .shivsewa-menu-button {
+        display: flex;
+      }
+
+      .shivsewa-navigation {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #1a1a1a;
+        flex-direction: column;
+        padding: 2.5rem 1.5rem;
+        gap: 1.5rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      .shivsewa-navigation-active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .shivsewa-nav-item,
+      .shivsewa-btn-whatsapp,
+      .shivsewa-btn-book {
+        width: 100%;
+        text-align: center;
+      }
+
+      .shivsewa-nav-item::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .shivsewa-navbar-wrapper {
+        padding: 0 1rem;
+      }
+
+      .shivsewa-logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+      }
+
+      .shivsewa-logo-brand {
+        font-size: 1.25rem;
+      }
+
+      .shivsewa-btn-whatsapp,
+      .shivsewa-btn-book {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+      }
+    }

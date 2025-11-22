@@ -1,0 +1,54 @@
+<section class="shivsewa-hero-section">
+      <div class="shivsewa-hero-bg">
+        <img src="assets/banner-img.png" alt="Mumbai City" class="shivsewa-hero-image">
+      </div>
+
+      <div class="shivsewa-hero-container">
+
+        <h1 class="shivsewa-hero-heading">
+          The City That Never Stops,<br>
+          The Service That Never Fails.
+        </h1>
+        <form class="shivsewa-booking-panel" (submit)="bookNow($event)">
+          <div class="shivsewa-booking-row">
+            <div class="shivsewa-input-group">
+              <label class="shivsewa-label-text">Pick Up Location</label>
+              <div class="shivsewa-input-field">
+                <input type="text" placeholder="Enter pickup location" [(ngModel)]="pickupLocation" name="pickup" class="shivsewa-text-input">
+                <span class="shivsewa-field-icon"> <img src="assets/pickup-location.svg"  /></span>
+              </div>
+            </div>
+
+            <div class="shivsewa-input-group">
+              <label class="shivsewa-label-text">Drop Off Location</label>
+              <div class="shivsewa-input-field">
+                <input type="text" placeholder="Enter drop location" [(ngModel)]="dropLocation" name="drop" class="shivsewa-text-input">
+                <span class="shivsewa-field-icon"><img src="assets/dropup-location.svg" /></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="shivsewa-booking-row">
+            <div class="shivsewa-input-group">
+              <label class="shivsewa-label-text">Date & Time</label>
+              <div class="shivsewa-input-field">
+                <input type="datetime-local" [(ngModel)]="dateTime" name="datetime" class="shivsewa-text-input">
+                <span class="shivsewa-field-icon"><img src="assets/date-time.svg" /></span>
+              </div>
+            </div>
+
+            <div class="shivsewa-input-group">
+              <label class="shivsewa-label-text">Passengers</label>
+              <div class="shivsewa-input-field">
+                <input type="number" min="1" max="8" placeholder="Select passengers" [(ngModel)]="passengers" name="passengers" class="shivsewa-text-input">
+                <span class="shivsewa-field-icon"><img src="assets/passengers.svg" /></span>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="shivsewa-submit-button">Book Taxi Now</button>
+          </div>
+
+        </form>
+      </div>
+    </section>

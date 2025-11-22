@@ -1,0 +1,118 @@
+    .shivsewa-services-section {
+       padding: 2rem 1.5rem;
+    background: linear-gradient(to bottom, #fafbfc, #fff);
+    font-family: "DM Sans", sans-serif;
+    }
+
+    .shivsewa-services-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .shivsewa-service-item {
+    padding: 1.5rem;
+    border-radius: 14px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    }
+
+    .shivsewa-service-icon-wrapper {
+      width: 90px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.75rem;
+      font-size: 2.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .shivsewa-service-item:hover .shivsewa-service-icon-wrapper {
+      transform: scale(1.08);
+    }
+
+    .shivsewa-service-item-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 0.85rem;
+      letter-spacing: -0.3px;
+    }
+
+    .shivsewa-service-item-desc {
+      font-size: 0.95rem;
+      color: #6b7280;
+      line-height: 1.65;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .shivsewa-services-section {
+        padding: 4rem 1rem;
+      }
+
+      .shivsewa-services-wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .shivsewa-service-item {
+        padding: 2rem 1.75rem;
+      }
+
+      .shivsewa-service-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        font-size: 2.4rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .shivsewa-service-item-title {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .shivsewa-services-section {
+       padding: 1rem 0.75rem 12px;
+      }
+
+      .shivsewa-services-wrapper {
+                grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+
+      .shivsewa-service-item {
+               padding: 0.7rem 1rem;
+        border: 1px solid #dedede;
+      }
+      .shivsewa-service-icon-wrapper {
+         width: 90px;
+        height: 45px;
+    display: flex;
+    align-items: initial;
+    justify-content: center;
+    margin: 0rem 1rem 0rem;
+    font-size: 2.8rem;
+    transition: all 0.3s ease;
+}
+      .shivsewa-service-icon-wrapper {
+        width: 37px;
+        height: 39px;
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .shivsewa-service-item-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.65rem;
+      }
+
+      .shivsewa-service-item-desc {
+        font-size: 0.9rem;
+      }
+    }
