@@ -4,12 +4,16 @@
 }
 
 .trips-wrapper {
-  width: 100%;
-  background: url(/assets/background-image-trips.png) center / cover no-repeat;
-  padding: 4rem 1rem;
-  overflow: hidden;
-  position: absolute;
-  height: 360px;
+    width: 100%;
+    background: url(/assets/background-image-trips.png) center / cover no-repeat;
+    padding: 4rem 1rem;
+    overflow: hidden;
+    position: absolute;
+    height: 360px;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+    filter: brightness(.3);
 }
 
 .trips-container {
