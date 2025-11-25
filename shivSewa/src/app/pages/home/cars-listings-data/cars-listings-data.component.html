@@ -1,0 +1,128 @@
+<div class="main-container">
+      <div class="content-wrapper">
+        <!-- Header Section -->
+        <div class="header-section">
+          <div class="title-container">
+            <div class="accent-bar"></div>
+            <h1 class="main-title">The Right Car For Every Journey</h1>
+          </div>
+          <div class="subtitle-container">
+            <div class="subtitle-bold">Comfort, safety, and reliability guaranteed.</div>
+            <div class="subtitle-light">Explore our diverse vehicle fleet.</div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs-container">
+          <button
+            *ngFor="let tab of tabs"
+            [class.active]="activeTab === tab.id"
+            (click)="handleTabChange(tab.id)"
+            class="tab-button"
+          >
+            {{ tab.label }}
+          </button>
+        </div>
+
+        <!-- Carousel Container -->
+        <div class="carousel-wrapper">
+          <!-- Navigation Buttons -->
+          <button
+            (click)="handlePrev()"
+            [disabled]="currentIndex === 0"
+            [class.disabled]="currentIndex === 0"
+            class="nav-button nav-left"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <button
+            (click)="handleNext()"
+            [disabled]="currentIndex >= maxIndex"
+            [class.disabled]="currentIndex >= maxIndex"
+            class="nav-button nav-right"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
+          <!-- Cards Container -->
+          <div class="cards-overflow">
+            <!-- Progress Indicator -->
+            <div class="progress-indicator">
+              <div
+                *ngFor="let dot of progressDots; let i = index"
+                [class.active]="currentIndex === i"
+                (click)="goToSlide(i)"
+                class="progress-dot"
+              ></div>
+            </div>
+
+            <div
+              class="cards-container"
+              [style.transform]="getTransform()"
+              [@fadeCards]="tabChangeAnimation"
+            >
+              <div
+                *ngFor="let car of getCurrentCars(); let i = index"
+                class="car-card"
+                [class.visible]="isCardVisible(i)"
+                [style.flex]="'0 0 calc(' + (100 / visibleCards) + '% - ' + ((1.5 * (visibleCards - 1)) / visibleCards) + 'rem)'"
+                [style.opacity]="isCardVisible(i) ? 1 : 0.4"
+                [style.transform]="getCardTransform(i)"
+                [style.filter]="isCardVisible(i) ? 'none' : 'grayscale(30%)'"
+              >
+                <!-- Car Image -->
+                <div class="car-image-container">
+                  <img [src]="car.image" [alt]="car.name" class="car-image" />
+                </div>
+
+                <!-- Card Content -->
+                <div class="card-content">
+                  <h3 class="car-name">{{ car.name }}</h3>
+
+                  <!-- Features -->
+                  <div class="features-container">
+                    <div class="feature-badge badge-blue">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
+                      <span>{{ car.seats }} seats</span>
+                    </div>
+                    <div class="feature-badge badge-red">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                      </svg>
+                      <span>{{ car.bags }} Bags</span>
+                    </div>
+                  </div>
+
+                  <div class="fuel-container">
+                    <div class="feature-badge badge-purple">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="22" x2="15" y2="22"></line>
+                        <line x1="4" y1="9" x2="14" y2="9"></line>
+                        <path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"></path>
+                        <path d="M14 13h2a2 2 0 0 1 2 2v1a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"></path>
+                      </svg>
+                      {{ car.fuel }}
+                    </div>
+                  </div>
+
+                  <div class="car-price">{{ car.price }}</div>
+
+                  <div class="car-description">{{ car.description }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

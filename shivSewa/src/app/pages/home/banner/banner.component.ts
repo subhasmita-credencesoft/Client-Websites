@@ -10,17 +10,16 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './banner.component.scss'
 })
 export class BannerComponent {
-    pickupLocation = '';
-  dropLocation = '';
-  dateTime = '';
-  passengers = 1;
+  pickupLocation: string = '';
+  dropLocation: string = '';
+  dateTime: string = '';
+  passengers: number | null = null;
 
   constructor() {}
   ngOnInit(): void {
 
   }
-
-    bookNow(event: Event) {
+  bookNow(event: Event): void {
     event.preventDefault();
     console.log('Booking:', {
       pickup: this.pickupLocation,
@@ -28,5 +27,10 @@ export class BannerComponent {
       dateTime: this.dateTime,
       passengers: this.passengers
     });
+  }
+
+  useCurrentLocation(): void {
+    console.log('Getting current location...');
+    // Add geolocation logic here
   }
 }

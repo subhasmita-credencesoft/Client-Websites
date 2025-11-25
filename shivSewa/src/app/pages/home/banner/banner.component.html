@@ -1,0 +1,64 @@
+<section class="shivsewa-hero-section">
+      <div class="shivsewa-hero-bg">
+        <img src="assets/banner-img.png" alt="Mumbai City" class="shivsewa-hero-image">
+      </div>
+
+      <div class="shivsewa-hero-container">
+
+        <h1 class="shivsewa-hero-heading">
+          The City That Never Stops,<br>
+          The Service That Never Fails.
+        </h1>
+        <form class="shivsewa-booking-panel" (submit)="bookNow($event)">
+
+          <div class="quick-ride-section">
+            <div class="ride-inputs-wrapper">
+              <!-- Pickup Location -->
+              <div class="ride-input-group">
+                <div class="location-indicator location-indicator-empty"></div>
+                <input
+                  type="text"
+                  placeholder="Enter Pickup Point"
+                  [(ngModel)]="pickupLocation"
+                  name="quickPickup"
+                  class="ride-input"
+                >
+                <div
+                  class="location-button location-button-gps"
+                  (click)="useCurrentLocation()"
+                >
+                  <i class="fa-solid fa-location-crosshairs icon-specific"></i>
+                </div>
+              </div>
+
+              <!-- Connector Line -->
+              <div class="connector-line-wrapper">
+                <div class="connector-line"></div>
+              </div>
+
+              <!-- Destination -->
+              <div class="ride-input-group">
+                <div class="location-indicator location-indicator-filled"></div>
+                <input
+                  type="text"
+                  placeholder="Enter Destination"
+                  [(ngModel)]="dropLocation"
+                  name="quickDrop"
+                  class="ride-input"
+                >
+                <div class="location-icon">
+                  <i class="fa-solid fa-map-pin icon-specific"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="quick-ride-button-wrapper">
+              <button type="button" (click)="bookNow($event)" class="request-ride-button">
+                Request Ride
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </section>

@@ -1,0 +1,50 @@
+    <div class="customer-stories-section">
+      <!-- Header -->
+      <div class="header-content">
+        <p class="subtitle">On the Road with Us</p>
+        <h1 class="main-title">Read Our Customer Stories</h1>
+      </div>
+
+      <!-- Main Content Grid -->
+      <div class="content-container">
+        <div class="content-grid">
+
+          <!-- Left Side -->
+          <div class="left-side">
+            <!-- Stats Card with Image Background -->
+            <div class="stats-image-card">
+              <div class="stats-overlay">
+                <h2 class="stats-number">10K+ Travellers</h2>
+                <p class="stats-text">
+                  ...and thousands of successful journeys<br>
+                  across Maharashtra, trusted and delivered.
+                </p>
+              </div>
+              <img src="assets/customer-stories.jpg" alt="Mumbai City" class="sutomer-storeis">
+            </div>
+          </div>
+
+          <!-- Right Side -->
+          <div class="right-side">
+            <div class="testimonial-wrapper" *ngFor="let testimonial of testimonials">
+              <div class="testimonial-box">
+                <div class="testimonial-header-row">
+                  <div class="left-section">
+                    <span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span>
+                    <span class="customer-name">{{ testimonial.name }}</span>
+                    <span><div class="star-rating">
+                      <span class="star-icon" *ngFor="let star of getStarsArray(testimonial.rating)">⭐</span>
+                    </div></span>
+                  </div>
+                  <div class="right-section">
+                    <span class="customer-location">{{ testimonial.location }}</span>
+                  </div>
+                </div>
+                <p class="review-text">{{ testimonial.review }}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
