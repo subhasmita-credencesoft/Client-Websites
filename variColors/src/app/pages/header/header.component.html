@@ -1,0 +1,37 @@
+<header class="navbar">
+  <!-- Left section -->
+  <div class="left">
+    <div class="search-box">
+      <input type="text" placeholder="Search..." />
+    </div>
+  </div>
+
+  <!-- Center logo -->
+  <div class="logo">
+    <img src="assets/images/logo.png" alt="Varicolors" />
+  </div>
+
+  <!-- Right section -->
+  <div class="right">
+    <button class="wholesale-btn">Wholesaler Hub</button>
+
+    <div class="icons">
+      <i class="bi bi-whatsapp"></i>
+      <i class="bi bi-bag"></i>
+    </div>
+
+    <button class="menu-btn" (click)="toggleMenu()" *ngIf="isMobile">
+      ☰
+    </button>
+  </div>
+</header>
+
+<!-- Navigation Menu -->
+<nav class="nav-links" [class.open]="menuOpen">
+  <a>Best Sellers</a>
+  <a>New Arrivals</a>
+  <a>Festive Collection</a>
+  <a>Sarees</a>
+  <a>Salwar & Kurtis</a>
+  <a>Men’s Collection</a>
+</nav>

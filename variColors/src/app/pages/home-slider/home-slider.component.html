@@ -1,0 +1,42 @@
+<div class="slider-container">
+  <div
+    class="slide"
+    *ngFor="let s of slides; let i = index"
+    [class.active]="i === currentIndex"
+    [style.backgroundImage]="'url(' + s.img + ')'">
+
+    <div class="content">
+      <h4>{{ s.title }}</h4>
+      <h1>{{ s.subtitle }}</h1>
+      <button>{{ s.button }}</button>
+    </div>
+  </div>
+
+  <!-- Dots -->
+  <div class="dots">
+    <span
+      *ngFor="let s of slides; let i = index"
+      [class.active]="i === currentIndex"
+      (click)="goToSlide(i)">
+    </span>
+  </div>
+</div>
+
+
+<section class="category-grid">
+  <div class="cat-item">
+    <img src="assets/images/saree.png" alt="Kurta Set">
+    <p class="cat-text">KURTA SET</p>
+  </div>
+
+  <div class="cat-item">
+    <img src="assets/images/saree2.png" alt="Sarees">
+    <p class="cat-text">SAREES</p>
+  </div>
+
+  <div class="cat-item">
+    <img src="assets/images/saree3.png" alt="Dupatta">
+    <p class="cat-text">DUPATTA</p>
+  </div>
+</section>
+

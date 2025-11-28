@@ -1,0 +1,144 @@
+/* SECTION WRAPPER - NO GLOBAL IMPACT */
+.saree-collection-section {
+    padding: 40px 0;
+    background: linear-gradient(to bottom, #4e2352, #e9e7eb);
+}
+
+.saree-collection-section .collection-title {
+    font-size: 32px;
+    color: #fff;
+    left: 180px;
+    letter-spacing: 2px;
+    position: relative;
+    text-align: left;
+    width: max-content;
+    margin: 0;               /* remove bottom space */
+    padding-bottom: 15px;    /* small gap before images */
+}
+
+
+/* the line on the right side */
+.saree-collection-section .collection-title::after {
+    content: "";
+    position: absolute;
+    top: 50%;               /* middle of text */
+    left: 100%;
+    transform: translateY(-50%);
+    height: 2px;
+    width: 500px;
+    background: #fff;
+    margin-left: 20px;
+}
+
+
+
+/* Slider */
+.saree-collection-section .slider-wrapper {
+    max-width: 1300px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Card scroll area */
+.saree-collection-section .slider-track {
+    display: flex;
+    overflow-x: auto;
+    gap: 25px;
+    padding: 10px;
+    scroll-behavior: smooth;
+}
+
+.saree-collection-section .slider-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Navigation Arrows */
+.saree-collection-section .slide-arrow {
+    background: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Card */
+.saree-collection-section .saree-card {
+    background: #fff;
+    border-radius: 12px;
+    width: 270px;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    padding-bottom: 18px;
+}
+
+/* Image */
+.saree-collection-section .img-wrapper {
+    position: relative;
+}
+
+.saree-collection-section .img-wrapper img {
+    width: 100%;
+    height: 398px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+/* Badge */
+.saree-collection-section .badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #d9417d;
+    color: white;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+/* Name & Price */
+.saree-collection-section .name {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.saree-collection-section .price {
+    margin-top: 4px;
+    color: #333;
+    font-size: 15px;
+}
+
+/* View More Button */
+.saree-collection-section .view-more-btn {
+    background: #452042;
+    color: white;
+    padding: 10px 25px;
+    display: block;
+    margin: 25px auto 0;
+    border: none;
+    border-radius: 4px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .saree-collection-section .saree-card {
+        width: 220px;
+    }
+    .saree-collection-section .img-wrapper img {
+        height: 330px;
+    }
+}
+
+@media (max-width: 480px) {
+    .saree-collection-section .saree-card {
+        width: 180px;
+    }
+    .saree-collection-section .img-wrapper img {
+        height: 260px;
+    }
+}
