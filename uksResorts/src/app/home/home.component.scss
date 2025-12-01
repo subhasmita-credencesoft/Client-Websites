@@ -173,6 +173,10 @@ html, body {
 /* ------------------------ */
 
 @media (max-width: 992px) {
+  .hero {
+
+  background: url("/assets/home-imgs/mobile-view-bg.png") center/cover no-repeat;
+  }
 
   /* Make hero items stack vertically */
   .hero-content {
@@ -184,7 +188,7 @@ html, body {
     align-items: center;
     gap: 25px;
     text-align: center;
-    padding-top: 120px; /* Keep spacing below navbar */
+    padding-top: 220px; /* Keep spacing below navbar */
   }
 .hero-section,
 .hero-content {
@@ -788,14 +792,14 @@ html, body {
 
 .testimonials-section {
   position: relative;
-  background: url("/assets/home-imgs/bg1.jpg") center/cover no-repeat;
+  background: url("/assets/home-imgs/review-background.jpg") center/cover no-repeat;
   padding: 100px 0;
 }
 
 .bg-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: linear-gradient(135deg, rgba(13,6,48,0.85), rgba(23,111,193,0.75));
   backdrop-filter: blur(3px);
 }
 
