@@ -27,6 +27,17 @@ html, body {
   background: transparent !important;
   box-shadow: none !important;
 }
+@media (max-width: 992px) {  /* 'lg' breakpoint for Bootstrap 5 */
+  .navbar-collapse {
+    background-color: #0d0630;
+  }
+  .navbar-collapse .book-nav {
+    display: block;
+    margin: 15px auto 0 auto; /* center horizontally with auto margins */
+    width: 50%;               /* optional: adjust button width */
+    text-align: center;
+  }
+}
 .book-nav{
   padding: 8px 30px !important;
   border-radius: 30px !important;
