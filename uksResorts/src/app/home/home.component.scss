@@ -744,11 +744,20 @@ html, body {
 
 
 // Seventh Section
-.location-section h2 {
-  font-size: 2.4rem;
-  font-weight: 700;
+.left-side-location{
+      padding-top: 30px;
 }
+.location-desc{
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 24px;
+  font-weight: 400 !important;
+}
+.loccation-heading{
+    font-family: "GFS Didot", serif;
+    font-weight: 400 !important;
+    font-size: 40px;
 
+}
 .icon-box {
   width: 70px;
   height: 70px;
@@ -774,6 +783,9 @@ html, body {
   .location-section h2 {
     font-size: 1.8rem;
   }
+  .left-side-location{
+      padding-top: 0px;
+}
 }
 
 
