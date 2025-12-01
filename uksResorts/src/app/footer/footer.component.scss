@@ -1,0 +1,120 @@
+
+//Footer section
+.footer-section {
+  background: #0a0e12;
+  padding: 70px 50px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  color: #b8b8b8;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-container {
+  max-width: 1300px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+/* Left Section */
+.footer-left {
+  text-align: left;
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-logo {
+  width: 120px;
+  margin-bottom: 25px;
+}
+
+.footer-social {
+  margin-bottom: 20px;
+}
+
+.footer-social span {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #3a3a3a;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-social span:hover {
+  background: #ffffff22;
+}
+
+.footer-copy {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Middle Menu */
+.footer-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 200px;
+}
+
+.footer-menu a {
+  color: #b8b8b8;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.footer-menu a:hover {
+  color: #ffffff;
+}
+
+/* Right Contact */
+.footer-contact {
+  min-width: 200px;
+}
+
+.footer-contact h4 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.footer-contact a {
+  color: #b8b8b8;
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.footer-contact a:hover {
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .footer-container {
+    text-align: center;
+  }
+
+  .footer-menu,
+  .footer-contact {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
