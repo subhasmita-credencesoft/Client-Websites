@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 declare var bootstrap: any;
 @Component({
   selector: 'app-home',
@@ -8,7 +8,10 @@ declare var bootstrap: any;
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-
+checkInDate: string = '';
+  checkOutDate: string = '';
+@ViewChild('checkinInput') checkinInput!: ElementRef;
+  @ViewChild('checkoutInput') checkoutInput!: ElementRef;
 ngAfterViewInit() {
     const navbarCollapse = document.getElementById('nav'); // could be null
 
@@ -25,5 +28,24 @@ ngAfterViewInit() {
         bsCollapse.hide();
       }
     });
+
+ const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+
+    const format = (d: Date) =>
+      d.toISOString().split("T")[0];
+
+    // Set values
+    this.checkinInput.nativeElement.value = format(today);
+    this.checkoutInput.nativeElement.value = format(tomorrow);
+
+    // Set min values
+    this.checkinInput.nativeElement.min = format(today);
+    this.checkoutInput.nativeElement.min = format(tomorrow);
+
+
   }
+
+
 }

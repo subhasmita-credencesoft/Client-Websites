@@ -30,6 +30,7 @@ html, body {
 @media (max-width: 992px) {  /* 'lg' breakpoint for Bootstrap 5 */
   .navbar-collapse {
     background-color: #0d0630;
+    padding-bottom: 25px;
   }
   .navbar-collapse .book-nav {
     display: block;
@@ -37,6 +38,14 @@ html, body {
     width: 50%;               /* optional: adjust button width */
     text-align: center;
   }
+}
+@media (max-width: 420px) {
+.main-navbar{
+      top: 65px;
+}
+.hero {
+    height: 105vh !important;
+}
 }
 .book-nav{
   padding: 8px 30px !important;
@@ -57,6 +66,15 @@ html, body {
   padding: 7px 20px;
   border-radius: 25px;
   font-weight: 600;
+}
+.booking-item select.form-select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='12' viewBox='0 0 20 20' width='12' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,15'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
 }
 
 /* ------------------------ */
@@ -96,6 +114,7 @@ html, body {
 /* ------------------------ */
 /* BOOKING BOX */
 /* ------------------------ */
+
 .booking-box {
   width: 60%;
   max-width: 1000px;
@@ -111,6 +130,18 @@ html, body {
   transform: translateX(-50%); */
 }
 
+.booking-item .input-group-text {
+  background-color: #0D0630;
+  color: white;
+  border-radius: 8px;
+  border: none;
+}
+
+.booking-item input.form-control {
+  border-radius: 8px;
+  height: 44px;
+  color: #000;
+}
 
 
 /* FORCE INLINE SINGLE ROW */
@@ -173,10 +204,73 @@ html, body {
 /* ------------------------ */
 
 @media (max-width: 992px) {
+  /* MAKE DATE INPUT SHOW PLACEHOLDER ON MOBILE */
+.date-fix {
+  position: relative;
+  color: transparent;              /* Hide default date text */
+}
+
+/* Fake placeholder */
+.date-fix:before {
+  content: attr(placeholder);
+  color: #777;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* When user selects a date → hide placeholder */
+.date-fix:valid {
+  color: #000 !important;
+}
+
+.date-fix:valid:before {
+  content: "";
+}
+
+/* Calendar icon fix for mobile */
+.date-fix::-webkit-calendar-picker-indicator {
+  opacity: 1 !important;
+  filter: invert(0);       /* Makes icon visible */
+  z-index: 2;
+  cursor: pointer;
+}
+
   .hero {
 
   background: url("/assets/home-imgs/mobile-view-bg.png") center/cover no-repeat;
   }
+/* 📅 Fix date input on mobile */
+.booking-item input[type="date"] {
+  color: #000 !important;      /* Text color */
+  background-color: #fff !important; /* White background */
+  -webkit-appearance: none;    /* Remove iOS rounded input */
+}
+
+/* 📌 Force placeholder visibility */
+.booking-item input[type="date"]::placeholder {
+  color: #777 !important;
+  opacity: 1;
+}
+/* 🧷 Fix dropdown arrow visibility */
+.booking-item select.form-select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='12' viewBox='0 0 20 20' width='12' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,15'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
+
+/* ✔ Force calendar icon in mobile */
+.booking-item input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);         /* Make icon visible (white → black) */
+  opacity: 1;
+  cursor: pointer;
+}
 
   /* Make hero items stack vertically */
   .hero-content {
@@ -327,7 +421,9 @@ html, body {
 .cta-btn:hover {
   background: #004ed0;
 }
+@media(max-width:1405px) and (min-width:900px) {
 
+}
 /* RESPONSIVE CENTER BOX */
 @media (max-width: 900px) {
   .content-box {
@@ -367,6 +463,52 @@ html, body {
     height: 200px;
     right: -15px;
     bottom: -20px;
+  }
+}
+/* FOR SCREENS BETWEEN 1405px AND 1050px */
+@media (max-width: 1405px) and (min-width: 993px) {
+
+  .hero1 {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /* IMAGE STACK */
+  .image-stack {
+    width: 280px;
+    height: 330px;
+  }
+
+  .main-img {
+    width: 280px;
+    height: 330px;
+  }
+
+  .overlap-img {
+    width: 200px;
+    height: 240px;
+    bottom: -15px;
+    right: -15px;
+  }
+
+  .image2 {
+    left: -15px;
+    right: auto;
+  }
+
+  /* CONTENT BOX */
+  .content-box {
+    width: 420px;
+    padding: 45px 40px;
+  }
+
+  .content-box h2 {
+    font-size: 2rem;
+  }
+
+  .content-box p {
+    font-size: 1rem;
   }
 }
 
