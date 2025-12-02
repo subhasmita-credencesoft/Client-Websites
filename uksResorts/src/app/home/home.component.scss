@@ -202,6 +202,11 @@ html, body {
 /* ------------------------ */
 /* MOBILE RESPONSIVE FIXES */
 /* ------------------------ */
+@media (max-width: 1350px) and (min-width: 992px) {
+  .hero {
+    background: url("/assets/home-imgs/medium-hero-img.png") center/cover no-repeat !important;
+  }
+}
 
 @media (max-width: 992px) {
   /* MAKE DATE INPUT SHOW PLACEHOLDER ON MOBILE */
@@ -541,7 +546,7 @@ html, body {
   left: 48%;
   transform: translateY(-50%);
   background: #fff;
-  width: 670px;
+  // width: 670px;
   padding: 60px;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
