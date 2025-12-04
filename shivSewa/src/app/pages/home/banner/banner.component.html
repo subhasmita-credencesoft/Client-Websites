@@ -11,53 +11,76 @@
         </h1>
         <form class="shivsewa-booking-panel" (submit)="bookNow($event)">
 
-          <div class="quick-ride-section">
-            <div class="ride-inputs-wrapper">
-              <!-- Pickup Location -->
-              <div class="ride-input-group">
-                <div class="location-indicator location-indicator-empty"></div>
-                <input
-                  type="text"
-                  placeholder="Enter Pickup Point"
-                  [(ngModel)]="pickupLocation"
-                  name="quickPickup"
-                  class="ride-input"
-                >
-                <div
-                  class="location-button location-button-gps"
-                  (click)="useCurrentLocation()"
-                >
-                  <i class="fa-solid fa-location-crosshairs icon-specific"></i>
-                </div>
-              </div>
+       <div class="quick-ride-section">
+  <div class="ride-inputs-wrapper">
 
-              <!-- Connector Line -->
-              <div class="connector-line-wrapper">
-                <div class="connector-line"></div>
-              </div>
+    <!-- Pickup -->
+    <div class="ride-input-group pickup-group" #pickupGroup style="position: relative">
+      <div class="location-indicator location-indicator-empty"></div>
 
-              <!-- Destination -->
-              <div class="ride-input-group">
-                <div class="location-indicator location-indicator-filled"></div>
-                <input
-                  type="text"
-                  placeholder="Enter Destination"
-                  [(ngModel)]="dropLocation"
-                  name="quickDrop"
-                  class="ride-input"
-                >
-                <div class="location-icon">
-                  <i class="fa-solid fa-map-pin icon-specific"></i>
-                </div>
-              </div>
-            </div>
+      <input
+        type="text"
+        placeholder="Enter Pickup Point"
+        [(ngModel)]="pickupLocation"
+        (input)="filterPickup(pickupLocation)"
+        name="quickPickup"
+        class="ride-input"
+      >
 
-            <div class="quick-ride-button-wrapper">
-              <button type="button" (click)="bookNow($event)" class="request-ride-button">
-                Request Ride
-              </button>
-            </div>
-          </div>
+      <div class="location-button location-button-gps" (click)="useCurrentLocation()">
+        <i class="fa-solid fa-location-crosshairs icon-specific"></i>
+      </div>
+
+      <!-- Pickup Suggestions -->
+      <ul class="autocomplete-box" *ngIf="pickupSuggestions.length > 0">
+        <li *ngFor="let s of pickupSuggestions" (click)="selectPickupLocation(s)">
+         <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Connector -->
+    <div class="connector-line-wrapper">
+      <div class="connector-line"></div>
+    </div>
+
+    <!-- Drop -->
+    <div class="ride-input-group drop-group" #dropGroup style="position: relative">
+      <div class="location-indicator location-indicator-filled"></div>
+
+      <input
+        type="text"
+        placeholder="Enter Destination"
+        [(ngModel)]="dropLocation"
+        (input)="filterDrop(dropLocation)"
+        [disabled]="!pickupLocation"
+        name="quickDrop"
+        class="ride-input"
+      >
+
+      <div class="location-icon">
+        <i class="fa-solid fa-map-pin icon-specific"></i>
+      </div>
+
+      <!-- Drop Suggestions -->
+      <ul class="autocomplete-box" *ngIf="dropSuggestions.length > 0">
+        <li *ngFor="let s of dropSuggestions" (click)="selectDropLocation(s)">
+          {{ s }}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="quick-ride-button-wrapper">
+    <button type="button" [disabled]="!pickupLocation && !dropLocation" (click)="bookNow($event)" class="request-ride-button">
+      Request Ride
+    </button>
+  </div>
+</div>
+
+
+
 
         </form>
       </div>

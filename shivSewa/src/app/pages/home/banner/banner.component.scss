@@ -136,6 +136,34 @@ position: relative;
       font-size: 26px;
     color: #f97316;
 }
+.autocomplete-box {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-left: 0;
+  margin-top: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.autocomplete-box li {
+    list-style: none;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 165, 0, 0.4117647059);
+    display: flex;
+    align-items: center;
+}
+
+.autocomplete-box li:hover {
+  background: #f1f1f1;
+}
 
 .location-button {
     position: absolute;
