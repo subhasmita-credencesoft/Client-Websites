@@ -1,7 +1,7 @@
-import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
+import { Component } from '@angular/core';
+import { BookingService } from '../../../services/booking.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
-
 interface Car {
   id: number;
   name: string;
@@ -12,48 +12,17 @@ interface Car {
   description: string;
   image: string;
 }
-
-interface Tab {
-  id: string;
-  label: string;
-}
 @Component({
-  selector: 'app-cars-listings-data',
+  selector: 'app-step-passenger',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './cars-listings-data.component.html',
-  styleUrl: './cars-listings-data.component.scss',
- animations: [
-    trigger('fadeCards', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(20px)' }),
-        animate('400ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-      ]),
-      transition(':increment', [
-        style({ opacity: 0, transform: 'translateY(20px)' }),
-        animate('350ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-      ]),
-      transition(':decrement', [
-        style({ opacity: 0, transform: 'translateY(20px)' }),
-        animate('350ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-      ])
-    ])
-  ]
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  templateUrl: './step-passenger.component.html',
+  styleUrl: './step-passenger.component.scss'
 })
-export class CarsListingsDataComponent {
-activeTab: string = 'sedan';
-  currentIndex: number = 0;
-  isAnimating: boolean = false;
-  visibleCards: number = 4;
-  tabChangeAnimation: number = 0;
-
-  tabs: Tab[] = [
-    { id: 'sedan', label: 'SEDAN CLASS' },
-    { id: 'suv', label: 'PREMIUM SUV' },
-    { id: 'electric', label: 'ELECTRIC VEHICLES' },
-    { id: 'minivans', label: 'MINIVANS' }
-  ];
-
+export class StepPassengerComponent {
+  passengers = { type: 'solo', adults: 1, children: 0, luggage: 0 } as any;
+  selectedCategory: keyof typeof this.carData = 'sedan';
+selectedVehicle: any = null;
   carData: { [key: string]: Car[] } = {
     sedan: [
       {
@@ -265,88 +234,62 @@ activeTab: string = 'sedan';
     ]
   };
 
-  ngOnInit(): void {
-    this.updateVisibleCards();
+  travelTypeToCategory: any = {
+  solo: 'sedan',
+  group: 'suv',
+  family: 'minivans',
+  corporate: 'sedan'
+};
+allCars: Car[] = [];
+carList = this.carData[this.selectedCategory];
+  vehicleOptions = [
+    { name: 'Premium Sedan - Ciaz/Verna', seats: 4, luggage: 3, price: 21500 },
+    { name: 'Premium Sedan - Dzire', seats: 4, luggage: 2, price: 19500 },
+    { name: 'SUV - Creta', seats: 6, luggage: 4, price: 28500 }
+  ];
+recommendedCars: Car[] = [];
+  constructor(private bookingService: BookingService) {
+    const b = this.bookingService.getCurrent();
+    this.passengers = b.passengers || this.passengers;
+    this.selectedVehicle = b.vehicle && b.vehicle.name ? b.vehicle : null;
   }
+ngOnInit() {
+  this.chooseType('solo');
+     this.allCars = Object.values(this.carData).flat();
+}
+  chooseType(type: string) {
+  this.passengers.type = type;
+  this.selectedCategory = this.travelTypeToCategory[type];
 
-  @HostListener('window:resize')
-  onResize(): void {
-    this.updateVisibleCards();
-    this.currentIndex = 0;
-  }
+  // show top 2–3 cars as recommended
+  this.recommendedCars = this.carData[this.selectedCategory].slice(0, 3);
+}
 
-  updateVisibleCards(): void {
-    const width = window.innerWidth;
-    if (width >= 1280) {
-      this.visibleCards = 4;
-    } else if (width >= 1024) {
-      this.visibleCards = 3;
-    } else if (width >= 640) {
-      this.visibleCards = 2;
-    } else {
-      this.visibleCards = 1;
+ selectVehicle(v: any) {
+  this.selectedVehicle = v;
+
+  this.bookingService.patchDeep({
+    passengers: this.passengers,
+    vehicle: {
+      name: v.name,
+      seats: v.seats,
+      bags: v.bags,
+      price: v.price,
+      image: v.image
     }
+  });
+}
+  goBack() { this.bookingService.prevStep(); }
+  next() {
+    this.bookingService.patchDeep({ passengers: this.passengers, vehicle: this.selectedVehicle });
+    this.bookingService.nextStep();
   }
 
-  get maxIndex(): number {
-    return Math.max(0, this.getCurrentCars().length - this.visibleCards);
-  }
+  scrollLeft(slider: HTMLElement) {
+  slider.scrollBy({ left: -200, behavior: 'smooth' });
+}
 
-  get progressDots(): number[] {
-    return Array(this.maxIndex + 1).fill(0);
-  }
-
-  getCurrentCars(): Car[] {
-    return this.carData[this.activeTab];
-  }
-
-  getTransform(): string {
-    const percentage = this.currentIndex * (100 / this.visibleCards);
-    const gap = this.currentIndex * 1.5;
-    return `translateX(calc(-${percentage}% - ${gap}rem))`;
-  }
-
-  isCardVisible(index: number): boolean {
-    return index >= this.currentIndex && index < this.currentIndex + this.visibleCards;
-  }
-
-  getCardTransform(index: number): string {
-    const isVisible = this.isCardVisible(index);
-    const distanceFromCenter = Math.abs(index - (this.currentIndex + this.visibleCards / 2));
-    const scale = isVisible ? 1 : 0.9;
-    const rotateY = isVisible ? 0 : distanceFromCenter * 5;
-    return `scale(${scale}) rotateY(${rotateY}deg)`;
-  }
-
-  handlePrev(): void {
-    if (this.isAnimating || this.currentIndex === 0) return;
-    this.isAnimating = true;
-    this.currentIndex = Math.max(0, this.currentIndex - 1);
-    setTimeout(() => this.isAnimating = false, 600);
-  }
-
-  handleNext(): void {
-    if (this.isAnimating || this.currentIndex >= this.maxIndex) return;
-    this.isAnimating = true;
-    this.currentIndex = Math.min(this.maxIndex, this.currentIndex + 1);
-    setTimeout(() => this.isAnimating = false, 600);
-  }
-
-  handleTabChange(tabId: string): void {
-    if (tabId !== this.activeTab && !this.isAnimating) {
-      this.isAnimating = true;
-      this.activeTab = tabId;
-      this.currentIndex = 0;
-      this.tabChangeAnimation++;
-      setTimeout(() => this.isAnimating = false, 600);
-    }
-  }
-
-  goToSlide(index: number): void {
-    if (!this.isAnimating && index !== this.currentIndex) {
-      this.isAnimating = true;
-      this.currentIndex = index;
-      setTimeout(() => this.isAnimating = false, 600);
-    }
-  }
+scrollRight(slider: HTMLElement) {
+  slider.scrollBy({ left: 200, behavior: 'smooth' });
+}
 }

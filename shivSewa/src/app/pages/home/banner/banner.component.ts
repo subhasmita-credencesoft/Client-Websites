@@ -45,13 +45,14 @@ export class BannerComponent {
 
   bookNow(event: Event): void {
     event.preventDefault();
-    console.log('Booking:', {
-      pickup: this.pickupLocation,
-      drop: this.dropLocation,
-      dateTime: this.dateTime,
-      passengers: this.passengers
-    });
-      this.router.navigate(['/booking']);
+      const booking = {
+    pickup: this.pickupLocation,
+    drop: this.dropLocation,
+    dateTime: this.dateTime,
+    passengers: this.passengers
+  };
+  sessionStorage.setItem("selectedBooking", JSON.stringify(booking));
+    this.router.navigate(['/booking']);
   }
 
   //---------------------------------------

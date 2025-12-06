@@ -1,29 +1,44 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { StepLocationComponent } from "./step-location/step-location.component";
+import { HeaderComponent } from "../../components/header/header.component";
 import { BookingService } from '../../services/booking.service';
-import { Booking } from '../../models/booking.model';
-import { StepPassengersComponent } from "./step-passengers/step-passengers.component";
+import { StepLocationComponent } from "./step-location/step-location.component";
+import { StepPassengerComponent } from "./step-passenger/step-passenger.component";
 import { StepSummaryComponent } from "./step-summary/step-summary.component";
 import { StepConfirmationComponent } from "./step-confirmation/step-confirmation.component";
+import { Router } from '@angular/router';
 
-interface SidebarIcon {
-  icon: string;
-  active: boolean;
-}
 @Component({
   selector: 'app-booking-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, StepLocationComponent, StepPassengerComponent, StepSummaryComponent, StepConfirmationComponent, HeaderComponent],
   templateUrl: './booking-form.component.html',
   styleUrl: './booking-form.component.scss'
 })
 export class BookingFormComponent {
+  step = 0;
+  steps = ['LOCATION & TIME', 'PASSENGER & VEHICLE SELECTION', 'BOOKING SUMMARY'];
+  stepAnchors = [30, 50, 100];
+  constructor(public bookingService: BookingService,
+    private router: Router,
+  ) {}
 
-  constructor(){}
-  ngOnInit(){
-
+  ngOnInit(): void {
+    this.bookingService.step$.subscribe(s => this.step = s);
   }
 
+  goTo(i: number) {
+    this.bookingService.setStep(i);
+  }
+
+  navigatetoHome(){
+    this.router.navigate(['/']);
+  }
+
+progressPct() {
+  // const pct = (this.step / (this.steps.length - 1)) * 100;
+  // return this.step === 0 ? 15 : pct;
+  return this.stepAnchors[this.step];
+}
 }

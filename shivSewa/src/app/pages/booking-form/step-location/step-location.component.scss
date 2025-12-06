@@ -1,0 +1,177 @@
+/* LABEL */
+.label-small {
+  font-size: 13px;
+  font-weight: 600;
+  color: #5a5a5a;
+  margin-bottom: 6px;
+}
+
+/* INPUT BOX EXACT LIKE SCREENSHOT */
+.input-orange-box input {
+  background: #ffe5d6;
+  border: 1px solid #ffc7af;
+  border-radius: 12px 0 0 12px;
+  padding: 12px 14px;
+  font-size: 15px;
+}
+
+.input-white-box input {
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px 0 0 12px;
+  padding: 12px 14px;
+  font-size: 15px;
+}
+
+/* RIGHT ICON SMALLER + INNER SHADOW FEEL */
+.icon-soft {
+  background: #fff;
+  border-left: none;
+  border-radius: 0 12px 12px 0;
+  font-size: 17px;
+  color: #444;
+  padding-right: 14px;
+  box-shadow: inset 0 0 1px rgba(0,0,0,0.1);
+}
+
+/* ENSURE PERFECT ALIGNMENT */
+.input-group .form-control {
+  border-right: 0 !important;
+  height: 46px;
+}
+
+.input-group-text {
+  border-left: 0 !important;
+  height: 46px;
+  display: flex;
+  align-items: center;
+}
+.autocomplete-box {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-left: 0;
+  margin-top: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.autocomplete-box li {
+    list-style: none;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 165, 0, 0.4117647059);
+    display: flex;
+    align-items: center;
+}
+
+.autocomplete-box li:hover {
+  background: #f1f1f1;
+}
+.backgrond-span {
+      background: #ffe5d6;
+    border: 1px solid #ffc7af;
+}
+/* TRIP TOGGLE SECTION EXACT */
+.trip-toggle button {
+    border: none;
+    background: #fff;
+    padding: 7px 25px;
+    font-size: 13px;
+}
+
+.trip-toggle button.active {
+  background: #000;
+  border-color: #000;
+  color: #fff;
+}
+
+/* NEXT BUTTON EXACT POSITION & LOOK */
+.btn-next {
+  background: #000;
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    display: none;
+}
+
+/* Hide default time icon */
+input[type="time"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    display: none;
+}
+
+.time-picker-wrapper {
+  position: relative;
+}
+
+.time-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  z-index: 999;
+  padding: 0;
+  margin: 4px 0 0;
+  list-style: none;
+}
+
+.time-list li {
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.time-list li:hover {
+  background: #f7f7f7;
+}
+
+
+/* Firefox fix */
+input[type="date"],
+input[type="time"] {
+    -moz-appearance: textfield;
+}
+.icon-specific {
+    font-size: 21px;
+    color: #f97316;
+}
+.margin-changes {
+      margin-top: 30px !important;
+    margin-bottom: 30px !important;
+    padding: 10px;
+}
+.border-changes {
+  border: 1px solid rgba(194, 194, 194, 1);
+  border-radius: 8px
+}
+@media (min-width: 1180px){
+  .gap-changes {
+    gap: 10%;
+  }
+}
+@media (max-width: 600px) {
+  .display-manage {
+        flex-wrap: wrap;
+    justify-content: center !important;
+  }
+}

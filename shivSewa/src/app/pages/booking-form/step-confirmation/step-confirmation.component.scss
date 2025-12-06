@@ -1,0 +1,90 @@
+
+:host {
+.card p { margin-bottom:0.5rem; }
+.card-soft {
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-soft h6 {
+  font-weight: 700;
+}
+
+@media (max-width: 991px) {
+  .col-lg-7, .col-lg-5 {
+    margin-bottom: 1rem;
+  }
+}
+
+  .card-soft {
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-soft h6 {
+  font-weight: 700;
+}
+
+@media (max-width: 991px) {
+  .col-lg-7, .col-lg-5 {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Leaflet map custom styles */
+#routeMap .leaflet-control-attribution {
+  display: none;
+}
+
+#routeMap .leaflet-control-zoom {
+  display: none;
+}
+
+.distance-badge {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 107, 53, 0.95);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.custom-tooltip {
+  background-color: white !important;
+  border: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+}
+
+.custom-tooltip-dropoff {
+  background-color: white !important;
+  border: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  color: #FF6B35 !important;
+}
+
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before,
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before {
+  display: none !important;
+}
+}

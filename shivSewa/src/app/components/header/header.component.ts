@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 menuOpen = false;
-constructor() {}
+constructor(private router: Router,) {}
 
 ngOnInit(): void {
 
@@ -18,5 +19,16 @@ ngOnInit(): void {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
+  navigatebooking(){
+    this.router.navigate(['/booking']);
+  }
+scrollTo(sectionId: string) {
+  const el = document.getElementById(sectionId);
 
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  this.menuOpen = false; // close mobile menu after clicking
+}
 }

@@ -65,7 +65,7 @@
       <!-- Drop Suggestions -->
       <ul class="autocomplete-box" *ngIf="dropSuggestions.length > 0">
         <li *ngFor="let s of dropSuggestions" (click)="selectDropLocation(s)">
-          {{ s }}
+         <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s }}
         </li>
       </ul>
     </div>
