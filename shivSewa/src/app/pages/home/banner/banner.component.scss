@@ -514,3 +514,18 @@ ease;
     right: 0rem;
 }
     }
+
+
+@media (max-width: 968px) {
+
+  .shivsewa-hero-section {
+    justify-content: center;
+  }
+
+  .shivsewa-hero-container {
+    right: 0;
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
+  }
+}

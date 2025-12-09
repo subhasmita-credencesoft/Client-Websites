@@ -199,3 +199,36 @@ color: #fff;
         font-size: 0.85rem;
       }
     }
+
+
+@media (max-width: 1240px) {
+
+  .shivsewa-navbar-wrapper {
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .shivsewa-logo-section {
+    flex: 1;  
+    display: flex;
+    align-items: center;
+  }
+
+  .shivsewa-navigation {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .shivsewa-navigation button {
+    margin-left: 0; 
+  }
+
+  .shivsewa-btn-whatsapp,
+  .shivsewa-btn-book {
+    flex: 0 0 auto;
+  }
+}
+
