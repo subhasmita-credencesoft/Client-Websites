@@ -41,4 +41,7 @@ progressPct() {
   // return this.step === 0 ? 15 : pct;
   return this.stepAnchors[this.step];
 }
+ngAfterViewInit() {
+  this.bookingService.setStep(0);
+}
 }

@@ -40,3 +40,41 @@
   border-color: #d0d0d0;
   color: #666;
 }
+hr.new2 {
+  border-top: 1px dashed red;
+}
+.icon-specific {
+    font-size: 21px;
+    color: #f97316;
+}
+  .forwardMove:disabled {
+  background: #c5c5c5 !important;
+  color: #777 !important;
+  cursor: not-allowed !important;
+  opacity: 0.8;
+}
+@media (max-width: 600px){
+  .goBack {
+        border-radius: 14px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    background-color: #000;
+    border-color: #d0d0d0;
+    color: #fff;
+  }
+  .forwardMove {
+            background: #000;
+        color: #fff;
+        padding: 12px 15px;
+        border-radius: 14px;
+        font-weight: 600;
+        font-size: 14px;
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+  }
+
+}

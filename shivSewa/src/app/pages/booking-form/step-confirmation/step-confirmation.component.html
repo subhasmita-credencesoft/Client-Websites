@@ -1,98 +1,150 @@
-<div class="container">
-  <div class="row g-3 align-items-start" style="background: linear-gradient(135deg, #FFF9F5 0%, #FFFFFF 100%); border: 2px solid #FFE5D9; border-radius: 16px;">
-      <div class="col-lg-7">
-    <div class="card-soft" >
-      <h4 class="fw-bold mb-2" style="color: #1a1a1a;">Your Ride Is Set!</h4>
-      <p class="mb-1" style="font-size: 1rem;">
-        Always Ready With <span class="fw-bold" style="color: #FF6B35;">Shiv Sewa</span>.
+<div class="confirmation-wrapper">
+  <div class="confirmation-box">
+    <!-- LEFT SECTION -->
+    <div class="left-side">
+      <h2 class="main-title">Your Ride Is Set!</h2>
+      <p class="sub-line">
+        Always Ready With <span class="brand">Shiv Sewa.</span>
       </p>
-      <p class="small text-muted mb-4" style="font-size: 0.875rem;">
-        Your cab request has been received.<br>
+      <p class="desc">
+        Your cab request has been received.<br />
         Someone from our team will contact you shortly.
       </p>
 
-      <!-- Booking Reference Card -->
-      <div class="p-3 mb-4" style="background-color: white; border-radius: 12px; border: 1px solid #f0f0f0; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
-        <div class="mb-2">
-          <span class="small fw-semibold" style="color: #FF6B35;">Booking Reference:</span>
-          <span class="fw-bold ms-1" style="color: #1a1a1a;">{{ booking.bookingRef || '1234567890' }}</span>
+      <!-- BOOKING CARD -->
+      <div class="booking-card">
+        <div class="ref-line">
+          <span class="ref-label">Booking Reference:</span>&nbsp;
+          <span class="ref-id">{{ booking?.bookingRef || '1234567890' }}</span>
         </div>
 
-        <div class="d-flex align-items-start gap-2 mb-2">
-          <div style="width: 8px; height: 8px; border-radius: 50%; background-color: #999; margin-top: 6px;"></div>
-          <div class="flex-grow-1">
-            <div class="small fw-semibold text-dark">{{ booking.pickup || 'Kharghar, Navi Mumbai' }}</div>
-            <div class="text-muted" style="font-size: 0.75rem;">
-              <i class="bi bi-calendar3 me-1"></i>{{ booking.date || '26 Nov, 2025' }} | {{ booking.time || '10:00AM' }}
+        <!-- PICKUP -->
+        <div class="loc-row">
+          <span class="dot grey"></span>
+          <div class="d-flex justify-content-between align-items-center flex-wrap" style="width: 100%;">
+            <div class="loc-main">{{booking?.locality}}, {{booking?.pickup}}</div>
+            <div class="loc-sub">
+              <i class="fa-solid fa-calendar" style="color:rgba(241, 101, 18, 1)"></i>
+              {{booking?.date | date:'dd MMM, yyyy'}} | {{booking?.time}}
             </div>
           </div>
         </div>
 
-        <div class="d-flex align-items-center gap-2 mb-3">
-          <div style="width: 8px; height: 8px; border-radius: 50%; background-color: #FF6B35; margin-top: 6px;"></div>
-          <div class="small fw-semibold text-dark">{{ booking.dropoff || 'Lonavala' }}</div>
+        <!-- DROP -->
+        <div class="loc-row">
+          <span class="dot orange"></span>
+          <div class="loc-main">{{booking?.dropoff}}</div>
         </div>
 
-        <div class="pt-2" style="border-top: 1px solid #f0f0f0;">
-          <div class="d-flex align-items-center justify-content-between">
-            <div>
-              <div class="fw-bold text-dark mb-1">{{ booking.vehicle?.name || 'Premium Sedan - Dzire/Verna' }}</div>
-              <div class="small text-muted">
-                <i class="bi bi-people-fill me-1"></i>{{ (booking.passengers?.adults || 2) < 10 ? '0' + (booking.passengers?.adults || 2) : (booking.passengers?.adults || 2) }} Adults,
-                {{ (booking.passengers?.children || 2) < 10 ? '0' + (booking.passengers?.children || 2) : (booking.passengers?.children || 2) }} Children
-                <span class="mx-2">|</span>
-                <i class="bi bi-bag-fill me-1"></i>{{ booking.bags || 4 }} Bags
-              </div>
+        <div class="divider"></div>
+
+        <!-- CAR INFO -->
+        <div class="car-number">{{booking?.vehicle?.carNumber}}</div>
+        <div class="car-name">{{booking?.vehicle?.name}}</div>
+
+        <div class="cap-line">
+          <i class="bi bi-people-fill me-1"></i> {{booking?.passengers?.adults}} Adults, {{booking?.passengers?.children}} Children
+          <span class="mx-2">|</span>
+          <i class="bi bi-bag-fill me-1"></i> {{booking?.passengers?.luggage}} Bags
+        </div>
+
+        <div class="divider mt-3"></div>
+
+        <!-- BOOKED FOR -->
+        <div class="booked-grid">
+          <div>
+            <div class="bf-title">Booked For</div>
+            <div class="bf-value">{{booking?.traveller?.firstName}} {{booking?.traveller?.lastName}}</div>
+          </div>
+
+          <div>
+            <div class="bf-title">Capacity</div>
+            <div class="bf-value">{{booking?.passengers?.adults}} Adults, {{booking?.passengers?.children}} Children</div>
+          </div>
+
+          <div>
+            <div class="bf-title">Email Address</div>
+            <div class="bf-value">{{booking?.traveller?.email}}</div>
+          </div>
+
+          <div>
+            <div class="bf-title">Phone Number</div>
+            <div class="bf-value">{{booking?.traveller?.mobile}}</div>
+          </div>
+
+          <div *ngIf="booking?.traveller?.notes">
+            <div class="bf-title">Special Request</div>
+            <div class="bf-value">{{booking?.traveller?.notes}}</div>
+          </div>
+        </div>
+
+        <!-- TOTAL FARE -->
+        <div class="fare-row">
+          <div>
+            <div class="fare-label">Estimated Total Fare</div>
+            <div class="fare-note">
+              Fare is estimated and may vary with distance.<br />Pay the final
+              amount to the driver after the ride.
             </div>
           </div>
+          <div class="fare-amount">{{booking?.vehicle?.price}}</div>
         </div>
       </div>
-
-      <!-- Estimated Fare -->
-      <div class="p-3 mb-4" style="background-color: #FFF9F5; border-radius: 10px; border: 1px solid #FFE5D9;">
-        <div class="d-flex justify-content-between align-items-center">
-          <span class="small text-muted">Estimated Total Fare</span>
-          <span class="fw-bold fs-5" style="color: #1a1a1a;">{{ '₹21,500' }}</span>
-        </div>
-        <div class="mt-1">
-          <small class="text-muted fst-italic" style="font-size: 0.7rem;">
-            Fare is estimated and may vary with distance. Pay the final amount to the driver after trip ends.
-          </small>
-        </div>
-      </div>
-
     </div>
-  </div>
 
-  <div class="col-lg-5">
-    <div class="card-soft p-0" style="border-radius: 16px; overflow: hidden; border: 2px solid #FFE5D9;">
-      <div id="routeMap" style="height: 380px; position: relative; overflow: hidden; border-radius: 14px;">
-        <!-- Loading indicator -->
-        <div id="mapLoader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 1000;">
-          <div class="spinner-border" style="color: #FF6B35;" role="status">
-            <span class="visually-hidden">Loading map...</span>
+    <!-- RIGHT MAP SECTION -->
+    <div class="right-side">
+      <div
+        class="card-soft p-0"
+        style="border-radius: 16px; overflow: hidden; border: 2px solid #ffe5d9"
+      >
+        <div
+          id="routeMap"
+          style="
+            height: 380px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+          "
+        >
+          <!-- Loading indicator -->
+          <div
+            id="mapLoader"
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              text-align: center;
+              z-index: 1000;
+            "
+          >
+            <div class="spinner-border" style="color: #ff6b35" role="status">
+              <span class="visually-hidden">Loading map...</span>
+            </div>
+            <p class="small text-muted mt-2">Loading route map...</p>
           </div>
-          <p class="small text-muted mt-2">Loading route map...</p>
         </div>
       </div>
     </div>
   </div>
-        <!-- What Happens Next -->
-      <div>
-        <h6 class="fw-bold mb-3" style="color: #1a1a1a;">What Happens Next?</h6>
-        <ul class="ps-3 mb-0" style="line-height: 1.8;">
-          <li class="small text-dark mb-2">
-            <strong>Chauffeur Allocation:</strong> We're assigning one of our top-rated chauffeurs to your trip for a safe and comfortable ride.
-          </li>
-          <li class="small text-dark mb-2">
-            Your driver's details — name, photo, and vehicle number — will be shared with you via email & WhatsApp 1 hour before your scheduled pickup.
-          </li>
-          <li class="small text-dark">
-            Simply pay your chauffeur directly at the end of the trip. Cash, UPI, and Card are all accepted.
-          </li>
-        </ul>
-      </div>
-  </div>
 
+  <!-- WHAT HAPPENS NEXT -->
+  <div class="next-section">
+    <h5>What Happens Next?</h5>
+    <ul>
+      <li>
+        <strong>Chauffeur Allocation:</strong> We’re assigning one of our
+        top-rated chauffeurs for your trip.
+      </li>
+      <li>
+        Your driver details will be shared via email & WhatsApp 1 hour before
+        pickup.
+      </li>
+      <li>
+        Simply pay your chauffeur at the end of the trip. Cash, UPI, and Card
+        are accepted.
+      </li>
+    </ul>
   </div>
-
+</div>

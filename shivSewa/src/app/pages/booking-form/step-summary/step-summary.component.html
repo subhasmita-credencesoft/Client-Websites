@@ -7,30 +7,38 @@
         <span class="badge rounded-circle p-1 me-1" style="background-color: #FF6B35; width: 8px; height: 8px;"></span>
         <span class="fw-semibold small" style="color: #FF6B35;">Outstation One Way Trip</span>
       </div>
-      <div class="d-flex align-items-start gap-3 mb-3">
-        <div class="d-flex align-items-center gap-2">
-          <span class="badge rounded-circle p-1" style="background-color: #FF6B35; width: 8px; height: 8px;"></span>
-          <span class="fw-bold">{{ booking.pickup || 'Mumbai' }}</span>
-        </div>
-        <div class="d-flex align-items-center gap-2">
-          <span class="badge rounded-circle p-1" style="background-color: #FF6B35; width: 8px; height: 8px;"></span>
-          <span class="fw-bold">{{ booking.dropoff || 'Lonavala' }}</span>
-        </div>
-      </div>
+      <div class="d-flex align-items-center gap-3 mb-3">
+  <div class="d-flex align-items-center gap-2">
+    <span class="badge rounded-circle p-1"
+          style="background-color: #FF6B35; width: 8px; height: 8px;"></span>
+    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific"></i> {{ booking.pickup || 'Mumbai' }}</span>
+  </div>
+
+  <div style="width:20%">
+    <hr style="border-top: 3px dashed rgba(130, 125, 125, 1);margin: 0;">
+  </div>
+
+  <div class="d-flex align-items-center gap-2">
+    <span class="badge rounded-circle p-1"
+          style="background-color: #FF6B35; width: 8px; height: 8px;"></span>
+    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific"></i>{{ booking.dropoff || 'Lonavala' }}</span>
+  </div>
+</div>
+
       <div class="small text-muted mb-3">
-        <i class="bi bi-calendar3 me-1"></i>
+        <i class="fa-solid fa-calendar" style="color:rgba(241, 101, 18, 0.46)"></i> &nbsp;
         {{ booking.date || '26 Nov, 2025' }} | {{ booking.time || '10:00AM' }}
       </div>
       <div class="d-flex align-items-center justify-content-between pt-3" style="border-top: 1px solid #FFB088;">
-        <div class="fw-bold">{{ booking.vehicle?.name || 'Indica Swift' }}</div>
+        <h5 class="fw-bold">{{ booking.vehicle?.name || 'Indica Swift' }}</h5>
         <div class="d-flex align-items-center gap-3 text-muted small">
           <span>
             <i class="bi bi-people-fill me-1" style="color: #FF6B35;"></i>
-            {{ booking.seats || 7 }} seats
+            {{ vehicleOne?.seats || 4 }} seats
           </span>
           <span>
             <i class="bi bi-bag-fill me-1" style="color: #FF6B35;"></i>
-            {{ booking.bags || 2 }} Bags
+            {{ vehicleOne?.bags || 2 }} Bags
           </span>
         </div>
       </div>
@@ -38,41 +46,110 @@
 
     <!-- Passengers Info Pills -->
     <div class="d-flex gap-2 mb-3">
-      <div class="px-3 py-2 rounded-3" style="background-color: #FFF5F0; border: 1px solid #FFD4C0;">
+      <div class="px-3 py-2 rounded-3" style=" border: 1px solid #FFD4C0;">
         <span class="fw-medium" style="color: #FF6B35; font-size: 0.9rem;">
-          {{ (booking.passengers?.adults || 2) < 10 ? '0' + (booking.passengers?.adults || 2) : (booking.passengers?.adults || 2) }} Adults,
-          {{ (booking.passengers?.children || 2) < 10 ? '0' + (booking.passengers?.children || 2) : (booking.passengers?.children || 2) }} Children
+          {{ (booking.passengers?.adults || 0) < 10 ? '0' + (booking.passengers?.adults || 0) : (booking.passengers?.adults || 0) }} Adults,
+          {{ (booking.passengers?.children || 0) < 10 ? '0' + (booking.passengers?.children || 0) : (booking.passengers?.children || 0) }} Children
         </span>
       </div>
-      <div class="px-3 py-2 rounded-3" style="background-color: #FFF5F0; border: 1px solid #FFD4C0;">
+      <div class="px-3 py-2 rounded-3" style=" border: 1px solid #FFD4C0;">
         <span class="fw-medium" style="color: #FF6B35; font-size: 0.9rem;">
-          {{ (booking.passengers?.luggage || 2) < 10 ? '0' + (booking.passengers?.luggage || 2) : (booking.passengers?.luggage || 2) }} Luggages
+          {{ (booking.passengers?.luggage || 0) < 10 ? '0' + (booking.passengers?.luggage || 0) : (booking.passengers?.luggage || 0) }} Luggages
         </span>
       </div>
     </div>
 
     <!-- Traveller Details -->
     <div class="card-soft mb-3">
-      <h6 class="fw-bold mb-3">Traveller Details</h6>
-      <div class="row g-3">
-        <div class="col-md-6">
-          <label class="form-label small text-muted mb-1">First Name</label>
-          <input class="form-control" [(ngModel)]="booking.traveller.firstName" placeholder="First Name" style="border-radius: 8px;">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label small text-muted mb-1">Last Name</label>
-          <input class="form-control" [(ngModel)]="booking.traveller.lastName" placeholder="Last Name" style="border-radius: 8px;">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label small text-muted mb-1">Mobile Number</label>
-          <input class="form-control" [(ngModel)]="booking.traveller.mobile" placeholder="Mobile Number" style="border-radius: 8px;">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label small text-muted mb-1">Email Address</label>
-          <input class="form-control" [(ngModel)]="booking.traveller.email" placeholder="Email Address" style="border-radius: 8px;">
-        </div>
-      </div>
+  <h6 class="fw-bold mb-3">Traveller Details</h6>
+  <div class="row g-3">
+
+    <!-- First Name -->
+    <div class="col-6 col-md-6">
+      <label class="form-label small text-muted mb-1">First Name</label>
+      <input class="form-control"
+             name="firstName"
+             [(ngModel)]="booking.traveller.firstName"
+             #firstName="ngModel"
+             required
+             pattern="^[A-Za-z]+$"
+             placeholder="First Name"
+             style="border-radius: 8px;">
+
+      <small class="text-danger" *ngIf="firstName.invalid && firstName.touched">
+        First name is required and must contain only letters.
+      </small>
     </div>
+
+    <!-- Last Name -->
+    <div class="col-6 col-md-6">
+      <label class="form-label small text-muted mb-1">Last Name</label>
+      <input class="form-control"
+             name="lastName"
+             [(ngModel)]="booking.traveller.lastName"
+             #lastName="ngModel"
+             required
+             pattern="^[A-Za-z]+$"
+             placeholder="Last Name"
+             style="border-radius: 8px;">
+
+      <small class="text-danger" *ngIf="lastName.invalid && lastName.touched">
+        Last name is required and must contain only letters.
+      </small>
+    </div>
+
+    <!-- Mobile -->
+    <div class="col-md-6">
+      <label class="form-label small text-muted mb-1">Mobile Number</label>
+      <input class="form-control"
+             name="mobile"
+             [(ngModel)]="booking.traveller.mobile"
+             #mobile="ngModel"
+             required
+             pattern="^[6-9][0-9]{9}$"
+             maxlength="10"
+             placeholder="Mobile Number"
+             style="border-radius: 8px;">
+
+      <small class="text-danger" *ngIf="mobile.invalid && mobile.touched">
+        Enter a valid 10-digit mobile number.
+      </small>
+    </div>
+
+    <!-- Email -->
+    <div class="col-md-6">
+      <label class="form-label small text-muted mb-1">Email Address</label>
+      <input class="form-control"
+             name="email"
+             [(ngModel)]="booking.traveller.email"
+             #email="ngModel"
+             required
+             email
+             placeholder="Email Address"
+             style="border-radius: 8px;">
+
+      <small class="text-danger" *ngIf="email.invalid && email.touched">
+        Enter a valid email address.
+      </small>
+    </div>
+
+    <!-- Special Notes -->
+    <div class="col-12">
+      <label class="form-label small text-muted mb-1">Special Notes</label>
+      <textarea class="form-control"
+                name="notes"
+                [(ngModel)]="booking.traveller.notes"
+                #notes="ngModel"
+                rows="3"
+                placeholder="Add any special instructions or notes..."
+                style="border-radius: 8px; resize: none;"></textarea>
+    </div>
+
+  </div>
+</div>
+
+
+
   </div>
   <div class="col-lg-4">
     <!-- Estimated Journey Cost -->
@@ -88,7 +165,7 @@
       </div>
       <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="text-dark small">Chauffeur Service Fee</div>
-        <div class="fw-bold">₹500</div>
+        <div class="fw-bold">₹0</div>
       </div>
       <hr class="my-3">
       <div class="d-flex justify-content-between align-items-center">
@@ -138,11 +215,11 @@
   </div>
       <!-- Action Buttons -->
     <div class="d-flex justify-content-between align-items-center">
-      <button class="btn btn-outline-secondary d-flex align-items-center gap-2 px-4 py-2" (click)="goBack()" style="border-radius: 8px;">
+      <button class="btn btn-outline-secondary d-flex align-items-center gap-2 px-4 py-2 goBack" (click)="goBack()" style="border-radius: 8px;">
         <i class="bi bi-arrow-left"></i>
         <span>Go back</span>
       </button>
-      <button class="btn btn-dark px-5 py-2" (click)="confirm()" style="border-radius: 8px;">
+      <button class="btn btn-dark px-5 py-2 forwardMove" [disabled]="firstName.invalid || lastName.invalid || mobile.invalid || email.invalid" (click)="confirm()" style="border-radius: 8px;">
         Confirm Booking
       </button>
     </div>

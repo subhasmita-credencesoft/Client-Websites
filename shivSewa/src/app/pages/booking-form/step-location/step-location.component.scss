@@ -104,6 +104,12 @@
   gap: 10px;
   align-items: center;
 }
+.btn-next:disabled {
+  background: #c5c5c5;   /* light grey */
+  color: #666;           /* darker text */
+  cursor: not-allowed;
+  opacity: 0.8;
+}
 input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 0;
     display: none;
@@ -155,6 +161,9 @@ input[type="time"] {
     font-size: 21px;
     color: #f97316;
 }
+.width-manage {
+    width: 60%;
+  }
 .margin-changes {
       margin-top: 30px !important;
     margin-bottom: 30px !important;
@@ -171,7 +180,11 @@ input[type="time"] {
 }
 @media (max-width: 600px) {
   .display-manage {
-        flex-wrap: wrap;
-    justify-content: center !important;
+flex-wrap: wrap;
+        justify-content: center !important;
+        gap: 5px;
+  }
+  .width-manage {
+    width: 100%;
   }
 }

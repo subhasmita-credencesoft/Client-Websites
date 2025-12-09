@@ -10,6 +10,7 @@ import { CarsListingsDataComponent } from "./cars-listings-data/cars-listings-da
 import { ReviewsTestimonialsComponent } from './reviews-testimonials/reviews-testimonials.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'app-home',
@@ -20,9 +21,9 @@ import { FooterComponent } from '../../components/footer/footer.component';
 })
 export class HomeComponent {
 
-  constructor() {}
+  constructor(private bookingService: BookingService) {}
   ngOnInit(): void {
-
+    this.bookingService.reset();
   }
 
 }

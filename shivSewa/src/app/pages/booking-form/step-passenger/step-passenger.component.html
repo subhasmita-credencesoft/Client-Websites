@@ -1,88 +1,128 @@
 <div class="container">
-<div class="card-soft">
-  <h5 class="mb-3">Who Are You Traveling With?</h5>
+  <div class="card-soft">
 
-  <div class="d-flex flex-wrap gap-2 mb-3 justify-content-around">
-    <button class="btn btn-formart" [ngClass]="{'btn-accent': passengers.type==='solo','btn-ghost': passengers.type!=='solo'}" (click)="chooseType('solo')"><i class="fa-solid fa-user icon-specific"></i>&nbsp; &nbsp; Solo </button>
-    <button class="btn btn-formart" [ngClass]="{'btn-accent': passengers.type==='group','btn-ghost': passengers.type!=='group'}" (click)="chooseType('group')"><i class="fa-solid fa-people-group icon-specific"></i>&nbsp; &nbsp;Group</button>
-    <button class="btn btn-formart" [ngClass]="{'btn-accent': passengers.type==='family','btn-ghost': passengers.type!=='family'}" (click)="chooseType('family')"><i class="bi bi-people-fill icon-specific"></i> &nbsp; &nbsp;Family</button>
-    <button class="btn btn-formart" [ngClass]="{'btn-accent': passengers.type==='corporate','btn-ghost': passengers.type!=='corporate'}" (click)="chooseType('corporate')">
-      <div class="d-flex">
-        <div class="material-symbols-outlined icon-specific">
-    lock_person
-    </div>&nbsp; &nbsp;<div>Corporate</div>
-      </div>
+    <h5 class="mb-3">Who Are You Traveling With?</h5>
+
+    <div class="d-flex flex-wrap gap-2 mb-3 justify-content-around">
+      <button class="btn btn-formart"
+        [ngClass]="{'btn-accent': passengers.type==='personal'}"
+        (click)="chooseType('personal')">
+        <i class="fa-solid fa-user icon-specific"></i>&nbsp; Personal
       </button>
-  </div>
 
-  <div class="row justify-content-around mb-3 mt-5">
-    <div class="col-md-3">
-      <label>Adults</label>
-      <input type="number" min="1" class="form-control" [(ngModel)]="passengers.adults" placeholder="Number of adults">
+      <button class="btn btn-formart"
+        [ngClass]="{'btn-accent': passengers.type==='corporate'}"
+        (click)="chooseType('corporate')">
+        <span class="material-symbols-outlined icon-specific">lock_person</span>
+        &nbsp;Corporate
+      </button>
     </div>
-    <div class="col-md-3">
-      <label>Children (above 10)</label>
-      <input type="number" min="0" class="form-control" [(ngModel)]="passengers.children" placeholder="Number of children">
+
+    <div class="row justify-content-around mb-3 mt-5">
+      <div class="col-md-3 col-6">
+        <label>Adults</label>
+        <input type="number" min="1" max="7"
+          class="form-control"
+          [(ngModel)]="passengers.adults"
+          (input)="validatePassengerCounts()">
+      </div>
+
+      <div class="col-md-3 col-6">
+        <label>Children (above 10)</label>
+        <input type="number" min="0" max="5"
+          class="form-control"
+          [(ngModel)]="passengers.children"
+          (input)="validatePassengerCounts()">
+      </div>
+
+      <div class="col-md-3">
+        <label>Luggage</label>
+        <input type="number" min="0" max="5"
+          class="form-control"
+          [(ngModel)]="passengers.luggage"
+          (input)="validatePassengerCounts()">
+      </div>
     </div>
-    <div class="col-md-3">
-      <label>Luggage</label>
-      <input type="number" min="0" class="form-control" [(ngModel)]="passengers.luggage" placeholder="Number of bags">
-    </div>
-  </div>
 
-<h6 class="mb-2 mt-5">Rides Recommended For You</h6>
+    <div *ngIf="selectedVehicle" class="mb-4">
+  <h6>Your Selected Car</h6>
 
-<div class="row g-3">
-  <div class="col-md-6" *ngFor="let v of recommendedCars">
-    <div class="card p-3 h-100"
-      [ngClass]="{ 'btn-accent': selectedVehicle === v }"
-      style="border-radius:12px; cursor:pointer"
-      (click)="selectVehicle(v)"
-    >
-      <div class="d-flex align-items-center">
-        <img [src]="v.image" class="car-thumb" />
+  <div class="card p-3 btn-accent" style="border-radius:12px;">
+    <div class="d-flex align-items-center">
+      <img [src]="selectedVehicle.image" class="car-thumb" />
 
-        <div>
-          <div class="fw-bold">{{ v.name }}</div>
-          <div class="small text-muted">{{ v.seats }} seats • {{ v.bags }} bags</div>
-          <div class="small text-muted">{{ v.fuel }}</div>
+      <div>
+        <div class="fw-bold">{{ selectedVehicle.name }}</div>
+        <div class="small text-muted">
+          {{ selectedVehicle.seats }} seats • {{ selectedVehicle.bags }} bags
         </div>
+        <div class="small text-muted">{{ selectedVehicle.fuel }}</div>
+      </div>
 
-        <div class="ms-auto text-end">
-          <div class="fw-bold">{{ v.price }}</div>
-          <div class="small text-muted">Est. fare</div>
-        </div>
+      <div class="ms-auto text-end">
+        <div class="fw-bold">{{ selectedVehicle.price }}</div>
+        <div class="small text-muted">Est. fare</div>
       </div>
     </div>
   </div>
 </div>
 
-<h6 class="mb-3 mt-4">Explore More Cars</h6>
+    <h6 class="mb-2 mt-5">Rides Recommended For You</h6>
 
-<div class="car-slider-wrapper">
-  <div class="car-slider" #slide>
-      <div class="car-slide" *ngFor="let car of allCars">
+    <div class="row g-3">
+      <div class="col-md-6" *ngFor="let v of recommendedCars">
+        <div class="card p-3 h-100"
+          (click)="selectVehicle(v)"
+          [ngClass]="{ 'btn-accent': selectedVehicleId === v.id }"
+          style="border-radius:12px; cursor:pointer">
+          <div class="d-flex align-items-center">
+            <img [src]="v.image" class="car-thumb" />
 
-  <div class="card p-2 car-slide-card"
-       (click)="selectVehicle(car)"
-       [ngClass]="{ 'btn-accent': selectedVehicle === car }">
+            <div>
+              <div class="fw-bold">{{ v.name }}</div>
+              <div class="small text-muted">{{ v.seats }} seats • {{ v.bags }} bags</div>
+              <div class="small text-muted">{{ v.fuel }}</div>
+            </div>
 
-    <img [src]="car.image" class="slide-img" />
+            <div class="ms-auto text-end">
+              <div class="fw-bold">{{ v.price }}</div>
+              <div class="small text-muted">Est. fare</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <div class="fw-semibold small mt-1">{{ car.name }}</div>
-    <div class="text-muted small">{{ car.seats }} seats • {{ car.bags }} bags</div>
+    <h6 class="mb-3 mt-4">Explore More Cars</h6>
+
+    <div class="car-slider-wrapper">
+      <button class="slide-btn left" (click)="scrollLeft(slide)">
+        <i class="fa-solid fa-angle-left icon-specific"></i>
+      </button>
+
+      <div class="car-slider" #slide>
+        <div class="car-slide" *ngFor="let car of allCars">
+          <div class="card p-2 car-slide-card"
+            (click)="selectVehicle(car)"
+            [ngClass]="{ 'btn-accent': selectedVehicleId === car.id }">
+
+            <img [src]="car.image" class="slide-img" />
+            <div class="fw-semibold small mt-1">{{ car.name }}</div>
+            <div class="text-muted small">{{ car.seats }} seats • {{ car.bags }} bags</div>
+
+          </div>
+        </div>
+      </div>
+
+      <button class="slide-btn right" (click)="scrollRight(slide)">
+        <i class="fa-solid fa-angle-right icon-specific"></i>
+      </button>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+      <button class="btn-ghost btn-back" (click)="goBack()">← Go back</button>
+      <button class="btn-next" [disabled]="!isFormValid()" (click)="next()">➡ Next: Passenger Details</button>
+    </div>
 
   </div>
-
-  <!-- arrows -->
-  <button class="slide-btn left" (click)="scrollLeft(slide)"><i class="fa-solid fa-angle-left icon-specific"></i></button>
-  <button class="slide-btn right" (click)="scrollRight(slide)"><i class="fa-solid fa-angle-right icon-specific"></i></button>
 </div>
-  </div>
-  <div class="d-flex justify-content-between mt-4">
-    <button class="btn-ghost btn-back" (click)="goBack()">← Go back</button>
-    <button class="btn-next" (click)="next()">➡ Next: Passenger Details</button>
-  </div>
-</div>
-</div>
-

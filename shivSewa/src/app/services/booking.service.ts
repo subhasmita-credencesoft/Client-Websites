@@ -14,7 +14,7 @@ export class BookingService {
     tripType: 'one-way',
 
     passengers: {
-      type: 'solo',
+      type: 'personal',
       adults: 1,
       children: 0,
       luggage: 0
@@ -25,14 +25,16 @@ export class BookingService {
       seats: 0,
       bags: 0,
       price: 0,
-      image: ''
+      image: '',
+      carNumber: '',
     },
 
     traveller: {
       firstName: '',
       lastName: '',
       mobile: '',
-      email: ''
+      email: '',
+      notes: '',
     }
   });
 
@@ -67,4 +69,41 @@ export class BookingService {
   getCurrent() {
     return this._booking.value;
   }
+  reset() {
+  this._booking.next({
+    pickup: '',
+    dropoff: '',
+    date: '',
+    time: '',
+    tripType: 'one-way',
+
+    passengers: {
+      type: 'personal',
+      adults: 1,
+      children: 0,
+      luggage: 0
+    },
+
+    vehicle: {
+      name: '',
+      seats: 0,
+      bags: 0,
+      price: 0,
+      image: '',
+      carNumber: '',
+    },
+
+    traveller: {
+      firstName: '',
+      lastName: '',
+      mobile: '',
+      email: '',
+      notes: '',
+    },
+
+    bookingRef: ''
+  });
+
+  this._step.next(0);
+}
 }

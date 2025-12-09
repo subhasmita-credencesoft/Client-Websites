@@ -13,11 +13,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class StepSummaryComponent {
   booking: any = {};
   estimated = 0;
+  vehicle: { id?: any; name?: string; seats?: number; carNumber?: string; bags?: number; price?: number; image?: string; } | undefined;
+  vehicleOne: { id?: any; name?: string; seats?: number; carNumber?: string; bags?: number; price?: number; image?: string; } | undefined;
 
   constructor(private bookingService: BookingService) {
     this.bookingService.booking$.subscribe(b => {
       this.booking = b;
       this.estimated = b.vehicle?.price || 0;
+      this.vehicleOne = b.vehicle;
+      console.log("booking data", this.vehicle);
     });
   }
   padZero(num: number): string {

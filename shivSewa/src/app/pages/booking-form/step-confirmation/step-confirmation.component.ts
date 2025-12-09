@@ -14,8 +14,13 @@ import * as L from 'leaflet';
 export class StepConfirmationComponent {
   booking: any = {};
   private map: any;
+  estimated: any;
   constructor(private bookingService: BookingService) {
-    this.bookingService.booking$.subscribe(b => this.booking = b);
+     this.bookingService.booking$.subscribe(b => {
+      this.booking = b;
+      this.estimated = b.vehicle?.price || 0;
+      console.log(this.booking, "this.booking")
+    });
   }
 
   ngAfterViewInit(): void {

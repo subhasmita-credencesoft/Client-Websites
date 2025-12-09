@@ -2,12 +2,12 @@
 
   <h5 class="section-title mb-4">Pick-Up & Drop-Off</h5>
 
-  <div class="row g-4 gap-changes">
+  <div class="row g-1 g-md-4 gap-changes">
 
     <!-- Pickup -->
     <div class="col-md-5">
       <div class="input-group input-orange-box">
-        <input class="form-control" [(ngModel)]="pickup" (input)="filterPickup(pickup)" placeholder="Enter Pick-Up">
+        <input class="form-control" [(ngModel)]="pickup" (input)="filterPickup(pickup)" placeholder="Enter Pick-Up*">
         <span class="input-group-text icon-soft backgrond-span"><i class="fa-solid fa-location-crosshairs icon-specific"></i></span>
               <ul class="autocomplete-box" *ngIf="pickupSuggestions.length > 0">
         <li *ngFor="let s of pickupSuggestions" (click)="selectPickupLocation(s)">
@@ -21,7 +21,7 @@
     <div class="col-md-5">
       <div class="input-group input-orange-box">
         <input class="form-control" [(ngModel)]="dropoff" (input)="filterDrop(dropoff)"
-        [disabled]="!pickup" placeholder="Enter Drop-Off">
+        [disabled]="!pickup" placeholder="Enter Drop-Off*">
         <span class="input-group-text icon-soft backgrond-span"><i class="fa-solid fa-location-crosshairs icon-specific"></i></span>
         <ul class="autocomplete-box" *ngIf="dropSuggestions.length > 0">
         <li *ngFor="let s of dropSuggestions" (click)="selectDropLocation(s)">
@@ -31,8 +31,8 @@
       </div>
     </div>
 
-    <!-- Date -->
-<div class="col-md-5">
+<!-- Date -->
+<div class="col-6 col-md-5">
   <div class="input-group input-white-box">
     <input
       type="date"
@@ -47,45 +47,67 @@
   </div>
 </div>
 
-
-    <!-- Time -->
-    <div class="col-md-5">
+<!-- Time -->
+<div class="col-6 col-md-5">
   <div class="input-group input-white-box">
-      <input
-    type="text"
-    class="form-control"
-    placeholder="Select Time"
-    [(ngModel)]="displayTime"
-    readonly
-    (click)="toggleTimeList()"
-  >
-
-  <span class="input-group-text icon-soft" (click)="toggleTimeList()">
-    <i class="fa-solid fa-clock"></i>
-  </span>
-
-  <ul class="time-list" *ngIf="showTimes">
-    <li *ngFor="let t of timeOptions" (click)="selectTime(t)">
-      {{ t }}
-    </li>
-  </ul>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Select Time*"
+      [(ngModel)]="displayTime"
+      readonly
+      (click)="toggleTimeList()"
+    >
+    <span class="input-group-text icon-soft" (click)="toggleTimeList()">
+      <i class="fa-solid fa-clock"></i>
+    </span>
+    <ul class="time-list" *ngIf="showTimes">
+      <li *ngFor="let t of timeOptions" (click)="selectTime(t)">
+        {{ t }}
+      </li>
+    </ul>
   </div>
 </div>
 
-
     <!-- Round trip -->
     <div class="col-12 d-flex justify-content-between align-items-center mt-2 margin-changes border-changes display-manage">
-      <div class="label-small text-muted">Want to make this a round-trip?</div>
 
-      <div class="trip-toggle">
-        <button [class.active]="tripType==='one-way'" (click)="tripType='one-way'">One-Way</button>
-        <button [class.active]="tripType==='return'" (click)="tripType='return'">Return</button>
-      </div>
-    </div>
+  <!-- Show placeholder OR saved text (when not editing) -->
+  <div class="label-small text-muted width-manage"
+       *ngIf="!editingLocality"
+       (click)="enableLocalityEdit()">
+
+    <i class="fa-solid fa-location-dot icon-specific"></i> &nbsp;
+
+    <!-- If empty show placeholder, else show saved text -->
+    <span *ngIf="!locality">Enter your building, street or locality*</span>
+    <span *ngIf="locality">{{ locality }}</span>
+
+  </div>
+
+  <!-- Input Field -->
+  <input
+    *ngIf="editingLocality"
+    type="text"
+    class="form-control width-manage"
+    placeholder="Type your building / street / locality*"
+    [(ngModel)]="locality"
+    (blur)="saveLocality()"
+    (keyup.enter)="saveLocality()" />
+
+  <!-- Trip toggle remains same -->
+  <div class="trip-toggle">
+    <button [class.active]="tripType==='one-way'" (click)="tripType='one-way'">One-Way</button>
+    <button [class.active]="tripType==='return'" (click)="tripType='return'">Return</button>
+  </div>
+
+</div>
+
+
 
     <!-- Next Button -->
     <div class="col-12 d-flex justify-content-end mt-3">
-      <button class="btn-next" (click)="saveAndNext()">
+      <button class="btn-next" [disabled]="!isFormValid()" (click)="saveAndNext()">
         Next: Passenger Details <i class="bi bi-arrow-right"></i>
       </button>
     </div>
