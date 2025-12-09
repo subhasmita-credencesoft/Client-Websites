@@ -149,6 +149,7 @@ position: absolute;
     .mission-column {
       display: flex;
       align-items: center;
+      margin-bottom: 80px;
     }
 
     .mission-content {
@@ -201,6 +202,7 @@ position: absolute;
       }
       .mission-column {
           width: 40% !important;
+          
       }
      }
     /* Responsive Design */
@@ -267,6 +269,7 @@ position: absolute;
 
       .taxi-image {
         max-width: 240px;
+        height: auto;
       }
     }
 
@@ -296,6 +299,9 @@ position: absolute;
       .mission-intro,
       .mission-statement {
         font-size: 14px;
+      }
+      .mission-column{
+        margin-bottom: 20px;
       }
 
       .cta-button {
