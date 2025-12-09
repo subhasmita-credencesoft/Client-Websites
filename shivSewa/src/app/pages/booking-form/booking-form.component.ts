@@ -22,7 +22,9 @@ export class BookingFormComponent {
   stepAnchors = [30, 50, 100];
   constructor(public bookingService: BookingService,
     private router: Router,
-  ) {}
+  ) {
+     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   ngOnInit(): void {
     this.bookingService.step$.subscribe(s => this.step = s);
