@@ -3,11 +3,12 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MUMBAI_LOCATIONS } from '../../../data/mumbai-locations';
 import { Router } from '@angular/router';
+import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-banner',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CarouselModule],
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.scss'
 })
@@ -17,7 +18,12 @@ export class BannerComponent {
   dropLocation: string = '';
   dateTime: string = '';
   passengers: number | null = null;
-
+  bannerImages = [
+  'assets/banner-img.png',
+  'https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2024/11/13162031/Satara.jpg',
+  'https://img.nayatrip.com/images/state/big/MAHARASHTRA-GOA.jpg',
+  'https://www.itl.cat/pngfile/big/58-584849_city-pictures-city-wallpapers-gateway-of-india.jpg'
+];
   pickupSuggestions: string[] = [];
   dropSuggestions: string[] = [];
 

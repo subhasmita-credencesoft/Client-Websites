@@ -1,10 +1,7 @@
 .shivsewa-hero-section {
 position: relative;
-    min-height: 720px;
     display: flex;
-    /* align-items: center; */
     justify-content: end;
-    padding: 3rem 1.5rem;
     overflow: hidden;
     font-family: "DM Sans", sans-serif;
     }
@@ -29,11 +26,12 @@ position: relative;
     }
 
     .shivsewa-hero-container {
-      position: relative;
-        z-index: 1;
-        max-width: 600px;
-        width: 100%;
-        right: 10rem;
+    position: absolute;
+    z-index: 1;
+    max-width: 600px;
+    width: 100%;
+    right: 10rem;
+    top: 54px;
     }
 
     .shivsewa-label-text {
@@ -406,6 +404,35 @@ input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
   height: 40px;
 }
+.hero-carousel {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.shivsewa-hero-image {
+  width: 100%;
+    height: 90vh;
+  animation: fadeSlide 1s ease-in-out;
+}
+
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
 // Responsive Design
 @media (max-width: 768px) {
@@ -428,7 +455,6 @@ input[type="number"]::-webkit-outer-spin-button {
     @media (max-width: 768px) {
       .shivsewa-hero-section {
         min-height: 550px;
-        padding: 2.5rem 1rem;
       }
 
       .shivsewa-hero-heading {
@@ -455,7 +481,7 @@ input[type="number"]::-webkit-outer-spin-button {
         padding: 0.5rem 1rem;
       }
       .shivsewa-hero-container {
-    position: relative;
+    position: absolute;
     z-index: 1;
     max-width: 100%;
     width: 100%;
@@ -466,7 +492,6 @@ input[type="number"]::-webkit-outer-spin-button {
     @media (max-width: 480px) {
       .shivsewa-hero-section {
         min-height: 480px;
-        padding: 2rem 0.75rem;
       }
 
       .shivsewa-submit-button {
@@ -507,11 +532,15 @@ ease;
         font-size: 0.95rem;
       }
       .shivsewa-hero-container {
-    position: relative;
+    position: absolute;
     z-index: 1;
     max-width: 100%;
     width: 100%;
     right: 0rem;
+}
+
+  .shivsewa-hero-image {
+object-fit: cover;
 }
     }
 
@@ -528,4 +557,10 @@ ease;
     max-width: 600px;
     width: 100%;
   }
+}
+@media (min-width: 600px) and (max-width: 1024px) {
+  .shivsewa-hero-image {
+width: 100%;
+    height: 54vh;
+}
 }

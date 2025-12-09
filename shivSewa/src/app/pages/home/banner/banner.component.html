@@ -1,7 +1,21 @@
 <section class="shivsewa-hero-section">
-      <div class="shivsewa-hero-bg">
-        <img src="assets/banner-img.png" alt="Mumbai City" class="shivsewa-hero-image">
-      </div>
+     <p-carousel
+  [value]="bannerImages"
+  [numVisible]="1"
+  [numScroll]="1"
+  [circular]="true"
+  [autoplayInterval]="6000"
+  [showIndicators]="false"
+  [showNavigators]="false"
+  styleClass="shivsewa-hero-bg hero-carousel"
+>
+  <ng-template pTemplate="item" let-img>
+    <div class="hero-slide">
+      <img [src]="img" class="shivsewa-hero-image">
+    </div>
+  </ng-template>
+</p-carousel>
+
 
       <div class="shivsewa-hero-container">
 
