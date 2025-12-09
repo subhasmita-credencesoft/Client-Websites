@@ -1,6 +1,8 @@
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
+import { BookingService } from '../../../services/booking.service';
+import { Router } from '@angular/router';
 
 interface Car {
   id: number;
@@ -289,6 +291,11 @@ carData: { [key: string]: Car[] } = {
   ]
 };
 
+constructor(private bookingService: BookingService,
+  private router: Router,
+){
+
+}
 
   ngOnInit(): void {
     this.updateVisibleCards();
@@ -325,6 +332,20 @@ carData: { [key: string]: Car[] } = {
     return this.carData[this.activeTab];
   }
 
+  selectVehicle(v: any) {
+  this.bookingService.patchDeep({
+    vehicle: {
+      id: v.id,
+      carNumber: v.carNumber,
+      name: v.name,
+      seats: v.seats,
+      bags: v.bags,
+      price: v.price,
+      image: v.image
+    }
+  });
+   this.router.navigate(['/booking']);
+}
   getTransform(): string {
     const percentage = this.currentIndex * (100 / this.visibleCards);
     const gap = this.currentIndex * 1.5;

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Trip {
   id: number;
@@ -90,7 +91,7 @@ export class PopularTripsComponent {
         'Sedan (Maruti Dzire, Toyota Etios, Honda Amaze) Comfort SUV (Maruti Ertiga, Honda BR-V, Renault Triber)',
     },
   ];
-  constructor() {}
+  constructor(private router: Router,) {}
 
   ngOnInit(): void {}
 
@@ -108,5 +109,15 @@ export class PopularTripsComponent {
         this.isScrolling = false;
       }, 500);
     }
+  }
+  bookNow(trip: Trip) {
+      const booking = {
+    pickup: trip.from,
+    drop: trip.to,
+    dateTime: '',
+    passengers: ''
+  };
+  sessionStorage.setItem("selectedBooking", JSON.stringify(booking));
+    this.router.navigate(['/booking']);
   }
 }

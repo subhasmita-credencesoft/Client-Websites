@@ -32,7 +32,7 @@
 
     <!-- Trips Container -->
     <div class="scroll-container" #scrollContainer>
-      <div class="trip-card" *ngFor="let trip of trips">
+      <div class="trip-card" *ngFor="let trip of trips" (click)="bookNow(trip)">
         <!-- Image -->
         <div class="trip-image">
           <img [src]="trip.image" [alt]="trip.from + ' to ' + trip.to">

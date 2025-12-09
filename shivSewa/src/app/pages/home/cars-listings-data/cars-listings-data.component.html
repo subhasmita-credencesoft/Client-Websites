@@ -17,7 +17,7 @@
           <button
             *ngFor="let tab of tabs"
             [class.active]="activeTab === tab.id"
-            (click)="handleTabChange(tab.id)"
+            (click)="handleTabChange(tab.id); "
             class="tab-button"
           >
             {{ tab.label }}
@@ -68,6 +68,7 @@
             >
               <div
                 *ngFor="let car of getCurrentCars(); let i = index"
+                (click)="selectVehicle(car)"
                 class="car-card"
                 [class.visible]="isCardVisible(i)"
                 [style.flex]="'0 0 calc(' + (100 / visibleCards) + '% - ' + ((1.5 * (visibleCards - 1)) / visibleCards) + 'rem)'"

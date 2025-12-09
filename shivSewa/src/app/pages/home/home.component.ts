@@ -24,6 +24,7 @@ export class HomeComponent {
   constructor(private bookingService: BookingService) {}
   ngOnInit(): void {
     this.bookingService.reset();
+     sessionStorage.removeItem('selectedBooking');
   }
 
 }
