@@ -21,6 +21,7 @@ export class StepConfirmationComponent {
       this.estimated = b.vehicle?.price || 0;
       console.log(this.booking, "this.booking")
     });
+     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   ngAfterViewInit(): void {

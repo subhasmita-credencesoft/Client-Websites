@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 interface NavLink {
   label: string;
-  url: string;
+  id?: string;   // for scroll-based links
+  url?: string;  // for normal href links
 }
 
 interface ContactInfo {
@@ -18,11 +19,11 @@ interface ContactInfo {
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  companyLinks: NavLink[] = [
-    { label: 'About us', url: '#about' },
-    { label: 'Our Fleet', url: '#fleet' },
-    { label: 'Popular Trips', url: '#trips' }
-  ];
+companyLinks: NavLink[] = [
+  { label: 'About us', id: 'about' },
+  { label: 'Our Fleet', id: 'fleet' },
+  { label: 'Popular Trips', id: 'trips' }
+];
 
   serviceLinks: NavLink[] = [
     { label: 'CSMIA Bookings', url: '#csmia' },
@@ -36,5 +37,12 @@ export class FooterComponent {
     { icon: 'email', label: 'Email Address', value: '' }
   ];
 
+scrollTo(sectionId: string) {
+  const el = document.getElementById(sectionId);
 
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+}
 }

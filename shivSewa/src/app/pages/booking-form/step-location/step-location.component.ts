@@ -43,6 +43,7 @@ export class StepLocationComponent {
     this.time = b.time || '';
     this.tripType = b.tripType || 'one-way';
     this.locality = b.locality || '';
+     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   ngOnInit() {

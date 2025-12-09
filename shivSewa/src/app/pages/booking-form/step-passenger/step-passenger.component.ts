@@ -297,6 +297,7 @@ carData: { [key: string]: Car[] } = {
     this.selectedVehicle = b.vehicle;
     this.selectedVehicleId = b.vehicle.id;  // <-- IMPORTANT
   }
+   window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   ngOnInit() {

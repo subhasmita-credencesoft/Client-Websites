@@ -23,6 +23,7 @@ export class StepSummaryComponent {
       this.vehicleOne = b.vehicle;
       console.log("booking data", this.vehicle);
     });
+     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   padZero(num: number): string {
     return num.toString().padStart(2, '0');
