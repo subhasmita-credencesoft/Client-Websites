@@ -1,8 +1,31 @@
-
 <div class="fleet-header">
-  <h2>My Trips</h2>
-  <p>Overview of your assigned bookings</p>
+  <div class="header-top">
+    <div class="logo-section">
+      <img src="assets/shiv-sewa-logo.svg" alt="Company Logo" class="company-logo">
+    </div>
+    <button class="logout-btn" (click)="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <span>Logout</span>
+    </button>
+  </div>
 </div>
+
+
+
+    <div class="header-content">
+    <div class="header-icon">
+      <i class="fa-solid fa-route" style="color: darkorange;"></i>
+    </div>
+    <div class="header-text">
+      <h5>Manage and track your assigned bookings in real-time</h5>
+      <div class="status-indicators">
+        <span class="indicator active"><i class="fa-solid fa-circle"></i> Active</span>
+        <span class="indicator">{{ stats.pending + stats.accepted + stats.ontrip || 0 }} Trips</span>
+      </div>
+    </div>
+  </div>
+
+
 <!-- TOP STATS -->
 <div class="stats-row">
   <div class="stat-card pending">

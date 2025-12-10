@@ -1,3 +1,4 @@
+import { BookingService } from './../../../customer/services/booking.service';
 import { Component } from '@angular/core';
 import { FleetBookingService } from '../../services/fleet-booking.service';
 import { CommonModule } from '@angular/common';
@@ -38,6 +39,10 @@ export class TasksComponent {
     this.calculateStats();
   }
 
+  logout(){
+    this.fleetService.signOut();
+    this.router.navigate(['/fleet/signin']);
+  }
   calculateStats() {
     this.stats.pending = this.trips.filter(t => t.status === 'Pending').length;
     this.stats.accepted = this.trips.filter(t => t.status === 'Accepted').length;
@@ -57,6 +62,6 @@ export class TasksComponent {
   }
 
   viewDetails(id: number) {
-    this.router.navigate(['/fleet/trip', id]);
+    // this.router.navigate(['/fleet/trip', id]);
   }
 }
