@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { BookingService } from '../../../services/booking.service';
 import { Router } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 interface Car {
   id: number;
@@ -23,7 +24,7 @@ interface Tab {
 @Component({
   selector: 'app-cars-listings-data',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './cars-listings-data.component.html',
   styleUrl: './cars-listings-data.component.scss',
  animations: [
