@@ -50,6 +50,26 @@
       font-weight: 500;
     }
 
+// responsive
+@media (max-width: 1200px) {
+  .shivsewa-services-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .shivsewa-service-item {
+    padding: 1.75rem;
+  }
+
+  .shivsewa-service-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    font-size: 2.4rem;
+  }
+}
+
     @media (max-width: 768px) {
       .shivsewa-services-section {
         padding: 4rem 1rem;
@@ -76,6 +96,22 @@
       }
     }
 
+    @media (max-width: 576px) {
+  .shivsewa-services-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .shivsewa-service-item {
+    padding: 1.2rem;
+  }
+
+  .shivsewa-service-icon-wrapper {
+    width: 55px;
+    height: 55px;
+    font-size: 2rem;
+  }
+}
     @media (max-width: 480px) {
       .shivsewa-services-section {
        padding: 1rem 0.75rem 12px;
@@ -116,3 +152,39 @@
         font-size: 0.9rem;
       }
     }
+
+    @media (max-width: 360px) {
+  .shivsewa-service-item {
+    padding: 0.6rem 0.7rem;
+  }
+
+  .shivsewa-service-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
+  }
+
+  .shivsewa-service-item-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .shivsewa-service-item {
+    padding: 0.5rem 0.6rem;
+  }
+
+  .shivsewa-service-icon-wrapper {
+    width: 35px;
+    height: 35px;
+    font-size: 1.6rem;
+  }
+
+  .shivsewa-service-item-title {
+    font-size: 0.95rem;
+  }
+
+  .shivsewa-service-item-desc {
+    font-size: 0.85rem;
+  }
+}

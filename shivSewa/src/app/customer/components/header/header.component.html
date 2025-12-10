@@ -1,26 +1,43 @@
- <header class="shivsewa-navbar">
-      <div class="shivsewa-navbar-wrapper">
-        <div class="shivsewa-logo-section">
-          <img src="assets/shiv-sewa-logo.svg" alt="ShivSewa Logo" class="shivsewa-logo" />
-        </div>
+<header class="shivsewa-navbar">
+  <div class="shivsewa-navbar-wrapper">
+    <div class="shivsewa-logo-section">
+      <img
+        src="assets/shiv-sewa-logo.svg"
+        alt="ShivSewa Logo"
+        class="shivsewa-logo"
+      />
+    </div>
 
-        <button class="shivsewa-menu-button" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen">
-          <span class="shivsewa-hamburger-line"></span>
-          <span class="shivsewa-hamburger-line"></span>
-          <span class="shivsewa-hamburger-line"></span>
-        </button>
+    <button
+      class="shivsewa-menu-button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen"
+    >
+      <span class="shivsewa-hamburger-line"></span>
+      <span class="shivsewa-hamburger-line"></span>
+      <span class="shivsewa-hamburger-line"></span>
+    </button>
 
-        <nav class="shivsewa-navigation" [class.shivsewa-navigation-active]="menuOpen">
-          <a (click)="scrollTo('trips')" href="#trips" class="shivsewa-nav-item">Popular Trips</a>
-          <a (click)="scrollTo('fleet')" href="#fleet" class="shivsewa-nav-item">Our Fleet</a>
-          <a (click)="scrollTo('about')" href="#about" class="shivsewa-nav-item">About Us</a>
-          <button class="shivsewa-btn-whatsapp">
-            <img src="assets/whatsapp-icon.svg" class="ms-2" /> Book on WhatsApp
-          </button>
-          <button class="shivsewa-btn-book" (click)="navigatebooking()">
-            <img src="assets/car-icon.svg" class="ms-2" />
-            Book Your Ride
-          </button>
-        </nav>
-      </div>
-    </header>
+    <nav
+      class="shivsewa-navigation"
+      [class.shivsewa-navigation-active]="menuOpen"
+    >
+      <a (click)="scrollTo('trips')" href="#trips" class="shivsewa-nav-item"
+        >Popular Trips</a
+      >
+      <a (click)="scrollTo('fleet')" href="#fleet" class="shivsewa-nav-item"
+        >Our Fleet</a
+      >
+      <a (click)="scrollTo('about')" href="#about" class="shivsewa-nav-item"
+        >About Us</a
+      >
+      <button class="shivsewa-btn-whatsapp">
+        <img src="assets/whatsapp-icon.svg" class="ms-2" /> Book on WhatsApp
+      </button>
+      <button class="shivsewa-btn-book" (click)="navigatebooking()">
+        <img src="assets/car-icon.svg" class="ms-2" />
+        Book Your Ride
+      </button>
+    </nav>
+  </div>
+</header>

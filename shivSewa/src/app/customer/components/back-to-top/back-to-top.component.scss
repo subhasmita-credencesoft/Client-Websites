@@ -1,0 +1,139 @@
+.back-to-top {
+  --transition-time: 0.4s;
+  --width-arrow-line: 5px;
+  --color-arrow: #ffffff;
+
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  width: 48px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  background-color: #F97316;
+  box-shadow: 0 0 10px #F97316;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+
+  z-index: 1000;
+  opacity: 0.9;
+}
+
+.back-to-top:hover {
+  transform: translateY(-6px) scale(1.06); /* lift + slight scale */
+  box-shadow: 0 0 18px rgba(249, 115, 22, 0.8);
+  opacity: 1;
+}
+
+/* ARROW USING BEFORE + AFTER */
+
+.back-to-top::before,
+.back-to-top::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.back-to-top::before {
+  width: 20px;
+  aspect-ratio: 1 / 1;
+  border-top: var(--width-arrow-line) solid var(--color-arrow);
+  border-left: var(--width-arrow-line) solid var(--color-arrow);
+  rotate: 45deg;
+}
+
+.back-to-top::after {
+  width: var(--width-arrow-line);
+  height: 50%;
+  background-color: var(--color-arrow);
+}
+
+.back-to-top:hover::before,
+.back-to-top:hover::after {
+  animation: arrowUp 0.8s infinite;
+}
+
+@keyframes arrowUp {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -50%;
+  }
+}
+
+@media (max-width: 992px) {
+  .back-to-top {
+    width: 44px;
+    bottom: 1.2rem;
+    right: 1.2rem;
+  }
+
+  .back-to-top::before {
+    width: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    width: 40px;
+    bottom: 1.1rem;
+    right: 1.1rem;
+  }
+
+  .back-to-top::before {
+    width: 16px;
+  }
+
+  .back-to-top::after {
+    height: 45%;
+  }
+}
+
+@media (max-width: 576px) {
+  .back-to-top {
+    width: 36px;
+    bottom: 1rem;
+    right: 1rem;
+    opacity: 0.85;
+  }
+
+  .back-to-top::before {
+    width: 14px;
+  }
+
+  .back-to-top::after {
+    height: 42%;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-to-top {
+    width: 32px;
+    bottom: 0.9rem;
+    right: 0.9rem;
+    box-shadow: 0 0 6px rgba(249, 115, 22, 0.7);
+  }
+
+  .back-to-top::before {
+    width: 12px;
+  }
+
+  .back-to-top::after {
+    height: 40%;
+  }
+}
+

@@ -282,34 +282,84 @@ padding: 0.85rem 1.8rem;
       font-style: italic;
     }
 
-    @media (max-width: 1280px) {
-      .nav-left { left: -10px; }
-      .nav-right { right: -10px; }
-    }
+  //responsive
 
-    @media (max-width: 768px) {
-      .main-title {
-        font-size: 1.5rem;
+@media (max-width: 1200px) {
+  .nav-left { left: -10px; }
+  .nav-right { right: -10px; }
 }
-      .main-container {
-        padding: 2rem 0.75rem;
-      }
 
-      .header-section {
-        flex-direction: column;
-        gap: 1rem;
-      }
+@media (max-width: 992px) {
+  .header-section {
+    gap: 1.25rem;
+  }
 
-      .subtitle-container {
-        text-align: left;
-        max-width: 100%;
-      }
+  .subtitle-container {
+    max-width: 260px;
+  }
 
-      .nav-button {
-        width: 40px;
-        height: 40px;
-      }
+  .nav-button {
+    width: 44px;
+    height: 44px;
+  }
+}
 
-      .nav-left { left: 0; }
-      .nav-right { right: 0; }
-    }
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 1.5rem;
+  }
+
+  .header-section {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .subtitle-container {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .nav-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-left { left: 0; }
+  .nav-right { right: 0; }
+}
+
+@media (max-width: 576px) {
+  .car-image-container {
+    height: 180px;
+  }
+
+  .card-content {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .car-name {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .main-title {
+    font-size: 1.35rem;
+  }
+
+  .car-image-container {
+    height: 160px;
+  }
+
+  .card-content {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .main-title {
+    font-size: 1.25rem;
+  }
+}

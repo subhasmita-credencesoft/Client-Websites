@@ -435,132 +435,177 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 // Responsive Design
-@media (max-width: 768px) {
-  .shivsewa-booking-panel {
-    padding: 1.5rem;
-  }
 
-  .section-title {
-    font-size: 1.1rem;
-  }
-
-  .ride-input {
-    font-size: 0.9rem;
-  }
-
-  .request-ride-button {
-    font-size: 1rem;
+@media (max-width: 1200px) {
+  .shivsewa-hero-container {
+    right: 5rem;
   }
 }
-    @media (max-width: 768px) {
-      .shivsewa-hero-section {
-        min-height: 550px;
-      }
 
-      .shivsewa-hero-heading {
-        font-size: 2rem;
-        margin-bottom: 2.5rem;
-      }
-
-      .shivsewa-mumbai-label {
-        margin-bottom: 1.5rem;
-      }
-
-      .shivsewa-booking-row {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-        margin-bottom: 1.25rem;
-      }
-
-      .shivsewa-booking-panel {
-        padding: 1.75rem;
-      }
-
-      .shivsewa-label-text {
-        font-size: 1.15rem;
-        padding: 0.5rem 1rem;
-      }
-      .shivsewa-hero-container {
-    position: absolute;
-    z-index: 1;
-    max-width: 100%;
-    width: 100%;
-    right: 0rem;
-}
-    }
-
-    @media (max-width: 480px) {
-      .shivsewa-hero-section {
-        min-height: 480px;
-      }
-
-      .shivsewa-submit-button {
-    width: auto;
-    padding: 0.6rem 9.6px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.05rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s
-ease;
-    text-transform: capital;
-}
-
-      .shivsewa-hero-heading {
-        font-size: 1.6rem;
-        margin-bottom: 2rem;
-      }
-
-      .shivsewa-booking-panel {
-        padding: 1.5rem;
-      }
-
-      .shivsewa-booking-row {
-        margin-bottom: 1rem;
-      }
-
-      .shivsewa-text-input {
-        padding: 0.85rem 0.875rem;
-        font-size: 0.9rem;
-      }
-
-      .shivsewa-submit-button {
-        padding: 1rem 1.5rem;
-        font-size: 0.95rem;
-      }
-      .shivsewa-hero-container {
-    position: absolute;
-    z-index: 1;
-    max-width: 100%;
-    width: 100%;
-    right: 0rem;
-}
-
+@media (max-width: 1024px) {
   .shivsewa-hero-image {
-object-fit: cover;
+width: 100%;
 }
-    }
+}
 
-
-@media (max-width: 968px) {
+@media (max-width: 992px) {
 
   .shivsewa-hero-section {
     justify-content: center;
   }
 
   .shivsewa-hero-container {
-    right: 0;
     margin: 0 auto;
     max-width: 600px;
     width: 100%;
+    right: auto;
+    left: auto;
   }
 }
-@media (min-width: 600px) and (max-width: 1024px) {
-  .shivsewa-hero-image {
-width: 100%;
-    height: 54vh;
+
+@media (max-width: 768px) {
+  .shivsewa-hero-container {
+    position: absolute;
+    z-index: 1;
+    max-width: 100%;
+    width: 100%;
+    
+    right: auto;
+    left: auto;
+
+    padding: 0 1.25rem;
+    box-sizing: border-box;
+
+    margin: 0 auto;
+  }
 }
+
+@media (max-width: 576px) {
+  .shivsewa-hero-heading {
+    font-size: 2rem;
+  }
+
+  .shivsewa-hero-container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .shivsewa-hero-section {
+    justify-content: center;
+  }
+
+  .shivsewa-hero-image {
+    height: 80vh;
+    object-fit: cover;
+  }
+
+  .shivsewa-hero-container {
+    position: absolute;
+    top: 40px;
+    right: auto;
+    left: 0;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+
+  .shivsewa-label-text {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .shivsewa-hero-heading {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .shivsewa-booking-panel {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .section-title {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+  }
+
+  .ride-input {
+    padding: 0.85rem 3rem 0.85rem 2.5rem;
+    font-size: 0.9rem;
+  }
+
+  .request-ride-button {
+    max-width: 100%;
+    font-size: 0.95rem;
+    padding: 0.9rem 1.5rem;
+  }
+
+  .shivsewa-submit-button {
+    max-width: 100%;
+    font-size: 0.95rem;
+    padding: 0.9rem 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .shivsewa-hero-heading {
+    font-size: 1.6rem;
+  }
+
+  .shivsewa-label-text {
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+
+  .ride-input {
+    padding: 0.75rem 2.75rem 0.75rem 2.2rem;
+    font-size: 0.85rem;
+  }
+
+  .shivsewa-booking-panel {
+    padding: 1.1rem 1.25rem;
+  }
+
+  .request-ride-button,
+  .shivsewa-submit-button {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.2rem;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .shivsewa-hero-heading {
+    font-size: 1.45rem;
+  }
+
+  .shivsewa-label-text {
+    font-size: 0.85rem;
+  }
+
+  .section-title {
+    font-size: 0.95rem;
+  }
+
+  .ride-input {
+    padding: 0.65rem 2.5rem 0.65rem 2rem;
+    font-size: 0.8rem;
+  }
+
+  .shivsewa-booking-panel {
+    padding: 1rem 1.1rem;
+  }
+
+  .request-ride-button,
+  .shivsewa-submit-button {
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+    max-width: 100%;
+  }
 }

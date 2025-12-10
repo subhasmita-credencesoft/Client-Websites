@@ -279,26 +279,128 @@
 }
 
 /* Responsive */
-@media (max-width: 640px) {
+
+@media (max-width: 1200px) {
+  .trips-wrapper {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .trip-card {
+    width: 330px;
+  }
+}
+
+@media (max-width: 992px) {
+  .trips-wrapper {
+    padding: 3rem 1.5rem;
+  }
+
+  .trips-container {
+    padding: 0 1rem;
+  }
+
+  .trip-card {
+    width: 310px;
+  }
+
+  .header {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
   .title {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+  }
+
+  .trips-wrapper {
+    padding: 2.75rem 1rem;
+    height: auto;
+    min-height: 360px;
+  }
+
+  .trip-card {
+    width: 300px;
+  }
+
+  .scroll-container {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .trips-wrapper {
+    padding: 2.5rem 1rem;
+  }
+
+  .trips-container {
+    padding: 0 0.75rem;
   }
 
   .trip-card {
     width: 280px;
   }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
 
   .trips-wrapper {
-    padding: 2rem 1rem;
+    padding: 2.25rem 0.75rem;
   }
 
   .trips-container {
     padding: 0 0.5rem;
   }
+
+  .trip-card {
+    width: 260px;
+  }
+
+  .scroll-container {
+    gap: 1.1rem;
+  }
 }
 
-@media (min-width: 641px) and (max-width: 1024px) {
+@media (max-width: 360px) {
+  .title {
+    font-size: 1.35rem;
+  }
+
   .trips-wrapper {
-    padding: 3rem 1.5rem;
+    padding: 2rem 0.5rem;
+  }
+
+  .trip-card {
+    width: 240px;
+  }
+
+  .scroll-container {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .trips-wrapper {
+    padding: 1.75rem 0.5rem;
+  }
+
+  .trip-card {
+    width: 220px;
   }
 }

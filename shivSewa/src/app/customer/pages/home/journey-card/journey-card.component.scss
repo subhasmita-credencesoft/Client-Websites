@@ -275,23 +275,93 @@ display: flex;
 }
 
 }
-
 // Responsive Design
-@media (max-width: 640px) {
+
+@media (max-width: 1200px) {
   .journey-crafted-section {
-    padding: 3rem 1rem;
+    padding: 3.5rem 1.5rem;
+  }
+
+  .journey-cards-grid {
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .journey-crafted-section {
+    padding: 3rem 1.5rem;
+    min-height: 380px;
   }
 
   .journey-crafted-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .journey-cards-grid {
+    gap: 3rem;
+  }
+
+  .service-card-image {
+    height: 170px;
+  }
+
+  .service-card-content {
+    padding: 1rem 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .journey-crafted-section {
+    padding: 2.75rem 1.25rem;
+  }
+
+  .journey-crafted-header {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
     margin-bottom: 2rem;
+  }
+
+  .journey-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .service-card-image {
     height: 160px;
   }
 
+  .service-card-title {
+    font-size: 1.15rem;
+  }
+
+  .detail-price {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .journey-crafted-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .journey-crafted-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .journey-cards-grid {
+    gap: 1.75rem;
+  }
+
+  .service-card-image {
+    height: 150px;
+  }
+
   .service-card-content {
-    padding: 1.25rem;
+    padding: 0.9rem 1rem;
   }
 
   .service-card-title {
@@ -299,7 +369,93 @@ display: flex;
   }
 
   .detail-price {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .journey-crafted-section {
+    padding: 2.25rem 0.9rem;
+  }
+
+  .journey-cards-grid {
+    gap: 1.5rem;
+  }
+
+  .service-card-image {
+    height: 145px;
+  }
+
+  .service-card-content {
+    padding: 0.85rem 0.9rem;
+  }
+
+  .service-card-title {
+    font-size: 1.05rem;
+  }
+
+  .detail-price {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .journey-crafted-section {
+    padding: 2rem 0.75rem;
+  }
+
+  .journey-crafted-title {
+    font-size: 1.4rem;
+  }
+
+  .journey-cards-grid {
+    gap: 1.35rem;
+  }
+
+  .service-card-image {
+    height: 140px;
+  }
+
+  .service-card-content {
+    padding: 0.8rem 0.85rem;
+  }
+
+  .service-card-title {
+    font-size: 1rem;
+  }
+
+  .detail-price {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .journey-crafted-section {
+    padding: 1.75rem 0.6rem;
+  }
+
+  .journey-crafted-title {
+    font-size: 1.3rem;
+  }
+
+  .journey-cards-grid {
+    gap: 1.2rem;
+  }
+
+  .service-card-image {
+    height: 130px;
+  }
+
+  .service-card-content {
+    padding: 0.75rem 0.75rem;
+  }
+
+  .service-card-title {
+    font-size: 0.95rem;
+  }
+
+  .detail-price {
+    font-size: 1.15rem;
   }
 }
 }

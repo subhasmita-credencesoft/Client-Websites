@@ -138,71 +138,9 @@ color: #fff;
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
     }
+// responsive
 
-    @media (max-width: 968px) {
-      .shivsewa-menu-button {
-        display: flex;
-      }
-
-      .shivsewa-navigation {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: #1a1a1a;
-        flex-direction: column;
-        padding: 2.5rem 1.5rem;
-        gap: 1.5rem;
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      }
-
-      .shivsewa-navigation-active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .shivsewa-nav-item,
-      .shivsewa-btn-whatsapp,
-      .shivsewa-btn-book {
-        width: 100%;
-        text-align: center;
-      }
-
-      .shivsewa-nav-item::after {
-        display: none;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .shivsewa-navbar-wrapper {
-        padding: 0 1rem;
-      }
-
-      .shivsewa-logo-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1.5rem;
-      }
-
-      .shivsewa-logo-brand {
-        font-size: 1.25rem;
-      }
-
-      .shivsewa-btn-whatsapp,
-      .shivsewa-btn-book {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.85rem;
-      }
-    }
-
-
-@media (max-width: 1240px) {
-
+@media (max-width: 1200px) {
   .shivsewa-navbar-wrapper {
     padding: 0 1.5rem;
     display: flex;
@@ -210,7 +148,7 @@ color: #fff;
   }
 
   .shivsewa-logo-section {
-    flex: 1;  
+    flex: 1;
     display: flex;
     align-items: center;
   }
@@ -222,13 +160,138 @@ color: #fff;
     align-items: center;
     gap: 1.5rem;
   }
+
   .shivsewa-navigation button {
-    margin-left: 0; 
+    margin-left: 0;
   }
 
   .shivsewa-btn-whatsapp,
   .shivsewa-btn-book {
     flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 992px) {
+  .shivsewa-menu-button {
+    display: flex;
+  }
+
+  .shivsewa-navigation {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #1a1a1a;
+    flex-direction: column;
+    padding: 2.5rem 1.5rem;
+    gap: 1.5rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .shivsewa-navigation-active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .shivsewa-nav-item,
+  .shivsewa-btn-whatsapp,
+  .shivsewa-btn-book {
+    width: 100%;
+    text-align: center;
+  }
+
+  .shivsewa-nav-item::after {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .shivsewa-navbar-wrapper {
+    padding: 0 1.2rem;
+  }
+
+  .shivsewa-navigation {
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .shivsewa-logo-brand {
+    font-size: 1.15rem;
+  }
+
+  .shivsewa-logo-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.4rem;
+  }
+
+  .shivsewa-navbar-wrapper {
+    padding: 0 0.8rem;
+  }
+
+  .shivsewa-btn-whatsapp,
+  .shivsewa-btn-book {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .shivsewa-navigation {
+    padding: 2rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .shivsewa-navbar-wrapper {
+    padding: 0 1rem;
+  }
+
+  .shivsewa-logo-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .shivsewa-logo-brand {
+    font-size: 1.25rem;
+  }
+
+  .shivsewa-btn-whatsapp,
+  .shivsewa-btn-book {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+
+  .shivsewa-navbar-wrapper {
+    padding: 0 0.6rem;
+  }
+
+  .shivsewa-logo-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 1.3rem;
+  }
+
+  .shivsewa-logo-brand {
+    font-size: 1.05rem;
+  }
+
+  .shivsewa-navigation {
+    padding: 1.5rem 1rem;
+  }
+
+  .shivsewa-btn-whatsapp,
+  .shivsewa-btn-book {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
   }
 }
 
