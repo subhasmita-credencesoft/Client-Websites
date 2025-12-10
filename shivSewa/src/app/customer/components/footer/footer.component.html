@@ -42,8 +42,12 @@
       <div class="nav-column">
         <h3 class="column-title">Company</h3>
         <ul class="nav-links">
-          <li *ngFor="let link of companyLinks">
-            <a [href]="link.url" class="nav-link">{{ link.label }}</a>
+                        <li *ngFor="let link of companyLinks">
+                      <a
+              href="#"
+              (click)="scrollTo(link.id!); $event.preventDefault()"
+              class="nav-link">
+              {{ link.label }}</a>
           </li>
         </ul>
       </div>
