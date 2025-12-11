@@ -1,117 +1,174 @@
 <div class="card-soft p-4 container">
-
   <h5 class="section-title mb-4">Pick-Up & Drop-Off</h5>
 
   <div class="row g-1 g-md-4 gap-changes">
-
     <!-- Pickup -->
     <div class="col-md-5">
-      <div class="input-group input-orange-box">
-        <input class="form-control" [(ngModel)]="pickup" (input)="filterPickup(pickup)" placeholder="Enter Pick-Up*">
-        <span class="input-group-text icon-soft backgrond-span"><i class="fa-solid fa-location-crosshairs icon-specific"></i></span>
-              <ul class="autocomplete-box" *ngIf="pickupSuggestions.length > 0">
-        <li *ngFor="let s of pickupSuggestions" (click)="selectPickupLocation(s)">
-         <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s }}
-        </li>
-      </ul>
+      <div
+        class="input-group input-orange-box"
+        [class.invalid]="pickupInvalid"
+        #pickupGroup
+      >
+        <input
+          #pickupInput
+          class="form-control"
+          [(ngModel)]="pickup"
+          (input)="onFieldInput('pickup', pickup); filterPickup(pickup)"
+          placeholder="Enter Pick-Up*"
+        />
+        <span class="input-group-text icon-soft backgrond-span"
+          ><i class="fa-solid fa-location-crosshairs icon-specific"></i
+        ></span>
+        <ul class="autocomplete-box" *ngIf="pickupSuggestions.length > 0">
+          <li
+            *ngFor="let s of pickupSuggestions"
+            (click)="selectPickupLocation(s)"
+          >
+            <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s }}
+          </li>
+        </ul>
+      </div>
+      <div class="field-error small text-danger mt-1" *ngIf="pickupInvalid">
+        Please enter pick-up location.
       </div>
     </div>
 
     <!-- Drop-off -->
     <div class="col-md-5">
-      <div class="input-group input-orange-box">
-        <input class="form-control" [(ngModel)]="dropoff" (input)="filterDrop(dropoff)"
-        [disabled]="!pickup" placeholder="Enter Drop-Off*">
-        <span class="input-group-text icon-soft backgrond-span"><i class="fa-solid fa-location-crosshairs icon-specific"></i></span>
+      <div
+        class="input-group input-orange-box"
+        [class.invalid]="dropInvalid"
+        #dropGroup
+      >
+        <input
+          #dropInput
+          class="form-control"
+          [(ngModel)]="dropoff"
+          (input)="onFieldInput('drop', dropoff); filterDrop(dropoff)"
+          [disabled]="!pickup"
+          placeholder="Enter Drop-Off*"
+        />
+        <span class="input-group-text icon-soft backgrond-span"
+          ><i class="fa-solid fa-location-crosshairs icon-specific"></i
+        ></span>
         <ul class="autocomplete-box" *ngIf="dropSuggestions.length > 0">
-        <li *ngFor="let s of dropSuggestions" (click)="selectDropLocation(s)">
-         <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s }}
-        </li>
-      </ul>
+          <li *ngFor="let s of dropSuggestions" (click)="selectDropLocation(s)">
+            <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s }}
+          </li>
+        </ul>
+      </div>
+      <div class="field-error small text-danger mt-1" *ngIf="dropInvalid">
+        Please enter drop-off location.
       </div>
     </div>
 
-<!-- Date -->
-<div class="col-6 col-md-5">
-  <div class="input-group input-white-box">
-    <input
-      type="date"
-      #dateInput
-      class="form-control"
-      [(ngModel)]="date"
-      (change)="onDateChange()"
-    >
-    <span class="input-group-text icon-soft" (click)="dateInput.showPicker()">
-      <i class="fa-solid fa-calendar"></i>
-    </span>
-  </div>
-</div>
+    <!-- Date -->
+    <div class="col-6 col-md-5">
+      <div class="input-group input-white-box" [class.invalid]="dateInvalid">
+        <input
+          type="date"
+          #dateInputElem
+          class="form-control"
+          [(ngModel)]="date"
+          (change)="onFieldInput('date', date); onDateChange()"
+        />
+        <span
+          class="input-group-text icon-soft"
+          (click)="dateInputElem.showPicker()"
+        >
+          <i class="fa-solid fa-calendar"></i>
+        </span>
+      </div>
+      <div class="field-error small text-danger mt-1" *ngIf="dateInvalid">
+        Please select date.
+      </div>
+    </div>
 
-<!-- Time -->
-<div class="col-6 col-md-5">
-  <div class="input-group input-white-box">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Select Time*"
-      [(ngModel)]="displayTime"
-      readonly
-      (click)="toggleTimeList()"
-    >
-    <span class="input-group-text icon-soft" (click)="toggleTimeList()">
-      <i class="fa-solid fa-clock"></i>
-    </span>
-    <ul class="time-list" *ngIf="showTimes">
-      <li *ngFor="let t of timeOptions" (click)="selectTime(t)">
-        {{ t }}
-      </li>
-    </ul>
-  </div>
-</div>
+    <!-- Time -->
+    <div class="col-6 col-md-5">
+      <div class="input-group input-white-box" [class.invalid]="timeInvalid">
+        <input
+          #timeInputElem
+          type="text"
+          class="form-control"
+          placeholder="Select Time*"
+          [(ngModel)]="displayTime"
+          readonly
+          (click)="toggleTimeList(); onFieldTouched('time')"
+        />
+        <span class="input-group-text icon-soft" (click)="toggleTimeList()">
+          <i class="fa-solid fa-clock"></i>
+        </span>
+        <ul class="time-list" *ngIf="showTimes">
+          <li *ngFor="let t of timeOptions" (click)="selectTime(t)">
+            {{ t }}
+          </li>
+        </ul>
+      </div>
+      <div class="field-error small text-danger mt-1" *ngIf="timeInvalid">
+        Please select time.
+      </div>
+    </div>
 
     <!-- Round trip -->
-    <div class="col-12 d-flex justify-content-between align-items-center mt-2 margin-changes border-changes display-manage">
+    <div
+      class="col-12 d-flex justify-content-between align-items-center mt-2 margin-changes border-changes display-manage"
+    >
+      <!-- Show placeholder OR saved text (when not editing) -->
+      <div
+        class="label-small text-muted width-manage"
+        *ngIf="!editingLocality"
+        (click)="enableLocalityEdit()"
+      >
+        <i class="fa-solid fa-location-dot icon-specific"></i> &nbsp;
 
-  <!-- Show placeholder OR saved text (when not editing) -->
-  <div class="label-small text-muted width-manage"
-       *ngIf="!editingLocality"
-       (click)="enableLocalityEdit()">
+        <!-- If empty show placeholder, else show saved text -->
+        <span *ngIf="!locality">Enter your building, street or locality*</span>
+        <span *ngIf="locality">{{ locality }}</span>
+      </div>
 
-    <i class="fa-solid fa-location-dot icon-specific"></i> &nbsp;
+      <!-- Input Field -->
+      <input
+        *ngIf="editingLocality"
+        #localityInput
+        type="text"
+        class="form-control width-manage"
+        placeholder="Type your building / street / locality*"
+        [(ngModel)]="locality"
+        (input)="onFieldInput('locality', locality)"
+        (blur)="saveLocality()"
+        (keyup.enter)="saveLocality()"
+      />
+      <div class="field-error small text-danger mt-1" *ngIf="localityInvalid">
+        Please enter locality.
+      </div>
 
-    <!-- If empty show placeholder, else show saved text -->
-    <span *ngIf="!locality">Enter your building, street or locality*</span>
-    <span *ngIf="locality">{{ locality }}</span>
-
-  </div>
-
-  <!-- Input Field -->
-  <input
-    *ngIf="editingLocality"
-    type="text"
-    class="form-control width-manage"
-    placeholder="Type your building / street / locality*"
-    [(ngModel)]="locality"
-    (blur)="saveLocality()"
-    (keyup.enter)="saveLocality()" />
-
-  <!-- Trip toggle remains same -->
-  <div class="trip-toggle">
-    <button [class.active]="tripType==='one-way'" (click)="tripType='one-way'">One-Way</button>
-    <button [class.active]="tripType==='return'" (click)="tripType='return'">Return</button>
-  </div>
-
-</div>
-
-
+      <!-- Trip toggle remains same -->
+      <div class="trip-toggle">
+        <button
+          [class.active]="tripType === 'one-way'"
+          (click)="tripType = 'one-way'"
+        >
+          One-Way
+        </button>
+        <button
+          [class.active]="tripType === 'return'"
+          (click)="tripType = 'return'"
+        >
+          Return
+        </button>
+      </div>
+    </div>
 
     <!-- Next Button -->
     <div class="col-12 d-flex justify-content-end mt-3">
-      <button class="btn-next" [disabled]="!isFormValid()" (click)="saveAndNext()">
+      <button
+        class="btn-next"
+        [class.disabled-looking]="!isFormValid()"
+        (click)="onNextClick($event)"
+      >
         Next: Passenger Details <i class="bi bi-arrow-right"></i>
       </button>
     </div>
-
   </div>
-
 </div>

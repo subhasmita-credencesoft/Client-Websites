@@ -188,3 +188,17 @@ flex-wrap: wrap;
     width: 100%;
   }
 }
+
+/* red-border for highlighted invalid input group */
+.input-group.invalid .form-control,
+.input-group.invalid .form-control:focus {
+  border-color: #dc3545 !important;
+  box-shadow: none !important;
+}
+
+/*button look disabled */
+.btn-next.disabled-looking {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
