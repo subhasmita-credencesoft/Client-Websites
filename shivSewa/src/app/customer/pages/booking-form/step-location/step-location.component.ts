@@ -293,6 +293,9 @@ export class StepLocationComponent {
     );
 
     this.pickupSuggestions = [...startsWith, ...contains];
+      if (this.pickupSuggestions.length === 0) {
+    this.pickup = '';
+  }
   }
 
   selectPickupLocation(location: string) {
@@ -382,6 +385,10 @@ export class StepLocationComponent {
     );
 
     this.dropSuggestions = [...startsWith, ...contains];
+
+      if (this.dropSuggestions.length === 0) {
+    this.dropoff = '';
+  }
   }
 
   selectDropLocation(location: string) {
