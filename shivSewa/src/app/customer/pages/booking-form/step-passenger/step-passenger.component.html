@@ -1,9 +1,10 @@
 <div class="container">
   <div class="card-soft">
 
+    <!-- Who Are You Traveling With -->
     <h5 class="mb-3">Who Are You Traveling With?</h5>
 
-    <div class="d-flex flex-wrap gap-2 mb-3 justify-content-around">
+    <div class="d-flex flex-wrap gap-2 mb-1 justify-content-around" id="passengerSection">
       <button class="btn btn-formart"
         [ngClass]="{'btn-accent': passengers.type==='personal'}"
         (click)="chooseType('personal')">
@@ -18,56 +19,92 @@
       </button>
     </div>
 
-    <div class="row justify-content-around mb-3 mt-5">
+    <!-- Passenger Type Error -->
+    <div *ngIf="error.type" class="text-danger small text-center mb-3">
+      Please select who you are travelling with.
+    </div>
+
+
+    <!-- Passenger Inputs -->
+    <div class="row justify-content-around mb-3 mt-4">
+
+      <!-- Adults -->
       <div class="col-md-3 col-6">
         <label>Adults</label>
         <input type="number" min="1" max="7"
+          id="adultsField"
           class="form-control"
-          [(ngModel)]="passengers.adults"
-          (input)="validatePassengerCounts()">
+          [class.is-invalid]="error.adults"
+          [(ngModel)]="passengers.adults">
+
+        <div *ngIf="error.adults" class="text-danger small mt-1">
+          Please enter at least 1 adult.
+        </div>
       </div>
 
+      <!-- Children -->
       <div class="col-md-3 col-6">
         <label>Children (above 10)</label>
         <input type="number" min="0" max="5"
+          id="childrenField"
           class="form-control"
-          [(ngModel)]="passengers.children"
-          (input)="validatePassengerCounts()">
+          [class.is-invalid]="error.children"
+          [(ngModel)]="passengers.children">
+
+        <div *ngIf="error.children" class="text-danger small mt-1">
+          Children cannot be negative.
+        </div>
       </div>
 
+      <!-- Luggage -->
       <div class="col-md-3">
         <label>Luggage</label>
         <input type="number" min="0" max="5"
+          id="luggageField"
           class="form-control"
-          [(ngModel)]="passengers.luggage"
-          (input)="validatePassengerCounts()">
-      </div>
-    </div>
+          [class.is-invalid]="error.luggage"
+          [(ngModel)]="passengers.luggage">
 
-    <div *ngIf="selectedVehicle" class="mb-4">
-  <h6>Your Selected Car</h6>
-
-  <div class="card p-3 btn-accent" style="border-radius:12px;">
-    <div class="d-flex align-items-center">
-      <img [src]="selectedVehicle.image" class="car-thumb" />
-
-      <div>
-        <div class="fw-bold">{{ selectedVehicle.name }}</div>
-        <div class="small text-muted">
-          {{ selectedVehicle.seats }} seats • {{ selectedVehicle.bags }} bags
+        <div *ngIf="error.luggage" class="text-danger small mt-1">
+          Please enter valid luggage count.
         </div>
-        <div class="small text-muted">{{ selectedVehicle.fuel }}</div>
       </div>
 
-      <div class="ms-auto text-end">
-        <div class="fw-bold">{{ selectedVehicle.price }}</div>
-        <div class="small text-muted">Est. fare</div>
+    </div>
+
+
+    <!-- Selected Vehicle Preview -->
+    <div *ngIf="selectedVehicle" class="mb-4">
+      <h6>Your Selected Car</h6>
+
+      <div class="card p-3 btn-accent" style="border-radius:12px;">
+        <div class="d-flex align-items-center">
+          <img [src]="selectedVehicle.image" class="car-thumb" />
+
+          <div>
+            <div class="fw-bold">{{ selectedVehicle.name }}</div>
+            <div class="small text-muted">
+              {{ selectedVehicle.seats }} seats • {{ selectedVehicle.bags }} bags
+            </div>
+            <div class="small text-muted">{{ selectedVehicle.fuel }}</div>
+          </div>
+
+          <div class="ms-auto text-end">
+            <div class="fw-bold">{{ selectedVehicle.price }}</div>
+            <div class="small text-muted">Est. fare</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-    <h6 class="mb-2 mt-5">Rides Recommended For You</h6>
+
+    <!-- Recommended Vehicles -->
+    <h6 class="mb-1 mt-5" id="vehicleSection">Rides Recommended For You</h6>
+
+    <!-- Vehicle Error -->
+    <div *ngIf="error.vehicle" class="text-danger small mb-2">
+      Please select a vehicle.
+    </div>
 
     <div class="row g-3">
       <div class="col-md-6" *ngFor="let v of recommendedCars">
@@ -75,6 +112,7 @@
           (click)="selectVehicle(v)"
           [ngClass]="{ 'btn-accent': selectedVehicleId === v.id }"
           style="border-radius:12px; cursor:pointer">
+
           <div class="d-flex align-items-center">
             <img [src]="v.image" class="car-thumb" />
 
@@ -89,10 +127,13 @@
               <div class="small text-muted">Est. fare</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
 
+
+    <!-- Explore More Cars -->
     <h6 class="mb-3 mt-4">Explore More Cars</h6>
 
     <div class="car-slider-wrapper">
@@ -119,9 +160,11 @@
       </button>
     </div>
 
+
+    <!-- Navigation -->
     <div class="d-flex justify-content-between mt-4">
       <button class="btn-ghost btn-back" (click)="goBack()">← Go back</button>
-      <button class="btn-next" [disabled]="!isFormValid()" (click)="next()">➡ Next: Passenger Details</button>
+      <button class="btn-next" [class.disabled-looking]="!isFormValid()" (click)="next()">➡ Next: Passenger Details</button>
     </div>
 
   </div>

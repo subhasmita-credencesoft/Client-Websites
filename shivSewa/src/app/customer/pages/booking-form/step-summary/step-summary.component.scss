@@ -5,7 +5,11 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border: 1px solid #f0f0f0;
 }
-
+.forwardMove.disabled-looking {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
 .card-soft h6 {
   font-weight: 700;
 }

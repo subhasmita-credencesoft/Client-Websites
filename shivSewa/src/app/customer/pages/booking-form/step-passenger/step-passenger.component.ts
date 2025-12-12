@@ -33,7 +33,13 @@ export class StepPassengerComponent {
 
   selectedCategory: keyof typeof this.carData = 'sedan';
   selectedVehicle: any = null;
-
+error = {
+  type: false,
+  adults: false,
+  children: false,
+  luggage: false,
+  vehicle: false
+};
 carData: { [key: string]: Car[] } = {
   sedan: [
     {
@@ -295,7 +301,7 @@ carData: { [key: string]: Car[] } = {
 
   if (b.vehicle && b.vehicle.id) {
     this.selectedVehicle = b.vehicle;
-    this.selectedVehicleId = b.vehicle.id;  // <-- IMPORTANT
+    this.selectedVehicleId = b.vehicle.id;
   }
    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -314,9 +320,39 @@ carData: { [key: string]: Car[] } = {
     this.passengers.type = type;
     this.selectedCategory = this.travelTypeToCategory[type];
 
-    // Show top 3 recommended cars for selected category
     this.recommendedCars = this.carData[this.selectedCategory]?.slice(0, 3);
   }
+
+  validateForm(): string | null {
+  this.error = { type: false, adults: false, children: false, luggage: false, vehicle: false };
+
+  switch (true) {
+
+    case !this.passengers.type:
+      this.error.type = true;
+      return "travelTypeSection";
+
+    case !this.passengers.adults:
+      this.error.adults = true;
+      return "adultsField";
+
+    case this.passengers.children === null || this.passengers.children === undefined:
+      this.error.children = true;
+      return "childrenField";
+
+    case this.passengers.luggage === null || this.passengers.luggage === undefined:
+      this.error.luggage = true;
+      return "luggageField";
+
+    case !this.selectedVehicle:
+      this.error.vehicle = true;
+      return "vehicleSection";
+
+    default:
+      return null;
+  }
+}
+
 selectVehicle(v: any) {
   this.selectedVehicle = v;
   this.selectedVehicleId = v.id;
@@ -359,14 +395,26 @@ selectVehicle(v: any) {
 }
   }
 
-  next() {
-    this.bookingService.patchDeep({
-      passengers: this.passengers,
-      vehicle: this.selectedVehicle
-    });
+next() {
+  const invalidId = this.validateForm();
 
-    this.bookingService.nextStep();
+  if (invalidId) {
+    const el = document.getElementById(invalidId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return;
   }
+
+  // If all OK → save and continue
+  this.bookingService.patchDeep({
+    passengers: this.passengers,
+    vehicle: this.selectedVehicle
+  });
+
+  this.bookingService.nextStep();
+}
+
 
   isFormValid(): boolean {
   return (

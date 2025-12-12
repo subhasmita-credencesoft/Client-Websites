@@ -60,12 +60,12 @@
     </div>
 
     <!-- Traveller Details -->
-    <div class="card-soft mb-3">
+    <div class="card-soft mb-3" id="travellerSection">
   <h6 class="fw-bold mb-3">Traveller Details</h6>
   <div class="row g-3">
 
     <!-- First Name -->
-    <div class="col-6 col-md-6">
+    <div class="col-6 col-md-6" id="firstNameField">
       <label class="form-label small text-muted mb-1">First Name</label>
       <input class="form-control"
              name="firstName"
@@ -82,7 +82,7 @@
     </div>
 
     <!-- Last Name -->
-    <div class="col-6 col-md-6">
+    <div class="col-6 col-md-6" id="lastNameField">
       <label class="form-label small text-muted mb-1">Last Name</label>
       <input class="form-control"
              name="lastName"
@@ -99,7 +99,7 @@
     </div>
 
     <!-- Mobile -->
-    <div class="col-md-6">
+    <div class="col-md-6" id="mobileField">
       <label class="form-label small text-muted mb-1">Mobile Number</label>
       <input class="form-control"
              name="mobile"
@@ -117,7 +117,7 @@
     </div>
 
     <!-- Email -->
-    <div class="col-md-6">
+    <div class="col-md-6" id="emailField">
       <label class="form-label small text-muted mb-1">Email Address</label>
       <input class="form-control"
              name="email"
@@ -219,7 +219,7 @@
         <i class="bi bi-arrow-left"></i>
         <span>Go back</span>
       </button>
-      <button class="btn btn-dark px-5 py-2 forwardMove" [disabled]="firstName.invalid || lastName.invalid || mobile.invalid || email.invalid" (click)="confirm()" style="border-radius: 8px;">
+      <button class="btn btn-dark px-5 py-2 forwardMove" [class.disabled-looking]="firstName.invalid || lastName.invalid || mobile.invalid || email.invalid" (click)="confirm(firstName, lastName, mobile, email)" style="border-radius: 8px;">
         Confirm Booking
       </button>
     </div>

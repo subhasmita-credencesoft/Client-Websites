@@ -134,6 +134,8 @@ export class StepLocationComponent {
 
   // main handler for Next button clicks (robust cycle-through-empty-fields)
   onNextClick(ev: Event): void {
+    this.validateDrop();
+    this.validatePickup();
     if (this.isFormValid()) {
       this.saveAndNext();
       return;
@@ -279,6 +281,7 @@ export class StepLocationComponent {
   filterPickup(value: string) {
     if (!value) {
       this.pickupSuggestions = [];
+      this.pickup = '';
       return;
     }
 
@@ -297,6 +300,29 @@ export class StepLocationComponent {
     this.pickup = '';
   }
   }
+validatePickup() {
+  const match = this.mumbaiLocations.some(c =>
+    c.toLowerCase() === this.pickup.toLowerCase()
+  );
+
+  if (!match) {
+    this.pickup = '';
+  }
+
+  this.pickupSuggestions = [];
+}
+
+validateDrop() {
+  const match = this.mumbaiLocations.some(c =>
+    c.toLowerCase() === this.dropoff.toLowerCase()
+  );
+
+  if (!match) {
+    this.dropoff = '';
+  }
+
+  this.dropSuggestions = [];
+}
 
   selectPickupLocation(location: string) {
     this.pickup = location;
@@ -371,6 +397,7 @@ export class StepLocationComponent {
   filterDrop(value: string) {
     if (!value) {
       this.dropSuggestions = [];
+      this.dropoff = '';
       return;
     }
 

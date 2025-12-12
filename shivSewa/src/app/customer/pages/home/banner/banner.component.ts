@@ -48,8 +48,33 @@ export class BannerComponent {
     if (!clickedInsideDrop) this.dropSuggestions = [];
   }
   //---------------------------------------
+validatePickup() {
+  const match = this.mumbaiLocations.some(c =>
+    c.toLowerCase() === this.pickupLocation.toLowerCase()
+  );
+
+  if (!match) {
+    this.pickupLocation = '';
+  }
+
+  this.pickupSuggestions = [];
+}
+
+validateDrop() {
+  const match = this.mumbaiLocations.some(c =>
+    c.toLowerCase() === this.dropLocation.toLowerCase()
+  );
+
+  if (!match) {
+    this.dropLocation = '';
+  }
+
+  this.dropSuggestions = [];
+}
 
   bookNow(event: Event): void {
+this.validatePickup();
+this.validateDrop();
     event.preventDefault();
       const booking = {
     pickup: this.pickupLocation,
@@ -65,22 +90,27 @@ export class BannerComponent {
   // PICKUP INPUT AUTOCOMPLETE
   //---------------------------------------
   filterPickup(value: string) {
-  if (!value) {
-    this.pickupSuggestions = [];
-    return;
+    if (!value) {
+      this.pickupSuggestions = [];
+      this.pickupLocation = '';
+      return;
+    }
+
+    const lower = value.toLowerCase();
+
+    const startsWith = this.mumbaiLocations.filter(loc =>
+      loc.toLowerCase().startsWith(lower)
+    );
+
+    const contains = this.mumbaiLocations.filter(loc =>
+      !loc.toLowerCase().startsWith(lower) && loc.toLowerCase().includes(lower)
+    );
+
+    this.pickupSuggestions = [...startsWith, ...contains];
+      if (this.pickupSuggestions.length === 0) {
+    this.pickupLocation = '';
   }
-
-  const lower = value.toLowerCase();
-
-  const startsWith = this.mumbaiLocations
-    .filter(loc => loc.toLowerCase().startsWith(lower));
-
-  const contains = this.mumbaiLocations
-    .filter(loc => !loc.toLowerCase().startsWith(lower) && loc.toLowerCase().includes(lower));
-
-  // Combine → startsWith on top
-  this.pickupSuggestions = [...startsWith, ...contains];
-}
+  }
 
 
   selectPickupLocation(location: string) {
@@ -92,21 +122,28 @@ export class BannerComponent {
   // DROPOFF INPUT AUTOCOMPLETE
   //---------------------------------------
   filterDrop(value: string) {
-  if (!value) {
-    this.dropSuggestions = [];
-    return;
+    if (!value) {
+      this.dropSuggestions = [];
+      this.pickupLocation = '';
+      return;
+    }
+
+    const lower = value.toLowerCase();
+
+    const startsWith = this.mumbaiLocations.filter(loc =>
+      loc.toLowerCase().startsWith(lower)
+    );
+
+    const contains = this.mumbaiLocations.filter(loc =>
+      !loc.toLowerCase().startsWith(lower) && loc.toLowerCase().includes(lower)
+    );
+
+    this.dropSuggestions = [...startsWith, ...contains];
+
+      if (this.dropSuggestions.length === 0) {
+    this.pickupLocation = '';
   }
-
-  const lower = value.toLowerCase();
-
-  const startsWith = this.mumbaiLocations
-    .filter(loc => loc.toLowerCase().startsWith(lower));
-
-  const contains = this.mumbaiLocations
-    .filter(loc => !loc.toLowerCase().startsWith(lower) && loc.toLowerCase().includes(lower));
-
-  this.dropSuggestions = [...startsWith, ...contains];
-}
+  }
 
 
   selectDropLocation(location: string) {
