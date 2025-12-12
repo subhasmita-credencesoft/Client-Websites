@@ -1,0 +1,287 @@
+.story-section-unique {
+  padding: 50px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.story-title-unique {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.line-unique {
+  width: 40px;
+  height: 2px;
+  background: #1a1a1a;
+}
+
+.story-container-unique {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- LEFT IMAGES ---------- */
+
+.story-images-unique {
+  flex: 1;
+  max-width: 500px;
+}
+
+.img-large-unique img,
+.img-small-unique img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.img-large-unique {
+  margin-bottom: 20px;
+}
+
+.img-row-unique {
+  display: flex;
+  gap: 20px;
+}
+
+.img-small-unique {
+  width: 50%;
+}
+
+/* ---------- RIGHT TEXT SECTION ---------- */
+
+.story-content-unique {
+  flex: 1;
+  max-width: 550px;
+}
+
+.sub-heading-unique {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.story-list-unique {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.story-list-unique li {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.icon-unique {
+  min-width: 45px;
+  height: 45px;
+  background: #eef4ff;
+  color: #2a66ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.story-list-unique h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.story-list-unique p {
+  margin: 5px 0 0;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 992px) {
+  .story-container-unique {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .story-images-unique,
+  .story-content-unique {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .story-title-unique {
+    font-size: 26px;
+  }
+
+  .img-row-unique {
+    flex-direction: column;
+  }
+
+  .img-small-unique {
+    width: 100%;
+  }
+
+  .story-list-unique li {
+    gap: 10px;
+  }
+}
+/* ===== Amenities Section ===== */
+
+.amenities-section {
+    width: 100%;
+    padding: 60px 5%;
+    background: #f8fafc;
+    font-family: "Poppins", sans-serif;
+}
+
+.amenities-header {
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+}
+
+.amenities-header h2 {
+    font-size: 32px;
+    color: #1d1d1d;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.amenities-header h2::before {
+    content: "";
+    width: 50px;
+    height: 3px;
+    background: #2b2e83;
+    position: absolute;
+    left: 50%;
+    top: -15px;
+    transform: translateX(-50%);
+}
+
+.amenities-header p {
+    max-width: 600px;
+    margin: auto;
+    color: #555;
+    font-size: 16px;
+}
+
+/* ===== Cards Grid ===== */
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.amenity-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+.amenity-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.amenity-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.amenity-card h3 {
+    padding: 15px 0;
+    background-color: rgba(20, 20, 20, 0.5);
+    color: #fff;
+    font-size: 18px;
+    margin-top: -45px;
+    position: relative;
+}
+
+/* ===== Responsive Text ===== */
+
+@media (max-width: 480px) {
+    .amenities-header h2 {
+        font-size: 26px;
+    }
+
+    .amenity-card img {
+        height: 150px;
+    }
+}
+/* Main Layout */
+.resort-section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+}
+
+.resort-block {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* FORCE reverse layout for second block on large screens */
+// .rb-events {
+//     flex-direction: row-reverse !important;
+// }
+
+/* Images */
+.rb-image-wrapper {
+    flex: 1;
+}
+
+.rb-image {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Text */
+.rb-content {
+    flex: 1;
+}
+
+.rb-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.rb-text {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* MOBILE LAYOUT: stack normally */
+@media (max-width: 900px) {
+    .resort-block {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .rb-events {
+        flex-direction: column !important; /* reverse again on mobile */
+    }
+}

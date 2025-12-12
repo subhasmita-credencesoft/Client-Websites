@@ -1,15 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 declare var bootstrap: any;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [CommonModule,FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-checkInDate: string = '';
-  checkOutDate: string = '';
+checkin: string = '';
+  checkout: string = '';
+  guests: number = 1;
+
+
 @ViewChild('checkinInput') checkinInput!: ElementRef;
   @ViewChild('checkoutInput') checkoutInput!: ElementRef;
 ngAfterViewInit() {
@@ -46,6 +51,33 @@ ngAfterViewInit() {
 
 
   }
+  goToBooking() {
 
+    if (!this.checkin || !this.checkout) {
+      alert("Please select check-in and check-out dates.");
+      return;
+    }
+
+    const checkinDate = new Date(this.checkin);
+    const checkoutDate = new Date(this.checkout);
+
+    const checkinDay = checkinDate.getDate();
+    const checkinMonth = checkinDate.getMonth() + 1; // months start from 0
+    const checkinYear = checkinDate.getFullYear();
+
+    const nights = (checkoutDate.getTime() - checkinDate.getTime()) / (1000 * 3600 * 24);
+
+    const url =
+      `https://bookone.io/Divine-Inn?bookingEngine=true` +
+      `&checkinDay=${checkinDay}` +
+      `&checkinMonth=${checkinMonth}` +
+      `&checkinYear=${checkinYear}` +
+      `&nights=${nights}` +
+      `&numGuests=${this.guests}` +
+      `&numAdults=${this.guests}` +
+      `&Children=0&rooms=1`;
+
+    window.location.href = url;
+  }
 
 }

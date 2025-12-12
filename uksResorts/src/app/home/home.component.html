@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse" id="nav">
         <ul class="navbar-nav ms-auto align-items-center gap-4">
           <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about-us">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Rooms</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Dining</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Facilities</a></li>
@@ -42,37 +42,37 @@
       <h1>Embrace nature.</h1>
     </div>
 
-    <div class="booking-box">
-      <div class="booking-row">
-<div class="booking-item">
-  <label>CHECK-IN</label>
-  <input #checkinInput type="date" class="form-control" />
-</div>
+   <div class="booking-box">
+  <div class="booking-row">
 
-<div class="booking-item">
-  <label>CHECK-OUT</label>
-  <input #checkoutInput type="date" class="form-control" />
-</div>
-
-
-        <div class="booking-item">
-          <label>GUESTS</label>
-          <select class="form-select">
-            <option>1 Room</option>
-            <option>2 Rooms</option>
-            <option>3 Rooms</option>
-          </select>
-        </div>
-
-        <div class="booking-btn-holder">
-          <button class="btn book-btn book-btnone">
-  Book Now <i class="fa-solid fa-arrow-right"></i>
-</button>
-
-        </div>
-
-      </div>
+    <div class="booking-item">
+      <label>CHECK-IN</label>
+      <input type="date" class="form-control" [(ngModel)]="checkin" />
     </div>
+
+    <div class="booking-item">
+      <label>CHECK-OUT</label>
+      <input type="date" class="form-control" [(ngModel)]="checkout" />
+    </div>
+
+    <div class="booking-item">
+      <label>GUESTS</label>
+      <select class="form-select" [(ngModel)]="guests">
+        <option [value]="1">1 guest</option>
+        <option [value]="2">2 guests</option>
+        <option [value]="3">3 guests</option>
+      </select>
+    </div>
+
+    <div class="booking-btn-holder">
+      <button class="btn book-btn book-btnone" (click)="goToBooking()">
+        Book Now <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+
 
   </div>
 
