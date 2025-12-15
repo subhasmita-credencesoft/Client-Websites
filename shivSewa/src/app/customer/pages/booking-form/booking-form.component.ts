@@ -8,11 +8,12 @@ import { StepPassengerComponent } from "./step-passenger/step-passenger.componen
 import { StepSummaryComponent } from "./step-summary/step-summary.component";
 import { StepConfirmationComponent } from "./step-confirmation/step-confirmation.component";
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-booking-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, StepLocationComponent, StepPassengerComponent, StepSummaryComponent, StepConfirmationComponent, HeaderComponent],
+  imports: [CommonModule,HttpClientModule, FormsModule, ReactiveFormsModule, StepLocationComponent, StepPassengerComponent, StepSummaryComponent, StepConfirmationComponent, HeaderComponent],
   templateUrl: './booking-form.component.html',
   styleUrl: './booking-form.component.scss'
 })

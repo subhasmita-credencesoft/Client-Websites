@@ -3,6 +3,8 @@ import { BookingService } from '../../../services/booking.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MUMBAI_LOCATIONS } from '../../../data/mumbai-locations';
+import { GeoLocation } from '../../../models/geo-location';
+import { LocationService } from '../../../services/location/location.service';
 
 @Component({
   selector: 'app-step-location',
@@ -25,13 +27,16 @@ export class StepLocationComponent {
   editingLocality = false;
   locality = '';
   tripType: 'one-way' | 'return' = 'one-way';
-
+  selectedPickup?: GeoLocation;
+selectedDrop?: GeoLocation;
   // note: matches template `#dateInputElem`
   @ViewChild('dateInputElem') dateInputRef!: ElementRef<HTMLInputElement>;
 
-  pickupSuggestions: string[] = [];
-  dropSuggestions: string[] = [];
+pickupSuggestions: GeoLocation[] = [];
+dropSuggestions: GeoLocation[] = [];
 
+pickupResults: GeoLocation[] = [];
+dropResults: GeoLocation[] = [];
   // preserve existing group refs used by click-outside handler
   @ViewChild('pickupGroup') pickupGroup!: ElementRef;
   @ViewChild('dropGroup') dropGroup!: ElementRef;
@@ -58,10 +63,12 @@ export class StepLocationComponent {
   mumbaiLocations: string[] = MUMBAI_LOCATIONS;
   bookingData: any;
 
-  constructor(private bookingService: BookingService) {
+  constructor(private bookingService: BookingService,
+              private locationService: LocationService
+  ) {
     const b = this.bookingService.getCurrent();
-    this.pickup = b.pickup || '';
-    this.dropoff = b.dropoff || '';
+    this.pickup = b.pickup?.name || '';
+    this.dropoff = b.dropoff?.name || '';
     this.date = b.date || '';
     this.time = b.time || '';
     this.tripType = b.tripType || 'one-way';
@@ -87,8 +94,8 @@ export class StepLocationComponent {
   //---------------------------------------
   isFormValid(): boolean {
     return (
-      this.pickup.trim() !== '' &&
-      this.dropoff.trim() !== '' &&
+      !!this.selectedPickup &&
+    !!this.selectedDrop &&
       this.date.trim() !== '' &&
       this.displayTime.trim() !== '' &&
       this.locality.trim() !== ''
@@ -102,8 +109,8 @@ export class StepLocationComponent {
     if (!this.isFormValid()) return;
 
     this.bookingService.patchDeep({
-      pickup: this.pickup,
-      dropoff: this.dropoff,
+    pickup: this.selectedPickup!,
+    dropoff: this.selectedDrop!,
       date: this.date,
       time: this.displayTime,
       tripType: this.tripType,
@@ -113,19 +120,25 @@ export class StepLocationComponent {
     this.bookingService.nextStep();
   }
 
-  // --- NEW METHODS & HELPERS (for "click disabled -> focus next invalid")
-  // called when typing/selecting to clear that field's invalid flag
-  onFieldInput(field: 'pickup'|'drop'|'date'|'time'|'locality', value: string | null): void {
-    switch (field) {
-      case 'pickup': if (value && value.trim()) this.pickupInvalid = false; break;
-      case 'drop': if (value && value.trim()) this.dropInvalid = false; break;
-      case 'date': if (value) this.dateInvalid = false; break;
-      case 'time': if (value) this.timeInvalid = false; break;
-      case 'locality': if (value && value.trim()) this.localityInvalid = false; break;
-    }
-    // reset pointer when fully valid so next invalid cycle starts from beginning
-    if (this.isFormValid()) this.lastInvalidIndex = -1;
+
+ onFieldInput(field: 'pickup'|'drop'|'date'|'time'|'locality', value: string | null): void {
+  switch (field) {
+    case 'pickup':
+      if (value && value.trim()) this.pickupInvalid = false;
+      this.selectedPickup = undefined;
+      break;
+    case 'drop':
+      if (value && value.trim()) this.dropInvalid = false;
+      this.selectedDrop = undefined;
+      break;
+    case 'date': if (value) this.dateInvalid = false; break;
+    case 'time': if (value) this.timeInvalid = false; break;
+    case 'locality': if (value && value.trim()) this.localityInvalid = false; break;
   }
+
+  if (this.isFormValid()) this.lastInvalidIndex = -1;
+}
+
 
   // called for non-text fields (time click) to clear flag if time already chosen
   onFieldTouched(field: 'time') {
@@ -279,27 +292,34 @@ export class StepLocationComponent {
   // PICKUP
   //---------------------------------------
   filterPickup(value: string) {
-    if (!value) {
-      this.pickupSuggestions = [];
-      this.pickup = '';
-      return;
-    }
+  if (!value || value.length < 2) {
+    this.pickupSuggestions = [];
+    return;
+  }
 
+  this.locationService.searchLocation(value).subscribe(res => {
+    this.pickupResults = res || [];
     const lower = value.toLowerCase();
 
-    const startsWith = this.mumbaiLocations.filter(loc =>
-      loc.toLowerCase().startsWith(lower)
+    const startsWith = this.pickupResults.filter(l =>
+      l.name?.toLowerCase().startsWith(lower)
     );
 
-    const contains = this.mumbaiLocations.filter(loc =>
-      !loc.toLowerCase().startsWith(lower) && loc.toLowerCase().includes(lower)
+    const contains = this.pickupResults.filter(l =>
+      !l.name?.toLowerCase().startsWith(lower) &&
+      l.name?.toLowerCase().includes(lower)
     );
 
     this.pickupSuggestions = [...startsWith, ...contains];
-      if (this.pickupSuggestions.length === 0) {
-    this.pickup = '';
-  }
-  }
+
+    // optional: clear if nothing matches
+    if (this.pickupSuggestions.length === 0) {
+      this.pickup = '';
+      this.selectedPickup = undefined;
+    }
+  });
+}
+
 validatePickup() {
   const match = this.mumbaiLocations.some(c =>
     c.toLowerCase() === this.pickup.toLowerCase()
@@ -313,8 +333,8 @@ validatePickup() {
 }
 
 validateDrop() {
-  const match = this.mumbaiLocations.some(c =>
-    c.toLowerCase() === this.dropoff.toLowerCase()
+  const match = this.dropResults.some(
+    l => l.name.toLowerCase() === this.dropoff.toLowerCase()
   );
 
   if (!match) {
@@ -324,10 +344,16 @@ validateDrop() {
   this.dropSuggestions = [];
 }
 
-  selectPickupLocation(location: string) {
-    this.pickup = location;
-    this.pickupSuggestions = [];
-  }
+
+selectPickupLocation(loc: GeoLocation) {
+  this.selectedPickup = loc;      // ✅ store object
+  this.pickup = loc.name;         // UI text
+  this.pickupSuggestions = [];
+
+  this.bookingService.setCurrent({
+    pickup: loc
+  });
+}
 
   //---------------------------------------
   // LOCALITY
@@ -394,32 +420,39 @@ validateDrop() {
   //---------------------------------------
   // DROP
   //---------------------------------------
-  filterDrop(value: string) {
-    if (!value) {
-      this.dropSuggestions = [];
-      this.dropoff = '';
-      return;
-    }
+filterDrop(value: string) {
+  if (!value || value.length < 2) {
+    this.dropSuggestions = [];
+    return;
+  }
 
+  this.locationService.searchLocation(value).subscribe(res => {
+    this.dropResults = res || [];
     const lower = value.toLowerCase();
 
-    const startsWith = this.mumbaiLocations.filter(loc =>
-      loc.toLowerCase().startsWith(lower)
+    const startsWith = this.dropResults.filter(l =>
+      l.name?.toLowerCase().startsWith(lower)
     );
 
-    const contains = this.mumbaiLocations.filter(loc =>
-      !loc.toLowerCase().startsWith(lower) && loc.toLowerCase().includes(lower)
+    const contains = this.dropResults.filter(l =>
+      !l.name?.toLowerCase().startsWith(lower) &&
+      l.name?.toLowerCase().includes(lower)
     );
 
     this.dropSuggestions = [...startsWith, ...contains];
+  });
+}
 
-      if (this.dropSuggestions.length === 0) {
-    this.dropoff = '';
-  }
-  }
 
-  selectDropLocation(location: string) {
-    this.dropoff = location;
-    this.dropSuggestions = [];
-  }
+
+selectDropLocation(loc: GeoLocation) {
+  this.selectedDrop = loc;        // ✅ store object
+  this.dropoff = loc.name;
+  this.dropSuggestions = [];
+
+  this.bookingService.setCurrent({
+    dropoff: loc
+  });
+}
+
 }

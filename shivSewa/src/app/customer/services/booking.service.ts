@@ -7,8 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BookingService {
   private _booking = new BehaviorSubject<Booking>({
-    pickup: '',
-    dropoff: '',
+  pickup: null,
+  dropoff: null,
     date: '',
     time: '',
     tripType: 'one-way',
@@ -71,8 +71,8 @@ export class BookingService {
   }
   reset() {
   this._booking.next({
-    pickup: '',
-    dropoff: '',
+  pickup: null,
+  dropoff: null,
     date: '',
     time: '',
     tripType: 'one-way',
@@ -106,4 +106,11 @@ export class BookingService {
 
   this._step.next(0);
 }
+setCurrent(data: Partial<Booking>) {
+  this._booking.next({
+    ...this._booking.value,
+    ...data
+  });
+}
+
 }

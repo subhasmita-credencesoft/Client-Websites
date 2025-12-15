@@ -20,12 +20,13 @@
           ><i class="fa-solid fa-location-crosshairs icon-specific"></i
         ></span>
         <ul class="autocomplete-box" *ngIf="pickupSuggestions.length > 0">
-          <li
-            *ngFor="let s of pickupSuggestions"
-            (click)="selectPickupLocation(s)"
-          >
-            <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s }}
-          </li>
+           <li
+              *ngFor="let s of pickupSuggestions"
+              (click)="selectPickupLocation(s)"
+            >
+              <i class="bi bi-geo-alt-fill icon-specific"></i>
+              &nbsp; {{ s.name }}
+            </li>
         </ul>
       </div>
       <div class="field-error small text-danger mt-1" *ngIf="pickupInvalid">
@@ -52,8 +53,12 @@
           ><i class="fa-solid fa-location-crosshairs icon-specific"></i
         ></span>
         <ul class="autocomplete-box" *ngIf="dropSuggestions.length > 0">
-          <li *ngFor="let s of dropSuggestions" (click)="selectDropLocation(s)">
-            <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s }}
+          <li
+            *ngFor="let s of dropSuggestions"
+            (click)="selectDropLocation(s)"
+          >
+            <i class="bi bi-geo-alt-fill icon-specific"></i>
+            &nbsp; {{ s.name }}
           </li>
         </ul>
       </div>

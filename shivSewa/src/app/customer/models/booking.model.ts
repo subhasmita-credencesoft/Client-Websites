@@ -1,7 +1,9 @@
+import { GeoLocation } from "./geo-location";
+
 export interface Booking {
   locality?: any,
-  pickup?: string;
-  dropoff?: string;
+  pickup?: GeoLocation | null;
+  dropoff?: GeoLocation | null;
   date?: string;
   time?: string;
   tripType?: 'one-way' | 'return';
