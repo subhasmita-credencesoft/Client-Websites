@@ -11,7 +11,7 @@
   <div class="d-flex align-items-center gap-2">
     <span class="badge rounded-circle p-1"
           style="background-color: #FF6B35; width: 8px; height: 8px;"></span>
-    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific"></i> {{ booking.pickup || 'Mumbai' }}</span>
+    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific"></i> {{ booking.pickup.name || 'Mumbai' }}</span>
   </div>
 
   <div style="width:20%">
@@ -21,7 +21,7 @@
   <div class="d-flex align-items-center gap-2">
     <span class="badge rounded-circle p-1"
           style="background-color: #FF6B35; width: 8px; height: 8px;"></span>
-    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific"></i>{{ booking.dropoff || 'Lonavala' }}</span>
+    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific"></i>{{ booking.dropoff.name || 'Lonavala' }}</span>
   </div>
 </div>
 

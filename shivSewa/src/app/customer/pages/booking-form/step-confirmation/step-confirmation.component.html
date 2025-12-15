@@ -22,7 +22,7 @@
         <div class="loc-row">
           <span class="dot grey"></span>
           <div class="d-flex justify-content-between align-items-center flex-wrap" style="width: 100%;">
-            <div class="loc-main">{{booking?.locality}}, {{booking?.pickup}}</div>
+            <div class="loc-main">{{booking?.locality}}, {{booking?.pickup.name}}</div>
             <div class="loc-sub">
               <i class="fa-solid fa-calendar" style="color:rgba(241, 101, 18, 1)"></i>
               {{booking?.date | date:'dd MMM, yyyy'}} | {{booking?.time}}
@@ -33,7 +33,7 @@
         <!-- DROP -->
         <div class="loc-row">
           <span class="dot orange"></span>
-          <div class="loc-main">{{booking?.dropoff}}</div>
+          <div class="loc-main">{{booking?.dropoff.name}}</div>
         </div>
 
         <div class="divider"></div>

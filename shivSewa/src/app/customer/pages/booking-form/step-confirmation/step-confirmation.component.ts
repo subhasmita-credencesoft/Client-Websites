@@ -22,136 +22,105 @@ export class StepConfirmationComponent {
       console.log(this.booking, "this.booking")
     });
      window.scrollTo({ top: 0, behavior: 'smooth' });
+     console.log(this.booking, "this.booking in confirmation")
   }
 
   ngAfterViewInit(): void {
     // Initialize map after view is ready
     setTimeout(() => {
+    if (this.booking?.pickup && this.booking?.dropoff) {
       this.initMap();
-    }, 100);
+    }
+  }, 100);
   }
   async initMap(): Promise<void> {
-    try {
-      // Get coordinates from place names using Nominatim geocoding API
-      const pickupCoords = await this.getCoordinates(this.booking.pickup);
-      const dropoffCoords = await this.getCoordinates(this.booking.dropoff);
+  try {
+    const pickupCoords = {
+      lat: this.booking.pickup.latitude,
+      lng: this.booking.pickup.longitude
+    };
 
-      if (!pickupCoords || !dropoffCoords) {
-        console.error('Could not geocode locations');
-        return;
-      }
+    const dropoffCoords = {
+      lat: this.booking.dropoff.latitude,
+      lng: this.booking.dropoff.longitude
+    };
 
-      // Hide loader
-      const loader = document.getElementById('mapLoader');
-      if (loader) loader.style.display = 'none';
+    // Hide loader
+    const loader = document.getElementById('mapLoader');
+    if (loader) loader.style.display = 'none';
 
-      // Initialize the map
-      this.map = L.map('routeMap', {
-        zoomControl: false,
-        scrollWheelZoom: false,
-        dragging: false,
-        doubleClickZoom: false,
-        attributionControl: false,
-        touchZoom: false
-      });
+    this.map = L.map('routeMap', {
+      zoomControl: false,
+      scrollWheelZoom: false,
+      dragging: false,
+      doubleClickZoom: false,
+      attributionControl: false,
+      touchZoom: false
+    });
 
-      // Add tile layer with a nice style
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19
-      }).addTo(this.map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19
+    }).addTo(this.map);
 
-      // Calculate bounds and fit map
-      const bounds = L.latLngBounds(
-        [pickupCoords.lat, pickupCoords.lng],
-        [dropoffCoords.lat, dropoffCoords.lng]
-      );
-      this.map.fitBounds(bounds, { padding: [80, 80] });
+    const bounds = L.latLngBounds(
+      [pickupCoords.lat, pickupCoords.lng],
+      [dropoffCoords.lat, dropoffCoords.lng]
+    );
+    this.map.fitBounds(bounds, { padding: [80, 80] });
 
-      // Create custom icons using divIcon
-      const pickupIcon = L.divIcon({
-        html: `<div style="width: 24px; height: 24px; background-color: #1a1a1a; border: 3px solid white; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.3);"></div>`,
-        className: '',
-        iconSize: [24, 24],
-        iconAnchor: [12, 12]
-      });
+    // Icons
+    const pickupIcon = L.divIcon({
+      html: `<div style="width:24px;height:24px;background:#1a1a1a;border:3px solid white;border-radius:50%"></div>`,
+      className: '',
+      iconSize: [24, 24],
+      iconAnchor: [12, 12]
+    });
 
-      const dropoffIcon = L.divIcon({
-        html: `<div style="width: 32px; height: 32px; background-color: #FF6B35; border: 4px solid white; border-radius: 50%; box-shadow: 0 3px 10px rgba(255,107,53,0.4); display: flex; align-items: center; justify-content: center;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-          </svg>
-        </div>`,
-        className: '',
-        iconSize: [32, 32],
-        iconAnchor: [16, 16]
-      });
+    const dropoffIcon = L.divIcon({
+      html: `<div style="width:32px;height:32px;background:#FF6B35;border:4px solid white;border-radius:50%"></div>`,
+      className: '',
+      iconSize: [32, 32],
+      iconAnchor: [16, 16]
+    });
 
-      // Add markers
-      const pickupMarker = L.marker([pickupCoords.lat, pickupCoords.lng], {
-        icon: pickupIcon
-      }).addTo(this.map);
+    const pickupMarker = L.marker(
+      [pickupCoords.lat, pickupCoords.lng],
+      { icon: pickupIcon }
+    ).addTo(this.map);
 
-      const dropoffMarker = L.marker([dropoffCoords.lat, dropoffCoords.lng], {
-        icon: dropoffIcon
-      }).addTo(this.map);
+    const dropoffMarker = L.marker(
+      [dropoffCoords.lat, dropoffCoords.lng],
+      { icon: dropoffIcon }
+    ).addTo(this.map);
 
-      // Get route from OSRM (Open Source Routing Machine)
-      const routeCoords = await this.getRoute(pickupCoords, dropoffCoords);
+    // Route
+    const routeCoords = await this.getRoute(pickupCoords, dropoffCoords);
 
-      if (routeCoords && routeCoords.length > 0) {
-        // Draw the route with orange color
-        L.polyline(routeCoords, {
-          color: '#FF6B35',
-          weight: 4,
-          opacity: 0.9,
-          smoothFactor: 1,
-          lineJoin: 'round',
-          lineCap: 'round'
-        }).addTo(this.map);
-      } else {
-        // Fallback: draw straight line if routing fails
-        L.polyline([
-          [pickupCoords.lat, pickupCoords.lng],
-          [dropoffCoords.lat, dropoffCoords.lng]
-        ], {
-          color: '#FF6B35',
-          weight: 4,
-          opacity: 0.9
-        }).addTo(this.map);
-      }
+    L.polyline(routeCoords.length ? routeCoords : [
+      [pickupCoords.lat, pickupCoords.lng],
+      [dropoffCoords.lat, dropoffCoords.lng]
+    ], {
+      color: '#FF6B35',
+      weight: 4,
+      opacity: 0.9
+    }).addTo(this.map);
 
-      // Add location labels
-      pickupMarker.bindTooltip(this.booking.pickup, {
-        permanent: true,
-        direction: 'right',
-        className: 'custom-tooltip',
-        offset: [15, 0]
-      });
+    // ✅ Correct tooltip text
+    pickupMarker.bindTooltip(
+      this.booking.pickup.name,
+      { permanent: true, direction: 'right', offset: [15, 0] }
+    );
 
-      dropoffMarker.bindTooltip(this.booking.dropoff, {
-        permanent: true,
-        direction: 'right',
-        className: 'custom-tooltip-dropoff',
-        offset: [20, 0]
-      });
+    dropoffMarker.bindTooltip(
+      this.booking.dropoff.name,
+      { permanent: true, direction: 'right', offset: [20, 0] }
+    );
 
-      // Add distance badge
-      const mapContainer = document.getElementById('routeMap');
-      if (mapContainer) {
-        const badge = document.createElement('div');
-        badge.className = 'distance-badge';
-        badge.innerHTML = `<i class="bi bi-arrow-left-right me-1"></i>${this.booking.distance}`;
-        mapContainer.appendChild(badge);
-      }
-
-    } catch (error) {
-      console.error('Error initializing map:', error);
-      const loader = document.getElementById('mapLoader');
-      if (loader) {
-        loader.innerHTML = '<p class="text-danger small">Could not load map</p>';
-      }
-    }
+  } catch (error) {
+    console.error('Map error:', error);
   }
+}
+
  // Geocode place name to coordinates using Nominatim
   async getCoordinates(placeName: string): Promise<{lat: number, lng: number} | null> {
     try {
