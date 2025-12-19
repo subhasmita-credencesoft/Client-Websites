@@ -117,15 +117,15 @@ border: 1px solid rgba(255, 172, 123, 1)
 }
 @media(max-width: 600px){
   .btn-next {
-    background: #000;
-    color: #fff;
-    padding: 12px 15px;
-    border-radius: 14px;
-    font-weight: 600;
-    font-size: 14px;
-    display: inline-flex;
-    gap: 10px;
-    align-items: center;
+background: #000;
+        color: #fff;
+        padding: 12px 8px;
+        border-radius: 14px;
+        font-weight: 600;
+        font-size: 14px;
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
 }
 .btn-formart {
     border: 1px solid #dadada;

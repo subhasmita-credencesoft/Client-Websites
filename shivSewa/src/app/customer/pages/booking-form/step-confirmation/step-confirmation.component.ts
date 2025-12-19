@@ -55,7 +55,7 @@ export class StepConfirmationComponent implements AfterViewInit {
   // -----------------------------
   // Initialize Google Map
   // -----------------------------
-   initGoogleMap(): void {
+initGoogleMap(): void {
   const pickup = new google.maps.LatLng(
     this.booking.pickup.latitude,
     this.booking.pickup.longitude
@@ -66,11 +66,10 @@ export class StepConfirmationComponent implements AfterViewInit {
     this.booking.dropoff.longitude
   );
 
-  // 1️⃣ Create map (REMOVE fixed zoom)
+  // 1️⃣ Map
   this.map = new google.maps.Map(
     document.getElementById('routeMap') as HTMLElement,
     {
-      center: pickup,
       disableDefaultUI: true,
       draggable: false,
       scrollwheel: false,
@@ -79,127 +78,239 @@ export class StepConfirmationComponent implements AfterViewInit {
     }
   );
 
-  // 2️⃣ Create bounds to fit pickup & drop
+  // 2️⃣ Bounds (less zoomed feel)
   const bounds = new google.maps.LatLngBounds();
   bounds.extend(pickup);
   bounds.extend(drop);
 
-  // 3️⃣ Force resize & fit bounds (CRITICAL)
   setTimeout(() => {
     google.maps.event.trigger(this.map, 'resize');
 
     this.map.fitBounds(bounds, {
-      top: 80,
-      bottom: 80,
-      left: 80,
-      right: 80
+      top: 180,
+      bottom: 180,
+      left: 180,
+      right: 180
     });
-  }, 150);
 
-  // 4️⃣ Directions service
+    const maxZoom = 14;
+    const listener = google.maps.event.addListener(this.map, 'idle', () => {
+      if ((this.map.getZoom() ?? 0) > maxZoom) {
+        this.map.setZoom(maxZoom);
+      }
+      google.maps.event.removeListener(listener);
+    });
+  }, 160);
+
+  // 3️⃣ Directions (PATH ONLY)
   this.directionsService = new google.maps.DirectionsService();
-
   this.directionsRenderer = new google.maps.DirectionsRenderer({
-    map: this.map,
-    suppressMarkers: true,
-    polylineOptions: {
-      strokeColor: '#FF6B35',
-      strokeWeight: 6,
-      strokeOpacity: 0.9
-    }
-  });
+  map: this.map,
+  suppressMarkers: true,
+  polylineOptions: {
+    strokeColor: 'rgba(241, 101, 18, 1)',
+    strokeOpacity: 1,
+    strokeWeight: 4
+  }
+});
 
-  // 5️⃣ Premium Markers with compact labels
- this.addLabeledMarker(
-  pickup,
-  'Pickup Here',
-  this.booking.pickup.name
-);
 
-this.addLabeledMarker(
-  drop,
-  'Drop Here',
-  this.booking.dropoff.name
-);
+  // 4️⃣ Pins only
+this.addPickupPin(pickup);
 
-  // 6️⃣ Draw route
+// Dropoff
+this.addDropPin(drop);
+
+  // 5️⃣ Draw route
   this.calculateRoute(pickup, drop);
 }
+addPin(position: google.maps.LatLng, color: string): void {
+  new google.maps.Marker({
+    position,
+    map: this.map,
+    zIndex: 1000,
+    icon: {
+      path: `
+        M352 348.4C416.1 333.9 464 276.5 464 208
+        C464 128.5 399.5 64 320 64
+        C240.5 64 176 128.5 176 208
+        C176 276.5 223.9 333.9 288 348.4
+        L288 544
+        C288 561.7 302.3 576 320 576
+        C337.7 576 352 561.7 352 544
+        L352 348.4z
+        M328 160
+        C297.1 160 272 185.1 272 216
+        C272 229.3 261.3 240 248 240
+        C234.7 240 224 229.3 224 216
+        C224 158.6 270.6 112 328 112
+        C341.3 112 352 122.7 352 136
+        C352 149.3 341.3 160 328 160z
+      `,
+      fillColor: color,
+      fillOpacity: 1,
+      strokeColor: '#ffffff',
+      strokeWeight: 2,
+      scale: 0.045,                 // 🔥 scaled from 640 viewBox
+      anchor: new google.maps.Point(320, 576) // 🔥 bottom center
+    }
+  });
+}
+
 
 
 addLabeledMarker(
   position: google.maps.LatLng,
-  title: string,
-  locationName: string
+  locationName: string,
+  pinColor: string
 ): void {
 
-  // Marker (invisible anchor)
-  const marker = new google.maps.Marker({
+  // Invisible anchor for label
+  const anchor = new google.maps.Marker({
     position,
     map: this.map,
     icon: {
       path: google.maps.SymbolPath.CIRCLE,
-      scale: 0 // invisible marker
+      scale: 0
     }
   });
 
-  // InfoWindow with Font Awesome icon
+  // Small clean name card (NO ICON, NO CLOSE)
   const infoWindow = new google.maps.InfoWindow({
-    disableAutoPan: true, // prevents map movement
+    disableAutoPan: true,
     content: `
-      <div style="
-        font-family: Inter, sans-serif;
-        padding: 4px 8px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        white-space: nowrap;
-      ">
-        <i class="fa-solid fa-map-pin"
-           style="
-             color: #f97316;
-             font-size: 14px;
-           ">
-        </i>
-        <div>
-          <div style="
-            font-size: 10px;
-            color: #999;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            line-height: 1;
-          ">
-            ${title}
-          </div>
-          <div style="
-            font-size: 12px;
-            font-weight: 600;
-            color: #1a1a1a;
-            line-height: 1.2;
-            max-width: 160px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          ">
-            ${locationName}
-          </div>
-        </div>
-      </div>
+       <div style="
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-family: Inter, sans-serif;
+    padding: 4px 4px;
+    background: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    font-size: 12px;
+    font-weight: 600;
+    color: #111;
+    white-space: nowrap;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  ">
+    <i class="fa-solid fa-map-pin" style="color:#e11d48; font-size: 12px;"></i>
+    <span>${locationName}</span>
+  </div>
     `
   });
 
-  // Open by default
-  infoWindow.open(this.map, marker);
+  infoWindow.open(this.map, anchor);
 
-  // ❌ Remove close (X) button
-  google.maps.event.addListener(infoWindow, 'domready', () => {
-    const closeBtn = document.querySelector('.gm-ui-hover-effect');
-    if (closeBtn) {
-      (closeBtn as HTMLElement).style.display = 'none';
+  // 🔥 Font-Awesome-like MAP PIN (SVG)
+  new google.maps.Marker({
+    position,
+    map: this.map,
+    zIndex: 1000,
+    icon: {
+      path: `
+        M12 2
+        C8.13 2 5 5.13 5 9
+        c0 5.25 7 13 7 13
+        s7-7.75 7-13
+        c0-3.87-3.13-7-7-7z
+      `,
+      fillColor: pinColor,
+      fillOpacity: 1,
+      strokeColor: '#ffffff',
+      strokeWeight: 1,
+      scale: 2,
+      anchor: new google.maps.Point(12, 24)
     }
   });
 }
 
+
+
+addCarMarker(position: google.maps.LatLng): void {
+  const marker = new google.maps.Marker({
+    position,
+    map: this.map,
+    icon: {
+      path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+      scale: 5,
+      fillColor: '#f97316',
+      fillOpacity: 1,
+      strokeColor: '#ffffff',
+      strokeWeight: 1,
+      rotation: 0
+    }
+  });
+}
+addPickupPin(position: google.maps.LatLng): void {
+  new google.maps.Marker({
+    position,
+    map: this.map,
+    zIndex: 1000,
+    icon: {
+      path: `
+        M8 0a.5.5 0 0 1 .5.5v.518
+        A7 7 0 0 1 14.982 7.5h.518
+        a.5.5 0 0 1 0 1h-.518
+        A7 7 0 0 1 8.5 14.982v.518
+        a.5.5 0 0 1-1 0v-.518
+        A7 7 0 0 1 1.018 8.5H.5
+        a.5.5 0 0 1 0-1h.518
+        A7 7 0 0 1 7.5 1.018V.5
+        A.5.5 0 0 1 8 0
+
+        M7.5 2.02A6 6 0 0 0 2.02 7.5h1.005
+        A5 5 0 0 1 7.5 3.025z
+
+        M8.5 3.025A5 5 0 0 1 12.975 7.5h1.005
+        A6 6 0 0 0 8.5 2.02z
+
+        M12.975 8.5A5 5 0 0 1 8.5 12.975v1.005
+        a6 6 0 0 0 5.48-5.48z
+
+        M7.5 12.975A5 5 0 0 1 3.025 8.5H2.02
+        a6 6 0 0 0 5.48 5.48z
+
+        M10 8a2 2 0 1 0-4 0
+        a2 2 0 0 0 4 0
+      `,
+      fillColor: '#000000',
+      fillOpacity: 1,
+      strokeColor: '#ffffff',
+      strokeWeight: 1,
+      scale: 2,
+      anchor: new google.maps.Point(8, 8) // center of 16x16 SVG
+    }
+  });
+}
+
+addDropPin(position: google.maps.LatLng): void {
+  new google.maps.Marker({
+    position,
+    map: this.map,
+    zIndex: 1000,
+    icon: {
+      path: `
+        M352 348.4C416.1 333.9 464 276.5 464 208
+        C464 128.5 399.5 64 320 64
+        C240.5 64 176 128.5 176 208
+        C176 276.5 223.9 333.9 288 348.4
+        L288 544
+        C288 561.7 302.3 576 320 576
+        C337.7 576 352 561.7 352 544
+        L352 348.4z
+      `,
+      fillColor: 'rgba(241, 101, 18, 1)',
+      fillOpacity: 1,
+      strokeColor: '#ffffff',
+      strokeWeight: 2,
+      scale: 0.045,
+      anchor: new google.maps.Point(320, 576)
+    }
+  });
+}
 
 
 get staticMapUrl(): string {
