@@ -1,0 +1,640 @@
+.top-bar {
+
+  padding: 5px 0;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #e8e8e8;
+  position: relative;
+  z-index: 2000;
+}
+
+/* ------------------------ */
+/* NAVBAR */
+/* ------------------------ */
+.main-navbar {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  z-index: 1500;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+@media (max-width: 992px) {  /* 'lg' breakpoint for Bootstrap 5 */
+  .navbar-collapse {
+    background-color: #0d0630;
+    padding-bottom: 25px;
+  }
+  .navbar-collapse .book-nav {
+    display: block;
+    margin: 15px auto 0 auto; /* center horizontally with auto margins */
+    width: 50%;               /* optional: adjust button width */
+    text-align: center;
+  }
+}
+@media (max-width: 420px) {
+.main-navbar{
+      top: 65px;
+}
+.hero {
+    height: 105vh !important;
+}
+}
+.book-nav{
+  padding: 8px 30px !important;
+  border-radius: 30px !important;
+}
+
+.main-navbar .nav-link {
+  color: white !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.main-navbar .navbar-brand img {
+  height: 55px;
+}
+
+.book-btn {
+  padding: 7px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+}
+.booking-item select.form-select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='12' viewBox='0 0 20 20' width='12' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,15'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
+
+/* ------------------------ */
+/* HERO SECTION */
+/* ------------------------ */
+.hero-room {
+  height: 70vh;
+  width: 100%;
+  background: url("/assets/home-imgs/room-banner.png") center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 38%;
+  left: 5%;
+}
+
+@media (max-width: 768px) {
+  .hero-text {
+    bottom: 45%;
+    left: 6%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text {
+    bottom: 50%;
+    left: 5%;
+  }
+}
+
+.hero-content {
+  position: absolute;
+ bottom: 37%;      /* You can adjust this value */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;      /* Keep same width as before */
+}
+
+
+
+.hero-text h1 {
+  font-size: 48px;
+  font-weight: 400;
+  font-family: "GFS Didot", serif;
+
+}
+
+.story-title-unique {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.line-unique {
+  width: 40px;
+  height: 2px;
+  background: #1a1a1a;
+}
+.line-unique-heading h2::before {
+    content: "";                /* empty content for the line */
+    display: inline-block;      /* inline so it appears beside text */
+    width: 50px;                /* length of the line */
+    height: 3px;                /* thickness */
+    background: #2b2e83;        /* line color */
+    margin-right: 10px;         /* space between line and text */
+    vertical-align: middle;     /* align with text */
+}
+/* BOOKING BOX */
+.booking-box {
+  position: absolute;
+  top: 119px;                  /* overlap hero */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  background: #101996A3;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  z-index: 100;
+}
+
+/* FORM GRID */
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  align-items: end;
+}
+
+/* INPUT BLOCK */
+.booking-item label {
+  display: block;
+  font-size: 11px;
+  color: #cfd5ff;
+  margin-bottom: 5px;
+}
+
+.booking-item input,
+.booking-item select {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #fff;
+  height: 44px;
+  border-radius: 8px;
+}
+
+.booking-item input::placeholder {
+  color: #e1e1e1;
+}
+
+/* BOOK BUTTON */
+.booking-btn button {
+  width: 100%;
+  height: 44px;
+  border-radius: 8px;
+  border: none;
+  background: #12133d;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.booking-btn button:hover {
+  background: #0c0d2b;
+}
+
+@media (max-width: 991px) {
+  .booking-box {
+    width: 90%;
+    bottom: -60px;
+  }
+
+  .booking-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 575px) {
+  .hero-room {
+    height: 85vh;
+  }
+
+  .booking-box {
+    position: static;
+    transform: none;
+    margin: 20px auto 0;
+    width: 95%;
+  }
+
+  .booking-form {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-btn button {
+    height: 46px;
+  }
+}
+
+/* Facilities wrapper */
+.facilities {
+  margin-top: 15px;
+}
+.rooms-header {
+  text-align: center;
+  padding: 60px 15px 20px;
+  background: #f6fbfc; /* same light background */
+}
+.rooms-bg{
+background-color: #78CDD71A;
+}
+.rooms-subtitle {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #5b6fb5;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+/* Title with lines */
+.rooms-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.rooms-title-wrap h2 {
+  font-size: 36px;
+  font-weight: 500;
+  color: #1f1f1f;
+  font-family: "Georgia", serif; /* elegant look */
+  margin: 0;
+}
+
+/* Decorative lines */
+.rooms-title-wrap .line {
+  width: 40px;
+  height: 2px;
+  background: #1f1f1f;
+}
+
+/* TABLET */
+@media (max-width: 991px) {
+  .rooms-title-wrap h2 {
+    font-size: 30px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 575px) {
+  .rooms-title-wrap h2 {
+    font-size: 26px;
+  }
+
+  .rooms-title-wrap .line {
+    width: 28px;
+  }
+}
+
+/* Title */
+.facilities-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2b4acb;
+  margin-bottom: 12px;
+}
+
+.facilities-icon {
+  font-size: 18px;
+}
+
+/* Pills grid */
+.facilities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Single pill */
+.facility-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  color: #444;
+
+  white-space: nowrap;
+}
+.room-btn{
+  float: right;
+  border-radius: 10px !important;
+}
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Icon */
+.info-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Text */
+.info-text strong {
+  color: #2b4acb;
+  font-weight: 600;
+}
+
+.info-text span {
+  color: #555;
+}
+
+/* MOBILE */
+@media (max-width: 575px) {
+  .info-row {
+    font-size: 13px;
+  }
+}
+
+/* Icon */
+.facility-item img {
+  width: 16px;
+  height: 16px;
+}
+
+/* TABLET */
+@media (max-width: 991px) {
+  .facility-item {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 575px) {
+  .facilities-list {
+    gap: 8px;
+  }
+
+  .facility-item {
+    font-size: 12px;
+  }
+}
+
+
+.rooms-section {
+  max-width: 1200px;
+  margin: 0 auto 0  auto;
+  padding: 0 20px;
+}
+
+.room-card {
+  display: flex;
+  gap: 30px;
+  background: #f6fbfc;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+/* IMAGE */
+.room-image {
+  position: relative;
+  flex: 0 0 40%;
+}
+
+.room-image img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* PRICE BADGE (OVERLAP) */
+.room-image[_ngcontent-ng-c552228732] {
+  position: relative;
+}
+.price-badge[_ngcontent-ng-c552228732] {
+  position: absolute;
+  bottom: 54px;
+  left: 20px;
+  background: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+@media (max-width: 991px) {
+  .price-badge[_ngcontent-ng-c552228732] {
+    bottom: 36px;
+    left: 16px;
+    padding: 8px 12px;
+  }
+}
+@media (max-width: 575px) {
+  .price-badge[_ngcontent-ng-c552228732] {
+    position: static;     /* stops overlap */
+    margin-top: -39px;
+
+    box-shadow: none;
+    border: 1px solid #eee;
+  }
+}
+
+
+.price-badge strong {
+  display: block;
+  font-size: 14px;
+}
+
+.price-badge span {
+  font-weight: bold;
+  color: #c25c2a;
+}
+
+.price-badge small {
+  font-size: 11px;
+  color: #777;
+}
+
+/* CONTENT */
+.room-content {
+  flex: 1;
+  padding-top: 10px;
+}
+
+.room-desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.room-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.room-features span {
+  background: #fff;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: 1px solid #e3e3e3;
+}
+
+/* BUTTON */
+.room-btn {
+  background: transparent;
+  border: 1px solid #000;
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* TABLET */
+@media (max-width: 991px) {
+  .room-card {
+    flex-direction: column;
+  }
+
+  .room-image {
+    flex: 100%;
+  }
+
+  .price-badge {
+    left: 15px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 575px) {
+  .room-image img {
+    height: 200px;
+  }
+
+  .room-features span {
+    font-size: 11px;
+  }
+
+  .room-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+
+
+
+
+
+/* BLUE SECTION */
+.amenities-section {
+  background: linear-gradient(180deg, #0c63b8, #0a539d);
+  padding: 60px 20px 160px;
+}
+
+.amenities-container {
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+}
+
+/* GRID */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* CARD */
+.amenity-card {
+  background: #E5F2FF33;
+border:2px solid #E5F2FF33;
+  border-radius: 12px;
+  padding: 30px 15px;
+  text-align: center;
+  color: #fff;
+}
+
+.amenity-card img {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 12px;
+}
+
+.amenity-card p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* OVERLAP IMAGES */
+.amenities-images {
+  margin-top: -80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.amenities-images img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+/* 👉 Middle image bigger & overlapping */
+.amenities-images img:nth-child(2) {
+  transform: scale(1.25);
+  z-index: 2;
+  margin-top: -40px;
+}
+
+/* TABLET */
+@media (max-width: 991px) {
+  .amenities-images {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .amenities-images img:nth-child(2) {
+    grid-column: span 2;
+    justify-self: center;
+    transform: scale(1.15);
+    margin-top: -30px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 575px) {
+  .amenities-images {
+    margin-top: 40px;
+    grid-template-columns: 1fr;
+  }
+
+  .amenities-images img {
+    height: 220px;
+  }
+
+  .amenities-images img:nth-child(2) {
+    transform: scale(1.05);
+    margin-top: 0;
+  }
+}
