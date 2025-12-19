@@ -30,7 +30,7 @@
         </ul>
       </div>
       <div class="field-error small text-danger mt-1" *ngIf="pickupInvalid">
-        Please enter pick-up location.
+        Please select pickup location from the list.
       </div>
     </div>
 
@@ -63,7 +63,7 @@
         </ul>
       </div>
       <div class="field-error small text-danger mt-1" *ngIf="dropInvalid">
-        Please enter drop-off location.
+        Please select drop-off location from the list.
       </div>
     </div>
 
@@ -116,57 +116,55 @@
     </div>
 
     <!-- Round trip -->
-    <div
-      class="col-12 d-flex flex-column mt-2 margin-changes border-changes display-manage"
-    >
-      <div class="field-error small text-danger mb-1" *ngIf="localityInvalid">
-        Please enter locality.
-      </div>
+   <div
+  class="col-12 d-flex mt-2 margin-changes border-changes display-manage align-items-center justify-content-between"
+>
+  <!-- Error -->
+  <div class="field-error small text-danger mb-1" *ngIf="localityInvalid">
+    Please enter locality.
+  </div>
 
-      <div class="d-flex justify-content-between align-items-center w-100 display-manage">
-        <div
-          class="label-small text-muted width-manage"
-          *ngIf="!editingLocality"
-          (click)="enableLocalityEdit()"
-        >
-          <i class="fa-solid fa-location-dot icon-specific"></i> &nbsp;
+  <!-- Column wrapper -->
+  <div class="d-flex flex-column width-manage">
 
-          <span *ngIf="!locality"
-            >Enter your building, street or locality*</span
-          >
-          <span *ngIf="locality">{{ locality }}</span>
-        </div>
-
-        <!-- Input Field -->
-        <input
-          *ngIf="editingLocality"
-          #localityInput
-          type="text"
-          class="form-control width-manage"
-          placeholder="Type your building / street / locality*"
-          [(ngModel)]="locality"
-          (input)="onFieldInput('locality', locality)"
-          (blur)="saveLocality()"
-          (keyup.enter)="saveLocality()"
-        />
-
-        <!-- Trip Toggle -->
-        <div class="trip-toggle">
-          <button
-            [class.active]="tripType === 'one-way'"
-            (click)="tripType = 'one-way'"
-          >
-            One-Way
-          </button>
-          <button
-            [class.active]="tripType === 'return'"
-            (click)="tripType = 'return'"
-          >
-            Return
-          </button>
-        </div>
-      </div>
+    <!-- Text -->
+    <div class="label-small text-muted mb-1">
+      <i class="fa-solid fa-location-dot icon-specific"></i> &nbsp;
+      {{ 'Enter your building, street or locality*' }}
     </div>
+
+    <!-- Input Field -->
+    <input
+      #localityInput
+      type="text"
+      class="form-control mb-2"
+      placeholder="Type your building / street / locality*"
+      [(ngModel)]="locality"
+      (input)="onFieldInput('locality', locality)"
+      (blur)="saveLocality()"
+      (keyup.enter)="saveLocality()"
+    />
+
+    <!-- Trip Toggle (can stay below or move outside if needed) -->
+
+  </div>
+      <div class="trip-toggle mt-2">
+      <button
+        [class.active]="tripType === 'one-way'"
+        (click)="tripType = 'one-way'"
+      >
+        One-Way
+      </button>
+      <button
+        [class.active]="tripType === 'return'"
+        (click)="tripType = 'return'"
+      >
+        Return
+      </button>
+    </div>
+</div>
+
+
 
     <!-- Next Button -->
     <div class="col-12 d-flex justify-content-end mt-3">

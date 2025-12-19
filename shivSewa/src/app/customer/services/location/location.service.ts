@@ -7,12 +7,19 @@ import { Observable } from 'rxjs';
 })
 export class LocationService {
 
-  private BASE_URL =
-    'https://contentai.thehotelmate.co/api/geolocation/search';
+
 
   constructor(private http: HttpClient) {}
 
   searchLocation(query: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.BASE_URL}?address=${query}`);
+      const BASE_URL =
+    'https://contentai.thehotelmate.co/api/geolocation/search';
+    return this.http.get<any[]>(`${BASE_URL}?address=${query}`);
   }
+
+  getPlaceDetails(placeId: string) {
+  return this.http.get<any>(
+    `https://contentai.thehotelmate.co/api/geolocation/placeDetails?place_id=${placeId}`
+  );
+}
 }

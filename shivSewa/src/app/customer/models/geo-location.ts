@@ -13,5 +13,6 @@ export interface GeoLocation {
     addressLine1?: string;
     addressLine2?: string | null;
     streetNumber?: string | null;
+    country?: string;
   };
 }

@@ -93,40 +93,42 @@
     </div>
 
     <!-- RIGHT MAP SECTION -->
-    <div class="right-side">
-      <div
-        class="card-soft p-0"
-        style="border-radius: 16px; overflow: hidden; border: 2px solid #ffe5d9"
-      >
-        <div
-          id="routeMap"
-          style="
-            height: 380px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 14px;
-          "
-        >
-          <!-- Loading indicator -->
-          <div
-            id="mapLoader"
-            style="
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              text-align: center;
-              z-index: 1000;
-            "
-          >
-            <div class="spinner-border" style="color: #ff6b35" role="status">
-              <span class="visually-hidden">Loading map...</span>
-            </div>
-            <p class="small text-muted mt-2">Loading route map...</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="right-side" >
+  <div class="map-wrapper">
+
+  <!-- STATIC MAP (before load) -->
+  <div
+    class="static-map"
+    *ngIf="!mapLoaded"
+    [style.backgroundImage]="staticMapUrl"
+  >
+    <button class="load-map-btn" (click)="loadMap()">
+      View Route on Map
+    </button>
+  </div>
+
+  <!-- DISTANCE INFO -->
+  <div class="map-info" *ngIf="mapLoaded">
+    <i class="fa-solid fa-route"></i>
+    <span>{{ distanceText }}</span>
+    <span>•</span>
+    <span>{{ durationText }}</span>
+  </div>
+
+  <!-- REAL GOOGLE MAP -->
+  <div
+    id="routeMap"
+    class="route-map"
+    *ngIf="mapLoaded"
+    (click)="openInGoogleMaps()"
+  ></div>
+
+</div>
+
+
+</div>
+
+
   </div>
 
   <!-- WHAT HAPPENS NEXT -->

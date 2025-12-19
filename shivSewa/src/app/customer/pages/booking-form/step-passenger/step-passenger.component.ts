@@ -113,28 +113,6 @@ carData: { [key: string]: Car[] } = {
       image: 'assets/INNOVA-CRYSTA-SUVPLUS.jpg'
     },
     {
-      id: 7,
-      name: 'Mahindra Xylo',
-      seats: 8,
-      bags: 4,
-      fuel: 'Diesel',
-      price: '₹ 500',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 07 XY 9900',
-      image: 'assets/XYLO-SUVPLUS.avif'
-    },
-    {
-      id: 8,
-      name: 'Mahindra Scorpio',
-      seats: 7,
-      bags: 4,
-      fuel: 'Diesel',
-      price: '₹ 500',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 08 SC 2233',
-      image: 'assets/SCORPIO-SUVPLUS.avif'
-    },
-    {
       id: 9,
       name: 'Toyota Innova Hycross',
       seats: 7,
@@ -144,63 +122,6 @@ carData: { [key: string]: Car[] } = {
       description: 'All-inclusive: car + driver + fuel',
       carNumber: 'MH 09 IH 4455',
       image: 'assets/Innova-Hycross-SUVPLUS.webp'
-    }
-  ],
-  mini: [
-    {
-      id: 10,
-      name: 'Hyundai i20',
-      seats: 5,
-      bags: 2,
-      fuel: 'Petrol',
-      price: '₹ 380',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 10 I2 6677',
-      image: 'assets/Hyundai-120-Mini.avif'
-    },
-    {
-      id: 11,
-      name: 'Tata Tiago',
-      seats: 5,
-      bags: 2,
-      fuel: 'Petrol',
-      price: '₹ 380',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 11 TI 8899',
-      image: 'assets/Tiago-mini.png'
-    },
-    {
-      id: 12,
-      name: 'Renault Kwid',
-      seats: 5,
-      bags: 1,
-      fuel: 'Petrol',
-      price: '₹ 380',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 12 KW 1010',
-      image: 'assets/Renault Kwid-mini.avif'
-    },
-    {
-      id: 13,
-      name: 'Maruti Suzuki WagonR',
-      seats: 5,
-      bags: 2,
-      fuel: 'Petrol',
-      price: '₹ 380',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 13 WR 1212',
-      image: 'assets/Maruti Suzuki WagonR-mini.webp'
-    },
-    {
-      id: 14,
-      name: 'Maruti Swift',
-      seats: 5,
-      bags: 2,
-      fuel: 'Petrol',
-      price: '₹ 380',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 14 SW 3434',
-      image: 'assets/Swift-mini.avif'
     }
   ]
 };

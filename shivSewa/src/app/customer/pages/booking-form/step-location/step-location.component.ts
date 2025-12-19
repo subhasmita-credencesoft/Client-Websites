@@ -32,8 +32,8 @@ selectedDrop?: GeoLocation;
   // note: matches template `#dateInputElem`
   @ViewChild('dateInputElem') dateInputRef!: ElementRef<HTMLInputElement>;
 
-pickupSuggestions: GeoLocation[] = [];
-dropSuggestions: GeoLocation[] = [];
+pickupSuggestions: { place_id: string; name: string; description?: string }[] = [];
+dropSuggestions: { place_id: string; name: string; description?: string }[] = [];
 
 pickupResults: GeoLocation[] = [];
 dropResults: GeoLocation[] = [];
@@ -62,11 +62,54 @@ dropResults: GeoLocation[] = [];
 
   mumbaiLocations: string[] = MUMBAI_LOCATIONS;
   bookingData: any;
+  pickupAutocomplete!: google.maps.places.AutocompleteService;
+  dropAutocomplete!: google.maps.places.AutocompleteService;
+  placesService!: google.maps.places.PlacesService;
 
   constructor(private bookingService: BookingService,
               private locationService: LocationService
   ) {
     const b = this.bookingService.getCurrent();
+    if(b.pickup){
+                const pickuploc: GeoLocation = {
+        place_id: b.pickup?.place_id || '',
+        name:  b.pickup?.name || '',
+        latitude: b.pickup?.latitude as number,
+        longitude: b.pickup?.longitude as number,
+        service_address: {
+          city: b.pickup?.service_address?.city || '',
+          state: b.pickup?.service_address?.state || '',
+          postcode: b.pickup?.service_address?.postcode || '',
+          suburb: b.pickup?.service_address?.suburb || null,
+          locality: b.pickup?.service_address?.locality || null,
+          addressLine1: b.pickup?.service_address?.addressLine1 || '',
+          addressLine2: b.pickup?.service_address?.addressLine2 || null,
+          country: b.pickup?.service_address?.country || ''
+        }
+      };
+      this.selectedPickup = pickuploc;
+    }
+
+    if (b.dropoff){
+            const droploc: GeoLocation = {
+        place_id: b.dropoff?.place_id || '',
+        name:  b.dropoff?.name || '',
+        latitude: b.dropoff?.latitude as number,
+        longitude: b.dropoff?.longitude as number,
+        service_address: {
+          city: b.dropoff?.service_address?.city || '',
+          state: b.dropoff?.service_address?.state || '',
+          postcode: b.dropoff?.service_address?.postcode || '',
+          suburb: b.dropoff?.service_address?.suburb || null,
+          locality: b.dropoff?.service_address?.locality || null,
+          addressLine1: b.dropoff?.service_address?.addressLine1 || '',
+          addressLine2: b.dropoff?.service_address?.addressLine2 || null,
+          country: b.dropoff?.service_address?.country || ''
+        }
+      };
+      this.selectedDrop = droploc;
+    }
+
     this.pickup = b.pickup?.name || '';
     this.dropoff = b.dropoff?.name || '';
     this.date = b.date || '';
@@ -74,6 +117,7 @@ dropResults: GeoLocation[] = [];
     this.tripType = b.tripType || 'one-way';
     this.locality = b.locality || '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    console.log('Booking data loaded in StepLocation:', b);
   }
 
   ngOnInit() {
@@ -82,11 +126,11 @@ dropResults: GeoLocation[] = [];
     this.setDefaultDate();
 
     this.bookingData = JSON.parse(sessionStorage.getItem('selectedBooking') || '{}');
+      this.pickupAutocomplete = new google.maps.places.AutocompleteService();
+      this.dropAutocomplete = new google.maps.places.AutocompleteService();
+      const dummyDiv = document.createElement('div');
+      this.placesService = new google.maps.places.PlacesService(dummyDiv);
 
-    if (this.bookingData) {
-      this.pickup = this.bookingData.pickup || this.pickup;
-      this.dropoff = this.bookingData.drop || this.dropoff;
-    }
   }
 
   //---------------------------------------
@@ -97,8 +141,7 @@ dropResults: GeoLocation[] = [];
       !!this.selectedPickup &&
     !!this.selectedDrop &&
       this.date.trim() !== '' &&
-      this.displayTime.trim() !== '' &&
-      this.locality.trim() !== ''
+      this.displayTime.trim() !== ''
     );
   }
 
@@ -291,34 +334,41 @@ dropResults: GeoLocation[] = [];
   //---------------------------------------
   // PICKUP
   //---------------------------------------
-  filterPickup(value: string) {
-  if (!value || value.length < 2) {
+ filterPickup(value: string) {
+  if (!value || value.length < 4) {
     this.pickupSuggestions = [];
+    this.selectedPickup = undefined;
     return;
   }
 
-  this.locationService.searchLocation(value).subscribe(res => {
-    this.pickupResults = res || [];
-    const lower = value.toLowerCase();
+  this.pickupAutocomplete.getPlacePredictions(
+    {
+      input: value,
+      componentRestrictions: { country: 'in' }, // restrict to India
+      types: ['geocode'] // only addresses
+    },
+    (predictions: google.maps.places.AutocompletePrediction[] | null,
+     status: google.maps.places.PlacesServiceStatus) => {
+      if (status !== google.maps.places.PlacesServiceStatus.OK || !predictions) {
+        this.pickupSuggestions = [];
+        return;
+      }
 
-    const startsWith = this.pickupResults.filter(l =>
-      l.name?.toLowerCase().startsWith(lower)
-    );
+      // Filter predictions to Maharashtra only
+      const filtered = predictions.filter(p =>
+        p.terms.some(t => t.value.toLowerCase() === 'maharashtra')
+      );
 
-    const contains = this.pickupResults.filter(l =>
-      !l.name?.toLowerCase().startsWith(lower) &&
-      l.name?.toLowerCase().includes(lower)
-    );
-
-    this.pickupSuggestions = [...startsWith, ...contains];
-
-    // optional: clear if nothing matches
-    if (this.pickupSuggestions.length === 0) {
-      this.pickup = '';
-      this.selectedPickup = undefined;
+      this.pickupSuggestions = filtered.map(p => ({
+        place_id: p.place_id,
+        name: p.description
+      }));
     }
-  });
+  );
 }
+
+
+
 
 validatePickup() {
   const match = this.mumbaiLocations.some(c =>
@@ -345,15 +395,38 @@ validateDrop() {
 }
 
 
-selectPickupLocation(loc: GeoLocation) {
-  this.selectedPickup = loc;      // ✅ store object
-  this.pickup = loc.name;         // UI text
-  this.pickupSuggestions = [];
+selectPickupLocation(pred: any) {
+  this.locationService
+    .getPlaceDetails(pred.place_id)
+    .subscribe(res => {
+      if (!res) return;
 
-  this.bookingService.setCurrent({
-    pickup: loc
-  });
+      const loc: GeoLocation = {
+        place_id: res.placeId,
+        name:  pred.name,
+        latitude: res.latitude,
+        longitude: res.longitude,
+        service_address: {
+          city: res.serviceAddress?.city || null,
+          state: res.serviceAddress?.state || null,
+          postcode: res.serviceAddress?.postcode || null,
+          suburb: res.serviceAddress?.suburb || null,
+          locality: res.serviceAddress?.locality || null,
+          addressLine1: res.serviceAddress?.addressLine1 || null,
+          addressLine2: res.serviceAddress?.addressLine2 || null,
+          country: res.serviceAddress?.country || null
+        }
+      };
+
+      this.selectedPickup = loc;
+      this.pickup = loc.name;
+      this.pickupSuggestions = [];
+
+      this.bookingService.setCurrent({ pickup: loc });
+    });
 }
+
+
 
   //---------------------------------------
   // LOCALITY
@@ -417,42 +490,66 @@ selectPickupLocation(loc: GeoLocation) {
     this.selected24hrTime = `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
   }
 
-  //---------------------------------------
-  // DROP
-  //---------------------------------------
 filterDrop(value: string) {
-  if (!value || value.length < 2) {
+  if (!value || value.length < 4) {
     this.dropSuggestions = [];
+    this.selectedDrop = undefined;
     return;
   }
 
-  this.locationService.searchLocation(value).subscribe(res => {
-    this.dropResults = res || [];
-    const lower = value.toLowerCase();
+  this.dropAutocomplete.getPlacePredictions(
+    {
+      input: value,
+      componentRestrictions: { country: 'in' },
+      types: ['geocode']
+    },
+    (predictions: google.maps.places.AutocompletePrediction[] | null,
+     status: google.maps.places.PlacesServiceStatus) => {
+      if (status !== google.maps.places.PlacesServiceStatus.OK || !predictions) {
+        this.dropSuggestions = [];
+        return;
+      }
 
-    const startsWith = this.dropResults.filter(l =>
-      l.name?.toLowerCase().startsWith(lower)
-    );
+      const filtered = predictions.filter(p =>
+        p.terms.some(t => t.value.toLowerCase() === 'maharashtra')
+      );
 
-    const contains = this.dropResults.filter(l =>
-      !l.name?.toLowerCase().startsWith(lower) &&
-      l.name?.toLowerCase().includes(lower)
-    );
-
-    this.dropSuggestions = [...startsWith, ...contains];
-  });
+      this.dropSuggestions = filtered.map(p => ({
+        place_id: p.place_id,
+        name: p.description,
+        description: p.description
+      }));
+    }
+  );
 }
+selectDropLocation(pred: any) {
+  this.locationService
+    .getPlaceDetails(pred.place_id)
+    .subscribe(res => {
+      if (!res) return;
 
+      const loc: GeoLocation = {
+        place_id: res.placeId,
+        name: pred.name,
+        latitude: res.latitude,
+        longitude: res.longitude,
+        service_address: {
+          city: res.serviceAddress?.city || null,
+          state: res.serviceAddress?.state || null,
+          postcode: res.serviceAddress?.postcode || null,
+          suburb: res.serviceAddress?.suburb || null,
+          locality: res.serviceAddress?.locality || null,
+          addressLine1: res.serviceAddress?.addressLine1 || null,
+          addressLine2: res.serviceAddress?.addressLine2 || null,
+          country: res.serviceAddress?.country || null
+        }
+      };
 
+      this.selectedDrop = loc;
+      this.dropoff = loc.name;
+      this.dropSuggestions = [];
 
-selectDropLocation(loc: GeoLocation) {
-  this.selectedDrop = loc;        // ✅ store object
-  this.dropoff = loc.name;
-  this.dropSuggestions = [];
-
-  this.bookingService.setCurrent({
-    dropoff: loc
-  });
+      this.bookingService.setCurrent({ dropoff: loc });
+    });
 }
-
 }

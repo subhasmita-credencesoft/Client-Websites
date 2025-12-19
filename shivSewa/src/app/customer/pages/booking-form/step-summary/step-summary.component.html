@@ -21,13 +21,13 @@
   <div class="d-flex align-items-center gap-2">
     <span class="badge rounded-circle p-1"
           style="background-color: #FF6B35; width: 8px; height: 8px;"></span>
-    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific"></i>{{ booking.dropoff.name || 'Lonavala' }}</span>
+    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific"></i>{{ booking.dropoff.name || '' }}</span>
   </div>
 </div>
 
       <div class="small text-muted mb-3">
         <i class="fa-solid fa-calendar" style="color:rgba(241, 101, 18, 0.46)"></i> &nbsp;
-        {{ booking.date || '26 Nov, 2025' }} | {{ booking.time || '10:00AM' }}
+        {{ booking.date || '' }} | {{ booking.time || '' }}
       </div>
       <div class="d-flex align-items-center justify-content-between pt-3" style="border-top: 1px solid #FFB088;">
         <h5 class="fw-bold">{{ booking.vehicle?.name || 'Indica Swift' }}</h5>
