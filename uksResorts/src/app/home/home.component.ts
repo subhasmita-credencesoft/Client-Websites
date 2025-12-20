@@ -68,7 +68,7 @@ ngAfterViewInit() {
     const nights = (checkoutDate.getTime() - checkinDate.getTime()) / (1000 * 3600 * 24);
 
     const url =
-      `https://bookone.io/Divine-Inn?bookingEngine=true` +
+      `https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true` +
       `&checkinDay=${checkinDay}` +
       `&checkinMonth=${checkinMonth}` +
       `&checkinYear=${checkinYear}` +
