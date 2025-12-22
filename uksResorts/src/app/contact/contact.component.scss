@@ -1,0 +1,414 @@
+.story-section-unique {
+  padding: 50px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.top-bar {
+
+  padding: 5px 0;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #e8e8e8;
+  position: relative;
+  z-index: 2000;
+}
+
+/* ------------------------ */
+/* NAVBAR */
+/* ------------------------ */
+.main-navbar {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  z-index: 1500;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+@media (max-width: 992px) {  /* 'lg' breakpoint for Bootstrap 5 */
+  .navbar-collapse {
+    background-color: #0d0630;
+    padding-bottom: 25px;
+  }
+  .navbar-collapse .book-nav {
+    display: block;
+    margin: 15px auto 0 auto; /* center horizontally with auto margins */
+    width: 50%;               /* optional: adjust button width */
+    text-align: center;
+  }
+}
+@media (max-width: 420px) {
+.main-navbar{
+      top: 65px;
+}
+.hero {
+    height: 105vh !important;
+}
+}
+.book-nav{
+  padding: 8px 30px !important;
+  border-radius: 30px !important;
+}
+
+.main-navbar .nav-link {
+  color: white !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.main-navbar .navbar-brand img {
+  height: 55px;
+}
+
+.book-btn {
+  padding: 7px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+}
+.booking-item select.form-select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='12' viewBox='0 0 20 20' width='12' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,15'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
+
+/* ------------------------ */
+/* HERO SECTION */
+/* ------------------------ */
+.hero-contact {
+  height: 70vh;
+  width: 100%;
+  background: url("/assets/home-imgs/about_us_image.png") center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.hero-text {
+  bottom: 32%;
+  left: 5%;
+}
+.hero-content {
+  position: absolute;
+  bottom: 8%;      /* You can adjust this value */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;      /* Keep same width as before */
+}
+
+
+
+.hero-text h1 {
+  font-size: 48px;
+  font-weight: 400;
+  font-family: "GFS Didot", serif;
+
+}
+
+.story-title-unique {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.line-unique {
+  width: 40px;
+  height: 2px;
+  background: #1a1a1a;
+}
+.line-unique-heading h2::before {
+    content: "";                /* empty content for the line */
+    display: inline-block;      /* inline so it appears beside text */
+    width: 50px;                /* length of the line */
+    height: 3px;                /* thickness */
+    background: #2b2e83;        /* line color */
+    margin-right: 10px;         /* space between line and text */
+    vertical-align: middle;     /* align with text */
+}
+.contact-section {
+  padding: 70px 20px;
+  background: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+/* Heading */
+.contact-tag {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.contact-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.contact-title .line {
+  width: 40px;
+  height: 2px;
+  background: #1c1b5e;
+}
+
+.contact-subtitle {
+  max-width: 800px;
+  margin: 20px auto 50px;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Cards */
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.contact-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.contact-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
+  color: #fff;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-overlay h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.card-overlay p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+/* Form */
+.contact-form {
+  max-width: 900px;
+  margin: auto;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+.contact-form textarea {
+  margin-top: 30px;
+  resize: none;
+}
+
+.contact-form button {
+  margin-top: 30px;
+  padding: 12px 28px;
+  border: none;
+  background: #1c1b5e;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.contact-form button:hover {
+  background: #000;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .contact-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-title {
+    flex-direction: column;
+  }
+
+  .contact-title .line {
+    display: none;
+  }
+}
+.support-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.support-overlay {
+  background: linear-gradient(
+      rgba(20, 96, 170, 0.85),
+      rgba(20, 96, 170, 0.85)
+    ),
+    url('/assets/support-bg.jpg') center / cover no-repeat;
+  border-radius: 16px;
+  padding: 30px 20px;
+  color: #fff;
+}
+
+/* ===== Top buttons ===== */
+.support-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ===== Cards ===== */
+.support-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.support-card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 18px 10px;
+  text-align: center;
+  font-size: 14px;
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.support-card:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ===== Icons (CSS based) ===== */
+.icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.phone {
+  background-image: url('/assets/icons/phone.svg');
+}
+
+.whatsapp {
+  background-image: url('/assets/icons/whatsapp.svg');
+}
+
+.booking {
+  background-image: url('/assets/icons/booking.svg');
+}
+
+.refund {
+  background-image: url('/assets/icons/refund.svg');
+}
+
+.offers {
+  background-image: url('/assets/icons/offer.svg');
+}
+
+.payment {
+  background-image: url('/assets/icons/payment.svg');
+}
+
+/* ===== Responsive ===== */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .support-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .support-actions {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .support-cards {
+    grid-template-columns: 1fr;
+  }
+}
