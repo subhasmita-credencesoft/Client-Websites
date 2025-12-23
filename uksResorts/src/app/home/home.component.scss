@@ -589,18 +589,19 @@ font-family: "GFS Didot", serif;
 }
 
 .details-btn {
-  background: #0d6efd;
+  background: #fff;
   border: none;
   padding: 10px 22px;
+  border:1px solid #101996;
   border-radius: 8px;
-  color: #fff;
+  color: #101996;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
 }
-.details-btn:hover {
-  background: #084298;
-}
+// .details-btn:hover {
+//   background: #084298;
+// }
 
 /* ----------- RESPONSIVE ----------- */
 @media (max-width: 992px) {
@@ -940,19 +941,25 @@ font-family: "GFS Didot", serif;
 }
 }
 
-
-//Eight Section
 .quote-stars {
   display: flex;
+   justify-content: space-between;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px; /* space between quote and stars */
+  gap: 10px;
 }
 
 .quote-icon {
   font-size: 40px;
   line-height: 1;
+  vertical-align: top;
 }
+
+.stars i {
+  color: #FFD700; /* gold color */
+  font-size: 24px;
+  margin-right: 2px;
+}
+
 
 .testimonials-section {
   position: relative;
