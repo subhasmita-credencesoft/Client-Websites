@@ -35,7 +35,8 @@
           id="adultsField"
           class="form-control"
           [class.is-invalid]="error.adults"
-          [(ngModel)]="passengers.adults">
+          [(ngModel)]="passengers.adults"
+          (ngModelChange)="limitAdults()">
 
         <div *ngIf="error.adults" class="text-danger small mt-1">
           Please enter at least 1 adult.
@@ -49,7 +50,7 @@
           id="childrenField"
           class="form-control"
           [class.is-invalid]="error.children"
-          [(ngModel)]="passengers.children">
+          [(ngModel)]="passengers.children" (ngModelChange)="limitChildren()">
 
         <div *ngIf="error.children" class="text-danger small mt-1">
           Children cannot be negative.
@@ -63,7 +64,7 @@
           id="luggageField"
           class="form-control"
           [class.is-invalid]="error.luggage"
-          [(ngModel)]="passengers.luggage">
+          [(ngModel)]="passengers.luggage" (ngModelChange)="limitLuggage()">
 
         <div *ngIf="error.luggage" class="text-danger small mt-1">
           Please enter valid luggage count.
@@ -99,7 +100,7 @@
 
 
     <!-- Recommended Vehicles -->
-    <h6 class="mb-1 mt-5" id="vehicleSection">Rides Recommended For You</h6>
+    <h6 class="mb-1 mt-5" *ngIf="recommendedCars.length > 0" id="vehicleSection">Rides Recommended For You</h6>
 
     <!-- Vehicle Error -->
     <div *ngIf="error.vehicle" class="text-danger small mb-2">

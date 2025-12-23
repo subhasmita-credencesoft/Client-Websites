@@ -4,6 +4,7 @@ import { Component, HostListener } from '@angular/core';
 import { BookingService } from '../../../services/booking.service';
 import { Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LocationService } from '../../../services/location/location.service';
 
 interface Car {
   id: number;
@@ -145,12 +146,17 @@ carData: { [key: string]: Car[] } = {
 
 constructor(private bookingService: BookingService,
   private router: Router,
+  private locationService: LocationService
 ){
 
 }
 
   ngOnInit(): void {
     this.updateVisibleCards();
+    const date = new Date().toISOString().split('T')[0];
+      this.locationService.getAvailableCarsByDate(date).subscribe(res => {
+    this.filterCarsBySlots(res);
+  });
   }
 
   @HostListener('window:resize')
@@ -207,7 +213,25 @@ constructor(private bookingService: BookingService,
   isCardVisible(index: number): boolean {
     return index >= this.currentIndex && index < this.currentIndex + this.visibleCards;
   }
+filterCarsBySlots(slotResponse: any) {
+  const availableCarNames = slotResponse.resourceList
+    .filter((r: any) =>
+      r.availableTimings?.some(
+        (t: any) => t.slotAvailabilityDto?.noOfAvailable > 0
+      )
+    )
+    .map((r: any) => this.normalizeName(r.name));
 
+  // Filter category-wise
+  Object.keys(this.carData).forEach(category => {
+    this.carData[category] = this.carData[category].filter(car =>
+      availableCarNames.includes(this.normalizeName(car.name))
+    );
+  });
+}
+normalizeName(name: string): string {
+  return name.trim().toLowerCase();
+}
   getCardTransform(index: number): string {
     const isVisible = this.isCardVisible(index);
     const distanceFromCenter = Math.abs(index - (this.currentIndex + this.visibleCards / 2));

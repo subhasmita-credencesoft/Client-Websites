@@ -117,21 +117,96 @@
     </div>
 
     <!-- Email -->
-    <div class="col-md-6" id="emailField">
-      <label class="form-label small text-muted mb-1">Email Address</label>
-      <input class="form-control"
-             name="email"
-             [(ngModel)]="booking.traveller.email"
-             #email="ngModel"
-             required
-             email
-             placeholder="Email Address"
-             style="border-radius: 8px;">
+<!-- Email -->
+<div class="col-md-6" id="emailField">
+  <label class="form-label small text-muted mb-1">Email Address</label>
 
-      <small class="text-danger" *ngIf="email.invalid && email.touched">
-        Enter a valid email address.
-      </small>
+  <div class="position-relative">
+    <input
+      class="form-control pe-5"
+      name="email"
+      [(ngModel)]="booking.traveller.email"
+      #email="ngModel"
+      required
+      email
+      [disabled]="emailOtp.sent"
+      placeholder="Email Address"
+    />
+
+    <!-- SEND OTP -->
+    <button
+      *ngIf="email.valid && !emailOtp.sent && !emailOtp.loading"
+      type="button"
+      class="send-otp-btn"
+      (click)="sendEmailOtp()">
+      Send OTP
+    </button>
+
+    <!-- LOADING -->
+    <span *ngIf="emailOtp.loading" class="send-otp-loading">
+  <span class="send-otp-spinner"></span>
+  <span class="send-otp-text">Sending OTP</span>
+</span>
+  </div>
+
+  <!-- EMAIL ERROR -->
+  <small class="text-danger d-block mt-1" *ngIf="email.invalid && email.touched">
+    Please enter a valid email address
+  </small>
+
+  <!-- OTP SECTION (DIRECTLY BELOW EMAIL) -->
+  <div *ngIf="emailOtp.sent" class="otp-container mt-3" [class.otp-verified]="emailOtp.verified">
+
+    <label class="form-label small fw-semibold mb-2">
+      Enter OTP sent to your email
+    </label>
+
+<div class="d-flex gap-2 mb-2">
+  <input
+    #otpInput
+    *ngFor="let val of otpValues; let i = index"
+    class="form-control otp-input"
+    maxlength="1"
+    type="text"
+    inputmode="numeric"
+    [value]="otpValues[i]"
+    (input)="handleOtpInput($event, i)"
+    (keydown)="handleKeyDown($event, i)"
+    autocomplete="one-time-code"
+  />
+</div>
+
+    <!-- OTP SUCCESS -->
+    <div *ngIf="otpMessage" class="otp-success">
+      {{ otpMessage }}
     </div>
+
+    <!-- OTP ERROR -->
+    <div *ngIf="otpError" class="otp-error">
+      {{ otpError }}
+    </div>
+
+    <div class="d-flex align-items-center gap-3 mt-2">
+      <button
+        class="btn btn-sm btn-dark"
+        [disabled]="emailOtp.verifying"
+        (click)="verifyEmailOtp()">
+        <span *ngIf="!emailOtp.verifying">Verify OTP</span>
+        <span *ngIf="emailOtp.verifying" class="spinner-border spinner-border-sm"></span>
+      </button>
+
+      <small class="text-muted">
+        Resend in {{ resendSeconds }}s
+      </small>
+
+      <button class="btn btn-link btn-sm p-0 change-email-btn" (click)="changeEmail()">
+        Change Email
+      </button>
+    </div>
+  </div>
+</div>
+
+
 
     <!-- Special Notes -->
     <div class="col-12">
@@ -219,7 +294,7 @@
         <i class="bi bi-arrow-left"></i>
         <span>Go back</span>
       </button>
-      <button class="btn btn-dark px-5 py-2 forwardMove" [class.disabled-looking]="firstName.invalid || lastName.invalid || mobile.invalid || email.invalid" (click)="confirm(firstName, lastName, mobile, email)" style="border-radius: 8px;">
+      <button class="btn btn-dark px-5 py-2 forwardMove" [class.disabled-looking]="firstName.invalid || lastName.invalid || mobile.invalid || email.invalid || !customerData?.id" (click)="confirm(firstName, lastName, mobile, email)" style="border-radius: 8px;">
         Confirm Booking
       </button>
     </div>

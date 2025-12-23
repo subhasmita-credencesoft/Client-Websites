@@ -44,6 +44,27 @@ export class JourneyCardComponent {
   ];
   constructor(){}
   ngOnInit(): void {}
-   handleCardAction(card: JourneyCard): void {
-  }
+
+  handleCardAction(card: JourneyCard) {
+  const phoneNumber = '6372198255'; // WhatsApp number (India, no +)
+
+  const message = `
+Hello 👋,
+I would like to request the following service:
+
+Service: ${card.title}
+Type: ${card.subtitle}
+${card.price ? 'Price: ' + card.price : ''}
+Details: ${card.description}
+${card.additionalInfo ? 'Info: ' + card.additionalInfo : ''}
+
+Please assist further.
+  `.trim();
+
+  const encodedMessage = encodeURIComponent(message);
+
+  const whatsappUrl = `https://wa.me/91${phoneNumber}?text=${encodedMessage}`;
+
+  window.open(whatsappUrl, '_blank');
+}
 }

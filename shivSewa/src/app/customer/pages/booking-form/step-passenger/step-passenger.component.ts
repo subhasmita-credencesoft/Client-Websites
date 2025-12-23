@@ -1,3 +1,4 @@
+import { LocationService } from './../../../services/location/location.service';
 import { Component } from '@angular/core';
 import { BookingService } from '../../../services/booking.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -130,7 +131,7 @@ carData: { [key: string]: Car[] } = {
     personal: 'sedan',
     group: 'suv',
     family: 'minivans',
-    corporate: 'sedan'
+    corporate: 'suv'
   };
 
   allCars: Car[] = [];
@@ -144,12 +145,14 @@ carData: { [key: string]: Car[] } = {
 
   recommendedCars: Car[] = [];
   selectedVehicleId: number | null = null;
+  selectedDate: string | null;
 
-  constructor(private bookingService: BookingService) {
+  constructor(private bookingService: BookingService, private locationService: LocationService) {
       const b = this.bookingService.getCurrent();
 
   this.passengers = b.passengers || this.passengers;
-
+  this.selectedDate = b.date || null;
+    console.log('Current booking in passenger step:', b);
   if (b.vehicle && b.vehicle.id) {
     this.selectedVehicle = b.vehicle;
     this.selectedVehicleId = b.vehicle.id;
@@ -158,6 +161,11 @@ carData: { [key: string]: Car[] } = {
   }
 
   ngOnInit() {
+      const date = (this.selectedDate)?.toString().split('T')[0] || '';
+
+  this.locationService.getAvailableCarsByDate(date).subscribe(res => {
+    this.filterCarsBySlots(res);
+  });
      if (this.passengers.type) {
     this.chooseType(this.passengers.type);
   } else {
@@ -173,6 +181,43 @@ carData: { [key: string]: Car[] } = {
 
     this.recommendedCars = this.carData[this.selectedCategory]?.slice(0, 3);
   }
+  limitAdults() {
+  if (this.passengers.adults < 1) this.passengers.adults = 1;
+  if (this.passengers.adults > 7) this.passengers.adults = 7;
+}
+
+limitChildren() {
+  if (this.passengers.children < 0) this.passengers.children = 0;
+  if (this.passengers.children > 5) this.passengers.children = 5;
+}
+
+limitLuggage() {
+  if (this.passengers.luggage < 0) this.passengers.luggage = 0;
+  if (this.passengers.luggage > 5) this.passengers.luggage = 5;
+}
+normalizeName(name: string): string {
+  return name.trim().toLowerCase();
+}
+filterCarsBySlots(slotResponse: any) {
+  const availableCarNames = slotResponse.resourceList
+    .filter((r: any) =>
+      r.availableTimings?.some(
+        (t: any) => t.slotAvailabilityDto?.noOfAvailable > 0
+      )
+    )
+    .map((r: any) => this.normalizeName(r.name));
+
+  // Filter category-wise
+  Object.keys(this.carData).forEach(category => {
+    this.carData[category] = this.carData[category].filter(car =>
+      availableCarNames.includes(this.normalizeName(car.name))
+    );
+  });
+
+  // Rebuild lists after filtering
+  this.allCars = Object.values(this.carData).flat();
+  this.recommendedCars = this.carData[this.selectedCategory] || [];
+}
 
   validateForm(): string | null {
   this.error = { type: false, adults: false, children: false, luggage: false, vehicle: false };

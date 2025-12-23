@@ -1,7 +1,8 @@
-<div class="trips-wrapper">
-</div>
+<div class="trips-wrapper"></div>
+
 <div>
   <div class="trips-container">
+
     <!-- Header -->
     <div class="header">
       <div class="title-section">
@@ -15,15 +16,20 @@
           class="nav-btn"
           (click)="scroll('left')"
           [disabled]="isScrolling">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
         </button>
+
         <button
           class="nav-btn"
           (click)="scroll('right')"
           [disabled]="isScrolling">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </button>
@@ -32,79 +38,110 @@
 
     <!-- Trips Container -->
     <div class="scroll-container" #scrollContainer>
-      <div class="trip-card" *ngFor="let trip of trips" (click)="bookNow(trip)">
+      <div
+        class="trip-card"
+        *ngFor="let trip of trips"
+        (click)="bookNow(trip)"
+      >
+
         <!-- Image -->
         <div class="trip-image">
-          <img [src]="trip.image" [alt]="trip.from + ' to ' + trip.to">
+          <img
+            [src]="trip.image"
+            [alt]="trip.pickup.name + ' to ' + trip.dropoff.name"
+          />
           <div class="image-overlay"></div>
         </div>
 
         <!-- Content -->
         <div class="trip-content">
+
           <!-- Route -->
           <div class="route">
-            <span class="location">{{trip.from}}</span>
-            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <span class="location">{{ trip.pickup.name }}</span>
+
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg"
+                 width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
-            <span class="location">{{trip.to}}</span>
+
+            <span class="location">{{ trip.dropoff.name }}</span>
           </div>
 
           <!-- Details -->
           <div class="details">
             <div class="detail-row">
+
               <div class="detail-item">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg"
+                     width="16" height="16" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span class="detail-text">{{trip.distance}}</span>
+                <span class="detail-text">{{ trip.distance }}</span>
               </div>
+
               <div class="detail-item">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg"
+                     width="16" height="16" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span class="detail-text">{{trip.duration}}</span>
+                <span class="detail-text">{{ trip.duration }}</span>
               </div>
+
             </div>
 
             <div class="trip-type">
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg"
+                   width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="17 1 21 5 17 9"></polyline>
                 <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
                 <polyline points="7 23 3 19 7 15"></polyline>
                 <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
               </svg>
-              <span class="trip-type-text">{{trip.tripType}}</span>
+              <span class="trip-type-text">{{ trip.tripType }}</span>
             </div>
           </div>
 
           <!-- Price -->
           <div class="price-section">
             <div class="price-label">
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg"
+                   width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
                 <line x1="16" y1="2" x2="16" y2="6"></line>
                 <line x1="8" y1="2" x2="8" y2="6"></line>
                 <line x1="3" y1="10" x2="21" y2="10"></line>
               </svg>
               <span>Fare start at</span>
             </div>
-            <div class="price">{{trip.price}}</div>
+            <div class="price">{{ trip.price }}</div>
           </div>
 
           <!-- Vehicles -->
           <div class="vehicles-section">
             <span class="vehicle-icon">🚗</span>
             <p class="vehicles-text">
-              <span class="vehicles-label">Recommended Vehicles:</span><br>
-              {{trip.vehicles}}
+              <span class="vehicles-label">Recommended Vehicles:</span><br />
+              {{ trip.vehicles }}
             </p>
           </div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
