@@ -1,0 +1,248 @@
+.about-us {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    gap: 30px;
+    width: 100%;
+    overflow: hidden;
+    opacity: 1;
+    transition: all 1.1s ease-out;
+}
+
+
+.about-us-text {
+    flex: 1;
+}
+
+.about-us-title {
+    font-size: 40px;
+    color: #111;
+    margin-bottom: 20px;
+    font-family: "Inter", "sans-serif";
+    font-weight: 600;
+}
+
+.about-us-paragraph {
+    font-size: 21px;
+    line-height: 1.6;
+    color: #555;
+    font-family: "Inter" , 'sans-serif';
+    font-weight: 500;
+}
+
+.about-us-image {
+    flex: 1;
+    text-align: right;
+}
+
+.about-us-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+// .animate-on-scroll {
+//   opacity: 0;
+//   transform: translate3d(0, 60px, 0);
+//   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);  
+//   &.about-us-image {
+//     transition-delay: 0.2s;
+//   }
+// }
+
+// .animate-on-scroll.visible {
+//   opacity: 1;
+//   transform: translate3d(-30px , 0 , 0);
+// }
+
+.animate-on-scroll {
+  opacity: 0;
+  /* Start 100px to the right */
+  transform: translate3d(100px, 0, 0); 
+  transition: opacity 1.1s ease-out, transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  visibility: hidden;
+
+  &.about-us-image {
+    /* Stagger the image slightly so the text moves first */
+    transition-delay: 0.2s; 
+  }
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  visibility: visible;
+  /* Move to its natural position */
+  transform: translate3d(0, 0, 0); 
+}
+
+@media (max-width: 576px) {
+    .about-us {
+        flex-direction: column !important;
+        padding: 30px 20px !important;
+        text-align: center !important;
+    }
+
+    .about-us-image {
+        text-align: center !important;
+        width: 100% !important;
+    }
+
+    .about-us-image img {
+        max-width: 100% !important;
+    }
+
+    .about-us-title {
+        font-size: 28px !important;
+        margin-bottom: 15px !important;
+        text-align: center !important;
+        font-family: 'Inter' , 'sans-serif';
+    }
+
+    .about-us-paragraph {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        color: #555 !important;
+        text-align: justify !important;
+        font-family: 'Inter' , 'sans-serif';
+    }
+    .about-us {
+        flex-direction: column !important;
+        padding: 30px 20px !important;
+        text-align: center !important;
+    }
+
+    /* 1. Set the initial state for the animation (Bottom to Top) */
+    .about-us-text,
+    .about-us-image {
+        opacity: 0 !important;
+        /* Start 50px lower than its natural position */
+        transform: translate3d(0, 50px, 0) !important; 
+        transition: all 1s ease-out !important;
+        visibility: hidden;
+    }
+
+    /* 2. Set the final state when the animation triggers */
+    .about-us.show .about-us-text,
+    .about-us.show .about-us-image,
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate3d(0, 0, 0) !important;
+        visibility: visible !important;
+    }
+
+    /* Optional: Stagger the image slightly so it follows the text */
+    .about-us.show .about-us-image {
+        transition-delay: 0.2s !important;
+    }
+
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+    .about-us {
+        flex-direction: column;
+        padding: 40px 6%;
+        text-align: center;
+    }
+
+    .about-us-image {
+        text-align: center;
+    }
+
+    .about-us-image img {
+        max-width: 450px;
+    }
+
+    .about-us-title {
+        font-size: 28px !important;
+        margin-bottom: 15px !important;
+        text-align: center !important;
+        font-family: 'Inter' , 'sans-serif' !important;
+    }
+
+    .about-us-paragraph{
+        text-align: justify !important;
+    }
+
+     .about-us-text,
+    .about-us-image {
+        opacity: 0;
+        transform: translate3d(100px, 0, 0);
+    }
+    
+    .about-us.show .about-us-text {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: all 1.2s ease-out;
+    }
+
+    .about-us.show .about-us-image {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: all 1.5s ease-out;
+    }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .about-us {
+        padding: 50px 7%;
+    }
+
+    .about-us-title {
+        font-size: 28px;
+        margin-bottom: 15px;
+        text-align: start;
+        font-family: 'Inter' , 'sans-serif' !important;
+    }
+
+     .about-us-text,
+    .about-us-image {
+        opacity: 0;
+        transform: translate3d(100px, 0, 0);
+    }
+    
+    .about-us.show .about-us-text {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: all 1.2s ease-out;
+    }
+
+    .about-us.show .about-us-image {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: all 1.5s ease-out;
+    }
+}
+
+@media (min-width: 1200px) {
+.about-us {
+        padding: 70px 8%;
+    }
+
+    .about-us-title {
+        font-size: 40px !important;
+        margin-bottom: 15px !important;
+        text-align: start !important;
+        font-family: 'Inter', 'sans-serif' !important;
+    }
+
+    .about-us-text,
+    .about-us-image {
+        opacity: 0;
+        transform: translate3d(100px, 0, 0);
+    }
+    
+    .about-us.show .about-us-text {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: all 1.2s ease-out;
+    }
+
+    .about-us.show .about-us-image {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: all 1.5s ease-out;
+    }
+}
