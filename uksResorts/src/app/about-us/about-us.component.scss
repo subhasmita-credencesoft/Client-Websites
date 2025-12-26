@@ -111,8 +111,9 @@
 
 .story-title-unique {
   text-align: center;
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 48px;
+  font-weight: 400;
+  font-family: "GFS Didot", serif;;
   color: #1a1a1a;
   margin-bottom: 40px;
   display: flex;
@@ -179,14 +180,16 @@
 }
 
 .sub-heading-unique {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 32px;
+  font-weight: 400;
+  font-family: "GFS Didot", serif;
   margin-bottom: 25px;
   color: #333;
 }
 
 .story-list-unique {
   list-style: none;
+  font-family: 'Source Sans Pro', sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -210,7 +213,7 @@
 }
 
 .story-list-unique h4 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   margin: 0;
 }
@@ -218,8 +221,9 @@
 .story-list-unique p {
   margin: 5px 0 0;
   color: #555;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 /* ---------- RESPONSIVE ---------- */

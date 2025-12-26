@@ -52,6 +52,16 @@ html, body {
   border-radius: 30px !important;
   margin-left: 24px;
 }
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
 .main-navbar .nav-link {
   color: white !important;
@@ -85,6 +95,7 @@ html, body {
   height: 90vh;
   width: 100%;
   background: url("/assets/home-imgs/uk-resort.png") center/cover no-repeat;
+  animation: fadeSlide 1s ease-in-out;
   position: relative;
   display: flex;
   align-items: center;

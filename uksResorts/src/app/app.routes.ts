@@ -4,6 +4,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ContactComponent } from './contact/contact.component';
+import { EventsComponent } from './events/events.component';
 
 export const routes: Routes = [
   {
@@ -24,5 +25,9 @@ export const routes: Routes = [
   },    {
     path: 'contact',
     component: ContactComponent
+  },
+    {
+    path: 'events',
+    component: EventsComponent
   }
 ];
