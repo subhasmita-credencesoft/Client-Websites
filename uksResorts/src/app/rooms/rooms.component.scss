@@ -96,6 +96,14 @@
   }
 }
 
+@media (max-width:650px) {
+  .amenities-grid{
+    display: block !important;
+  }
+  .amenity-card{
+    margin-bottom:20px
+  }
+}
 @media (max-width: 480px) {
   .hero-text {
     bottom: 50%;
