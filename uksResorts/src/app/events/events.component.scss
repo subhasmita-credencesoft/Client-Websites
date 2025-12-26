@@ -346,3 +346,37 @@
     font-size: 12px;
   }
 }
+/* ===== Animation Base ===== */
+.animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Directional fades */
+.fade-left {
+  transform: translateX(-60px);
+}
+
+.fade-right {
+  transform: translateX(60px);
+}
+
+.fade-left.visible,
+.fade-right.visible {
+  transform: translateX(0);
+}
+
+/* Image hover effect */
+.venue-image img {
+  transition: transform 0.6s ease;
+}
+
+.venue-image:hover img {
+  transform: scale(1.05);
+}
