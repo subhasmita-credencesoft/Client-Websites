@@ -67,24 +67,64 @@
       the feeling of being here.
     </p>
 
-    <div class="gallery-grid">
-      <!-- repeat images -->
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
-      <img src="assets/home-imgs/image1.png" alt="">
+<div class="gallery-grid">
+  <img
+    *ngFor="let img of galleryImages; let i = index"
+    [src]="img"
+    alt=""
+    class="gallery-img"
+    style="cursor:pointer;"
+    (click)="openModal(i)"
+    data-bs-toggle="modal"
+    data-bs-target="#galleryModal"
+  />
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0">
+        <div id="carouselExample" class="carousel slide">
+          <div class="carousel-inner">
+            <div
+              class="carousel-item"
+              *ngFor="let img of galleryImages; let idx = index"
+              [class.active]="idx === 0"
+            >
+              <img [src]="img" class="d-block w-100 rounded" />
+            </div>
+          </div>
+
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center border-0">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
     </div>
+  </div>
+</div>
+
+
+
+
   </div>
 </section>

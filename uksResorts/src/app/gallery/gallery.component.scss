@@ -55,6 +55,15 @@
 .main-navbar .navbar-brand img {
   height: 55px;
 }
+.gallery-grid img {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
 
 .book-btn {
   padding: 7px 20px;
@@ -177,8 +186,10 @@
 
 /* Title with lines */
 .section-title {
-  font-size: 36px;
+  font-size: 34px;
   margin: 16px 0;
+   font-family: "GFS Didot", serif;
+   font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -196,6 +207,7 @@
   max-width: 850px;
   margin: 0 auto 48px;
   font-size: 14px;
+  font-family: 'Source Sans Pro', sans-serif;
   line-height: 1.8;
   color: #666;
 }
