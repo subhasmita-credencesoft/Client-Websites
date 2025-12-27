@@ -624,7 +624,10 @@ font-family: "GFS Didot", serif;
 // .details-btn:hover {
 //   background: #084298;
 // }
-
+.room-details-card,
+.room-details-card button {
+  cursor: pointer;
+}
 /* ----------- RESPONSIVE ----------- */
 @media (max-width: 992px) {
   .room-wrapper {

@@ -17,6 +17,7 @@ export class HomeComponent {
     @HostListener('window:scroll', [])
 checkin: string = '';
   checkout: string = '';
+  showSuperDeluxeRoom =true;
   guests: number = 1;
   // component.ts
 selectedRoom: string = 'superDeluxe';
@@ -113,7 +114,12 @@ ngAfterViewInit() {
   get selectedRoomObj() {
   return this.rooms.find(room => room.id === this.selectedRoom);
 }
-
+showSuperDeluxe(){
+this.showSuperDeluxeRoom = true;
+}
+showDeluxe(){
+this.showSuperDeluxeRoom = false;
+}
 // Returns the currently selected room object
 getSelectedRoom() {
   return this.rooms.find(room => room.id === this.selectedRoom);
