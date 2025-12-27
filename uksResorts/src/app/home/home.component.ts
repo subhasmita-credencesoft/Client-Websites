@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 declare var bootstrap: any;
 @Component({
   selector: 'app-home',
@@ -10,14 +11,15 @@ declare var bootstrap: any;
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-checkin: string = '';
-  checkout: string = '';
-  guests: number = 1;
-
 
 @ViewChild('checkinInput') checkinInput!: ElementRef;
   @ViewChild('checkoutInput') checkoutInput!: ElementRef;
     @HostListener('window:scroll', [])
+checkin: string = '';
+  checkout: string = '';
+  guests: number = 1;
+  constructor(private router: Router) {}
+
   onWindowScroll() {
     const header = document.getElementById('mainHeader');
 
@@ -65,6 +67,9 @@ ngAfterViewInit() {
   }
   navigateToBooking(){
      window.location.href = 'https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true';
+  }
+  goToRooms(){
+ this.router.navigate(['/rooms']);
   }
   goToBooking() {
 
