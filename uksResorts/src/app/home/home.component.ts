@@ -63,6 +63,9 @@ ngAfterViewInit() {
 
 
   }
+  navigateToBooking(){
+     window.location.href = 'https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true';
+  }
   goToBooking() {
 
     if (!this.checkin || !this.checkout) {
