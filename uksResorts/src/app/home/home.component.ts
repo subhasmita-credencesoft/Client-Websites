@@ -18,6 +18,48 @@ export class HomeComponent {
 checkin: string = '';
   checkout: string = '';
   guests: number = 1;
+  // component.ts
+selectedRoom: string = 'superDeluxe';
+
+rooms = [
+  {
+    id: 'superDeluxe',
+    title: 'Super Deluxe AC',
+    price: 4950,
+    extra: 'EXTRA PERSON Above 05 Years ₹ 1400 + 5 % GST with Extra Mattress & Breakfast',
+    description: 'Superior rooms can be set-up as either a queen bed or two single beds along with a study / workspace.',
+    images: [
+      'assets/home-imgs/room1.jpg',
+      'assets/home-imgs/room1.jpg',
+      'assets/home-imgs/room1.jpg'
+    ],
+    amenities: [
+      { icon: 'assets/home-imgs/mingcute_wifi-line.svg', text: 'WiFi' },
+      { icon: 'assets/home-imgs/material-symbols_water-pump-outline-rounded.svg', text: 'Hot Water' },
+      { icon: 'assets/home-imgs/Vector (2).png', text: 'Room Service' },
+      { icon: 'assets/home-imgs/material-symbols-light_tv-outline-rounded.svg', text: 'TV' }
+    ]
+  },
+  {
+    id: 'deluxe',
+    title: 'Deluxe AC',
+    price: 3950,
+    extra: 'EXTRA PERSON Above 05 Years ₹ 1400 + 5 % GST with Extra Mattress & Breakfast',
+    description: 'Deluxe room with cozy interiors and modern amenities.',
+    images: [
+      'assets/home-imgs/deluxe1.jpg',
+      'assets/home-imgs/deluxe2.jpg',
+      'assets/home-imgs/deluxe3.jpg'
+    ],
+    amenities: [
+      { icon: 'assets/home-imgs/mingcute_wifi-line.svg', text: 'WiFi' },
+      { icon: 'assets/home-imgs/material-symbols_water-pump-outline-rounded.svg', text: 'Hot Water' },
+      { icon: 'assets/home-imgs/Vector (2).png', text: 'Room Service' },
+      { icon: 'assets/home-imgs/material-symbols-light_tv-outline-rounded.svg', text: 'TV' }
+    ]
+  }
+];
+
   constructor(private router: Router) {}
 
   onWindowScroll() {
@@ -68,6 +110,28 @@ ngAfterViewInit() {
   navigateToBooking(){
      window.location.href = 'https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true';
   }
+  get selectedRoomObj() {
+  return this.rooms.find(room => room.id === this.selectedRoom);
+}
+
+// Returns the currently selected room object
+getSelectedRoom() {
+  return this.rooms.find(room => room.id === this.selectedRoom);
+}
+
+// Sets the selected room when a card is clicked
+selectRoom(roomId: string) {
+  this.selectedRoom = roomId;
+
+  // Reset carousel to first image whenever room changes
+  const carousel = document.querySelector('#roomCarousel') as any;
+  if (carousel && bootstrap?.Carousel) {
+    const bsCarousel = bootstrap.Carousel.getInstance(carousel) || new bootstrap.Carousel(carousel);
+    bsCarousel.to(0); // go to first slide
+  }
+}
+
+
   goToRooms(){
  this.router.navigate(['/rooms']);
   }

@@ -545,9 +545,9 @@ font-family: "GFS Didot", serif;
 }
 
 //Third Section
-.room-section {
-  padding: 80px 0;
-}
+// .room-section {
+//   padding: 80px 0;
+// }
 
 .room-wrapper {
   width: 100%;
@@ -634,10 +634,10 @@ font-family: "GFS Didot", serif;
   .room-details-card {
     position: relative;
     left: 0;
-    top: 0;
+    top: 20;
     transform: none;
     margin-top: -60px;
-    width: 90%;
+    // width: 90%;
   }
 
   .room-image img {
