@@ -74,7 +74,26 @@
   background-position: right 12px center;
   background-size: 12px;
 }
+/* STICKY HEADER STATE */
+.main-navbar.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #0d0630 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  animation: slideDown 0.3s ease-in-out;
+}
 
+/* Smooth entry animation */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 /* ------------------------ */
 /* HERO SECTION */
 /* ------------------------ */

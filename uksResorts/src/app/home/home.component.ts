@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 declare var bootstrap: any;
 @Component({
@@ -17,6 +17,18 @@ checkin: string = '';
 
 @ViewChild('checkinInput') checkinInput!: ElementRef;
   @ViewChild('checkoutInput') checkoutInput!: ElementRef;
+    @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const header = document.getElementById('mainHeader');
+
+    if (!header) return;
+
+    if (window.scrollY > 100) {
+      header.classList.add('sticky');
+    } else {
+      header.classList.remove('sticky');
+    }
+  }
 ngAfterViewInit() {
     const navbarCollapse = document.getElementById('nav'); // could be null
 

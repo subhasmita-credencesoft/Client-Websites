@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-about-us',
@@ -8,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrl: './about-us.component.scss'
 })
 export class AboutUsComponent {
+ @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const header = document.getElementById('mainHeader');
 
+    if (!header) return;
+
+    if (window.scrollY > 100) {
+      header.classList.add('sticky');
+    } else {
+      header.classList.remove('sticky');
+    }
+  }
 }
