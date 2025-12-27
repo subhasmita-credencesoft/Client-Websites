@@ -83,6 +83,8 @@
   height: 70vh;
   width: 100%;
   background: url("/assets/home-imgs/d0aad810408c155373bd429d4302459f20275829.png") center/cover no-repeat;
+  animation: fadeSlide 1s ease-in-out;
+
   position: relative;
   display: flex;
   align-items: center;

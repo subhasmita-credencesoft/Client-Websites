@@ -77,6 +77,8 @@
   height: 70vh;
   width: 100%;
   background: url("/assets/home-imgs/room-banner.png") center/cover no-repeat;
+  animation: fadeSlide 1s ease-in-out;
+
   position: relative;
   display: flex;
   align-items: center;
