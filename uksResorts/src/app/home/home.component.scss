@@ -867,7 +867,10 @@ font-family: "GFS Didot", serif;
 
 /* MOBILE & TABLET RESPONSIVE */
 @media (max-width: 768px) {
+.hero1 {
 
+  gap: 0px !important;
+}
   .experience-cards {
     flex-direction: column;
     gap: 20px;
