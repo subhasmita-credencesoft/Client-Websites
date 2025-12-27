@@ -1121,3 +1121,61 @@ font-family: "GFS Didot", serif;
     height: auto;
   }
 }
+/* ---------- ANIMATION KEYFRAMES ---------- */
+
+/* Slide in left images */
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-100px) scale(0.9); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* Slide in right images */
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(100px) scale(0.9); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* Fade + Scale for center content */
+@keyframes fadeScaleIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- APPLY ANIMATIONS ---------- */
+.hero1 .left-stack {
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+.hero1 .right-stack {
+  animation: slideInRight 1s ease-out forwards;
+  animation-delay: 0.3s; /* Slight delay for staggered effect */
+}
+
+.hero1 .content-box {
+  animation: fadeScaleIn 1s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+/* ---------- PARALLAX HOVER EFFECT FOR DESKTOP ---------- */
+@media (min-width: 992px) {
+  .hero1 .image-stack:hover img {
+    transform: scale(1.05) translateY(-10px);
+    transition: all 0.6s ease;
+  }
+
+  .hero1 .content-box:hover {
+    transform: scale(1.02);
+    transition: transform 0.6s ease;
+  }
+}
+
+/* Optional: subtle float animation for overlapping images */
+.overlap-img {
+  animation: floatUp 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-1deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
