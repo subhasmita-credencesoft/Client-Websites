@@ -45,31 +45,48 @@
 
    <div class="booking-box">
   <div class="booking-row">
+<div class="booking-item">
+  <label for="checkin">CHECK-IN</label>
+  <input
+    id="checkin"
+    type="date"
+    class="form-control"
+    [(ngModel)]="checkin" #checkinInput
+  />
+</div>
 
-    <div class="booking-item">
-      <label>CHECK-IN</label>
-      <input type="date" class="form-control" [(ngModel)]="checkin" />
-    </div>
+<div class="booking-item">
+  <label for="checkout" #checkoutInput>CHECK-OUT</label>
+  <input
+    id="checkout"
+    type="date"
+    class="form-control"
+    [(ngModel)]="checkout"
+  />
+</div>
 
-    <div class="booking-item">
-      <label>CHECK-OUT</label>
-      <input type="date" class="form-control" [(ngModel)]="checkout" />
-    </div>
+<div class="booking-item">
+  <label for="guests">GUESTS</label>
+  <select
+    id="guests"
+    class="form-select"
+    [(ngModel)]="guests"
+  >
+    <option [ngValue]="1">1 Guest</option>
+    <option [ngValue]="2">2 Guests</option>
+    <option [ngValue]="3">3 Guests</option>
+  </select>
+</div>
 
-    <div class="booking-item">
-      <label>GUESTS</label>
-      <select class="form-select" [(ngModel)]="guests">
-        <option [value]="1">1 guest</option>
-        <option [value]="2">2 guests</option>
-        <option [value]="3">3 guests</option>
-      </select>
-    </div>
-
-    <div class="booking-btn-holder">
-      <button class="btn book-btn book-btnone" (click)="goToBooking()">
-        Book Now <i class="fa-solid fa-arrow-right"></i>
-      </button>
-    </div>
+<div class="booking-btn-holder">
+  <button
+    type="button"
+    class="btn book-btn book-btnone"
+    (click)="goToBooking()"
+  >
+    Book Now <i class="fa-solid fa-arrow-right"></i>
+  </button>
+</div>
 
   </div>
 </div>
@@ -112,7 +129,7 @@
 
 <!-- Third Section -->
 <!-- ROOM SECTION -->
-<section class="room-section"  style="cursor: pointer;" *ngIf="showSuperDeluxeRoom === true">
+<section class="room-section"   *ngIf="showSuperDeluxeRoom === true">
   <div class="container room-wrapper d-flex flex-wrap align-items-start">
 
     <!-- IMAGE CAROUSEL -->
@@ -174,7 +191,7 @@
   </div>
 </section>
 
-<section class="room-section"  style="cursor: pointer;" *ngIf="showSuperDeluxeRoom === false">
+<section class="room-section"  *ngIf="showSuperDeluxeRoom === false">
   <div class="container room-wrapper d-flex flex-wrap align-items-start">
 
     <!-- IMAGE CAROUSEL -->
@@ -242,7 +259,7 @@
 
         <!-- LEFT CARD (Super Deluxe AC) -->
         <div class="col-md-6">
-            <div class="room-card-img d-flex align-items-end p-4" (click)="showSuperDeluxe()">
+            <div class="room-card-img d-flex align-items-end p-4"  style="cursor: pointer;" (click)="showSuperDeluxe()">
                 <div class="text-white">
                     <h5 class="mb-1" style="font-family: 'GFS Didot', serif;font-size: 24px;font-weight: 400;">Super Deluxe AC</h5>
                     <small>₹4950+gst / Night</small><br>
@@ -254,7 +271,7 @@
 
         <!-- RIGHT CARD (Deluxe AC) -->
         <div class="col-md-6">
-            <div class="room-card-blue p-4 text-white d-flex align-items-end" (click)="showDeluxe()">
+            <div class="room-card-blue p-4 text-white d-flex align-items-end" style="cursor: pointer;" (click)="showDeluxe()">
                 <div>
                     <h5 class="mb-1" style="font-family: 'GFS Didot', serif;font-size: 24px;font-weight: 400;">Deluxe AC</h5>
                     <small>₹3950+gst / Night</small>

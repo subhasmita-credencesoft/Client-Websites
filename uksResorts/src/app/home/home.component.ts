@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 declare var bootstrap: any;
@@ -61,7 +61,7 @@ rooms = [
   }
 ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private cdr: ChangeDetectorRef) {}
 
   onWindowScroll() {
     const header = document.getElementById('mainHeader');
@@ -74,40 +74,51 @@ rooms = [
       header.classList.remove('sticky');
     }
   }
-ngAfterViewInit() {
-    const navbarCollapse = document.getElementById('nav'); // could be null
+  ngOnInIt(){
+    const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
 
-    if (!navbarCollapse) return; // safely exit if not found
+  const format = (d: Date) => d.toISOString().split("T")[0];
 
-    document.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement;
-      const isClickInside = navbarCollapse.contains(target);
-      const isToggler = target.closest('.navbar-toggler');
+  // Prefill Angular variables
+  this.checkin = format(today);
+  this.checkout = format(tomorrow);
 
-      // only hide if menu is open and click is outside
-      const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-      if (!isClickInside && !isToggler && bsCollapse && navbarCollapse.classList.contains('show')) {
-        bsCollapse.hide();
-      }
-    });
+  // Prefill input fields to match variables
+  if (this.checkinInput) this.checkinInput.nativeElement.value = this.checkin;
+  if (this.checkoutInput) this.checkoutInput.nativeElement.value = this.checkout;
 
- const today = new Date();
-    const tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
+  // Set min dates for the date picker
+  if (this.checkinInput) this.checkinInput.nativeElement.min = this.checkin;
+  if (this.checkoutInput) this.checkoutInput.nativeElement.min = this.checkout;
 
-    const format = (d: Date) =>
-      d.toISOString().split("T")[0];
-
-    // Set values
-    this.checkinInput.nativeElement.value = format(today);
-    this.checkoutInput.nativeElement.value = format(tomorrow);
-
-    // Set min values
-    this.checkinInput.nativeElement.min = format(today);
-    this.checkoutInput.nativeElement.min = format(tomorrow);
-
-
+  // Detect changes to avoid NG0100 error
+  this.cdr.detectChanges();
   }
+ngAfterViewInit() {
+  const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
+
+  const format = (d: Date) => d.toISOString().split("T")[0];
+
+  // Prefill Angular variables
+  this.checkin = format(today);
+  this.checkout = format(tomorrow);
+
+  // Prefill input fields to match variables
+  if (this.checkinInput) this.checkinInput.nativeElement.value = this.checkin;
+  if (this.checkoutInput) this.checkoutInput.nativeElement.value = this.checkout;
+
+  // Set min dates for the date picker
+  if (this.checkinInput) this.checkinInput.nativeElement.min = this.checkin;
+  if (this.checkoutInput) this.checkoutInput.nativeElement.min = this.checkout;
+
+  // Detect changes to avoid NG0100 error
+  this.cdr.detectChanges();
+}
+
   navigateToBooking(){
      window.location.href = 'https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true';
   }
@@ -141,33 +152,54 @@ selectRoom(roomId: string) {
   goToRooms(){
  this.router.navigate(['/rooms']);
   }
-  goToBooking() {
+goToBooking() {
+  console.log("this," , this.checkout)
+  console.log("this," , this.checkin)
 
-    if (!this.checkin || !this.checkout) {
-      alert("Please select check-in and check-out dates.");
-      return;
-    }
+  // Trim whitespace and ensure strings are non-empty
+  const checkinStr = (this.checkin || '').trim();
+  const checkoutStr = (this.checkout || '').trim();
 
-    const checkinDate = new Date(this.checkin);
-    const checkoutDate = new Date(this.checkout);
-
-    const checkinDay = checkinDate.getDate();
-    const checkinMonth = checkinDate.getMonth() + 1; // months start from 0
-    const checkinYear = checkinDate.getFullYear();
-
-    const nights = (checkoutDate.getTime() - checkinDate.getTime()) / (1000 * 3600 * 24);
-
-    const url =
-      `https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true` +
-      `&checkinDay=${checkinDay}` +
-      `&checkinMonth=${checkinMonth}` +
-      `&checkinYear=${checkinYear}` +
-      `&nights=${nights}` +
-      `&numGuests=${this.guests}` +
-      `&numAdults=${this.guests}` +
-      `&Children=0&rooms=1`;
-
-    window.location.href = url;
+  if (!checkinStr || !checkoutStr) {
+    alert("Please select check-in and check-out dates.");
+    return;
   }
+
+  const checkinDate = new Date(checkinStr);
+  const checkoutDate = new Date(checkoutStr);
+
+  if (isNaN(checkinDate.getTime()) || isNaN(checkoutDate.getTime())) {
+    alert("Invalid date selection. Please reselect dates.");
+    return;
+  }
+
+  if (checkoutDate <= checkinDate) {
+    alert("Check-out date must be after check-in date.");
+    return;
+  }
+
+  const checkinDay = checkinDate.getDate();
+  const checkinMonth = checkinDate.getMonth() + 1;
+  const checkinYear = checkinDate.getFullYear();
+
+  const nights = Math.ceil(
+    (checkoutDate.getTime() - checkinDate.getTime()) / (1000 * 60 * 60 * 24)
+  );
+
+  const url =
+    `https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true` +
+    `&checkinDay=${checkinDay}` +
+    `&checkinMonth=${checkinMonth}` +
+    `&checkinYear=${checkinYear}` +
+    `&nights=${nights}` +
+    `&numGuests=${this.guests || 1}` +
+    `&numAdults=${this.guests || 1}` +
+    `&Children=0&rooms=1`;
+
+  window.location.href = url;
+}
+
+
+
 
 }
