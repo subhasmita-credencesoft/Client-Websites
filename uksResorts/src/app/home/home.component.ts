@@ -98,6 +98,17 @@ rooms = [
   this.cdr.detectChanges();
   }
 ngAfterViewInit() {
+    const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const section = document.querySelector('.taste-container');
+  if (section) observer.observe(section);
+
   const today = new Date();
   const tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);

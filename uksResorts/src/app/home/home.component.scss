@@ -1182,3 +1182,42 @@ font-family: "GFS Didot", serif;
   50% { transform: translateY(-10px) rotate(-1deg); }
   100% { transform: translateY(0) rotate(0deg); }
 }
+/* ---------- TASTE SECTION ANIMATIONS ---------- */
+
+/* Container fade-in on scroll */
+.taste-container {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+/* Image slide-in from left */
+.taste-image {
+  opacity: 0;
+  transform: translateX(-80px);
+  transition: all 1s ease-out 0.2s;
+}
+
+/* Content slide-in from right */
+.taste-content {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: all 1s ease-out 0.4s;
+}
+
+/* Animate when visible */
+.taste-container.visible,
+.taste-container.visible .taste-image,
+.taste-container.visible .taste-content {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+/* Button hover effect */
+.explore-btn {
+  transition: all 0.3s ease;
+}
+.explore-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  opacity: 0.9;
+}
