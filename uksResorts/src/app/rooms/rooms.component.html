@@ -43,34 +43,54 @@
          <span class="line-unique-heading"></span>Your Comfort is Our Masterpiece. </h1>
       <h1>Explore Our World-Class Rooms.</h1>
     </div>
-<div class="booking-box">
-  <form class="booking-form">
+<div class="booking-box container">
+  <form class="row g-3" (ngSubmit)="submitBooking()">
 
-    <div class="booking-item">
-      <label>Check-In</label>
-      <input type="date" class="form-control">
+    <!-- Check-In -->
+    <div class="col-md-3">
+      <label for="checkIn" class="form-label">Check-In</label>
+      <input
+        type="date"
+        class="form-control"
+        id="checkIn"
+        name="checkIn"
+        [(ngModel)]="booking.checkIn">
     </div>
 
-    <div class="booking-item">
-      <label>Check-Out</label>
-      <input type="date" class="form-control">
+    <!-- Check-Out -->
+    <div class="col-md-3">
+      <label for="checkOut" class="form-label">Check-Out</label>
+      <input
+        type="date"
+        class="form-control"
+        id="checkOut"
+        name="checkOut"
+        [(ngModel)]="booking.checkOut">
     </div>
 
-    <div class="booking-item">
-      <label>Guests</label>
-      <select class="form-select">
-        <option>1 Room</option>
-        <option>2 Rooms</option>
-        <option>3 Rooms</option>
+    <!-- Guests -->
+    <div class="col-md-3">
+      <label for="guests" class="form-label">Guests</label>
+      <select
+        class="form-select"
+        id="guests"
+        name="guests"
+        [(ngModel)]="booking.guests">
+        <option value="1">1 Guest</option>
+        <option value="2">2 Guests</option>
+        <option value="3">3 Guests</option>
       </select>
     </div>
 
-    <div class="booking-item booking-btn">
-      <button type="submit">Book Now →</button>
+    <!-- Submit Button -->
+    <div class="col-md-3 d-flex align-items-end">
+      <button type="submit" class="btn btn-primary w-100">Book Now →</button>
     </div>
 
   </form>
 </div>
+
+
 
 
 
@@ -99,7 +119,7 @@
       <img src="assets/home-imgs/Deluxe-Cottage-2.jpg.png" alt="">
       <div class="price-badge">
         <strong>Deluxe Room</strong>
-        <span>₹ 4,500</span>
+        <span>₹ 3,950 + GST</span>
         <small>per night + taxes</small>
       </div>
     </div>
@@ -207,7 +227,7 @@
       <img src="assets/home-imgs/Deluxe-Cottage-2.jpg.png" alt="">
       <div class="price-badge">
         <strong>Super Deluxe Room</strong>
-        <span>₹ 4,500</span>
+        <span>₹ 4,950 + GST</span>
         <small>per night + taxes</small>
       </div>
     </div>

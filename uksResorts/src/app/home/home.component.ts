@@ -15,6 +15,17 @@ export class HomeComponent {
 @ViewChild('checkinInput') checkinInput!: ElementRef;
   @ViewChild('checkoutInput') checkoutInput!: ElementRef;
     @HostListener('window:scroll', [])
+      onWindowScroll() {
+    const header = document.getElementById('mainHeader');
+
+    if (!header) return;
+
+    if (window.scrollY > 100) {
+      header.classList.add('sticky');
+    } else {
+      header.classList.remove('sticky');
+    }
+  }
 checkin: string = '';
   checkout: string = '';
   showSuperDeluxeRoom =true;
@@ -63,17 +74,7 @@ rooms = [
 
   constructor(private router: Router,private cdr: ChangeDetectorRef) {}
 
-  onWindowScroll() {
-    const header = document.getElementById('mainHeader');
 
-    if (!header) return;
-
-    if (window.scrollY > 100) {
-      header.classList.add('sticky');
-    } else {
-      header.classList.remove('sticky');
-    }
-  }
   ngOnInIt(){
     const today = new Date();
   const tomorrow = new Date();
