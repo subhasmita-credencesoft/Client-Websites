@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <div class="container">
+    <!-- Brand/Logo -->
+    <a class="navbar-brand" href="/">
+      <img
+        src="https://www.eglobe-solutions.com/extras/Content/WebsiteTemplate/PropertyAssets/9807/Logo_Image_loog.png"
+        class="icon-logo"
+        alt="Sreeniketanam Logo">
+    </a>
+
+    <!-- Toggle button for mobile -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      [attr.aria-expanded]="!isMenuCollapsed"
+      (click)="toggleMenu()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible menu -->
+    <div
+      class="collapse navbar-collapse"
+      [class.show]="!isMenuCollapsed"
+      id="navbarMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/" (click)="closeMenu()">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/rooms" (click)="closeMenu()">Rooms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/facilities" (click)="closeMenu()">Facilities</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/gallery" (click)="closeMenu()">Photo Gallery</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact" (click)="closeMenu()">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="https://hotels.eglobe-solutions.com/sreeniketanam/booking/detail#bookingsteps"
+            class="btn btn-primary ms-lg-2 mt-2 mt-lg-0"
+            (click)="closeMenu()">
+            Online Reservation
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
