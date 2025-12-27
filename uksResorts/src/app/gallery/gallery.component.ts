@@ -12,13 +12,33 @@ export class GalleryComponent {
      selectedImage: string = '';
   selectedIndex = 0;
   carouselInstance: any;
-  ngAfterViewInit() {
-    const carouselEl = document.getElementById('carouselExample');
+  modalInstance: any;
+ngAfterViewInit() {
+  const carouselEl = document.getElementById('carouselExample');
+  if (carouselEl) {
     this.carouselInstance = new bootstrap.Carousel(carouselEl, {
       interval: false,
       wrap: true
     });
   }
+
+  const modalEl = document.getElementById('galleryModal');
+  if (modalEl) {
+    this.modalInstance = new bootstrap.Modal(modalEl, {
+      backdrop: true,
+      keyboard: true
+    });
+
+    modalEl.addEventListener('hidden.bs.modal', () => {
+      document.body.classList.remove('modal-open');
+      const backdrops = document.getElementsByClassName('modal-backdrop');
+      while (backdrops.length > 0) {
+        backdrops[0].parentNode?.removeChild(backdrops[0]);
+      }
+    });
+  }
+}
+
  @HostListener('window:scroll', [])
   onWindowScroll() {
     const header = document.getElementById('mainHeader');
