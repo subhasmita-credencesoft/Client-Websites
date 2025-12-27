@@ -30,6 +30,13 @@
     width: 50%;               /* optional: adjust button width */
     text-align: center;
   }
+  .booking-box{
+    display: none;
+  }
+.hero-content {
+    position: absolute;
+    bottom: 5% !important;
+}
 }
 @media (max-width: 420px) {
 .main-navbar{
