@@ -284,18 +284,21 @@
     width: 100%;
     padding: 60px 5%;
     background: #78CDD71A;
-    font-family: "Poppins", sans-serif;
+
 }
 
 .amenities-header {
     text-align: center;
     margin-bottom: 40px;
     display: flex;
+    justify-content: space-between;
 }
 
 .amenities-header h2 {
-    font-size: 32px;
+    font-size: 40px;
     color: #1d1d1d;
+     font-family: "GFS Didot", serif;
+     font-weight: 400;
     margin-bottom: 10px;
     position: relative;
 }
@@ -315,9 +318,9 @@
 
 .amenities-header p {
     max-width: 600px;
-    margin: auto;
+    font-weight: 400;
     color: #555;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 /* ===== Cards Grid ===== */
