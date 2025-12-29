@@ -263,8 +263,15 @@
 
 @media (max-width: 600px) {
   .story-title-unique {
-    font-size: 26px;
+    font-size: 37px;
   }
+  .amenities-header {
+    text-align: center;
+    margin-bottom: 40px;
+    display: block !important;
+    // justify-content: space-between;
+}
+
 
   .img-row-unique {
     flex-direction: column;
