@@ -25,12 +25,15 @@ export class BannerComponent {
   'assets/banner-img.png',
   'https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2024/11/13162031/Satara.jpg',
   'https://img.nayatrip.com/images/state/big/MAHARASHTRA-GOA.jpg',
-  'https://www.itl.cat/pngfile/big/58-584849_city-pictures-city-wallpapers-gateway-of-india.jpg'
+  'https://www.trawell.in/admin/images/upload/955980848Mumbai_Main.jpg'
 ];
 pickupSuggestions: { place_id: string; name: string; description?: string }[] = [];
 dropSuggestions: { place_id: string; name: string; description?: string }[] = [];
-
+@ViewChild('mobileSlider') mobileSlider!: ElementRef<HTMLDivElement>;
+private mobileSlideIndex = 0;
+private mobileInterval: any;
   mumbaiLocations: string[] = MUMBAI_LOCATIONS;
+  isMobileView = false;
 
   @ViewChild('pickupGroup') pickupGroup!: ElementRef;
   @ViewChild('dropGroup') dropGroup!: ElementRef;
@@ -46,8 +49,35 @@ selectedDrop?: GeoLocation;
   ngOnInit(): void {
     this.pickupAutocomplete = new google.maps.places.AutocompleteService();
       this.dropAutocomplete = new google.maps.places.AutocompleteService();
+      this.checkViewport();
+  window.addEventListener('resize', () => this.checkViewport());
       const dummyDiv = document.createElement('div');}
+ngAfterViewInit() {
+  if (this.isMobileView) {
+    this.startMobileAutoSlide();
+  }
+}
 
+startMobileAutoSlide() {
+  this.mobileInterval = setInterval(() => {
+    const slider = this.mobileSlider?.nativeElement;
+    if (!slider) return;
+
+    this.mobileSlideIndex =
+      (this.mobileSlideIndex + 1) % this.bannerImages.length;
+
+    slider.scrollTo({
+      left: slider.clientWidth * this.mobileSlideIndex,
+      behavior: 'smooth',
+    });
+  }, 5000); // 5 sec
+}
+
+ngOnDestroy() {
+  if (this.mobileInterval) {
+    clearInterval(this.mobileInterval);
+  }
+}
   //---------------------------------------
   // ✅ CLOSE SUGGESTIONS WHEN CLICKING OUTSIDE
   //---------------------------------------
@@ -59,6 +89,9 @@ selectedDrop?: GeoLocation;
     if (!clickedInsidePickup) this.pickupSuggestions = [];
     if (!clickedInsideDrop) this.dropSuggestions = [];
   }
+  checkViewport() {
+  this.isMobileView = window.innerWidth <= 768;
+}
   //---------------------------------------
 validatePickup() {
   const match = this.mumbaiLocations.some(c =>

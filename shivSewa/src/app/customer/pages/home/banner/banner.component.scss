@@ -5,6 +5,35 @@ position: relative;
     overflow: hidden;
     font-family: "DM Sans", sans-serif;
     }
+    /* ✅ MOBILE HERO SLIDER (NO TOUCH BLOCKING) */
+.mobile-hero-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  width: 100%;
+  height: 80vh;
+}
+
+.mobile-slide {
+  min-width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  scroll-snap-align: start;
+}
+
+/* hide scrollbar */
+.mobile-hero-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-hero-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  height: 80vh;
+}
+
 @media (max-width: 768px) {
   .hero-carousel,
   .p-carousel,

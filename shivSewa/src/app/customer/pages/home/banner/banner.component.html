@@ -1,20 +1,33 @@
 <section class="shivsewa-hero-section">
   <p-carousel
-    [value]="bannerImages"
-    [numVisible]="1"
-    [numScroll]="1"
-    [circular]="true"
-    [autoplayInterval]="6000"
-    [showIndicators]="false"
-    [showNavigators]="false"
-    styleClass="shivsewa-hero-bg hero-carousel"
-  >
-    <ng-template pTemplate="item" let-img>
-      <div class="hero-slide">
-        <img [src]="img" class="shivsewa-hero-image" />
-      </div>
-    </ng-template>
-  </p-carousel>
+  *ngIf="!isMobileView"
+  [value]="bannerImages"
+  [numVisible]="1"
+  [numScroll]="1"
+  [circular]="true"
+  [autoplayInterval]="6000"
+  [showIndicators]="false"
+  [showNavigators]="false"
+  styleClass="shivsewa-hero-bg hero-carousel"
+>
+  <ng-template pTemplate="item" let-img>
+    <div class="hero-slide">
+      <img [src]="img" class="shivsewa-hero-image" />
+    </div>
+  </ng-template>
+</p-carousel>
+
+<div
+  *ngIf="isMobileView"
+  class="mobile-hero-slider"
+  #mobileSlider
+>
+  <div
+    class="mobile-slide"
+    *ngFor="let img of bannerImages"
+    [style.backgroundImage]="'url(' + img + ')'"
+  ></div>
+</div>
 
   <div class="shivsewa-hero-container">
     <h1 class="shivsewa-hero-heading">
