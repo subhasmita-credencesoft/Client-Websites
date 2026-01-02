@@ -17,7 +17,7 @@ export class BannerServicesComponent {
     },
     {
       icon: 'assets/intercity.svg',
-      title: 'Inter-City/Local Trips',
+      title: 'Inter-City/Rental Trips',
     },
     {
       icon: 'assets/out-station.svg',

@@ -46,7 +46,7 @@ carData: { [key: string]: Car[] } = {
     {
       id: 1,
       name: 'Hyundai Aura',
-      seats: 5,
+      seats: 4,
       bags: 2,
       fuel: 'Petrol',
       price: '₹ 480',
@@ -57,7 +57,7 @@ carData: { [key: string]: Car[] } = {
     {
       id: 2,
       name: 'Maruti Dzire',
-      seats: 5,
+      seats: 4,
       bags: 2,
       fuel: 'Petrol',
       price: '₹ 480',
@@ -81,7 +81,7 @@ carData: { [key: string]: Car[] } = {
     {
       id: 4,
       name: 'Toyota Rumion',
-      seats: 7,
+      seats: 6,
       bags: 3,
       fuel: 'Petrol',
       price: '₹ 500',
@@ -92,7 +92,7 @@ carData: { [key: string]: Car[] } = {
     {
       id: 5,
       name: 'Maruti Ertiga',
-      seats: 7,
+      seats: 6,
       bags: 3,
       fuel: 'Petrol',
       price: '₹ 500',
@@ -105,7 +105,7 @@ carData: { [key: string]: Car[] } = {
     {
       id: 6,
       name: 'Toyota Innova Crysta',
-      seats: 7,
+      seats: 6,
       bags: 4,
       fuel: 'Diesel',
       price: '₹ 500',
@@ -116,7 +116,7 @@ carData: { [key: string]: Car[] } = {
     {
       id: 9,
       name: 'Toyota Innova Hycross',
-      seats: 7,
+      seats: 6,
       bags: 4,
       fuel: 'Hybrid',
       price: '₹ 500',

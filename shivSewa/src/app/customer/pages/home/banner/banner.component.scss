@@ -5,7 +5,14 @@ position: relative;
     overflow: hidden;
     font-family: "DM Sans", sans-serif;
     }
-
+@media (max-width: 768px) {
+  .hero-carousel,
+  .p-carousel,
+  .p-carousel-content,
+  .p-carousel-item {
+    touch-action: pan-y !important;
+  }
+}
     .shivsewa-hero-bg {
       position: absolute;
       top: 0;
@@ -469,7 +476,7 @@ width: 100%;
     z-index: 1;
     max-width: 100%;
     width: 100%;
-    
+
     right: auto;
     left: auto;
 

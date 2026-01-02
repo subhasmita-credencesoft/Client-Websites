@@ -121,7 +121,7 @@ export class FleetBookingService {
 
       vehicle: {
         name: 'Innova Crysta',
-        seats: 7,
+        seats: 6,
         bags: 3,
         price: 4200,
         carNumber: 'RJ20 BB 2211',

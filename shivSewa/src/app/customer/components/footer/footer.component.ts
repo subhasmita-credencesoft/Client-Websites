@@ -26,9 +26,9 @@ companyLinks: NavLink[] = [
 ];
 
   serviceLinks: NavLink[] = [
-    { label: 'CSMIA Bookings', url: '#csmia' },
-    { label: 'Group Travel', url: '#group' },
-    { label: 'Join Shiv Sewa', url: '#join' }
+    // { label: 'CSMIA Bookings', url: '#csmia' },
+    // { label: 'Group Travel', url: '#group' },
+    // { label: 'Join Shiv Sewa', url: '#join' }
   ];
 
   contactInfo: ContactInfo[] = [

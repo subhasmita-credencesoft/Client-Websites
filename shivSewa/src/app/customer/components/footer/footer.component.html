@@ -54,7 +54,7 @@
 
       <!-- Services Column -->
       <div class="nav-column">
-        <h3 class="column-title-hidden">Services</h3>
+        <h3 class="column-title-hidden" *ngIf="serviceLinks.length >0">Services</h3>
         <ul class="nav-links">
           <li *ngFor="let link of serviceLinks">
             <a [href]="link.url" class="nav-link">{{ link.label }} </a>

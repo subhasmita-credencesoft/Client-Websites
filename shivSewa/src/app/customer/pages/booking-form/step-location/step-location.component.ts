@@ -341,58 +341,68 @@ dropResults: GeoLocation[] = [];
     return;
   }
 
-  this.pickupAutocomplete.getPlacePredictions(
-    {
-      input: value,
-      componentRestrictions: { country: 'in' }, // restrict to India
-      types: ['geocode'] // only addresses
-    },
-    (predictions: google.maps.places.AutocompletePrediction[] | null,
-     status: google.maps.places.PlacesServiceStatus) => {
-      if (status !== google.maps.places.PlacesServiceStatus.OK || !predictions) {
-        this.pickupSuggestions = [];
-        return;
-      }
-
-      // Filter predictions to Maharashtra only
-      const filtered = predictions.filter(p =>
-        p.terms.some(t => t.value.toLowerCase() === 'maharashtra')
-      );
-
-      this.pickupSuggestions = filtered.map(p => ({
-        place_id: p.place_id,
-        name: p.description
-      }));
+this.pickupAutocomplete.getPlacePredictions(
+  {
+    input: value,
+    componentRestrictions: { country: 'in' }, // restrict to India
+    types: ['geocode'] // all address locations
+  },
+  (
+    predictions: google.maps.places.AutocompletePrediction[] | null,
+    status: google.maps.places.PlacesServiceStatus
+  ) => {
+    if (
+      status !== google.maps.places.PlacesServiceStatus.OK ||
+      !predictions
+    ) {
+      this.pickupSuggestions = [];
+      return;
     }
-  );
+
+    this.pickupSuggestions = predictions.map(p => ({
+      place_id: p.place_id,
+      name: p.description
+    }));
+  }
+);
+
 }
 
 
 
 
 validatePickup() {
-  const match = this.mumbaiLocations.some(c =>
-    c.toLowerCase() === this.pickup.toLowerCase()
-  );
-
-  if (!match) {
+  if (!this.selectedPickup) {
     this.pickup = '';
+    return;
+  }
+
+  const state = this.selectedPickup.service_address?.state?.toLowerCase();
+
+  if (state !== 'maharashtra') {
+    this.pickup = '';
+    this.selectedPickup = undefined;
   }
 
   this.pickupSuggestions = [];
 }
 
 validateDrop() {
-  const match = this.dropResults.some(
-    l => l.name.toLowerCase() === this.dropoff.toLowerCase()
-  );
-
-  if (!match) {
+  if (!this.selectedDrop) {
     this.dropoff = '';
+    return;
+  }
+
+  const state = this.selectedDrop.service_address?.state?.toLowerCase();
+
+  if (state !== 'maharashtra') {
+    this.dropoff = '';
+    this.selectedDrop = undefined;
   }
 
   this.dropSuggestions = [];
 }
+
 
 
 selectPickupLocation(pred: any) {
@@ -498,29 +508,31 @@ filterDrop(value: string) {
   }
 
   this.dropAutocomplete.getPlacePredictions(
-    {
-      input: value,
-      componentRestrictions: { country: 'in' },
-      types: ['geocode']
-    },
-    (predictions: google.maps.places.AutocompletePrediction[] | null,
-     status: google.maps.places.PlacesServiceStatus) => {
-      if (status !== google.maps.places.PlacesServiceStatus.OK || !predictions) {
-        this.dropSuggestions = [];
-        return;
-      }
-
-      const filtered = predictions.filter(p =>
-        p.terms.some(t => t.value.toLowerCase() === 'maharashtra')
-      );
-
-      this.dropSuggestions = filtered.map(p => ({
-        place_id: p.place_id,
-        name: p.description,
-        description: p.description
-      }));
+  {
+    input: value,
+    componentRestrictions: { country: 'in' },
+    types: ['geocode']
+  },
+  (
+    predictions: google.maps.places.AutocompletePrediction[] | null,
+    status: google.maps.places.PlacesServiceStatus
+  ) => {
+    if (
+      status !== google.maps.places.PlacesServiceStatus.OK ||
+      !predictions
+    ) {
+      this.dropSuggestions = [];
+      return;
     }
-  );
+
+    this.dropSuggestions = predictions.map(p => ({
+      place_id: p.place_id,
+      name: p.description,
+      description: p.description
+    }));
+  }
+);
+
 }
 selectDropLocation(pred: any) {
   this.locationService

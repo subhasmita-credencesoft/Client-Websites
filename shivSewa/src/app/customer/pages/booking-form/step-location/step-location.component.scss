@@ -165,8 +165,8 @@ input[type="time"] {
     width: 60%;
   }
 .margin-changes {
-      margin-top: 30px !important;
-    margin-bottom: 30px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
     padding: 10px;
 }
 .border-changes {
@@ -176,6 +176,9 @@ input[type="time"] {
 @media (min-width: 1180px){
   .gap-changes {
     gap: 10%;
+  }
+  .width-93 {
+    width: 93%;
   }
 }
 @media (max-width: 750px) {
