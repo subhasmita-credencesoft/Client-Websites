@@ -17,6 +17,7 @@
           placeholder="Enter Pick-Up*"
         />
         <span class="input-group-text icon-soft backgrond-span"
+        (click)="useCurrentLocation()"
           ><i class="fa-solid fa-location-crosshairs icon-specific"></i
         ></span>
         <ul class="autocomplete-box" *ngIf="pickupSuggestions.length > 0">
@@ -86,7 +87,7 @@
             #localityInput
             type="text"
             class="form-control mb-2"
-            placeholder="Type your building / street / locality"
+            placeholder="Type here...."
             [(ngModel)]="locality"
             (input)="onFieldInput('locality', locality)"
             (blur)="saveLocality()"

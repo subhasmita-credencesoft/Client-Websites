@@ -4,15 +4,15 @@ export interface GeoLocation {
   latitude: number;
   longitude: number;
   service_address: {
-    city?: string;
-    state?: string;
+    city?: string | null;
+    state?: string | null;
     suburb?: string | null;
     locality?: string | null;
-    postcode?: string;
+    postcode?: string | null;
     streetName?: string | null;
-    addressLine1?: string;
+    addressLine1?: string | null;
     addressLine2?: string | null;
     streetNumber?: string | null;
-    country?: string;
+    country?: string | null;
   };
 }

@@ -283,24 +283,78 @@ selectDropLocation(pred: any) {
   // CURRENT LOCATION
   //---------------------------------------
   useCurrentLocation() {
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by your browser.");
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-
-        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`)
-          .then(res => res.json())
-          .then(data => {
-            this.pickupLocation = data.display_name || "Current Location";
-            this.pickupSuggestions = [];
-          });
-      },
-      () => alert("Unable to retrieve your location. Please allow GPS permission.")
-    );
+  if (!navigator.geolocation) {
+    alert("Geolocation is not supported by your browser.");
+    return;
   }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+
+      const geocoder = new google.maps.Geocoder();
+
+      geocoder.geocode(
+        { location: { lat, lng } },
+        (results, status) => {
+          if (
+            status !== google.maps.GeocoderStatus.OK ||
+            !results ||
+            !results.length
+          ) {
+            alert("Unable to fetch address for current location");
+            return;
+          }
+
+          const place = results[0];
+
+          const loc: GeoLocation = {
+            place_id: place.place_id!,
+            name: place.formatted_address!,
+            latitude: lat,
+            longitude: lng,
+            service_address: {
+              city:
+                place.address_components.find(c => c.types.includes('locality'))
+                  ?.long_name || null,
+              state:
+                place.address_components.find(c =>
+                  c.types.includes('administrative_area_level_1')
+                )?.long_name || 'Maharashtra',
+              postcode:
+                place.address_components.find(c =>
+                  c.types.includes('postal_code')
+                )?.long_name || null,
+              suburb:
+                place.address_components.find(c =>
+                  c.types.includes('sublocality')
+                )?.long_name || null,
+              locality:
+                place.address_components.find(c =>
+                  c.types.includes('neighborhood')
+                )?.long_name || null,
+              addressLine1: place.formatted_address || null,
+              addressLine2: null,
+              country:
+                place.address_components.find(c =>
+                  c.types.includes('country')
+                )?.long_name || null,
+            },
+          };
+
+          this.selectedPickup = loc;
+          this.pickupLocation = loc.name;
+          this.pickupSuggestions = [];
+
+          this.bookingService.setCurrent({ pickup: loc });
+
+          console.log('Selected Pickup (Current Location):', loc);
+        }
+      );
+    },
+    () => alert("Unable to retrieve your location. Please allow GPS permission.")
+  );
+}
+
 }
