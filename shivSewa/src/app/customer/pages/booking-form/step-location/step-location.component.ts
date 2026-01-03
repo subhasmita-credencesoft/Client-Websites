@@ -190,8 +190,8 @@ dropResults: GeoLocation[] = [];
 
   // main handler for Next button clicks (robust cycle-through-empty-fields)
   onNextClick(ev: Event): void {
-    this.validateDrop();
-    this.validatePickup();
+    // this.validateDrop();
+    // this.validatePickup();
     if (this.isFormValid()) {
       this.saveAndNext();
       return;
