@@ -224,7 +224,7 @@ selectPickupLocation(pred: any) {
         longitude: res.longitude,
         service_address: {
           city: res.serviceAddress?.city || null,
-          state: res.serviceAddress?.state || null,
+          state: res.serviceAddress?.state || 'Maharashtra',
           postcode: res.serviceAddress?.postcode || null,
           suburb: res.serviceAddress?.suburb || null,
           locality: res.serviceAddress?.locality || null,
@@ -261,7 +261,7 @@ selectDropLocation(pred: any) {
         longitude: res.longitude,
         service_address: {
           city: res.serviceAddress?.city || null,
-          state: res.serviceAddress?.state || null,
+          state: res.serviceAddress?.state || 'Maharashtra',
           postcode: res.serviceAddress?.postcode || null,
           suburb: res.serviceAddress?.suburb || null,
           locality: res.serviceAddress?.locality || null,
