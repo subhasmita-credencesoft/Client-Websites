@@ -1220,6 +1220,27 @@ font-family: "GFS Didot", serif;
   opacity: 1;
   transform: translateX(0) translateY(0);
 }
+@media (max-width: 992px) {
+  .taste-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px; /* reduce gap */
+  }
+
+  .taste-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .taste-image,
+  .taste-content {
+    transform: translateX(0) !important;
+  }
+
+  .taste-section {
+    padding: 40px 20px;
+  }
+}
 
 /* Button hover effect */
 .explore-btn {
@@ -1915,4 +1936,85 @@ width: 100%;
 }
 
 
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    overflow: visible !important;
+  }
+
+
+  /* Add extra bottom margin to form groups to accommodate datepicker */
+  .form-group {
+    margin-bottom: 10px;
+    overflow: visible !important;
+  }
+
+
+  /* Ensure datepicker width matches input on mobile */
+  ::ng-deep .dropdown-menu {
+    min-width: 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+
+  /* Adjust datepicker size for mobile */
+  ::ng-deep ngb-datepicker {
+    font-size: 0.9rem !important;
+  }
+
+
+  ::ng-deep .ngb-dp-header {
+    padding: 0.75rem !important;
+  }
+
+
+  ::ng-deep .ngb-dp-content {
+    padding: 0.75rem !important;
+  }
+
+
+  /* Increase z-index when datepicker is active */
+  .form-group:has(.dropdown-menu.show) {
+    z-index: 1051 !important;
+  }
+}
+
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  .form-row {
+    gap: 15px;
+  }
+
+
+  .form-group {
+    margin-bottom: 5px;
+  }
+
+
+  /* Make datepicker slightly smaller on very small screens */
+  ::ng-deep ngb-datepicker {
+    font-size: 0.85rem !important;
+  }
+
+
+  ::ng-deep .ngb-dp-header {
+    padding: 0.5rem !important;
+  }
+
+
+  ::ng-deep .ngb-dp-content {
+    padding: 0.5rem !important;
+  }
+
+
+  ::ng-deep .custom-day {
+    padding: 0.4rem !important;
+    font-size: 0.85rem !important;
+  }
+}
 
