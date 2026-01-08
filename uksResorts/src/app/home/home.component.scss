@@ -122,7 +122,7 @@ html, body {
   bottom: 8%;
   left: 0;
   right: 0;
-  margin: auto;
+  // margin: auto;
   width: 90%;
   z-index: 20;
 }
@@ -321,10 +321,10 @@ font-family: "GFS Didot", serif;
     text-align: center;
     padding-top: 220px; /* Keep spacing below navbar */
   }
-.hero-section,
-.hero-content {
-  overflow-x: hidden;
-}
+// .hero-section,
+// .hero-content {
+//   overflow-x: hidden;
+// }
 
   /* Reduce heading size */
   .hero-text h1 {
