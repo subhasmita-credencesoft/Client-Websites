@@ -119,11 +119,14 @@ html, body {
 }
 .hero-content {
   position: absolute;
-  bottom: 8%;      /* You can adjust this value */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;      /* Keep same width as before */
+  bottom: 8%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 90%;
+  z-index: 20;
 }
+
 
 
 
@@ -143,7 +146,7 @@ html, body {
 font-family: "GFS Didot", serif;
 }
 .booking-box {
-  width: 60%;
+  width: 67%;
   max-width: 1000px;
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(12px);
@@ -241,7 +244,9 @@ font-family: "GFS Didot", serif;
   position: relative;
   color: transparent;              /* Hide default date text */
 }
-
+.form-row{
+  display: block !important;
+}
 /* Fake placeholder */
 .date-fix:before {
   content: attr(placeholder);
@@ -1224,3 +1229,690 @@ font-family: "GFS Didot", serif;
   transform: translateY(-4px) scale(1.05);
   opacity: 0.9;
 }
+/* Form Row */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    overflow: visible;
+    position: relative;
+    z-index: 100;
+    align-items: anchor-center;
+}
+
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  z-index: 100;
+}
+
+
+.form-label {
+font-size: 13px;
+    letter-spacing: 1.2px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+
+/* Date Input Wrapper */
+.date-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+}
+
+
+.calendar-icon {
+  position: absolute;
+  left: 15px;
+  color: #4a5568;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.date-input {
+  width: 100%;
+  padding: 14px 15px 14px 45px;
+
+  font-size: 15px;
+  font-weight: 400;
+  color: #2d3748;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+
+.date-input:hover {
+  border-color: #cbd5e0;
+  background: #f7fafc;
+}
+
+
+.date-input:focus {
+  border-color: #3b7f85;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 127, 133, 0.1);
+}
+
+
+.date-input::placeholder {
+  color: #a0aec0;
+  font-weight: 300;
+}
+
+
+/* Select Wrapper */
+.select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
+.guest-select {
+  width: 100%;
+  padding: 14px 40px 14px 15px;
+
+  font-size: 15px;
+  font-weight: 400;
+  color: #2d3748;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  transition: all 0.3s ease;
+}
+
+
+.guest-select:hover {
+  border-color: #cbd5e0;
+  background: #f7fafc;
+}
+
+
+.guest-select:focus {
+  border-color: #3b7f85;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 127, 133, 0.1);
+}
+
+
+.select-arrow {
+  position: absolute;
+  right: 15px;
+  color: #4a5568;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+
+.guest-select:focus ~ .select-arrow {
+  transform: rotate(180deg);
+}
+
+
+/* Custom Guest Selector */
+.guest-selector-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+
+.guest-display {
+  width: 100%;
+  padding: 14px 40px 14px 45px;
+
+  font-size: 15px;
+  font-weight: 400;
+  color: #2d3748;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+
+.guest-display:hover {
+  border-color: #cbd5e0;
+  background: #f7fafc;
+}
+
+
+.guest-display.active,
+.guest-display:focus {
+  border-color: #3b7f85;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 127, 133, 0.1);
+}
+
+
+.guest-icon {
+  position: absolute;
+  left: 15px;
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+}
+
+
+.guest-text {
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.guest-arrow {
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+
+.guest-arrow.open {
+  transform: rotate(180deg);
+}
+
+
+/* Guest Dropdown */
+.guest-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  z-index: 9999;
+  animation: fadeInDown 0.3s ease;
+}
+
+
+.guest-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+
+.guest-row:last-of-type {
+  border-bottom: none;
+}
+
+
+.guest-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+.guest-label {
+  // font-family: 'poppins';
+  font-size: 15px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+
+.guest-sublabel {
+  // font-family: 'poppins';
+  font-size: 13px;
+  font-weight: 400;
+  color: #718096;
+}
+
+
+.guest-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+
+.guest-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #e2e8f0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+
+.guest-btn:hover:not(:disabled) {
+  border-color: #3b9fa6;
+  background: #f0feff;
+  transform: scale(1.05);
+}
+
+
+.guest-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+
+.guest-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+.guest-btn svg {
+  color: #4a5568;
+}
+
+
+.guest-btn:hover:not(:disabled) svg {
+  color: #3b9fa6;
+}
+
+
+.guest-count {
+  // font-family: 'poppins';
+  // font-size: 16px;
+  font-weight: 600;
+  color: #2d3748;
+  min-width: 30px;
+  text-align: center;
+}
+
+
+.guest-dropdown-footer {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e2e8f0;
+}
+
+
+.guest-done-btn {
+  width: 100%;
+  padding: 12px 24px;
+
+  // font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2d7a80 0%, #3b9fa6 100%);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+
+.guest-done-btn:hover {
+  background: linear-gradient(135deg, #236469 0%, #2d8389 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(45, 122, 128, 0.3);
+}
+
+
+.guest-done-btn:active {
+  transform: translateY(0);
+}
+
+
+/* Error Message */
+.error-message {
+  // font-family: 'poppins';
+  font-size: 12px;
+  color: #e53e3e;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+
+/* Check Availability Button */
+.check-availability-btn {
+width: 100%;
+    padding: 13px 32px;
+    // font-family: poppins;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+    background: #da9620;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(45, 122, 128, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: 30px;
+}
+/* Ngb Datepicker popup */
+.ngb-datepicker,
+.ngb-datepicker-dropdown {
+  z-index: 9999 !important;
+}
+
+/* Guest dropdown */
+.guest-dropdown {
+  position: absolute;
+  z-index: 9999;
+}
+
+
+.check-availability-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+
+.check-availability-btn:hover::before {
+  left: 100%;
+}
+
+
+.check-availability-btn:hover {
+  background: linear-gradient(135deg, #236469 0%, #2d8389 100%);
+  box-shadow: 0 6px 25px rgba(45, 122, 128, 0.4);
+  transform: translateY(-2px);
+}
+
+
+.check-availability-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(45, 122, 128, 0.3);
+}
+
+
+/* Custom Datepicker Day */
+.custom-day {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+
+.custom-day:hover:not(.disabled) {
+  background-color: #e6f7f9;
+  color: #2d7a80;
+  transform: scale(1.05);
+}
+
+
+.custom-day.focused {
+  background-color: #3b9fa6;
+  color: white;
+  font-weight: 600;
+}
+
+
+.custom-day.range {
+  background-color: #b8e6ea;
+  color: #1a5157;
+}
+
+
+.custom-day.disabled {
+  color: #cbd5e0;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+
+.custom-day.disabled:hover {
+  background-color: transparent;
+  transform: none;
+}
+
+
+/* Datepicker Popup Override */
+::ng-deep .ngb-dp-header {
+  background: linear-gradient(135deg, #2d7a80 0%, #3b9fa6 100%);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px 8px 0 0;
+}
+
+
+::ng-deep .ngb-dp-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  color: white;
+}
+
+
+::ng-deep .ngb-dp-arrow-btn {
+  padding: 0.25rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+
+::ng-deep .ngb-dp-arrow-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+::ng-deep .ngb-dp-navigation-select {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+::ng-deep .ngb-dp-navigation-select select {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+::ng-deep .ngb-dp-navigation-select select:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+::ng-deep .ngb-dp-navigation-select select option {
+  background-color: white;
+  color: #2d3748;
+}
+
+
+::ng-deep .ngb-dp-month-name {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: 'poppins';
+}
+
+
+::ng-deep .ngb-dp-weekday {
+  color: #4a5568;
+  font-weight: 600;
+  font-size: 0.875rem;
+  font-family: 'poppins';
+  text-transform: uppercase;
+  padding: 0.5rem;
+}
+
+
+::ng-deep .ngb-dp-week {
+  border-radius: 0;
+}
+
+
+::ng-deep .ngb-dp-day {
+  font-family: 'poppins';
+  font-size: 0.875rem;
+}
+
+
+::ng-deep .ngb-dp-content {
+  padding: 1rem;
+}
+
+
+::ng-deep .ngb-dp-months {
+  background: white;
+  border-radius: 0 0 8px 8px;
+}
+
+
+/* Dropdown popup positioning */
+::ng-deep ngb-datepicker-navigation-select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+/* Date input container positioning for popup */
+.date-input-wrapper {
+  position: relative;
+}
+
+
+/* Ensure popup appears above other content */
+::ng-deep .dropdown-menu.show {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  z-index: 9999 !important;
+  animation: fadeInDown 0.3s ease;
+}
+
+
+::ng-deep ngb-datepicker {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  background: white;
+  z-index: 9999 !important;
+  position: relative;
+}
+
+
+/* Datepicker popup container */
+::ng-deep ngb-datepicker-month {
+  z-index: 9999 !important;
+}
+
+
+::ng-deep .ngb-dp-content {
+  z-index: 9999 !important;
+}
+
+
+/* Ensure the actual popup container is properly positioned */
+::ng-deep .dropdown-menu {
+  z-index: 9999 !important;
+  position: absolute !important;
+}
+
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Datepicker Override */
+::ng-deep ngb-datepicker.dropdown-menu.show {
+  position: absolute !important;
+  top: 50% !important;
+  left: 0 !important;
+  margin-top: 8px !important;
+  border: 2px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+  z-index: 1000 !important;
+}
+
+
+::ng-deep .ngb-dp-header {
+  background-color: #3b9fa6 !important;
+  color: white !important;
+  border-radius: 6px 6px 0 0 !important;
+}
+
+
+::ng-deep .ngb-dp-weekday {
+  color: #4a5568 !important;
+  font-weight: 600 !important;
+  font-family: 'poppins' !important;
+}
+
+
+::ng-deep .ngb-dp-day {
+  font-family: 'poppins' !important;
+}
+
+
+

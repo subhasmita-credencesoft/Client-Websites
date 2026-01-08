@@ -44,51 +44,314 @@
     </div>
 
    <div class="booking-box">
-  <div class="booking-row">
-<div class="booking-item">
-  <label for="checkin">CHECK-IN</label>
-  <input
-    id="checkin"
-    type="date"
-    class="form-control"
-    [(ngModel)]="checkin" #checkinInput
-  />
-</div>
+  <div class="form-row">
+          <!-- Check-in -->
+          <!-- Check-in -->
+          <!-- CHECK IN - Updated -->
+          <!-- CHECK IN - Positioned relative to input -->
+<div class="form-group">
+  <label class="form-label">CHECK IN</label>
+  <div class="date-input-wrapper">
+    <span class="calendar-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+    </span>
+    <input
+      #dpFromDate
+      type="text"
+      class="date-input"
+      placeholder="Pick a date"
+      ngbDatepicker
+      #datepicker1="ngbDatepicker"
+      [value]="formattedFromDate"
+      (click)="datepicker1.toggle()"
+      [(ngModel)]="fromDate"
+      (ngModelChange)="onDateSelection($event, 'checkIn')"
+      [minDate]="todayDate"
+      [dayTemplate]="dayTemplate1"
+      [autoClose]="true"
+      placement="bottom-start"
+      readonly
+    />
 
-<div class="booking-item">
-  <label for="checkout" #checkoutInput>CHECK-OUT</label>
-  <input
-    id="checkout"
-    type="date"
-    class="form-control"
-    [(ngModel)]="checkout"
-  />
-</div>
 
-<div class="booking-item">
-  <label for="guests">GUESTS</label>
-  <select
-    id="guests"
-    class="form-select"
-    [(ngModel)]="guests"
-  >
-    <option [ngValue]="1">1 Guest</option>
-    <option [ngValue]="2">2 Guests</option>
-    <option [ngValue]="3">3 Guests</option>
-  </select>
-</div>
-
-<div class="booking-btn-holder">
-  <button
-    type="button"
-    class="btn book-btn book-btnone"
-    (click)="goToBooking()"
-  >
-    Book Now <i class="fa-solid fa-arrow-right"></i>
-  </button>
-</div>
-
+    <ng-template #dayTemplate1 let-date let-focused="focused">
+      <span
+        class="custom-day"
+        [class.focused]="focused"
+        [class.range]="isRange(date)"
+        [class.disabled]="date.before(todayDate)"
+        (mouseenter)="hoveredDate = date"
+        (mouseleave)="hoveredDate = null"
+      >
+        {{ date.day }}
+      </span>
+    </ng-template>
   </div>
+  <div *ngIf="showErrors.fromDate" class="error-message">
+    Check-in date is required.*
+  </div>
+</div>
+
+
+<!-- CHECK OUT - Positioned relative to input -->
+<div class="form-group">
+  <label class="form-label">CHECK OUT</label>
+  <div class="date-input-wrapper">
+    <span class="calendar-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+    </span>
+    <input
+      #dpToDate
+      type="text"
+      class="date-input"
+      placeholder="Pick a date"
+      ngbDatepicker
+      #datepicker2="ngbDatepicker"
+      [value]="formattedToDate"
+      (click)="datepicker2.toggle()"
+      [(ngModel)]="toDate"
+      (ngModelChange)="onDateSelection($event, 'checkOut')"
+      [minDate]="fromDate || todayDate"
+      [dayTemplate]="dayTemplate2"
+      [autoClose]="true"
+      placement="bottom-start"
+      readonly
+    />
+
+
+    <ng-template #dayTemplate2 let-date let-focused="focused">
+      <span
+        class="custom-day"
+        [class.focused]="focused"
+        [class.range]="isRange(date)"
+        [class.disabled]="date.before(fromDate || todayDate)"
+        (mouseenter)="hoveredDate = date"
+        (mouseleave)="hoveredDate = null"
+      >
+        {{ date.day }}
+      </span>
+    </ng-template>
+  </div>
+  <div *ngIf="showErrors.toDate" class="error-message">
+    Check-out date is required.*
+  </div>
+</div>
+
+
+          <!-- Guests Dropdown -->
+          <div class="form-group">
+            <label class="form-label">GUESTS</label>
+            <div class="guest-selector-wrapper">
+              <div
+                class="guest-display"
+                (click)="toggleGuestSelector()"
+                [class.active]="isGuestSelectorOpen"
+              >
+                <span class="guest-icon">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </span>
+                <span class="guest-text">{{ getGuestSummary() }}</span>
+                <span class="guest-arrow" [class.open]="isGuestSelectorOpen">
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                    <path
+                      d="M1 1L6 6L11 1"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </span>
+              </div>
+
+
+              <!-- Guest Selector Dropdown -->
+              <div class="guest-dropdown" *ngIf="isGuestSelectorOpen">
+                <!-- Adults -->
+                <div class="guest-row">
+                  <div class="guest-info">
+                    <span class="guest-label">Adults</span>
+                  </div>
+                  <div class="guest-controls">
+                    <button
+                      type="button"
+                      class="guest-btn"
+                      (click)="decrementAdults()"
+                      [disabled]="adults <= 1"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </button>
+                    <span class="guest-count">{{ adults }}</span>
+                    <button
+                      type="button"
+                      class="guest-btn"
+                      (click)="incrementAdults()"
+                      [disabled]="adults >= 30"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+
+                <!-- Children -->
+                <div class="guest-row">
+                  <div class="guest-info">
+                    <span class="guest-label">Children</span>
+                  </div>
+                  <div class="guest-controls">
+                    <button
+                      type="button"
+                      class="guest-btn"
+                      (click)="decrementChildren()"
+                      [disabled]="children <= 0"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </button>
+                    <span class="guest-count">{{ children }}</span>
+                    <button
+                      type="button"
+                      class="guest-btn"
+                      (click)="incrementChildren()"
+                      [disabled]="children >= 30"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+
+                <!-- Rooms -->
+                <div class="guest-row">
+                  <div class="guest-info">
+                    <span class="guest-label">Rooms</span>
+                    <span class="guest-sublabel">Number of rooms</span>
+                  </div>
+                  <div class="guest-controls">
+                    <button
+                      type="button"
+                      class="guest-btn"
+                      (click)="decrementRooms()"
+                      [disabled]="rooms <= 1"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </button>
+                    <span class="guest-count">{{ rooms }}</span>
+                    <button
+                      type="button"
+                      class="guest-btn"
+                      (click)="incrementRooms()"
+                      [disabled]="rooms >= 30"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+
+                <!-- Done Button -->
+                <div class="guest-dropdown-footer">
+                  <button
+                    type="button"
+                    class="guest-done-btn"
+                    (click)="closeGuestSelector()"
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="showErrors.adults" class="error-message">
+              Number of guests is required.*
+            </div>
+          </div>
+          <div>
+            <button
+              class="check-availability-btn"
+              (click)="navigateToBooking()"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+
+
 </div>
 
 

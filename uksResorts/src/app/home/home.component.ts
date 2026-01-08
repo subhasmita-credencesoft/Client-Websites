@@ -1,17 +1,40 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NgbDate, NgbCalendar, NgbDateStruct, NgbCarouselConfig, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var bootstrap: any;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,NgbDatepickerModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  /* ---------------- DATEPICKER ---------------- */
 
+
+  fromDate: NgbDateStruct | null = null;
+toDate: NgbDateStruct | null = null;
+  hoveredDate: NgbDateStruct | null = null;
+todayDate!: NgbDateStruct;
+  formattedFromDate = '';
+  formattedToDate = '';
+
+  showErrors = {
+    fromDate: false,
+    toDate: false,
+    adults: false,
+    rooms: false
+  };
+
+  /* ---------------- GUESTS ---------------- */
+
+  adults = 1;
+  children = 0;
+  rooms = 1;
+  isGuestSelectorOpen = false;
 @ViewChild('checkinInput') checkinInput!: ElementRef;
   @ViewChild('checkoutInput') checkoutInput!: ElementRef;
     @HostListener('window:scroll', [])
@@ -33,7 +56,7 @@ checkin: string = '';
   // component.ts
 selectedRoom: string = 'superDeluxe';
 
-rooms = [
+roomsOne = [
   {
     id: 'superDeluxe',
     title: 'Super Deluxe AC',
@@ -72,30 +95,29 @@ rooms = [
   }
 ];
 
-  constructor(private router: Router,private cdr: ChangeDetectorRef) {}
+  constructor(private router: Router, private route: ActivatedRoute,
+    private viewportScroller: ViewportScroller,
+    public config: NgbCarouselConfig,
+    private calendar: NgbCalendar,
+    private cdr: ChangeDetectorRef) {}
 
 
   ngOnInIt(){
-    const today = new Date();
-  const tomorrow = new Date();
-  tomorrow.setDate(today.getDate() + 1);
 
-  const format = (d: Date) => d.toISOString().split("T")[0];
+  // Default check-in = today
+  this.fromDate = this.calendar.getToday(); // returns NgbDateStruct
+  this.formattedFromDate = this.formatDate(this.fromDate);
 
-  // Prefill Angular variables
-  this.checkin = format(today);
-  this.checkout = format(tomorrow);
+  // Default check-out = tomorrow
+  const nextDate = this.calendar.getNext(
+    new NgbDate(this.fromDate.year, this.fromDate.month, this.fromDate.day),
+    'd',
+    1
+  );
 
-  // Prefill input fields to match variables
-  if (this.checkinInput) this.checkinInput.nativeElement.value = this.checkin;
-  if (this.checkoutInput) this.checkoutInput.nativeElement.value = this.checkout;
-
-  // Set min dates for the date picker
-  if (this.checkinInput) this.checkinInput.nativeElement.min = this.checkin;
-  if (this.checkoutInput) this.checkoutInput.nativeElement.min = this.checkout;
-
-  // Detect changes to avoid NG0100 error
-  this.cdr.detectChanges();
+  // Convert back to NgbDateStruct for the model
+  this.toDate = { year: nextDate.year, month: nextDate.month, day: nextDate.day };
+  this.formattedToDate = this.formatDate(this.toDate);
   }
 ngAfterViewInit() {
     const observer = new IntersectionObserver(entries => {
@@ -131,11 +153,92 @@ ngAfterViewInit() {
   this.cdr.detectChanges();
 }
 
-  navigateToBooking(){
-     window.location.href = 'https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true';
+  onDateSelection(date: NgbDateStruct, type: 'checkIn' | 'checkOut') {
+    if (type === 'checkIn') {
+      this.fromDate = date;
+      this.formattedFromDate = this.formatDate(date);
+
+      if (this.toDate && this.isAfter(this.fromDate, this.toDate)) {
+        this.toDate = null;
+        this.formattedToDate = '';
+      }
+    } else {
+      this.toDate = date;
+      this.formattedToDate = this.formatDate(date);
+    }
+  }
+
+  isRange(date: NgbDateStruct): boolean {
+  if (!this.fromDate || !this.toDate) {
+    return false; // if either date is null, not in range
+  }
+
+  return this.isAfter(date, this.fromDate) && this.isAfter(this.toDate, date);
+}
+
+
+  isAfter(a: NgbDateStruct, b: NgbDateStruct): boolean {
+    return new Date(a.year, a.month - 1, a.day) >
+           new Date(b.year, b.month - 1, b.day);
+  }
+
+  formatDate(d: NgbDateStruct | null): string {
+    if (!d) return '';
+    return `${d.day}/${d.month}/${d.year}`;
+  }
+
+  /* ================== GUEST DROPDOWN ================== */
+
+  toggleGuestSelector() {
+    this.isGuestSelectorOpen = !this.isGuestSelectorOpen;
+  }
+
+  closeGuestSelector() {
+    this.isGuestSelectorOpen = false;
+  }
+
+  incrementAdults() { if (this.adults < 30) this.adults++; }
+  decrementAdults() { if (this.adults > 1) this.adults--; }
+
+  incrementChildren() { if (this.children < 30) this.children++; }
+  decrementChildren() { if (this.children > 0) this.children--; }
+
+  incrementRooms() { if (this.rooms < 30) this.rooms++; }
+  decrementRooms() { if (this.rooms > 1) this.rooms--; }
+
+  getGuestSummary() {
+    return `${this.adults} Adults, ${this.children} Children, ${this.rooms} Rooms`;
+  }
+
+  /* ================== NAVIGATION ================== */
+
+  navigateToBooking() {
+    this.showErrors.fromDate = !this.fromDate;
+    this.showErrors.toDate = !this.toDate;
+    this.showErrors.adults = this.adults <= 0;
+    this.showErrors.rooms = this.rooms <= 0;
+
+    if (this.showErrors.fromDate || this.showErrors.toDate) return;
+
+    const from = new Date(this.fromDate!.year, this.fromDate!.month - 1, this.fromDate!.day);
+    const to = new Date(this.toDate!.year, this.toDate!.month - 1, this.toDate!.day);
+
+    const nights = Math.ceil((to.getTime() - from.getTime()) / 86400000);
+
+    const url =
+      `https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true` +
+      `&checkinDay=${from.getDate()}` +
+      `&checkinMonth=${from.getMonth() + 1}` +
+      `&checkinYear=${from.getFullYear()}` +
+      `&nights=${nights}` +
+      `&numAdults=${this.adults}` +
+      `&Children=${this.children}` +
+      `&rooms=${this.rooms}`;
+
+    window.open(url, '_blank');
   }
   get selectedRoomObj() {
-  return this.rooms.find(room => room.id === this.selectedRoom);
+  return this.roomsOne.find(room => room.id === this.selectedRoom);
 }
 showSuperDeluxe(){
 this.showSuperDeluxeRoom = true;
@@ -145,7 +248,7 @@ this.showSuperDeluxeRoom = false;
 }
 // Returns the currently selected room object
 getSelectedRoom() {
-  return this.rooms.find(room => room.id === this.selectedRoom);
+  return this.roomsOne.find(room => room.id === this.selectedRoom);
 }
 
 // Sets the selected room when a card is clicked
@@ -164,52 +267,7 @@ selectRoom(roomId: string) {
   goToRooms(){
  this.router.navigate(['/rooms']);
   }
-goToBooking() {
-  console.log("this," , this.checkout)
-  console.log("this," , this.checkin)
 
-  // Trim whitespace and ensure strings are non-empty
-  const checkinStr = (this.checkin || '').trim();
-  const checkoutStr = (this.checkout || '').trim();
-
-  if (!checkinStr || !checkoutStr) {
-    alert("Please select check-in and check-out dates.");
-    return;
-  }
-
-  const checkinDate = new Date(checkinStr);
-  const checkoutDate = new Date(checkoutStr);
-
-  if (isNaN(checkinDate.getTime()) || isNaN(checkoutDate.getTime())) {
-    alert("Invalid date selection. Please reselect dates.");
-    return;
-  }
-
-  if (checkoutDate <= checkinDate) {
-    alert("Check-out date must be after check-in date.");
-    return;
-  }
-
-  const checkinDay = checkinDate.getDate();
-  const checkinMonth = checkinDate.getMonth() + 1;
-  const checkinYear = checkinDate.getFullYear();
-
-  const nights = Math.ceil(
-    (checkoutDate.getTime() - checkinDate.getTime()) / (1000 * 60 * 60 * 24)
-  );
-
-  const url =
-    `https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true` +
-    `&checkinDay=${checkinDay}` +
-    `&checkinMonth=${checkinMonth}` +
-    `&checkinYear=${checkinYear}` +
-    `&nights=${nights}` +
-    `&numGuests=${this.guests || 1}` +
-    `&numAdults=${this.guests || 1}` +
-    `&Children=0&rooms=1`;
-
-  window.location.href = url;
-}
 
 
 
