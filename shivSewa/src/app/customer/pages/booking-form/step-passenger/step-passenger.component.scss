@@ -115,6 +115,22 @@ border: 1px solid rgba(255, 172, 123, 1)
   cursor: not-allowed !important;
   opacity: 0.8;
 }
+.d-flex .form-control {
+  width: 60px;
+  margin: 0;
+  padding: 6px 0;
+  text-align: center;
+}
+
+.btn-light {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1;
+}
+
 @media(max-width: 600px){
   .btn-next {
 background: #000;

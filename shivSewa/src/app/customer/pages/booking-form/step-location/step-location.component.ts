@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MUMBAI_LOCATIONS } from '../../../data/mumbai-locations';
 import { GeoLocation } from '../../../models/geo-location';
 import { LocationService } from '../../../services/location/location.service';
+type TripType = 'pickup-drop' | 'outstation' | 'rental';
 
 @Component({
   selector: 'app-step-location',
@@ -65,12 +66,15 @@ dropResults: GeoLocation[] = [];
   pickupAutocomplete!: google.maps.places.AutocompleteService;
   dropAutocomplete!: google.maps.places.AutocompleteService;
   placesService!: google.maps.places.PlacesService;
-
+    selectedTripType: TripType = 'pickup-drop';
   constructor(private bookingService: BookingService,
               private locationService: LocationService
   ) {
     const b = this.bookingService.getCurrent();
     console.log('Booking data from service in StepLocation:', b);
+    if(b.tripTypeValue) {
+      this.selectedTripType = b.tripTypeValue
+    }
     if(b.pickup){
                 const pickuploc: GeoLocation = {
         place_id: b.pickup?.place_id || '',
@@ -146,6 +150,10 @@ dropResults: GeoLocation[] = [];
     );
   }
 
+    selectTripType(type: TripType) {
+    this.selectedTripType = type;
+  }
+
   //---------------------------------------
   // FORM SUBMIT
   //---------------------------------------
@@ -153,6 +161,7 @@ dropResults: GeoLocation[] = [];
     if (!this.isFormValid()) return;
 
     this.bookingService.patchDeep({
+    tripTypeValue: this.selectedTripType,
     pickup: this.selectedPickup!,
     dropoff: this.selectedDrop!,
       date: this.date,
@@ -434,6 +443,9 @@ selectPickupLocation(pred: any) {
       this.pickupSuggestions = [];
 
       this.bookingService.setCurrent({ pickup: loc });
+      if (this.selectedPickup && this.selectedDrop) {
+        this.calculateDistanceAndDuration(this.selectedPickup, this.selectedDrop);
+      }
     });
 }
 
@@ -563,6 +575,9 @@ selectDropLocation(pred: any) {
       this.dropSuggestions = [];
 
       this.bookingService.setCurrent({ dropoff: loc });
+      if (this.selectedPickup && this.selectedDrop) {
+        this.calculateDistanceAndDuration(this.selectedPickup, this.selectedDrop);
+      }
     });
 }
   useCurrentLocation() {
@@ -637,6 +652,42 @@ selectDropLocation(pred: any) {
       );
     },
     () => alert("Unable to retrieve your location. Please allow GPS permission.")
+  );
+}
+  calculateDistanceAndDuration(pickup: GeoLocation, drop: GeoLocation) {
+  const service = new google.maps.DistanceMatrixService();
+
+  service.getDistanceMatrix(
+    {
+      origins: [{ lat: pickup.latitude, lng: pickup.longitude }],
+      destinations: [{ lat: drop.latitude, lng: drop.longitude }],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC,
+    },
+    (response, status) => {
+      if (
+        status !== google.maps.DistanceMatrixStatus.OK ||
+        !response?.rows?.[0]?.elements?.[0] ||
+        response.rows[0].elements[0].status !== 'OK'
+      ) {
+        console.error('Distance Matrix failed');
+        return;
+      }
+
+      const element = response.rows[0].elements[0];
+
+      const distanceKm = +(element.distance.value / 1000).toFixed(2); // meters → km
+      const durationMinutes = Math.ceil(element.duration.value / 60); // seconds → minutes
+
+      // ✅ Store in BookingService
+      this.bookingService.setCurrent({
+        distanceKm,
+        durationMinutes
+      });
+
+      console.log('Distance KM:', distanceKm);
+      console.log('Duration Minutes:', durationMinutes);
+    }
   );
 }
 }

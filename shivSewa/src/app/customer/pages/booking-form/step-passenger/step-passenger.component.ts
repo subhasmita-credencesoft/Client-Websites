@@ -198,6 +198,39 @@ limitLuggage() {
 normalizeName(name: string): string {
   return name.trim().toLowerCase();
 }
+changeAdults(val: number) {
+  this.passengers.adults += val;
+  if (this.passengers.adults < 1) {
+    this.passengers.adults = 1;
+    this.error.adults = true;
+    setTimeout(() => this.error.adults = false, 3000);
+  }
+  if (this.passengers.adults > 7) this.passengers.adults = 7;
+  this.updateRecommendations();
+}
+
+changeChildren(val: number) {
+  this.passengers.children += val;
+  if (this.passengers.children < 0) {
+    this.passengers.children = 0;
+    this.error.children = true;
+    setTimeout(() => this.error.children = false, 3000);
+  }
+  if (this.passengers.children > 5) this.passengers.children = 5;
+  this.updateRecommendations();
+}
+
+changeLuggage(val: number) {
+  this.passengers.luggage += val;
+  if (this.passengers.luggage < 0) {
+    this.passengers.luggage = 0;
+    this.error.luggage = true;
+    setTimeout(() => this.error.luggage = false, 3000);
+  }
+  if (this.passengers.luggage > 5) this.passengers.luggage = 5;
+  this.updateRecommendations();
+}
+
 filterCarsBySlots(slotResponse: any) {
   const availableCarNames = slotResponse.resourceList
     .filter((r: any) =>

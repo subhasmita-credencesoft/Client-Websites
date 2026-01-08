@@ -7,11 +7,17 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BookingService {
   private _booking = new BehaviorSubject<Booking>({
-  pickup: null,
-  dropoff: null,
+    pickup: null,
+    dropoff: null,
     date: '',
     time: '',
     tripType: 'one-way',
+    tripTypeValue: 'pickup-drop', // Default trip type
+      distanceKm: 0,
+      durationMinutes: 0,
+    // Rental defaults
+    rentalHours: 1,
+    rentalKm: 10,
 
     passengers: {
       type: 'personal',
@@ -43,9 +49,17 @@ export class BookingService {
   private _step = new BehaviorSubject<number>(0);
   step$ = this._step.asObservable();
 
-  setStep(i: number) { this._step.next(i); }
-  nextStep() { this._step.next(Math.min(3, this._step.value + 1)); }
-  prevStep() { this._step.next(Math.max(0, this._step.value - 1)); }
+  setStep(i: number) {
+    this._step.next(i);
+  }
+
+  nextStep() {
+    this._step.next(Math.min(3, this._step.value + 1));
+  }
+
+  prevStep() {
+    this._step.next(Math.max(0, this._step.value - 1));
+  }
 
   update(patch: Partial<Booking>) {
     this._booking.next({ ...this._booking.value, ...patch });
@@ -69,48 +83,84 @@ export class BookingService {
   getCurrent() {
     return this._booking.value;
   }
+
   reset() {
-  this._booking.next({
-  pickup: null,
-  dropoff: null,
-    date: '',
-    time: '',
-    tripType: 'one-way',
+    this._booking.next({
+      pickup: null,
+      dropoff: null,
+      date: '',
+      time: '',
+      tripType: 'one-way',
+      tripTypeValue: 'pickup-drop',
 
-    passengers: {
-      type: 'personal',
-      adults: 1,
-      children: 0,
-      luggage: 0
-    },
+      // Reset rental to defaults
+      rentalHours: 1,
+      rentalKm: 10,
 
-    vehicle: {
-      name: '',
-      seats: 0,
-      bags: 0,
-      price: 0,
-      image: '',
-      carNumber: '',
-    },
+      passengers: {
+        type: 'personal',
+        adults: 1,
+        children: 0,
+        luggage: 0
+      },
 
-    traveller: {
-      firstName: '',
-      lastName: '',
-      mobile: '',
-      email: '',
-      notes: '',
-    },
+      vehicle: {
+        name: '',
+        seats: 0,
+        bags: 0,
+        price: 0,
+        image: '',
+        carNumber: '',
+      },
 
-    bookingRef: ''
-  });
+      traveller: {
+        firstName: '',
+        lastName: '',
+        mobile: '',
+        email: '',
+        notes: '',
+      },
 
-  this._step.next(0);
-}
-setCurrent(data: Partial<Booking>) {
-  this._booking.next({
-    ...this._booking.value,
-    ...data
-  });
-}
+      bookingRef: ''
+    });
 
+    this._step.next(0);
+  }
+
+  setCurrent(data: Partial<Booking>) {
+    this._booking.next({
+      ...this._booking.value,
+      ...data
+    });
+  }
+
+  // Helper method to get trip type display name
+  getTripTypeDisplay(): string {
+    const tripType = this._booking.value.tripTypeValue;
+    switch (tripType) {
+      case 'pickup-drop':
+        return 'Pickup & Drop';
+      case 'outstation':
+        return 'Outstation';
+      case 'rental':
+        return 'Rental';
+      default:
+        return 'Unknown';
+    }
+  }
+
+  // Helper to check if rental booking
+  isRentalBooking(): boolean {
+    return this._booking.value.tripTypeValue === 'rental';
+  }
+
+  // Helper to check if outstation booking
+  isOutstationBooking(): boolean {
+    return this._booking.value.tripTypeValue === 'outstation';
+  }
+
+  // Helper to check if pickup-drop booking
+  isPickupDropBooking(): boolean {
+    return this._booking.value.tripTypeValue === 'pickup-drop';
+  }
 }

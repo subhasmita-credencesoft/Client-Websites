@@ -1,6 +1,36 @@
 <div class="card-soft p-4 container">
   <h5 class="section-title mb-4">Pick-Up & Drop-Off</h5>
+        <div class="trip-type-selector">
+        <button
+          type="button"
+          class="trip-type-btn"
+          [class.active]="selectedTripType === 'pickup-drop'"
+          (click)="selectTripType('pickup-drop')"
+        >
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Pickup & Drop</span>
+        </button>
 
+        <button
+          type="button"
+          class="trip-type-btn"
+          [class.active]="selectedTripType === 'outstation'"
+          (click)="selectTripType('outstation')"
+        >
+          <i class="fa-solid fa-car"></i>
+          <span>Outstation</span>
+        </button>
+
+        <button
+          type="button"
+          class="trip-type-btn"
+          [class.active]="selectedTripType === 'rental'"
+          (click)="selectTripType('rental')"
+        >
+          <i class="fa-regular fa-clock"></i>
+          <span>Rental</span>
+        </button>
+      </div>
   <div class="row g-1 g-md-4 gap-changes">
     <!-- Pickup -->
     <div class="col-md-5">
@@ -26,7 +56,7 @@
             (click)="selectPickupLocation(s)"
           >
             <i class="bi bi-geo-alt-fill icon-specific"></i>
-            &nbsp; {{ s.name }}
+            &nbsp; <span style="color: #000" >{{ s.name }}</span>
           </li>
         </ul>
       </div>
@@ -56,7 +86,7 @@
         <ul class="autocomplete-box" *ngIf="dropSuggestions.length > 0">
           <li *ngFor="let s of dropSuggestions" (click)="selectDropLocation(s)">
             <i class="bi bi-geo-alt-fill icon-specific"></i>
-            &nbsp; {{ s.name }}
+            &nbsp; <span style="color: #000">{{ s.name }}</span>
           </li>
         </ul>
       </div>
@@ -86,14 +116,13 @@
           <input
             #localityInput
             type="text"
-            class="form-control mb-2"
-            placeholder="Type here...."
+            class="line-input"
+            placeholder="Type here..."
             [(ngModel)]="locality"
             (input)="onFieldInput('locality', locality)"
             (blur)="saveLocality()"
             (keyup.enter)="saveLocality()"
           />
-
           <!-- Trip Toggle (can stay below or move outside if needed) -->
         </div>
         <div class="trip-toggle mt-2">

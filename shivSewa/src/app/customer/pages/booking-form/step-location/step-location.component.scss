@@ -167,7 +167,26 @@ input[type="time"] {
 .margin-changes {
     margin-top: 10px !important;
     margin-bottom: 10px !important;
-    padding: 10px;
+    padding: 20px 20px;
+}
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: calc(-1 * var(--bs-border-width));
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    color: #f97316;
+}
+.line-input {
+  border: none;
+  border-bottom: 1px solid #999; /* underline */
+  outline: none;
+  padding: 4px 0;
+  font-size: 1rem;
+  width: 100%; /* adjust as needed */
+  transition: border-color 0.3s;
+}
+
+.line-input:focus {
+  border-bottom: 2px solid #007bff; /* blue on focus */
 }
 .border-changes {
   border: 1px solid rgba(194, 194, 194, 1);
@@ -204,4 +223,65 @@ flex-wrap: wrap;
   opacity: 0.6;
   cursor: not-allowed;
   pointer-events: auto;
+}
+.trip-type-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 480px) {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+  }
+}
+
+.trip-type-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid #49505738;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+
+  i {
+    font-size: 1.1rem;
+    color: #6b7280;
+    transition: color 0.3s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: #f97316;
+    transform: translateY(-2px);
+  }
+
+  &.active {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    border-color: #f97316;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+
+    i {
+      color: #fff;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+// Rental Controls (Hours & KM)
+.rental-control-group {
+  margin-bottom: 1.5rem;
 }

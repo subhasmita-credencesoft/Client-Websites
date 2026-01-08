@@ -26,52 +26,50 @@
 
 
     <!-- Passenger Inputs -->
-    <div class="row justify-content-around mb-3 mt-4">
+<div class="row justify-content-around mb-3 mt-4">
 
-      <!-- Adults -->
-      <div class="col-md-3 col-6">
-        <label>Adults</label>
-        <input type="number" min="1" max="7"
-          id="adultsField"
-          class="form-control"
-          [class.is-invalid]="error.adults"
-          [(ngModel)]="passengers.adults"
-          (ngModelChange)="limitAdults()">
-
-        <div *ngIf="error.adults" class="text-danger small mt-1">
-          Please enter at least 1 adult.
-        </div>
-      </div>
-
-      <!-- Children -->
-      <div class="col-md-3 col-6">
-        <label>Children (above 10)</label>
-        <input type="number" min="0" max="5"
-          id="childrenField"
-          class="form-control"
-          [class.is-invalid]="error.children"
-          [(ngModel)]="passengers.children" (ngModelChange)="limitChildren()">
-
-        <div *ngIf="error.children" class="text-danger small mt-1">
-          Children cannot be negative.
-        </div>
-      </div>
-
-      <!-- Luggage -->
-      <div class="col-md-3">
-        <label>Luggage</label>
-        <input type="number" min="0" max="5"
-          id="luggageField"
-          class="form-control"
-          [class.is-invalid]="error.luggage"
-          [(ngModel)]="passengers.luggage" (ngModelChange)="limitLuggage()">
-
-        <div *ngIf="error.luggage" class="text-danger small mt-1">
-          Please enter valid luggage count.
-        </div>
-      </div>
-
+  <!-- Adults -->
+  <div class="col-md-3 col-6">
+    <label>Adults</label>
+    <div class="d-flex align-items-center">
+      <button type="button" class="btn btn-light me-2" (click)="changeAdults(-1)">-</button>
+      <span class="form-control text-center">{{ passengers.adults }}</span>
+      <button type="button" class="btn btn-light ms-2" (click)="changeAdults(1)">+</button>
     </div>
+    <div *ngIf="error.adults" class="text-danger small mt-1">
+      Please enter at least 1 adult.
+    </div>
+  </div>
+
+  <!-- Children -->
+  <div class="col-md-3 col-6">
+    <label>Children (above 10)</label>
+    <div class="d-flex align-items-center">
+      <button type="button" class="btn btn-light me-2" (click)="changeChildren(-1)">-</button>
+      <span class="form-control text-center">{{ passengers.children }}</span>
+      <button type="button" class="btn btn-light ms-2" (click)="changeChildren(1)">+</button>
+    </div>
+    <div *ngIf="error.children" class="text-danger small mt-1">
+      Children cannot be negative.
+    </div>
+  </div>
+
+  <!-- Luggage -->
+  <div class="col-md-3">
+    <label>Luggage</label>
+    <div class="d-flex align-items-center">
+      <button type="button" class="btn btn-light me-2" (click)="changeLuggage(-1)">-</button>
+      <span class="form-control text-center">{{ passengers.luggage }}</span>
+      <button type="button" class="btn btn-light ms-2" (click)="changeLuggage(1)">+</button>
+    </div>
+    <div *ngIf="error.luggage" class="text-danger small mt-1">
+      Please enter valid luggage count.
+    </div>
+  </div>
+
+</div>
+
+
 
 
     <!-- Selected Vehicle Preview -->
@@ -135,31 +133,35 @@
 
 
     <!-- Explore More Cars -->
-    <h6 class="mb-3 mt-4">Explore More Cars</h6>
+<!-- Explore More Cars -->
+<h6 class="mb-3 mt-4">Explore More Cars</h6>
 
-    <div class="car-slider-wrapper">
-      <button class="slide-btn left" (click)="scrollLeft(slide)">
-        <i class="fa-solid fa-angle-left icon-specific"></i>
-      </button>
+<div class="row g-3">
+  <div class="col-md-6" *ngFor="let car of allCars">
+    <div class="card p-3 h-100"
+         (click)="selectVehicle(car)"
+         [ngClass]="{ 'btn-accent': selectedVehicleId === car.id }"
+         style="border-radius:12px; cursor:pointer">
 
-      <div class="car-slider" #slide>
-        <div class="car-slide" *ngFor="let car of allCars">
-          <div class="card p-2 car-slide-card"
-            (click)="selectVehicle(car)"
-            [ngClass]="{ 'btn-accent': selectedVehicleId === car.id }">
+      <div class="d-flex align-items-center">
+        <img [src]="car.image" class="car-thumb" />
 
-            <img [src]="car.image" class="slide-img" />
-            <div class="fw-semibold small mt-1">{{ car.name }}</div>
-            <div class="text-muted small">{{ car.seats }} seats • {{ car.bags }} bags</div>
+        <div class="ms-3">
+          <div class="fw-bold">{{ car.name }}</div>
+          <div class="small text-muted">{{ car.seats }} seats • {{ car.bags }} bags</div>
+          <div class="small text-muted">{{ car.fuel }}</div>
+        </div>
 
-          </div>
+        <div class="ms-auto text-end">
+          <div class="fw-bold">{{ car.price }}</div>
+          <div class="small text-muted">Est. fare</div>
         </div>
       </div>
 
-      <button class="slide-btn right" (click)="scrollRight(slide)">
-        <i class="fa-solid fa-angle-right icon-specific"></i>
-      </button>
     </div>
+  </div>
+</div>
+
 
 
     <!-- Navigation -->
