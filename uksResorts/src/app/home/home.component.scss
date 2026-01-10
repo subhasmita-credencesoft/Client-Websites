@@ -2211,7 +2211,8 @@ width: 100%;
   }
 
   .experience-badge {
-    left: 10px;
+    left: 0px !important;
+    width: 100%;
     bottom: -10px;
     padding: 15px;
   }
@@ -2437,6 +2438,9 @@ width: 100%;
   .collapsible-text {
     max-height: 200px; /* initial collapsed height */
   }
+  .vm-box{
+    padding: 0px;
+}
 
   .collapsible-text.expanded {
     max-height: 2000px; /* large enough to show all content */
