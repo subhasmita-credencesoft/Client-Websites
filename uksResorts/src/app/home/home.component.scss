@@ -105,7 +105,7 @@ html, body {
 .hero {
   height: 90vh;
   width: 100%;
-  background: url("/assets/home-imgs/uk-resort-one.png") center/cover no-repeat;
+  background: url("/assets/home-imgs/1.avif") center/cover no-repeat;
   animation: fadeSlide 1s ease-in-out;
   position: relative;
   display: flex;
@@ -119,12 +119,16 @@ html, body {
 }
 .hero-content {
   position: absolute;
-  bottom: 8%;
-  left: 0;
-  right: 0;
-  // margin: auto;
-  width: 90%;
-  z-index: 20;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 0 20px;
 }
 
 
@@ -146,18 +150,13 @@ html, body {
 font-family: "GFS Didot", serif;
 }
 .booking-box {
-  width: 67%;
+  width: 100%;
   max-width: 1000px;
   background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(12px);
-  padding: 25px 30px;
-  border-radius: 20px;
-  color: white;
-
-  /* Remove these if you want inline layout */
-  /* bottom: 8%;
-  left: 50%;
-  transform: translateX(-50%); */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 22px 28px;
 }
 
 .booking-item .input-group-text {
@@ -234,7 +233,7 @@ font-family: "GFS Didot", serif;
 /* ------------------------ */
 @media (max-width: 1350px) and (min-width: 992px) {
   .hero {
-    background: url("/assets/home-imgs/medium-hero-img.png") center/cover no-repeat !important;
+    background: url("/assets/home-imgs/1.avif") center/cover no-repeat !important;
   }
 }
 
@@ -277,7 +276,7 @@ font-family: "GFS Didot", serif;
 
   .hero {
 
-  background: url("/assets/home-imgs/mobile-view-bg.png") center/cover no-repeat;
+  background: url("/assets/home-imgs/1.avif") center/cover no-repeat;
   }
 /* 📅 Fix date input on mobile */
 .booking-item input[type="date"] {
@@ -309,22 +308,52 @@ font-family: "GFS Didot", serif;
   cursor: pointer;
 }
 
-  /* Make hero items stack vertically */
-  .hero-content {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    transform: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    text-align: center;
-    padding-top: 220px; /* Keep spacing below navbar */
-  }
+
 // .hero-section,
 // .hero-content {
 //   overflow-x: hidden;
 // }
+@media (min-width: 768px) and (max-width: 991px) {
+
+   .hero-content {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;         /* slightly smaller gap for tablets */
+    top:auto;
+    text-align: center;
+    padding-top: 150px; /* reduce spacing below navbar */
+    padding-left: 20px; /* optional: prevent content from touching edges */
+    padding-right: 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 42px;
+  }
+
+  /* Switch to 2 rows instead of 4 columns */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Button full width on second row */
+  .check-availability-btn {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 52px;
+  }
+
+  .booking-box {
+    max-width: 720px;
+    padding: 22px;
+  }
+}
 
   /* Reduce heading size */
   .hero-text h1 {
@@ -365,6 +394,25 @@ font-family: "GFS Didot", serif;
 
   .navbar-toggler-icon {
     filter: invert(1);
+  }
+}
+@media (max-width: 768px) {
+  .hero-content {
+    top: auto;
+    // bottom: 40px;
+    transform: translateX(-50%);
+  }
+
+  .hero-text h1 {
+    font-size: 34px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-box {
+    padding: 18px;
   }
 }
 
@@ -1252,14 +1300,12 @@ font-family: "GFS Didot", serif;
 }
 /* Form Row */
 .form-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    overflow: visible;
-    position: relative;
-    z-index: 100;
-    align-items: anchor-center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 160px;
+  gap: 20px;
+  align-items: end;
 }
+
 
 
 /* Form Group */
