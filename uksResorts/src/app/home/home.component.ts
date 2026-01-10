@@ -102,10 +102,12 @@ roomsOne = [
     private cdr: ChangeDetectorRef) {}
 
 
-  ngOnInIt(){
+  ngOnInit(){
+
+  this.todayDate = this.calendar.getToday();
 
   // Default check-in = today
-  this.fromDate = this.calendar.getToday(); // returns NgbDateStruct
+  this.fromDate = this.todayDate;
   this.formattedFromDate = this.formatDate(this.fromDate);
 
   // Default check-out = tomorrow
@@ -114,8 +116,6 @@ roomsOne = [
     'd',
     1
   );
-
-  // Convert back to NgbDateStruct for the model
   this.toDate = { year: nextDate.year, month: nextDate.month, day: nextDate.day };
   this.formattedToDate = this.formatDate(this.toDate);
   }
@@ -151,6 +151,20 @@ ngAfterViewInit() {
 
   // Detect changes to avoid NG0100 error
   this.cdr.detectChanges();
+}
+isDisabled(date: NgbDateStruct, type: 'checkIn' | 'checkOut') {
+  const today = this.calendar.getToday();
+  if (type === 'checkIn') {
+    return this.isBefore(date, today);
+  } else {
+    // check-out can't be before check-in
+    const minDate = this.fromDate || today;
+    return this.isBefore(date, minDate);
+  }
+}
+
+isBefore(a: NgbDateStruct, b: NgbDateStruct) {
+  return new Date(a.year, a.month - 1, a.day) < new Date(b.year, b.month - 1, b.day);
 }
 
   onDateSelection(date: NgbDateStruct, type: 'checkIn' | 'checkOut') {
