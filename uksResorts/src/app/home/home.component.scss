@@ -58,13 +58,13 @@ html, body {
     width: 50%;               /* optional: adjust button width */
     text-align: center;
   }
-  .card-book-btn{
-    width: 100%;
-    padding: 12px;
+  .card-book-btn1{
+    // width: 100%;
+    padding: 10px 30px;
     background: #0D0630;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
     text-align: center;
@@ -77,13 +77,13 @@ html, body {
 .hero {
     height: 100vh !important;
 }
-.card-book-btn {
-    width: 100%;
-    padding: 12px;
+.card-book-btn1 {
+    // width: 100%;
+    padding: 10px 30px;
     background: #0D0630;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
     text-align: center;
@@ -442,9 +442,9 @@ font-family: "GFS Didot", serif;
   .booking-box {
     padding: 18px;
   }
-  .card-book-btn {
+  .card-book-btn1 {
     // width: 100% !important;
-    padding: 8px 30px !important;
+    padding: 10px 30px !important;
 
     background: #0D0630 !important;
     color: white !important;
@@ -2544,7 +2544,7 @@ width: 100%;
   font-size: 0.9rem;
 }
 
-.card-book-btn:hover {
+.card-book-btn1:hover {
   background-color: #1a144d;
 }
 
@@ -2602,7 +2602,7 @@ width: 100%;
 
 
 /* Button */
-.card-book-btn {
+.card-book-btn1 {
   // width: 40%;
  padding: 8px 30px !important;
   background: #0D0630;; /* Dark green from image */
@@ -2614,7 +2614,7 @@ width: 100%;
   text-align: center;
 }
 
-.card-book-btn:hover {
+.card-book-btn1:hover {
  background: #001A60;;
 }
 
