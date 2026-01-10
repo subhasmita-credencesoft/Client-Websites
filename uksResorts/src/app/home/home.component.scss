@@ -2170,7 +2170,7 @@ width: 100%;
 /* BOTTOM RIGHT (Water Park) */
 .image-grid img:nth-child(4) {
   height: 220px;
-  margin-top: -20px; /* Slight adjustment to align with the design */
+  margin-top: 20px; /* Slight adjustment to align with the design */
 }
 
 /* EXPERIENCE BADGE - Positioned relative to the bottom-left image */
@@ -2216,6 +2216,7 @@ width: 100%;
     padding: 15px;
   }
 }
+
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .nature-container {
