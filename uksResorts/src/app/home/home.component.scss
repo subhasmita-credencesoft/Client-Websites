@@ -2393,7 +2393,7 @@ width: 100%;
   text-align: center;
   color: #64748b;
   margin-bottom: 40px;
-  font-size: 16px;
+  font-size: 14px;
    font-family: 'Source Sans Pro', sans-serif;
 
 }
@@ -2533,8 +2533,8 @@ width: 100%;
 
 .tags span {
   background: #f0f0f0;
-  padding: 5px 15px;
-  border-radius: 20px;
+  padding: 8px 30px !important;
+  border-radius: 30px;
   font-size: 0.9rem;
 }
 
@@ -2589,7 +2589,7 @@ width: 100%;
   font-size: 1.12rem;
   font-family: "Source Sans Pro", sans-serif;
   color: #5A5A5A;
-  margin-bottom: 40px;
+  // margin-bottom: 40px;
   line-height: 1.6;
   text-align: justify;
 }
@@ -2597,12 +2597,12 @@ width: 100%;
 
 /* Button */
 .card-book-btn {
-  width: 40%;
-  padding: 12px;
+  // width: 40%;
+ padding: 8px 30px !important;
   background: #0D0630;; /* Dark green from image */
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
   font-weight: bold;
   text-align: center;
@@ -2633,7 +2633,7 @@ width: 100%;
 }
 
 .section-header-paragraph{
-  font-size: 1.12rem;
+  font-size: 14px;
     font-family: "Source Sans Pro", sans-serif;
     color: #5A5A5A;
     margin-bottom: 40px;
