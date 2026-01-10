@@ -366,7 +366,7 @@
     <div class="nature-content">
       <span class="nature-subtitle">About Uk's Resort</span>
      <p class="nature-text">The Name That Redefines Hospitality Par-Excellence In The Lush Green Landscape At Khopoli.</p>
-
+ <div class="collapsible-text" [class.expanded]="isExpanded">
     <p  class="nature-text">
       Just a few miles from the outskirts of the hustle-n-bustle of Mumbai's
       concrete jungle... a complete “at-home” experience that would provide
@@ -403,6 +403,10 @@
     </div>
 
       <a href="/about-us" class="learn-more-btn" >Know More</a>
+      </div>
+      <button class="view-toggle-btn" (click)="toggleView()">
+    {{ isExpanded ? 'View Less' : 'View More' }}
+  </button>
     </div>
 
     <!-- RIGHT IMAGES -->

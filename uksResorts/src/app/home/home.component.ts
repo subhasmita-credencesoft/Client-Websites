@@ -13,7 +13,7 @@ declare var bootstrap: any;
 })
 export class HomeComponent {
   /* ---------------- DATEPICKER ---------------- */
-
+isExpanded = false;
 
   fromDate: NgbDateStruct | null = null;
 toDate: NgbDateStruct | null = null;
@@ -120,6 +120,7 @@ roomsOne = [
   this.formattedToDate = this.formatDate(this.toDate);
   }
 ngAfterViewInit() {
+
     const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -152,6 +153,11 @@ ngAfterViewInit() {
   // Detect changes to avoid NG0100 error
   this.cdr.detectChanges();
 }
+
+
+  toggleView() {
+    this.isExpanded = !this.isExpanded;
+  }
 isDisabled(date: NgbDateStruct, type: 'checkIn' | 'checkOut') {
   const today = this.calendar.getToday();
   if (type === 'checkIn') {

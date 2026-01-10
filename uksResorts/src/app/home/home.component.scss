@@ -64,7 +64,7 @@ html, body {
       top: 65px;
 }
 .hero {
-    height: 105vh !important;
+    height: 100vh !important;
 }
 }
 .book-nav{
@@ -2426,4 +2426,37 @@ width: 100%;
   background-color: #e2e8f0;
   padding: 5px 12px;
   border-radius: 30px;
+}
+.collapsible-text {
+  overflow: hidden;
+  max-height: none; /* Default for desktop */
+  transition: max-height 0.5s ease;
+}
+
+@media (max-width: 768px) {
+  .collapsible-text {
+    max-height: 200px; /* initial collapsed height */
+  }
+
+  .collapsible-text.expanded {
+    max-height: 2000px; /* large enough to show all content */
+  }
+
+  .view-toggle-btn {
+    display: inline-block;
+    float: right;
+    margin-top: 10px;
+    background-color: #001A60;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 769px) {
+  .view-toggle-btn {
+    display: none; /* hide button on desktop */
+  }
 }
