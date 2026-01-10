@@ -1579,7 +1579,7 @@ font-size: 13px;
 
 
 .guest-btn:hover:not(:disabled) {
-  border-color: #3b9fa6;
+  border-color: #0D0630;
   background: #f0feff;
   transform: scale(1.05);
 }
@@ -1602,7 +1602,7 @@ font-size: 13px;
 
 
 .guest-btn:hover:not(:disabled) svg {
-  color: #3b9fa6;
+  color: #0D0630;
 }
 
 
@@ -1631,7 +1631,7 @@ font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.5px;
   color: #ffffff;
-  background: linear-gradient(135deg, #2d7a80 0%, #3b9fa6 100%);
+  background: linear-gradient(135deg, #0D0630 0%, #0D0630 100%);
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -1641,7 +1641,7 @@ font-size: 13px;
 
 
 .guest-done-btn:hover {
-  background: linear-gradient(135deg, #236469 0%, #2d8389 100%);
+  background: linear-gradient(135deg, #0D0630 0%, #0D0630 100%);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(45, 122, 128, 0.3);
 }
@@ -1671,7 +1671,7 @@ width: 100%;
     font-weight: 600;
     letter-spacing: 1px;
     color: #fff;
-    background: #da9620;
+    background: #0D0630;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -1713,7 +1713,7 @@ width: 100%;
 
 
 .check-availability-btn:hover {
-  background: linear-gradient(135deg, #236469 0%, #2d8389 100%);
+  background: linear-gradient(135deg, #0D0630 0%, #0D0630 100%);
   box-shadow: 0 6px 25px rgba(45, 122, 128, 0.4);
   transform: translateY(-2px);
 }
@@ -1741,13 +1741,13 @@ width: 100%;
 
 .custom-day:hover:not(.disabled) {
   background-color: #e6f7f9;
-  color: #2d7a80;
+  color: #0D0630;
   transform: scale(1.05);
 }
 
 
 .custom-day.focused {
-  background-color: #3b9fa6;
+  background-color: #0D0630;
   color: white;
   font-weight: 600;
 }
@@ -1755,7 +1755,7 @@ width: 100%;
 
 .custom-day.range {
   background-color: #b8e6ea;
-  color: #1a5157;
+  color: #0D0630;
 }
 
 
@@ -1774,7 +1774,7 @@ width: 100%;
 
 /* Datepicker Popup Override */
 ::ng-deep .ngb-dp-header {
-  background: linear-gradient(135deg, #2d7a80 0%, #3b9fa6 100%);
+   background: linear-gradient(135deg, #0D0630 0%, #0D0630 100%);
   color: white;
   padding: 1rem;
   border-radius: 8px 8px 0 0;
@@ -1964,7 +1964,7 @@ width: 100%;
 
 
 ::ng-deep .ngb-dp-header {
-  background-color: #3b9fa6 !important;
+  background-color: #0D0630 !important;
   color: white !important;
   border-radius: 6px 6px 0 0 !important;
 }
