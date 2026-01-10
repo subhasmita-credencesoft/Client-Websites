@@ -135,8 +135,8 @@ html, body {
 
 
 .hero-text h1 {
-  font-size: 48px;
-  font-weight: 400;
+  font-size: 50px;
+  font-weight: 600;
   font-family: "GFS Didot", serif;
 
 }
@@ -2064,3 +2064,37 @@ width: 100%;
   }
 }
 
+.hero-text h1 {
+  background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 50%, #ffffff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease infinite, textReveal 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) rotateX(-90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+/* Character-by-character animation */
+.hero-text h1::first-line {
+  animation: textReveal 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}

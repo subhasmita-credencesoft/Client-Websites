@@ -40,59 +40,9 @@
 
     <div class="hero-text">
       <h1>
-         <span class="line-unique-heading"></span>Your Comfort is Our Masterpiece. </h1>
+        Your Comfort is Our Masterpiece. </h1>
       <h1>Explore Our World-Class Rooms.</h1>
     </div>
-<div class="booking-box container">
-  <form class="row g-3" (ngSubmit)="submitBooking()">
-
-    <!-- Check-In -->
-    <div class="col-md-3">
-      <label for="checkIn" class="form-label">Check-In</label>
-      <input
-        type="date"
-        class="form-control"
-        id="checkIn"
-        name="checkIn"
-        [(ngModel)]="booking.checkIn">
-    </div>
-
-    <!-- Check-Out -->
-    <div class="col-md-3">
-      <label for="checkOut" class="form-label">Check-Out</label>
-      <input
-        type="date"
-        class="form-control"
-        id="checkOut"
-        name="checkOut"
-        [(ngModel)]="booking.checkOut">
-    </div>
-
-    <!-- Guests -->
-    <div class="col-md-3">
-      <label for="guests" class="form-label">Guests</label>
-      <select
-        class="form-select"
-        id="guests"
-        name="guests"
-        [(ngModel)]="booking.guests">
-        <option value="1">1 Guest</option>
-        <option value="2">2 Guests</option>
-        <option value="3">3 Guests</option>
-      </select>
-    </div>
-
-    <!-- Submit Button -->
-    <div class="col-md-3 d-flex align-items-end">
-      <button type="submit" class="btn btn-primary w-100" >Book Now →</button>
-    </div>
-
-  </form>
-</div>
-
-
-
-
 
 
   </div>
