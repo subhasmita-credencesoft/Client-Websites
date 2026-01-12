@@ -1,36 +1,39 @@
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-      <span style="color: #176FC1;"><img src="assets/home-imgs/Symbol.png"> Mahad Phata, Old Mumbai–Pune Hwy, Khopoli, Raigad</span>
-      <span style="color: #176FC1;"><img src="assets/home-imgs/Symbol (1).png"> +91 74004 51254 | <img src="assets/home-imgs/Symbol (2).png"> infouksresort.com</span>
+    <span style="color: #176FC1;"><img src="assets/home-imgs/Symbol.png"> Mahad Phata, Old Mumbai–Pune Hwy, Khopoli,
+      Raigad</span>
+    <span style="color: #176FC1;"><img src="assets/home-imgs/Symbol (1).png"> +91 74004 51254 | <img
+        src="assets/home-imgs/Symbol (2).png"> infouksresort.com</span>
   </div>
 </div>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg main-navbar" id="mainHeader">
   <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="assets/home-imgs/logo 1.png" alt="Logo">
-      </a>
+    <a class="navbar-brand" href="#">
+      <img src="assets/home-imgs/logo 1.png" alt="Logo">
+    </a>
 
-      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="nav">
-        <ul class="navbar-nav ms-auto align-items-center gap-4">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about-us">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="/rooms">Rooms</a></li>
-          <!-- <li class="nav-item"><a class="nav-link" href="#">Dining</a></li> -->
-          <!-- <li class="nav-item"><a class="nav-link" href="#">Facilities</a></li> -->
-          <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
-        </ul>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-center gap-4">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about-us">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/rooms">Rooms</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" href="#">Dining</a></li> -->
+        <!-- <li class="nav-item"><a class="nav-link" href="#">Facilities</a></li> -->
+        <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
+      </ul>
 
-        <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="btn btn-light book-btn book-nav" >BOOK NOW</a>
-      </div>
+      <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="btn btn-light book-btn book-nav">BOOK
+        NOW</a>
+    </div>
   </div>
 </nav>
 
@@ -44,316 +47,185 @@
 
     </div>
 
-   <div class="booking-box">
-  <div class="form-row">
-          <!-- Check-in -->
-          <!-- Check-in -->
-          <!-- CHECK IN - Updated -->
-          <!-- CHECK IN - Positioned relative to input -->
-<div class="form-group">
-  <label class="form-label">CHECK IN</label>
-  <div class="date-input-wrapper">
-    <span class="calendar-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-        <line x1="16" y1="2" x2="16" y2="6"></line>
-        <line x1="8" y1="2" x2="8" y2="6"></line>
-        <line x1="3" y1="10" x2="21" y2="10"></line>
-      </svg>
-    </span>
-    <input
-      #dpFromDate
-      type="text"
-      class="date-input"
-      placeholder="Pick a date"
-      ngbDatepicker
-      #datepicker1="ngbDatepicker"
-      [value]="formattedFromDate"
-      (click)="datepicker1.toggle()"
-      [(ngModel)]="fromDate"
-      (ngModelChange)="onDateSelection($event, 'checkIn')"
-      [minDate]="todayDate"
-      [dayTemplate]="dayTemplate1"
-      [autoClose]="true"
-      placement="bottom-start"
-      readonly
-    />
+    <div class="booking-box">
+      <div class="form-row">
+        <!-- Check-in -->
+        <!-- Check-in -->
+        <!-- CHECK IN - Updated -->
+        <!-- CHECK IN - Positioned relative to input -->
+        <div class="form-group">
+          <label class="form-label">CHECK IN</label>
+          <div class="date-input-wrapper">
+            <span class="calendar-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </span>
+            <input #dpFromDate type="text" class="date-input" placeholder="Pick a date" ngbDatepicker
+              #datepicker1="ngbDatepicker" [value]="formattedFromDate" (click)="datepicker1.toggle()"
+              [(ngModel)]="fromDate" (ngModelChange)="onDateSelection($event, 'checkIn')" [minDate]="todayDate"
+              [dayTemplate]="dayTemplate1" [autoClose]="true" placement="bottom-start" readonly />
 
 
-    <ng-template #dayTemplate1 let-date let-focused="focused">
-      <span
-        class="custom-day"
-        [class.focused]="focused"
-        [class.range]="isRange(date)"
-        [class.disabled]="date.before(todayDate)"
-        (mouseenter)="hoveredDate = date"
-        (mouseleave)="hoveredDate = null"
-      >
-        {{ date.day }}
-      </span>
-    </ng-template>
-  </div>
-  <div *ngIf="showErrors.fromDate" class="error-message">
-    Check-in date is required.*
-  </div>
-</div>
-
-
-<!-- CHECK OUT - Positioned relative to input -->
-<div class="form-group">
-  <label class="form-label">CHECK OUT</label>
-  <div class="date-input-wrapper">
-    <span class="calendar-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-        <line x1="16" y1="2" x2="16" y2="6"></line>
-        <line x1="8" y1="2" x2="8" y2="6"></line>
-        <line x1="3" y1="10" x2="21" y2="10"></line>
-      </svg>
-    </span>
-    <input
-      #dpToDate
-      type="text"
-      class="date-input"
-      placeholder="Pick a date"
-      ngbDatepicker
-      #datepicker2="ngbDatepicker"
-      [value]="formattedToDate"
-      (click)="datepicker2.toggle()"
-      [(ngModel)]="toDate"
-      (ngModelChange)="onDateSelection($event, 'checkOut')"
-      [minDate]="fromDate || todayDate"
-      [dayTemplate]="dayTemplate2"
-      [autoClose]="true"
-      placement="bottom-start"
-      readonly
-    />
-
-
-    <ng-template #dayTemplate2 let-date let-focused="focused">
-      <span
-        class="custom-day"
-        [class.focused]="focused"
-        [class.range]="isRange(date)"
-        [class.disabled]="date.before(fromDate || todayDate)"
-        (mouseenter)="hoveredDate = date"
-        (mouseleave)="hoveredDate = null"
-      >
-        {{ date.day }}
-      </span>
-    </ng-template>
-  </div>
-  <div *ngIf="showErrors.toDate" class="error-message">
-    Check-out date is required.*
-  </div>
-</div>
-
-
-          <!-- Guests Dropdown -->
-          <div class="form-group">
-            <label class="form-label">GUESTS</label>
-            <div class="guest-selector-wrapper">
-              <div
-                class="guest-display"
-                (click)="toggleGuestSelector()"
-                [class.active]="isGuestSelectorOpen"
-              >
-                <span class="guest-icon">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                </span>
-                <span class="guest-text">{{ getGuestSummary() }}</span>
-                <span class="guest-arrow" [class.open]="isGuestSelectorOpen">
-                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                    <path
-                      d="M1 1L6 6L11 1"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                </span>
-              </div>
-
-
-              <!-- Guest Selector Dropdown -->
-              <div class="guest-dropdown" *ngIf="isGuestSelectorOpen">
-                <!-- Adults -->
-                <div class="guest-row">
-                  <div class="guest-info">
-                    <span class="guest-label">Adults</span>
-                  </div>
-                  <div class="guest-controls">
-                    <button
-                      type="button"
-                      class="guest-btn"
-                      (click)="decrementAdults()"
-                      [disabled]="adults <= 1"
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                    </button>
-                    <span class="guest-count">{{ adults }}</span>
-                    <button
-                      type="button"
-                      class="guest-btn"
-                      (click)="incrementAdults()"
-                      [disabled]="adults >= 30"
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-
-                <!-- Children -->
-                <div class="guest-row">
-                  <div class="guest-info">
-                    <span class="guest-label">Children</span>
-                  </div>
-                  <div class="guest-controls">
-                    <button
-                      type="button"
-                      class="guest-btn"
-                      (click)="decrementChildren()"
-                      [disabled]="children <= 0"
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                    </button>
-                    <span class="guest-count">{{ children }}</span>
-                    <button
-                      type="button"
-                      class="guest-btn"
-                      (click)="incrementChildren()"
-                      [disabled]="children >= 30"
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-
-                <!-- Rooms -->
-                <div class="guest-row">
-                  <div class="guest-info">
-                    <span class="guest-label">Rooms</span>
-                    <span class="guest-sublabel">Number of rooms</span>
-                  </div>
-                  <div class="guest-controls">
-                    <button
-                      type="button"
-                      class="guest-btn"
-                      (click)="decrementRooms()"
-                      [disabled]="rooms <= 1"
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                    </button>
-                    <span class="guest-count">{{ rooms }}</span>
-                    <button
-                      type="button"
-                      class="guest-btn"
-                      (click)="incrementRooms()"
-                      [disabled]="rooms >= 30"
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-
-                <!-- Done Button -->
-                <div class="guest-dropdown-footer">
-                  <button
-                    type="button"
-                    class="guest-done-btn"
-                    (click)="closeGuestSelector()"
-                  >
-                    Done
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div *ngIf="showErrors.adults" class="error-message">
-              Number of guests is required.*
-            </div>
+            <ng-template #dayTemplate1 let-date let-focused="focused">
+              <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                [class.disabled]="date.before(todayDate)" (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null">
+                {{ date.day }}
+              </span>
+            </ng-template>
           </div>
-          <div>
-            <button
-              class="check-availability-btn"
-              (click)="navigateToBooking()"
-            >
-              Book Now
-            </button>
+          <div *ngIf="showErrors.fromDate" class="error-message">
+            Check-in date is required.*
           </div>
         </div>
 
 
-</div>
+        <!-- CHECK OUT - Positioned relative to input -->
+        <div class="form-group">
+          <label class="form-label">CHECK OUT</label>
+          <div class="date-input-wrapper">
+            <span class="calendar-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </span>
+            <input #dpToDate type="text" class="date-input" placeholder="Pick a date" ngbDatepicker
+              #datepicker2="ngbDatepicker" [value]="formattedToDate" (click)="datepicker2.toggle()" [(ngModel)]="toDate"
+              (ngModelChange)="onDateSelection($event, 'checkOut')" [minDate]="fromDate || todayDate"
+              [dayTemplate]="dayTemplate2" [autoClose]="true" placement="bottom-start" readonly />
+
+
+            <ng-template #dayTemplate2 let-date let-focused="focused">
+              <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                [class.disabled]="date.before(fromDate || todayDate)" (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null">
+                {{ date.day }}
+              </span>
+            </ng-template>
+          </div>
+          <div *ngIf="showErrors.toDate" class="error-message">
+            Check-out date is required.*
+          </div>
+        </div>
+
+
+        <!-- Guests Dropdown -->
+        <div class="form-group">
+          <label class="form-label">GUESTS</label>
+          <div class="guest-selector-wrapper">
+            <div class="guest-display" (click)="toggleGuestSelector()" [class.active]="isGuestSelectorOpen">
+              <span class="guest-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </span>
+              <span class="guest-text">{{ getGuestSummary() }}</span>
+              <span class="guest-arrow" [class.open]="isGuestSelectorOpen">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                  <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </span>
+            </div>
+
+
+            <!-- Guest Selector Dropdown -->
+            <div class="guest-dropdown" *ngIf="isGuestSelectorOpen">
+              <!-- Adults -->
+              <div class="guest-row">
+                <div class="guest-info">
+                  <span class="guest-label">Adults</span>
+                </div>
+                <div class="guest-controls">
+                  <button type="button" class="guest-btn" (click)="decrementAdults()" [disabled]="adults <= 1">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                  <span class="guest-count">{{ adults }}</span>
+                  <button type="button" class="guest-btn" (click)="incrementAdults()" [disabled]="adults >= 30">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+
+              <!-- Children -->
+              <div class="guest-row">
+                <div class="guest-info">
+                  <span class="guest-label">Children</span>
+                </div>
+                <div class="guest-controls">
+                  <button type="button" class="guest-btn" (click)="decrementChildren()" [disabled]="children <= 0">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                  <span class="guest-count">{{ children }}</span>
+                  <button type="button" class="guest-btn" (click)="incrementChildren()" [disabled]="children >= 30">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+
+              <!-- Rooms -->
+              <div class="guest-row">
+                <div class="guest-info">
+                  <span class="guest-label">Rooms</span>
+                  <span class="guest-sublabel">Number of rooms</span>
+                </div>
+                <div class="guest-controls">
+                  <button type="button" class="guest-btn" (click)="decrementRooms()" [disabled]="rooms <= 1">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                  <span class="guest-count">{{ rooms }}</span>
+                  <button type="button" class="guest-btn" (click)="incrementRooms()" [disabled]="rooms >= 30">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+
+              <!-- Done Button -->
+              <div class="guest-dropdown-footer">
+                <button type="button" class="guest-done-btn" (click)="closeGuestSelector()">
+                  Done
+                </button>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="showErrors.adults" class="error-message">
+            Number of guests is required.*
+          </div>
+        </div>
+        <div>
+          <button class="check-availability-btn" (click)="navigateToBooking()">
+            Book Now
+          </button>
+        </div>
+      </div>
+
+
+    </div>
 
 
   </div>
@@ -365,48 +237,49 @@
     <!-- LEFT CONTENT -->
     <div class="nature-content">
       <span class="nature-subtitle">About Uk's Resort</span>
-     <p class="nature-text">The Name That Redefines Hospitality Par-Excellence In The Lush Green Landscape At Khopoli.</p>
- <div class="collapsible-text" [class.expanded]="isExpanded">
-    <p  class="nature-text">
-      Just a few miles from the outskirts of the hustle-n-bustle of Mumbai's
-      concrete jungle... a complete “at-home” experience that would provide
-      you your heart's desires... a “Break” you have always longed for...
-    </p>
-
-    <p  class="nature-text">
-      A Signature business hotel, showcasing impeccable hospitality amidst
-      scenic beauty and rich history that blends harmoniously with today's
-      lifestyles.
-    </p>
-
-    <p  class="nature-text">
-      Specially manicured landscaped gardens scaling over 85,000 sq.ft.
-      overlooking mountains & greenery as far as your eye can see. An ambience
-      providing you with a perfect setting for your Business & Leisure events.
-    </p>
-
-    <div class="vision-mission">
-      <div class="vm-box">
-        <h3 style="font-family: 'GFS Didot', serif;">Vision</h3>
-        <p>
-          To serve all our guests with a personal touch, making them feel
-          on top of the world.
+      <p class="nature-text">The Name That Redefines Hospitality Par-Excellence In The Lush Green Landscape At Khopoli.
+      </p>
+      <div class="collapsible-text" [class.expanded]="isExpanded">
+        <p class="nature-text">
+          Just a few miles from the outskirts of the hustle-n-bustle of Mumbai's
+          concrete jungle... a complete “at-home” experience that would provide
+          you your heart's desires... a “Break” you have always longed for...
         </p>
-      </div>
 
-      <div class="vm-box">
-        <h3 style="font-family: 'GFS Didot', serif;">Mission</h3>
-        <p>
-          Be the first choice of our guests.
+        <p class="nature-text">
+          A Signature business hotel, showcasing impeccable hospitality amidst
+          scenic beauty and rich history that blends harmoniously with today's
+          lifestyles.
         </p>
-      </div>
-    </div>
 
-      <a href="/about-us" class="learn-more-btn" >Know More</a>
+        <p class="nature-text">
+          Specially manicured landscaped gardens scaling over 85,000 sq.ft.
+          overlooking mountains & greenery as far as your eye can see. An ambience
+          providing you with a perfect setting for your Business & Leisure events.
+        </p>
+
+        <div class="vision-mission">
+          <div class="vm-box">
+            <h3 style="font-family: 'GFS Didot', serif;">Vision</h3>
+            <p>
+              To serve all our guests with a personal touch, making them feel
+              on top of the world.
+            </p>
+          </div>
+
+          <div class="vm-box">
+            <h3 style="font-family: 'GFS Didot', serif;">Mission</h3>
+            <p>
+              Be the first choice of our guests.
+            </p>
+          </div>
+        </div>
+
+        <a href="/about-us" class="learn-more-btn">Know More</a>
       </div>
       <button class="view-toggle-btn" (click)="toggleView()">
-    {{ isExpanded ? 'View Less' : 'View More' }}
-  </button>
+        {{ isExpanded ? 'View Less' : 'View More' }}
+      </button>
     </div>
 
     <!-- RIGHT IMAGES -->
@@ -574,7 +447,8 @@
 <section class="accommodations">
   <div class="section-header">
     <h2 class="section-header-subheading">Stay Dream At</h2>
-    <p class="section-header-paragraph">Choose from our carefully curated selection of rooms and suites, each designed to provide the ultimate comfort and relaxation.</p>
+    <p class="section-header-paragraph">Choose from our carefully curated selection of rooms and suites, each designed
+      to provide the ultimate comfort and relaxation.</p>
   </div>
 
   <div class="room-grid">
@@ -614,84 +488,86 @@
       </div>
     </div> -->
 
-  <div class="room-card">
-    <div class="image-container">
-      <div id="carouselCard1" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselCard1" data-bs-slide-to="0" class="active"></button>
-          <button type="button" data-bs-target="#carouselCard1" data-bs-slide-to="1"></button>
-          <button type="button" data-bs-target="#carouselCard1" data-bs-slide-to="2"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="assets/home-imgs/room1.jpg" class="d-block w-100" alt="Room 1 Image 1">
+    <div class="room-card">
+      <div class="image-container">
+        <div id="carouselCard1" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselCard1" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselCard1" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselCard1" data-bs-slide-to="2"></button>
           </div>
-          <div class="carousel-item">
-            <img src="assets/home-imgs/room1.jpg" class="d-block w-100" alt="Room 1 Image 2">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="assets/home-imgs/room1.jpg" class="d-block w-100" alt="Room 1 Image 1">
+            </div>
+            <div class="carousel-item">
+              <img src="assets/home-imgs/room1.jpg" class="d-block w-100" alt="Room 1 Image 2">
+            </div>
           </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard1" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselCard1" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard1" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselCard1" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
+        <span class="price-tag">₹3,950/night</span>
       </div>
-      <span class="price-tag">₹3,950/night</span>
+
+      <div class="card-content">
+        <h3>Deluxe Room</h3>
+        <p>Spacious rooms with private balconies overlooking lush gardens.</p>
+        <div class="tags">
+          <span>Room Service</span>
+          <span>Laundry</span>
+          <span>Toiletries</span>
+          <span>AC</span>
+        </div>
+        <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="card-book-btn1"
+          style="text-decoration: none;">BOOK NOW</a>
+      </div>
     </div>
 
-    <div class="card-content">
-      <h3>Deluxe Room</h3>
-      <p>Spacious rooms with private balconies overlooking lush gardens.</p>
-      <div class="tags">
-        <span>Room Service</span>
-      <span>Laundry</span>
-      <span>Toiletries</span>
-      <span>AC</span>
-      </div>
-           <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="card-book-btn1" style="text-decoration: none;">BOOK NOW</a>
-    </div>
-  </div>
-
-<div class="room-card">
-  <div class="image-container">
-    <div id="carouselCard2" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselCard2" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#carouselCard2" data-bs-slide-to="1"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="assets/home-imgs/deluxe1.jpg" class="d-block w-100" alt="...">
+    <div class="room-card">
+      <div class="image-container">
+        <div id="carouselCard2" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselCard2" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselCard2" data-bs-slide-to="1"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="assets/home-imgs/deluxe1.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="assets/home-imgs/deluxe4.jpg" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard2" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselCard2" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
         </div>
-        <div class="carousel-item">
-          <img src="assets/home-imgs/deluxe4.jpg" class="d-block w-100" alt="...">
-        </div>
+        <span class="price-tag">₹4,950/night</span>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard2" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselCard2" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      </button>
-    </div>
-    <span class="price-tag">₹4,950/night</span>
-  </div>
 
-  <div class="card-content">
-    <h3>Super Deluxe AC</h3>
-    <p>Spacious rooms with private balconies overlooking lush gardens.</p>
-    <div class="tags">
-      <span>Room Service</span>
-      <span>Laundry</span>
-      <span>Toiletries</span>
-      <span>AC</span>
+      <div class="card-content">
+        <h3>Super Deluxe AC</h3>
+        <p>Spacious rooms with private balconies overlooking lush gardens.</p>
+        <div class="tags">
+          <span>Room Service</span>
+          <span>Laundry</span>
+          <span>Toiletries</span>
+          <span>AC</span>
+        </div>
+        <!-- <button class="card-book-btn">BOOK NOW</button> -->
+        <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="card-book-btn1"
+          style="text-decoration: none;">BOOK NOW</a>
+      </div>
     </div>
-    <!-- <button class="card-book-btn">BOOK NOW</button> -->
-     <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="card-book-btn1" style="text-decoration: none;">BOOK NOW</a>
   </div>
-</div>
-    </div>
 </section>
 
 
@@ -740,20 +616,21 @@
 </section> -->
 
 <!--Sixth Section -->
-<h2 style="text-align:center;font-family: 'GFS Didot', serif;font-weight:400;font-size:34px">Experiences That Elevate Your Getaway</h2>
+<h2 style="text-align:center;font-family: 'GFS Didot', serif;font-weight:400;font-size:34px">Experiences That Elevate
+  Your Getaway</h2>
 <section class="container experience-cards">
- 
+
   <!-- Card 1 (default expanded) -->
-<div class="card active exp-card-css">
+  <div class="card active exp-card-css">
     <img src="assets/home-imgs/slider1.jpg">
 
     <span class="vertical-text">Water Park</span>
 
     <div class="content">
-        <h3 class="event-sub-type-home event-sub-type-home">Splash Into Unlimited Fun</h3>
-        <h2 class="event-type-home">Water Park</h2>
+      <h3 class="event-sub-type-home event-sub-type-home">Splash Into Unlimited Fun</h3>
+      <h2 class="event-type-home">Water Park</h2>
     </div>
-</div>
+  </div>
 
 
 
@@ -829,7 +706,7 @@
         <h3>ADLABS Imagica</h3>
         <p>Adlabs Imagica is a theme park near the city of Khopoli on Mumbai-Pune expressway.
 
-</p>
+        </p>
         <span class="nearby-place-distance">8 km away</span>
       </div>
     </div>
@@ -840,7 +717,8 @@
       </div>
       <div class="nearby-place-content">
         <h3>Ashtavinayak Mahad Temple</h3>
-        <p>Ashtavinayak Mahad Temple. One of the Eight (Ashta) Ganapati (Vinayak) Temples of Maharashtra. The name of this Vinayak (Ganesha) is Varad Vinayak meaning the one who blesses all the wishes. </p>
+        <p>Ashtavinayak Mahad Temple. One of the Eight (Ashta) Ganapati (Vinayak) Temples of Maharashtra. The name of
+          this Vinayak (Ganesha) is Varad Vinayak meaning the one who blesses all the wishes. </p>
         <span class="nearby-place-distance">1 km away</span>
       </div>
     </div>
@@ -851,7 +729,9 @@
       </div>
       <div class="nearby-place-content">
         <h3>Lonavala and Khandala Hill Station</h3>
-        <p>Lonavala or Lonavla and the adjacent Khandala are beautiful, charming and twin hill stations, 622 m. above sea level and 5 Kms apart from each other are situated in the Sahyadri ranges. They are located around 64 km away from the city of Pune and 96 km away from the city Mumbai, popular getaway from Mumbai and Pune.</p>
+        <p>Lonavala or Lonavla and the adjacent Khandala are beautiful, charming and twin hill stations, 622 m. above
+          sea level and 5 Kms apart from each other are situated in the Sahyadri ranges. They are located around 64 km
+          away from the city of Pune and 96 km away from the city Mumbai, popular getaway from Mumbai and Pune.</p>
         <span class="nearby-place-distance">64 km away</span>
       </div>
     </div>
@@ -889,22 +769,25 @@
         <div class="testimonial-card">
           <div class="p-4">
 
-           <div class="quote-stars">
-  <div class="quote-icon">❝</div>
-  <div class="stars mb-3">
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-regular fa-star"></i> <!-- empty star -->
-  </div>
-</div>
+            <div class="quote-stars">
+              <div class="quote-icon">❝</div>
+              <div class="stars mb-3">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i> <!-- empty star -->
+              </div>
+            </div>
 
 
             <p class="review-text">
-              The resort’s water park is beautifully located and well maintained. The place is very clean and enjoyable. The food was just okay, but the service was good. It would be nice if evening snacks were planned according to the weather for example, during rainy days, hot snacks would be better than cold sandwiches. The tea was excellent and very refreshing! 🤤
+              The resort’s water park is beautifully located and well maintained. The place is very clean and enjoyable.
+              The food was just okay, but the service was good. It would be nice if evening snacks were planned
+              according to the weather for example, during rainy days, hot snacks would be better than cold sandwiches.
+              The tea was excellent and very refreshing! 🤤
             </p>
-<!-- <span class="read-more">Read More</span> -->
+            <!-- <span class="read-more">Read More</span> -->
           </div>
 
           <!-- User -->
@@ -925,19 +808,22 @@
           <div class="p-4">
 
             <div class="quote-stars">
-  <div class="quote-icon">❝</div>
-  <div class="stars mb-3">
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-regular fa-star"></i> <!-- empty star -->
-  </div>
-</div>
+              <div class="quote-icon">❝</div>
+              <div class="stars mb-3">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i> <!-- empty star -->
+              </div>
+            </div>
 
             <p class="review-text">
-             This was my first visit to this hotel during my breakfast motorcycle ride, and honestly, I have never experienced such pathetic, unprofessional, and third-class service in my life.
-We placed our breakfast order, and then we kept chasing the waiter for more than 30 minutes with absolutely no response. When we finally approached the counter manager, his attitude was shockingly rude, arrogant, and completely unacceptable.
+              This was my first visit to this hotel during my breakfast motorcycle ride, and honestly, I have never
+              experienced such pathetic, unprofessional, and third-class service in my life.
+              We placed our breakfast order, and then we kept chasing the waiter for more than 30 minutes with
+              absolutely no response. When we finally approached the counter manager, his attitude was shockingly rude,
+              arrogant, and completely unacceptable.
             </p>
 
           </div>
@@ -957,24 +843,25 @@ We placed our breakfast order, and then we kept chasing the waiter for more than
         <div class="testimonial-card second-card-review">
           <div class="p-4">
 
-          <div class="quote-stars">
-  <div class="quote-icon">❝</div>
-  <div class="stars mb-3">
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-regular fa-star"></i> <!-- empty star -->
-  </div>
-</div>
+            <div class="quote-stars">
+              <div class="quote-icon">❝</div>
+              <div class="stars mb-3">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i> <!-- empty star -->
+              </div>
+            </div>
 
 
             <p class="review-text">
-              We stayed for three days two nights, it was a very hospitable experience. The Management and staff were very courteous and food was also great, Especially Pineapple Soji Sheera.
-Our kids also had great fun in pool (mini water park) and other activity area.
-Rooms5.0Service5.0Location5.0
-Hotel highlightsLuxury · Great view · Quiet · Child-friendly · Great value
-RoomsRooms are clean, big and specious.
+              We stayed for three days two nights, it was a very hospitable experience. The Management and staff were
+              very courteous and food was also great, Especially Pineapple Soji Sheera.
+              Our kids also had great fun in pool (mini water park) and other activity area.
+              Rooms5.0Service5.0Location5.0
+              Hotel highlightsLuxury · Great view · Quiet · Child-friendly · Great value
+              RoomsRooms are clean, big and specious.
             </p>
 
           </div>
@@ -996,7 +883,7 @@ RoomsRooms are clean, big and specious.
 
 
 <!--Seventh Section -->
-<section class="location-section py-5">
+<!-- <section class="location-section py-5">
   <div class="container">
 
     <h2 class="text-center mb-5 fw-bold loccation-heading ">
@@ -1005,45 +892,37 @@ RoomsRooms are clean, big and specious.
 
     <div class="row g-5 align-items-start">
 
-      <!-- LEFT SIDE FEATURES -->
       <div class="col-lg-8 align-items-center left-side-location" >
 
         <div class="row g-4">
 
-          <!-- Feature 1 -->
           <div class="col-md-6 d-flex">
             <div class="icon-box">
               <img src="assets/home-imgs/Vector.png" class="icon-img" />
             </div>
             <div class="ms-3 pt-1">
               <h5 class="fw-semibold mb-1 location-desc">Located on Mumbai-Pune Highway.</h5>
-              <!-- <p class="mb-0 small text-muted">Prime and convenient location.</p> -->
             </div>
           </div>
 
-          <!-- Feature 2 -->
           <div class="col-md-6 d-flex">
             <div class="icon-box">
               <img src="assets/home-imgs/clarity_two-way-arrows-line.png" class="icon-img" />
             </div>
             <div class="ms-3 pt-1">
               <h5 class="fw-semibold mb-1 location-desc">Quick Travel Time from prime locations.</h5>
-              <!-- <p class="mb-0 small text-muted"></p> -->
             </div>
           </div>
 
-          <!-- Feature 3 -->
           <div class="col-md-6 d-flex" style="margin-top: 50px;">
             <div class="icon-box">
               <img src="assets/home-imgs/material-symbols-light_mode-of-travel.png" class="icon-img" />
             </div>
             <div class="ms-3 pt-1">
               <h5 class="fw-semibold mb-1 location-desc">Easily accessible via cars, bus, or local transport.</h5>
-              <!-- <p class="mb-0 small text-muted"></p> -->
             </div>
           </div>
 
-          <!-- Feature 4 -->
           <div class="col-md-6 d-flex" style="margin-top: 50px;">
             <div class="icon-box">
               <img src="assets/home-imgs/material-symbols-light_parking-sign-outline-rounded.png" class="icon-img" />
@@ -1056,7 +935,6 @@ RoomsRooms are clean, big and specious.
         </div>
       </div>
 
-      <!-- RIGHT MAP -->
       <div class="col-lg-4">
         <div class="map-wrapper shadow-sm rounded-4 overflow-hidden">
 
@@ -1064,6 +942,57 @@ RoomsRooms are clean, big and specious.
         </div>
       </div>
 
+    </div>
+  </div>
+</section> -->
+
+<section class="location-section">
+  <div class="container">
+    <div class="content-wrapper">
+      <div class="text-content">
+        <span class="sub-heading">LOCATION</span>
+        <h2 class="main-title">A Hidden Retreat in the Heart of Maharashtra</h2>
+
+        <p class="description">
+          Located just 3 hours from Mumbai and 2 hours from Pune, UK's Resort
+          offers the perfect weekend escape. Surrounded by the Western Ghats,
+          our resort provides a picturesque setting for your perfect getaway.
+        </p>
+
+        <div class="contact-info">
+          <div class="info-item">
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-text">
+              <strong>Address</strong>
+              <p>Lonavala-Khandala Road, Maharashtra 410401</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>
+            <div class="info-text">
+              <strong>Phone</strong>
+              <p>+919876543210</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="icon-circle"><i class="fas fa-envelope"></i></div>
+            <div class="info-text">
+              <strong>Email</strong>
+              <p>info&#64;uksresort.com</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://www.google.com/maps/dir//30.383542,76.340551/@30.383542,76.340551,15z?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+          class="btn-directions">Get Directions</a>
+      </div>
+
+      <div class="map-container">
+        <iframe src="https://maps.google.com/maps?q=30.383542,76.340551&hl=en&z=15&output=embed" width="100%"
+          height="450" style="border:0; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
     </div>
   </div>
 </section>
