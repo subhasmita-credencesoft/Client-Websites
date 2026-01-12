@@ -1119,7 +1119,7 @@ font-family: "GFS Didot", serif;
 }
 
 .review-text {
-  font-size: 1rem;
+  font-size: 14px;
   color: #5A5A5A;
   font-family: 'Source Sans Pro', sans-serif;
   line-height: 27px;
@@ -2384,7 +2384,7 @@ width: 100%;
 .nearby-places-section {
   padding: 40px 20px;
   // background-color: #f8fafc;
-  
+
 }
 
 .nearby-places-title {
@@ -2451,7 +2451,7 @@ width: 100%;
 }
 
 .nearby-place-content p {
-  font-size: 12px;
+  font-size: 14px;
   color: #64748b;
   margin-bottom: 12px;
   line-height: 1.5;
@@ -2519,10 +2519,10 @@ width: 100%;
 
 .card-content {
   display: flex;
-  flex-direction: column; 
-  align-items: center;    
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
-  text-align: center;    
+  text-align: center;
 }
 
 .tags {
@@ -2530,7 +2530,7 @@ width: 100%;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .tags span {
@@ -2546,7 +2546,7 @@ width: 100%;
 
 .room-card {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   width: 100%;
   background: #fff;
   border-radius: 8px;
@@ -2583,7 +2583,7 @@ width: 100%;
 .card-content h3 {
   margin: 0 0 10px 0;
  font-family: "GFS Didot", serif;
- 
+
 }
 
 .card-content p {
@@ -2597,7 +2597,7 @@ width: 100%;
 
 .card-book-btn1 {
  padding: 8px 30px !important;
-  background: #0D0630;; 
+  background: #0D0630;;
   color: white;
   border: none;
   border-radius: 30px;
@@ -2701,13 +2701,13 @@ width: 100%;
 .icon-circle {
     width: 40px;
     height: 40px;
-    background-color: #e8ede9; 
+    background-color: #e8ede9;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 15px;
-    color: #0d0630; 
+    color: #0d0630;
     flex-shrink: 0;
 }
 
@@ -2724,7 +2724,7 @@ width: 100%;
 
 .btn-directions {
     display: inline-block;
-    background-color: #0d0630; 
+    background-color: #0d0630;
     color: white;
     padding: 12px 30px;
     border-radius: 5px;
@@ -2745,14 +2745,14 @@ width: 100%;
 
 .map-image {
     width: 100%;
-    border-radius: 30px; 
+    border-radius: 30px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
 .map-container iframe {
     display: block;
     width: 100%;
-    border-radius: 15px; 
+    border-radius: 15px;
 }
 
 @media (max-width: 768px) {
