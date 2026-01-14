@@ -11,6 +11,8 @@ import { BrowserModule } from '@angular/platform-browser';
   styleUrl: './rooms.component.scss'
 })
 export class RoomsComponent {
+  isExpanded: boolean = false;
+  expandedStates: boolean[] = [false, false];
  @HostListener('window:scroll', [])
   onWindowScroll() {
     const header = document.getElementById('mainHeader');
@@ -80,6 +82,10 @@ submitBooking() {
 }
 goToBooking() {
    window.location.href = 'https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true';
+}
+
+toggleExpand(index: number) {
+this.expandedStates[index] = !this.expandedStates[index];
 }
 }
 

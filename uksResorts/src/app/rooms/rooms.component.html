@@ -63,7 +63,7 @@
 </section>
 
   <!-- ROOM ITEM -->
-  <div class="room-card">
+  <!-- <div class="room-card">
 
     <div class="room-image">
       <img src="assets/home-imgs/Deluxe-Cottage-2.jpg.png" alt="">
@@ -169,114 +169,198 @@
       <button class="book-btn  room-btn" (click)="goToBooking()">Book Now →</button>
     </div>
 
+  </div> -->
+
+  <div class="room-card">
+  <div class="room-image">
+    <img src="assets/home-imgs/Deluxe-Cottage-2.jpg.png" alt="Deluxe Room">
+    <div class="price-badge">
+      <strong>Deluxe Room</strong>
+      <span>₹ 3,950 + GST</span>
+      <small>per night + taxes</small>
+    </div>
   </div>
 
-  <!-- ROOM ITEM -->
-  <div class="room-card" style="margin-bottom: 0px;">
-    <div class="room-image">
-      <img src="assets/home-imgs/Deluxe-Cottage-2.jpg.png" alt="">
-      <div class="price-badge">
-        <strong>Super Deluxe Room</strong>
-        <span>₹ 4,950 + GST</span>
-        <small>per night + taxes</small>
+  <div class="room-content" style="font-family: 'Source Sans Pro', sans-serif;">
+    <p class="room-desc">
+      Equipped with a cozy queen bed (or twin beds), functional workspace,
+      and soothing lighting, this room is perfect for couples, business travelers,
+      and small families seeking a peaceful retreat.
+    </p>
+
+    <div class="info-row">
+      <div class="info-icon">
+        <img src="assets/home-imgs/Vector (1).png" alt="">
+      </div>
+      <div class="info-text">
+        <strong>Check-in & Check-out:</strong>
+        <span>
+          Standard check-in is at 12:00 PM and check-out is at 11:00 AM;
+          please contact the front desk for any extensions.
+        </span>
       </div>
     </div>
 
-    <div class="room-content"  style="font-family: 'Source Sans Pro', sans-serif;">
-      <p class="room-desc">
-        Featuring superior furnishings, ample natural light,
-        and a comfortable seating area, this room ensures
-        a luxurious and memorable stay.
-      </p>
-<div class="info-row">
-  <div class="info-icon">
-    <img src="assets/home-imgs/Vector (1).png" alt="">
-  </div>
-
-  <div class="info-text">
-    <strong>Check-in & Check-out:</strong>
-    <span>
-      Standard check-in is at 12:00 PM and check-out is at 11:00 AM;
-      please contact the front desk for any extensions.
-    </span>
-  </div>
-</div>
     <div class="facilities">
+      <h4 class="facilities-title">
+        <span class="facilities-icon"><img src="assets/home-imgs/Vector5.png" alt=""></span> Facilities
+      </h4>
 
-  <h4 class="facilities-title">
-    <span class="facilities-icon"><img src="assets/home-imgs/Vector5.png" alt=""></span> Facilities
-  </h4>
+      <div class="facilities-list" [class.show-all]="expandedStates[0]">
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (2).png" alt="">
+          <span>Room Service</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (3).png" alt="">
+          <span>Laundry</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (4).png" alt="">
+          <span>Toiletries</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (5).png" alt="">
+          <span>Luggage Assistance</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (6).png" alt="">
+          <span>Newspaper</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (7).png" alt="">
+          <span>In-room Sofa</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/streamline_hotel-air-conditioner.svg" alt="">
+          <span>Air Conditioner</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/material-symbols_water-pump-outline-rounded.svg" alt="">
+          <span>Water Supply</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/temaki_water-bottle.svg" alt="">
+          <span>Bottled Water</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/mingcute_wifi-line.svg" alt="">
+          <span>WiFi Access</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/material-symbols-light_tv-outline-rounded.svg" alt="">
+          <span>Television</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/guidance_office.svg" alt="">
+          <span>Work Desk</span>
+        </div>
 
-   <div class="facilities-list">
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (2).png" alt="">
-      <span>Room Service</span>
+        <button class="view-more-btn" (click)="toggleExpand(0)">
+           {{ expandedStates[0] ? 'View Less ↑' : 'View More ↓' }}
+        </button>
+      </div>
     </div>
 
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (3).png" alt="">
-      <span>Laundry</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (4).png" alt="">
-      <span>Toiletries</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (5).png" alt="">
-      <span>Luggage Assistance</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (6).png" alt="">
-      <span>Newspaper</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (7).png" alt="">
-      <span>In-room Sofa</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/streamline_hotel-air-conditioner.svg" alt="">
-      <span>Air Conditioner</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/material-symbols_water-pump-outline-rounded.svg" alt="">
-      <span>Water Supply</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/temaki_water-bottle.svg" alt="">
-      <span>Bottled Water</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/mingcute_wifi-line.svg" alt="">
-      <span>WiFi Access</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/material-symbols-light_tv-outline-rounded.svg" alt="">
-      <span>Television</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/guidance_office.svg" alt="">
-      <span>Work Desk</span>
-    </div>
-
+    <button class="book-btn room-btn" (click)="goToBooking()">Book Now →</button>
   </div>
 </div>
 
 
-      <button class="book-btn room-btn" (click)="goToBooking()">Book Now →</button>
+  <div class="room-card" style="margin-bottom: 0px;">
+  <div class="room-image">
+    <img src="assets/home-imgs/Deluxe-Cottage-2.jpg.png" alt="Deluxe Room">
+    <div class="price-badge">
+      <strong>Super Deluxe Room</strong>
+      <span>₹ 4,950 + GST</span>
+      <small>per night + taxes</small>
     </div>
   </div>
 
+  <div class="room-content" style="font-family: 'Source Sans Pro', sans-serif;">
+    <p class="room-desc">
+      Equipped with a cozy queen bed (or twin beds), functional workspace,
+      and soothing lighting, this room is perfect for couples, business travelers,
+      and small families seeking a peaceful retreat.
+    </p>
+
+    <div class="info-row">
+      <div class="info-icon">
+        <img src="assets/home-imgs/Vector (1).png" alt="">
+      </div>
+      <div class="info-text">
+        <strong>Check-in & Check-out:</strong>
+        <span>
+          Standard check-in is at 12:00 PM and check-out is at 11:00 AM;
+          please contact the front desk for any extensions.
+        </span>
+      </div>
+    </div>
+
+    <div class="facilities">
+      <h4 class="facilities-title">
+        <span class="facilities-icon"><img src="assets/home-imgs/Vector5.png" alt=""></span> Facilities
+      </h4>
+
+      <div class="facilities-list" [class.show-all]="expandedStates[1]">
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (2).png" alt="">
+          <span>Room Service</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (3).png" alt="">
+          <span>Laundry</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (4).png" alt="">
+          <span>Toiletries</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (5).png" alt="">
+          <span>Luggage Assistance</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (6).png" alt="">
+          <span>Newspaper</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (7).png" alt="">
+          <span>In-room Sofa</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/streamline_hotel-air-conditioner.svg" alt="">
+          <span>Air Conditioner</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/material-symbols_water-pump-outline-rounded.svg" alt="">
+          <span>Water Supply</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/temaki_water-bottle.svg" alt="">
+          <span>Bottled Water</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/mingcute_wifi-line.svg" alt="">
+          <span>WiFi Access</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/material-symbols-light_tv-outline-rounded.svg" alt="">
+          <span>Television</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/guidance_office.svg" alt="">
+          <span>Work Desk</span>
+        </div>
+
+        <button class="view-more-btn" (click)="toggleExpand(1)">
+           {{ expandedStates[1] ? 'View Less ↑' : 'View More ↓' }}
+        </button>
+      </div>
+    </div>
+
+    <button class="book-btn room-btn" (click)="goToBooking()">Book Now →</button>
+  </div>
+</div>
 </section>
 </div>
 <section class="amenities-section">
