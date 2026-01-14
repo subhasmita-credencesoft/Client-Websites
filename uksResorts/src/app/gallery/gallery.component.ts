@@ -82,4 +82,14 @@ ngAfterViewInit() {
     const modal = new bootstrap.Modal(modalEl);
     modal.show();
   }
+
+  ngOnDestroy() {
+    // Force remove the 'modal-open' class and any leftover backdrops
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+      backdrop.remove();
+    }
+  }
 }

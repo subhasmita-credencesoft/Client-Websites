@@ -416,7 +416,7 @@ font-family: "GFS Didot", serif;
   }
 
   .navbar-toggler-icon {
-    filter: invert(1);
+    color: #000 !important;
   }
 }
 @media (max-width: 768px) {
@@ -453,6 +453,26 @@ font-family: "GFS Didot", serif;
     cursor: pointer !important;
     font-weight: bold !important;
     text-align: center !important;
+}
+
+.check-availability-btn{
+    width: 100% !important;
+    padding: 13px 32px !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+    color: #fff !important;
+    background: #0D0630 !important;
+    border: none !important;
+    border-radius: 30px !important;
+    cursor: pointer !important;
+    text-transform: capitalize !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(45, 122, 128, 0.3) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin-top: 30px!important;
+    font-family: "Source Sans Pro", sans-serif !important;
 }
 }
 
@@ -879,6 +899,7 @@ font-family: "GFS Didot", serif;
   overflow: hidden;
   transition: all 0.4s ease;
   cursor: pointer;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .card img {
@@ -955,8 +976,8 @@ font-family: "GFS Didot", serif;
   white-space: nowrap;
   opacity: 1;
   transition: opacity 0.3s ease;
+  font-family: 'Source Sans Pro', sans-serif;
 }
-
 
 /* MOBILE & TABLET RESPONSIVE */
 @media (max-width: 768px) {
@@ -975,6 +996,7 @@ font-family: "GFS Didot", serif;
     width: 100%;
     height: 300px;        /* shorter for mobile */
     border-radius: 18px;
+    font-family: 'Source Sans Pro', sans-serif;
   }
 
   /* Ensure images scale well */
@@ -1013,6 +1035,23 @@ font-family: "GFS Didot", serif;
   .exp-card-css .content h2 {
     font-size: 1.6rem;
   }
+
+  .row.g-4 {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .col-lg-4 {
+        flex: 0 0 85%;
+        max-width: 85%;
+    }
+
+    .testimonial-card.second-card-review {
+        margin: 0 10px;
+    }
 }
 
 
@@ -1055,7 +1094,9 @@ font-family: "GFS Didot", serif;
 
 @media(max-width: 768px) {
   .location-section h2 {
-    font-size: 1.8rem;
+    font-size: 18px !important;
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
   }
   .left-side-location{
       padding-top: 0px;
@@ -1100,17 +1141,13 @@ font-family: "GFS Didot", serif;
   font-family: "GFS Didot", serif;
 }
 
-.testimonial-card {
-  background: #ffffff;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-}
-
 .quote-icon {
   color: #0d6efd;
-  font-size: 32px;
   margin-bottom: 10px;
+  font-size: 40px;
+  line-height: 1;
+  font-family: 'Source Sans Pro', sans-serif;
+  opacity: 0.8;
 }
 
 .stars {
@@ -1120,7 +1157,7 @@ font-family: "GFS Didot", serif;
 
 .review-text {
   font-size: 14px;
-  color: #5A5A5A;
+  color: #555;
   font-family: 'Source Sans Pro', sans-serif;
   line-height: 27px;
 }
@@ -1128,8 +1165,10 @@ font-family: "GFS Didot", serif;
   background-color: rgba(255, 255, 255, 0.8);
 
 }
-.user-bar {
-  background: #eaf3ff;
+
+.col-lg-4 {
+    display: flex;
+    flex-direction: column;
 }
 
 .user-img {
@@ -1139,9 +1178,26 @@ font-family: "GFS Didot", serif;
   object-fit: cover;
 }
 
+.name-text {
+  font-size: 1rem;
+  color: #1a1a1a;
+}
+
+.time-text {
+  font-size: 0.8rem;
+}
+
+.view-button {
+  text-decoration: none !important;
+  font-weight: 700;
+  color: #007bff;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 @media (max-width: 768px) {
   .heading {
-    font-size: 2rem;
+    font-size: 25px !important;
+    text-align: center !important;
   }
   .testimonial-card {
     margin-bottom: 20px;
@@ -1364,6 +1420,7 @@ font-size: 13px;
     color: #fff;
     text-transform: uppercase;
     margin-bottom: 4px;
+   font-family: "Source Sans Pro", sans-serif;
 }
 
 
@@ -1398,12 +1455,14 @@ font-size: 13px;
   outline: none;
   transition: all 0.3s ease;
   cursor: pointer;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 
 .date-input:hover {
   border-color: #cbd5e0;
   background: #f7fafc;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 
@@ -1411,12 +1470,14 @@ font-size: 13px;
   border-color: #3b7f85;
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(59, 127, 133, 0.1);
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 
 .date-input::placeholder {
   color: #a0aec0;
   font-weight: 300;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 
@@ -1527,6 +1588,7 @@ font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 
@@ -1585,6 +1647,7 @@ font-size: 13px;
   font-size: 15px;
   font-weight: 600;
   color: #2d3748;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 
@@ -1593,6 +1656,7 @@ font-size: 13px;
   font-size: 13px;
   font-weight: 400;
   color: #718096;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 
@@ -1653,6 +1717,7 @@ font-size: 13px;
   color: #2d3748;
   min-width: 30px;
   text-align: center;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 
@@ -1677,6 +1742,7 @@ font-size: 13px;
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.3s ease;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 
@@ -1684,11 +1750,13 @@ font-size: 13px;
   background: linear-gradient(135deg, #0D0630 0%, #0D0630 100%);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(45, 122, 128, 0.3);
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 
 .guest-done-btn:active {
   transform: translateY(0);
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 
@@ -1721,6 +1789,7 @@ width: 100%;
     position: relative;
     overflow: hidden;
     margin-top: 30px;
+    font-family: "GFS Didot", serif;
 }
 /* Ngb Datepicker popup */
 .ngb-datepicker,
@@ -2154,16 +2223,18 @@ width: 100%;
   margin-top: 10px;
   padding: 12px 28px;
   border: 1px solid #111;
-  color: #111;
+  color: #1A1A1A;
   text-decoration: none;
   border-radius: 30px;
-  font-size: 14px;
+  font-size: 18px;
   transition: 0.3s;
+  font-family: "GFS Didot", serif;
 }
 
 .learn-more-btn:hover {
-  background: #111;
+  background: #1A1A1A;
   color: #fff;
+  font-family: "GFS Didot", serif;
 }
 
 /* RIGHT IMAGES CONTAINER */
@@ -2302,42 +2373,12 @@ width: 100%;
   }
 }
 
-.about-text-section {
-  background: #ffffff;
-  padding: 80px 20px;
-  font-family: "Poppins", sans-serif;
-}
-
-.about-text-container {
-  max-width: 1100px;
-  margin: auto;
-}
-
-.about-title {
-  font-size: 38px;
-  font-weight: 600;
-  color: #111;
-  line-height: 1.3;
-  margin-bottom: 30px;
-}
-
-.about-title span {
-  color: #2c7a4b;
-}
-
-.about-text-container p {
-  font-size: 16px;
-  color: #555;
-  line-height: 1.8;
-  margin-bottom: 20px;
-}
-
 /* Vision & Mission */
 .vision-mission {
   display: flex;
   gap: 30px;
   margin-top: 40px;
-      font-family: "Source Sans Pro", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 .nature-text{
   font-family: "Source Sans Pro", sans-serif;
@@ -2352,12 +2393,14 @@ width: 100%;
 .vm-box h3 {
   font-size: 22px;
   margin-bottom: 12px;
-  color: #111;
+  color: #1A1A1A;
+  font-family: "GFS Didot", serif;
 }
 
 .vm-box p {
   font-size: 15px;
   margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 /* RESPONSIVE */
@@ -2394,11 +2437,12 @@ width: 100%;
   font-family: "GFS Didot", serif;
   letter-spacing: 1px;
   margin-bottom: 10px;
+  color: #1A1A1A;
 }
 
 .nearby-places-subtitle {
   text-align: center;
-  color: #64748b;
+  color: #555;
   margin-bottom: 40px;
   font-size: 14px;
    font-family: 'Source Sans Pro', sans-serif;
@@ -2448,30 +2492,52 @@ width: 100%;
   font-size: 20px;
   margin-bottom: 8px;
   font-family: "GFS Didot", serif;
+  color: #1A1A1A;
 }
 
 .nearby-place-content p {
   font-size: 14px;
-  color: #64748b;
+  color: #555;
   margin-bottom: 12px;
   line-height: 1.5;
-   font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 
 }
 
+.guest-testimonials-text{
+  font-family: 'Source Sans Pro', sans-serif;
+}
 .nearby-place-distance {
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 600;
-  color: #0f172a;
-  background-color: #e2e8f0;
+  // display: inline-block;
+  // font-size: 13px;
+  // font-weight: 600;
+  // color: #1A1A1A;
+  // background-color: #e2e8f0;
+  // padding: 5px 12px;
+  // border-radius: 30px;
+  // font-family: "Source Sans Pro", sans-serif;
+
+
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #e2e8f0;
+  color: #1A1A1A;
   padding: 5px 12px;
   border-radius: 30px;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: "Source Sans Pro", sans-serif;
 }
 .collapsible-text {
   overflow: hidden;
   max-height: none; /* Default for desktop */
   transition: max-height 0.5s ease;
+}
+
+/* --- Base Styles (Mobile First) --- */
+.custom-nav-btn {
+    display: none;
 }
 
 @media (max-width: 768px) {
@@ -2538,6 +2604,7 @@ width: 100%;
   padding: 8px 30px !important;
   border-radius: 30px;
   font-size: 0.9rem;
+  color: #555;
 }
 
 .card-book-btn1:hover {
@@ -2581,15 +2648,15 @@ width: 100%;
 }
 
 .card-content h3 {
-  margin: 0 0 10px 0;
  font-family: "GFS Didot", serif;
-
+ color: #1A1A1A;
+ font-weight: 400;
 }
 
 .card-content p {
   font-size: 1.12rem;
   font-family: "Source Sans Pro", sans-serif;
-  color: #5A5A5A;
+  color: #555;
   line-height: 1.6;
   text-align: justify;
 }
@@ -2604,6 +2671,7 @@ width: 100%;
   cursor: pointer;
   font-weight: bold;
   text-align: center;
+  font-family: "GFS Didot", serif;
 }
 
 .card-book-btn1:hover {
@@ -2634,7 +2702,7 @@ width: 100%;
 .section-header-paragraph{
   font-size: 14px;
     font-family: "Source Sans Pro", sans-serif;
-    color: #5A5A5A;
+    color: #555;
     margin-bottom: 40px;
     line-height: 1.6;
     text-align: center;
@@ -2664,13 +2732,13 @@ width: 100%;
 }
 
 .sub-heading {
-    color: #0d0630;
-    font-size: 14px;
+    color: #1A1A1A;
+    font-size: 20px;
     letter-spacing: 2px;
     display: block;
     margin-bottom: 15px;
     font-weight: 400;
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: "GFS Didot", serif;
 }
 
 .main-title {
@@ -2686,7 +2754,7 @@ width: 100%;
 }
 
 .description {
-    color: #666;
+    color: #555;
     line-height: 1.6;
     margin-bottom: 30px;
     font-family: "Source Sans Pro", sans-serif;
@@ -2713,12 +2781,13 @@ width: 100%;
 
 .info-text strong {
     font-family: "GFS Didot", serif;
+    color: #1A1A1A;
 }
 
 .info-text p {
     margin: 2px 0 0 0;
     font-size: 14px;
-    color: #777;
+    color: #555;
     font-family: "Source Sans Pro", sans-serif;
 }
 
@@ -2727,15 +2796,46 @@ width: 100%;
     background-color: #0d0630;
     color: white;
     padding: 12px 30px;
-    border-radius: 5px;
+    border-radius: 30px;
     text-decoration: none;
     font-weight: bold;
     margin-top: 20px;
     transition: background 0.3s ease;
+    font-family: "GFS Didot", serif;
 }
 
 .btn-directions:hover {
     background-color: #1a144d;
+}
+
+.testimonial-card {
+  background-color: #d1e2f3;
+  border-radius: 20px;
+  overflow: hidden;
+  border: none;
+  height: 100%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.content-section {
+  min-height: 250px; 
+}
+.content-section {
+    flex: 1 1 auto;
+}
+
+.stars {
+  font-size: 1.2rem;
+  color: #ffc107; /* Gold stars */
+}
+
+
+.user-bar {
+  padding-top: 15px;
+  border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 .map-container {
@@ -2760,4 +2860,43 @@ width: 100%;
         flex-direction: column;
         text-align: left;
     }
+
+    .location-section {
+    padding: 0px !important;
+}
+   .experience-card-text{
+    text-align: center !important;
+    font-family: 'GFS Didot', serif !important;
+    font-weight: 400 !important;
+    font-size: 22px !important;
+    color: #1A1A1A !important;
+   }
+
+   .sub-heading{
+    color: #1A1A1A !important;
+    font-size: 14px !important;
+    letter-spacing: 2px !important;
+    display: block !important;
+    margin-bottom: 15px !important;
+    font-weight: 400 !important;
+     font-family: "GFS Didot", serif !important;
+    text-align: center !important;
+    margin-top: 15px !important;
+   }
+
+   .testimonial-card {
+    margin-bottom: 10px !important;
+  }
+  .quote-icon {
+    font-size: 1.5rem !important;
+  }
+
+  .custom-nav-btn{
+    display: block !important;
+  }
+
+  .guest-testimonials-text{
+  font-family: 'Source Sans Pro', sans-serif !important;
+  text-align: center !important;
+}
 }

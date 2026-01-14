@@ -2,3 +2,15 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+
+/* src/styles.scss */
+
+body:not(.modal-open) {
+  overflow: auto !important;
+  padding-right: 0 !important;
+}
+
+.modal-backdrop {
+  z-index: 1040 !important;
+}

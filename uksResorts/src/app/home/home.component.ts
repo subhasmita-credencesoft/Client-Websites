@@ -290,6 +290,35 @@ selectRoom(roomId: string) {
 
 
 
+// toggleReadMore(extraText: HTMLElement, event: MouseEvent) {
+//   const btn = event.target as HTMLButtonElement;
+  
+//   const isHidden = extraText.style.display === "none" || extraText.style.display === "";
 
+//   if (isHidden) {
+//     extraText.style.display = "inline";
+//     btn.textContent = "View less";
+//   } else {
+//     extraText.style.display = "none";
+//     btn.textContent = "View more";
+//   }
+// }
+
+toggleReadMore(extraText: HTMLElement, event: Event) {
+  event.preventDefault();
+
+  // Use currentTarget to ensure we get the button even if an icon inside was clicked
+  const btn = event.currentTarget as HTMLButtonElement;
+  
+  const isHidden = extraText.style.display === 'none' || extraText.style.display === '';
+
+  if (isHidden) {
+    extraText.style.display = 'inline'; 
+    btn.textContent = 'View less';
+  } else {
+    extraText.style.display = 'none';
+    btn.textContent = 'View more';
+  }
+}
 
 }

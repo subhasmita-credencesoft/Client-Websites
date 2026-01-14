@@ -66,6 +66,8 @@
   padding: 7px 20px;
   border-radius: 25px;
   font-weight: 600;
+  display: block;
+  margin-left: auto;
 }
 .booking-item select.form-select {
   -webkit-appearance: none !important;
@@ -252,6 +254,22 @@
   background: #0c0d2b;
 }
 
+.room-content {
+  flex: 1.5;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.room-desc, .info-row, .facilities {
+  margin-bottom: 20px;
+}
+
 @media (max-width: 991px) {
   .booking-box {
     width: 90%;
@@ -301,6 +319,7 @@ background-color: #78CDD71A;
   color: #5b6fb5;
   margin-bottom: 8px;
   text-transform: uppercase;
+  font-family: "GFS Didot", serif;
 }
 
 /* Title with lines */
@@ -353,6 +372,7 @@ background-color: #78CDD71A;
   font-weight: 600;
   color: #2b4acb;
   margin-bottom: 12px;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .facilities-icon {
@@ -375,9 +395,10 @@ background-color: #78CDD71A;
   padding: 8px 14px;
   border-radius: 30px;
   font-size: 13px;
-  color: #444;
+  color: #555;
 
   white-space: nowrap;
+  font-family: "Source Sans Pro", sans-serif;
 }
 .room-btn{
   float: right;
@@ -407,6 +428,7 @@ background-color: #78CDD71A;
 
 .info-text span {
   color: #555;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 /* MOBILE */
@@ -483,12 +505,14 @@ background-color: #78CDD71A;
   border-radius: 8px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   z-index: 2;
+  font-family: "GFS Didot", serif;
 }
 @media (max-width: 991px) {
   .price-badge[_ngcontent-ng-c552228732] {
     bottom: 36px;
     left: 16px;
     padding: 8px 12px;
+    font-family: "GFS Didot", serif;
   }
 }
 @media (max-width: 575px) {
@@ -498,6 +522,7 @@ background-color: #78CDD71A;
 
     box-shadow: none;
     border: 1px solid #eee;
+    font-family: "GFS Didot", serif;
   }
 }
 
@@ -515,6 +540,7 @@ background-color: #78CDD71A;
 .price-badge small {
   font-size: 11px;
   color: #777;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 /* CONTENT */
@@ -527,6 +553,7 @@ background-color: #78CDD71A;
   font-size: 14px;
   color: #555;
   line-height: 1.6;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .room-features {
@@ -566,6 +593,7 @@ background-color: #78CDD71A;
 
   .price-badge {
     left: 15px;
+    font-family: "GFS Didot", serif;
   }
 }
 

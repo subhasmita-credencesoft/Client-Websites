@@ -37,11 +37,21 @@
   }
 }
 @media (max-width: 420px) {
-.main-navbar{
-      top: 65px;
-}
+// .main-navbar{
+//       top: 65px;
+// }
 .hero {
     height: 105vh !important;
+}
+
+.main-navbar {
+  position: absolute !important;
+  top: 40px !important;
+  width: 100% !important;
+  z-index: 1500 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  top: 65px !important;
 }
 }
 .book-nav{
@@ -475,6 +485,7 @@
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 20px;
+  font-family:  "GFS Didot", serif
 }
 
 .inquiry-left p {
@@ -482,6 +493,7 @@
   max-width: 420px;
   line-height: 1.6;
   opacity: 0.95;
+  font-family:  'Source Sans Pro', sans-serif;
 }
 
 /* RIGHT FORM */
@@ -503,6 +515,7 @@
   font-size: 14px;
   outline: none;
   background: #ffffff;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 /* Two input row */
@@ -528,6 +541,7 @@
   letter-spacing: 1px;
   cursor: pointer;
   transition: background 0.3s ease;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .inquiry-right button:hover {
@@ -549,6 +563,23 @@
   .inquiry-left p {
     max-width: 100%;
   }
+
+  .inquiry-left h2 {
+  font-size: 42px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 20px !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+.inquiry-left p {
+  font-size: 14px !important;
+  max-width: 420px !important;
+  line-height: 1.6 !important;
+  opacity: 0.95 !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
+
 }
 
 @media (max-width: 576px) {
@@ -567,6 +598,36 @@
   .inquiry-right button {
     font-size: 12px;
   }
+  .inquiry-right button {
+  margin-top: 10px !important;
+  padding: 14px !important;
+  border-radius: 10px !important; 
+  border: none !important;
+  background: #0b1b5a !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  cursor: pointer !important;
+  transition: background 0.3s ease !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+.inquiry-left h2 {
+  font-size: 35px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 20px !important;
+  font-family:  "GFS Didot", serif !important;
+}
+
+.inquiry-left p {
+  font-size: 14px !important;
+  max-width: 420px !important;
+  line-height: 1.6 !important;
+  opacity: 0.95 !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
 }
 /* ===== Animation Base ===== */
 .animate {
@@ -585,14 +646,14 @@
   transform: translateX(-60px);
 }
 
-.fade-right {
-  transform: translateX(60px);
-}
+// .fade-right {
+//   transform: translateX(60px);
+// }
 
-.fade-left.visible,
-.fade-right.visible {
-  transform: translateX(0);
-}
+// .fade-left.visible,
+// .fade-right.visible {
+//   transform: translateX(0);
+// }
 
 /* Image hover effect */
 .venue-image img {
@@ -601,4 +662,21 @@
 
 .venue-image:hover img {
   transform: scale(1.05);
+}
+/* Target the form inside your specific class */
+.inquiry-right form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Creates two equal columns */
+  gap: 15px; /* Adds space between inputs */
+}
+
+/* Make the button span both columns so it stays full-width */
+.inquiry-right button {
+  grid-column: span 2;
+}
+
+/* If you want the 'form-row' div to not break the grid, 
+   set it to display: contents */
+.form-row {
+  display: contents;
 }
