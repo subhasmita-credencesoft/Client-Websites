@@ -170,7 +170,7 @@ html, body {
 /* BOOKING BOX */
 /* ------------------------ */
 .event-type-home{
-font-family: "Quivert", serif;
+font-family: "Poppins", serif;
 }
 .booking-box {
   width: 100%;
@@ -1789,7 +1789,7 @@ width: 100%;
     position: relative;
     overflow: hidden;
     margin-top: 30px;
-    font-family: "Quivert", serif;
+    font-family: "Poppins", serif;
 }
 /* Ngb Datepicker popup */
 .ngb-datepicker,
@@ -2194,8 +2194,7 @@ width: 100%;
 }
 
 .nature-subtitle {
-
-    font-size: 34px;
+    font-size: 35px;
     font-weight: 400;
     font-family: "Quivert", serif;
     margin-bottom: 20px;
@@ -2212,7 +2211,7 @@ width: 100%;
 }
 
 .nature-content p {
-  font-size: 15px;
+  font-size: 18px;
   color: #555;
   line-height: 1.7;
   margin-bottom: 18px;
@@ -2505,7 +2504,7 @@ width: 100%;
 }
 
 .guest-testimonials-text{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Quivert', sans-serif;
 }
 .nearby-place-distance {
   // display: inline-block;
@@ -2605,6 +2604,7 @@ width: 100%;
   border-radius: 30px;
   font-size: 0.9rem;
   color: #555;
+  font-family: "Poppins", sans-serif;
 }
 
 .card-book-btn1:hover {
@@ -2645,6 +2645,7 @@ width: 100%;
   border-radius: 20px;
   font-weight: bold;
   font-size: 0.9rem;
+  font-family: "Poppins", sans-serif;
 }
 
 .card-content h3 {
@@ -2733,7 +2734,7 @@ width: 100%;
 
 .sub-heading {
     color: #1A1A1A;
-    font-size: 20px;
+    font-size: 25px;
     letter-spacing: 2px;
     display: block;
     margin-bottom: 15px;
@@ -2747,6 +2748,7 @@ width: 100%;
     margin-bottom: 25px;
     font-weight: 400;
     font-family: "Quivert", serif;
+    color: #1A1A1A;
 }
 
 .main-title i {
@@ -2896,7 +2898,7 @@ width: 100%;
   }
 
   .guest-testimonials-text{
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Quivert', sans-serif !important;
   text-align: center !important;
 }
 }
