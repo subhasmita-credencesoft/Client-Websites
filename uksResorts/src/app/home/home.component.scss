@@ -160,17 +160,17 @@ html, body {
 .hero-text h1 {
   font-size: 50px;
   font-weight: 600;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
 
 }
 .event-sub-type-home{
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 /* ------------------------ */
 /* BOOKING BOX */
 /* ------------------------ */
 .event-type-home{
-font-family: "GFS Didot", serif;
+font-family: "Quivert", serif;
 }
 .booking-box {
   width: 100%;
@@ -472,7 +472,7 @@ font-family: "GFS Didot", serif;
     position: relative !important;
     overflow: hidden !important;
     margin-top: 30px!important;
-    font-family: "Source Sans Pro", sans-serif !important;
+    font-family: "Poppins", sans-serif !important;
 }
 }
 
@@ -537,7 +537,7 @@ font-family: "GFS Didot", serif;
 .content-box h2 {
   font-size: 34px;
   font-weight: 400;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
   margin-bottom: 20px;
   line-height: 1.25;
   color: #1A1A1A;
@@ -545,7 +545,7 @@ font-family: "GFS Didot", serif;
 
 .content-box p {
   font-size: 1.12rem;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #5A5A5A;
   margin-bottom: 40px;
   line-height: 1.6;
@@ -694,7 +694,7 @@ font-family: "GFS Didot", serif;
 
 .price {
   color: #101996;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 18px;
   margin-bottom: 5px;
@@ -704,13 +704,13 @@ font-family: "GFS Didot", serif;
   font-weight: 400;
   font-size: 34px;
   margin-bottom: 10px;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
 
 }
 
 .desc {
   color: #555;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 
 }
 
@@ -718,7 +718,7 @@ font-family: "GFS Didot", serif;
   display: flex;
   gap: 20px;
   color: #5A5A5A;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 15px 0;
   font-weight: 400;
 }
@@ -826,7 +826,7 @@ font-family: "GFS Didot", serif;
 .experience-box h2 {
   font-size: 34px;
   font-weight: 500;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
   margin-bottom: 25px;
   color: #1A1A1A;
 }
@@ -899,7 +899,7 @@ font-family: "GFS Didot", serif;
   overflow: hidden;
   transition: all 0.4s ease;
   cursor: pointer;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .card img {
@@ -976,7 +976,7 @@ font-family: "GFS Didot", serif;
   white-space: nowrap;
   opacity: 1;
   transition: opacity 0.3s ease;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* MOBILE & TABLET RESPONSIVE */
@@ -996,7 +996,7 @@ font-family: "GFS Didot", serif;
     width: 100%;
     height: 300px;        /* shorter for mobile */
     border-radius: 18px;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   /* Ensure images scale well */
@@ -1061,12 +1061,12 @@ font-family: "GFS Didot", serif;
       padding-top: 30px;
 }
 .location-desc{
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 24px;
   font-weight: 400 !important;
 }
 .loccation-heading{
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
     font-weight: 400 !important;
     font-size: 34px;
 
@@ -1096,7 +1096,7 @@ font-family: "GFS Didot", serif;
   .location-section h2 {
     font-size: 18px !important;
     text-align: center;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   .left-side-location{
       padding-top: 0px;
@@ -1138,7 +1138,7 @@ font-family: "GFS Didot", serif;
 
 .heading {
   font-size: 34px;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
 }
 
 .quote-icon {
@@ -1146,7 +1146,7 @@ font-family: "GFS Didot", serif;
   margin-bottom: 10px;
   font-size: 40px;
   line-height: 1;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
   opacity: 0.8;
 }
 
@@ -1158,7 +1158,7 @@ font-family: "GFS Didot", serif;
 .review-text {
   font-size: 14px;
   color: #555;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 27px;
 }
 .second-card-review{
@@ -1191,7 +1191,7 @@ font-family: "GFS Didot", serif;
   text-decoration: none !important;
   font-weight: 700;
   color: #007bff;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 @media (max-width: 768px) {
@@ -1234,7 +1234,7 @@ font-family: "GFS Didot", serif;
 
 .taste-content h2 {
   font-size: 34px;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
   font-weight: 400;
   color: #0b0631;
   line-height: 1.2;
@@ -1244,7 +1244,7 @@ font-family: "GFS Didot", serif;
 .taste-content p {
   color: #6c6c6c;
   font-size: 17px;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.7;
   margin-bottom: 35px;
 }
@@ -1420,7 +1420,7 @@ font-size: 13px;
     color: #fff;
     text-transform: uppercase;
     margin-bottom: 4px;
-   font-family: "Source Sans Pro", sans-serif;
+   font-family: "Poppins", sans-serif;
 }
 
 
@@ -1455,14 +1455,14 @@ font-size: 13px;
   outline: none;
   transition: all 0.3s ease;
   cursor: pointer;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 
 .date-input:hover {
   border-color: #cbd5e0;
   background: #f7fafc;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 
@@ -1470,14 +1470,14 @@ font-size: 13px;
   border-color: #3b7f85;
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(59, 127, 133, 0.1);
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 
 .date-input::placeholder {
   color: #a0aec0;
   font-weight: 300;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 
@@ -1588,7 +1588,7 @@ font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 
@@ -1647,7 +1647,7 @@ font-size: 13px;
   font-size: 15px;
   font-weight: 600;
   color: #2d3748;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 
@@ -1656,7 +1656,7 @@ font-size: 13px;
   font-size: 13px;
   font-weight: 400;
   color: #718096;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 
@@ -1717,7 +1717,7 @@ font-size: 13px;
   color: #2d3748;
   min-width: 30px;
   text-align: center;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 
@@ -1742,7 +1742,7 @@ font-size: 13px;
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 
@@ -1750,13 +1750,13 @@ font-size: 13px;
   background: linear-gradient(135deg, #0D0630 0%, #0D0630 100%);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(45, 122, 128, 0.3);
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 
 .guest-done-btn:active {
   transform: translateY(0);
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 
@@ -1789,7 +1789,7 @@ width: 100%;
     position: relative;
     overflow: hidden;
     margin-top: 30px;
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
 }
 /* Ngb Datepicker popup */
 .ngb-datepicker,
@@ -2197,7 +2197,7 @@ width: 100%;
 
     font-size: 34px;
     font-weight: 400;
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
     margin-bottom: 20px;
     line-height: 1.25;
     color: #1A1A1A;
@@ -2228,13 +2228,13 @@ width: 100%;
   border-radius: 30px;
   font-size: 18px;
   transition: 0.3s;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
 }
 
 .learn-more-btn:hover {
   background: #1A1A1A;
   color: #fff;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
 }
 
 /* RIGHT IMAGES CONTAINER */
@@ -2378,10 +2378,10 @@ width: 100%;
   display: flex;
   gap: 30px;
   margin-top: 40px;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .nature-text{
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .vm-box {
   flex: 1;
@@ -2394,13 +2394,13 @@ width: 100%;
   font-size: 22px;
   margin-bottom: 12px;
   color: #1A1A1A;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
 }
 
 .vm-box p {
   font-size: 15px;
   margin: 0;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* RESPONSIVE */
@@ -2434,7 +2434,7 @@ width: 100%;
   text-align: center;
   font-size: 34px;
   font-weight: 400;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
   letter-spacing: 1px;
   margin-bottom: 10px;
   color: #1A1A1A;
@@ -2445,7 +2445,7 @@ width: 100%;
   color: #555;
   margin-bottom: 40px;
   font-size: 14px;
-   font-family: 'Source Sans Pro', sans-serif;
+   font-family: 'Poppins', sans-serif;
 
 }
 
@@ -2491,7 +2491,7 @@ width: 100%;
 .nearby-place-content h3 {
   font-size: 20px;
   margin-bottom: 8px;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
   color: #1A1A1A;
 }
 
@@ -2500,12 +2500,12 @@ width: 100%;
   color: #555;
   margin-bottom: 12px;
   line-height: 1.5;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
 
 }
 
 .guest-testimonials-text{
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .nearby-place-distance {
   // display: inline-block;
@@ -2515,7 +2515,7 @@ width: 100%;
   // background-color: #e2e8f0;
   // padding: 5px 12px;
   // border-radius: 30px;
-  // font-family: "Source Sans Pro", sans-serif;
+  // font-family: "Poppins", sans-serif;
 
 
   position: absolute;
@@ -2527,7 +2527,7 @@ width: 100%;
   border-radius: 30px;
   font-weight: 600;
   font-size: 13px;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .collapsible-text {
   overflow: hidden;
@@ -2648,14 +2648,14 @@ width: 100%;
 }
 
 .card-content h3 {
- font-family: "GFS Didot", serif;
+ font-family: "Quivert", serif;
  color: #1A1A1A;
  font-weight: 400;
 }
 
 .card-content p {
   font-size: 1.12rem;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #555;
   line-height: 1.6;
   text-align: justify;
@@ -2671,7 +2671,7 @@ width: 100%;
   cursor: pointer;
   font-weight: bold;
   text-align: center;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
 }
 
 .card-book-btn1:hover {
@@ -2681,7 +2681,7 @@ width: 100%;
 .section-header-heading{
     font-size: 34px;
     font-weight: 400;
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
     margin-bottom: 20px;
     line-height: 1.25;
     color: #1A1A1A;
@@ -2692,7 +2692,7 @@ width: 100%;
   font-size: 34px;
     font-weight: 400;
     margin-top:20px;
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
     margin-bottom: 20px;
     line-height: 1.25;
     color: #1A1A1A;
@@ -2701,7 +2701,7 @@ width: 100%;
 
 .section-header-paragraph{
   font-size: 14px;
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: "Poppins", sans-serif;
     color: #555;
     margin-bottom: 40px;
     line-height: 1.6;
@@ -2738,7 +2738,7 @@ width: 100%;
     display: block;
     margin-bottom: 15px;
     font-weight: 400;
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
 }
 
 .main-title {
@@ -2746,18 +2746,18 @@ width: 100%;
     line-height: 1.2;
     margin-bottom: 25px;
     font-weight: 400;
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
 }
 
 .main-title i {
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
 }
 
 .description {
     color: #555;
     line-height: 1.6;
     margin-bottom: 30px;
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .info-item {
@@ -2780,7 +2780,7 @@ width: 100%;
 }
 
 .info-text strong {
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
     color: #1A1A1A;
 }
 
@@ -2788,7 +2788,7 @@ width: 100%;
     margin: 2px 0 0 0;
     font-size: 14px;
     color: #555;
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .btn-directions {
@@ -2801,7 +2801,7 @@ width: 100%;
     font-weight: bold;
     margin-top: 20px;
     transition: background 0.3s ease;
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
 }
 
 .btn-directions:hover {
@@ -2866,7 +2866,7 @@ width: 100%;
 }
    .experience-card-text{
     text-align: center !important;
-    font-family: 'GFS Didot', serif !important;
+    font-family: 'Quivert', serif !important;
     font-weight: 400 !important;
     font-size: 22px !important;
     color: #1A1A1A !important;
@@ -2879,7 +2879,7 @@ width: 100%;
     display: block !important;
     margin-bottom: 15px !important;
     font-weight: 400 !important;
-     font-family: "GFS Didot", serif !important;
+     font-family: "Quivert", serif !important;
     text-align: center !important;
     margin-top: 15px !important;
    }
@@ -2896,7 +2896,7 @@ width: 100%;
   }
 
   .guest-testimonials-text{
-  font-family: 'Source Sans Pro', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   text-align: center !important;
 }
 }
