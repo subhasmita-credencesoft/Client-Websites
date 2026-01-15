@@ -2,7 +2,7 @@
 <div class="top-bar">
   <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
       <span style="color: #176FC1;"><img src="assets/home-imgs/Symbol.png"> Mahad Phata, Old Mumbai–Pune Hwy, Khopoli, Raigad</span>
-      <span style="color: #176FC1;"><img src="assets/home-imgs/Symbol (1).png"> +91 74004 51254 | <img src="assets/home-imgs/Symbol (2).png"> infouksresort.com</span>
+      <span style="color: #176FC1;"><img src="assets/home-imgs/Symbol (1).png"> +91 74004 51254 | <img src="assets/home-imgs/Symbol (2).png"> info&#64;uksresort.com</span>
   </div>
 </div>
 
@@ -63,7 +63,7 @@
 
 <div class="gallery-grid">
   <div *ngFor="let img of galleryImages; let i = index" class="gallery-item-wrapper">
-    
+
     <img
       [src]="img"
       alt="Gallery Image"
@@ -73,14 +73,14 @@
       data-bs-target="#galleryModal"
     />
 
-    <button 
-      class="plus-btn" 
-      (click)="openModal(i)" 
-      data-bs-toggle="modal" 
+    <button
+      class="plus-btn"
+      (click)="openModal(i)"
+      data-bs-toggle="modal"
       data-bs-target="#galleryModal">
       <i class="fa fa-plus"></i>
     </button>
-    
+
   </div>
 </div>
 
