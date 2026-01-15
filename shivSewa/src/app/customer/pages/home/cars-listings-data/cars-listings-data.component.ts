@@ -202,7 +202,7 @@ constructor(private bookingService: BookingService,
       image: v.image
     }
   });
-   this.router.navigate(['/booking']);
+  //  this.router.navigate(['/booking']);
 }
   getTransform(): string {
     const percentage = this.currentIndex * (100 / this.visibleCards);

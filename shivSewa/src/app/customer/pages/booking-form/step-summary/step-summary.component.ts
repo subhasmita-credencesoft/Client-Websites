@@ -488,7 +488,7 @@ checkCustomerExists() {
     next: (paymentRes) => {
 
       const paymentId = paymentRes?.id;
-      const modeOfPayment = paymentRes?.status;
+      const modeOfPayment = paymentRes?.paymentMode;
 
       if (!paymentId || !modeOfPayment) {
         console.error('Invalid payment response', paymentRes);
