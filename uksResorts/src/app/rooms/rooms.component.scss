@@ -150,13 +150,15 @@
   .price-badge strong {
     display: block;
     font-size: 1.2rem;
-    color: #000;
+    color: #1A1A1A;
+    font-family: "Poppins", sans-serif;
   }
 
   .price-badge span {
     font-size: 1.1rem;
     color: #b35900; /* Bronze/Brown color from image */
     font-weight: bold;
+    font-family: "Poppins", sans-serif;
   }
 
   /* Right Side: Content Section */
@@ -228,10 +230,11 @@
     font-weight: 600;
     transition: 0.3s;
     margin-top: auto;
+    font-family: "Poppins", sans-serif;
   }
 
   .book-btn:hover {
-    background: #000;
+    background: #0d0630;
     color: #fff;
   }
 
@@ -246,6 +249,7 @@
 .facility-item {
   display: flex;
   align-items: center;
+  font-family: "Poppins", sans-serif;
 }
 
 .facilities-list:not(.show-all) .facility-item:nth-child(n+7) {
@@ -262,6 +266,7 @@
   padding: 10px 0;
   font-weight: bold;
   text-align: end;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Smooth entry animation */
@@ -461,7 +466,7 @@
 background-color: #78CDD71A;
 }
 .rooms-subtitle {
-  font-size: 11px;
+  font-size: 15px;
   letter-spacing: 1.5px;
   color: #5b6fb5;
   margin-bottom: 8px;
@@ -489,7 +494,8 @@ background-color: #78CDD71A;
 .rooms-title-wrap .line {
   width: 40px;
   height: 2px;
-  background: #1f1f1f;
+  background: #1A1A1A;
+  font-family: "Poppins", sans-serif;
 }
 
 /* TABLET */
@@ -515,7 +521,7 @@ background-color: #78CDD71A;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #2b4acb;
   margin-bottom: 12px;
@@ -524,6 +530,7 @@ background-color: #78CDD71A;
 
 .facilities-icon {
   font-size: 18px;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Pills grid */
@@ -541,7 +548,7 @@ background-color: #78CDD71A;
   background: #ffffff;
   padding: 8px 14px;
   border-radius: 30px;
-  font-size: 13px;
+  font-size: 14px;
   color: #555;
 
   white-space: nowrap;
@@ -571,11 +578,14 @@ background-color: #78CDD71A;
 .info-text strong {
   color: #2b4acb;
   font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
 }
 
 .info-text span {
   color: #555;
   font-family: "Poppins", sans-serif;
+  font-size: 18px;
 }
 
 /* MOBILE */
@@ -686,7 +696,7 @@ background-color: #78CDD71A;
 
 .price-badge small {
   font-size: 11px;
-  color: #777;
+  color: #555;
   font-family: "Poppins", sans-serif;
 }
 
@@ -697,7 +707,7 @@ background-color: #78CDD71A;
 }
 
 .room-desc {
-  font-size: 14px;
+  font-size: 18px;
   color: #555;
   line-height: 1.6;
   font-family: "Poppins", sans-serif;
@@ -722,10 +732,11 @@ background-color: #78CDD71A;
 .room-btn {
   background: transparent;
   border: 1px solid #000;
-  color: #000;
+  color: #1A1A1A;
   padding: 8px 16px;
   border-radius: 20px;
   cursor: pointer;
+  font-family: "Poppins", sans-serif;
 }
 
 /* TABLET */
@@ -757,6 +768,7 @@ background-color: #78CDD71A;
   .room-btn {
     width: 100%;
     text-align: center;
+    font-family: "Poppins", sans-serif;
   }
 }
 
@@ -804,6 +816,7 @@ border:2px solid #E5F2FF33;
 .amenity-card p {
   font-size: 14px;
   margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 /* OVERLAP IMAGES */
