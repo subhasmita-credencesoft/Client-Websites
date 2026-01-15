@@ -19,7 +19,7 @@ export interface Booking {
   // Rental specific - Hours and KM
   rentalHours?: number; // Number of hours (default 1, increment/decrement)
   rentalKm?: number; // Number of kilometers (default 10, increment/decrement by 10)
-
+  vehicleCategory: any;
   // Passenger details
   passengers?: {
     type?: 'personal' | 'corporate';

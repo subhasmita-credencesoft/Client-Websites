@@ -287,6 +287,22 @@ scrollToField(fieldId: string) {
     setTimeout(() => el.classList.remove("shake-error"), 800);
   }
 }
+formatBookingDate(date: string | Date): string {
+  if (!date) return '';
+
+  const d = new Date(date);
+  const day = d.getDate();
+
+  const suffix =
+    day % 10 === 1 && day !== 11 ? 'st' :
+    day % 10 === 2 && day !== 12 ? 'nd' :
+    day % 10 === 3 && day !== 13 ? 'rd' : 'th';
+
+  const month = d.toLocaleString('en-US', { month: 'long' });
+  const year = d.getFullYear();
+
+  return `${month} ${day}${suffix} ${year}`;
+}
 sendEmailOtp() {
   this.otpError = '';
   this.otpMessage = '';

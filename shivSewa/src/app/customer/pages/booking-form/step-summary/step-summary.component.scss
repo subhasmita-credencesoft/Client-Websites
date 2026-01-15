@@ -28,6 +28,15 @@
 .btn-dark {
   background-color: #000;
   border: none;
+    padding: 0.875rem 1.75rem !important;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.938rem;
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .btn-dark:hover {
@@ -37,6 +46,14 @@
 .btn-outline-secondary {
   border-color: #d0d0d0;
   color: #666;
+      padding: 0.875rem 1.75rem !important;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.938rem;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .btn-outline-secondary:hover {
@@ -236,4 +253,49 @@ hr.new2 {
         align-items: center;
   }
 
+}
+
+  .container {
+    animation: appScreenSlide 0.42s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  @keyframes appScreenSlide {
+    from {
+      transform: translateX(28px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+@media (max-width: 768px) {
+
+  /* App-like spacing */
+  .card-soft {
+    border-radius: 18px;
+    padding: 1rem;
+  }
+
+  /* Inputs feel native */
+  .form-control {
+    height: 46px;
+    font-size: 15px;
+  }
+
+  textarea.form-control {
+    height: auto;
+  }
+
+  /* Buttons feel tappable */
+  .forwardMove,
+  .goBack {
+    min-height: 48px;
+    border-radius: 14px;
+  }
+
+  /* Remove web tap highlight */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
 }

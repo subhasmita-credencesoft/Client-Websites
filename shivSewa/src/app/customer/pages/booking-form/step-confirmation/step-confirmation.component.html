@@ -1,142 +1,80 @@
 <div class="confirmation-wrapper">
-  <div class="confirmation-box">
-    <!-- LEFT SECTION -->
-    <div class="left-side">
-      <h2 class="main-title">Your Ride Is Set!</h2>
-      <p class="sub-line">
-        Always Ready With <span class="brand">Shiv Sewa.</span>
-      </p>
-      <p class="desc">
-        Your cab request has been received.<br />
-        Someone from our team will contact you shortly.
-      </p>
-
-      <!-- BOOKING CARD -->
-      <div class="booking-card">
-        <div class="ref-line">
-          <span class="ref-label">Booking Reference:</span>&nbsp;
-          <span class="ref-id">{{ booking?.bookingRef || '1234567890' }}</span>
-        </div>
-
-        <!-- PICKUP -->
-        <div class="loc-row">
-          <span class="dot grey"></span>
-          <div class="d-flex justify-content-between align-items-center flex-wrap" style="width: 100%;">
-            <div class="loc-main">{{booking?.locality}}, {{booking?.pickup.name}}</div>
-            <div class="loc-sub">
-              <i class="fa-solid fa-calendar" style="color:rgba(241, 101, 18, 1)"></i>
-              {{booking?.date | date:'dd MMM, yyyy'}} | {{booking?.time}}
-            </div>
-          </div>
-        </div>
-
-        <!-- DROP -->
-        <div class="loc-row">
-          <span class="dot orange"></span>
-          <div class="loc-main">{{booking?.dropoff.name}}</div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- CAR INFO -->
-        <div class="car-number">{{booking?.vehicle?.carNumber}}</div>
-        <div class="car-name">{{booking?.vehicle?.name}}</div>
-
-        <div class="cap-line">
-          <i class="bi bi-people-fill me-1"></i> {{booking?.passengers?.adults}} Adults, {{booking?.passengers?.children}} Children
-          <span class="mx-2">|</span>
-          <i class="bi bi-bag-fill me-1"></i> {{booking?.passengers?.luggage}} Bags
-        </div>
-
-        <div class="divider mt-3"></div>
-
-        <!-- BOOKED FOR -->
-        <div class="booked-grid">
-          <div>
-            <div class="bf-title">Booked For</div>
-            <div class="bf-value">{{booking?.traveller?.firstName}} {{booking?.traveller?.lastName}}</div>
-          </div>
-
-          <div>
-            <div class="bf-title">Capacity</div>
-            <div class="bf-value">{{booking?.passengers?.adults}} Adults, {{booking?.passengers?.children}} Children</div>
-          </div>
-
-          <div>
-            <div class="bf-title">Email Address</div>
-            <div class="bf-value">{{booking?.traveller?.email}}</div>
-          </div>
-
-          <div>
-            <div class="bf-title">Phone Number</div>
-            <div class="bf-value">{{booking?.traveller?.mobile}}</div>
-          </div>
-
-          <div *ngIf="booking?.traveller?.notes">
-            <div class="bf-title">Special Request</div>
-            <div class="bf-value">{{booking?.traveller?.notes}}</div>
-          </div>
-        </div>
-
-        <!-- TOTAL FARE -->
-        <div class="fare-row">
-          <div>
-            <div class="fare-label">Estimated Total Fare</div>
-            <div class="fare-note">
-              Fare is estimated and may vary with distance.<br />Pay the final
-              amount to the driver after the ride.
-            </div>
-          </div>
-          <div class="fare-amount">{{booking?.vehicle?.price}}</div>
-        </div>
-      </div>
+  <!-- NEW: Centered Success View -->
+  <div class="confirmation-container">
+    <!-- Success Icon -->
+    <div class="success-icon">
+      <i class="fa-solid fa-check"></i>
     </div>
 
-    <!-- RIGHT MAP SECTION -->
-    <div class="right-side" >
-  <div class="map-wrapper">
+    <!-- Main Title -->
+    <h1 class="main-title">Ride Request Received!</h1>
+    <p class="subtitle">
+      Always Ready With Shiv Sewa. Someone from our team will contact you shortly.
+    </p>
 
-  <!-- STATIC MAP (before load) -->
-  <div
-    class="static-map"
-    *ngIf="!mapLoaded"
-    [style.backgroundImage]="staticMapUrl"
-  >
-    <button class="load-map-btn" (click)="loadMap()">
-      View Route on Map
-    </button>
-  </div>
+    <!-- Booking Details Card -->
+    <div class="booking-details-card">
+      <!-- Reference and Date Row -->
+      <div class="info-row">
+        <div class="info-item">
+          <div class="info-label">BOOKING REFERENCE</div>
+          <div class="info-value">#{{ booking?.bookingRef || '782082313' }}</div>
+        </div>
+        <div class="info-item text-right">
+          <div class="info-label">DATE</div>
+          <div class="info-value">{{ booking?.date | date:'MMMM d' }}th, {{ booking?.date | date:'yyyy' }}</div>
+        </div>
+      </div>
 
-  <!-- DISTANCE INFO -->
-  <div class="map-info" *ngIf="mapLoaded">
-    <i class="fa-solid fa-route"></i>
-    <span>{{ distanceText }}</span>
-    <span>•</span>
-    <span>{{ durationText }}</span>
-  </div>
+      <!-- Details List -->
+      <div class="details-list">
+        <div class="detail-row">
+          <span class="detail-label">Type:</span>
+          <span class="detail-value">Pickup Drop</span>
+        </div>
 
-  <!-- REAL GOOGLE MAP -->
-  <div
-    id="routeMap"
-    class="route-map"
-    *ngIf="mapLoaded"
-    (click)="openInGoogleMaps()"
-  ></div>
+        <div class="detail-row">
+          <span class="detail-label">Route:</span>
+          <span class="detail-value">{{ booking?.pickup?.name }} to {{ booking?.dropoff?.name }}</span>
+        </div>
 
-</div>
+        <div class="detail-row">
+          <span class="detail-label">Vehicle:</span>
+          <span class="detail-value">{{ booking?.vehicle?.name || 'Mini / Hatchback' }}</span>
+        </div>
 
+        <div class="detail-row">
+          <span class="detail-label">Passengers:</span>
+          <span class="detail-value">{{ booking?.passengers?.adults || 1 }} Adults, {{ booking?.passengers?.children || 0 }} Children</span>
+        </div>
 
-</div>
+        <div class="detail-row">
+          <span class="detail-label">Est. Fare:</span>
+          <span class="detail-value fare-value">{{ booking?.vehicle?.price || '3120' }}</span>
+        </div>
+      </div>
 
+      <!-- Disclaimer -->
+      <p class="disclaimer">
+        * Final fare may change depending on actual distance covered, waiting time, or route deviations.
+      </p>
+    </div>
 
-  </div>
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn btn-secondary" (click)="goBack()">
+        Back to Home
+      </button>
+      <button class="btn btn-primary" (click)="loadMap()">
+        View Route on Map
+      </button>
+    </div>
 
-  <!-- WHAT HAPPENS NEXT -->
-  <div class="next-section">
+      <div class="next-section">
     <h5>What Happens Next?</h5>
     <ul>
       <li>
-        <strong>Chauffeur Allocation:</strong> We’re assigning one of our
+        <strong>Chauffeur Allocation:</strong> We're assigning one of our
         top-rated chauffeurs for your trip.
       </li>
       <li>
@@ -149,4 +87,44 @@
       </li>
     </ul>
   </div>
+  </div>
+
+  <!-- EXISTING: Map Modal (Hidden Initially) -->
+  <div class="map-modal" *ngIf="mapLoaded" (click)="closeMap()">
+    <div class="map-modal-content" (click)="$event.stopPropagation()">
+      <button class="close-map-btn" (click)="closeMap()">
+        <i class="fa-solid fa-times"></i>
+      </button>
+
+      <div class="map-header">
+        <h3>Your Route</h3>
+        <p>{{ booking?.pickup?.name }} to {{ booking?.dropoff?.name }}</p>
+      </div>
+
+      <div class="map-wrapper">
+        <!-- Distance Info -->
+        <div class="map-info">
+          <i class="fa-solid fa-route"></i>
+          <span>{{ distanceText }}</span>
+          <span>•</span>
+          <span>{{ durationText }}</span>
+        </div>
+
+        <!-- Real Google Map -->
+        <div
+          id="routeMap"
+          class="route-map"
+          (click)="openInGoogleMaps()"
+        ></div>
+      </div>
+
+      <button class="open-gmaps-btn" (click)="openInGoogleMaps()">
+        <i class="fa-solid fa-external-link-alt"></i>
+        Open in Google Maps
+      </button>
+    </div>
+  </div>
+
+  <!-- EXISTING: What Happens Next Section -->
+
 </div>

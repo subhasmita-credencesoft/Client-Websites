@@ -18,7 +18,7 @@ export class BookingService {
     // Rental defaults
     rentalHours: 1,
     rentalKm: 10,
-
+    vehicleCategory: '',
     passengers: {
       type: 'personal',
       adults: 1,
@@ -92,7 +92,7 @@ export class BookingService {
       time: '',
       tripType: 'one-way',
       tripTypeValue: 'pickup-drop',
-
+      vehicleCategory: '',
       // Reset rental to defaults
       rentalHours: 1,
       rentalKm: 10,

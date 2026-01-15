@@ -9,6 +9,19 @@ import { BookingService } from '../../../services/booking.service';
 import { LocationService } from '../../../services/location/location.service';
 
 type TripType = 'pickup-drop' | 'outstation' | 'rental';
+type VehicleCategory = 'sedan' | 'suv' | 'suvPlus';
+
+interface Car {
+  id: number;
+  name: string;
+  seats: number;
+  bags: number;
+  fuel: string;
+  price: string;
+  description: string;
+  carNumber: string;
+  image: string;
+}
 
 @Component({
   selector: 'app-banner',
@@ -20,15 +33,106 @@ type TripType = 'pickup-drop' | 'outstation' | 'rental';
 export class BannerComponent {
   // Trip Type Selection
   selectedTripType: TripType = 'pickup-drop';
+  selectedVehicleCategory: VehicleCategory | null = null;
+
+  // Vehicle categories array with proper typing
+  vehicleCategories: VehicleCategory[] = ['sedan', 'suv', 'suvPlus'];
 
   // Common fields
   pickupLocation: string = '';
   dropLocation: string = '';
 
   // Rental specific - Hours with automatic KM calculation
-  rentalHours: number = 1; // Default 1 hour
+  rentalHours: number = 1;
   rentalDate: string = '';
   rentalTime: string = '';
+
+  // Car data
+  carData: { [key: string]: Car[] } = {
+    sedan: [
+      {
+        id: 1,
+        name: 'Hyundai Aura',
+        seats: 4,
+        bags: 2,
+        fuel: 'Petrol',
+        price: '₹ 480',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 01 AU 1234',
+        image: 'assets/Aura-sedan.avif'
+      },
+      {
+        id: 2,
+        name: 'Maruti Dzire',
+        seats: 4,
+        bags: 2,
+        fuel: 'Petrol',
+        price: '₹ 480',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 02 DZ 5678',
+        image: 'assets/Dzire-Sedan.jpg'
+      }
+    ],
+    suv: [
+      {
+        id: 3,
+        name: 'Maruti XL6',
+        seats: 6,
+        bags: 3,
+        fuel: 'Petrol',
+        price: '₹ 500',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 03 XL 1122',
+        image: 'assets/XL-suv.avif'
+      },
+      {
+        id: 4,
+        name: 'Toyota Rumion',
+        seats: 6,
+        bags: 3,
+        fuel: 'Petrol',
+        price: '₹ 500',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 04 RU 3344',
+        image: 'assets/ROMION-SUV.avif'
+      },
+      {
+        id: 5,
+        name: 'Maruti Ertiga',
+        seats: 6,
+        bags: 3,
+        fuel: 'Petrol',
+        price: '₹ 500',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 05 ER 5566',
+        image: 'assets/ERTIGA-Suv.avif'
+      }
+    ],
+    suvPlus: [
+      {
+        id: 6,
+        name: 'Toyota Innova Crysta',
+        seats: 6,
+        bags: 4,
+        fuel: 'Diesel',
+        price: '₹ 500',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 06 IC 7788',
+        image: 'assets/INNOVA-CRYSTA-SUVPLUS.jpg'
+      },
+      {
+        id: 9,
+        name: 'Toyota Innova Hycross',
+        seats: 6,
+        bags: 4,
+        fuel: 'Hybrid',
+        price: '₹ 500',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 09 IH 4455',
+        image: 'assets/Innova-Hycross-SUVPLUS.webp'
+      }
+    ]
+  };
 
   // Automatic KM calculation: 10 KM per hour
   get rentalKm(): number {
@@ -40,7 +144,7 @@ export class BannerComponent {
     'assets/banner-img.png',
     'https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2024/11/13162031/Satara.jpg',
     'https://img.nayatrip.com/images/state/big/MAHARASHTRA-GOA.jpg',
-    'https://www.trawell.in/admin/images/upload/955980848Mumbai_Main.jpg'
+    'assets/mumbai-st.jpg'
   ];
 
   // Autocomplete
@@ -63,7 +167,8 @@ export class BannerComponent {
   pickupAutocomplete!: google.maps.places.AutocompleteService;
   dropAutocomplete!: google.maps.places.AutocompleteService;
   pickupError: string = '';
-dropError: string = '';
+  dropError: string = '';
+
   constructor(
     private router: Router,
     private bookingService: BookingService,
@@ -75,8 +180,6 @@ dropError: string = '';
     this.dropAutocomplete = new google.maps.places.AutocompleteService();
     this.checkViewport();
     window.addEventListener('resize', () => this.checkViewport());
-
-    // Set minimum datetime to now
     this.setMinDateTime();
   }
 
@@ -98,14 +201,26 @@ dropError: string = '';
     this.resetForm();
   }
 
+  // Vehicle Category Selection
+  selectVehicleCategory(category: VehicleCategory) {
+    this.selectedVehicleCategory = category;
+  }
+
+  // Get vehicle category display name
+  getVehicleCategoryName(category: string): string {
+    const names: { [key: string]: string } = {
+      sedan: 'Sedan',
+      suv: 'SUV',
+      suvPlus: 'Premium SUV'
+    };
+    return names[category] || category;
+  }
+
   resetForm() {
-    // Keep pickup if already selected, only reset drop
     if (this.selectedTripType === 'rental') {
-      // For rental, we only need pickup
       this.dropLocation = '';
       this.selectedDrop = undefined;
     } else {
-      // For pickup-drop and outstation, reset both
       this.pickupLocation = '';
       this.dropLocation = '';
       this.selectedPickup = undefined;
@@ -131,7 +246,6 @@ dropError: string = '';
     if (!this.rentalTime) this.rentalTime = minTime;
   }
 
-  // Rental Hours Controls (KM auto-calculates)
   incrementHours() {
     this.rentalHours++;
   }
@@ -142,7 +256,6 @@ dropError: string = '';
     }
   }
 
-  // Mobile slider
   startMobileAutoSlide() {
     this.mobileInterval = setInterval(() => {
       const slider = this.mobileSlider?.nativeElement;
@@ -169,7 +282,6 @@ dropError: string = '';
     this.isMobileView = window.innerWidth <= 768;
   }
 
-  // Autocomplete methods
   filterPickup(value: string) {
     if (!value || value.length < 4) {
       this.pickupSuggestions = [];
@@ -282,42 +394,40 @@ dropError: string = '';
   }
 
   calculateDistanceAndDuration(pickup: GeoLocation, drop: GeoLocation) {
-  const service = new google.maps.DistanceMatrixService();
+    const service = new google.maps.DistanceMatrixService();
 
-  service.getDistanceMatrix(
-    {
-      origins: [{ lat: pickup.latitude, lng: pickup.longitude }],
-      destinations: [{ lat: drop.latitude, lng: drop.longitude }],
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC,
-    },
-    (response, status) => {
-      if (
-        status !== google.maps.DistanceMatrixStatus.OK ||
-        !response?.rows?.[0]?.elements?.[0] ||
-        response.rows[0].elements[0].status !== 'OK'
-      ) {
-        console.error('Distance Matrix failed');
-        return;
+    service.getDistanceMatrix(
+      {
+        origins: [{ lat: pickup.latitude, lng: pickup.longitude }],
+        destinations: [{ lat: drop.latitude, lng: drop.longitude }],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+      },
+      (response, status) => {
+        if (
+          status !== google.maps.DistanceMatrixStatus.OK ||
+          !response?.rows?.[0]?.elements?.[0] ||
+          response.rows[0].elements[0].status !== 'OK'
+        ) {
+          console.error('Distance Matrix failed');
+          return;
+        }
+
+        const element = response.rows[0].elements[0];
+
+        const distanceKm = +(element.distance.value / 1000).toFixed(2);
+        const durationMinutes = Math.ceil(element.duration.value / 60);
+
+        this.bookingService.setCurrent({
+          distanceKm,
+          durationMinutes
+        });
+
+        console.log('Distance KM:', distanceKm);
+        console.log('Duration Minutes:', durationMinutes);
       }
-
-      const element = response.rows[0].elements[0];
-
-      const distanceKm = +(element.distance.value / 1000).toFixed(2); // meters → km
-      const durationMinutes = Math.ceil(element.duration.value / 60); // seconds → minutes
-
-      // ✅ Store in BookingService
-      this.bookingService.setCurrent({
-        distanceKm,
-        durationMinutes
-      });
-
-      console.log('Distance KM:', distanceKm);
-      console.log('Duration Minutes:', durationMinutes);
-    }
-  );
-}
-
+    );
+  }
 
   useCurrentLocation() {
     if (!navigator.geolocation) {
@@ -364,99 +474,97 @@ dropError: string = '';
       () => alert("Unable to retrieve your location. Please allow GPS permission.")
     );
   }
-validatePickup() {
-  this.pickupError = '';
 
-  if (!this.selectedPickup) {
-    this.pickupLocation = '';
-    this.pickupError = 'Please select a pickup location';
-    this.clearErrorAfterDelay('pickup');
-    return;
-  }
+  validatePickup() {
+    this.pickupError = '';
 
-  const state = this.selectedPickup.service_address?.state?.toLowerCase();
-
-  if (state !== 'maharashtra') {
-    this.pickupLocation = '';
-    this.selectedPickup = undefined;
-    this.pickupError = 'Please select pickup location in Maharashtra';
-    this.clearErrorAfterDelay('pickup');
-  }
-
-  this.pickupSuggestions = [];
-}
-
-validateDrop() {
-  this.dropError = '';
-
-  if (!this.selectedDrop) {
-    this.dropLocation = '';
-    this.dropError = 'Please select a drop location';
-    this.clearErrorAfterDelay('drop');
-    return;
-  }
-
-  const state = this.selectedDrop.service_address?.state?.toLowerCase();
-
-  if (state !== 'maharashtra') {
-    this.dropLocation = '';
-    this.selectedDrop = undefined;
-    this.dropError = 'Please select drop location in Maharashtra';
-    this.clearErrorAfterDelay('drop');
-  }
-  this.dropSuggestions = [];
-}
-
-private clearErrorAfterDelay(type: 'pickup' | 'drop', delay = 4000) {
-  setTimeout(() => {
-    if (type === 'pickup') {
-      this.pickupError = '';
-    } else {
-      this.dropError = '';
+    if (!this.selectedPickup) {
+      this.pickupLocation = '';
+      this.pickupError = 'Please select a pickup location';
+      this.clearErrorAfterDelay('pickup');
+      return;
     }
-  }, delay);
-}
-  // Validation
+
+    const state = this.selectedPickup.service_address?.state?.toLowerCase();
+
+    if (state !== 'maharashtra') {
+      this.pickupLocation = '';
+      this.selectedPickup = undefined;
+      this.pickupError = 'Please select pickup location in Maharashtra';
+      this.clearErrorAfterDelay('pickup');
+    }
+
+    this.pickupSuggestions = [];
+  }
+
+  validateDrop() {
+    this.dropError = '';
+
+    if (!this.selectedDrop) {
+      this.dropLocation = '';
+      this.dropError = 'Please select a drop location';
+      this.clearErrorAfterDelay('drop');
+      return;
+    }
+
+    const state = this.selectedDrop.service_address?.state?.toLowerCase();
+
+    if (state !== 'maharashtra') {
+      this.dropLocation = '';
+      this.selectedDrop = undefined;
+      this.dropError = 'Please select drop location in Maharashtra';
+      this.clearErrorAfterDelay('drop');
+    }
+    this.dropSuggestions = [];
+  }
+
+  private clearErrorAfterDelay(type: 'pickup' | 'drop', delay = 4000) {
+    setTimeout(() => {
+      if (type === 'pickup') {
+        this.pickupError = '';
+      } else {
+        this.dropError = '';
+      }
+    }, delay);
+  }
+
   isFormValid(): boolean {
     if (!this.selectedPickup) return false;
 
     switch (this.selectedTripType) {
       case 'pickup-drop':
-        // Pickup & Drop: Need both pickup and drop
         return !!this.selectedDrop;
 
       case 'outstation':
-        // Outstation: Need only pickup and drop (no date/time)
         return !!this.selectedDrop;
 
       case 'rental':
-        // Rental: Need pickup, drop, hours, date, and time
-        // return !!this.selectedDrop && this.rentalHours > 0 && !!this.rentalDate && !!this.rentalTime;
-      return !!this.selectedDrop;
+        return !!this.selectedDrop;
+
       default:
         return false;
     }
   }
 
-  // Book Now
   bookNow(event: Event): void {
     event.preventDefault();
-  this.validatePickup();
-  this.validateDrop();
+    this.validatePickup();
+    this.validateDrop();
 
-  if (this.pickupError || this.dropError) {
-    return;
-  }
+    if (this.pickupError || this.dropError) {
+      return;
+    }
+
     if (!this.isFormValid()) {
       alert('Please fill all required fields');
       return;
     }
 
-    // Prepare booking data based on trip type
     let bookingData: any = {
       pickup: this.selectedPickup,
       tripTypeValue: this.selectedTripType,
-      tripType: 'one-way', // Default
+      tripType: 'one-way',
+      vehicleCategory: this.selectedVehicleCategory,
       passengers: {
         type: 'personal',
         adults: 1,
@@ -467,7 +575,6 @@ private clearErrorAfterDelay(type: 'pickup' | 'drop', delay = 4000) {
 
     switch (this.selectedTripType) {
       case 'pickup-drop':
-        // Pickup & Drop: Works as current implementation
         bookingData = {
           ...bookingData,
           dropoff: this.selectedDrop
@@ -475,7 +582,6 @@ private clearErrorAfterDelay(type: 'pickup' | 'drop', delay = 4000) {
         break;
 
       case 'outstation':
-        // Outstation: Pickup and Drop only (no date/time)
         bookingData = {
           ...bookingData,
           dropoff: this.selectedDrop
@@ -483,27 +589,23 @@ private clearErrorAfterDelay(type: 'pickup' | 'drop', delay = 4000) {
         break;
 
       case 'rental':
-        // Rental: Pickup, Drop, Hours (KM auto-calculated), Date, Time
         bookingData = {
           ...bookingData,
           dropoff: this.selectedDrop,
           date: this.rentalDate,
           time: this.rentalTime,
           rentalHours: this.rentalHours,
-          rentalKm: this.rentalKm // Auto-calculated (hours * 10)
+          rentalKm: this.rentalKm
         };
         break;
     }
 
-    // Save to session storage
     sessionStorage.setItem("selectedBooking", JSON.stringify(bookingData));
 
-    // Update booking service
     this.bookingService.patchDeep(bookingData);
 
     console.log('Booking Data:', bookingData);
 
-    // Navigate to booking page
     this.router.navigate(['/booking']);
   }
 }

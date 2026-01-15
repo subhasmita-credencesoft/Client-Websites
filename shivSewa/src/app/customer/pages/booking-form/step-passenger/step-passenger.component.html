@@ -2,20 +2,23 @@
   <div class="card-soft">
 
     <!-- Who Are You Traveling With -->
-    <h5 class="mb-3">Who Are You Traveling With?</h5>
+    <h5 class="section-heading mb-4">Who Are You Traveling With?</h5>
 
-    <div class="d-flex flex-wrap gap-2 mb-1 justify-content-around" id="passengerSection">
-      <button class="btn btn-formart"
-        [ngClass]="{'btn-accent': passengers.type==='personal'}"
+    <div class="travel-type-buttons mb-4" id="passengerSection">
+      <button
+        class="travel-type-btn"
+        [class.active]="passengers.type==='personal'"
         (click)="chooseType('personal')">
-        <i class="fa-solid fa-user icon-specific"></i>&nbsp; Personal
+        <i class="fa-solid fa-user"></i>
+        <span>Personal</span>
       </button>
 
-      <button class="btn btn-formart"
-        [ngClass]="{'btn-accent': passengers.type==='corporate'}"
+      <button
+        class="travel-type-btn"
+        [class.active]="passengers.type==='corporate'"
         (click)="chooseType('corporate')">
-        <span class="material-symbols-outlined icon-specific">lock_person</span>
-        &nbsp;Corporate
+        <span class="material-symbols-outlined">lock_person</span>
+        <span>Corporate</span>
       </button>
     </div>
 
@@ -24,151 +27,186 @@
       Please select who you are travelling with.
     </div>
 
+    <!-- Passenger Counter Section -->
+    <div class="passenger-counters mb-4">
 
-    <!-- Passenger Inputs -->
-<div class="row justify-content-around mb-3 mt-4">
+      <!-- Adults -->
+      <div class="counter-group">
+        <label class="counter-label">Adults</label>
+        <div class="counter-controls">
+          <button type="button" class="counter-btn" (click)="changeAdults(-1)">
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <span class="counter-value">{{ passengers.adults }}</span>
+          <button type="button" class="counter-btn" (click)="changeAdults(1)">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <div *ngIf="error.adults" class="text-danger small mt-1">
+          Please enter at least 1 adult.
+        </div>
+      </div>
 
-  <!-- Adults -->
-  <div class="col-md-3 col-6">
-    <label>Adults</label>
-    <div class="d-flex align-items-center">
-      <button type="button" class="btn btn-light me-2" (click)="changeAdults(-1)">-</button>
-      <span class="form-control text-center">{{ passengers.adults }}</span>
-      <button type="button" class="btn btn-light ms-2" (click)="changeAdults(1)">+</button>
+      <!-- Children -->
+      <div class="counter-group">
+        <label class="counter-label">Children (above 10)</label>
+        <div class="counter-controls">
+          <button type="button" class="counter-btn" (click)="changeChildren(-1)">
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <span class="counter-value">{{ passengers.children }}</span>
+          <button type="button" class="counter-btn" (click)="changeChildren(1)">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <div *ngIf="error.children" class="text-danger small mt-1">
+          Children cannot be negative.
+        </div>
+      </div>
+
+      <!-- Luggage -->
+      <div class="counter-group">
+        <label class="counter-label">Luggage</label>
+        <div class="counter-controls">
+          <button type="button" class="counter-btn" (click)="changeLuggage(-1)">
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <span class="counter-value">{{ passengers.luggage }}</span>
+          <button type="button" class="counter-btn" (click)="changeLuggage(1)">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <div *ngIf="error.luggage" class="text-danger small mt-1">
+          Please enter valid luggage count.
+        </div>
+      </div>
+
     </div>
-    <div *ngIf="error.adults" class="text-danger small mt-1">
-      Please enter at least 1 adult.
-    </div>
-  </div>
-
-  <!-- Children -->
-  <div class="col-md-3 col-6">
-    <label>Children (above 10)</label>
-    <div class="d-flex align-items-center">
-      <button type="button" class="btn btn-light me-2" (click)="changeChildren(-1)">-</button>
-      <span class="form-control text-center">{{ passengers.children }}</span>
-      <button type="button" class="btn btn-light ms-2" (click)="changeChildren(1)">+</button>
-    </div>
-    <div *ngIf="error.children" class="text-danger small mt-1">
-      Children cannot be negative.
-    </div>
-  </div>
-
-  <!-- Luggage -->
-  <div class="col-md-3">
-    <label>Luggage</label>
-    <div class="d-flex align-items-center">
-      <button type="button" class="btn btn-light me-2" (click)="changeLuggage(-1)">-</button>
-      <span class="form-control text-center">{{ passengers.luggage }}</span>
-      <button type="button" class="btn btn-light ms-2" (click)="changeLuggage(1)">+</button>
-    </div>
-    <div *ngIf="error.luggage" class="text-danger small mt-1">
-      Please enter valid luggage count.
-    </div>
-  </div>
-
-</div>
-
-
-
 
     <!-- Selected Vehicle Preview -->
     <div *ngIf="selectedVehicle" class="mb-4">
-      <h6>Your Selected Car</h6>
+      <div class="selected-header">
+        <h6 class="selected-title">Your Selected Ride</h6>
+        <span class="best-match-badge">Best Match</span>
+      </div>
 
-      <div class="card p-3 btn-accent" style="border-radius:12px;">
-        <div class="d-flex align-items-center">
-          <img [src]="selectedVehicle.image" class="car-thumb" />
+      <div class="selected-vehicle-card">
+        <div class="vehicle-badge">Selected</div>
+        <div class="vehicle-content">
+          <img [src]="selectedVehicle.image" class="vehicle-image" alt="{{ selectedVehicle.name }}" />
 
-          <div>
-            <div class="fw-bold">{{ selectedVehicle.name }}</div>
-            <div class="small text-muted">
-              {{ selectedVehicle.seats }} seats • {{ selectedVehicle.bags }} bags
+          <div class="vehicle-details">
+            <div class="vehicle-name">{{ selectedVehicle.name }}</div>
+            <div class="vehicle-specs">{{ selectedVehicle.seats }} Seats • {{ selectedVehicle.bags }} Bags • {{ selectedVehicle.fuel }}</div>
+            <div class="vehicle-model">{{ selectedVehicle.description || 'Hyundai Aura, Dzire, or Similar' }}</div>
+
+            <div class="vehicle-features">
+              <span class="feature-item">
+                <i class="fa-solid fa-wind"></i> AC
+              </span>
+              <span class="feature-item">
+                <i class="fa-solid fa-music"></i> Music System
+              </span>
+              <span class="feature-item">
+                <i class="fa-solid fa-shield-halved"></i> Verified Driver
+              </span>
+              <span class="feature-item">
+                <i class="fa-solid fa-gas-pump"></i> Fuel Included
+              </span>
             </div>
-            <div class="small text-muted">{{ selectedVehicle.fuel }}</div>
           </div>
 
-          <div class="ms-auto text-end">
-            <div class="fw-bold">{{ selectedVehicle.price }}</div>
-            <div class="small text-muted">Est. fare</div>
+          <div class="vehicle-price-section">
+            <div class="vehicle-price">{{ selectedVehicle.price }}</div>
+            <div class="price-label">Estimated fare</div>
+            <button class="breakdown-btn" (click)="showBreakdown = true">View Breakdown</button>
           </div>
         </div>
       </div>
     </div>
-
-
-    <!-- Recommended Vehicles -->
-    <h6 class="mb-1 mt-5" *ngIf="recommendedCars.length > 0" id="vehicleSection">Rides Recommended For You</h6>
 
     <!-- Vehicle Error -->
     <div *ngIf="error.vehicle" class="text-danger small mb-2">
       Please select a vehicle.
     </div>
 
-    <div class="row g-3">
-      <div class="col-md-6" *ngFor="let v of recommendedCars">
-        <div class="card p-3 h-100"
-          (click)="selectVehicle(v)"
-          [ngClass]="{ 'btn-accent': selectedVehicleId === v.id }"
-          style="border-radius:12px; cursor:pointer">
+    <!-- Explore Other Options (All other cars except selected) -->
+    <div *ngIf="otherCars.length > 0">
+      <h6 class="explore-heading" id="vehicleSection">EXPLORE OTHER OPTIONS</h6>
 
-          <div class="d-flex align-items-center">
-            <img [src]="v.image" class="car-thumb" />
+      <div class="vehicles-grid">
+        <!-- All cars except the selected one -->
+        <div class="vehicle-option-card"
+          *ngFor="let car of otherCars"
+          (click)="selectVehicle(car)"
+          [class.selected]="selectedVehicleId === car.id">
 
-            <div>
-              <div class="fw-bold">{{ v.name }}</div>
-              <div class="small text-muted">{{ v.seats }} seats • {{ v.bags }} bags</div>
-              <div class="small text-muted">{{ v.fuel }}</div>
+          <!-- Show upgrade badge only for cars from other categories -->
+          <div class="upgrade-badge" *ngIf="isUpgradeCar(car)">Upgrade</div>
+
+          <div class="option-content">
+            <img [src]="car.image" class="option-image" alt="{{ car.name }}" />
+
+            <div class="option-details">
+              <div class="option-name">{{ car.name }}</div>
+              <div class="option-specs">{{ car.seats }} Seats • {{ car.bags }} Bags</div>
             </div>
 
-            <div class="ms-auto text-end">
-              <div class="fw-bold">{{ v.price }}</div>
-              <div class="small text-muted">Est. fare</div>
+            <div class="option-price-section">
+              <div class="option-price">{{ car.price }}</div>
+              <div class="option-price-label">Est. fare</div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
 
-
-    <!-- Explore More Cars -->
-<!-- Explore More Cars -->
-<h6 class="mb-3 mt-4">Explore More Cars</h6>
-
-<div class="row g-3">
-  <div class="col-md-6" *ngFor="let car of allCars">
-    <div class="card p-3 h-100"
-         (click)="selectVehicle(car)"
-         [ngClass]="{ 'btn-accent': selectedVehicleId === car.id }"
-         style="border-radius:12px; cursor:pointer">
-
-      <div class="d-flex align-items-center">
-        <img [src]="car.image" class="car-thumb" />
-
-        <div class="ms-3">
-          <div class="fw-bold">{{ car.name }}</div>
-          <div class="small text-muted">{{ car.seats }} seats • {{ car.bags }} bags</div>
-          <div class="small text-muted">{{ car.fuel }}</div>
-        </div>
-
-        <div class="ms-auto text-end">
-          <div class="fw-bold">{{ car.price }}</div>
-          <div class="small text-muted">Est. fare</div>
-        </div>
-      </div>
-
+    <!-- Navigation -->
+    <div class="navigation-buttons">
+      <button class="btn-back" (click)="goBack()">
+        <i class="fa-solid fa-arrow-left"></i> Go Back
+      </button>
+      <button class="btn-next" [class.disabled-looking]="!isFormValid()" (click)="next()">
+        Next: Booking Summary <i class="fa-solid fa-arrow-right"></i>
+      </button>
     </div>
+
   </div>
 </div>
 
+<!-- Fare Breakdown Modal -->
+<div class="modal-overlay" *ngIf="showBreakdown" (click)="showBreakdown = false">
+  <div class="breakdown-modal" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="showBreakdown = false">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
 
+    <h5 class="modal-title">Fare Breakdown for {{ selectedVehicle?.name }}</h5>
 
-    <!-- Navigation -->
-    <div class="d-flex justify-content-between mt-4">
-      <button class="btn-ghost btn-back" (click)="goBack()">← Go back</button>
-      <button class="btn-next" [class.disabled-looking]="!isFormValid()" (click)="next()">➡ Next: Passenger Details</button>
+    <div class="breakdown-items">
+      <div class="breakdown-item">
+        <span class="item-label">Base Fare</span>
+        <span class="item-value">₹250</span>
+      </div>
+
+      <div class="breakdown-item">
+        <span class="item-label">Included Km</span>
+        <span class="item-value">4 km</span>
+      </div>
+
+      <div class="breakdown-item">
+        <span class="item-label">Additional Km Charge</span>
+        <span class="item-value">11.0 km × ₹28</span>
+      </div>
     </div>
 
+    <div class="breakdown-total">
+      <span class="total-label">Total Estimated Fare</span>
+      <span class="total-value">{{ selectedVehicle?.price }}</span>
+    </div>
+
+    <div class="breakdown-note">
+      <strong>Note:</strong> This is an estimated fare. Final fare may vary based on actual distance, waiting time, and toll charges.
+    </div>
   </div>
 </div>

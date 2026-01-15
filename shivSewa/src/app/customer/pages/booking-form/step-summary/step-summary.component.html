@@ -2,62 +2,62 @@
   <div class="row g-3 ">
   <div class="col-lg-8">
     <!-- Trip Header Card -->
-    <div class="card-soft mb-3" style="background-color: #FFF5F0; border: 2px solid #FFB088; border-radius: 12px;">
-      <div class="mb-2">
+    <div class="card-soft mb-3" style="border-top: 4px solid #f97415;border-radius: 12px;">
+      <div class="d-flex justify-content-between flex-wrap" style="border-bottom: 1px solid oklch(0.97 0.01 0); margin-bottom: 15px;">
+        <div class="mb-2">
         <span class="badge rounded-circle p-1 me-1" style="background-color: #FF6B35; width: 8px; height: 8px;"></span>
-        <span class="fw-semibold small" style="color: #FF6B35;">Outstation One Way Trip</span>
+        <span class="fw-semibold small" style="color: #FF6B35;text-transform: uppercase;">Pickup & Drop</span>
       </div>
-      <div class="d-flex align-items-center gap-3 mb-3">
-  <div class="d-flex align-items-center gap-2">
-    <span class="badge rounded-circle p-1"
-          style="background-color: #FF6B35; width: 8px; height: 8px;"></span>
-    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific"></i> {{ booking.pickup.name || 'Mumbai' }}</span>
+      <div class="small text-muted mb-3">
+        <i class="fa-solid fa-calendar" style="color:#999494e0"></i> &nbsp;
+        {{ formatBookingDate(booking.date) || '' }} | {{ booking.time || '' }}
+      </div>
+      </div>
+
+      <div class="mb-3">
+  <div>
+    <span class="badge rounded-circle p-1"></span>
+    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific" style="color: #00c951;"></i> {{ booking.pickup.name || 'Mumbai' }}</span>
   </div>
 
-  <div style="width:20%">
-    <hr style="border-top: 3px dashed rgba(130, 125, 125, 1);margin: 0;">
-  </div>
-
-  <div class="d-flex align-items-center gap-2">
-    <span class="badge rounded-circle p-1"
-          style="background-color: #FF6B35; width: 8px; height: 8px;"></span>
-    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific"></i>{{ booking.dropoff.name || '' }}</span>
+  <div class="d-flex align-items-center gap-2 mt-2">
+    <span class="fw-bold d-flex"><i class="bi bi-dot icon-specific" style="color: #fb2c36;"></i>{{ booking.dropoff.name || '' }}</span>
   </div>
 </div>
 
-      <div class="small text-muted mb-3">
-        <i class="fa-solid fa-calendar" style="color:rgba(241, 101, 18, 0.46)"></i> &nbsp;
-        {{ booking.date || '' }} | {{ booking.time || '' }}
-      </div>
-      <div class="d-flex align-items-center justify-content-between pt-3" style="border-top: 1px solid #FFB088;">
-        <h5 class="fw-bold">{{ booking.vehicle?.name || 'Indica Swift' }}</h5>
+
+      <div class="d-flex align-items-center justify-content-between pt-3 flex-wrap" style="border-top: 1px solid oklch(0.97 0.01 0);">
+        <div>
+         <h5 class="fw-bold">{{ booking.vehicle?.name || 'Indica Swift' }}</h5>
+        <div class="d-flex gap-2 mb-3">
+          <div class="px-3 py-2 rounded-3" style="border: 1px solid #FFD4C0; background-color: #ffedd4; border-radius: 3.40282e38px !important;">
+            <span class="fw-medium" style="color: #ca3500;font-size: 0.8rem;">
+              {{ (booking.passengers?.adults || 0) < 10 ? '0' + (booking.passengers?.adults || 0) : (booking.passengers?.adults || 0) }} Adults,
+              {{ (booking.passengers?.children || 0) < 10 ? '0' + (booking.passengers?.children || 0) : (booking.passengers?.children || 0) }} Children
+            </span>
+          </div>
+          <div class="px-3 py-2 rounded-3" style="border: 1px solid #FFD4C0; background-color: #ffedd4; border-radius: 3.40282e38px !important;">
+            <span class="fw-medium" style="color: #ca3500;font-size: 0.8rem;">
+              {{ (booking.passengers?.luggage || 0) < 10 ? '0' + (booking.passengers?.luggage || 0) : (booking.passengers?.luggage || 0) }} Luggages
+            </span>
+          </div>
+        </div>
+        </div>
+
         <div class="d-flex align-items-center gap-3 text-muted small">
           <span>
-            <i class="bi bi-people-fill me-1" style="color: #FF6B35;"></i>
+            <i class="bi bi-people-fill me-1" style="color:#999494e0"></i>
             {{ vehicleOne?.seats || 4 }} seats
           </span>
           <span>
-            <i class="bi bi-bag-fill me-1" style="color: #FF6B35;"></i>
+            <i class="bi bi-bag-fill me-1" style="color:#999494e0"></i>
             {{ vehicleOne?.bags || 2 }} Bags
           </span>
         </div>
       </div>
     </div>
 
-    <!-- Passengers Info Pills -->
-    <div class="d-flex gap-2 mb-3">
-      <div class="px-3 py-2 rounded-3" style=" border: 1px solid #FFD4C0;">
-        <span class="fw-medium" style="color: #FF6B35; font-size: 0.9rem;">
-          {{ (booking.passengers?.adults || 0) < 10 ? '0' + (booking.passengers?.adults || 0) : (booking.passengers?.adults || 0) }} Adults,
-          {{ (booking.passengers?.children || 0) < 10 ? '0' + (booking.passengers?.children || 0) : (booking.passengers?.children || 0) }} Children
-        </span>
-      </div>
-      <div class="px-3 py-2 rounded-3" style=" border: 1px solid #FFD4C0;">
-        <span class="fw-medium" style="color: #FF6B35; font-size: 0.9rem;">
-          {{ (booking.passengers?.luggage || 0) < 10 ? '0' + (booking.passengers?.luggage || 0) : (booking.passengers?.luggage || 0) }} Luggages
-        </span>
-      </div>
-    </div>
+
 
     <!-- Traveller Details -->
     <div class="card-soft mb-3" id="travellerSection">
@@ -189,6 +189,7 @@
     <div class="d-flex align-items-center gap-3 mt-2">
       <button
         class="btn btn-sm btn-dark"
+        style="padding: 10px !important;font-size: small;"
         [disabled]="emailOtp.verifying"
         (click)="verifyEmailOtp()">
         <span *ngIf="!emailOtp.verifying">Verify OTP</span>
@@ -228,7 +229,7 @@
   </div>
   <div class="col-lg-4">
     <!-- Estimated Journey Cost -->
-    <div class="card-soft mb-3">
+    <div class="card-soft mb-3" style="background-color: #f8fafc !important;">
       <h6 class="fw-bold mb-3" style="color: #FF6B35;">Estimated Journey Cost</h6>
       <div class="d-flex justify-content-between align-items-center mb-2">
         <div class="text-dark small">Estimated Base Fare(₹)</div>
@@ -252,18 +253,16 @@
           Final fare may change depending on distance covered.
         </small>
       </div>
-    </div>
-
-    <!-- Inclusions -->
-    <div class="card-soft">
-      <h6 class="fw-bold mb-3" style="color: #FF6B35;">Inclusions</h6>
+<hr class="my-3">
+      <div >
+              <h6 class="fw-bold mb-3" style="color: #FF6B35;">Inclusions</h6>
       <ul class="list-unstyled mb-0">
         <li class="mb-3">
           <div class="d-flex align-items-start gap-2">
             <span class="badge rounded-circle bg-secondary mt-1" style="width: 6px; height: 6px; padding: 3px;"></span>
             <div class="flex-grow-1">
-              <div class="fw-semibold small text-dark">148 Km included</div>
-              <div class="text-muted" style="font-size: 0.75rem;">₹ 11.5/km will apply beyond the included kms</div>
+              <div class="fw-semibold small text-dark">4 km included</div>
+              <div class="text-muted" style="font-size: 0.75rem;">₹20/km will apply beyond the included kms</div>
             </div>
           </div>
         </li>
@@ -272,7 +271,7 @@
             <span class="badge rounded-circle bg-secondary mt-1" style="width: 6px; height: 6px; padding: 3px;"></span>
             <div class="flex-grow-1">
               <div class="fw-semibold small text-dark">Waiting time upto 45 mins for pickup</div>
-              <div class="text-muted" style="font-size: 0.75rem;">₹ 100/45 mins post 45 mins</div>
+              <div class="text-muted" style="font-size: 0.75rem;">₹100/45 mins post 45 mins</div>
             </div>
           </div>
         </li>
@@ -286,7 +285,9 @@
           </div>
         </li>
       </ul>
+      </div>
     </div>
+
   </div>
       <!-- Action Buttons -->
     <div class="d-flex justify-content-between align-items-center">

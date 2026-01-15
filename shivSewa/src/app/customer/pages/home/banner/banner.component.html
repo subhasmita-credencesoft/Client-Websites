@@ -34,7 +34,8 @@
     </h1>
 
     <form class="shivsewa-booking-panel" (submit)="bookNow($event)">
-      <!-- Trip Type Selection -->
+      <!-- 1. SELECT TRIP TYPE -->
+      <div class="section-header">1. SELECT TRIP TYPE</div>
       <div class="trip-type-selector">
         <button
           type="button"
@@ -67,11 +68,30 @@
         </button>
       </div>
 
-      <!-- PICKUP & DROP FORM (Works as current implementation) -->
-      <div *ngIf="selectedTripType === 'pickup-drop'" class="trip-form">
+      <!-- 2. SELECT VEHICLE CATEGORY -->
+      <div class="section-header">2. SELECT VEHICLE CATEGORY</div>
+      <div class="vehicle-category-grid">
+        <div
+          *ngFor="let category of vehicleCategories"
+          class="vehicle-category-card"
+          [class.active]="selectedVehicleCategory === category"
+          (click)="selectVehicleCategory(category)"
+        >
+          <img
+            [src]="carData[category][0].image"
+            [alt]="getVehicleCategoryName(category)"
+            class="vehicle-category-image"
+          />
+          <div class="vehicle-name">{{ getVehicleCategoryName(category) }}</div>
+        </div>
+      </div>
+
+      <!-- 3. ENTER LOCATIONS -->
+      <div class="section-header">3. ENTER LOCATIONS</div>
+      <div class="trip-form">
         <div class="ride-inputs-wrapper">
           <!-- Pickup -->
-           <div class="error-text" *ngIf="pickupError">
+          <div class="error-text" *ngIf="pickupError">
             {{ pickupError }}
           </div>
           <div class="ride-input-group pickup-group" #pickupGroup>
@@ -81,7 +101,7 @@
               placeholder="Enter Pickup Point"
               [(ngModel)]="pickupLocation"
               (input)="filterPickup(pickupLocation)"
-              name="quickPickup"
+              name="pickup"
               class="ride-input"
               required
             />
@@ -100,7 +120,7 @@
           </div>
 
           <!-- Drop -->
-           <div class="error-text" *ngIf="dropError">
+          <div class="error-text" *ngIf="dropError">
             {{ dropError }}
           </div>
           <div class="ride-input-group drop-group" #dropGroup>
@@ -111,7 +131,7 @@
               [(ngModel)]="dropLocation"
               (input)="filterDrop(dropLocation)"
               [disabled]="!pickupLocation"
-              name="quickDrop"
+              name="drop"
               class="ride-input"
               required
             />
@@ -129,165 +149,6 @@
         <div class="quick-ride-button-wrapper">
           <button type="submit" [disabled]="!isFormValid()" class="request-ride-button">
             Request Ride
-          </button>
-        </div>
-      </div>
-
-      <!-- OUTSTATION FORM (Pickup and Drop only - NO date/time) -->
-      <div *ngIf="selectedTripType === 'outstation'" class="trip-form">
-        <div class="ride-inputs-wrapper">
-          <!-- Pickup -->
-           <div class="error-text" *ngIf="pickupError">
-            {{ pickupError }}
-          </div>
-          <div class="ride-input-group pickup-group" #pickupGroup>
-            <div class="location-indicator location-indicator-empty"></div>
-            <input
-              type="text"
-              placeholder="Enter Pickup Point"
-              [(ngModel)]="pickupLocation"
-              (input)="filterPickup(pickupLocation)"
-              name="outstationPickup"
-              class="ride-input"
-              required
-            />
-            <div class="location-button location-button-gps" (click)="useCurrentLocation()">
-              <i class="fa-solid fa-location-crosshairs icon-specific"></i>
-            </div>
-            <ul class="autocomplete-box" *ngIf="pickupSuggestions.length > 0">
-              <li *ngFor="let s of pickupSuggestions" (click)="selectPickupLocation(s)">
-                <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s.name }}
-              </li>
-            </ul>
-          </div>
-
-          <div class="connector-line-wrapper">
-            <div class="connector-line"></div>
-          </div>
-
-          <div class="error-text" *ngIf="dropError">
-          {{ dropError }}
-        </div>
-          <!-- Drop -->
-          <div class="ride-input-group drop-group" #dropGroup>
-            <div class="location-indicator location-indicator-filled"></div>
-            <input
-              type="text"
-              placeholder="Enter Destination"
-              [(ngModel)]="dropLocation"
-              (input)="filterDrop(dropLocation)"
-              [disabled]="!pickupLocation"
-              name="outstationDrop"
-              class="ride-input"
-              required
-            />
-            <div class="location-icon">
-              <i class="fa-solid fa-map-pin icon-specific"></i>
-            </div>
-            <ul class="autocomplete-box" *ngIf="dropSuggestions.length > 0">
-              <li *ngFor="let s of dropSuggestions" (click)="selectDropLocation(s)">
-                <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s.name }}
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="quick-ride-button-wrapper">
-          <button type="submit" [disabled]="!isFormValid()" class="request-ride-button">
-            Search Rides
-          </button>
-        </div>
-      </div>
-
-      <!-- RENTAL FORM (Pickup, Drop, Hours with Auto KM, Date, Time) -->
-      <div *ngIf="selectedTripType === 'rental'" class="trip-form">
-        <!-- Pickup and Drop Locations -->
-        <div class="ride-inputs-wrapper">
-          <div class="error-text" *ngIf="pickupError">
-            {{ pickupError }}
-          </div>
-          <!-- Pickup -->
-          <div class="ride-input-group pickup-group" #pickupGroup>
-            <div class="location-indicator location-indicator-empty"></div>
-            <input
-              type="text"
-              placeholder="Enter Pickup Point"
-              [(ngModel)]="pickupLocation"
-              (input)="filterPickup(pickupLocation)"
-              name="rentalPickup"
-              class="ride-input"
-              required
-            />
-            <div class="location-button location-button-gps" (click)="useCurrentLocation()">
-              <i class="fa-solid fa-location-crosshairs icon-specific"></i>
-            </div>
-            <ul class="autocomplete-box" *ngIf="pickupSuggestions.length > 0">
-              <li *ngFor="let s of pickupSuggestions" (click)="selectPickupLocation(s)">
-                <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s.name }}
-              </li>
-            </ul>
-          </div>
-
-          <div class="connector-line-wrapper">
-            <div class="connector-line"></div>
-          </div>
-
-          <!-- Drop -->
-           <div class="error-text" *ngIf="dropError">
-          {{ dropError }}
-          </div>
-          <div class="ride-input-group drop-group" #dropGroup>
-            <div class="location-indicator location-indicator-filled"></div>
-            <input
-              type="text"
-              placeholder="Enter Drop-off Point"
-              [(ngModel)]="dropLocation"
-              (input)="filterDrop(dropLocation)"
-              [disabled]="!pickupLocation"
-              name="rentalDrop"
-              class="ride-input"
-              required
-            />
-            <div class="location-icon">
-              <i class="fa-solid fa-map-pin icon-specific"></i>
-            </div>
-            <ul class="autocomplete-box" *ngIf="dropSuggestions.length > 0">
-              <li *ngFor="let s of dropSuggestions" (click)="selectDropLocation(s)">
-                <i class="bi bi-geo-alt-fill icon-specific"></i> &nbsp; {{ s.name }}
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Time Duration Control (KM auto-calculates) -->
-        <!-- <div class="rental-control-group">
-
-          <div class="rental-control">
-            <label class="control-label">How much time do you need?</label>
-            <div class="rental-control-data">
-              <button type="button" class="control-btn" (click)="decrementHours()" [disabled]="rentalHours <= 1">
-              <i class="fa-solid fa-minus"></i>
-            </button>
-            <div class="control-display">
-              <span class="control-value">{{ rentalHours }}</span>
-              <span class="control-unit">Hour{{ rentalHours > 1 ? 's' : '' }}</span>
-            </div>
-            <button type="button" class="control-btn" (click)="incrementHours()">
-              <i class="fa-solid fa-plus"></i>
-            </button>
-            </div>
-
-            <div class="km-info">
-            <i class="fa-solid fa-road"></i>
-            <span class="km-text">Distance: <strong>{{ rentalKm }} KM</strong></span>
-            <span class="km-note">(10 KM per hour)</span>
-          </div>
-          </div>
-
-        </div> -->
-        <div class="quick-ride-button-wrapper">
-          <button type="submit" [disabled]="!isFormValid()" class="request-ride-button">
-            Book Rental
           </button>
         </div>
       </div>

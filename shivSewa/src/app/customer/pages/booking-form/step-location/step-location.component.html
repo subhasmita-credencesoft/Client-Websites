@@ -1,204 +1,92 @@
 <div class="card-soft p-4 container">
   <h5 class="section-title mb-4">Pick-Up & Drop-Off</h5>
-        <div class="trip-type-selector">
-        <button
-          type="button"
-          class="trip-type-btn"
-          [class.active]="selectedTripType === 'pickup-drop'"
-          (click)="selectTripType('pickup-drop')"
-        >
-          <i class="fa-solid fa-location-dot"></i>
-          <span>Pickup & Drop</span>
-        </button>
 
-        <button
-          type="button"
-          class="trip-type-btn"
-          [class.active]="selectedTripType === 'outstation'"
-          (click)="selectTripType('outstation')"
-        >
-          <i class="fa-solid fa-car"></i>
-          <span>Outstation</span>
-        </button>
-
-        <button
-          type="button"
-          class="trip-type-btn"
-          [class.active]="selectedTripType === 'rental'"
-          (click)="selectTripType('rental')"
-        >
-          <i class="fa-regular fa-clock"></i>
-          <span>Rental</span>
-        </button>
-      </div>
-  <div class="row g-1 g-md-4 gap-changes">
-    <!-- Pickup -->
-    <div class="col-md-5">
-      <div
-        class="input-group input-orange-box"
-        [class.invalid]="pickupInvalid"
-        #pickupGroup
-      >
-        <input
-          #pickupInput
-          class="form-control"
-          [(ngModel)]="pickup"
-          (input)="onFieldInput('pickup', pickup); filterPickup(pickup)"
-          placeholder="Enter Pick-Up*"
-        />
-        <span class="input-group-text icon-soft backgrond-span"
-        (click)="useCurrentLocation()"
-          ><i class="fa-solid fa-location-crosshairs icon-specific"></i
-        ></span>
-        <ul class="autocomplete-box" *ngIf="pickupSuggestions.length > 0">
-          <li
-            *ngFor="let s of pickupSuggestions"
-            (click)="selectPickupLocation(s)"
-          >
-            <i class="bi bi-geo-alt-fill icon-specific"></i>
-            &nbsp; <span style="color: #000" >{{ s.name }}</span>
-          </li>
-        </ul>
-      </div>
-      <div class="field-error small text-danger mt-1" *ngIf="pickupInvalid">
-        Pickup location must be within Maharashtra.
-      </div>
-    </div>
-
-    <!-- Drop-off -->
-    <div class="col-md-5">
-      <div
-        class="input-group input-orange-box"
-        [class.invalid]="dropInvalid"
-        #dropGroup
-      >
-        <input
-          #dropInput
-          class="form-control"
-          [(ngModel)]="dropoff"
-          (input)="onFieldInput('drop', dropoff); filterDrop(dropoff)"
-          [disabled]="!pickup"
-          placeholder="Enter Drop-Off*"
-        />
-        <span class="input-group-text icon-soft backgrond-span"
-          ><i class="fa-solid fa-location-crosshairs icon-specific"></i
-        ></span>
-        <ul class="autocomplete-box" *ngIf="dropSuggestions.length > 0">
-          <li *ngFor="let s of dropSuggestions" (click)="selectDropLocation(s)">
-            <i class="bi bi-geo-alt-fill icon-specific"></i>
-            &nbsp; <span style="color: #000">{{ s.name }}</span>
-          </li>
-        </ul>
-      </div>
-      <div class="field-error small text-danger mt-1" *ngIf="dropInvalid">
-        Drop-off location must be within Maharashtra.
-      </div>
-    </div>
-    <!-- Round trip -->
-    <div class="d-flex justify-content-left width-93">
-      <div
-        class="col-12 d-flex mt-2 margin-changes border-changes display-manage align-items-center justify-content-between"
-      >
-        <!-- Error -->
-        <div class="field-error small text-danger mb-1" *ngIf="localityInvalid">
-          Please enter locality.
+  <div class="row g-3 pickup-drop-row">
+    <!-- Pickup Card -->
+    <div class="col-12 col-md-6">
+      <div class="location-card pickup-card">
+        <div class="location-header">
+          <i class="fa-solid fa-location-dot location-icon"></i>
+          <span class="location-label">PICKUP</span>
         </div>
+        <div class="location-value">{{ pickup || 'Navi mumbai' }}</div>
+      </div>
+    </div>
 
-        <!-- Column wrapper -->
-        <div class="d-flex flex-column width-manage">
-          <!-- Text -->
-          <div class="label-small text-muted mb-1">
-            <i class="fa-solid fa-location-dot icon-specific"></i> &nbsp;
-            {{ "Enter your pickup building, street or locality" }}
-          </div>
+    <!-- Drop Card -->
+    <div class="col-12 col-md-6">
+      <div class="location-card drop-card">
+        <div class="location-header">
+          <i class="fa-solid fa-location-dot location-icon"></i>
+          <span class="location-label">DROP</span>
+        </div>
+        <div class="location-value">{{ dropoff || 'khargar' }}</div>
+      </div>
+    </div>
+  </div>
 
-          <!-- Input Field -->
+  <!-- Schedule Section -->
+  <div class="schedule-section mt-4">
+    <div class="schedule-header">
+      <i class="fa-regular fa-clock schedule-icon"></i>
+      <h6 class="schedule-title">Schedule Your Trip</h6>
+    </div>
+
+    <div class="row g-3 mt-2">
+      <!-- Date -->
+      <div class="col-12 col-md-6">
+        <label class="input-label">Date</label>
+        <div class="schedule-input-group">
+          <i class="fa-regular fa-calendar input-icon"></i>
           <input
-            #localityInput
-            type="text"
-            class="line-input"
-            placeholder="Type here..."
-            [(ngModel)]="locality"
-            (input)="onFieldInput('locality', locality)"
-            (blur)="saveLocality()"
-            (keyup.enter)="saveLocality()"
+            type="date"
+            #dateInputElem
+            class="schedule-input"
+            [(ngModel)]="date"
+            (change)="onFieldInput('date', date); onDateChange()"
           />
-          <!-- Trip Toggle (can stay below or move outside if needed) -->
         </div>
-        <div class="trip-toggle mt-2">
-          <button
-            [class.active]="tripType === 'one-way'"
-            (click)="tripType = 'one-way'"
-          >
-            One-Way
-          </button>
-          <button
-            [class.active]="tripType === 'return'"
-            (click)="tripType = 'return'"
-          >
-            Return
-          </button>
+        <div class="field-error small text-danger mt-1" *ngIf="dateInvalid">
+          Please select date.
         </div>
       </div>
-    </div>
 
-    <!-- Date -->
-    <div class="col-6 col-md-5">
-      <div class="input-group input-white-box" [class.invalid]="dateInvalid">
-        <input
-          type="date"
-          #dateInputElem
-          class="form-control"
-          [(ngModel)]="date"
-          (change)="onFieldInput('date', date); onDateChange()"
-        />
-        <span
-          class="input-group-text icon-soft"
-          (click)="dateInputElem.showPicker()"
-        >
-          <i class="fa-solid fa-calendar"></i>
-        </span>
-      </div>
-      <div class="field-error small text-danger mt-1" *ngIf="dateInvalid">
-        Please select date.
+      <!-- Time -->
+      <div class="col-12 col-md-6">
+        <label class="input-label">Time</label>
+        <div class="schedule-input-group">
+          <input
+            #timeInputElem
+            type="text"
+            class="schedule-input"
+            placeholder="Select Time*"
+            [(ngModel)]="displayTime"
+            readonly
+            (click)="toggleTimeList(); onFieldTouched('time')"
+          />
+          <i class="fa-regular fa-clock input-icon-right"></i>
+          <ul class="time-list" *ngIf="showTimes">
+            <li *ngFor="let t of timeOptions" (click)="selectTime(t)">
+              {{ t }}
+            </li>
+          </ul>
+        </div>
+        <div class="field-error small text-danger mt-1" *ngIf="timeInvalid">
+          Please select time.
+        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Time -->
-    <div class="col-6 col-md-5">
-      <div class="input-group input-white-box" [class.invalid]="timeInvalid">
-        <input
-          #timeInputElem
-          type="text"
-          class="form-control"
-          placeholder="Select Time*"
-          [(ngModel)]="displayTime"
-          readonly
-          (click)="toggleTimeList(); onFieldTouched('time')"
-        />
-        <span class="input-group-text icon-soft" (click)="toggleTimeList()">
-          <i class="fa-solid fa-clock"></i>
-        </span>
-        <ul class="time-list" *ngIf="showTimes">
-          <li *ngFor="let t of timeOptions" (click)="selectTime(t)">
-            {{ t }}
-          </li>
-        </ul>
-      </div>
-      <div class="field-error small text-danger mt-1" *ngIf="timeInvalid">
-        Please select time.
-      </div>
-    </div>
-
-    <!-- Next Button -->
-    <div class="col-12 d-flex justify-content-end mt-3">
-      <button
-        class="btn-next"
-        [class.disabled-looking]="!isFormValid()"
-        (click)="onNextClick($event)"
-      >
-        Next: Passenger Details <i class="bi bi-arrow-right"></i>
-      </button>
-    </div>
+  <!-- Next Button -->
+  <div class="d-flex justify-content-end mt-4">
+    <button
+      class="btn-next-modern"
+      [class.disabled-looking]="!isFormValid()"
+      (click)="onNextClick($event)"
+    >
+      Next: Passenger Details
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
   </div>
 </div>

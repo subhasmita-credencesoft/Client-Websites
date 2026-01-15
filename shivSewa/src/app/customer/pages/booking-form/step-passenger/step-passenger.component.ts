@@ -34,98 +34,101 @@ export class StepPassengerComponent {
 
   selectedCategory: keyof typeof this.carData = 'sedan';
   selectedVehicle: any = null;
-error = {
-  type: false,
-  adults: false,
-  children: false,
-  luggage: false,
-  vehicle: false
-};
-carData: { [key: string]: Car[] } = {
-  sedan: [
-    {
-      id: 1,
-      name: 'Hyundai Aura',
-      seats: 4,
-      bags: 2,
-      fuel: 'Petrol',
-      price: '₹ 480',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 01 AU 1234',
-      image: 'assets/Aura-sedan.avif'
-    },
-    {
-      id: 2,
-      name: 'Maruti Dzire',
-      seats: 4,
-      bags: 2,
-      fuel: 'Petrol',
-      price: '₹ 480',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 02 DZ 5678',
-      image: 'assets/Dzire-Sedan.jpg'
-    }
-  ],
-  suv: [
-    {
-      id: 3,
-      name: 'Maruti XL6',
-      seats: 6,
-      bags: 3,
-      fuel: 'Petrol',
-      price: '₹ 500',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 03 XL 1122',
-      image: 'assets/XL-suv.avif'
-    },
-    {
-      id: 4,
-      name: 'Toyota Rumion',
-      seats: 6,
-      bags: 3,
-      fuel: 'Petrol',
-      price: '₹ 500',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 04 RU 3344',
-      image: 'assets/ROMION-SUV.avif'
-    },
-    {
-      id: 5,
-      name: 'Maruti Ertiga',
-      seats: 6,
-      bags: 3,
-      fuel: 'Petrol',
-      price: '₹ 500',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 05 ER 5566',
-      image: 'assets/ERTIGA-Suv.avif'
-    }
-  ],
-  suvPlus: [
-    {
-      id: 6,
-      name: 'Toyota Innova Crysta',
-      seats: 6,
-      bags: 4,
-      fuel: 'Diesel',
-      price: '₹ 500',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 06 IC 7788',
-      image: 'assets/INNOVA-CRYSTA-SUVPLUS.jpg'
-    },
-    {
-      id: 9,
-      name: 'Toyota Innova Hycross',
-      seats: 6,
-      bags: 4,
-      fuel: 'Hybrid',
-      price: '₹ 500',
-      description: 'All-inclusive: car + driver + fuel',
-      carNumber: 'MH 09 IH 4455',
-      image: 'assets/Innova-Hycross-SUVPLUS.webp'
-    }
-  ]
-};
+  showBreakdown = false;
+
+  error = {
+    type: false,
+    adults: false,
+    children: false,
+    luggage: false,
+    vehicle: false
+  };
+
+  carData: { [key: string]: Car[] } = {
+    sedan: [
+      {
+        id: 1,
+        name: 'Hyundai Aura',
+        seats: 4,
+        bags: 2,
+        fuel: 'Petrol',
+        price: '₹ 480',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 01 AU 1234',
+        image: 'assets/Aura-sedan.avif'
+      },
+      {
+        id: 2,
+        name: 'Maruti Dzire',
+        seats: 4,
+        bags: 2,
+        fuel: 'Petrol',
+        price: '₹ 480',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 02 DZ 5678',
+        image: 'assets/Dzire-Sedan.jpg'
+      }
+    ],
+    suv: [
+      {
+        id: 3,
+        name: 'Maruti XL6',
+        seats: 6,
+        bags: 3,
+        fuel: 'Petrol',
+        price: '₹ 500',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 03 XL 1122',
+        image: 'assets/XL-suv.avif'
+      },
+      {
+        id: 4,
+        name: 'Toyota Rumion',
+        seats: 6,
+        bags: 3,
+        fuel: 'Petrol',
+        price: '₹ 500',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 04 RU 3344',
+        image: 'assets/ROMION-SUV.avif'
+      },
+      {
+        id: 5,
+        name: 'Maruti Ertiga',
+        seats: 6,
+        bags: 3,
+        fuel: 'Petrol',
+        price: '₹ 500',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 05 ER 5566',
+        image: 'assets/ERTIGA-Suv.avif'
+      }
+    ],
+    suvPlus: [
+      {
+        id: 6,
+        name: 'Toyota Innova Crysta',
+        seats: 6,
+        bags: 4,
+        fuel: 'Diesel',
+        price: '₹ 500',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 06 IC 7788',
+        image: 'assets/INNOVA-CRYSTA-SUVPLUS.jpg'
+      },
+      {
+        id: 9,
+        name: 'Toyota Innova Hycross',
+        seats: 6,
+        bags: 4,
+        fuel: 'Hybrid',
+        price: '₹ 500',
+        description: 'All-inclusive: car + driver + fuel',
+        carNumber: 'MH 09 IH 4455',
+        image: 'assets/Innova-Hycross-SUVPLUS.webp'
+      }
+    ]
+  };
 
   travelTypeToCategory: any = {
     personal: 'sedan',
@@ -144,219 +147,285 @@ carData: { [key: string]: Car[] } = {
   ];
 
   recommendedCars: Car[] = [];
+  otherCars: Car[] = []; // All cars except the selected one, sorted
   selectedVehicleId: number | null = null;
   selectedDate: string | null;
 
   constructor(private bookingService: BookingService, private locationService: LocationService) {
-      const b = this.bookingService.getCurrent();
+    const b = this.bookingService.getCurrent();
 
-  this.passengers = b.passengers || this.passengers;
-  this.selectedDate = b.date || null;
+    this.passengers = b.passengers || this.passengers;
+    this.selectedDate = b.date || null;
+
+    // Get the selected vehicle category from banner
+    if (b.vehicleCategory) {
+      this.selectedCategory = b.vehicleCategory as keyof typeof this.carData;
+    }
+
     console.log('Current booking in passenger step:', b);
-  if (b.vehicle && b.vehicle.id) {
-    this.selectedVehicle = b.vehicle;
-    this.selectedVehicleId = b.vehicle.id;
-  }
-   window.scrollTo({ top: 0, behavior: 'smooth' });
+    console.log('Selected category from banner:', this.selectedCategory);
+
+    if (b.vehicle && b.vehicle.id) {
+      this.selectedVehicle = b.vehicle;
+      this.selectedVehicleId = b.vehicle.id;
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   ngOnInit() {
-      const date = (this.selectedDate)?.toString().split('T')[0] || '';
+    const date = (this.selectedDate)?.toString().split('T')[0] || '';
 
-  this.locationService.getAvailableCarsByDate(date).subscribe(res => {
-    this.filterCarsBySlots(res);
-  });
-     if (this.passengers.type) {
-    this.chooseType(this.passengers.type);
-  } else {
-    this.chooseType('personal');
+    this.locationService.getAvailableCarsByDate(date).subscribe(res => {
+      this.filterCarsBySlots(res);
+      this.updateCarLists();
+      this.autoSelectFirstCar();
+    });
+
+    if (this.passengers.type) {
+      this.chooseType(this.passengers.type);
+    } else {
+      this.chooseType('personal');
+    }
+
+    this.updateCarLists();
+    this.autoSelectFirstCar();
   }
 
+  autoSelectFirstCar() {
+    // Auto-select first car from recommended category if no vehicle is already selected
+    if (!this.selectedVehicle && this.recommendedCars.length > 0) {
+      this.selectVehicle(this.recommendedCars[0]);
+    }
+  }
+
+  updateCarLists() {
+    // Recommended cars: from selected category
+    this.recommendedCars = this.carData[this.selectedCategory] || [];
+
+    // Get all cars
     this.allCars = Object.values(this.carData).flat();
+
+    // Update other cars list (all cars except selected one)
+    this.updateOtherCarsList();
+  }
+
+  updateOtherCarsList() {
+    // Get all cars except the currently selected one
+    const filteredCars = this.allCars.filter(car => car.id !== this.selectedVehicleId);
+
+    // Sort: Same category cars first, then upgrade cars
+    this.otherCars = filteredCars.sort((a, b) => {
+      const aIsUpgrade = this.isUpgradeCar(a);
+      const bIsUpgrade = this.isUpgradeCar(b);
+
+      // If one is upgrade and other is not, non-upgrade comes first
+      if (aIsUpgrade && !bIsUpgrade) return 1;
+      if (!aIsUpgrade && bIsUpgrade) return -1;
+
+      // If both are same type (both upgrade or both not), maintain original order
+      return 0;
+    });
   }
 
   chooseType(type: string) {
     this.passengers.type = type;
-    this.selectedCategory = this.travelTypeToCategory[type];
-
-    this.recommendedCars = this.carData[this.selectedCategory]?.slice(0, 3);
+    // Don't override selectedCategory if it came from banner
+    const booking = this.bookingService.getCurrent();
+    if (!booking.vehicleCategory) {
+      this.selectedCategory = this.travelTypeToCategory[type];
+      this.updateCarLists();
+      this.autoSelectFirstCar();
+    }
   }
+
   limitAdults() {
-  if (this.passengers.adults < 1) this.passengers.adults = 1;
-  if (this.passengers.adults > 7) this.passengers.adults = 7;
-}
-
-limitChildren() {
-  if (this.passengers.children < 0) this.passengers.children = 0;
-  if (this.passengers.children > 5) this.passengers.children = 5;
-}
-
-limitLuggage() {
-  if (this.passengers.luggage < 0) this.passengers.luggage = 0;
-  if (this.passengers.luggage > 5) this.passengers.luggage = 5;
-}
-normalizeName(name: string): string {
-  return name.trim().toLowerCase();
-}
-changeAdults(val: number) {
-  this.passengers.adults += val;
-  if (this.passengers.adults < 1) {
-    this.passengers.adults = 1;
-    this.error.adults = true;
-    setTimeout(() => this.error.adults = false, 3000);
+    if (this.passengers.adults < 1) this.passengers.adults = 1;
+    if (this.passengers.adults > 7) this.passengers.adults = 7;
   }
-  if (this.passengers.adults > 7) this.passengers.adults = 7;
-  this.updateRecommendations();
-}
 
-changeChildren(val: number) {
-  this.passengers.children += val;
-  if (this.passengers.children < 0) {
-    this.passengers.children = 0;
-    this.error.children = true;
-    setTimeout(() => this.error.children = false, 3000);
+  limitChildren() {
+    if (this.passengers.children < 0) this.passengers.children = 0;
+    if (this.passengers.children > 5) this.passengers.children = 5;
   }
-  if (this.passengers.children > 5) this.passengers.children = 5;
-  this.updateRecommendations();
-}
 
-changeLuggage(val: number) {
-  this.passengers.luggage += val;
-  if (this.passengers.luggage < 0) {
-    this.passengers.luggage = 0;
-    this.error.luggage = true;
-    setTimeout(() => this.error.luggage = false, 3000);
+  limitLuggage() {
+    if (this.passengers.luggage < 0) this.passengers.luggage = 0;
+    if (this.passengers.luggage > 5) this.passengers.luggage = 5;
   }
-  if (this.passengers.luggage > 5) this.passengers.luggage = 5;
-  this.updateRecommendations();
-}
 
-filterCarsBySlots(slotResponse: any) {
-  const availableCarNames = slotResponse.resourceList
-    .filter((r: any) =>
-      r.availableTimings?.some(
-        (t: any) => t.slotAvailabilityDto?.noOfAvailable > 0
+  normalizeName(name: string): string {
+    return name.trim().toLowerCase();
+  }
+
+  changeAdults(val: number) {
+    this.passengers.adults += val;
+    if (this.passengers.adults < 1) {
+      this.passengers.adults = 1;
+      this.error.adults = true;
+      setTimeout(() => this.error.adults = false, 3000);
+    }
+    if (this.passengers.adults > 7) this.passengers.adults = 7;
+    this.updateRecommendations();
+  }
+
+  changeChildren(val: number) {
+    this.passengers.children += val;
+    if (this.passengers.children < 0) {
+      this.passengers.children = 0;
+      this.error.children = true;
+      setTimeout(() => this.error.children = false, 3000);
+    }
+    if (this.passengers.children > 5) this.passengers.children = 5;
+    this.updateRecommendations();
+  }
+
+  changeLuggage(val: number) {
+    this.passengers.luggage += val;
+    if (this.passengers.luggage < 0) {
+      this.passengers.luggage = 0;
+      this.error.luggage = true;
+      setTimeout(() => this.error.luggage = false, 3000);
+    }
+    if (this.passengers.luggage > 5) this.passengers.luggage = 5;
+    this.updateRecommendations();
+  }
+
+  filterCarsBySlots(slotResponse: any) {
+    const availableCarNames = slotResponse.resourceList
+      .filter((r: any) =>
+        r.availableTimings?.some(
+          (t: any) => t.slotAvailabilityDto?.noOfAvailable > 0
+        )
       )
-    )
-    .map((r: any) => this.normalizeName(r.name));
+      .map((r: any) => this.normalizeName(r.name));
 
-  // Filter category-wise
-  Object.keys(this.carData).forEach(category => {
-    this.carData[category] = this.carData[category].filter(car =>
-      availableCarNames.includes(this.normalizeName(car.name))
-    );
-  });
+    // Filter category-wise
+    Object.keys(this.carData).forEach(category => {
+      this.carData[category] = this.carData[category].filter(car =>
+        availableCarNames.includes(this.normalizeName(car.name))
+      );
+    });
 
-  // Rebuild lists after filtering
-  this.allCars = Object.values(this.carData).flat();
-  this.recommendedCars = this.carData[this.selectedCategory] || [];
-}
+    // Rebuild lists after filtering
+    this.updateCarLists();
+  }
 
   validateForm(): string | null {
-  this.error = { type: false, adults: false, children: false, luggage: false, vehicle: false };
+    this.error = { type: false, adults: false, children: false, luggage: false, vehicle: false };
 
-  switch (true) {
+    switch (true) {
+      case !this.passengers.type:
+        this.error.type = true;
+        return "travelTypeSection";
 
-    case !this.passengers.type:
-      this.error.type = true;
-      return "travelTypeSection";
+      case !this.passengers.adults:
+        this.error.adults = true;
+        return "adultsField";
 
-    case !this.passengers.adults:
-      this.error.adults = true;
-      return "adultsField";
+      case this.passengers.children === null || this.passengers.children === undefined:
+        this.error.children = true;
+        return "childrenField";
 
-    case this.passengers.children === null || this.passengers.children === undefined:
-      this.error.children = true;
-      return "childrenField";
+      case this.passengers.luggage === null || this.passengers.luggage === undefined:
+        this.error.luggage = true;
+        return "luggageField";
 
-    case this.passengers.luggage === null || this.passengers.luggage === undefined:
-      this.error.luggage = true;
-      return "luggageField";
+      case !this.selectedVehicle:
+        this.error.vehicle = true;
+        return "vehicleSection";
 
-    case !this.selectedVehicle:
-      this.error.vehicle = true;
-      return "vehicleSection";
-
-    default:
-      return null;
-  }
-}
-
-selectVehicle(v: any) {
-  this.selectedVehicle = v;
-  this.selectedVehicleId = v.id;
-
-  this.bookingService.patchDeep({
-    passengers: this.passengers,
-    vehicle: {
-      id: v.id,
-      carNumber: v.carNumber,
-      name: v.name,
-      seats: v.seats,
-      bags: v.bags,
-      price: v.price,
-      image: v.image
+      default:
+        return null;
     }
-  });
-}
+  }
 
+  selectVehicle(v: any) {
+    this.selectedVehicle = v;
+    this.selectedVehicleId = v.id;
+
+    // Update the other cars list to exclude the newly selected vehicle and sort
+    this.updateOtherCarsList();
+
+    this.bookingService.patchDeep({
+      passengers: this.passengers,
+      vehicle: {
+        id: v.id,
+        carNumber: v.carNumber,
+        name: v.name,
+        seats: v.seats,
+        bags: v.bags,
+        price: v.price,
+        image: v.image
+      }
+    });
+  }
+
+  // Helper method to check if a car is from a different category than selected
+  isUpgradeCar(car: Car): boolean {
+    const carCategory = Object.keys(this.carData).find(category =>
+      this.carData[category].some(c => c.id === car.id)
+    );
+    return carCategory !== this.selectedCategory;
+  }
 
   goBack() {
     this.bookingService.prevStep();
   }
-    validatePassengerCounts() {
+
+  validatePassengerCounts() {
     if (this.passengers.adults > 7) this.passengers.adults = 7;
     if (this.passengers.children > 5) this.passengers.children = 5;
     if (this.passengers.luggage > 5) this.passengers.luggage = 5;
 
     this.updateRecommendations();
   }
-    updateRecommendations() {
+
+  updateRecommendations() {
     const totalPeople = this.passengers.adults + this.passengers.children;
     const bags = this.passengers.luggage;
 
-   if (totalPeople <= 4 && bags <= 3) {
-  this.recommendedCars = this.carData['sedan'];
-} else if (totalPeople <= 7 && bags <= 5) {
-  this.recommendedCars = this.carData['suv'];
-} else {
-  this.recommendedCars = this.carData['minivans'];
-}
-  }
-
-next() {
-  const invalidId = this.validateForm();
-
-  if (invalidId) {
-    const el = document.getElementById(invalidId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (totalPeople <= 4 && bags <= 3) {
+      this.recommendedCars = this.carData['sedan'];
+    } else if (totalPeople <= 7 && bags <= 5) {
+      this.recommendedCars = this.carData['suv'];
+    } else {
+      this.recommendedCars = this.carData['minivans'];
     }
-    return;
   }
 
-  // If all OK → save and continue
-  this.bookingService.patchDeep({
-    passengers: this.passengers,
-    vehicle: this.selectedVehicle
-  });
+  next() {
+    const invalidId = this.validateForm();
 
-  this.bookingService.nextStep();
-}
+    if (invalidId) {
+      const el = document.getElementById(invalidId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
 
+    // If all OK → save and continue
+    this.bookingService.patchDeep({
+      passengers: this.passengers,
+      vehicle: this.selectedVehicle
+    });
+
+    this.bookingService.nextStep();
+  }
 
   isFormValid(): boolean {
-  return (
-    this.passengers.type !== null &&
-    this.passengers.adults >= 1 &&
-    this.passengers.adults <= 7 &&
-    this.passengers.children >= 0 &&
-    this.passengers.children <= 5 &&
-    this.passengers.luggage >= 0 &&
-    this.passengers.luggage <= 5 &&
-    this.selectedVehicle !== null
-  );
-}
+    return (
+      this.passengers.type !== null &&
+      this.passengers.adults >= 1 &&
+      this.passengers.adults <= 7 &&
+      this.passengers.children >= 0 &&
+      this.passengers.children <= 5 &&
+      this.passengers.luggage >= 0 &&
+      this.passengers.luggage <= 5 &&
+      this.selectedVehicle !== null
+    );
+  }
 
   scrollLeft(slider: HTMLElement) {
     slider.scrollBy({ left: -200, behavior: 'smooth' });
