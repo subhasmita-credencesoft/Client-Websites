@@ -141,7 +141,7 @@
 .hero-text h1 {
   font-size: 50px;
   font-weight: 600;
-  font-family: "Quivert", serif;
+  font-family: "GFS Didot", serif;
 
 }
 
@@ -149,7 +149,7 @@
   text-align: center;
   font-size: 32px;
   font-weight: 700;
-  color: #1A1A1A;
+  color: #1a1a1a;
   margin-bottom: 40px;
   display: flex;
   align-items: center;
@@ -176,7 +176,7 @@
 .gallery-section {
   padding: 80px 16px;
   background: #fff;
-  font-family: "Quivert", serif;
+  font-family: "GFS Didot", serif;
 }
 
 /* Container */
@@ -188,10 +188,10 @@
 
 /* Small tag */
 .section-tag {
-  font-size: 16px;
+  font-size: 12px;
   letter-spacing: 2px;
   color: #1A1A1A;
-  font-family: "Quivert", serif;
+  font-family: "GFS Didot", serif;
   font-weight: 600;
 }
 
@@ -199,13 +199,12 @@
 .section-title {
   font-size: 34px;
   margin: 16px 0;
-   font-family: "Quivert", serif;
+   font-family: "GFS Didot", serif;
    font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
-   color: #1A1A1A;
 }
 
 .section-title span {
@@ -218,7 +217,7 @@
   max-width: 850px;
   margin: 0 auto 48px;
   font-size: 14px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   line-height: 1.8;
   color: #555;
 }
@@ -305,8 +304,6 @@
 
   .section-title {
     font-size: 30px;
-    font-family: "Quivert", serif;
-    color: #1A1A1A;
   }
 }
 
@@ -321,8 +318,6 @@
     font-size: 22px;
     flex-direction: column;
     text-align: center;
-    font-family: "Quivert", serif;
-    color: #1A1A1A;
   }
 
   .section-title span {
