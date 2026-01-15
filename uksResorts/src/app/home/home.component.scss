@@ -299,7 +299,7 @@ font-family: "Poppins", serif;
 
   .hero {
 
-  background: url("/assets/home-imgs/1.avif") center/cover no-repeat;
+  background: url("/assets/home-imgs/BookOne Website Banner Mobile View.png") center/cover no-repeat;
   }
 /* 📅 Fix date input on mobile */
 .booking-item input[type="date"] {
@@ -375,6 +375,12 @@ font-family: "Poppins", serif;
   .booking-box {
     max-width: 720px;
     padding: 22px;
+  }
+  .review-text {
+    font-family: "Poppins", sans-serif !important;
+  }
+  .user-bar h6 , small {
+   font-family: "Poppins", sans-serif !important;
   }
 }
 
@@ -1275,6 +1281,13 @@ font-family: "Poppins", serif;
     width: 100%;
     height: auto;
   }
+
+  .review-text {
+    font-family: "Poppins", sans-serif !important;
+  }
+  .user-bar h6 , small {
+   font-family: "Poppins", sans-serif !important;
+  }
 }
 /* ---------- ANIMATION KEYFRAMES ---------- */
 
@@ -2136,6 +2149,30 @@ width: 100%;
   .form-group:has(.dropdown-menu.show) {
     z-index: 1051 !important;
   }
+
+  .review-text {
+    font-family: "Poppins", sans-serif !important;
+  }
+  .user-bar h6 , small {
+   font-family: "Poppins", sans-serif !important;
+  }
+
+  ::ng-deep ngb-datepicker.dropdown-menu.show {
+  position: absolute !important;
+  top: 0% !important;
+  left: 0 !important;
+  margin-top: 8px !important;
+  border: 2px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+  z-index: 1000 !important;
+  transform: translate3d(0px, 0px, 0px) !important;
+}
+.tags span {
+      flex: 1 0 calc(50% - 10px) !important; 
+      box-sizing: border-box !important;
+      font-size: 15px !important;
+    }
 }
 
 
@@ -2170,6 +2207,14 @@ width: 100%;
   ::ng-deep .custom-day {
     padding: 0.4rem !important;
     font-size: 0.85rem !important;
+  }
+
+
+  .review-text {
+    font-family: "Poppins", sans-serif !important;
+  }
+  .user-bar h6 , small {
+   font-family: "Poppins", sans-serif !important;
   }
 }
 /* SECTION */
