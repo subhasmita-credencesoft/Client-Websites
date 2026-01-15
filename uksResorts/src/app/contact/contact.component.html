@@ -144,7 +144,7 @@
   </div>
 } -->
 
-<section class="contact-section">
+<!-- <section class="contact-section">
   <div class="container">
     @if (!isSubmitted) {
       <form class="contact-form" (submit)="$event.preventDefault()">
@@ -170,6 +170,33 @@
       </div>
     }
 
+  </div>
+</section> -->
+
+<section class="contact-section">
+  <div class="container">
+    @if (!isSubmitted) {
+      <form class="contact-form" (submit)="$event.preventDefault()">
+        <div class="form-row">
+          <input #name type="text" placeholder="Your Name" required>
+          <input #email type="email" placeholder="Email Address" required>
+          <input #phone type="text" placeholder="Phone Number (Optional)">
+        </div>
+
+        <textarea #message rows="5" placeholder="How can we help you?"></textarea>
+
+        <button type="submit" (click)="submit(name.value, email.value, phone.value, message.value)">
+          SUBMIT ENQUIRY
+        </button>
+      </form>
+    } @else {
+      <div class="success-message">
+        <div class="icon-circle">✓</div>
+        <h3>Submission Successful!</h3>
+        <p>Thank you for reaching out. We have received your enquiry.</p>
+        <button class="sunmit" (click)="isSubmitted = false">Send Another Enquiry</button>
+      </div>
+    }
   </div>
 </section>
 
