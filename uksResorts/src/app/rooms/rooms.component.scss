@@ -150,13 +150,15 @@
   .price-badge strong {
     display: block;
     font-size: 1.2rem;
-    color: #000;
+    color: #1A1A1A;
+    font-family: "Poppins", sans-serif;
   }
 
   .price-badge span {
     font-size: 1.1rem;
     color: #b35900; /* Bronze/Brown color from image */
     font-weight: bold;
+    font-family: "Poppins", sans-serif;
   }
 
   /* Right Side: Content Section */
@@ -209,7 +211,7 @@
     align-items: center;
     gap: 8px;
     font-size: 0.85rem;
-    color: #666;
+    color: #555;
   }
 
   .facility-item img {
@@ -262,6 +264,7 @@
   padding: 10px 0;
   font-weight: bold;
   text-align: end;
+  font-family: 'Quivert', sans-serif;
 }
 
 /* Smooth entry animation */
@@ -316,7 +319,7 @@
 .hero-text h1 {
   font-size: 50px;
   font-weight: 600;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
 
 }
 
@@ -324,7 +327,7 @@
   text-align: center;
   font-size: 32px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #1A1A1A;
   margin-bottom: 40px;
   display: flex;
   align-items: center;
@@ -461,12 +464,12 @@
 background-color: #78CDD71A;
 }
 .rooms-subtitle {
-  font-size: 11px;
+  font-size: 15px;
   letter-spacing: 1.5px;
   color: #5b6fb5;
   margin-bottom: 8px;
   text-transform: uppercase;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
 }
 
 /* Title with lines */
@@ -481,7 +484,7 @@ background-color: #78CDD71A;
   font-size: 32px;
   font-weight: 400;
   color: #1f1f1f;
-  font-family: 'GFS Didot', serif;
+  font-family: 'Quivert', serif;
   margin: 0;
 }
 
@@ -489,7 +492,8 @@ background-color: #78CDD71A;
 .rooms-title-wrap .line {
   width: 40px;
   height: 2px;
-  background: #1f1f1f;
+  background: #1A1A1A;
+  font-family: "Poppins", sans-serif;
 }
 
 /* TABLET */
@@ -507,6 +511,7 @@ background-color: #78CDD71A;
 
   .rooms-title-wrap .line {
     width: 28px;
+    font-family: "Poppins", sans-serif;
   }
 }
 
@@ -519,7 +524,7 @@ background-color: #78CDD71A;
   font-weight: 600;
   color: #2b4acb;
   margin-bottom: 12px;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .facilities-icon {
@@ -545,7 +550,7 @@ background-color: #78CDD71A;
   color: #555;
 
   white-space: nowrap;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .room-btn{
   float: right;
@@ -575,7 +580,7 @@ background-color: #78CDD71A;
 
 .info-text span {
   color: #555;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* MOBILE */
@@ -652,14 +657,14 @@ background-color: #78CDD71A;
   border-radius: 8px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   z-index: 2;
-  font-family: "GFS Didot", serif;
+  font-family: "Quivert", serif;
 }
 @media (max-width: 991px) {
   .price-badge[_ngcontent-ng-c552228732] {
     bottom: 36px;
     left: 16px;
     padding: 8px 12px;
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
   }
 }
 @media (max-width: 575px) {
@@ -669,7 +674,7 @@ background-color: #78CDD71A;
 
     box-shadow: none;
     border: 1px solid #eee;
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
   }
 }
 
@@ -686,8 +691,8 @@ background-color: #78CDD71A;
 
 .price-badge small {
   font-size: 11px;
-  color: #777;
-  font-family: "Source Sans Pro", sans-serif;
+  color: #555;
+  font-family: "Poppins", sans-serif;
 }
 
 /* CONTENT */
@@ -700,7 +705,7 @@ background-color: #78CDD71A;
   font-size: 14px;
   color: #555;
   line-height: 1.6;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .room-features {
@@ -722,10 +727,11 @@ background-color: #78CDD71A;
 .room-btn {
   background: transparent;
   border: 1px solid #000;
-  color: #000;
+  color: #1A1A1A;
   padding: 8px 16px;
   border-radius: 20px;
   cursor: pointer;
+  font-family: 'Quivert', sans-serif
 }
 
 /* TABLET */
@@ -740,7 +746,7 @@ background-color: #78CDD71A;
 
   .price-badge {
     left: 15px;
-    font-family: "GFS Didot", serif;
+    font-family: "Quivert", serif;
   }
 }
 
@@ -757,6 +763,7 @@ background-color: #78CDD71A;
   .room-btn {
     width: 100%;
     text-align: center;
+    font-family: 'Quivert', sans-serif
   }
 }
 
@@ -804,6 +811,7 @@ border:2px solid #E5F2FF33;
 .amenity-card p {
   font-size: 14px;
   margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 /* OVERLAP IMAGES */
