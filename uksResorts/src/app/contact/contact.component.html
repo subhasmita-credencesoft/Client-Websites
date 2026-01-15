@@ -178,14 +178,15 @@
     @if (!isSubmitted) {
       <form class="contact-form" (submit)="$event.preventDefault()">
         <div class="form-row">
-          <input #name type="text" placeholder="Your Name" required>
-          <input #email type="email" placeholder="Email Address" required>
-          <input #phone type="text" placeholder="Phone Number (Optional)">
+          <input #name type="text" (input)="0" placeholder="Your Name" required>
+          <input #email type="email" (input)="0" placeholder="Email Address" required>
+          <input #phone type="text" placeholder="Phone Number (Optional)" maxlength="10">
         </div>
 
         <textarea #message rows="5" placeholder="How can we help you?"></textarea>
 
-        <button type="submit" (click)="submit(name.value, email.value, phone.value, message.value)">
+        <button type="submit"  [disabled]="isFormInvalid(name.value, email.value)"
+         (click)="submit(name.value, email.value, phone.value, message.value)">
           SUBMIT ENQUIRY
         </button>
       </form>

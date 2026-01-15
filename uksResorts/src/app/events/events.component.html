@@ -188,17 +188,17 @@
   <div class="inquiry-right">
     @if (!isSubmitted) {
       <form class="contact-form" (submit)="$event.preventDefault()">
-        <input #nameInput type="text" placeholder="Name *" />
-        <input #phoneInput type="tel" placeholder="Phone Number *" />
-        <input #emailInput type="email" placeholder="Email Address *" />
-        <input #categoryInput type="text" placeholder="Event Category *" />
+        <input #nameInput (input)="0" type="text" placeholder="Name *" />
+        <input #phoneInput (input)="0" type="tel" placeholder="Phone Number *" maxlength="10"/>
+        <input #emailInput (input)="0" type="email" placeholder="Email Address *" />
+        <input #categoryInput type="text" placeholder="Event Category" />
 
         <div class="form-row">
-          <input #venueInput type="text" placeholder="Preferred Venue *" />
-          <input #countInput type="number" placeholder="Guest Count *" />
+          <input #venueInput type="text" placeholder="Preferred Venue" />
+          <input #countInput type="number" placeholder="Guest Count" />
         </div>
 
-        <button type="submit" 
+        <button type="submit" [disabled]="isFormInvalid(nameInput.value, emailInput.value , phoneInput.value)"
           (click)="submit(
             nameInput.value, 
             emailInput.value, 

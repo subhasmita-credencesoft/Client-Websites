@@ -52,6 +52,27 @@ ngAfterViewInit(): void {
     }
   }
 
+  //  isFormInvalid(name: string, email: string, phone: string): boolean {
+  //   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+  //   const isNameEmpty = !name || name.trim().length === 0;
+  //   const isEmailInvalid = !email || !emailRegex.test(email);
+  //   const isPhoneEmpty = !phone || phone.trim().length === 0;
+
+
+  //   return isNameEmpty || isEmailInvalid || isPhoneEmpty;
+  // } 
+  isFormInvalid(name: string, email: string, phone: string): boolean {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  // This regex checks for exactly 10 digits
+  const phoneRegex = /^\d{10}$/; 
+
+  const isNameEmpty = !name || name.trim().length === 0;
+  const isEmailInvalid = !email || !emailRegex.test(email);
+  const isPhoneInvalid = !phone || !phoneRegex.test(phone.trim());
+
+  return isNameEmpty || isEmailInvalid || isPhoneInvalid;
+}
 submit(name: string, email: string, phone: string, eventCat: string, venue: string, count: number) {
   const apiUrl = 'https://api.bookonelocal.in/api-bookone/api/website/sendEmailFromWebSite';
 

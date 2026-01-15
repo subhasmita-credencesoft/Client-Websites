@@ -35,36 +35,18 @@ export class ContactComponent {
     }
   }
 
-  // submit() {
-  //   const apiUrl = 'https://api.bookonelocal.in/api-bookone/api/website/sendEmailFromWebSite';
+  isFormInvalid(name: string, email: string): boolean {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+    const isNameEmpty = !name || name.trim().length === 0;
+    const isEmailInvalid = !email || !emailRegex.test(email);
 
-  //   const emailObject = {
-  //     fromEmail: 'info@bookonepms.com',
-  //     toEmail: 'priyabrata@credencesoft.in',
-  //     message: 'Hello, this is a test message',
-  //     subject: 'New Website Inquiry',
-  //     data: ' '
-  //   };
-
-  //   this.http.post<any>(apiUrl, emailObject).subscribe({
-  //     next: (response) => {
-  //       this.isSubmitted = true;
-  //       console.log('Email sent successfully:', response);
-  //     },
-  //     error: (error) => {
-  //       this.isSubmitted = false;
-  //       console.error('Error sending email:', error);
-  //     },
-  //     complete: () => {
-  //       console.log('Request completed');
-  //     }
-  //   });
-  // }
+    return isNameEmpty || isEmailInvalid;
+  }
 
   submit(name: string, email: string, phone: string, userMsg: string) {
   const apiUrl = 'https://api.bookonelocal.in/api-bookone/api/website/sendEmailFromWebSite';
 
-  // Construct the message body using the form data
   const emailContent = `
     Name: ${name}
     Email: ${email}
