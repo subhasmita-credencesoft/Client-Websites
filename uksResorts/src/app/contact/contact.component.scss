@@ -92,10 +92,12 @@
     margin: 1rem !important;
     padding: 1.5rem !important;
     max-width: 90% !important;
+    font-family: 'Poppins', sans-serif !important;
   }
 
   .success-message h3 {
     font-size: 1.25rem !important;
+    font-family: 'Poppins', sans-serif !important;
   }
 
   .contact-section {
@@ -474,15 +476,17 @@ button[type="submit"]:active {
 }
 
 .success-message h3 {
-  color: #333;
+  color: #1A1A1A;
   margin: 0 0 10px 0;
   font-size: 1.5rem;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .success-message p {
-  color: #666;
+  color: #555;
   line-height: 1.5;
   margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 /* Button styling */
@@ -495,6 +499,7 @@ button[type="submit"]:active {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .sunmit:hover {
