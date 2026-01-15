@@ -183,21 +183,43 @@
       </p>
     </div>
 
-    <div class="inquiry-right">
-      <form>
-        <input type="text" placeholder="Name *" />
-        <input type="tel" placeholder="Phone Number *" />
-        <input type="email" placeholder="Email Address *" />
-        <input type="text" placeholder="Event Category *" />
+
+    <section>
+  <div class="inquiry-right">
+    @if (!isSubmitted) {
+      <form class="contact-form" (submit)="$event.preventDefault()">
+        <input #nameInput type="text" placeholder="Name *" />
+        <input #phoneInput type="tel" placeholder="Phone Number *" />
+        <input #emailInput type="email" placeholder="Email Address *" />
+        <input #categoryInput type="text" placeholder="Event Category *" />
 
         <div class="form-row">
-          <input type="text" placeholder="Preferred Venue *" />
-          <input type="number" placeholder="Guest Count *" />
+          <input #venueInput type="text" placeholder="Preferred Venue *" />
+          <input #countInput type="number" placeholder="Guest Count *" />
         </div>
 
-        <button type="submit">INQUIRE NOW</button>
+        <button type="submit" 
+          (click)="submit(
+            nameInput.value, 
+            emailInput.value, 
+            phoneInput.value, 
+            categoryInput.value, 
+            venueInput.value, 
+            +countInput.value
+          )">
+          INQUIRE NOW
+        </button>
       </form>
-    </div>
+    } @else {
+      <div class="success-message">
+        <div class="icon-circle">✓</div>
+        <h3>Submission Successful!</h3>
+        <p>Thank you for reaching out. We have received your enquiry.</p>
+        <button (click)="isSubmitted = false">Send Another Enquiry</button>
+      </div>
+    }
+  </div>
+</section>
 
   </div>
 </section>
