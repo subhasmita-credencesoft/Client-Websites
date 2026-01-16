@@ -603,7 +603,7 @@ button:disabled {
 }
 
 .support-wrapper {
-  max-width: 1200px;
+  max-width: 700px;
   margin: auto;
   padding: 20px;
 }
@@ -623,12 +623,12 @@ button:disabled {
   justify-content: center;
   gap: 20px;
   font-family: 'Poppins', sans-serif;
-  margin-bottom: 30px;
   flex-wrap: wrap;
+  border-radius: 12px;
+  align-items: center;
 }
 
 .action-btn {
-  background: rgba(255, 255, 255, 0.2);
   border: none;
   color: #fff;
   padding: 12px 22px;
@@ -637,18 +637,31 @@ button:disabled {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
   backdrop-filter: blur(6px);
   transition: 0.3s ease;
   font-family: 'Poppins', sans-serif;
+  min-width: 150px;
 }
 
-.action-btn:hover {
-  background: rgba(255, 255, 255, 0.35);
-}
+// .action-btn:hover {
+//   background: rgba(255, 255, 255, 0.35);
+// }
 
 .action-btn i {
   font-family: 'Poppins', sans-serif;
+}
+
+.action-btn a{
+  color: #fff;
+}
+
+.btn-inner {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 /* ===== Cards ===== */

@@ -1,35 +1,38 @@
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-      <span style="color: #176FC1;"><img src="assets/home-imgs/Symbol.png"> Mahad Phata, Old Mumbai–Pune Hwy, Khopoli, Raigad</span>
-      <span style="color: #176FC1;"><img src="assets/home-imgs/Symbol (1).png"> +91 74004 51254 | <img src="assets/home-imgs/Symbol (2).png"> info&#64;uksresort.com</span>
+    <span style="color: #176FC1;"><img src="assets/home-imgs/Symbol.png"> Mahad Phata, Old Mumbai–Pune Hwy, Khopoli,
+      Raigad</span>
+    <span style="color: #176FC1;"><img src="assets/home-imgs/Symbol (1).png"> +91 74004 51254 | <img
+        src="assets/home-imgs/Symbol (2).png"> info&#64;uksresort.com</span>
   </div>
 </div>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg main-navbar" id="mainHeader">
   <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="assets/home-imgs/logo 1.png" alt="Logo">
-      </a>
+    <a class="navbar-brand" href="#">
+      <img src="assets/home-imgs/logo 1.png" alt="Logo">
+    </a>
 
-      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="nav">
-        <ul class="navbar-nav ms-auto align-items-center gap-4">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about-us">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="/rooms">Rooms</a></li>
-          <!-- <li class="nav-item"><a class="nav-link" href="#">Facilities</a></li> -->
-          <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
-        </ul>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-center gap-4">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about-us">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/rooms">Rooms</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" href="#">Facilities</a></li> -->
+        <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
+      </ul>
 
-        <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="btn btn-light book-btn book-nav">BOOK NOW</a>
-      </div>
+      <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="btn btn-light book-btn book-nav">BOOK
+        NOW</a>
+    </div>
   </div>
 </nav>
 
@@ -39,7 +42,7 @@
 
     <div class="hero-text">
       <h1>
-         Talk to Us Anytime</h1>
+        Talk to Us Anytime</h1>
       <!-- <h1>Becomes a Cherished Memory.</h1> -->
     </div>
 
@@ -59,17 +62,16 @@
       Need Help? We’re Ready
       <span class="line"></span>
     </h2>
-    <p class="contact-subtitle" style="font-family: 'Poppins', sans-serif;" >
+    <p class="contact-subtitle" style="font-family: 'Poppins', sans-serif;">
       For reservations, enquiries, or any assistance related to your stay,
       please reach out to us using the details below.
       Our team will respond promptly to help you with all your requirements.
     </p>
 
-    <!-- Cards -->
     <div class="contact-cards">
 
       <!-- Resort Card -->
-      <div class="contact-card" style="font-family: 'Poppins', sans-serif;" >
+      <div class="contact-card" style="font-family: 'Poppins', sans-serif;">
         <img src="assets/home-imgs/10ddf7cf67d12d14abcdc0f0d25343af58996604.jpg" alt="UK Resort">
         <div class="card-overlay">
           <h3>UK’s Resort</h3>
@@ -84,7 +86,7 @@
       </div>
 
       <!-- Office Card -->
-      <div class="contact-card" style="font-family: 'Poppins', sans-serif;" >
+      <div class="contact-card" style="font-family: 'Poppins', sans-serif;">
         <img src="assets/home-imgs/11a3a62a13efcc039e0df7f7087c370198811e53.jpg" alt="Mumbai Office">
         <div class="card-overlay">
           <h3>Mumbai Office</h3>
@@ -98,129 +100,60 @@
 
     </div>
 
-    <!-- Form -->
-    <!-- <form class="contact-form">
-      <div class="form-row">
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Email Address">
-        <input type="text" placeholder="Phone Number (Optional)">
-      </div>
+    <section class="contact-section">
+      <div class="container">
+        @if (!isSubmitted) {
+        <form class="contact-form" (submit)="$event.preventDefault()">
+          <div class="form-row">
+            <input #name type="text" (input)="0" placeholder="Your Name" required>
+            <input #email type="email" (input)="0" placeholder="Email Address" required>
+            <input #phone type="text" placeholder="Phone Number (Optional)" maxlength="10">
+          </div>
 
-      <textarea rows="4" placeholder="Message"></textarea>
+          <textarea #message rows="5" placeholder="How can we help you?"></textarea>
 
-      <button type="submit">SUBMIT ENQUIRY</button>
-    </form> -->
-
-    <!-- <form class="contact-form">
-    <div class="form-row">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="text" placeholder="Phone Number (Optional)">
-    </div>
-
-    <textarea rows="5" placeholder="How can we help you?"></textarea>
-
-    <button type="submit" (click)="submit()">SUBMIT ENQUIRY</button>
-  </form> -->
-
-  <!-- @if (!isSubmitted) {
-  <form class="contact-form">
-    <div class="form-row">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="text" placeholder="Phone Number (Optional)">
-    </div>
-
-    <textarea rows="5" placeholder="How can we help you?"></textarea>
-
-    <button type="submit" (click)="submit()">SUBMIT ENQUIRY</button>
-  </form>
-} @else {
-  <div class="success-message">
-    <div class="icon-circle">✓</div>
-    <h3>Submission Successful!</h3>
-    <p>Thank you for reaching out. We have received your enquiry and will contact you shortly.</p>
-    <button class="reset-btn" (click)="isSubmitted = false">Send Another Message</button>
-  </div>
-} -->
-
-<!-- <section class="contact-section">
-  <div class="container">
-    @if (!isSubmitted) {
-      <form class="contact-form" (submit)="$event.preventDefault()">
-        <div class="form-row">
-          <input type="text" placeholder="Your Name" required>
-          <input type="email" placeholder="Email Address" required>
-          <input type="text" placeholder="Phone Number (Optional)">
+          <button type="submit" [disabled]="isFormInvalid(name.value, email.value)"
+            (click)="submit(name.value, email.value, phone.value, message.value)">
+            SUBMIT ENQUIRY
+          </button>
+        </form>
+        } @else {
+        <div class="success-message">
+          <div class="icon-circle">✓</div>
+          <h3>Submission Successful!</h3>
+          <p>Thank you for reaching out. We have received your enquiry.</p>
+          <button class="sunmit" (click)="isSubmitted = false">Send Another Enquiry</button>
         </div>
-
-        <textarea rows="5" placeholder="How can we help you?"></textarea>
-
-        <button type="submit" (click)="submit()">SUBMIT ENQUIRY</button>
-      </form>
-    } @else {
-      <div class="success-message">
-        <div class="icon-circle">✓</div>
-        <h3>Submission Successful!</h3>
-        <p>Thank you for reaching out. We have received your enquiry.</p>
-        
-        <button class="sunmit" (click)="isSubmitted = false">
-          Send Another Enquiry
-        </button>
+        }
       </div>
-    }
-
-  </div>
-</section> -->
-
-<section class="contact-section">
-  <div class="container">
-    @if (!isSubmitted) {
-      <form class="contact-form" (submit)="$event.preventDefault()">
-        <div class="form-row">
-          <input #name type="text" (input)="0" placeholder="Your Name" required>
-          <input #email type="email" (input)="0" placeholder="Email Address" required>
-          <input #phone type="text" placeholder="Phone Number (Optional)" maxlength="10">
-        </div>
-
-        <textarea #message rows="5" placeholder="How can we help you?"></textarea>
-
-        <button type="submit"  [disabled]="isFormInvalid(name.value, email.value)"
-         (click)="submit(name.value, email.value, phone.value, message.value)">
-          SUBMIT ENQUIRY
-        </button>
-      </form>
-    } @else {
-      <div class="success-message">
-        <div class="icon-circle">✓</div>
-        <h3>Submission Successful!</h3>
-        <p>Thank you for reaching out. We have received your enquiry.</p>
-        <button class="sunmit" (click)="isSubmitted = false">Send Another Enquiry</button>
-      </div>
-    }
-  </div>
-</section>
+    </section>
 
   </div>
 </section>
 <div class="support-wrapper">
   <div class="support-overlay">
 
-    <!-- Top buttons -->
     <div class="support-actions">
-      <button class="action-btn">
-        <i class="icon phone"></i>
-        Call Us
-      </button>
+      <a href="tel:+1234567890" class="action-btn" style="text-decoration: none;">
+        <button type="button" class="btn-inner">
+          Call Us
+        </button>
+      </a>
 
-      <button class="action-btn">
-        <i class="icon whatsapp"></i>
-        Chat with us
-      </button>
+      <a href="https://wa.me/1234567890" target="_blank" class="action-btn" style="text-decoration: none;">
+        <button type="button" class="btn-inner">
+          Chat with us
+        </button>
+      </a>
+
+      <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" target="_blank" class="action-btn"
+        style="text-decoration: none;">
+        <button type="button" class="btn-inner">
+          Bookings
+        </button>
+      </a>
     </div>
-
-    <!-- Bottom cards -->
-    <div class="support-cards">
+    <!-- <div class="support-cards">
       <div class="support-card">
         <i class="icon booking"></i>
         <span>Bookings</span>
@@ -240,7 +173,7 @@
         <i class="icon payment"></i>
         <span>Payment Queries</span>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </div>
