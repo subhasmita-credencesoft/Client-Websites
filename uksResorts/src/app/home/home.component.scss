@@ -91,7 +91,7 @@ html, body {
 }
 .book-nav{
   padding: 8px 30px !important;
-  border-radius: 30px !important;
+  border-radius: 5px !important;
   margin-left: 24px;
 }
 
@@ -160,7 +160,7 @@ html, body {
 .hero-text h1 {
   font-size: 50px;
   font-weight: 600;
-  font-family: "Quivert", serif;
+  font-family: "Playfair Display", serif;
 
 }
 .event-sub-type-home{
@@ -236,7 +236,7 @@ font-family: "Poppins", serif;
   padding: 0 25px;
   font-size: 16px;
   border-radius: 8px;
-  font-family: 'Quivert', sans-serif !important;
+  font-family: 'Playfair Display', sans-serif !important;
 }
 .book-btnone{
   background-color: #0D0630;
@@ -251,6 +251,27 @@ font-family: "Poppins", serif;
   align-items: center;
   padding: 0 5%;
 }
+
+.nature-content {
+  display: flex;
+  flex-direction: column; /* Keeps items stacked vertically */
+  align-items: center;    /* Centers items horizontally */
+  text-align: center;     /* Optional: centers the text lines as well */
+}
+
+/* Ensure the button itself has no weird margins */
+.view-toggle-btn {
+  margin-top: 20px;       /* Adds some space above the button */
+  cursor: pointer;
+  /* Add your existing button styling here */
+}
+
+/* If you want the text to stay left-aligned but the button centered */
+.nature-text, .vision-mission {
+  width: 100%;
+  text-align: left; 
+}
+
 /* MOBILE */
 /* ------------------------ */
 /* MOBILE RESPONSIVE FIXES */
@@ -481,6 +502,16 @@ font-family: "Poppins", serif;
     margin-top: 30px!important;
     font-family: "Poppins", sans-serif !important;
 }
+
+.top-bar {
+  padding: 5px 0 !important;
+  font-size: 12px !important;
+  color: #333 !important;
+  border-bottom: 1px solid #e8e8e8 !important;
+  position: relative !important;
+  z-index: 2000 !important;
+}
+
 }
 
 
@@ -544,7 +575,7 @@ font-family: "Poppins", serif;
 .content-box h2 {
   font-size: 34px;
   font-weight: 400;
-  font-family: "Quivert", serif;
+  font-family: "Playfair Display", serif;
   margin-bottom: 20px;
   line-height: 1.25;
   color: #1A1A1A;
@@ -711,7 +742,7 @@ font-family: "Poppins", serif;
   font-weight: 400;
   font-size: 34px;
   margin-bottom: 10px;
-  font-family: "Quivert", serif;
+  font-family: "Playfair Display", serif;
 
 }
 
@@ -833,7 +864,7 @@ font-family: "Poppins", serif;
 .experience-box h2 {
   font-size: 34px;
   font-weight: 500;
-  font-family: "Quivert", serif;
+  font-family: "Playfair Display", serif;
   margin-bottom: 25px;
   color: #1A1A1A;
 }
@@ -1073,7 +1104,7 @@ font-family: "Poppins", serif;
   font-weight: 400 !important;
 }
 .loccation-heading{
-    font-family: "Quivert", serif;
+    font-family: "Playfair Display", serif;
     font-weight: 400 !important;
     font-size: 34px;
 
@@ -1145,7 +1176,7 @@ font-family: "Poppins", serif;
 
 .heading {
   font-size: 35px;
-  font-family: "Quivert", serif;
+  font-family: "Playfair Display", serif;
 }
 
 .quote-icon {
@@ -1241,7 +1272,7 @@ font-family: "Poppins", serif;
 
 .taste-content h2 {
   font-size: 34px;
-  font-family: "Quivert", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 400;
   color: #0b0631;
   line-height: 1.2;
@@ -2239,10 +2270,25 @@ width: 100%;
   flex: 1;
 }
 
+.collapsible-text {
+  width: 100%;
+}
+
+.learn-more-btn {
+  display: inline-block; 
+  margin-top: 20px;     
+  width: fit-content;
+  text-align: center;
+  align-items: center;
+}
+.text-muted{
+  text-align: justify;
+}
+
 .nature-subtitle {
     font-size: 35px;
     font-weight: 400;
-    font-family: "Quivert", serif;
+    font-family: "Playfair Display", serif;
     margin-bottom: 20px;
     line-height: 1.25;
     color: #1A1A1A;
@@ -2273,13 +2319,15 @@ width: 100%;
   border-radius: 30px;
   font-size: 18px;
   transition: 0.3s;
-  font-family: "Quivert", serif;
+  font-family: "Playfair Display", serif;
+  align-items: center;
+  text-align: center;
 }
 
 .learn-more-btn:hover {
   background: #1A1A1A;
   color: #fff;
-  font-family: "Quivert", serif;
+  font-family: "Playfair Display", serif;
 }
 
 /* RIGHT IMAGES CONTAINER */
@@ -2372,6 +2420,27 @@ width: 100%;
     bottom: -10px;
     padding: 15px;
   }
+
+#nearbyCarousel {
+    padding: 0 45px;
+}
+
+.carousel-control-prev {
+    left: -15px !important;
+    width: 50px !important;
+}
+
+.carousel-control-next {
+    right: -15px !important; 
+    width: 50px !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #1A1A1A;
+    padding: 15px;
+    background-size: 50%;
+}
 }
 
 /* RESPONSIVE */
@@ -2439,7 +2508,7 @@ width: 100%;
   font-size: 35px;
   margin-bottom: 12px;
   color: #1A1A1A;
-  font-family: "Quivert", serif;
+  font-family: "Playfair Display", serif;
 }
 
 .vm-box p {
@@ -2479,7 +2548,7 @@ width: 100%;
   text-align: center;
   font-size: 35px;
   font-weight: 400;
-  font-family: "Quivert", serif;
+  font-family: "Playfair Display", serif;
   letter-spacing: 1px;
   margin-bottom: 10px;
   color: #1A1A1A;
@@ -2536,7 +2605,7 @@ width: 100%;
 .nearby-place-content h3 {
   font-size: 20px;
   margin-bottom: 8px;
-  font-family: "Quivert", serif;
+  font-family: "Playfair Display", serif;
   color: #1A1A1A;
 }
 
@@ -2550,7 +2619,7 @@ width: 100%;
 }
 
 .guest-testimonials-text{
-  font-family: 'Quivert', sans-serif;
+  font-family: 'Playfair Display', sans-serif;
   font-size: 35px;
 }
 .nearby-place-distance {
@@ -2599,7 +2668,7 @@ width: 100%;
   }
 
   .view-toggle-btn {
-    display: inline-block;
+    display: block;
     float: right;
     margin-top: 10px;
     background-color: #0d0630;
@@ -2696,7 +2765,7 @@ width: 100%;
 }
 
 .card-content h3 {
- font-family: "Quivert", serif;
+ font-family: "Playfair Display", serif;
  color: #1A1A1A;
  font-weight: 400;
  font-size: 35px;
@@ -2720,7 +2789,7 @@ width: 100%;
   cursor: pointer;
   font-weight: bold;
   text-align: center;
-  font-family: "Quivert", serif;
+  font-family: "Poppins", serif;
 }
 
 .card-book-btn1:hover {
@@ -2730,7 +2799,7 @@ width: 100%;
 .section-header-heading{
     font-size: 34px;
     font-weight: 400;
-    font-family: "Quivert", serif;
+    font-family: "Playfair Display", serif;
     margin-bottom: 20px;
     line-height: 1.25;
     color: #1A1A1A;
@@ -2741,7 +2810,7 @@ width: 100%;
   font-size: 35px;
     font-weight: 400;
     margin-top:20px;
-    font-family: "Quivert", serif;
+    font-family: "Playfair Display", serif;
     margin-bottom: 20px;
     line-height: 1.25;
     color: #1A1A1A;
@@ -2786,7 +2855,7 @@ width: 100%;
     display: block;
     margin-bottom: 15px;
     font-weight: 400;
-    font-family: "Quivert", serif;
+    font-family: "Playfair Display", serif;
 }
 
 .main-title {
@@ -2794,12 +2863,12 @@ width: 100%;
     line-height: 1.2;
     margin-bottom: 25px;
     font-weight: 400;
-    font-family: "Quivert", serif;
+    font-family: "Playfair Display", serif;
     color: #1A1A1A;
 }
 
 .main-title i {
-    font-family: "Quivert", serif;
+    font-family: "Playfair Display", serif;
 }
 
 .description {
@@ -2829,7 +2898,7 @@ width: 100%;
 }
 
 .info-text strong {
-    font-family: "Quivert", serif;
+    font-family: "Playfair Display", serif;
     color: #1A1A1A;
 }
 
@@ -2850,7 +2919,7 @@ width: 100%;
     font-weight: bold;
     margin-top: 20px;
     transition: background 0.3s ease;
-    font-family: "Quivert", serif;
+    font-family: "Playfair Display", serif;
 }
 
 .btn-directions:hover {
@@ -2915,7 +2984,7 @@ width: 100%;
 }
    .experience-card-text{
     text-align: center !important;
-    font-family: 'Quivert', serif !important;
+    font-family: 'Playfair Display', serif !important;
     font-weight: 400 !important;
     font-size: 22px !important;
     color: #1A1A1A !important;
@@ -2928,7 +2997,7 @@ width: 100%;
     display: block !important;
     margin-bottom: 15px !important;
     font-weight: 400 !important;
-     font-family: "Quivert", serif !important;
+     font-family: "Playfair Display", serif !important;
     text-align: center !important;
     margin-top: 15px !important;
    }
@@ -2945,7 +3014,7 @@ width: 100%;
   }
 
   .guest-testimonials-text{
-  font-family: 'Quivert', sans-serif !important;
+  font-family: 'Playfair Display', sans-serif !important;
   text-align: center !important;
 }
 }

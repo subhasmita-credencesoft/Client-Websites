@@ -105,8 +105,8 @@
         @if (!isSubmitted) {
         <form class="contact-form" (submit)="$event.preventDefault()">
           <div class="form-row">
-            <input #name type="text" (input)="0" placeholder="Your Name" required>
-            <input #email type="email" (input)="0" placeholder="Email Address" required>
+            <input #name type="text" (input)="0" placeholder="Your Name *" required>
+            <input #email type="email" (input)="0" placeholder="Email Address *" required>
             <input #phone type="text" placeholder="Phone Number (Optional)" maxlength="10">
           </div>
 
