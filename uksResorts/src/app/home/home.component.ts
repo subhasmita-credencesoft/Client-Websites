@@ -22,6 +22,7 @@ todayDate!: NgbDateStruct;
   formattedFromDate = '';
   formattedToDate = '';
 
+
   showErrors = {
     fromDate: false,
     toDate: false,
@@ -244,6 +245,7 @@ isBefore(a: NgbDateStruct, b: NgbDateStruct) {
     const to = new Date(this.toDate!.year, this.toDate!.month - 1, this.toDate!.day);
 
     const nights = Math.ceil((to.getTime() - from.getTime()) / 86400000);
+    const noOfRooms = this.rooms;
 
     const url =
       `https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true` +
@@ -253,7 +255,7 @@ isBefore(a: NgbDateStruct, b: NgbDateStruct) {
       `&nights=${nights}` +
       `&numAdults=${this.adults}` +
       `&Children=${this.children}` +
-      `&rooms=${this.rooms}`;
+      `&rooms=${noOfRooms}`;
 
     window.open(url, '_blank');
   }

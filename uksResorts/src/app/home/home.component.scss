@@ -110,6 +110,8 @@ html, body {
   padding: 7px 20px;
   border-radius: 25px;
   font-weight: 600;
+  display: block;
+  margin-left: auto;
 }
 .booking-item select.form-select {
   -webkit-appearance: none !important;
@@ -438,14 +440,6 @@ font-family: "Poppins", serif;
     width: 100%;
   }
 
-  /* Navbar fixes */
-  .navbar-toggler {
-    border: none !important;
-  }
-
-  .navbar-toggler-icon {
-    color: #000 !important;
-  }
 }
 @media (max-width: 768px) {
   .hero-content {
@@ -2834,11 +2828,6 @@ width: 100%;
 
 .location-section {
     padding: 80px 20px;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
 }
 
 .content-wrapper {
