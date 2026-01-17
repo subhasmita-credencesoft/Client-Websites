@@ -1,24 +1,41 @@
 import { Injectable } from '@angular/core';
 import { Booking } from '../models/booking.model';
 import { BehaviorSubject } from 'rxjs';
+import { FareQuote } from '../pricing/pricing.types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingService {
+
   private _booking = new BehaviorSubject<Booking>({
     pickup: null,
     dropoff: null,
+
+    // date & time (used in step-location)
     date: '',
     time: '',
+
+    // ✅ Trip direction (one-way / return)
     tripType: 'one-way',
-    tripTypeValue: 'pickup-drop', // Default trip type
-      distanceKm: 0,
-      durationMinutes: 0,
+
+    // ✅ EXISTING (DO NOT REMOVE)
+    // pickup-drop | outstation | rental
+    tripTypeValue: 'pickup-drop',
+
+    // ✅ NEW (normalized for pricing engine)
+    // pickup_drop | outstation | rental
+    tripServiceType: 'pickup_drop',
+
+    distanceKm: 0,
+    durationMinutes: 0,
+
     // Rental defaults
     rentalHours: 1,
     rentalKm: 10,
+
     vehicleCategory: '',
+
     passengers: {
       type: 'personal',
       adults: 1,
@@ -41,13 +58,18 @@ export class BookingService {
       mobile: '',
       email: '',
       notes: '',
-    }
+    },
+
+    // ✅ NEW: pricing result
+    fareQuote: undefined
   });
 
   booking$ = this._booking.asObservable();
 
   private _step = new BehaviorSubject<number>(0);
   step$ = this._step.asObservable();
+
+  /* ---------------- STEP CONTROL ---------------- */
 
   setStep(i: number) {
     this._step.next(i);
@@ -61,27 +83,59 @@ export class BookingService {
     this._step.next(Math.max(0, this._step.value - 1));
   }
 
+  /* ---------------- STATE UPDATE ---------------- */
+
   update(patch: Partial<Booking>) {
     this._booking.next({ ...this._booking.value, ...patch });
   }
 
   patchDeep(patch: Partial<Booking>) {
     const current = this._booking.value;
-    this._booking.next({ ...current, ...patch });
+    this._booking.next({
+      ...current,
+      ...patch,
+
+      // 🔁 keep normalized service type in sync
+      tripServiceType: patch.tripTypeValue
+        ? this.mapServiceType(patch.tripTypeValue)
+        : current.tripServiceType
+    });
+  }
+
+  setCurrent(data: Partial<Booking>) {
+    this.patchDeep(data);
   }
 
   setBooking(b: Booking) {
     this._booking.next(b);
   }
 
+  getCurrent(): Booking {
+    return this._booking.value;
+  }
+
+  /* ---------------- PRICING ---------------- */
+
+  setFareQuote(quote: FareQuote) {
+    this._booking.next({
+      ...this._booking.value,
+      fareQuote: quote
+    });
+  }
+
+  clearFareQuote() {
+    this._booking.next({
+      ...this._booking.value,
+      fareQuote: undefined
+    });
+  }
+
+  /* ---------------- HELPERS ---------------- */
+
   generateRef() {
     const ref = Math.floor(100000000 + Math.random() * 900000000).toString();
     this._booking.next({ ...this._booking.value, bookingRef: ref });
     return ref;
-  }
-
-  getCurrent() {
-    return this._booking.value;
   }
 
   reset() {
@@ -92,10 +146,14 @@ export class BookingService {
       time: '',
       tripType: 'one-way',
       tripTypeValue: 'pickup-drop',
-      vehicleCategory: '',
-      // Reset rental to defaults
+      tripServiceType: 'pickup_drop',
+
+      distanceKm: 0,
+      durationMinutes: 0,
+
       rentalHours: 1,
       rentalKm: 10,
+      vehicleCategory: '',
 
       passengers: {
         type: 'personal',
@@ -121,20 +179,15 @@ export class BookingService {
         notes: '',
       },
 
-      bookingRef: ''
+      bookingRef: '',
+      fareQuote: undefined
     });
 
     this._step.next(0);
   }
 
-  setCurrent(data: Partial<Booking>) {
-    this._booking.next({
-      ...this._booking.value,
-      ...data
-    });
-  }
+  /* ---------------- DISPLAY HELPERS ---------------- */
 
-  // Helper method to get trip type display name
   getTripTypeDisplay(): string {
     const tripType = this._booking.value.tripTypeValue;
     switch (tripType) {
@@ -149,18 +202,24 @@ export class BookingService {
     }
   }
 
-  // Helper to check if rental booking
   isRentalBooking(): boolean {
     return this._booking.value.tripTypeValue === 'rental';
   }
 
-  // Helper to check if outstation booking
   isOutstationBooking(): boolean {
     return this._booking.value.tripTypeValue === 'outstation';
   }
 
-  // Helper to check if pickup-drop booking
   isPickupDropBooking(): boolean {
     return this._booking.value.tripTypeValue === 'pickup-drop';
+  }
+
+  /* ---------------- INTERNAL ---------------- */
+
+  private mapServiceType(
+    legacy: 'pickup-drop' | 'outstation' | 'rental'
+  ): 'pickup_drop' | 'outstation' | 'rental' {
+    if (legacy === 'pickup-drop') return 'pickup_drop';
+    return legacy;
   }
 }

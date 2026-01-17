@@ -78,6 +78,63 @@
     </div>
   </div>
 
+  <!-- RETURN DATE & TIME (Only for Outstation & Rental) -->
+<div
+  class="schedule-section mt-4"
+  *ngIf="selectedTripType === 'outstation' || selectedTripType === 'rental'"
+>
+  <div class="schedule-header">
+    <i class="fa-regular fa-clock schedule-icon"></i>
+    <h6 class="schedule-title">Return Schedule</h6>
+  </div>
+
+  <div class="row g-3 mt-2">
+    <!-- Return Date -->
+    <div class="col-12 col-md-6">
+      <label class="input-label">Return Date</label>
+      <div class="schedule-input-group">
+        <i class="fa-regular fa-calendar input-icon"></i>
+        <input
+          type="date"
+          class="schedule-input"
+          [(ngModel)]="returnDate"
+          (change)="onFieldInput('returnDate', returnDate)"
+        />
+      </div>
+      <div class="field-error small text-danger mt-1" *ngIf="returnDateInvalid">
+        Please select return date.
+      </div>
+    </div>
+
+    <!-- Return Time -->
+    <div class="col-12 col-md-6">
+      <label class="input-label">Return Time</label>
+      <div class="schedule-input-group">
+        <input
+          type="text"
+          class="schedule-input"
+          placeholder="Select Return Time"
+          [(ngModel)]="returnDisplayTime"
+          readonly
+          (click)="toggleReturnTimeList()"
+        />
+        <i class="fa-regular fa-clock input-icon-right"></i>
+
+        <ul class="time-list" *ngIf="showReturnTimes">
+          <li *ngFor="let t of timeOptions" (click)="selectReturnTime(t)">
+            {{ t }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="field-error small text-danger mt-1" *ngIf="returnTimeInvalid">
+        Please select return time.
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <!-- Next Button -->
   <div class="d-flex justify-content-end mt-4">
     <button

@@ -117,7 +117,7 @@
           </div>
 
           <div class="vehicle-price-section">
-            <div class="vehicle-price">{{ selectedVehicle.price }}</div>
+            <div class="vehicle-price">₹{{ selectedVehicle.price }}</div>
             <div class="price-label">Estimated fare</div>
             <button class="breakdown-btn" (click)="showBreakdown = true">View Breakdown</button>
           </div>
@@ -153,7 +153,7 @@
             </div>
 
             <div class="option-price-section">
-              <div class="option-price">{{ car.price }}</div>
+              <div class="option-price">₹{{ car.price | number:'1.2-2' }}</div>
               <div class="option-price-label">Est. fare</div>
             </div>
           </div>
@@ -174,39 +174,86 @@
   </div>
 </div>
 
-<!-- Fare Breakdown Modal -->
-<div class="modal-overlay" *ngIf="showBreakdown" (click)="showBreakdown = false">
+<div class="modal-overlay"
+     *ngIf="showBreakdown && selectedVehicle?.fareQuote as fare"
+     (click)="showBreakdown = false">
+
   <div class="breakdown-modal" (click)="$event.stopPropagation()">
     <button class="modal-close" (click)="showBreakdown = false">
       <i class="fa-solid fa-xmark"></i>
     </button>
 
-    <h5 class="modal-title">Fare Breakdown for {{ selectedVehicle?.name }}</h5>
+    <h5 class="modal-title">
+      Fare Breakdown for {{ selectedVehicle?.name }}
+    </h5>
 
     <div class="breakdown-items">
-      <div class="breakdown-item">
-        <span class="item-label">Base Fare</span>
-        <span class="item-value">₹250</span>
-      </div>
 
-      <div class="breakdown-item">
-        <span class="item-label">Included Km</span>
-        <span class="item-value">4 km</span>
-      </div>
+      <!-- PICKUP & DROP -->
+      <ng-container *ngIf="fare.tripType === 'pickup_drop'">
+        <div class="breakdown-item">
+          <span class="item-label">Base Fare</span>
+          <span class="item-value">
+            ₹{{ fare.lines[0]?.amount| number:'1.2-2' }}
+          </span>
+        </div>
 
-      <div class="breakdown-item">
-        <span class="item-label">Additional Km Charge</span>
-        <span class="item-value">11.0 km × ₹28</span>
-      </div>
+        <div class="breakdown-item" *ngFor="let line of fare.lines"
+             [hidden]="line.code !== 'EXTRA_KM'">
+          <span class="item-label">
+            Additional Km Charge
+            <small>({{ line.qty | number:'1.2-2' }} km × ₹{{ line.unitPrice| number:'1.2-2' }})</small>
+          </span>
+          <span class="item-value">₹{{ line.amount| number:'1.2-2' }}</span>
+        </div>
+      </ng-container>
+
+      <!-- RENTAL -->
+      <ng-container *ngIf="fare.tripType === 'rental'">
+        <div class="breakdown-item" *ngFor="let line of fare.lines">
+          <span class="item-label">
+            {{ line.label }}
+            <small *ngIf="line.code !== 'PACKAGE'">
+              ({{ line.qty | number:'1.2-2' }} × ₹{{ line.unitPrice| number:'1.2-2' }})
+            </small>
+          </span>
+          <span class="item-value">₹{{ line.amount| number:'1.2-2' }}</span>
+        </div>
+      </ng-container>
+
+      <!-- OUTSTATION -->
+      <ng-container *ngIf="fare.tripType === 'outstation'">
+        <div class="breakdown-item">
+          <span class="item-label">
+            Distance Charge
+            <small>({{ fare.lines[0]?.qty | number:'1.2-2' }} km × ₹{{ fare.lines[0]?.unitPrice| number:'1.2-2' }})</small>
+          </span>
+          <span class="item-value">₹{{ fare.lines[0]?.amount| number:'1.2-2' }}</span>
+        </div>
+
+        <div class="breakdown-item">
+          <span class="item-label">
+            Driver Allowance
+            <small>({{ fare.lines[1]?.qty| number:'1.2-2' }} days × ₹{{ fare.lines[1]?.unitPrice| number:'1.2-2' }})</small>
+          </span>
+          <span class="item-value">₹{{ fare.lines[1]?.amount| number:'1.2-2' }}</span>
+        </div>
+      </ng-container>
+
     </div>
 
     <div class="breakdown-total">
       <span class="total-label">Total Estimated Fare</span>
-      <span class="total-value">{{ selectedVehicle?.price }}</span>
+      <span class="total-value">₹{{ fare.total| number:'1.2-2' }}</span>
     </div>
 
     <div class="breakdown-note">
-      <strong>Note:</strong> This is an estimated fare. Final fare may vary based on actual distance, waiting time, and toll charges.
+      <strong>Note:</strong>
+      Fare is estimated and may vary based on actual distance, duration, tolls, or waiting time.
     </div>
   </div>
 </div>
+
+
+
+

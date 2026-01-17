@@ -63,10 +63,19 @@ dropResults: GeoLocation[] = [];
 
   mumbaiLocations: string[] = MUMBAI_LOCATIONS;
   bookingData: any;
+  returnDate: string = '';
+returnDisplayTime: string = '';
+returnTime24: string = '';
+ distanceKm = 0;
+  durationMinutes = 0;
+   pickupTime24 = '';
+showReturnTimes = false;
+returnDateInvalid = false;
+returnTimeInvalid = false;
   pickupAutocomplete!: google.maps.places.AutocompleteService;
   dropAutocomplete!: google.maps.places.AutocompleteService;
   placesService!: google.maps.places.PlacesService;
-    selectedTripType: TripType = 'pickup-drop';
+  selectedTripType: TripType = 'pickup-drop';
   constructor(private bookingService: BookingService,
               private locationService: LocationService
   ) {
@@ -119,8 +128,13 @@ dropResults: GeoLocation[] = [];
     this.dropoff = b.dropoff?.name || '';
     this.date = b.date || '';
     this.time = b.time || '';
+    this.returnDate = b.returnDate || '';
+    this.returnDisplayTime = b.returnTime || '';
+    this.returnTime24 = b.returnTime || '';
     this.tripType = b.tripType || 'one-way';
     this.locality = b.locality || '';
+    this.distanceKm = b.distanceKm || 0;
+    this.durationMinutes = b.durationMinutes || 0;
     window.scrollTo({ top: 0, behavior: 'smooth' });
     console.log('Booking data loaded in StepLocation:', b);
   }
@@ -129,7 +143,10 @@ dropResults: GeoLocation[] = [];
     this.generateTimeSlots();
     this.selectDefaultTime();
     this.setDefaultDate();
-
+    if(this.returnDisplayTime){
+      this.formatAmPm(this.returnDisplayTime);
+      this.returnDisplayTime = this.formatAmPm(this.returnDisplayTime);
+    }
     this.bookingData = JSON.parse(sessionStorage.getItem('selectedBooking') || '{}');
       this.pickupAutocomplete = new google.maps.places.AutocompleteService();
       this.dropAutocomplete = new google.maps.places.AutocompleteService();
@@ -142,55 +159,124 @@ dropResults: GeoLocation[] = [];
   // FORM VALIDATION
   //---------------------------------------
   isFormValid(): boolean {
-    return (
-      !!this.selectedPickup &&
-    !!this.selectedDrop &&
-      this.date.trim() !== '' &&
-      this.displayTime.trim() !== ''
-    );
-  }
+    console.log('Validating form with values:', {
+      selectedPickup: this.selectedPickup,
+      selectedDrop: this.selectedDrop,
+      date: this.date,
+      displayTime: this.displayTime,
+      selectedTripType: this.selectedTripType,
+      returnDate: this.returnDate,
+      returnTime24: this.returnTime24
+    });
+  if (!this.selectedPickup || !this.selectedDrop) return false;
+  if (!this.date || !this.displayTime) return false;
+
+   if (this.selectedTripType !== 'pickup-drop') {
+      return !!this.returnDate && !!this.returnTime24;
+    }
+
+  return true;
+}
 
     selectTripType(type: TripType) {
     this.selectedTripType = type;
   }
+toggleReturnTimeList() {
+  this.showReturnTimes = !this.showReturnTimes;
+}
 
+selectReturnTime(t: string) {
+  this.returnDisplayTime = t;
+
+  const [time, ampm] = t.split(' ');
+  let [hr, min] = time.split(':').map(Number);
+
+  if (ampm === 'PM' && hr < 12) hr += 12;
+  if (ampm === 'AM' && hr === 12) hr = 0;
+
+  this.returnTime24 = `${hr.toString().padStart(2, '0')}:${min}`;
+  this.showReturnTimes = false;
+}
   //---------------------------------------
   // FORM SUBMIT
   //---------------------------------------
   saveAndNext() {
-    if (!this.isFormValid()) return;
+  if (!this.isFormValid()) return;
 
-    this.bookingService.patchDeep({
+  this.bookingService.patchDeep({
     tripTypeValue: this.selectedTripType,
+
     pickup: this.selectedPickup!,
     dropoff: this.selectedDrop!,
-      date: this.date,
-      time: this.displayTime,
-      tripType: this.tripType,
-      locality: this.locality
-    });
 
-    this.bookingService.nextStep();
-  }
+    date: this.date,
+    time: this.selected24hrTime,
+    returnDate:
+        this.selectedTripType !== 'pickup-drop' ? this.returnDate : undefined,
+
+      returnTime:
+        this.selectedTripType !== 'pickup-drop' ? this.returnTime24 : undefined,
+
+    tripType: this.tripType,
+    locality: this.locality,
+    distanceKm: this.distanceKm,
+    durationMinutes: this.durationMinutes
+  });
+
+  this.bookingService.nextStep();
+}
 
 
- onFieldInput(field: 'pickup'|'drop'|'date'|'time'|'locality', value: string | null): void {
+onFieldInput(
+  field:
+    | 'pickup'
+    | 'drop'
+    | 'date'
+    | 'time'
+    | 'returnDate'
+    | 'returnTime'
+    | 'locality',
+  value: string | null
+): void {
+
   switch (field) {
     case 'pickup':
       if (value && value.trim()) this.pickupInvalid = false;
       this.selectedPickup = undefined;
       break;
+
     case 'drop':
       if (value && value.trim()) this.dropInvalid = false;
       this.selectedDrop = undefined;
       break;
-    case 'date': if (value) this.dateInvalid = false; break;
-    case 'time': if (value) this.timeInvalid = false; break;
-    case 'locality': if (value && value.trim()) this.localityInvalid = false; break;
+
+    case 'date':
+      if (value) this.dateInvalid = false;
+      break;
+
+    case 'time':
+      if (value) this.timeInvalid = false;
+      break;
+
+    case 'returnDate':
+      if (value) this.returnDateInvalid = false;
+      break;
+
+    case 'returnTime':
+      if (value) this.returnTimeInvalid = false;
+      break;
+
+    case 'locality':
+      if (value && value.trim()) this.localityInvalid = false;
+      break;
   }
 
-  if (this.isFormValid()) this.lastInvalidIndex = -1;
+  // reset navigation pointer once valid
+  if (this.isFormValid()) {
+    this.lastInvalidIndex = -1;
+  }
 }
+
 
 
   // called for non-text fields (time click) to clear flag if time already chosen
@@ -317,7 +403,7 @@ dropResults: GeoLocation[] = [];
     if (this.date === today) {
       this.adjustTimeForToday();
     } else {
-      this.generateTimeSlots("07:00");
+      this.generateTimeSlots();
     }
   }
 
@@ -326,7 +412,12 @@ dropResults: GeoLocation[] = [];
     const currTime = now.toTimeString().slice(0, 5);
 
     let min = currTime < "07:00" ? "07:00" : currTime;
-    this.generateTimeSlots(min);
+    this.generateTimeSlots();
+  }
+  selectPickupTime(t: string) {
+    this.displayTime = t;
+    this.pickupTime24 = this.to24(t);
+    this.showTimes = false;
   }
 
   //---------------------------------------
@@ -339,6 +430,52 @@ dropResults: GeoLocation[] = [];
 
     if (!clickedInsidePickup) this.pickupSuggestions = [];
     if (!clickedInsideDrop) this.dropSuggestions = [];
+  }
+  calculateDistance() {
+    const service = new google.maps.DistanceMatrixService();
+
+    service.getDistanceMatrix(
+      {
+        origins: [{ lat: this.selectedPickup!.latitude, lng: this.selectedPickup!.longitude }],
+        destinations: [{ lat: this.selectedDrop!.latitude, lng: this.selectedDrop!.longitude }],
+        travelMode: google.maps.TravelMode.DRIVING
+      },
+      (res, status) => {
+       if (
+          status !== google.maps.DistanceMatrixStatus.OK ||
+          !res?.rows?.[0]?.elements?.[0] ||
+          res.rows[0].elements[0].status !== 'OK'
+        ) {
+          console.error('Distance Matrix failed');
+          return;
+        }
+
+        const el = res.rows[0].elements[0];
+        this.distanceKm = +(el.distance.value / 1000).toFixed(2);
+        this.durationMinutes = Math.ceil(el.duration.value / 60);
+
+        this.bookingService.setCurrent({
+          distanceKm: this.distanceKm,
+          durationMinutes: this.durationMinutes
+        });
+      }
+    );
+  }
+
+  /* ---------------- HELPERS ---------------- */
+
+  private to24(t: string): string {
+    const [time, ampm] = t.split(' ');
+    let [h, m] = time.split(':').map(Number);
+    if (ampm === 'PM' && h < 12) h += 12;
+    if (ampm === 'AM' && h === 12) h = 0;
+    return `${h.toString().padStart(2, '0')}:${m}`;
+  }
+
+  private toAmPm(t: string): string {
+    const [h, m] = t.split(':').map(Number);
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    return `${h % 12 || 12}:${m.toString().padStart(2, '0')} ${ampm}`;
   }
 
   //---------------------------------------
@@ -443,8 +580,8 @@ selectPickupLocation(pred: any) {
       this.pickupSuggestions = [];
 
       this.bookingService.setCurrent({ pickup: loc });
-      if (this.selectedPickup && this.selectedDrop) {
-        this.calculateDistanceAndDuration(this.selectedPickup, this.selectedDrop);
+      if (this.selectedPickup) {
+        this.calculateDistance();
       }
     });
 }
@@ -470,21 +607,15 @@ selectPickupLocation(pred: any) {
     this.showTimes = !this.showTimes;
   }
 
-  generateTimeSlots(min24: string = "07:00") {
+generateTimeSlots() {
     const slots: string[] = [];
-    const [minH, minM] = min24.split(":").map(Number);
-
     for (let h = 7; h <= 21; h++) {
       for (let m = 0; m < 60; m += 30) {
-        if (h < minH || (h === minH && m < minM)) continue;
-
-        let hr12 = h > 12 ? h - 12 : h;
-        let ampm = h >= 12 ? 'PM' : 'AM';
-
-        slots.push(`${hr12.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')} ${ampm}`);
+        const hr12 = h % 12 || 12;
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        slots.push(`${hr12}:${m.toString().padStart(2, '0')} ${ampm}`);
       }
     }
-
     this.timeOptions = slots;
   }
 
@@ -512,7 +643,12 @@ selectPickupLocation(pred: any) {
     this.displayTime = `${hr12.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')} ${ampm}`;
     this.selected24hrTime = `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
   }
-
+formatAmPm(time?: string): string {
+  if (!time) return '';
+  const [h, m] = time.split(':').map(Number);
+  const period = h >= 12 ? 'PM' : 'AM';
+  return `${h % 12 || 12}:${m.toString().padStart(2, '0')} ${period}`;
+}
 filterDrop(value: string) {
   if (!value || value.length < 4) {
     this.dropSuggestions = [];
@@ -575,8 +711,8 @@ selectDropLocation(pred: any) {
       this.dropSuggestions = [];
 
       this.bookingService.setCurrent({ dropoff: loc });
-      if (this.selectedPickup && this.selectedDrop) {
-        this.calculateDistanceAndDuration(this.selectedPickup, this.selectedDrop);
+      if (this.selectedDrop) {
+        this.calculateDistance();
       }
     });
 }

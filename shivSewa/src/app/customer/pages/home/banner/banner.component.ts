@@ -7,6 +7,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { GeoLocation } from '../../../models/geo-location';
 import { BookingService } from '../../../services/booking.service';
 import { LocationService } from '../../../services/location/location.service';
+import { Booking, TripServiceType, TripTypeValue } from '../../../models/booking.model';
 
 type TripType = 'pickup-drop' | 'outstation' | 'rental';
 type VehicleCategory = 'sedan' | 'suv' | 'suvPlus';
@@ -17,7 +18,6 @@ interface Car {
   seats: number;
   bags: number;
   fuel: string;
-  price: string;
   description: string;
   carNumber: string;
   image: string;
@@ -32,12 +32,11 @@ interface Car {
 })
 export class BannerComponent {
   // Trip Type Selection
-  selectedTripType: TripType = 'pickup-drop';
+   selectedTripType: TripType = 'pickup-drop';
   selectedVehicleCategory: VehicleCategory | null = null;
 
   // Vehicle categories array with proper typing
   vehicleCategories: VehicleCategory[] = ['sedan', 'suv', 'suvPlus'];
-
   // Common fields
   pickupLocation: string = '';
   dropLocation: string = '';
@@ -48,7 +47,7 @@ export class BannerComponent {
   rentalTime: string = '';
 
   // Car data
-  carData: { [key: string]: Car[] } = {
+  carData: Record<VehicleCategory, Car[]> = {
     sedan: [
       {
         id: 1,
@@ -56,7 +55,6 @@ export class BannerComponent {
         seats: 4,
         bags: 2,
         fuel: 'Petrol',
-        price: '₹ 480',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 01 AU 1234',
         image: 'assets/Aura-sedan.avif'
@@ -67,7 +65,6 @@ export class BannerComponent {
         seats: 4,
         bags: 2,
         fuel: 'Petrol',
-        price: '₹ 480',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 02 DZ 5678',
         image: 'assets/Dzire-Sedan.jpg'
@@ -80,7 +77,6 @@ export class BannerComponent {
         seats: 6,
         bags: 3,
         fuel: 'Petrol',
-        price: '₹ 500',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 03 XL 1122',
         image: 'assets/XL-suv.avif'
@@ -91,7 +87,6 @@ export class BannerComponent {
         seats: 6,
         bags: 3,
         fuel: 'Petrol',
-        price: '₹ 500',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 04 RU 3344',
         image: 'assets/ROMION-SUV.avif'
@@ -102,7 +97,6 @@ export class BannerComponent {
         seats: 6,
         bags: 3,
         fuel: 'Petrol',
-        price: '₹ 500',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 05 ER 5566',
         image: 'assets/ERTIGA-Suv.avif'
@@ -115,7 +109,6 @@ export class BannerComponent {
         seats: 6,
         bags: 4,
         fuel: 'Diesel',
-        price: '₹ 500',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 06 IC 7788',
         image: 'assets/INNOVA-CRYSTA-SUVPLUS.jpg'
@@ -126,7 +119,6 @@ export class BannerComponent {
         seats: 6,
         bags: 4,
         fuel: 'Hybrid',
-        price: '₹ 500',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 09 IH 4455',
         image: 'assets/Innova-Hycross-SUVPLUS.webp'
@@ -202,18 +194,22 @@ export class BannerComponent {
   }
 
   // Vehicle Category Selection
-  selectVehicleCategory(category: VehicleCategory) {
+   selectVehicleCategory(category: VehicleCategory) {
     this.selectedVehicleCategory = category;
+
+    // ✅ store early
+    this.bookingService.setCurrent({
+      vehicleCategory: category
+    });
   }
 
   // Get vehicle category display name
-  getVehicleCategoryName(category: string): string {
-    const names: { [key: string]: string } = {
+   getVehicleCategoryName(category: VehicleCategory): string {
+    return {
       sedan: 'Sedan',
       suv: 'SUV',
-      suvPlus: 'Premium SUV'
-    };
-    return names[category] || category;
+      suvPlus: 'Suv Plus'
+    }[category];
   }
 
   resetForm() {
@@ -529,83 +525,57 @@ export class BannerComponent {
   }
 
   isFormValid(): boolean {
-    if (!this.selectedPickup) return false;
-
-    switch (this.selectedTripType) {
-      case 'pickup-drop':
-        return !!this.selectedDrop;
-
-      case 'outstation':
-        return !!this.selectedDrop;
-
-      case 'rental':
-        return !!this.selectedDrop;
-
-      default:
-        return false;
-    }
+     if (!this.selectedPickup) return false;
+    if (!this.selectedVehicleCategory) return false;
+    if (!this.selectedDrop) return false;
+    return true;
   }
 
-  bookNow(event: Event): void {
-    event.preventDefault();
-    this.validatePickup();
-    this.validateDrop();
+bookNow(event: Event): void {
+  event.preventDefault();
 
-    if (this.pickupError || this.dropError) {
-      return;
-    }
+  this.validatePickup();
+  this.validateDrop();
+  if (!this.isFormValid()) return;
 
-    if (!this.isFormValid()) {
-      alert('Please fill all required fields');
-      return;
-    }
+  const tripServiceType: TripServiceType =
+  this.selectedTripType === 'pickup-drop'
+    ? 'pickup_drop'
+    : this.selectedTripType;
+const tripTypeValue: TripTypeValue = this.selectedTripType;
+  const bookingData: Partial<Booking> = {
+  // direction
+  tripType: 'one-way',
 
-    let bookingData: any = {
-      pickup: this.selectedPickup,
-      tripTypeValue: this.selectedTripType,
-      tripType: 'one-way',
-      vehicleCategory: this.selectedVehicleCategory,
-      passengers: {
-        type: 'personal',
-        adults: 1,
-        children: 0,
-        luggage: 0
-      }
-    };
+  // UI layer value
+  tripTypeValue: tripTypeValue,
 
-    switch (this.selectedTripType) {
-      case 'pickup-drop':
-        bookingData = {
-          ...bookingData,
-          dropoff: this.selectedDrop
-        };
-        break;
+  // pricing engine value
+  tripServiceType: tripServiceType,
 
-      case 'outstation':
-        bookingData = {
-          ...bookingData,
-          dropoff: this.selectedDrop
-        };
-        break;
+  vehicleCategory: this.selectedVehicleCategory,
 
-      case 'rental':
-        bookingData = {
-          ...bookingData,
-          dropoff: this.selectedDrop,
-          date: this.rentalDate,
-          time: this.rentalTime,
-          rentalHours: this.rentalHours,
-          rentalKm: this.rentalKm
-        };
-        break;
-    }
+  pickup: this.selectedPickup,
+  dropoff: this.selectedDrop,
 
-    sessionStorage.setItem("selectedBooking", JSON.stringify(bookingData));
+  distanceKm: this.bookingService.getCurrent()?.distanceKm ?? 0,
+  durationMinutes: this.bookingService.getCurrent()?.durationMinutes ?? 0,
 
-    this.bookingService.patchDeep(bookingData);
-
-    console.log('Booking Data:', bookingData);
-
-    this.router.navigate(['/booking']);
+  passengers: {
+    type: 'personal',
+    adults: 1,
+    children: 0,
+    luggage: 0
   }
+};
+
+  this.bookingService.patchDeep(bookingData);
+  sessionStorage.setItem('selectedBooking', JSON.stringify(bookingData));
+
+  this.router.navigate(['/booking']);
 }
+
+
+
+}
+

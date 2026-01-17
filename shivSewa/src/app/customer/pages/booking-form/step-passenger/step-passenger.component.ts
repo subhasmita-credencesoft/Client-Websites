@@ -3,6 +3,10 @@ import { Component } from '@angular/core';
 import { BookingService } from '../../../services/booking.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FareQuote } from '../../../pricing/pricing.types';
+import { calculateFare } from '../../../pricing/fare-engine';
+import { QuoteRequest } from '../../../pricing/dto';
+import { PricingService } from '../../../pricing/pricing.service';
 
 interface Car {
   id: number;
@@ -14,6 +18,7 @@ interface Car {
   price: string;
   description: string;
   image: string;
+  fareQuote?: FareQuote;
 }
 
 @Component({
@@ -32,7 +37,7 @@ export class StepPassengerComponent {
     luggage: 0
   } as any;
 
-  selectedCategory: keyof typeof this.carData = 'sedan';
+  selectedCategory: keyof typeof this.carData = "sedan";
   selectedVehicle: any = null;
   showBreakdown = false;
 
@@ -52,7 +57,7 @@ export class StepPassengerComponent {
         seats: 4,
         bags: 2,
         fuel: 'Petrol',
-        price: '₹ 480',
+        price: '',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 01 AU 1234',
         image: 'assets/Aura-sedan.avif'
@@ -63,7 +68,7 @@ export class StepPassengerComponent {
         seats: 4,
         bags: 2,
         fuel: 'Petrol',
-        price: '₹ 480',
+        price: '',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 02 DZ 5678',
         image: 'assets/Dzire-Sedan.jpg'
@@ -76,7 +81,7 @@ export class StepPassengerComponent {
         seats: 6,
         bags: 3,
         fuel: 'Petrol',
-        price: '₹ 500',
+        price: '',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 03 XL 1122',
         image: 'assets/XL-suv.avif'
@@ -87,7 +92,7 @@ export class StepPassengerComponent {
         seats: 6,
         bags: 3,
         fuel: 'Petrol',
-        price: '₹ 500',
+        price: '',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 04 RU 3344',
         image: 'assets/ROMION-SUV.avif'
@@ -98,7 +103,7 @@ export class StepPassengerComponent {
         seats: 6,
         bags: 3,
         fuel: 'Petrol',
-        price: '₹ 500',
+        price: '',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 05 ER 5566',
         image: 'assets/ERTIGA-Suv.avif'
@@ -111,29 +116,16 @@ export class StepPassengerComponent {
         seats: 6,
         bags: 4,
         fuel: 'Diesel',
-        price: '₹ 500',
+        price: '',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 06 IC 7788',
         image: 'assets/INNOVA-CRYSTA-SUVPLUS.jpg'
-      },
-      {
-        id: 9,
-        name: 'Toyota Innova Hycross',
-        seats: 6,
-        bags: 4,
-        fuel: 'Hybrid',
-        price: '₹ 500',
-        description: 'All-inclusive: car + driver + fuel',
-        carNumber: 'MH 09 IH 4455',
-        image: 'assets/Innova-Hycross-SUVPLUS.webp'
       }
     ]
   };
 
-  travelTypeToCategory: any = {
+ travelTypeToCategory: any = {
     personal: 'sedan',
-    group: 'suv',
-    family: 'minivans',
     corporate: 'suv'
   };
 
@@ -151,7 +143,9 @@ export class StepPassengerComponent {
   selectedVehicleId: number | null = null;
   selectedDate: string | null;
 
-  constructor(private bookingService: BookingService, private locationService: LocationService) {
+  constructor(private bookingService: BookingService,
+    private locationService: LocationService,
+  private pricingService: PricingService) {
     const b = this.bookingService.getCurrent();
 
     this.passengers = b.passengers || this.passengers;
@@ -163,8 +157,6 @@ export class StepPassengerComponent {
     }
 
     console.log('Current booking in passenger step:', b);
-    console.log('Selected category from banner:', this.selectedCategory);
-
     if (b.vehicle && b.vehicle.id) {
       this.selectedVehicle = b.vehicle;
       this.selectedVehicleId = b.vehicle.id;
@@ -178,37 +170,106 @@ export class StepPassengerComponent {
 
     this.locationService.getAvailableCarsByDate(date).subscribe(res => {
       this.filterCarsBySlots(res);
-      this.updateCarLists();
-      this.autoSelectFirstCar();
     });
+     this.pricingService.load().subscribe(() => {
+    this.updateCarLists();
+     if (this.selectedVehicleId) {
+      const matched = this.allCars.find(c => c.id === this.selectedVehicleId);
+      if (matched) {
+        this.selectedVehicle = matched;
+      }
+    }
+    this.autoSelectFirstCar();
+  });
 
     if (this.passengers.type) {
       this.chooseType(this.passengers.type);
     } else {
       this.chooseType('personal');
     }
-
-    this.updateCarLists();
-    this.autoSelectFirstCar();
   }
 
+private mapCategoryForPricing(
+  category: keyof typeof this.carData
+): 'sedan' | 'suv' | 'premium_suv' {
+  switch (category) {
+    case 'sedan': return 'sedan';
+    case 'suv': return 'suv';
+    case 'suvPlus': return 'premium_suv';
+    default: return 'sedan';
+  }
+}
+
+
+
+  private calculateFareForCategory(
+    category: keyof typeof this.carData
+  ): FareQuote {
+    const b = this.bookingService.getCurrent();
+
+    const req: QuoteRequest = {
+      tripType: this.mapTripTypeToPricing(b.tripTypeValue!),
+      vehicleCategory: this.mapCategoryForPricing(category),
+      pickup: b.pickup!,
+      drop: b.dropoff!,
+      pickupDate: b.date!,
+      pickupTime: b.time!,
+      returnDate: b.returnDate,
+      returnTime: b.returnTime
+    };
+    return this.pricingService.calculate(req, b.distanceKm!);
+  }
+  private mapTripTypeToPricing(
+    ui: 'pickup-drop' | 'outstation' | 'rental'
+  ): 'pickup_drop' | 'outstation' | 'rental' {
+    return ui === 'pickup-drop' ? 'pickup_drop' : ui;
+  }
   autoSelectFirstCar() {
-    // Auto-select first car from recommended category if no vehicle is already selected
     if (!this.selectedVehicle && this.recommendedCars.length > 0) {
       this.selectVehicle(this.recommendedCars[0]);
     }
   }
-
-  updateCarLists() {
-    // Recommended cars: from selected category
-    this.recommendedCars = this.carData[this.selectedCategory] || [];
-
-    // Get all cars
-    this.allCars = Object.values(this.carData).flat();
-
-    // Update other cars list (all cars except selected one)
-    this.updateOtherCarsList();
+private canCalculateFare(): boolean {
+    const b = this.bookingService.getCurrent();
+    return (
+      this.pricingService.isReady() &&
+      !!b.pickup &&
+      !!b.dropoff &&
+      !!b.date &&
+      !!b.time &&
+      typeof b.distanceKm === 'number' &&
+      b.distanceKm > 0
+    );
   }
+
+updateCarLists() {
+  if (!this.canCalculateFare()) return;
+
+  const trip = this.bookingService.getCurrent().tripTypeValue;
+
+  this.recommendedCars = this.carData[this.selectedCategory].map(car => {
+    const quote = this.calculateFareForCategory(this.selectedCategory);
+    return { ...car, price: `${quote.total}`, fareQuote: quote };
+  });
+
+  this.allCars = Object.keys(this.carData).flatMap(cat => {
+    // 🚫 premium SUV not allowed for pickup-drop
+    if (trip === 'pickup-drop' && cat === 'suvPlus') {
+      return [];
+    }
+
+    return this.carData[cat as keyof typeof this.carData].map(car => {
+      const quote = this.calculateFareForCategory(
+        cat as keyof typeof this.carData
+      );
+      return { ...car, price: `${quote.total}`, fareQuote: quote };
+    });
+  });
+
+  this.updateOtherCarsList();
+}
+
+
 
   updateOtherCarsList() {
     // Get all cars except the currently selected one
@@ -230,7 +291,6 @@ export class StepPassengerComponent {
 
   chooseType(type: string) {
     this.passengers.type = type;
-    // Don't override selectedCategory if it came from banner
     const booking = this.bookingService.getCurrent();
     if (!booking.vehicleCategory) {
       this.selectedCategory = this.travelTypeToCategory[type];
@@ -265,7 +325,7 @@ export class StepPassengerComponent {
       this.error.adults = true;
       setTimeout(() => this.error.adults = false, 3000);
     }
-    if (this.passengers.adults > 7) this.passengers.adults = 7;
+    if (this.passengers.adults > 7) this.passengers.adults = 6;
     this.updateRecommendations();
   }
 
@@ -276,7 +336,7 @@ export class StepPassengerComponent {
       this.error.children = true;
       setTimeout(() => this.error.children = false, 3000);
     }
-    if (this.passengers.children > 5) this.passengers.children = 5;
+    if (this.passengers.children > 5) this.passengers.children = 3;
     this.updateRecommendations();
   }
 
@@ -287,29 +347,28 @@ export class StepPassengerComponent {
       this.error.luggage = true;
       setTimeout(() => this.error.luggage = false, 3000);
     }
-    if (this.passengers.luggage > 5) this.passengers.luggage = 5;
+    if (this.passengers.luggage > 5) this.passengers.luggage = 3;
     this.updateRecommendations();
   }
-
+ get selectedFare(): FareQuote | null {
+    return this.selectedVehicle?.fareQuote || null;
+  }
   filterCarsBySlots(slotResponse: any) {
-    const availableCarNames = slotResponse.resourceList
+    const available = slotResponse.resourceList
       .filter((r: any) =>
-        r.availableTimings?.some(
-          (t: any) => t.slotAvailabilityDto?.noOfAvailable > 0
-        )
+        r.availableTimings?.some((t: any) => t.slotAvailabilityDto?.noOfAvailable > 0)
       )
-      .map((r: any) => this.normalizeName(r.name));
+      .map((r: any) => r.name.toLowerCase());
 
-    // Filter category-wise
-    Object.keys(this.carData).forEach(category => {
-      this.carData[category] = this.carData[category].filter(car =>
-        availableCarNames.includes(this.normalizeName(car.name))
+    Object.keys(this.carData).forEach(cat => {
+      this.carData[cat] = this.carData[cat].filter(c =>
+        available.includes(c.name.toLowerCase())
       );
     });
 
-    // Rebuild lists after filtering
     this.updateCarLists();
   }
+
 
   validateForm(): string | null {
     this.error = { type: false, adults: false, children: false, luggage: false, vehicle: false };
@@ -344,21 +403,20 @@ export class StepPassengerComponent {
     this.selectedVehicle = v;
     this.selectedVehicleId = v.id;
 
-    // Update the other cars list to exclude the newly selected vehicle and sort
-    this.updateOtherCarsList();
-
     this.bookingService.patchDeep({
-      passengers: this.passengers,
       vehicle: {
         id: v.id,
-        carNumber: v.carNumber,
         name: v.name,
         seats: v.seats,
         bags: v.bags,
-        price: v.price,
-        image: v.image
-      }
+        price: v.fareQuote?.total,
+        image: v.image,
+        carNumber: v.carNumber
+      },
+      fareQuote: v.fareQuote
     });
+
+    this.updateOtherCarsList();
   }
 
   // Helper method to check if a car is from a different category than selected
@@ -406,10 +464,10 @@ export class StepPassengerComponent {
     }
 
     // If all OK → save and continue
-    this.bookingService.patchDeep({
-      passengers: this.passengers,
-      vehicle: this.selectedVehicle
-    });
+    // this.bookingService.patchDeep({
+    //   passengers: this.passengers,
+    //   vehicle: this.selectedVehicle
+    // });
 
     this.bookingService.nextStep();
   }

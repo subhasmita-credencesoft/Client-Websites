@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "country": "IN",
+    "currency": "INR",
+    "version": "2026-01-03",
+    "notes": [
+      "All rates are as provided by operator.",
+      "Premium SUV outstation distance is Garage-to-Garage."
+    ]
+  },
+  "services": {
+    "pickup_drop": {
+      "rules": { "billing_unit": "base_plus_additional_km" },
+      "categories": {
+        "sedan": {
+          "models": ["DZIRE", "AURA"],
+          "base_fare": 250,
+          "base_km": 4,
+          "additional_km_rate": 28
+        },
+        "suv": {
+          "models": ["ERTIGA", "RUMION", "XL6"],
+          "base_fare": 400,
+          "base_km": 4,
+          "additional_km_rate": 32
+        }
+      }
+    },
+    "rental": {
+      "rules": {
+        "default_package": { "hours": 8, "km": 80 },
+        "billing_unit": "package_plus_extras"
+      },
+      "categories": {
+        "sedan": {
+          "models": ["DZIRE", "AURA"],
+          "package": { "hours": 8, "km": 80, "base_fare": 2700 },
+          "extra_km_rate": 13,
+          "extra_hour_rate": 150
+        },
+        "suv": {
+          "models": ["ERTIGA", "RUMION", "XL6"],
+          "package": { "hours": 8, "km": 80, "base_fare": 3200 },
+          "extra_km_rate": 16,
+          "extra_hour_rate": 200
+        },
+        "premium_suv": {
+          "models": ["INNOVA_CRYSTA"],
+          "package": { "hours": 8, "km": 80, "base_fare": 4200 },
+          "extra_km_rate": 22,
+          "extra_hour_rate": 250
+        }
+      }
+    },
+    "outstation": {
+      "rules": { "billing_unit": "per_km", "min_km_per_day_applies": true },
+      "categories": {
+        "sedan": {
+          "models": ["DZIRE", "AURA"],
+          "min_km_per_day": 300,
+          "per_km_rate": 13,
+          "driver_allowance_per_day": 400,
+          "distance_calculation": "pickup_to_drop"
+        },
+        "suv": {
+          "models": ["ERTIGA", "RUMION", "XL6"],
+          "min_km_per_day": 300,
+          "per_km_rate": 16,
+          "driver_allowance_per_day": 500,
+          "distance_calculation": "pickup_to_drop"
+        },
+        "premium_suv": {
+          "models": ["INNOVA_CRYSTA"],
+          "min_km_per_day": 300,
+          "per_km_rate": 22,
+          "driver_allowance_per_day": 500,
+          "distance_calculation": "garage_to_garage"
+        }
+      }
+    }
+  }
+}
