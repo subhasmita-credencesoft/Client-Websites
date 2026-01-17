@@ -293,7 +293,7 @@
 
       <!-- EXPERIENCE BADGE -->
       <div class="experience-badge" style="font-family: 'Bree Serif', sans-serif; line-height: 1.1;">
-        <strong style="font-size: 28px; display: block;">5+</strong>
+        <strong style="font-size: 28px; display: block;">10+</strong>
         <span style="font-size: 28px;">Years Experience</span>
       </div>
     </div>
@@ -543,21 +543,73 @@
       <div class="col-lg-4">
         <div class="nearby-place-card h-100 shadow-sm border-0 position-relative">
           <div class="nearby-place-image position-relative">
-            <img src="assets/home-imgs/gagangiri.jpg" class="img-fluid w-100" alt="Shri Gagangiri Maharaj Ashram">
+            <img src="assets/home-imgs/Shri Vireshwar Temple.png" class="img-fluid w-100" alt="Shri Vireshwar Temple">
+            <div class="position-absolute top-0 end-0 m-3 px-3 py-1 text-white fw-bold shadow-sm"
+              style="background-color: #1A1A1A; border-radius: 20px; font-size: 0.9rem; font-family: 'Lato', sans-serif;">
+              6 km away
+            </div>
+          </div>
+          <div class="nearby-place-content p-3 text-center">
+            <h3 class="mb-2" style="font-size: 20px; color: #1A1A1A;">Shri Vireshwar Temple</h3>
+            <p class="text-muted">
+              Shri Vireshwar Temple is an ancient and revered Lord Shiva temple located amidst serene natural surroundings in Khopoli. 
+              <span #place2 style="display: none;">
+                Known for its spiritual significance and calm ambiance, the temple attracts devotees as well as visitors seeking a quiet, 
+                meditative experience close to nature.
+              </span>
+              <button type="button" class="btn btn-link p-0 ms-1 view-button" (click)="toggleReadMore(place2, $event)"
+                style="text-decoration: none; font-size: 0.9rem; color: #1A1A1A;">
+                View more
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="nearby-place-card h-100 shadow-sm border-0 position-relative">
+          <div class="nearby-place-image position-relative">
+            <img src="assets/home-imgs/Zenith Waterfall.png" class="img-fluid w-100" alt="Zenith Waterfall">
             <div class="position-absolute top-0 end-0 m-3 px-3 py-1 text-white fw-bold shadow-sm"
               style="background-color: #1A1A1A; border-radius: 20px; font-size: 0.9rem; font-family: 'Lato', sans-serif;">
               5 km away
             </div>
           </div>
           <div class="nearby-place-content p-3 text-center">
-            <h3 class="mb-2" style="font-size: 20px; color: #1A1A1A;">Shri Gagangiri Maharaj Ashram</h3>
+            <h3 class="mb-2" style="font-size: 20px; color: #1A1A1A;">Zenith Waterfall</h3>
             <p class="text-muted">
-              Maharaj took samadhi on 4 February 2008 at his Khopoli Ashram.
-              <span #place4 style="display: none;">
-                The Ashram provides a peaceful atmosphere for meditation and is situated amidst nature, attracting many
-                devotees throughout the year.
+              Zenith Waterfall is a popular natural attraction near Khopoli, known for its cascading waters and lush green surroundings.
+              <span #place5 style="display: none;">
+               Best visited during the monsoon season, the waterfall offers a refreshing escape with scenic views, gentle trekking trails, 
+               and a peaceful atmosphere—perfect for nature lovers and photography enthusiasts.
               </span>
-              <button type="button" class="btn btn-link p-0 ms-1 view-button" (click)="toggleReadMore(place4, $event)"
+              <button type="button" class="btn btn-link p-0 ms-1 view-button" (click)="toggleReadMore(place5, $event)"
+                style="text-decoration: none; font-size: 0.9rem; color: #1A1A1A;">
+                View more
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="nearby-place-card h-100 shadow-sm border-0 position-relative">
+          <div class="nearby-place-image position-relative">
+            <img src="assets/home-imgs/Kapari Waterfall.png" class="img-fluid w-100" alt="Kapari Waterfall">
+            <div class="position-absolute top-0 end-0 m-3 px-3 py-1 text-white fw-bold shadow-sm"
+              style="background-color: #1A1A1A; border-radius: 20px; font-size: 0.9rem; font-family: 'Lato', sans-serif;">
+              10 km away
+            </div>
+          </div>
+          <div class="nearby-place-content p-3 text-center">
+            <h3 class="mb-2" style="font-size: 20px; color: #1A1A1A;">Kapari Waterfall</h3>
+            <p class="text-muted">
+             Kapari Waterfall is a hidden gem nestled in the Western Ghats, offering breathtaking views and a tranquil environment. 
+              <span #place6 style="display: none;">
+               Surrounded by dense greenery and rocky terrain, it is an ideal spot for adventure seekers, monsoon explorers,
+              and guests looking to enjoy untouched natural beauty away from crowds.
+              </span>
+              <button type="button" class="btn btn-link p-0 ms-1 view-button" (click)="toggleReadMore(place6, $event)"
                 style="text-decoration: none; font-size: 0.9rem; color: #1A1A1A;">
                 View more
               </button>
