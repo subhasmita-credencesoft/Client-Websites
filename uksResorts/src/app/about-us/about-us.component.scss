@@ -114,7 +114,7 @@
 .hero-text {
   bottom: 32%;
   left: 5%;
-  letter-spacing: 1px;
+  letter-spacing: 4px;
 }
 .hero-content {
   position: absolute;
@@ -136,6 +136,7 @@
   font-size: 50px;
   font-weight: 600;
   font-family: "Bree Serif", sans-serif;
+  letter-spacing: 4px;
 }
 
 .story-title-unique {
@@ -279,7 +280,7 @@
 
 @media (max-width: 600px) {
   .story-title-unique {
-    font-size: 37px;
+    font-size: 25px;
   }
   .amenities-header {
     text-align: center;
@@ -302,7 +303,7 @@
   }
 
   .hero-text h1{
-    font-size: 30px !important;
+    font-size: 25px !important;
   }
 }
 /* ===== Amenities Section ===== */

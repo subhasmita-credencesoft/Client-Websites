@@ -162,7 +162,8 @@ html, body {
 .hero-text h1 {
   font-size: 50px;
   font-weight: 600;
-  font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", sans-serif;
+  letter-spacing: 4px;
 
 }
 .event-sub-type-home{
@@ -172,7 +173,7 @@ html, body {
 /* BOOKING BOX */
 /* ------------------------ */
 .event-type-home{
-font-family: "Lato", serif;
+font-family: "Lato", sans-serif;
 }
 .booking-box {
   width: 100%;
@@ -569,7 +570,7 @@ font-family: "Lato", serif;
 .content-box h2 {
   font-size: 34px;
   font-weight: 400;
-  font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", sans-serif;
   margin-bottom: 20px;
   line-height: 1.25;
   color: #1A1A1A;
@@ -736,7 +737,7 @@ font-family: "Lato", serif;
   font-weight: 400;
   font-size: 34px;
   margin-bottom: 10px;
-  font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", sans-serif;
 
 }
 
@@ -858,7 +859,7 @@ font-family: "Lato", serif;
 .experience-box h2 {
   font-size: 34px;
   font-weight: 500;
-  font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", sans-serif;
   margin-bottom: 25px;
   color: #1A1A1A;
 }
@@ -1098,7 +1099,7 @@ font-family: "Lato", serif;
   font-weight: 400 !important;
 }
 .loccation-heading{
-    font-family: "Bree Serif", serif;
+    font-family: "Bree Serif", sans-serif;
     font-weight: 400 !important;
     font-size: 34px;
 
@@ -1170,7 +1171,7 @@ font-family: "Lato", serif;
 
 .heading {
   font-size: 35px;
-  font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", sans-serif;
 }
 
 .quote-icon {
@@ -1266,7 +1267,7 @@ font-family: "Lato", serif;
 
 .taste-content h2 {
   font-size: 34px;
-  font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", sans-serif;
   font-weight: 400;
   color: #0b0631;
   line-height: 1.2;
@@ -1828,7 +1829,7 @@ width: 100%;
     position: relative;
     overflow: hidden;
     margin-top: 30px;
-    font-family: "Lato", serif;
+    font-family: "Lato", sans-serif;
 }
 /* Ngb Datepicker popup */
 .ngb-datepicker,
@@ -2282,7 +2283,7 @@ width: 100%;
 .nature-subtitle {
     font-size: 35px;
     font-weight: 400;
-    font-family: "Bree Serif", serif;
+    font-family: "Bree Serif", sans-serif;
     margin-bottom: 20px;
     line-height: 1.25;
     color: #1A1A1A;
@@ -2313,7 +2314,7 @@ width: 100%;
   border-radius: 30px;
   font-size: 18px;
   transition: 0.3s;
-  font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", sans-serif;
   align-items: center;
   text-align: center;
 }
@@ -2321,7 +2322,7 @@ width: 100%;
 .learn-more-btn:hover {
   background: #1A1A1A;
   color: #fff;
-  font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", sans-serif;
 }
 
 /* RIGHT IMAGES CONTAINER */
@@ -2502,7 +2503,7 @@ width: 100%;
   font-size: 35px;
   margin-bottom: 12px;
   color: #1A1A1A;
-  font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", sans-serif;
 }
 
 .vm-box p {
@@ -2542,7 +2543,7 @@ width: 100%;
   text-align: center;
   font-size: 35px;
   font-weight: 400;
-  font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", sans-serif;
   letter-spacing: 1px;
   margin-bottom: 10px;
   color: #1A1A1A;
@@ -2599,7 +2600,7 @@ width: 100%;
 .nearby-place-content h3 {
   font-size: 20px;
   margin-bottom: 8px;
-  font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", sans-serif;
   color: #1A1A1A;
 }
 
@@ -2763,7 +2764,7 @@ width: 100%;
 }
 
 .card-content h3 {
- font-family: "Bree Serif", serif;
+ font-family: "Bree Serif", sans-serif;
  color: #1A1A1A;
  font-weight: 400;
  font-size: 35px;
@@ -2787,7 +2788,7 @@ width: 100%;
   cursor: pointer;
   font-weight: bold;
   text-align: center;
-  font-family: "Lato", serif;
+  font-family: "Lato", sans-serif;
 }
 
 .card-book-btn1:hover {
@@ -2797,7 +2798,7 @@ width: 100%;
 .section-header-heading{
     font-size: 34px;
     font-weight: 400;
-    font-family: "Bree Serif", serif;
+    font-family: "Bree Serif", sans-serif;
     margin-bottom: 20px;
     line-height: 1.25;
     color: #1A1A1A;
@@ -2808,7 +2809,7 @@ width: 100%;
   font-size: 35px;
     font-weight: 400;
     margin-top:20px;
-    font-family: "Bree Serif", serif;
+    font-family: "Bree Serif", sans-serif;
     margin-bottom: 20px;
     line-height: 1.25;
     color: #1A1A1A;
@@ -2848,7 +2849,7 @@ width: 100%;
     display: block;
     margin-bottom: 15px;
     font-weight: 400;
-    font-family: "Bree Serif", serif;
+    font-family: "Bree Serif", sans-serif;
 }
 
 .main-title {
@@ -2856,12 +2857,12 @@ width: 100%;
     line-height: 1.2;
     margin-bottom: 25px;
     font-weight: 400;
-    font-family: "Bree Serif", serif;
+    font-family: "Bree Serif", sans-serif;
     color: #1A1A1A;
 }
 
 .main-title i {
-    font-family: "Bree Serif", serif;
+    font-family: "Bree Serif", sans-serif;
 }
 
 .description {
@@ -2891,7 +2892,7 @@ width: 100%;
 }
 
 .info-text strong {
-    font-family: "Bree Serif", serif;
+    font-family: "Bree Serif", sans-serif;
     color: #1A1A1A;
 }
 
@@ -2912,7 +2913,7 @@ width: 100%;
     font-weight: bold;
     margin-top: 20px;
     transition: background 0.3s ease;
-    font-family: "Bree Serif", serif;
+    font-family: "Bree Serif", sans-serif;
 }
 
 .btn-directions:hover {
@@ -2977,7 +2978,7 @@ width: 100%;
 }
    .experience-card-text{
     text-align: center !important;
-    font-family: 'Bree Serif', serif !important;
+    font-family: 'Bree Serif', sans-serif !important;
     font-weight: 400 !important;
     font-size: 22px !important;
     color: #1A1A1A !important;
@@ -2990,7 +2991,7 @@ width: 100%;
     display: block !important;
     margin-bottom: 15px !important;
     font-weight: 400 !important;
-     font-family: "Bree Serif", serif !important;
+     font-family: "Bree Serif", sans-serif !important;
     text-align: center !important;
     margin-top: 15px !important;
    }

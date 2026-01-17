@@ -146,7 +146,7 @@
   font-weight: 600;
   letter-spacing: 1px;
   font-family: "Bree Serif", sans-serif;
-
+  letter-spacing: 4px !important;
 }
 
 .story-title-unique {
@@ -369,6 +369,12 @@
   .uq-event-card.small {
     height: 200px;
   }
+}
+
+@media (max-width: 768px) {
+   .hero-text h1{
+    font-size: 25px !important;
+   }
 }
 
 .venues-section {

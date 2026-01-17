@@ -204,7 +204,7 @@
   font-size: 50px;
   font-weight: 600;
   font-family: "Bree Serif", sans-serif;
-
+  letter-spacing: 4px !important;
 }
 
 .story-title-unique {
@@ -603,6 +603,11 @@ button:disabled {
   }
 }
 
+@media (max-width: 768px) {
+  .hero-text h1{
+    font-size: 25px !important;
+  }
+}
 .support-wrapper {
   max-width: 700px;
   margin: auto;

@@ -94,7 +94,7 @@
   color: white;
 }
 .hero-text{
-  letter-spacing: 1px;
+  letter-spacing: 4px;
 }
 
 // .hero-text {
@@ -284,6 +284,10 @@
     bottom: 45%;
     left: 6%;
   }
+
+  .hero-text h1{
+    font-size: 26px !important;
+  }
 }
 
 @media (max-width:650px) {
@@ -322,7 +326,7 @@
   font-size: 50px;
   font-weight: 600;
   font-family: "Bree Serif", sans-serif;
-
+  letter-spacing: 4px;
 }
 
 .story-title-unique {
