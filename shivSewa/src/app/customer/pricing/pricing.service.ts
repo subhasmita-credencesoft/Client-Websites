@@ -21,4 +21,7 @@ export class PricingService {
   calculate(req: QuoteRequest, distanceKm: number) {
     return calculateFare(this.config, req, distanceKm);
   }
+  getConfig() {
+  return this.config;
+}
 }

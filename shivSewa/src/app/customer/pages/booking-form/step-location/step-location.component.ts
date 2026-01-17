@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MUMBAI_LOCATIONS } from '../../../data/mumbai-locations';
 import { GeoLocation } from '../../../models/geo-location';
 import { LocationService } from '../../../services/location/location.service';
+import { VehicleCategory } from '../../../pricing/pricing.types';
+import { PricingService } from '../../../pricing/pricing.service';
 type TripType = 'pickup-drop' | 'outstation' | 'rental';
 
 @Component({
@@ -77,7 +79,8 @@ returnTimeInvalid = false;
   placesService!: google.maps.places.PlacesService;
   selectedTripType: TripType = 'pickup-drop';
   constructor(private bookingService: BookingService,
-              private locationService: LocationService
+              private locationService: LocationService,
+              private pricingService: PricingService,
   ) {
     const b = this.bookingService.getCurrent();
     console.log('Booking data from service in StepLocation:', b);
@@ -184,7 +187,15 @@ returnTimeInvalid = false;
 toggleReturnTimeList() {
   this.showReturnTimes = !this.showReturnTimes;
 }
+to24(t: string): string {
+  const [time, ampm] = t.split(' ');
+  let [h, m] = time.split(':').map(Number);
 
+  if (ampm === 'PM' && h < 12) h += 12;
+  if (ampm === 'AM' && h === 12) h = 0;
+
+  return `${h.toString().padStart(2, '0')}:${m}`;
+}
 selectReturnTime(t: string) {
   this.returnDisplayTime = t;
 
@@ -464,13 +475,6 @@ onFieldInput(
 
   /* ---------------- HELPERS ---------------- */
 
-  private to24(t: string): string {
-    const [time, ampm] = t.split(' ');
-    let [h, m] = time.split(':').map(Number);
-    if (ampm === 'PM' && h < 12) h += 12;
-    if (ampm === 'AM' && h === 12) h = 0;
-    return `${h.toString().padStart(2, '0')}:${m}`;
-  }
 
   private toAmPm(t: string): string {
     const [h, m] = t.split(':').map(Number);
@@ -478,9 +482,6 @@ onFieldInput(
     return `${h % 12 || 12}:${m.toString().padStart(2, '0')} ${ampm}`;
   }
 
-  //---------------------------------------
-  // PICKUP
-  //---------------------------------------
  filterPickup(value: string) {
   if (!value || value.length < 4) {
     this.pickupSuggestions = [];

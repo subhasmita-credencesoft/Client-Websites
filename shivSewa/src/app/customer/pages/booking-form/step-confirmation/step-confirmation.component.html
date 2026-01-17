@@ -27,32 +27,42 @@
       </div>
 
       <!-- Details List -->
-      <div class="details-list">
+      <!-- Fare Breakdown (Same UI Style) -->
+      <div class="details-list mt-3" *ngIf="booking?.fareQuote as fare">
+
+        <!-- Section Header (optional but clean) -->
         <div class="detail-row">
-          <span class="detail-label">Type:</span>
-          <span class="detail-value">Pickup Drop</span>
+          <span class="detail-label fw-bold">Fare Breakup:</span>
+          <span class="detail-value"></span>
         </div>
 
-        <div class="detail-row">
-          <span class="detail-label">Route:</span>
-          <span class="detail-value">{{ booking?.pickup?.name }} to {{ booking?.dropoff?.name }}</span>
+        <!-- Dynamic Pricing Lines -->
+        <div
+          class="detail-row"
+          *ngFor="let line of fare.lines"
+        >
+          <span class="detail-label">
+            {{ line.label }}
+            <small *ngIf="line.qty > 1">
+              ({{ line.qty }} × ₹{{ line.unitPrice }})
+            </small>
+          </span>
+
+          <span class="detail-value">
+            ₹{{ line.amount | number:'1.0-2' }}
+          </span>
         </div>
 
-        <div class="detail-row">
-          <span class="detail-label">Vehicle:</span>
-          <span class="detail-value">{{ booking?.vehicle?.name || 'Mini / Hatchback' }}</span>
+        <!-- Total -->
+        <div class="detail-row fw-bold">
+          <span class="detail-label">Total Estimated Fare:</span>
+          <span class="detail-value fare-value">
+            ₹{{ fare.total | number:'1.0-2' }}
+          </span>
         </div>
 
-        <div class="detail-row">
-          <span class="detail-label">Passengers:</span>
-          <span class="detail-value">{{ booking?.passengers?.adults || 1 }} Adults, {{ booking?.passengers?.children || 0 }} Children</span>
-        </div>
-
-        <div class="detail-row">
-          <span class="detail-label">Est. Fare:</span>
-          <span class="detail-value fare-value">{{ booking?.vehicle?.price || '3120' }}</span>
-        </div>
       </div>
+
 
       <!-- Disclaimer -->
       <p class="disclaimer">
