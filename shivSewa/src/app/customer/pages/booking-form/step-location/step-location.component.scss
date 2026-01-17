@@ -236,12 +236,44 @@ input[type="time"] {
   -moz-appearance: textfield;
 }
 
+.btn-back {
+  background: #f8f9fa;
+  color: #6b7280;
+  padding: 0.875rem 1.75rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.938rem;
+  display: inline-flex;
+  gap: 0.625rem;
+  align-items: center;
+  border: 1.5px solid #d1d5db;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #e5e7eb;
+    border-color: #9ca3af;
+  }
+}
 /* Responsive Design */
 @media (max-width: 767px) {
   .section-title {
     font-size: 1.5rem;
   }
 
+   .btn-back {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+  }
+.btn-back,
+  .btn-next {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 16px;
+    justify-content: center;
+  }
   .location-card {
     padding: 1rem 1.25rem;
   }

@@ -7,6 +7,7 @@ import { GeoLocation } from '../../../models/geo-location';
 import { LocationService } from '../../../services/location/location.service';
 import { VehicleCategory } from '../../../pricing/pricing.types';
 import { PricingService } from '../../../pricing/pricing.service';
+import { Router } from '@angular/router';
 type TripType = 'pickup-drop' | 'outstation' | 'rental';
 
 @Component({
@@ -81,6 +82,7 @@ returnTimeInvalid = false;
   constructor(private bookingService: BookingService,
               private locationService: LocationService,
               private pricingService: PricingService,
+              private router: Router
   ) {
     const b = this.bookingService.getCurrent();
     console.log('Booking data from service in StepLocation:', b);
@@ -480,6 +482,10 @@ onFieldInput(
     const [h, m] = t.split(':').map(Number);
     const ampm = h >= 12 ? 'PM' : 'AM';
     return `${h % 12 || 12}:${m.toString().padStart(2, '0')} ${ampm}`;
+  }
+
+  navigatetoHome(){
+    this.router.navigate(['/']);
   }
 
  filterPickup(value: string) {

@@ -146,9 +146,12 @@
   </div>
 
   <!-- Next Button -->
-  <div class="d-flex justify-content-end mt-4">
+  <div class="d-flex justify-content-between mt-4 flex-wrap">
+     <button class="btn-back mt-2" (click)="navigatetoHome()">
+        <i class="fa-solid fa-arrow-left"></i> Go Back
+      </button>
     <button
-      class="btn-next-modern"
+      class="btn-next-modern mt-2"
       [disabled]="!isFormValid()"
       [class.disabled-looking]="!isFormValid()"
       (click)="onNextClick($event)"
