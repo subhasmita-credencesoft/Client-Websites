@@ -108,4 +108,8 @@ submit(name: string, email: string, phone: string, eventCat: string, venue: stri
     }
   });
 }
+
+navigateToPage() {
+  window.location.href = "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true";
+}
 }
