@@ -14,3 +14,32 @@ body:not(.modal-open) {
 .modal-backdrop {
   z-index: 1040 !important;
 }
+
+
+
+.scroll_top {
+  width: 40px;
+  background: #005697 !important
+
+;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  position: fixed;
+  right: 20px;
+  z-index: 50;
+  bottom: 80px
+}
+
+.loader {
+  border-top: 1px solid #ffb115
+
+
+}
+
+.scroll_top i {
+  color: #fff;
+  display: inline-block;
+  font-size: 16px;
+  animation: scroling .9s infinite linear
+}

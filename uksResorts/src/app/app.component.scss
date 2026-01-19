@@ -1,0 +1,114 @@
+
+df-messenger {
+  z-index: 999;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  --df-messenger-font-color: black; /* Change text color to black */
+  --df-messenger-font-family: Google Sans;
+  /* Change chat background to green */
+  --df-messenger-chat-background: var(--tertiary) !important;
+  --df-messenger-titlebar-background: #000 !important;
+
+  /* --df-messenger-chat-background-image: url('assets/images/chatbot.png'); */
+  /* --df-messenger-chat-background: url('assets/images/chatbot.png') no-repeat center center fixed; */
+  --df-messenger-chat-background: #fff !important; /* Adjust width and height as needed */
+  --df-messenger-message-user-font-color: #ffffff;
+  --df-messenger-message-user-background: #000 !important;
+  --df-messenger-send-icon-color: #cd9d38 !important;
+  --df-messenger-message-bot-background: #cd9d38 !important;
+  --df-messenger-message-bot-font-color: white;
+  --df-messenger-chat-scroll-button-font-color: var(--tertiary) !important;
+  --df-messenger-chat-scroll-button-background: #cd9d38 !important;
+  --df-messenger-chat-bubble-background: #000 !important;
+  bottom: 138px;
+  right: 10px;
+  /* Set custom background image */
+  --df-messenger-chips-background: #cd9d38 !important;
+  --df-messenger-chips-font-color: white;
+  --df-messenger-chips-background-hover: #000 !important;
+
+  /* Adjust background size and other properties as needed */
+  background-size: contain;
+  background-repeat: no-repeat;
+  --df-messenger-chat-bubble-width: 30px !important;
+  --df-messenger-chat-bubble-height: 30px !important;
+  --df-messenger-chat-bubble-border-radius: 50px !important;
+  --df-messenger-chat-bubble-margin-top: -115px !important;
+}
+
+.df-chat-message-list .df-chat-message-payload a {
+  background-color: #000;
+}
+
+.df-messenger .df-messenger-user-message,
+.df-messenger .df-messenger-bot-message {
+  color: #fff;
+}
+
+
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 70px;
+  right: 10px;
+  background-color: #25d366;
+  color: #fff !important;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 30px;
+  line-height: 60px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  z-index: 100;
+}
+
+.float:hover {
+  transform: scale(1.1);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.bubble {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50px !important;
+  top: -115px !important;
+}
+
+.scroll_top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #cd9d38!important;
+  color: #000!important;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.scroll_top:hover {
+  background-color: #000;
+  color: #cd9d38;
+}
+
+@keyframes scroling {
+  0% {
+    transform: translateY(0)
+  }
+
+  25% {
+    transform: translateY(5px)
+  }
+
+  50% {
+    transform: translateY(0px)
+  }
+
+  75% {
+    transform: translateY(-5px)
+  }
+
+  100% {
+    transform: translateY(0px)
+  }
+}

@@ -2,3 +2,16 @@
 
 <router-outlet />
 <app-footer></app-footer>
+
+<a class="scroll_top" (click)="scroll_top()" data-smooth-scroll data-animate-time="500" style="position: fixed; bottom: 20px; right: 20px; background-color: #cd9d38 !important; color: #000 !important; padding: 0px; border-radius: 50%;">
+  <i class="fa fa-angle-double-up"></i>
+</a>
+
+<a [href]="getWhatsappShareUrl()" class="float" target="_blank">
+  <i class="fa fa-whatsapp my-float"></i>
+</a>
+
+<df-messenger project-id="impactful-name-306810" agent-id="8bb6c52c-8667-4a24-a789-4cd78b154c96" intent="WEBSITE"
+  storage-option="none" language-code="en" max-query-length="-1">
+  <df-messenger-chat-bubble id="chatbot" chat-subtitle=""></df-messenger-chat-bubble>
+</df-messenger>
