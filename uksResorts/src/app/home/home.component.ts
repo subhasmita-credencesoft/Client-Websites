@@ -314,21 +314,6 @@ export class HomeComponent {
   }
 
 
-
-  // toggleReadMore(extraText: HTMLElement, event: MouseEvent) {
-  //   const btn = event.target as HTMLButtonElement;
-
-  //   const isHidden = extraText.style.display === "none" || extraText.style.display === "";
-
-  //   if (isHidden) {
-  //     extraText.style.display = "inline";
-  //     btn.textContent = "View less";
-  //   } else {
-  //     extraText.style.display = "none";
-  //     btn.textContent = "View more";
-  //   }
-  // }
-
   toggleReadMore(extraText: HTMLElement, event: Event) {
     event.preventDefault();
 
@@ -364,55 +349,6 @@ export class HomeComponent {
       }
     );
   }
-
-//   handledStorageData(property: any) {
-//   try {
-//     this.businessUser = property;
-    
-//     // 1. Update Theme Colors
-//     this.changeTheme(
-//       this.businessUser.primaryColor,
-//       this.businessUser.secondaryColor,
-//       this.businessUser.tertiaryColor
-//     );
-
-//     // 2. Target the Chatbot Element
-//     const chatbotElement = document.getElementById('chatbot');
-//     console.log('chatbotElement is',chatbotElement);
-
-//     if (chatbotElement) {
-//       // Set the Property Name (Shows at the top)
-//       chatbotElement.setAttribute('chat-title', this.businessUser.name);
-      
-//       // Set the Property Logo (Shows to the left of the name)
-//       if (this.businessUser.logoUrl) {
-//         chatbotElement.setAttribute('chat-title-icon', this.businessUser.logoUrl);
-//       }
-      
-//       console.log('Chatbot UI updated with:', this.businessUser.name);
-//     }
-
-//     // 3. Keep your existing Event Listener for API payloads
-//     window.addEventListener('df-request-sent', (event) => {
-//       const dataToSend = {
-//         propertyId: this.businessUser.id,
-//         propertyName: this.businessUser.name,
-//         currentDate: new Date().toISOString().replace('T', ' ').split('.')[0] // Clean date format
-//       };
-
-//       fetch('https://chatbot.api.thehotelmate.co/api/website/receivePayload', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(dataToSend),
-//       })
-//       .then(response => response.ok ? response.json() : Promise.reject(response))
-//       .catch(error => console.error('Payload Error:', error));
-//     });
-
-//   } catch (error) {
-//     console.error("Error in handledStorageData: ", error);
-//   }
-// }
 
 handledStorageData(property: any) {
   try {
