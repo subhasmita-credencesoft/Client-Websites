@@ -281,7 +281,8 @@ df-messenger {
   bottom: 16px;
   right: 16px;
   --df-messenger-font-color: black; /* Change text color to black */
-  --df-messenger-font-family: Google Sans;
+ --df-messenger-font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif !important;
   /* Change chat background to green */
   --df-messenger-chat-background: var(--tertiary) !important;
   --df-messenger-titlebar-background: #000 !important;

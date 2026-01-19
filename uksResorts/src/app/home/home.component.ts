@@ -365,63 +365,90 @@ export class HomeComponent {
     );
   }
 
-  handledStorageData(property: any) {
-    try {
-      this.businessUser = property;
+//   handledStorageData(property: any) {
+//   try {
+//     this.businessUser = property;
+    
+//     // 1. Update Theme Colors
+//     this.changeTheme(
+//       this.businessUser.primaryColor,
+//       this.businessUser.secondaryColor,
+//       this.businessUser.tertiaryColor
+//     );
+
+//     // 2. Target the Chatbot Element
+//     const chatbotElement = document.getElementById('chatbot');
+//     console.log('chatbotElement is',chatbotElement);
+
+//     if (chatbotElement) {
+//       // Set the Property Name (Shows at the top)
+//       chatbotElement.setAttribute('chat-title', this.businessUser.name);
+      
+//       // Set the Property Logo (Shows to the left of the name)
+//       if (this.businessUser.logoUrl) {
+//         chatbotElement.setAttribute('chat-title-icon', this.businessUser.logoUrl);
+//       }
+      
+//       console.log('Chatbot UI updated with:', this.businessUser.name);
+//     }
+
+//     // 3. Keep your existing Event Listener for API payloads
+//     window.addEventListener('df-request-sent', (event) => {
+//       const dataToSend = {
+//         propertyId: this.businessUser.id,
+//         propertyName: this.businessUser.name,
+//         currentDate: new Date().toISOString().replace('T', ' ').split('.')[0] // Clean date format
+//       };
+
+//       fetch('https://chatbot.api.thehotelmate.co/api/website/receivePayload', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(dataToSend),
+//       })
+//       .then(response => response.ok ? response.json() : Promise.reject(response))
+//       .catch(error => console.error('Payload Error:', error));
+//     });
+
+//   } catch (error) {
+//     console.error("Error in handledStorageData: ", error);
+//   }
+// }
+
+handledStorageData(property: any) {
+  try {
+    this.businessUser = property;
+    const chatbotElement = document.getElementById('chatbot');
+
+    if (chatbotElement) {
+      // 1. Set attributes immediately for the next render
+      chatbotElement.setAttribute('chat-title', this.businessUser.name);
+      chatbotElement.setAttribute('chat-title-icon', this.businessUser.logoUrl);
+      console.log('chatbotElement is',chatbotElement);
+
+      chatbotElement.addEventListener('df-messenger-loaded', () => {
+        chatbotElement.setAttribute('chat-title', this.businessUser.name);
+        chatbotElement.setAttribute('chat-title-icon', this.businessUser.logoUrl);
+        
+        console.log('Dynamic Title Applied:', this.businessUser.name);
+      });
+
+      // 3. Update colors
       this.changeTheme(
         this.businessUser.primaryColor,
         this.businessUser.secondaryColor,
         this.businessUser.tertiaryColor
       );
-
-      window.addEventListener('df-request-sent', (event) => {
-        this.propertyusername = this.businessUser.name;
-
-  // 1. Select the host element first
-  const messengerHost = document.querySelector('df-messenger');
-  
-  // 2. Access the element inside its shadowRoot
-  const chatbotElement = messengerHost?.shadowRoot?.getElementById('chatbot');
-
-  // 3. Set attributes safely using optional chaining
-  if (chatbotElement) {
-    chatbotElement.setAttribute('chat-title', this.propertyusername);
-    chatbotElement.setAttribute('chat-title-icon', this.businessUser.logoUrl);
-  } else {
-    console.warn("Could not find #chatbot inside the Shadow DOM.");
-  }
-
-        const propertyId = this.businessUser.id;
-        const propertyName = this.businessUser.name;
-        const currentDate = new Date();
-        const year = currentDate.getFullYear();
-        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-        const day = String(currentDate.getDate()).padStart(2, '0');
-        const hours = String(currentDate.getHours()).padStart(2, '0');
-        const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-        const seconds = String(currentDate.getSeconds()).padStart(2, '0');
-        const currentTimeString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-        const dataToSend = {
-          propertyId: propertyId,
-          propertyName: propertyName,
-          currentDate: currentTimeString,
-        };
-        fetch('https://chatbot.api.thehotelmate.co/api/website/receivePayload', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(dataToSend),
-        })
-          .then((response) => response.json())
-          .catch((error) => console.error('Error:', error));
-      });
     }
-    catch (error) {
-      console.error("Error in handledStorageData : ", error);
-    }
-  }
 
+    // Existing payload logic...
+    window.addEventListener('df-request-sent', (event) => {
+      // ... your fetch code ...
+    });
+
+  } catch (error) {
+    console.error("Error in handledStorageData : ", error);
+  }
+}
 
   changeTheme(primary: string, secondary: string, tertiary: string) {
     document.documentElement.style.setProperty('--primary', primary);
