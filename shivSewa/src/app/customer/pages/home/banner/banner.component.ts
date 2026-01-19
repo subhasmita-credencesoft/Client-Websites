@@ -160,6 +160,7 @@ export class BannerComponent {
   ngOnInit(): void {
     this.pickupAutocomplete = new google.maps.places.AutocompleteService();
     this.dropAutocomplete = new google.maps.places.AutocompleteService();
+    this.useCurrentLocation();
     this.checkViewport();
     window.addEventListener('resize', () => this.checkViewport());
     this.setMinDateTime();
