@@ -69,6 +69,21 @@
       font-family: 'Bree Serif', sans-serif !important;
 
   }
+
+    df-messenger {
+    /* Ensures the chatbot stays below your top navigation if it expands */
+    z-index: 999 !important; 
+    --df-messenger-chat-window-height: 400px; /* Limits height so it doesn't hit the top */
+    --df-messenger-button-titlebar-color: #333; /* Matches your dark theme */
+  }
+
+  /* Ensures your website header stays on top of everything */
+  header, .main-navbar {
+    position: sticky; /* or fixed depending on your layout */
+    top: 0;
+    z-index: 2000 !important; 
+  }
+
 </style>
 <body>
   <app-root></app-root>
