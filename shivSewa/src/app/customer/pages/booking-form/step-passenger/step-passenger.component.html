@@ -202,7 +202,7 @@
              [hidden]="line.code !== 'EXTRA_KM'">
           <span class="item-label">
             Additional Km Charge
-            <small>({{ line.qty | number:'1.2-2' }} km × ₹{{ line.unitPrice| number:'1.2-2' }})</small>
+            <small>({{ line.qty }} km × ₹{{ line.unitPrice| number:'1.2-2' }})</small>
           </span>
           <span class="item-value">₹{{ line.amount| number:'1.2-2' }}</span>
         </div>
@@ -214,7 +214,7 @@
           <span class="item-label">
             {{ line.label }}
             <small *ngIf="line.code !== 'PACKAGE'">
-              ({{ line.qty | number:'1.2-2' }} × ₹{{ line.unitPrice| number:'1.2-2' }})
+              ({{ line.qty }} × ₹{{ line.unitPrice| number:'1.2-2' }})
             </small>
           </span>
           <span class="item-value">₹{{ line.amount| number:'1.2-2' }}</span>
@@ -234,7 +234,7 @@
         <div class="breakdown-item">
           <span class="item-label">
             Driver Allowance
-            <small>({{ fare.lines[1]?.qty| number:'1.2-2' }} days × ₹{{ fare.lines[1]?.unitPrice| number:'1.2-2' }})</small>
+            <small>({{ fare.lines[1]?.qty }} days × ₹{{ fare.lines[1]?.unitPrice| number:'1.2-2' }})</small>
           </span>
           <span class="item-value">₹{{ fare.lines[1]?.amount| number:'1.2-2' }}</span>
         </div>

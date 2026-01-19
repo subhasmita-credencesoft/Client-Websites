@@ -32,7 +32,7 @@ companyLinks: NavLink[] = [
   ];
 
   contactInfo: ContactInfo[] = [
-    { icon: 'location', label: 'Address', value: '' },
+    { icon: 'location', label: 'The Landmark 410, Plot No.26A, Sector 7, Kharghar, Navi Mumbai, Maharashtra 410210', value: '' },
     { icon: 'phone', label: 'Phone Number', value: '' },
     { icon: 'email', label: 'Email Address', value: '' }
   ];

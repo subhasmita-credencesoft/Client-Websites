@@ -57,7 +57,7 @@ export class BannerComponent {
         fuel: 'Petrol',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 01 AU 1234',
-        image: 'assets/Aura-sedan.avif'
+        image: 'assets/Hyundai-Aura.png'
       },
       {
         id: 2,
@@ -67,7 +67,7 @@ export class BannerComponent {
         fuel: 'Petrol',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 02 DZ 5678',
-        image: 'assets/Dzire-Sedan.jpg'
+        image: 'assets/Maruti-Dzire.png'
       }
     ],
     suv: [
@@ -79,7 +79,7 @@ export class BannerComponent {
         fuel: 'Petrol',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 03 XL 1122',
-        image: 'assets/XL-suv.avif'
+        image: 'assets/Maruti-XL6.png'
       },
       {
         id: 4,
@@ -89,7 +89,7 @@ export class BannerComponent {
         fuel: 'Petrol',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 04 RU 3344',
-        image: 'assets/ROMION-SUV.avif'
+        image: 'assets/Toyota-Rumion.png'
       },
       {
         id: 5,
@@ -99,7 +99,7 @@ export class BannerComponent {
         fuel: 'Petrol',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 05 ER 5566',
-        image: 'assets/ERTIGA-Suv.avif'
+        image: 'assets/Maruti- Ertiga.png'
       }
     ],
     suvPlus: [
@@ -111,17 +111,7 @@ export class BannerComponent {
         fuel: 'Diesel',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 06 IC 7788',
-        image: 'assets/INNOVA-CRYSTA-SUVPLUS.jpg'
-      },
-      {
-        id: 9,
-        name: 'Toyota Innova Hycross',
-        seats: 6,
-        bags: 4,
-        fuel: 'Hybrid',
-        description: 'All-inclusive: car + driver + fuel',
-        carNumber: 'MH 09 IH 4455',
-        image: 'assets/Innova-Hycross-SUVPLUS.webp'
+        image: 'assets/Toyota-Innova-Crysta.png'
       }
     ]
   };

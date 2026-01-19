@@ -111,6 +111,15 @@
       border-color: #FF6B35;
       transform: translateY(-3px);
     }
+    .copyright a {
+  color: inherit;        /* keeps same text color */
+  text-decoration: none; /* removes underline */
+  font-weight: 600;
+}
+
+.copyright a:hover {
+  text-decoration: underline;
+}
 
     .brand-description {
       color: #AAAAAA;
