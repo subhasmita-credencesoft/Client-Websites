@@ -231,24 +231,118 @@
     <!-- Estimated Journey Cost -->
     <div class="card-soft mb-3" style="background-color: #f8fafc !important;">
       <h6 class="fw-bold mb-3" style="color: #FF6B35;">Estimated Journey Cost</h6>
-        <ng-container *ngIf="booking?.fareQuote as fare">
 
-    <!-- LINE ITEMS -->
-    <div
-      class="d-flex justify-content-between align-items-center mb-2"
-      *ngFor="let line of fare.lines"
-    >
-      <div class="text-dark small">
-        {{ line.label }}
-        <small class="text-muted" *ngIf="line.qty > 1">
-          ({{ line.qty }} × ₹{{ line.unitPrice }})
-        </small>
+  <ng-container *ngIf="booking?.fareQuote as fare">
+
+    <!-- ================= PICKUP & DROP ================= -->
+    <ng-container *ngIf="fare.tripType === 'pickup_drop'">
+
+      <div class="d-flex justify-content-between mb-2">
+        <div class="text-dark small">
+          Base Fare
+          <small class="text-muted">(Includes base km)</small>
+        </div>
+        <div class="fw-bold">
+          ₹{{ fare.lines[0]?.amount | number:'1.0-2' }}
+        </div>
       </div>
 
-      <div class="fw-bold">
-        ₹{{ line.amount | number:'1.0-2' }}
+      <div
+        class="d-flex justify-content-between mb-2"
+        *ngFor="let line of fare.lines"
+        [hidden]="line.code !== 'EXTRA_KM'"
+      >
+        <div class="text-dark small">
+          Extra Distance
+          <small class="text-muted">
+            ({{ line.qty | number:'1.2-2' }} km × ₹{{ line.unitPrice }})
+          </small>
+        </div>
+        <div class="fw-bold">
+          ₹{{ line.amount | number:'1.0-2' }}
+        </div>
       </div>
-    </div>
+
+    </ng-container>
+
+    <!-- ================= RENTAL ================= -->
+    <ng-container *ngIf="fare.tripType === 'rental'">
+
+      <div
+        class="d-flex justify-content-between mb-2"
+        *ngFor="let line of fare.lines"
+      >
+        <div class="text-dark small">
+          {{ line.label }}
+          <small class="text-muted" *ngIf="line.code !== 'PACKAGE'">
+            ({{ line.qty | number:'1.2-2' }} × ₹{{ line.unitPrice }})
+          </small>
+        </div>
+        <div class="fw-bold">
+          ₹{{ line.amount | number:'1.0-2' }}
+        </div>
+      </div>
+
+    </ng-container>
+
+    <!-- ================= OUTSTATION ================= -->
+    <ng-container *ngIf="fare.tripType === 'outstation'">
+
+      <!-- Rule explanation -->
+      <div class="mb-2 text-muted small">
+        Minimum distance per day rule applies
+      </div>
+
+      <!-- Actual distance -->
+      <div class="d-flex justify-content-between mb-2">
+        <div class="text-dark small">
+          Actual Distance
+        </div>
+        <div class="fw-bold">
+          {{ fare.distanceKm | number:'1.2-2' }} km
+        </div>
+      </div>
+
+      <!-- Billable distance -->
+      <div class="d-flex justify-content-between mb-2">
+        <div class="text-dark small">
+          Billable Distance
+          <small class="text-muted">
+            (Higher of actual distance <br/> or minimum per-day distance)
+          </small>
+        </div>
+        <div class="fw-bold">
+          {{ fare.lines[0]?.qty | number:'1.2-2' }} km
+        </div>
+      </div>
+
+      <!-- Distance charge -->
+      <div class="d-flex justify-content-between mb-2">
+        <div class="text-dark small">
+          Distance Charge
+          <small class="text-muted">
+            ({{ fare.lines[0]?.qty | number:'1.2-2' }} km × ₹{{ fare.lines[0]?.unitPrice }})
+          </small>
+        </div>
+        <div class="fw-bold">
+          ₹{{ fare.lines[0]?.amount | number:'1.0-2' }}
+        </div>
+      </div>
+
+      <!-- Driver allowance -->
+      <div class="d-flex justify-content-between mb-2">
+        <div class="text-dark small">
+          Driver Allowance
+          <small class="text-muted">
+            ({{ fare.lines[1]?.qty }} day × ₹{{ fare.lines[1]?.unitPrice }})
+          </small>
+        </div>
+        <div class="fw-bold">
+          ₹{{ fare.lines[1]?.amount | number:'1.0-2' }}
+        </div>
+      </div>
+
+    </ng-container>
 
     <hr class="my-3">
 

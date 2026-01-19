@@ -67,7 +67,7 @@ export class PopularTripsComponent {
     distance: '286 km',
     duration: '5 hrs 30 mins',
     tripType: 'One-way & Round Trip Available',
-    price: '₹ 15,399',
+    price: '',
     vehicles:
       'Sedan (Maruti Dzire, Toyota Etios, Honda Amaze) Comfort SUV (Maruti Ertiga, Honda BR-V, Renault Triber)',
   },
@@ -100,7 +100,7 @@ export class PopularTripsComponent {
     distance: '266 km',
     duration: '5 hrs 30 mins',
     tripType: 'One-way & Round Trip Available',
-    price: '₹ 15,399',
+    price: '',
     vehicles:
       'Sedan (Maruti Dzire, Toyota Etios, Honda Amaze) Comfort SUV (Maruti Ertiga, Honda BR-V, Renault Triber)',
   },
@@ -133,7 +133,7 @@ export class PopularTripsComponent {
     distance: '286 km',
     duration: '5 hrs 30 mins',
     tripType: 'One-way & Round Trip Available',
-    price: '₹ 15,399',
+    price: '',
     vehicles:
       'Sedan (Maruti Dzire, Toyota Etios, Honda Amaze) Comfort SUV (Maruti Ertiga, Honda BR-V, Renault Triber)',
   },
@@ -166,7 +166,7 @@ export class PopularTripsComponent {
     distance: '286 km',
     duration: '5 hrs 30 mins',
     tripType: 'One-way & Round Trip Available',
-    price: '₹ 15,399',
+    price: '',
     vehicles:
       'Sedan (Maruti Dzire, Toyota Etios, Honda Amaze) Comfort SUV (Maruti Ertiga, Honda BR-V, Renault Triber)',
   },
@@ -199,7 +199,7 @@ export class PopularTripsComponent {
     distance: '186 km',
     duration: '3 hrs 30 mins',
     tripType: 'One-way & Round Trip Available',
-    price: '₹ 12,399',
+    price: '',
     vehicles:
       'Sedan (Maruti Dzire, Toyota Etios, Honda Amaze) Comfort SUV (Maruti Ertiga, Honda BR-V, Renault Triber)',
   }
@@ -227,14 +227,15 @@ export class PopularTripsComponent {
     }
   }
   bookNow(trip: Trip) {
-  this.bookingService.reset();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  // this.bookingService.reset();
 
-  this.bookingService.setCurrent({
-    pickup: trip.pickup,
-    dropoff: trip.dropoff,
-    tripType: 'one-way'
-  });
+  // this.bookingService.setCurrent({
+  //   pickup: trip.pickup,
+  //   dropoff: trip.dropoff,
+  //   tripType: 'one-way'
+  // });
 
-  this.router.navigate(['/booking']);
+  // this.router.navigate(['/booking']);
 }
 }

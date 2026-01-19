@@ -117,8 +117,11 @@
           </div>
 
           <div class="vehicle-price-section">
-            <div class="vehicle-price">₹{{ selectedVehicle.price | number:'1.2-2' }}</div>
-            <div class="price-label">Estimated fare</div>
+            <div class="vehicle-price">₹{{ selectedVehicle.price | number:'1.2-2' }}
+              <br/>
+              <div class="price-label">Estimated fare</div>
+            </div>
+
             <button class="breakdown-btn" (click)="showBreakdown = true">View Breakdown</button>
           </div>
         </div>
@@ -187,70 +190,152 @@
       Fare Breakdown for {{ selectedVehicle?.name }}
     </h5>
 
-    <div class="breakdown-items">
+<div class="breakdown-items">
 
-      <!-- PICKUP & DROP -->
-      <ng-container *ngIf="fare.tripType === 'pickup_drop'">
-        <div class="breakdown-item">
-          <span class="item-label">Base Fare</span>
-          <span class="item-value">
-            ₹{{ fare.lines[0]?.amount| number:'1.2-2' }}
-          </span>
-        </div>
+  <!-- ================= PICKUP & DROP ================= -->
+  <ng-container *ngIf="fare.tripType === 'pickup_drop'">
 
-        <div class="breakdown-item" *ngFor="let line of fare.lines"
-             [hidden]="line.code !== 'EXTRA_KM'">
-          <span class="item-label">
-            Additional Km Charge
-            <small>({{ line.qty }} km × ₹{{ line.unitPrice| number:'1.2-2' }})</small>
-          </span>
-          <span class="item-value">₹{{ line.amount| number:'1.2-2' }}</span>
-        </div>
-      </ng-container>
-
-      <!-- RENTAL -->
-      <ng-container *ngIf="fare.tripType === 'rental'">
-        <div class="breakdown-item" *ngFor="let line of fare.lines">
-          <span class="item-label">
-            {{ line.label }}
-            <small *ngIf="line.code !== 'PACKAGE'">
-              ({{ line.qty }} × ₹{{ line.unitPrice| number:'1.2-2' }})
-            </small>
-          </span>
-          <span class="item-value">₹{{ line.amount| number:'1.2-2' }}</span>
-        </div>
-      </ng-container>
-
-      <!-- OUTSTATION -->
-      <ng-container *ngIf="fare.tripType === 'outstation'">
-        <div class="breakdown-item">
-          <span class="item-label">
-            Distance Charge
-            <small>({{ fare.lines[0]?.qty | number:'1.2-2' }} km × ₹{{ fare.lines[0]?.unitPrice| number:'1.2-2' }})</small>
-          </span>
-          <span class="item-value">₹{{ fare.lines[0]?.amount| number:'1.2-2' }}</span>
-        </div>
-
-        <div class="breakdown-item">
-          <span class="item-label">
-            Driver Allowance
-            <small>({{ fare.lines[1]?.qty }} days × ₹{{ fare.lines[1]?.unitPrice| number:'1.2-2' }})</small>
-          </span>
-          <span class="item-value">₹{{ fare.lines[1]?.amount| number:'1.2-2' }}</span>
-        </div>
-      </ng-container>
-
+    <div class="breakdown-item">
+      <span class="item-label">
+        Base Fare
+        <small>(Includes {{ fare.meta?.baseKm || 4 }} km)</small>
+      </span>
+      <span class="item-value">
+        ₹{{ fare.lines[0]?.amount | number:'1.2-2' }}
+      </span>
     </div>
 
-    <div class="breakdown-total">
-      <span class="total-label">Total Estimated Fare</span>
-      <span class="total-value">₹{{ fare.total| number:'1.2-2' }}</span>
+    <div class="breakdown-item" *ngFor="let line of fare.lines"
+         [hidden]="line.code !== 'EXTRA_KM'">
+      <span class="item-label">
+        Extra Distance
+        <small>({{ line.qty | number:'1.2-2' }} km × ₹{{ line.unitPrice | number:'1.2-2' }})</small>
+      </span>
+      <span class="item-value">
+        ₹{{ line.amount | number:'1.2-2' }}
+      </span>
     </div>
 
-    <div class="breakdown-note">
-      <strong>Note:</strong>
-      Fare is estimated and may vary based on actual distance, duration, tolls, or waiting time.
+  </ng-container>
+
+  <!-- ================= RENTAL ================= -->
+  <ng-container *ngIf="fare.tripType === 'rental'">
+
+    <div class="breakdown-item">
+      <span class="item-label">
+        Rental Package
+        <small>
+          ({{ fare.meta?.packageHours || 8 }} hrs /
+          {{ fare.meta?.packageKm || 80 }} km)
+        </small>
+      </span>
+      <span class="item-value">
+        ₹{{ fare.lines[0]?.amount | number:'1.2-2' }}
+      </span>
     </div>
+
+    <div class="breakdown-item" *ngFor="let line of fare.lines"
+         [hidden]="line.code !== 'EXTRA_KM'">
+      <span class="item-label">
+        Extra Distance
+        <small>({{ line.qty }} km × ₹{{ line.unitPrice | number:'1.2-2' }})</small>
+      </span>
+      <span class="item-value">
+        ₹{{ line.amount | number:'1.2-2' }}
+      </span>
+    </div>
+
+    <div class="breakdown-item" *ngFor="let line of fare.lines"
+         [hidden]="line.code !== 'EXTRA_HOUR'">
+      <span class="item-label">
+        Extra Time
+        <small>({{ line.qty| number:'1.2-2' }} hrs × ₹{{ line.unitPrice | number:'1.2-2' }})</small>
+      </span>
+      <span class="item-value">
+        ₹{{ line.amount | number:'1.2-2' }}
+      </span>
+    </div>
+
+  </ng-container>
+
+<!-- ================= OUTSTATION ================= -->
+<ng-container *ngIf="fare.tripType === 'outstation'">
+
+  <!-- Rule explanation -->
+  <div class="breakdown-item text-muted">
+    <span class="item-label">
+      Minimum distance per day rule applies
+    </span>
+  </div>
+
+  <!-- Actual distance -->
+  <div class="breakdown-item">
+    <span class="item-label">
+      Actual Distance
+    </span>
+    <span class="item-value">
+      {{ fare.distanceKm | number:'1.2-2' }} km
+    </span>
+  </div>
+
+  <!-- Billable distance explanation -->
+  <div class="breakdown-item">
+    <span class="item-label">
+      Billable Distance
+      <small>
+        (Higher of actual distance <br/> or minimum distance per day)
+      </small>
+    </span>
+    <span class="item-value">
+      {{ fare.lines[0]?.qty | number:'1.2-2' }} km
+    </span>
+  </div>
+
+  <!-- Distance charge -->
+  <div class="breakdown-item">
+    <span class="item-label">
+      Distance Charge
+      <small>
+        ({{ fare.lines[0]?.qty | number:'1.2-2' }} km ×
+        ₹{{ fare.lines[0]?.unitPrice | number:'1.2-2' }})
+      </small>
+    </span>
+    <span class="item-value">
+      ₹{{ fare.lines[0]?.amount | number:'1.2-2' }}
+    </span>
+  </div>
+
+  <!-- Driver allowance -->
+  <div class="breakdown-item">
+    <span class="item-label">
+      Driver Allowance
+      <small>
+        ({{ fare.lines[1]?.qty }} day ×
+        ₹{{ fare.lines[1]?.unitPrice | number:'1.2-2' }})
+      </small>
+    </span>
+    <span class="item-value">
+      ₹{{ fare.lines[1]?.amount | number:'1.2-2' }}
+    </span>
+  </div>
+
+</ng-container>
+
+
+</div>
+
+<div class="breakdown-total">
+  <span class="total-label">Total Estimated Fare</span>
+  <span class="total-value">
+    ₹{{ fare.total | number:'1.2-2' }}
+  </span>
+</div>
+
+<div class="breakdown-note">
+  <strong>Note:</strong>
+  Fare is estimated and may vary based on actual distance, duration, tolls, or waiting time.
+</div>
+
   </div>
 </div>
 

@@ -66,8 +66,8 @@ carData: { [key: string]: Car[] } = {
       seats: 4,
       bags: 2,
       fuel: 'Petrol',
-      price: '₹ 480',
-      description: 'All-inclusive: car + driver + fuel',
+      price: '',
+      description: '',
       carNumber: 'MH 01 AU 1234',
       image: 'assets/Hyundai-Aura.png'
     },
@@ -77,8 +77,8 @@ carData: { [key: string]: Car[] } = {
       seats: 4,
       bags: 2,
       fuel: 'Petrol',
-      price: '₹ 480',
-      description: 'All-inclusive: car + driver + fuel',
+      price: '',
+      description: '',
       carNumber: 'MH 02 DZ 5678',
       image: 'assets/Maruti-Dzire.png'
     }
@@ -90,8 +90,8 @@ carData: { [key: string]: Car[] } = {
       seats: 6,
       bags: 3,
       fuel: 'Petrol',
-      price: '₹ 500',
-      description: 'All-inclusive: car + driver + fuel',
+      price: '',
+      description: '',
       carNumber: 'MH 03 XL 1122',
       image: 'assets/Maruti-XL6.png'
     },
@@ -101,8 +101,8 @@ carData: { [key: string]: Car[] } = {
       seats: 6,
       bags: 3,
       fuel: 'Petrol',
-      price: '₹ 500',
-      description: 'All-inclusive: car + driver + fuel',
+      price: '',
+      description: '',
       carNumber: 'MH 04 RU 3344',
       image: 'assets/Toyota-Rumion.png'
     },
@@ -112,8 +112,8 @@ carData: { [key: string]: Car[] } = {
       seats: 6,
       bags: 3,
       fuel: 'Petrol',
-      price: '₹ 500',
-      description: 'All-inclusive: car + driver + fuel',
+      price: '',
+      description: '',
       carNumber: 'MH 05 ER 5566',
       image: 'assets/Maruti- Ertiga.png'
     }
@@ -125,8 +125,8 @@ carData: { [key: string]: Car[] } = {
       seats: 6,
       bags: 4,
       fuel: 'Diesel',
-      price: '₹ 500',
-      description: 'All-inclusive: car + driver + fuel',
+      price: '',
+      description: '',
       carNumber: 'MH 06 IC 7788',
       image: 'assets/Toyota-Innova-Crysta.png'
     }
@@ -180,17 +180,18 @@ constructor(private bookingService: BookingService,
   }
 
   selectVehicle(v: any) {
-  this.bookingService.patchDeep({
-    vehicle: {
-      id: v.id,
-      carNumber: v.carNumber,
-      name: v.name,
-      seats: v.seats,
-      bags: v.bags,
-      price: v.price,
-      image: v.image
-    }
-  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // this.bookingService.patchDeep({
+  //   vehicle: {
+  //     id: v.id,
+  //     carNumber: v.carNumber,
+  //     name: v.name,
+  //     seats: v.seats,
+  //     bags: v.bags,
+  //     price: v.price,
+  //     image: v.image
+  //   }
+  // });
   //  this.router.navigate(['/booking']);
 }
   getTransform(): string {
