@@ -336,7 +336,11 @@ export class HomeComponent {
       (response) => {
        this.property = response.body; // Assign response body to `property`
          this.businessUser = this.property;
+         console.log('businessuser is',this.businessUser);
+        setTimeout(() => {
         this.handledStorageData(this.property);
+        console.log('Chatbot data updated after delay');
+      }, 300);
           this.setGoogleMapUrl();
         this.businessUser = response.body;
         this.cdr.detectChanges();
@@ -359,7 +363,6 @@ handledStorageData(property: any) {
       // 1. Set attributes immediately for the next render
       chatbotElement.setAttribute('chat-title', this.businessUser.name);
       chatbotElement.setAttribute('chat-title-icon', this.businessUser.logoUrl);
-      console.log('chatbotElement is',chatbotElement);
 
       chatbotElement.addEventListener('df-messenger-loaded', () => {
         chatbotElement.setAttribute('chat-title', this.businessUser.name);
@@ -378,7 +381,30 @@ handledStorageData(property: any) {
 
     // Existing payload logic...
     window.addEventListener('df-request-sent', (event) => {
-      // ... your fetch code ...
+      const propertyId = this.businessUser.id;
+        const propertyName = this.businessUser.name;
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const hours = String(currentDate.getHours()).padStart(2, '0');
+  const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+  const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+  const currentTimeString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        const dataToSend = {
+          propertyId: propertyId,
+          propertyName:propertyName,
+          currentDate:currentTimeString,
+        };
+        fetch('https://chatbot.api.thehotelmate.co/api/website/receivePayload', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSend),
+        })
+        .then(response => response.json())
+        .catch(error => console.error('Error:', error));
     });
 
   } catch (error) {
