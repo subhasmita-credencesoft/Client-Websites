@@ -252,13 +252,13 @@
         *ngFor="let line of fare.lines"
         [hidden]="line.code !== 'EXTRA_KM'"
       >
-        <div class="text-dark small">
+        <div class="text-dark small" [hidden]="line.code !== 'EXTRA_KM'">
           Extra Distance
           <small class="text-muted">
             ({{ line.qty | number:'1.2-2' }} km × ₹{{ line.unitPrice }})
           </small>
         </div>
-        <div class="fw-bold">
+        <div class="fw-bold" [hidden]="line.code !== 'EXTRA_KM'">
           ₹{{ line.amount | number:'1.0-2' }}
         </div>
       </div>
