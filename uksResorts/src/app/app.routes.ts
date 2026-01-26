@@ -14,6 +14,10 @@ import { BlogPage2Component } from './blog-page2/blog-page2.component';
 import { BlogPage3Component } from './blog-page3/blog-page3.component';
 import { BlogPage4Component } from './blog-page4/blog-page4.component';
 import { BlogPage5Component } from './blog-page5/blog-page5.component';
+import { OneDayPicnicComponent } from './one-day-picnic/one-day-picnic.component';
+import { WeddingComponent } from './wedding/wedding.component';
+import { SportsComponent } from './sports/sports.component';
+import { ConferenceComponent } from './conference/conference.component';
 
 export const routes: Routes = [
   {
@@ -46,6 +50,22 @@ export const routes: Routes = [
   {
     path: 'policy',
     component: PolicyComponent
+  },
+  {
+    path: 'picnic',
+    component: OneDayPicnicComponent
+  },
+  {
+    path: 'wedding',
+    component: WeddingComponent
+  },
+  {
+    path: 'sports',
+    component: SportsComponent
+  },
+   {
+    path: 'conference',
+    component: ConferenceComponent
   },
   {
     path: 'terms-condition',
