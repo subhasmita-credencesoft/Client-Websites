@@ -20,7 +20,7 @@ export class EventsComponent {
   isSubmitted: boolean = false;
 
    constructor(private http: HttpClient) {
-  
+
     }
 ngAfterViewInit(): void {
     const elements = document.querySelectorAll('.animate');
@@ -54,18 +54,18 @@ ngAfterViewInit(): void {
 
   //  isFormInvalid(name: string, email: string, phone: string): boolean {
   //   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    
+
   //   const isNameEmpty = !name || name.trim().length === 0;
   //   const isEmailInvalid = !email || !emailRegex.test(email);
   //   const isPhoneEmpty = !phone || phone.trim().length === 0;
 
 
   //   return isNameEmpty || isEmailInvalid || isPhoneEmpty;
-  // } 
+  // }
   isFormInvalid(name: string, email: string, phone: string): boolean {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   // This regex checks for exactly 10 digits
-  const phoneRegex = /^\d{10}$/; 
+  const phoneRegex = /^\d{10}$/;
 
   const isNameEmpty = !name || name.trim().length === 0;
   const isEmailInvalid = !email || !emailRegex.test(email);
@@ -93,7 +93,7 @@ submit(name: string, email: string, phone: string, eventCat: string, venue: stri
     toEmail: 'priyabrata@credencesoft.in',
     subject: `New Website Inquiry from ${name}`,
     message: emailContent,
-    data: '' 
+    data: ''
   };
 
   this.http.post<any>(apiUrl, emailObject).subscribe({
@@ -109,7 +109,12 @@ submit(name: string, email: string, phone: string, eventCat: string, venue: stri
   });
 }
 
+// events.component.ts
 navigateToPage() {
-  window.location.href = "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true";
+  const element = document.getElementById('inquiryForm');
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
+
 }
