@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-blog',
@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './blog.component.scss'
 })
 export class BlogComponent {
+  @HostListener('window:scroll', [])
 
    onWindowScroll() {
     const header = document.getElementById('mainHeader');

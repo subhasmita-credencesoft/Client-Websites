@@ -1434,6 +1434,7 @@ df-messenger {
 }
 /* ---------- ANIMATION KEYFRAMES ---------- */
 
+
 /* Slide in left images */
 @keyframes slideInLeft {
   0% { opacity: 0; transform: translateX(-100px) scale(0.9); }
@@ -2315,6 +2316,11 @@ width: 100%;
       flex: 1 0 calc(50% - 10px) !important;
       box-sizing: border-box !important;
       font-size: 15px !important;
+    }
+
+    .location-redirect-section{
+      display: flex;
+      flex-wrap: wrap;
     }
 }
 

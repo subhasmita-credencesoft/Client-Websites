@@ -25,7 +25,7 @@ html, body {
 .top-bar {
   padding: 5px 0;
   font-size: 14px;
-  color: #555;
+  color: #333;
   border-bottom: 1px solid #e8e8e8;
   position: relative;
   z-index: 2000;
@@ -98,7 +98,6 @@ html, body {
 
 .page-container {
     min-height: 90vh;
-    background-color: #f7f1e3; 
     background-attachment: fixed;
     display: flex;
     justify-content: center;
@@ -147,18 +146,20 @@ html, body {
     font-size: 1.4rem;
     font-weight: 400;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
     font-family: "Bree Serif", sans-serif;
 }
 
 .text-content p {
-   font-size: 18px;
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 18px;
+    font-size: 14px;
+    margin-bottom: 25px;
+    text-align: justify;
     font-family: "Lato", sans-serif;
 }
 
+.service-item h3{
+    font-family: "Bree Serif", sans-serif;
+}
 
 
 .read-more {
@@ -188,11 +189,10 @@ html, body {
 .blog-title{
     font-size: 35px;
     font-weight: 400;
-    font-family: "Bree Serif", sans-serif;
-    margin-bottom: 20px;
-    line-height: 1.25;
-    color: #1A1A1A;
     text-align: center;
+    color: #1A1A1A;
+    font-family: "Bree Serif", sans-serif;
+    margin-top: 30px;
 }
 
 @media (max-width: 768px) {
@@ -219,22 +219,14 @@ html, body {
 .grid-heading {
   grid-column: span 12;
   text-align: center;
-  font-size: 28px;
-  font-weight: 400;
+  font-size: 25px;
   font-family: "Bree Serif", sans-serif;
-  margin-bottom: 20px;
-  line-height: 1.25;
-  color: #1A1A1A;
 }
 
 .without-grid-heading{
   text-align: center;
-  font-size: 22px;
-  font-weight: 400;
+  font-size: 20px;
   font-family: "Bree Serif", sans-serif;
-  margin-bottom: 20px;
-  line-height: 1.25;
-  color: #1A1A1A;
 }
 
 /* Text Section: 7 Columns */
@@ -264,7 +256,7 @@ html, body {
 /* Basic Button Styling */
 .read-more {
   padding: 10px 25px;
-  color: #1A1A1A;
+  color: black;
   border: none;
   cursor: pointer;
   border: 1px solid #000;
@@ -280,4 +272,49 @@ html, body {
 .container {
     max-width: 1100px;
     margin: 0 auto;
+}
+
+
+
+
+.page-container {
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    min-height: 100vh;
+}
+
+.content-box {
+    max-width: 1200px;
+    width: 100%;
+    padding: 40px;
+    border-radius: 4px;
+}
+
+.policy-title {
+    color: #1A1A1A; /* Dark blue like the logo */
+    font-size: 23px;
+    margin-bottom: 25px;
+    text-align: center;
+    text-transform: capitalize;
+    padding-bottom: 15px;
+    font-family: "Bree Serif", sans-serif;
+}
+
+.text-content p {
+    color: #444;
+    font-size: 16px;
+    line-height: 1.8; /* Improves readability */
+    margin-bottom: 20px;
+    text-align: justify; /* Matches the formal look of the screenshot */
+    font-family: "Lato", sans-serif;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content-box {
+        padding: 20px;
+    }
 }

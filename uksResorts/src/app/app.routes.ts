@@ -9,6 +9,11 @@ import { FacilitiesComponent } from './facilities/facilities.component';
 import { TermsConditionComponent } from './terms-condition/terms-condition.component';
 import { PolicyComponent } from './policy/policy.component';
 import { BlogComponent } from './blog/blog.component';
+import { BlogPage1Component } from './blog-page1/blog-page1.component';
+import { BlogPage2Component } from './blog-page2/blog-page2.component';
+import { BlogPage3Component } from './blog-page3/blog-page3.component';
+import { BlogPage4Component } from './blog-page4/blog-page4.component';
+import { BlogPage5Component } from './blog-page5/blog-page5.component';
 
 export const routes: Routes = [
   {
@@ -49,5 +54,25 @@ export const routes: Routes = [
   {
     path: 'blogs',
     component: BlogComponent
+  },
+   {
+    path: 'blog-page1',
+    component: BlogPage1Component
+  },
+  {
+    path: 'blog-page2',
+    component: BlogPage2Component
+  },
+  {
+    path: 'blog-page3',
+    component: BlogPage3Component
+  },
+  {
+    path: 'blog-page4',
+    component: BlogPage4Component
+  },
+  {
+    path: 'blog-page5',
+    component: BlogPage5Component
   }
 ];
