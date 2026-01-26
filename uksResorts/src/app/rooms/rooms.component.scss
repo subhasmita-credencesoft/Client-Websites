@@ -37,6 +37,9 @@
     position: absolute;
     bottom: 5% !important;
 }
+.hero{
+  height: 70vh !important;
+}
 }
 @media (max-width: 420px) {
 .main-navbar{
@@ -455,7 +458,7 @@
 }
 @media (max-width: 575px) {
   .hero-room {
-    height: 85vh;
+    height: 70vh !important;
   }
 
   .booking-box {

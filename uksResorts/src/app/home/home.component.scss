@@ -127,7 +127,7 @@ html, body {
 /* HERO SECTION */
 /* ------------------------ */
 .hero {
-  height: 90vh;
+  height: 70vh;
   width: 100%;
   background: url("/assets/home-imgs/1.avif") center/cover no-repeat;
   animation: fadeSlide 1s ease-in-out;
@@ -909,6 +909,9 @@ df-messenger {
     width: 100%;
     height: auto;
   }
+  .hero {
+    height: 70vh !important;
+}
 }
 
 
