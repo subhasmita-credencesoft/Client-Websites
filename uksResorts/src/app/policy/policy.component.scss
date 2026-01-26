@@ -1,13 +1,31 @@
-.uks-hero-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/assets/home-imgs/blog-banner.jpg');    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;    
-    height: 400px; 
-    width: 100%;    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
+.hero {
+  height: 90vh;
+  width: 100%;
+  background: url("/assets/home-imgs/blog-banner.jpg") center/cover no-repeat;
+  animation: fadeSlide 1s ease-in-out;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.hero-text {
+  bottom: 32%;
+  left: 5%;
+  letter-spacing: 1px;
+}
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 0 20px;
 }
 
 .hero-content {
@@ -25,23 +43,33 @@
     box-sizing: border-box;
 }
 
-
-/* Make the header float over the hero image */
-.top-bar, .main-navbar {
-    position: absolute;
-    width: 100%;
-    z-index: 1000;
-    background-color: transparent !important; /* Forces transparency */
-}
-
-.main-navbar {
+.main-navbar.sticky {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: #0d0630  !important;
+  background: #0d0630 !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   animation: slideDown 0.3s ease-in-out;
+}
+
+.top-bar {
+
+  padding: 5px 0;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #e8e8e8;
+  position: relative;
+  z-index: 2000;
+}
+
+.main-navbar {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  z-index: 1500;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 /* Update Nav Links for better visibility on dark backgrounds */
