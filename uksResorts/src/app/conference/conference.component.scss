@@ -306,11 +306,14 @@
   align-items: center;
   gap: 12px;
   font-weight: 600;
+    text-decoration: none;
+
 }
 
 .virtual-tour img {
   width: 40px;
 }
+
 
 /* ===== TABLET ===== */
 @media (max-width: 1024px) {
