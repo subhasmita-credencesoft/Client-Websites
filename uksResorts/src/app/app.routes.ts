@@ -20,6 +20,7 @@ import { SportsComponent } from './sports/sports.component';
 import { ConferenceComponent } from './conference/conference.component';
 import { DiningComponent } from './dining/dining.component';
 import { TariffComponent } from './tariff/tariff.component';
+import { ReservationComponent } from './reservation/reservation.component';
 // import { TariffComponent } from './tariff/tariff.component';
 
 export const routes: Routes = [
@@ -93,6 +94,10 @@ export const routes: Routes = [
   {
     path: 'blog-page4',
     component: BlogPage4Component
+  },
+   {
+    path: 'create-reservation',
+    component: ReservationComponent
   },
   {
     path: 'blog-page5',
