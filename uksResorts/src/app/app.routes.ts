@@ -19,6 +19,7 @@ import { WeddingComponent } from './wedding/wedding.component';
 import { SportsComponent } from './sports/sports.component';
 import { ConferenceComponent } from './conference/conference.component';
 import { DiningComponent } from './dining/dining.component';
+import { TariffComponent } from './tariff/tariff.component';
 
 export const routes: Routes = [
   {
@@ -99,5 +100,9 @@ export const routes: Routes = [
   {
     path: 'dining',
     component: DiningComponent
+  },
+  {
+    path: 'tariff',
+    component: TariffComponent
   }
 ];
