@@ -49,19 +49,17 @@ export class ReservationComponent {
         }
 
 onBookingSubmit(form: NgForm) {
-
-
   if (!form.valid) return;
 
   const {
     name,
     email,
-    phone,
-    eventCat,
-    venue,
-    count,
+    mobile,
     fromDate,
-    toDate
+    toDate,
+    adults,
+    roomType,
+    message
   } = form.value;
 
   const formatDate = (date: any): string => {
@@ -71,22 +69,22 @@ onBookingSubmit(form: NgForm) {
   };
 
   const emailContent = `
-New Booking Inquiry Details:
----------------------------
+New Booking Enquiry:
+-------------------
 Name: ${name}
 Email: ${email}
-Phone: ${phone || 'Not provided'}
-Event Category: ${eventCat}
-Preferred Venue: ${venue}
-Guest Count: ${count}
-From Date: ${formatDate(fromDate)}
-To Date: ${formatDate(toDate)}
+Mobile: ${mobile}
+Arrival Date: ${formatDate(fromDate)}
+Departure Date: ${formatDate(toDate)}
+Adults: ${adults}
+Selected Offer: ${roomType}
+Message: ${message || 'Not provided'}
 `;
 
   const emailObject: EmailPayload = {
     fromEmail: 'info@bookonepms.com',
-    toEmail: 'subhasmitatripathy07@gmail.com',
-    subject: `New Booking Inquiry from ${name}`,
+    toEmail: 'priyabrata@credencesoft.in',
+    subject: `New Booking Enquiry from ${name}`,
     message: emailContent,
     data: ''
   };
@@ -97,16 +95,19 @@ To Date: ${formatDate(toDate)}
   this.http.post<any>(apiUrl, emailObject).subscribe({
     next: (response) => {
       this.isSubmitted = true;
-      console.log('Email sent successfully:', response);
+      alert('Enquiry sent successfully!');
+      console.log('Email sent:', response);
       form.reset();
+
     },
     error: (error) => {
       this.isSubmitted = false;
-      alert('There was an error sending your message. Please try again.');
-      console.error('Error sending email:', error);
+      alert('Failed to send enquiry. Please try again.');
+      console.error('Error:', error);
     }
   });
 }
+
 
 
 }
