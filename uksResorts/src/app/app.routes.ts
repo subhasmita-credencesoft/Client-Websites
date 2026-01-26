@@ -110,5 +110,9 @@ export const routes: Routes = [
   {
     path: 'tariff',
     component: TariffComponent
+  },
+   {
+    path: 'reservation',
+    component: ReservationComponent
   }
 ];

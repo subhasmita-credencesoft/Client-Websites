@@ -1,5 +1,5 @@
 import { FormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { NgbDateStruct, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -22,5 +22,18 @@ export class ReservationComponent {
       day: today.getDate()
     };
   }
+
+   @HostListener('window:scroll', [])
+        onWindowScroll() {
+          const header = document.getElementById('mainHeader');
+      
+          if (!header) return;
+      
+          if (window.scrollY > 100) {
+            header.classList.add('sticky');
+          } else {
+            header.classList.remove('sticky');
+          }
+        }
 
 }
