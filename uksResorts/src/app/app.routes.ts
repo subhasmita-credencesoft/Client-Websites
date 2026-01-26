@@ -9,6 +9,10 @@ import { FacilitiesComponent } from './facilities/facilities.component';
 import { TermsConditionComponent } from './terms-condition/terms-condition.component';
 import { PolicyComponent } from './policy/policy.component';
 import { BlogComponent } from './blog/blog.component';
+import { OneDayPicnicComponent } from './one-day-picnic/one-day-picnic.component';
+import { WeddingComponent } from './wedding/wedding.component';
+import { SportsComponent } from './sports/sports.component';
+import { ConferenceComponent } from './conference/conference.component';
 
 export const routes: Routes = [
   {
@@ -41,6 +45,22 @@ export const routes: Routes = [
   {
     path: 'policy',
     component: PolicyComponent
+  },
+  {
+    path: 'picnic',
+    component: OneDayPicnicComponent
+  },
+  {
+    path: 'wedding',
+    component: WeddingComponent
+  },
+  {
+    path: 'sports',
+    component: SportsComponent
+  },
+   {
+    path: 'conference',
+    component: ConferenceComponent
   },
   {
     path: 'terms-condition',
