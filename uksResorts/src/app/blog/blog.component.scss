@@ -61,21 +61,39 @@ html, body {
 }
 
 
-.uks-hero-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/assets/home-imgs/blog-banner.jpg');    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;    
-    height: 400px; 
-    width: 100%;    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
 .hero-content {
     text-align: center;
     padding: 20px;
+}
+
+.hero {
+  height: 90vh;
+  width: 100%;
+  background: url("/assets/home-imgs/blog-banner.jpg") center/cover no-repeat;
+  animation: fadeSlide 1s ease-in-out;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.hero-text {
+  bottom: 32%;
+  left: 5%;
+  letter-spacing: 1px;
+}
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 0 20px;
 }
 
 .page-container {

@@ -119,6 +119,14 @@
     min-width: 320px;
 }
 
+.nature-content h2{
+    font-family: "Bree Serif", sans-serif;
+}
+
+.nature-content p{
+    font-family: "Lato", sans-serif;
+}
+
 .nature-title {
     font-size: 28px;
     color: #2c3e50;
@@ -143,6 +151,7 @@
     margin-bottom: 12px;
     font-size: 15px;
     line-height: 1.5;
+    font-family: "Lato", sans-serif;
 }
 
 .facilities-list li::before {
@@ -156,6 +165,7 @@
 .policy-note {
     font-weight: bold;
     color: #d35400;
+    font-family: "Lato", sans-serif;
 }
 
 .credit-cards {
