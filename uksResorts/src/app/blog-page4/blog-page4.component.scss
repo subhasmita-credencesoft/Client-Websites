@@ -308,10 +308,13 @@ html, body {
 }
 
 .section-subtitle {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 30px;
-    color: #000;
+    color: #1A1A1A;
+    font-size: 27px;
+    margin-bottom: 25px;
+    text-align: left;
+    text-transform: capitalize;
+    padding-bottom: 15px;
+    font-family: "Bree Serif", sans-serif;
 }
 
 p {
@@ -324,6 +327,7 @@ p {
 .features-list {
     list-style-type: none; /* Removing default bullets to use custom ones if desired */
     padding-left: 20px;
+    font-family: "Lato", sans-serif;
 }
 
 .features-list li {
@@ -331,6 +335,7 @@ p {
     padding-left: 25px;
     margin-bottom: 12px;
     line-height: 1.5;
+    font-family: "Lato", sans-serif;
 }
 
 .features-list li::before {
