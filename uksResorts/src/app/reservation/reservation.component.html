@@ -1,1 +1,141 @@
-<p>reservation works!</p>
+<section class="booking-section">
+  <div class="container">
+    <div class="booking-card">
+      <form #bookingForm="ngForm">
+        <div class="row g-3">
+
+          <!-- Name -->
+          <div class="col-lg-4 col-md-6">
+            <label>Name</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter your name"
+              name="name"
+              ngModel
+              required
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="col-lg-4 col-md-6">
+            <label>Email</label>
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Enter your email"
+              name="email"
+              ngModel
+              required
+            />
+          </div>
+
+          <!-- Mobile -->
+          <div class="col-lg-4 col-md-6">
+            <label>Mobile</label>
+            <input
+              type="tel"
+              class="form-control"
+              placeholder="Enter mobile number"
+              name="mobile"
+              ngModel
+              required
+            />
+          </div>
+
+          <!-- Arrival -->
+          <div class="col-lg-3 col-md-6">
+            <label>Arrival</label>
+
+            <div class="date-wrapper">
+              <input
+                type="text"
+                class="form-control date-input"
+                placeholder="Pick a date"
+                ngbDatepicker
+                #fromDp="ngbDatepicker"
+                name="fromDate"
+                [(ngModel)]="fromDate"
+                [minDate]="todayDate"
+                (click)="fromDp.toggle()"
+                readonly
+              />
+
+              <span class="calendar-icon" (click)="fromDp.toggle()">
+                <i class="bi bi-calendar-event"></i>
+              </span>
+            </div>
+          </div>
+
+          <!-- Departure -->
+          <div class="col-lg-3 col-md-6">
+            <label>Departure</label>
+
+            <div class="date-wrapper">
+              <input
+                type="text"
+                class="form-control date-input"
+                placeholder="Pick a date"
+                ngbDatepicker
+                #toDp="ngbDatepicker"
+                name="toDate"
+                [(ngModel)]="toDate"
+                [minDate]="fromDate || todayDate"
+                (click)="toDp.toggle()"
+                readonly
+              />
+
+              <span class="calendar-icon" (click)="toDp.toggle()">
+                <i class="bi bi-calendar-event"></i>
+              </span>
+            </div>
+          </div>
+
+          <!-- Adults -->
+          <div class="col-lg-3 col-md-6">
+            <label>Adults</label>
+            <select class="form-select" name="adults" ngModel required>
+              <option value="">Select</option>
+              <option *ngFor="let n of [1,2,3,4,5]">{{ n }}</option>
+            </select>
+          </div>
+
+          <!-- Room Type -->
+          <div class="col-lg-3 col-md-6">
+            <label>Room Type</label>
+            <select class="form-select" name="roomType" ngModel required>
+              <option value="">Select</option>
+              <option>Standard</option>
+              <option>Deluxe</option>
+              <option>Suite</option>
+            </select>
+          </div>
+
+          <!-- Message -->
+          <div class="col-12">
+            <label>Message</label>
+            <textarea
+              class="form-control"
+              rows="3"
+              placeholder="Write your message"
+              name="message"
+              ngModel
+            ></textarea>
+          </div>
+
+          <!-- Button -->
+          <div class="col-12 text-center mt-3">
+            <button
+              type="submit"
+              class="btn booking-btn"
+              [disabled]="bookingForm.invalid"
+            >
+              Send Enquiry
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
