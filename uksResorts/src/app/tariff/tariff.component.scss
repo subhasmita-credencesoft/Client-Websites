@@ -69,7 +69,7 @@ html, body {
 .hero {
   height: 70vh;
   width: 100%;
-  background: url("/assets/home-imgs/room-img1.jpg") center/cover no-repeat;
+  background: url("/assets/home-imgs/tariff-image.png") center/cover no-repeat;
   animation: fadeSlide 1s ease-in-out;
   position: relative;
   display: flex;
@@ -145,6 +145,7 @@ html, body {
     padding: 60px 0;
 }
 
+
 /* Image Styling */
 .dining-image {
     flex: 1;
@@ -183,6 +184,9 @@ html, body {
 }
 
 
+
+
+
 .nature-visuals {
     flex: 0 0 350px; 
     display: flex;
@@ -190,6 +194,17 @@ html, body {
     gap: 12px;
     margin: 0 auto;
 }
+
+// .image-wrapper {
+//     width: 100%;
+//     height: 250px; 
+//     overflow: hidden; 
+//     border-radius: 8px;
+//     border: 4px solid #fff; 
+//     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+//     background: #eee;
+// }
+
 
 .virtual-tour {
     text-align: left;
@@ -320,131 +335,6 @@ html, body {
 }
 
 
-
-.picnic-wrapper {
-  width: 100%;
-  padding: 40px 20px;
-}
-
-.picnic-container {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
-}
-
-/* Image */
-.picnic-image {
-  flex: 1;
-}
-
-.picnic-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  object-fit: cover;
-}
-
-/* Content */
-.picnic-content {
-  flex: 1.3;
-}
-
-.picnic-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 15px;
-   font-family: "Bree Serif", sans-serif;
-}
-
-.picnic-text {
-  font-size: 15px;
-  line-height: 1.7;
-  margin-bottom: 12px;
-  font-family: "Lato", sans-serif;
-}
-
-/* Links */
-.picnic-links {
-  margin-top: 20px;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.picnic-links a {
-  text-decoration: none;
-  color: #1A1A1A;
-  font-family: "Lato", sans-serif;
-}
-
-.picnic-links span {
-  margin: 0 6px;
-}
-
-/* Responsive */
-@media (max-width: 991px) {
-  .picnic-container {
-    flex-direction: column;
-  }
-
-  .picnic-title {
-    font-size: 22px;
-  }
-}
-
-@media (max-width: 576px) {
-  .picnic-wrapper {
-    padding: 25px 15px;
-  }
-
-  .picnic-text {
-    font-size: 14px;
-  }
-
-  .picnic-links {
-    font-size: 14px;
-  }
-}
-.image-wrapper {
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-    border-radius: 8px;
-    border: 4px solid #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    background: #eee;
-}
-
-.virtual-tour {
-    text-align: left;
-    padding-top: 5px;
-    font-family: "Lato",  sans-serif;
-}
-
-.virtual-tour h3 {
-    font-size: 1rem;
-    margin-bottom: 4px;
-    color: #333;
-}
-
-.tour-links {
-    font-size: 0.85rem;
-    color: #444;
-}
-
-.tour-links a {
-    text-decoration: none;
-    color: #0056b3;
-}
-
-.page-title-section h1{
-    text-align: center;
-    color: #1A1A1A;
-    font-family: "Bree Serif", sans-serif;
-    font-size: 35px;
-}
-
 @media (max-width: 992px) {  /* 'lg' breakpoint for Bootstrap 5 */
   .navbar-collapse {
     background-color: #0d0630;
@@ -487,3 +377,71 @@ html, body {
     text-align: center;
 }
 }
+
+    .tariff-wrapper {
+        font-family: "Lato", sans-serif;
+        color: #fff;
+        max-width: 1000px;
+        margin: 20px auto;
+    }
+
+     .tariff-wrapper p{
+        font-family: "Lato", sans-serif;
+        color: #1A1A1A;
+        max-width: 1000px;
+        margin: 20px auto;
+    }
+
+    .tariff-section table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #838b83; /* Matching the grey tone in the image */
+    }
+
+    .tariff-section th, .tariff-section td {
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        text-align: center;
+    }
+
+    /* Remove border from the last row */
+    .tariff-section tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* Centered Main Header */
+    .main-header {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+
+    /* Sub-headers and Column specific styling */
+    .sub-header td {
+        font-weight: normal;
+        font-size: 1.1rem;
+        color: #f0f0f0;
+    }
+
+    .type-col {
+        font-weight: bold;
+        width: 30%;
+    }
+
+    .price-col {
+        width: 70%;
+        text-align: center; /* Aligns price info to the right as seen in standard tariffs */
+    }
+    
+    .header-subtext {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: normal;
+        margin-top: 5px;
+    }
+
+    .page-title-section h1{
+        color: #1A1A1A;
+        font-family: "Bree Serif", sans-serif;
+    }
