@@ -158,8 +158,7 @@
   }
 
   .price-badge span {
-    font-size: 1.1rem;
-    color: #b35900; /* Bronze/Brown color from image */
+    color: #555; /* Bronze/Brown color from image */
     font-weight: bold;
     font-family: "Lato", sans-serif;
   }
@@ -472,11 +471,50 @@
     grid-template-columns: 1fr;
   }
 
+  .virtual-tour {
+    text-decoration: underline;
+    color: #d17a2e;
+    font-weight: 500;
+  }
+
+  .price-text {
+    font-weight: 500;
+  }
+
+  .price-row{
+    font-size: 13px;
+    font-family: "Lato", sans-serif;
+  }
+
   .booking-btn button {
     height: 46px;
   }
 }
 
+.virtual-tour {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .price-text {
+    font-weight: 500;
+    font-size: 15px;
+  }
+  
+  .tax-info{
+    font-size: 15px;
+  }
+
+  .price-row{
+    font-size: 15px;
+    font-family: "Lato", sans-serif;
+  }
+
+  .room-title{
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+  }
 /* Facilities wrapper */
 .facilities {
   margin-top: 15px;
@@ -714,8 +752,8 @@ background-color: #78CDD71A;
 }
 
 .price-badge span {
-  font-weight: bold;
-  color: #c25c2a;
+  font-weight: 500;
+  color: #555;
 }
 
 .price-badge small {
