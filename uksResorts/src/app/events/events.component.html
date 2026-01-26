@@ -25,7 +25,18 @@
           <!-- <li class="nav-item"><a class="nav-link" href="#">Facilities</a></li> -->
           <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
+         <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="/events" id="eventsDropdown" role="button">
+    Events
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="/events/weddings">One Day Picnic</a></li>
+    <li><a class="dropdown-item" href="/events/corporate">Conference</a></li>
+    <li><a class="dropdown-item" href="/events/party">Wedding</a></li>
+    <li><a class="dropdown-item" href="/events/party">Sports</a></li>
+
+  </ul>
+</li>
            <li class="nav-item"><a class="nav-link" href="/facilities">Facilities</a></li>
         </ul>
 
@@ -201,11 +212,11 @@
 
         <button type="submit" [disabled]="isFormInvalid(nameInput.value, emailInput.value , phoneInput.value)"
           (click)="submit(
-            nameInput.value, 
-            emailInput.value, 
-            phoneInput.value, 
-            categoryInput.value, 
-            venueInput.value, 
+            nameInput.value,
+            emailInput.value,
+            phoneInput.value,
+            categoryInput.value,
+            venueInput.value,
             +countInput.value
           )">
           INQUIRE NOW
