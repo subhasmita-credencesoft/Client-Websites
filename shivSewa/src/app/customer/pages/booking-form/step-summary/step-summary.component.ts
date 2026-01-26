@@ -93,6 +93,66 @@ console.log("matched slot", this.slots);
 
   });
       }
+buildBookingPayload(booking: any) {
+  return {
+    referenceId: booking.bookingRef || '',
+
+    trip: {
+      tripType: booking.tripType,
+      tripTypeValue: booking.tripTypeValue,
+      tripServiceType: booking.tripServiceType
+    },
+
+    location: {
+      pickup: booking.pickup,
+      dropoff: booking.dropoff,
+      schedule: {
+        date: booking.date,
+        time: booking.time,
+        returnDate: booking.returnDate || null,
+        returnTime: booking.returnTime || null
+      },
+      distance: {
+        distanceKm: booking.distanceKm,
+        durationMinutes: booking.durationMinutes
+      },
+      locality: booking.locality || ''
+    },
+
+    passengers: booking.passengers,
+
+    vehicle: {
+      category: booking.vehicleCategory,
+      ...booking.vehicle
+    },
+
+    pricing: {
+      fareQuote: booking.fareQuote,
+      currency: booking.fareQuote?.currency || 'INR'
+    },
+
+    traveller: booking.traveller,
+
+    verification: {
+      emailOtp: {
+        sent: true,
+        verified: true,
+        sid: booking.otpSid || ''
+      },
+      customer: booking.customer || null
+    },
+
+    payment: {
+      paymentMode: 'Cash',
+      status: 'NotPaid',
+      currency: 'INR',
+      amount: booking.fareQuote?.total || 0
+    },
+
+    bookingStatus: 'NEW'
+  };
+}
+
 mapSavePaymentPayload(
   bookingData: any,
   slotPricingDto: any,
@@ -519,6 +579,8 @@ checkCustomerExists() {
       console.error('❌ Save Payment Failed', err);
     }
   });
+  const payload = this.buildBookingPayload(this.booking);
+  console.log('BOOKING PAYLOAD:', payload);
 //     const customerPayload = {
 //     isCustomerUpdate: false,
 //     id: this.customerData.id || null,

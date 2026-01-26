@@ -46,7 +46,7 @@ export class JourneyCardComponent {
   ngOnInit(): void {}
 
   handleCardAction(card: JourneyCard) {
-  const phoneNumber = '6372198255'; // WhatsApp number (India, no +)
+  const phoneNumber = '9136399064'; // WhatsApp number (India, no +)
 
   const message = `
 Hello 👋,
