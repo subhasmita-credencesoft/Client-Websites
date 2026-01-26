@@ -56,12 +56,30 @@
 .dropdown-menu .dropdown-item {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
+@media (max-width: 991px) {
+  .navbar .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    width: 100%;
+    margin-top: 8px;
+    box-shadow: none;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .navbar .dropdown-item {
+    padding: 10px 10px;
+  }
+}
+
 /* Dropdown item hover effect */
 .dropdown-menu .dropdown-item:hover {
   background-color: #0D0630; /* Bootstrap blue */
   color: #fff;
 }
-
+.dropdown-item {
+  padding: 12px 20px; /* bigger touch area */
+}
 @media (max-width:768px) {
   .hero-text h1{
     font-size: 32px !important;
