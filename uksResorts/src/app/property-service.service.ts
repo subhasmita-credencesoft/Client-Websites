@@ -126,4 +126,8 @@ export class PropertyServiceService {
    getPropertyDetailsByPropertyId(propertyId: number) {
     return this.http.get<Property>('https://api.thehotelmate.co/api/thm' + '/findById/' + propertyId, { observe: 'response' });
   }
+
+   getRoomDetailsByPropertyId(propertyId: number) {
+    return this.http.get<Property>('https://api.thehotelmate.co/api/thm/findAllRoomsByPropertyId/' + propertyId, { observe: 'response' });
+  }
 }

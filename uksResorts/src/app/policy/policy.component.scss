@@ -1,0 +1,153 @@
+.uks-hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/assets/home-imgs/blog-banner.jpg');    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;    
+    height: 400px; 
+    width: 100%;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.hero-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.page-container {
+    min-height: 90vh;
+    background-color: #f7f1e3; 
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px; 
+    box-sizing: border-box;
+}
+
+
+/* Make the header float over the hero image */
+.top-bar, .main-navbar {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent !important; /* Forces transparency */
+}
+
+.main-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #0d0630  !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  animation: slideDown 0.3s ease-in-out;
+}
+
+/* Update Nav Links for better visibility on dark backgrounds */
+.nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.uks-hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url('/assets/home-imgs/blog-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;    
+    height: 600px; /* Increased height to look like the screenshot */
+    width: 100%;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+}
+
+/* Ensure the content starts after the hero */
+.page-container {
+    position: relative;
+    z-index: 1;
+    background-color: #f7f1e3;
+}
+
+.content-box {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    color: #444; 
+    line-height: 1.8;
+}
+
+.content-box p {
+    margin-bottom: 25px;
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.content-box strong {
+    color: #000;
+    font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+    .page-container {
+        padding: 50px 5%;
+    }
+    .content-box p {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        padding: 40px 30px;
+    }
+    .content-box p {
+        font-size: 16px;
+        text-align: left; 
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-container {
+        padding: 30px 20px;
+        background-attachment: scroll; 
+    }
+    .content-box p {
+        font-size: 15px;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+}
+
+
+
+.book-nav{
+  padding: 8px 30px !important;
+  border-radius: 5px !important;
+  margin-left: 24px;
+}
+
+
+.main-navbar .nav-link {
+  color: white !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.main-navbar .navbar-brand img {
+  height: 55px;
+}
+
+.book-btn {
+  padding: 7px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  display: block;
+  margin-left: auto;
+}
+

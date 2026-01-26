@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-rooms',
@@ -14,6 +15,15 @@ export class RoomsComponent {
   isExpanded: boolean = false;
   expandedStates: boolean[] = [false, false];
  @HostListener('window:scroll', [])
+
+ ngAfterViewInit() {
+    const myCarousel = document.querySelector('#carouselCard1');
+    const carousel = new bootstrap.Carousel(myCarousel, {
+      interval: 3000,
+      ride: 'carousel'
+    });
+  }
+
   onWindowScroll() {
     const header = document.getElementById('mainHeader');
 
@@ -25,6 +35,7 @@ export class RoomsComponent {
       header.classList.remove('sticky');
     }
   }
+
   booking = {
     checkIn: '',
     checkOut: '',

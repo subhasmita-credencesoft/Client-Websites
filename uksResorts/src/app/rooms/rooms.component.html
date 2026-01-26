@@ -27,6 +27,7 @@
           <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
           <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
+           <li class="nav-item"><a class="nav-link" href="/facilities">Facilities</a></li>
         </ul>
 
         <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="btn btn-light book-btn book-nav">BOOK NOW</a>
@@ -62,118 +63,32 @@
   </div>
 </section>
 
-  <!-- ROOM ITEM -->
-  <!-- <div class="room-card">
-
-    <div class="room-image">
-      <img src="assets/home-imgs/Deluxe-Cottage-2.jpg.png" alt="">
-      <div class="price-badge">
-        <strong>Deluxe Room</strong>
-        <span>₹ 3,950 + GST</span>
-        <small>per night + taxes</small>
-      </div>
-    </div>
-
-    <div class="room-content"  style="font-family: 'Lato', sans-serif;">
-      <p class="room-desc">
-        Equipped with a cozy queen bed (or twin beds), functional workspace,
-        and soothing lighting, this room is perfect for couples, business travelers,
-        and small families seeking a peaceful retreat.
-      </p>
-<div class="info-row">
-  <div class="info-icon">
-    <img src="assets/home-imgs/Vector (1).png" alt="">
-  </div>
-
-  <div class="info-text"style="font-family: 'Lato', sans-serif;">
-    <strong>Check-in & Check-out:</strong>
-    <span >
-      Standard check-in is at 12:00 PM and check-out is at 11:00 AM;
-      please contact the front desk for any extensions.
-    </span>
-  </div>
-</div>
-
-
-  <div class="facilities"  style="font-family: 'Lato', sans-serif;">
-
-  <h4 class="facilities-title">
-    <span class="facilities-icon"><img src="assets/home-imgs/Vector5.png" alt=""></span> Facilities
-  </h4>
-
-  <div class="facilities-list">
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (2).png" alt="">
-      <span>Room Service</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (3).png" alt="">
-      <span>Laundry</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (4).png" alt="">
-      <span>Toiletries</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (5).png" alt="">
-      <span>Luggage Assistance</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (6).png" alt="">
-      <span>Newspaper</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/Vector (7).png" alt="">
-      <span>In-room Sofa</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/streamline_hotel-air-conditioner.svg" alt="">
-      <span>Air Conditioner</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/material-symbols_water-pump-outline-rounded.svg" alt="">
-      <span>Water Supply</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/temaki_water-bottle.svg" alt="">
-      <span>Bottled Water</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/mingcute_wifi-line.svg" alt="">
-      <span>WiFi Access</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/material-symbols-light_tv-outline-rounded.svg" alt="">
-      <span>Television</span>
-    </div>
-
-    <div class="facility-item">
-      <img src="assets/home-imgs/guidance_office.svg" alt="">
-      <span>Work Desk</span>
-    </div>
-
-  </div>
-</div>
-
-      <button class="book-btn  room-btn" (click)="goToBooking()">Book Now →</button>
-    </div>
-
-  </div> -->
 
   <div class="room-card">
   <div class="room-image">
-    <img src="assets/home-imgs/Deluxe-Cottage-2.jpg.png" alt="Deluxe Room">
+    <!-- <img src="assets/home-imgs/Deluxe-Cottage-2.jpg.png" alt="Deluxe Room"> -->
+      <div id="carouselCard1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselCard1" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#carouselCard1" data-bs-slide-to="1"></button>
+  </div>
+  
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="assets/home-imgs/room1.jpg" class="d-block w-100" alt="Room 1 Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="assets/home-imgs/room1.jpg" class="d-block w-100" alt="Room 1 Image 2">
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard1" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselCard1" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  </button>
+</div>
     <div class="price-badge">
       <strong>Deluxe Room</strong>
       <span>₹ 3,950 + GST</span>
@@ -183,9 +98,7 @@
 
   <div class="room-content" style="font-family: 'Lato', sans-serif;">
     <p class="room-desc">
-      Equipped with a cozy queen bed (or twin beds), functional workspace,
-      and soothing lighting, this room is perfect for couples, business travelers,
-      and small families seeking a peaceful retreat.
+      Superior rooms can be set-up as either a queen bed or two single beds along with a study / workspace.
     </p>
 
     <div class="info-row">
@@ -213,47 +126,39 @@
         </div>
         <div class="facility-item">
           <img src="assets/home-imgs/Vector (3).png" alt="">
-          <span>Laundry</span>
-        </div>
-        <div class="facility-item">
-          <img src="assets/home-imgs/Vector (4).png" alt="">
-          <span>Toiletries</span>
-        </div>
-        <div class="facility-item">
-          <img src="assets/home-imgs/Vector (5).png" alt="">
-          <span>Luggage Assistance</span>
-        </div>
-        <div class="facility-item">
-          <img src="assets/home-imgs/Vector (6).png" alt="">
-          <span>Newspaper</span>
-        </div>
-        <div class="facility-item">
-          <img src="assets/home-imgs/Vector (7).png" alt="">
-          <span>In-room Sofa</span>
-        </div>
-        <div class="facility-item">
-          <img src="assets/home-imgs/streamline_hotel-air-conditioner.svg" alt="">
-          <span>Air Conditioner</span>
-        </div>
-        <div class="facility-item">
-          <img src="assets/home-imgs/material-symbols_water-pump-outline-rounded.svg" alt="">
-          <span>Water Supply</span>
+          <span>TV</span>
         </div>
         <div class="facility-item">
           <img src="assets/home-imgs/temaki_water-bottle.svg" alt="">
           <span>Bottled Water</span>
         </div>
         <div class="facility-item">
+          <img src="assets/home-imgs/Vector (5).png" alt="">
+          <span>Guest Toiletries</span>
+        </div>
+       <div class="facility-item">
           <img src="assets/home-imgs/mingcute_wifi-line.svg" alt="">
-          <span>WiFi Access</span>
+          <span>WiFi</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/Vector (7).png" alt="">
+          <span>Morning Newspaper</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/streamline_hotel-air-conditioner.svg" alt="">
+          <span>24 hot and cold water</span>
+        </div>
+        <div class="facility-item">
+          <img src="assets/home-imgs/material-symbols_water-pump-outline-rounded.svg" alt="">
+          <span>Ergonomic work desk</span>
         </div>
         <div class="facility-item">
           <img src="assets/home-imgs/material-symbols-light_tv-outline-rounded.svg" alt="">
-          <span>Television</span>
+          <span>Cable/Satellite TV channels</span>
         </div>
         <div class="facility-item">
           <img src="assets/home-imgs/guidance_office.svg" alt="">
-          <span>Work Desk</span>
+          <span>Luggage assistance</span>
         </div>
 
         <button class="view-more-btn" (click)="toggleExpand(0)">
@@ -269,7 +174,29 @@
 
   <div class="room-card" style="margin-bottom: 0px;">
   <div class="room-image">
-    <img src="assets/home-imgs/Deluxe-Cottage-2.jpg.png" alt="Deluxe Room">
+    <!-- <img src="assets/home-imgs/Deluxe-Cottage-2.jpg.png" alt="Deluxe Room"> -->
+       <div id="carouselCard1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselCard1" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#carouselCard1" data-bs-slide-to="1"></button>
+  </div>
+  
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="assets/home-imgs/deluxe1.jpg" class="d-block w-100" alt="Room 1 Image 1">
+    </div>
+    <div class="carousel-item">
+      <img src="assets/home-imgs/deluxe4.jpg" class="d-block w-100" alt="Room 1 Image 2">
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard1" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselCard1" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  </button>
+</div>
     <div class="price-badge">
       <strong>Super Deluxe Room</strong>
       <span>₹ 4,950 + GST</span>
@@ -279,9 +206,8 @@
 
   <div class="room-content" style="font-family: 'Lato', sans-serif;">
     <p class="room-desc">
-      Equipped with a cozy queen bed (or twin beds), functional workspace,
-      and soothing lighting, this room is perfect for couples, business travelers,
-      and small families seeking a peaceful retreat.
+      The Superior Deluxe Room offers a fantastic view for you to make the most of, 
+      with a luxurious interior making your stay truly memorable.
     </p>
 
     <div class="info-row">

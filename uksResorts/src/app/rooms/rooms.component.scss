@@ -269,6 +269,23 @@
   font-family: "Lato", sans-serif;
 }
 
+.carousel-control-prev {
+    left: -15px !important;
+    width: 50px !important;
+}
+
+.carousel-control-next {
+    right: -15px !important; 
+    width: 50px !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #1A1A1A;
+    padding: 15px;
+    background-size: 50%;
+}
+
 /* Smooth entry animation */
 @keyframes slideDown {
   from {

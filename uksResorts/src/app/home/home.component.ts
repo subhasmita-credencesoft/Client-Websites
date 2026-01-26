@@ -1,5 +1,5 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbDate, NgbCalendar, NgbDateStruct, NgbCarouselConfig, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,8 +17,10 @@ declare var bootstrap: any;
 })
 export class HomeComponent {
   /* ---------------- DATEPICKER ---------------- */
+  @Input() propertyServiceList: any[] = [];
+  @Input() initialCount = 5;
   isExpanded = false;
-
+isExpandedOne = false;
   fromDate: NgbDateStruct | null = null;
   toDate: NgbDateStruct | null = null;
   hoveredDate: NgbDateStruct | null = null;
@@ -35,6 +37,7 @@ export class HomeComponent {
   dynamicCountryName: any;
   propertyusername: string = '';
   property: any;
+  roomsArray: any[] = []; 
 
 
 
@@ -52,8 +55,12 @@ export class HomeComponent {
   children = 0;
   rooms = 1;
   isGuestSelectorOpen = false;
+  selectedProperty: string = '';
   @ViewChild('checkinInput') checkinInput!: ElementRef;
   @ViewChild('checkoutInput') checkoutInput!: ElementRef;
+  // propertyServiceList: any[] = [];
+  showAll: boolean = false;
+  // initialCount: number = 3;
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const header = document.getElementById('mainHeader');
@@ -72,6 +79,7 @@ export class HomeComponent {
   guests: number = 1;
   // component.ts
   selectedRoom: string = 'superDeluxe';
+  visibleItemsCount: number = 3;
 
   roomsOne = [
     {
@@ -173,6 +181,7 @@ export class HomeComponent {
     if (this.checkoutInput) this.checkoutInput.nativeElement.min = this.checkout;
 
     this.getProperty();
+    this.loadRooms();
 
     // Detect changes to avoid NG0100 error
     this.cdr.detectChanges();
@@ -331,6 +340,29 @@ export class HomeComponent {
     }
   }
 
+  toggleServices() {
+  this.showAll = !this.showAll;
+}
+
+toggleItems() {
+    this.isExpanded = !this.isExpanded;
+  }
+toggleItemsOnes() {
+    this.isExpandedOne = !this.isExpandedOne;
+  }
+getVisibleText() {
+  const visible = this.propertyServiceList.slice(0, this.visibleItemsCount);
+  return visible.map(s => s.name).join(', ');
+}
+
+// toggleItems() {
+//   if (this.visibleItemsCount < this.propertyServiceList.length) {
+//     this.visibleItemsCount = this.propertyServiceList.length;
+//   } else {
+//     this.visibleItemsCount = this.initialCount;
+//   }
+// }
+
   getProperty() {
     this.apiService.getPropertyDetailsByPropertyId(3451).subscribe(
       (response) => {
@@ -343,6 +375,8 @@ export class HomeComponent {
       }, 300);
           this.setGoogleMapUrl();
         this.businessUser = response.body;
+        this.propertyServiceList = this.businessUser.propertyServicesList;
+        console.log('propertyServiceList is',this.propertyServiceList);
         this.cdr.detectChanges();
         this.initializeSlideItems(); // Initialize slide items after fetching property details
       },
@@ -353,6 +387,18 @@ export class HomeComponent {
       }
     );
   }
+
+loadRooms(): void {
+  this.apiService.getRoomDetailsByPropertyId(3451).subscribe({
+    next: (res) => {
+      const data = res.body || [];
+      console.log('data is',data);
+      
+      // this.updateChunks();
+    },
+    error: (err) => console.error('Error fetching rooms:', err)
+  });
+}
 
 handledStorageData(property: any) {
   try {

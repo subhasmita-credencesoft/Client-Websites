@@ -172,6 +172,7 @@ html, body {
 /* ------------------------ */
 /* BOOKING BOX */
 /* ------------------------ */
+
 .event-type-home{
 font-family: "Lato", sans-serif;
 }
@@ -2833,6 +2834,51 @@ width: 100%;
   font-family: "Lato", sans-serif;
 }
 
+/* Container for both the tags and the button */
+.tags-container {
+  display: flex;
+  justify-content: space-between; /* Pushes tags to left and button to right */
+  align-items: center;           /* Keeps them vertically centered */
+  flex-wrap: wrap;               /* Prevents breaking on small screens */
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Individual Tag Styling */
+.tags span {
+  background-color: #f0f0f0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-right: 8px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.tags-container {
+  font-family: sans-serif; /* Match your app font */
+  line-height: 1.6;
+  color: #333;
+}
+
+.content-wrapper {
+  display: inline; /* Keeps everything in a single flow */
+}
+
+.view-more-link {
+  color: #000080; /* Dark blue color from your screenshot */
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 8px;
+  cursor: pointer;
+  white-space: nowrap; /* Prevents "View" and "More" from splitting */
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+}
+
+.view-more-link:hover {
+  text-decoration: none;
+}
+
 .card-book-btn1:hover {
   background-color: #1a144d;
 }
@@ -3033,6 +3079,10 @@ width: 100%;
 
 .btn-directions:hover {
     background-color: #1a144d;
+}
+
+.text-directions{
+  font-family: "Bree Serif", sans-serif;
 }
 
 .testimonial-card {

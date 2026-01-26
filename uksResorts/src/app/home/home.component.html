@@ -30,6 +30,7 @@
         <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
         <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
         <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="/facilities">Facilities</a></li>
       </ul>
 
       <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="btn btn-light book-btn book-nav">BOOK
@@ -242,21 +243,20 @@
       </p>
       <div class="collapsible-text" [class.expanded]="isExpanded">
         <p class="nature-text">
-          Just a few miles from the outskirts of the hustle-n-bustle of Mumbai's
-          concrete jungle. a complete at-home experience that would provide
-          you your heart's desires. a Break you have always longed for.
+          Just a few miles from the outskirts of the hustle -n- bustle of Mumbai's concrete jungle...
+          a complete 'at-home' experience that would provide you your heart's desires...
+          a 'Break' you have always longed for...
         </p>
 
         <p class="nature-text">
-          A Signature business hotel, showcasing impeccable hospitality amidst
-          scenic beauty and rich history that blends harmoniously with today's
-          lifestyles.
+          A Signature business hotel, showcasing impeccable Hospitality amidst scenic beauty and
+          rich history that blends harmoniously with today's lifestyles.
         </p>
 
         <p class="nature-text">
-          Specially manicured landscaped gardens scaling over 85,000 sq.ft.
-          overlooking mountains & greenery as far as your eye can see. An ambience
-          providing you with a perfect setting for your Business & Leisure events.
+          Specially manicured Landscaped gardens scaling over 85,000 sq.ft. overlooking mountains & greenery as far as
+          your eye can see.
+          An ambience providing you with a perfect setting for your Business & Leisure events.
         </p>
 
         <div class="vision-mission">
@@ -341,11 +341,29 @@
       <div class="card-content">
         <h3>Deluxe Room</h3>
         <p>Spacious rooms with private balconies overlooking lush gardens.</p>
-        <div class="tags">
-          <span>Room Service</span>
-          <span>Laundry</span>
-          <span>Toiletries</span>
-          <span>AC</span>
+        <!-- <div class="tags-container">
+          <div class="tags">
+            <span *ngFor="let service of propertyServiceList | slice:0:visibleItemsCount">
+              {{service.name}}
+            </span>
+          </div>
+          <a href="javascript:void(0)" *ngIf="propertyServiceList.length > initialCount" (click)="toggleItems()"
+            class="view-more-link">
+            {{ visibleItemsCount < propertyServiceList.length ? 'View More' : 'View Less' }} </a>
+        </div> -->
+        <div class="tags-container">
+          <div class="tags">
+            <span
+              *ngFor="let service of propertyServiceList | slice:0:(isExpanded ? propertyServiceList.length : initialCount)">
+              {{service.name}}
+            </span>
+          </div>
+          <div class="d-flex justify-content-end text-right" style="text-align: right; width: 100%;">
+            <a (click)="toggleItems()" class="view-more-link">
+              {{ isExpanded ? 'View Less' : 'View More' }}
+            </a>
+          </div>
+
         </div>
         <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="card-book-btn1"
           style="text-decoration: none;">BOOK NOW</a>
@@ -375,20 +393,38 @@
           </button>
         </div>
         <span class="price-tag">
-          ₹3,950 <span class="per-night" style="font-family: 'Lato', sans-serif;">/night</span>
+          ₹4,950 <span class="per-night" style="font-family: 'Lato', sans-serif;">/night</span>
         </span>
       </div>
 
       <div class="card-content">
         <h3>Super Deluxe AC</h3>
         <p>Spacious rooms with private balconies overlooking lush gardens.</p>
-        <div class="tags">
-          <span>Room Service</span>
-          <span>Laundry</span>
-          <span>Toiletries</span>
-          <span>AC</span>
+        <!-- <div class="tags-container">
+          <div class="tags">
+            <span *ngFor="let service of propertyServiceList | slice:0:visibleItemsCount">
+              {{service.name}}
+            </span>
+          </div>
+          <a href="javascript:void(0)" *ngIf="propertyServiceList.length > initialCount" (click)="toggleItems()"
+            class="view-more-link">
+            {{ visibleItemsCount < propertyServiceList.length ? 'View More' : 'View Less' }} </a>
+        </div> -->
+        <div class="tags-container">
+          <div class="tags">
+            <span
+              *ngFor="let service of propertyServiceList | slice:0:(isExpandedOne ? propertyServiceList.length : initialCount)">
+              {{service.name}}
+            </span>
+          </div>
+
+          <div class="d-flex justify-content-end text-right" style="text-align: right; width: 100%;">
+            <a (click)="toggleItemsOnes()" class="view-more-link">
+              {{ isExpandedOne ? 'View Less' : 'View More' }}
+            </a>
+          </div>
+
         </div>
-        <!-- <button class="card-book-btn">BOOK NOW</button> -->
         <a href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" class="card-book-btn1"
           style="text-decoration: none;">BOOK NOW</a>
       </div>
@@ -913,6 +949,9 @@
           </div>
         </div>
 
+        <a href="https://www.google.com/maps/place/UK'S+RESORT,+Khopoli/@18.817441,73.304762,16z/data=!4m9!3m8!1s0x3be7fd68dbb32757:0x45a268bbfa521ef0!5m2!4m1!1i2!8m2!3d18.8171404!4d73.3046807!16s%2Fg%2F1hm2py2ft?entry=tts&g_ep=EgoyMDI0MDkyNS4wKgBIAVAD"
+          class="text-directions">Click here for directions to reach UK'S Resort from your destination</a>
+
         <a href="https://www.google.com/maps/dir//UK'S+RESORT,+Khopoli,+Old+Mumbai+-+Pune+Hwy,+NH-4,+AshtaVinayak+Mahad+Phata,+Khopoli,+Maharashtra+410202/@18.8053173,73.3158328,14.36z/data=!4m20!1m10!3m9!1s0x3be7fd68dbb32757:0x45a268bbfa521ef0!2sUK'S+RESORT,+Khopoli!5m2!4m1!1i2!8m2!3d18.8171404!4d73.3046807!16s%2Fg%2F1hm2py2ft!4m8!1m0!1m5!1m1!1s0x3be7fd68dbb32757:0x45a268bbfa521ef0!2m2!1d73.3046807!2d18.8171404!3e0?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoKLDEwMDc5MjA2N0gBUAM%3D"
           class="btn-directions">Get Directions</a>
       </div>
@@ -935,10 +974,8 @@
   <i class="fa fa-angle-double-up"></i>
 </a>
 
-<df-messenger
-  project-id="impactful-name-306810"
-  agent-id="8bb6c52c-8667-4a24-a789-4cd78b154c96"
-  chat-title="My Support Bot"> 
+<df-messenger project-id="impactful-name-306810" agent-id="8bb6c52c-8667-4a24-a789-4cd78b154c96"
+  chat-title="My Support Bot">
   <df-messenger-chat-bubble chat-subtitle="Online"></df-messenger-chat-bubble>
 </df-messenger>
 
