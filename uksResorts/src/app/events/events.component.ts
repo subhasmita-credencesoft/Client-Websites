@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface EmailPayload {
   fromEmail: string;
@@ -19,7 +20,9 @@ interface EmailPayload {
 export class EventsComponent {
   isSubmitted: boolean = false;
 
-   constructor(private http: HttpClient) {
+   constructor(private http: HttpClient,
+    private router: Router
+   ) {
 
     }
 ngAfterViewInit(): void {
@@ -111,10 +114,7 @@ submit(name: string, email: string, phone: string, eventCat: string, venue: stri
 
 // events.component.ts
 navigateToPage() {
-  const element = document.getElementById('inquiryForm');
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+this.router.navigate(['/create-reservation']);
 }
 
 }
