@@ -18,6 +18,7 @@ import { OneDayPicnicComponent } from './one-day-picnic/one-day-picnic.component
 import { WeddingComponent } from './wedding/wedding.component';
 import { SportsComponent } from './sports/sports.component';
 import { ConferenceComponent } from './conference/conference.component';
+import { DiningComponent } from './dining/dining.component';
 
 export const routes: Routes = [
   {
@@ -94,5 +95,9 @@ export const routes: Routes = [
   {
     path: 'blog-page5',
     component: BlogPage5Component
+  },
+  {
+    path: 'dining',
+    component: DiningComponent
   }
 ];

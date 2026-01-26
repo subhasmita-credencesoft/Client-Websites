@@ -1,0 +1,478 @@
+html, body {
+  overflow-x: hidden !important;
+  width: 100%;
+}
+
+.main-navbar.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #0d0630 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  animation: slideDown 0.3s ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.top-bar {
+  padding: 5px 0;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #e8e8e8;
+  position: relative;
+  z-index: 2000;
+}
+
+
+.main-navbar {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  z-index: 1500;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+
+.main-navbar .nav-link {
+  color: white !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.main-navbar .navbar-brand img {
+  height: 55px;
+}
+
+.book-btn {
+  padding: 7px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  display: block;
+  margin-left: auto;
+}
+
+
+.hero-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.hero {
+  height: 70vh;
+  width: 100%;
+  background: url("/assets/home-imgs/room-img1.jpg") center/cover no-repeat;
+  animation: fadeSlide 1s ease-in-out;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.hero-text {
+  bottom: 32%;
+  left: 5%;
+  letter-spacing: 1px;
+}
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 0 20px;
+}
+
+.page-container {
+    min-height: 90vh;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px; 
+    box-sizing: border-box;
+}
+
+.dining-header {
+    background-color: #1e73be; /* Blue background */
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.quote-icon {
+    font-size: 50px;
+    font-family: serif;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.dining-header h2 {
+    margin: 0 0 15px 0;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.dining-header p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+.separator {
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.5);
+    margin: 20px auto 0;
+}
+
+/* Main Content Section */
+.dining-content {
+    background-color: #fdf6e7; /* Light beige base */
+    background-repeat: repeat;
+    padding: 60px 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    padding: 0 20px;
+}
+
+/* Image Styling */
+.dining-image {
+    flex: 1;
+}
+
+.dining-image img {
+    width: 100%;
+    border: 5px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Text Styling */
+.dining-text {
+    flex: 1.5;
+    color: #444;
+    font-size: 15px;
+}
+
+.dining-text p {
+    margin-bottom: 20px;
+}
+
+/* Virtual Tour Link */
+.virtual-tour {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    margin-top: 20px;
+}
+
+.tour-icon {
+    width: 40px;
+    height: auto;
+    margin-left: 10px;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+
+
+.nature-visuals {
+    flex: 0 0 350px; 
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0 auto;
+}
+
+.image-wrapper {
+    width: 100%;
+    height: 250px; 
+    overflow: hidden; 
+    border-radius: 8px;
+    border: 4px solid #fff; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: #eee;
+}
+
+.slider-track {
+    display: flex;
+    width: 700%; 
+    height: 100%;
+    animation: scroll-7 20s infinite ease-in-out;
+}
+
+.slider-track img {
+    width: calc(100% / 7);
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.virtual-tour {
+    text-align: left;
+    padding-top: 5px;
+    font-family: "Lato",  sans-serif;
+}
+
+.virtual-tour h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.tour-links {
+    font-size: 0.85rem;
+    color: #444;
+}
+
+.tour-links a {
+    text-decoration: none;
+    color: #0056b3;
+}
+
+@keyframes scroll-7 {
+    0%, 12% { transform: translateX(0); }
+    14%, 26% { transform: translateX(-14.28%); }
+    28%, 40% { transform: translateX(-28.56%); }
+    42%, 54% { transform: translateX(-42.84%); }
+    56%, 68% { transform: translateX(-57.12%); }
+    70%, 82% { transform: translateX(-71.40%); }
+    84%, 96% { transform: translateX(-85.68%); }
+    100% { transform: translateX(0); } 
+}
+
+
+.nature-section {
+    padding: 50px 5%;
+    color: #333;
+}
+
+.nature-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.nature-content {
+    flex: 2; 
+    min-width: 320px;
+}
+
+.nature-content h2{
+    font-family: "Bree Serif", sans-serif;
+}
+
+.nature-content p{
+    font-family: "Lato", sans-serif;
+}
+
+.nature-title {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.intro-text {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.facilities-list {
+    list-style: none;
+    padding: 0;
+}
+
+.facilities-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    font-family: "Lato", sans-serif;
+}
+
+.facilities-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+
+
+.picnic-wrapper {
+  width: 100%;
+  padding: 40px 20px;
+}
+
+.picnic-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* Image */
+.picnic-image {
+  flex: 1;
+}
+
+.picnic-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* Content */
+.picnic-content {
+  flex: 1.3;
+}
+
+.picnic-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+   font-family: "Bree Serif", sans-serif;
+}
+
+.picnic-text {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  font-family: "Lato", sans-serif;
+}
+
+/* Links */
+.picnic-links {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.picnic-links a {
+  text-decoration: none;
+  color: #000;
+}
+
+.picnic-links span {
+  margin: 0 6px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .picnic-container {
+    flex-direction: column;
+  }
+
+  .picnic-title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 576px) {
+  .picnic-wrapper {
+    padding: 25px 15px;
+  }
+
+  .picnic-text {
+    font-size: 14px;
+  }
+
+  .picnic-links {
+    font-size: 14px;
+  }
+}
+.image-wrapper {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: #eee;
+}
+
+.slider-track {
+    display: flex;
+    width: 700%;
+    height: 100%;
+    animation: scroll-7 20s infinite ease-in-out;
+}
+
+.slider-track img {
+    width: calc(100% / 7);
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.virtual-tour {
+    text-align: left;
+    padding-top: 5px;
+    font-family: "Lato",  sans-serif;
+}
+
+.virtual-tour h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.tour-links {
+    font-size: 0.85rem;
+    color: #444;
+}
+
+.tour-links a {
+    text-decoration: none;
+    color: #0056b3;
+}
+
+@keyframes scroll-7 {
+    0%, 12% { transform: translateX(0); }
+    14%, 26% { transform: translateX(-14.28%); }
+    28%, 40% { transform: translateX(-28.56%); }
+    42%, 54% { transform: translateX(-42.84%); }
+    56%, 68% { transform: translateX(-57.12%); }
+    70%, 82% { transform: translateX(-71.40%); }
+    84%, 96% { transform: translateX(-85.68%); }
+    100% { transform: translateX(0); }
+}
+
+.page-title-section h1{
+    text-align: center;
+    color: #1A1A1A;
+    font-family: "Bree Serif", sans-serif;
+    font-size: 35px;
+}
