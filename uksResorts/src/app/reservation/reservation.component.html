@@ -31,6 +31,7 @@
         <!-- <li class="nav-item"><a class="nav-link" href="#">Facilities</a></li> -->
         <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
         <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/reservation">Reservation</a></li>
         <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle"  id="eventsDropdown" role="button">
     Events
@@ -69,7 +70,7 @@
 <section class="booking-section">
   <div class="container">
     <div class="booking-card">
-      <form #bookingForm="ngForm">
+      <form #bookingForm="ngForm" (ngSubmit)="onBookingSubmit(bookingForm)">
         <div class="row g-3">
 
           <!-- Name -->
