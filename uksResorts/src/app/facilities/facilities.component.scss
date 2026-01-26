@@ -114,7 +114,7 @@
 
 .nature-title {
     font-size: 28px;
-    color: #2c3e50;
+    color: #1A1A1A;
     margin-bottom: 10px;
     text-transform: uppercase;
 }
@@ -137,6 +137,7 @@
     font-size: 15px;
     line-height: 1.5;
     font-family: "Lato", sans-serif;
+    color: #555;
 }
 
 .facilities-list li::before {
@@ -287,12 +288,12 @@
 .virtual-tour h3 {
     font-size: 1rem;
     margin-bottom: 4px;
-    color: #333;
+    color: #555;
 }
 
 .tour-links {
     font-size: 0.85rem;
-    color: #444;
+    color: #555;
 }
 
 .tour-links a {
