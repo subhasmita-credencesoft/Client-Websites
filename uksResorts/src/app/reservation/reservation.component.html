@@ -67,7 +67,7 @@
 
 </section>
 
-<section class="booking-section">
+<!-- <section class="booking-section">
   <h4 class="text-center" style="font-family: 'Bree Serif', sans-serif;margin-bottom: 20px;">Please fill in the form and we’ll be in touch shortly</h4>
 
   <div class="container">
@@ -75,7 +75,6 @@
       <form #bookingForm="ngForm" (ngSubmit)="onBookingSubmit(bookingForm)">
         <div class="row g-3">
 
-          <!-- Name -->
           <div class="col-lg-4 col-md-6">
             <label>Name</label>
             <input
@@ -88,7 +87,6 @@
             />
           </div>
 
-          <!-- Email -->
           <div class="col-lg-4 col-md-6">
             <label>Email</label>
             <input
@@ -101,7 +99,6 @@
             />
           </div>
 
-          <!-- Mobile -->
           <div class="col-lg-4 col-md-6">
             <label>Mobile</label>
             <input
@@ -114,7 +111,6 @@
             />
           </div>
 
-          <!-- Arrival -->
           <div class="col-lg-3 col-md-6">
             <label>Arrival</label>
 
@@ -138,7 +134,6 @@
             </div>
           </div>
 
-          <!-- Departure -->
           <div class="col-lg-3 col-md-6">
             <label>Departure</label>
 
@@ -162,7 +157,6 @@
             </div>
           </div>
 
-          <!-- Adults -->
           <div class="col-lg-3 col-md-6">
             <label>Adults</label>
             <select class="form-select" name="adults" ngModel required>
@@ -179,7 +173,6 @@
             </select>
           </div>
 
-          <!-- Room Type -->
           <div class="col-lg-3 col-md-6">
             <label>Select Offers</label>
             <select class="form-select" name="roomType" ngModel required>
@@ -196,7 +189,6 @@
             </select>
           </div>
 
-          <!-- Message -->
           <div class="col-12">
             <label>Message</label>
             <textarea
@@ -208,7 +200,6 @@
             ></textarea>
           </div>
 
-          <!-- Button -->
           <div class="col-12 text-center mt-3">
             <button
               type="submit"
@@ -221,6 +212,112 @@
 
         </div>
       </form>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="booking-section">
+  <h4 class="text-center" style="font-family: 'Bree Serif', sans-serif;margin-bottom: 20px;">
+    Please fill in the form and we’ll be in touch shortly
+  </h4>
+
+  <div class="container">
+    <div class="booking-card">
+      
+      @if (!isSubmitted) {
+        <form #bookingForm="ngForm" (ngSubmit)="onBookingSubmit(bookingForm)">
+          <div class="row g-3">
+
+            <div class="col-lg-4 col-md-6">
+              <label>Name</label>
+              <input type="text" class="form-control" placeholder="Enter your name" name="name" ngModel required />
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+              <label>Email</label>
+              <input type="email" class="form-control" placeholder="Enter your email" name="email" ngModel required />
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+              <label>Mobile</label>
+              <input type="tel" class="form-control" placeholder="Enter mobile number" name="mobile" ngModel required />
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+              <label>Arrival</label>
+              <div class="date-wrapper">
+                <input type="text" class="form-control date-input" placeholder="Pick a date" ngbDatepicker #fromDp="ngbDatepicker" 
+                       name="fromDate" [(ngModel)]="fromDate" [minDate]="todayDate" (click)="fromDp.toggle()" readonly />
+                <span class="calendar-icon" (click)="fromDp.toggle()">
+                  <i class="bi bi-calendar-event"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+              <label>Departure</label>
+              <div class="date-wrapper">
+                <input type="text" class="form-control date-input" placeholder="Pick a date" ngbDatepicker #toDp="ngbDatepicker" 
+                       name="toDate" [(ngModel)]="toDate" [minDate]="fromDate || todayDate" (click)="toDp.toggle()" readonly />
+                <span class="calendar-icon" (click)="toDp.toggle()">
+                  <i class="bi bi-calendar-event"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+              <label>Adults</label>
+              <select class="form-select" name="adults" ngModel required>
+                <option value="">Select</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5+</option>
+                <option>10+</option>
+                <option>20+</option>
+                <option>50+</option>
+                <option>100+</option>
+              </select>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+              <label>Select Offers</label>
+              <select class="form-select" name="roomType" ngModel required>
+                <option value="">Select</option>
+                <option>Deluxe Room</option>
+                <option>Super Deluxe Room</option>
+                <option>One Day Picnic</option>
+                <option>Conference</option>
+                <option>Special Offer</option>
+                <option>Monsoon Offer</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label>Message</label>
+              <textarea class="form-control" rows="3" placeholder="Write your message" name="message" ngModel></textarea>
+            </div>
+
+            <div class="col-12 text-center mt-3">
+              <button type="submit" class="btn booking-btn" [disabled]="bookingForm.invalid">
+                Send Enquiry
+              </button>
+            </div>
+          </div>
+        </form>
+      } @else {
+        <div class="success-message text-center p-5">
+          <div class="icon-circle mb-3" style="font-size: 3rem; color: #28a745;">✓</div>
+          <h3 style="font-family: 'Bree Serif', sans-serif;">Submission Successful!</h3>
+          <p style="font-family: 'Lato', sans-serif;">Thank you for reaching out. We have received your booking enquiry.</p>
+          <button class="btn btn-outline-primary mt-3" (click)="isSubmitted = false">
+            Send Another Enquiry
+          </button>
+        </div>
+      }
+
     </div>
   </div>
 </section>

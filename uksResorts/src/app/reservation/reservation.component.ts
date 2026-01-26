@@ -95,7 +95,6 @@ Message: ${message || 'Not provided'}
   this.http.post<any>(apiUrl, emailObject).subscribe({
     next: (response) => {
       this.isSubmitted = true;
-      alert('Enquiry sent successfully!');
       console.log('Email sent:', response);
       form.reset();
 
