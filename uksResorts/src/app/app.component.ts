@@ -38,7 +38,7 @@ export class AppComponent {
       private sanitizer: DomSanitizer) { }
 
  ngOnInit() {
-  
+
  }
 
     getProperty() {
@@ -59,7 +59,18 @@ export class AppComponent {
         }
       );
     }
-  
+  goToInquiry() {
+  this.router.navigate(['/events']).then(() => {
+    // Wait a tiny bit for DOM to render
+    setTimeout(() => {
+      const element = document.getElementById('inquiryForm');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100); // 100ms delay
+  });
+}
+
     handledStorageData(property: any) {
       try {
         this.businessUser = property;
@@ -68,16 +79,16 @@ export class AppComponent {
           this.businessUser.secondaryColor,
           this.businessUser.tertiaryColor
         );
-  
+
         window.addEventListener('df-request-sent', (event) => {
           this.propertyusername = this.businessUser.name;
-  
+
     // 1. Select the host element first
     const messengerHost = document.querySelector('df-messenger');
-    
+
     // 2. Access the element inside its shadowRoot
     const chatbotElement = messengerHost?.shadowRoot?.getElementById('chatbot');
-  
+
     // 3. Set attributes safely using optional chaining
     if (chatbotElement) {
       chatbotElement.setAttribute('chat-title', this.propertyusername);
@@ -85,7 +96,7 @@ export class AppComponent {
     } else {
       console.warn("Could not find #chatbot inside the Shadow DOM.");
     }
-  
+
           const propertyId = this.businessUser.id;
           const propertyName = this.businessUser.name;
           const currentDate = new Date();
@@ -116,11 +127,11 @@ export class AppComponent {
         console.error("Error in handledStorageData : ", error);
       }
     }
-  
-  
+
+
     changeTheme(primary: string, secondary: string, tertiary: string) {
       document.documentElement.style.setProperty('--primary', primary);
-  
+
       document.documentElement.style.setProperty('--secondary', secondary);
       document.documentElement.style.setProperty('--tertiary', tertiary);
       document.documentElement.style.setProperty('--button-primary', tertiary);
@@ -136,17 +147,17 @@ export class AppComponent {
         '--secondary-one-gradient',
         'linear-gradient( 180deg, ' + primary + ', ' + secondary + ')'
       );
-  
+
       document.documentElement.style.setProperty(
         '--third-gradient',
         'linear-gradient( 180deg, ' + primary + ', ' + secondary + ')'
       );
     }
-  
+
     getWhatsappShareUrl() {
       const baseUrl = 'https://api.whatsapp.com/send';
       const phoneNumber = this.businessUser?.whatsApp; // Assuming whatsApp is part of businessUser
-  
+
       // Assign dynamic properties
       this.dynamicText = this.businessUser?.name;
       this.dynamicPropertyId = this.businessUser?.id;
@@ -155,21 +166,21 @@ export class AppComponent {
       this.dynamicStreetNumber = this.businessUser?.address?.streetNumber;
       this.dynamicLocality = this.businessUser?.address?.locality;
       this.dynamicCountryName = this.businessUser?.address?.country;
-  
+
       // Construct the message for WhatsApp
       const message = `*This is an Enquiry from :*Website: ${this.dynamicText || ''
         }`;
-  
+
       return `${baseUrl}?phone=${phoneNumber}&text=${encodeURIComponent(
         message
       )}`;
     }
-  
+
      initializeSlideItems() {
     }
-  
+
       scroll_top(){
       document.documentElement.scrollTop = 0;
     }
-  
+
 }
