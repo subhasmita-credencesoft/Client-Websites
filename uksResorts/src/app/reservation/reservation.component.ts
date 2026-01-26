@@ -49,22 +49,64 @@ export class ReservationComponent {
         }
 
 onBookingSubmit(form: NgForm) {
-    if (form.valid) {
-      const formData = form.value;
-      console.log('Form Data:', formData);
 
-      const apiUrl = 'https://api.bookonelocal.in/api-bookone/api/website/sendEmailFromWebSite';
 
-      this.http.post(apiUrl, formData).subscribe({
-        next: (response) => {
-          alert('Enquiry sent successfully!');
-          form.reset(); 
-        },
-        error: (error) => {
-          console.error('There was an error!', error);
-          alert('Failed to send enquiry. Please try again.');
-        }
-      });
+  if (!form.valid) return;
+
+  const {
+    name,
+    email,
+    phone,
+    eventCat,
+    venue,
+    count,
+    fromDate,
+    toDate
+  } = form.value;
+
+  const formatDate = (date: any): string => {
+    if (!date) return 'Not provided';
+    const { year, month, day } = date;
+    return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  };
+
+  const emailContent = `
+New Booking Inquiry Details:
+---------------------------
+Name: ${name}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Event Category: ${eventCat}
+Preferred Venue: ${venue}
+Guest Count: ${count}
+From Date: ${formatDate(fromDate)}
+To Date: ${formatDate(toDate)}
+`;
+
+  const emailObject: EmailPayload = {
+    fromEmail: 'info@bookonepms.com',
+    toEmail: 'subhasmitatripathy07@gmail.com',
+    subject: `New Booking Inquiry from ${name}`,
+    message: emailContent,
+    data: ''
+  };
+
+  const apiUrl =
+    'https://api.bookonelocal.in/api-bookone/api/website/sendEmailFromWebSite';
+
+  this.http.post<any>(apiUrl, emailObject).subscribe({
+    next: (response) => {
+      this.isSubmitted = true;
+      console.log('Email sent successfully:', response);
+      form.reset();
+    },
+    error: (error) => {
+      this.isSubmitted = false;
+      alert('There was an error sending your message. Please try again.');
+      console.error('Error sending email:', error);
     }
-  }
+  });
+}
+
+
 }
