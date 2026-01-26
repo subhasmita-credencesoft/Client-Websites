@@ -1,6 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { Component, HostListener } from '@angular/core';
 import { NgbDateStruct, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-reservation',
@@ -26,9 +27,9 @@ export class ReservationComponent {
    @HostListener('window:scroll', [])
         onWindowScroll() {
           const header = document.getElementById('mainHeader');
-      
+
           if (!header) return;
-      
+
           if (window.scrollY > 100) {
             header.classList.add('sticky');
           } else {
