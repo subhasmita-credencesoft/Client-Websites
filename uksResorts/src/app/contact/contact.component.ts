@@ -56,7 +56,7 @@ export class ContactComponent {
 
   const emailObject: EmailPayload = {
     fromEmail: 'info@bookonepms.com',
-    toEmail: 'priyabrata@credencesoft.in',
+    toEmail: 'info@uksresort.com',
     subject: `New Website Inquiry from ${name}`,
     message: emailContent,
     data: '' // Keep as empty string if required by API
