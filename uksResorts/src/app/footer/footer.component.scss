@@ -16,6 +16,11 @@
   gap: 60px;
   flex-wrap: wrap;
 }
+.email-link:hover {
+    text-decoration: underline; /* Adds underline on hover */
+    opacity: 0.9; /* Slightly dims the white to show interaction */
+    cursor: pointer;
+  }
 
 /* Common columns */
 .footer-left,
