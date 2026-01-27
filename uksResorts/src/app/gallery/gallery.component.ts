@@ -68,17 +68,19 @@ ngAfterViewInit() {
     'assets/home-imgs/slider2.jpg',
     'assets/home-imgs/sport2-1.jpg',
     'assets/home-imgs/room-img1.jpg',
-    'assets/home-imgs/image1.png',
-    'assets/home-imgs/IMG1.JPG',
-    'assets/home-imgs/IMG2.JPG',
-    'assets/home-imgs/IMG3.JPG',
-    'assets/home-imgs/IMG4.png',
-    'assets/home-imgs/IMG5.jpg',
-    'assets/home-imgs/IMG6.jpg',
-    'assets/home-imgs/IMG7.jpg',
+    'assets/home-imgs/pic2.jpeg',
+    'assets/home-imgs/pic3.jpeg',
+    'assets/home-imgs/picnic-image.JPG',
+    'assets/home-imgs/picnic-image1.JPG',
+    'assets/home-imgs/picnic-image2.JPG',
+    'assets/home-imgs/picnic-image3.JPG',
+    'assets/home-imgs/picnic-image.JPG',
+    'assets/home-imgs/prop-image.JPG',
+    'assets/home-imgs/prop-image1.JPG',
     'assets/home-imgs/IMG8.jpg',
-    'assets/home-imgs/IMG9.jpg',
-    'assets/home-imgs/IMG10.jpg'
+    'assets/home-imgs/prop-image2.JPG',
+    'assets/home-imgs/prop-image3.JPG',
+    'assets/home-imgs/prop-image4.JPG'
   ];
 
  openModal(index: number) {
