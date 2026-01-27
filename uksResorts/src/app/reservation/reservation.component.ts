@@ -83,7 +83,7 @@ Message: ${message || 'Not provided'}
 
   const emailObject: EmailPayload = {
     fromEmail: 'info@bookonepms.com',
-    toEmail: 'priyabrata@credencesoft.in',
+    toEmail: 'info@uksresort.com',
     subject: `New Booking Enquiry from ${name}`,
     message: emailContent,
     data: ''

@@ -93,7 +93,7 @@ submit(name: string, email: string, phone: string, eventCat: string, venue: stri
 
   const emailObject: EmailPayload = {
     fromEmail: 'info@bookonepms.com',
-    toEmail: 'priyabrata@credencesoft.in',
+    toEmail: 'info@uksresort.com',
     subject: `New Website Inquiry from ${name}`,
     message: emailContent,
     data: ''
