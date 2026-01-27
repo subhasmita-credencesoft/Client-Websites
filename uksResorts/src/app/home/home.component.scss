@@ -527,7 +527,7 @@ df-messenger {
 
   /* Reduce heading size */
   .hero-text h1 {
-    font-size: 32px;
+    font-size: 28px !important;
   }
 
   .hero-text {
@@ -571,7 +571,7 @@ df-messenger {
   padding:20px 20px !important;
 }
   .hero-text h1 {
-    font-size: 34px;
+    font-size: 28px;
   }
 
   .form-row {
@@ -910,7 +910,7 @@ df-messenger {
     height: auto;
   }
   .hero {
-    height: 70vh !important;
+    height: 100vh !important;
 }
 }
 
