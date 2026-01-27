@@ -473,7 +473,7 @@
 
   .virtual-tour {
     text-decoration: underline;
-    color: #d17a2e;
+    color: #2b4acb;
     font-weight: 500;
   }
 
@@ -493,7 +493,7 @@
 
 .virtual-tour {
     text-decoration: none;
-    color: #555;
+    color: #2b4acb;
     font-weight: 500;
   }
 
@@ -935,4 +935,66 @@ border:2px solid #E5F2FF33;
     transform: scale(1.05);
     margin-top: 0;
   }
+}
+
+
+.general-facilities-wrapper {
+  padding: 80px;
+  margin-top: 40px;
+  font-family: 'Lato', sans-serif;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Titles (Compliments / On Charge) */
+.gen-fac-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+  text-transform: none; /* Keeps it strictly as typed */
+}
+
+/* The Grid Layout */
+.gen-fac-grid {
+  display: grid;
+  /* Creates 4 equal columns on large screens */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Individual Items */
+.gen-fac-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Icons */
+.gen-fac-item img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .gen-fac-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .gen-fac-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+  }
+  .general-facilities-wrapper {
+    padding: 20px;
+  }
+}
+
+.mt-4 {
+  margin-top: 2rem;
 }

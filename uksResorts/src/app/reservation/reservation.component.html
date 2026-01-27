@@ -218,9 +218,11 @@
 
 
 <section class="booking-section">
-  <h4 class="text-center" style="font-family: 'Bree Serif', sans-serif;margin-bottom: 20px;">
+  @if(!isSubmitted){
+    <h4 class="text-center" style="font-family: 'Bree Serif', sans-serif;margin-bottom: 20px;">
     Please fill in the form and we’ll be in touch shortly
   </h4>
+  }
 
   <div class="container">
     <div class="booking-card">
@@ -312,7 +314,7 @@
           <div class="icon-circle mb-3" style="font-size: 3rem; color: #28a745;">✓</div>
           <h3 style="font-family: 'Bree Serif', sans-serif;">Submission Successful!</h3>
           <p style="font-family: 'Lato', sans-serif;">Thank you for reaching out. We have received your booking enquiry.</p>
-          <button class="btn btn-outline-primary mt-3" (click)="isSubmitted = false">
+          <button class="btn btn-outline-primary mt-3 reservation-button" (click)="isSubmitted = false">
             Send Another Enquiry
           </button>
         </div>
