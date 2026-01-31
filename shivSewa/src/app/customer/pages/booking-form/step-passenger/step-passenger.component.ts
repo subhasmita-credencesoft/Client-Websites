@@ -166,10 +166,11 @@ export class StepPassengerComponent {
   }
 
   ngOnInit() {
+
     const date = (this.selectedDate)?.toString().split('T')[0] || '';
 
     this.locationService.getAvailableCarsByDate(date).subscribe(res => {
-      this.filterCarsBySlots(res);
+      // this.filterCarsBySlots(res);
     });
      this.pricingService.load().subscribe(() => {
     this.updateCarLists();
@@ -199,6 +200,7 @@ private mapCategoryForPricing(
     default: return 'sedan';
   }
 }
+
 
 
 
@@ -469,6 +471,14 @@ updateCarLists() {
     //   passengers: this.passengers,
     //   vehicle: this.selectedVehicle
     // });
+      this.bookingService.patchDeep({
+    passengers: { ...this.passengers },
+    vehicle: {
+      ...this.selectedVehicle,
+      price: this.selectedVehicle?.fareQuote?.total
+    },
+    fareQuote: this.selectedVehicle?.fareQuote
+  });
 
     this.bookingService.nextStep();
   }

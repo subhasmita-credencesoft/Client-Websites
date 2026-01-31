@@ -9,11 +9,12 @@ import { StepSummaryComponent } from "./step-summary/step-summary.component";
 import { StepConfirmationComponent } from "./step-confirmation/step-confirmation.component";
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { OrdinalPipe } from '../../services/ordinal-date.pipe';
 
 @Component({
   selector: 'app-booking-form',
   standalone: true,
-  imports: [CommonModule,HttpClientModule, FormsModule, ReactiveFormsModule, StepLocationComponent, StepPassengerComponent, StepSummaryComponent, StepConfirmationComponent, HeaderComponent],
+  imports: [CommonModule,HttpClientModule, FormsModule, ReactiveFormsModule, StepLocationComponent, StepPassengerComponent, StepSummaryComponent, StepConfirmationComponent, HeaderComponent, OrdinalPipe],
   templateUrl: './booking-form.component.html',
   styleUrl: './booking-form.component.scss'
 })
@@ -29,6 +30,12 @@ export class BookingFormComponent {
 
   ngOnInit(): void {
     this.bookingService.step$.subscribe(s => this.step = s);
+      const booking = this.bookingService.getCurrent();
+
+  if (!booking || !booking.pickup || !booking.dropoff) {
+    this.router.navigate(['/']);
+    return;
+  }
   }
 
   goTo(i: number) {

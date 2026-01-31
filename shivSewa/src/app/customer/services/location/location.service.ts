@@ -45,7 +45,7 @@ getPropertyDetails(propertyId: any) {
 
   createCustomer(payload: any): Observable<any> {
     const CUSTOMER_URL =
-    'https://api.bookone.io/api-bookone/api/customer';
+    'https://api.bookone.io/api-bookone/api/website';
     return this.http.post<any>(CUSTOMER_URL, payload);
   }
   sendOtp(payload: any) {
@@ -79,6 +79,9 @@ checkEmail(email: string) {
     `https://api.bookone.io/api-bookone/api/website/email/${email}/`
   );
 }
+ sendWhatsappMessage(payload: any): Observable<any> {
+    return this.http.post('https://scheduler.api.bookone.io/api/whatsapp/sendMessage', payload);
+  }
 
 checkMobile(mobile: string) {
   return this.http.get(

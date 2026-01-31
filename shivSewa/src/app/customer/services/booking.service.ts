@@ -51,6 +51,12 @@ export class BookingService {
       image: '',
       carNumber: '',
     },
+    pricing: {
+  baseAmount: 0,
+  taxPercentage: 0,
+  taxAmount: 0,
+  totalAmount: 0,
+},
 
     traveller: {
       firstName: '',
@@ -138,6 +144,37 @@ export class BookingService {
     return ref;
   }
 
+  applyTaxAndPricing(
+  baseAmount: number,
+  taxDetails: any[]
+) {
+  let taxPercentage = 0;
+
+  if (taxDetails?.length) {
+    const gst = taxDetails.find(t => t.name === 'GST');
+
+    if (gst?.taxSlabsList?.length) {
+      const slab = gst.taxSlabsList.find(
+        (s: any) => baseAmount >= s.minAmount && baseAmount <= s.maxAmount
+      );
+      taxPercentage = slab?.percentage ?? gst.percentage ?? 0;
+    }
+  }
+
+  const taxAmount = +(baseAmount * taxPercentage / 100).toFixed(2);
+  const totalAmount = +(baseAmount + taxAmount).toFixed(2);
+
+  this.patchDeep({
+    pricing: {
+      baseAmount,
+      taxPercentage,
+      taxAmount,
+      totalAmount
+    }
+  });
+}
+
+
   reset() {
     this._booking.next({
       pickup: null,
@@ -169,6 +206,12 @@ export class BookingService {
         price: 0,
         image: '',
         carNumber: '',
+      },
+      pricing: {
+        baseAmount: 0,
+        taxPercentage: 0,
+        taxAmount: 0,
+        totalAmount: 0,
       },
 
       traveller: {

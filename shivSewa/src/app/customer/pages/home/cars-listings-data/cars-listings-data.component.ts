@@ -144,7 +144,7 @@ constructor(private bookingService: BookingService,
     this.updateVisibleCards();
     const date = new Date().toISOString().split('T')[0];
       this.locationService.getAvailableCarsByDate(date).subscribe(res => {
-    this.filterCarsBySlots(res);
+    // this.filterCarsBySlots(res);
   });
   }
 

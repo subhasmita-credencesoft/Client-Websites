@@ -1307,7 +1307,7 @@ width: 100%;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .shivsewa-hero-image {
     // height: 80vh;
     object-fit: cover;
@@ -1383,7 +1383,8 @@ width: 100%;
 
 @media (max-width: 769px) {
   .mobile-hero-slider {
-    height: 110vh !important;
+      min-height: 85ch !important;
+      height: 100vh !important;
 }
 }
 .section-header {

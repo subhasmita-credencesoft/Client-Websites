@@ -1,605 +1,1112 @@
-import { Component, ElementRef, HostListener, QueryList, ViewChildren } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { BookingService } from '../../../services/booking.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocationService } from '../../../services/location/location.service';
+import { mapTaxiToSlot } from '../../../services/taxi-to-slot.mapper';
 
 @Component({
   selector: 'app-step-summary',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './step-summary.component.html',
-  styleUrl: './step-summary.component.scss'
+  styleUrl: './step-summary.component.scss',
 })
 export class StepSummaryComponent {
   booking: any = {};
   estimated = 0;
-  vehicle: { id?: any; name?: string; seats?: number; carNumber?: string; bags?: number; price?: number; image?: string; } | undefined;
-  vehicleOne: { id?: any; name?: string; seats?: number; carNumber?: string; bags?: number; price?: number; image?: string; } | undefined;
+  vehicle:
+    | {
+        id?: any;
+        name?: string;
+        seats?: number;
+        carNumber?: string;
+        bags?: number;
+        price?: number;
+        image?: string;
+      }
+    | undefined;
+  vehicleOne:
+    | {
+        id?: any;
+        name?: string;
+        seats?: number;
+        carNumber?: string;
+        bags?: number;
+        price?: number;
+        image?: string;
+      }
+    | undefined;
   slots: any[] = [];
   slotPricingDto: any;
   transportServiceType: any;
   matchedSlot: any;
   propertyDetails: any;
   customerId: any;
-emailOtp = {
-  sent: false,
-  loading: false,
-  verifying: false,
-  verified: false,
-  sid: null as string | null
-};
-@ViewChildren('otpInput') inputs!: QueryList<ElementRef>;
-otpValues: string[] = ['', '', '', '', '', ''];
-resendSeconds = 600;
-timerRef: any;
-otpMessage = '';
-otpError = '';
+  emailOtp = {
+    sent: false,
+    loading: false,
+    verifying: false,
+    verified: false,
+    sid: null as string | null,
+  };
+  @ViewChildren('otpInput') inputs!: QueryList<ElementRef>;
+  otpValues: string[] = ['', '', '', '', '', ''];
+  resendSeconds = 600;
+  timerRef: any;
+  otpMessage = '';
+  otpError = '';
   customerData: any;
+  businessTypeId: any;
+  isConfirming = false;
+  taxDetails: any;
 
-  constructor(private bookingService: BookingService,
-              private locationService: LocationService
+  constructor(
+    private bookingService: BookingService,
+    private locationService: LocationService,
   ) {
-    this.bookingService.booking$.subscribe(b => {
+    this.bookingService.booking$.subscribe((b) => {
       this.booking = b;
       this.estimated = b.vehicle?.price || 0;
       this.vehicleOne = b.vehicle;
-      console.log("booking data", this.booking);
+      console.log('booking data', this.booking);
     });
-     window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     this.fetchPropertyDetails();
   }
   padZero(num: number): string {
     return num.toString().padStart(2, '0');
   }
   @HostListener('paste', ['$event'])
-handlePaste(event: ClipboardEvent) {
-  const pasted = event.clipboardData?.getData('text')?.replace(/\D/g, '') || '';
-
-  pasted.split('').slice(0, this.otpValues.length).forEach((digit, i) => {
-    const input = document.getElementById(`otp-${i}`) as HTMLInputElement | null;
-    if (input) {
-      input.value = digit;
-      this.otpValues[i] = digit;
-    }
-  });
-
-  const last = document.getElementById(`otp-${this.otpValues.length - 1}`) as HTMLInputElement | null;
-  last?.focus();
-}
-getOtp(): string {
-  return this.otpValues.join('');
-}
-  fetchPropertyDetails() {
- this.locationService.getPropertyDetails(2302).subscribe(res => {
-      console.log("property details", res);
-      this.propertyDetails = res;
-      this.transportServiceType = res?.businessServiceDtoList
-    ?.flatMap((bs: any) => bs.businessServiceTypes || [])
-    ?.find((bst: any) => bst.name === 'Transport');
-  // 2. Get pricing
-  this.slotPricingDto = this.transportServiceType?.slotPricingDto || null;
-  console.log("slot pricing dto", this.slotPricingDto);
-
-  // 3. Find matching slot by vehicle name
-  this.matchedSlot = this.transportServiceType?.slots?.find(
-    (slot: any) =>
-      slot?.resource?.resourceName === this.booking?.vehicle?.name
-  );
-
-  // 4. Assign result
-  this.slots = this.matchedSlot ? [this.matchedSlot] : [];
-console.log("matched slot", this.slots);
-
-  });
-      }
-buildBookingPayload(booking: any) {
-  return {
-    referenceId: booking.bookingRef || '',
-
-    trip: {
-      tripType: booking.tripType,
-      tripTypeValue: booking.tripTypeValue,
-      tripServiceType: booking.tripServiceType
-    },
-
-    location: {
-      pickup: booking.pickup,
-      dropoff: booking.dropoff,
-      schedule: {
-        date: booking.date,
-        time: booking.time,
-        returnDate: booking.returnDate || null,
-        returnTime: booking.returnTime || null
-      },
-      distance: {
-        distanceKm: booking.distanceKm,
-        durationMinutes: booking.durationMinutes
-      },
-      locality: booking.locality || ''
-    },
-
-    passengers: booking.passengers,
-
-    vehicle: {
-      category: booking.vehicleCategory,
-      ...booking.vehicle
-    },
-
-    pricing: {
-      fareQuote: booking.fareQuote,
-      currency: booking.fareQuote?.currency || 'INR'
-    },
-
-    traveller: booking.traveller,
-
-    verification: {
-      emailOtp: {
-        sent: true,
-        verified: true,
-        sid: booking.otpSid || ''
-      },
-      customer: booking.customer || null
-    },
-
-    payment: {
-      paymentMode: 'Cash',
-      status: 'NotPaid',
-      currency: 'INR',
-      amount: booking.fareQuote?.total || 0
-    },
-
-    bookingStatus: 'NEW'
-  };
-}
-
-mapSavePaymentPayload(
-  bookingData: any,
-  slotPricingDto: any,
-  property: any
-): any {
-  return {
-    paymentMode: 'Cash',
-    status: 'NotPaid',
-
-    firstName: bookingData.traveller.firstName,
-    lastName: bookingData.traveller.lastName,
-
-    netReceivableAmount: slotPricingDto.beforeTaxAmount,
-    transactionAmount: slotPricingDto.afterTaxAmount,
-    amount: slotPricingDto.afterTaxAmount,
-
-    propertyId: property.id,
-    email: bookingData.traveller.email,
-    businessEmail: property.email,
-
-    transactionChargeAmount: slotPricingDto.afterTaxAmount,
-    currency: property.localCurrency || 'INR',
-    taxAmount: slotPricingDto.taxAmount,
-    deliveryChargeAmount: 0,
-
-    businessServiceName: property.businessType,
-    counterNumber: String(property.id),
-
-    operatorName: `${bookingData.traveller.firstName || ''} ${bookingData.traveller.lastName || ''}`.trim(),
-    date: bookingData.date
-  };
-}
-mapBookingPayload(
-  bookingData: any,
-  transportServiceType: any,
-  matchedSlot: any,
-  slotPricingDto: any,
-  property: any,
-  paymentId: number,
-  modeOfPayment: string
-): any {
-
-  return {
-    mobile: bookingData.traveller.mobile,
-    businessTermLocation: "Location Detail",
-    businessTermResource: "Staff Detail",
-    businessTypeId: transportServiceType.businessTypeId || 81,
-
-    propertyId: property.id,
-
-    businessLocationName: property.businessLocationName || 'Pickup',
-    customerLocationName: property.customerLocationName || 'Drop Off',
-    canChangeBusinessAddress: true,
-    businessProductName: property.businessProductName || 'Packages',
-    businessServiceName: property.businessServiceName || 'Service',
-    provideBusinessAndCustomerAddress: true,
-
-    date: bookingData.date,
-
-    businessServiceTypes: [
-      {
-        id: transportServiceType.id,
-        name: transportServiceType.name,
-        businessTermLocation: "Location Detail",
-        businessTermResource: "Staff Detail",
-        capacityPerSlot: transportServiceType.capacityPerSlot,
-        description: transportServiceType.description,
-        slotPricingDto,
-        businessServiceId: transportServiceType.businessServiceId,
-        durationInMinutes: transportServiceType.durationInMinutes,
-
-        slots: [
-          {
-            date: bookingData.date,
-            duration: transportServiceType.durationInMinutes,
-            available: matchedSlot.available,
-            beforeTax: slotPricingDto.beforeTaxAmount,
-            tax: slotPricingDto.afterTaxAmount,
-            price: slotPricingDto.afterTaxAmount,
-            count: matchedSlot.count,
-            day: new Date(bookingData.date).toLocaleDateString('en-US', { weekday: 'long' }),
-
-            resourceList: [
-              {
-                name: bookingData.vehicle.name,
-                desc: `${bookingData.vehicle.seats} Seater`,
-                bookedTimings: [
-                  {
-                    startTime: matchedSlot.resource?.workingHours?.[0]?.startTime || '07:00',
-                    finishTime: matchedSlot.resource?.workingHours?.[0]?.finishTime || '19:00',
-                    duration: transportServiceType.durationInMinutes,
-                    slotAvailabilityDto: {
-                      id: null,
-                      noOfBooked: 0,
-                      noOfAvailable: 1,
-                      noOfCancellation: null
-                    }
-                  }
-                ],
-                locationList: [
-                  { name: matchedSlot?.location?.locationName }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-
-    resourceName: bookingData.vehicle.name,
-    locationName: matchedSlot.location?.locationName,
-    bookingStatus: 'NEW',
-    businessTypeName: property.businessType,
-
-    currency: property.localCurrency || 'INR',
-    totalAmount: slotPricingDto.afterTaxAmount,
-    beforeTaxAmount: slotPricingDto.beforeTaxAmount,
-    taxAmount: slotPricingDto.taxAmount,
-    afterTaxAmount: slotPricingDto.afterTaxAmount,
-
-    customerDtoList: [
-      {
-        id: this.customerData.id || null,
-        firstName: bookingData.traveller.firstName,
-        lastName: bookingData.traveller.lastName,
-        email: bookingData.traveller.email,
-        mobile: bookingData.traveller.mobile,
-        noOfKids: bookingData.passengers.children,
-        new: false,
-        address: bookingData.pickup.service_address,
-        username: this.customerData.username
-      }
-    ],
-
-    firstName: bookingData.traveller.firstName,
-    lastName: bookingData.traveller.lastName,
-    email: bookingData.traveller.email,
-
-    paymentId,
-    modeOfPayment,
-
-    noOfPerson: bookingData.passengers.adults,
-    serviceAddress: bookingData.dropoff.service_address
-  };
-}
-
-
-
-
-  goBack() { this.bookingService.prevStep(); }
-  validateTravellerForm(
-  firstName: any,
-  lastName: any,
-  mobile: any,
-  email: any
-): string | null {
-
-  // Touch all fields before checking
-  firstName.control.markAsTouched();
-  lastName.control.markAsTouched();
-  mobile.control.markAsTouched();
-  email.control.markAsTouched();
-
-  const t = this.booking.traveller;
-
-  if (!t.firstName || !/^[A-Za-z]+$/.test(t.firstName)) {
-    return "firstNameField";
-  }
-
-  if (!t.lastName || !/^[A-Za-z]+$/.test(t.lastName)) {
-    return "lastNameField";
-  }
-
-  if (!t.mobile || !/^[6-9][0-9]{9}$/.test(t.mobile)) {
-    return "mobileField";
-  }
-
-  if (!t.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t.email)) {
-    return "emailField";
-  }
-
-  return null;
-}
-
-scrollToField(fieldId: string) {
-  const el = document.getElementById(fieldId);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
-    el.classList.add("shake-error");
-
-    // Remove effect after animation
-    setTimeout(() => el.classList.remove("shake-error"), 800);
-  }
-}
-formatBookingDate(date: string | Date): string {
-  if (!date) return '';
-
-  const d = new Date(date);
-  const day = d.getDate();
-
-  const suffix =
-    day % 10 === 1 && day !== 11 ? 'st' :
-    day % 10 === 2 && day !== 12 ? 'nd' :
-    day % 10 === 3 && day !== 13 ? 'rd' : 'th';
-
-  const month = d.toLocaleString('en-US', { month: 'long' });
-  const year = d.getFullYear();
-
-  return `${month} ${day}${suffix} ${year}`;
-}
-sendEmailOtp() {
-  this.otpError = '';
-  this.otpMessage = '';
-  this.emailOtp.loading = true;
-
-  const payload = {
-    email: this.booking.traveller.email,
-    toNumber: null
-  };
-
-  this.locationService.sendOtp(payload).subscribe({
-    next: (res: any) => {
-      this.emailOtp.sid = res.sid;
-      this.emailOtp.sent = true;
-      this.otpMessage = 'OTP sent to your email';
-      this.startResendTimer();
-    },
-    error: () => {
-      this.otpError = 'Failed to send OTP. Try again.';
-    },
-    complete: () => {
-      this.emailOtp.loading = false;
-    }
-  });
-}
-
-
-/* ================= OTP INPUT AUTO MOVE ================= */
-moveOtp(index: number, event: any) {
-  if (event.target.value && index < 5) {
-    event.target.nextElementSibling?.focus();
-  }
-}
-handleOtpInput(event: Event, index: number): void {
-  const input = event.target as HTMLInputElement;
-  const digit = input.value.replace(/\D/g, '').slice(-1);
-
-  if (digit) {
-    this.otpValues[index] = digit;
-    input.value = digit;
-
-    if (index < this.otpValues.length - 1) {
-      // Move focus to next input
-      setTimeout(() => {
-        const nextInput = this.inputs.toArray()[index + 1].nativeElement;
-        nextInput.focus();
-        // Clear the next input to prevent duplicate entry
-        nextInput.value = '';
-        this.otpValues[index + 1] = '';
-      }, 0);
-    }
-  } else {
-    this.otpValues[index] = '';
-    input.value = '';
-  }
-}
-
-handleKeyDown(event: KeyboardEvent, index: number): void {
-  const input = event.target as HTMLInputElement;
-
-  if (event.key === 'Backspace') {
-    // Clear current box first
-    this.otpValues[index] = '';
-    input.value = '';
-
-    // Move to previous box if current was already empty
-    if (index > 0) {
-      setTimeout(() => {
-        this.inputs.toArray()[index - 1].nativeElement.focus();
-      }, 0);
-    }
-    event.preventDefault();
-  } else if (event.key === 'ArrowLeft' && index > 0) {
-    this.inputs.toArray()[index - 1].nativeElement.focus();
-    event.preventDefault();
-  } else if (event.key === 'ArrowRight' && index < this.otpValues.length - 1) {
-    this.inputs.toArray()[index + 1].nativeElement.focus();
-    event.preventDefault();
-  } else if (!/^\d$/.test(event.key) && event.key.length === 1) {
-    // Prevent non-digit characters
-    event.preventDefault();
-  }
-}
-
-
-/* ================= VERIFY OTP ================= */
-verifyEmailOtp() {
-  this.otpError = '';
-  this.otpMessage = '';
-
-  if (this.otpValues.join('').length !== 6) {
-    this.otpError = 'Please enter 6 digit OTP';
-    return;
-  }
-
-  this.emailOtp.verifying = true;
-
-  const payload = {
-    email: this.booking.traveller.email,
-    toNumber: null,
-    verificationStatus: 'pending',
-    sid: this.emailOtp.sid,
-    notificationStatus: false,
-    verificationCode: this.otpValues.join('')
-  };
-
-  this.locationService.verifyOtp(payload).subscribe({
-    next: (res: any) => {
-      if (res.verificationStatus === 'approved') {
-        this.emailOtp.verified = true;
-        this.otpMessage = 'Email verified successfully';
-        this.checkCustomerExists();
-      } else {
-        this.otpError = 'Invalid OTP. Please try again.';
-      }
-    },
-    error: () => {
-      this.otpError = 'OTP verification failed. Please retry.';
-    },
-    complete: () => {
-      this.emailOtp.verifying = false;
-    }
-  });
-}
-
-
-/* ================= RESEND TIMER ================= */
-startResendTimer() {
-  this.resendSeconds = 600;
-
-  this.timerRef = setInterval(() => {
-    this.resendSeconds--;
-    if (this.resendSeconds <= 0) {
-      clearInterval(this.timerRef);
-      this.emailOtp.sent = false;
-    }
-  }, 1000);
-}
-
-/* ================= CHANGE EMAIL ================= */
-changeEmail() {
-  clearInterval(this.timerRef);
-  this.emailOtp = { sent: false, loading: false, verifying: false, verified: false, sid: null };
-  this.otpValues = ['', '', '', '', '', ''];
-    this.otpMessage = '';
-  this.otpError = '';
-}
-
-/* ================= CHECK CUSTOMER ================= */
-checkCustomerExists() {
-    this.locationService.checkEmail(this.booking.traveller.email).subscribe({
-    next: (res: any) => {
-      console.log('Email check response:', res);
-        this.customerData = res; // store for later
-    },
-    error: (err) => {
-      console.error('Email check failed:', err);
-    }
-  });
-  // this.locationService.checkMobile(this.booking.traveller.mobile).subscribe();
-}
-  confirm(firstName: any, lastName: any, mobile: any, email: any) {
-       const invalidField = this.validateTravellerForm(
-    firstName,
-    lastName,
-    mobile,
-    email
-  );
-
-  if (invalidField && !this.customerData.id) {
-    this.scrollToField(invalidField);
-    return;
-  }
-      this.bookingService.nextStep();
-    this.bookingService.generateRef();
-    const paymentPayload = this.mapSavePaymentPayload(
-    this.booking,
-    this.slotPricingDto,
-    this.propertyDetails
-  );
-
-  this.locationService.savePayment(paymentPayload).subscribe({
-    next: (paymentRes) => {
-
-      const paymentId = paymentRes?.id;
-      const modeOfPayment = paymentRes?.paymentMode;
-
-      if (!paymentId || !modeOfPayment) {
-        console.error('Invalid payment response', paymentRes);
-        return;
-      }
-
-      // Step 2: Book Service
-      const bookingPayload = this.mapBookingPayload(
-        this.booking,
-        this.transportServiceType,
-        this.matchedSlot,
-        this.slotPricingDto,
-        this.propertyDetails,
-        paymentId,
-        modeOfPayment
-      );
-
-      this.locationService.bookService(bookingPayload).subscribe({
-        next: (res) => {
-          console.log('✅ Booking Successful', res);
-        },
-        error: (err) => {
-          console.error('❌ Booking Failed', err);
+  handlePaste(event: ClipboardEvent) {
+    const pasted =
+      event.clipboardData?.getData('text')?.replace(/\D/g, '') || '';
+
+    pasted
+      .split('')
+      .slice(0, this.otpValues.length)
+      .forEach((digit, i) => {
+        const input = document.getElementById(
+          `otp-${i}`,
+        ) as HTMLInputElement | null;
+        if (input) {
+          input.value = digit;
+          this.otpValues[i] = digit;
         }
       });
-    },
-    error: (err) => {
-      console.error('❌ Save Payment Failed', err);
+
+    const last = document.getElementById(
+      `otp-${this.otpValues.length - 1}`,
+    ) as HTMLInputElement | null;
+    last?.focus();
+  }
+  getOtp(): string {
+    return this.otpValues.join('');
+  }
+  fetchPropertyDetails() {
+    this.locationService.getPropertyDetails(2302).subscribe((res) => {
+      console.log('property details', res);
+      this.propertyDetails = res;
+      this.transportServiceType = res?.businessServiceDtoList
+        ?.flatMap((bs: any) => bs.businessServiceTypes || [])
+        ?.find((bst: any) => bst.name === 'Transport');
+
+      const businessService = res?.businessServiceDtoList?.find((bs: any) =>
+        bs.businessServiceTypes?.some((bst: any) => bst.name === 'Transport'),
+      );
+      this.taxDetails = res?.taxDetails || [];
+
+      const baseAmount = this.booking?.fareQuote?.total || 0;
+
+      this.bookingService.applyTaxAndPricing(
+        baseAmount,
+        this.taxDetails
+      );
+
+
+      this.businessTypeId = businessService?.businessTypeId;
+      // 2. Get pricing
+      this.slotPricingDto = this.transportServiceType?.slotPricingDto || null;
+      const pricing = this.booking.pricing;
+      if(pricing) {
+        if (this.transportServiceType?.slotPricingDto) {
+        this.slotPricingDto = {
+          ...this.transportServiceType.slotPricingDto,
+          afterTaxAmount: pricing.totalAmount,
+          beforeTaxAmount: pricing.baseAmount
+        };
+      } else {
+        this.slotPricingDto = {
+          afterTaxAmount: pricing.totalAmount,
+          beforeTaxAmount: pricing.baseAmount
+        };
+      }
+      }
+
+      console.log('slot pricing dto', this.slotPricingDto);
+
+      // 3. Find matching slot by vehicle name
+      this.matchedSlot = this.transportServiceType?.slots?.find(
+        (slot: any) =>
+          slot?.resource?.resourceName === this.booking?.vehicle?.name,
+      );
+
+      // 4. Assign result
+      this.slots = this.matchedSlot ? [this.matchedSlot] : [];
+      console.log('matched slot', this.slots);
+    });
+  }
+  buildBookingPayload(booking: any) {
+    return {
+      referenceId: booking.bookingRef || '',
+
+      trip: {
+        tripType: booking.tripType,
+        tripTypeValue: booking.tripTypeValue,
+        tripServiceType: booking.tripServiceType,
+      },
+
+      location: {
+        pickup: booking.pickup,
+        dropoff: booking.dropoff,
+        schedule: {
+          date: booking.date,
+          time: booking.time,
+          returnDate: booking.returnDate || null,
+          returnTime: booking.returnTime || null,
+        },
+        distance: {
+          distanceKm: booking.distanceKm,
+          durationMinutes: booking.durationMinutes,
+        },
+        locality: booking.locality || '',
+      },
+
+      passengers: booking.passengers,
+
+      vehicle: {
+        category: booking.vehicleCategory,
+        ...booking.vehicle,
+      },
+
+      pricing: {
+        fareQuote: booking.fareQuote,
+        currency: booking.fareQuote?.currency || 'INR',
+      },
+
+      traveller: booking.traveller,
+
+      verification: {
+        emailOtp: {
+          sent: true,
+          verified: true,
+          sid: booking.otpSid || '',
+        },
+        customer: booking.customer || null,
+      },
+
+      payment: {
+        paymentMode: 'Cash',
+        status: 'NotPaid',
+        currency: 'INR',
+        amount: booking.fareQuote?.total || 0,
+      },
+
+      bookingStatus: 'NEW',
+    };
+  }
+
+  mapSavePaymentPayload(
+    bookingData: any,
+    slotPricingDto: any,
+    property: any,
+  ): any {
+     const pricing = this.booking.pricing;
+    return {
+      paymentMode: 'Cash',
+      status: 'NotPaid',
+
+      firstName: bookingData.traveller.firstName,
+      lastName: bookingData.traveller.lastName,
+    netReceivableAmount: pricing.baseAmount,
+    transactionAmount: pricing.totalAmount,
+    amount: pricing.totalAmount,
+
+    taxAmount: pricing.taxAmount,
+
+      propertyId: property.id,
+      email: bookingData.traveller.email,
+      businessEmail: property.email,
+
+      transactionChargeAmount: pricing.totalAmount,
+      currency: property.localCurrency || 'INR',
+      deliveryChargeAmount: 0,
+
+      businessServiceName: property.businessType,
+      counterNumber: String(property.id),
+
+      operatorName:
+        `${bookingData.traveller.firstName || ''} ${bookingData.traveller.lastName || ''}`.trim(),
+      date: bookingData.date,
+    };
+  }
+  mapBookingPayload(
+    bookingData: any,
+    transportServiceType: any,
+    matchedSlot: any,
+    slotPricingDto: any,
+    property: any,
+    paymentId: number,
+    modeOfPayment: string,
+  ): any {
+     const pricing = this.booking.pricing;
+     const startDateTime = new Date(`${bookingData.date}T${bookingData.time}:00`);
+    const endDateTime   = new Date(`${bookingData.returnDate}T${bookingData.returnTime}:00`);
+    const startDate = startDateTime.getTime();
+    const endDate   = endDateTime.getTime();
+    return {
+      mobile: bookingData.traveller.mobile,
+      businessTermLocation: 'Location Detail',
+      businessTermResource: 'Staff Detail',
+      businessTypeId: transportServiceType.businessTypeId || 81,
+
+      propertyId: property.id,
+
+      businessLocationName: property.businessLocationName || 'Pickup',
+      customerLocationName: property.customerLocationName || 'Drop Off',
+      canChangeBusinessAddress: true,
+      businessProductName: property.businessProductName || 'Packages',
+      businessServiceName: property.businessServiceName || 'Service',
+      provideBusinessAndCustomerAddress: true,
+      externalSite: 'WebSite',
+      date: bookingData.date,
+
+      businessServiceTypes: [
+        {
+          id: transportServiceType.id,
+          name: transportServiceType.name,
+          businessTermLocation: 'Location Detail',
+          businessTermResource: 'Staff Detail',
+          capacityPerSlot: transportServiceType.capacityPerSlot,
+          description: transportServiceType.description,
+          slotPricingDto,
+
+          businessServiceId: transportServiceType.businessServiceId,
+          durationInMinutes: this.booking.durationInMinutes,
+
+          slots: [
+            {
+              date: bookingData.date,
+              duration: this.booking.durationMinutes,
+              available: matchedSlot.available,
+              beforeTax: pricing.baseAmount,
+              tax: pricing.taxAmount,
+              price: pricing.totalAmount,
+              count: matchedSlot.count,
+              day: new Date(bookingData.date).toLocaleDateString('en-US', {
+                weekday: 'long',
+              }),
+
+              resourceList: [
+                {
+                  name: bookingData.vehicle.name,
+                  desc: `${bookingData.vehicle.seats} Seater`,
+                  bookedTimings: [
+                    {
+                      startTime:
+                        matchedSlot.resource?.workingHours?.[0]?.startTime ||
+                        '07:00',
+                      finishTime:
+                        matchedSlot.resource?.workingHours?.[0]?.finishTime ||
+                        '19:00',
+                      duration: transportServiceType.durationInMinutes,
+                      slotAvailabilityDto: {
+                        id: null,
+                        noOfBooked: 0,
+                        noOfAvailable: 1,
+                        noOfCancellation: null,
+                      },
+                    },
+                  ],
+                  locationList: [{ name: matchedSlot?.location?.locationName }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      endDate: endDate,
+      startDate:startDate,
+      resourceName: bookingData.vehicle.name,
+      locationName: matchedSlot.location?.locationName,
+      bookingStatus: 'NEW',
+      businessTypeName: property.businessType,
+
+      currency: property.localCurrency || 'INR',
+      totalAmount: pricing.totalAmount,
+      beforeTaxAmount: pricing.baseAmount,
+      // taxAmount: slotPricingDto.taxAmount,
+      taxAmount: pricing.taxAmount,
+      afterTaxAmount: pricing.totalAmount,
+      fareLines: bookingData.fareQuote?.lines,
+      fareNotes: bookingData.fareQuote?.notes,
+      customerDtoList: [
+        {
+          id: this.customerData.id || null,
+          firstName: bookingData.traveller.firstName,
+          lastName: bookingData.traveller.lastName,
+          email: bookingData.traveller.email,
+          mobile: bookingData.traveller.mobile,
+          noOfKids: bookingData.passengers.children,
+          new: false,
+          address: bookingData.pickup.service_address,
+          username: this.customerData.username,
+        },
+      ],
+
+      firstName: bookingData.traveller.firstName,
+      lastName: bookingData.traveller.lastName,
+      email: bookingData.traveller.email,
+
+      paymentId,
+      modeOfPayment,
+
+      noOfPerson: bookingData.passengers.adults,
+      noOfChildren: bookingData.passengers.children,
+      serviceAddress: bookingData.dropoff.service_address,
+      transportType: this.getTripTypeLabel(bookingData.tripTypeValue)
+    };
+  }
+
+  goBack() {
+    this.bookingService.prevStep();
+  }
+  validateTravellerForm(
+    firstName: any,
+    lastName: any,
+    mobile: any,
+    email: any,
+  ): string | null {
+    // Touch all fields before checking
+    firstName.control.markAsTouched();
+    lastName.control.markAsTouched();
+    mobile.control.markAsTouched();
+    email.control.markAsTouched();
+
+    const t = this.booking.traveller;
+
+    if (!t.firstName) {
+      return 'firstNameField';
     }
-  });
-  const payload = this.buildBookingPayload(this.booking);
-  console.log('BOOKING PAYLOAD:', payload);
-//     const customerPayload = {
-//     isCustomerUpdate: false,
-//     id: this.customerData.id || null,
-//     firstName: this.booking.traveller.firstName,
-//     lastName: this.booking.traveller.lastName,
-//     email: this.booking.traveller.email,
-//     mobile: this.booking.traveller.mobile,
-//     propertyId: this.propertyDetails.id
-//   };
 
-//   this.locationService.createCustomer(customerPayload).subscribe({
-//     next: (customerRes) => {
+    if (!t.lastName || !/^[A-Za-z]+$/.test(t.lastName)) {
+      return 'lastNameField';
+    }
 
-//       this.customerId = customerRes?.id;
-//       if (!this.customerId) {
-//         return;
-//       }
-//   }
+    if (!t.mobile || !/^[6-9][0-9]{9}$/.test(t.mobile)) {
+      return 'mobileField';
+    }
 
-// });
+    if (!t.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t.email)) {
+      return 'emailField';
+    }
+
+    return null;
+  }
+
+  scrollToField(fieldId: string) {
+    const el = document.getElementById(fieldId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.classList.add('shake-error');
+
+      // Remove effect after animation
+      setTimeout(() => el.classList.remove('shake-error'), 800);
+    }
+  }
+  formatBookingDate(date: string | Date): string {
+    if (!date) return '';
+
+    const d = new Date(date);
+    const day = d.getDate();
+
+    const suffix =
+      day % 10 === 1 && day !== 11
+        ? 'st'
+        : day % 10 === 2 && day !== 12
+          ? 'nd'
+          : day % 10 === 3 && day !== 13
+            ? 'rd'
+            : 'th';
+
+    const month = d.toLocaleString('en-US', { month: 'long' });
+    const year = d.getFullYear();
+
+    return `${month} ${day}${suffix} ${year}`;
+  }
+  sendEmailOtp() {
+    this.otpError = '';
+    this.otpMessage = '';
+    this.emailOtp.loading = true;
+
+    const payload = {
+      email: this.booking.traveller.email,
+      toNumber: null,
+    };
+
+    this.locationService.sendOtp(payload).subscribe({
+      next: (res: any) => {
+        this.emailOtp.sid = res.sid;
+        this.emailOtp.sent = true;
+        this.otpMessage = 'OTP sent to your email';
+        this.startResendTimer();
+      },
+      error: () => {
+        this.otpError = 'Failed to send OTP. Try again.';
+      },
+      complete: () => {
+        this.emailOtp.loading = false;
+      },
+    });
+  }
+
+  /* ================= OTP INPUT AUTO MOVE ================= */
+  moveOtp(index: number, event: any) {
+    if (event.target.value && index < 5) {
+      event.target.nextElementSibling?.focus();
+    }
+  }
+  handleOtpInput(event: Event, index: number): void {
+    const input = event.target as HTMLInputElement;
+    const digit = input.value.replace(/\D/g, '').slice(-1);
+
+    if (digit) {
+      this.otpValues[index] = digit;
+      input.value = digit;
+
+      if (index < this.otpValues.length - 1) {
+        // Move focus to next input
+        setTimeout(() => {
+          const nextInput = this.inputs.toArray()[index + 1].nativeElement;
+          nextInput.focus();
+          // Clear the next input to prevent duplicate entry
+          nextInput.value = '';
+          this.otpValues[index + 1] = '';
+        }, 0);
+      }
+    } else {
+      this.otpValues[index] = '';
+      input.value = '';
+    }
+  }
+
+  handleKeyDown(event: KeyboardEvent, index: number): void {
+    const input = event.target as HTMLInputElement;
+
+    if (event.key === 'Backspace') {
+      // Clear current box first
+      this.otpValues[index] = '';
+      input.value = '';
+
+      // Move to previous box if current was already empty
+      if (index > 0) {
+        setTimeout(() => {
+          this.inputs.toArray()[index - 1].nativeElement.focus();
+        }, 0);
+      }
+      event.preventDefault();
+    } else if (event.key === 'ArrowLeft' && index > 0) {
+      this.inputs.toArray()[index - 1].nativeElement.focus();
+      event.preventDefault();
+    } else if (
+      event.key === 'ArrowRight' &&
+      index < this.otpValues.length - 1
+    ) {
+      this.inputs.toArray()[index + 1].nativeElement.focus();
+      event.preventDefault();
+    } else if (!/^\d$/.test(event.key) && event.key.length === 1) {
+      // Prevent non-digit characters
+      event.preventDefault();
+    }
+  }
+
+  /* ================= VERIFY OTP ================= */
+  verifyEmailOtp() {
+    this.otpError = '';
+    this.otpMessage = '';
+
+    if (this.otpValues.join('').length !== 6) {
+      this.otpError = 'Please enter 6 digit OTP';
+      return;
+    }
+
+    this.emailOtp.verifying = true;
+
+    const payload = {
+      email: this.booking.traveller.email,
+      toNumber: null,
+      verificationStatus: 'pending',
+      sid: this.emailOtp.sid,
+      notificationStatus: false,
+      verificationCode: this.otpValues.join(''),
+    };
+
+    this.locationService.verifyOtp(payload).subscribe({
+      next: (res: any) => {
+        if (res.verificationStatus === 'approved') {
+          this.emailOtp.verified = true;
+          this.otpMessage = 'Email verified successfully';
+          this.checkCustomerExists();
+        } else {
+          this.otpError = 'Invalid OTP. Please try again.';
+        }
+      },
+      error: () => {
+        this.otpError = 'OTP verification failed. Please retry.';
+      },
+      complete: () => {
+        this.emailOtp.verifying = false;
+      },
+    });
+  }
+
+  /* ================= RESEND TIMER ================= */
+  startResendTimer() {
+    this.resendSeconds = 600;
+
+    this.timerRef = setInterval(() => {
+      this.resendSeconds--;
+      if (this.resendSeconds <= 0) {
+        clearInterval(this.timerRef);
+        this.emailOtp.sent = false;
+      }
+    }, 1000);
+  }
+
+  /* ================= CHANGE EMAIL ================= */
+  changeEmail() {
+    clearInterval(this.timerRef);
+    this.emailOtp = {
+      sent: false,
+      loading: false,
+      verifying: false,
+      verified: false,
+      sid: null,
+    };
+    this.otpValues = ['', '', '', '', '', ''];
+    this.otpMessage = '';
+    this.otpError = '';
+  }
+
+  /* ================= CHECK CUSTOMER ================= */
+  checkCustomerExists() {
+    this.locationService.checkEmail(this.booking.traveller.email).subscribe({
+      next: (res: any) => {
+        console.log('Email check response:', res);
+        this.customerData = res; // store for later
+      },
+      error: (err) => {
+        console.error('Email check failed:', err);
+        const customerPayload = {
+        isCustomerUpdate: false,
+        firstName: this.booking.traveller.firstName,
+        lastName: this.booking.traveller.lastName,
+        email: this.booking.traveller.email,
+        mobile: this.booking.traveller.mobile,
+        propertyId: this.propertyDetails.id
+      };
+
+      this.locationService.createCustomer(customerPayload).subscribe({
+        next: (customerRes) => {
+
+          this.customerId = customerRes?.id;
+          this.customerData = customerRes;
+          if (!this.customerId) {
+            return;
+          }
+      }
+
+    });
+      },
+    });
+    // this.locationService.checkMobile(this.booking.traveller.mobile).subscribe();
+  }
+
+  private formatDate(date: string | null | undefined): string {
+    if (!date) return 'NA';
+    return new Date(date).toLocaleDateString('en-IN', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    });
+  }
+
+  private formatTime(time: string | null | undefined): string {
+    if (!time) return 'NA';
+    const [h, m] = time.split(':');
+    const d = new Date();
+    d.setHours(+h, +m);
+    return d.toLocaleTimeString('en-IN', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    });
+  }
+  private formatDuration(durationMinutes?: number): string {
+    if (!durationMinutes || durationMinutes <= 0) return 'NA';
+    const hours = Math.round(durationMinutes / 60);
+    return `${hours} hrs`;
+  }
+  private getTripTypeLabel(tripTypeValue: string): string {
+    switch (tripTypeValue) {
+      case 'pickup-drop':
+        return 'Pickup & Drop-off';
+      case 'outstation':
+        return 'Outstation';
+      case 'rental':
+        return 'Rental';
+      default:
+        return 'NA';
+    }
+  }
+  buildPickupWhatsappPayload(booking: any): any {
+    const formatDate = (d: string) =>
+      new Date(d).toLocaleDateString('en-IN', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+      });
+
+    const formatTime = (t: string) => {
+      const [h, m] = t.split(':');
+      const date = new Date();
+      date.setHours(+h, +m);
+      return date.toLocaleTimeString('en-IN', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      });
+    };
+
+    return {
+      messaging_product: 'whatsapp',
+      recipient_type: 'individual',
+      to: booking.traveller.mobile,
+      type: 'template',
+      template: {
+        name: 'order_management_1',
+        language: { code: 'en' },
+        components: [
+          {
+            type: 'header',
+            parameters: [],
+          },
+          {
+            type: 'body',
+            parameters: [
+              { type: 'text', text: booking.traveller.firstName }, // guest name
+              { type: 'text', text: booking.bookingRef }, // booking ref
+              { type: 'text', text: booking.pickup.name }, // pickup
+              { type: 'text', text: booking.dropoff.name }, // drop
+              { type: 'text', text: formatDate(booking.date) }, // pickup date
+              { type: 'text', text: formatTime(booking.time) }, // pickup time
+              { type: 'text', text: String(booking.passengers?.adults || 0) }, // adults
+              { type: 'text', text: String(booking.passengers?.children || 0) }, // children
+              { type: 'text', text: booking.vehicle?.name || 'Vehicle' }, // vehicle
+              { type: 'text', text: String(booking?.pricing?.totalAmount || 0) }, // fare
+            ],
+          },
+        ],
+      },
+    };
+  }
+  buildRentalGuestWhatsappPayload(booking: any): any {
+    const formatDate = (d: string | null | undefined): string => {
+      if (!d) return 'NA';
+      return new Date(d).toLocaleDateString('en-IN', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+      });
+    };
+
+    const formatDuration = (minutes?: number): string => {
+      if (!minutes || minutes <= 0) return 'NA';
+      const hrs = Math.round(minutes / 60);
+      return `${hrs} hours`;
+    };
+
+    return {
+      messaging_product: 'whatsapp',
+      recipient_type: 'individual',
+      to: `91${booking.traveller.mobile}`, // ✅ guest number with country code
+      type: 'template',
+      template: {
+        name: 'rental_enquiry_shivsewa',
+        language: { code: 'en' },
+        components: [
+          {
+            type: 'body',
+            parameters: [
+              { type: 'text', text: booking.traveller?.firstName || 'Guest' }, // guest name
+              { type: 'text', text: booking.bookingRef || 'NA' }, // booking ref
+              { type: 'text', text: booking.pickup?.name || 'NA' }, // pickup
+              { type: 'text', text: formatDate(booking.date) }, // pickup date
+              {
+                type: 'text',
+                text: formatDate(booking.returnDate || booking.date),
+              }, // drop date
+              { type: 'text', text: formatDuration(booking.durationMinutes) }, // duration
+              { type: 'text', text: String(booking.passengers?.adults || 0) }, // adults
+              { type: 'text', text: String(booking.passengers?.children || 0) }, // children
+              { type: 'text', text: booking.vehicle?.name || 'NA' }, // car
+              { type: 'text', text: String(booking?.pricing?.totalAmount || 0) }, // fare
+            ],
+          },
+        ],
+      },
+    };
+  }
+
+  buildOutstationGuestWhatsappPayload(booking: any): any {
+
+  const formatDate = (d: string | null | undefined): string => {
+    if (!d) return 'NA';
+    return new Date(d).toLocaleDateString('en-IN', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+  };
+
+  return {
+    messaging_product: 'whatsapp',
+    recipient_type: 'individual',
+    to: `91${booking.traveller.mobile}`, // ✅ guest number with country code
+    type: 'template',
+    template: {
+      name: 'outstation_enquiry_shivsewa',
+      language: { code: 'en' },
+      components: [
+        {
+          type: 'body',
+          parameters: [
+            { type: 'text', text: booking.traveller?.firstName || 'Guest' },     // guest name
+            { type: 'text', text: booking.bookingRef || 'NA' },                 // booking ref
+            { type: 'text', text: booking.pickup?.name || 'NA' },               // pickup
+            { type: 'text', text: booking.dropoff?.name || 'NA' },              // drop off
+            { type: 'text', text: formatDate(booking.date) },                   // pickup date
+            { type: 'text', text: formatDate(booking.returnDate) },             // drop off date
+            { type: 'text', text: String(booking.passengers?.adults || 0) },    // adults
+            { type: 'text', text: String(booking.passengers?.children || 0) },  // children
+            { type: 'text', text: booking.vehicle?.name || 'NA' },              // car
+            { type: 'text', text: String(booking?.pricing?.totalAmount || 0) }        // fare
+          ]
+        }
+      ]
+    }
+  };
 }
+
+
+  buildHostWhatsappPayload(booking: any, hostMobile: string): any {
+    const tripLabel = this.getTripTypeLabel(booking.tripTypeValue);
+
+    return {
+      messaging_product: 'whatsapp',
+      recipient_type: 'individual',
+      to: hostMobile, // ✅ HOST NUMBER (with country code)
+      type: 'template',
+      template: {
+        name: 'enquiry_notification_host_shivsewa',
+        language: { code: 'en' },
+        components: [
+          {
+            type: 'body',
+            parameters: [
+              { type: 'text', text: booking.traveller?.firstName || 'Guest' }, // guest name
+              { type: 'text', text: booking.vehicle?.name || 'NA' }, // car
+              { type: 'text', text: String(booking.passengers?.adults || 0) }, // adults
+              { type: 'text', text: String(booking.passengers?.children || 0) }, // children
+              { type: 'text', text: tripLabel }, // trip type
+              { type: 'text', text: booking.pickup?.name || 'NA' }, // pickup
+              { type: 'text', text: booking.dropoff?.name || 'NA' }, // dropoff
+              { type: 'text', text: this.formatDate(booking.date) }, // pickup date
+              { type: 'text', text: this.formatTime(booking.time) }, // pickup time
+              { type: 'text', text: this.formatDate(booking.returnDate) }, // drop date
+              { type: 'text', text: this.formatTime(booking.returnTime) }, // drop time
+              {
+                type: 'text',
+                text: this.formatDuration(booking.durationMinutes),
+              }, // duration
+              { type: 'text', text: String(booking?.pricing?.totalAmount || 0) }, // fare
+              { type: 'text', text: booking.bookingRef || 'NA' }, // booking ref
+            ],
+          },
+        ],
+      },
+    };
+  }
+
+  confirm(firstName: any, lastName: any, mobile: any, email: any) {
+    if (this.isConfirming) return;
+    this.isConfirming = true;
+    const invalidField = this.validateTravellerForm(
+      firstName,
+      lastName,
+      mobile,
+      email,
+    );
+
+    if (invalidField && !this.customerData.id) {
+      this.scrollToField(invalidField);
+      this.isConfirming = false;
+      return;
+    }
+
+    this.bookingService.generateRef();
+    const paymentPayload = this.mapSavePaymentPayload(
+      this.booking,
+      this.slotPricingDto,
+      this.propertyDetails,
+    );
+
+    this.locationService.savePayment(paymentPayload).subscribe({
+      next: (paymentRes) => {
+        const paymentId = paymentRes?.id;
+        const modeOfPayment = paymentRes?.paymentMode;
+
+        if (!paymentId || !modeOfPayment) {
+          console.error('Invalid payment response', paymentRes);
+          return;
+        }
+
+        // Step 2: Book Service
+        const bookingPayload = this.mapBookingPayload(
+          this.booking,
+          this.transportServiceType,
+          this.matchedSlot,
+          this.slotPricingDto,
+          this.propertyDetails,
+          paymentId,
+          modeOfPayment,
+        );
+
+        this.locationService.bookService(bookingPayload).subscribe({
+          next: (res) => {
+            console.log('✅ Booking Successful', res);
+            const backendRef = res?.businessReservationNumber;
+
+            this.bookingService.update({
+              bookingRef: backendRef,
+            });
+            if (this.booking.tripTypeValue === 'pickup-drop') {
+              const whatsappPayload = this.buildPickupWhatsappPayload({
+                ...this.booking,
+                bookingRef: backendRef,
+              });
+              this.locationService
+                .sendWhatsappMessage(whatsappPayload)
+                .subscribe({
+                  next: () => console.log('WhatsApp sent to guest'),
+                  error: (err) => console.error('WhatsApp failed', err),
+                });
+            }
+            if (this.booking.tripTypeValue === 'rental') {
+              const rentalWhatsappPayload =
+                this.buildRentalGuestWhatsappPayload({
+                  ...this.booking,
+                  bookingRef: backendRef,
+                  durationMinutes: this.transportServiceType?.durationInMinutes,
+                });
+
+              this.locationService
+                .sendWhatsappMessage(rentalWhatsappPayload)
+                .subscribe({
+                  next: () => console.log('Rental WhatsApp sent to guest'),
+                  error: (err) => console.error('Rental WhatsApp failed', err),
+                });
+            }
+            if (this.booking.tripTypeValue === 'outstation') {
+              const outstationWhatsappPayload =
+                this.buildOutstationGuestWhatsappPayload({
+                  ...this.booking,
+                  bookingRef: backendRef
+                });
+
+              this.locationService.sendWhatsappMessage(outstationWhatsappPayload).subscribe({
+                next: () => console.log('Outstation WhatsApp sent to guest'),
+                error: (err) => console.error('Outstation WhatsApp failed', err)
+              });
+            }
+            const hostWhatsappPayload = this.buildHostWhatsappPayload(
+              {
+                ...this.booking,
+                bookingRef: backendRef,
+                durationMinutes: this.transportServiceType?.durationInMinutes,
+              },
+              '7852978916',
+            );
+
+            this.locationService
+              .sendWhatsappMessage(hostWhatsappPayload)
+              .subscribe({
+                next: () => console.log('Host WhatsApp sent'),
+                error: (err) => console.error('Host WhatsApp failed', err),
+              });
+
+            this.bookingService.nextStep();
+          },
+          error: (err) => {
+            this.isConfirming = false;
+            console.error(' Booking Failed', err);
+          },
+        });
+        const taxiBooking = {
+          referenceId: this.booking.bookingRef,
+
+          trip: {
+            tripType: this.booking.tripType,
+            tripTypeValue: this.booking.tripTypeValue,
+            tripServiceType: this.booking.tripServiceType,
+          },
+
+          location: {
+            pickup: {
+              name: this.booking.pickup.name,
+              service_address: this.booking.pickup.service_address,
+            },
+            dropoff: {
+              name: this.booking.dropoff.name,
+              service_address: this.booking.dropoff.service_address,
+            },
+            schedule: {
+              date: this.booking.date,
+              time: this.booking.time,
+              returnDate: this.booking.returnDate || null,
+              returnTime: this.booking.returnTime || null,
+            },
+            distance: {
+              distanceKm: this.booking.distanceKm,
+              durationMinutes: this.booking.durationMinutes,
+            },
+          },
+
+          passengers: {
+            adults: this.booking.passengers?.adults,
+            children: this.booking.passengers?.children,
+            luggage: this.booking.passengers?.luggage,
+          },
+
+          vehicle: {
+            name: this.booking.vehicle?.name,
+            seats: this.booking.vehicle?.seats,
+            price: this.booking.fareQuote?.total,
+            carNumber: this.booking.vehicle?.carNumber,
+          },
+
+          pricing: {
+            fareQuote: this.booking.fareQuote,
+            currency: this.booking.fareQuote?.currency,
+          },
+
+          traveller: {
+            firstName: this.booking.traveller?.firstName,
+            lastName: this.booking.traveller?.lastName,
+            mobile: this.booking.traveller?.mobile,
+            email: this.booking.traveller?.email,
+            notes: this.booking.traveller?.notes,
+          },
+
+          verification: {
+            customer: {
+              id: this.customerData?.id,
+              username: this.customerData?.username,
+            },
+          },
+
+          payment: {
+            paymentId: paymentId,
+            paymentMode: modeOfPayment,
+            currency: this.booking.fareQuote?.currency,
+            amount: this.booking.fareQuote?.total,
+            beforeTaxAmount: this.booking.fareQuote.total,
+            taxAmount: 0,
+            afterTaxAmount: this.booking.fareQuote.total,
+          },
+
+          bookingStatus: 'NEW',
+        };
+
+        const slotConfig = {
+          businessType: {
+            id: this.businessTypeId,
+            name: this.propertyDetails.businessType,
+          },
+
+          operatorKey: 'DEFAULT',
+
+          propertyIdByOperator: {
+            DEFAULT: this.propertyDetails.id,
+          },
+
+          serviceMap: {
+            pickup_drop: {
+              serviceTypeId: this.transportServiceType.id,
+              businessServiceId: this.transportServiceType.businessServiceId,
+              serviceTypeName: this.transportServiceType.name,
+              defaultDurationMins: this.transportServiceType.durationInMinutes,
+              capacityPerSlot: this.transportServiceType.capacityPerSlot,
+              description: this.transportServiceType.description,
+            },
+
+            rental: {
+              serviceTypeId: this.transportServiceType.id,
+              businessServiceId: this.transportServiceType.businessServiceId,
+              serviceTypeName: this.transportServiceType.name,
+              defaultDurationMins: this.transportServiceType.durationInMinutes,
+            },
+
+            outstation: {
+              serviceTypeId: this.transportServiceType.id,
+              businessServiceId: this.transportServiceType.businessServiceId,
+              serviceTypeName: this.transportServiceType.name,
+              defaultDurationMins: this.transportServiceType.durationInMinutes,
+            },
+          },
+
+          pricingDefaults: {
+            currency: this.propertyDetails.localCurrency || 'INR',
+            taxRate: this.slotPricingDto?.beforeTaxAmount
+              ? this.slotPricingDto.taxAmount /
+                this.slotPricingDto.beforeTaxAmount
+              : 0,
+          },
+
+          labels: {
+            businessProductName: this.propertyDetails.businessProductName,
+            businessServiceName: this.propertyDetails.businessServiceName,
+            businessTermLocation: 'Location Detail',
+            businessTermResource: 'Staff Detail',
+          },
+        };
+
+        const slotPayload = mapTaxiToSlot(taxiBooking, slotConfig);
+        console.log('SLOT PAYLOAD (MAPPED):', slotPayload);
+      },
+      error: (err) => {
+        console.error(' Save Payment Failed', err);
+        this.isConfirming = false;
+      },
+    });
+    const payload = this.buildBookingPayload(this.booking);
+    console.log('BOOKING PAYLOAD:', payload);
+
+  }
 }

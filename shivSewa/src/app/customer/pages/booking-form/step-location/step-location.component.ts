@@ -196,7 +196,7 @@ to24(t: string): string {
   if (ampm === 'PM' && h < 12) h += 12;
   if (ampm === 'AM' && h === 12) h = 0;
 
-  return `${h.toString().padStart(2, '0')}:${m}`;
+  return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
 }
 selectReturnTime(t: string) {
   this.returnDisplayTime = t;
@@ -207,7 +207,7 @@ selectReturnTime(t: string) {
   if (ampm === 'PM' && hr < 12) hr += 12;
   if (ampm === 'AM' && hr === 12) hr = 0;
 
-  this.returnTime24 = `${hr.toString().padStart(2, '0')}:${min}`;
+  this.returnTime24 = `${hr.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}`;
   this.showReturnTimes = false;
 }
   //---------------------------------------

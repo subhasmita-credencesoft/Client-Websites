@@ -72,7 +72,6 @@
              [(ngModel)]="booking.traveller.firstName"
              #firstName="ngModel"
              required
-             pattern="^[A-Za-z]+$"
              placeholder="First Name"
              style="border-radius: 8px;">
 
@@ -234,135 +233,152 @@
 
   <ng-container *ngIf="booking?.fareQuote as fare">
 
-    <!-- ================= PICKUP & DROP ================= -->
-    <ng-container *ngIf="fare.tripType === 'pickup_drop'">
+  <!-- ================= PICKUP & DROP ================= -->
+  <ng-container *ngIf="fare.tripType === 'pickup_drop'">
 
-      <div class="d-flex justify-content-between mb-2">
-        <div class="text-dark small">
-          Base Fare
-          <small class="text-muted">(Includes base km)</small>
-        </div>
-        <div class="fw-bold">
-          ₹{{ fare.lines[0]?.amount | number:'1.0-2' }}
-        </div>
+    <div class="d-flex justify-content-between mb-2">
+      <div class="text-dark small">
+        Base Fare
+        <small class="text-muted">(Includes base km)</small>
       </div>
-
-      <div
-        class="d-flex justify-content-between mb-2"
-        *ngFor="let line of fare.lines"
-        [hidden]="line.code !== 'EXTRA_KM'"
-      >
-        <div class="text-dark small" [hidden]="line.code !== 'EXTRA_KM'">
-          Extra Distance
-          <small class="text-muted">
-            ({{ line.qty | number:'1.2-2' }} km × ₹{{ line.unitPrice }})
-          </small>
-        </div>
-        <div class="fw-bold" [hidden]="line.code !== 'EXTRA_KM'">
-          ₹{{ line.amount | number:'1.0-2' }}
-        </div>
-      </div>
-
-    </ng-container>
-
-    <!-- ================= RENTAL ================= -->
-    <ng-container *ngIf="fare.tripType === 'rental'">
-
-      <div
-        class="d-flex justify-content-between mb-2"
-        *ngFor="let line of fare.lines"
-      >
-        <div class="text-dark small">
-          {{ line.label }}
-          <small class="text-muted" *ngIf="line.code !== 'PACKAGE'">
-            ({{ line.qty | number:'1.2-2' }} × ₹{{ line.unitPrice }})
-          </small>
-        </div>
-        <div class="fw-bold">
-          ₹{{ line.amount | number:'1.0-2' }}
-        </div>
-      </div>
-
-    </ng-container>
-
-    <!-- ================= OUTSTATION ================= -->
-    <ng-container *ngIf="fare.tripType === 'outstation'">
-
-      <!-- Rule explanation -->
-      <div class="mb-2 text-muted small">
-        Minimum distance per day rule applies
-      </div>
-
-      <!-- Actual distance -->
-      <div class="d-flex justify-content-between mb-2">
-        <div class="text-dark small">
-          Actual Distance
-        </div>
-        <div class="fw-bold">
-          {{ fare.distanceKm | number:'1.2-2' }} km
-        </div>
-      </div>
-
-      <!-- Billable distance -->
-      <div class="d-flex justify-content-between mb-2">
-        <div class="text-dark small">
-          Billable Distance
-          <small class="text-muted">
-            (Higher of actual distance <br/> or minimum per-day distance)
-          </small>
-        </div>
-        <div class="fw-bold">
-          {{ fare.lines[0]?.qty | number:'1.2-2' }} km
-        </div>
-      </div>
-
-      <!-- Distance charge -->
-      <div class="d-flex justify-content-between mb-2">
-        <div class="text-dark small">
-          Distance Charge
-          <small class="text-muted">
-            ({{ fare.lines[0]?.qty | number:'1.2-2' }} km × ₹{{ fare.lines[0]?.unitPrice }})
-          </small>
-        </div>
-        <div class="fw-bold">
-          ₹{{ fare.lines[0]?.amount | number:'1.0-2' }}
-        </div>
-      </div>
-
-      <!-- Driver allowance -->
-      <div class="d-flex justify-content-between mb-2">
-        <div class="text-dark small">
-          Driver Allowance
-          <small class="text-muted">
-            ({{ fare.lines[1]?.qty }} day × ₹{{ fare.lines[1]?.unitPrice }})
-          </small>
-        </div>
-        <div class="fw-bold">
-          ₹{{ fare.lines[1]?.amount | number:'1.0-2' }}
-        </div>
-      </div>
-
-    </ng-container>
-
-    <hr class="my-3">
-
-    <!-- TOTAL -->
-    <div class="d-flex justify-content-between align-items-center">
-      <div class="fw-bold">Total Estimated Fare</div>
-      <div class="fw-bold fs-6">
-        ₹{{ fare.total | number:'1.0-2' }}
+      <div class="fw-bold">
+        ₹{{ fare.lines[0]?.amount | number:'1.0-2' }}
       </div>
     </div>
 
-    <!-- NOTES -->
-    <div class="mt-3" *ngIf="fare.notes?.length">
-      <small class="text-muted d-block mb-1">Note:</small>
-      <ul class="small text-muted ps-3 mb-0">
-        <li *ngFor="let note of fare.notes">{{ note }}</li>
-      </ul>
+    <div
+      class="d-flex justify-content-between mb-2"
+      *ngFor="let line of fare.lines"
+      [hidden]="line.code !== 'EXTRA_KM'"
+    >
+      <div class="text-dark small" [hidden]="line.code !== 'EXTRA_KM'">
+        Extra Distance
+        <small class="text-muted">
+          ({{ line.qty | number:'1.2-2' }} km × ₹{{ line.unitPrice }})
+        </small>
+      </div>
+      <div class="fw-bold" [hidden]="line.code !== 'EXTRA_KM'">
+        ₹{{ line.amount | number:'1.0-2' }}
+      </div>
     </div>
 
   </ng-container>
+
+  <!-- ================= RENTAL ================= -->
+  <ng-container *ngIf="fare.tripType === 'rental'">
+
+    <div
+      class="d-flex justify-content-between mb-2"
+      *ngFor="let line of fare.lines"
+    >
+      <div class="text-dark small">
+        {{ line.label }}
+        <small class="text-muted" *ngIf="line.code !== 'PACKAGE'">
+          ({{ line.qty | number:'1.2-2' }} × ₹{{ line.unitPrice }})
+        </small>
+      </div>
+      <div class="fw-bold">
+        ₹{{ line.amount | number:'1.0-2' }}
+      </div>
+    </div>
+
+  </ng-container>
+
+  <!-- ================= OUTSTATION ================= -->
+  <ng-container *ngIf="fare.tripType === 'outstation'">
+
+    <div class="mb-2 text-muted small">
+      Minimum distance per day rule applies
+    </div>
+
+    <div class="d-flex justify-content-between mb-2">
+      <div class="text-dark small">Actual Distance</div>
+      <div class="fw-bold">
+        {{ fare.distanceKm | number:'1.2-2' }} km
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between mb-2">
+      <div class="text-dark small">
+        Billable Distance
+        <small class="text-muted">
+          (Higher of actual distance <br/> or minimum per-day distance)
+        </small>
+      </div>
+      <div class="fw-bold">
+        {{ fare.lines[0]?.qty | number:'1.2-2' }} km
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between mb-2">
+      <div class="text-dark small">
+        Distance Charge
+        <small class="text-muted">
+          ({{ fare.lines[0]?.qty | number:'1.2-2' }} km × ₹{{ fare.lines[0]?.unitPrice }})
+        </small>
+      </div>
+      <div class="fw-bold">
+        ₹{{ fare.lines[0]?.amount | number:'1.0-2' }}
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between mb-2">
+      <div class="text-dark small">
+        Driver Allowance
+        <small class="text-muted">
+          ({{ fare.lines[1]?.qty }} day × ₹{{ fare.lines[1]?.unitPrice }})
+        </small>
+      </div>
+      <div class="fw-bold">
+        ₹{{ fare.lines[1]?.amount | number:'1.0-2' }}
+      </div>
+    </div>
+
+  </ng-container>
+
+  <hr class="my-3">
+    <div
+    class="d-flex justify-content-between mb-2"
+    *ngIf="booking?.pricing?.baseAmount"
+  >
+    <div class="text-dark small">
+      Sub Total:
+    </div>
+    <div class="fw-bold">
+      ₹{{ booking?.pricing?.baseAmount | number:'1.0-2' }}
+    </div>
+  </div>
+  <!-- ================= TAX (DISPLAY ONLY) ================= -->
+  <div
+    class="d-flex justify-content-between mb-2"
+    *ngIf="booking?.pricing?.taxPercentage && booking?.pricing?.taxAmount"
+  >
+    <div class="text-dark small">
+      GST ({{ booking.pricing.taxPercentage }}%)
+    </div>
+    <div class="fw-bold">
+      ₹{{ booking.pricing.taxAmount | number:'1.0-2' }}
+    </div>
+  </div>
+
+  <!-- ================= TOTAL ================= -->
+  <div class="d-flex justify-content-between align-items-center" *ngIf="booking.pricing.totalAmount" >
+    <div class="fw-bold">Total Estimated Fare</div>
+    <div class="fw-bold fs-6">
+      ₹{{ booking.pricing.totalAmount | number:'1.0-2' }}
+    </div>
+  </div>
+
+  <!-- ================= NOTES ================= -->
+  <div class="mt-3" *ngIf="fare.notes?.length">
+    <small class="text-muted d-block mb-1">Note:</small>
+    <ul class="small text-muted ps-3 mb-0">
+      <li *ngFor="let note of fare.notes">{{ note }}</li>
+    </ul>
+  </div>
+
+  </ng-container>
+
 <hr class="my-3">
       <div >
               <h6 class="fw-bold mb-3" style="color: #FF6B35;">Inclusions</h6>
@@ -405,9 +421,22 @@
         <i class="bi bi-arrow-left"></i>
         <span>Go back</span>
       </button>
-      <button class="btn btn-dark px-5 py-2 forwardMove" [class.disabled-looking]="firstName.invalid || lastName.invalid || mobile.invalid || email.invalid || !customerData?.id" (click)="confirm(firstName, lastName, mobile, email)" style="border-radius: 8px;">
-        Confirm Booking
+      <button
+        class="btn btn-dark px-5 py-2 forwardMove"
+        [disabled]="isConfirming || firstName.invalid || lastName.invalid || mobile.invalid || email.invalid || !customerData?.id"
+        (click)="confirm(firstName, lastName, mobile, email)"
+        style="border-radius: 8px;"
+      >
+        <ng-container *ngIf="!isConfirming">
+          Confirm Booking
+        </ng-container>
+
+        <ng-container *ngIf="isConfirming">
+          <span class="spinner-border spinner-border-sm me-2"></span>
+          Confirming your booking…
+        </ng-container>
       </button>
+
     </div>
 </div>
 </div>

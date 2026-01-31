@@ -49,7 +49,7 @@ export class JourneyCardComponent {
   const phoneNumber = '9136399064'; // WhatsApp number (India, no +)
 
   const message = `
-Hello 👋,
+Hello,
 I would like to request the following service:
 
 Service: ${card.title}

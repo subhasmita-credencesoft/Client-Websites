@@ -45,6 +45,12 @@ fareQuote?: FareQuote;
   };
 
   // Traveller info
+  pricing: {
+  baseAmount: number;
+  taxPercentage: number;
+  taxAmount: number;
+  totalAmount: number;
+},
   traveller?: {
     firstName?: string;
     lastName?: string;

@@ -3,7 +3,25 @@ import { FareQuote, FareLine } from './pricing.types';
 import { toDateTime, diffDaysCeil, diffHours } from './time-utils';
 
 const r2 = (n: number) => Math.round(n * 100) / 100;
+function calculateOutstationDaysFromStrings(
+  pickupDate: string,
+  pickupTime: string,
+  returnDate?: string,
+  returnTime?: string
+): number {
+  if (!returnDate) return 1;
 
+  const start = new Date(`${pickupDate}T${pickupTime}`);
+  const end = new Date(`${returnDate}T${returnTime || '23:59'}`);
+
+  const ONE_DAY = 24 * 60 * 60 * 1000;
+  const diff = end.getTime() - start.getTime();
+
+  if (diff <= 0) return 1;
+
+  // +1 because pickup day counts
+  return Math.ceil(diff / ONE_DAY) + 1;
+}
 export function calculateFare(
   cfg: any,
   req: QuoteRequest,
@@ -19,7 +37,16 @@ export function calculateFare(
     : start;
 
   const hours = diffHours(start, end);
-  const days = diffDaysCeil(start, end);
+  const days =
+  req.tripType === 'outstation'
+    ? calculateOutstationDaysFromStrings(
+        req.pickupDate,
+        req.pickupTime,
+        req.returnDate,
+        req.returnTime
+      )
+    : diffDaysCeil(start, end);
+
   const cat = req.vehicleCategory;
   const dist = r2(distanceKm);
 
@@ -33,7 +60,7 @@ export function calculateFare(
     lines.push({
       code: 'BASE',
       label: 'Base Fare',
-      qty: 1,
+      qty: c.base_km,
       unitPrice: c.base_fare,
       amount: c.base_fare
     });

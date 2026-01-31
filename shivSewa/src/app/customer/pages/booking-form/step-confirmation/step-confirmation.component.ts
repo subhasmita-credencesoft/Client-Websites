@@ -3,11 +3,12 @@ import { BookingService } from '../../../services/booking.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OrdinalPipe } from "../../../services/ordinal-date.pipe";
 
 @Component({
   selector: 'app-step-confirmation',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, OrdinalPipe],
   templateUrl: './step-confirmation.component.html',
   styleUrl: './step-confirmation.component.scss'
 })

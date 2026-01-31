@@ -22,7 +22,11 @@
         </div>
         <div class="info-item text-right">
           <div class="info-label">DATE</div>
-          <div class="info-value">{{ booking?.date | date:'MMMM d' }}th, {{ booking?.date | date:'yyyy' }}</div>
+          <div class="info-value">
+              {{ booking?.date | date:'MMMM' }}
+            {{ (booking?.date | date:'d')! | ordinal }},
+            {{ booking?.date | date:'yyyy' }}
+          </div>
         </div>
       </div>
 
@@ -70,17 +74,13 @@
   <!-- ================= RENTAL ================= -->
   <ng-container *ngIf="fare.tripType === 'rental'">
 
-    <div
-      class="detail-row"
-      *ngFor="let line of fare.lines"
-    >
+    <div class="detail-row" *ngFor="let line of fare.lines">
       <span class="detail-label">
         {{ line.label }}
         <small *ngIf="line.code !== 'PACKAGE'">
           ({{ line.qty | number:'1.2-2' }} × ₹{{ line.unitPrice }})
         </small>
       </span>
-
       <span class="detail-value">
         ₹{{ line.amount | number:'1.0-2' }}
       </span>
@@ -91,7 +91,6 @@
   <!-- ================= OUTSTATION ================= -->
   <ng-container *ngIf="fare.tripType === 'outstation'">
 
-    <!-- Rule info -->
     <div class="detail-row text-muted">
       <span class="detail-label">
         Minimum distance per day rule applies
@@ -99,28 +98,23 @@
       <span class="detail-value"></span>
     </div>
 
-    <!-- Actual distance -->
     <div class="detail-row">
-      <span class="detail-label">
-        Actual Distance
-      </span>
+      <span class="detail-label">Actual Distance</span>
       <span class="detail-value">
         {{ fare.distanceKm | number:'1.2-2' }} km
       </span>
     </div>
 
-    <!-- Billable distance -->
     <div class="detail-row">
       <span class="detail-label">
         Billable Distance
-        <small>(Higher of actual <br/> or minimum per-day distance)</small>
+        <small>(Higher of actual or minimum per-day)</small>
       </span>
       <span class="detail-value">
         {{ fare.lines[0]?.qty | number:'1.2-2' }} km
       </span>
     </div>
 
-    <!-- Distance charge -->
     <div class="detail-row">
       <span class="detail-label">
         Distance Charge
@@ -133,7 +127,6 @@
       </span>
     </div>
 
-    <!-- Driver allowance -->
     <div class="detail-row">
       <span class="detail-label">
         Driver Allowance
@@ -148,11 +141,35 @@
 
   </ng-container>
 
+  <!-- ================= SUB TOTAL ================= -->
+  <div class="detail-row" *ngIf="booking?.pricing?.baseAmount">
+    <span class="detail-label fw-bold">Sub Total:</span>
+    <span class="detail-value">
+      ₹{{ booking?.pricing?.baseAmount | number:'1.0-2' }}
+    </span>
+  </div>
+
+  <!-- ================= TAX ================= -->
+  <div
+    class="detail-row"
+    *ngIf="booking?.pricing?.taxPercentage && booking?.pricing?.taxAmount"
+  >
+    <span class="detail-label">
+      GST ({{ booking.pricing.taxPercentage }}%)
+    </span>
+    <span class="detail-value">
+      ₹{{ booking.pricing.taxAmount | number:'1.0-2' }}
+    </span>
+  </div>
+
   <!-- ================= TOTAL ================= -->
-  <div class="detail-row fw-bold">
+  <div
+    class="detail-row fw-bold"
+    *ngIf="booking?.pricing?.totalAmount"
+  >
     <span class="detail-label">Total Estimated Fare:</span>
     <span class="detail-value fare-value">
-      ₹{{ fare.total | number:'1.0-2' }}
+      ₹{{ booking.pricing.totalAmount | number:'1.0-2' }}
     </span>
   </div>
 
