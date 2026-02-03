@@ -189,6 +189,13 @@ returnTimeInvalid = false;
 toggleReturnTimeList() {
   this.showReturnTimes = !this.showReturnTimes;
 }
+private getCurrentTime24(): string {
+  const now = new Date();
+  return `${now.getHours().toString().padStart(2, '0')}:${now
+    .getMinutes()
+    .toString()
+    .padStart(2, '0')}`;
+}
 to24(t: string): string {
   const [time, ampm] = t.split(' ');
   let [h, m] = time.split(':').map(Number);
@@ -197,6 +204,33 @@ to24(t: string): string {
   if (ampm === 'AM' && h === 12) h = 0;
 
   return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+}
+isPickupTimeDisabled(t: string): boolean {
+  if (!this.date) return false;
+
+  const today = new Date().toISOString().split('T')[0];
+
+  if (this.date !== today) return false;
+
+  return this.to24(t) <= this.getCurrentTime24();
+}
+isReturnTimeDisabled(t: string): boolean {
+  if (!this.returnDate) return false;
+
+  // Same-day return → must be AFTER pickup time
+  if (this.returnDate === this.date) {
+    return this.to24(t) <= this.selected24hrTime;
+  }
+
+  return false;
+}
+
+openDatePicker(input: HTMLInputElement) {
+  if ((input as any).showPicker) {
+    (input as any).showPicker();
+  } else {
+    input.click();
+  }
 }
 selectReturnTime(t: string) {
   this.returnDisplayTime = t;

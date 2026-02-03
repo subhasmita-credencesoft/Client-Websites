@@ -258,3 +258,9 @@
     -webkit-tap-highlight-color: transparent;
   }
 }
+
+@media (max-width: 400px){
+  .step-title {
+    font-size: 11px;
+}
+}

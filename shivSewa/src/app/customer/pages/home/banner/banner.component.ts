@@ -204,16 +204,16 @@ export class BannerComponent {
   }
 
   resetForm() {
-    if (this.selectedTripType === 'rental') {
-      this.dropLocation = '';
-      this.selectedDrop = undefined;
-    } else {
-      this.pickupLocation = '';
-      this.dropLocation = '';
-      this.selectedPickup = undefined;
-      this.selectedDrop = undefined;
-    }
-
+    // if (this.selectedTripType === 'rental') {
+    //   this.dropLocation = '';
+    //   this.selectedDrop = undefined;
+    // } else {
+    //   this.pickupLocation = '';
+    //   this.dropLocation = '';
+    //   this.selectedPickup = undefined;
+    //   this.selectedDrop = undefined;
+    // }
+    this.selectedVehicleCategory = null;
     this.pickupSuggestions = [];
     this.dropSuggestions = [];
   }
@@ -562,7 +562,9 @@ const tripTypeValue: TripTypeValue = this.selectedTripType;
 
   this.bookingService.patchDeep(bookingData);
   sessionStorage.setItem('selectedBooking', JSON.stringify(bookingData));
-
+if (this.selectedPickup && this.selectedDrop) {
+        this.calculateDistanceAndDuration(this.selectedPickup, this.selectedDrop);
+      }
   this.router.navigate(['/booking']);
 }
 

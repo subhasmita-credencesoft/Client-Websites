@@ -37,9 +37,11 @@
       <!-- Pickup Date -->
       <div class="col-12 col-md-6">
         <label class="input-label">Date</label>
-        <div class="schedule-input-group">
-          <i class="fa-regular fa-calendar input-icon"></i>
+        <div class="schedule-input-group" (click)="openDatePicker(pickupDateInput)">
+          <i class="fa-regular fa-calendar input-icon"
+          ></i>
           <input
+          #pickupDateInput
             type="date"
             class="schedule-input"
             [(ngModel)]="date"
@@ -67,7 +69,9 @@
           <i class="fa-regular fa-clock input-icon-right"></i>
 
           <ul class="time-list" *ngIf="showTimes">
-            <li *ngFor="let t of timeOptions" (click)="selectTime(t)">
+            <li *ngFor="let t of timeOptions"
+            [class.disabled]="isPickupTimeDisabled(t)"
+            (click)="!isPickupTimeDisabled(t) && selectTime(t)">
               {{ t }}
             </li>
           </ul>
@@ -95,9 +99,10 @@
       <!-- Return Date -->
       <div class="col-12 col-md-6">
         <label class="input-label">Return Date</label>
-        <div class="schedule-input-group">
-          <i class="fa-regular fa-calendar input-icon"></i>
+        <div class="schedule-input-group" (click)="openDatePicker(returnDateInput)">
+          <i class="fa-regular fa-calendar input-icon" ></i>
           <input
+          #returnDateInput
             type="date"
             class="schedule-input"
             [(ngModel)]="returnDate"
@@ -127,11 +132,8 @@
           <ul class="time-list" *ngIf="showReturnTimes">
             <li
               *ngFor="let t of timeOptions"
-              (click)="selectReturnTime(t)"
-              [class.disabled]="
-                date === returnDate &&
-                to24(t) <= selected24hrTime
-              "
+              (click)="!isReturnTimeDisabled(t) && selectReturnTime(t)"
+              [class.disabled]="isReturnTimeDisabled(t)"
             >
               {{ t }}
             </li>

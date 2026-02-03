@@ -3,6 +3,7 @@ import {
   ElementRef,
   HostListener,
   QueryList,
+  ViewChild,
   ViewChildren,
 } from '@angular/core';
 import { BookingService } from '../../../services/booking.service';
@@ -66,7 +67,8 @@ export class StepSummaryComponent {
   businessTypeId: any;
   isConfirming = false;
   taxDetails: any;
-
+  @ViewChild('realOtp') realOtp!: ElementRef<HTMLInputElement>;
+activeOtpIndex = 0;
   constructor(
     private bookingService: BookingService,
     private locationService: LocationService,
@@ -83,29 +85,7 @@ export class StepSummaryComponent {
   padZero(num: number): string {
     return num.toString().padStart(2, '0');
   }
-  @HostListener('paste', ['$event'])
-  handlePaste(event: ClipboardEvent) {
-    const pasted =
-      event.clipboardData?.getData('text')?.replace(/\D/g, '') || '';
 
-    pasted
-      .split('')
-      .slice(0, this.otpValues.length)
-      .forEach((digit, i) => {
-        const input = document.getElementById(
-          `otp-${i}`,
-        ) as HTMLInputElement | null;
-        if (input) {
-          input.value = digit;
-          this.otpValues[i] = digit;
-        }
-      });
-
-    const last = document.getElementById(
-      `otp-${this.otpValues.length - 1}`,
-    ) as HTMLInputElement | null;
-    last?.focus();
-  }
   getOtp(): string {
     return this.otpValues.join('');
   }
@@ -482,59 +462,136 @@ export class StepSummaryComponent {
       event.target.nextElementSibling?.focus();
     }
   }
-  handleOtpInput(event: Event, index: number): void {
-    const input = event.target as HTMLInputElement;
-    const digit = input.value.replace(/\D/g, '').slice(-1);
+handleOtpInput(event: Event, index: number): void {
+  const input = event.target as HTMLInputElement;
+  const value = input.value.replace(/\D/g, '');
 
-    if (digit) {
-      this.otpValues[index] = digit;
-      input.value = digit;
-
-      if (index < this.otpValues.length - 1) {
-        // Move focus to next input
-        setTimeout(() => {
-          const nextInput = this.inputs.toArray()[index + 1].nativeElement;
-          nextInput.focus();
-          // Clear the next input to prevent duplicate entry
-          nextInput.value = '';
-          this.otpValues[index + 1] = '';
-        }, 0);
-      }
-    } else {
-      this.otpValues[index] = '';
-      input.value = '';
-    }
+  // Handle full OTP paste / autofill
+  if (value.length > 1) {
+    value.split('').slice(0, this.otpValues.length).forEach((d, i) => {
+      this.otpValues[i] = d;
+      const el = this.inputs.toArray()[i]?.nativeElement;
+      if (el) el.value = d;
+    });
+    this.inputs.toArray()[this.otpValues.length - 1]?.nativeElement.focus();
+    return;
   }
 
-  handleKeyDown(event: KeyboardEvent, index: number): void {
-    const input = event.target as HTMLInputElement;
+  // Assign value ONLY to current index
+  this.otpValues[index] = value;
+  input.value = value;
 
-    if (event.key === 'Backspace') {
-      // Clear current box first
-      this.otpValues[index] = '';
-      input.value = '';
-
-      // Move to previous box if current was already empty
-      if (index > 0) {
-        setTimeout(() => {
-          this.inputs.toArray()[index - 1].nativeElement.focus();
-        }, 0);
-      }
-      event.preventDefault();
-    } else if (event.key === 'ArrowLeft' && index > 0) {
-      this.inputs.toArray()[index - 1].nativeElement.focus();
-      event.preventDefault();
-    } else if (
-      event.key === 'ArrowRight' &&
-      index < this.otpValues.length - 1
-    ) {
+  // ✅ MOVE FOCUS AFTER iOS FINISHES APPLYING KEY
+  if (value && index < this.otpValues.length - 1) {
+    requestAnimationFrame(() => {
       this.inputs.toArray()[index + 1].nativeElement.focus();
-      event.preventDefault();
-    } else if (!/^\d$/.test(event.key) && event.key.length === 1) {
-      // Prevent non-digit characters
-      event.preventDefault();
-    }
+    });
   }
+}
+
+handleOtpKeyDown(event: KeyboardEvent, index: number): void {
+  const key = event.key;
+
+  // ✅ DIGIT PRESSED
+  if (/^\d$/.test(key)) {
+    event.preventDefault(); // ⛔ stop iOS from auto-inserting
+
+    this.otpValues[index] = key;
+
+    // Move forward
+    if (index < this.otpValues.length - 1) {
+      this.inputs.toArray()[index + 1].nativeElement.focus();
+    }
+    return;
+  }
+
+  // ✅ BACKSPACE
+  if (key === 'Backspace') {
+    event.preventDefault();
+
+    if (this.otpValues[index]) {
+      this.otpValues[index] = '';
+    } else if (index > 0) {
+      this.otpValues[index - 1] = '';
+      this.inputs.toArray()[index - 1].nativeElement.focus();
+    }
+    return;
+  }
+
+  // ❌ Block everything else
+  if (key.length === 1) {
+    event.preventDefault();
+  }
+}
+
+@HostListener('paste', ['$event'])
+handlePaste(event: ClipboardEvent) {
+  event.preventDefault();
+
+  const pasted = event.clipboardData
+    ?.getData('text')
+    ?.replace(/\D/g, '')
+    .slice(0, this.otpValues.length);
+
+  if (!pasted) return;
+
+  pasted.split('').forEach((d, i) => {
+    this.otpValues[i] = d;
+  });
+
+  this.inputs.toArray()[pasted.length - 1]?.nativeElement.focus();
+}
+
+focusRealOtp() {
+  this.realOtp.nativeElement.focus();
+    const el = this.realOtp.nativeElement;
+  el.focus();
+}
+
+onRealOtpInput(event: Event) {
+  const value = (event.target as HTMLInputElement)
+    .value
+    .replace(/\D/g, '')
+    .slice(0, 6);
+
+  // Update OTP array
+  this.otpValues = value.split('');
+  while (this.otpValues.length < 6) {
+    this.otpValues.push('');
+  }
+
+  // 🔥 ACTIVE BOX INDEX
+  this.activeOtpIndex =
+    value.length < 6 ? value.length : 5;
+
+  // Optional auto-verify
+  if (value.length === 6) {
+    // this.verifyEmailOtp();
+  }
+}
+
+handleKeyDown(event: KeyboardEvent, index: number): void {
+  const input = event.target as HTMLInputElement;
+
+  if (event.key === 'Backspace') {
+    if (this.otpValues[index]) {
+      this.otpValues[index] = '';
+      input.value = '';
+    } else if (index > 0) {
+      const prev = this.inputs.toArray()[index - 1].nativeElement;
+      prev.focus();
+      prev.value = '';
+      this.otpValues[index - 1] = '';
+    }
+    event.preventDefault();
+  }
+
+  if (event.key.length === 1 && !/^\d$/.test(event.key)) {
+    event.preventDefault();
+  }
+}
+
+
 
   /* ================= VERIFY OTP ================= */
   verifyEmailOtp() {
