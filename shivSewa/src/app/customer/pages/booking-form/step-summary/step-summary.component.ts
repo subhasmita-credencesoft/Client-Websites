@@ -2,6 +2,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Input,
   QueryList,
   ViewChild,
   ViewChildren,
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocationService } from '../../../services/location/location.service';
 import { mapTaxiToSlot } from '../../../services/taxi-to-slot.mapper';
+import { PricingService } from '../../../pricing/pricing.service';
 
 @Component({
   selector: 'app-step-summary',
@@ -67,11 +69,13 @@ export class StepSummaryComponent {
   businessTypeId: any;
   isConfirming = false;
   taxDetails: any;
+  inclusions: any[] = [];
   @ViewChild('realOtp') realOtp!: ElementRef<HTMLInputElement>;
 activeOtpIndex = 0;
   constructor(
     private bookingService: BookingService,
     private locationService: LocationService,
+    private pricingService: PricingService
   ) {
     this.bookingService.booking$.subscribe((b) => {
       this.booking = b;
@@ -81,6 +85,28 @@ activeOtpIndex = 0;
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.fetchPropertyDetails();
+  }
+    ngOnInit(): void {
+    if (this.pricingService.isReady()) {
+      this.buildInclusions();
+    }
+  }
+    private calculateOutstationDays(
+    pickupDate: string,
+    returnDate?: string
+  ): number {
+    if (!returnDate) return 1;
+
+    const [sy, sm, sd] = pickupDate.split('-').map(Number);
+    const [ey, em, ed] = returnDate.split('-').map(Number);
+
+    const start = new Date(sy, sm - 1, sd);
+    const end = new Date(ey, em - 1, ed);
+
+    const ONE_DAY = 24 * 60 * 60 * 1000;
+    const diffDays = Math.round((end.getTime() - start.getTime()) / ONE_DAY);
+
+    return diffDays >= 0 ? diffDays + 1 : 1;
   }
   padZero(num: number): string {
     return num.toString().padStart(2, '0');
@@ -645,6 +671,113 @@ handleKeyDown(event: KeyboardEvent, index: number): void {
       }
     }, 1000);
   }
+
+private buildInclusions() {
+
+  const config = this.pricingService.getConfig();
+
+  // ✅ Use tripServiceType (matches pricing config exactly)
+  const type = this.booking?.tripServiceType;
+  const category = this.booking?.vehicleCategory;
+
+  if (!config?.services || !type || !category) {
+    this.inclusions = [];
+    return;
+  }
+// ==============================
+// 🚕 PICKUP & DROP
+// ==============================
+if (type === 'pickup_drop') {
+
+  const cat = config.services.pickup_drop?.categories?.[category];
+  if (!cat) {
+    this.inclusions = [];
+    return;
+  }
+
+  this.inclusions = [
+    {
+      title: `${cat.base_km} km included in your fare`,
+      subtitle: `After ${cat.base_km} km, ₹${cat.additional_km_rate} per km will be charged`
+    },
+    {
+      title: '45 minutes free waiting time',
+      subtitle: 'After 45 minutes, ₹100 will be charged per 45 minutes'
+    },
+    {
+      title: 'Fuel & driver charges included',
+      subtitle: 'No extra fuel cost for this trip'
+    }
+  ];
+}
+
+
+// ==============================
+// 🕒 RENTAL
+// ==============================
+else if (type === 'rental') {
+
+  const cat = config.services.rental?.categories?.[category];
+  if (!cat) {
+    this.inclusions = [];
+    return;
+  }
+
+  this.inclusions = [
+    {
+      title: `${cat.package.hours} hours & ${cat.package.km} km included`,
+      subtitle: `Total base fare: ₹${cat.package.base_fare}`
+    },
+    {
+      title: `Extra usage charges`,
+      subtitle: `₹${cat.extra_km_rate}/km for additional distance & ₹${cat.extra_hour_rate}/hour for extra time`
+    },
+    {
+      title: 'Driver & fuel included',
+      subtitle: 'Enjoy a hassle-free ride with no hidden fuel costs'
+    }
+  ];
+}
+
+
+// ==============================
+// 🌄 OUTSTATION
+// ==============================
+else if (type === 'outstation') {
+
+  const cat = config.services.outstation?.categories?.[category];
+  if (!cat) {
+    this.inclusions = [];
+    return;
+  }
+
+  const days = this.calculateOutstationDays(
+    this.booking.date,
+    this.booking.returnDate
+  );
+
+  this.inclusions = [
+    {
+      title: `Minimum ${cat.min_km_per_day} km per day`,
+      subtitle: `Calculated for ${days} day${days > 1 ? 's' : ''} of travel`
+    },
+    {
+      title: `Distance charge: ₹${cat.per_km_rate} per km`,
+      subtitle: `Distance is calculated as ${cat.distance_calculation.replace(/_/g, ' ')}`
+    },
+    {
+      title: `Driver allowance: ₹${cat.driver_allowance_per_day} per day`,
+      subtitle: `Total driver allowance for ${days} day${days > 1 ? 's' : ''}: ₹${cat.driver_allowance_per_day * days}`
+    }
+  ];
+}
+
+else {
+  this.inclusions = [];
+}
+
+}
+
 
   /* ================= CHANGE EMAIL ================= */
   changeEmail() {

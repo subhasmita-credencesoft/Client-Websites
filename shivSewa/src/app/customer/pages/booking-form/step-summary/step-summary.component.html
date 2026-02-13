@@ -391,38 +391,39 @@
   </ng-container>
 
 <hr class="my-3">
-      <div >
-              <h6 class="fw-bold mb-3" style="color: #FF6B35;">Inclusions</h6>
-      <ul class="list-unstyled mb-0">
-        <li class="mb-3">
-          <div class="d-flex align-items-start gap-2">
-            <span class="badge rounded-circle bg-secondary mt-1" style="width: 6px; height: 6px; padding: 3px;"></span>
-            <div class="flex-grow-1">
-              <div class="fw-semibold small text-dark">4 km included</div>
-              <div class="text-muted" style="font-size: 0.75rem;">₹20/km will apply beyond the included kms</div>
-            </div>
+  <div *ngIf="inclusions && inclusions.length > 0; else noInclusions">
+  <h6 class="fw-bold mb-3" style="color: #FF6B35;">Inclusions</h6>
+
+  <ul class="list-unstyled mb-0">
+    <li class="mb-3" *ngFor="let item of inclusions; let last = last">
+      <div class="d-flex align-items-start gap-2">
+        <span
+          class="badge rounded-circle mt-1"
+          [ngClass]="last ? 'bg-danger' : 'bg-secondary'"
+          style="width: 6px; height: 6px; padding: 3px;">
+        </span>
+
+        <div class="flex-grow-1">
+          <div class="fw-semibold small text-dark">
+            {{ item?.title }}
           </div>
-        </li>
-        <li class="mb-3">
-          <div class="d-flex align-items-start gap-2">
-            <span class="badge rounded-circle bg-secondary mt-1" style="width: 6px; height: 6px; padding: 3px;"></span>
-            <div class="flex-grow-1">
-              <div class="fw-semibold small text-dark">Waiting time upto 45 mins for pickup</div>
-              <div class="text-muted" style="font-size: 0.75rem;">₹100/45 mins post 45 mins</div>
-            </div>
+          <div class="text-muted" style="font-size: 0.75rem;">
+            {{ item?.subtitle }}
           </div>
-        </li>
-        <li>
-          <div class="d-flex align-items-start gap-2">
-            <span class="badge rounded-circle bg-danger mt-1" style="width: 6px; height: 6px; padding: 3px;"></span>
-            <div class="flex-grow-1">
-              <div class="fw-semibold small text-dark">Fuel charges included</div>
-              <div class="text-muted" style="font-size: 0.75rem;">Fuel cost for your trip is included in the fare</div>
-            </div>
-          </div>
-        </li>
-      </ul>
+        </div>
       </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Debug fallback (remove later if not needed) -->
+<ng-template #noInclusions>
+  <div class="small text-muted">
+    Inclusions not available.
+  </div>
+</ng-template>
+
+
     </div>
 
   </div>

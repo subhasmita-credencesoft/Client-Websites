@@ -7,7 +7,7 @@ function calculateOutstationDaysFromStrings(
   pickupDate: string,
   pickupTime: string,
   returnDate?: string,
-  returnTime?: string
+  returnTime?: string,
 ): number {
   if (!returnDate) return 1;
 
@@ -25,43 +25,42 @@ function calculateOutstationDaysFromStrings(
 export function calculateFare(
   cfg: any,
   req: QuoteRequest,
-  distanceKm: number
+  distanceKm: number,
 ): FareQuote {
-
   const lines: FareLine[] = [];
   const notes: string[] = [...(cfg.meta?.notes || [])];
 
   const start = toDateTime(req.pickupDate, req.pickupTime);
-  const end = req.returnDate && req.returnTime
-    ? toDateTime(req.returnDate, req.returnTime)
-    : start;
+  const end =
+    req.returnDate && req.returnTime
+      ? toDateTime(req.returnDate, req.returnTime)
+      : start;
 
   const hours = diffHours(start, end);
   const days =
-  req.tripType === 'outstation'
-    ? calculateOutstationDays(req.pickupDate, req.returnDate)
-    : diffDaysCeil(start, end);
+    req.tripType === 'outstation'
+      ? calculateOutstationDays(req.pickupDate, req.returnDate)
+      : diffDaysCeil(start, end);
 
   const cat = req.vehicleCategory;
   const dist = r2(distanceKm);
-function calculateOutstationDays(
-  pickupDate: string,
-  returnDate?: string
-): number {
-  if (!returnDate) return 1;
+  function calculateOutstationDays(
+    pickupDate: string,
+    returnDate?: string,
+  ): number {
+    if (!returnDate) return 1;
 
-  const start = new Date(pickupDate);
-  const end = new Date(returnDate);
+    const [sy, sm, sd] = pickupDate.split('-').map(Number);
+    const [ey, em, ed] = returnDate.split('-').map(Number);
 
-  const ONE_DAY = 24 * 60 * 60 * 1000;
-  const diffTime = end.getTime() - start.getTime();
-  const diffDays = Math.floor(diffTime / ONE_DAY);
+    const start = new Date(sy, sm - 1, sd);
+    const end = new Date(ey, em - 1, ed);
 
-  // If same day → 1
-  // If 12 → 13 → 1 difference → return 2 days
-  return diffDays >= 0 ? diffDays + 1 : 1;
-}
+    const ONE_DAY = 24 * 60 * 60 * 1000;
+    const diffDays = Math.round((end.getTime() - start.getTime()) / ONE_DAY);
 
+    return diffDays >= 0 ? diffDays + 1 : 1;
+  }
 
   /* ---------------- PICKUP / DROP ---------------- */
   if (req.tripType === 'pickup_drop') {
@@ -75,7 +74,7 @@ function calculateOutstationDays(
       label: 'Base Fare',
       qty: c.base_km,
       unitPrice: c.base_fare,
-      amount: c.base_fare
+      amount: c.base_fare,
     });
 
     if (extraKm > 0) {
@@ -84,7 +83,7 @@ function calculateOutstationDays(
         label: 'Extra Km',
         qty: extraKm,
         unitPrice: c.additional_km_rate,
-        amount: r2(extraKm * c.additional_km_rate)
+        amount: r2(extraKm * c.additional_km_rate),
       });
     }
   }
@@ -93,13 +92,13 @@ function calculateOutstationDays(
   if (req.tripType === 'rental') {
     const c = cfg.services.rental.categories[cat];
     if (!c) throw new Error(`Rental pricing missing for ${cat}`);
-    console.log('Rental calculation:', {dist, hours, c});
+    console.log('Rental calculation:', { dist, hours, c });
     lines.push({
       code: 'PACKAGE',
       label: 'Rental Package',
       qty: 1,
       unitPrice: c.package.base_fare,
-      amount: c.package.base_fare
+      amount: c.package.base_fare,
     });
 
     const extraKm = Math.max(0, dist - c.package.km);
@@ -111,7 +110,7 @@ function calculateOutstationDays(
         label: 'Extra Km',
         qty: extraKm,
         unitPrice: c.extra_km_rate,
-        amount: r2(extraKm * c.extra_km_rate)
+        amount: r2(extraKm * c.extra_km_rate),
       });
     }
 
@@ -121,29 +120,36 @@ function calculateOutstationDays(
         label: 'Extra Hour',
         qty: extraHr,
         unitPrice: c.extra_hour_rate,
-        amount: r2(extraHr * c.extra_hour_rate)
+        amount: r2(extraHr * c.extra_hour_rate),
       });
     }
   }
 
   /* ---------------- OUTSTATION ---------------- */
-/* ---------------- OUTSTATION ---------------- */
 if (req.tripType === 'outstation') {
+
   const c = cfg.services.outstation.categories[cat];
   if (!c) throw new Error(`Outstation pricing missing for ${cat}`);
 
-  // ✅ Round trip distance
-  const roundTripDistance = dist * 2;
-
-  // ✅ Correct calendar days
   const outstationDays = calculateOutstationDays(
     req.pickupDate,
     req.returnDate
   );
 
-  // ✅ Minimum km rule
+  let totalDistance = 0;
+
+  if (outstationDays === 1) {
+    // Same day → round trip
+    totalDistance = dist * 2;
+  } else {
+    // Multi-day → distance × days
+    totalDistance = dist * outstationDays;
+  }
+
+  totalDistance = r2(totalDistance);
+
   const minKm = c.min_km_per_day * outstationDays;
-  const billKm = Math.max(roundTripDistance, minKm);
+  const billKm = Math.max(totalDistance, minKm);
 
   lines.push({
     code: 'KM',
@@ -163,7 +169,6 @@ if (req.tripType === 'outstation') {
 }
 
 
-
   const total = r2(lines.reduce((s, l) => s + l.amount, 0));
 
   return {
@@ -174,6 +179,6 @@ if (req.tripType === 'outstation') {
     distanceKm: dist,
     total,
     lines,
-    notes
+    notes,
   };
 }
