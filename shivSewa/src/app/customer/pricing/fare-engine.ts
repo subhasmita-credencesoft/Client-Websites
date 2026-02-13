@@ -39,16 +39,29 @@ export function calculateFare(
   const hours = diffHours(start, end);
   const days =
   req.tripType === 'outstation'
-    ? calculateOutstationDaysFromStrings(
-        req.pickupDate,
-        req.pickupTime,
-        req.returnDate,
-        req.returnTime
-      )
+    ? calculateOutstationDays(req.pickupDate, req.returnDate)
     : diffDaysCeil(start, end);
 
   const cat = req.vehicleCategory;
   const dist = r2(distanceKm);
+function calculateOutstationDays(
+  pickupDate: string,
+  returnDate?: string
+): number {
+  if (!returnDate) return 1;
+
+  const start = new Date(pickupDate);
+  const end = new Date(returnDate);
+
+  const ONE_DAY = 24 * 60 * 60 * 1000;
+  const diffTime = end.getTime() - start.getTime();
+  const diffDays = Math.floor(diffTime / ONE_DAY);
+
+  // If same day → 1
+  // If 12 → 13 → 1 difference → return 2 days
+  return diffDays >= 0 ? diffDays + 1 : 1;
+}
+
 
   /* ---------------- PICKUP / DROP ---------------- */
   if (req.tripType === 'pickup_drop') {
@@ -114,29 +127,42 @@ export function calculateFare(
   }
 
   /* ---------------- OUTSTATION ---------------- */
-  if (req.tripType === 'outstation') {
-    const c = cfg.services.outstation.categories[cat];
-    if (!c) throw new Error(`Outstation pricing missing for ${cat}`);
+/* ---------------- OUTSTATION ---------------- */
+if (req.tripType === 'outstation') {
+  const c = cfg.services.outstation.categories[cat];
+  if (!c) throw new Error(`Outstation pricing missing for ${cat}`);
 
-    const minKm = c.min_km_per_day * days;
-    const billKm = Math.max(dist, minKm);
+  // ✅ Round trip distance
+  const roundTripDistance = dist * 2;
 
-    lines.push({
-      code: 'KM',
-      label: 'Distance Charge',
-      qty: billKm,
-      unitPrice: c.per_km_rate,
-      amount: r2(billKm * c.per_km_rate)
-    });
+  // ✅ Correct calendar days
+  const outstationDays = calculateOutstationDays(
+    req.pickupDate,
+    req.returnDate
+  );
 
-    lines.push({
-      code: 'DRIVER',
-      label: 'Driver Allowance',
-      qty: days,
-      unitPrice: c.driver_allowance_per_day,
-      amount: r2(days * c.driver_allowance_per_day)
-    });
-  }
+  // ✅ Minimum km rule
+  const minKm = c.min_km_per_day * outstationDays;
+  const billKm = Math.max(roundTripDistance, minKm);
+
+  lines.push({
+    code: 'KM',
+    label: 'Distance Charge',
+    qty: billKm,
+    unitPrice: c.per_km_rate,
+    amount: r2(billKm * c.per_km_rate)
+  });
+
+  lines.push({
+    code: 'DRIVER',
+    label: 'Driver Allowance',
+    qty: outstationDays,
+    unitPrice: c.driver_allowance_per_day,
+    amount: r2(outstationDays * c.driver_allowance_per_day)
+  });
+}
+
+
 
   const total = r2(lines.reduce((s, l) => s + l.amount, 0));
 
