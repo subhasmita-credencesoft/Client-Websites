@@ -683,6 +683,7 @@ handleKeyDown(event: KeyboardEvent, index: number): void {
         next: (customerRes) => {
 
           this.customerId = customerRes?.id;
+          this.customerId = this.customerData?.id;
           this.customerData = customerRes;
           if (!this.customerId) {
             return;
