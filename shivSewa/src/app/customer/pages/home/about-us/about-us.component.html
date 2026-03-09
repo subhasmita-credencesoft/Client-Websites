@@ -1,68 +1,92 @@
-    <div class="about-us-section">
-      <!-- Hero Banner -->
-      <div class="hero-banner">
-        <div class="hero-overlay">
-          <p class="hero-subtitle">About Us</p>
-          <h1 class="hero-title"><span class="heading-theme">Our Story:</span> Crafted for the Roads of Maharashtra</h1>
-        </div>
-      </div>
+<section class="about-us-section">
+  <div class="about-container">
+    <h2 class="section-title">About Shiv Sewa</h2>
+    <span class="title-underline"></span>
 
-      <!-- Content Section -->
-      <div class="content-container">
-        <div class="content-grid">
-
-          <!-- Left Side - Features -->
-          <div class="features-column">
-            <!-- Feature 1 -->
-            <div class="feature-card">
-              <div class="feature-icon">
-                <img
-                src="assets/cars-1.png"
-                style="width: 130px;"
-              />
-              </div>
-              <div class="feature-text">
-                <h3 class="feature-title">Dedicated</h3>
-                <p class="feature-description">Fleet Capacity</p>
-              </div>
-            </div>
-
-            <!-- Feature 2 -->
-            <div class="feature-card">
-              <div class="feature-icon">
-                <img
-                src="assets/cars-2.png" style="width:100%"
-              />
-              </div>
-              <div class="feature-text">
-                <h3 class="feature-title">Mumbai-</h3>
-                <p class="feature-description">Trained Drivers</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Center - Taxi Image with Location Pin -->
-          <div class="center-column">
-            <div class="taxi-wrapper">
-              <img
-                src="assets/about-us-car.png"
-                alt="Shiv Sewa Taxi"
-                class="taxi-image"
-              />
-            </div>
-          </div>
-
-          <!-- Right Side - Mission Statement -->
-          <div class="mission-column">
-            <div class="mission-content">
-              <p class="mission-intro">Born in Mumbai, our mission is simple:</p>
-              <p class="mission-statement">
-                to provide reliable, high-quality vehicle transfers and eliminate travel anxiety across our home state.
-              </p>
-              <button (click)="scrollingtoTop()" class="cta-button">Join Shiv Sewa</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
+    <div class="info-cards">
+      <article class="info-card">
+        <span class="icon icon-safe margin-top-15">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="11" fill="#E8F0FE" />
+            <path d="M12 4L18 7V11C18 15 15.5 18 12 19C8.5 18 6 15 6 11V7L12 4Z" stroke="#2563EB" stroke-width="1.8" />
+            <path d="M9.5 11.5L11 13L14.5 9.5" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </span>
+        <h3>Safe &amp; Secure</h3>
+        <p>Verified local drivers committed to your safety and comfort.</p>
+      </article>
+      <article class="info-card">
+        <span class="icon icon-quality margin-top-15">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="11" fill="#FFF3E8" />
+            <path d="M12 4L14.5 9H20L15.5 12.5L17.5 18L12 14.8L6.5 18L8.5 12.5L4 9H9.5L12 4Z" stroke="#F97316" stroke-width="1.8" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <h3>Premium Quality</h3>
+        <p>Clean, hygienic, and well-maintained vehicles for every ride.</p>
+      </article>
+      <article class="info-card">
+        <span class="icon icon-community margin-top-15">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="11" fill="#DCFCE7" />
+            <circle cx="10" cy="9" r="2.5" stroke="#22C55E" stroke-width="1.7" />
+            <circle cx="16" cy="10" r="2" stroke="#22C55E" stroke-width="1.7" />
+            <path d="M5.5 17c0-2.2 2.4-3.8 4.5-3.8s4.5 1.6 4.5 3.8" stroke="#22C55E" stroke-width="1.7" stroke-linecap="round" />
+            <path d="M14.5 14.5c1.6.3 3 1.4 3 2.5" stroke="#22C55E" stroke-width="1.7" stroke-linecap="round" />
+          </svg>
+        </span>
+        <h3>Community Driven</h3>
+        <p>Supporting local taxi drivers while providing fair, transparent pricing.</p>
+      </article>
     </div>
+
+    <div class="highlight-cards">
+      <article class="highlight-card image-card">
+        <img src="assets/mumbai-st.jpg" alt="Spotless and sanitized taxi" />
+        <div class="overlay"></div>
+        <h3>Spotless &amp; Sanitized</h3>
+      </article>
+      <article class="highlight-card trust-card">
+        <img src="assets/customer-stories.jpg" alt="Friendly driver and passenger trust" />
+        <div class="overlay"></div>
+        <h3>Trusted Local Partners</h3>
+      </article>
+    </div>
+
+    <div class="content-card">
+      <div class="intro-content">
+      <p>Shiv Sewa is a community-driven taxi booking platform built to bring professionalism, trust, and transparency to local taxi services.</p>
+      <p>We believe that passengers deserve more than just a ride. They deserve a safe, reliable, and comfortable travel experience.</p>
+      <p>Shiv Sewa connects customers with verified local taxi drivers who are committed to delivering clean, hygienic, and well-maintained vehicles, along with courteous and professional service.</p>
+
+      </div>
+
+      <div class="list-card intro-content">
+        <div class="margin-gap">
+          <h4>Our platform offers convenient cab services across multiple travel needs:</h4>
+        <ul>
+          <li>Local Pick-Up &amp; Drop</li>
+          <li>Daily Rental</li>
+          <li>Outstation Cab Services</li>
+        </ul>
+        </div>
+        
+      </div>
+
+      <div class="extra-content" *ngIf="expanded">
+        <p>Unlike ride-hailing platforms that compete aggressively on price, Shiv Sewa focuses on quality, reliability, and trust. Our pricing is transparent and fair, ensuring that both customers and drivers benefit from a sustainable service model.</p>
+        <p>Safety and security remain our top priorities. Each ride is fulfilled by local drivers who know the city, respect customer expectations, and take pride in delivering dependable service.</p>
+        <p>By supporting Shiv Sewa, you are also supporting local taxi drivers who are evolving with technology to provide better service to their customers.</p>
+      </div>
+
+      <button type="button" class="brand-cta" (click)="scrollingtoTop()">
+        <span>Shiv Sewa</span>
+        <small>Professional Taxi Service You Can Trust.</small>
+      </button>
+    </div>
+
+    <button type="button" class="toggle-btn" (click)="toggleContent()">
+      {{ expanded ? 'Show Less' : 'Show More' }}
+    </button>
+  </div>
+</section>

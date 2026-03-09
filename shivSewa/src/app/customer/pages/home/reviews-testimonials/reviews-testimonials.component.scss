@@ -24,11 +24,12 @@
     }
 
     .main-title {
-      color: #1F1F1F;
-      font-size: 42px;
-      font-weight: 700;
-      margin: 0;
-      letter-spacing: -0.5px;
+font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+    font-family: "DM Sans";
+    letter-spacing: 0.8px;
     }
 
     .content-container {
@@ -80,11 +81,12 @@
     }
 
     .stats-number {
-    color: rgba(235, 100, 62, 1);
-    font-size: 44px;
+color: rgb(235, 100, 62);
+    font-size: 2rem;
     font-weight: 600;
     margin: 0 0 12px 0;
     line-height: 1.1;
+    font-family: "DM Sans";
     }
 
     .stats-text {
