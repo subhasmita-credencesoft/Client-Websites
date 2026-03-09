@@ -67,42 +67,64 @@
         <h3 class="column-title contact-align">Contact Us</h3>
         <div class="contact-list">
           <div class="contact-item" *ngFor="let contact of contactInfo">
-            <div class="contact-icon">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <ng-container [ngSwitch]="contact.icon">
-                  <!-- Location Icon -->
-                  <g *ngSwitchCase="'location'">
-                    <path
-                      d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                    ></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </g>
-                  <!-- Phone Icon -->
-                  <path
-                    *ngSwitchCase="'phone'"
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                  ></path>
-                  <!-- Email Icon -->
-                  <g *ngSwitchCase="'email'">
-                    <path
-                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                    ></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </g>
-                </ng-container>
-              </svg>
-            </div>
-            <div class="contact-info">
-              <span class="contact-label">{{ contact.label }}</span>
-            </div>
-          </div>
+  <div class="contact-icon">
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <ng-container [ngSwitch]="contact.icon">
+        <!-- Location Icon -->
+        <g *ngSwitchCase="'location'">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </g>
+
+        <!-- Phone Icon -->
+        <path
+          *ngSwitchCase="'phone'"
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+        ></path>
+
+        <!-- Email Icon -->
+        <g *ngSwitchCase="'email'">
+          <path
+            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+          ></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </g>
+      </ng-container>
+    </svg>
+  </div>
+
+  <div class="contact-info">
+    <span class="contact-label">
+
+      <!-- Location -->
+      <a style="text-decoration: none; color: #AAAAAA;" *ngIf="contact.icon === 'location'"
+         [href]="'https://www.google.com/maps/search/?api=1&query=' + contact.label"
+         target="_blank">
+        {{ contact.label }}
+      </a>
+
+      <!-- Phone -->
+      <a style="text-decoration: none; color: #AAAAAA;" *ngIf="contact.icon === 'phone'"
+         [href]="'tel:' + contact.label">
+        {{ contact.label }}
+      </a>
+
+      <!-- Email -->
+      <a style="text-decoration: none; color: #AAAAAA;" *ngIf="contact.icon === 'email'"
+         [href]="'mailto:' + contact.label">
+        {{ contact.label }}
+      </a>
+
+    </span>
+  </div>
+</div>
         </div>
       </div>
     </div>

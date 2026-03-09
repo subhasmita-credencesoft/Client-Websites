@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MUMBAI_LOCATIONS } from '../../../data/mumbai-locations';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { GeoLocation } from '../../../models/geo-location';
 import { BookingService } from '../../../services/booking.service';
 import { LocationService } from '../../../services/location/location.service';
 import { Booking, TripServiceType, TripTypeValue } from '../../../models/booking.model';
+import { Subject, takeUntil } from 'rxjs';
 
 type TripType = 'pickup-drop' | 'outstation' | 'rental';
 type VehicleCategory = 'sedan' | 'suv' | 'suvPlus';
@@ -45,7 +46,7 @@ export class BannerComponent {
   rentalHours: number = 1;
   rentalDate: string = '';
   rentalTime: string = '';
-
+private destroy$ = new Subject<void>();
   // Car data
   carData: Record<VehicleCategory, Car[]> = {
     sedan: [
@@ -150,14 +151,15 @@ export class BannerComponent {
   dropAutocomplete!: google.maps.places.AutocompleteService;
   pickupError: string = '';
   dropError: string = '';
-
+  @Input() tripData: any;
+private resizeHandler!: () => void;
   constructor(
     private router: Router,
     private bookingService: BookingService,
     private locationService: LocationService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.pickupAutocomplete = new google.maps.places.AutocompleteService();
     this.dropAutocomplete = new google.maps.places.AutocompleteService();
     this.useCurrentLocation();
@@ -165,14 +167,27 @@ export class BannerComponent {
     window.addEventListener('resize', () => this.checkViewport());
     this.setMinDateTime();
   }
+ngOnChanges(changes: SimpleChanges): void {
 
+  if (changes['tripData'] && this.tripData) {
+    this.selectedPickup = this.tripData.pickup;
+    this.pickupLocation = this.tripData.pickup?.name;
+
+    this.selectedDrop = this.tripData.dropoff;
+    this.dropLocation = this.tripData.dropoff?.name;
+
+    this.selectedTripType = this.tripData.tripTypeValue ?? 'pickup-drop';
+  }
+}
   ngAfterViewInit() {
     if (this.isMobileView) {
       this.startMobileAutoSlide();
     }
   }
 
+
   ngOnDestroy() {
+
     if (this.mobileInterval) {
       clearInterval(this.mobileInterval);
     }
@@ -188,18 +203,17 @@ export class BannerComponent {
    selectVehicleCategory(category: VehicleCategory) {
     this.selectedVehicleCategory = category;
 
-    // ✅ store early
     this.bookingService.setCurrent({
       vehicleCategory: category
     });
   }
 
-  // Get vehicle category display name
+
    getVehicleCategoryName(category: VehicleCategory): string {
     return {
       sedan: 'Sedan',
       suv: 'SUV',
-      suvPlus: 'Suv Plus'
+      suvPlus: 'SUV Plus'
     }[category];
   }
 
@@ -410,8 +424,6 @@ export class BannerComponent {
           durationMinutes
         });
 
-        console.log('Distance KM:', distanceKm);
-        console.log('Duration Minutes:', durationMinutes);
       }
     );
   }

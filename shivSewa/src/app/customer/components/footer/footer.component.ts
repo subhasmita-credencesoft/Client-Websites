@@ -32,7 +32,7 @@ companyLinks: NavLink[] = [
   ];
 
   contactInfo: ContactInfo[] = [
-    { icon: 'location', label: 'The Landmark 410, Plot No.26A, Sector 7, Kharghar, Navi Mumbai, Maharashtra 410210', value: '' },
+    { icon: 'location', label: 'C-6-10-4-1, Sector6, CBD Belapur, Thane- 400614, Maharashtra', value: '' },
     { icon: 'phone', label: '9136399064', value: '' },
     { icon: 'email', label: 'shivsewa@gmail.com', value: '' }
   ];

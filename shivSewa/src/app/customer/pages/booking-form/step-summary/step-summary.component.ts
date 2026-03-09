@@ -81,7 +81,6 @@ activeOtpIndex = 0;
       this.booking = b;
       this.estimated = b.vehicle?.price || 0;
       this.vehicleOne = b.vehicle;
-      console.log('booking data', this.booking);
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.fetchPropertyDetails();
@@ -117,7 +116,6 @@ activeOtpIndex = 0;
   }
   fetchPropertyDetails() {
     this.locationService.getPropertyDetails(2302).subscribe((res) => {
-      console.log('property details', res);
       this.propertyDetails = res;
       this.transportServiceType = res?.businessServiceDtoList
         ?.flatMap((bs: any) => bs.businessServiceTypes || [])
@@ -155,7 +153,6 @@ activeOtpIndex = 0;
       }
       }
 
-      console.log('slot pricing dto', this.slotPricingDto);
 
       // 3. Find matching slot by vehicle name
       this.matchedSlot = this.transportServiceType?.slots?.find(
@@ -165,7 +162,6 @@ activeOtpIndex = 0;
 
       // 4. Assign result
       this.slots = this.matchedSlot ? [this.matchedSlot] : [];
-      console.log('matched slot', this.slots);
     });
   }
   buildBookingPayload(booking: any) {
@@ -798,7 +794,6 @@ else {
   checkCustomerExists() {
     this.locationService.checkEmail(this.booking.traveller.email).subscribe({
       next: (res: any) => {
-        console.log('Email check response:', res);
         this.customerData = res; // store for later
       },
       error: (err) => {
@@ -1012,7 +1007,7 @@ else {
     return {
       messaging_product: 'whatsapp',
       recipient_type: 'individual',
-      to: hostMobile, // ✅ HOST NUMBER (with country code)
+      to: hostMobile,
       type: 'template',
       template: {
         name: 'enquiry_notification_host_shivsewa',
@@ -1091,7 +1086,6 @@ else {
 
         this.locationService.bookService(bookingPayload).subscribe({
           next: (res) => {
-            console.log('✅ Booking Successful', res);
             const backendRef = res?.businessReservationNumber;
 
             this.bookingService.update({
@@ -1142,7 +1136,7 @@ else {
                 bookingRef: backendRef,
                 durationMinutes: this.transportServiceType?.durationInMinutes,
               },
-              '7852978916',
+              '9136399064',
             );
 
             this.locationService
@@ -1289,7 +1283,6 @@ else {
         };
 
         const slotPayload = mapTaxiToSlot(taxiBooking, slotConfig);
-        console.log('SLOT PAYLOAD (MAPPED):', slotPayload);
       },
       error: (err) => {
         console.error(' Save Payment Failed', err);
@@ -1297,7 +1290,6 @@ else {
       },
     });
     const payload = this.buildBookingPayload(this.booking);
-    console.log('BOOKING PAYLOAD:', payload);
 
   }
 }

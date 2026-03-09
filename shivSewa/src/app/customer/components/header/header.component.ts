@@ -20,7 +20,7 @@ ngOnInit(): void {
     this.menuOpen = !this.menuOpen;
   }
   navigatebooking(){
-    // this.router.navigate(['/booking']);
+    this.router.navigate(['/']);
   }
 scrollTo(sectionId: string) {
   const el = document.getElementById(sectionId);

@@ -55,7 +55,7 @@ activeTab: string = 'sedan';
   tabs: Tab[] = [
     { id: 'sedan', label: 'SEDAN CLASS' },
     { id: 'suv', label: 'SUV' },
-    { id: 'suvPlus', label: 'SUV+' }
+    { id: 'suvPlus', label: 'SUV PLUS' }
   ];
 
 carData: { [key: string]: Car[] } = {

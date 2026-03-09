@@ -1,9 +1,9 @@
 <app-header></app-header>
 
-<app-banner></app-banner>
+<app-banner  [tripData]="selectedTripData"></app-banner>
 <app-banner-services></app-banner-services>
 <div id="trips">
-  <app-popular-trips></app-popular-trips>
+  <app-popular-trips (tripSelected)="onTripSelected($event)"></app-popular-trips>
 </div>
 
 <app-journey-card></app-journey-card>

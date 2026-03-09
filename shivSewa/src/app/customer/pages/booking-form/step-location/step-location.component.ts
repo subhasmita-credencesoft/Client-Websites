@@ -85,7 +85,6 @@ returnTimeInvalid = false;
               private router: Router
   ) {
     const b = this.bookingService.getCurrent();
-    console.log('Booking data from service in StepLocation:', b);
     if(b.tripTypeValue) {
       this.selectedTripType = b.tripTypeValue
     }
@@ -141,7 +140,6 @@ returnTimeInvalid = false;
     this.distanceKm = b.distanceKm || 0;
     this.durationMinutes = b.durationMinutes || 0;
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    console.log('Booking data loaded in StepLocation:', b);
   }
 
   ngOnInit() {
@@ -164,15 +162,6 @@ returnTimeInvalid = false;
   // FORM VALIDATION
   //---------------------------------------
   isFormValid(): boolean {
-    console.log('Validating form with values:', {
-      selectedPickup: this.selectedPickup,
-      selectedDrop: this.selectedDrop,
-      date: this.date,
-      displayTime: this.displayTime,
-      selectedTripType: this.selectedTripType,
-      returnDate: this.returnDate,
-      returnTime24: this.returnTime24
-    });
   if (!this.selectedPickup || !this.selectedDrop) return false;
   if (!this.date || !this.displayTime) return false;
 
@@ -824,7 +813,6 @@ selectDropLocation(pred: any) {
 
           this.bookingService.setCurrent({ pickup: loc });
 
-          console.log('Selected Pickup (Current Location):', loc);
         }
       );
     },
@@ -861,9 +849,6 @@ selectDropLocation(pred: any) {
         distanceKm,
         durationMinutes
       });
-
-      console.log('Distance KM:', distanceKm);
-      console.log('Duration Minutes:', durationMinutes);
     }
   );
 }

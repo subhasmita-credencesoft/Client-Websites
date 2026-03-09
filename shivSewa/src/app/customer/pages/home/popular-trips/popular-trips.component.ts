@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookingService } from '../../../services/booking.service';
+import { GeoLocation } from '../../../models/geo-location';
 
 interface Location {
   place_id: string;
@@ -36,7 +37,7 @@ interface Trip {
 })
 export class PopularTripsComponent {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
-
+@Output() tripSelected = new EventEmitter<any>();
   isScrolling = false;
   trips: Trip[] = [
   {
@@ -209,7 +210,35 @@ export class PopularTripsComponent {
     private bookingService: BookingService
   ) {}
 
-  ngOnInit(): void {}
+ngOnInit(): void {
+  const service = new google.maps.DistanceMatrixService();
+
+  this.trips.forEach((trip) => {
+
+    service.getDistanceMatrix(
+      {
+        origins: [{ lat: trip.pickup.latitude, lng: trip.pickup.longitude }],
+        destinations: [{ lat: trip.dropoff.latitude, lng: trip.dropoff.longitude }],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+      },
+      (response: any, status: any) => {
+
+        if (
+          status === google.maps.DistanceMatrixStatus.OK &&
+          response?.rows?.[0]?.elements?.[0]?.status === 'OK'
+        ) {
+          const element = response.rows[0].elements[0];
+
+          trip.distance = element.distance.text;   // 98 km
+          trip.duration = element.duration.text;   // 2 hours 30 mins
+        }
+      }
+    );
+
+  });
+}
+
 
   scroll(direction: 'left' | 'right'): void {
     if (this.scrollContainer && !this.isScrolling) {
@@ -226,16 +255,93 @@ export class PopularTripsComponent {
       }, 500);
     }
   }
-  bookNow(trip: Trip) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  // this.bookingService.reset();
+  calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 6371;
+  const dLat = this.deg2rad(lat2 - lat1);
+  const dLon = this.deg2rad(lon2 - lon1);
 
-  // this.bookingService.setCurrent({
-  //   pickup: trip.pickup,
-  //   dropoff: trip.dropoff,
-  //   tripType: 'one-way'
-  // });
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(this.deg2rad(lat1)) *
+    Math.cos(this.deg2rad(lat2)) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
 
-  // this.router.navigate(['/booking']);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return Math.round(R * c);
 }
+
+deg2rad(deg: number): number {
+  return deg * (Math.PI / 180);
+}
+ bookNow(trip: Trip) {
+
+  const pickup: GeoLocation = {
+    place_id: trip.pickup.place_id,
+    name: trip.pickup.name,
+    latitude: trip.pickup.latitude,
+    longitude: trip.pickup.longitude,
+    service_address: trip.pickup.service_address
+  };
+
+  const dropoff: GeoLocation = {
+    place_id: trip.dropoff.place_id,
+    name: trip.dropoff.name,
+    latitude: trip.dropoff.latitude,
+    longitude: trip.dropoff.longitude,
+    service_address: trip.dropoff.service_address
+  };
+
+  // Set booking base data first
+  this.bookingService.patchDeep({
+    tripTypeValue: 'outstation',
+    tripServiceType: 'outstation',
+    pickup,
+    dropoff,
+    distanceKm: 0,
+    durationMinutes: 0,
+    vehicleCategory: '',
+    fareQuote: undefined
+  });
+
+  const service = new google.maps.DistanceMatrixService();
+
+  service.getDistanceMatrix(
+    {
+      origins: [{ lat: pickup.latitude, lng: pickup.longitude }],
+      destinations: [{ lat: dropoff.latitude, lng: dropoff.longitude }],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC,
+    },
+    (response, status) => {
+
+      if (
+        status !== google.maps.DistanceMatrixStatus.OK ||
+        !response?.rows?.[0]?.elements?.[0] ||
+        response.rows[0].elements[0].status !== 'OK'
+      ) {
+        return;
+      }
+
+      const element = response.rows[0].elements[0];
+
+      const distanceKm = +(element.distance.value / 1000).toFixed(2);
+      const durationMinutes = Math.ceil(element.duration.value / 60);
+
+      this.bookingService.patchDeep({
+        distanceKm,
+        durationMinutes
+      });
+    }
+  );
+const formattedTrip = {
+  pickup,
+  dropoff,
+  tripTypeValue: 'outstation'
+};
+
+this.tripSelected.emit({ ...formattedTrip });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 }

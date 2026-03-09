@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BannerComponent } from "./banner/banner.component";
 import { BannerServicesComponent } from './banner-services/banner-services.component';
 import { PopularTripsComponent } from "./popular-trips/popular-trips.component";
@@ -17,18 +17,21 @@ import { BackToTopComponent } from '../../components/back-to-top/back-to-top.com
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, CommonModule, FormsModule, BannerComponent, BannerServicesComponent, PopularTripsComponent, JourneyCardComponent, CarsListingsDataComponent, ReviewsTestimonialsComponent, AboutUsComponent, FooterComponent,
+  imports: [HeaderComponent, CommonModule, FormsModule, BannerComponent, BannerServicesComponent, PopularTripsComponent, JourneyCardComponent, CarsListingsDataComponent, ReviewsTestimonialsComponent, AboutUsComponent, FooterComponent,ReactiveFormsModule,CommonModule,
   BackToTopComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-
+selectedTripData: any;
   constructor(private bookingService: BookingService) {}
   ngOnInit(): void {
     this.bookingService.reset();
      sessionStorage.removeItem('selectedBooking');
   }
 
+  onTripSelected(trip: any) {
+  this.selectedTripData = { ...trip };
+}
 }

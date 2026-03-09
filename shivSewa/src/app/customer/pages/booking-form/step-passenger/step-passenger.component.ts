@@ -327,7 +327,7 @@ updateCarLists() {
       this.error.adults = true;
       setTimeout(() => this.error.adults = false, 3000);
     }
-    if (this.passengers.adults > 7) this.passengers.adults = 6;
+    if (this.passengers.adults > 6) this.passengers.adults = 6;
     this.updateRecommendations();
   }
 
@@ -338,7 +338,7 @@ updateCarLists() {
       this.error.children = true;
       setTimeout(() => this.error.children = false, 3000);
     }
-    if (this.passengers.children > 5) this.passengers.children = 3;
+    if (this.passengers.children > 3) this.passengers.children = 3;
     this.updateRecommendations();
   }
 
@@ -349,7 +349,7 @@ updateCarLists() {
       this.error.luggage = true;
       setTimeout(() => this.error.luggage = false, 3000);
     }
-    if (this.passengers.luggage > 5) this.passengers.luggage = 3;
+    if (this.passengers.luggage > 3) this.passengers.luggage = 3;
     this.updateRecommendations();
   }
  get selectedFare(): FareQuote | null {
@@ -418,7 +418,6 @@ updateCarLists() {
       fareQuote: v.fareQuote
 
     });
-    console.log('Selected vehicle:', this.selectedVehicle);
     this.updateOtherCarsList();
   }
 
