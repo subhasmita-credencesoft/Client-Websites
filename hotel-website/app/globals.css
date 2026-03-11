@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@import "../styles/theme.css";
+
+@theme inline {
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-sand: var(--sand);
+  --color-bronze: var(--bronze);
+  --color-pine: var(--pine);
+  --color-mist: var(--mist);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-jost);
+  --font-serif: var(--font-playfair);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-jost), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@keyframes menuDrop {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.menu-overlay {
+  animation: menuDrop 0.45s ease-out both;
+}
+
+@keyframes menuLift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.menu-overlay.is-closing {
+  animation: menuLift 0.45s ease-in both;
+}

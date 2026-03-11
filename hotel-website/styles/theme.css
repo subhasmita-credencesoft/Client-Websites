@@ -1,0 +1,14 @@
+:root {
+  --paper: #f7f3ee;
+  --ink: #1b1a17;
+  --sand: #e8ddcf;
+  --bronze: #b68b5b;
+  --pine: #244332;
+  --mist: #f3f5f4;
+  --accent: #c46a3a;
+}
+
+.theme-hotel {
+  color: var(--ink);
+  background: var(--paper);
+}
