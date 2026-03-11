@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import AvailabilityCard from "../../../components/features/AvailabilityCard";
 import Container from "../../../components/ui/Container";
@@ -30,7 +31,7 @@ const sortLabels: Record<SortKey, string> = {
   availability: "Availability date",
 };
 
-export default function RoomsReservationPage() {
+function RoomsReservationContent() {
   const searchParams = useSearchParams();
   const [sortBy, setSortBy] = useState<SortKey>("title");
   const [sortOpen, setSortOpen] = useState(false);
@@ -184,5 +185,13 @@ export default function RoomsReservationPage() {
         </Container>
       </section>
     </>
+  );
+}
+
+export default function RoomsReservationPage() {
+  return (
+    <Suspense fallback={<section className="min-h-screen bg-[#f2f1ec]" />}>
+      <RoomsReservationContent />
+    </Suspense>
   );
 }
