@@ -42,30 +42,30 @@ const diningItems = [
 
 export default function DiningShowcase() {
   return (
-    <section className="bg-[#f3efe8] py-20 text-[#1f3c44]">
+   <section className="bg-[#f3efe8] py-12 text-[#1f3c44] sm:py-16 lg:py-20">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+       <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-start lg:gap-10">
           <div>
-            <div className="flex items-center gap-6 text-xs uppercase tracking-[0.35em]">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#1f3c44]/30 text-sm font-semibold">
+           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-start lg:gap-10">
+             <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#1f3c44]/30 text-[0.8rem] font-semibold sm:h-12 sm:w-12 sm:text-sm">
                 04
               </span>
               <span>Fine Dining</span>
             </div>
-            <h2 className="mt-8 font-serif text-4xl leading-tight md:text-5xl">
+          <h2 className="mt-6 font-serif text-3xl leading-tight sm:mt-8 sm:text-4xl md:text-5xl">
               Taste the best of
               <br />
               traditional cuisine
             </h2>
           </div>
-          <div className="max-w-md text-sm leading-7 text-[#1f3c44]/75">
+          <div className="max-w-md text-[0.95rem] leading-7 text-[#1f3c44]/75 sm:text-sm">
             <p>
               Let yourself be delighted with the range of gourmet choices
               available at the Aoma Resort throughout the day.
             </p>
             <Link
               href="/dining"
-              className="mt-6 inline-flex text-xs font-semibold uppercase tracking-[0.3em]"
+             className="mt-5 inline-flex text-[0.7rem] font-semibold uppercase tracking-[0.18em] sm:mt-6 sm:text-xs sm:tracking-[0.3em]"
             >
               Discover more
             </Link>
@@ -73,26 +73,26 @@ export default function DiningShowcase() {
         </div>
       </Container>
 
-      <div className="mt-12 grid gap-6 px-6 md:grid-cols-2 lg:grid-cols-5">
+     <div className="mt-8 grid gap-5 px-4 sm:mt-10 sm:px-6 md:grid-cols-2 lg:mt-12 lg:grid-cols-5 lg:gap-6">
         {diningItems.map((item) => (
           <div
             key={item.title}
             className="group relative overflow-hidden rounded-3xl"
           >
             <div
-              className="h-64 w-full bg-cover bg-center transition duration-700 group-hover:scale-105"
+             className="h-56 w-full bg-cover bg-center transition duration-700 group-hover:scale-105 sm:h-64"
               style={{ backgroundImage: `url(${item.image})` }}
               role="img"
               aria-label={item.title}
             />
-            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 text-white transition duration-300">
-              <span className="text-xs uppercase tracking-[0.3em] text-white/70">
+            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 text-white transition duration-300 sm:p-6">
+<span className="text-[0.68rem] uppercase tracking-[0.18em] text-white/70 sm:text-xs sm:tracking-[0.3em]">
                 {item.label}
               </span>
-              <h3 className="mt-2 font-serif text-lg">{item.title}</h3>
-              <div className="mt-4 max-h-0 overflow-hidden text-xs text-white/80 transition-all duration-300 group-hover:max-h-20">
+              <h3 className="mt-2 font-serif text-[1.05rem] sm:text-lg">{item.title}</h3>
+<div className="mt-3 max-h-20 overflow-hidden text-[0.72rem] text-white/80 transition-all duration-300 sm:mt-4 sm:max-h-0 sm:text-xs sm:group-hover:max-h-20">
                 <p>{item.description}</p>
-                <span className="mt-3 inline-flex text-[0.65rem] font-semibold uppercase tracking-[0.3em]">
+<span className="mt-3 inline-flex text-[0.62rem] font-semibold uppercase tracking-[0.18em] sm:text-[0.65rem] sm:tracking-[0.3em]">
                   Learn more
                 </span>
               </div>

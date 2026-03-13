@@ -55,3 +55,30 @@ a {
 .menu-overlay.is-closing {
   animation: menuLift 0.45s ease-in both;
 }
+
+.hotel-datepicker-popper {
+  z-index: 70 !important;
+}
+
+.hotel-datepicker {
+  border: 1px solid #d7dce2;
+  border-radius: 14px;
+  font-family: var(--font-jost), system-ui, -apple-system, "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+.hotel-datepicker .react-datepicker__header {
+  background-color: #f7f8fa;
+  border-bottom: 1px solid #e6eaf0;
+}
+
+.hotel-datepicker .react-datepicker__day--selected,
+.hotel-datepicker .react-datepicker__day--keyboard-selected {
+  background-color: #df984e;
+  color: #fff;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  width: 100%;
+}

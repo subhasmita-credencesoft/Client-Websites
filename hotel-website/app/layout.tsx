@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Jost, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import "react-datepicker/dist/react-datepicker.css";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 
@@ -18,7 +19,9 @@ export const metadata: Metadata = {
   title: "Amoja Hotel & Resort",
   description: "A refined hotel experience with curated stays and resort amenities.",
   icons: {
-    icon: "/window.svg",
+    icon: "/images/logo1.png",
+    shortcut: "/images/logo1.png",
+    apple: "/images/logo1.png",
   },
 };
 

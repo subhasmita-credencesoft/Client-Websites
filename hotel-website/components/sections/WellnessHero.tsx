@@ -35,38 +35,39 @@ export default function WellnessHero() {
   );
 
   return (
-    <section className="relative min-h-screen overflow-hidden text-white">
+    <section className="relative min-h-[80svh] overflow-hidden text-white sm:min-h-[90svh] lg:min-h-screen">
       <div
         className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
         style={{ backgroundImage: `url(${active.image})` }}
       />
       <div className="absolute inset-0 bg-black/50" />
-      <Container className="relative flex min-h-screen flex-col justify-center pb-20 pt-44 md:pt-52">
-        <div className="flex items-center gap-6 text-xs uppercase tracking-[0.35em] text-white/80">
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/40 text-sm font-semibold">
+     <Container className="relative flex min-h-[80svh] flex-col justify-center pb-12 pt-28 sm:min-h-[90svh] sm:pb-16 sm:pt-36 md:pt-44 lg:min-h-screen lg:pb-20 lg:pt-52">
+        <div className="flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.2em] text-white/80 sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
+<span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 text-[0.8rem] font-semibold sm:h-12 sm:w-12 sm:text-sm">
             03
           </span>
           <span>Wellness & Spa</span>
         </div>
-        <h2 className="mt-8 max-w-2xl whitespace-pre-line font-serif text-4xl leading-tight md:text-6xl">
+<h2 className="mt-6 max-w-xl whitespace-pre-line font-serif text-3xl leading-tight sm:mt-8 sm:max-w-2xl sm:text-4xl md:text-6xl">
           {active.headline}
         </h2>
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:mt-12 sm:gap-5 md:mt-16 md:grid-cols-3 md:gap-6">
           {slides.map((slide, index) => {
             const isActive = slide.id === activeId;
             return (
-              <button
-                key={slide.id}
-                type="button"
-                onMouseEnter={() => setActiveId(slide.id)}
-                className={`group flex items-center gap-4 border-t border-white/30 pt-6 text-left transition ${
-                  isActive ? "text-white" : "text-white/50 hover:text-white"
-                }`}
-              >
-                <span className="text-xs font-semibold uppercase tracking-[0.3em]">
+             <button
+             key={slide.id}
+             type="button"
+             onMouseEnter={() => setActiveId(slide.id)}
+             onClick={() => setActiveId(slide.id)}
+             className={`group flex items-center gap-3 border-t border-white/30 pt-4 text-left transition sm:gap-4 sm:pt-5 md:pt-6 ${
+             isActive ? "text-white" : "text-white/50 hover:text-white"
+            }`}
+             >
+                <span className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] sm:text-xs sm:tracking-[0.3em]">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <span className="font-serif text-2xl">{slide.label}</span>
+                <span className="font-serif text-xl sm:text-2xl">{slide.label}</span>
               </button>
             );
           })}

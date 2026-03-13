@@ -51,18 +51,18 @@ export default function StatsBanner() {
         }}
       />
       <div className="absolute inset-0 bg-black/40" />
-      <Container className="relative z-10 py-20">
-        <div className="grid gap-10 text-center sm:grid-cols-2 lg:grid-cols-4">
+      <Container className="relative z-10 py-12 sm:py-16 lg:py-20">
+       <div className="grid gap-8 text-center sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
           {stats.map((stat, index) => (
-            <div key={stat.label} className="space-y-3">
+            <div key={stat.label} className="space-y-2 sm:space-y-3">
               <p
-                className="font-serif text-5xl md:text-6xl"
+              className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
                 style={{ textShadow: "0 6px 18px rgba(0,0,0,0.45)" }}
               >
                 {formatted[index]}
               </p>
               <p
-                className="text-xs uppercase tracking-[0.3em] text-white/90"
+                className="text-[0.68rem] uppercase tracking-[0.16em] text-white/90 sm:text-xs sm:tracking-[0.3em]"
                 style={{ textShadow: "0 4px 12px rgba(0,0,0,0.45)" }}
               >
                 {stat.label}

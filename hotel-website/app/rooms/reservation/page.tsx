@@ -67,7 +67,7 @@ function RoomsReservationContent() {
 
   return (
     <>
-      <section className="relative min-h-[62vh] overflow-hidden text-white">
+      <section className="relative min-h-[42vh] overflow-hidden text-white sm:min-h-[50vh] md:min-h-[62vh]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -77,29 +77,29 @@ function RoomsReservationContent() {
         />
         <div className="absolute inset-0 bg-black/46" />
         <Container className="relative flex min-h-[62vh] flex-col items-center justify-center text-center">
-          <h1 className="font-serif text-4xl md:text-6xl">Rooms Reservation</h1>
-          <p className="mt-5 text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-white/90">
+         <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl">Rooms Reservation</h1>
+          <p className="mt-4 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-white/90 sm:mt-5 sm:text-[0.7rem] sm:tracking-[0.35em]">
             Home / Rooms Reservation
           </p>
         </Container>
       </section>
 
-      <section className="bg-[#f2f1ec] py-16 text-[#133e5a]">
+      <section className="bg-[#f2f1ec] py-10 text-[#133e5a] sm:py-12 md:py-16">
         <Container>
-          <p className="mx-auto max-w-4xl text-center text-xl leading-relaxed md:text-[2.4rem]">
+         <p className="mx-auto max-w-4xl text-center text-[1.15rem] leading-relaxed sm:text-[1.45rem] md:text-[2.4rem]">
             Discover our beautiful Rooms &amp; Suites with outstanding views of valleys, mountains and
             lake.
           </p>
 
-          <div className="mt-14 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_21rem]">
+         <div className="mt-10 grid items-start gap-8 md:mt-12 lg:mt-14 lg:grid-cols-[minmax(0,1fr)_21rem]">
             <div>
-              <div className="mb-8 flex items-center justify-between">
-                <p className="text-lg text-[#6f7d89]">{sortedRooms.length} Rooms Found</p>
+             <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+               <p className="text-base text-[#6f7d89] sm:text-lg">{sortedRooms.length} Rooms Found</p>
 
                 <div className="relative" ref={sortRef}>
                   <button
                     type="button"
-                    className="flex items-center gap-3 text-lg text-[#6f7d89]"
+                    className="flex items-center gap-2 text-base text-[#6f7d89] sm:gap-3 sm:text-lg"
                     onClick={() => setSortOpen((open) => !open)}
                   >
                     Sort by
@@ -140,11 +140,11 @@ function RoomsReservationContent() {
                 </div>
               </div>
 
-              <div className="grid gap-8 md:grid-cols-2">
+             <div className="grid gap-8 lg:grid-cols-2">
                 {sortedRooms.map((room) => (
                   <article key={room.listingId}>
                     <div
-                      className="relative h-80 overflow-hidden rounded-2xl bg-[#d8d8d8]"
+                      className="relative h-64 overflow-hidden rounded-2xl bg-[#d8d8d8] sm:h-72 md:h-80"
                       style={{
                         backgroundImage: `url(${room.image})`,
                         backgroundSize: "cover",
