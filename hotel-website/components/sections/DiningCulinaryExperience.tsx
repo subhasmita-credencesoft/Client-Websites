@@ -36,8 +36,7 @@ export default function DiningCulinaryExperience() {
                 Unforgettable culinary experience
               </span>
               <h2 className="mx-auto max-w-2xl font-serif text-4xl leading-tight md:text-5xl">
-                Enhance your holiday with a personalized romantic dinner or
-                in-villa culinary journey.
+                Delicious local cuisines as well as cuisines from all parts of India are served. Enjoy a hearty lunch and a delectable dinner at UK's Resort
               </h2>
             </div>
 

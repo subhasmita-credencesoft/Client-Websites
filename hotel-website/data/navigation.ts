@@ -1,12 +1,14 @@
 const navigation = [
-  { label: "Demos", href: "/" },
+  { label: "Home", href: "/" },
+   { label: "About", href: "/about" },
   { label: "Rooms & Suites", href: "/rooms" },
   { label: "Dining", href: "/dining" },
-  { label: "Wellness", href: "/wellness" },
+  { label: "Fascilities", href: "/wellness" },
   { label: "Experiences", href: "/experiences" },
+  { label: "Tariff", href: "/tariffs" },
   { label: "Weddings & Events", href: "/weddings" },
-  { label: "News", href: "/blog" },
-  { label: "Pages", href: "/contact" },
+  { label: "blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default navigation;

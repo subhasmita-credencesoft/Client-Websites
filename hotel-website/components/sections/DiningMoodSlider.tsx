@@ -4,12 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 import CurvedLoop from "../ui/CurvedLoop";
 
 const SLIDES = [
-  { src: "/images/dine-img.jpg", label: "Delicious Meals" },
-  { src: "/images/dine-img1.jpg", label: "Beautiful Spaces" },
-  { src: "/images/dine-img2.jpg", label: "Varied Menu" },
-  { src: "/images/image.png", label: "Chef's Craft" },
-  { src: "/images/spa-bg-4.jpg", label: "Garden Tables" },
-  { src: "/images/spa-img4.jpg", label: "Sunset Dining" },
+  { src: "/images/restaurant3.jpg", label: "Tasty Meals" },
+  { src: "/images/restaurant2.jpg", label: "Cozy Space" },
+  { src: "/images/restaurant1.jpg", label: "Rich Menu" },
+  { src: "/images/restaurant6.jpg", label: "Chef's Art" },
+  { src: "/images/happy-co-workers.jpg", label: "Happy Dining" },
+  { src: "/images/wedding1.jpg", label: "Wedding Dinner" },
 ];
 
 const positionStyles = [

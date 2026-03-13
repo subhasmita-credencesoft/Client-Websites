@@ -44,6 +44,7 @@ export default function RoomsHero() {
         <p className="mt-4 text-xs uppercase tracking-[0.4em] text-white/80">
           Home / Rooms Gallery
         </p>
+        
         </AnimatedContent>
       </Container>
     </section>

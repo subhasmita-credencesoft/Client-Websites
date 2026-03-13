@@ -33,26 +33,34 @@ export default function WellnessSpaIntro() {
 
           <div className="max-w-xl">
             <span className="text-xs uppercase tracking-[0.45em] text-[#1f3c44]/60">
-              The Spa
+              Fascilities
             </span>
             <h2 className="mt-6 font-serif text-4xl leading-tight md:text-5xl">
-              A delightful journey of
+             The Name That Redefines HospitalityGreen 
               <br />
-              relaxation and
+              Par-Excellence In The Lush 
               <br />
-              pampering
+              Landscape At Khopoli.
             </h2>
             <p className="mt-6 text-sm leading-7 text-[#1f3c44]/75">
-              Welcome to our oasis of luxury and tranquility, where every
-              aspect of your experience is meticulously crafted to exceed your
-              expectations. Our resort is a perfect combination of distinctly
-              designed rooms in a setting of rare natural beauty.
+            Discover the euphoria within you with boundless fun under nonstop sprinkling water and break into a wild Rain dance
+Splash into the cool and clear waters of our swimming pools and indulge in a game of water polo or leisurely amble on the poolside deck
+Slide into pure merriment and relentless excitement with a fully customized ride through our Water Park.
+Bounce your afternoon with friends and family with a wide range of Indoor Games including table tennis, badminton and carom
+The Evenings are the perfect time to run amok in our lush green environment with a host of Outdoor Sports like volleyball, cricket, and football
+Sweat it out in our fully furnished Gym geared with the most sophisticated equipment
+Toddlers or Children alike have ample space to swing and breeze through our exclusively designed Kid's Park
+24 Hours Of Hot & Cold running water, satellite TV channels and luxurious facilities will keep you entranced in your holiday break
+Express Laundry services to provide you with the last minute dress code change that you had not anticipated
+Wi-Fi Internet Facility in rooms for those who just want to peek back at their office desk!
+We also provide adventure activities like Paint Ball, Archery, Rifle Shooting, Body Zorbing, Water Zorbing, Artificial Wall Climbing and Team Building Activities (Extra Charges will be applicable).
+Pets are not allowed in resort
             </p>
             <button
               type="button"
               className="mt-10 inline-flex items-center gap-2 rounded-full border border-[#1f3c44]/30 px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#1f3c44] transition hover:border-[#1f3c44] hover:bg-[#1f3c44]/5"
             >
-              Discover our treatment
+              Take a Virtual Tour Virtual Tour
               <span aria-hidden="true">›</span>
             </button>
           </div>

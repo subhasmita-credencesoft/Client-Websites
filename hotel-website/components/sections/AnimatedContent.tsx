@@ -1,29 +1,49 @@
 "use client";
 
-import { type ReactNode, useMemo, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import type { ReactElement, ReactNode } from "react";
+import { motion } from "framer-motion";
+
+type Direction = "vertical" | "horizontal";
+type MotionEase = "linear" | "easeIn" | "easeOut" | "easeInOut" | [number, number, number, number];
 
 type AnimatedContentProps = {
   children: ReactNode;
   distance?: number;
-  direction?: "vertical" | "horizontal";
+  direction?: Direction;
   reverse?: boolean;
   duration?: number;
-  ease?: "linear" | "easeIn" | "easeOut" | "easeInOut" | "power3.out";
+  ease?: "linear" | "easeIn" | "easeOut" | "easeInOut" | string;
   initialOpacity?: number;
   animateOpacity?: boolean;
   scale?: number;
   threshold?: number;
+  animateOnView?: boolean;
   delay?: number;
+  className?: string;
 };
 
-const easeMap: Record<NonNullable<AnimatedContentProps["ease"]>, number[]> = {
-  linear: [0, 0, 1, 1],
-  easeIn: [0.42, 0, 1, 1],
-  easeOut: [0, 0, 0.58, 1],
-  easeInOut: [0.42, 0, 0.58, 1],
+const GSAP_EASE_MAP: Record<string, MotionEase> = {
+  "power1.out": [0.22, 1, 0.36, 1],
+  "power2.out": [0.16, 1, 0.3, 1],
   "power3.out": [0.22, 1, 0.36, 1],
+  "power4.out": [0.17, 0.84, 0.44, 1],
+  "power1.in": [0.12, 0, 0.39, 0],
+  "power2.in": [0.32, 0, 0.67, 0],
+  "power3.in": [0.64, 0, 0.78, 0],
+  "power4.in": [0.7, 0, 0.84, 0],
+  "power1.inOut": [0.45, 0, 0.55, 1],
+  "power2.inOut": [0.65, 0, 0.35, 1],
+  "power3.inOut": [0.76, 0, 0.24, 1],
+  "power4.inOut": [0.86, 0, 0.14, 1],
 };
+
+function normalizeEase(ease: string): MotionEase {
+  const value = ease.trim();
+  if (value === "linear" || value === "easeIn" || value === "easeOut" || value === "easeInOut") {
+    return value;
+  }
+  return GSAP_EASE_MAP[value] ?? "easeOut";
+}
 
 export default function AnimatedContent({
   children,
@@ -31,42 +51,53 @@ export default function AnimatedContent({
   direction = "vertical",
   reverse = false,
   duration = 0.8,
-  ease = "power3.out",
+  ease = "easeOut",
   initialOpacity = 0,
   animateOpacity = true,
   scale = 1,
   threshold = 0.1,
+  animateOnView = false,
   delay = 0,
-}: AnimatedContentProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const inView = useInView(ref, { amount: threshold, once: true });
+  className,
+}: AnimatedContentProps): ReactElement {
+  const signedDistance = reverse ? -distance : distance;
 
-  const axis = direction === "vertical" ? "y" : "x";
-  const offset = reverse ? distance : -distance;
+  const initialOffset =
+    direction === "horizontal"
+      ? { x: signedDistance, y: 0 }
+      : { x: 0, y: signedDistance };
 
-  const hiddenStyle = useMemo(() => {
-    const base = {
-      opacity: animateOpacity ? initialOpacity : 1,
-      scale,
-    };
-    return axis === "y" ? { ...base, y: offset } : { ...base, x: offset };
-  }, [animateOpacity, axis, initialOpacity, offset, scale]);
-
-  const visibleStyle = useMemo(() => {
-    const base = {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration,
-        delay,
-        ease: easeMap[ease],
-      },
-    };
-    return axis === "y" ? { ...base, y: 0 } : { ...base, x: 0 };
-  }, [axis, delay, duration, ease]);
+  const targetState = {
+    x: 0,
+    y: 0,
+    opacity: 1,
+    scale: 1,
+  };
 
   return (
-    <motion.div ref={ref} initial={hiddenStyle} animate={inView ? visibleStyle : hiddenStyle}>
+    <motion.div
+      className={className}
+      initial={{
+        ...initialOffset,
+        opacity: animateOpacity ? initialOpacity : 1,
+        scale,
+      }}
+      animate={!animateOnView ? targetState : undefined}
+      whileInView={animateOnView ? targetState : undefined}
+      transition={{
+        duration,
+        ease: normalizeEase(ease),
+        delay,
+      }}
+      viewport={
+        animateOnView
+          ? {
+              once: true,
+              amount: threshold,
+            }
+          : undefined
+      }
+    >
       {children}
     </motion.div>
   );

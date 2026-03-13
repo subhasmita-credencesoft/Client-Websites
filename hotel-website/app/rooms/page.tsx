@@ -6,9 +6,9 @@ export default function RoomsPage() {
     <>
       <RoomsHero />
       <RoomsGrid
-        eyebrow="Rooms"
-        title="Suite collection"
-        subtitle="Select a stay that balances privacy, light, and curated amenities."
+        title="rooms"
+        subtitle="29 well appointed rooms overlooking the beautifully landscaped gardens as well as swiming pool to make your stay comfortable. Unwind in the AC comfort, watch your favourite TV programmes and allow room service to indulge you with our sumptuous food
+."
       />
     </>
   );

@@ -7,7 +7,7 @@ export default function WeddingsHero() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url(https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/h1_imgbox5.jpg)",
+            "url('/images/4.avif')",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
@@ -27,9 +27,9 @@ export default function WeddingsHero() {
                                                     delay={0}
                                                   >
         <h1 className="font-serif text-4xl md:text-6xl">Weddings &amp; Events</h1>
-        <p className="mt-4 max-w-xl text-sm text-white/80">
+        {/* <p className="mt-4 max-w-xl text-sm text-white/80">
           Create delightfully memorable experiences for you and your guests.
-        </p>
+        </p> */}
         </AnimatedContent>
       </Container>
     </section>

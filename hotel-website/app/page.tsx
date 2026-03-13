@@ -1,4 +1,5 @@
 import Hero from "../components/sections/Hero";
+import WelcomeSection from "../components/sections/WelcomeSection";
 import ResortIntro from "../components/sections/ResortIntro";
 import RoomsShowcase from "../components/sections/RoomsShowcase";
 import WellnessHero from "../components/sections/WellnessHero";
@@ -12,14 +13,15 @@ export default function Home() {
   return (
     <div>
       <Hero />
+      <WelcomeSection />
+      <WellnessHero />
       <ResortIntro />
       <RoomsShowcase />
-      <WellnessHero />
       <DiningShowcase />
       <StatsBanner />
       <LocationOffers />
       <Testimonials />
-      <NewsEvents />
+      {/* <NewsEvents /> */}
     </div>
   );
 }

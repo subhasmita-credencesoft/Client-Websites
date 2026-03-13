@@ -16,7 +16,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Amoja Hotel & Resort",
+  title: "  UK Resort",
   description: "A refined hotel experience with curated stays and resort amenities.",
   icons: {
     icon: "/images/logo1.png",

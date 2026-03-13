@@ -1,3 +1,8 @@
+export type Facility = {
+  icon: string;
+  label: string;
+};
+
 export type Room = {
   id: string;
   name: string;
@@ -11,4 +16,8 @@ export type Room = {
   bedType: string;
   amenities: string[];
   image: string;
+  checkIn?: string;
+  checkOut?: string;
+  facilityDescription?: string;
+  facilities?: Facility[];
 };

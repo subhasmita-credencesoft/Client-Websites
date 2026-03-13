@@ -7,7 +7,7 @@ export default function WellnessHeroPage() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/h1_img_effect1.jpg')",
+           "url('/images/2.avif')",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
@@ -26,10 +26,7 @@ export default function WellnessHeroPage() {
                                     threshold={0.1}
                                     delay={0}
                                   >
-        <h1 className="font-serif text-4xl md:text-6xl">Wellness &amp; Spa</h1>
-        <p className="mt-4 text-sm text-white/80">
-          Extensive wellness. Thermal spring. Team of therapists.
-        </p>
+        <h1 className="font-serif text-4xl md:text-6xl">Facilities</h1>
         </AnimatedContent>
       </Container>
     </section>
