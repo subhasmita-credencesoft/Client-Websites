@@ -12,28 +12,28 @@ const diningItems = [
     label: "Dining",
     description:
       "Enjoy a hearty lunch and delectable dinner with a variety of Indian, Chinese and Mughlai cuisines.",
-    image: "/images/1.avif",
+    image: "/images/7-9-25/Copy of IMG_2912.avif",
   },
   {
     title: "Poolside Dining",
     label: "Outdoor Dining",
     description:
       "Relax by the pool with refreshing drinks and light bites in a serene atmosphere.",
-    image: "/images/2.avif",
+    image: "/images/7-9-25/Copy-of-IMG_2913_1_.avif",
   },
   {
     title: "Banquet Hall",
     label: "Events & Dining",
     description:
       "Perfect for celebrations, corporate events and group dining with premium catering.",
-    image: "/images/3.avif",
+    image: "/images/7-9-25/Copy-of-IMG_2914.avif",
   },
   {
     title: "Garden Restaurant",
     label: "Outdoor Seating",
     description:
       "Dine amidst lush green lawns with fresh air and a relaxing natural ambiance.",
-    image: "/images/4.avif",
+    image: "/images/7-9-25/Copy-of-IMG_2915.avif",
   },
   {
     title: "Bar & Lounge",
@@ -44,6 +44,7 @@ const diningItems = [
   },
 ];
 
+
 export default function DiningShowcase() {
   return (
     <section className="bg-[#f3efe8] py-12 text-[#1f3c44] sm:py-16 lg:py-20">
@@ -51,15 +52,12 @@ export default function DiningShowcase() {
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-start lg:gap-10">
           <div>
             <div className="flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.22em] sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#1f3c44]/30 text-[0.8rem] font-semibold sm:h-12 sm:w-12 sm:text-sm">
-                04
-              </span>
               <span>Fine Dining</span>
             </div>
             <h2 className="mt-6 font-serif text-3xl leading-tight sm:mt-8 sm:text-4xl md:text-5xl">
-              Taste the best of
+             Delicious local cuisines as well as cuisines from all parts of India are served
               <br />
-              traditional cuisine
+             Enjoy a hearty lunch and a delectable dinner at UK&apos;s Resort
             </h2>
           </div>
           <div className="max-w-md text-[0.95rem] leading-7 text-[#1f3c44]/75 sm:text-sm">
@@ -93,7 +91,7 @@ export default function DiningShowcase() {
           >
             <div
               className="h-56 w-full bg-cover bg-center transition duration-700 group-hover:scale-105 sm:h-64"
-              style={{ backgroundImage: `url(${item.image})` }}
+              style={{ backgroundImage: `url('${item.image}')` }}
               role="img"
               aria-label={item.title}
             />

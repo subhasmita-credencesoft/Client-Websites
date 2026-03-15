@@ -1,24 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import CurvedLoop from "../ui/CurvedLoop";
 
 const SLIDES = [
   {
-    image:
-      "https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/h1_img_effect2.jpg",
+    image: "/images/7-9-25/Copy of IMG_1494.jpg",
   },
   {
-    image:
-      "https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/h1_img_effect3.jpg",
+    image: "/images/7-9-25/Copy of IMG_1525.jpg",
   },
   {
-    image:
-      "https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/h1_img_effect1.jpg",
+    image: "/images/7-9-25/Copy-of-IMG_2938_1_.avif",
   },
 ];
-
-const WORDS = ["Vitality", "Renew", "Relax", "Serenity"];
+const WORDS = ["Swimming pool", "Kids Area", "Entry area", ];
 
 export default function WellnessMoodSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -31,16 +28,34 @@ export default function WellnessMoodSlider() {
     return () => window.clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    // Preload non-initial slides so transitions feel instant.
+    SLIDES.slice(1).forEach((slide) => {
+      const img = new window.Image();
+      img.decoding = "async";
+      img.src = slide.image;
+    });
+  }, []);
+
   return (
     <section className="relative h-screen min-h-[520px] w-full overflow-hidden bg-[#1c2427] text-white">
+      <Image
+        src={SLIDES[0].image}
+        alt=""
+        aria-hidden
+        priority
+        width={1}
+        height={1}
+        className="sr-only"
+      />
       <div className="absolute inset-0">
         {SLIDES.map((slide, index) => (
           <div
             key={slide.image}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
               index === activeIndex ? "opacity-100" : "opacity-0"
             }`}
-            style={{ backgroundImage: `url(${slide.image})` }}
+            style={{ backgroundImage: `url('${slide.image}')` }}
             aria-hidden={index !== activeIndex}
           />
         ))}

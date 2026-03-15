@@ -42,9 +42,6 @@ export default function ExperiencesShowcase() {
       <div className="absolute inset-0 bg-black/35" />
       <Container className="relative flex min-h-[70vh] flex-col justify-end py-24 md:py-28">
         <div className="mb-10 flex items-center gap-6 text-xs uppercase tracking-[0.35em] text-white/80">
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/40 text-sm font-semibold">
-            05
-          </span>
           <span>Experiences</span>
         </div>
 

@@ -47,11 +47,11 @@ export default function DiningCulinaryExperience() {
               <div className="mt-4 divide-y divide-[#1f3c44]/25 border-y border-[#1f3c44]/25 text-sm">
                 <div className="flex flex-col items-center gap-1 py-4 sm:flex-row sm:justify-between">
                   <span>Phone Number:</span>
-                  <span className="font-medium">1-800-123-4567</span>
+                  <span className="font-medium">+91 98220 12343</span>
                 </div>
                 <div className="flex flex-col items-center gap-1 py-4 sm:flex-row sm:justify-between">
                   <span>Email:</span>
-                  <span className="font-medium">restaurants@example.com</span>
+                  <span className="font-medium">info@uksresort.com</span>
                 </div>
               </div>
               <button

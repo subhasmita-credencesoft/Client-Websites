@@ -2,26 +2,81 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useState, useCallback, JSX } from "react";
 import roomsData from "../../data/rooms";
 import { formatPrice } from "../../lib/format";
 import Container from "../ui/Container";
 import type { Room } from "../../types/room";
 
-const facilityIconMap: Record<string, string> = {
-  "room-service": "🛎️",
-  "newspaper": "📰",
-  "toiletries": "🧴",
-  "wifi": "📶",
-  "work-desk": "🖥️",
-  "tv-satellite": "📡",
-  "luggage": "🧳",
-  "lcd-tv": "📺",
-  "water": "💧",
-  "laundry": "👕",
-  "hot-water": "🚿",
-  "ac": "❄️",
+// ── SVG icon components — no emoji, consistent on all devices ──
+const FacilityIcons: Record<string, () => JSX.Element> = {
+  "room-service": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 17h18M12 3v4M5 17a7 7 0 0 1 14 0"/><circle cx="12" cy="7" r="1"/>
+    </svg>
+  ),
+  "newspaper": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 7h8M8 11h8M8 15h5"/>
+    </svg>
+  ),
+  "toiletries": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 3h6v4H9zM7 7h10l1 14H6L7 7z"/><path d="M12 11v4"/>
+    </svg>
+  ),
+  "wifi": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/>
+    </svg>
+  ),
+  "work-desk": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="7" width="20" height="3" rx="1"/><path d="M5 10v7M19 10v7M9 17h6"/>
+    </svg>
+  ),
+  "tv-satellite": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4.5 12.5l7-7 7 7-7 7-7-7z"/><path d="M15 6l3-3M18 15l3 3M6 18l-3 3M9 3L6 6"/>
+    </svg>
+  ),
+  "luggage": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="9" width="18" height="13" rx="2"/><path d="M9 9V7a3 3 0 0 1 6 0v2M12 13v3"/>
+    </svg>
+  ),
+  "lcd-tv": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/>
+    </svg>
+  ),
+  "water": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2C6 8 4 12.5 4 15a8 8 0 0 0 16 0c0-2.5-2-7-8-13z"/>
+    </svg>
+  ),
+  "laundry": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M6 6h.01M9 6h2"/>
+    </svg>
+  ),
+  "hot-water": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2v4M8 6c0 4 8 4 8 8a4 4 0 0 1-8 0c0-4 8-4 8-8"/>
+    </svg>
+  ),
+  "ac": () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="6" width="20" height="8" rx="2"/><path d="M7 14v4M12 14v4M17 14v4M7 6V2M12 6V2M17 6V2"/>
+    </svg>
+  ),
 };
+
+const FallbackIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/>
+  </svg>
+);
 
 function RoomFlipCard({
   room,
@@ -57,7 +112,6 @@ function RoomFlipCard({
             fill
             sizes="(max-width: 1024px) 100vw, 600px"
             className="object-cover transition duration-700"
-            priority
           />
           {/* Price badge */}
           <span className="absolute right-4 top-4 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-white text-center shadow-md sm:right-6 sm:top-6">
@@ -124,17 +178,22 @@ function RoomFlipCard({
 
             {/* Facilities grid */}
             <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
-              {room.facilities?.map((f) => (
-                <div
-                  key={f.label}
-                  className="flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-2 backdrop-blur-sm"
-                >
-                  <span className="text-sm">{facilityIconMap[f.icon] ?? "✦"}</span>
-                  <span className="text-[0.58rem] font-medium uppercase tracking-wide text-white/80">
-                    {f.label}
-                  </span>
-                </div>
-              ))}
+              {room.facilities?.map((f) => {
+                const IconComp = FacilityIcons[f.icon] ?? FallbackIcon;
+                return (
+                  <div
+                    key={f.label}
+                    className="flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-2 backdrop-blur-sm"
+                  >
+                    <span className="text-white/70 shrink-0">
+                      <IconComp />
+                    </span>
+                    <span className="text-[0.58rem] font-medium uppercase tracking-wide text-white/80">
+                      {f.label}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
 
             <p className="mt-auto pt-3 text-center text-[0.55rem] uppercase tracking-[0.2em] text-white/30">
@@ -161,9 +220,10 @@ export default function RoomsShowcase() {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
+  // ── Auto-rotate every 4 seconds ──
   useEffect(() => {
     if (isPaused) return;
-    const timer = setInterval(goNext, 3000);
+    const timer = setInterval(goNext, 4000);
     return () => clearInterval(timer);
   }, [goNext, isPaused]);
 
@@ -184,9 +244,6 @@ export default function RoomsShowcase() {
         {/* Header */}
         <div className="flex flex-wrap items-center justify-between gap-4 sm:gap-6">
           <div className="flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.22em] sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#1f3c44]/30 text-[0.8rem] font-semibold sm:h-12 sm:w-12 sm:text-sm">
-              02
-            </span>
             <span>Rooms &amp; Suites</span>
           </div>
           <span className="text-sm text-[#1f3c44]/60">

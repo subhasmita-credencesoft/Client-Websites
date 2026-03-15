@@ -1,4 +1,6 @@
 import ContactHero from "../../components/sections/ContactHero";
+import ContactAttractions from "../../components/sections/ContactAttractions";
+import HeroBookingBarDock from "../../components/sections/HeroBookingBarDock";
 import ContactStory from "../../components/sections/ContactStory";
 import ContactWhyUs from "../../components/sections/ContactWhyUs";
 import ContactHighlights from "../../components/sections/ContactHighlights";
@@ -13,10 +15,12 @@ export default function ContactPage() {
   return (
     <>
       <ContactHero />
-      <ContactStory />
-      <ContactWhyUs />
-      <ContactHighlights />
-      <ContactTestimonials />
+      <ContactAttractions />
+      {/* <HeroBookingBarDock /> */}
+      {/* <ContactStory /> */}
+      {/* <ContactWhyUs /> */}
+      {/* <ContactHighlights /> */}
+      {/* <ContactTestimonials /> */}
       {/* <section className="py-16">
         <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>

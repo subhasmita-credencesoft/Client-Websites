@@ -139,7 +139,7 @@ export default function WeddingsCelebration() {
 
           <div className="wc-reveal-right wc-zoom overflow-hidden rounded-3xl bg-[#e2dacd] shadow-[0_24px_60px_rgba(0,0,0,0.15)]">
             <img
-              src="/images/5.avif"
+              src="/images/7-9-25/Copy of IMG_3980.avif"
               alt="Family picnic grounds"
               className="h-full w-full object-cover"
             />

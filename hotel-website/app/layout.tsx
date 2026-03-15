@@ -32,7 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${bodyFont.variable} ${playfair.variable} theme-hotel antialiased`}>
+      <body
+        suppressHydrationWarning
+        className={`${bodyFont.variable} ${playfair.variable} theme-hotel antialiased`}
+      >
         <Header />
         <main>{children}</main>
         <Footer />

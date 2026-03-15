@@ -25,9 +25,9 @@ export default function ContactHero() {
                             threshold={0.1}
                             delay={0}
                           >
-        <h1 className="font-serif text-4xl md:text-6xl">Contact</h1>
+        <h1 className="font-serif text-4xl md:text-6xl">Around us</h1>
         <span className="mt-6 text-[0.7rem] uppercase tracking-[0.4em] text-white/80">
-          Home / Contact
+       Places of Tourist Attraction in Khopoli Near UK's Resorts
         </span>
          </AnimatedContent>
       </Container>

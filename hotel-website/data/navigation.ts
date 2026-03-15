@@ -1,14 +1,15 @@
 const navigation = [
   { label: "Home", href: "/" },
-   { label: "About", href: "/about" },
   { label: "Rooms & Suites", href: "/rooms" },
   { label: "Dining", href: "/dining" },
+  { label: "Weddings & Events", href: "/weddings" },
   { label: "Fascilities", href: "/wellness" },
   { label: "Experiences", href: "/experiences" },
   { label: "Tariff", href: "/tariffs" },
-  { label: "Weddings & Events", href: "/weddings" },
-  { label: "blog", href: "/blog" },
+  { label: "Reservation", href: "/rooms/reservation" },
+  // { label: "blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
+   { label: "About", href: "/about" },
 ];
 
 export default navigation;

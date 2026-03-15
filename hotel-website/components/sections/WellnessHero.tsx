@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Container from "../ui/Container";
 
@@ -9,21 +10,21 @@ const slides = [
     id: "refresh",
     label: "Conference",
     headline: "Inspiring spaces for meetings & corporate events",
-    image: "/images/conference2.jpg",
+    image: "/images/7-9-25/Copy of IMG_2912.avif",
     href: "/weddings",
   },
   {
     id: "relax",
     label: "Picnic",
     headline: "Enjoy peaceful outdoor picnics in scenic surroundings",
-    image: "/images/5.avif",
+    image: "/images/7-9-25/Copy of IMG_3980.avif",
     href: "/weddings",
   },
   {
     id: "renew",
     label: "Virtual Tour",
     headline: "Explore our resort from the comfort of your home",
-    image: "/images/uks-exterior1-1.jpg",
+    image: "/images/7-9-25/Copy of IMG_1441.avif",
     href: "/weddings",
   },
 ];
@@ -39,16 +40,18 @@ export default function WellnessHero() {
 
   return (
     <section className="relative min-h-[80svh] overflow-hidden text-white sm:min-h-[90svh] lg:min-h-screen">
-      <div
-        className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-        style={{ backgroundImage: `url(${active.image})` }}
+      <Image
+        src={active.image}
+        alt={active.headline}
+        fill
+        sizes="100vw"
+        quality={75}
+        loading="lazy"
+        className="object-cover transition-opacity duration-500"
       />
       <div className="absolute inset-0 bg-black/50" />
       <Container className="relative flex min-h-[80svh] flex-col justify-center pb-12 pt-28 sm:min-h-[90svh] sm:pb-16 sm:pt-36 md:pt-44 lg:min-h-screen lg:pb-20 lg:pt-52">
         <div className="flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.2em] text-white/80 sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 text-[0.8rem] font-semibold sm:h-12 sm:w-12 sm:text-sm">
-            03
-          </span>
           <span>Experiences That Elevate Your Getaway</span>
         </div>
         <h2 className="mt-6 max-w-xl whitespace-pre-line font-serif text-3xl leading-tight sm:mt-8 sm:max-w-2xl sm:text-4xl md:text-6xl">

@@ -27,22 +27,6 @@ export default function BlogHero() {
                   >
         <h1 className="font-serif text-4xl md:text-6xl">Our Blog</h1>
         </AnimatedContent>
-        <AnimatedContent
-                    distance={100}
-                    direction="vertical"
-                    reverse={false}
-                    duration={0.8}
-                    ease="power3.out"
-                    initialOpacity={0}
-                    animateOpacity
-                    scale={1}
-                    threshold={0.1}
-                    delay={0}
-                  >
-        <span className="mt-6 text-[0.7rem] uppercase tracking-[0.4em] text-white/80">
-          Home / Blog
-        </span>
-        </AnimatedContent>
       </Container>
     </section>
   );

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:clean-export": "node -e \"require('fs').rmSync('out', { recursive: true, force: true });\" && next build",
     "start": "next start",
     "lint": "eslint"
   },

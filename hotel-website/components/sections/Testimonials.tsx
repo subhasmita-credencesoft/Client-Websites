@@ -24,9 +24,6 @@ export default function Testimonials() {
       <Container>
         {/* Section Label */}
         <div className="flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.22em] sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#1f3c44]/30 text-[0.8rem] font-semibold sm:h-12 sm:w-12 sm:text-sm">
-            05
-          </span>
           <span>Customers Reviews</span>
         </div>
 
@@ -104,9 +101,6 @@ export default function Testimonials() {
         {/* Our Other Property */}
         <div className="mt-16 sm:mt-20 lg:mt-24">
           <div className="flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.22em] sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#1f3c44]/30 text-[0.8rem] font-semibold sm:h-12 sm:w-12 sm:text-sm">
-              06
-            </span>
             <span>Our Other Property</span>
           </div>
           <h2 className="mt-6 font-serif text-3xl leading-tight sm:mt-8 sm:text-4xl md:text-5xl">

@@ -72,12 +72,12 @@ function RoomsReservationContent() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/room_4.jpg')",
+              "url('/images/uk-resort.png')",
           }}
         />
         <div className="absolute inset-0 bg-black/46" />
         <Container className="relative flex min-h-[62vh] flex-col items-center justify-center text-center">
-         <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl">Rooms Reservation</h1>
+         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl">Rooms Reservation</h1>
           <p className="mt-4 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-white/90 sm:mt-5 sm:text-[0.7rem] sm:tracking-[0.35em]">
             Home / Rooms Reservation
           </p>
@@ -86,7 +86,7 @@ function RoomsReservationContent() {
 
       <section className="bg-[#f2f1ec] py-10 text-[#133e5a] sm:py-12 md:py-16">
         <Container>
-         <p className="mx-auto max-w-4xl text-center text-[1.15rem] leading-relaxed sm:text-[1.45rem] md:text-[2.4rem]">
+         <p className="mx-auto max-w-4xl text-center text-[1rem] leading-relaxed sm:text-[1.2rem] md:text-[1.65rem]">
             Discover our beautiful Rooms &amp; Suites with outstanding views of valleys, mountains and
             lake.
           </p>
@@ -124,7 +124,7 @@ function RoomsReservationContent() {
                         <button
                           key={key}
                           type="button"
-                          className={`block w-full border-b border-[#eceef0] px-4 py-2.5 text-left text-[1.08rem] last:border-b-0 ${
+                          className={`block w-full border-b border-[#eceef0] px-4 py-2.5 text-left text-[0.95rem] last:border-b-0 ${
                             key === sortBy ? "text-[#133e5a]" : "text-[#6f7d89]"
                           }`}
                           onClick={() => {
@@ -161,14 +161,14 @@ function RoomsReservationContent() {
                       </p>
                     </div>
 
-                    <h3 className="mt-5 font-serif text-4xl leading-tight md:text-6xl">
+                    <h3 className="mt-5 font-serif text-2xl leading-tight sm:text-3xl md:text-4xl">
                       <Link href={`/rooms/${room.slug}`}>{room.name}</Link>
                     </h3>
                     <p className="mt-2 text-[0.82rem] font-semibold uppercase tracking-[0.24em] text-[#7d8692]">
                       {room.size} - 1-{room.capacity} Person -{" "}
                       {room.bedType.includes("King") ? "2 Beds" : "1 Bed"}
                     </p>
-                    <p className="mt-4 text-base leading-relaxed text-[#123f5c] md:text-[1.15rem]">
+                    <p className="mt-4 text-[0.95rem] leading-relaxed text-[#123f5c] md:text-[1rem]">
                       {room.description}
                     </p>
                   </article>

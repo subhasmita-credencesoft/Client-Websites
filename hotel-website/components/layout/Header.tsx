@@ -71,22 +71,6 @@ export default function Header() {
     window.setTimeout(() => { setMenuOpen(false); setMenuClosing(false); }, 450);
   };
 
-  /* Book button — reused in top bar + menu header */
-  const BookBtn = ({ onClick }: { onClick?: () => void }) => (
-    <Link
-      href="/booking"
-      onClick={onClick}
-      className={`flex items-center gap-2 rounded-full border px-4 py-[0.45rem] text-[0.58rem] font-semibold uppercase tracking-[0.22em] transition-all duration-200 sm:px-5 sm:py-2 sm:text-[0.6rem] ${
-        isHeroPage
-          ? "border-white/50 text-white hover:border-white hover:bg-white/10"
-          : "border-[#1f3c44]/45 text-[#1f3c44] hover:border-[#1f3c44] hover:bg-[#1f3c44]/5"
-      }`}
-    >
-      <span className="hidden sm:inline">Book your stay</span>
-      <span className="sm:hidden">Book</span>
-      <span className="text-[0.72rem] leading-none" aria-hidden="true">&rsaquo;</span>
-    </Link>
-  );
 
   return (
     <div className={`w-full ${isHeroPage ? "absolute top-0 left-0 z-50" : "sticky top-0 z-50"}`}>
@@ -95,11 +79,18 @@ export default function Header() {
           ANNOUNCEMENT BAR — slides up and hides on scroll
       ══════════════════════════════════════ */}
       <div
-        className={`w-full overflow-hidden border-b border-white/[0.1] bg-[#1a2e33]/85 backdrop-blur-[10px] transition-all duration-500 ease-in-out ${
-          scrolled ? "max-h-0 opacity-0 pointer-events-none" : "max-h-[2.5rem] opacity-100"
+        className={`relative w-full overflow-hidden transition-[height] duration-500 ease-in-out ${
+          isHeroPage && scrolled ? "h-0" : "h-[2.1rem]"
         }`}
       >
-        <div className="flex h-[2.1rem] w-full items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16">
+        <div
+          className={`absolute inset-0 border-b border-white/[0.1] bg-[#1a2e33]/85 backdrop-blur-[10px] transition-all duration-500 ease-in-out ${
+            scrolled
+              ? "-translate-y-full opacity-0 pointer-events-none"
+              : "translate-y-0 opacity-100"
+          }`}
+        >
+          <div className="flex h-[2.1rem] w-full items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16">
 
           {/* Left — address */}
           <div className="flex items-center gap-1.5 text-[0.67rem] text-white/70">
@@ -130,6 +121,7 @@ export default function Header() {
             </a>
           </div>
 
+          </div>
         </div>
       </div>
 
@@ -216,10 +208,19 @@ export default function Header() {
             </a> */}
 
             {/* Divider before book button */}
-            {/* <span className="hidden h-3 w-px bg-current opacity-20 lg:block" aria-hidden="true" /> */}
-
-            {/* Book button */}
-            <BookBtn />
+            {/* <span className="hidden h-3 w-px bg-current opacity-20 lg:block" aria-hidden="true" /> */}            {/* Book button */}
+            <Link
+              href="/booking"
+              className={`flex items-center gap-2 rounded-full border px-4 py-[0.45rem] text-[0.58rem] font-semibold uppercase tracking-[0.22em] transition-all duration-200 sm:px-5 sm:py-2 sm:text-[0.6rem] ${
+                isHeroPage
+                  ? "border-white/50 text-white hover:border-white hover:bg-white/10"
+                  : "border-[#1f3c44]/45 text-[#1f3c44] hover:border-[#1f3c44] hover:bg-[#1f3c44]/5"
+              }`}
+            >
+              <span className="hidden sm:inline">Book your stay</span>
+              <span className="sm:hidden">Book</span>
+              <span className="text-[0.72rem] leading-none" aria-hidden="true">&rsaquo;</span>
+            </Link>
 
           </div>
         </div>
@@ -299,7 +300,7 @@ export default function Header() {
                 {/* Logo */}
                 <Link href="/" onClick={closeMenu}
                   className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <Image src="/images/logo1.png" alt="UK's Resort" width={160} height={50} priority className="h-8 w-auto sm:h-10" />
+                  <Image src="/images/logo1.png" alt="UK's Resort" width={160} height={50} className="h-8 w-auto sm:h-10" />
                 </Link>
 
                 {/* Phone + Book */}
@@ -392,3 +393,5 @@ export default function Header() {
     </div>
   );
 }
+
+

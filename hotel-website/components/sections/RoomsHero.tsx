@@ -2,12 +2,12 @@ import Container from "../ui/Container";
 import AnimatedContent from "./AnimatedContent";
 export default function RoomsHero() {
   return (
-    <section className="relative min-h-[65vh] overflow-hidden text-white">
+    <section className="relative min-h-[72vh] overflow-hidden text-white">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/room_1.jpg')",
+            "url('/images/room_3.jpg')",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}

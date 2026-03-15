@@ -1,13 +1,25 @@
+import dynamic from "next/dynamic";
 import Hero from "../components/sections/Hero";
 import WelcomeSection from "../components/sections/WelcomeSection";
-import ResortIntro from "../components/sections/ResortIntro";
-import RoomsShowcase from "../components/sections/RoomsShowcase";
-import WellnessHero from "../components/sections/WellnessHero";
-import DiningShowcase from "../components/sections/DiningShowcase";
-import StatsBanner from "../components/sections/StatsBanner";
-import Testimonials from "../components/sections/Testimonials";
-import LocationOffers from "../components/sections/LocationOffers";
-import NewsEvents from "../components/sections/NewsEvents";
+
+const WellnessHero = dynamic(() => import("../components/sections/WellnessHero"), {
+  loading: () => <section className="min-h-[70vh] bg-[#f6f3ed]" aria-hidden="true" />,
+});
+const ResortIntro = dynamic(() => import("../components/sections/ResortIntro"), {
+  loading: () => <section className="min-h-[65vh] bg-white" aria-hidden="true" />,
+});
+const RoomsShowcase = dynamic(() => import("../components/sections/RoomsShowcase"), {
+  loading: () => <section className="min-h-[70vh] bg-white" aria-hidden="true" />,
+});
+const DiningShowcase = dynamic(() => import("../components/sections/DiningShowcase"), {
+  loading: () => <section className="min-h-[70vh] bg-[#f3efe8]" aria-hidden="true" />,
+});
+const LocationOffers = dynamic(() => import("../components/sections/LocationOffers"), {
+  loading: () => <section className="min-h-[65vh] bg-[#f6f3ed]" aria-hidden="true" />,
+});
+const Testimonials = dynamic(() => import("../components/sections/Testimonials"), {
+  loading: () => <section className="min-h-[60vh] bg-[#f3efe8]" aria-hidden="true" />,
+});
 
 export default function Home() {
   return (
@@ -18,10 +30,9 @@ export default function Home() {
       <ResortIntro />
       <RoomsShowcase />
       <DiningShowcase />
-      <StatsBanner />
       <LocationOffers />
       <Testimonials />
-      {/* <NewsEvents /> */}
     </div>
   );
 }
+

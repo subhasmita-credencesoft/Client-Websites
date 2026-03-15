@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Container from "../ui/Container";
 
 const offerSlides = [
@@ -8,20 +8,26 @@ const offerSlides = [
     id: "offer-1",
     image: "/images/special_offers1.jpg",
     label: "Early Booking",
-    title: "15% Exclusive Discount",
-    description: "Enjoy our offer, making your reservations",
+    title: "15% Off Advance Reservations",
+    description: "Plan ahead and enjoy exclusive savings when you book your stay in advance.",
   },
   {
     id: "offer-2",
     image: "/images/special_offers2.jpg",
     label: "Summer Escape",
-    title: "Complimentary Spa Access",
-    description: "Relax with curated spa rituals and signature treatments",
+    title: "Complimentary Breakfast",
+    description: "Start your mornings with a freshly prepared breakfast included in your stay.",
   },
 ];
-
 export default function LocationOffers() {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % offerSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section className="bg-white py-12 text-[#1f3c44] sm:py-16 lg:py-20">
@@ -74,7 +80,6 @@ export default function LocationOffers() {
                 <p className="text-[0.88rem] leading-6 text-[#1f3c44]/80 sm:text-sm sm:leading-7 underline">
                   +91 98220 12343
                 </p>
-                {/* Using button instead of <a> to avoid JSX parse error with > in className */}
                 <button
                   type="button"
                   onClick={() => { window.location.href = "mailto:info@uksresort.com"; }}

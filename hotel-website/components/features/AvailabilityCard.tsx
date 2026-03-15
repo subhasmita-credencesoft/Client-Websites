@@ -26,7 +26,7 @@ const DateTrigger = forwardRef<
       type="button"
       ref={ref}
       onClick={onClick}
-     className="mt-3 flex w-full items-center justify-between border-b border-[#d6d9dd] pb-3 text-[1.05rem] text-[#123f5c] sm:pb-4 sm:text-[1.2rem] md:text-2xl"
+     className="mt-3 flex w-full items-center justify-between border-b border-[#d6d9dd] pb-3 text-[0.95rem] text-[#123f5c] sm:pb-4 sm:text-[1rem] md:text-[1.08rem]"
     >
       <span>{value || placeholder}</span>
       <span>
@@ -60,7 +60,7 @@ export default function AvailabilityCard({
 
   return (
     <aside className="rounded-2xl bg-white p-5 shadow-[0_12px_30px_rgba(17,33,41,0.06)] sm:p-6 md:p-8 lg:sticky lg:top-24">
-      <h3 className="font-serif text-3xl text-[#103f5c] sm:text-4xl md:text-5xl">Check Availability</h3>
+      <h3 className="font-serif text-2xl text-[#103f5c] sm:text-[1.75rem] md:text-3xl">Check Availability</h3>
 
       <div className="mt-6 space-y-5 sm:mt-7 sm:space-y-6 md:mt-8 md:space-y-7">
         <label className="block">
@@ -85,7 +85,7 @@ export default function AvailabilityCard({
         </label>
 
         <label className="block">
-          <span className="block text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#7d8692]">
+          <span className="block text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-[#7d8692] sm:text-[0.72rem] sm:tracking-[0.24em]">
             Check out
           </span>
           <DatePicker
@@ -101,13 +101,13 @@ export default function AvailabilityCard({
         </label>
 
         <label className="block">
-          <span className="block text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#7d8692]">
+          <span className="block text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-[#7d8692] sm:text-[0.72rem] sm:tracking-[0.24em]">
             Guests
           </span>
-         <div className="mt-3 flex items-center justify-between border-b border-[#d6d9dd] pb-3 text-[1.05rem] text-[#123f5c] sm:pb-4 sm:text-[1.2rem] md:text-2xl">
+         <div className="mt-3 flex items-center justify-between border-b border-[#d6d9dd] pb-3 text-[0.95rem] text-[#123f5c] sm:pb-4 sm:text-[1rem] md:text-[1.08rem]">
             <button
               type="button"
-              className="text-[1.2rem] text-[#123f5c] sm:text-[1.4rem] md:text-2xl"
+              className="text-[1rem] text-[#123f5c] sm:text-[1.1rem] md:text-[1.2rem]"
               onClick={() => setGuests((value) => Math.max(0, value - 1))}
             >
               -
@@ -115,7 +115,7 @@ export default function AvailabilityCard({
             <span>{guests}</span>
             <button
               type="button"
-             className="text-[1.2rem] text-[#123f5c] sm:text-[1.4rem] md:text-2xl"
+             className="text-[1rem] text-[#123f5c] sm:text-[1.1rem] md:text-[1.2rem]"
               onClick={() => setGuests((value) => value + 1)}
             >
               +

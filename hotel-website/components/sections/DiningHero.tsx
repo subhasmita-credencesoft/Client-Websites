@@ -6,7 +6,7 @@ export default function DiningHero() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage:  "url('/images/conference3-1.jpg')",
+          backgroundImage:  "url('/images/7-9-25/Copy of IMG_2906.avif')",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
