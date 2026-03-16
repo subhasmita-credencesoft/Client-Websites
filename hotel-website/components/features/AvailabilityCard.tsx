@@ -3,6 +3,7 @@
 import { format } from "date-fns";
 import DatePicker from "react-datepicker";
 import { forwardRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type AvailabilityCardProps = {
   initialCheckIn?: string;
@@ -52,11 +53,25 @@ export default function AvailabilityCard({
   initialCheckOut = "",
   initialGuests = 0,
 }: AvailabilityCardProps) {
+  const router = useRouter();
   const [checkInDate, setCheckInDate] = useState<Date | null>(parseIsoDate(initialCheckIn));
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(parseIsoDate(initialCheckOut));
   const [guests, setGuests] = useState(Math.max(0, initialGuests));
   const checkIn = checkInDate ? format(checkInDate, "dd/MM/yyyy") : "";
   const checkOut = checkOutDate ? format(checkOutDate, "dd/MM/yyyy") : "";
+  const canCheckRates = Boolean(checkInDate && checkOutDate && guests > 0);
+
+  function handleCheckRates() {
+    if (!canCheckRates) return;
+    const query = new URLSearchParams({
+      checkIn: format(checkInDate as Date, "yyyy-MM-dd"),
+      checkOut: format(checkOutDate as Date, "yyyy-MM-dd"),
+      adults: String(guests),
+      children: "0",
+      noOfRooms: "1",
+    });
+    router.push(`/rooms/reservation?${query.toString()}`);
+  }
 
   return (
     <aside className="rounded-2xl bg-white p-5 shadow-[0_12px_30px_rgba(17,33,41,0.06)] sm:p-6 md:p-8 lg:sticky lg:top-24">
@@ -126,7 +141,9 @@ export default function AvailabilityCard({
 
       <button
         type="button"
-       className="mt-7 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#df984e] text-[0.76rem] font-semibold uppercase tracking-[0.06em] text-white transition hover:bg-[#cf8841] sm:mt-8 sm:h-13 sm:text-[0.82rem] md:mt-9 md:h-14 md:text-[0.86rem]"
+        onClick={handleCheckRates}
+        disabled={!canCheckRates}
+        className="mt-7 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#df984e] text-[0.76rem] font-semibold uppercase tracking-[0.06em] text-white transition hover:bg-[#cf8841] disabled:cursor-not-allowed disabled:opacity-60 sm:mt-8 sm:h-13 sm:text-[0.82rem] md:mt-9 md:h-14 md:text-[0.86rem]"
       >
         Check Rates
         <svg

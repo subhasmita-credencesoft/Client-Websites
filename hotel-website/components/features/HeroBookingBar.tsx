@@ -131,7 +131,7 @@ export default function HeroBookingBar() {
               }}
             >
               <span className="truncate whitespace-nowrap pr-1">
-                {selectedRoomLabel ?? "Select"}
+                {selectedRoomLabel ?? "Select-type"}
               </span>
               <svg
                 className={`h-3.5 w-3.5 shrink-0 text-white/95 transition-transform duration-200 ${selectOpen ? "rotate-180" : ""}`}

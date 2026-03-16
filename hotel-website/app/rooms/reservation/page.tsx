@@ -1,28 +1,57 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { Suspense } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { addDays, format } from "date-fns";
 import AvailabilityCard from "../../../components/features/AvailabilityCard";
 import Container from "../../../components/ui/Container";
-import rooms from "../../../data/rooms";
 import { formatPrice } from "../../../lib/format";
+import { fetchPropertyAvailability } from "../../../lib/services/propertyService";
+import { htmlToText } from "../../../lib/sanitizeHtml";
+import type { PropertyApiResponse, RoomItem } from "../../../types/property";
 
 type SortKey = "title" | "price" | "rating" | "availability";
 
-type ListingRoom = (typeof rooms)[number] & {
+type ListingRoom = {
   listingId: string;
+  slug: string;
+  name: string;
+  description: string;
+  image: string;
+  pricePerNight: number;
+  capacity: number;
+  minimumOccupancy: number;
+  size: string;
+  bedType: string;
+  noOfRooms: number;
+  minStay: number;
+  maxStay: number;
+  facilities: string[];
   rating: number;
   availabilityDate: string;
+  noOfAvailable: number;
+  noOfBooked: number;
+  noOfOnHold: number;
+  totalNoRooms: number;
+  dailyAvailability: Array<{
+    id: string;
+    date: string;
+    noOfAvailable: number;
+    noOfBooked: number;
+    noOfOnHold: number;
+    totalNoRooms: number;
+    status: string;
+    restriction: string;
+    price: number;
+  }>;
+  ratePlans: Array<{
+    id: string;
+    name: string;
+    amount: number;
+    currencyCode: string;
+  }>;
 };
-
-const listingRooms: ListingRoom[] = [...rooms, ...rooms].map((room, index) => ({
-  ...room,
-  listingId: `${room.id}-${index}`,
-  rating: 3.8 + (index % 4) * 0.3,
-  availabilityDate: `2026-03-${String(12 + index).padStart(2, "0")}`,
-}));
 
 const sortLabels: Record<SortKey, string> = {
   title: "Title",
@@ -31,18 +60,131 @@ const sortLabels: Record<SortKey, string> = {
   availability: "Availability date",
 };
 
+function normalizeRoom(room: RoomItem, index: number, fallbackImage: string): ListingRoom {
+  const rateRows = room.ratesAndAvailabilityDtos || [];
+  const ratePlansMap = new Map<string, { id: string; name: string; amount: number; currencyCode: string }>();
+  const dailyAvailability = rateRows.map((rate, rateIndex) => {
+    const plans = rate.roomRatePlans || [];
+    plans.forEach((plan, planIndex) => {
+      const key = `${plan.code || plan.name || "plan"}-${planIndex}`;
+      const amount = Number(plan.amount ?? 0);
+      if (!ratePlansMap.has(key)) {
+        ratePlansMap.set(key, {
+          id: key,
+          name: plan.name || plan.code || "Plan",
+          amount,
+          currencyCode: plan.currencyCode || "INR",
+        });
+      }
+    });
+    return {
+      id: `${rate.id || rate.date || rateIndex}`,
+      date: rate.date || "",
+      noOfAvailable: Number(rate.noOfAvailable ?? 0),
+      noOfBooked: Number(rate.noOfBooked ?? 0),
+      noOfOnHold: Number(rate.noOfOnHold ?? 0),
+      totalNoRooms: Number(rate.totalNoRooms ?? room.noOfRooms ?? 0),
+      status: rate.status || "Open",
+      restriction: rate.restriction || "None",
+      price: Number(rate.price ?? 0),
+    };
+  });
+
+  const sortedDaily = [...dailyAvailability].sort((a, b) =>
+    new Date(a.date).getTime() - new Date(b.date).getTime(),
+  );
+  const syntheticDaily =
+    sortedDaily.length > 0
+      ? sortedDaily
+      : [
+          {
+            id: `${room.id || index}-synthetic`,
+            date: "",
+            noOfAvailable: Number(room.noOfRooms ?? 0),
+            noOfBooked: 0,
+            noOfOnHold: 0,
+            totalNoRooms: Number(room.noOfRooms ?? 0),
+            status: "Open",
+            restriction: "None",
+            price: Number(room.roomOnlyPrice ?? room.pricePerNight ?? 0),
+          },
+        ];
+  const priceCandidates = syntheticDaily.map((item) => item.price).filter((value) => value > 0);
+  if (Number(room.roomOnlyPrice ?? 0) > 0) {
+    priceCandidates.push(Number(room.roomOnlyPrice));
+  }
+  const minAvailableAcrossDates =
+    syntheticDaily.length > 0 ? Math.min(...syntheticDaily.map((item) => item.noOfAvailable)) : 0;
+  const firstAvailableDate =
+    syntheticDaily.find((item) => item.noOfAvailable > 0)?.date || syntheticDaily[0]?.date || "";
+  const image = room.imageList?.[0]?.url || fallbackImage || "/images/room_3.jpg";
+  const rawDescription = htmlToText(room.description);
+  const description = rawDescription || "Comfortable stay with resort amenities.";
+  const roomName = room.name || "Room";
+  const price = priceCandidates.length > 0 ? Math.min(...priceCandidates) : 0;
+  const minOccupancy = Number(room.minimumOccupancy ?? 1) || 1;
+  const maxOccupancy = Number(room.maximumOccupancy ?? 1) || 1;
+  const totalRoomCount = Number(room.noOfRooms ?? 0);
+  const available = minAvailableAcrossDates;
+  const firstRow = syntheticDaily[0];
+  const facilities = (room.roomFacilities || [])
+    .map((facility) => facility?.name)
+    .filter((value): value is string => Boolean(value))
+    .slice(0, 4);
+  return {
+    listingId: `${room.id || roomName}-${index}`,
+    slug: roomName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+    name: roomName,
+    description,
+    image,
+    pricePerNight: price,
+    capacity: maxOccupancy,
+    minimumOccupancy: minOccupancy,
+    size: room.size || "Resort Room",
+    bedType: maxOccupancy > 3 ? "Multiple Beds" : "1 Bed",
+    noOfRooms: totalRoomCount,
+    minStay: Number(room.minimumLengthOfStay ?? 0),
+    maxStay: Number(room.maximumLengthOfStay ?? 0),
+    facilities,
+    rating: 3.8 + (index % 4) * 0.3,
+    availabilityDate: firstAvailableDate,
+    noOfAvailable: available,
+    noOfBooked: Number(firstRow?.noOfBooked ?? 0),
+    noOfOnHold: Number(firstRow?.noOfOnHold ?? 0),
+    totalNoRooms: Number(firstRow?.totalNoRooms ?? totalRoomCount),
+    dailyAvailability: syntheticDaily,
+    ratePlans:
+      ratePlansMap.size > 0
+        ? Array.from(ratePlansMap.values())
+        : [
+            {
+              id: `${room.id || roomName}-room-only`,
+              name: "Room Only",
+              amount: Number(room.roomOnlyPrice ?? room.pricePerNight ?? 0),
+              currencyCode: "INR",
+            },
+          ],
+  };
+}
+
 function RoomsReservationContent() {
   const searchParams = useSearchParams();
   const [sortBy, setSortBy] = useState<SortKey>("title");
   const [sortOpen, setSortOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [propertyData, setPropertyData] = useState<PropertyApiResponse | null>(null);
   const sortRef = useRef<HTMLDivElement>(null);
 
-  const initialCheckIn = searchParams.get("checkIn") ?? "";
-  const initialCheckOut = searchParams.get("checkOut") ?? "";
+  const initialCheckIn = searchParams.get("checkIn") ?? format(new Date(), "yyyy-MM-dd");
+  const initialCheckOut = searchParams.get("checkOut") ?? format(addDays(new Date(), 1), "yyyy-MM-dd");
   const adultsFromQuery = Number.parseInt(searchParams.get("adults") ?? "0", 10);
   const childrenFromQuery = Number.parseInt(searchParams.get("children") ?? "0", 10);
+  const roomsFromQuery = Number.parseInt(searchParams.get("noOfRooms") ?? "1", 10);
   const initialGuests = Math.max(0, (Number.isNaN(adultsFromQuery) ? 0 : adultsFromQuery))
     + Math.max(0, Number.isNaN(childrenFromQuery) ? 0 : childrenFromQuery);
+  const totalGuests = initialGuests > 0 ? initialGuests : 1;
+  const totalRooms = Number.isNaN(roomsFromQuery) ? 1 : Math.max(1, roomsFromQuery);
 
   useEffect(() => {
     function onPointerDown(event: MouseEvent) {
@@ -54,16 +196,61 @@ function RoomsReservationContent() {
     return () => document.removeEventListener("mousedown", onPointerDown);
   }, []);
 
+  useEffect(() => {
+    const controller = new AbortController();
+    let mounted = true;
+
+    async function loadAvailability() {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await fetchPropertyAvailability(
+          {
+            fromDate: initialCheckIn,
+            toDate: initialCheckOut,
+            noOfPersons: totalGuests,
+            noOfRooms: totalRooms,
+          },
+          undefined,
+          { signal: controller.signal },
+        );
+        if (mounted) setPropertyData(data);
+      } catch (err) {
+        if (mounted && (err as Error).name !== "AbortError") {
+          setError("Unable to load room availability right now.");
+        }
+      } finally {
+        if (mounted) setIsLoading(false);
+      }
+    }
+
+    loadAvailability();
+    return () => {
+      mounted = false;
+      controller.abort();
+    };
+  }, [initialCheckIn, initialCheckOut, totalGuests, totalRooms]);
+
+  const fallbackPropertyImage = propertyData?.imageList?.[0]?.url || "/images/room_3.jpg";
+  const listingRooms = useMemo(
+    () =>
+      (propertyData?.roomList || []).map((room, index) =>
+        normalizeRoom(room, index, fallbackPropertyImage),
+      ),
+    [propertyData?.roomList, fallbackPropertyImage],
+  );
+
   const sortedRooms = useMemo(() => {
     const cloned = [...listingRooms];
     cloned.sort((a, b) => {
       if (sortBy === "title") return a.name.localeCompare(b.name);
       if (sortBy === "price") return a.pricePerNight - b.pricePerNight;
       if (sortBy === "rating") return b.rating - a.rating;
+      if (!a.availabilityDate || !b.availabilityDate) return b.noOfAvailable - a.noOfAvailable;
       return new Date(a.availabilityDate).getTime() - new Date(b.availabilityDate).getTime();
     });
     return cloned;
-  }, [sortBy]);
+  }, [listingRooms, sortBy]);
 
   return (
     <>
@@ -71,13 +258,12 @@ function RoomsReservationContent() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('/images/room_3.jpg')",
+            backgroundImage: "url('/images/room_3.jpg')",
           }}
         />
         <div className="absolute inset-0 bg-black/46" />
         <Container className="relative flex min-h-[72vh] flex-col items-center justify-center text-center">
-         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl">Rooms Reservation</h1>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl">Rooms Reservation</h1>
           <p className="mt-4 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-white/90 sm:mt-5 sm:text-[0.7rem] sm:tracking-[0.35em]">
             Home / Rooms Reservation
           </p>
@@ -86,21 +272,24 @@ function RoomsReservationContent() {
 
       <section className="bg-[#f2f1ec] py-10 text-[#133e5a] sm:py-12 md:py-16">
         <Container>
-         <p className="mx-auto max-w-4xl text-center text-[1rem] leading-relaxed sm:text-[1.2rem] md:text-[1.65rem]">
+          <p className="mx-auto max-w-4xl text-center text-[1rem] leading-relaxed sm:text-[1.2rem] md:text-[1.65rem]">
             Discover our beautiful Rooms &amp; Suites with outstanding views of valleys, mountains and
             lake.
           </p>
 
-         <div className="mt-10 grid items-start gap-8 md:mt-12 lg:mt-14 lg:grid-cols-[minmax(0,1fr)_21rem]">
+          <div className="mt-10 grid items-start gap-8 md:mt-12 lg:mt-14 lg:grid-cols-[minmax(0,1fr)_21rem]">
             <div>
-             <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-               <p className="text-base text-[#6f7d89] sm:text-lg">{sortedRooms.length} Rooms Found</p>
+              <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-base text-[#6f7d89] sm:text-lg">
+                  {isLoading ? "Loading rooms..." : `${sortedRooms.length} Rooms Found`}
+                </p>
 
                 <div className="relative" ref={sortRef}>
                   <button
                     type="button"
                     className="flex items-center gap-2 text-base text-[#6f7d89] sm:gap-3 sm:text-lg"
                     onClick={() => setSortOpen((open) => !open)}
+                    disabled={sortedRooms.length === 0}
                   >
                     Sort by
                     <span className="font-semibold text-[#4d6172]">{sortLabels[sortBy]}</span>
@@ -140,40 +329,103 @@ function RoomsReservationContent() {
                 </div>
               </div>
 
-             <div className="grid gap-8 lg:grid-cols-2">
-                {sortedRooms.map((room) => (
-                  <article key={room.listingId}>
-                    <div
-                      className="relative h-64 overflow-hidden rounded-2xl bg-[#d8d8d8] sm:h-72 md:h-80"
-                      style={{
-                        backgroundImage: `url(${room.image})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-black/15 to-transparent" />
-                      <p className="absolute bottom-5 left-6 text-sm font-semibold uppercase tracking-[0.14em] text-white">
-                        From{" "}
-                        <span className="text-[#e39a50]">
-                          {formatPrice(room.pricePerNight).replace(".00", "")}
-                        </span>{" "}
-                        Per Night
-                      </p>
-                    </div>
+              {isLoading && (
+                <div className="rounded-2xl border border-[#d6d9dd] bg-white p-6 text-[#6f7d89]">
+                  Loading live availability...
+                </div>
+              )}
 
-                    <h3 className="mt-5 font-serif text-2xl leading-tight sm:text-3xl md:text-4xl">
-                      <Link href={`/rooms/${room.slug}`}>{room.name}</Link>
-                    </h3>
-                    <p className="mt-2 text-[0.82rem] font-semibold uppercase tracking-[0.24em] text-[#7d8692]">
-                      {room.size} - 1-{room.capacity} Person -{" "}
-                      {room.bedType.includes("King") ? "2 Beds" : "1 Bed"}
-                    </p>
-                    <p className="mt-4 text-[0.95rem] leading-relaxed text-[#123f5c] md:text-[1rem]">
-                      {room.description}
-                    </p>
-                  </article>
-                ))}
-              </div>
+              {!isLoading && error && (
+                <div className="rounded-2xl border border-[#d6d9dd] bg-white p-6 text-[#6f7d89]">
+                  {error}
+                </div>
+              )}
+
+              {!isLoading && !error && sortedRooms.length === 0 && (
+                <div className="rounded-2xl border border-[#d6d9dd] bg-white p-6 text-[#6f7d89]">
+                  No rooms available for {initialCheckIn} to {initialCheckOut}. Please try different dates.
+                </div>
+              )}
+
+              {!isLoading && !error && sortedRooms.length > 0 && (
+                <div className="grid gap-8 lg:grid-cols-2">
+                  {sortedRooms.map((room) => (
+                    <article key={room.listingId}>
+                      <div
+                        className="relative h-64 overflow-hidden rounded-2xl bg-[#d8d8d8] sm:h-72 md:h-80"
+                        style={{
+                          backgroundImage: `url(${room.image})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-black/15 to-transparent" />
+                        <p className="absolute bottom-5 left-6 text-sm font-semibold uppercase tracking-[0.14em] text-white">
+                          From{" "}
+                          <span className="text-[#e39a50]">
+                            {formatPrice(room.pricePerNight).replace(".00", "")}
+                          </span>{" "}
+                          Per Night
+                        </p>
+                      </div>
+
+                      <h3 className="mt-5 font-serif text-2xl leading-tight sm:text-3xl md:text-4xl">
+                        <Link href="/booking">{room.name}</Link>
+                      </h3>
+                      <p className="mt-2 text-[0.82rem] font-semibold uppercase tracking-[0.24em] text-[#7d8692]">
+                        {room.size} - {room.minimumOccupancy}-{room.capacity} Person - {room.bedType}
+                      </p>
+                      <p className="mt-4 text-[0.95rem] leading-relaxed text-[#123f5c] md:text-[1rem]">
+                        {room.description}
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#7d8692]">
+                        <span>Total: {room.totalNoRooms || room.noOfRooms}</span>
+                        <span>Available: {room.noOfAvailable}</span>
+                        <span>Booked: {room.noOfBooked}</span>
+                        <span>On Hold: {room.noOfOnHold}</span>
+                      </div>
+                      {(room.minStay > 0 || room.maxStay > 0) && (
+                        <p className="mt-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[#7d8692]">
+                          Stay: {room.minStay || 0} - {room.maxStay || "999"} nights
+                        </p>
+                      )}
+                      {room.facilities.length > 0 && (
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {room.facilities.map((facility) => (
+                            <span
+                              key={facility}
+                              className="rounded-full border border-[#d6d9dd] bg-white/70 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-[#5d6a76]"
+                            >
+                              {facility}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      {room.ratePlans.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {room.ratePlans.map((plan) => (
+                            <span
+                              key={plan.id}
+                              className="rounded-full bg-[#e9e3d8] px-3 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.08em] text-[#123f5c]"
+                            >
+                              {plan.name}: {formatPrice(plan.amount).replace(".00", "")}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      {room.dailyAvailability.length > 0 && (
+                        <div className="mt-4 space-y-1.5 rounded-xl border border-[#d6d9dd] bg-white/80 p-3">
+                          {room.dailyAvailability.map((day) => (
+                            <p key={day.id} className="text-[0.72rem] text-[#5d6a76]">
+                              {day.date || "Date N/A"}: A:{day.noOfAvailable} B:{day.noOfBooked} H:{day.noOfOnHold} / {day.totalNoRooms} | {day.status} | {day.restriction}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              )}
             </div>
 
             <AvailabilityCard

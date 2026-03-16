@@ -11,11 +11,31 @@ const HeroBookingBar = dynamic(() => import("../features/HeroBookingBar"), {
 });
 
 const SLIDES = [
-  { src: "/images/7-9-25/Copy of IMG_2906.avif", alt: "Resort pool and gardens" },
-  { src: "/images/2.avif", alt: "Luxury rooms with mountain view" },
-  { src: "/images/7-9-25/Copy of Copy of IMG_3013.avif", alt: "Resort dining experience" },
-  { src: "/images/4.avif", alt: "Wellness and spa" },
-  { src: "/images/7-9-25/Copy of IMG_2911.avif", alt: "Resort event lawn" },
+  {
+    src: "/images/7-9-25/Copy of IMG_2906.avif",
+    alt: "Resort pool and gardens",
+    tagline: "Relax under swaying palms and walk along the pristine white-sand beach.",
+  },
+  {
+    src: "/images/2.avif",
+    alt: "Luxury rooms with mountain view",
+    tagline: "Wake up to elegant comfort and scenic views in every room.",
+  },
+  {
+    src: "/images/7-9-25/Copy of Copy of IMG_3013.avif",
+    alt: "Resort dining experience",
+    tagline: "Savor curated dining experiences crafted with fresh local flavors.",
+  },
+  {
+    src: "/images/4.avif",
+    alt: "Wellness and spa",
+    tagline: "Rejuvenate your body and mind with peaceful wellness rituals.",
+  },
+  {
+    src: "/images/7-9-25/Copy of IMG_2911.avif",
+    alt: "Resort event lawn",
+    tagline: "Celebrate unforgettable moments on lush lawns and open spaces.",
+  },
 ];
 
 const INTERVAL_MS = 5000;
@@ -93,9 +113,12 @@ export default function Hero() {
 
       <Container className="relative z-[10] flex min-h-[100svh] w-full flex-col items-center justify-center text-center">
         <div className="flex w-full max-w-[72rem] flex-col items-center px-4 pb-32 pt-32 sm:px-5 sm:pb-28 sm:pt-36 md:px-6 md:pt-40 lg:pb-24 lg:pt-44">
-          <div className="animate-fade-up" style={{ animationDelay: "0ms" }}>
-            <p className="mx-auto text-[0.72rem] font-normal uppercase tracking-[0.38em] text-white/80 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:text-[0.8rem] sm:tracking-[0.42em] md:text-[0.85rem]">
-              Relax under swaying palms and walk along the pristine white-sand beach.
+          <div className="mt-8 animate-fade-up sm:mt-10 md:mt-12" style={{ animationDelay: "0ms" }}>
+            <p
+              key={current}
+              className="mx-auto text-[0.72rem] font-normal uppercase tracking-[0.38em] text-white/80 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:text-[0.8rem] sm:tracking-[0.42em] md:text-[0.85rem]"
+            >
+              {SLIDES[current]?.tagline}
             </p>
           </div>
 

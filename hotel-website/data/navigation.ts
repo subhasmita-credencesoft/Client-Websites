@@ -7,6 +7,7 @@ const navigation = [
   { label: "Experiences", href: "/experiences" },
   { label: "Tariff", href: "/tariffs" },
   { label: "Reservation", href: "/rooms/reservation" },
+  { label: "Around Us", href: "/around-us" },
   // { label: "blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
    { label: "About", href: "/about" },

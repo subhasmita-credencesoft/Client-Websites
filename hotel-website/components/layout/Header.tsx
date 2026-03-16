@@ -9,13 +9,13 @@ import Container from "../ui/Container";
 import navigation from "../../data/navigation";
 import menuPreviews from "../../data/menuPreviews";
 import useScrollPosition from "../../hooks/useScrollPosition";
+import { usePropertyData } from "../providers/PropertyDataProvider";
 
 /* ── contact constants ── */
-const EMAIL     = "info@uksresort.com";
-const PHONE_1   = "+91 98220 12343";
-const PHONE_2   = "+91 87798 14559";
-const PHONE_1_H = "tel:+919822012343";
-const PHONE_2_H = "tel:+918779814559";
+const DEFAULT_EMAIL = "info@uksresort.com";
+const DEFAULT_PHONE_1 = "+91 98220 12343";
+const DEFAULT_PHONE_2 = "+91 87798 14559";
+const DEFAULT_LOGO = "/images/logo1.png";
 const PREFETCH_ROUTES = [
   "/",
   "/rooms",
@@ -25,6 +25,7 @@ const PREFETCH_ROUTES = [
   "/experiences",
   "/tariffs",
   "/rooms/reservation",
+  "/around-us",
   "/contact",
   "/about",
 ];
@@ -40,6 +41,22 @@ function resolvePreviewPath(pathname: string): string {
     .filter((key) => key !== "/" && pathname.startsWith(key))
     .sort((a, b) => b.length - a.length)[0];
   return matched ?? "/";
+}
+
+function toTelHref(value: string) {
+  const digits = value.replace(/\D/g, "");
+  return digits ? `tel:+${digits}` : "#";
+}
+
+function formatPhone(value: string | null | undefined) {
+  if (!value) return "";
+  const digitsOnly = value.replace(/\D/g, "");
+  if (digitsOnly.length === 10) return `+91 ${digitsOnly.slice(0, 5)} ${digitsOnly.slice(5)}`;
+  return value;
+}
+
+function compactAddress(parts: Array<string | null | undefined>) {
+  return parts.filter(Boolean).join(", ");
 }
 
 /* ── shared SVGs ── */
@@ -66,6 +83,7 @@ const CloseIcon = () => (
 );
 
 export default function Header() {
+  const { property } = usePropertyData();
   const router = useRouter();
   const scrolled  = useScrollPosition();
   const pathname  = usePathname();
@@ -79,6 +97,7 @@ export default function Header() {
     pathname.startsWith("/experiences") ||
     pathname.startsWith("/weddings")    ||
     pathname.startsWith("/blog")        ||
+    pathname.startsWith("/around-us")   ||
     pathname.startsWith("/contact")     ||
     pathname.startsWith("/tariffs");     
 
@@ -86,6 +105,20 @@ export default function Header() {
   const [menuClosing, setMenuClosing] = useState(false);
   const [menuPreview, setMenuPreview] = useState<string>(resolvePreviewPath(pathname));
   const canUsePortal = typeof document !== "undefined";
+  const logoSrc = property?.logoUrl ?? DEFAULT_LOGO;
+  const propertyName = property?.name ?? "UK's Resort";
+  const email = property?.email ?? DEFAULT_EMAIL;
+  const primaryPhone = formatPhone(property?.mobile) || DEFAULT_PHONE_1;
+  const whatsappPhone = formatPhone(property?.whatsApp) || DEFAULT_PHONE_2;
+  const primaryPhoneHref = toTelHref(primaryPhone);
+  const whatsappPhoneHref = toTelHref(whatsappPhone);
+  const addressLong = compactAddress([
+    property?.address?.streetName,
+    property?.address?.suburb,
+    property?.address?.city,
+    property?.address?.state,
+  ]) || "Mahad Phata, Old Mumbai-Pune Hwy, Khopoli, Raigad";
+  const addressShort = compactAddress([property?.address?.city, property?.address?.state]) || "Khopoli, Raigad";
 
   useEffect(() => {
     document.body.style.overflow = menuOpen || menuClosing ? "hidden" : "";
@@ -161,25 +194,25 @@ export default function Header() {
               <path d="M20 10c0 6-8 13-8 13S4 16 4 10a8 8 0 0 1 16 0Z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <span className="hidden sm:inline">Mahad Phata, Old Mumbai–Pune Hwy, Khopoli, Raigad</span>
-            <span className="sm:hidden">Khopoli, Raigad</span>
+            <span className="hidden sm:inline">{addressLong}</span>
+            <span className="sm:hidden">{addressShort}</span>
           </div>
 
           {/* Right — phones + email */}
           <div className="flex items-center gap-2.5 text-[0.67rem] text-white/70 sm:gap-3">
-            <a href={PHONE_1_H} className="flex items-center gap-1 transition-colors hover:text-white">
+            <a href={primaryPhoneHref} className="flex items-center gap-1 transition-colors hover:text-white">
               <PhoneIcon />
-              <span className="hidden md:inline">{PHONE_1}</span>
-              <span className="md:hidden">98220 12343</span>
+              <span className="hidden md:inline">{primaryPhone}</span>
+              <span className="md:hidden">{primaryPhone.replace("+91 ", "")}</span>
             </a>
             <span className="text-white/20" aria-hidden="true">|</span>
-            <a href={PHONE_2_H} className="hidden items-center gap-1 transition-colors hover:text-white lg:flex">
-              {PHONE_2}
+            <a href={whatsappPhoneHref} className="hidden items-center gap-1 transition-colors hover:text-white lg:flex">
+              {whatsappPhone}
             </a>
             <span className="hidden text-white/20 lg:block" aria-hidden="true">|</span>
-            <a href={`mailto:${EMAIL}`} className="hidden items-center gap-1 transition-colors hover:text-white sm:flex">
+            <a href={`mailto:${email}`} className="hidden items-center gap-1 transition-colors hover:text-white sm:flex">
               <MailIcon />
-              {EMAIL}
+              {email}
             </a>
           </div>
 
@@ -217,22 +250,23 @@ export default function Header() {
               setMenuPreview(resolvePreviewPath(pathname));
               setMenuOpen(true);
             }}
-            className="group flex flex-col items-start justify-center gap-[5px] py-2 pr-2"
+            className="group flex flex-col items-start justify-center gap-[6px] py-2.5 pr-2.5"
           >
-            <span className="block h-[1.5px] w-[22px] bg-current transition-all duration-200 group-hover:w-[26px]" />
-            <span className="block h-[1.5px] w-[17px] bg-current transition-all duration-200 group-hover:w-[21px]" />
-            <span className="block h-[1.5px] w-[12px] bg-current transition-all duration-200 group-hover:w-[16px]" />
+            <span className="block h-[2px] w-[28px] bg-current transition-all duration-200 group-hover:w-[32px]" />
+            <span className="block h-[2px] w-[22px] bg-current transition-all duration-200 group-hover:w-[26px]" />
+            <span className="block h-[2px] w-[16px] bg-current transition-all duration-200 group-hover:w-[20px]" />
           </button>
 
           {/* Logo — always perfectly centered */}
           <Link href="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <Image
-              src="/images/logo1.png"
-              alt="UK's Resort"
+              src={logoSrc}
+              alt={propertyName}
               width={220}
               height={80}
-              priority
               className={`h-9 w-auto sm:h-11 lg:h-[3rem] ${isHeroPage ? "" : "invert"}`}
+              unoptimized={logoSrc.startsWith("http")}
+              priority
             />
           </Link>
 
@@ -241,11 +275,11 @@ export default function Header() {
 
             {/* Email — xl screens only */}
             {/* <a
-              href={`mailto:${EMAIL}`}
+              href={`mailto:${email}`}
               className="hidden items-center gap-1.5 text-[0.72rem] font-normal opacity-80 transition-opacity hover:opacity-100 xl:flex"
             >
               <MailIcon />
-              {EMAIL}
+              {email}
             </a> */}
 
             {/* Divider */}
@@ -253,27 +287,27 @@ export default function Header() {
 
             {/* Phone 1 + Phone 2 — desktop */}
             {/* <a
-              href={PHONE_1_H}
+              href={primaryPhoneHref}
               className="hidden items-center gap-1.5 text-[0.72rem] font-normal opacity-80 transition-opacity hover:opacity-100 lg:flex"
             >
               <PhoneIcon />
-              {PHONE_1}
+              {primaryPhone}
             </a> */}
 
             {/* slash + second number — lg+ */}
            
             {/* <a
-              href={PHONE_2_H}
+              href={whatsappPhoneHref}
               className="hidden text-[0.72rem] font-normal opacity-80 transition-opacity hover:opacity-100 lg:block"
             >
-              {PHONE_2}
+              {whatsappPhone}
             </a> */}
 
             {/* Divider before book button */}
             {/* <span className="hidden h-3 w-px bg-current opacity-20 lg:block" aria-hidden="true" /> */}            {/* Book button */}
             <Link
               href="/booking"
-              className={`flex items-center gap-2 rounded-full border px-4 py-[0.45rem] text-[0.58rem] font-semibold uppercase tracking-[0.22em] transition-all duration-200 sm:px-5 sm:py-2 sm:text-[0.6rem] ${
+              className={`flex items-center gap-2 rounded-full border px-5 py-[0.55rem] text-[0.72rem] font-semibold uppercase tracking-[0.22em] transition-all duration-200 sm:px-6 sm:py-2.5 sm:text-[0.78rem] ${
                 isHeroPage
                   ? "border-white/50 text-white hover:border-white hover:bg-white/10"
                   : "border-[#1f3c44]/45 text-[#1f3c44] hover:border-[#1f3c44] hover:bg-[#1f3c44]/5"
@@ -281,7 +315,7 @@ export default function Header() {
             >
               <span className="hidden sm:inline">Book your stay</span>
               <span className="sm:hidden">Book</span>
-              <span className="text-[0.72rem] leading-none" aria-hidden="true">&rsaquo;</span>
+              <span className="text-[0.85rem] leading-none" aria-hidden="true">&rsaquo;</span>
             </Link>
 
           </div>
@@ -294,7 +328,7 @@ export default function Header() {
       <div
         className={`hidden border-t lg:block ${
           isHeroPage
-            ? "border-white/[0.12] bg-white/[0.04] backdrop-blur-[14px]"
+            ? "border-white/[0.12] bg-white/[0.06] backdrop-blur-[14px]"
             : "border-black/[0.07] bg-white"
         }`}
       >
@@ -308,7 +342,7 @@ export default function Header() {
                     href={item.href}
                     aria-current={isActive ? "page" : undefined}
                     onMouseEnter={() => router.prefetch(item.href)}
-                    className={`px-[0.85rem] font-serif text-[0.8rem] font-normal transition-colors duration-200 xl:px-[1rem] xl:text-[0.84rem] ${
+                    className={`px-[0.85rem] font-serif text-[1.25rem] font-normal transition-colors duration-200 xl:px-[1rem] xl:text-[1.25rem] ${
                       isHeroPage ? "text-white/82 hover:text-white" : "text-[#1f3c44]/65 hover:text-[#1f3c44]"
                     }`}
                     style={isActive ? { color: "#d89a55" } : undefined}
@@ -363,18 +397,26 @@ export default function Header() {
                 {/* Logo */}
                 <Link href="/" onClick={closeMenu}
                   className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <Image src="/images/logo1.png" alt="UK's Resort" width={160} height={50} className="h-8 w-auto sm:h-10" />
+                  <Image
+                    src={logoSrc}
+                    alt={propertyName}
+                    width={160}
+                    height={50}
+                    className="h-8 w-auto sm:h-10"
+                    unoptimized={logoSrc.startsWith("http")}
+                    priority
+                  />
                 </Link>
 
                 {/* Phone + Book */}
                 <div className="ml-auto flex items-center gap-3 lg:gap-5">
-                  <a href={PHONE_1_H} className="hidden items-center gap-1.5 text-[0.75rem] text-white/80 hover:text-white lg:flex">
+                  <a href={primaryPhoneHref} className="hidden items-center gap-1.5 text-[0.75rem] text-white/80 hover:text-white lg:flex">
                     <PhoneIcon />
-                    {PHONE_1}
+                    {primaryPhone}
                   </a>
                   <span className="hidden text-[0.75rem] text-white/30 lg:block" aria-hidden="true">/</span>
-                  <a href={PHONE_2_H} className="hidden text-[0.75rem] text-white/80 hover:text-white lg:block">
-                    {PHONE_2}
+                  <a href={whatsappPhoneHref} className="hidden text-[0.75rem] text-white/80 hover:text-white lg:block">
+                    {whatsappPhone}
                   </a>
                   <span className="hidden h-3 w-px bg-white/20 lg:block" aria-hidden="true" />
                   <Link href="/booking" onClick={closeMenu}
@@ -429,26 +471,26 @@ export default function Header() {
             {/* Contact Info — now with real details */}
             <div className="space-y-3 pt-2">
               <p className="font-serif text-[1.75rem] leading-tight text-white md:text-[1.95rem]">Contact Info</p>
-              <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 text-[0.93rem] text-white/75 transition-colors hover:text-white">
+              <a href={`mailto:${email}`} className="flex items-center gap-2 text-[0.93rem] text-white/75 transition-colors hover:text-white">
                 <MailIcon />
-                {EMAIL}
+                {email}
               </a>
-              <a href={PHONE_1_H} className="flex items-center gap-2 text-[0.93rem] text-white/75 transition-colors hover:text-white">
+              <a href={primaryPhoneHref} className="flex items-center gap-2 text-[0.93rem] text-white/75 transition-colors hover:text-white">
                 <PhoneIcon />
-                {PHONE_1}
+                {primaryPhone}
               </a>
-              <a href={PHONE_2_H} className="flex items-center gap-2 text-[0.93rem] text-white/75 transition-colors hover:text-white">
+              <a href={whatsappPhoneHref} className="flex items-center gap-2 text-[0.93rem] text-white/75 transition-colors hover:text-white">
                 <PhoneIcon />
-                {PHONE_2}
+                {whatsappPhone}
               </a>
             </div>
 
             {/* Reservations */}
             <div className="space-y-3 pt-2">
               <p className="font-serif text-[1.75rem] leading-tight text-white md:text-[1.95rem]">Reservations</p>
-              <a href={PHONE_1_H} className="block text-[0.93rem] text-white/75 transition-colors hover:text-white">{PHONE_1}</a>
-              <a href={PHONE_2_H} className="block text-[0.93rem] text-white/75 transition-colors hover:text-white">{PHONE_2}</a>
-              <a href={`mailto:${EMAIL}`} className="block text-[0.93rem] text-white/75 transition-colors hover:text-white">{EMAIL}</a>
+              <a href={primaryPhoneHref} className="block text-[0.93rem] text-white/75 transition-colors hover:text-white">{primaryPhone}</a>
+              <a href={whatsappPhoneHref} className="block text-[0.93rem] text-white/75 transition-colors hover:text-white">{whatsappPhone}</a>
+              <a href={`mailto:${email}`} className="block text-[0.93rem] text-white/75 transition-colors hover:text-white">{email}</a>
             </div>
 
           </Container>
@@ -459,5 +501,8 @@ export default function Header() {
     </div>
   );
 }
+
+
+
 
 

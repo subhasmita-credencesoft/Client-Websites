@@ -4,6 +4,7 @@ import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
+import { PropertyDataProvider } from "../components/providers/PropertyDataProvider";
 
 const bodyFont = Jost({
   variable: "--font-jost",
@@ -38,9 +39,11 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${bodyFont.variable} ${serifFont.variable} theme-hotel antialiased`}
       >
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <PropertyDataProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </PropertyDataProvider>
       </body>
     </html>
   );
