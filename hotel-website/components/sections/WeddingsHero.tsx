@@ -7,7 +7,7 @@ export default function WeddingsHero() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('/images/4.avif')",
+            "url('/images/7-9-25/Copy of IMG_2912.avif')",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}

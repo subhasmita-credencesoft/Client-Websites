@@ -5,22 +5,22 @@ import Container from "../ui/Container";
 
 const slides = [
   {
-    id: "seasonal",
-    label: "Seasonal Experiences",
-    headline: "Seasonal\nExperiences",
-    image: "https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/exp-bg2.jpg",
+    id: "family",
+    label: "Family Experiences",
+    headline: "Family\nExperiences",
+    image: "/images/7-9-25/Copy of IMG_2912.avif",
   },
   {
-    id: "signature",
-    label: "Signature Experiences",
-    headline: "Signature\nExperiences",
-    image: "/images/room_3.jpg",
+    id: "culture",
+    label: "Cultural Experiences",
+    headline: "Cultural\nExperiences",
+    image: "/images/7-9-25/Copy of IMG_3968.avif",
   },
   {
-    id: "good-life",
-    label: "Good Life Experiences",
-    headline: "Good Life\nExperiences",
-    image: "/images/room_7.jpg",
+    id: "adventure",
+    label: "Adventure Experiences",
+    headline: "Adventure\nExperiences",
+    image: "/images/7-9-25/Copy of IMG_1458.avif",
   },
 ];
 
@@ -36,7 +36,7 @@ export default function ExperiencesShowcase() {
       <div
         className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
         style={{
-          backgroundImage: `url(${active.image})`,
+          backgroundImage: `url("${encodeURI(active.image)}")`,
         }}
       />
       <div className="absolute inset-0 bg-black/35" />

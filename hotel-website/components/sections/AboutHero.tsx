@@ -7,7 +7,7 @@ export default function AboutHero() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/images/room_4.jpg')",
+          backgroundImage: "url('/images/7-9-25/Copy of IMG_1568.avif')",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
@@ -39,3 +39,4 @@ export default function AboutHero() {
     </section>
   );
 }
+

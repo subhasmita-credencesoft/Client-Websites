@@ -1,13 +1,16 @@
 const menuPreviews: Record<string, string> = {
-  "/": "/images/room_1.jpg",
-  "/rooms": "/images/room_2.jpg",
-  "/rooms/reservation": "/images/room_2.jpg",
-  "/dining": "/images/dine-img.jpg",
-  "/wellness": "/images/spa-img.jpg",
-  "/experiences": "/images/exp-img5.jpg",
-  "/weddings": "/images/wedding-img4.jpg",
-  "/blog": "/images/blog_10.jpg",
-  "/contact": "/images/web-img1.jpg",
+  "/": "/images/7-9-25/Copy of IMG_2906.avif",
+  "/rooms": "/images/7-9-25/Copy of IMG_2910.avif",
+  "/rooms/reservation": "/images/7-9-25/Copy of IMG_2907.avif",
+  "/dining": "/images/7-9-25/Copy of IMG_2906.avif",
+  "/wellness": "/images/2.avif",
+  "/experiences": "/images/7-9-25/Copy of IMG_3980.avif",
+  "/weddings": "/images/7-9-25/Copy of IMG_2912.avif",
+  "/tariffs": "/images/conference3-1.jpg",
+  "/about": "/images/7-9-25/Copy of IMG_1568.avif",
+  "/blog": "/images/room_2.jpg",
+  "/contact": "/images/7-9-25/Copy of IMG_1441.avif",
 };
 
 export default menuPreviews;
+

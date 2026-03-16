@@ -7,7 +7,7 @@ export default function ExperiencesHero() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/images/room_7.jpg')",
+          backgroundImage: "url('/images/7-9-25/Copy of IMG_3980.avif')",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}

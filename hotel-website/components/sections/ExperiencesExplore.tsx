@@ -3,31 +3,31 @@ import Container from "../ui/Container";
 const experiences = [
   {
     title: "Family",
-    image: "/images/exp-img5.jpg",
+    image: "/images/7-9-25/Copy of IMG_2912.avif",
     description:
-      "From kids’ activities to family-friendly adventures, discover moments made for togetherness.",
+      "From kids' activities to family-friendly adventures, discover moments made for togetherness.",
   },
   {
     title: "Culture",
-    image: "/images/exp-img6.jpg",
+    image: "/images/7-9-25/Copy of IMG_3968.avif",
     description:
       "Immerse yourself in local traditions, art, and stories that celebrate the spirit of the island.",
   },
   {
     title: "Entertainment",
-    image: "/images/exp-img7.jpg",
+    image: "/images/7-9-25/Copy of IMG_1458.avif",
     description:
       "Whatever you love doing, you will find an incredible array of choices at the resort.",
   },
   {
     title: "Beach & Pools",
-    image: "/images/exp-img8.jpg",
+    image: "/images/7-9-25/Copy of IMG_1442.avif",
     description:
       "Sun-soaked days by the water, with serene pools and golden shoreline escapes.",
   },
   {
     title: "Adventure",
-    image: "/images/exp-img4-220x300.jpg",
+    image: "/images/7-9-25/Copy of IMG_2911.avif",
     description:
       "Elevate your stay with outdoor thrills, curated excursions, and signature experiences.",
   },
@@ -39,9 +39,7 @@ export default function ExperiencesExplore() {
       <Container>
         <div className="space-y-8">
           <div>
-            <span className="text-xs uppercase tracking-[0.45em] text-[#1f3c44]/70">
-              Explore
-            </span>
+            <span className="text-xs uppercase tracking-[0.45em] text-[#1f3c44]/70">Explore</span>
             <h2 className="mt-4 max-w-xl font-serif text-4xl leading-tight md:text-5xl">
               Make your stay
               <br />
@@ -51,13 +49,10 @@ export default function ExperiencesExplore() {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
             {experiences.map((item) => (
-              <div
-                key={item.title}
-                className="group relative overflow-hidden rounded-2xl"
-              >
+              <div key={item.title} className="group relative overflow-hidden rounded-2xl">
                 <div
                   className="h-64 w-full bg-cover bg-center transition duration-700 group-hover:scale-105"
-                  style={{ backgroundImage: `url(${item.image})` }}
+                  style={{ backgroundImage: `url("${encodeURI(item.image)}")` }}
                   role="img"
                   aria-label={item.title}
                 />

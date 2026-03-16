@@ -6,10 +6,10 @@ import CurvedLoop from "../ui/CurvedLoop";
 
 const SLIDES = [
   {
-    image: "/images/7-9-25/Copy of IMG_1494.jpg",
+    image: "/images/7-9-25/Copy of IMG_1496.avif",
   },
   {
-    image: "/images/7-9-25/Copy of IMG_1525.jpg",
+    image: "/images/7-9-25/Copy of IMG_1525.avif",
   },
   {
     image: "/images/7-9-25/Copy-of-IMG_2938_1_.avif",

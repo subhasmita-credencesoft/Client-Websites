@@ -7,7 +7,7 @@ export default function RoomsHero() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('/images/room_3.jpg')",
+            "url('/images/7-9-25/Copy of IMG_2910.avif')",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}

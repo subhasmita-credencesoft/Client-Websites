@@ -67,16 +67,16 @@ function RoomsReservationContent() {
 
   return (
     <>
-      <section className="relative min-h-[42vh] overflow-hidden text-white sm:min-h-[50vh] md:min-h-[62vh]">
+      <section className="relative min-h-[72vh] overflow-hidden text-white">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('/images/uk-resort.png')",
+              "url('/images/room_3.jpg')",
           }}
         />
         <div className="absolute inset-0 bg-black/46" />
-        <Container className="relative flex min-h-[62vh] flex-col items-center justify-center text-center">
+        <Container className="relative flex min-h-[72vh] flex-col items-center justify-center text-center">
          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl">Rooms Reservation</h1>
           <p className="mt-4 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-white/90 sm:mt-5 sm:text-[0.7rem] sm:tracking-[0.35em]">
             Home / Rooms Reservation

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Jost, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 import Header from "../components/layout/Header";
@@ -10,9 +10,11 @@ const bodyFont = Jost({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
+const serifFont = Cormorant_Garamond({
   variable: "--font-playfair",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -34,7 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${bodyFont.variable} ${playfair.variable} theme-hotel antialiased`}
+        className={`${bodyFont.variable} ${serifFont.variable} theme-hotel antialiased`}
       >
         <Header />
         <main>{children}</main>

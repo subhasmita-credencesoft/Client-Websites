@@ -100,7 +100,7 @@ export default function Hero() {
           </div>
 
           <div className="animate-fade-up" style={{ animationDelay: "120ms" }}>
-            <h1 className="mx-auto mt-4 max-w-[14ch] font-serif text-[3rem] leading-[0.92] tracking-[-0.02em] text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)] sm:mt-5 sm:text-[4rem] md:mt-6 md:max-w-none md:text-[5.2rem] lg:mt-6 lg:text-[6.2rem] xl:text-[7rem]">
+            <h1 className="mx-auto mt-4 max-w-[14ch] font-serif text-[3rem] font-normal leading-[0.9] tracking-[-0.015em] text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)] sm:mt-5 sm:text-[4rem] md:mt-6 md:max-w-none md:text-[5.2rem] lg:mt-6 lg:text-[6.2rem] xl:text-[7rem]">
               Welcome to <br /> UK&apos;s Resort
             </h1>
           </div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Container from "../ui/Container";
@@ -16,6 +16,31 @@ const PHONE_1   = "+91 98220 12343";
 const PHONE_2   = "+91 87798 14559";
 const PHONE_1_H = "tel:+919822012343";
 const PHONE_2_H = "tel:+918779814559";
+const PREFETCH_ROUTES = [
+  "/",
+  "/rooms",
+  "/dining",
+  "/weddings",
+  "/wellness",
+  "/experiences",
+  "/tariffs",
+  "/rooms/reservation",
+  "/contact",
+  "/about",
+];
+
+type IdleWindow = Window & {
+  requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+  cancelIdleCallback?: (id: number) => void;
+};
+
+function resolvePreviewPath(pathname: string): string {
+  if (menuPreviews[pathname]) return pathname;
+  const matched = Object.keys(menuPreviews)
+    .filter((key) => key !== "/" && pathname.startsWith(key))
+    .sort((a, b) => b.length - a.length)[0];
+  return matched ?? "/";
+}
 
 /* ── shared SVGs ── */
 const PhoneIcon = () => (
@@ -41,6 +66,7 @@ const CloseIcon = () => (
 );
 
 export default function Header() {
+  const router = useRouter();
   const scrolled  = useScrollPosition();
   const pathname  = usePathname();
   const isHeroPage =
@@ -58,13 +84,49 @@ export default function Header() {
 
   const [menuOpen,    setMenuOpen]    = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
-  const [menuPreview, setMenuPreview] = useState<string>(navigation[0]?.href ?? "/");
+  const [menuPreview, setMenuPreview] = useState<string>(resolvePreviewPath(pathname));
   const canUsePortal = typeof document !== "undefined";
 
   useEffect(() => {
     document.body.style.overflow = menuOpen || menuClosing ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen, menuClosing]);
+
+  useEffect(() => {
+    let cancelled = false;
+    const ids: number[] = [];
+    const idleWindow = window as IdleWindow;
+
+    const prefetchInBatches = () => {
+      if (cancelled) return;
+      PREFETCH_ROUTES.forEach((route, index) => {
+        const id = window.setTimeout(() => {
+          if (!cancelled) router.prefetch(route);
+        }, index * 180);
+        ids.push(id);
+      });
+    };
+
+    if (idleWindow.requestIdleCallback) {
+      const idleId = idleWindow.requestIdleCallback(prefetchInBatches, { timeout: 1200 });
+      ids.push(idleId);
+    } else {
+      const fallbackId = window.setTimeout(prefetchInBatches, 300);
+      ids.push(fallbackId);
+    }
+
+    return () => {
+      cancelled = true;
+      ids.forEach((id) => {
+        window.clearTimeout(id);
+        if (idleWindow.cancelIdleCallback) idleWindow.cancelIdleCallback(id);
+      });
+    };
+  }, [router]);
+
+  useEffect(() => {
+    setMenuPreview(resolvePreviewPath(pathname));
+  }, [pathname]);
 
   const closeMenu = () => {
     setMenuClosing(true);
@@ -152,7 +214,7 @@ export default function Header() {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={() => {
               if (menuOpen) { closeMenu(); return; }
-              setMenuPreview(navigation[0]?.href ?? "/");
+              setMenuPreview(resolvePreviewPath(pathname));
               setMenuOpen(true);
             }}
             className="group flex flex-col items-start justify-center gap-[5px] py-2 pr-2"
@@ -245,6 +307,7 @@ export default function Header() {
                   <Link
                     href={item.href}
                     aria-current={isActive ? "page" : undefined}
+                    onMouseEnter={() => router.prefetch(item.href)}
                     className={`px-[0.85rem] font-serif text-[0.8rem] font-normal transition-colors duration-200 xl:px-[1rem] xl:text-[0.84rem] ${
                       isHeroPage ? "text-white/82 hover:text-white" : "text-[#1f3c44]/65 hover:text-[#1f3c44]"
                     }`}
@@ -277,7 +340,7 @@ export default function Header() {
           <div
             className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500 ease-out"
             style={{
-              backgroundImage: `url(${menuPreviews[menuPreview] ?? "/images/room_1.jpg"})`,
+              backgroundImage: `url(${menuPreviews[menuPreview] ?? menuPreviews["/"]})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -341,7 +404,10 @@ export default function Header() {
                         aria-current={isActive ? "page" : undefined}
                         className="block transition-colors duration-200 hover:text-[#d89a55]"
                         style={{ color: isActive ? "#d89a55" : "rgba(255,255,255,0.92)" }}
-                        onMouseEnter={() => setMenuPreview(item.href)}
+                        onMouseEnter={() => {
+                          setMenuPreview(item.href);
+                          router.prefetch(item.href);
+                        }}
                         onFocus={() => setMenuPreview(item.href)}
                         onClick={closeMenu}
                       >
