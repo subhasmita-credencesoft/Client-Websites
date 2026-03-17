@@ -5,17 +5,17 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Container from "../ui/Container";
 
 const SPA_IMAGES = [
-  "/images/pic2.jpeg",
-  "/images/pic3.jpeg",
-  "/images/pic4.jpeg",
-  "/images/pic5.jpeg",
-  "/images/pic6.jpeg",
-  "/images/pic7.jpeg",
-  "/images/pic8.jpeg",
-  "/images/pic9.jpeg",
-  "/images/pic10.jpeg",
-  "/images/pic11.jpeg",
-  "/images/pic12.jpeg",
+  "https://bookonelocal.in/cdn/pic2.jpeg",
+  "https://bookonelocal.in/cdn/pic3.jpeg",
+  "https://bookonelocal.in/cdn/pic4.jpeg",
+  "https://bookonelocal.in/cdn/pic5.jpeg",
+  "https://bookonelocal.in/cdn/pic6.jpeg",
+  "https://bookonelocal.in/cdn/pic7.jpeg",
+  "https://bookonelocal.in/cdn/pic8.jpeg",
+  "https://bookonelocal.in/cdn/pic9.jpeg",
+  "https://bookonelocal.in/cdn/pic10.jpeg",
+  "https://bookonelocal.in/cdn/pic11.jpeg",
+  "https://bookonelocal.in/cdn/pic12.jpeg",
 ];
 
 const SwimmingPoolIcon = () => (

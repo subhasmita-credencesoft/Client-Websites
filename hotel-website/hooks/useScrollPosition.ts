@@ -8,11 +8,17 @@ export default function useScrollPosition() {
   useEffect(() => {
     let ticking = false;
     let rafId = 0;
+    const ENTER_SCROLL_Y = 20;
+    const EXIT_SCROLL_Y = 6;
 
     const update = () => {
       ticking = false;
-      const next = window.scrollY > 12;
-      setScrolled((prev) => (prev === next ? prev : next));
+      const y = window.scrollY;
+      setScrolled((prev) => {
+        if (!prev && y >= ENTER_SCROLL_Y) return true;
+        if (prev && y <= EXIT_SCROLL_Y) return false;
+        return prev;
+      });
     };
 
     const onScroll = () => {

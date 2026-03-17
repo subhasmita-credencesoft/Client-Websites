@@ -1,37 +1,12 @@
-import Container from "../ui/Container";
-import AnimatedContent from "./AnimatedContent";
+import PageHero from "./PageHero";
+
 export default function ContactHero() {
   return (
-    <section className="relative min-h-[70vh] overflow-hidden text-white">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/images/7-9-25/Copy of IMG_1441.avif')",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-      />
-      <div className="absolute inset-0 bg-black/45" />
-      <Container className="relative flex min-h-[70vh] flex-col items-center justify-center text-center">
-          <AnimatedContent
-                            distance={100}
-                            direction="vertical"
-                            reverse={false}
-                            duration={0.8}
-                            ease="power3.out"
-                            initialOpacity={0}
-                            animateOpacity
-                            scale={1}
-                            threshold={0.1}
-                            delay={0}
-                          >
-        <h1 className="font-serif text-4xl md:text-6xl">Around us</h1>
-        <span className="mt-6 text-[0.7rem] uppercase tracking-[0.4em] text-white/80">
-       Places of Tourist Attraction in Khopoli Near UK's Resorts
-        </span>
-         </AnimatedContent>
-      </Container>
-    </section>
+    <PageHero
+      title="Around Us"
+      backgroundImage="https://bookonelocal.in/cdn/Water-Park-1.jpg"
+      subtitle="Places of Tourist Attraction in Khopoli Near UK's Resorts"
+      breadcrumb="Home / Around Us"
+    />
   );
 }
-

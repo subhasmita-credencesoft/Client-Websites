@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Container from "../../components/ui/Container";
 import { usePropertyData } from "../../components/providers/PropertyDataProvider";
+import PageHero from "../../components/sections/PageHero";
 
 const DEFAULT_EMAIL = "info@uksresort.com";
 const DEFAULT_PHONE_1 = "+91 98220 12343";
@@ -56,23 +56,11 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="relative min-h-[72vh] overflow-hidden text-white">
-        <Image
-          src="/images/7-9-25/Copy of IMG_1441.avif"
-          alt="Contact hero background"
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/45" />
-
-        <Container className="relative z-10 flex min-h-[72vh] flex-col items-center justify-center pt-24 text-center">
-          <h1 className="font-serif text-[4rem] leading-none sm:text-[5rem] md:text-[6rem]">Contact</h1>
-          <p className="mt-8 text-[0.8rem] font-medium uppercase tracking-[0.28em] text-white/90">
-            Home / Contact
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        title="Contact"
+        backgroundImage="/images/blog-banner.jpg"
+        breadcrumb="Home / Contact"
+      />
 
       <section className="bg-[#efeee9]">
         <Container className="grid gap-8 py-14 md:grid-cols-3 md:gap-0 md:py-16">
@@ -83,8 +71,8 @@ export default function ContactPage() {
             >
               <h2 className="font-serif text-[2.6rem] leading-none text-[#123645]">{item.title}</h2>
               <div className="mt-6 space-y-2 text-[1.15rem] leading-relaxed text-[#123645]/70">
-                {item.lines.map((line) => (
-                  <p key={line}>{line}</p>
+                {item.lines.map((line, lineIndex) => (
+                  <p key={`${item.title}-${lineIndex}`}>{line}</p>
                 ))}
               </div>
             </div>

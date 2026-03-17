@@ -1,6 +1,96 @@
+"use client";
+
+import { useMemo } from "react";
+import { usePropertyData } from "../providers/PropertyDataProvider";
 import Container from "../ui/Container";
 
+type TariffRow = {
+  name: string;
+  value: string;
+};
+
+function formatPrice(price?: number | null, currency = "INR") {
+  if (typeof price !== "number" || Number.isNaN(price)) return null;
+  try {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format(price);
+  } catch {
+    return `Rs. ${Math.round(price)}`;
+  }
+}
+
+function formatOccupancyLabel(minimum?: number | null, maximum?: number | null) {
+  if (minimum && maximum && minimum === maximum) {
+    return `${minimum} Guest${minimum > 1 ? "s" : ""}`;
+  }
+  if (minimum && maximum) {
+    return `${minimum}-${maximum} Guests`;
+  }
+  if (maximum) {
+    return `Up to ${maximum} Guests`;
+  }
+  return "Double Occupancy";
+}
+
 export default function TariffInfo() {
+  const { property, isLoading } = usePropertyData();
+
+  const gstPercent = useMemo(() => {
+    const taxList = property?.taxDetails ?? [];
+    const gstItem = taxList.find((tax) => (tax?.name || "").toLowerCase().includes("gst"));
+    return gstItem?.percentage ?? taxList[0]?.percentage ?? 12;
+  }, [property?.taxDetails]);
+
+  const roomTariffRows = useMemo<TariffRow[]>(() => {
+    const rooms = property?.roomList ?? [];
+    const currency = property?.localCurrency || "INR";
+
+    const rows = rooms
+      .filter((room) => room?.name)
+      .map((room) => {
+        const roomName = room?.name?.trim() || "Room";
+        const roomPrice =
+          formatPrice(room?.pricePerNight, currency) ||
+          formatPrice(room?.roomOnlyPrice, currency) ||
+          formatPrice(property?.minimumRoomPrice, currency) ||
+          formatPrice(property?.minimumRoooPrice, currency);
+        const occupancy = formatOccupancyLabel(room?.minimumOccupancy, room?.maximumOccupancy);
+        const extraPersonText =
+          typeof room?.extraChargePerPerson === "number"
+            ? ` | Extra Person ${formatPrice(room.extraChargePerPerson, currency)}`
+            : "";
+
+        return {
+          name: roomName,
+          value: roomPrice
+            ? `${roomPrice} + ${gstPercent} % GST on ${occupancy} with Breakfast${extraPersonText}`
+            : `Rate on request + ${gstPercent} % GST`,
+        };
+      });
+
+    if (rows.length > 0) {
+      return rows;
+    }
+
+    return [
+      {
+        name: "Deluxe",
+        value: `Rs. 3950 + ${gstPercent} % GST on Double Occupancy with Breakfast`,
+      },
+      {
+        name: "Super Deluxe",
+        value: `Rs. 4950 + ${gstPercent} % GST on Double Occupancy with Breakfast`,
+      },
+      {
+        name: "Extra Person (Above 5 years)",
+        value: `Rs. 1400 + ${gstPercent} % GST with Extra Mattress & Breakfast`,
+      },
+    ];
+  }, [property?.localCurrency, property?.minimumRoomPrice, property?.minimumRoooPrice, property?.roomList, gstPercent]);
+
   return (
     <section className="bg-[#f3efe8] py-14 text-[#1f3c44] sm:py-20 lg:py-24">
       <Container>
@@ -8,6 +98,9 @@ export default function TariffInfo() {
           <p className="text-[0.95rem] leading-relaxed text-[#1f3c44]/80 sm:text-[1rem]">
             Tariff as follows (Taxes as per Govt Regulations)
           </p>
+          {isLoading && (
+            <p className="mt-3 text-[0.9rem] text-[#1f3c44]/70">Loading latest tariff details...</p>
+          )}
           <p className="mt-4 text-[1rem] leading-relaxed text-[#1f3c44]/85 sm:text-[1.03rem]">
             Check in Time: <span className="font-semibold">12:00 Noon</span> Check Out Time:{" "}
             <span className="font-semibold">11:00 AM</span>
@@ -31,30 +124,16 @@ export default function TariffInfo() {
                 </tr>
               </thead>
               <tbody className="text-white">
-                <tr className="bg-[#8e9792]">
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] font-semibold sm:text-[1.02rem]">
-                    Deluxe
-                  </td>
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] sm:text-[1.02rem]">
-                    Rs. 3950 + 12 % GST on Double Occupancy with Breakfast
-                  </td>
-                </tr>
-                <tr className="bg-[#8e9792]">
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] font-semibold sm:text-[1.02rem]">
-                    Super Deluxe
-                  </td>
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] sm:text-[1.02rem]">
-                    Rs. 4950 + 12 % GST on Double Occupancy with Breakfast
-                  </td>
-                </tr>
-                <tr className="bg-[#8e9792]">
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] font-semibold sm:text-[1.02rem]">
-                    Extra Person (Above 5 years)
-                  </td>
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] sm:text-[1.02rem]">
-                    Rs. 1400 + 12 % GST with Extra Mattress &amp; Breakfast
-                  </td>
-                </tr>
+                {roomTariffRows.map((row) => (
+                  <tr key={row.name} className="bg-[#8e9792]">
+                    <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] font-semibold sm:text-[1.02rem]">
+                      {row.name}
+                    </td>
+                    <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] sm:text-[1.02rem]">
+                      {row.value}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

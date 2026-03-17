@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { addDays, format } from "date-fns";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { formatPrice } from "../../lib/format";
 import { htmlToText } from "../../lib/sanitizeHtml";
 import { fetchPropertyAvailability } from "../../lib/services/propertyService";
@@ -47,84 +47,39 @@ function mapRoomToShowcase(room: RoomItem, index: number, fallbackImage: string)
   };
 }
 
-function RoomFlipCard({ room, className }: { room: ShowcaseRoom; className?: string }) {
-  const [flipped, setFlipped] = useState(false);
-
+function RoomShowcaseCard({ room, className }: { room: ShowcaseRoom; className?: string }) {
   return (
-    <div
-      className={`relative cursor-pointer ${className ?? ""}`}
-      style={{ perspective: "1200px" }}
-      onClick={() => setFlipped((prev) => !prev)}
-    >
-      <div
-        className="relative h-full w-full transition-transform duration-700 ease-in-out"
-        style={{
-          transformStyle: "preserve-3d",
-          transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-        }}
-      >
-        <div className="absolute inset-0 overflow-hidden rounded-3xl" style={{ backfaceVisibility: "hidden" }}>
-          <Image
-            src={room.image}
-            alt={room.name}
-            fill
-            sizes="(max-width: 1024px) 100vw, 600px"
-            className="object-cover transition duration-700"
-            unoptimized={room.image.startsWith("http")}
-          />
-          <span className="absolute right-4 top-4 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-white text-center shadow-md sm:right-6 sm:top-6">
-            <span className="text-[0.55rem] font-semibold uppercase tracking-wide text-[#1f3c44]/60">From</span>
-            <span className="text-[0.75rem] font-bold text-[#c67a3a]">{formatPrice(room.pricePerNight)}</span>
-          </span>
-          <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 bg-gradient-to-t from-black/75 via-black/30 to-transparent px-4 pb-6 pt-24 text-center sm:px-6">
-            <h3 className="font-serif text-2xl text-white sm:text-3xl md:text-4xl">{room.name}</h3>
-            <p className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-white/80 sm:text-[0.68rem]">
-              {room.size} - {room.minOccupancy}-{room.capacity} Person - {room.bedType}
-            </p>
-            <span className="mt-1 border-b border-white/40 pb-px text-[0.6rem] uppercase tracking-[0.2em] text-white/60">
-              Click to view facilities -&gt;
+    <article className={`relative overflow-hidden rounded-[1.8rem] bg-white ${className ?? ""}`}>
+      <div className="relative h-[68%] min-h-[260px] w-full overflow-hidden">
+        <Image
+          src={room.image}
+          alt={room.name}
+          fill
+          sizes="(max-width: 1024px) 100vw, 600px"
+          className="object-cover transition-transform duration-700 ease-out hover:scale-[1.04]"
+          unoptimized={room.image.startsWith("http")}
+        />
+        <span className="absolute right-4 top-4 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-white text-center shadow-md sm:right-6 sm:top-6">
+          <span className="text-[0.55rem] font-semibold uppercase tracking-wide text-[#1f3c44]/60">From</span>
+          <span className="text-[0.75rem] font-bold text-[#c67a3a]">{formatPrice(room.pricePerNight)}</span>
+        </span>
+      </div>
+
+      <div className="flex h-[32%] min-h-[150px] flex-col justify-center border-t border-[#1f3c44]/8 px-5 py-5 text-center sm:px-6">
+        <h3 className="font-serif text-2xl text-[#1f3c44] sm:text-3xl">{room.name}</h3>
+        <p className="mt-2 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-[#1f3c44]/60 sm:text-[0.68rem]">
+          {room.size} - {room.minOccupancy}-{room.capacity} Person - {room.bedType}
+        </p>
+        <p className="mt-3 line-clamp-2 text-[0.72rem] leading-relaxed text-[#1f3c44]/65">{room.description}</p>
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5">
+          {room.facilities.slice(0, 3).map((facility) => (
+            <span key={facility} className="rounded-full bg-[#f2ede4] px-2.5 py-1 text-[0.58rem] uppercase tracking-[0.12em] text-[#1f3c44]/75">
+              {facility}
             </span>
-          </div>
-        </div>
-
-        <div
-          className="absolute inset-0 overflow-hidden rounded-3xl bg-[#1f3c44]"
-          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-        >
-          <Image
-            src={room.image}
-            alt={room.name}
-            fill
-            sizes="(max-width: 1024px) 100vw, 600px"
-            className="object-cover opacity-10"
-            unoptimized={room.image.startsWith("http")}
-          />
-          <div className="relative z-10 flex h-full flex-col overflow-y-auto px-5 py-5">
-            <div className="mb-3 border-b border-white/10 pb-3">
-              <h3 className="mb-2 font-serif text-xl text-white">{room.name}</h3>
-              <p className="text-[0.65rem] leading-relaxed text-white/65">{room.description}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
-              {room.facilities.map((facility) => (
-                <div
-                  key={facility}
-                  className="flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-2 backdrop-blur-sm"
-                >
-                  <span className="text-[0.58rem] font-medium uppercase tracking-wide text-white/80">
-                    {facility}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-auto pt-3 text-center text-[0.55rem] uppercase tracking-[0.2em] text-white/30">
-              Click to go back &larr;
-            </p>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -133,46 +88,59 @@ export default function RoomsShowcase() {
   const [fallbackRooms, setFallbackRooms] = useState<RoomItem[] | null>(null);
   const [fallbackLoading, setFallbackLoading] = useState(false);
   const [fallbackError, setFallbackError] = useState<string | null>(null);
-  const [fallbackAttempted, setFallbackAttempted] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [slideDirection, setSlideDirection] = useState<"left" | "right">("right");
+  const [transitionKey, setTransitionKey] = useState(0);
+  const fallbackAttemptedRef = useRef(false);
 
   useEffect(() => {
-    if (property?.roomList?.length || fallbackRooms || fallbackLoading || fallbackAttempted) return;
+    if (property?.roomList?.length || fallbackRooms || fallbackLoading || fallbackAttemptedRef.current) return;
     if (isLoading) return;
-    setFallbackAttempted(true);
-    setFallbackLoading(true);
-    setFallbackError(null);
-    fetchPropertyAvailability({
-      fromDate: format(new Date(), "yyyy-MM-dd"),
-      toDate: format(addDays(new Date(), 1), "yyyy-MM-dd"),
-      noOfPersons: 1,
-      noOfRooms: 1,
-    })
-      .then((payload) => setFallbackRooms(payload?.roomList || []))
-      .catch(() => {
+    fallbackAttemptedRef.current = true;
+
+    const loadFallback = async () => {
+      setFallbackLoading(true);
+      setFallbackError(null);
+      try {
+        const payload = await fetchPropertyAvailability({
+          fromDate: format(new Date(), "yyyy-MM-dd"),
+          toDate: format(addDays(new Date(), 1), "yyyy-MM-dd"),
+          noOfPersons: 1,
+          noOfRooms: 1,
+        });
+        setFallbackRooms(payload?.roomList || []);
+      } catch {
         setFallbackRooms([]);
         setFallbackError("Unable to load rooms right now.");
-      })
-      .finally(() => setFallbackLoading(false));
-  }, [property?.roomList, fallbackRooms, fallbackLoading, fallbackAttempted, isLoading]);
+      } finally {
+        setFallbackLoading(false);
+      }
+    };
 
-  const sourceRooms = (property?.roomList?.length ? property.roomList : fallbackRooms) || [];
+    loadFallback();
+  }, [property?.roomList, fallbackRooms, fallbackLoading, isLoading]);
+
   const mappedRooms = useMemo(() => {
+    const sourceRooms = (property?.roomList?.length ? property.roomList : fallbackRooms) || [];
     const fallbackImage = property?.imageList?.[0]?.url || "/images/room_3.jpg";
     return sourceRooms.map((room, index) => mapRoomToShowcase(room, index, fallbackImage));
-  }, [sourceRooms, property?.imageList]);
+  }, [property?.roomList, fallbackRooms, property?.imageList]);
 
   const rooms = useMemo(() => mappedRooms.slice(0, 6), [mappedRooms]);
   const total = rooms.length;
 
   const goNext = useCallback(() => {
     if (total === 0) return;
+    setSlideDirection("right");
+    setTransitionKey((prev) => prev + 1);
     setActiveIndex((prev) => (prev + 1) % total);
   }, [total]);
 
   const goPrev = useCallback(() => {
     if (total === 0) return;
+    setSlideDirection("left");
+    setTransitionKey((prev) => prev + 1);
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
@@ -182,20 +150,16 @@ export default function RoomsShowcase() {
     return () => window.clearInterval(timer);
   }, [goNext, isPaused, total]);
 
-  useEffect(() => {
-    if (activeIndex >= total && total > 0) {
-      setActiveIndex(0);
-    }
-  }, [activeIndex, total]);
+  const safeActiveIndex = total > 0 ? activeIndex % total : 0;
 
   const display = useMemo(() => {
     if (total === 0) return [];
-    const prevIndex = (activeIndex - 1 + total) % total;
-    const nextIndex = (activeIndex + 1) % total;
-    return [rooms[prevIndex], rooms[activeIndex], rooms[nextIndex]];
-  }, [activeIndex, rooms, total]);
+    const prevIndex = (safeActiveIndex - 1 + total) % total;
+    const nextIndex = (safeActiveIndex + 1) % total;
+    return [rooms[prevIndex], rooms[safeActiveIndex], rooms[nextIndex]];
+  }, [safeActiveIndex, rooms, total]);
 
-  const counterCurrent = total > 0 ? String(activeIndex + 1).padStart(2, "0") : "00";
+  const counterCurrent = total > 0 ? String(safeActiveIndex + 1).padStart(2, "0") : "00";
   const counterTotal = String(total || 0).padStart(2, "0");
 
   return (
@@ -248,13 +212,15 @@ export default function RoomsShowcase() {
               {display.map((room, index) => {
                 const isCenter = index === 1;
                 return (
-                  <RoomFlipCard
-                    key={`${room.id}-${index}`}
+                  <RoomShowcaseCard
+                    key={`${room.id}-${index}-${isCenter ? transitionKey : safeActiveIndex}`}
                     room={room}
                     className={`transform-gpu transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                       isCenter
-                        ? "z-10 block h-[420px] scale-100 opacity-100 sm:h-[500px] md:h-[580px]"
-                        : "z-0 hidden h-[380px] scale-[0.97] opacity-50 sm:h-[450px] md:h-[520px] lg:block"
+                        ? `z-10 block h-[420px] scale-100 opacity-100 sm:h-[500px] md:h-[580px] ${
+                            slideDirection === "right" ? "animate-drawer-in-right" : "animate-drawer-in-left"
+                          }`
+                        : "z-0 hidden h-[380px] scale-[0.96] opacity-55 sm:h-[450px] md:h-[520px] lg:block"
                     }`}
                   />
                 );
@@ -287,9 +253,14 @@ export default function RoomsShowcase() {
               {rooms.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setActiveIndex(i)}
+                  onClick={() => {
+                    if (i === safeActiveIndex) return;
+                    setSlideDirection(i > safeActiveIndex ? "right" : "left");
+                    setTransitionKey((prev) => prev + 1);
+                    setActiveIndex(i);
+                  }}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
-                    i === activeIndex ? "w-6 bg-[#1f3c44]" : "w-1.5 bg-[#1f3c44]/30"
+                    i === safeActiveIndex ? "w-6 bg-[#1f3c44]" : "w-1.5 bg-[#1f3c44]/30"
                   }`}
                   aria-label={`Go to room ${i + 1}`}
                 />
@@ -307,6 +278,38 @@ export default function RoomsShowcase() {
           </Container>
         </>
       )}
+      <style>{`
+        @keyframes drawerInRight {
+          from {
+            clip-path: inset(0 100% 0 0);
+            opacity: 0.55;
+            transform: translateX(20px);
+          }
+          to {
+            clip-path: inset(0 0 0 0);
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        @keyframes drawerInLeft {
+          from {
+            clip-path: inset(0 0 0 100%);
+            opacity: 0.55;
+            transform: translateX(-20px);
+          }
+          to {
+            clip-path: inset(0 0 0 0);
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        .animate-drawer-in-right {
+          animation: drawerInRight 560ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .animate-drawer-in-left {
+          animation: drawerInLeft 560ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+      `}</style>
     </section>
   );
 }

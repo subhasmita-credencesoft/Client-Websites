@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Container from "../ui/Container";
+import { usePropertyData } from "../providers/PropertyDataProvider";
 
 const offerSlides = [
   {
@@ -20,7 +21,23 @@ const offerSlides = [
   },
 ];
 export default function LocationOffers() {
+  const { property } = usePropertyData();
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const address = [
+    property?.address?.streetName,
+    property?.address?.suburb,
+    property?.address?.city,
+    property?.address?.state,
+    property?.address?.postcode,
+    property?.address?.country,
+  ]
+    .filter(Boolean)
+    .join(", ");
+
+  const addressText =
+    address ||
+    "Ashtvinayak Mahad Phata, Old Mumbai - Pune Highway (NH4), Khopoli, Dist. Raigad - 410203, Maharashtra, India";
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -54,9 +71,7 @@ export default function LocationOffers() {
                   Address
                 </p>
                 <p className="mt-2 text-[0.88rem] leading-6 text-[#1f3c44]/80 sm:text-sm sm:leading-7">
-                  Ashtvinayak Mahad Phata, Old Mumbai - Pune Highway (NH4),
-                  Khopoli, Dist. Raigad - 410203,
-                  Maharashtra, India
+                  {addressText}
                 </p>
               </div>
               <div>

@@ -16,7 +16,7 @@ export default function AboutPage() {
       <AboutHero />
       <WelcomeSection />
       <ResortIntro />
-      <PropertyDetailsPanel />
+      {/* <PropertyDetailsPanel /> */}
       <Testimonials />
     </>
   );

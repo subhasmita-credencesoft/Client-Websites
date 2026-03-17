@@ -6,13 +6,13 @@ import CurvedLoop from "../ui/CurvedLoop";
 
 const SLIDES = [
   {
-    image: "/images/7-9-25/Copy of IMG_1496.avif",
+    image: "https://bookonelocal.in/cdn/10ddf7cf67d12d14abcdc0f0d25343af58996604.jpg",
   },
   {
-    image: "/images/7-9-25/Copy of IMG_1525.avif",
+    image: "https://bookonelocal.in/cdn/pic9.jpeg",
   },
   {
-    image: "/images/7-9-25/Copy-of-IMG_2938_1_.avif",
+    image: "https://bookonelocal.in/cdn/10ddf7cf67d12d14abcdc0f0d25343af58996604.jpg",
   },
 ];
 const WORDS = ["Swimming pool", "Kids Area", "Entry area", ];

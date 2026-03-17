@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import Container from "../ui/Container";
 import { usePropertyData } from "../providers/PropertyDataProvider";
 
@@ -18,6 +19,13 @@ function buildAddressLines(parts: Array<string | null | undefined>) {
 
 export default function Footer() {
   const { property } = usePropertyData();
+  const socialLinks = [
+    { label: "Facebook", href: "#", Icon: Facebook },
+    { label: "Instagram", href: "#", Icon: Instagram },
+    { label: "Twitter", href: "#", Icon: Twitter },
+    { label: "YouTube", href: "#", Icon: Youtube },
+  ];
+
   const quickLinks = [
     { label: "Blog", href: "/experiences" },
     { label: "Website", href: property?.website || "#" },
@@ -44,10 +52,16 @@ export default function Footer() {
   return (
     <footer className="mt-20 bg-[#143b47] text-white">
       <Container>
-        <div className="grid gap-12 border-b border-white/15 py-16 lg:grid-cols-[1.1fr_1.4fr]">
+        <div className="grid gap-12 border-b border-white/15 py-16 lg:grid-cols-[1fr_1.6fr] xl:gap-16">
           <div className="space-y-6">
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 text-sm">
-              {(property?.shortName || "U").slice(0, 1)}
+             <Image
+              src="/UK's-Resort-Logo_SVG.webp" 
+              alt="Property Logo"
+              width={40}
+              height={40}
+              className="object-cover"
+               />
             </div>
             <h3 className="font-serif text-4xl leading-tight">
               Award-winning
@@ -85,13 +99,13 @@ export default function Footer() {
               </div>
             </Link>
           </div>
-          <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr]">
+          <div className="grid gap-10 xl:grid-cols-[1.1fr_1.2fr] xl:justify-self-end xl:text-left">
             <div>
               <h4 className="font-serif text-2xl">{headingName}</h4>
               <p className="mt-2 text-sm text-white/70">
                 {property?.businessType || "Accommodation"} {property?.businessSubtype ? `- ${property.businessSubtype}` : ""}
               </p>
-              <form className="mt-6 flex items-center gap-4 border-b border-white/30 pb-3 text-sm">
+              <form className="mt-6 flex flex-wrap items-center gap-3 border-b border-white/30 pb-3 text-sm sm:flex-nowrap sm:gap-4">
                 <label htmlFor="newsletter-email" className="sr-only">
                   Email address
                 </label>
@@ -105,40 +119,55 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="ml-auto text-xs font-semibold uppercase tracking-[0.3em] text-white hover:text-white/80"
+                  className="ml-0 text-xs font-semibold uppercase tracking-[0.3em] text-white hover:text-white/80 sm:ml-auto"
                 >
                   Subscribe
                 </button>
               </form>
             </div>
-            <div className="grid gap-8 sm:grid-cols-2">
+            <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-[minmax(220px,1.3fr)_minmax(170px,1fr)_minmax(150px,1fr)]">
               {addressLines.length > 0 && (
                 <div>
                   <h5 className="font-serif text-lg">Address</h5>
                   <div className="mt-4 space-y-1">
                     {addressLines.map((line) => (
-                      <p key={line} className="text-sm text-white/70">{line}</p>
+                      <p key={line} className="text-sm leading-6 text-white/70">{line}</p>
                     ))}
                   </div>
                 </div>
               )}
               <div>
                 <h5 className="font-serif text-lg">Contact</h5>
-                <p className="mt-4 text-sm text-white/70">{phone1}</p>
-                <p className="text-sm text-white/70">{phone2}</p>
+                <p className="mt-4 text-sm leading-6 text-white/70 whitespace-nowrap">{phone1}</p>
+                <p className="text-sm leading-6 text-white/70 whitespace-nowrap">{phone2}</p>
                 <Link
                   href={`mailto:${email}`}
-                  className="text-sm text-white/70 hover:text-white"
+                  className="text-sm leading-6 text-white/70 hover:text-white"
                 >
                   {email}
                 </Link>
+              </div>
+              <div>
+                <h5 className="font-serif text-lg">Social</h5>
+                <div className="mt-4 space-y-2">
+                  {socialLinks.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="flex items-center gap-2 text-sm leading-6 text-white/70 hover:text-white"
+                    >
+                      <item.Icon className="h-4 w-4" aria-hidden="true" />
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-4 py-6 text-xs text-white/60">
-          <p>Copyright &copy; {new Date().getFullYear()} {headingName}. All rights reserved Designed and Developed By CredenceSoft, Powered By BookOne.</p>
-          <div className="flex flex-wrap items-center gap-6">
+          <p className="max-w-3xl leading-6">Copyright &copy; {new Date().getFullYear()} {headingName}. All rights reserved Designed and Developed By CredenceSoft, Powered By BookOne.</p>
+          <div className="ml-auto flex w-full flex-wrap items-center justify-start gap-6 sm:w-auto sm:justify-end">
             {quickLinks.map((item) => (
               <Link
                 key={item.label}

@@ -179,7 +179,7 @@ export default function Header() {
         }`}
       >
         <div
-          className={`absolute inset-0 border-b border-white/[0.1] bg-[#1a2e33]/85 backdrop-blur-[10px] transition-all duration-500 ease-in-out ${
+          className={`absolute inset-0 border-b border-white/[0.14] bg-[linear-gradient(90deg,rgba(72,79,45,0.56)_0%,rgba(104,113,124,0.42)_20%,rgba(104,113,124,0.42)_80%,rgba(72,79,45,0.56)_100%)] backdrop-blur-[18px] transition-all duration-500 ease-in-out ${
             scrolled
               ? "-translate-y-full opacity-0 pointer-events-none"
               : "translate-y-0 opacity-100"
@@ -227,9 +227,9 @@ export default function Header() {
         className={`w-full transition-all duration-500 ${
           isHeroPage
             ? /* Glass always on for hero pages — stronger blur when scrolled */
-              `text-white border-b border-white/[0.12]
-               bg-white/[0.06] backdrop-blur-[14px]
-               ${scrolled ? "!bg-black/40 !backdrop-blur-[22px] !border-white/[0.08]" : ""}`
+              `text-white border-b border-white/[0.14]
+               bg-[linear-gradient(90deg,rgba(72,79,45,0.56)_0%,rgba(104,113,124,0.42)_20%,rgba(104,113,124,0.42)_80%,rgba(72,79,45,0.56)_100%)] backdrop-blur-[18px]
+               ${scrolled ? "!bg-[linear-gradient(90deg,rgba(72,79,45,0.62)_0%,rgba(104,113,124,0.5)_20%,rgba(104,113,124,0.5)_80%,rgba(72,79,45,0.62)_100%)] !backdrop-blur-[18px] !border-white/[0.14]" : ""}`
             : /* Solid white for non-hero pages */
               `border-b border-black/10 bg-white text-[#1f3c44]
                ${scrolled ? "shadow-sm" : ""}`
@@ -306,7 +306,7 @@ export default function Header() {
             {/* Divider before book button */}
             {/* <span className="hidden h-3 w-px bg-current opacity-20 lg:block" aria-hidden="true" /> */}            {/* Book button */}
             <Link
-              href="/booking"
+              href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
               className={`flex items-center gap-2 rounded-full border px-5 py-[0.55rem] text-[0.72rem] font-semibold uppercase tracking-[0.22em] transition-all duration-200 sm:px-6 sm:py-2.5 sm:text-[0.78rem] ${
                 isHeroPage
                   ? "border-white/50 text-white hover:border-white hover:bg-white/10"
@@ -328,11 +328,11 @@ export default function Header() {
       <div
         className={`hidden border-t lg:block ${
           isHeroPage
-            ? "border-white/[0.12] bg-white/[0.06] backdrop-blur-[14px]"
+            ? "border-white/[0.14] bg-[linear-gradient(90deg,rgba(72,79,45,0.56)_0%,rgba(104,113,124,0.42)_20%,rgba(104,113,124,0.42)_80%,rgba(72,79,45,0.56)_100%)] backdrop-blur-[18px]"
             : "border-black/[0.07] bg-white"
         }`}
       >
-        <nav aria-label="Main navigation" className="flex h-[2.85rem] w-full items-center justify-center">
+        <nav aria-label="Main navigation" className="flex h-[3.2rem] w-full items-center justify-center">
           <ul className="flex items-center">
             {navigation.map((item, index) => {
               const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
@@ -374,7 +374,7 @@ export default function Header() {
           <div
             className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500 ease-out"
             style={{
-              backgroundImage: `url(${menuPreviews[menuPreview] ?? menuPreviews["/"]})`,
+              backgroundImage: `url("${encodeURI(menuPreviews[menuPreview] ?? menuPreviews["/"])}")`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -419,7 +419,7 @@ export default function Header() {
                     {whatsappPhone}
                   </a>
                   <span className="hidden h-3 w-px bg-white/20 lg:block" aria-hidden="true" />
-                  <Link href="/booking" onClick={closeMenu}
+                  <Link href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" onClick={closeMenu}
                     className="flex items-center gap-2 rounded-full border border-white/45 px-4 py-[0.45rem] text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-white transition hover:border-white hover:bg-white/10 sm:px-5 sm:py-2 sm:text-[0.6rem]">
                     <span className="hidden sm:inline">Book your stay</span>
                     <span className="sm:hidden">Book</span>
@@ -447,10 +447,10 @@ export default function Header() {
                         className="block transition-colors duration-200 hover:text-[#d89a55]"
                         style={{ color: isActive ? "#d89a55" : "rgba(255,255,255,0.92)" }}
                         onMouseEnter={() => {
-                          setMenuPreview(item.href);
+                          setMenuPreview(resolvePreviewPath(item.href));
                           router.prefetch(item.href);
                         }}
-                        onFocus={() => setMenuPreview(item.href)}
+                        onFocus={() => setMenuPreview(resolvePreviewPath(item.href))}
                         onClick={closeMenu}
                       >
                         {item.label}
@@ -501,6 +501,8 @@ export default function Header() {
     </div>
   );
 }
+
+
 
 
 

@@ -9,8 +9,8 @@ export default function BlogPage() {
     <>
       <BlogHero />
       {/* <HeroBookingBarDock /> */}
-      <BlogFeature />
-      {/* <BlogFilterGrid /> */}
+      {/* <BlogFeature /> */}
+      <BlogFilterGrid />
     </>
   );
 }

@@ -4,10 +4,15 @@ import { useEffect, useState } from "react";
 import Container from "../ui/Container";
 import testimonials from "../../data/testimonials";
 
+const REVIEW_SCORE = 4.9;
+const REVIEW_COUNT = 1859;
+
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
   const total = testimonials.length;
   const current = testimonials[index % total];
+  const currentDisplay = String((index % total) + 1).padStart(2, "0");
+  const totalDisplay = String(total).padStart(2, "0");
 
   const next = () => setIndex((prev) => (prev + 1) % total);
   const prev = () => setIndex((prev) => (prev - 1 + total) % total);
@@ -35,17 +40,32 @@ export default function Testimonials() {
         </h2>
 
         {/* 2-Column Grid — fixed height so video never resizes */}
-        <div className="mt-10 grid gap-6 sm:mt-12 lg:mt-16 lg:grid-cols-[1.4fr_1.2fr] lg:gap-8">
+        <div className="mt-10 grid items-stretch gap-6 sm:mt-12 lg:mt-16 lg:grid-cols-[1.4fr_1.2fr] lg:gap-8">
 
           {/* LEFT — Testimonial Quote Card — fixed height */}
-          <div className="relative flex h-[340px] flex-col rounded-3xl border border-[#1f3c44]/10 bg-white/50 p-6 sm:h-[360px] sm:p-8 lg:h-[380px] lg:p-10">
+          <div className="relative flex min-h-[420px] flex-col rounded-3xl border border-[#1f3c44]/10 bg-white/50 p-6 sm:min-h-[440px] sm:p-8 lg:min-h-[470px] lg:p-10">
             <div className="absolute -top-6 left-6 flex h-12 w-12 items-center justify-center rounded-full bg-[#e39b52] text-3xl text-white shadow sm:-top-7 sm:left-8 sm:h-14 sm:w-14 sm:text-[2rem] lg:-top-8 lg:left-12 lg:h-16 lg:w-16 lg:text-4xl">
               &quot;
             </div>
 
-            {/* Scrollable quote area so long text never pushes layout */}
-            <div className="flex-1 overflow-hidden">
-              <p className="line-clamp-6 text-[0.98rem] leading-7 text-[#1f3c44]/80 sm:text-base sm:leading-8">
+            <div className="mb-5 border-b border-[#1f3c44]/10 pb-5 sm:mb-6 sm:pb-6">
+              <p className="font-serif text-[3.5rem] leading-none text-[#102f4d] sm:text-[4.3rem]">
+                {REVIEW_SCORE.toFixed(1)}
+              </p>
+              <div className="mt-2 flex items-center gap-2.5">
+                <div className="flex items-center gap-1 text-[#e39b52]">
+                  {[0, 1, 2, 3, 4].map((star) => (
+                    <span key={star} className="text-xl leading-none">★</span>
+                  ))}
+                </div>
+                <p className="text-[1rem] text-[#102f4d]/80">{REVIEW_COUNT.toLocaleString("en-IN")} reviews</p>
+              </div>
+              <p className="mt-2 text-[1.05rem] font-semibold text-[#102f4d]/28">Tripadvisor</p>
+            </div>
+
+            {/* Scrollable quote area so long text stays fully readable */}
+            <div className="flex-1 overflow-y-auto pr-1">
+              <p className="text-[0.98rem] leading-7 text-[#1f3c44]/80 sm:text-base sm:leading-8">
                 &quot;{current.quote}&quot;
               </p>
             </div>
@@ -65,6 +85,9 @@ export default function Testimonials() {
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-3">
+                {/* <p className="mr-1 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-[#1f3c44]/55 sm:text-xs">
+                  {currentDisplay} / {totalDisplay}
+                </p> */}
                 <button
                   type="button"
                   onClick={prev}
@@ -86,7 +109,7 @@ export default function Testimonials() {
           </div>
 
           {/* RIGHT — YouTube Video Card — same fixed height */}
-          <div className="relative h-[340px] overflow-hidden rounded-3xl shadow-sm sm:h-[360px] lg:h-[380px]">
+          <div className="relative min-h-[420px] overflow-hidden rounded-3xl shadow-sm sm:min-h-[440px] lg:min-h-[470px]">
             <iframe
               src="https://www.youtube.com/embed/u3hTCT2CIFw?rel=0&modestbranding=1"
               title="Resort Video"

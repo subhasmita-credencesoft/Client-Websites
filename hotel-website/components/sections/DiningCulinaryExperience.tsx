@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Container from "../ui/Container";
+import Link from "next/dist/client/link";
 
 export default function DiningCulinaryExperience() {
   return (
@@ -54,13 +55,16 @@ export default function DiningCulinaryExperience() {
                   <span className="font-medium">info@uksresort.com</span>
                 </div>
               </div>
-              <button
-                type="button"
-                className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#1f3c44]/30 px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#1f3c44] transition hover:border-[#1f3c44] hover:bg-[#1f3c44]/5"
-              >
-                Book now
-                <span aria-hidden="true">&gt;</span>
-              </button>
+
+            <Link href="rooms/reservation">
+            <button
+            type="button"
+            className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#1f3c44]/30 px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#1f3c44] transition hover:border-[#1f3c44] hover:bg-[#1f3c44]/5"
+            >
+            Book now
+               <span aria-hidden="true">&gt;</span>
+               </button>
+               </Link>
             </div>
           </div>
 

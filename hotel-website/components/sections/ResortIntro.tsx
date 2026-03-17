@@ -27,9 +27,9 @@ const values = [
 ];
 
 const introSlides = [
-  { src: "/images/7-9-25/Copy of IMG_1568.avif", alt: "Resort aerial view" },
-  { src: "/images/7-9-25/Copy of IMG_2912.avif", alt: "Resort leisure area" },
-  { src: "/images/7-9-25/Copy of IMG_2911.avif", alt: "Resort landscape" },
+  { src: "https://bookonelocal.in/cdn/Copy of IMG_1568.avif", alt: "Resort aerial view" },
+  { src: "https://bookonelocal.in/cdn/Copy of IMG_2912.avif", alt: "Resort leisure area" },
+  { src: "https://bookonelocal.in/cdn/Copy of IMG_2911.avif", alt: "Resort landscape" },
 ];
 
 const AUTO_SLIDE_MS = 3500;
@@ -134,9 +134,15 @@ export default function ResortIntro() {
               </div>
 
               <div className="flex items-center gap-3 border-t border-[#1f3c44]/8 bg-white px-5 py-4 sm:px-6 sm:py-5">
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#d89a55]/50 text-[0.62rem] font-semibold text-[#d89a55] sm:h-10 sm:w-10 sm:text-[0.66rem]">
-                  UK
-                </span>
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#d89a55]/50 sm:h-10 sm:w-10 overflow-hidden">
+              <Image
+              src="/UK's-Resort-Logo_SVG.webp"
+               alt="UK Resort Logo"
+             width={40}
+             height={40}
+            className="object-cover"
+                  />
+             </span>
                 <p className="text-[0.8rem] leading-snug text-[#1f3c44]/65 sm:text-[0.83rem]">
                   Award-winning resort in the lush green landscape at Khopoli
                 </p>

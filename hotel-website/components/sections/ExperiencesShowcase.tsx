@@ -1,75 +1,100 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import Container from "../ui/Container";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const slides = [
   {
-    id: "family",
-    label: "Family Experiences",
-    headline: "Family\nExperiences",
-    image: "/images/7-9-25/Copy of IMG_2912.avif",
+    id: "001",
+    title: "Seasonal Experiences",
+    image: "https://bookonelocal.in/cdn/Copy of IMG_1478.jpg",
   },
   {
-    id: "culture",
-    label: "Cultural Experiences",
-    headline: "Cultural\nExperiences",
-    image: "/images/7-9-25/Copy of IMG_3968.avif",
+    id: "002",
+    title: "Signature Experiences",
+    image: "https://bookonelocal.in/cdn/Copy of IMG_3968.avif",
   },
   {
-    id: "adventure",
-    label: "Adventure Experiences",
-    headline: "Adventure\nExperiences",
-    image: "/images/7-9-25/Copy of IMG_1458.avif",
+    id: "003",
+    title: "Good Life Experiences",
+    image: "https://bookonelocal.in/cdn/Copy+of+IMG_4035.JPG",
   },
 ];
 
 export default function ExperiencesShowcase() {
-  const [activeId, setActiveId] = useState(slides[0].id);
-  const active = useMemo(
-    () => slides.find((slide) => slide.id === activeId) ?? slides[0],
-    [activeId],
-  );
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % slides.length);
+    }, 4600);
+    return () => window.clearInterval(timer);
+  }, []);
 
   return (
-    <section className="relative overflow-hidden text-white">
-      <div
-        className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-        style={{
-          backgroundImage: `url("${encodeURI(active.image)}")`,
-        }}
-      />
-      <div className="absolute inset-0 bg-black/35" />
-      <Container className="relative flex min-h-[70vh] flex-col justify-end py-24 md:py-28">
-        <div className="mb-10 flex items-center gap-6 text-xs uppercase tracking-[0.35em] text-white/80">
-          <span>Experiences</span>
-        </div>
-
-        <h2 className="max-w-2xl whitespace-pre-line font-serif text-4xl leading-tight md:text-6xl">
-          {active.headline}
-        </h2>
-
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {slides.map((slide, index) => {
-            const isActive = slide.id === activeId;
-            return (
-              <button
-                key={slide.id}
-                type="button"
-                onMouseEnter={() => setActiveId(slide.id)}
-                className={`group flex items-center gap-4 border-t border-white/40 pt-6 text-left transition ${
-                  isActive ? "text-white" : "text-white/50 hover:text-white"
+    <section className="bg-[#f3f2ee] px-3 py-10 sm:px-6 sm:py-14">
+      <div className="mx-auto w-full max-w-[1900px]">
+        <div className="relative h-[27rem] overflow-hidden rounded-[18px] bg-black sm:h-[36rem] lg:h-[49rem]">
+          {slides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 transition-opacity duration-[1100ms] ease-out ${
+                index === activeIndex ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                sizes="100vw"
+                priority={index === activeIndex}
+                className={`object-cover transition-transform duration-[1300ms] ease-out ${
+                  index === activeIndex ? "scale-100" : "scale-110"
                 }`}
-              >
-                <span className="text-xs font-semibold uppercase tracking-[0.3em]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="font-serif text-2xl">{slide.label}</span>
-              </button>
-            );
-          })}
+              />
+            </div>
+          ))}
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-black/10" />
+
+          <div className="absolute inset-x-0 bottom-0 z-20 p-4 sm:p-6 lg:p-10">
+            <div className="grid gap-3 sm:grid-cols-3 sm:gap-6">
+              {slides.map((slide, index) => {
+                const active = index === activeIndex;
+                return (
+                  <button
+                    type="button"
+                    key={slide.id}
+                    onMouseEnter={() => setActiveIndex(index)}
+                    onFocus={() => setActiveIndex(index)}
+                    onClick={() => setActiveIndex(index)}
+                    className="group text-left"
+                    aria-label={`Show ${slide.title}`}
+                  >
+                    <div
+                      className={`mb-3 h-px transition-colors duration-300 ${
+                        active ? "bg-white/85" : "bg-white/35 group-hover:bg-white/70"
+                      }`}
+                    />
+                    <div className="flex items-start gap-3">
+                      <span className={`text-[0.8rem] font-medium ${active ? "text-white/85" : "text-white/55"}`}>
+                        {slide.id}
+                      </span>
+                      <span
+                        className={`font-serif text-[1.85rem] leading-[0.95] transition-colors duration-300 sm:text-[2.35rem] lg:text-[3.05rem] ${
+                          active ? "text-white" : "text-white/60 group-hover:text-white/82"
+                        }`}
+                      >
+                        {slide.title}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

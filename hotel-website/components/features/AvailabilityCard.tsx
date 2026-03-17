@@ -3,7 +3,9 @@
 import { format } from "date-fns";
 import DatePicker from "react-datepicker";
 import { forwardRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { buildBookingEngineUrl } from "../../lib/booking/bookingEngine";
+
+const BOOKING_BASE_URL = "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true&checkinDay=10&checkinMonth=3&checkinYear=2026&nights=1&numGuests=2&numAdults=2&Children=0&rooms=1";
 
 type AvailabilityCardProps = {
   initialCheckIn?: string;
@@ -27,7 +29,7 @@ const DateTrigger = forwardRef<
       type="button"
       ref={ref}
       onClick={onClick}
-     className="mt-3 flex w-full items-center justify-between border-b border-[#d6d9dd] pb-3 text-[0.95rem] text-[#123f5c] sm:pb-4 sm:text-[1rem] md:text-[1.08rem]"
+     className="mt-2.5 flex w-full items-center justify-between border-b border-[#d6d9dd] pb-2.5 text-[0.9rem] text-[#123f5c] sm:pb-3 sm:text-[0.95rem] md:text-[1rem]"
     >
       <span>{value || placeholder}</span>
       <span>
@@ -51,9 +53,8 @@ const DateTrigger = forwardRef<
 export default function AvailabilityCard({
   initialCheckIn = "",
   initialCheckOut = "",
-  initialGuests = 0,
+  initialGuests = 1,
 }: AvailabilityCardProps) {
-  const router = useRouter();
   const [checkInDate, setCheckInDate] = useState<Date | null>(parseIsoDate(initialCheckIn));
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(parseIsoDate(initialCheckOut));
   const [guests, setGuests] = useState(Math.max(0, initialGuests));
@@ -63,21 +64,22 @@ export default function AvailabilityCard({
 
   function handleCheckRates() {
     if (!canCheckRates) return;
-    const query = new URLSearchParams({
-      checkIn: format(checkInDate as Date, "yyyy-MM-dd"),
-      checkOut: format(checkOutDate as Date, "yyyy-MM-dd"),
-      adults: String(guests),
-      children: "0",
-      noOfRooms: "1",
+    const bookingUrl = buildBookingEngineUrl({
+      baseUrl: BOOKING_BASE_URL,
+      checkIn: checkInDate as Date,
+      checkOut: checkOutDate as Date,
+      adults: guests,
+      children: 0,
+      rooms: 1,
     });
-    router.push(`/rooms/reservation?${query.toString()}`);
+    window.location.href = bookingUrl;
   }
 
   return (
-    <aside className="rounded-2xl bg-white p-5 shadow-[0_12px_30px_rgba(17,33,41,0.06)] sm:p-6 md:p-8 lg:sticky lg:top-24">
-      <h3 className="font-serif text-2xl text-[#103f5c] sm:text-[1.75rem] md:text-3xl">Check Availability</h3>
+    <aside className="rounded-2xl border border-[#eceae4] bg-white p-4 shadow-[0_8px_18px_rgba(17,33,41,0.02)] sm:p-5 md:p-6 lg:sticky lg:top-24">
+      <h3 className="font-serif text-[2rem] leading-[0.98] text-[#123f5c] sm:text-[2.2rem]">Check Availability</h3>
 
-      <div className="mt-6 space-y-5 sm:mt-7 sm:space-y-6 md:mt-8 md:space-y-7">
+      <div className="mt-4 space-y-4 sm:mt-5 sm:space-y-5">
         <label className="block">
         <span className="block text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-[#7d8692] sm:text-[0.72rem] sm:tracking-[0.24em]">
             Check in
@@ -115,14 +117,14 @@ export default function AvailabilityCard({
           />
         </label>
 
-        <label className="block">
+        <div className="block">
           <span className="block text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-[#7d8692] sm:text-[0.72rem] sm:tracking-[0.24em]">
             Guests
           </span>
-         <div className="mt-3 flex items-center justify-between border-b border-[#d6d9dd] pb-3 text-[0.95rem] text-[#123f5c] sm:pb-4 sm:text-[1rem] md:text-[1.08rem]">
+         <div className="mt-2.5 flex items-center justify-between border-b border-[#d6d9dd] pb-2.5 text-[0.9rem] text-[#123f5c] sm:pb-3 sm:text-[0.95rem] md:text-[1rem]">
             <button
               type="button"
-              className="text-[1rem] text-[#123f5c] sm:text-[1.1rem] md:text-[1.2rem]"
+              className="flex h-7 w-7 items-center justify-center rounded-full border border-[#cfd4d8] text-[1rem] text-[#123f5c] transition hover:bg-white sm:text-[1.1rem] md:text-[1.2rem]"
               onClick={() => setGuests((value) => Math.max(0, value - 1))}
             >
               -
@@ -130,20 +132,23 @@ export default function AvailabilityCard({
             <span>{guests}</span>
             <button
               type="button"
-             className="text-[1rem] text-[#123f5c] sm:text-[1.1rem] md:text-[1.2rem]"
+             className="flex h-7 w-7 items-center justify-center rounded-full border border-[#cfd4d8] text-[1rem] text-[#123f5c] transition hover:bg-white sm:text-[1.1rem] md:text-[1.2rem]"
               onClick={() => setGuests((value) => value + 1)}
             >
               +
             </button>
           </div>
-        </label>
+        </div>
       </div>
 
+      <p className="mt-5 text-[0.68rem] uppercase tracking-[0.14em] text-[#7d8692]">
+        Best rate guarantee
+      </p>
       <button
         type="button"
         onClick={handleCheckRates}
         disabled={!canCheckRates}
-        className="mt-7 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#df984e] text-[0.76rem] font-semibold uppercase tracking-[0.06em] text-white transition hover:bg-[#cf8841] disabled:cursor-not-allowed disabled:opacity-60 sm:mt-8 sm:h-13 sm:text-[0.82rem] md:mt-9 md:h-14 md:text-[0.86rem]"
+        className="mt-3.5 flex h-10 w-full items-center justify-center gap-2 rounded-full bg-[#df984e] text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-[#cf8841] disabled:cursor-not-allowed disabled:opacity-60 sm:h-11 sm:text-[0.76rem]"
       >
         Check Rates
         <svg

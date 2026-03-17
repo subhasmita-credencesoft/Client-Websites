@@ -1,6 +1,8 @@
 import dynamic from "next/dynamic";
 import Hero from "../components/sections/Hero";
-import WelcomeSection from "../components/sections/WelcomeSection";
+const WelcomeSection = dynamic(() => import("../components/sections/WelcomeSection"), {
+  loading: () => <section className="min-h-[55vh] bg-[#f6f2ec]" aria-hidden="true" />,
+});
 
 const WellnessHero = dynamic(() => import("../components/sections/WellnessHero"), {
   loading: () => <section className="min-h-[70vh] bg-[#f6f3ed]" aria-hidden="true" />,

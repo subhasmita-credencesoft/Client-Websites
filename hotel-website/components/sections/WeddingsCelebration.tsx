@@ -88,7 +88,7 @@ export default function WeddingsCelebration() {
         <div className="mt-14 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div className="wc-reveal-left wc-zoom overflow-hidden rounded-3xl bg-[#e2dacd] shadow-[0_24px_60px_rgba(0,0,0,0.15)]">
             <img
-              src="/images/wedding4-1.jpg"
+              src="https://bookonelocal.in/cdn/wedding4-1.jpg"
               alt="Beachfront celebration setup"
               className="h-full w-full object-cover"
             />
@@ -97,7 +97,7 @@ export default function WeddingsCelebration() {
           <div className="wc-reveal-right wc-d1 wc-card rounded-3xl bg-white p-8 shadow-[0_18px_45px_rgba(0,0,0,0.12)]">
             <div className="wc-zoom overflow-hidden rounded-2xl">
               <img
-                src="/images/wedding-image.jpg"
+                src="https://bookonelocal.in/cdn/wedding-image.jpg"
                 alt="Couple by the sea"
                 className="h-full w-full object-cover"
               />
@@ -123,7 +123,7 @@ export default function WeddingsCelebration() {
           <div className="wc-reveal-left wc-d1 wc-card rounded-3xl bg-white p-8 shadow-[0_18px_45px_rgba(0,0,0,0.12)]">
             <div className="wc-zoom overflow-hidden rounded-2xl">
               <img
-                src="/images/gymnium-image.jpg"
+                src="https://bookonelocal.in/cdn/gymnium-image.JPG"
                 alt="Family picnic setup"
                 className="h-full w-full object-cover"
               />
@@ -139,7 +139,7 @@ export default function WeddingsCelebration() {
 
           <div className="wc-reveal-right wc-zoom overflow-hidden rounded-3xl bg-[#e2dacd] shadow-[0_24px_60px_rgba(0,0,0,0.15)]">
             <img
-              src="/images/7-9-25/Copy of IMG_3980.avif"
+              src="https://bookonelocal.in/cdn/Copy of IMG_3980.avif"
               alt="Family picnic grounds"
               className="h-full w-full object-cover"
             />
@@ -150,7 +150,7 @@ export default function WeddingsCelebration() {
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div className="wc-reveal-left wc-zoom overflow-hidden rounded-3xl bg-[#e2dacd] shadow-[0_24px_60px_rgba(0,0,0,0.15)]">
             <img
-              src="/images/kids3.jpg"
+              src="https://bookonelocal.in/cdn/kids3.JPG"
               alt="Sports activities at resort"
               className="h-full w-full object-cover"
             />
@@ -159,7 +159,7 @@ export default function WeddingsCelebration() {
           <div className="wc-reveal-right wc-d1 wc-card rounded-3xl bg-white p-8 shadow-[0_18px_45px_rgba(0,0,0,0.12)]">
             <div className="wc-zoom overflow-hidden rounded-2xl">
               <img
-                src="/images/outdoor-image.jpg"
+                src="https://bookonelocal.in/cdn/outdoor-image.jpg"
                 alt="Sports facilities"
                 className="h-full w-full object-cover"
               />

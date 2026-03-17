@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import { PropertyDataProvider } from "../components/providers/PropertyDataProvider";
+import ScrollToTopButton from "../components/ui/ScrollToTopButton";
 
 const bodyFont = Jost({
   variable: "--font-jost",
@@ -43,6 +44,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          <ScrollToTopButton />
         </PropertyDataProvider>
       </body>
     </html>
