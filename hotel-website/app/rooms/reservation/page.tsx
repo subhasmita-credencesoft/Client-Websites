@@ -60,6 +60,10 @@ const sortLabels: Record<SortKey, string> = {
   rating: "Rating",
   availability: "Availability date",
 };
+const defaultVirtualTourUrl =
+  "https://www.google.co.in/maps/@18.8173616,73.3047087,3a,75y,352.05h,41.3t/data=!3m7!1e1!3m5!1sCIHM0ogKEICAgICE2OrfkAE!2e10!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFfmt2ZdcMHANYXL6HTiLhFwc2VFENp9NW0onXfyfiteKnx1vGtri8o3bmnZVw5r_9XUiiS6IW73NveF1JIB8trQ2siI-RkCqMqzGN0J44WlpuzjEXtXcmV8UzeigT-8W69UXnjWJ321yg%3Dw900-h600-k-no-pi48.70007873572015-ya110.76994491714902-ro0-fo100!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MDMxNS4wIKXMDSoASAFQAw%3D%3D";
+const secondCardVirtualTourUrl =
+  "https://www.google.co.in/maps/@18.8171664,73.3046375,3a,90y,125.13h,91.65t/data=!3m8!1e1!3m6!1svk2WvYbxaRcAAAQvxYrSYg!2e0!3e2!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-1.6500000000000057%26panoid%3Dvk2WvYbxaRcAAAQvxYrSYg%26yaw%3D125.13!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MDMxNS4wIKXMDSoASAFQAw%3D%3D";
 
 function toSlug(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -374,6 +378,19 @@ function RoomsReservationContent() {
                         }}
                       >
                         <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-black/15 to-transparent" />
+                        <button
+                          type="button"
+                          className="absolute left-5 top-5 rounded-full border border-white/55 bg-black/40 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/55"
+                          onClick={() =>
+                            window.open(
+                              roomIndex === 1 ? secondCardVirtualTourUrl : defaultVirtualTourUrl,
+                              "_blank",
+                              "noopener,noreferrer",
+                            )
+                          }
+                        >
+                          360°
+                        </button>
                         <p className="absolute bottom-5 left-6 text-sm font-semibold uppercase tracking-[0.14em] text-white">
                           From{" "}
                           <span className="text-[#e39a50]">
@@ -428,23 +445,14 @@ function RoomsReservationContent() {
                             ))}
                           </div>
                         )}
-                        <div className="mt-6">
+                        {/* <div className="mt-6">
                           <Link
                             href=""
                             className="inline-flex h-10 items-center rounded-full border border-[#c9c1b2] px-5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[#123f5c] transition hover:bg-[#f1ece3]"
                           >
                             Reserve now
                           </Link>
-                        </div>
-                        {room.dailyAvailability.length > 0 && (
-                          <div className="mt-4 space-y-1.5 rounded-xl border border-[#d6d9dd] bg-white/80 p-3">
-                            {room.dailyAvailability.map((day) => (
-                              <p key={day.id} className="text-[0.72rem] text-[#5d6a76]">
-                                {day.date || "Date N/A"}: A:{day.noOfAvailable} B:{day.noOfBooked} H:{day.noOfOnHold} / {day.totalNoRooms} | {day.status} | {day.restriction}
-                              </p>
-                            ))}
-                          </div>
-                        )}
+                        </div> */}
                       </div>
                       </div>
                     </article>

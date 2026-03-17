@@ -58,7 +58,7 @@ export default function ContactPage() {
     <>
       <PageHero
         title="Contact"
-        backgroundImage="/images/blog-banner.jpg"
+        backgroundImage="https://bookonelocal.in/cdn/4.png"
         breadcrumb="Home / Contact"
       />
 

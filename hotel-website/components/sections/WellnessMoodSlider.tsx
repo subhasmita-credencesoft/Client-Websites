@@ -51,7 +51,7 @@ export default function WellnessMoodSlider() {
       <div className="absolute inset-0">
         {SLIDES.map((slide, index) => (
           <div
-            key={slide.image}
+           key={index}
             className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
               index === activeIndex ? "opacity-100" : "opacity-0"
             }`}

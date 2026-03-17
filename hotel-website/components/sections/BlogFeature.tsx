@@ -76,9 +76,10 @@ export default function BlogFeature() {
               <h2 className="font-serif text-[2.5rem] leading-[0.93] sm:text-[3.2rem] lg:text-[5.1rem]">
                 Journey into the
                 <br />
-                heart and soul of
+                    of coastal luxury
+
                 <br />
-                our magical island
+              and timeless escape
               </h2>
               <p className="max-w-xl text-[1rem] leading-8 text-[#1f3c44]/88">{primary.description}</p>
             </div>

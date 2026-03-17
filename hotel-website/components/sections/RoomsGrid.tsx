@@ -37,12 +37,16 @@ const facilityIconMap: Record<string, string> = {
   "air-condition": "AC",
   "air conditioning": "AC",
 };
+const defaultVirtualTourUrl =
+  "https://www.google.co.in/maps/@18.8173616,73.3047087,3a,75y,352.05h,41.3t/data=!3m7!1e1!3m5!1sCIHM0ogKEICAgICE2OrfkAE!2e10!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFfmt2ZdcMHANYXL6HTiLhFwc2VFENp9NW0onXfyfiteKnx1vGtri8o3bmnZVw5r_9XUiiS6IW73NveF1JIB8trQ2siI-RkCqMqzGN0J44WlpuzjEXtXcmV8UzeigT-8W69UXnjWJ321yg%3Dw900-h600-k-no-pi48.70007873572015-ya110.76994491714902-ro0-fo100!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MDMxNS4wIKXMDSoASAFQAw%3D%3D";
+const secondCardVirtualTourUrl =
+  "https://www.google.co.in/maps/@18.8171664,73.3046375,3a,90y,125.13h,91.65t/data=!3m8!1e1!3m6!1svk2WvYbxaRcAAAQvxYrSYg!2e0!3e2!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-1.6500000000000057%26panoid%3Dvk2WvYbxaRcAAAQvxYrSYg%26yaw%3D125.13!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MDMxNS4wIKXMDSoASAFQAw%3D%3D";
 
 function normalizeLabel(value: string) {
   return value.trim().toLowerCase();
 }
 
-function RoomCard({ room }: { room: DisplayRoom }) {
+function RoomCard({ room, virtualTourUrl }: { room: DisplayRoom; virtualTourUrl: string }) {
   const [flipped, setFlipped] = useState(false);
 
   return (
@@ -68,6 +72,16 @@ function RoomCard({ room }: { room: DisplayRoom }) {
             unoptimized={room.image.startsWith("http")}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          <button
+            type="button"
+            className="absolute left-4 top-4 rounded-full border border-white/50 bg-black/40 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/55"
+              onClick={(event) => {
+                event.stopPropagation();
+                window.open(virtualTourUrl, "_blank", "noopener,noreferrer");
+              }}
+          >
+            360°
+          </button>
 
           <div className="absolute right-4 top-4 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-white shadow-md">
             <span className="text-[9px] font-semibold uppercase tracking-widest leading-tight text-[#1f3c44]/60">
@@ -225,8 +239,12 @@ export default function RoomsGrid({
 
         {!isLoading && !fallbackLoading && displayRooms.length > 0 && (
           <div className="grid gap-8 md:grid-cols-2">
-            {displayRooms.map((room) => (
-              <RoomCard key={room.id} room={room} />
+            {displayRooms.map((room, index) => (
+              <RoomCard
+                key={room.id}
+                room={room}
+                virtualTourUrl={index === 1 ? secondCardVirtualTourUrl : defaultVirtualTourUrl}
+              />
             ))}
           </div>
         )}
