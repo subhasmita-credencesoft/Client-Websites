@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { addDays, format } from "date-fns";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { formatPrice } from "../../lib/format";
 import { htmlToText } from "../../lib/sanitizeHtml";
 import { fetchPropertyAvailability } from "../../lib/services/propertyService";
@@ -23,6 +25,8 @@ type ShowcaseRoom = {
   description: string;
   facilities: string[];
 };
+
+gsap.registerPlugin(ScrollTrigger);
 
 function mapRoomToShowcase(room: RoomItem, index: number, fallbackImage: string): ShowcaseRoom {
   const firstRate = room.ratesAndAvailabilityDtos?.[0];
@@ -48,16 +52,27 @@ function mapRoomToShowcase(room: RoomItem, index: number, fallbackImage: string)
 }
 
 function RoomShowcaseCard({ room, className }: { room: ShowcaseRoom; className?: string }) {
+  const [imageSrc, setImageSrc] = useState(room.image || "/images/room_3.jpg");
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
   return (
-    <article className={`relative overflow-hidden rounded-[1.8rem] bg-white ${className ?? ""}`}>
-      <div className="relative h-[68%] min-h-[260px] w-full overflow-hidden">
+    <article
+      className={`relative flex h-full flex-col overflow-hidden rounded-[1.8rem] border border-[#1f3c44]/10 bg-white shadow-[0_18px_38px_rgba(31,60,68,0.08)] ${className ?? ""}`}
+    >
+      <div className="relative aspect-[16/10] w-full overflow-hidden">
         <Image
-          src={room.image}
+          src={imageSrc}
           alt={room.name}
           fill
           sizes="(max-width: 1024px) 100vw, 600px"
-          className="object-cover transition-transform duration-700 ease-out hover:scale-[1.04]"
-          unoptimized={room.image.startsWith("http")}
+          className={`object-cover transition-[transform,opacity,filter] duration-900 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.04] ${
+            isImageLoaded ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-[2px]"
+          }`}
+          unoptimized={imageSrc.startsWith("http")}
+          onError={() => {
+            if (imageSrc !== "/images/room_3.jpg") setImageSrc("/images/room_3.jpg");
+          }}
+          onLoad={() => setIsImageLoaded(true)}
         />
         <span className="absolute right-4 top-4 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-white text-center shadow-md sm:right-6 sm:top-6">
           <span className="text-[0.55rem] font-semibold uppercase tracking-wide text-[#1f3c44]/60">From</span>
@@ -65,13 +80,15 @@ function RoomShowcaseCard({ room, className }: { room: ShowcaseRoom; className?:
         </span>
       </div>
 
-      <div className="flex h-[32%] min-h-[150px] flex-col justify-center border-t border-[#1f3c44]/8 px-5 py-5 text-center sm:px-6">
-        <h3 className="font-serif text-2xl text-[#1f3c44] sm:text-3xl">{room.name}</h3>
-        <p className="mt-2 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-[#1f3c44]/60 sm:text-[0.68rem]">
+      <div className="flex flex-1 flex-col justify-between border-t border-[#1f3c44]/8 px-5 py-6 text-center sm:px-7">
+        <h3 className="room-title font-serif text-2xl text-[#1f3c44] sm:text-3xl">{room.name}</h3>
+        <p className="room-meta mt-2 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-[#1f3c44]/60 sm:text-[0.7rem]">
           {room.size} - {room.minOccupancy}-{room.capacity} Person - {room.bedType}
         </p>
-        <p className="mt-3 line-clamp-2 text-[0.72rem] leading-relaxed text-[#1f3c44]/65">{room.description}</p>
-        <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5">
+        <p className="room-desc mt-3 min-h-10 line-clamp-2 text-[0.76rem] leading-relaxed text-[#1f3c44]/65">
+          {room.description}
+        </p>
+        <div className="room-tags mt-4 flex flex-wrap items-center justify-center gap-1.5">
           {room.facilities.slice(0, 3).map((facility) => (
             <span key={facility} className="rounded-full bg-[#f2ede4] px-2.5 py-1 text-[0.58rem] uppercase tracking-[0.12em] text-[#1f3c44]/75">
               {facility}
@@ -92,7 +109,9 @@ export default function RoomsShowcase() {
   const [isPaused, setIsPaused] = useState(false);
   const [slideDirection, setSlideDirection] = useState<"left" | "right">("right");
   const [transitionKey, setTransitionKey] = useState(0);
+  const [animationError, setAnimationError] = useState<string | null>(null);
   const fallbackAttemptedRef = useRef(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (property?.roomList?.length || fallbackRooms || fallbackLoading || fallbackAttemptedRef.current) return;
@@ -110,9 +129,10 @@ export default function RoomsShowcase() {
           noOfRooms: 1,
         });
         setFallbackRooms(payload?.roomList || []);
-      } catch {
+      } catch (err) {
         setFallbackRooms([]);
-        setFallbackError("Unable to load rooms right now.");
+        setFallbackError("Unable to load rooms right now. Please try again shortly.");
+        console.error("RoomsShowcase fallback fetch failed:", err);
       } finally {
         setFallbackLoading(false);
       }
@@ -162,19 +182,148 @@ export default function RoomsShowcase() {
   const counterCurrent = total > 0 ? String(safeActiveIndex + 1).padStart(2, "0") : "00";
   const counterTotal = String(total || 0).padStart(2, "0");
 
+  useEffect(() => {
+    let mm: gsap.MatchMedia | null = null;
+
+    try {
+      mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const ctx = gsap.context(() => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 78%",
+              once: true,
+            },
+          });
+
+          tl.fromTo(
+            ".rooms-showcase-kicker",
+            { y: 12, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+          )
+            .fromTo(
+              ".rooms-showcase-title",
+              { yPercent: 105, autoAlpha: 0, filter: "blur(8px)" },
+              { yPercent: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.95, ease: "power4.out" },
+              "<+0.06",
+            )
+            .fromTo(
+              ".rooms-showcase-counter",
+              { y: 10, autoAlpha: 0 },
+              { y: 0, autoAlpha: 1, duration: 0.55, ease: "power3.out" },
+              "<",
+            )
+            .fromTo(
+              ".rooms-showcase-stage",
+              { y: 24, autoAlpha: 0 },
+              { y: 0, autoAlpha: 1, duration: 0.85, ease: "power3.out" },
+              "<+0.08",
+            )
+            .fromTo(
+              ".rooms-showcase-actions",
+              { y: 14, autoAlpha: 0 },
+              { y: 0, autoAlpha: 1, duration: 0.65, ease: "power3.out" },
+              "<+0.04",
+            );
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 82%",
+              end: "bottom top",
+              scrub: 0.9,
+              invalidateOnRefresh: true,
+            },
+          }).to(".rooms-center-card .object-cover", { scale: 1.08, yPercent: 6, ease: "none" }, 0);
+        }, sectionRef);
+
+        return () => ctx.revert();
+      });
+      setAnimationError(null);
+    } catch (err) {
+      setAnimationError("Animation temporarily unavailable.");
+      console.error("RoomsShowcase GSAP init failed:", err);
+    }
+
+    return () => {
+      if (mm) mm.revert();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (total === 0) return;
+    const stage = sectionRef.current?.querySelector(".rooms-showcase-stage");
+    if (!stage) return;
+
+    const mm = gsap.matchMedia();
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const cards = stage.querySelectorAll<HTMLElement>(".rooms-showcase-card");
+      const enterFromX = slideDirection === "right" ? 26 : -26;
+
+      gsap.fromTo(
+        cards,
+        { x: enterFromX, y: 12, autoAlpha: 0.7 },
+        {
+          x: 0,
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.58,
+          stagger: 0.06,
+          ease: "power3.out",
+          overwrite: "auto",
+        },
+      );
+
+      gsap.fromTo(
+        stage.querySelector(".rooms-center-card .object-cover"),
+        { scale: 1.08 },
+        { scale: 1, duration: 0.82, ease: "power2.out", overwrite: "auto" },
+      );
+      gsap.fromTo(
+        stage.querySelectorAll(".rooms-center-card .room-title, .rooms-center-card .room-meta, .rooms-center-card .room-desc, .rooms-center-card .room-tags"),
+        { y: 18, autoAlpha: 0, filter: "blur(3px)" },
+        {
+          y: 0,
+          autoAlpha: 1,
+          filter: "blur(0px)",
+          duration: 0.52,
+          stagger: 0.06,
+          ease: "power3.out",
+          overwrite: "auto",
+        },
+      );
+    });
+    return () => mm.revert();
+  }, [safeActiveIndex, transitionKey, total, slideDirection]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const raf = window.requestAnimationFrame(() => ScrollTrigger.refresh());
+    const timer = window.setTimeout(() => ScrollTrigger.refresh(), 250);
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      window.clearTimeout(timer);
+    };
+  }, [rooms.length, safeActiveIndex, transitionKey]);
+
   return (
-    <section className="bg-white py-20 text-[#1f3c44]">
+    <section ref={sectionRef} data-no-global-gsap className="bg-white py-20 text-[#1f3c44]">
       <Container>
         <div className="flex flex-wrap items-center justify-between gap-4 sm:gap-6">
-          <div className="flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.22em] sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
+          <div className="rooms-showcase-kicker flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.22em] sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
             <span>Rooms &amp; Suites</span>
           </div>
-          <span className="text-sm text-[#1f3c44]/60">
+          <span className="rooms-showcase-counter text-sm text-[#1f3c44]/60">
             {counterCurrent} / {counterTotal}
           </span>
         </div>
 
-        <h2 className="mt-6 font-serif text-3xl sm:mt-8 sm:text-4xl md:text-6xl">Discover our rooms</h2>
+        <div className="mt-6 overflow-hidden sm:mt-8">
+          <h2 className="rooms-showcase-title font-serif text-3xl sm:text-4xl md:text-6xl">Discover our rooms</h2>
+        </div>
       </Container>
 
       {(isLoading || fallbackLoading) && (
@@ -193,6 +342,14 @@ export default function RoomsShowcase() {
         </Container>
       )}
 
+      {animationError && (
+        <Container>
+          <div className="mt-6 rounded-2xl border border-[#1f3c44]/10 bg-[#f7f5f1] p-4 text-center text-xs text-[#1f3c44]/65 sm:text-sm">
+            {animationError}
+          </div>
+        </Container>
+      )}
+
       {!isLoading && !fallbackLoading && !error && !fallbackError && rooms.length === 0 && (
         <Container>
           <div className="mt-8 rounded-2xl border border-[#1f3c44]/10 bg-[#f7f5f1] p-6 text-center text-sm text-[#1f3c44]/70">
@@ -203,50 +360,52 @@ export default function RoomsShowcase() {
 
       {!isLoading && !fallbackLoading && rooms.length > 0 && (
         <>
-          <div
-            className="relative mt-8 lg:mt-10"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            <div className="grid gap-3 px-4 sm:px-6 lg:grid-cols-[1fr_1.8fr_1fr] lg:px-8">
-              {display.map((room, index) => {
-                const isCenter = index === 1;
-                return (
-                  <RoomShowcaseCard
-                    key={`${room.id}-${index}-${isCenter ? transitionKey : safeActiveIndex}`}
-                    room={room}
-                    className={`transform-gpu transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      isCenter
-                        ? `z-10 block h-[420px] scale-100 opacity-100 sm:h-[500px] md:h-[580px] ${
-                            slideDirection === "right" ? "animate-drawer-in-right" : "animate-drawer-in-left"
-                          }`
-                        : "z-0 hidden h-[380px] scale-[0.96] opacity-55 sm:h-[450px] md:h-[520px] lg:block"
-                    }`}
-                  />
-                );
-              })}
+          <Container>
+            <div
+              className="rooms-showcase-stage relative mt-8 lg:mt-10"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              <div className="-mx-1 grid w-[calc(100%+0.5rem)] items-stretch gap-1 sm:-mx-2 sm:w-[calc(100%+1rem)] sm:gap-2 lg:mx-auto lg:w-full lg:max-w-[1380px] lg:grid-cols-[1fr_1.45fr_1fr]">
+                {display.map((room, index) => {
+                  const isCenter = index === 1;
+                  return (
+                    <RoomShowcaseCard
+                      key={`${room.id}-${index}-${isCenter ? transitionKey : safeActiveIndex}`}
+                      room={room}
+                      className={`transform-gpu transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                        isCenter
+                          ? `rooms-showcase-card rooms-center-card z-10 block scale-100 opacity-100 ${
+                              slideDirection === "right" ? "animate-drawer-in-right" : "animate-drawer-in-left"
+                            }`
+                          : "rooms-showcase-card z-0 hidden scale-[0.98] opacity-70 lg:block lg:translate-y-5"
+                      }`}
+                    />
+                  );
+                })}
+              </div>
+
+              <button
+                onClick={goPrev}
+                aria-label="Previous room"
+                className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#1f3c44]/10 bg-white/90 text-[#1f3c44] shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-[#1f3c44] hover:text-white sm:left-3 sm:h-12 sm:w-12 lg:-left-6"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+
+              <button
+                onClick={goNext}
+                aria-label="Next room"
+                className="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#1f3c44]/10 bg-white/90 text-[#1f3c44] shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-[#1f3c44] hover:text-white sm:right-3 sm:h-12 sm:w-12 lg:-right-6"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
             </div>
-
-            <button
-              onClick={goPrev}
-              aria-label="Previous room"
-              className="absolute left-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#1f3c44]/10 bg-white/90 text-[#1f3c44] shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-[#1f3c44] hover:text-white sm:h-13 sm:w-13 lg:left-6"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
-
-            <button
-              onClick={goNext}
-              aria-label="Next room"
-              className="absolute right-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#1f3c44]/10 bg-white/90 text-[#1f3c44] shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-[#1f3c44] hover:text-white sm:h-13 sm:w-13 lg:right-6"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
-          </div>
+          </Container>
 
           <Container>
             <div className="mt-6 flex justify-center gap-2">
@@ -267,7 +426,7 @@ export default function RoomsShowcase() {
               ))}
             </div>
 
-            <div className="mt-8 flex justify-center sm:mt-10 lg:mt-12">
+            <div className="rooms-showcase-actions mt-8 flex justify-center sm:mt-10 lg:mt-12">
               <Link
                 href="/rooms"
                 className="inline-flex h-11 items-center justify-center rounded-full border border-[#1f3c44]/30 px-6 text-xs font-semibold uppercase tracking-[0.2em] text-[#1f3c44] transition hover:border-[#1f3c44] hover:bg-[#1f3c44]/5"
@@ -309,7 +468,13 @@ export default function RoomsShowcase() {
         .animate-drawer-in-left {
           animation: drawerInLeft 560ms cubic-bezier(0.22, 1, 0.36, 1);
         }
+        .rooms-center-card .object-cover {
+          will-change: transform;
+        }
       `}</style>
     </section>
   );
 }
+
+
+

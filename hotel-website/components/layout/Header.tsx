@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 import { createPortal } from "react-dom";
 import Container from "../ui/Container";
 import navigation from "../../data/navigation";
@@ -104,6 +105,7 @@ export default function Header() {
   const [menuOpen,    setMenuOpen]    = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [menuPreview, setMenuPreview] = useState<string>(resolvePreviewPath(pathname));
+  const headerRef = useRef<HTMLDivElement | null>(null);
   const canUsePortal = typeof document !== "undefined";
   const logoSrc = property?.logoUrl ?? DEFAULT_LOGO;
   const propertyName = property?.name ?? "UK's Resort";
@@ -161,6 +163,25 @@ export default function Header() {
     setMenuPreview(resolvePreviewPath(pathname));
   }, [pathname]);
 
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".header-anim",
+        { y: -10, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.55, ease: "power3.out", stagger: 0.06, overwrite: "auto" },
+      );
+      gsap.fromTo(
+        ".header-nav-item",
+        { y: 8, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.4, ease: "power3.out", stagger: 0.03, delay: 0.08, overwrite: "auto" },
+      );
+    }, headerRef);
+
+    return () => ctx.revert();
+  }, [pathname, isHeroPage]);
+
   const closeMenu = () => {
     setMenuClosing(true);
     window.setTimeout(() => { setMenuOpen(false); setMenuClosing(false); }, 450);
@@ -168,13 +189,13 @@ export default function Header() {
 
 
   return (
-    <div className={`w-full ${isHeroPage ? "absolute top-0 left-0 z-50" : "sticky top-0 z-50"}`}>
+    <div ref={headerRef} className={`w-full ${isHeroPage ? "absolute top-0 left-0 z-50" : "sticky top-0 z-50"}`}>
 
       {/* ══════════════════════════════════════
           ANNOUNCEMENT BAR — slides up and hides on scroll
       ══════════════════════════════════════ */}
       <div
-        className={`relative w-full overflow-hidden transition-[height] duration-500 ease-in-out ${
+        className={`header-anim relative w-full overflow-hidden transition-[height] duration-500 ease-in-out ${
           isHeroPage && scrolled ? "h-0" : "h-[2.1rem]"
         }`}
       >
@@ -224,6 +245,7 @@ export default function Header() {
           MAIN HEADER
       ══════════════════════════════════════ */}
       <header
+        data-no-global-gsap
         className={`w-full transition-all duration-500 ${
           isHeroPage
             ? /* Glass always on for hero pages — stronger blur when scrolled */
@@ -239,7 +261,7 @@ export default function Header() {
       {/* ══════════════════════════════════════
           TOP BAR
       ══════════════════════════════════════ */}
-      <div className="w-full px-5 sm:px-8 lg:px-12 xl:px-16">
+      <div className="header-anim w-full px-5 sm:px-8 lg:px-12 xl:px-16">
         <div className="relative flex h-[4.25rem] w-full items-center sm:h-[5rem]">
 
           {/* Hamburger — 3 descending-width lines */}
@@ -326,7 +348,7 @@ export default function Header() {
           NAV BAR — dot · separated, Title Case, serif
       ══════════════════════════════════════ */}
       <div
-        className={`hidden border-t lg:block ${
+        className={`header-anim hidden border-t lg:block ${
           isHeroPage
             ? "border-white/[0.14] bg-[linear-gradient(90deg,rgba(72,79,45,0.56)_0%,rgba(104,113,124,0.42)_20%,rgba(104,113,124,0.42)_80%,rgba(72,79,45,0.56)_100%)] backdrop-blur-[18px]"
             : "border-black/[0.07] bg-white"
@@ -342,7 +364,7 @@ export default function Header() {
                     href={item.href}
                     aria-current={isActive ? "page" : undefined}
                     onMouseEnter={() => router.prefetch(item.href)}
-                    className={`px-[0.85rem] font-serif text-[1.25rem] font-normal transition-colors duration-200 xl:px-[1rem] xl:text-[1.25rem] ${
+                    className={`header-nav-item px-[0.85rem] font-serif text-[1.25rem] font-normal transition-colors duration-200 xl:px-[1rem] xl:text-[1.25rem] ${
                       isHeroPage ? "text-white/82 hover:text-white" : "text-[#1f3c44]/65 hover:text-[#1f3c44]"
                     }`}
                     style={isActive ? { color: "#d89a55" } : undefined}

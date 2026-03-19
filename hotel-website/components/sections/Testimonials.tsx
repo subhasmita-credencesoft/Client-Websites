@@ -1,18 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 import testimonials from "../../data/testimonials";
 
 const REVIEW_SCORE = 4.9;
 const REVIEW_COUNT = 1859;
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
   const total = testimonials.length;
   const current = testimonials[index % total];
-  const currentDisplay = String((index % total) + 1).padStart(2, "0");
-  const totalDisplay = String(total).padStart(2, "0");
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   const next = () => setIndex((prev) => (prev + 1) % total);
   const prev = () => setIndex((prev) => (prev - 1 + total) % total);
@@ -24,26 +27,99 @@ export default function Testimonials() {
     return () => clearInterval(timer);
   }, [total]);
 
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 78%",
+            once: true,
+          },
+        });
+
+        tl.fromTo(
+          ".testimonials-kicker",
+          { y: 12, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+        )
+          .fromTo(
+            ".testimonials-title-line",
+            { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
+            { yPercent: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.95, stagger: 0.08, ease: "power4.out" },
+            "<+0.06",
+          )
+          .fromTo(
+            ".testimonials-card",
+            { y: 22, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.85, ease: "power3.out" },
+            "<+0.08",
+          )
+          .fromTo(
+            ".testimonials-video",
+            { y: 24, autoAlpha: 0, scale: 0.99 },
+            { y: 0, autoAlpha: 1, scale: 1, duration: 0.9, ease: "power3.out" },
+            "<-0.5",
+          )
+          .fromTo(
+            ".testimonials-other",
+            { y: 14, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+            "<+0.06",
+          );
+      }, sectionRef);
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      gsap.fromTo(
+        ".testimonials-quote",
+        { y: 14, autoAlpha: 0, filter: "blur(4px)" },
+        { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.55, ease: "power3.out", overwrite: "auto" },
+      );
+      gsap.fromTo(
+        ".testimonials-author",
+        { y: 10, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.45, ease: "power3.out", overwrite: "auto", delay: 0.05 },
+      );
+    });
+    return () => mm.revert();
+  }, [index]);
+
   return (
-    <section className="bg-[#f3efe8] py-12 text-[#1f3c44] sm:py-16 lg:py-20">
+    <section ref={sectionRef} data-no-global-gsap className="bg-[#f3efe8] py-12 text-[#1f3c44] sm:py-16 lg:py-20">
       <Container>
         {/* Section Label */}
-        <div className="flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.22em] sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
+        <div className="testimonials-kicker flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.22em] sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
           <span>Customers Reviews</span>
         </div>
 
         {/* Heading */}
-        <h2 className="mt-6 max-w-xl font-serif text-3xl leading-tight sm:mt-8 sm:max-w-2xl sm:text-4xl md:text-6xl">
-          Hear what our past
-          <br />
-          guests have to say
-        </h2>
+        <div className="mt-6 sm:mt-8">
+          <div className="overflow-hidden">
+            <h2 className="testimonials-title-line max-w-xl font-serif text-3xl leading-tight sm:max-w-2xl sm:text-4xl md:text-6xl">
+              Hear what our past
+            </h2>
+          </div>
+          <div className="overflow-hidden">
+            <h2 className="testimonials-title-line max-w-xl font-serif text-3xl leading-tight sm:max-w-2xl sm:text-4xl md:text-6xl">
+              guests have to say
+            </h2>
+          </div>
+        </div>
 
         {/* 2-Column Grid — fixed height so video never resizes */}
         <div className="mt-10 grid items-stretch gap-6 sm:mt-12 lg:mt-16 lg:grid-cols-[1.4fr_1.2fr] lg:gap-8">
 
           {/* LEFT — Testimonial Quote Card — fixed height */}
-          <div className="relative flex min-h-[420px] flex-col rounded-3xl border border-[#1f3c44]/10 bg-white/50 p-6 sm:min-h-[440px] sm:p-8 lg:min-h-[470px] lg:p-10">
+          <div className="testimonials-card relative flex min-h-[420px] flex-col rounded-3xl border border-[#1f3c44]/10 bg-white/50 p-6 sm:min-h-[440px] sm:p-8 lg:min-h-[470px] lg:p-10">
             <div className="absolute -top-6 left-6 flex h-12 w-12 items-center justify-center rounded-full bg-[#e39b52] text-3xl text-white shadow sm:-top-7 sm:left-8 sm:h-14 sm:w-14 sm:text-[2rem] lg:-top-8 lg:left-12 lg:h-16 lg:w-16 lg:text-4xl">
               &quot;
             </div>
@@ -65,12 +141,12 @@ export default function Testimonials() {
 
             {/* Scrollable quote area so long text stays fully readable */}
             <div className="flex-1 overflow-y-auto pr-1">
-              <p className="text-[0.98rem] leading-7 text-[#1f3c44]/80 sm:text-base sm:leading-8">
+              <p className="testimonials-quote text-[0.98rem] leading-7 text-[#1f3c44]/80 sm:text-base sm:leading-8">
                 &quot;{current.quote}&quot;
               </p>
             </div>
 
-            <div className="mt-6 flex flex-col gap-4 border-t border-[#1f3c44]/10 pt-5 sm:flex-row sm:items-center sm:justify-between sm:pt-6">
+            <div className="testimonials-author mt-6 flex flex-col gap-4 border-t border-[#1f3c44]/10 pt-5 sm:flex-row sm:items-center sm:justify-between sm:pt-6">
               <div className="flex items-center gap-3 sm:gap-4">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e9e2d6] text-[0.82rem] font-semibold sm:h-12 sm:w-12 sm:text-sm">
                   {current.name.slice(0, 1)}
@@ -109,7 +185,7 @@ export default function Testimonials() {
           </div>
 
           {/* RIGHT — YouTube Video Card — same fixed height */}
-          <div className="relative min-h-[420px] overflow-hidden rounded-3xl shadow-sm sm:min-h-[440px] lg:min-h-[470px]">
+          <div className="testimonials-video relative min-h-[420px] overflow-hidden rounded-3xl shadow-sm sm:min-h-[440px] lg:min-h-[470px]">
             <iframe
               src="https://www.youtube.com/embed/u3hTCT2CIFw?rel=0&modestbranding=1"
               title="Resort Video"
@@ -122,7 +198,7 @@ export default function Testimonials() {
         </div>
 
         {/* Our Other Property */}
-        <div className="mt-16 sm:mt-20 lg:mt-24">
+        <div className="testimonials-other mt-16 sm:mt-20 lg:mt-24">
           <div className="flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.22em] sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
             <span>Our Other Property</span>
           </div>

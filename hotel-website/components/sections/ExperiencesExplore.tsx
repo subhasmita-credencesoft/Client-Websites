@@ -1,3 +1,8 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 
 const experiences = [
@@ -20,7 +25,7 @@ const experiences = [
       "Whatever you love doing, you will find an incredible array of choices at the resort.",
   },
   {
-    title: " Pools",
+    title: "Pools",
     image: "https://bookonelocal.in/cdn/picnic1.jpg",
     description:
       "Sun-soaked days by the water, with serene pools and golden shoreline escapes.",
@@ -33,85 +38,277 @@ const experiences = [
   },
 ];
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function ExperiencesExplore() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const pinRef = useRef<HTMLDivElement | null>(null);
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          ".exp-explore-kicker",
+          { y: 12, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.6,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 82%",
+              once: true,
+            },
+          },
+        );
+
+        gsap.fromTo(
+          ".exp-explore-title-line",
+          { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
+          {
+            yPercent: 0,
+            autoAlpha: 1,
+            filter: "blur(0px)",
+            duration: 0.9,
+            stagger: 0.08,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 78%",
+              once: true,
+            },
+          },
+        );
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+      const pin = pinRef.current;
+      const viewport = viewportRef.current;
+      const track = trackRef.current;
+      if (!pin || !viewport || !track) return;
+
+      const ctx = gsap.context(() => {
+        const getDistance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+
+        gsap.set(track, { x: 0 });
+
+        const horizontalTween = gsap.to(track, {
+          x: () => -getDistance(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: pin,
+            start: "top top",
+            end: () => `+=${getDistance() + window.innerHeight * 0.25}`,
+            pin,
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            snap: {
+              snapTo: (value: number) => {
+                const steps = Math.max(1, experiences.length - 1);
+                return Math.round(value * steps) / steps;
+              },
+              duration: { min: 0.1, max: 0.32 },
+              ease: "power2.out",
+            },
+          },
+        });
+
+        gsap.to(".exp-explore-image", {
+          scale: 1.08,
+          yPercent: 8,
+          ease: "none",
+          scrollTrigger: {
+            trigger: pin,
+            start: "top top",
+            end: () => `+=${getDistance() + window.innerHeight * 0.25}`,
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        gsap.fromTo(
+          ".exp-explore-card",
+          { y: 20, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.7,
+            ease: "power3.out",
+            stagger: 0.08,
+            scrollTrigger: {
+              trigger: pin,
+              start: "top 75%",
+              once: true,
+            },
+          },
+        );
+
+        gsap.utils.toArray<HTMLElement>(".exp-explore-card").forEach((card) => {
+          const textLines = card.querySelectorAll<HTMLElement>(".exp-card-line");
+          if (!textLines.length) return;
+          gsap.set(textLines, { y: 18, autoAlpha: 0, filter: "blur(5px)" });
+
+          const reveal = () =>
+            gsap.to(textLines, {
+              y: 0,
+              autoAlpha: 1,
+              filter: "blur(0px)",
+              duration: 0.55,
+              ease: "power3.out",
+              stagger: 0.08,
+              overwrite: "auto",
+            });
+
+          const hide = () =>
+            gsap.to(textLines, {
+              y: 18,
+              autoAlpha: 0,
+              filter: "blur(5px)",
+              duration: 0.35,
+              ease: "power2.out",
+              stagger: 0.04,
+              overwrite: "auto",
+            });
+
+          ScrollTrigger.create({
+            trigger: card,
+            containerAnimation: horizontalTween,
+            start: "left 72%",
+            end: "right 38%",
+            onToggle: (self) => (self.isActive ? reveal() : hide()),
+          });
+        });
+      }, sectionRef);
+
+      ScrollTrigger.refresh();
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        gsap.utils.toArray<HTMLElement>(".exp-explore-card").forEach((card) => {
+          const textLines = card.querySelectorAll<HTMLElement>(".exp-card-line");
+          if (!textLines.length) return;
+
+          gsap.set(textLines, { y: 16, autoAlpha: 0, filter: "blur(4px)" });
+
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 84%",
+            end: "bottom 40%",
+            onToggle: (self) => {
+              gsap.to(textLines, {
+                y: self.isActive ? 0 : 16,
+                autoAlpha: self.isActive ? 1 : 0,
+                filter: self.isActive ? "blur(0px)" : "blur(4px)",
+                duration: self.isActive ? 0.55 : 0.3,
+                ease: self.isActive ? "power3.out" : "power2.out",
+                stagger: self.isActive ? 0.08 : 0.04,
+                overwrite: "auto",
+              });
+            },
+          });
+        });
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, []);
+
   return (
-    <section className="bg-[#f6f3ed] py-16 text-[#1f3c44] sm:py-20 lg:py-24">
+    <section ref={sectionRef} data-no-global-gsap className="overflow-x-hidden bg-[#f6f3ed] py-16 text-[#1f3c44] sm:py-20 lg:py-24">
       <Container>
-        <div className="space-y-10">
-          <div>
-            <span className="text-[0.72rem] uppercase tracking-[0.45em] text-[#1f3c44]/70">Explore</span>
-            <h2 className="mt-4 max-w-xl font-serif text-4xl leading-[0.98] md:text-5xl lg:text-[4.1rem]">
+        <div>
+          <span className="exp-explore-kicker text-[0.72rem] uppercase tracking-[0.45em] text-[#1f3c44]/70">Explore</span>
+          <div className="mt-4 overflow-hidden">
+            <h2 className="exp-explore-title-line max-w-xl font-serif text-4xl leading-[0.98] md:text-5xl lg:text-[4.1rem]">
               Make your stay
-              <br />
+            </h2>
+          </div>
+          <div className="overflow-hidden">
+            <h2 className="exp-explore-title-line max-w-xl font-serif text-4xl leading-[0.98] md:text-5xl lg:text-[4.1rem]">
               memorable
             </h2>
           </div>
-
-          <div className="experience-scroll-wrap -mx-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div className="experience-strip flex min-w-max gap-4 sm:gap-5 lg:gap-6">
-              {experiences.map((item, index) => (
-                <article
-                  key={item.title}
-                  className="group experience-card relative h-[24rem] w-[17rem] shrink-0 overflow-hidden rounded-[14px] bg-black sm:h-[26rem] sm:w-[18.2rem] lg:h-[31rem] lg:w-[18.5rem]"
-                  style={{ animationDelay: `${index * 90}ms` }}
-                >
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-                    style={{ backgroundImage: `url("${encodeURI(item.image)}")` }}
-                    role="img"
-                    aria-label={item.title}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-all duration-500 group-hover:from-black/88" />
-                  <div className="absolute left-4 top-4 rounded-full border border-white/35 bg-black/25 px-2 py-1 text-[0.62rem] font-semibold text-white/90 backdrop-blur-sm">
-                    0{index + 1}
-                  </div>
-                  <div className="relative z-10 flex h-full flex-col justify-end p-5 text-white sm:p-6">
-                    <h3 className="font-serif text-[2rem] leading-[0.95] sm:text-[2.2rem]">{item.title}</h3>
-                    <p className="mt-3 max-h-0 translate-y-2 overflow-hidden text-[0.78rem] leading-relaxed text-white/85 opacity-0 transition-all duration-500 group-hover:max-h-28 group-hover:translate-y-0 group-hover:opacity-100 sm:text-[0.82rem]">
-                      {item.description}
-                    </p>
-                    <span className="mt-4 inline-flex w-fit text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-white/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                      Explore now
-                    </span>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
         </div>
       </Container>
+
+      <div ref={pinRef} className="relative mt-10 sm:mt-12">
+        <div ref={viewportRef} className="experience-scroll-wrap w-screen overflow-x-auto pb-3 lg:overflow-hidden lg:pb-0">
+          <div ref={trackRef} className="experience-strip flex min-w-max snap-x snap-mandatory gap-4 sm:gap-5 lg:gap-6">
+            {experiences.map((item, index) => (
+              <article
+                key={item.title}
+                className="exp-explore-card experience-card group relative h-[26rem] w-[20rem] shrink-0 snap-start overflow-hidden rounded-[16px] bg-black sm:h-[30rem] sm:w-[24rem] lg:h-[82vh] lg:min-h-[640px] lg:w-auto lg:rounded-none"
+              >
+                <div
+                  className="exp-explore-image absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  style={{ backgroundImage: `url(\"${encodeURI(item.image)}\")` }}
+                  role="img"
+                  aria-label={item.title}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-all duration-500 group-hover:from-black/88" />
+                <div className="absolute left-5 top-5 rounded-full border border-white/35 bg-black/25 px-2.5 py-1 text-[0.66rem] font-semibold text-white/90 backdrop-blur-sm">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+                <div className="relative z-10 flex h-full flex-col justify-end p-6 text-white sm:p-7 lg:p-12">
+                  <h3 className="exp-card-line font-serif text-[2.4rem] leading-[0.95] sm:text-[2.8rem] lg:text-[4.2rem]">{item.title}</h3>
+                  <p className="exp-card-line mt-3 max-w-[60ch] text-[0.84rem] leading-relaxed text-white/85 sm:text-[0.92rem] lg:text-[1.05rem]">
+                    {item.description}
+                  </p>
+                  <span className="exp-card-line mt-5 inline-flex w-fit text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-white/90 lg:text-[0.72rem]">
+                    Explore now
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
 
       <style>{`
         .experience-scroll-wrap {
           -ms-overflow-style: none;
           scrollbar-width: none;
+          scroll-padding-left: 0;
+          scroll-padding-right: 0;
         }
         .experience-scroll-wrap::-webkit-scrollbar {
           display: none;
         }
         @media (min-width: 1024px) {
           .experience-card {
-            width: 18.5rem;
-            transition: width 550ms cubic-bezier(0.22, 1, 0.36, 1), transform 550ms cubic-bezier(0.22, 1, 0.36, 1);
+            width: calc((100vw - 1.5rem) / 2);
+            transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 550ms cubic-bezier(0.22, 1, 0.36, 1);
             transform: translateY(0);
           }
           .experience-card:hover {
-            width: 23.5rem;
+            box-shadow: 0 26px 70px rgba(0,0,0,0.22);
             transform: translateY(-4px);
           }
-        }
-        @keyframes experienceCardIn {
-          from {
-            opacity: 0;
-            transform: translateY(18px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .experience-card {
-          animation: experienceCardIn 720ms ease-out both;
         }
       `}</style>
     </section>

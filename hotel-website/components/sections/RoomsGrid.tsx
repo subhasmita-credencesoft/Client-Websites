@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { addDays, format } from "date-fns";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
 import { formatPrice } from "../../lib/format";
@@ -42,6 +44,8 @@ const defaultVirtualTourUrl =
 const secondCardVirtualTourUrl =
   "https://www.google.co.in/maps/@18.8171664,73.3046375,3a,90y,125.13h,91.65t/data=!3m8!1e1!3m6!1svk2WvYbxaRcAAAQvxYrSYg!2e0!3e2!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-1.6500000000000057%26panoid%3Dvk2WvYbxaRcAAAQvxYrSYg%26yaw%3D125.13!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MDMxNS4wIKXMDSoASAFQAw%3D%3D";
 
+gsap.registerPlugin(ScrollTrigger);
+
 function normalizeLabel(value: string) {
   return value.trim().toLowerCase();
 }
@@ -51,7 +55,7 @@ function RoomCard({ room, virtualTourUrl }: { room: DisplayRoom; virtualTourUrl:
 
   return (
     <div
-      className="relative h-[320px] w-full cursor-pointer"
+      className="rooms-grid-card relative h-[320px] w-full cursor-pointer"
       style={{ perspective: "1200px" }}
       onClick={() => setFlipped((p) => !p)}
     >
@@ -68,7 +72,7 @@ function RoomCard({ room, virtualTourUrl }: { room: DisplayRoom; virtualTourUrl:
             alt={room.name}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
+            className="rooms-grid-media object-cover"
             unoptimized={room.image.startsWith("http")}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
@@ -155,28 +159,37 @@ export default function RoomsGrid({
   const [fallbackLoading, setFallbackLoading] = useState(false);
   const [fallbackError, setFallbackError] = useState<string | null>(null);
   const [fallbackAttempted, setFallbackAttempted] = useState(false);
-
-  const sourceRooms = (property?.roomList?.length ? property.roomList : fallbackRooms) || [];
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (property?.roomList?.length || fallbackRooms || fallbackLoading || fallbackAttempted) return;
     if (isLoading) return;
-    setFallbackLoading(true);
-    setFallbackAttempted(true);
-    setFallbackError(null);
-    fetchPropertyAvailability({
-      fromDate: format(new Date(), "yyyy-MM-dd"),
-      toDate: format(addDays(new Date(), 1), "yyyy-MM-dd"),
-      noOfPersons: 1,
-      noOfRooms: 1,
-    })
-      .then((payload) => setFallbackRooms(payload?.roomList || []))
-      .catch(() => {
+    const loadFallback = async () => {
+      setFallbackLoading(true);
+      setFallbackAttempted(true);
+      setFallbackError(null);
+      try {
+        const payload = await fetchPropertyAvailability({
+          fromDate: format(new Date(), "yyyy-MM-dd"),
+          toDate: format(addDays(new Date(), 1), "yyyy-MM-dd"),
+          noOfPersons: 1,
+          noOfRooms: 1,
+        });
+        setFallbackRooms(payload?.roomList || []);
+      } catch {
         setFallbackRooms([]);
         setFallbackError("Availability API is temporarily unavailable.");
-      })
-      .finally(() => setFallbackLoading(false));
+      } finally {
+        setFallbackLoading(false);
+      }
+    };
+    void loadFallback();
   }, [property?.roomList, fallbackRooms, fallbackLoading, fallbackAttempted, isLoading]);
+
+  const sourceRooms = useMemo(
+    () => (property?.roomList?.length ? property.roomList : fallbackRooms) || [],
+    [property?.roomList, fallbackRooms],
+  );
 
   const displayRooms = useMemo<DisplayRoom[]>(() => {
     return sourceRooms.map((room, index) => {
@@ -211,12 +224,65 @@ export default function RoomsGrid({
     htmlToText(property?.businessDescription).slice(0, 220) ||
     "Choose a suite that pairs handcrafted interiors with thoughtful amenities.";
 
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 78%",
+            once: true,
+          },
+        });
+
+        tl.fromTo(
+          ".rooms-grid-heading",
+          { y: 16, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 0.65, ease: "power3.out" },
+        ).fromTo(
+          ".rooms-grid-divider",
+          { scaleX: 0.2, autoAlpha: 0, transformOrigin: "center center" },
+          { scaleX: 1, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
+          "<+0.08",
+        );
+
+        tl.fromTo(
+          ".rooms-grid-card",
+          { y: 26, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 0.75, ease: "power3.out", stagger: 0.08 },
+          "<+0.1",
+        );
+
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            end: "bottom top",
+            scrub: 1,
+          },
+        }).to(".rooms-grid-media", { yPercent: 6, scale: 1.06, ease: "none" }, 0);
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, [displayRooms.length]);
+
   return (
-    <section className="bg-[#f3efe8] py-16 text-[#1f3c44]">
+    <section
+      ref={(el) => {
+        sectionRef.current = el;
+      }}
+      data-no-global-gsap
+      className="bg-[#f3efe8] py-16 text-[#1f3c44]"
+    >
       <Container>
-        <div className="text-center">
+        <div className="rooms-grid-heading text-center">
           <SectionHeading eyebrow={eyebrow} title={title} subtitle={finalSubtitle} align="center" />
-          <div className="mx-auto mb-10 h-px w-full max-w-3xl bg-[#1f3c44]/15" />
+          <div className="rooms-grid-divider mx-auto mb-10 h-px w-full max-w-3xl bg-[#1f3c44]/15" />
         </div>
 
         {(isLoading || fallbackLoading) && (

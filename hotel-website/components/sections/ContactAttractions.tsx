@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 
 const ATTRACTIONS = [
@@ -55,29 +58,7 @@ const ATTRACTIONS = [
   },
 ];
 
-function useScrollReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add("revealed");
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return ref;
-}
+gsap.registerPlugin(ScrollTrigger);
 
 function AttractionItem({
   item,
@@ -86,38 +67,26 @@ function AttractionItem({
   item: (typeof ATTRACTIONS)[0];
   reverse: boolean;
 }) {
-  const textRef = useScrollReveal();
-  const imageRef = useScrollReveal();
-
   return (
     <article
-      className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-12 ${
+      className={`ca-card grid items-center gap-8 rounded-[1.4rem] border border-[#d6d1c5] bg-white/70 p-5 shadow-[0_18px_34px_rgba(23,38,46,0.05)] lg:grid-cols-2 lg:gap-12 lg:p-8 ${
         reverse ? "lg:[&>*:first-child]:order-2" : ""
       }`}
     >
-      {/* Text */}
-      <div
-        ref={textRef}
-        className={`reveal-item ${reverse ? "reveal-from-right" : "reveal-from-left"}`}
-      >
-        <h2 className="font-serif text-3xl md:text-4xl">{item.title}</h2>
-        <p className="mt-5 text-sm leading-7 text-[#1f3c44]/75 md:text-base">
+      <div className="ca-copy">
+        <h2 className="ca-text-line font-serif text-3xl md:text-4xl">{item.title}</h2>
+        <p className="ca-text-line mt-5 text-sm leading-7 text-[#1f3c44]/75 md:text-base">
           {item.description}
         </p>
       </div>
 
-      {/* Image */}
-      <div
-        ref={imageRef}
-        className={`reveal-item overflow-hidden rounded-2xl ${
-          reverse ? "reveal-from-left" : "reveal-from-right"
-        }`}
-      >
-        <img
+      <div className="ca-image-wrap relative h-[240px] overflow-hidden rounded-2xl sm:h-[300px] md:h-[360px]">
+        <Image
           src={item.image}
           alt={item.alt}
-          className="h-full max-h-[360px] w-full object-cover"
-          loading="lazy"
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="ca-image object-cover"
         />
       </div>
     </article>
@@ -125,33 +94,106 @@ function AttractionItem({
 }
 
 export default function ContactAttractions() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        gsap.utils.toArray<HTMLElement>(".ca-card").forEach((card, index) => {
+          const fromX = index % 2 === 0 ? -36 : 36;
+          const lines = card.querySelectorAll<HTMLElement>(".ca-text-line");
+          const image = card.querySelector<HTMLElement>(".ca-image");
+
+          gsap.set(card, {
+            y: 34,
+            x: fromX,
+            autoAlpha: 0,
+            rotateX: 8,
+            transformPerspective: 1200,
+            transformOrigin: "50% 100%",
+          });
+
+          if (lines.length > 0) {
+            gsap.set(lines, { y: 18, autoAlpha: 0, filter: "blur(7px)" });
+          }
+
+          const revealTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: card,
+              start: "top 82%",
+              toggleActions: "play none none reverse",
+            },
+          });
+
+          revealTl.to(card, {
+            y: 0,
+            x: 0,
+            autoAlpha: 1,
+            rotateX: 0,
+            duration: 0.9,
+            ease: "power3.out",
+          });
+
+          if (lines.length > 0) {
+            revealTl.to(
+              lines,
+              {
+                y: 0,
+                autoAlpha: 1,
+                filter: "blur(0px)",
+                duration: 0.6,
+                stagger: 0.08,
+                ease: "power3.out",
+              },
+              "-=0.6",
+            );
+          }
+
+          if (image) {
+            gsap.fromTo(
+              image,
+              { scale: 1.12, yPercent: 8 },
+              {
+                scale: 1.03,
+                yPercent: -6,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 1,
+                },
+              },
+            );
+          }
+        });
+
+        ScrollTrigger.refresh();
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, []);
+
   return (
     <>
       <style>{`
-        .reveal-item {
-          opacity: 0;
-          transition: opacity 0.7s ease, transform 0.7s ease;
+        .ca-card {
+          transform-style: preserve-3d;
+          will-change: transform, opacity;
+          transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 550ms cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .reveal-from-left {
-          transform: translateX(-60px);
-        }
-        .reveal-from-right {
-          transform: translateX(60px);
-        }
-        .reveal-item.revealed {
-          opacity: 1;
-          transform: translateX(0);
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .reveal-item {
-            opacity: 1;
-            transform: none;
-            transition: none;
-          }
+        .ca-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 26px 56px rgba(23, 38, 46, 0.14);
         }
       `}</style>
 
-      <section className="bg-[#f6f3ed] py-20 text-[#1f3c44]">
+      <section ref={sectionRef} data-no-global-gsap className="bg-[#f6f3ed] py-20 text-[#1f3c44]">
         <Container className="space-y-16">
           {ATTRACTIONS.map((item, index) => (
             <AttractionItem

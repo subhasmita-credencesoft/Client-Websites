@@ -1,23 +1,12 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import { PropertyDataProvider } from "../components/providers/PropertyDataProvider";
+import SmoothScrollProvider from "../components/providers/SmoothScrollProvider";
+import GlobalGsapEffects from "../components/providers/GlobalGsapEffects";
 import ScrollToTopButton from "../components/ui/ScrollToTopButton";
-
-const bodyFont = Jost({
-  variable: "--font-jost",
-  subsets: ["latin"],
-});
-
-const serifFont = Cormorant_Garamond({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "  UK Resort",
@@ -36,16 +25,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        suppressHydrationWarning
-        className={`${bodyFont.variable} ${serifFont.variable} theme-hotel antialiased`}
-      >
-        <PropertyDataProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <ScrollToTopButton />
-        </PropertyDataProvider>
+      <body suppressHydrationWarning className="theme-hotel antialiased">
+        <SmoothScrollProvider>
+          <PropertyDataProvider>
+            <GlobalGsapEffects />
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <ScrollToTopButton />
+          </PropertyDataProvider>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

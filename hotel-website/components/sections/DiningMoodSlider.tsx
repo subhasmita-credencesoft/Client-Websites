@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CurvedLoop from "../ui/CurvedLoop";
 
 const SLIDES = [
@@ -14,6 +16,8 @@ const SLIDES = [
   { src: "https://bookonelocal.in/cdn/Copy-of-IMG_2939_1_.avif ", label: "Wedding Dinner" },
 ];
 
+gsap.registerPlugin(ScrollTrigger);
+
 function getRelativeOffset(index: number, activeIndex: number, total: number) {
   let diff = index - activeIndex;
   if (diff > total / 2) diff -= total;
@@ -23,6 +27,7 @@ function getRelativeOffset(index: number, activeIndex: number, total: number) {
 
 export default function DiningMoodSlider() {
   const [activeIndex, setActiveIndex] = useState(1);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -38,9 +43,61 @@ export default function DiningMoodSlider() {
     return `${prev} * ${current} * ${next} * `;
   }, [activeIndex]);
 
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 78%",
+            once: true,
+          },
+        });
+
+        tl.fromTo(
+          ".dining-mood-stage",
+          { y: 24, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 0.85, ease: "power3.out" },
+        ).fromTo(
+          ".dining-mood-loop",
+          { y: 16, autoAlpha: 0, filter: "blur(6px)" },
+          { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.8, ease: "power3.out" },
+          "<+0.05",
+        );
+
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 88%",
+            end: "bottom top",
+            scrub: 1,
+          },
+        }).to(".dining-mood-slide-image", { yPercent: 7, scale: 1.06, ease: "none" }, 0);
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      gsap.fromTo(
+        ".dining-mood-loop",
+        { y: 12, autoAlpha: 0, filter: "blur(4px)" },
+        { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.55, ease: "power3.out", overwrite: "auto" },
+      );
+    });
+    return () => mm.revert();
+  }, [activeIndex]);
+
   return (
-    <section className="relative overflow-hidden bg-[#f6f3ed] py-16 text-white md:py-24">
-      <div className="mx-auto w-full max-w-[1920px] px-3 sm:px-6 lg:px-8">
+    <section ref={sectionRef} data-no-global-gsap className="relative overflow-hidden bg-[#f6f3ed] py-16 text-white md:py-24">
+      <div className="dining-mood-stage mx-auto w-full max-w-[1920px] px-3 sm:px-6 lg:px-8">
         <div className="relative h-[320px] md:hidden">
           <article className="absolute inset-0 overflow-hidden rounded-[18px] bg-[#b4aea5]">
             <Image
@@ -48,7 +105,7 @@ export default function DiningMoodSlider() {
               alt={SLIDES[activeIndex].label}
               fill
               sizes="100vw"
-              className="object-cover"
+              className="dining-mood-slide-image object-cover"
               priority
             />
             <div className="absolute inset-0 bg-black/25" />
@@ -89,7 +146,7 @@ export default function DiningMoodSlider() {
                   alt={slide.label}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 520px, 980px"
-                  className="object-cover"
+                  className="dining-mood-slide-image object-cover"
                   priority={index === activeIndex}
                 />
                 <div className="absolute inset-0 bg-black/25" />
@@ -99,7 +156,7 @@ export default function DiningMoodSlider() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 top-1/2 z-40 -translate-y-1/2">
+      <div className="dining-mood-loop pointer-events-none absolute inset-x-0 top-1/2 z-40 -translate-y-1/2">
         <CurvedLoop
           marqueeText={marqueeText}
           speed={30}

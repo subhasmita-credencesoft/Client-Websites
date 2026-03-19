@@ -1,6 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 
 const tourUrl =
@@ -49,69 +52,301 @@ const diningItems = [
   },
 ];
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function DiningShowcase() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const pinRef = useRef<HTMLDivElement | null>(null);
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        const revealTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 78%",
+            once: true,
+          },
+        });
+
+        revealTl
+          .fromTo(
+            ".dining-kicker",
+            { y: 14, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+          )
+          .fromTo(
+            ".dining-title-line",
+            { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
+            {
+              yPercent: 0,
+              autoAlpha: 1,
+              filter: "blur(0px)",
+              duration: 0.95,
+              stagger: 0.06,
+              ease: "power4.out",
+            },
+            "<+0.06",
+          )
+          .fromTo(
+            ".dining-copy",
+            { y: 18, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.8, ease: "power3.out" },
+            "<+0.08",
+          );
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+      const pin = pinRef.current;
+      const viewport = viewportRef.current;
+      const track = trackRef.current;
+      if (!pin || !viewport || !track) return;
+      let resizeObserver: ResizeObserver | null = null;
+
+      const ctx = gsap.context(() => {
+        const cards = gsap.utils.toArray<HTMLElement>(".dining-card");
+        const getDistance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+        const getEndValue = () => {
+          const distance = getDistance();
+          return `+=${Math.max(1, distance)}`;
+        };
+
+        gsap.set(track, { x: 0 });
+
+        if (getDistance() < 24) {
+          gsap.fromTo(
+            cards,
+            { y: 20, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out", stagger: 0.08 },
+          );
+          return;
+        }
+
+        const horizontalTween = gsap.to(track, {
+          x: () => -getDistance(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: pin,
+            start: "top top",
+            end: getEndValue,
+            pin,
+            scrub: 0.9,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            snap: {
+              snapTo: (value: number) => {
+                const steps = Math.max(1, diningItems.length - 1);
+                return Math.round(value * steps) / steps;
+              },
+              duration: { min: 0.1, max: 0.32 },
+              ease: "power2.out",
+            },
+          },
+        });
+
+        gsap.fromTo(
+          cards,
+          { y: 20, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.7,
+            ease: "power3.out",
+            stagger: 0.08,
+            scrollTrigger: {
+              trigger: pin,
+              start: "top 75%",
+              once: true,
+            },
+          },
+        );
+
+        gsap.set(track, { willChange: "transform" });
+
+        gsap.to(".dining-card-bg", {
+          scale: 1.08,
+          yPercent: 8,
+          ease: "none",
+          scrollTrigger: {
+            trigger: pin,
+            start: "top top",
+            end: getEndValue,
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        gsap.utils.toArray<HTMLElement>(".dining-card").forEach((card) => {
+          const lines = card.querySelectorAll<HTMLElement>(".dining-card-line");
+          if (!lines.length) return;
+
+          gsap.set(lines, { y: 16, autoAlpha: 0, filter: "blur(4px)" });
+
+          const animateLines = (isActive: boolean) => {
+            gsap.to(lines, {
+              y: isActive ? 0 : 16,
+              autoAlpha: isActive ? 1 : 0,
+              filter: isActive ? "blur(0px)" : "blur(4px)",
+              duration: isActive ? 0.55 : 0.3,
+              ease: isActive ? "power3.out" : "power2.out",
+              stagger: isActive ? 0.08 : 0.04,
+              overwrite: "auto",
+            });
+          };
+
+          if (horizontalTween.scrollTrigger) {
+            ScrollTrigger.create({
+              trigger: card,
+              containerAnimation: horizontalTween,
+              start: "left 72%",
+              end: "right 38%",
+              onToggle: (self) => animateLines(self.isActive),
+            });
+          } else {
+            ScrollTrigger.create({
+              trigger: card,
+              start: "top 84%",
+              end: "bottom 40%",
+              onToggle: (self) => animateLines(self.isActive),
+            });
+          }
+        });
+
+        resizeObserver = new ResizeObserver(() => ScrollTrigger.refresh());
+        resizeObserver.observe(viewport);
+        resizeObserver.observe(track);
+      }, sectionRef);
+
+      ScrollTrigger.refresh();
+      return () => {
+        resizeObserver?.disconnect();
+        ctx.revert();
+      };
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        gsap.utils.toArray<HTMLElement>(".dining-card").forEach((card) => {
+          const lines = card.querySelectorAll<HTMLElement>(".dining-card-line");
+          if (!lines.length) return;
+
+          gsap.set(lines, { y: 16, autoAlpha: 0, filter: "blur(4px)" });
+
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 84%",
+            end: "bottom 40%",
+            onToggle: (self) => {
+              gsap.to(lines, {
+                y: self.isActive ? 0 : 16,
+                autoAlpha: self.isActive ? 1 : 0,
+                filter: self.isActive ? "blur(0px)" : "blur(4px)",
+                duration: self.isActive ? 0.55 : 0.3,
+                ease: self.isActive ? "power3.out" : "power2.out",
+                stagger: self.isActive ? 0.08 : 0.04,
+                overwrite: "auto",
+              });
+            },
+          });
+        });
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, []);
+
   return (
-    <section className="bg-[#f3f2ee] py-12 text-[#1f3c44] sm:py-16 lg:py-20">
+    <section ref={sectionRef} data-no-global-gsap className="overflow-x-hidden bg-[#f3f2ee] pb-0 pt-12 text-[#1f3c44] sm:pt-16 lg:pt-20">
       <Container>
         <div className="grid gap-7 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#cda374]/60 px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#c78946]">
+            <div className="dining-kicker inline-flex items-center gap-2 rounded-full border border-[#cda374]/60 px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#c78946]">
               UK&apos;s Resort Dining
             </div>
-            <h2 className="mt-4 max-w-[12ch] font-serif text-[2.2rem] leading-[0.95] text-[#1f3c44] sm:text-[2.8rem] md:text-[3.2rem]">
-              Delicious local cuisines served with warm hospitality
-            </h2>
+            <div className="mt-4 overflow-hidden">
+              <h2 className="dining-title-line max-w-[12ch] font-serif text-[2.2rem] leading-[0.95] text-[#1f3c44] sm:text-[2.8rem] md:text-[3.2rem]">
+                Delicious local cuisines
+              </h2>
+            </div>
+            <div className="overflow-hidden">
+              <h2 className="dining-title-line max-w-[12ch] font-serif text-[2.2rem] leading-[0.95] text-[#1f3c44] sm:text-[2.8rem] md:text-[3.2rem]">
+                served with warm hospitality
+              </h2>
+            </div>
           </div>
 
-          <div className="max-w-md text-[0.95rem] leading-7 text-[#1f3c44]/75 sm:text-sm">
+          <div className="dining-copy max-w-md text-[0.95rem] leading-7 text-[#1f3c44]/75 sm:text-sm">
             <p>
-           No holiday can be complete without building up a ravenous appetite. UK's Resort offers plenty of tongue-tingling cuisines. We pride ourselves on our variety of cuisine that is as innovative as it is appetizing. You can opt for Delicious Chinese, Mughlai and Indian Cuisine. The Restaurant caters to the tastes of each of its Guests. Our Friendly Professional Staff are always on hand to offer advice and assistance with each and every aspect of your meal. Enjoy a hearty lunch and a delectable dinner at UK's Resort. Non-vegetarian or vegetarian — it does not matter as you get sumptuous varieties of dishes in both categories.
+              No holiday can be complete without building up a ravenous appetite. UK&apos;s Resort offers plenty of
+              tongue-tingling cuisines. We pride ourselves on our variety of cuisine that is as innovative as it is
+              appetizing. You can opt for Delicious Chinese, Mughlai and Indian Cuisine. The Restaurant caters to the
+              tastes of each of its Guests. Our Friendly Professional Staff are always on hand to offer advice and
+              assistance with each and every aspect of your meal. Enjoy a hearty lunch and a delectable dinner at UK&apos;s
+              Resort. Non-vegetarian or vegetarian - it does not matter as you get sumptuous varieties of dishes in
+              both categories.
             </p>
-            <Link
-              href="/dining"
-              className="mt-5 inline-flex text-[0.68rem] font-semibold uppercase tracking-[0.18em] sm:text-xs sm:tracking-[0.3em]"
-            >
+            <Link href="/dining" className="mt-5 inline-flex text-[0.68rem] font-semibold uppercase tracking-[0.18em] sm:text-xs sm:tracking-[0.3em]">
               Discover more
             </Link>
           </div>
         </div>
       </Container>
 
-      <div className="dining-scroll-wrap mt-8 overflow-x-auto px-4 pb-2 sm:mt-10 sm:px-6 lg:px-8">
-        <div className="dining-card-track flex min-w-max gap-4">
-          {diningItems.map((item) => (
-            <article
-              key={item.title}
-              className="group relative h-[30rem] w-[18.7rem] overflow-hidden rounded-[12px] bg-black sm:w-[20rem] lg:w-[21rem]"
-            >
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-                style={{ backgroundImage: `url('${item.image}')`, backgroundPosition: item.position }}
-                role="img"
-                aria-label={item.title}
-              />
+      <div ref={pinRef} className="relative mt-10 sm:mt-12">
+        <div ref={viewportRef} className="dining-scroll-wrap w-screen overflow-x-auto pb-3 lg:overflow-hidden lg:pb-0">
+          <div ref={trackRef} className="dining-card-track flex min-w-max snap-x snap-mandatory gap-4 sm:gap-5 lg:gap-6">
+            {diningItems.map((item) => (
+              <article
+                key={item.title}
+                className="dining-card group relative h-[31rem] w-[19.5rem] shrink-0 snap-start overflow-hidden rounded-[14px] bg-black sm:h-[34rem] sm:w-[22rem] lg:h-[80vh] lg:min-h-[620px] lg:w-[calc((100vw-1.5rem)/2)] lg:rounded-none"
+              >
+                <div
+                  className="dining-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                  style={{ backgroundImage: `url('${item.image}')`, backgroundPosition: item.position }}
+                  role="img"
+                  aria-label={item.title}
+                />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-500 group-hover:from-black/90" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-500 group-hover:from-black/90" />
 
-              <div className="relative z-10 flex h-full flex-col justify-end p-5 text-white sm:p-6">
-                <span className="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white/80">
-                  {item.label}
-                </span>
-                <h3 className="mt-2 font-serif text-[2rem] leading-[0.92] text-white">{item.title}</h3>
-
-                <div className="dining-extra mt-4 max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-out group-hover:max-h-40 group-hover:opacity-100">
-                  <p className="text-[0.72rem] leading-relaxed text-white/90 sm:text-[0.78rem]">{item.description}</p>
+                <div className="relative z-10 flex h-full flex-col justify-end p-5 text-white sm:p-6 lg:p-10">
+                  <span className="dining-card-line text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white/80">{item.label}</span>
+                  <h3 className="dining-card-line mt-2 font-serif text-[2rem] leading-[0.92] text-white sm:text-[2.2rem] lg:text-[2.9rem]">{item.title}</h3>
+                  <p className="dining-card-line mt-3 max-w-[58ch] text-[0.78rem] leading-relaxed text-white/90 sm:text-[0.84rem] lg:text-[0.95rem]">
+                    {item.description}
+                  </p>
                   <button
                     type="button"
                     onClick={() => window.open(tourUrl, "_blank")}
-                    className="mt-4 inline-flex text-[0.62rem] font-semibold uppercase tracking-[0.2em] underline underline-offset-4"
+                    className="dining-card-line mt-5 inline-flex w-fit text-[0.62rem] font-semibold uppercase tracking-[0.2em] underline underline-offset-4 lg:text-[0.72rem]"
                   >
                     Learn more
                   </button>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -119,9 +354,21 @@ export default function DiningShowcase() {
         .dining-scroll-wrap {
           -ms-overflow-style: none;
           scrollbar-width: none;
+          scroll-padding-left: 0;
+          scroll-padding-right: 0;
         }
         .dining-scroll-wrap::-webkit-scrollbar {
           display: none;
+        }
+        @media (min-width: 1024px) {
+          .dining-card {
+            transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 550ms cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(0);
+          }
+          .dining-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 22px 64px rgba(0,0,0,0.22);
+          }
         }
       `}</style>
     </section>

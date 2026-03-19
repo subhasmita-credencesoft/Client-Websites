@@ -25,6 +25,41 @@ body {
   font-family: var(--font-jost), system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #a07c57 #efe9df;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #efe9df;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #b18a60 0%, #866548 100%);
+  border-radius: 999px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #9f7c56 0%, #785a40 100%);
+}
+
 a {
   color: inherit;
   text-decoration: none;

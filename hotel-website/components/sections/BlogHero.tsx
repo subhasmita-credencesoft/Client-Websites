@@ -1,33 +1,13 @@
-import Container from "../ui/Container";
-import AnimatedContent from "./AnimatedContent";
+import PageHero from "./PageHero";
+
 export default function BlogHero() {
   return (
-    <section className="relative min-h-[70vh] overflow-hidden text-white">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/images/room_2.jpg')",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-      />
-      <div className="absolute inset-0 bg-black/45" />
-      <Container className="relative flex min-h-[70vh] flex-col items-center justify-center text-center">
-        <AnimatedContent
-                    distance={100}
-                    direction="vertical"
-                    reverse={false}
-                    duration={0.8}
-                    ease="power3.out"
-                    initialOpacity={0}
-                    animateOpacity
-                    scale={1}
-                    threshold={0.1}
-                    delay={0}
-                  >
-        <h1 className="font-serif text-4xl md:text-6xl">Our Blog</h1>
-        </AnimatedContent>
-      </Container>
-    </section>
+    <PageHero
+      title="Our Blog"
+      backgroundImage="/images/room_2.jpg"
+      subtitle="Stories, updates, and inspiration from UK's Resort."
+      breadcrumb="Home / Blog"
+      minHeightClassName="min-h-[70vh]"
+    />
   );
 }

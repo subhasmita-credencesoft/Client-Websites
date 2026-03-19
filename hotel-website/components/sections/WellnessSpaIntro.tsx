@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef, useCallback } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 
 const SPA_IMAGES = [
@@ -62,10 +64,13 @@ const TOUR_OPTIONS = [
   },
 ];
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function WellnessSpaIntro() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [tourOpen, setTourOpen] = useState(false);
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+  const sectionRef = useRef<HTMLElement | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const markImageLoaded = useCallback((src: string) => {
@@ -79,7 +84,6 @@ export default function WellnessSpaIntro() {
     return () => clearInterval(timer);
   }, []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -91,13 +95,75 @@ export default function WellnessSpaIntro() {
   }, []);
 
   useEffect(() => {
-    // Preload slider images in the background to avoid delays during transitions.
     SPA_IMAGES.forEach((src) => {
       const img = new window.Image();
       img.src = src;
       img.onload = () => markImageLoaded(src);
     });
   }, [markImageLoaded]);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 78%",
+            once: true,
+          },
+        });
+
+        tl.fromTo(
+          ".wellness-spa-media",
+          { x: -28, autoAlpha: 0, scale: 0.98 },
+          { x: 0, autoAlpha: 1, scale: 1, duration: 0.9, ease: "power3.out" },
+        )
+          .fromTo(
+            ".wellness-spa-kicker",
+            { y: 12, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+            "<+0.05",
+          )
+          .fromTo(
+            ".wellness-spa-title-line",
+            { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
+            {
+              yPercent: 0,
+              autoAlpha: 1,
+              filter: "blur(0px)",
+              duration: 0.9,
+              stagger: 0.06,
+              ease: "power4.out",
+            },
+            "<+0.06",
+          )
+          .fromTo(
+            ".wellness-spa-copy",
+            { y: 16, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.75, ease: "power3.out" },
+            "<+0.08",
+          )
+          .fromTo(
+            ".wellness-spa-cta",
+            { y: 10, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.55, ease: "power3.out" },
+            "<+0.05",
+          );
+
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 88%",
+            end: "bottom top",
+            scrub: 1,
+          },
+        }).to(".wellness-spa-image", { yPercent: 7, scale: 1.06, ease: "none" }, 0);
+      }, sectionRef);
+      return () => ctx.revert();
+    });
+    return () => mm.revert();
+  }, []);
 
   const insetIndex = (activeIndex + 1) % SPA_IMAGES.length;
   const mainSrc = SPA_IMAGES[activeIndex];
@@ -106,20 +172,14 @@ export default function WellnessSpaIntro() {
   const isInsetLoaded = !!loadedImages[insetSrc];
 
   return (
-    <section className="bg-[#f4f1ea] py-20 text-[#1f3c44]">
+    <section ref={sectionRef} data-no-global-gsap className="bg-[#f4f1ea] py-20 text-[#1f3c44]">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-center">
-
-          {/* ── Image panel ── */}
-          <div className="relative mx-auto w-full max-w-[520px]">
-
-            {/* Main image */}
+          <div className="wellness-spa-media relative mx-auto w-full max-w-[520px]">
             <div className="relative aspect-[3/4] overflow-hidden rounded-[40px] bg-[#d9d2c6]">
               <div
                 aria-hidden="true"
-                className={`absolute inset-0 bg-[#d9d2c6] transition-opacity duration-500 ${
-                  isMainLoaded ? "opacity-0" : "opacity-100"
-                }`}
+                className={`absolute inset-0 bg-[#d9d2c6] transition-opacity duration-500 ${isMainLoaded ? "opacity-0" : "opacity-100"}`}
               />
               <Image
                 src={mainSrc}
@@ -129,20 +189,17 @@ export default function WellnessSpaIntro() {
                 priority={activeIndex === 0}
                 loading={activeIndex === 0 ? "eager" : "lazy"}
                 onLoad={() => markImageLoaded(mainSrc)}
-                className={`h-full w-full object-cover transition-[opacity,transform,filter] duration-700 ease-out ${
+                className={`wellness-spa-image h-full w-full object-cover transition-[opacity,transform,filter] duration-700 ease-out ${
                   isMainLoaded ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-[1.02] blur-sm"
                 }`}
               />
             </div>
 
-            {/* Inset image — always next in sequence */}
             <div className="absolute right-[-4%] top-[22%] w-[52%]">
               <div className="relative aspect-square overflow-hidden rounded-[28px] bg-[#d9d2c6] shadow-[0_20px_60px_rgba(0,0,0,0.15)]">
                 <div
                   aria-hidden="true"
-                  className={`absolute inset-0 bg-[#d9d2c6] transition-opacity duration-500 ${
-                    isInsetLoaded ? "opacity-0" : "opacity-100"
-                  }`}
+                  className={`absolute inset-0 bg-[#d9d2c6] transition-opacity duration-500 ${isInsetLoaded ? "opacity-0" : "opacity-100"}`}
                 />
                 <Image
                   src={insetSrc}
@@ -151,17 +208,15 @@ export default function WellnessSpaIntro() {
                   sizes="(max-width: 1024px) 52vw, 270px"
                   loading="lazy"
                   onLoad={() => markImageLoaded(insetSrc)}
-                  className={`h-full w-full object-cover transition-[opacity,transform,filter] duration-700 ease-out ${
+                  className={`wellness-spa-image h-full w-full object-cover transition-[opacity,transform,filter] duration-700 ease-out ${
                     isInsetLoaded ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-[1.02] blur-sm"
                   }`}
                 />
               </div>
             </div>
 
-            {/* Decorative circle */}
             <div className="absolute -bottom-8 -left-8 h-20 w-20 rounded-full bg-[#f4f1ea]" />
 
-            {/* Dots */}
             <div className="absolute -bottom-14 left-0 flex items-center gap-2">
               {SPA_IMAGES.map((_, i) => (
                 <button
@@ -169,72 +224,39 @@ export default function WellnessSpaIntro() {
                   type="button"
                   onClick={() => setActiveIndex(i)}
                   aria-label={`Show image ${i + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === activeIndex
-                      ? "w-6 bg-[#1f3c44]"
-                      : "w-2 bg-[#1f3c44]/30"
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "w-6 bg-[#1f3c44]" : "w-2 bg-[#1f3c44]/30"}`}
                 />
               ))}
             </div>
           </div>
 
-          {/* ── Text panel ── */}
           <div className="max-w-xl">
-            <span className="text-xs uppercase tracking-[0.45em] text-[#1f3c44]/60">
-              Facilities
-            </span>
-            <h2 className="mt-6 font-serif text-3xl leading-tight md:text-4xl">
-              The Name That Redefines Hospitality
-              <br />
-              Green Par-Excellence In The Lush
-              <br />
-              Landscape At Khopoli.
-            </h2>
-            <p className="mt-6 text-sm leading-7 text-[#1f3c44]/75">
-              Discover the euphoria within you with boundless fun under nonstop
-              sprinkling water and break into a wild Rain dance. Splash into the
-              cool and clear waters of our swimming pools and indulge in a game
-              of water polo or leisurely amble on the poolside deck. Slide into
-              pure merriment and relentless excitement with a fully customized
-              ride through our Water Park. Bounce your afternoon with friends
-              and family with a wide range of Indoor Games including table
-              tennis, badminton and carom. The Evenings are the perfect time to
-              run amok in our lush green environment with a host of Outdoor
-              Sports like volleyball, cricket, and football. Sweat it out in our
-              fully furnished Gym geared with the most sophisticated equipment.
-              Toddlers or Children alike have ample space to swing and breeze
-              through our exclusively designed Kid&apos;s Park. 24 Hours Of Hot &
-              Cold running water, satellite TV channels and luxurious facilities
-              will keep you entranced in your holiday break. Express Laundry
-              services to provide you with the last minute dress code change.
-              Wi-Fi Internet Facility in rooms for those who just want to peek
-              back at their office desk! We also provide adventure activities
-              like Paint Ball, Archery, Rifle Shooting, Body Zorbing, Water
-              Zorbing, Artificial Wall Climbing and Team Building Activities
-              (Extra Charges will be applicable). Pets are not allowed in
-              resort.
+            <span className="wellness-spa-kicker text-xs uppercase tracking-[0.45em] text-[#1f3c44]/60">Facilities</span>
+            <div className="mt-6 overflow-hidden">
+              <h2 className="wellness-spa-title-line font-serif text-3xl leading-tight md:text-4xl">The Name That Redefines Hospitality</h2>
+            </div>
+            <div className="overflow-hidden">
+              <h2 className="wellness-spa-title-line font-serif text-3xl leading-tight md:text-4xl">Green Par-Excellence In The Lush</h2>
+            </div>
+            <div className="overflow-hidden">
+              <h2 className="wellness-spa-title-line font-serif text-3xl leading-tight md:text-4xl">Landscape At Khopoli.</h2>
+            </div>
+            <p className="wellness-spa-copy mt-6 text-sm leading-7 text-[#1f3c44]/75">
+              Discover the euphoria within you with boundless fun under nonstop sprinkling water and break into a wild Rain dance. Splash into the cool and clear waters of our swimming pools and indulge in a game of water polo or leisurely amble on the poolside deck. Slide into pure merriment and relentless excitement with a fully customized ride through our Water Park. Bounce your afternoon with friends and family with a wide range of Indoor Games including table tennis, badminton and carom. The Evenings are the perfect time to run amok in our lush green environment with a host of Outdoor Sports like volleyball, cricket, and football. Sweat it out in our fully furnished Gym geared with the most sophisticated equipment. Toddlers or Children alike have ample space to swing and breeze through our exclusively designed Kid&apos;s Park. 24 Hours Of Hot & Cold running water, satellite TV channels and luxurious facilities will keep you entranced in your holiday break. Express Laundry services to provide you with the last minute dress code change. Wi-Fi Internet Facility in rooms for those who just want to peek back at their office desk! We also provide adventure activities like Paint Ball, Archery, Rifle Shooting, Body Zorbing, Water Zorbing, Artificial Wall Climbing and Team Building Activities (Extra Charges will be applicable). Pets are not allowed in resort.
             </p>
 
-            {/* ── Virtual Tour Dropdown ── */}
-            <div className="relative mt-10 inline-block" ref={dropdownRef}>
+            <div className="wellness-spa-cta relative mt-10 inline-block" ref={dropdownRef}>
               <button
                 type="button"
                 onClick={() => setTourOpen((prev) => !prev)}
                 className="inline-flex items-center gap-2 rounded-full border border-[#1f3c44]/30 px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#1f3c44] transition hover:border-[#1f3c44] hover:bg-[#1f3c44]/5"
               >
                 Take a Virtual Tour
-                <span
-                  aria-hidden="true"
-                  className={`inline-block transition-transform duration-200 ${
-                    tourOpen ? "rotate-90" : ""
-                  }`}
-                >
-                  ›
+                <span aria-hidden="true" className={`inline-block transition-transform duration-200 ${tourOpen ? "rotate-90" : ""}`}>
+                  &gt;
                 </span>
               </button>
 
-              {/* Dropdown menu */}
               {tourOpen && (
                 <div className="absolute left-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-2xl border border-[#1f3c44]/10 bg-white shadow-[0_8px_32px_rgba(31,60,68,0.12)]">
                   {TOUR_OPTIONS.map(({ label, url, Icon }) => (
@@ -246,14 +268,15 @@ export default function WellnessSpaIntro() {
                       onClick={() => setTourOpen(false)}
                       className="flex items-center gap-3 px-5 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#1f3c44] transition-colors hover:bg-[#f4f1ea]"
                     >
-                      <span className="text-[#1f3c44]/70"><Icon /></span>
+                      <span className="text-[#1f3c44]/70">
+                        <Icon />
+                      </span>
                       {label}
                     </a>
                   ))}
                 </div>
               )}
             </div>
-
           </div>
         </div>
       </Container>

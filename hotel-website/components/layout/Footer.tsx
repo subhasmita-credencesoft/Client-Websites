@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import Container from "../ui/Container";
 import { usePropertyData } from "../providers/PropertyDataProvider";
@@ -17,8 +20,11 @@ function buildAddressLines(parts: Array<string | null | undefined>) {
   return parts.filter(Boolean);
 }
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Footer() {
   const { property } = usePropertyData();
+  const footerRef = useRef<HTMLElement | null>(null);
   const socialLinks = [
     { label: "Facebook", href: "#", Icon: Facebook },
     { label: "Instagram", href: "#", Icon: Instagram },
@@ -49,11 +55,54 @@ export default function Footer() {
   const phone2 = formatPhone(property?.whatsApp) || "+91 87798 14559";
   const email = property?.email || "info@uksresort.com";
 
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 86%",
+            once: true,
+          },
+        });
+
+        tl.fromTo(
+          ".footer-brand",
+          { y: 20, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 0.75, ease: "power3.out" },
+        )
+          .fromTo(
+            ".footer-heading",
+            { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
+            { yPercent: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.9, ease: "power4.out" },
+            "<+0.04",
+          )
+          .fromTo(
+            ".footer-content-block",
+            { y: 16, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.65, ease: "power3.out", stagger: 0.08 },
+            "<+0.08",
+          )
+          .fromTo(
+            ".footer-bottom",
+            { y: 10, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.55, ease: "power3.out" },
+            "<+0.06",
+          );
+      }, footerRef);
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, []);
+
   return (
-    <footer className="mt-20 bg-[#143b47] text-white">
+    <footer ref={footerRef} data-no-global-gsap className="mt-20 bg-[#143b47] text-white">
       <Container>
         <div className="grid gap-12 border-b border-white/15 py-16 lg:grid-cols-[1fr_1.6fr] xl:gap-16">
-          <div className="space-y-6">
+          <div className="footer-brand space-y-6">
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 text-sm">
              <Image
               src="/UK's-Resort-Logo_SVG.webp" 
@@ -63,7 +112,7 @@ export default function Footer() {
               className="object-cover"
                />
             </div>
-            <h3 className="font-serif text-4xl leading-tight">
+            <h3 className="footer-heading font-serif text-4xl leading-tight">
               Award-winning
               <br />
               resort in the
@@ -100,7 +149,7 @@ export default function Footer() {
             </Link>
           </div>
           <div className="grid gap-10 xl:grid-cols-[1.1fr_1.2fr] xl:justify-self-end xl:text-left">
-            <div>
+            <div className="footer-content-block">
               <h4 className="font-serif text-2xl">{headingName}</h4>
               <p className="mt-2 text-sm text-white/70">
                 {property?.businessType || "Accommodation"} {property?.businessSubtype ? `- ${property.businessSubtype}` : ""}
@@ -127,7 +176,7 @@ export default function Footer() {
             </div>
             <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-[minmax(220px,1.3fr)_minmax(170px,1fr)_minmax(150px,1fr)]">
               {addressLines.length > 0 && (
-                <div>
+                <div className="footer-content-block">
                   <h5 className="font-serif text-lg">Address</h5>
                   <div className="mt-4 space-y-1">
                     {addressLines.map((line) => (
@@ -136,7 +185,7 @@ export default function Footer() {
                   </div>
                 </div>
               )}
-              <div>
+              <div className="footer-content-block">
                 <h5 className="font-serif text-lg">Contact</h5>
                 <p className="mt-4 text-sm leading-6 text-white/70 whitespace-nowrap">{phone1}</p>
                 <p className="text-sm leading-6 text-white/70 whitespace-nowrap">{phone2}</p>
@@ -147,7 +196,7 @@ export default function Footer() {
                   {email}
                 </Link>
               </div>
-              <div>
+              <div className="footer-content-block">
                 <h5 className="font-serif text-lg">Social</h5>
                 <div className="mt-4 space-y-2">
                   {socialLinks.map((item) => (
@@ -165,7 +214,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-4 py-6 text-xs text-white/60">
+        <div className="footer-bottom flex flex-wrap items-center justify-between gap-4 py-6 text-xs text-white/60">
           <p className="max-w-3xl leading-6">Copyright &copy; {new Date().getFullYear()} {headingName}. All rights reserved Designed and Developed By CredenceSoft, Powered By BookOne.</p>
           <div className="ml-auto flex w-full flex-wrap items-center justify-start gap-6 sm:w-auto sm:justify-end">
             {quickLinks.map((item) => (

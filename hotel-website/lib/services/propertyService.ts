@@ -8,24 +8,6 @@ export async function fetchPropertyById(
   id = DEFAULT_PROPERTY_ID,
   options?: { signal?: AbortSignal },
 ): Promise<PropertyApiResponse | null> {
-  try {
-    const response = await fetch(`/api/property/${id}`, {
-      method: "GET",
-      signal: options?.signal,
-      headers: {
-        Accept: "application/json",
-      },
-      cache: "no-store",
-    });
-
-    if (response.ok) {
-      const payload = (await response.json()) as PropertyApiResponse | null;
-      return payload ?? null;
-    }
-  } catch {
-    // try direct upstream next
-  }
-
   const directResponse = await fetch(`${DIRECT_FIND_BY_ID_BASE}/${id}`, {
     method: "GET",
     signal: options?.signal,
@@ -61,24 +43,6 @@ export async function fetchPropertyAvailability(
     noOfRooms: String(query.noOfRooms ?? 1),
     noOfPersons: String(query.noOfPersons ?? 1),
   });
-
-  try {
-    const response = await fetch(`/api/property/${id}/availability?${searchParams.toString()}`, {
-      method: "GET",
-      signal: options?.signal,
-      headers: {
-        Accept: "application/json",
-      },
-      cache: "no-store",
-    });
-
-    if (response.ok) {
-      const payload = (await response.json()) as PropertyApiResponse | null;
-      return payload ?? null;
-    }
-  } catch {
-    // try direct upstream next
-  }
 
   try {
     const directAvailabilityResponse = await fetch(

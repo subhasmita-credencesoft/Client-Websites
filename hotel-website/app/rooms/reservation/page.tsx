@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { addDays, format } from "date-fns";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AvailabilityCard from "../../../components/features/AvailabilityCard";
 import Container from "../../../components/ui/Container";
 import PageHero from "../../../components/sections/PageHero";
@@ -64,6 +66,8 @@ const defaultVirtualTourUrl =
   "https://www.google.co.in/maps/@18.8173616,73.3047087,3a,75y,352.05h,41.3t/data=!3m7!1e1!3m5!1sCIHM0ogKEICAgICE2OrfkAE!2e10!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFfmt2ZdcMHANYXL6HTiLhFwc2VFENp9NW0onXfyfiteKnx1vGtri8o3bmnZVw5r_9XUiiS6IW73NveF1JIB8trQ2siI-RkCqMqzGN0J44WlpuzjEXtXcmV8UzeigT-8W69UXnjWJ321yg%3Dw900-h600-k-no-pi48.70007873572015-ya110.76994491714902-ro0-fo100!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MDMxNS4wIKXMDSoASAFQAw%3D%3D";
 const secondCardVirtualTourUrl =
   "https://www.google.co.in/maps/@18.8171664,73.3046375,3a,90y,125.13h,91.65t/data=!3m8!1e1!3m6!1svk2WvYbxaRcAAAQvxYrSYg!2e0!3e2!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-1.6500000000000057%26panoid%3Dvk2WvYbxaRcAAAQvxYrSYg%26yaw%3D125.13!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MDMxNS4wIKXMDSoASAFQAw%3D%3D";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function toSlug(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -187,6 +191,7 @@ function RoomsReservationContent() {
   const [error, setError] = useState<string | null>(null);
   const [propertyData, setPropertyData] = useState<PropertyApiResponse | null>(null);
   const sortRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   const initialCheckIn = searchParams.get("checkIn") ?? format(new Date(), "yyyy-MM-dd");
   const initialCheckOut = searchParams.get("checkOut") ?? format(addDays(new Date(), 1), "yyyy-MM-dd");
@@ -272,6 +277,126 @@ function RoomsReservationContent() {
     return cloned;
   }, [filteredRooms, sortBy]);
 
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 82%",
+            once: true,
+          },
+        });
+
+        tl.fromTo(
+          ".rr-kicker",
+          { y: 14, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 0.55, ease: "power3.out" },
+        )
+          .fromTo(
+            ".rr-title",
+            { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
+            { yPercent: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.95, ease: "power4.out" },
+            "<+0.05",
+          )
+          .fromTo(
+            ".rr-toolbar",
+            { y: 14, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+            "<+0.05",
+          );
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const ctx = gsap.context(() => {
+        const cards = gsap.utils.toArray<HTMLElement>(".rr-card");
+        if (!cards.length) return;
+
+        gsap.fromTo(
+          cards,
+          {
+            y: 36,
+            rotateX: 10,
+            transformPerspective: 1200,
+            transformOrigin: "50% 100%",
+            autoAlpha: 0,
+          },
+          {
+            y: 0,
+            rotateX: 0,
+            autoAlpha: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: ".rr-list",
+              start: "top 84%",
+              once: true,
+            },
+          },
+        );
+
+        cards.forEach((card) => {
+          const image = card.querySelector(".rr-card-image");
+          const lines = card.querySelectorAll<HTMLElement>(".rr-card-line");
+
+          if (image) {
+            gsap.fromTo(
+              image,
+              { scale: 1.12, yPercent: 8 },
+              {
+                scale: 1,
+                yPercent: 0,
+                ease: "power2.out",
+                duration: 1.1,
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top 86%",
+                  once: true,
+                },
+              },
+            );
+          }
+
+          if (lines.length) {
+            gsap.fromTo(
+              lines,
+              { y: 18, autoAlpha: 0, filter: "blur(6px)" },
+              {
+                y: 0,
+                autoAlpha: 1,
+                filter: "blur(0px)",
+                duration: 0.6,
+                stagger: 0.06,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top 82%",
+                  once: true,
+                },
+              },
+            );
+          }
+        });
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
+  }, [sortedRooms.length, isLoading, error]);
+
   return (
     <>
       <PageHero
@@ -280,20 +405,20 @@ function RoomsReservationContent() {
         breadcrumb="Home / Reservation"
       />
 
-      <section className="bg-[#f6f3ed] py-12 text-[#133e5a] sm:py-14 md:py-18">
+      <section ref={sectionRef} data-no-global-gsap className="bg-[#f6f3ed] py-12 text-[#133e5a] sm:py-14 md:py-18">
         <Container>
-          <p className="text-center text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-[#7b857f] sm:text-[0.72rem]">
+          <p className="rr-kicker text-center text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-[#7b857f] sm:text-[0.72rem]">
             We have selected the best stays for you
           </p>
-          <p className="mx-auto mt-5 max-w-4xl text-center font-serif text-[1.6rem] leading-[1.15] text-[#123f5c] sm:text-[1.9rem] md:text-[2.35rem]">
+          <p className="rr-title mx-auto mt-5 max-w-4xl text-center font-serif text-[1.6rem] leading-[1.15] text-[#123f5c] sm:text-[1.9rem] md:text-[2.35rem]">
             Discover our beautiful Rooms &amp; Suites with outstanding views of valleys, mountains and
             lake.
           </p>
 
           <div className="mt-10 grid items-start gap-8 md:mt-12 lg:mt-14 lg:grid-cols-[minmax(0,1fr)_21rem]">
             <div>
-              <div className="mb-8 flex flex-col gap-3 border-b border-[#ddd7ca] pb-4 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-base text-[#6f7d89] sm:text-lg">
+              <div className="rr-toolbar mb-8 flex flex-col gap-3 border-b border-[#ddd7ca] pb-4 sm:flex-row sm:items-center sm:justify-between">
+                <p className="rr-card-line text-base text-[#6f7d89] sm:text-lg">
                   {isLoading ? "Loading rooms..." : `${sortedRooms.length} Rooms Found`}
                 </p>
 
@@ -361,16 +486,15 @@ function RoomsReservationContent() {
               )}
 
               {!isLoading && !error && sortedRooms.length > 0 && (
-                <div className="grid gap-7">
+                <div className="rr-list grid gap-7">
                   {sortedRooms.map((room, roomIndex) => (
                     <article
                       key={room.listingId}
-                      className="animate-room-card overflow-hidden rounded-[1.8rem] border border-[#ddd7ca] bg-[#fffdf9] shadow-[0_16px_34px_rgba(26,39,46,0.06)]"
-                      style={{ animationDelay: `${roomIndex * 70}ms` }}
+                      className="rr-card overflow-hidden rounded-[1.8rem] border border-[#ddd7ca] bg-[#fffdf9] shadow-[0_16px_34px_rgba(26,39,46,0.06)] transition-transform duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(26,39,46,0.12)]"
                     >
                       <div className="grid gap-0 lg:grid-cols-[1fr_1.15fr]">
                       <div
-                        className="relative h-64 overflow-hidden bg-[#d8d8d8] sm:h-72 md:h-80 lg:h-full"
+                        className="rr-card-image relative h-64 overflow-hidden bg-[#d8d8d8] sm:h-72 md:h-80 lg:h-full"
                         style={{
                           backgroundImage: `url(${room.image})`,
                           backgroundSize: "cover",
@@ -391,7 +515,7 @@ function RoomsReservationContent() {
                         >
                           360°
                         </button>
-                        <p className="absolute bottom-5 left-6 text-sm font-semibold uppercase tracking-[0.14em] text-white">
+                        <p className="rr-card-line absolute bottom-5 left-6 text-sm font-semibold uppercase tracking-[0.14em] text-white">
                           From{" "}
                           <span className="text-[#e39a50]">
                             {formatPrice(room.pricePerNight).replace(".00", "")}
@@ -401,23 +525,23 @@ function RoomsReservationContent() {
                       </div>
 
                       <div className="p-6 sm:p-7">
-                        <h3 className="font-serif text-[2.2rem] leading-[0.92] text-[#123f5c] sm:text-[2.6rem]">
+                        <h3 className="rr-card-line font-serif text-[2.2rem] leading-[0.92] text-[#123f5c] sm:text-[2.6rem]">
                           <Link href="/booking">{room.name}</Link>
                         </h3>
-                        <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#7d8692]">
+                        <p className="rr-card-line mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#7d8692]">
                           {room.size} - {room.minimumOccupancy}-{room.capacity} Person - {room.bedType}
                         </p>
-                        <p className="mt-4 text-[0.96rem] leading-relaxed text-[#123f5c]/85 md:text-[1rem]">
+                        <p className="rr-card-line mt-4 text-[0.96rem] leading-relaxed text-[#123f5c]/85 md:text-[1rem]">
                           {room.description}
                         </p>
-                        <div className="mt-4 flex flex-wrap gap-2 text-[0.64rem] font-semibold uppercase tracking-[0.12em] text-[#7d8692]">
+                        <div className="rr-card-line mt-4 flex flex-wrap gap-2 text-[0.64rem] font-semibold uppercase tracking-[0.12em] text-[#7d8692]">
                           <span>Total: {room.totalNoRooms || room.noOfRooms}</span>
                           <span>Available: {room.noOfAvailable}</span>
                           <span>Booked: {room.noOfBooked}</span>
                           <span>On Hold: {room.noOfOnHold}</span>
                         </div>
                         {(room.minStay > 0 || room.maxStay > 0) && (
-                          <p className="mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#7d8692]">
+                          <p className="rr-card-line mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#7d8692]">
                             Stay: {room.minStay || 0} - {room.maxStay || "999"} nights
                           </p>
                         )}
@@ -426,7 +550,7 @@ function RoomsReservationContent() {
                             {room.facilities.map((facility) => (
                               <span
                                 key={facility}
-                                className="rounded-full border border-[#d6d9dd] bg-white/70 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-[#5d6a76]"
+                                className="rr-card-line rounded-full border border-[#d6d9dd] bg-white/70 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-[#5d6a76]"
                               >
                                 {facility}
                               </span>
@@ -438,7 +562,7 @@ function RoomsReservationContent() {
                             {room.ratePlans.map((plan) => (
                               <span
                                 key={plan.id}
-                                className="rounded-full bg-[#ece4d7] px-3 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.08em] text-[#123f5c]"
+                                className="rr-card-line rounded-full bg-[#ece4d7] px-3 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.08em] text-[#123f5c]"
                               >
                                 {plan.name}: {formatPrice(plan.amount).replace(".00", "")}
                               </span>
@@ -469,23 +593,6 @@ function RoomsReservationContent() {
           </div>
         </Container>
       </section>
-
-      <style>{`
-        @keyframes roomCardIn {
-          from {
-            opacity: 0;
-            transform: translateY(18px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-room-card {
-          opacity: 0;
-          animation: roomCardIn 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-      `}</style>
     </>
   );
 }

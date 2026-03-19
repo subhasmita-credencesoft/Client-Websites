@@ -6,6 +6,8 @@
   --pine: #244332;
   --mist: #f3f5f4;
   --accent: #c46a3a;
+  --font-jost: "Jost", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-playfair: "Cormorant Garamond", Georgia, "Times New Roman", serif;
 }
 
 .theme-hotel {
