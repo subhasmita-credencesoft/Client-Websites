@@ -7,6 +7,15 @@ import Container from "../ui/Container";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const MAP_LINKS = {
+  weddings:
+    "https://www.google.co.in/maps/place/UK'S+RESORT/@18.817145,73.3046891,3a,90y,82.75h,75.21t/data=!3m7!1e1!3m5!1sEqXPpiFcSuYAAAQvxYn65A!2e0!3e2!7i13312!8i6656!4m5!3m4!1s0x3be7fd68dbb32757:0x45a268bbfa521ef0!8m2!3d18.8171404!4d73.3046807!6m1!1e1?shorturl=1",
+  picnic:
+    "https://www.google.co.in/maps/@18.8171575,73.3046448,3a,90y,119.21h,85.89t/data=!3m7!1e1!3m5!1s2c65xsf3YxUAAAQvxYn66g!2e0!3e2!7i13312!8i6656!6m1!1e1?shorturl=1",
+  sports:
+    "https://www.google.co.in/maps/@18.8171712,73.3046889,3a,75y,204.45h,83.59t/data=!3m6!1e1!3m4!1sXJbldbTZ-54AAAQvxYVCgA!2e0!7i13312!8i6656!6m1!1e1?shorturl=1",
+};
+
 export default function WeddingsCelebration() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
@@ -118,9 +127,27 @@ export default function WeddingsCelebration() {
               Our modern accommodation and Exquisite lawns, Pool side and water park areas gives the perfect setting
               to make your destination wedding a memorable one.
             </p>
-            <a href="#" className="group mt-6 inline-flex items-center gap-3 text-[10.5px] font-medium uppercase tracking-[0.2em] text-[#1f3c44]">
-              Enquire now <span className="inline-block h-px w-7 bg-[#1f3c44] transition-all duration-300 group-hover:w-12" />
-            </a>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <a href="#" className="group inline-flex items-center gap-3 text-[10.5px] font-medium uppercase tracking-[0.2em] text-[#1f3c44]">
+                Enquire now <span className="inline-block h-px w-7 bg-[#1f3c44] transition-all duration-300 group-hover:w-12" />
+              </a>
+              <a
+                href={MAP_LINKS.weddings}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-sm border border-[#d9b882] bg-[#d1ab73] px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-black transition hover:bg-[#e1c08c]"
+                aria-label="Take a virtual tour of weddings venue"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4.5 12a7.5 7.5 0 0 1 12.62-5.43" />
+                  <path d="M19.5 12a7.5 7.5 0 0 1-12.62 5.43" />
+                  <path d="M17 3.5h2.9v2.9" />
+                  <path d="M7 20.5H4.1v-2.9" />
+                  <path d="M12 7.8 9.6 9.2v2.7l2.4 1.4 2.4-1.4V9.2z" />
+                </svg>
+                <span>Take a Virtual Tour</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -140,9 +167,27 @@ export default function WeddingsCelebration() {
               with hot beverages and snacks. The unforgettable experience at UK&apos;s Resort Khopoli will have you and
               your family returning for more.
             </p>
-            <a href="#" className="group mt-6 inline-flex items-center gap-3 text-[10.5px] font-medium uppercase tracking-[0.2em] text-[#1f3c44]">
-              Enquire now <span className="inline-block h-px w-7 bg-[#1f3c44] transition-all duration-300 group-hover:w-12" />
-            </a>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <a href="#" className="group inline-flex items-center gap-3 text-[10.5px] font-medium uppercase tracking-[0.2em] text-[#1f3c44]">
+                Enquire now <span className="inline-block h-px w-7 bg-[#1f3c44] transition-all duration-300 group-hover:w-12" />
+              </a>
+              <a
+                href={MAP_LINKS.picnic}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-sm border border-[#d9b882] bg-[#d1ab73] px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-black transition hover:bg-[#e1c08c]"
+                aria-label="Take a virtual tour of picnic area"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4.5 12a7.5 7.5 0 0 1 12.62-5.43" />
+                  <path d="M19.5 12a7.5 7.5 0 0 1-12.62 5.43" />
+                  <path d="M17 3.5h2.9v2.9" />
+                  <path d="M7 20.5H4.1v-2.9" />
+                  <path d="M12 7.8 9.6 9.2v2.7l2.4 1.4 2.4-1.4V9.2z" />
+                </svg>
+                <span>Take a Virtual Tour</span>
+              </a>
+            </div>
           </div>
 
           <div className="wedding-media overflow-hidden rounded-3xl bg-[#e2dacd] shadow-[0_24px_60px_rgba(0,0,0,0.15)]">
@@ -172,9 +217,27 @@ export default function WeddingsCelebration() {
               We have a spacious 5 acre open space for corporate and education institutes for orgainizing sports
               events.
             </p>
-            <a href="#" className="group mt-6 inline-flex items-center gap-3 text-[10.5px] font-medium uppercase tracking-[0.2em] text-[#1f3c44]">
-              Enquire now <span className="inline-block h-px w-7 bg-[#1f3c44] transition-all duration-300 group-hover:w-12" />
-            </a>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <a href="#" className="group inline-flex items-center gap-3 text-[10.5px] font-medium uppercase tracking-[0.2em] text-[#1f3c44]">
+                Enquire now <span className="inline-block h-px w-7 bg-[#1f3c44] transition-all duration-300 group-hover:w-12" />
+              </a>
+              <a
+                href={MAP_LINKS.sports}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-sm border border-[#d9b882] bg-[#d1ab73] px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-black transition hover:bg-[#e1c08c]"
+                aria-label="Take a virtual tour of sports area"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4.5 12a7.5 7.5 0 0 1 12.62-5.43" />
+                  <path d="M19.5 12a7.5 7.5 0 0 1-12.62 5.43" />
+                  <path d="M17 3.5h2.9v2.9" />
+                  <path d="M7 20.5H4.1v-2.9" />
+                  <path d="M12 7.8 9.6 9.2v2.7l2.4 1.4 2.4-1.4V9.2z" />
+                </svg>
+                <span>Take a Virtual Tour</span>
+              </a>
+            </div>
           </div>
         </div>
       </Container>

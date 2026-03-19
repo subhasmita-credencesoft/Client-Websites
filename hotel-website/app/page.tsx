@@ -16,6 +16,9 @@ const RoomsShowcase = dynamic(() => import("../components/sections/RoomsShowcase
 const DiningShowcase = dynamic(() => import("../components/sections/DiningShowcase"), {
   loading: () => <section className="min-h-[70vh] bg-[#f3efe8]" aria-hidden="true" />,
 });
+const HomeEventExperiences = dynamic(() => import("../components/sections/HomeEventExperiences"), {
+  loading: () => <section className="min-h-[65vh] bg-[#0f1418]" aria-hidden="true" />,
+});
 const LocationOffers = dynamic(() => import("../components/sections/LocationOffers"), {
   loading: () => <section className="min-h-[65vh] bg-[#f6f3ed]" aria-hidden="true" />,
 });
@@ -31,6 +34,7 @@ export default function Home() {
       <WellnessHero />
       <ResortIntro />
       <RoomsShowcase />
+      <HomeEventExperiences />
       <DiningShowcase />
       <LocationOffers />
       <Testimonials />

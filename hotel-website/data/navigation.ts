@@ -3,7 +3,7 @@ const navigation = [
   { label: "Rooms & Suites", href: "/rooms" },
   { label: "Dining", href: "/dining" },
   { label: "Weddings & Events", href: "/weddings" },
-  { label: "Fascilities", href: "/wellness" },
+  { label: "Facilities", href: "/wellness" },
   { label: "Experiences", href: "/experiences" },
   { label: "Tariff", href: "/tariffs" },
   { label: "Reservation", href: "/rooms/reservation" },

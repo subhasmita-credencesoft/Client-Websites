@@ -38,6 +38,7 @@ const experiences = [
   },
 ];
 
+// ✅ No `declare module "gsap/ScrollTrigger"` block needed — GSAP v3.11+ ships its own types.
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ExperiencesExplore() {
@@ -128,9 +129,11 @@ export default function ExperiencesExplore() {
           },
         });
 
+        // ✅ FIX: yPercent changed from +8 → -6 so the image shifts UP during
+        // scroll, preventing the top gap that appeared on the cards.
         gsap.to(".exp-explore-image", {
           scale: 1.08,
-          yPercent: 8,
+          yPercent: -6,
           ease: "none",
           scrollTrigger: {
             trigger: pin,
@@ -239,10 +242,16 @@ export default function ExperiencesExplore() {
   }, []);
 
   return (
-    <section ref={sectionRef} data-no-global-gsap className="overflow-x-hidden bg-[#f6f3ed] py-16 text-[#1f3c44] sm:py-20 lg:py-24">
+    <section
+      ref={sectionRef}
+      data-no-global-gsap
+      className="overflow-x-hidden bg-[#f6f3ed] py-16 text-[#1f3c44] sm:py-20 lg:py-24"
+    >
       <Container>
         <div>
-          <span className="exp-explore-kicker text-[0.72rem] uppercase tracking-[0.45em] text-[#1f3c44]/70">Explore</span>
+          <span className="exp-explore-kicker text-[0.72rem] uppercase tracking-[0.45em] text-[#1f3c44]/70">
+            Explore
+          </span>
           <div className="mt-4 overflow-hidden">
             <h2 className="exp-explore-title-line max-w-xl font-serif text-4xl leading-[0.98] md:text-5xl lg:text-[4.1rem]">
               Make your stay
@@ -257,25 +266,41 @@ export default function ExperiencesExplore() {
       </Container>
 
       <div ref={pinRef} className="relative mt-10 sm:mt-12">
-        <div ref={viewportRef} className="experience-scroll-wrap w-screen overflow-x-auto pb-3 lg:overflow-hidden lg:pb-0">
-          <div ref={trackRef} className="experience-strip flex min-w-max snap-x snap-mandatory gap-4 sm:gap-5 lg:gap-6">
+        <div
+          ref={viewportRef}
+          className="experience-scroll-wrap experience-full-bleed overflow-x-auto pb-3 lg:overflow-hidden lg:pb-0"
+        >
+          <div
+            ref={trackRef}
+            className="experience-strip flex min-w-max snap-x snap-mandatory gap-4 sm:gap-5 lg:gap-6"
+          >
             {experiences.map((item, index) => (
               <article
                 key={item.title}
                 className="exp-explore-card experience-card group relative h-[26rem] w-[20rem] shrink-0 snap-start overflow-hidden rounded-[16px] bg-black sm:h-[30rem] sm:w-[24rem] lg:h-[82vh] lg:min-h-[640px] lg:w-auto lg:rounded-none"
               >
+                {/*
+                  ✅ FIX (CSS side): Replace inset-0 with -top-[8%] / -bottom-[8%]
+                  so the background image has extra vertical bleed. This ensures
+                  no gap appears at the top when GSAP's yPercent shifts it upward.
+                */}
                 <div
-                  className="exp-explore-image absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-                  style={{ backgroundImage: `url(\"${encodeURI(item.image)}\")` }}
+                  className="exp-explore-image absolute -bottom-[8%] -top-[8%] left-0 right-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  style={{ backgroundImage: `url("${encodeURI(item.image)}")` }}
                   role="img"
                   aria-label={item.title}
                 />
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-all duration-500 group-hover:from-black/88" />
+
                 <div className="absolute left-5 top-5 rounded-full border border-white/35 bg-black/25 px-2.5 py-1 text-[0.66rem] font-semibold text-white/90 backdrop-blur-sm">
                   {String(index + 1).padStart(2, "0")}
                 </div>
+
                 <div className="relative z-10 flex h-full flex-col justify-end p-6 text-white sm:p-7 lg:p-12">
-                  <h3 className="exp-card-line font-serif text-[2.4rem] leading-[0.95] sm:text-[2.8rem] lg:text-[4.2rem]">{item.title}</h3>
+                  <h3 className="exp-card-line font-serif text-[2.4rem] leading-[0.95] sm:text-[2.8rem] lg:text-[4.2rem]">
+                    {item.title}
+                  </h3>
                   <p className="exp-card-line mt-3 max-w-[60ch] text-[0.84rem] leading-relaxed text-white/85 sm:text-[0.92rem] lg:text-[1.05rem]">
                     {item.description}
                   </p>
@@ -296,17 +321,30 @@ export default function ExperiencesExplore() {
           scroll-padding-left: 0;
           scroll-padding-right: 0;
         }
+        .experience-full-bleed {
+          width: 100%;
+        }
+        @media (max-width: 1023px) {
+          .experience-full-bleed {
+            width: calc(100% + 5rem);
+            margin-left: -2.5rem;
+            margin-right: -2.5rem;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+          }
+        }
         .experience-scroll-wrap::-webkit-scrollbar {
           display: none;
         }
         @media (min-width: 1024px) {
           .experience-card {
-            width: calc((100vw - 1.5rem) / 2);
-            transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 550ms cubic-bezier(0.22, 1, 0.36, 1);
+            width: calc((100dvw - 1.5rem) / 2);
+            transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 550ms cubic-bezier(0.22, 1, 0.36, 1);
             transform: translateY(0);
           }
           .experience-card:hover {
-            box-shadow: 0 26px 70px rgba(0,0,0,0.22);
+            box-shadow: 0 26px 70px rgba(0, 0, 0, 0.22);
             transform: translateY(-4px);
           }
         }

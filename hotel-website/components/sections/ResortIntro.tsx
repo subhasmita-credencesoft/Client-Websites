@@ -158,7 +158,7 @@ export default function ResortIntro() {
   }, [activeSlide]);
 
   return (
-    <section ref={sectionRef} className="bg-[#f3efe8] py-14 text-[#1f3c44] sm:py-20 lg:py-24">
+    <section ref={sectionRef} data-no-global-gsap className="bg-[#f3efe8] py-14 text-[#1f3c44] sm:py-20 lg:py-24">
       <Container>
         <div className="resort-intro-kicker flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.28em] sm:gap-6 sm:text-xs sm:tracking-[0.38em]">
           <span>About UK&apos;s Resort</span>

@@ -1,339 +1,174 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 
 const HeroBookingBar = dynamic(() => import("../features/HeroBookingBar"), {
   ssr: false,
-  loading: () => <div className="h-11 w-full rounded-full bg-white/15 sm:h-12" aria-hidden="true" />,
+  loading: () => (
+    <div className="h-11 w-full rounded-full bg-white/15 sm:h-12" aria-hidden="true" />
+  ),
 });
 
-const SLIDES = [
-  {
-    src: "https://bookonelocal.in/cdn/2.avif",
-    alt: "UK Resort luxury guest room",
-    tagline: "Experience elegant and comfortable rooms designed for a relaxing stay at UK Resort.",
-  },
-  {
-    src: "https://bookonelocal.in/cdn/Copy of Copy of IMG_3013.avif",
-    alt: "UK Resort swimming pool and garden area",
-    tagline: "Unwind by the refreshing pool surrounded by lush greenery and peaceful resort views.",
-  },
-  {
-    src: "https://bookonelocal.in/cdn/Copy of IMG_2906.avif",
-    alt: "Dining experience at UK Resort restaurant",
-    tagline: "Enjoy delicious meals and a delightful dining experience at the resort restaurant.",
-  },
-  {
-    src: "https://bookonelocal.in/cdn/4.avif",
-    alt: "Wedding and event venue at UK Resort",
-    tagline: "Celebrate weddings, receptions, and special events in our spacious and elegant venue.",
-  },
-  {
-    src: "https://bookonelocal.in/cdn/Copy of IMG_2911.avif",
-    alt: "Corporate picnic and outdoor gathering at UK Resort",
-    tagline: "Perfect outdoor spaces for corporate picnics, team outings, and group celebrations.",
-  },
-];
-
-const INTERVAL_MS = 5000;
-const FADE_MS = 1200;
-const HERO_BLUR =
-  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMGYxMjE2Ii8+PC9zdmc+";
+const HERO_VIDEO_SRC = "https://bookonelocal.in/cdn/UK%27s+Resort-Hero-Video.mp4";
+// const HERO_TAGLINE = "Experience elegant and comfortable rooms designed for a relaxing stay at UK Resort.";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
-  const [current, setCurrent] = useState(0);
-  const [animKey, setAnimKey] = useState(0);
-  const [loadedSlides, setLoadedSlides] = useState<boolean[]>(() => SLIDES.map(() => false));
-
   const sectionRef = useRef<HTMLElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
-  const didInitSlideAnim = useRef(false);
-  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  const goTo = useCallback(
-    (index: number) => {
-      if (index === current) return;
-      setCurrent(index);
-      setAnimKey((k) => k + 1);
-    },
-    [current],
-  );
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => {
-        return (prev + 1) % SLIDES.length;
-      });
-      setAnimKey((k) => k + 1);
-    }, INTERVAL_MS);
+    const introTag = section.querySelector(".hero-intro-tag");
+    const titleLines = section.querySelectorAll(".hero-title-line");
+    const bookingWrap = section.querySelector(".hero-booking-wrap");
+    const heroMedia = section.querySelector(".hero-media");
+    if (!titleLines.length || !bookingWrap || !heroMedia) return;
 
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    SLIDES.forEach((slide) => {
-      const img = new window.Image();
-      img.src = slide.src;
-      if (typeof img.decode === "function") {
-        img.decode().catch(() => undefined);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const ctx = gsap.context(() => {
-        gsap.fromTo(
-          ".hero-intro-tag",
-          { y: 24, autoAlpha: 0, filter: "blur(6px)" },
-          { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out", delay: 0.18 },
-        );
+        if (introTag) gsap.set(introTag, { y: 18, autoAlpha: 0 });
+        gsap.set(titleLines, { yPercent: 100, autoAlpha: 0 });
+        gsap.set(bookingWrap, { y: 22, autoAlpha: 0 });
+        gsap.set(heroMedia, { scale: 1.04, yPercent: 0, transformOrigin: "center center" });
 
-        gsap.fromTo(
-          ".hero-title-reveal",
-          { yPercent: 120, autoAlpha: 0, filter: "blur(12px)" },
-          {
-            yPercent: 0,
-            autoAlpha: 1,
-            filter: "blur(0px)",
-            duration: 1.1,
-            stagger: 0.08,
-            ease: "power4.out",
-            delay: 0.24,
-          },
-        );
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        if (introTag) {
+          tl.to(introTag, { y: 0, autoAlpha: 1, duration: 0.75 }, 0.08);
+        }
+        tl.to(
+            titleLines,
+            { yPercent: 0, autoAlpha: 1, duration: 0.95, stagger: 0.1, ease: "power4.out" },
+            0.14,
+          )
+          .to(bookingWrap, { y: 0, autoAlpha: 1, duration: 0.8 }, 0.3)
+          .to(heroMedia, { scale: 1, duration: 1.5, ease: "power2.out" }, 0);
 
-        gsap.fromTo(
-          ".hero-booking-wrap",
-          { y: 26, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.95, ease: "power3.out", delay: 0.42 },
-        );
-
-        gsap.fromTo(
-          ".hero-media",
-          { scale: 1.12, yPercent: 0 },
-          { scale: 1.04, yPercent: 0, duration: 1.6, ease: "power2.out" },
-        );
-
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        })
-          .to(".hero-media", { yPercent: 10, scale: 1.12, ease: "none" }, 0)
-          .to(contentRef.current, { y: -84, autoAlpha: 0.58, ease: "none" }, 0)
-          .to(overlayRef.current, { opacity: 0.8, ease: "none" }, 0);
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top top",
+              end: "bottom top",
+              scrub: 1.1,
+              invalidateOnRefresh: true,
+            },
+          })
+          .to(heroMedia, { yPercent: 10, scale: 1.05, ease: "none" }, 0)
+          .to(contentRef.current, { y: -70, autoAlpha: 0.55, ease: "none" }, 0)
+          .to(overlayRef.current, { opacity: 0.85, ease: "none" }, 0);
       }, sectionRef);
 
       return () => ctx.revert();
     });
 
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set([titleLines, bookingWrap, heroMedia], { clearProps: "all" });
+      if (introTag) gsap.set(introTag, { clearProps: "all" });
+    });
+
     return () => mm.revert();
   }, []);
 
   useEffect(() => {
-    if (!didInitSlideAnim.current) {
-      didInitSlideAnim.current = true;
-      return;
-    }
-
-    const mm = gsap.matchMedia();
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const activeSlide = slideRefs.current[current];
-      if (!activeSlide) return;
-
-      gsap.fromTo(
-        activeSlide,
-        { scale: 1.14, filter: "brightness(0.82)" },
-        {
-          scale: 1.06,
-          filter: "brightness(1)",
-          duration: (INTERVAL_MS + 1000) / 1000,
-          ease: "power2.out",
-          overwrite: "auto",
-        },
-      );
-
-      gsap.fromTo(
-        ".hero-intro-tag",
-        { y: 22, autoAlpha: 0, filter: "blur(5px)" },
-        {
-          y: 0,
-          autoAlpha: 1,
-          filter: "blur(0px)",
-          duration: 0.75,
-          ease: "power3.out",
-          overwrite: "auto",
-        },
-      );
-
-      gsap.fromTo(
-        ".hero-title-reveal",
-        { yPercent: 110, autoAlpha: 0, filter: "blur(10px)" },
-        {
-          yPercent: 0,
-          autoAlpha: 1,
-          filter: "blur(0px)",
-          duration: 0.95,
-          stagger: 0.08,
-          ease: "power4.out",
-          overwrite: "auto",
-        },
-      );
-
-      gsap.fromTo(
-        ".hero-booking-wrap",
-        { y: 20, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.75,
-          ease: "power3.out",
-          overwrite: "auto",
-          delay: 0.08,
-        },
-      );
-    });
-
-    return () => mm.revert();
-  }, [current]);
+    const videoEl = videoRef.current;
+    if (!videoEl) return;
+    videoEl.play().catch(() => undefined);
+  }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-[100svh] overflow-hidden bg-[#0f1216] text-white">
-      {SLIDES.map((slide, i) => {
-        const isActive = i === current;
-        return (
-          <div
-            key={slide.src}
-            ref={(el) => {
-              slideRefs.current[i] = el;
-            }}
-            aria-hidden={!isActive}
-            className="hero-media absolute inset-0 overflow-hidden will-change-transform"
-            style={{
-              zIndex: isActive ? 3 : 1,
-              opacity: isActive ? 1 : 0,
-              transition: `opacity ${FADE_MS}ms cubic-bezier(0.4,0,0.2,1), filter 420ms ease`,
-              filter: loadedSlides[i] ? "none" : "blur(2px)",
-            }}
-          >
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              sizes="100vw"
-              quality={72}
-              priority={i < 2}
-              fetchPriority={i === 0 ? "high" : "auto"}
-              loading="eager"
-              placeholder="blur"
-              blurDataURL={HERO_BLUR}
-              className={`object-cover transition-[transform,opacity,filter] duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                loadedSlides[i] ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-[2px]"
-              }`}
-              unoptimized={slide.src.startsWith("http")}
-              onLoad={() => {
-                setLoadedSlides((prev) => {
-                  if (prev[i]) return prev;
-                  const next = [...prev];
-                  next[i] = true;
-                  return next;
-                });
-              }}
-            />
-          </div>
-        );
-      })}
+    <section
+      ref={sectionRef}
+      data-no-global-gsap
+      className="relative min-h-[100svh] overflow-hidden bg-[#0f1216] text-white"
+    >
+      <div className="hero-media absolute inset-0 isolate will-change-transform">
+        <video
+          ref={videoRef}
+          className="hero-video absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2"
+          src={HERO_VIDEO_SRC}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      </div>
 
       <div
         ref={overlayRef}
-        className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-b from-black/45 via-black/20 to-black/70"
+        className="pointer-events-none absolute inset-0 z-[2]"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0.68) 100%)",
+        }}
       />
 
-      <Container className="relative z-[10] flex min-h-[100svh] w-full flex-col items-center justify-center text-center">
+      <Container className="relative z-10 flex min-h-[100svh] w-full flex-col items-center justify-center px-4 text-center sm:px-6 md:px-8">
         <div
           ref={contentRef}
-          className="flex w-full max-w-[72rem] flex-col items-center px-4 pb-32 pt-36 sm:px-5 sm:pb-28 sm:pt-40 md:px-6 md:pt-44 lg:pb-24 lg:pt-48"
+          className="flex w-full max-w-[72rem] flex-col items-center justify-center px-2 pb-28 pt-[calc(7rem+env(safe-area-inset-top))] sm:px-3 sm:pb-28 sm:pt-28 md:px-4 md:pb-32 md:pt-32 lg:pb-32 lg:pt-36"
         >
-          <div className="mt-8 sm:mt-10 md:mt-12">
-            <p className="hero-intro-tag mx-auto text-[0.72rem] font-bold uppercase tracking-[0.38em] text-white/85 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:text-[0.8rem] sm:tracking-[0.42em] md:text-[0.85rem]">
-              {SLIDES[current]?.tagline}
-            </p>
+          <div>
+            {/* <p className="hero-intro-tag mx-auto max-w-[22rem] text-[0.68rem] font-bold uppercase tracking-[0.34em] text-white/85 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:max-w-[34rem] sm:text-[0.8rem] sm:tracking-[0.42em] md:text-[0.85rem]">
+              {HERO_TAGLINE}
+            </p> */}
           </div>
 
-          <div className="mt-4 sm:mt-5 md:mt-6">
-            <div className="overflow-hidden">
-              <h1 className="hero-title-reveal mx-auto max-w-[14ch] font-serif text-[2.6rem] font-normal leading-[0.9] tracking-[-0.015em] text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)] sm:text-[3.5rem] md:max-w-none md:text-[4.6rem] lg:text-[5.4rem] xl:text-[6rem]">
-                Welcome to
-              </h1>
-            </div>
-            <div className="overflow-hidden">
-              <h1 className="hero-title-reveal mx-auto max-w-[14ch] font-serif text-[2.6rem] font-normal leading-[0.9] tracking-[-0.015em] text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)] sm:text-[3.5rem] md:max-w-none md:text-[4.6rem] lg:text-[5.4rem] xl:text-[6rem]">
-                UK&apos;s Resort
-              </h1>
-            </div>
+          <div className="mt-3 space-y-0 sm:mt-5 md:mt-6">
+            {[ "UK's Resort"].map((line, i) => (
+              <div key={i} className="overflow-hidden leading-none">
+                <h1 className="hero-title-line font-serif text-[2.45rem] font-normal leading-[1.0] tracking-[-0.015em] text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)] sm:text-[3.5rem] md:text-[4.6rem] lg:text-[5.4rem] xl:text-[6rem]">
+                  {line === "UK's Resort" ? <>UK&apos;s Resort</> : line}
+                </h1>
+              </div>
+            ))}
           </div>
 
-          <div className="hero-booking-wrap mt-14 w-full sm:mt-16 md:mt-18 lg:mt-20">
-            <HeroBookingBar />
-          </div>
+          <p className="mt-3 max-w-[40rem] px-2 text-center text-[0.86rem] leading-relaxed text-white/92 drop-shadow-[0_5px_18px_rgba(0,0,0,0.45)] sm:mt-4 sm:text-[0.95rem] md:text-[1.02rem]">
+            Experience elegant and comfortable rooms designed for a relaxing stay at UK Resort.
+          </p>
+
+        </div>
+
+        <div className="hero-booking-wrap absolute bottom-10 left-1/2 z-20 w-full -translate-x-1/2 px-2 sm:bottom-12 sm:px-3 md:bottom-14 md:px-4">
+          <HeroBookingBar />
         </div>
       </Container>
 
-      <div
-        className="absolute bottom-7 left-1/2 z-[20] flex -translate-x-1/2 items-center gap-[7px] sm:bottom-10"
-        role="tablist"
-        aria-label="Slide navigation"
-      >
-        {SLIDES.map((slide, i) => (
-          <button
-            key={i}
-            role="tab"
-            aria-selected={i === current}
-            aria-label={`Slide ${i + 1}: ${slide.alt}`}
-            onClick={() => goTo(i)}
-            className="relative overflow-hidden rounded-full transition-all duration-500"
-            style={{
-              width: i === current ? "2rem" : "6px",
-              height: "6px",
-              backgroundColor: "rgba(255,255,255,0.35)",
-            }}
-          >
-            {i === current && (
-              <span
-                key={animKey}
-                className="absolute inset-0 rounded-full bg-white"
-                style={{
-                  transformOrigin: "left center",
-                  animation: `dotFill ${INTERVAL_MS}ms linear forwards`,
-                }}
-              />
-            )}
-          </button>
-        ))}
-      </div>
-
       <style>{`
-        @keyframes dotFill {
-          from { transform: scaleX(0); }
-          to { transform: scaleX(1); }
+        .hero-video {
+          object-fit: cover;
+          object-position: 50% 50%;
+          transform-origin: center center;
         }
-        .hero-media {
-          backface-visibility: hidden;
-          transform: translateZ(0);
+        .hero-booking-wrap {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+        }
+        .hero-booking-wrap > form {
+          margin-top: 0 !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          width: min(88vw, 62rem) !important;
+          max-width: 62rem !important;
+        }
+        @media (min-width: 1024px) {
+          .hero-booking-wrap > form {
+            width: min(82vw, 62rem) !important;
+          }
         }
       `}</style>
     </section>

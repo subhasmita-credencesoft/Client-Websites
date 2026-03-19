@@ -36,25 +36,24 @@ const meetingCards = [
 gsap.registerPlugin(ScrollTrigger);
 
 export default function WeddingsMeetings() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const pinRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef  = useRef<HTMLElement | null>(null);
+  const pinRef      = useRef<HTMLDivElement | null>(null);
   const viewportRef = useRef<HTMLDivElement | null>(null);
-  const trackRef = useRef<HTMLDivElement | null>(null);
+  const trackRef    = useRef<HTMLDivElement | null>(null);
 
+  /* ── Section entrance ─────────────────────────────────────────────── */
   useEffect(() => {
     const mm = gsap.matchMedia();
-
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const ctx = gsap.context(() => {
-        const introTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            once: true,
-          },
-        });
-
-        introTl
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+              once: true,
+            },
+          })
           .fromTo(
             ".meeting-kicker",
             { y: 12, autoAlpha: 0 },
@@ -72,91 +71,171 @@ export default function WeddingsMeetings() {
             { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
             "<+0.06",
           );
-
       }, sectionRef);
-
       return () => ctx.revert();
     });
+    return () => mm.revert();
+  }, []);
+
+  /* ── Desktop horizontal-scroll pin ───────────────────────────────── */
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add(
+      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+      () => {
+        const pin      = pinRef.current;
+        const viewport = viewportRef.current;
+        const track    = trackRef.current;
+        if (!pin || !viewport || !track) return;
+
+        let ro: ResizeObserver | null = null;
+
+        const ctx = gsap.context(() => {
+          /*
+           * overflow() = exact px the track extends past the viewport.
+           * Arrow function so GSAP re-evaluates on every invalidateOnRefresh.
+           * With gap:0 and padding:0 on desktop this equals:
+           *   N × cardWidth − viewportWidth
+           * which is perfectly predictable — no overshoot, no last-card resize.
+           */
+          const overflow = () =>
+            Math.max(0, track.scrollWidth - viewport.clientWidth);
+
+          gsap.set(track, { x: 0, clearProps: "willChange" });
+
+          if (overflow() < 24) {
+            gsap.fromTo(
+              ".meeting-card",
+              { y: 20, autoAlpha: 0 },
+              { y: 0, autoAlpha: 1, duration: 0.7, stagger: 0.08, ease: "power3.out" },
+            );
+            return;
+          }
+
+          const hTween = gsap.to(track, {
+            x: () => -overflow(),
+            ease: "none",
+            scrollTrigger: {
+              trigger: pin,
+              start: "top top",
+              /*
+               * end = overflow() in px of vertical scroll.
+               * Must match exactly so the last card stops at the
+               * viewport edge — no extra travel, no size mismatch.
+               */
+              end: () => `+=${overflow()}`,
+              pin: true,
+              scrub: 1,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              snap: {
+                snapTo: (v: number) => {
+                  const steps = Math.max(1, meetingCards.length - 1);
+                  return Math.round(v * steps) / steps;
+                },
+                duration: { min: 0.12, max: 0.3 },
+                ease: "power2.out",
+              },
+            },
+          });
+
+          // Cards fade in on first entry
+          gsap.fromTo(
+            ".meeting-card",
+            { y: 20, autoAlpha: 0 },
+            {
+              y: 0, autoAlpha: 1, duration: 0.7, stagger: 0.08, ease: "power3.out",
+              scrollTrigger: { trigger: pin, start: "top 75%", once: true },
+            },
+          );
+
+          // Per-card text reveal via containerAnimation
+          gsap.utils.toArray<HTMLElement>(".meeting-card").forEach((card) => {
+            const lines = card.querySelectorAll<HTMLElement>(".meeting-card-line");
+            if (!lines.length) return;
+            gsap.set(lines, { y: 16, autoAlpha: 0, filter: "blur(4px)" });
+
+            const anim = (on: boolean) =>
+              gsap.to(lines, {
+                y: on ? 0 : 16,
+                autoAlpha: on ? 1 : 0,
+                filter: on ? "blur(0px)" : "blur(4px)",
+                duration: on ? 0.55 : 0.3,
+                ease: on ? "power3.out" : "power2.out",
+                stagger: on ? 0.08 : 0.04,
+                overwrite: "auto",
+              });
+
+            if (hTween.scrollTrigger) {
+              ScrollTrigger.create({
+                trigger: card,
+                containerAnimation: hTween,
+                start: "left 72%",
+                end: "right 36%",
+                onToggle: (s) => anim(s.isActive),
+              });
+            }
+          });
+
+          gsap.set(track, { willChange: "transform" });
+
+          ro = new ResizeObserver(() => ScrollTrigger.refresh());
+          ro.observe(viewport);
+          ro.observe(track);
+        }, sectionRef);
+
+        ScrollTrigger.refresh();
+        return () => {
+          ro?.disconnect();
+          ctx.revert();
+        };
+      },
+    );
 
     return () => mm.revert();
   }, []);
 
+  /* ── Mobile / tablet vertical reveal ─────────────────────────────── */
   useEffect(() => {
     const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
-      const pin = pinRef.current;
-      const viewport = viewportRef.current;
-      const track = trackRef.current;
-      if (!pin || !viewport || !track) return;
-
-      const ctx = gsap.context(() => {
-        const cards = gsap.utils.toArray<HTMLElement>(".meeting-card");
-        const getDistance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
-        const getEndValue = () => {
-          const distance = getDistance();
-          const settle = Math.max(1, viewport.clientWidth * 0.18);
-          return `+=${Math.max(1, distance + settle)}`;
-        };
-        const distance = getDistance();
-        if (distance < 24) return;
-
-        const horizontalTween = gsap.to(track, {
-          x: () => -getDistance(),
-          ease: "none",
-          scrollTrigger: {
-            trigger: pin,
-            start: "top top",
-            end: getEndValue,
-            pin,
-            scrub: 0.9,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            snap: {
-              snapTo: (value: number) => {
-                const steps = Math.max(1, cards.length - 1);
-                return Math.round(value * steps) / steps;
-              },
-              duration: { min: 0.1, max: 0.3 },
-              ease: "power2.out",
-            },
-          },
-        });
-
-        cards.forEach((card) => {
-          const lines = card.querySelectorAll<HTMLElement>(".meeting-card-line");
-          if (!lines.length) return;
-          gsap.set(lines, { y: 16, autoAlpha: 0, filter: "blur(4px)" });
-
-          ScrollTrigger.create({
-            trigger: card,
-            containerAnimation: horizontalTween,
-            start: "left 72%",
-            end: "right 36%",
-            onToggle: (self) => {
-              gsap.to(lines, {
-                y: self.isActive ? 0 : 16,
-                autoAlpha: self.isActive ? 1 : 0,
-                filter: self.isActive ? "blur(0px)" : "blur(4px)",
-                duration: self.isActive ? 0.55 : 0.3,
-                ease: self.isActive ? "power3.out" : "power2.out",
-                stagger: self.isActive ? 0.08 : 0.04,
-                overwrite: "auto",
-              });
-            },
+    mm.add(
+      "(max-width: 1023px) and (prefers-reduced-motion: no-preference)",
+      () => {
+        const ctx = gsap.context(() => {
+          gsap.utils.toArray<HTMLElement>(".meeting-card").forEach((card) => {
+            const lines = card.querySelectorAll<HTMLElement>(".meeting-card-line");
+            if (!lines.length) return;
+            gsap.set(lines, { y: 16, autoAlpha: 0, filter: "blur(4px)" });
+            ScrollTrigger.create({
+              trigger: card,
+              start: "top 84%",
+              end: "bottom 40%",
+              onToggle: (s) =>
+                gsap.to(lines, {
+                  y: s.isActive ? 0 : 16,
+                  autoAlpha: s.isActive ? 1 : 0,
+                  filter: s.isActive ? "blur(0px)" : "blur(4px)",
+                  duration: s.isActive ? 0.55 : 0.3,
+                  ease: s.isActive ? "power3.out" : "power2.out",
+                  stagger: s.isActive ? 0.08 : 0.04,
+                  overwrite: "auto",
+                }),
+            });
           });
-        });
-      }, sectionRef);
-
-      ScrollTrigger.refresh();
-      return () => ctx.revert();
-    });
-
+        }, sectionRef);
+        return () => ctx.revert();
+      },
+    );
     return () => mm.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} data-no-global-gsap className="bg-[#f6f3ed] py-20 text-[#1f3c44]">
+    <section
+      ref={sectionRef}
+      data-no-global-gsap
+      className="meeting-section bg-[#f6f3ed] py-20 text-[#1f3c44]"
+    >
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <span className="meeting-kicker text-xs uppercase tracking-[0.45em] text-[#1f3c44]/70">
@@ -172,27 +251,53 @@ export default function WeddingsMeetings() {
         </div>
       </Container>
 
+      {/* PIN WRAPPER — no overflow clip; GSAP measures true scrollWidth here */}
       <div ref={pinRef} className="relative mt-12">
-        <div ref={viewportRef} className="meeting-scroll-wrap w-screen overflow-x-auto pb-2 lg:overflow-hidden lg:pb-0">
-          <div ref={trackRef} className="flex min-w-max snap-x snap-mandatory gap-4 px-4 sm:gap-6 sm:px-6 lg:gap-8 lg:px-6">
+        {/*
+          VIEWPORT — clips the visible window.
+          Mobile: native horizontal scroll.
+          Desktop: overflow-hidden, GSAP moves the track.
+        */}
+        <div
+          ref={viewportRef}
+          className="meeting-viewport meeting-full-bleed overflow-x-auto lg:overflow-hidden"
+        >
+          {/*
+            TRACK — strip of cards.
+            Desktop: gap:0 + padding:0 so scrollWidth = N × cardWidth exactly.
+            This is the fix — any gap/padding on desktop inflates scrollWidth,
+            causing GSAP to scroll past the last card and making it appear
+            stretched or a different size than the rest.
+          */}
+          <div
+            ref={trackRef}
+            className="meeting-track flex min-w-max snap-x snap-mandatory"
+          >
             {meetingCards.map((card, index) => (
               <article
                 key={card.title}
-                className="meeting-card group relative h-[28rem] w-[86vw] shrink-0 snap-start overflow-hidden rounded-2xl bg-black sm:h-[32rem] sm:w-[76vw] lg:h-[72vh] lg:min-h-[540px] lg:w-[74vw] lg:max-w-[980px]"
+                className="meeting-card group relative shrink-0 snap-start overflow-hidden bg-black"
               >
+                {/* Index badge */}
                 <div className="absolute left-4 top-4 z-20 rounded-full border border-white/35 bg-black/25 px-3 py-1 text-[0.65rem] font-semibold tracking-[0.16em] text-white/90">
                   {String(index + 1).padStart(2, "0")}
                 </div>
+
+                {/* Image */}
                 <div className="absolute inset-0">
                   <Image
                     src={card.image}
                     alt={card.title}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 74vw"
-                    className="meeting-card-image object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                    sizes="(max-width: 1024px) 86vw, 74vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                   />
                 </div>
+
+                {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+
+                {/* Content */}
                 <div className="relative z-10 flex h-full items-end p-6 sm:p-8 lg:p-10">
                   <div className="max-w-2xl">
                     <h3 className="meeting-card-line font-serif text-[2rem] leading-[0.95] text-white sm:text-[2.4rem] lg:text-[3.1rem]">
@@ -210,11 +315,97 @@ export default function WeddingsMeetings() {
       </div>
 
       <style>{`
-        .meeting-scroll-wrap {
+        /* ── CSS variable — single source of truth for desktop card width ──
+           All cards share this value. No per-card overrides ever.           */
+        .meeting-section {
+          --meeting-card-w: calc(100dvw / 1.42);
+        }
+        @media (min-width: 1280px) {
+          .meeting-section { --meeting-card-w: calc(100dvw / 1.55); }
+        }
+        @media (min-width: 1536px) {
+          .meeting-section { --meeting-card-w: calc(100dvw / 1.72); }
+        }
+
+        .meeting-full-bleed {
+          width: 100%;
+        }
+        @media (max-width: 1023px) {
+          .meeting-full-bleed {
+            width: calc(100% + 5rem);
+            margin-left: -2.5rem;
+            margin-right: -2.5rem;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+          }
+        }
+
+        /* ── Track spacing ─────────────────────────────────────────────────
+           Mobile: gap + padding for visual breathing room.
+           Desktop: ZERO gap, ZERO padding.
+           Any non-zero gap/padding on desktop inflates scrollWidth beyond
+           N×cardWidth, breaking the overflow calculation and causing the
+           last card to appear stretched or oversized.                       */
+        .meeting-track {
+          gap: 1rem;
+          padding: 0 1rem 0.75rem;
+        }
+        @media (min-width: 640px) {
+          .meeting-track {
+            gap: 1.5rem;
+            padding: 0 1.5rem 1rem;
+          }
+        }
+        @media (min-width: 1024px) {
+          .meeting-track {
+            gap: 0;
+            padding: 0;
+          }
+        }
+
+        /* ── Card sizes ────────────────────────────────────────────────────
+           Every card is identical. No :last-child, no :nth-child overrides. */
+        .meeting-card {
+          width: 86vw;
+          height: 28rem;
+          border-radius: 1rem;
+        }
+        @media (min-width: 640px) {
+          .meeting-card {
+            width: 76vw;
+            height: 32rem;
+          }
+        }
+        @media (min-width: 1024px) {
+          .meeting-card {
+            width: var(--meeting-card-w);
+            height: 72vh;
+            min-height: 540px;
+            border-radius: 0;
+          }
+        }
+
+        /* ── Hover lift (desktop) ──────────────────────────────────────── */
+        @media (min-width: 1024px) {
+          .meeting-card {
+            transition:
+              transform 550ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 550ms cubic-bezier(0.22, 1, 0.36, 1);
+          }
+          .meeting-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 22px 64px rgba(0,0,0,0.22);
+            z-index: 2;
+          }
+        }
+
+        /* ── Hide scrollbar (mobile native scroll) ─────────────────────── */
+        .meeting-viewport {
           -ms-overflow-style: none;
           scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
         }
-        .meeting-scroll-wrap::-webkit-scrollbar {
+        .meeting-viewport::-webkit-scrollbar {
           display: none;
         }
       `}</style>

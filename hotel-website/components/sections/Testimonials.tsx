@@ -115,16 +115,28 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* 2-Column Grid — fixed height so video never resizes */}
-        <div className="mt-10 grid items-stretch gap-6 sm:mt-12 lg:mt-16 lg:grid-cols-[1.4fr_1.2fr] lg:gap-8">
+        {/* 2-Column Grid — FIXED HEIGHT row so neither column ever resizes */}
+        <div className="mt-10 grid gap-6 sm:mt-12 lg:mt-16 lg:grid-cols-[1.4fr_1.2fr] lg:gap-8
+                        [&>*]:h-[420px] sm:[&>*]:h-[460px] lg:[&>*]:h-[500px]">
 
-          {/* LEFT — Testimonial Quote Card — fixed height */}
-          <div className="testimonials-card relative flex min-h-[420px] flex-col rounded-3xl border border-[#1f3c44]/10 bg-white/50 p-6 sm:min-h-[440px] sm:p-8 lg:min-h-[470px] lg:p-10">
+          {/* LEFT — Testimonial Quote Card */}
+          {/* 
+            KEY FIX:
+            • The column item now has a FIXED height via the grid rule above ([&>*]:h-*).
+            • The card itself is h-full so it fills that fixed slot exactly.
+            • flex-col + overflow-hidden on the card prevent any bleed-out.
+            • The quote <div> is flex-1 + overflow-y-auto, so long text scrolls
+              internally instead of pushing the card (and the section) taller.
+            • The author bar is shrink-0 so it always stays pinned at the bottom.
+          */}
+          <div className="testimonials-card relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#1f3c44]/10 bg-white/50 p-6 sm:p-8 lg:p-10">
+            {/* Quote bubble icon */}
             <div className="absolute -top-6 left-6 flex h-12 w-12 items-center justify-center rounded-full bg-[#e39b52] text-3xl text-white shadow sm:-top-7 sm:left-8 sm:h-14 sm:w-14 sm:text-[2rem] lg:-top-8 lg:left-12 lg:h-16 lg:w-16 lg:text-4xl">
               &quot;
             </div>
 
-            <div className="mb-5 border-b border-[#1f3c44]/10 pb-5 sm:mb-6 sm:pb-6">
+            {/* Score block — shrink-0 so it never collapses */}
+            <div className="mb-5 shrink-0 border-b border-[#1f3c44]/10 pb-5 sm:mb-6 sm:pb-6">
               <p className="font-serif text-[3.5rem] leading-none text-[#102f4d] sm:text-[4.3rem]">
                 {REVIEW_SCORE.toFixed(1)}
               </p>
@@ -139,14 +151,20 @@ export default function Testimonials() {
               <p className="mt-2 text-[1.05rem] font-semibold text-[#102f4d]/28">Tripadvisor</p>
             </div>
 
-            {/* Scrollable quote area so long text stays fully readable */}
-            <div className="flex-1 overflow-y-auto pr-1">
+            {/* Scrollable quote area — flex-1 + overflow-y-auto is the core fix */}
+            <div className="flex-1 overflow-y-auto pr-2
+                            [scrollbar-width:thin] [scrollbar-color:#1f3c4420_transparent]
+                            [&::-webkit-scrollbar]:w-1
+                            [&::-webkit-scrollbar-track]:bg-transparent
+                            [&::-webkit-scrollbar-thumb]:rounded-full
+                            [&::-webkit-scrollbar-thumb]:bg-[#1f3c44]/20">
               <p className="testimonials-quote text-[0.98rem] leading-7 text-[#1f3c44]/80 sm:text-base sm:leading-8">
                 &quot;{current.quote}&quot;
               </p>
             </div>
 
-            <div className="testimonials-author mt-6 flex flex-col gap-4 border-t border-[#1f3c44]/10 pt-5 sm:flex-row sm:items-center sm:justify-between sm:pt-6">
+            {/* Author bar — shrink-0 keeps it pinned at the bottom always */}
+            <div className="testimonials-author mt-4 shrink-0 flex flex-col gap-4 border-t border-[#1f3c44]/10 pt-4 sm:flex-row sm:items-center sm:justify-between sm:mt-5 sm:pt-5">
               <div className="flex items-center gap-3 sm:gap-4">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e9e2d6] text-[0.82rem] font-semibold sm:h-12 sm:w-12 sm:text-sm">
                   {current.name.slice(0, 1)}
@@ -161,9 +179,6 @@ export default function Testimonials() {
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-3">
-                {/* <p className="mr-1 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-[#1f3c44]/55 sm:text-xs">
-                  {currentDisplay} / {totalDisplay}
-                </p> */}
                 <button
                   type="button"
                   onClick={prev}
@@ -184,8 +199,8 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* RIGHT — YouTube Video Card — same fixed height */}
-          <div className="testimonials-video relative min-h-[420px] overflow-hidden rounded-3xl shadow-sm sm:min-h-[440px] lg:min-h-[470px]">
+          {/* RIGHT — YouTube Video Card */}
+          <div className="testimonials-video relative h-full overflow-hidden rounded-3xl shadow-sm">
             <iframe
               src="https://www.youtube.com/embed/u3hTCT2CIFw?rel=0&modestbranding=1"
               title="Resort Video"

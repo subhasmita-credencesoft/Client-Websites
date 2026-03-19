@@ -22,7 +22,7 @@ export default function PageHero({
   backgroundImage,
   subtitle,
   breadcrumb,
-  minHeightClassName = "min-h-[72vh]",
+  minHeightClassName = "min-h-[100vh]",
 }: PageHeroProps) {
   const HERO_BLUR =
     "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMGYxMjE2Ii8+PC9zdmc+";

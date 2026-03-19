@@ -73,7 +73,7 @@ export default function BlogFeature() {
           <div className="grid gap-7 lg:grid-cols-2 lg:gap-14">
             <div className="space-y-7 lg:pt-2">
               <p className="text-[0.72rem] uppercase tracking-[0.4em] text-[#1f3c44]/70">Unforgettable Experiences</p>
-              <h2 className="font-serif text-[2.5rem] leading-[0.93] sm:text-[3.2rem] lg:text-[5.1rem]">
+              <h2 className="font-serif text-[2rem] leading-[1] sm:text-[2.6rem] lg:text-[3.8rem]">
                 Journey into the
                 <br />
                     of coastal luxury

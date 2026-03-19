@@ -52,6 +52,8 @@ const diningItems = [
   },
 ];
 
+// ✅ FIX 2: Removed conflicting `declare module "gsap/ScrollTrigger"` block.
+// GSAP v3.11+ ships its own types — no manual declaration needed.
 gsap.registerPlugin(ScrollTrigger);
 
 export default function DiningShowcase() {
@@ -176,9 +178,11 @@ export default function DiningShowcase() {
 
         gsap.set(track, { willChange: "transform" });
 
+        // ✅ FIX 1: Changed yPercent from +8 to -6 so the bg image shifts UP
+        // during scroll, preventing any top gap from appearing on the cards.
         gsap.to(".dining-card-bg", {
           scale: 1.08,
-          yPercent: 8,
+          yPercent: -6,
           ease: "none",
           scrollTrigger: {
             trigger: pin,
@@ -277,7 +281,11 @@ export default function DiningShowcase() {
   }, []);
 
   return (
-    <section ref={sectionRef} data-no-global-gsap className="overflow-x-hidden bg-[#f3f2ee] pb-0 pt-12 text-[#1f3c44] sm:pt-16 lg:pt-20">
+    <section
+      ref={sectionRef}
+      data-no-global-gsap
+      className="overflow-x-hidden bg-[#f3f2ee] pb-0 pt-12 text-[#1f3c44] sm:pt-16 lg:pt-20"
+    >
       <Container>
         <div className="grid gap-7 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           <div>
@@ -302,11 +310,14 @@ export default function DiningShowcase() {
               tongue-tingling cuisines. We pride ourselves on our variety of cuisine that is as innovative as it is
               appetizing. You can opt for Delicious Chinese, Mughlai and Indian Cuisine. The Restaurant caters to the
               tastes of each of its Guests. Our Friendly Professional Staff are always on hand to offer advice and
-              assistance with each and every aspect of your meal. Enjoy a hearty lunch and a delectable dinner at UK&apos;s
-              Resort. Non-vegetarian or vegetarian - it does not matter as you get sumptuous varieties of dishes in
-              both categories.
+              assistance with each and every aspect of your meal. Enjoy a hearty lunch and a delectable dinner at
+              UK&apos;s Resort. Non-vegetarian or vegetarian - it does not matter as you get sumptuous varieties of
+              dishes in both categories.
             </p>
-            <Link href="/dining" className="mt-5 inline-flex text-[0.68rem] font-semibold uppercase tracking-[0.18em] sm:text-xs sm:tracking-[0.3em]">
+            <Link
+              href="/dining"
+              className="mt-5 inline-flex text-[0.68rem] font-semibold uppercase tracking-[0.18em] sm:text-xs sm:tracking-[0.3em]"
+            >
               Discover more
             </Link>
           </div>
@@ -314,16 +325,30 @@ export default function DiningShowcase() {
       </Container>
 
       <div ref={pinRef} className="relative mt-10 sm:mt-12">
-        <div ref={viewportRef} className="dining-scroll-wrap w-screen overflow-x-auto pb-3 lg:overflow-hidden lg:pb-0">
-          <div ref={trackRef} className="dining-card-track flex min-w-max snap-x snap-mandatory gap-4 sm:gap-5 lg:gap-6">
+        <div
+          ref={viewportRef}
+          className="dining-scroll-wrap w-screen overflow-x-auto pb-3 lg:overflow-hidden lg:pb-0"
+        >
+          <div
+            ref={trackRef}
+            className="dining-card-track flex min-w-max snap-x snap-mandatory gap-4 sm:gap-5 lg:gap-6"
+          >
             {diningItems.map((item) => (
               <article
                 key={item.title}
                 className="dining-card group relative h-[31rem] w-[19.5rem] shrink-0 snap-start overflow-hidden rounded-[14px] bg-black sm:h-[34rem] sm:w-[22rem] lg:h-[80vh] lg:min-h-[620px] lg:w-[calc((100vw-1.5rem)/2)] lg:rounded-none"
               >
+                {/*
+                  ✅ FIX 1 (CSS side): Extra vertical size (-top-[8%] / -bottom-[8%])
+                  gives the background image headroom so it never runs out of
+                  pixels at the top when yPercent nudges it upward during scroll.
+                */}
                 <div
-                  className="dining-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-                  style={{ backgroundImage: `url('${item.image}')`, backgroundPosition: item.position }}
+                  className="dining-card-bg absolute -bottom-[8%] -top-[8%] left-0 right-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                  style={{
+                    backgroundImage: `url('${item.image}')`,
+                    backgroundPosition: item.position,
+                  }}
                   role="img"
                   aria-label={item.title}
                 />
@@ -331,8 +356,12 @@ export default function DiningShowcase() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-500 group-hover:from-black/90" />
 
                 <div className="relative z-10 flex h-full flex-col justify-end p-5 text-white sm:p-6 lg:p-10">
-                  <span className="dining-card-line text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white/80">{item.label}</span>
-                  <h3 className="dining-card-line mt-2 font-serif text-[2rem] leading-[0.92] text-white sm:text-[2.2rem] lg:text-[2.9rem]">{item.title}</h3>
+                  <span className="dining-card-line text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white/80">
+                    {item.label}
+                  </span>
+                  <h3 className="dining-card-line mt-2 font-serif text-[2rem] leading-[0.92] text-white sm:text-[2.2rem] lg:text-[2.9rem]">
+                    {item.title}
+                  </h3>
                   <p className="dining-card-line mt-3 max-w-[58ch] text-[0.78rem] leading-relaxed text-white/90 sm:text-[0.84rem] lg:text-[0.95rem]">
                     {item.description}
                   </p>
@@ -362,12 +391,13 @@ export default function DiningShowcase() {
         }
         @media (min-width: 1024px) {
           .dining-card {
-            transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 550ms cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 550ms cubic-bezier(0.22, 1, 0.36, 1);
             transform: translateY(0);
           }
           .dining-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 22px 64px rgba(0,0,0,0.22);
+            box-shadow: 0 22px 64px rgba(0, 0, 0, 0.22);
           }
         }
       `}</style>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
@@ -502,7 +502,7 @@ function RoomsReservationContent() {
                         }}
                       >
                         <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-black/15 to-transparent" />
-                        <button
+                                                <button
                           type="button"
                           className="absolute left-5 top-5 rounded-full border border-white/55 bg-black/40 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/55"
                           onClick={() =>
@@ -512,8 +512,28 @@ function RoomsReservationContent() {
                               "noopener,noreferrer",
                             )
                           }
-                        >
-                          360°
+                        ><span className="inline-flex items-center gap-1.5 leading-none">
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    className="h-3.5 w-3.5 shrink-0"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    {/* Top arc */}
+    <path d="M3 12a9 9 0 0 1 14-7" />
+    <polyline points="17 3 17 7 13 7" />
+
+    {/* Bottom arc */}
+    <path d="M21 12a9 9 0 0 1-14 7" />
+    <polyline points="7 21 7 17 11 17" />
+  </svg>
+
+  <span>360° Tour</span>
+</span>
                         </button>
                         <p className="rr-card-line absolute bottom-5 left-6 text-sm font-semibold uppercase tracking-[0.14em] text-white">
                           From{" "}
@@ -604,3 +624,4 @@ export default function RoomsReservationPage() {
     </Suspense>
   );
 }
+

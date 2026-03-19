@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,18 +12,24 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function WelcomeSection() {
   const { property, isLoading, error } = usePropertyData();
+  const [mounted, setMounted] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
   const imageWrapRef = useRef<HTMLDivElement | null>(null);
 
-  const name = property?.name || "UK's Resort";
+  const safeProperty = mounted ? property : null;
+  const name = safeProperty?.name || "UK's Resort";
   const description =
-    htmlToText(property?.businessDescription).slice(0, 360) ||
+    htmlToText(safeProperty?.businessDescription).slice(0, 360) ||
     "UK's Resort - Just a few kilometers away from the hustle bustle of Mumbai and set amidst abundant scenic beauty and rich history.";
-  const typeLine = [property?.businessType, property?.businessSubtype].filter(Boolean).join(" - ");
+  const typeLine = [safeProperty?.businessType, safeProperty?.businessSubtype].filter(Boolean).join(" - ");
   const heroImage =
-    property?.imageList?.find((img) => img?.mainImage)?.url ||
-    property?.imageList?.[0]?.url ||
+    safeProperty?.imageList?.find((img) => img?.mainImage)?.url ||
+    safeProperty?.imageList?.[0]?.url ||
     "https://bookonelocal.in/cdn/Copy of IMG_1568.avif";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
@@ -107,7 +113,7 @@ export default function WelcomeSection() {
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div className="text-center lg:text-left">
-            {!isLoading && !error && typeLine && (
+            {mounted && !isLoading && !error && typeLine && (
               <p className="welcome-eyebrow mt-1 text-[0.7rem] uppercase tracking-[0.22em] text-[#1f3c44]/65">{typeLine}</p>
             )}
 
@@ -118,8 +124,8 @@ export default function WelcomeSection() {
               <h2 className="welcome-title-line font-serif text-[2rem] leading-tight sm:text-[2.4rem] lg:text-[2.8rem]">{name}!</h2>
             </div>
 
-            {isLoading && <p className="welcome-copy mt-3 text-sm text-[#1f3c44]/55">Loading property details...</p>}
-            {!isLoading && error && <p className="welcome-copy mt-3 text-sm text-[#1f3c44]/55">{error}</p>}
+            {mounted && isLoading && <p className="welcome-copy mt-3 text-sm text-[#1f3c44]/55">Loading property details...</p>}
+            {mounted && !isLoading && error && <p className="welcome-copy mt-3 text-sm text-[#1f3c44]/55">{error}</p>}
 
             <p className="welcome-copy mt-5 text-[0.98rem] leading-relaxed text-[#1f3c44]/80 sm:text-[1.05rem]">{description}</p>
           </div>

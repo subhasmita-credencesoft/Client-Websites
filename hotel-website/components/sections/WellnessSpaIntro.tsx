@@ -172,9 +172,9 @@ export default function WellnessSpaIntro() {
   const isInsetLoaded = !!loadedImages[insetSrc];
 
   return (
-    <section ref={sectionRef} data-no-global-gsap className="bg-[#f4f1ea] py-20 text-[#1f3c44]">
-      <Container>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-center">
+    <section ref={sectionRef} data-no-global-gsap className="relative z-20 overflow-visible bg-[#f4f1ea] py-20 text-[#1f3c44]">
+      <Container className="overflow-visible">
+        <div className="grid gap-12 overflow-visible lg:grid-cols-[1fr_1.05fr] lg:items-center">
           <div className="wellness-spa-media relative mx-auto w-full max-w-[520px]">
             <div className="relative aspect-[3/4] overflow-hidden rounded-[40px] bg-[#d9d2c6]">
               <div
@@ -245,20 +245,20 @@ export default function WellnessSpaIntro() {
               Discover the euphoria within you with boundless fun under nonstop sprinkling water and break into a wild Rain dance. Splash into the cool and clear waters of our swimming pools and indulge in a game of water polo or leisurely amble on the poolside deck. Slide into pure merriment and relentless excitement with a fully customized ride through our Water Park. Bounce your afternoon with friends and family with a wide range of Indoor Games including table tennis, badminton and carom. The Evenings are the perfect time to run amok in our lush green environment with a host of Outdoor Sports like volleyball, cricket, and football. Sweat it out in our fully furnished Gym geared with the most sophisticated equipment. Toddlers or Children alike have ample space to swing and breeze through our exclusively designed Kid&apos;s Park. 24 Hours Of Hot & Cold running water, satellite TV channels and luxurious facilities will keep you entranced in your holiday break. Express Laundry services to provide you with the last minute dress code change. Wi-Fi Internet Facility in rooms for those who just want to peek back at their office desk! We also provide adventure activities like Paint Ball, Archery, Rifle Shooting, Body Zorbing, Water Zorbing, Artificial Wall Climbing and Team Building Activities (Extra Charges will be applicable). Pets are not allowed in resort.
             </p>
 
-            <div className="wellness-spa-cta relative mt-10 inline-block" ref={dropdownRef}>
+            <div className="wellness-spa-cta relative z-40 mt-10 inline-block" ref={dropdownRef}>
               <button
                 type="button"
                 onClick={() => setTourOpen((prev) => !prev)}
                 className="inline-flex items-center gap-2 rounded-full border border-[#1f3c44]/30 px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#1f3c44] transition hover:border-[#1f3c44] hover:bg-[#1f3c44]/5"
               >
                 Take a Virtual Tour
-                <span aria-hidden="true" className={`inline-block transition-transform duration-200 ${tourOpen ? "rotate-90" : ""}`}>
-                  &gt;
+                <span aria-hidden="true" className={`inline-block transition-transform duration-200 ${tourOpen ? "rotate-180" : ""}`}>
+                  ˅
                 </span>
               </button>
 
               {tourOpen && (
-                <div className="absolute left-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-2xl border border-[#1f3c44]/10 bg-white shadow-[0_8px_32px_rgba(31,60,68,0.12)]">
+                <div className="absolute left-0 top-full z-[120] mt-2 w-56 overflow-hidden rounded-2xl border border-[#1f3c44]/10 bg-white shadow-[0_18px_48px_rgba(31,60,68,0.2)]">
                   {TOUR_OPTIONS.map(({ label, url, Icon }) => (
                     <a
                       key={label}

@@ -102,16 +102,23 @@ function RoomShowcaseCard({ room, className }: { room: ShowcaseRoom; className?:
 
 export default function RoomsShowcase() {
   const { property, isLoading, error } = usePropertyData();
+  const [mounted, setMounted] = useState(false);
   const [fallbackRooms, setFallbackRooms] = useState<RoomItem[] | null>(null);
   const [fallbackLoading, setFallbackLoading] = useState(false);
   const [fallbackError, setFallbackError] = useState<string | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideDirection, setSlideDirection] = useState<"left" | "right">("right");
   const [transitionKey, setTransitionKey] = useState(0);
   const [animationError, setAnimationError] = useState<string | null>(null);
   const fallbackAttemptedRef = useRef(false);
+  const transitionTimerRef = useRef<number | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (property?.roomList?.length || fallbackRooms || fallbackLoading || fallbackAttemptedRef.current) return;
@@ -149,28 +156,41 @@ export default function RoomsShowcase() {
 
   const rooms = useMemo(() => mappedRooms.slice(0, 6), [mappedRooms]);
   const total = rooms.length;
+  const safeActiveIndex = total > 0 ? activeIndex % total : 0;
+
+  const commitSlide = useCallback(
+    (nextIndex: number, direction: "left" | "right") => {
+      if (total === 0 || isTransitioning) return;
+      setIsTransitioning(true);
+      setSlideDirection(direction);
+      setTransitionKey((prev) => prev + 1);
+      setActiveIndex(nextIndex);
+
+      if (transitionTimerRef.current) window.clearTimeout(transitionTimerRef.current);
+      transitionTimerRef.current = window.setTimeout(() => {
+        setIsTransitioning(false);
+      }, 620);
+    },
+    [isTransitioning, total],
+  );
 
   const goNext = useCallback(() => {
     if (total === 0) return;
-    setSlideDirection("right");
-    setTransitionKey((prev) => prev + 1);
-    setActiveIndex((prev) => (prev + 1) % total);
-  }, [total]);
+    const nextIndex = (safeActiveIndex + 1) % total;
+    commitSlide(nextIndex, "right");
+  }, [commitSlide, safeActiveIndex, total]);
 
   const goPrev = useCallback(() => {
     if (total === 0) return;
-    setSlideDirection("left");
-    setTransitionKey((prev) => prev + 1);
-    setActiveIndex((prev) => (prev - 1 + total) % total);
-  }, [total]);
+    const prevIndex = (safeActiveIndex - 1 + total) % total;
+    commitSlide(prevIndex, "left");
+  }, [commitSlide, safeActiveIndex, total]);
 
   useEffect(() => {
     if (isPaused || total === 0) return;
     const timer = window.setInterval(goNext, 4000);
     return () => window.clearInterval(timer);
   }, [goNext, isPaused, total]);
-
-  const safeActiveIndex = total > 0 ? activeIndex % total : 0;
 
   const display = useMemo(() => {
     if (total === 0) return [];
@@ -181,6 +201,12 @@ export default function RoomsShowcase() {
 
   const counterCurrent = total > 0 ? String(safeActiveIndex + 1).padStart(2, "0") : "00";
   const counterTotal = String(total || 0).padStart(2, "0");
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimerRef.current) window.clearTimeout(transitionTimerRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     let mm: gsap.MatchMedia | null = null;
@@ -260,17 +286,33 @@ export default function RoomsShowcase() {
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const cards = stage.querySelectorAll<HTMLElement>(".rooms-showcase-card");
       const enterFromX = slideDirection === "right" ? 26 : -26;
+      const sideOffset = slideDirection === "right" ? 16 : -16;
 
       gsap.fromTo(
-        cards,
-        { x: enterFromX, y: 12, autoAlpha: 0.7 },
+        cards[1],
+        { x: enterFromX, y: 12, autoAlpha: 0.65, scale: 0.98 },
         {
           x: 0,
           y: 0,
           autoAlpha: 1,
+          scale: 1,
           duration: 0.58,
-          stagger: 0.06,
           ease: "power3.out",
+          overwrite: "auto",
+        },
+      );
+
+      gsap.fromTo(
+        [cards[0], cards[2]],
+        { x: sideOffset, y: 10, autoAlpha: 0.45, scale: 0.96 },
+        {
+          x: 0,
+          y: 0,
+          autoAlpha: 0.72,
+          scale: 0.98,
+          duration: 0.52,
+          stagger: 0.04,
+          ease: "power2.out",
           overwrite: "auto",
         },
       );
@@ -326,7 +368,7 @@ export default function RoomsShowcase() {
         </div>
       </Container>
 
-      {(isLoading || fallbackLoading) && (
+      {(!mounted || isLoading || fallbackLoading) && (
         <Container>
           <div className="mt-8 rounded-2xl border border-[#1f3c44]/10 bg-[#f7f5f1] p-6 text-center text-sm text-[#1f3c44]/70">
             Loading rooms...
@@ -334,7 +376,7 @@ export default function RoomsShowcase() {
         </Container>
       )}
 
-      {!isLoading && !fallbackLoading && (error || fallbackError) && rooms.length === 0 && (
+      {mounted && !isLoading && !fallbackLoading && (error || fallbackError) && rooms.length === 0 && (
         <Container>
           <div className="mt-8 rounded-2xl border border-[#1f3c44]/10 bg-[#f7f5f1] p-6 text-center text-sm text-[#1f3c44]/70">
             {fallbackError || error}
@@ -350,7 +392,7 @@ export default function RoomsShowcase() {
         </Container>
       )}
 
-      {!isLoading && !fallbackLoading && !error && !fallbackError && rooms.length === 0 && (
+      {mounted && !isLoading && !fallbackLoading && !error && !fallbackError && rooms.length === 0 && (
         <Container>
           <div className="mt-8 rounded-2xl border border-[#1f3c44]/10 bg-[#f7f5f1] p-6 text-center text-sm text-[#1f3c44]/70">
             No rooms available right now.
@@ -358,7 +400,7 @@ export default function RoomsShowcase() {
         </Container>
       )}
 
-      {!isLoading && !fallbackLoading && rooms.length > 0 && (
+      {mounted && !isLoading && !fallbackLoading && rooms.length > 0 && (
         <>
           <Container>
             <div
@@ -375,9 +417,7 @@ export default function RoomsShowcase() {
                       room={room}
                       className={`transform-gpu transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                         isCenter
-                          ? `rooms-showcase-card rooms-center-card z-10 block scale-100 opacity-100 ${
-                              slideDirection === "right" ? "animate-drawer-in-right" : "animate-drawer-in-left"
-                            }`
+                          ? "rooms-showcase-card rooms-center-card z-10 block scale-100 opacity-100"
                           : "rooms-showcase-card z-0 hidden scale-[0.98] opacity-70 lg:block lg:translate-y-5"
                       }`}
                     />
@@ -414,9 +454,7 @@ export default function RoomsShowcase() {
                   key={i}
                   onClick={() => {
                     if (i === safeActiveIndex) return;
-                    setSlideDirection(i > safeActiveIndex ? "right" : "left");
-                    setTransitionKey((prev) => prev + 1);
-                    setActiveIndex(i);
+                    commitSlide(i, i > safeActiveIndex ? "right" : "left");
                   }}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     i === safeActiveIndex ? "w-6 bg-[#1f3c44]" : "w-1.5 bg-[#1f3c44]/30"
@@ -438,36 +476,6 @@ export default function RoomsShowcase() {
         </>
       )}
       <style>{`
-        @keyframes drawerInRight {
-          from {
-            clip-path: inset(0 100% 0 0);
-            opacity: 0.55;
-            transform: translateX(20px);
-          }
-          to {
-            clip-path: inset(0 0 0 0);
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        @keyframes drawerInLeft {
-          from {
-            clip-path: inset(0 0 0 100%);
-            opacity: 0.55;
-            transform: translateX(-20px);
-          }
-          to {
-            clip-path: inset(0 0 0 0);
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        .animate-drawer-in-right {
-          animation: drawerInRight 560ms cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .animate-drawer-in-left {
-          animation: drawerInLeft 560ms cubic-bezier(0.22, 1, 0.36, 1);
-        }
         .rooms-center-card .object-cover {
           will-change: transform;
         }
