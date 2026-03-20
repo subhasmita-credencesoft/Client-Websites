@@ -22,6 +22,9 @@ const HomeEventExperiences = dynamic(() => import("../components/sections/HomeEv
 const LocationOffers = dynamic(() => import("../components/sections/LocationOffers"), {
   loading: () => <section className="min-h-[65vh] bg-[#f6f3ed]" aria-hidden="true" />,
 });
+const StatsBanner = dynamic(() => import("../components/sections/StatsBanner"), {
+  loading: () => <section className="min-h-[35vh] bg-[#1d1d1d]" aria-hidden="true" />,
+});
 const Testimonials = dynamic(() => import("../components/sections/Testimonials"), {
   loading: () => <section className="min-h-[60vh] bg-[#f3efe8]" aria-hidden="true" />,
 });
@@ -37,6 +40,7 @@ export default function Home() {
       <HomeEventExperiences />
       <DiningShowcase />
       <LocationOffers />
+      <StatsBanner />
       <Testimonials />
     </div>
   );

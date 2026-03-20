@@ -106,8 +106,8 @@ export default function ResortIntro() {
         );
         revealTl.fromTo(
           ".resort-intro-media",
-          { y: 26, autoAlpha: 0, scale: 1.05 },
-          { y: 0, autoAlpha: 1, scale: 1, duration: 1.05, ease: "power3.out" },
+          { y: 26, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 1.05, ease: "power3.out" },
           "<-0.55",
         );
         revealTl.fromTo(
@@ -127,7 +127,7 @@ export default function ResortIntro() {
         })
           .to(contentRef.current, { y: -20, autoAlpha: 0.96, ease: "none" }, 0)
           .to(mediaCardRef.current, { y: -26, ease: "none" }, 0)
-          .to(".resort-intro-media-image", { yPercent: 8, scale: 1.08, ease: "none" }, 0)
+          .to(".resort-intro-media-image", { yPercent: -6, ease: "none" }, 0)
           .to(".resort-intro-media-shine", { xPercent: 18, opacity: 0.35, ease: "none" }, 0);
       }, sectionRef);
 
@@ -144,9 +144,8 @@ export default function ResortIntro() {
       if (!active) return;
       gsap.fromTo(
         active,
-        { scale: 1.07, filter: "brightness(0.88)" },
+        { filter: "brightness(0.88)" },
         {
-          scale: 1,
           filter: "brightness(1)",
           duration: (AUTO_SLIDE_MS + 500) / 1000,
           ease: "power2.out",
