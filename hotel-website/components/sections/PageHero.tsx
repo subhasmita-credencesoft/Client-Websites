@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useLayoutEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { gsap } from "gsap";
@@ -36,47 +36,48 @@ export default function PageHero({
     return breadcrumb.replace(/^Home\s*\/\s*/i, "").trim();
   }, [breadcrumb]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const titleEl = section.querySelector(".page-hero-title");
+    const subtitleEl = section.querySelector(".page-hero-subtitle");
+    const breadcrumbEl = section.querySelector(".page-hero-breadcrumb");
+    if (!titleEl || !mediaRef.current || !contentRef.current || !overlayRef.current) return;
+
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const ctx = gsap.context(() => {
-        gsap.fromTo(
-          ".page-hero-title",
-          { yPercent: 120, autoAlpha: 0, filter: "blur(10px)" },
-          {
-            yPercent: 0,
-            autoAlpha: 1,
-            filter: "blur(0px)",
-            duration: 1,
-            ease: "power4.out",
-          },
-        );
+        gsap.set(titleEl, { yPercent: 100, autoAlpha: 0, filter: "blur(8px)" });
+        if (subtitleEl) gsap.set(subtitleEl, { y: 16, autoAlpha: 0, filter: "blur(6px)" });
+        if (breadcrumbEl) gsap.set(breadcrumbEl, { y: 12, autoAlpha: 0 });
+        gsap.set(mediaRef.current, { scale: 1.1, yPercent: 0, transformOrigin: "center center" });
 
-        gsap.fromTo(
-          ".page-hero-subtitle",
-          { y: 18, autoAlpha: 0, filter: "blur(6px)" },
-          {
-            y: 0,
-            autoAlpha: 1,
-            filter: "blur(0px)",
-            duration: 0.75,
-            ease: "power3.out",
-            delay: 0.12,
-          },
-        );
+        const introTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        introTl.to(titleEl, {
+          yPercent: 0,
+          autoAlpha: 1,
+          filter: "blur(0px)",
+          duration: 0.95,
+          ease: "power4.out",
+        });
 
-        gsap.fromTo(
-          ".page-hero-breadcrumb",
-          { y: 14, autoAlpha: 0 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.7,
-            ease: "power3.out",
-            delay: 0.2,
-          },
-        );
+        if (subtitleEl) {
+          introTl.to(
+            subtitleEl,
+            { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.75 },
+            "<+0.08",
+          );
+        }
+
+        if (breadcrumbEl) {
+          introTl.to(
+            breadcrumbEl,
+            { y: 0, autoAlpha: 1, duration: 0.65 },
+            "<+0.06",
+          );
+        }
 
         gsap.fromTo(
           mediaRef.current,
@@ -104,7 +105,11 @@ export default function PageHero({
   }, []);
 
   return (
-    <section ref={sectionRef} className={`relative overflow-hidden bg-[#0f1216] text-white ${minHeightClassName}`}>
+    <section
+      ref={sectionRef}
+      data-no-global-gsap
+      className={`relative overflow-hidden bg-[#0f1216] text-white ${minHeightClassName}`}
+    >
       <div ref={mediaRef} className="absolute inset-0 will-change-transform">
         <Image
           src={backgroundImage}
