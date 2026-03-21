@@ -51,7 +51,15 @@ function mapRoomToShowcase(room: RoomItem, index: number, fallbackImage: string)
   };
 }
 
-function RoomShowcaseCard({ room, className }: { room: ShowcaseRoom; className?: string }) {
+function RoomShowcaseCard({
+  room,
+  className,
+  prioritize = false,
+}: {
+  room: ShowcaseRoom;
+  className?: string;
+  prioritize?: boolean;
+}) {
   const [imageSrc, setImageSrc] = useState(room.image || "/images/room_3.jpg");
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
@@ -69,6 +77,8 @@ function RoomShowcaseCard({ room, className }: { room: ShowcaseRoom; className?:
             isImageLoaded ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-[2px]"
           }`}
           unoptimized={imageSrc.startsWith("http")}
+          priority={prioritize}
+          fetchPriority={prioritize ? "high" : "auto"}
           onError={() => {
             if (imageSrc !== "/images/room_3.jpg") setImageSrc("/images/room_3.jpg");
           }}
@@ -258,7 +268,7 @@ export default function RoomsShowcase() {
               trigger: sectionRef.current,
               start: "top 82%",
               end: "bottom top",
-              scrub: 0.9,
+              scrub: 0.55,
               invalidateOnRefresh: true,
             },
           }).to(".rooms-center-card .object-cover", { scale: 1.08, yPercent: 6, ease: "none" }, 0);
@@ -324,12 +334,11 @@ export default function RoomsShowcase() {
       );
       gsap.fromTo(
         stage.querySelectorAll(".rooms-center-card .room-title, .rooms-center-card .room-meta, .rooms-center-card .room-desc, .rooms-center-card .room-tags"),
-        { y: 18, autoAlpha: 0, filter: "blur(3px)" },
+        { y: 18, autoAlpha: 0 },
         {
           y: 0,
           autoAlpha: 1,
-          filter: "blur(0px)",
-          duration: 0.52,
+          duration: 0.44,
           stagger: 0.06,
           ease: "power3.out",
           overwrite: "auto",
@@ -343,13 +352,11 @@ export default function RoomsShowcase() {
     if (typeof window === "undefined") return;
 
     const raf = window.requestAnimationFrame(() => ScrollTrigger.refresh());
-    const timer = window.setTimeout(() => ScrollTrigger.refresh(), 250);
 
     return () => {
       window.cancelAnimationFrame(raf);
-      window.clearTimeout(timer);
     };
-  }, [rooms.length, safeActiveIndex, transitionKey]);
+  }, [rooms.length]);
 
   return (
     <section ref={sectionRef} data-no-global-gsap className="bg-white py-20 text-[#1f3c44]">
@@ -415,6 +422,7 @@ export default function RoomsShowcase() {
                     <RoomShowcaseCard
                       key={`${room.id}-${index}-${isCenter ? transitionKey : safeActiveIndex}`}
                       room={room}
+                      prioritize
                       className={`transform-gpu transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                         isCenter
                           ? "rooms-showcase-card rooms-center-card z-10 block scale-100 opacity-100"

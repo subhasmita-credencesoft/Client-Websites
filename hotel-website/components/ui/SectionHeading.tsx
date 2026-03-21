@@ -11,18 +11,18 @@ export default function SectionHeading({
   subtitle,
   align = "left",
 }: SectionHeadingProps) {
-  const alignClasses = align === "center" ? "text-center mx-auto" : "text-left";
+  const alignClasses = align === "center" ? "site-heading--center" : "site-heading--left";
 
   return (
-    <div className={`mb-10 max-w-2xl ${alignClasses}`.trim()}>
+    <div className={`site-heading ${alignClasses}`.trim()}>
       {eyebrow && (
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-bronze">
+        <p className="site-eyebrow">
           {eyebrow}
         </p>
       )}
-      <h2 className="mt-4 font-serif text-3xl md:text-4xl text-ink">{title}</h2>
+      <h2 className="site-title">{title}</h2>
       {subtitle && (
-        <p className="mt-4 text-sm leading-7 text-ink/70">{subtitle}</p>
+        <p className="site-copy">{subtitle}</p>
       )}
     </div>
   );

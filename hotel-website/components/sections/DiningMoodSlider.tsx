@@ -6,15 +6,8 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CurvedLoop from "../ui/CurvedLoop";
-
-const SLIDES = [
-  { src: "https://bookonelocal.in/cdn/Copy-of-IMG_2914_1_.avif", label: "Delicious Meals" },
-  { src: "https://bookonelocal.in/cdn/Copy-of-IMG_2913_1_.avif", label: "Beautiful Spaces" },
-  { src: "https://bookonelocal.in/cdn/Copy-of-IMG_2915.avif", label: "Varied Menu" },
-  { src: "https://bookonelocal.in/cdn/Copy-of-IMG_2927.avif", label: "Chef's Art" },
-  { src: "https://bookonelocal.in/cdn/Copy-of-IMG_2938_1_.avif", label: "Happy Dining" },
-  { src: "https://bookonelocal.in/cdn/Copy-of-IMG_2939_1_.avif ", label: "Wedding Dinner" },
-];
+import { DINING_MOOD_SLIDES } from "../../data/sections/diningMoodSlider";
+import useSafeInterval from "@/hooks/useSafeInterval";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,17 +22,14 @@ export default function DiningMoodSlider() {
   const [activeIndex, setActiveIndex] = useState(1);
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % SLIDES.length);
-    }, 3400);
-    return () => window.clearInterval(timer);
-  }, []);
+  useSafeInterval(() => {
+    setActiveIndex((prev) => (prev + 1) % DINING_MOOD_SLIDES.length);
+  }, 3400, DINING_MOOD_SLIDES.length > 0);
 
   const marqueeText = useMemo(() => {
-    const prev = SLIDES[(activeIndex - 1 + SLIDES.length) % SLIDES.length].label;
-    const current = SLIDES[activeIndex].label;
-    const next = SLIDES[(activeIndex + 1) % SLIDES.length].label;
+    const prev = DINING_MOOD_SLIDES[(activeIndex - 1 + DINING_MOOD_SLIDES.length) % DINING_MOOD_SLIDES.length].label;
+    const current = DINING_MOOD_SLIDES[activeIndex].label;
+    const next = DINING_MOOD_SLIDES[(activeIndex + 1) % DINING_MOOD_SLIDES.length].label;
     return `${prev} * ${current} * ${next} * `;
   }, [activeIndex]);
 
@@ -101,8 +91,8 @@ export default function DiningMoodSlider() {
         <div className="relative h-[320px] md:hidden">
           <article className="absolute inset-0 overflow-hidden rounded-[18px] bg-[#b4aea5]">
             <Image
-              src={SLIDES[activeIndex].src}
-              alt={SLIDES[activeIndex].label}
+              src={DINING_MOOD_SLIDES[activeIndex].src}
+              alt={DINING_MOOD_SLIDES[activeIndex].label}
               fill
               sizes="100vw"
               className="dining-mood-slide-image object-cover"
@@ -113,8 +103,8 @@ export default function DiningMoodSlider() {
         </div>
 
         <div className="relative hidden h-[540px] md:block lg:h-[620px]">
-          {SLIDES.map((slide, index) => {
-            const offset = getRelativeOffset(index, activeIndex, SLIDES.length);
+          {DINING_MOOD_SLIDES.map((slide, index) => {
+            const offset = getRelativeOffset(index, activeIndex, DINING_MOOD_SLIDES.length);
             const absOffset = Math.abs(offset);
             const isVisible = absOffset <= 1;
 

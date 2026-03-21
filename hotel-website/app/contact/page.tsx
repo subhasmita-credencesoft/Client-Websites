@@ -3,12 +3,7 @@
 import Container from "../../components/ui/Container";
 import { usePropertyData } from "../../components/providers/PropertyDataProvider";
 import PageHero from "../../components/sections/PageHero";
-
-const DEFAULT_EMAIL = "info@uksresort.com";
-const DEFAULT_PHONE_1 = "+91 98220 12343";
-const DEFAULT_PHONE_2 = "+91 87798 14559";
-const DEFAULT_ADDRESS_1 = "Old Mumbai - Pune Hwy";
-const DEFAULT_ADDRESS_2 = "Khopoli, Maharashtra, India";
+import { CONTACT_PAGE_DEFAULTS, type ContactInfoItem } from "../../data/pages/contact";
 
 function formatPhone(value: string | null | undefined) {
   if (!value) return "";
@@ -24,9 +19,9 @@ function compactAddress(parts: Array<string | null | undefined>) {
 export default function ContactPage() {
   const { property } = usePropertyData();
 
-  const email = property?.email || DEFAULT_EMAIL;
-  const phone1 = formatPhone(property?.mobile) || DEFAULT_PHONE_1;
-  const phone2 = formatPhone(property?.whatsApp) || DEFAULT_PHONE_2;
+  const email = property?.email || CONTACT_PAGE_DEFAULTS.email;
+  const phone1 = formatPhone(property?.mobile) || CONTACT_PAGE_DEFAULTS.phone1;
+  const phone2 = formatPhone(property?.whatsApp) || CONTACT_PAGE_DEFAULTS.phone2;
   const address = compactAddress([
     property?.address?.streetName,
     property?.address?.suburb,
@@ -34,19 +29,19 @@ export default function ContactPage() {
     property?.address?.state,
     property?.address?.country,
   ]);
-  const addressLine1 = address || DEFAULT_ADDRESS_1;
+  const addressLine1 = address || CONTACT_PAGE_DEFAULTS.address1;
   const addressLine2 = property?.address?.city && property?.address?.state
     ? `${property.address.city}, ${property.address.state}, ${property?.address?.country || "India"}`
-    : DEFAULT_ADDRESS_2;
+    : CONTACT_PAGE_DEFAULTS.address2;
 
-  const contactInfo = [
+  const contactInfo: ContactInfoItem[] = [
     {
       title: "Address",
       lines: [addressLine1, addressLine2],
     },
     {
       title: "Write us",
-      lines: [email, "reservations@uksresort.com"],
+      lines: [email, CONTACT_PAGE_DEFAULTS.secondaryEmail],
     },
     {
       title: "Phone",

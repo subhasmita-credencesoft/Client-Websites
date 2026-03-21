@@ -4,44 +4,39 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
-
-const stats = [
-  { value: 524, suffix: "", label: "luxury rooms" },
-  { value: 74, suffix: "k", label: "guests" },
-  { value: 1.8, suffix: "k", label: "five star ratings" },
-  { value: 2.5, suffix: "m", label: "served breakfast" },
-];
+import { STATS_BANNER_BG_IMAGE, STATS_BANNER_ITEMS } from "@/data/sections/statsBanner";
+import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
 export default function StatsBanner() {
-  const [counts, setCounts] = useState(stats.map(() => 0));
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const [counts, setCounts] = useState(() => STATS_BANNER_ITEMS.map(() => 0));
   const sectionRef = useRef<HTMLElement | null>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const countValuesRef = useRef(STATS_BANNER_ITEMS.map(() => 0));
   const formatted = useMemo(
     () =>
-      counts.map((value, index) => {
-        const target = stats[index].value;
+      (prefersReducedMotion ? STATS_BANNER_ITEMS.map((item) => item.value) : counts).map((value, index) => {
+        const target = STATS_BANNER_ITEMS[index].value;
         const isDecimal = target % 1 !== 0;
         const display = isDecimal
           ? value.toFixed(1)
           : Math.round(value).toString();
-        return `${display}${stats[index].suffix}`;
+        return `${display}${STATS_BANNER_ITEMS[index].suffix}`;
       }),
-    [counts],
+    [counts, prefersReducedMotion],
   );
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
-      setCounts(stats.map((stat) => stat.value));
+    if (prefersReducedMotion) {
       return;
     }
 
     const section = sectionRef.current;
     if (!section) return;
 
-    const counters = stats.map(() => ({ value: 0 }));
+    const counters = STATS_BANNER_ITEMS.map(() => ({ value: 0 }));
     const ctx = gsap.context(() => {
       gsap.set(cardRefs.current, { y: 20, autoAlpha: 0 });
       gsap.to(cardRefs.current, {
@@ -59,7 +54,7 @@ export default function StatsBanner() {
 
       counters.forEach((counter, index) => {
         gsap.to(counter, {
-          value: stats[index].value,
+          value: STATS_BANNER_ITEMS[index].value,
           duration: 1.6,
           ease: "power3.out",
           scrollTrigger: {
@@ -68,9 +63,17 @@ export default function StatsBanner() {
             once: true,
           },
           onUpdate: () => {
+            const target = STATS_BANNER_ITEMS[index].value;
+            const nextValue = target % 1 !== 0
+              ? Number(counter.value.toFixed(1))
+              : Math.round(counter.value);
+
+            if (countValuesRef.current[index] === nextValue) return;
+
+            countValuesRef.current[index] = nextValue;
             setCounts((prev) => {
               const next = [...prev];
-              next[index] = counter.value;
+              next[index] = nextValue;
               return next;
             });
           },
@@ -79,6 +82,12 @@ export default function StatsBanner() {
     }, sectionRef);
 
     return () => ctx.revert();
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    const image = new window.Image();
+    image.decoding = "async";
+    image.src = STATS_BANNER_BG_IMAGE;
   }, []);
 
   return (
@@ -87,13 +96,13 @@ export default function StatsBanner() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/h1_imgbox1.jpg')",
+            `url('${STATS_BANNER_BG_IMAGE}')`,
         }}
       />
       <div className="absolute inset-0 bg-black/40" />
       <Container className="relative z-10 py-12 sm:py-16 lg:py-20">
        <div className="grid gap-8 text-center sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
-          {stats.map((stat, index) => (
+          {STATS_BANNER_ITEMS.map((stat, index) => (
             <div
               key={stat.label}
               ref={(el) => {

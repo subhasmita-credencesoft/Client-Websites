@@ -1,28 +1,6 @@
 import Link from "next/link";
 import Container from "../ui/Container";
-
-const articles = [
-  {
-    title: "These are the top 7 luxury hotels in the world",
-    category: "Catering",
-    date: "November 5, 2024",
-    author: "Admin",
-    excerpt:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    image:
-      "https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/blog_15.jpg",
-  },
-  {
-    title: "Four Seasons, Milan: luxury in Italy's most stylish city",
-    category: "Delicious",
-    date: "November 5, 2024",
-    author: "Admin",
-    excerpt:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    image:
-      "https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/h1_blog2.jpg",
-  },
-];
+import { NEWS_EVENT_ARTICLES } from "@/data/sections/newsEvents";
 
 export default function NewsEvents() {
   return (
@@ -48,7 +26,7 @@ export default function NewsEvents() {
         </h2>
 
        <div className="mt-8 grid gap-6 sm:mt-10 lg:mt-12 lg:grid-cols-2 lg:gap-8">
-          {articles.map((article) => (
+          {NEWS_EVENT_ARTICLES.map((article) => (
             <article
               key={article.title}
               className="overflow-hidden rounded-3xl bg-white shadow-sm"

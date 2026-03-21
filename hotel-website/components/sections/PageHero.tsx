@@ -49,8 +49,8 @@ export default function PageHero({
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const ctx = gsap.context(() => {
-        gsap.set(titleEl, { yPercent: 100, autoAlpha: 0, filter: "blur(8px)" });
-        if (subtitleEl) gsap.set(subtitleEl, { y: 16, autoAlpha: 0, filter: "blur(6px)" });
+        gsap.set(titleEl, { yPercent: 100, autoAlpha: 0 });
+        if (subtitleEl) gsap.set(subtitleEl, { y: 16, autoAlpha: 0 });
         if (breadcrumbEl) gsap.set(breadcrumbEl, { y: 12, autoAlpha: 0 });
         gsap.set(mediaRef.current, { scale: 1.1, yPercent: 0, transformOrigin: "center center" });
 
@@ -58,15 +58,14 @@ export default function PageHero({
         introTl.to(titleEl, {
           yPercent: 0,
           autoAlpha: 1,
-          filter: "blur(0px)",
-          duration: 0.95,
+          duration: 0.8,
           ease: "power4.out",
         });
 
         if (subtitleEl) {
           introTl.to(
             subtitleEl,
-            { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.75 },
+            { y: 0, autoAlpha: 1, duration: 0.62 },
             "<+0.08",
           );
         }
@@ -90,11 +89,11 @@ export default function PageHero({
             trigger: sectionRef.current,
             start: "top top",
             end: "bottom top",
-            scrub: 1,
+            scrub: 0.65,
           },
         })
           .to(mediaRef.current, { yPercent: 10, scale: 1.12, ease: "none" }, 0)
-          .to(contentRef.current, { y: -70, autoAlpha: 0.62, ease: "none" }, 0)
+          .to(contentRef.current, { y: -48, autoAlpha: 0.68, ease: "none" }, 0)
           .to(overlayRef.current, { opacity: 0.82, ease: "none" }, 0);
       }, sectionRef);
 
@@ -116,10 +115,9 @@ export default function PageHero({
           alt={title}
           fill
           sizes="100vw"
-          quality={74}
+          quality={68}
           priority
           fetchPriority="high"
-          loading="eager"
           placeholder="blur"
           blurDataURL={HERO_BLUR}
           className="object-cover"
@@ -131,7 +129,7 @@ export default function PageHero({
       <Container className={`relative z-10 flex flex-col items-center justify-center text-center ${minHeightClassName}`}>
         <div ref={contentRef}>
           <div className="overflow-hidden">
-            <h1 className="page-hero-title font-serif text-4xl leading-[0.95] drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)] md:text-6xl">
+            <h1 className="page-hero-title font-serif text-4xl leading-[0.95] text-white md:text-6xl">
               {title}
             </h1>
           </div>

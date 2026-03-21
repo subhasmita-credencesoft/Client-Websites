@@ -15,14 +15,178 @@
   --font-serif: var(--font-playfair);
 }
 
+/* -------------------------------------------------------------------------- */
+/* Design System Tokens                                                       */
+/* -------------------------------------------------------------------------- */
+:root {
+  --surface-1: var(--paper);
+  --surface-2: #ffffff;
+  --surface-3: #f3efe8;
+  --text-primary: var(--ink);
+  --text-muted: color-mix(in srgb, var(--ink) 72%, white 28%);
+  --border-subtle: color-mix(in srgb, var(--ink) 14%, white 86%);
+  --border-strong: color-mix(in srgb, var(--ink) 26%, white 74%);
+  --font-body: var(--font-jost), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 10px 30px rgba(15, 22, 28, 0.08);
+  --shadow-card: 0 18px 45px rgba(15, 22, 28, 0.14);
+
+  --container-max: 80rem;
+  --container-wide-max: 96rem;
+  --container-pad: 1rem;
+
+  --section-space: clamp(3.5rem, 7vw, 7rem);
+  --section-space-tight: clamp(2.25rem, 4.5vw, 4.5rem);
+
+  --fs-body: clamp(0.95rem, 0.2vw + 0.92rem, 1.05rem);
+  --fs-title-md: clamp(1.7rem, 4.6vw, 2.6rem);
+  --fs-title-lg: clamp(2rem, 5.6vw, 3.8rem);
+
+  --transition-base: 220ms ease;
+}
+
+@media (max-width: 374px) {
+  :root {
+    --container-pad: 0.875rem;
+  }
+}
+
+@media (min-width: 640px) {
+  :root {
+    --container-pad: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-pad: 2.5rem;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html,
 body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  min-width: 320px;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-jost), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  width: 100%;
+  overflow-x: clip;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+picture {
+  display: block;
+}
+
+img,
+video,
+canvas,
+svg,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video,
+canvas,
+iframe {
+  height: auto;
+}
+
+iframe {
+  width: 100%;
+  border: 0;
+}
+
+section,
+header,
+footer {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
+textarea {
+  resize: vertical;
 }
 
 html.lenis,
@@ -38,31 +202,25 @@ html.lenis body {
   overscroll-behavior: contain;
 }
 
-html {
-  scrollbar-width: thin;
-  scrollbar-color: #a07c57 #efe9df;
-}
-
-body::-webkit-scrollbar {
-  width: 10px;
-}
-
-body::-webkit-scrollbar-track {
-  background: #efe9df;
-}
-
-body::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #b18a60 0%, #866548 100%);
-  border-radius: 999px;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #9f7c56 0%, #785a40 100%);
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--bronze) 35%, white 65%);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 70%, white 30%);
+  outline-offset: 2px;
 }
 
 @keyframes menuDrop {
@@ -116,4 +274,194 @@ a {
 .react-datepicker-wrapper,
 .react-datepicker__input-container {
   width: 100%;
+}
+
+@layer components {
+  .site-container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-left: max(var(--container-pad), env(safe-area-inset-left));
+    padding-right: max(var(--container-pad), env(safe-area-inset-right));
+  }
+
+  .site-container > * {
+    min-width: 0;
+  }
+
+  .site-section {
+    padding-block: var(--section-space-tight);
+  }
+
+  .site-section-lg {
+    padding-block: var(--section-space);
+  }
+
+  .site-heading {
+    max-width: 42rem;
+    margin-bottom: clamp(2rem, 3vw, 2.5rem);
+  }
+
+  .site-heading--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .site-heading--left {
+    text-align: left;
+  }
+
+  .site-eyebrow {
+    color: var(--bronze);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .site-title {
+    margin-top: 1rem;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: var(--fs-title-md);
+    line-height: 1.1;
+  }
+
+  .site-copy {
+    margin-top: 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    overflow-wrap: break-word;
+  }
+
+  .site-page {
+    width: 100%;
+  }
+
+  .site-stack {
+    display: grid;
+    gap: var(--section-space-tight);
+  }
+
+  .site-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    transition:
+      background-color var(--transition-base),
+      color var(--transition-base),
+      border-color var(--transition-base),
+      box-shadow var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  .site-button--sm {
+    min-height: 2.25rem;
+    padding-inline: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .site-button--md {
+    min-height: 2.75rem;
+    padding-inline: 1.5rem;
+    font-size: 0.875rem;
+  }
+
+  .site-button--lg {
+    min-height: 3rem;
+    padding-inline: 1.75rem;
+    font-size: 1rem;
+  }
+
+  .site-button--primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .site-button--primary:hover {
+    background: #a9552b;
+  }
+
+  .site-button--outline {
+    border: 1px solid color-mix(in srgb, var(--ink) 20%, white 80%);
+    color: var(--ink);
+  }
+
+  .site-button--outline:hover {
+    border-color: color-mix(in srgb, var(--ink) 40%, white 60%);
+  }
+
+  .site-button--ghost {
+    color: var(--ink);
+  }
+
+  .site-button--ghost:hover {
+    background: color-mix(in srgb, var(--ink) 5%, transparent 95%);
+  }
+
+  .site-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: color-mix(in srgb, var(--ink) 80%, white 20%);
+    font-size: 0.875rem;
+  }
+
+  .site-field__label {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .site-field__control {
+    min-height: 2.75rem;
+    border: 1px solid color-mix(in srgb, var(--ink) 10%, white 90%);
+    border-radius: var(--radius-sm);
+    background: #fff;
+    padding: 0.75rem 1rem;
+    color: var(--ink);
+    font-size: 0.875rem;
+    transition:
+      border-color var(--transition-base),
+      box-shadow var(--transition-base);
+  }
+
+  .site-field__control::placeholder {
+    color: color-mix(in srgb, var(--ink) 40%, white 60%);
+  }
+
+  .site-field__control:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent 84%);
+  }
+
+  .site-field__control--textarea {
+    min-height: 7rem;
+    resize: vertical;
+  }
+
+  .site-scroll-x {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .site-responsive-media {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

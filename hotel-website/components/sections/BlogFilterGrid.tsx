@@ -3,8 +3,7 @@
 import { useMemo, useState } from "react";
 import Container from "../ui/Container";
 import blogFilterPosts from "../../data/blogFilterPosts";
-
-const filters = ["All Post", "Hotel", "Travel", "Luxury", "Uncategorized"];
+import { BLOG_FILTER_OPTIONS } from "../../data/sections/blogFilters";
 
 export default function BlogFilterGrid() {
   const [activeFilter, setActiveFilter] = useState<string>("All Post");
@@ -20,7 +19,7 @@ export default function BlogFilterGrid() {
     <section className="bg-[#f6f3ed] py-20 text-[#1f3c44]">
       <Container>
         <div className="flex flex-wrap justify-center gap-3">
-          {filters.map((filter) => {
+          {BLOG_FILTER_OPTIONS.map((filter) => {
             const isActive = filter === activeFilter;
             return (
               <button

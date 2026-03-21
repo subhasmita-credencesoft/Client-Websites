@@ -1,13 +1,6 @@
 import PageHero from "./PageHero";
+import { EXPERIENCES_HERO_CONFIG } from "@/data/sections/pageHeroes";
 
 export default function ExperiencesHero() {
-  return (
-    <PageHero
-      title="Experiences"
-      backgroundImage="https://bookonelocal.in/cdn/Copy of IMG_3980.avif"
-      subtitle="Here&apos;s where memories are truly made."
-      breadcrumb="Home / Experiences"
-      minHeightClassName="min-h-screen"
-    />
-  );
+  return <PageHero {...EXPERIENCES_HERO_CONFIG} />;
 }

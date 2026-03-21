@@ -6,119 +6,140 @@ import { useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
+import {
+  WELLNESS_HERO_HOVER_DELAY_MS,
+  WELLNESS_HERO_SLIDES,
+} from "@/data/sections/wellnessHero";
 
-const slides = [
-  {
-    id: "refresh",
-    label: "Conference",
-    headline: "Inspiring spaces for meetings & corporate events",
-    image: "https://bookonelocal.in/cdn/Copy of IMG_2912.avif",
-    href: "https://www.google.co.in/maps/@18.8172029,73.3043333,3a,90y,29.8h,79.33t/data=!3m6!1e1!3m4!1skETcL7QTVdIAAAQvxYhZaw!2e0!7i13312!8i6656!6m1!1e1?shorturl=1",
-  },
-  {
-    id: "relax",
-    label: "Picnic",
-    headline: "Enjoy peaceful outdoor picnics in scenic surroundings",
-    image: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
-    href: "https://www.google.co.in/maps/@18.8171575,73.3046448,3a,90y,119.21h,85.89t/data=!3m8!1e1!3m6!1s2c65xsf3YxUAAAQvxYn66g!2e0!3e2!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D4.109999999999999%26panoid%3D2c65xsf3YxUAAAQvxYn66g%26yaw%3D119.21!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MDMxNS4wIKXMDSoASAFQAw%3D%3D",
-  },
-  {
-    id: "renew",
-    label: "Virtual Tour",
-    headline: "Explore our resort from the comfort of your home",
-    image: "https://bookonelocal.in/cdn/Copy of IMG_1441.avif",
-    href: "https://www.google.co.in/maps/@18.8171712,73.3046889,3a,75y,204.45h,83.59t/data=!3m6!1e1!3m4!1sXJbldbTZ-54AAAQvxYVCgA!2e0!7i13312!8i6656!6m1!1e1?shorturl=1",
-  },
-];
-
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function WellnessHero() {
-  const [activeId, setActiveId] = useState(slides[0].id);
-  const router = useRouter();
-
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const mediaRef = useRef<HTMLDivElement | null>(null);
-  const contentRef = useRef<HTMLDivElement | null>(null);
+  const [activeId, setActiveId] = useState(WELLNESS_HERO_SLIDES[0].id);
+  const router                    = useRouter();
+  const sectionRef                = useRef<HTMLElement | null>(null);
+  const mediaRef                  = useRef<HTMLDivElement | null>(null);
+  const contentRef                = useRef<HTMLDivElement | null>(null);
+  const introAnimatedRef          = useRef(false);
+  const hoverTimerRef             = useRef<number | null>(null);
 
   const active = useMemo(
-    () => slides.find((slide) => slide.id === activeId) ?? slides[0],
+    () => WELLNESS_HERO_SLIDES.find((s) => s.id === activeId) ?? WELLNESS_HERO_SLIDES[0],
     [activeId],
   );
 
+  /* ─── one-time entrance + scroll parallax ─────────────────── */
   useEffect(() => {
-    const mm = gsap.matchMedia();
+    const raf = requestAnimationFrame(() => {
+      if (introAnimatedRef.current) return;
+      introAnimatedRef.current = true;
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const ctx = gsap.context(() => {
-        gsap.fromTo(
-          ".wellness-eyebrow",
-          { y: 14, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const ctx = gsap.context(() => {
+
+          /* entrance — all elements start together, staggered tightly */
+          const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+          tl.fromTo(
+              ".wellness-eyebrow",
+              { y: 12, autoAlpha: 0 },
+              { y: 0, autoAlpha: 1, duration: 0.5 },
+              0,
+            )
+            .fromTo(
+              ".wellness-headline",
+              { yPercent: 105, autoAlpha: 0 },   // ← no blur: kills perf on mobile
+              { yPercent: 0, autoAlpha: 1, duration: 0.72, ease: "power4.out" },
+              0.06,
+            )
+            .fromTo(
+              ".wellness-tab",
+              { y: 14, autoAlpha: 0 },
+              { y: 0, autoAlpha: 1, duration: 0.6, stagger: 0.06 },
+              0.1,
+            )
+            .fromTo(
+              mediaRef.current,
+              { scale: 1.08 },
+              { scale: 1.02, duration: 1.2, ease: "power2.out" },
+              0,
+            )
+            .call(() => ScrollTrigger.refresh());  // ← accurate parallax after intro
+
+          /* scroll parallax */
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.65,
+              invalidateOnRefresh: true,
+            },
+          })
+            .to(mediaRef.current,   { yPercent: 8, scale: 1.08, ease: "none" }, 0)
+            .to(contentRef.current, { y: -42, autoAlpha: 0.68,   ease: "none" }, 0)
+            .to(".wellness-overlay",{ opacity: 0.72,             ease: "none" }, 0);
+
+        }, sectionRef);
+
+        return () => ctx.revert();
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(
+          [".wellness-eyebrow", ".wellness-headline", ".wellness-tab", mediaRef.current],
+          { clearProps: "all" },
         );
+        ScrollTrigger.refresh();
+      });
 
-        gsap.fromTo(
-          ".wellness-headline",
-          { yPercent: 105, autoAlpha: 0, filter: "blur(10px)" },
-          {
-            yPercent: 0,
-            autoAlpha: 1,
-            filter: "blur(0px)",
-            duration: 1,
-            ease: "power4.out",
-            delay: 0.08,
-          },
-        );
-
-        gsap.fromTo(
-          ".wellness-tab",
-          { y: 16, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.75, ease: "power3.out", stagger: 0.08, delay: 0.14 },
-        );
-
-        gsap.fromTo(mediaRef.current, { scale: 1.1 }, { scale: 1.03, duration: 1.4, ease: "power2.out" });
-
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        })
-          .to(mediaRef.current, { yPercent: 8, scale: 1.1, ease: "none" }, 0)
-          .to(contentRef.current, { y: -70, autoAlpha: 0.62, ease: "none" }, 0)
-          .to(".wellness-overlay", { opacity: 0.72, ease: "none" }, 0);
-      }, sectionRef);
-
-      return () => ctx.revert();
+      return () => mm.revert();
     });
 
-    return () => mm.revert();
+    return () => cancelAnimationFrame(raf);
   }, []);
 
+  /* ─── tab-switch transition (fires on activeId change) ─────── */
   useEffect(() => {
+    if (!introAnimatedRef.current) return; // skip during first paint
+
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // headline clip-reveal instead of blur — fast, GPU-composited
       gsap.fromTo(
         ".wellness-headline",
-        { y: 14, autoAlpha: 0, filter: "blur(6px)" },
-        { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.55, ease: "power3.out", overwrite: "auto" },
+        { yPercent: 40, autoAlpha: 0 },
+        { yPercent: 0, autoAlpha: 1, duration: 0.42, ease: "power3.out", overwrite: "auto" },
       );
-
       gsap.fromTo(
         mediaRef.current,
-        { scale: 1.08 },
-        { scale: 1.03, duration: 0.85, ease: "power2.out", overwrite: "auto" },
+        { scale: 1.06 },
+        { scale: 1.02, duration: 0.7, ease: "power2.out", overwrite: "auto" },
       );
     });
 
     return () => mm.revert();
   }, [activeId]);
 
+  useEffect(() => {
+    return () => {
+      if (hoverTimerRef.current) {
+        window.clearTimeout(hoverTimerRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section ref={sectionRef} data-no-global-gsap className="relative min-h-[80svh] overflow-hidden text-white sm:min-h-[90svh] lg:min-h-screen">
+    <section
+      ref={sectionRef}
+      data-no-global-gsap
+      className="relative min-h-[80svh] overflow-hidden text-white sm:min-h-[90svh] lg:min-h-screen"
+    >
+      {/* ── media layer ── */}
       <div ref={mediaRef} className="absolute inset-0 will-change-transform">
         <Image
           src={active.image}
@@ -126,30 +147,58 @@ export default function WellnessHero() {
           fill
           sizes="100vw"
           quality={75}
-          loading="lazy"
-          className="object-cover transition-opacity duration-500"
+          loading="eager"
+          fetchPriority="high"
+          priority
+          className="object-cover transition-opacity duration-[380ms]"
         />
       </div>
+
+      {/* ── overlay ── */}
       <div className="wellness-overlay absolute inset-0 bg-black/50" />
+
+      {/* ── content ── */}
       <Container className="relative flex min-h-[80svh] flex-col justify-center pb-12 pt-28 sm:min-h-[90svh] sm:pb-16 sm:pt-36 md:pt-44 lg:min-h-screen lg:pb-20 lg:pt-52">
         <div ref={contentRef}>
+
           <div className="wellness-eyebrow flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.2em] text-white/80 sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
             <span>Experiences That Elevate Your Getaway</span>
           </div>
+
+          {/* fixed-height headline box prevents layout shift on tab switch */}
           <div className="relative mt-6 h-[9.2rem] overflow-hidden sm:mt-8 sm:h-[10.8rem] md:h-[12.8rem] lg:h-[13.6rem]">
             <h2 className="wellness-headline absolute inset-0 max-w-xl whitespace-pre-line font-serif text-3xl leading-tight sm:max-w-2xl sm:text-4xl md:text-6xl">
               {active.headline}
             </h2>
           </div>
+
+          {/* tabs */}
           <div className="mt-10 grid gap-4 sm:mt-12 sm:gap-5 md:mt-16 md:grid-cols-3 md:gap-6 md:[grid-auto-rows:1fr]">
-            {slides.map((slide, index) => {
+            {WELLNESS_HERO_SLIDES.map((slide, index) => {
               const isActive = slide.id === activeId;
               return (
                 <button
                   key={slide.id}
                   type="button"
-                  onMouseEnter={() => setActiveId(slide.id)}
+                  onMouseEnter={() => {
+                    if (hoverTimerRef.current) {
+                      window.clearTimeout(hoverTimerRef.current);
+                    }
+                    hoverTimerRef.current = window.setTimeout(() => {
+                      setActiveId((prev) => (prev === slide.id ? prev : slide.id));
+                    }, Math.min(WELLNESS_HERO_HOVER_DELAY_MS, 260));
+                  }}
+                  onMouseLeave={() => {
+                    if (hoverTimerRef.current) {
+                      window.clearTimeout(hoverTimerRef.current);
+                      hoverTimerRef.current = null;
+                    }
+                  }}
                   onClick={() => {
+                    if (hoverTimerRef.current) {
+                      window.clearTimeout(hoverTimerRef.current);
+                      hoverTimerRef.current = null;
+                    }
                     setActiveId(slide.id);
                     if (!slide.href) return;
                     if (slide.href.startsWith("http")) {
@@ -158,7 +207,7 @@ export default function WellnessHero() {
                     }
                     router.push(slide.href);
                   }}
-                  className={`wellness-tab group flex h-full min-h-[4.8rem] items-center gap-3 border-t border-white/30 pt-4 text-left transition sm:gap-4 sm:pt-5 md:pt-6 ${
+                  className={`wellness-tab group flex h-full min-h-[4.8rem] items-center gap-3 border-t border-white/30 pt-4 text-left transition-colors duration-500 sm:gap-4 sm:pt-5 md:pt-6 ${
                     isActive ? "text-white" : "text-white/50 hover:text-white"
                   }`}
                 >
@@ -170,6 +219,7 @@ export default function WellnessHero() {
               );
             })}
           </div>
+
         </div>
       </Container>
     </section>

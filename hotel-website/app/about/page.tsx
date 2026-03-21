@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import AboutHero from "../../components/sections/AboutHero";
 import WelcomeSection from "../../components/sections/WelcomeSection";
-import PropertyDetailsPanel from "../../components/sections/PropertyDetailsPanel";
+import { createPageMetadata } from "../../lib/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "About",
+  description:
+    "Learn more about UK's Resort, its hospitality story, and the experiences that define each stay in Khopoli.",
+  path: "/about",
+  image: "https://bookonelocal.in/cdn/3.png",
+});
 
 const ResortIntro = dynamic(() => import("../../components/sections/ResortIntro"), {
   loading: () => <section className="min-h-[65vh] bg-white" aria-hidden="true" />,

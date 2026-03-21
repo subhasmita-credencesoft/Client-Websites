@@ -1,37 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Container from "../ui/Container";
-
-const testimonials = [
-  {
-    id: "review-1",
-    quote:
-      "Thank you for a truly amazing stay! Your hospitality is quite outstanding. The sports centre is also very good with excellent quality tennis courts. Hope to be back soon.",
-    name: "Annie Hebert",
-    source: "Review from TripAdvisor",
-    avatar: "/images/room_1.jpg",
-  },
-  {
-    id: "review-2",
-    quote:
-      "We arrived early and we couldn't check but were exhausted. As soon as a room was cleaned and ready we were checked in at 10:30 not 3pm. This was extremely good.",
-    name: "Conie Corleone",
-    source: "Review from TripAdvisor",
-    avatar: "/images/room_2.jpg",
-  },
-];
+import { CONTACT_TESTIMONIALS } from "../../data/sections/contactTestimonials";
 
 export default function ContactTestimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const active = testimonials[activeIndex];
+  const active = CONTACT_TESTIMONIALS[activeIndex];
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setActiveIndex((prev) => (prev - 1 + CONTACT_TESTIMONIALS.length) % CONTACT_TESTIMONIALS.length);
   };
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    setActiveIndex((prev) => (prev + 1) % CONTACT_TESTIMONIALS.length);
   };
 
   return (
@@ -47,9 +30,12 @@ export default function ContactTestimonials() {
           </p>
 
           <div className="mt-8 flex items-center justify-center gap-4 border-t border-[#1f3c44]/15 pt-6">
-            <img
+            <Image
               src={active.avatar}
               alt={active.name}
+              width={48}
+              height={48}
+              unoptimized
               className="h-12 w-12 rounded-full object-cover"
             />
             <div className="text-left">

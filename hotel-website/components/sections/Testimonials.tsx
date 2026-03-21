@@ -4,28 +4,28 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
-import testimonials from "../../data/testimonials";
-
-const REVIEW_SCORE = 4.9;
-const REVIEW_COUNT = 1859;
+import useSafeInterval from "@/hooks/useSafeInterval";
+import {
+  TESTIMONIALS,
+  TESTIMONIALS_REVIEW_COUNT,
+  TESTIMONIALS_REVIEW_SCORE,
+  TESTIMONIALS_VIDEO_URL,
+} from "@/data/sections/testimonials";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
-  const total = testimonials.length;
-  const current = testimonials[index % total];
+  const total = TESTIMONIALS.length;
+  const current = TESTIMONIALS[index % total];
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const next = () => setIndex((prev) => (prev + 1) % total);
   const prev = () => setIndex((prev) => (prev - 1 + total) % total);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % total);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [total]);
+  useSafeInterval(() => {
+    setIndex((prev) => (prev + 1) % total);
+  }, 5000, total > 0);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
@@ -47,8 +47,8 @@ export default function Testimonials() {
         )
           .fromTo(
             ".testimonials-title-line",
-            { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
-            { yPercent: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.95, stagger: 0.08, ease: "power4.out" },
+            { yPercent: 110, autoAlpha: 0 },
+            { yPercent: 0, autoAlpha: 1, duration: 0.82, stagger: 0.08, ease: "power4.out" },
             "<+0.06",
           )
           .fromTo(
@@ -81,8 +81,8 @@ export default function Testimonials() {
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       gsap.fromTo(
         ".testimonials-quote",
-        { y: 14, autoAlpha: 0, filter: "blur(4px)" },
-        { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.55, ease: "power3.out", overwrite: "auto" },
+        { y: 14, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.46, ease: "power3.out", overwrite: "auto" },
       );
       gsap.fromTo(
         ".testimonials-author",
@@ -138,7 +138,7 @@ export default function Testimonials() {
             {/* Score block — shrink-0 so it never collapses */}
             <div className="mb-5 shrink-0 border-b border-[#1f3c44]/10 pb-5 sm:mb-6 sm:pb-6">
               <p className="font-serif text-[3.5rem] leading-none text-[#102f4d] sm:text-[4.3rem]">
-                {REVIEW_SCORE.toFixed(1)}
+                {TESTIMONIALS_REVIEW_SCORE.toFixed(1)}
               </p>
               <div className="mt-2 flex items-center gap-2.5">
                 <div className="flex items-center gap-1 text-[#e39b52]">
@@ -146,7 +146,7 @@ export default function Testimonials() {
                     <span key={star} className="text-xl leading-none">★</span>
                   ))}
                 </div>
-                <p className="text-[1rem] text-[#102f4d]/80">{REVIEW_COUNT.toLocaleString("en-IN")} reviews</p>
+                <p className="text-[1rem] text-[#102f4d]/80">{TESTIMONIALS_REVIEW_COUNT.toLocaleString("en-IN")} reviews</p>
               </div>
               <p className="mt-2 text-[1.05rem] font-semibold text-[#102f4d]/28">Tripadvisor</p>
             </div>
@@ -202,8 +202,9 @@ export default function Testimonials() {
           {/* RIGHT — YouTube Video Card */}
           <div className="testimonials-video relative h-full overflow-hidden rounded-3xl shadow-sm">
             <iframe
-              src="https://www.youtube.com/embed/u3hTCT2CIFw?rel=0&modestbranding=1"
+              src={TESTIMONIALS_VIDEO_URL}
               title="Resort Video"
+              loading="eager"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="absolute inset-0 h-full w-full"

@@ -1,11 +1,6 @@
 import PageHero from "./PageHero";
+import { ROOMS_HERO_CONFIG } from "@/data/sections/pageHeroes";
 
 export default function RoomsHero() {
-  return (
-    <PageHero
-      title="Rooms & Suites"
-      backgroundImage="https://bookonelocal.in/cdn/3.avif"
-      breadcrumb="Home / Rooms & Suites"
-    />
-  );
+  return <PageHero {...ROOMS_HERO_CONFIG} />;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
@@ -14,6 +14,7 @@ const HeroBookingBar = dynamic(() => import("../features/HeroBookingBar"), {
 });
 
 const HERO_VIDEO_SRC = "https://bookonelocal.in/cdn/UK%27s+Resort-Hero-Video.mp4";
+const HERO_FALLBACK_IMAGE = "https://bookonelocal.in/cdn/3.png";
 // const HERO_TAGLINE = "Experience elegant and comfortable rooms designed for a relaxing stay at UK Resort.";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,8 +22,38 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Hero() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
-  const overlayRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [shouldRenderVideo, setShouldRenderVideo] = useState(false);
+  const [videoPreload, setVideoPreload] = useState<"none" | "metadata">("none");
+
+  useEffect(() => {
+    const nav = navigator as Navigator & {
+      deviceMemory?: number;
+      connection?: { saveData?: boolean; effectiveType?: string };
+    };
+    const isLowPower = (nav.deviceMemory ?? 8) <= 4 || navigator.hardwareConcurrency <= 4;
+    const saveData = Boolean(nav.connection?.saveData);
+    const lowBandwidth = ["slow-2g", "2g", "3g"].includes(nav.connection?.effectiveType ?? "");
+    const allowVideo = !(saveData || lowBandwidth || isLowPower);
+
+    if (!allowVideo) {
+      setShouldRenderVideo(false);
+      return;
+    }
+
+    const startVideo = () => {
+      setVideoPreload("metadata");
+      setShouldRenderVideo(true);
+    };
+
+    if ("requestIdleCallback" in window) {
+      const idleId = window.requestIdleCallback(() => startVideo(), { timeout: 1200 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    const timerId = globalThis.setTimeout(startVideo, 350);
+    return () => globalThis.clearTimeout(timerId);
+  }, []);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -61,13 +92,12 @@ export default function Hero() {
               trigger: sectionRef.current,
               start: "top top",
               end: "bottom top",
-              scrub: 1.1,
+              scrub: 0.65,
               invalidateOnRefresh: true,
             },
           })
           .to(heroMedia, { yPercent: 10, scale: 1.05, ease: "none" }, 0)
-          .to(contentRef.current, { y: -70, autoAlpha: 0.55, ease: "none" }, 0)
-          .to(overlayRef.current, { opacity: 0.85, ease: "none" }, 0);
+          .to(contentRef.current, { y: -48, autoAlpha: 0.62, ease: "none" }, 0);
       }, sectionRef);
 
       return () => ctx.revert();
@@ -82,38 +112,38 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
+    if (!shouldRenderVideo) return;
     const videoEl = videoRef.current;
     if (!videoEl) return;
+    videoEl.load();
     videoEl.play().catch(() => undefined);
-  }, []);
+  }, [shouldRenderVideo]);
 
   return (
     <section
       ref={sectionRef}
       data-no-global-gsap
-      className="relative min-h-[100svh] overflow-hidden bg-[#0f1216] text-white"
+      className="relative min-h-[100svh] overflow-hidden text-white"
     >
       <div className="hero-media absolute inset-0 isolate will-change-transform">
-        <video
-          ref={videoRef}
-          className="hero-video absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2"
-          src={HERO_VIDEO_SRC}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url("${HERO_FALLBACK_IMAGE}")` }}
+          aria-hidden="true"
         />
+        {shouldRenderVideo && (
+          <video
+            ref={videoRef}
+            className="hero-video absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2"
+            src={HERO_VIDEO_SRC}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload={videoPreload}
+          />
+        )}
       </div>
-
-      <div
-        ref={overlayRef}
-        className="pointer-events-none absolute inset-0 z-[2]"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0.68) 100%)",
-        }}
-      />
 
       <Container className="relative z-10 flex min-h-[100svh] w-full flex-col items-center justify-center px-4 text-center sm:px-6 md:px-8">
         <div
@@ -126,15 +156,15 @@ export default function Hero() {
             </p> */}
           </div>
 
-          <div className="mt-3 space-y-0 sm:mt-5 md:mt-6">
-            {[ "UK's Resort"].map((line, i) => (
-              <div key={i} className="overflow-hidden leading-none">
-                <h1 className="hero-title-line font-serif text-[2.45rem] font-normal leading-[1.0] tracking-[-0.015em] text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)] sm:text-[3.5rem] md:text-[4.6rem] lg:text-[5.4rem] xl:text-[6rem]">
-                  {line === "UK's Resort" ? <>UK&apos;s Resort</> : line}
-                </h1>
-              </div>
-            ))}
-          </div>
+      <div className="mt-3 space-y-0 sm:mt-5 md:mt-6">
+  {["UK's Resort"].map((line, i) => (
+    <div key={i} className="overflow-hidden leading-none">
+      <h1 className="hero-title-line font-serif text-[2.45rem] font-normal leading-[1.0] tracking-[-0.015em] text-white sm:text-[3.5rem] md:text-[4.6rem] lg:text-[5.4rem] xl:text-[6rem]">
+        {line === "UK's Resort" ? <>UK&apos;s Resort</> : line}
+      </h1>
+    </div>
+  ))}
+</div>
 
           <p className="mt-3 max-w-[40rem] px-2 text-center text-[0.86rem] leading-relaxed text-white/92 drop-shadow-[0_5px_18px_rgba(0,0,0,0.45)] sm:mt-4 sm:text-[0.95rem] md:text-[1.02rem]">
             Experience elegant and comfortable rooms designed for a relaxing stay at UK Resort.

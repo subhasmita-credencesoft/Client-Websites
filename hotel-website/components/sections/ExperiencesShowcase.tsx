@@ -1,41 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-
-const slides = [
-  {
-    id: "001",
-    title: "Seasonal Experiences",
-    image: "https://bookonelocal.in/cdn/Copy of IMG_1478.jpg",
-  },
-  {
-    id: "002",
-    title: "Signature Experiences",
-    image: "https://bookonelocal.in/cdn/Copy of IMG_3968.avif",
-  },
-  {
-    id: "003",
-    title: "Good Life Experiences",
-    image: "https://bookonelocal.in/cdn/Copy+of+IMG_4035.JPG",
-  },
-];
+import { EXPERIENCES_SHOWCASE_SLIDES } from "../../data/sections/experiencesShowcase";
+import useSafeInterval from "@/hooks/useSafeInterval";
 
 export default function ExperiencesShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % slides.length);
-    }, 4600);
-    return () => window.clearInterval(timer);
-  }, []);
+  useSafeInterval(() => {
+    setActiveIndex((prev) => (prev + 1) % EXPERIENCES_SHOWCASE_SLIDES.length);
+  }, 4600, EXPERIENCES_SHOWCASE_SLIDES.length > 0);
 
   return (
     <section className="bg-[#f3f2ee] px-3 py-10 sm:px-6 sm:py-14">
       <div className="mx-auto w-full max-w-[1900px]">
         <div className="relative h-[27rem] overflow-hidden rounded-[18px] bg-black sm:h-[36rem] lg:h-[49rem]">
-          {slides.map((slide, index) => (
+          {EXPERIENCES_SHOWCASE_SLIDES.map((slide, index) => (
             <div
               key={slide.id}
               className={`absolute inset-0 transition-opacity duration-[1100ms] ease-out ${
@@ -59,7 +40,7 @@ export default function ExperiencesShowcase() {
 
           <div className="absolute inset-x-0 bottom-0 z-20 p-4 sm:p-6 lg:p-10">
             <div className="grid gap-3 sm:grid-cols-3 sm:gap-6">
-              {slides.map((slide, index) => {
+              {EXPERIENCES_SHOWCASE_SLIDES.map((slide, index) => {
                 const active = index === activeIndex;
                 return (
                   <button

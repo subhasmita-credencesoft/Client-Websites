@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
@@ -52,15 +52,12 @@ const diningItems = [
   },
 ];
 
-// ✅ FIX 2: Removed conflicting `declare module "gsap/ScrollTrigger"` block.
-// GSAP v3.11+ ships its own types — no manual declaration needed.
+// âœ… FIX 2: Removed conflicting `declare module "gsap/ScrollTrigger"` block.
+// GSAP v3.11+ ships its own types â€” no manual declaration needed.
 gsap.registerPlugin(ScrollTrigger);
 
 export default function DiningShowcase() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const pinRef = useRef<HTMLDivElement | null>(null);
-  const viewportRef = useRef<HTMLDivElement | null>(null);
-  const trackRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
@@ -111,53 +108,9 @@ export default function DiningShowcase() {
   useEffect(() => {
     const mm = gsap.matchMedia();
 
-    mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
-      const pin = pinRef.current;
-      const viewport = viewportRef.current;
-      const track = trackRef.current;
-      if (!pin || !viewport || !track) return;
-      let resizeObserver: ResizeObserver | null = null;
-
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
       const ctx = gsap.context(() => {
         const cards = gsap.utils.toArray<HTMLElement>(".dining-card");
-        const getDistance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
-        const getEndValue = () => {
-          const distance = getDistance();
-          return `+=${Math.max(1, distance)}`;
-        };
-
-        gsap.set(track, { x: 0 });
-
-        if (getDistance() < 24) {
-          gsap.fromTo(
-            cards,
-            { y: 20, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out", stagger: 0.08 },
-          );
-          return;
-        }
-
-        const horizontalTween = gsap.to(track, {
-          x: () => -getDistance(),
-          ease: "none",
-          scrollTrigger: {
-            trigger: pin,
-            start: "top top",
-            end: getEndValue,
-            pin,
-            scrub: 0.9,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            snap: {
-              snapTo: (value: number) => {
-                const steps = Math.max(1, diningItems.length - 1);
-                return Math.round(value * steps) / steps;
-              },
-              duration: { min: 0.1, max: 0.32 },
-              ease: "power2.out",
-            },
-          },
-        });
 
         gsap.fromTo(
           cards,
@@ -169,87 +122,14 @@ export default function DiningShowcase() {
             ease: "power3.out",
             stagger: 0.08,
             scrollTrigger: {
-              trigger: pin,
+              trigger: cards[0] ?? sectionRef.current,
               start: "top 75%",
               once: true,
             },
           },
         );
 
-        gsap.set(track, { willChange: "transform" });
-
-        // ✅ FIX 1: Changed yPercent from +8 to -6 so the bg image shifts UP
-        // during scroll, preventing any top gap from appearing on the cards.
-        gsap.to(".dining-card-bg", {
-          scale: 1.08,
-          yPercent: -6,
-          ease: "none",
-          scrollTrigger: {
-            trigger: pin,
-            start: "top top",
-            end: getEndValue,
-            scrub: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        gsap.utils.toArray<HTMLElement>(".dining-card").forEach((card) => {
-          const lines = card.querySelectorAll<HTMLElement>(".dining-card-line");
-          if (!lines.length) return;
-
-          gsap.set(lines, { y: 16, autoAlpha: 0, filter: "blur(4px)" });
-
-          const animateLines = (isActive: boolean) => {
-            gsap.to(lines, {
-              y: isActive ? 0 : 16,
-              autoAlpha: isActive ? 1 : 0,
-              filter: isActive ? "blur(0px)" : "blur(4px)",
-              duration: isActive ? 0.55 : 0.3,
-              ease: isActive ? "power3.out" : "power2.out",
-              stagger: isActive ? 0.08 : 0.04,
-              overwrite: "auto",
-            });
-          };
-
-          if (horizontalTween.scrollTrigger) {
-            ScrollTrigger.create({
-              trigger: card,
-              containerAnimation: horizontalTween,
-              start: "left 72%",
-              end: "right 38%",
-              onToggle: (self) => animateLines(self.isActive),
-            });
-          } else {
-            ScrollTrigger.create({
-              trigger: card,
-              start: "top 84%",
-              end: "bottom 40%",
-              onToggle: (self) => animateLines(self.isActive),
-            });
-          }
-        });
-
-        resizeObserver = new ResizeObserver(() => ScrollTrigger.refresh());
-        resizeObserver.observe(viewport);
-        resizeObserver.observe(track);
-      }, sectionRef);
-
-      ScrollTrigger.refresh();
-      return () => {
-        resizeObserver?.disconnect();
-        ctx.revert();
-      };
-    });
-
-    return () => mm.revert();
-  }, []);
-
-  useEffect(() => {
-    const mm = gsap.matchMedia();
-
-    mm.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
-      const ctx = gsap.context(() => {
-        gsap.utils.toArray<HTMLElement>(".dining-card").forEach((card) => {
+        cards.forEach((card) => {
           const lines = card.querySelectorAll<HTMLElement>(".dining-card-line");
           if (!lines.length) return;
 
@@ -279,13 +159,24 @@ export default function DiningShowcase() {
 
     return () => mm.revert();
   }, []);
-
   return (
     <section
       ref={sectionRef}
       data-no-global-gsap
       className="overflow-x-hidden bg-[#f3f2ee] pb-0 pt-12 text-[#1f3c44] sm:pt-16 lg:pt-20"
     >
+      <div className="hidden" aria-hidden="true">
+        {diningItems.map((item, index) => (
+          <img
+            key={`${item.title}-preload`}
+            src={item.image}
+            alt=""
+            loading={index < 2 ? "eager" : "lazy"}
+            fetchPriority={index < 2 ? "high" : "auto"}
+            decoding="async"
+          />
+        ))}
+      </div>
       <Container>
         <div className="grid gap-7 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           <div>
@@ -324,22 +215,16 @@ export default function DiningShowcase() {
         </div>
       </Container>
 
-      <div ref={pinRef} className="relative mt-10 sm:mt-12">
-        <div
-          ref={viewportRef}
-          className="dining-scroll-wrap w-screen overflow-x-auto pb-3 lg:overflow-hidden lg:pb-0"
-        >
-          <div
-            ref={trackRef}
-            className="dining-card-track flex min-w-max snap-x snap-mandatory gap-4 sm:gap-5 lg:gap-6"
-          >
+      <div className="relative mt-10 sm:mt-12">
+        <div className="dining-scroll-wrap w-full overflow-x-auto pb-3 lg:pb-0">
+          <div className="dining-card-track flex min-w-max snap-x snap-mandatory gap-4 sm:gap-5 lg:gap-6">
             {diningItems.map((item) => (
               <article
                 key={item.title}
-                className="dining-card group relative h-[31rem] w-[19.5rem] shrink-0 snap-start overflow-hidden rounded-[14px] bg-black sm:h-[34rem] sm:w-[22rem] lg:h-[80vh] lg:min-h-[620px] lg:w-[calc((100vw-1.5rem)/2)] lg:rounded-none"
+                className="dining-card group relative h-[31rem] w-[19.5rem] shrink-0 snap-start overflow-hidden rounded-[14px] bg-black sm:h-[34rem] sm:w-[22rem] lg:h-[80vh] lg:min-h-[620px] lg:w-[min(44vw,42rem)] lg:rounded-none"
               >
                 {/*
-                  ✅ FIX 1 (CSS side): Extra vertical size (-top-[8%] / -bottom-[8%])
+                  âœ… FIX 1 (CSS side): Extra vertical size (-top-[8%] / -bottom-[8%])
                   gives the background image headroom so it never runs out of
                   pixels at the top when yPercent nudges it upward during scroll.
                 */}
@@ -404,3 +289,4 @@ export default function DiningShowcase() {
     </section>
   );
 }
+

@@ -5,11 +5,27 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePropertyData } from "../providers/PropertyDataProvider";
 import Container from "../ui/Container";
-
-type TariffRow = {
-  name: string;
-  value: string;
-};
+import {
+  TARIFF_CHECKIN_LABEL,
+  TARIFF_CHECKIN_TIME,
+  TARIFF_CHECKOUT_LABEL,
+  TARIFF_CHECKOUT_TIME,
+  TARIFF_DAY_PICNIC_DETAILS,
+  TARIFF_DAY_PICNIC_FOOTNOTE,
+  TARIFF_DAY_PICNIC_HIGHLIGHT,
+  TARIFF_DAY_PICNIC_TITLE,
+  TARIFF_FALLBACK_ROWS,
+  TARIFF_GROUP_PACKAGE_ALL_DAYS_HEADER,
+  TARIFF_GROUP_PACKAGE_OCCUPANCY_HEADER,
+  TARIFF_GROUP_PACKAGE_ROWS,
+  TARIFF_GROUP_PACKAGE_TITLE_LINES,
+  TARIFF_INTRO_TEXT,
+  TARIFF_LOADING_TEXT,
+  TARIFF_MAIN_TABLE_PLAN_HEADER,
+  TARIFF_MAIN_TABLE_ROOM_TYPE_HEADER,
+  TARIFF_MAIN_TABLE_TITLE,
+  type TariffRow,
+} from "@/data/sections/tariffInfo";
 
 function formatPrice(price?: number | null, currency = "INR") {
   if (typeof price !== "number" || Number.isNaN(price)) return null;
@@ -80,20 +96,10 @@ export default function TariffInfo() {
       return rows;
     }
 
-    return [
-      {
-        name: "Deluxe",
-        value: `Rs. 3950 + ${gstPercent} % GST on Double Occupancy with Breakfast`,
-      },
-      {
-        name: "Super Deluxe",
-        value: `Rs. 4950 + ${gstPercent} % GST on Double Occupancy with Breakfast`,
-      },
-      {
-        name: "Extra Person (Above 5 years)",
-        value: `Rs. 1400 + ${gstPercent} % GST with Extra Mattress & Breakfast`,
-      },
-    ];
+    return TARIFF_FALLBACK_ROWS.map((row) => ({
+      ...row,
+      value: row.value.replace("{gst}", String(gstPercent)),
+    }));
   }, [property?.localCurrency, property?.minimumRoomPrice, property?.minimumRoooPrice, property?.roomList, gstPercent]);
 
   useEffect(() => {
@@ -167,11 +173,11 @@ export default function TariffInfo() {
       <Container>
         <div className="mx-auto max-w-6xl">
           <p className="tariff-intro text-[0.95rem] leading-relaxed text-[#1f3c44]/80 sm:text-[1rem]">
-            Tariff as follows (Taxes as per Govt Regulations)
+            {TARIFF_INTRO_TEXT}
           </p>
-          {isLoading && <p className="tariff-intro mt-3 text-[0.9rem] text-[#1f3c44]/70">Loading latest tariff details...</p>}
+          {isLoading && <p className="tariff-intro mt-3 text-[0.9rem] text-[#1f3c44]/70">{TARIFF_LOADING_TEXT}</p>}
           <p className="tariff-intro mt-4 text-[1rem] leading-relaxed text-[#1f3c44]/85 sm:text-[1.03rem]">
-            Check in Time: <span className="font-semibold">12:00 Noon</span> Check Out Time: <span className="font-semibold">11:00 AM</span>
+            {TARIFF_CHECKIN_LABEL} <span className="font-semibold">{TARIFF_CHECKIN_TIME}</span> {TARIFF_CHECKOUT_LABEL} <span className="font-semibold">{TARIFF_CHECKOUT_TIME}</span>
           </p>
 
           <div className="tariff-table-wrap mt-10 overflow-x-auto rounded-sm border border-[#1f3c44]/10">
@@ -179,12 +185,12 @@ export default function TariffInfo() {
               <thead>
                 <tr className="bg-[#8e9792] text-white">
                   <th colSpan={2} className="px-4 py-4 text-center font-serif text-2xl sm:text-3xl">
-                    Tariff for Double Occupancy
+                    {TARIFF_MAIN_TABLE_TITLE}
                   </th>
                 </tr>
                 <tr className="bg-[#8e9792] text-white">
-                  <th className="w-1/2 border-t border-white/35 px-4 py-3 text-center text-[1rem] font-medium sm:text-[1.06rem]">Room Type</th>
-                  <th className="w-1/2 border-t border-white/35 px-4 py-3 text-center text-[1rem] font-medium sm:text-[1.06rem]">CP Plan (Room Rate + Break Fast)</th>
+                  <th className="w-1/2 border-t border-white/35 px-4 py-3 text-center text-[1rem] font-medium sm:text-[1.06rem]">{TARIFF_MAIN_TABLE_ROOM_TYPE_HEADER}</th>
+                  <th className="w-1/2 border-t border-white/35 px-4 py-3 text-center text-[1rem] font-medium sm:text-[1.06rem]">{TARIFF_MAIN_TABLE_PLAN_HEADER}</th>
                 </tr>
               </thead>
               <tbody className="text-white">
@@ -203,51 +209,41 @@ export default function TariffInfo() {
               <thead>
                 <tr className="bg-[#8e9792] text-white">
                   <th colSpan={2} className="px-4 py-4 text-center font-serif text-xl leading-snug sm:text-2xl md:text-3xl">
-                    Package for Over Night Picnic for Groups (MINIMUM 20 PAX)
+                    {TARIFF_GROUP_PACKAGE_TITLE_LINES[0]}
                     <br />
-                    (Per Person Per Night with all Meals)
+                    {TARIFF_GROUP_PACKAGE_TITLE_LINES[1]}
                     <br />
-                    Includes 01 Lunch, 01 Hi Tea, 01 Dinner &amp; 01 Breakfast.
+                    {TARIFF_GROUP_PACKAGE_TITLE_LINES[2]}
                   </th>
                 </tr>
                 <tr className="bg-[#8e9792] text-white">
-                  <th className="w-1/2 border-t border-white/35 px-4 py-3 text-center text-[1rem] font-medium sm:text-[1.06rem]">Occupancy</th>
-                  <th className="w-1/2 border-t border-white/35 px-4 py-3 text-center text-[1rem] font-medium sm:text-[1.06rem]">All Days</th>
+                  <th className="w-1/2 border-t border-white/35 px-4 py-3 text-center text-[1rem] font-medium sm:text-[1.06rem]">{TARIFF_GROUP_PACKAGE_OCCUPANCY_HEADER}</th>
+                  <th className="w-1/2 border-t border-white/35 px-4 py-3 text-center text-[1rem] font-medium sm:text-[1.06rem]">{TARIFF_GROUP_PACKAGE_ALL_DAYS_HEADER}</th>
                 </tr>
               </thead>
               <tbody className="text-white">
-                <tr className="tariff-row bg-[#8e9792]">
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] font-semibold sm:text-[1.02rem]">Double Occupancy</td>
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] sm:text-[1.02rem]">Rs. 2750 + 18 % GST</td>
-                </tr>
-                <tr className="tariff-row bg-[#8e9792]">
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] font-semibold sm:text-[1.02rem]">Triple Occupancy</td>
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] sm:text-[1.02rem]">Rs. 2550 + 18 % GST</td>
-                </tr>
-                <tr className="tariff-row bg-[#8e9792]">
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] font-semibold sm:text-[1.02rem]">Quadriple Occupancy</td>
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] sm:text-[1.02rem]">Rs. 2350 + 18 % GST</td>
-                </tr>
-                <tr className="tariff-row bg-[#8e9792]">
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] font-semibold sm:text-[1.02rem]">Five Sharing Occupancy</td>
-                  <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] sm:text-[1.02rem]">Rs. 2250 + 18 % GST</td>
-                </tr>
+                {TARIFF_GROUP_PACKAGE_ROWS.map((row) => (
+                  <tr key={row.name} className="tariff-row bg-[#8e9792]">
+                    <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] font-semibold sm:text-[1.02rem]">{row.name}</td>
+                    <td className="border-t border-white/35 px-4 py-3 text-center text-[0.98rem] sm:text-[1.02rem]">{row.value}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
 
           <div className="mt-14 max-w-5xl">
-            <h3 className="tariff-detail font-serif text-3xl text-[#1f3c44] sm:text-4xl">Tariff for One Day Picnic</h3>
+            <h3 className="tariff-detail font-serif text-3xl text-[#1f3c44] sm:text-4xl">{TARIFF_DAY_PICNIC_TITLE}</h3>
             <p className="tariff-detail mt-6 text-[1rem] font-semibold leading-relaxed text-[#1f3c44] sm:text-[1.06rem]">
-              TARIFF DAY PICNIC FOR GROUPS (MINIMUM 20 PAX) RATE Rs. 1099 PER PERSON + 18 % GST Rates as follows Per Person:
+              {TARIFF_DAY_PICNIC_HIGHLIGHT}
             </p>
             <p className="tariff-detail mt-3 text-[0.96rem] leading-[1.75] text-[#1f3c44]/85 sm:text-[1rem]">
-              (Package Per Person Per Night include 01 Lunch, 01 Hi Tea, 01 Dinner &amp; 01 Break Fast, Entry to Big Water Park, Rain Dance, indoor games, Outdoor Games like cricket, Football &amp; Kids Play Park)
+              {TARIFF_DAY_PICNIC_DETAILS[0]}
             </p>
             <p className="tariff-detail mt-3 text-[0.96rem] leading-[1.75] text-[#1f3c44]/85 sm:text-[1rem]">
-              BREAKFAST, IDLI SAMBHAR CHUTNEY, POHA, BREAD OMLETT, TEA+COFFIE, LUNCH, CHICKEN ROGAN JOSH, VEG KADAI, MIX VEG DRY, DAL FRY, JEERA RICE, ROTI, NAAN, PARATHA, SALAD, PAPAD, PICKLE, GULAB JAMUN, HI TEA, TEA+COFFIE WITH VEG SANDWICH. Any Dish apart from this will be charged extra.
+              {TARIFF_DAY_PICNIC_DETAILS[1]}
             </p>
-            <p className="tariff-detail mt-8 text-[0.96rem] font-medium text-[#1f3c44]/90 sm:text-[1rem]">*Except Holidays &amp; Festivals</p>
+            <p className="tariff-detail mt-8 text-[0.96rem] font-medium text-[#1f3c44]/90 sm:text-[1rem]">{TARIFF_DAY_PICNIC_FOOTNOTE}</p>
           </div>
         </div>
       </Container>

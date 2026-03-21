@@ -115,7 +115,7 @@ export default function ExperiencesExplore() {
             start: "top top",
             end: () => `+=${getDistance() + window.innerHeight * 0.25}`,
             pin,
-            scrub: 1,
+            scrub: 0.65,
             anticipatePin: 1,
             invalidateOnRefresh: true,
             snap: {
@@ -123,7 +123,7 @@ export default function ExperiencesExplore() {
                 const steps = Math.max(1, experiences.length - 1);
                 return Math.round(value * steps) / steps;
               },
-              duration: { min: 0.1, max: 0.32 },
+              duration: { min: 0.08, max: 0.24 },
               ease: "power2.out",
             },
           },
@@ -139,7 +139,7 @@ export default function ExperiencesExplore() {
             trigger: pin,
             start: "top top",
             end: () => `+=${getDistance() + window.innerHeight * 0.25}`,
-            scrub: 1,
+            scrub: 0.65,
             invalidateOnRefresh: true,
           },
         });
@@ -164,14 +164,13 @@ export default function ExperiencesExplore() {
         gsap.utils.toArray<HTMLElement>(".exp-explore-card").forEach((card) => {
           const textLines = card.querySelectorAll<HTMLElement>(".exp-card-line");
           if (!textLines.length) return;
-          gsap.set(textLines, { y: 18, autoAlpha: 0, filter: "blur(5px)" });
+          gsap.set(textLines, { y: 18, autoAlpha: 0 });
 
           const reveal = () =>
             gsap.to(textLines, {
               y: 0,
               autoAlpha: 1,
-              filter: "blur(0px)",
-              duration: 0.55,
+              duration: 0.48,
               ease: "power3.out",
               stagger: 0.08,
               overwrite: "auto",
@@ -181,8 +180,7 @@ export default function ExperiencesExplore() {
             gsap.to(textLines, {
               y: 18,
               autoAlpha: 0,
-              filter: "blur(5px)",
-              duration: 0.35,
+              duration: 0.24,
               ease: "power2.out",
               stagger: 0.04,
               overwrite: "auto",
@@ -214,7 +212,7 @@ export default function ExperiencesExplore() {
           const textLines = card.querySelectorAll<HTMLElement>(".exp-card-line");
           if (!textLines.length) return;
 
-          gsap.set(textLines, { y: 16, autoAlpha: 0, filter: "blur(4px)" });
+          gsap.set(textLines, { y: 16, autoAlpha: 0 });
 
           ScrollTrigger.create({
             trigger: card,
@@ -224,8 +222,7 @@ export default function ExperiencesExplore() {
               gsap.to(textLines, {
                 y: self.isActive ? 0 : 16,
                 autoAlpha: self.isActive ? 1 : 0,
-                filter: self.isActive ? "blur(0px)" : "blur(4px)",
-                duration: self.isActive ? 0.55 : 0.3,
+                duration: self.isActive ? 0.48 : 0.24,
                 ease: self.isActive ? "power3.out" : "power2.out",
                 stagger: self.isActive ? 0.08 : 0.04,
                 overwrite: "auto",
@@ -326,9 +323,10 @@ export default function ExperiencesExplore() {
         }
         @media (max-width: 1023px) {
           .experience-full-bleed {
-            width: calc(100% + 5rem);
-            margin-left: -2.5rem;
-            margin-right: -2.5rem;
+            width: 100vw;
+            max-width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
             padding-left: 2.5rem;
             padding-right: 2.5rem;
           }
@@ -338,7 +336,7 @@ export default function ExperiencesExplore() {
         }
         @media (min-width: 1024px) {
           .experience-card {
-            width: calc((100dvw - 1.5rem) / 2);
+            width: calc((100vw - 1.5rem) / 2);
             transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 550ms cubic-bezier(0.22, 1, 0.36, 1);
             transform: translateY(0);

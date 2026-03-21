@@ -12,13 +12,13 @@ export default function Textarea({
   placeholder,
 }: TextareaProps) {
   return (
-    <label className="flex flex-col gap-2 text-sm text-ink/80">
-      <span className="font-semibold text-ink">{label}</span>
+    <label className="site-field">
+      <span className="site-field__label">{label}</span>
       <textarea
         name={name}
         rows={rows}
         placeholder={placeholder}
-        className="rounded-xl border border-ink/10 bg-white px-4 py-3 text-sm focus:border-accent focus:outline-none"
+        className="site-field__control site-field__control--textarea"
       />
     </label>
   );

@@ -1,13 +1,36 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import rooms from "../../../data/rooms";
 import Container from "../../../components/ui/Container";
 import SectionHeading from "../../../components/ui/SectionHeading";
 import Button from "../../../components/ui/Button";
 import { formatPrice } from "../../../lib/format";
+import { createPageMetadata } from "../../../lib/metadata";
 
 type RoomDetailProps = {
   params: { slug: string };
 };
+
+export function generateMetadata({ params }: RoomDetailProps): Metadata {
+  const room = rooms.find((item) => item.slug === params.slug);
+
+  if (!room) {
+    return createPageMetadata({
+      title: "Rooms & Suites",
+      description:
+        "Explore rooms and suites at UK's Resort, Khopoli with comfortable stays and thoughtful amenities.",
+      path: "/rooms",
+      image: "https://bookonelocal.in/cdn/3.avif",
+    });
+  }
+
+  return createPageMetadata({
+    title: room.name,
+    description: room.summary || room.description,
+    path: `/rooms/${room.slug}`,
+    image: room.image,
+  });
+}
 
 export default function RoomDetail({ params }: RoomDetailProps) {
   const room = rooms.find((item) => item.slug === params.slug);
@@ -56,7 +79,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               <p>Capacity: {room.capacity} guests</p>
               <p>Bed: {room.bedType}</p>
             </div>
-            <Button href="/booking" className="mt-8 w-full">
+            <Button href={`/rooms/reservation?room=${room.slug}`} className="mt-8 w-full">
               Reserve this suite
             </Button>
           </aside>

@@ -1,28 +1,11 @@
+import Image from "next/image";
 import Container from "../ui/Container";
-
-const primaryServices = [
-  { name: "Classic massage", duration: "40 min.", price: "$64" },
-  { name: "Lava stone massage", duration: "60 min.", price: "$85" },
-  { name: "Tranquillity therapy", duration: "90 min.", price: "$105" },
-];
-
-const exoticServices = [
-  { name: "Thai oil full body aroma massage", duration: "40 min.", price: "$64" },
-  { name: "Thai traditional massage", duration: "60 min.", price: "$85" },
-  { name: "Thai oil back massage", duration: "90 min.", price: "$105" },
-];
-
-const facialServices = [
-  { name: "Hydrating facial treatment", duration: "40 min.", price: "$64" },
-  { name: "Lifting massage facial treatment", duration: "60 min.", price: "$85" },
-  { name: "Cleansing facial treatment", duration: "90 min.", price: "$105" },
-];
-
-const traditionalServices = [
-  { name: "Traditional full body", duration: "40 min.", price: "$64" },
-  { name: "Traditional massage", duration: "60 min.", price: "$85" },
-  { name: "Oil back massage", duration: "90 min.", price: "$105" },
-];
+import {
+  WELLNESS_EXOTIC_SERVICES,
+  WELLNESS_FACIAL_SERVICES,
+  WELLNESS_PRIMARY_SERVICES,
+  WELLNESS_TRADITIONAL_SERVICES,
+} from "@/data/sections/wellnessServices";
 
 function ServiceGroup({
   title,
@@ -68,9 +51,9 @@ export default function WellnessServices() {
             <div className="mt-8 grid gap-10">
               <ServiceGroup
                 title="Massages and relaxation"
-                items={primaryServices}
+                items={WELLNESS_PRIMARY_SERVICES}
               />
-              <ServiceGroup title="Exotic massages" items={exoticServices} />
+              <ServiceGroup title="Exotic massages" items={WELLNESS_EXOTIC_SERVICES} />
             </div>
           </div>
 
@@ -80,34 +63,38 @@ export default function WellnessServices() {
               views from lakes to mountains whilst you draw energy from our
               treatments and feel the power of the surrounding nature.
             </p>
-            <div className="overflow-hidden rounded-2xl bg-[#e3ddd3]">
-              <img
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#e3ddd3]">
+              <Image
                 src="/images/spa-img.jpg"
                 alt="Relaxing facial treatment"
-                className="h-full w-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 420px"
+                className="object-cover"
               />
             </div>
           </div>
         </div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div className="order-2 overflow-hidden rounded-2xl bg-[#e3ddd3] lg:order-1">
-            <img
+          <div className="order-2 relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#e3ddd3] lg:order-1">
+            <Image
               src="/images/spa-img3.jpg"
               alt="Wellness host"
-              className="h-full w-full object-cover"
+              fill
+              sizes="(max-width: 1024px) 100vw, 560px"
+              className="object-cover"
             />
           </div>
 
           <div className="order-1 grid gap-10 lg:order-2">
-            <ServiceGroup
-              title="Relaxing facial treatments"
-              items={facialServices}
-            />
-            <ServiceGroup
-              title="Traditional massages"
-              items={traditionalServices}
-            />
+              <ServiceGroup
+                title="Relaxing facial treatments"
+                items={WELLNESS_FACIAL_SERVICES}
+              />
+              <ServiceGroup
+                title="Traditional massages"
+                items={WELLNESS_TRADITIONAL_SERVICES}
+              />
           </div>
         </div>
 

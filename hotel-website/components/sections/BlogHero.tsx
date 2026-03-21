@@ -1,13 +1,6 @@
 import PageHero from "./PageHero";
+import { BLOG_HERO_CONFIG } from "@/data/sections/pageHeroes";
 
 export default function BlogHero() {
-  return (
-    <PageHero
-      title="Our Blog"
-      backgroundImage="/images/room_2.jpg"
-      subtitle="Stories, updates, and inspiration from UK's Resort."
-      breadcrumb="Home / Blog"
-      minHeightClassName="min-h-[70vh]"
-    />
-  );
+  return <PageHero {...BLOG_HERO_CONFIG} />;
 }

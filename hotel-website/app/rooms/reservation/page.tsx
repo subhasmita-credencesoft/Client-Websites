@@ -13,6 +13,7 @@ import { formatPrice } from "../../../lib/format";
 import { fetchPropertyAvailability } from "../../../lib/services/propertyService";
 import { htmlToText } from "../../../lib/sanitizeHtml";
 import type { PropertyApiResponse, RoomItem } from "../../../types/property";
+import useErrorHandler from "@/hooks/useErrorHandler";
 
 type SortKey = "title" | "price" | "rating" | "availability";
 
@@ -184,6 +185,7 @@ function normalizeRoom(room: RoomItem, index: number, fallbackImage: string): Li
 }
 
 function RoomsReservationContent() {
+  const { toUserMessage, logError } = useErrorHandler();
   const searchParams = useSearchParams();
   const [sortBy, setSortBy] = useState<SortKey>("title");
   const [sortOpen, setSortOpen] = useState(false);
@@ -235,7 +237,8 @@ function RoomsReservationContent() {
         if (mounted) setPropertyData(data);
       } catch (err) {
         if (mounted && (err as Error).name !== "AbortError") {
-          setError("Unable to load room availability right now.");
+          logError("Reservation availability fetch failed", err);
+          setError(toUserMessage(err, "Unable to load room availability right now."));
         }
       } finally {
         if (mounted) setIsLoading(false);
@@ -247,7 +250,7 @@ function RoomsReservationContent() {
       mounted = false;
       controller.abort();
     };
-  }, [initialCheckIn, initialCheckOut, totalGuests, totalRooms]);
+  }, [initialCheckIn, initialCheckOut, totalGuests, totalRooms, logError, toUserMessage]);
 
   const fallbackPropertyImage = propertyData?.imageList?.[0]?.url || "/images/room_3.jpg";
   const listingRooms = useMemo(
@@ -546,7 +549,7 @@ function RoomsReservationContent() {
 
                       <div className="p-6 sm:p-7">
                         <h3 className="rr-card-line font-serif text-[2.2rem] leading-[0.92] text-[#123f5c] sm:text-[2.6rem]">
-                          <Link href="/booking">{room.name}</Link>
+                          <Link href={`/rooms/reservation?room=${room.slug}`}>{room.name}</Link>
                         </h3>
                         <p className="rr-card-line mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#7d8692]">
                           {room.size} - {room.minimumOccupancy}-{room.capacity} Person - {room.bedType}

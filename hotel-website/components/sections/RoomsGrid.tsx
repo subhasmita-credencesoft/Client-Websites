@@ -12,6 +12,7 @@ import { htmlToText } from "../../lib/sanitizeHtml";
 import { usePropertyData } from "../providers/PropertyDataProvider";
 import { fetchPropertyAvailability } from "../../lib/services/propertyService";
 import type { RoomItem } from "../../types/property";
+import useErrorHandler from "@/hooks/useErrorHandler";
 
 type RoomsGridProps = {
   eyebrow?: string;
@@ -177,6 +178,7 @@ export default function RoomsGrid({
   subtitle = "Choose a suite that pairs handcrafted interiors with thoughtful amenities.",
 }: RoomsGridProps) {
   const { property, isLoading, error } = usePropertyData();
+  const { toUserMessage, logError } = useErrorHandler();
   const [fallbackRooms, setFallbackRooms] = useState<RoomItem[] | null>(null);
   const [fallbackLoading, setFallbackLoading] = useState(false);
   const [fallbackError, setFallbackError] = useState<string | null>(null);
@@ -198,15 +200,26 @@ export default function RoomsGrid({
           noOfRooms: 1,
         });
         setFallbackRooms(payload?.roomList || []);
-      } catch {
+      } catch (err) {
+        logError("RoomsGrid fallback availability fetch failed", err);
         setFallbackRooms([]);
-        setFallbackError("Availability API is temporarily unavailable.");
+        setFallbackError(
+          toUserMessage(err, "Availability API is temporarily unavailable."),
+        );
       } finally {
         setFallbackLoading(false);
       }
     };
     void loadFallback();
-  }, [property?.roomList, fallbackRooms, fallbackLoading, fallbackAttempted, isLoading]);
+  }, [
+    property?.roomList,
+    fallbackRooms,
+    fallbackLoading,
+    fallbackAttempted,
+    isLoading,
+    logError,
+    toUserMessage,
+  ]);
 
   const sourceRooms = useMemo(
     () => (property?.roomList?.length ? property.roomList : fallbackRooms) || [],

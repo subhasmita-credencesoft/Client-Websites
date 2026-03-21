@@ -1,22 +1,5 @@
 import Container from "../ui/Container";
-
-const highlights = [
-  {
-    title: "Dine & Drink",
-    subtitle: "Culinary and Cocktails",
-    image: "/images/room_2.jpg",
-  },
-  {
-    title: "Amenities",
-    subtitle: "Fitness center, swimming pool, lounge & shop",
-    image: "/images/room_3.jpg",
-  },
-  {
-    title: "Special Events",
-    subtitle: "Celebrate in elegance",
-    image: "/images/wedding-img4.jpg",
-  },
-];
+import { CONTACT_HIGHLIGHTS } from "../../data/sections/contactHighlights";
 
 export default function ContactHighlights() {
   return (
@@ -32,7 +15,7 @@ export default function ContactHighlights() {
         </div>
 
         <div className="mt-12 grid gap-8 md:grid-cols-3">
-          {highlights.map((item) => (
+          {CONTACT_HIGHLIGHTS.map((item) => (
             <div
               key={item.title}
               className="group relative overflow-hidden rounded-3xl"

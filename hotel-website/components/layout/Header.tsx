@@ -10,19 +10,13 @@ import Container from "../ui/Container";
 import navigation from "../../data/navigation";
 import menuPreviews from "../../data/menuPreviews";
 import useScrollPosition from "../../hooks/useScrollPosition";
+import useClientReady from "../../hooks/useClientReady";
 import { usePropertyData } from "../providers/PropertyDataProvider";
 
-/* ─── Constants ──────────────────────────────────────────────────────────── */
-const DEFAULT_EMAIL    = "info@uksresort.com";
-const DEFAULT_PHONE_1  = "+91 98220 12343";
-const DEFAULT_PHONE_2  = "+91 87798 14559";
-const DEFAULT_LOGO     = "/images/logo1.png";
-
-const PREFETCH_ROUTES = [
-  "/", "/rooms", "/dining", "/weddings", "/wellness",
-  "/experiences", "/tariffs", "/rooms/reservation",
-  "/around-us", "/contact", "/about",
-];
+const DEFAULT_EMAIL = "info@uksresort.com";
+const DEFAULT_PHONE_1 = "+91 98220 12343";
+const DEFAULT_PHONE_2 = "+91 87798 14559";
+const DEFAULT_LOGO = "/images/logo1.png";
 
 const HERO_PREFIXES = [
   "/", "/rooms", "/dining", "/about", "/wellness",
@@ -30,13 +24,6 @@ const HERO_PREFIXES = [
   "/blog", "/around-us", "/contact", "/tariffs",
 ];
 
-/* ─── Types ──────────────────────────────────────────────────────────────── */
-type IdleWindow = Window & {
-  requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-  cancelIdleCallback?: (id: number) => void;
-};
-
-/* ─── Helpers ─────────────────────────────────────────────────────────────── */
 function resolvePreviewPath(pathname: string): string {
   if (menuPreviews[pathname]) return pathname;
   const matched = Object.keys(menuPreviews)
@@ -61,7 +48,6 @@ function compactAddress(parts: Array<string | null | undefined>) {
   return parts.filter(Boolean).join(", ");
 }
 
-/* ─── Icons ───────────────────────────────────────────────────────────────── */
 const PhoneIcon = () => (
   <svg className="h-[0.9rem] w-[0.9rem] shrink-0" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -85,8 +71,7 @@ const MapPinIcon = () => (
   </svg>
 );
 
-/* ─── Hamburger ───────────────────────────────────────────────────────────── */
-function Hamburger({ open, onClick, heroPage }: { open: boolean; onClick: () => void; heroPage: boolean }) {
+function Hamburger({ open, onClick }: { open: boolean; onClick: () => void }) {
   return (
     <button
       aria-label={open ? "Close menu" : "Open menu"}
@@ -101,93 +86,56 @@ function Hamburger({ open, onClick, heroPage }: { open: boolean; onClick: () => 
   );
 }
 
-/* ─── Glass style ─────────────────────────────────────────────────────────── */
 const GLASS_BG = "bg-[linear-gradient(90deg,rgba(72,79,45,0.56)_0%,rgba(104,113,124,0.42)_20%,rgba(104,113,124,0.42)_80%,rgba(72,79,45,0.56)_100%)] backdrop-blur-[18px]";
 const GLASS_BG_SCROLLED = "bg-[linear-gradient(90deg,rgba(72,79,45,0.68)_0%,rgba(104,113,124,0.54)_20%,rgba(104,113,124,0.54)_80%,rgba(72,79,45,0.68)_100%)] backdrop-blur-[22px]";
 
-/* ══════════════════════════════════════════════════════════════════════════
-   HEADER
-══════════════════════════════════════════════════════════════════════════ */
 export default function Header() {
-  const { property }  = usePropertyData();
-  const router        = useRouter();
-  const scrolled      = useScrollPosition();
-  const pathname      = usePathname();
-  const headerRef     = useRef<HTMLDivElement | null>(null);
-  const menuRef       = useRef<HTMLDivElement | null>(null);
-  const navListRef    = useRef<HTMLUListElement | null>(null);
+  const { property } = usePropertyData();
+  const router = useRouter();
+  const scrolled = useScrollPosition();
+  const pathname = usePathname();
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const navListRef = useRef<HTMLUListElement | null>(null);
 
   const isHeroPage = HERO_PREFIXES.some((p) =>
     p === "/" ? pathname === "/" : pathname.startsWith(p),
   );
 
-  const [menuOpen,    setMenuOpen]    = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [menuPreview, setMenuPreview] = useState<string>(resolvePreviewPath(pathname));
-  const [mounted,     setMounted]     = useState(false);
+  const clientReady = useClientReady();
 
-  /* ── Derived values ── */
-  const logoSrc       = property?.logoUrl    ?? DEFAULT_LOGO;
-  const propertyName  = property?.name       ?? "UK's Resort";
-  const email         = property?.email      ?? DEFAULT_EMAIL;
-  const primaryPhone  = formatPhone(property?.mobile)   || DEFAULT_PHONE_1;
-  const whatsappPhone = formatPhone(property?.whatsApp) || DEFAULT_PHONE_2;
-  const primaryPhoneHref   = toTelHref(primaryPhone);
-  const whatsappPhoneHref  = toTelHref(whatsappPhone);
+  const liveProperty = clientReady ? property : null;
+
+  const logoSrc = liveProperty?.logoUrl ?? DEFAULT_LOGO;
+  const propertyName = liveProperty?.name ?? "UK's Resort";
+  const email = liveProperty?.email ?? DEFAULT_EMAIL;
+  const primaryPhone = formatPhone(liveProperty?.mobile) || DEFAULT_PHONE_1;
+  const whatsappPhone = formatPhone(liveProperty?.whatsApp) || DEFAULT_PHONE_2;
+  const primaryPhoneHref = toTelHref(primaryPhone);
+  const whatsappPhoneHref = toTelHref(whatsappPhone);
 
   const addressLong = compactAddress([
-    property?.address?.streetName,
-    property?.address?.suburb,
-    property?.address?.city,
-    property?.address?.state,
+    liveProperty?.address?.streetName,
+    liveProperty?.address?.suburb,
+    liveProperty?.address?.city,
+    liveProperty?.address?.state,
   ]) || "Mahad Phata, Old Mumbai-Pune Hwy, Khopoli, Raigad";
 
   const addressShort = compactAddress([
-    property?.address?.city,
-    property?.address?.state,
+    liveProperty?.address?.city,
+    liveProperty?.address?.state,
   ]) || "Khopoli, Raigad";
 
-  /* ── Mount ── */
-  useEffect(() => { setMounted(true); }, []);
-
-  /* ── Body scroll lock ── */
   useEffect(() => {
     document.body.style.overflow = menuOpen || menuClosing ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen, menuClosing]);
 
-  /* ── Prefetch routes ── */
-  useEffect(() => {
-    let cancelled = false;
-    const ids: number[] = [];
-    const idleWin = window as IdleWindow;
-
-    const prefetch = () => {
-      PREFETCH_ROUTES.forEach((route, i) => {
-        const id = window.setTimeout(() => { if (!cancelled) router.prefetch(route); }, i * 180);
-        ids.push(id);
-      });
-    };
-
-    if (idleWin.requestIdleCallback) {
-      ids.push(idleWin.requestIdleCallback(prefetch, { timeout: 1200 }));
-    } else {
-      ids.push(window.setTimeout(prefetch, 300));
-    }
-
-    return () => {
-      cancelled = true;
-      ids.forEach((id) => {
-        window.clearTimeout(id);
-        if (idleWin.cancelIdleCallback) idleWin.cancelIdleCallback(id);
-      });
-    };
-  }, [router]);
-
-  /* ── Sync preview with route ── */
   useEffect(() => { setMenuPreview(resolvePreviewPath(pathname)); }, [pathname]);
 
-  /* ── Header entrance GSAP ── */
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) return;
@@ -208,34 +156,28 @@ export default function Header() {
     return () => ctx.revert();
   }, [pathname, isHeroPage]);
 
-  /* ── Menu open GSAP ── */
   useEffect(() => {
     if (!menuOpen || !menuRef.current) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) return;
 
     const ctx = gsap.context(() => {
-      // Overlay slides in
       gsap.fromTo(menuRef.current,
         { autoAlpha: 0 },
         { autoAlpha: 1, duration: 0.35, ease: "power2.out" },
       );
-      // Nav items cascade in
       gsap.fromTo(".menu-nav-item",
         { x: -28, autoAlpha: 0, filter: "blur(4px)" },
         { x: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.55, stagger: 0.055, ease: "power3.out", delay: 0.12 },
       );
-      // Sub items
       gsap.fromTo(".menu-sub-item",
         { x: -18, autoAlpha: 0 },
         { x: 0, autoAlpha: 1, duration: 0.4, stagger: 0.04, ease: "power3.out", delay: 0.38 },
       );
-      // Right columns
       gsap.fromTo(".menu-col",
         { y: 16, autoAlpha: 0 },
         { y: 0, autoAlpha: 1, duration: 0.5, stagger: 0.08, ease: "power3.out", delay: 0.2 },
       );
-      // Decorative line
       gsap.fromTo(".menu-divider",
         { scaleX: 0, transformOrigin: "left center" },
         { scaleX: 1, duration: 0.9, ease: "expo.out", delay: 0.15 },
@@ -245,7 +187,6 @@ export default function Header() {
     return () => ctx.revert();
   }, [menuOpen]);
 
-  /* ── Close menu ── */
   const closeMenu = useCallback(() => {
     if (!menuRef.current) { setMenuOpen(false); return; }
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -262,24 +203,19 @@ export default function Header() {
     });
   }, []);
 
-  /* ── Escape key ── */
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape" && menuOpen) closeMenu(); };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [menuOpen, closeMenu]);
 
-  const canPortal = mounted && typeof document !== "undefined";
+  const canPortal = clientReady && typeof document !== "undefined";
 
   return (
     <div
       ref={headerRef}
       className={`hdr-root w-full ${isHeroPage ? "absolute left-0 top-0 z-50" : "sticky top-0 z-50"}`}
     >
-
-      {/* ════════════════════════════════════════════
-          ANNOUNCEMENT BAR
-      ════════════════════════════════════════════ */}
       <div
         className={`header-anim relative hidden w-full overflow-hidden transition-all duration-500 ease-in-out sm:block ${
           isHeroPage && scrolled ? "pointer-events-none h-0 opacity-0" : "h-[2.1rem] opacity-100"
@@ -287,15 +223,12 @@ export default function Header() {
       >
         <div className={`absolute inset-0 border-b border-white/[0.14] ${GLASS_BG}`}>
           <div className="hdr-bar flex h-[2.1rem] w-full items-center justify-between">
-
-            {/* Left — address */}
             <div className="flex items-center gap-1.5 text-[0.6rem] text-white/70 sm:text-[0.62rem] lg:text-[0.67rem]">
               <MapPinIcon />
               <span className="hidden lg:inline">{addressLong}</span>
               <span className="hidden sm:inline lg:hidden">{addressShort}</span>
             </div>
 
-            {/* Right — contacts */}
             <div className="flex items-center gap-2.5 text-[0.6rem] text-white/70 sm:gap-3 sm:text-[0.62rem] lg:text-[0.67rem]">
               <a href={primaryPhoneHref} className="flex items-center gap-1 transition-colors hover:text-white">
                 <PhoneIcon />
@@ -312,14 +245,10 @@ export default function Header() {
                 <span className="hidden md:inline">{email}</span>
               </a>
             </div>
-
           </div>
         </div>
       </div>
 
-      {/* ════════════════════════════════════════════
-          MAIN HEADER BAR
-      ════════════════════════════════════════════ */}
       <header
         data-no-global-gsap
         className={`w-full transition-all duration-500 ${
@@ -328,14 +257,10 @@ export default function Header() {
             : `border-b border-black/10 bg-white text-[#1f3c44] ${scrolled ? "shadow-sm" : ""}`
         }`}
       >
-        {/* Top bar */}
         <div className="header-anim hdr-bar hdr-bar--main">
           <div className="relative flex h-[4rem] w-full items-center sm:h-[5rem]">
-
-            {/* Hamburger */}
             <Hamburger
               open={menuOpen}
-              heroPage={isHeroPage}
               onClick={() => {
                 if (menuOpen) { closeMenu(); return; }
                 setMenuPreview(resolvePreviewPath(pathname));
@@ -343,27 +268,25 @@ export default function Header() {
               }}
             />
 
-            {/* Logo — perfectly centred via absolute positioning */}
             <Link
               href="/"
               aria-label={`${propertyName} — home`}
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
             >
-              <Image
-                src={logoSrc}
-                alt={propertyName}
-                width={220}
-                height={80}
-                className={`h-8 w-auto sm:h-10 lg:h-[3rem] ${isHeroPage ? "" : "invert"}`}
-                unoptimized={logoSrc.startsWith("http")}
-                priority
-              />
+              <span className="relative block h-8 w-[7.25rem] sm:h-10 sm:w-[9rem] lg:h-12 lg:w-[10.5rem]">
+                <Image
+                  src={logoSrc}
+                  alt={propertyName}
+                  fill
+                  sizes="(max-width: 639px) 116px, (max-width: 1023px) 144px, 168px"
+                  className={`object-contain ${isHeroPage ? "" : "invert"}`}
+                  unoptimized={logoSrc.startsWith("http")}
+                  priority
+                />
+              </span>
             </Link>
 
-            {/* Right group */}
             <div className="ml-auto flex items-center gap-2 sm:gap-3 lg:gap-4">
-
-              {/* Phone icon — mobile only */}
               <a
                 href={primaryPhoneHref}
                 aria-label="Call us"
@@ -376,7 +299,6 @@ export default function Header() {
                 <PhoneIcon />
               </a>
 
-              {/* Book button */}
               <Link
                 href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
                 className={`hdr-book-btn flex items-center gap-1.5 rounded-full border transition-all duration-200 ${
@@ -389,12 +311,10 @@ export default function Header() {
                 <span className="sm:hidden">Book</span>
                 <span className="hdr-book-arrow" aria-hidden="true">&rsaquo;</span>
               </Link>
-
             </div>
           </div>
         </div>
 
-        {/* ── Nav bar — desktop only ── */}
         <div
           className={`header-anim hidden border-t lg:block ${
             isHeroPage
@@ -437,9 +357,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* ════════════════════════════════════════════
-          FULLSCREEN MENU PORTAL
-      ════════════════════════════════════════════ */}
       {canPortal && menuOpen && createPortal(
         <div
           ref={menuRef}
@@ -448,28 +365,22 @@ export default function Header() {
           aria-label="Site navigation"
           className="menu-overlay fixed inset-0 z-[999] overflow-y-auto"
         >
-          {/* BG image */}
           <div
             className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center transition-all duration-700 ease-out"
             style={{ backgroundImage: `url("${encodeURI(menuPreviews[menuPreview] ?? menuPreviews["/"])}")` }}
             aria-hidden="true"
           />
-          {/* Dark overlays */}
           <div className="pointer-events-none absolute inset-0 z-0 bg-[#111015]/55" aria-hidden="true" />
           <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-[#1e1a18]/70 via-[#1a1818]/30 to-transparent" aria-hidden="true" />
           <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-48 bg-gradient-to-b from-black/35 to-transparent" aria-hidden="true" />
-          {/* Grain texture */}
           <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.025]"
             style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E\")", backgroundRepeat: "repeat", backgroundSize: "128px" }}
             aria-hidden="true"
           />
 
-          {/* ── Menu header ── */}
           <div className="relative z-10 border-b border-white/[0.1]">
             <div className="hdr-bar hdr-bar--menu">
               <div className="relative flex h-[4.25rem] w-full items-center sm:h-[5rem]">
-
-                {/* Close button */}
                 <button
                   aria-label="Close navigation menu"
                   onClick={closeMenu}
@@ -481,23 +392,23 @@ export default function Header() {
                   </svg>
                 </button>
 
-                {/* Logo */}
                 <Link href="/" onClick={closeMenu}
                   className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                   aria-label={`${propertyName} — home`}
                 >
-                  <Image
-                    src={logoSrc}
-                    alt={propertyName}
-                    width={160}
-                    height={50}
-                    className="h-8 w-auto sm:h-10"
-                    unoptimized={logoSrc.startsWith("http")}
-                    priority
-                  />
+                  <span className="relative block h-8 w-[7.25rem] sm:h-10 sm:w-[9rem]">
+                    <Image
+                      src={logoSrc}
+                      alt={propertyName}
+                      fill
+                      sizes="(max-width: 639px) 116px, 144px"
+                      className="object-contain"
+                      unoptimized={logoSrc.startsWith("http")}
+                      priority
+                    />
+                  </span>
                 </Link>
 
-                {/* Right — phone + book */}
                 <div className="ml-auto flex items-center gap-3 lg:gap-5">
                   <a href={primaryPhoneHref}
                     className="hidden items-center gap-1.5 text-[0.75rem] text-white/80 transition-colors hover:text-white lg:flex">
@@ -519,19 +430,14 @@ export default function Header() {
                     <span className="hdr-book-arrow" aria-hidden="true">&rsaquo;</span>
                   </Link>
                 </div>
-
               </div>
             </div>
           </div>
 
-          {/* ── Menu body ── */}
           <div className="relative z-10">
             <Container>
               <div className="menu-body-grid py-10 sm:py-14 lg:py-16">
-
-                {/* ── Primary nav ── */}
                 <div className="menu-col">
-                  {/* Decorative line */}
                   <div className="menu-divider mb-6 h-px w-full bg-white/10" />
 
                   <ul className="menu-nav-list space-y-[0.15rem]">
@@ -551,7 +457,6 @@ export default function Header() {
                             onFocus={() => setMenuPreview(resolvePreviewPath(item.href))}
                             onClick={closeMenu}
                           >
-                            {/* Active indicator dot */}
                             <span
                               className="block h-1 w-1 shrink-0 rounded-full transition-all duration-200"
                               style={{ background: isActive ? "#d89a55" : "transparent" }}
@@ -564,7 +469,6 @@ export default function Header() {
                     })}
                   </ul>
 
-                  {/* Secondary links */}
                   <ul className="mt-5 space-y-1 border-t border-white/10 pt-5">
                     {["News", "Promotions & Offers", "Testimonials", "Contact"].map((label) => (
                       <li key={label} className="menu-sub-item">
@@ -576,7 +480,6 @@ export default function Header() {
                   </ul>
                 </div>
 
-                {/* ── Contact info ── */}
                 <div className="menu-col">
                   <div className="menu-divider mb-6 h-px w-full bg-white/10" />
                   <p className="menu-col-heading font-serif text-white/40">Contact</p>
@@ -596,7 +499,6 @@ export default function Header() {
                   </div>
                 </div>
 
-                {/* ── Reservations ── */}
                 <div className="menu-col">
                   <div className="menu-divider mb-6 h-px w-full bg-white/10" />
                   <p className="menu-col-heading font-serif text-white/40">Reservations</p>
@@ -614,12 +516,10 @@ export default function Header() {
                       {email}
                     </a>
                   </div>
-                  {/* Address */}
                   <p className="mt-6 flex items-start gap-2 text-[0.78rem] leading-relaxed text-white/40">
                     <MapPinIcon /><span>{addressLong}</span>
                   </p>
                 </div>
-
               </div>
             </Container>
           </div>
@@ -628,7 +528,6 @@ export default function Header() {
       )}
 
       <style>{`
-        /* ── Header bar horizontal padding ───────────────────────────── */
         .hdr-bar {
           width: 100%;
           padding-left: 1rem;
@@ -639,7 +538,6 @@ export default function Header() {
         @media (min-width: 1280px) { .hdr-bar { padding-left: 4rem;  padding-right: 4rem; } }
         @media (min-width: 1536px) { .hdr-bar { padding-left: 5rem;  padding-right: 5rem; } }
 
-        /* Menu header uses same padding */
         .hdr-bar--menu {
           padding-left: 1rem;
           padding-right: 1rem;
@@ -648,7 +546,6 @@ export default function Header() {
         @media (min-width: 1024px) { .hdr-bar--menu { padding-left: 3rem;  padding-right: 3rem; } }
         @media (min-width: 1280px) { .hdr-bar--menu { padding-left: 4rem;  padding-right: 4rem; } }
 
-        /* ── Book button sizing ───────────────────────────────────────── */
         .hdr-book-btn {
           padding: 0.42rem 0.85rem;
           font-size: 0.56rem;
@@ -675,7 +572,6 @@ export default function Header() {
           line-height: 1;
         }
 
-        /* ── Nav link sizing ──────────────────────────────────────────── */
         .hdr-nav-link {
           padding: 0 0.72rem;
           font-size: 1rem;
@@ -687,7 +583,6 @@ export default function Header() {
           .hdr-nav-link { padding: 0 1rem;    font-size: 1.15rem; }
         }
 
-        /* ── Menu body layout grid ────────────────────────────────────── */
         .menu-body-grid {
           display: grid;
           grid-template-columns: 1fr;
@@ -709,7 +604,6 @@ export default function Header() {
           .menu-body-grid { gap: 4rem; }
         }
 
-        /* ── Menu nav link size ───────────────────────────────────────── */
         .menu-nav-link {
           font-size: clamp(1.3rem, 3.5vw, 1.85rem);
           line-height: 1.25;
@@ -717,14 +611,12 @@ export default function Header() {
           text-decoration: none;
         }
 
-        /* ── Menu col heading ────────────────────────────────────────── */
         .menu-col-heading {
           font-size: 0.65rem;
           letter-spacing: 0.3em;
           text-transform: uppercase;
         }
 
-        /* ── Menu overlay base ───────────────────────────────────────── */
         .menu-overlay {
           color: #fff;
           background: #141319;

@@ -141,7 +141,10 @@ export default function AvailabilityCard({
   }, [canCheckRates]);
 
   return (
-    <aside ref={cardRef} className="rounded-2xl border border-[#eceae4] bg-white p-4 shadow-[0_8px_18px_rgba(17,33,41,0.02)] sm:p-5 md:p-6 lg:sticky lg:top-24">
+    <aside
+      ref={cardRef}
+      className="rounded-2xl border border-[#eceae4] bg-white p-4 shadow-[0_8px_18px_rgba(17,33,41,0.02)] sm:p-5 md:p-6 lg:sticky lg:top-24 lg:self-start lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto"
+    >
       <h3 className="ac-title font-serif text-[2rem] leading-[0.98] text-[#123f5c] sm:text-[2.2rem]">Check Availability</h3>
 
       <div className="mt-4 space-y-4 sm:mt-5 sm:space-y-5">

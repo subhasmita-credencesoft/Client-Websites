@@ -1,12 +1,6 @@
 import PageHero from "./PageHero";
+import { WEDDINGS_HERO_CONFIG } from "@/data/sections/pageHeroes";
 
 export default function WeddingsHero() {
-  return (
-    <PageHero
-      title="Weddings & Events"
-      backgroundImage="https://bookonelocal.in/cdn/4.avif"
-      breadcrumb="Home / Weddings & Events"
-      minHeightClassName="min-h-screen"
-    />
-  );
+  return <PageHero {...WEDDINGS_HERO_CONFIG} />;
 }

@@ -11,15 +11,15 @@ type ButtonProps = {
 };
 
 const variantClasses = {
-  primary: "bg-accent text-white hover:bg-[#a9552b]",
-  outline: "border border-ink/20 text-ink hover:border-ink/40",
-  ghost: "text-ink hover:bg-ink/5",
+  primary: "site-button--primary",
+  outline: "site-button--outline",
+  ghost: "site-button--ghost",
 };
 
 const sizeClasses = {
-  sm: "h-9 px-4 text-sm",
-  md: "h-11 px-6 text-sm",
-  lg: "h-12 px-7 text-base",
+  sm: "site-button--sm",
+  md: "site-button--md",
+  lg: "site-button--lg",
 };
 
 export default function Button({
@@ -31,7 +31,7 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const classes = [
-    "inline-flex items-center justify-center rounded-full font-semibold transition",
+    "site-button",
     variantClasses[variant],
     sizeClasses[size],
     className,

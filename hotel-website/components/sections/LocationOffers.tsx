@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
@@ -89,7 +89,6 @@ function MapEmbed() {
 
 export default function LocationOffers() {
   const { property } = usePropertyData();
-  const [mounted, setMounted]         = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const sectionRef  = useRef<HTMLElement | null>(null);
@@ -97,35 +96,20 @@ export default function LocationOffers() {
   const offerTxtRef = useRef<HTMLDivElement | null>(null);
   const timerRef    = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  useEffect(() => { setMounted(true); }, []);
-
-  const safeProperty = mounted ? property : null;
   const address = [
-    safeProperty?.address?.streetName,
-    safeProperty?.address?.suburb,
-    safeProperty?.address?.city,
-    safeProperty?.address?.state,
-    safeProperty?.address?.postcode,
-    safeProperty?.address?.country,
+    property?.address?.streetName,
+    property?.address?.suburb,
+    property?.address?.city,
+    property?.address?.state,
+    property?.address?.postcode,
+    property?.address?.country,
   ].filter(Boolean).join(", ");
 
   const addressText =
     address ||
     "Ashtvinayak Mahad Phata, Old Mumbai - Pune Highway (NH4), Khopoli, Dist. Raigad - 410203, Maharashtra, India";
 
-  const startTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      goTo((prev: number) => (prev + 1) % offerSlides.length);
-    }, 5000);
-  };
-
-  useEffect(() => {
-    startTimer();
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, []);
-
-  const goTo = (indexOrFn: number | ((prev: number) => number)) => {
+  const goTo = useCallback((indexOrFn: number | ((prev: number) => number)) => {
     if (isTransitioning) return;
     setIsTransitioning(true);
 
@@ -143,23 +127,33 @@ export default function LocationOffers() {
           return next;
         });
         requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            gsap.fromTo(
-              bg,
-              { autoAlpha: 0, scale: 1.06 },
-              { autoAlpha: 1, scale: 1, duration: 0.75, ease: "power2.out" },
-            );
-            gsap.fromTo(
-              txt,
-              { autoAlpha: 0, y: 14, filter: "blur(6px)" },
-              { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "power3.out" },
-            );
-            setIsTransitioning(false);
-          });
+          gsap.fromTo(
+            bg,
+            { autoAlpha: 0, scale: 1.04 },
+            { autoAlpha: 1, scale: 1, duration: 0.62, ease: "power2.out" },
+          );
+          gsap.fromTo(
+            txt,
+            { autoAlpha: 0, y: 12 },
+            { autoAlpha: 1, y: 0, duration: 0.48, ease: "power3.out" },
+          );
+          setIsTransitioning(false);
         });
       },
     });
-  };
+  }, [isTransitioning]);
+
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      goTo((prev: number) => (prev + 1) % offerSlides.length);
+    }, 5000);
+  }, [goTo]);
+
+  useEffect(() => {
+    startTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [startTimer]);
 
   const handleDotClick = (i: number) => {
     startTimer();
@@ -172,9 +166,9 @@ export default function LocationOffers() {
       const ctx = gsap.context(() => {
         gsap.fromTo(
           ".lo-heading",
-          { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
+          { yPercent: 110, autoAlpha: 0 },
           {
-            yPercent: 0, autoAlpha: 1, filter: "blur(0px)",
+            yPercent: 0, autoAlpha: 1,
             duration: 0.9, stagger: 0.1, ease: "power4.out",
             scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
           },
@@ -231,6 +225,18 @@ export default function LocationOffers() {
       data-no-global-gsap
       className="lo-section bg-[#f8f6f1] py-14 text-[#1f3c44] sm:py-18 lg:py-24"
     >
+      <div className="hidden" aria-hidden="true">
+        {offerSlides.map((slide, index) => (
+          <img
+            key={`${slide.id}-preload`}
+            src={slide.image}
+            alt=""
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "auto"}
+            decoding="async"
+          />
+        ))}
+      </div>
       <Container>
         <div className="lo-outer-grid">
 

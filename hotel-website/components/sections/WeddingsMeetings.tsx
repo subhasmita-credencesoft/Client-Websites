@@ -126,7 +126,7 @@ export default function WeddingsMeetings() {
                */
               end: () => `+=${overflow()}`,
               pin: true,
-              scrub: 1,
+              scrub: 0.65,
               anticipatePin: 1,
               invalidateOnRefresh: true,
               snap: {
@@ -134,7 +134,7 @@ export default function WeddingsMeetings() {
                   const steps = Math.max(1, meetingCards.length - 1);
                   return Math.round(v * steps) / steps;
                 },
-                duration: { min: 0.12, max: 0.3 },
+                duration: { min: 0.08, max: 0.22 },
                 ease: "power2.out",
               },
             },
@@ -154,14 +154,13 @@ export default function WeddingsMeetings() {
           gsap.utils.toArray<HTMLElement>(".meeting-card").forEach((card) => {
             const lines = card.querySelectorAll<HTMLElement>(".meeting-card-line");
             if (!lines.length) return;
-            gsap.set(lines, { y: 16, autoAlpha: 0, filter: "blur(4px)" });
+            gsap.set(lines, { y: 16, autoAlpha: 0 });
 
             const anim = (on: boolean) =>
               gsap.to(lines, {
                 y: on ? 0 : 16,
                 autoAlpha: on ? 1 : 0,
-                filter: on ? "blur(0px)" : "blur(4px)",
-                duration: on ? 0.55 : 0.3,
+                duration: on ? 0.48 : 0.24,
                 ease: on ? "power3.out" : "power2.out",
                 stagger: on ? 0.08 : 0.04,
                 overwrite: "auto",
@@ -206,7 +205,7 @@ export default function WeddingsMeetings() {
           gsap.utils.toArray<HTMLElement>(".meeting-card").forEach((card) => {
             const lines = card.querySelectorAll<HTMLElement>(".meeting-card-line");
             if (!lines.length) return;
-            gsap.set(lines, { y: 16, autoAlpha: 0, filter: "blur(4px)" });
+            gsap.set(lines, { y: 16, autoAlpha: 0 });
             ScrollTrigger.create({
               trigger: card,
               start: "top 84%",
@@ -215,8 +214,7 @@ export default function WeddingsMeetings() {
                 gsap.to(lines, {
                   y: s.isActive ? 0 : 16,
                   autoAlpha: s.isActive ? 1 : 0,
-                  filter: s.isActive ? "blur(0px)" : "blur(4px)",
-                  duration: s.isActive ? 0.55 : 0.3,
+                  duration: s.isActive ? 0.48 : 0.24,
                   ease: s.isActive ? "power3.out" : "power2.out",
                   stagger: s.isActive ? 0.08 : 0.04,
                   overwrite: "auto",
@@ -318,13 +316,13 @@ export default function WeddingsMeetings() {
         /* ── CSS variable — single source of truth for desktop card width ──
            All cards share this value. No per-card overrides ever.           */
         .meeting-section {
-          --meeting-card-w: calc(100dvw / 1.42);
+          --meeting-card-w: calc(100vw / 1.42);
         }
         @media (min-width: 1280px) {
-          .meeting-section { --meeting-card-w: calc(100dvw / 1.55); }
+          .meeting-section { --meeting-card-w: calc(100vw / 1.55); }
         }
         @media (min-width: 1536px) {
-          .meeting-section { --meeting-card-w: calc(100dvw / 1.72); }
+          .meeting-section { --meeting-card-w: calc(100vw / 1.72); }
         }
 
         .meeting-full-bleed {
@@ -332,9 +330,10 @@ export default function WeddingsMeetings() {
         }
         @media (max-width: 1023px) {
           .meeting-full-bleed {
-            width: calc(100% + 5rem);
-            margin-left: -2.5rem;
-            margin-right: -2.5rem;
+            width: 100vw;
+            max-width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
             padding-left: 2.5rem;
             padding-right: 2.5rem;
           }

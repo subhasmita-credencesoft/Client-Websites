@@ -1,12 +1,6 @@
 import PageHero from "./PageHero";
+import { WELLNESS_HERO_PAGE_CONFIG } from "@/data/sections/pageHeroes";
 
 export default function WellnessHeroPage() {
-  return (
-    <PageHero
-      title="Facilities"
-      backgroundImage="https://bookonelocal.in/cdn/2.avif"
-      breadcrumb="Home / Facilities"
-      minHeightClassName="min-h-screen"
-    />
-  );
+  return <PageHero {...WELLNESS_HERO_PAGE_CONFIG} />;
 }

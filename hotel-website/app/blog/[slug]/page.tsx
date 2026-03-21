@@ -1,11 +1,32 @@
-﻿import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import blogPosts from "../../../data/blogs";
 import Container from "../../../components/ui/Container";
 import { formatDate } from "../../../lib/format";
+import { createPageMetadata } from "../../../lib/metadata";
 
 type BlogDetailProps = {
   params: { slug: string };
 };
+
+export function generateMetadata({ params }: BlogDetailProps): Metadata {
+  const post = blogPosts.find((item) => item.slug === params.slug);
+
+  if (!post) {
+    return createPageMetadata({
+      title: "Blog",
+      description: "Stories and updates from UK's Resort, Khopoli.",
+      path: "/blog",
+    });
+  }
+
+  return createPageMetadata({
+    title: post.title,
+    description: post.excerpt,
+    path: `/blog/${post.slug}`,
+    image: post.image,
+  });
+}
 
 export default function BlogDetail({ params }: BlogDetailProps) {
   const post = blogPosts.find((item) => item.slug === params.slug);
@@ -18,7 +39,7 @@ export default function BlogDetail({ params }: BlogDetailProps) {
     <section className="py-16">
       <Container className="max-w-3xl">
         <p className="text-xs uppercase tracking-[0.2em] text-ink/50">
-          {formatDate(post.date)} � {post.author}
+          {formatDate(post.date)} | {post.author}
         </p>
         <h1 className="mt-4 font-serif text-4xl">{post.title}</h1>
         <div
