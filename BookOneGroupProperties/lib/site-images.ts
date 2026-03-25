@@ -1,0 +1,21 @@
+﻿export const siteImages = {
+  hero: "/images/generated_images/luxury_resort_pool_at_night.jpg",
+  modernTropicalVilla: "/images/generated_images/modern_tropical_villa_exterior.jpg",
+  mountainChalet: "/images/generated_images/mountain_chalet_interior.jpg",
+  santoriniVilla: "/images/generated_images/santorini_villa_terrace.jpg",
+  luxuryVillaSunset: "/images/generated_images/luxury_villa_infinity_pool_sunset.jpg",
+  modernHotelRestaurant: "/images/generated_images/modern_hotel_restaurant_interior.jpg",
+  propertyManager: "/images/generated_images/property_manager_with_tablet.jpg",
+  affordableLuxuryRoom: "/images/generated_images/affordable_luxury_hotel_room.jpg",
+  happyGuests: "/images/generated_images/happy_guests_checking_in_luxury_villa.jpg",
+  resortRoom: "/images/generated_images/silver_sand_resort_room_interior.jpg",
+  resortBathroom: "/images/generated_images/silver_sand_resort_bathroom.jpg",
+  resortDining: "/images/generated_images/silver_sand_resort_dining.jpg",
+  resortPool: "/images/generated_images/silver_sand_resort_pool_area.jpg",
+  suiteOceanView: "/images/generated_images/luxury_suite_with_ocean_view.jpg",
+  seafoodPlatter: "/images/generated_images/seafood_platter_gourmet.jpg",
+  jetSki: "/images/generated_images/jet_ski_action_shot.jpg",
+  conciergeApp: "/images/generated_images/digital_concierge_app_on_phone.jpg",
+  candlelightDinner: "/images/generated_images/couple_having_candlelight_dinner_on_beach.jpg",
+  spaMassage: "/images/generated_images/spa_massage_therapy.jpg"
+} as const
