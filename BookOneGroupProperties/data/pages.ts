@@ -3,32 +3,82 @@ import { contactSectionData } from "@/data/footer";
 import { siteImages } from "@/lib/site-images";
 
 export const pageContent = {
+  about: {
+    eyebrow: "About Us",
+    title: "About Us",
+    description:
+      "My Resort's Pune is an online and offline platform for providing reasonable and temporary properties and accommodations near Pune since 2018.",
+    teamTitle: "Our Team",
+    teamDescription: "Meet our team.",
+    team: [
+      {
+        name: "Mr. Prathamesh V.",
+        role: "Managing Director",
+        location: "Pune",
+        image: "/images/generated_images/prathamesh.jpg",
+      },
+      {
+        name: "Mr. Omkar G.",
+        role: "Sales & Marketing",
+        location: "Pune",
+        image: "/images/generated_images/omkar.jpg",
+      },
+      {
+        name: "Mrs. Swati T.",
+        role: "Domestic Expert",
+        location: "Pune",
+        image: "/images/generated_images/swati.jpeg",
+      },
+    ],
+  },
   properties: {
     eyebrow: "Our Properties",
     title: "Find Your Perfect Stay",
     description:
       "Explore our curated collection of villas, resorts, cottages, and boutique stays across the most loved destinations.",
   },
-  restaurant: {
-    eyebrow: "Restaurant",
-    title: "Dine In Style At Our Signature Restaurant",
-    description:
-      "Enjoy elegant interiors, curated menus, and a warm dining experience crafted for family meals, romantic evenings, and special celebrations.",
-    image: siteImages.modernHotelRestaurant,
-    highlights: [
-      {
-        title: "Multi-Cuisine Dining",
-        description: "Freshly prepared Indian, coastal, and global favourites served all day.",
-      },
-      {
-        title: "Ambient Evenings",
-        description: "A refined indoor setting ideal for dinner dates, family dining, and group gatherings.",
-      },
-      {
-        title: "Curated Experiences",
-        description: "Chef specials, festive menus, and private dining moments designed around your stay.",
-      },
-    ],
+  packages: {
+    eyebrow: "Packages",
+    resort: {
+      title: "Resort Packages For Relaxed Family Getaways",
+      description:
+        "Choose complete resort stays designed for couples, families, and group celebrations with dining, recreation, and comfortable room experiences included.",
+      image: siteImages.modernHotelRestaurant,
+      highlights: [
+        {
+          title: "Stay And Dine",
+          description: "Well-planned resort packages with room stay, breakfast, and add-on dining experiences for a smooth holiday.",
+        },
+        {
+          title: "Group Friendly Options",
+          description: "Ideal for family trips, corporate outings, and weekend celebrations with flexible occupancy and shared amenities.",
+        },
+        {
+          title: "Activity Ready",
+          description: "Packages can be paired with pool access, lawn spaces, music evenings, and curated local sightseeing support.",
+        },
+      ],
+    },
+    privateVilla: {
+      title: "Private Villa Packages For Exclusive Stays",
+      description:
+        "Book private villa packages for intimate escapes, special occasions, and premium group stays with added privacy and personalized comfort.",
+      image: siteImages.luxuryVillaSunset,
+      highlights: [
+        {
+          title: "Complete Privacy",
+          description: "Enjoy dedicated villa spaces for your family or group with private lounging areas and a quieter stay experience.",
+        },
+        {
+          title: "Celebration Ready",
+          description: "Perfect for birthdays, anniversaries, pre-wedding stays, and close-knit gatherings with flexible setup options.",
+        },
+        {
+          title: "Tailored Comfort",
+          description: "Add decor, meals, and guest support services to shape the villa stay around your trip plan.",
+        },
+      ],
+    },
   },
   gallery: {
     eyebrow: "Guest Gallery",
@@ -45,7 +95,7 @@ export const pageContent = {
       ...contactSectionData,
       {
         title: "Locations",
-        value: "Nagaon, Alibaug, Akshi and more hospitality destinations.",
+        value: "Bhor, Kelawade, Ingavali, Hatve BK and nearby Pune stay destinations.",
         icon: MapPin,
       },
     ],

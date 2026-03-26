@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import type { ComponentType, SVGProps } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import {
   Star,
@@ -9,7 +10,6 @@ import {
   ChevronRight,
   Share2,
   Heart,
-  Tag,
   Check,
   Wifi,
   Wind,
@@ -18,14 +18,16 @@ import {
   Utensils,
   Droplets,
   Monitor,
+  Minus,
+  Plus,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import type { AmenityIconKey, PropertyDetails } from "@/data/property-details";
 import { formatCurrency } from "@/lib/currency";
+import { addDays, format, parse, isValid } from "date-fns";
 
-const amenityIconMap: Record<AmenityIconKey, any> = {
+const amenityIconMap: Record<AmenityIconKey, ComponentType<{ className?: string }>> = {
   wifi: Wifi,
   wind: Wind,
   coffee: Coffee,
@@ -42,24 +44,20 @@ type PropertyDetailsPageProps = {
 
 export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
   const [activeImage, setActiveImage] = useState(0);
-  const [couponCode, setCouponCode] = useState("");
-  const [discount, setDiscount] = useState(0);
+  const defaultCheckIn = useMemo(() => getInitialDate(property.booking.checkIn, 0), [property.booking.checkIn]);
+  const defaultCheckOut = useMemo(() => getInitialDate(property.booking.checkOut, 2), [property.booking.checkOut]);
+  const [checkInDate, setCheckInDate] = useState(defaultCheckIn);
+  const [checkOutDate, setCheckOutDate] = useState(defaultCheckOut > defaultCheckIn ? defaultCheckOut : addDays(defaultCheckIn, 1));
+  const [guestCount, setGuestCount] = useState(getInitialGuestCount(property.booking.guests));
 
   const nextImage = () => setActiveImage((prev) => (prev + 1) % property.images.length);
   const prevImage = () => setActiveImage((prev) => (prev - 1 + property.images.length) % property.images.length);
-
-  const applyCoupon = () => {
-    if (couponCode.toUpperCase() === property.booking.couponHint) {
-      setDiscount(property.booking.couponDiscount);
-    } else {
-      setDiscount(0);
-      alert("Invalid coupon code");
-    }
-  };
+  const checkInValue = format(checkInDate, "yyyy-MM-dd");
+  const checkOutValue = format(checkOutDate, "yyyy-MM-dd");
 
   return (
-    <main className="min-h-screen bg-background font-sans relative">
-      <div className="relative h-[42vh] min-h-[320px] md:h-[58vh] lg:h-[62vh] w-full overflow-hidden group">
+    <main className="relative min-h-screen bg-background font-sans">
+      <div className="group relative h-[42vh] min-h-[320px] w-full overflow-hidden md:h-[58vh] lg:h-[62vh]">
         <div className="absolute inset-0">
           <Image
             src={property.images[activeImage]}
@@ -72,41 +70,53 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
         </div>
 
-        <button onClick={prevImage} className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 p-2.5 md:p-3 bg-white/10 hover:bg-white/30 backdrop-blur-md rounded-full text-white transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 z-20">
-          <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+        <button onClick={prevImage} className="absolute left-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-2.5 text-white backdrop-blur-md transition-all hover:bg-white/30 md:left-4 md:p-3 md:opacity-0 md:group-hover:opacity-100">
+          <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
         </button>
-        <button onClick={nextImage} className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 p-2.5 md:p-3 bg-white/10 hover:bg-white/30 backdrop-blur-md rounded-full text-white transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 z-20">
-          <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+        <button onClick={nextImage} className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-2.5 text-white backdrop-blur-md transition-all hover:bg-white/30 md:left-auto md:right-4 md:p-3 md:opacity-0 md:group-hover:opacity-100">
+          <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
         </button>
 
-        <div className="absolute bottom-5 md:bottom-8 left-0 right-0 container mx-auto px-4 sm:px-6 text-white flex flex-col gap-4 md:flex-row md:justify-between md:items-end z-20">
+        <div className="container absolute bottom-5 left-0 right-0 z-20 mx-auto flex flex-col gap-4 px-4 text-white sm:px-6 md:bottom-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <div className="flex items-center gap-2 mb-2 text-sm font-medium bg-primary/80 backdrop-blur-sm px-3 py-1 rounded-full w-fit">
-              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+            <div className="mb-2 flex w-fit items-center gap-2 rounded-full bg-primary/80 px-3 py-1 text-sm font-medium backdrop-blur-sm">
+              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
               <span>{property.ratingLabel}</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 leading-none">{property.title}</h1>
-            <div className="flex items-center gap-2 text-white/90 text-sm sm:text-base">
-              <MapPin className="w-4 h-4 shrink-0" />
+            <h1 className="mb-2 text-3xl font-bold leading-none sm:text-4xl md:text-5xl lg:text-6xl">{property.title}</h1>
+            <div className="flex items-center gap-2 text-sm text-white/90 sm:text-base">
+              <MapPin className="h-4 w-4 shrink-0" />
               <span>{property.location}</span>
             </div>
+            {property.tags?.length ? (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {property.tags.map((tag) => (
+                  <span key={tag} className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold backdrop-blur-sm">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
           </div>
+
           <div className="flex gap-3 self-start md:self-auto">
-            <Button variant="outline" size="icon" className="rounded-full bg-white/10 border-white/20 text-white hover:bg-white hover:text-black transition-colors">
-              <Share2 className="w-5 h-5" />
+            <Button variant="outline" size="icon" className="rounded-full border-white/20 bg-white/10 text-white transition-colors hover:bg-white hover:text-black">
+              <Share2 className="h-5 w-5" />
             </Button>
-            <Button variant="outline" size="icon" className="rounded-full bg-white/10 border-white/20 text-white hover:bg-white hover:text-red-500 transition-colors">
-              <Heart className="w-5 h-5" />
+            <Button variant="outline" size="icon" className="rounded-full border-white/20 bg-white/10 text-white transition-colors hover:bg-white hover:text-red-500">
+              <Heart className="h-5 w-5" />
             </Button>
           </div>
         </div>
 
-        <div className="absolute bottom-4 right-4 hidden lg:flex gap-2 z-20">
+        <div className="absolute bottom-4 right-4 z-20 hidden gap-2 lg:flex">
           {property.images.slice(0, 4).map((image, index) => (
             <button
               key={index}
               onClick={() => setActiveImage(index)}
-              className={`relative w-14 h-10 xl:w-16 xl:h-12 rounded-md overflow-hidden border-2 transition-all ${activeImage === index ? "border-primary scale-105" : "border-white/50 opacity-70 hover:opacity-100"}`}
+              className={`relative h-10 w-14 overflow-hidden rounded-md border-2 transition-all xl:h-12 xl:w-16 ${
+                activeImage === index ? "scale-105 border-primary" : "border-white/50 opacity-70 hover:opacity-100"
+              }`}
             >
               <Image src={image} alt={`Thumbnail ${index + 1}`} fill sizes="64px" className="h-full w-full object-cover" />
             </button>
@@ -114,61 +124,67 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 py-10 md:py-12">
-        <div className="flex flex-col lg:flex-row gap-10 md:gap-12">
-          <div className="lg:w-2/3 space-y-12 md:space-y-16">
+      <div className="container mx-auto px-4 py-10 sm:px-6 md:py-12">
+        <div className="flex flex-col gap-10 md:gap-12 lg:flex-row">
+          <div className="space-y-12 md:space-y-16 lg:w-2/3">
             <section>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground">About the Property</h2>
-                <Badge variant="outline" className="border-primary text-primary w-fit">{property.typeBadge}</Badge>
+              <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <h2 className="text-2xl font-bold text-foreground md:text-3xl">About</h2>
+                <Badge variant="outline" className="w-fit border-primary text-primary">
+                  {property.typeBadge}
+                </Badge>
               </div>
-              <p className="text-muted-foreground leading-relaxed text-base md:text-lg">{property.description}</p>
+              <p className="text-base leading-relaxed text-muted-foreground md:text-lg">{property.description}</p>
             </section>
 
-            <section className="bg-secondary/20 p-5 sm:p-6 md:p-8 rounded-2xl">
-              <h2 className="text-2xl font-bold text-foreground mb-6">World Class Amenities</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                {property.amenities.map((item) => {
-                  const Icon = amenityIconMap[item.icon];
-
-                  return (
-                    <div key={item.label} className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
-                      <Icon className="w-5 h-5 text-primary shrink-0" />
-                      <span className="font-medium text-sm text-foreground/80">{item.label}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-bold text-foreground mb-6">Choose Your Room</h2>
+            <section className="rounded-2xl bg-secondary/20 p-5 sm:p-6 md:p-8">
+              <h2 className="mb-6 text-2xl font-bold text-foreground">Packages / Tariff</h2>
               <div className="space-y-6">
                 {property.rooms.map((room) => (
-                  <div key={room.id} className="flex flex-col md:flex-row border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white">
-                    <div className="md:w-2/5 h-64 md:h-auto relative">
-                      <Image src={room.image} alt={room.name} fill sizes="(max-width: 768px) 100vw, 40vw" className="h-full w-full object-cover" />
-                    </div>
-                    <div className="md:w-3/5 p-5 md:p-6 flex flex-col justify-between gap-5">
-                      <div>
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-3">
-                          <h3 className="text-xl font-bold">{room.name}</h3>
-                          <Badge className="bg-primary/10 text-primary hover:bg-primary/20 w-fit">{room.size}</Badge>
-                        </div>
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-                          <li className="text-sm text-muted-foreground flex items-center gap-2"><Check className="w-3 h-3 text-green-500 shrink-0" /> {room.bed}</li>
-                          <li className="text-sm text-muted-foreground flex items-center gap-2"><Check className="w-3 h-3 text-green-500 shrink-0" /> {room.view}</li>
-                          {room.features.map((feature) => (
-                            <li key={feature} className="text-sm text-muted-foreground flex items-center gap-2"><Check className="w-3 h-3 text-green-500 shrink-0" /> {feature}</li>
-                          ))}
-                        </ul>
+                  <div key={room.id} className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
+                    <div className="flex flex-col md:flex-row">
+                      <div className="relative h-64 md:h-auto md:w-2/5">
+                        <Image src={room.image} alt={room.name} fill sizes="(max-width: 768px) 100vw, 40vw" className="h-full w-full object-cover" />
                       </div>
-                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mt-2 pt-4 border-t border-border/50">
+                      <div className="flex flex-1 flex-col justify-between gap-5 p-5 md:p-6">
                         <div>
-                          <span className="text-2xl font-bold text-primary">{formatCurrency(room.price)}</span>
-                          <span className="text-sm text-muted-foreground"> / night</span>
+                          <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                            <h3 className="text-xl font-bold">{room.name}</h3>
+                            <Badge className="w-fit bg-primary/10 text-primary hover:bg-primary/20">{room.size}</Badge>
+                          </div>
+                          <ul className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                            <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Check className="h-3 w-3 shrink-0 text-green-500" /> Occupancy: {room.bed}
+                            </li>
+                            <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Check className="h-3 w-3 shrink-0 text-green-500" /> View: {room.view}
+                            </li>
+                            {room.available ? (
+                              <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Check className="h-3 w-3 shrink-0 text-green-500" /> Available: {room.available}
+                              </li>
+                            ) : null}
+                            {room.features.map((feature) => (
+                              <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Check className="h-3 w-3 shrink-0 text-green-500" /> {feature}
+                              </li>
+                            ))}
+                          </ul>
+                          {room.description ? <p className="text-sm leading-relaxed text-muted-foreground">{room.description}</p> : null}
+                          {room.planNote ? (
+                            <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+                              {room.planNote}
+                            </div>
+                          ) : null}
                         </div>
-                        <Button className="w-full sm:w-auto">Select Room</Button>
+
+                        <div className="mt-2 flex flex-col gap-4 border-t border-border/50 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                          <div>
+                            <span className="text-2xl font-bold text-primary">{formatCurrency(room.price)}</span>
+                            <span className="text-sm text-muted-foreground"> / night</span>
+                          </div>
+                          <Button className="w-full sm:w-auto">Select Room</Button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -177,128 +193,210 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-6">Enhance Your Stay</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {property.packages.map((pkg) => (
-                  <div key={pkg.id} className="group relative rounded-xl overflow-hidden cursor-pointer h-64">
-                    <Image src={pkg.image} alt={pkg.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 text-white">
-                      <div className="flex justify-between items-end gap-4">
-                        <div>
-                          <h3 className="font-bold text-base md:text-lg mb-1">{pkg.title}</h3>
-                          <p className="text-white/80 text-sm line-clamp-2 md:line-clamp-1">{pkg.description}</p>
+              <h2 className="mb-6 text-2xl font-bold text-foreground">
+                {property.propertyDetailsSection?.title ?? "Property Details"}
+              </h2>
+              <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+                <ul className="space-y-3">
+                  {property.propertyDetailsSection?.lines.map((line) => (
+                    <li key={line} className="flex items-start gap-3 text-sm text-muted-foreground sm:text-base">
+                      <Check className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                      <span>{line}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {property.propertyDetailsSection?.activities?.length ? (
+                  <div className="mt-8">
+                    <h3 className="mb-4 text-lg font-bold text-foreground">Activities</h3>
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      {property.propertyDetailsSection.activities.map((activity) => (
+                        <div key={activity} className="rounded-xl bg-secondary/20 px-4 py-3 text-sm text-foreground/80">
+                          {activity}
                         </div>
-                        <div className="flex items-center gap-1 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full shrink-0">
-                          <span className="font-bold text-sm">+ {formatCurrency(pkg.price)}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="absolute top-4 right-4 bg-primary text-white p-2 rounded-full opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity transform md:translate-y-2 md:group-hover:translate-y-0">
-                      <Check className="w-4 h-4" />
+                      ))}
                     </div>
                   </div>
-                ))}
+                ) : null}
+
+                {property.propertyDetailsSection?.address ? (
+                  <div className="mt-8 rounded-xl bg-primary/5 px-4 py-4">
+                    <h3 className="mb-2 text-lg font-bold text-foreground">Address</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+                      {property.propertyDetailsSection.address}
+                    </p>
+                  </div>
+                ) : null}
               </div>
             </section>
 
-            <section className="bg-primary rounded-2xl overflow-hidden text-white relative">
-              <div className="flex flex-col md:flex-row items-stretch">
-                <div className="md:w-1/2 p-6 sm:p-8 md:p-12 z-10">
-                  <div className="inline-block bg-white/20 backdrop-blur-md text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">{property.appPromo.badge}</div>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-4">{property.appPromo.title}</h2>
-                  <p className="text-white/80 mb-8 leading-relaxed text-sm sm:text-base">{property.appPromo.description}</p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button variant="secondary" className="font-bold">Download App</Button>
-                    <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">Learn More</Button>
+            {property.oneDayTripSection ? (
+              <section>
+                <h2 className="mb-6 text-2xl font-bold text-foreground">{property.oneDayTripSection.title}</h2>
+                <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+                  <div className="mb-4 flex flex-wrap items-center gap-3">
+                    <Badge className="bg-primary text-white hover:bg-primary">{property.oneDayTripSection.time}</Badge>
+                    <span className="text-sm text-muted-foreground">Package timing</span>
                   </div>
+                  <ul className="space-y-3">
+                    {property.oneDayTripSection.includes.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground sm:text-base">
+                        <Check className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {property.oneDayTripSection.notes?.length ? (
+                    <div className="mt-6 rounded-xl bg-secondary/20 px-4 py-4">
+                      <h3 className="mb-3 text-base font-bold text-foreground">Note</h3>
+                      <ul className="space-y-2">
+                        {property.oneDayTripSection.notes.map((note) => (
+                          <li key={note} className="text-sm text-muted-foreground">
+                            {note}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
                 </div>
-                <div className="md:w-1/2 h-64 md:h-80 relative">
-                  <Image src={property.appPromo.image} alt={property.appPromo.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent md:bg-gradient-to-l" />
+              </section>
+            ) : null}
+
+            {property.policiesSection ? (
+              <section>
+                <h2 className="mb-6 text-2xl font-bold text-foreground">{property.policiesSection.title}</h2>
+                <div className="grid gap-6 md:grid-cols-2">
+                  <PolicyCard title="Accommodation" items={property.policiesSection.accommodation} />
+                  <PolicyCard title="Refund & Cancellation Policy" items={property.policiesSection.cancellation} />
+                  <PolicyCard title="Day Outing" items={property.policiesSection.dayOuting} />
+                  {property.policiesSection.extra?.length ? (
+                    <PolicyCard title="Additional Notes" items={property.policiesSection.extra} />
+                  ) : null}
                 </div>
-              </div>
-            </section>
+              </section>
+            ) : null}
 
             <section>
-              <h2 className="text-2xl font-bold text-primary mb-6">Guest Reviews</h2>
-              <div className="space-y-6">
-                {property.reviews.map((review) => (
-                  <div key={review.id} className="border-b border-border/50 pb-6 last:border-0">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-2">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500 shrink-0">{review.user[0]}</div>
-                        <div>
-                          <h4 className="font-bold">{review.user}</h4>
-                          <span className="text-xs text-muted-foreground">{review.date}</span>
+              <h2 className="mb-6 text-2xl font-bold text-primary">Reviews</h2>
+              {property.reviews.length ? (
+                <div className="space-y-6">
+                  {property.reviews.map((review) => (
+                    <div key={review.id} className="border-b border-border/50 pb-6 last:border-0">
+                      <div className="mb-2 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 font-bold text-gray-500 shrink-0">
+                            {review.user[0]}
+                          </div>
+                          <div>
+                            <h4 className="font-bold">{review.user}</h4>
+                            <span className="text-xs text-muted-foreground">{review.date}</span>
+                          </div>
+                        </div>
+                        <div className="flex w-fit items-center gap-1 rounded bg-green-50 px-2 py-1 text-sm font-bold text-green-700">
+                          {review.rating} <Star className="h-3 w-3 fill-current" />
                         </div>
                       </div>
-                      <div className="flex items-center gap-1 bg-green-50 px-2 py-1 rounded text-green-700 font-bold text-sm w-fit">
-                        {review.rating} <Star className="w-3 h-3 fill-current" />
-                      </div>
+                      <p className="text-sm text-muted-foreground sm:text-base">{review.comment}</p>
                     </div>
-                    <p className="text-muted-foreground text-sm sm:text-base">{review.comment}</p>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="rounded-2xl border border-dashed border-border bg-secondary/10 p-6 text-sm text-muted-foreground">
+                  No reviews available yet.
+                </div>
+              )}
             </section>
           </div>
 
           <div className="lg:w-1/3">
-            <div className="lg:sticky lg:top-24 bg-white border border-gray-100 shadow-xl rounded-2xl p-5 md:p-6">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mb-6">
+            <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-xl md:p-6 lg:sticky lg:top-24">
+              <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <span className="text-3xl font-bold text-primary">{formatCurrency(property.booking.basePrice - discount)}</span>
-                  {discount > 0 && <span className="text-sm text-muted-foreground line-through ml-2">{formatCurrency(property.booking.basePrice)}</span>}
+                  <span className="text-3xl font-bold text-primary">{formatCurrency(property.booking.basePrice)}</span>
                   <span className="text-muted-foreground"> / night</span>
                 </div>
-                <div className="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full flex items-center gap-1 w-fit">
-                  <Check className="w-3 h-3" /> {property.booking.availability}
+                <div className="flex w-fit items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-bold text-green-600">
+                  <Check className="h-3 w-3" /> {property.booking.availability}
                 </div>
               </div>
 
-              <div className="space-y-4 mb-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  <div className="border rounded-lg p-3 hover:border-primary transition-colors cursor-pointer">
-                    <label className="text-[10px] font-bold uppercase text-gray-400 block mb-1">Check-in</label>
-                    <div className="font-bold text-sm">{property.booking.checkIn}</div>
+              <div className="mb-6 space-y-4">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  <div className="rounded-lg border p-3 transition-colors hover:border-primary">
+                    <label className="mb-1 block text-[10px] font-bold uppercase text-gray-400">Check-in</label>
+                    <input
+                      type="date"
+                      value={checkInValue}
+                      min={format(new Date(), "yyyy-MM-dd")}
+                      onChange={(event) => {
+                        const nextDate = new Date(event.target.value);
+                        if (!isValid(nextDate)) return;
+                        setCheckInDate(nextDate);
+                        if (nextDate >= checkOutDate) {
+                          setCheckOutDate(addDays(nextDate, 1));
+                        }
+                      }}
+                      className="w-full bg-transparent text-sm font-bold outline-none"
+                    />
                   </div>
-                  <div className="border rounded-lg p-3 hover:border-primary transition-colors cursor-pointer">
-                    <label className="text-[10px] font-bold uppercase text-gray-400 block mb-1">Check-out</label>
-                    <div className="font-bold text-sm">{property.booking.checkOut}</div>
+                  <div className="rounded-lg border p-3 transition-colors hover:border-primary">
+                    <label className="mb-1 block text-[10px] font-bold uppercase text-gray-400">Check-out</label>
+                    <input
+                      type="date"
+                      value={checkOutValue}
+                      min={format(addDays(checkInDate, 1), "yyyy-MM-dd")}
+                      onChange={(event) => {
+                        const nextDate = new Date(event.target.value);
+                        if (!isValid(nextDate)) return;
+                        if (nextDate <= checkInDate) {
+                          setCheckOutDate(addDays(checkInDate, 1));
+                          return;
+                        }
+                        setCheckOutDate(nextDate);
+                      }}
+                      className="w-full bg-transparent text-sm font-bold outline-none"
+                    />
                   </div>
                 </div>
-                <div className="border rounded-lg p-3">
-                  <label className="text-[10px] font-bold uppercase text-gray-400 block mb-1">Guests</label>
-                  <select className="w-full bg-transparent font-bold text-sm focus:outline-none">
-                    {property.booking.guests.map((guest) => (
-                      <option key={guest}>{guest}</option>
-                    ))}
-                  </select>
+                <div className="rounded-lg border p-3">
+                  <label className="mb-1 block text-[10px] font-bold uppercase text-gray-400">Guests</label>
+                  <div className="flex items-center justify-between gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setGuestCount((count) => Math.max(1, count - 1))}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-primary transition-colors hover:border-primary hover:bg-primary/5"
+                      aria-label="Decrease guests"
+                    >
+                      <Minus className="h-4 w-4" />
+                    </button>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-foreground">{guestCount}</div>
+                      <div className="text-xs text-muted-foreground">{guestCount === 1 ? "Guest" : "Guests"}</div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setGuestCount((count) => Math.min(20, count + 1))}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-primary transition-colors hover:border-primary hover:bg-primary/5"
+                      aria-label="Increase guests"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
-
-              {/* <div className="mb-6">
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <Input placeholder="Coupon Code" value={couponCode} onChange={(e) => setCouponCode(e.target.value)} className="uppercase" />
-                  <Button variant="secondary" onClick={applyCoupon} className="sm:w-auto w-full">Apply</Button>
-                </div>
-                {discount > 0 && (
-                  <p className="text-xs text-green-600 mt-2 font-medium flex items-center gap-1">
-                    <Tag className="w-3 h-3" /> Coupon {property.booking.couponHint} applied successfully!
-                  </p>
-                )}
-                <p className="text-[10px] text-muted-foreground mt-2">Try code: <b>{property.booking.couponHint}</b> for {formatCurrency(property.booking.couponDiscount)} off</p>
-              </div> */}
 
               <div className="space-y-3">
-                <Button className="w-full h-12 text-base font-bold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20">Book Now</Button>
-                <Button variant="outline" className="w-full h-12 text-base font-bold border-primary text-primary hover:bg-primary/5">Contact Host</Button>
+                <Button className="h-12 w-full bg-primary text-base font-bold shadow-lg shadow-primary/20 hover:bg-primary/90">
+                  Book Now
+                </Button>
+                <Button variant="outline" className="h-12 w-full border-primary text-base font-bold text-primary hover:bg-primary/5">
+                  Contact Host
+                </Button>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-gray-100 text-center text-xs text-muted-foreground">
+              <div className="mt-6 border-t border-gray-100 pt-6 text-center text-xs text-muted-foreground">
                 <p className="flex items-center justify-center gap-2">
-                  <ShieldCheckIcon className="w-4 h-4 text-green-500" /> {property.booking.secureLabel}
+                  <ShieldCheckIcon className="h-4 w-4 text-green-500" /> {property.booking.secureLabel}
                 </p>
               </div>
             </div>
@@ -309,7 +407,38 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
   );
 }
 
-function ShieldCheckIcon(props: any) {
+function PolicyCard({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+      <h3 className="mb-4 text-lg font-bold text-foreground">{title}</h3>
+      <ul className="space-y-3">
+        {items.map((item) => (
+          <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
+            <Check className="mt-1 h-4 w-4 shrink-0 text-primary" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function getInitialDate(value: string, fallbackDays: number) {
+  const parsed = parse(value, "MMM d, yyyy", new Date());
+  if (isValid(parsed)) {
+    return parsed;
+  }
+
+  return addDays(new Date(), fallbackDays);
+}
+
+function getInitialGuestCount(guests: string[]) {
+  const firstGuestOption = guests[0] ?? "2 Guests";
+  const parsedCount = Number.parseInt(firstGuestOption, 10);
+  return Number.isNaN(parsedCount) ? 2 : parsedCount;
+}
+
+function ShieldCheckIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -328,4 +457,3 @@ function ShieldCheckIcon(props: any) {
     </svg>
   );
 }
-

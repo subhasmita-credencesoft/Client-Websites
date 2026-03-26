@@ -6,11 +6,13 @@ interface PropertyCardProps {
   id: string;
   slug: string;
   title: string;
-  description: string;
+  location: string;
+  amenity: string;
+  price: string;
   image: string | StaticImageData;
 }
 
-export function PropertyCard({ id, slug, title, description, image }: PropertyCardProps) {
+export function PropertyCard({ id, slug, title, location, amenity, price, image }: PropertyCardProps) {
   return (
     <Link href={`/property/${slug}`} className="group cursor-pointer flex flex-col items-center text-center gap-4" data-testid={`card-property-${id}`}>
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-gray-100 shadow-md">
@@ -26,9 +28,9 @@ export function PropertyCard({ id, slug, title, description, image }: PropertyCa
 
       <div className="flex flex-col gap-2 px-2">
         <h3 className="text-xl font-bold text-foreground/80 group-hover:text-primary transition-colors">{title}</h3>
-        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-          {description}
-        </p>
+        <p className="text-muted-foreground text-sm leading-relaxed">{location}</p>
+        <p className="text-sm font-medium text-primary/80">{amenity}</p>
+        <p className="text-base font-bold text-primary">{price}</p>
       </div>
     </Link>
   );

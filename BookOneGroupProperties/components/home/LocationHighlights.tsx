@@ -36,7 +36,7 @@ function LocationHighlightsContent({ locationFromUrl }: LocationHighlightsConten
     () =>
       locationHighlights.locations.some((location) => location.id === locationFromUrl)
         ? locationFromUrl
-        : locationHighlights.locations[0]?.id ?? "alibaug",
+        : locationHighlights.locations[0]?.id ?? "near-pune",
     [locationFromUrl, locationHighlights.locations],
   );
   const [activeLocation, setActiveLocation] = useState(defaultLocation);
@@ -52,22 +52,22 @@ function LocationHighlightsContent({ locationFromUrl }: LocationHighlightsConten
     ] ?? [];
 
   return (
-    <section className="py-12 bg-muted/30 border-b border-border/40">
+    <section className="border-b border-border/40 bg-muted/30 py-12">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 gap-4">
+        <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-primary">{locationHighlights.title}</h2>
-            <p className="text-muted-foreground mt-1 text-sm sm:text-base">{locationHighlights.description}</p>
+            <h2 className="text-2xl font-bold text-primary md:text-3xl">{locationHighlights.title}</h2>
+            <p className="mt-1 text-sm text-muted-foreground sm:text-base">{locationHighlights.description}</p>
           </div>
-          <div className="flex gap-2 overflow-x-auto pb-2 w-full md:w-auto no-scrollbar">
+          <div className="no-scrollbar flex w-full gap-2 overflow-x-auto pb-2 md:w-auto">
             {locationHighlights.locations.map((location) => (
               <button
                 key={location.id}
                 onClick={() => setActiveLocation(location.id)}
-                className={`px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 ${
+                className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 ${
                   activeLocation === location.id
-                    ? "bg-primary text-white shadow-md transform scale-105"
-                    : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
+                    ? "scale-105 bg-primary text-white shadow-md"
+                    : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-100"
                 }`}
               >
                 {location.name}
@@ -84,7 +84,7 @@ function LocationHighlightsContent({ locationFromUrl }: LocationHighlightsConten
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
             >
               {activeProperties.map((property) => (
                 <a
@@ -94,7 +94,7 @@ function LocationHighlightsContent({ locationFromUrl }: LocationHighlightsConten
                   rel={property.link?.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="block"
                 >
-                  <div className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer h-full">
+                  <div className="group h-full cursor-pointer overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:shadow-xl">
                     <div className="relative h-48 overflow-hidden">
                       <Image
                         src={property.image}
@@ -103,33 +103,33 @@ function LocationHighlightsContent({ locationFromUrl }: LocationHighlightsConten
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
-                      <div className="absolute top-3 left-3">
-                        <Badge className="bg-white/90 text-primary hover:bg-white backdrop-blur-sm shadow-sm font-bold">
+                      <div className="absolute left-3 top-3">
+                        <Badge className="bg-white/90 font-bold text-primary shadow-sm backdrop-blur-sm hover:bg-white">
                           {property.type}
                         </Badge>
                       </div>
-                      <div className="absolute bottom-3 right-3 bg-black/60 text-white px-2 py-1 rounded text-xs font-bold flex items-center gap-1 backdrop-blur-sm">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                        {property.rating}
+                      <div className="absolute bottom-3 right-3 flex items-center gap-1 rounded bg-black/60 px-2 py-1 text-xs font-bold text-white backdrop-blur-sm">
+                        <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                        <span>{property.rating}</span>
                       </div>
                     </div>
 
                     <div className="p-4">
-                      <div className="flex items-start justify-between gap-3 mb-2">
-                        <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">
+                      <div className="mb-2 flex items-start justify-between gap-3">
+                        <h3 className="text-lg font-bold text-foreground transition-colors group-hover:text-primary">
                           {property.title}
                         </h3>
-                        <span className="font-bold text-primary shrink-0">
+                        <span className="shrink-0 font-bold text-primary">
                           {formatCurrency(property.price)}
-                          <span className="text-xs text-muted-foreground font-normal">/night</span>
+                          <span className="text-xs font-normal text-muted-foreground">/night</span>
                         </span>
                       </div>
 
-                      <div className="flex items-start text-xs text-muted-foreground mb-4 leading-relaxed">
-                        <MapPin className="w-3 h-3 mr-1 mt-0.5 shrink-0" />
+                      <div className="mb-4 flex items-start text-xs leading-relaxed text-muted-foreground">
+                        <MapPin className="mr-1 mt-0.5 h-3 w-3 shrink-0" />
                         <span className="break-words">
-                          {activeLocationLabel?.name}
-                          <span className="mx-2">•</span>
+                          {property.location}
+                          <span className="mx-2">&bull;</span>
                           <span>{property.features}</span>
                         </span>
                       </div>
@@ -137,9 +137,9 @@ function LocationHighlightsContent({ locationFromUrl }: LocationHighlightsConten
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full group-hover:bg-primary group-hover:text-white transition-colors"
+                        className="w-full transition-colors group-hover:bg-primary group-hover:text-white"
                       >
-                        View Details <ArrowRight className="w-3 h-3 ml-2" />
+                        View Details <ArrowRight className="ml-2 h-3 w-3" />
                       </Button>
                     </div>
                   </div>
@@ -148,13 +148,13 @@ function LocationHighlightsContent({ locationFromUrl }: LocationHighlightsConten
 
               <Link
                 href={`/properties?location=${activeLocation}`}
-                className="flex flex-col items-center justify-center h-full min-h-[240px] md:min-h-[300px] bg-muted/20 rounded-xl border-2 border-dashed border-gray-200 hover:border-primary hover:bg-primary/5 transition-all group cursor-pointer text-center px-4"
+                className="group flex h-full min-h-[240px] flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-200 bg-muted/20 px-4 text-center transition-all hover:border-primary hover:bg-primary/5 md:min-h-[300px]"
               >
-                <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                  <ArrowRight className="w-6 h-6" />
+                <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-transform group-hover:scale-110">
+                  <ArrowRight className="h-6 w-6" />
                 </div>
                 <h3 className="font-bold text-foreground">View all in {activeLocationLabel?.name}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{activeLocationLabel?.count}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{activeLocationLabel?.count}</p>
               </Link>
             </motion.div>
           </AnimatePresence>
