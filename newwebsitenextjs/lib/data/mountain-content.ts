@@ -153,40 +153,35 @@ export const offersCards = [
     title: "Weekday Package",
     subtitle: "Monday to Thursday pricing",
     description: "Classic Rs. 4,500, Signature Rs. 5,500, and Premium Luxe Rs. 6,500 per person per day with 5 meals, stay, and venue access.",
-    image:
-      "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/DSC08846.avif",
     tabs: ["WEEKDAY"],
   },
   {
     title: "Weekend Package",
     subtitle: "Friday to Sunday pricing",
     description: "Classic Rs. 5,500, Signature Rs. 6,500, and Premium Luxe Rs. 7,500 per person per day with 5 meals, stay, and venue access.",
-    image:
-      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/DSC08849.avif",
     tabs: ["WEEKEND"],
   },
   {
     title: "Classic Package",
     subtitle: "5 meals + stay + venue access",
     description: "Includes 5 meals, stay, and venue access as the base package option for destination wedding groups.",
-    image:
-      "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/DSC08846.avif",
     tabs: ["CLASSIC"],
   },
   {
     title: "Signature Package",
     subtitle: "Classic + extra 2 starters + 1 gravy extra each in lunch and dinner",
     description: "Adds extra 2 starters and 1 gravy extra each in lunch and dinner on top of the Classic package for fuller hospitality.",
-    image:
-      "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/DSC08853.avif",
     tabs: ["SIGNATURE"],
   },
   {
     title: "Premium Luxe Package",
     subtitle: "Signature package + 2 live counters",
     description: "Premium package tier with Signature inclusions plus 2 live counters for elevated event dining and guest service.",
-    image:
-      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/DSC08849.avif",
     tabs: ["PREMIUM LUXE"],
   },
 ] as const;

@@ -169,10 +169,10 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "STAY DETAILS",
     introBody:
       "Standard Room accommodation at The Mountain is designed for practical comfort with a room tariff of Rs. 5,000 and a stay plus all meals package at Rs. 3,000 per person.",
-    heroImage: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08717.avif",
     cards: standardRoomCards,
     galleryTabs: ["Exterior", "Standard Room", "Guest Stay"],
-    galleryImage: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08720.avif",
   },
   {
     slug: "luxury-resort",
@@ -181,10 +181,10 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "STAY DETAILS",
     introBody:
       "Cliff Room accommodation at The Mountain is designed for guests who want scenic ambience with a room tariff of Rs. 6,500 and a stay plus all meals package at Rs. 3,500 per person.",
-    heroImage: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08769.avif",
     cards: cliffRoomCards,
     galleryTabs: ["Exterior", "Cliff Room", "Premium Stay"],
-    galleryImage: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08801.avif",
   },
   {
     slug: "camp-della-resort-room",
@@ -193,10 +193,10 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "STAY DETAILS",
     introBody:
       "Family Room stays at The Mountain support group and family accommodation with a room tariff of Rs. 20,000 and a stay plus all meals package at Rs. 2,500 per person.",
-    heroImage: "https://images.unsplash.com/photo-1470246973918-29a93221c455?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08812.avif",
     cards: familyRoomCards,
     galleryTabs: ["Exterior", "Family Room", "Guest Stay"],
-    galleryImage: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08820.avif",
   },
   {
     slug: "adventure-resort",
@@ -205,10 +205,10 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "STAY DETAILS",
     introBody:
       "Glass Cottage accommodation provides a more private stay option with a room tariff of Rs. 12,000 and a stay plus all meals package at Rs. 7,500 per person.",
-    heroImage: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08802.avif",
     cards: classicCottageCards,
     galleryTabs: ["Exterior", "Glass Cottage", "Guest Stay"],
-    galleryImage: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08807.avif",
   },
   {
     slug: "della-enclave-villa-rooms",
@@ -217,10 +217,10 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "STAY DETAILS",
     introBody:
       "Bungalow accommodation at The Mountain is ideal for guests who need spacious premium furnished stays with a bungalow tariff of Rs. 25,000 and a stay plus all meals package at Rs. 3,500 per person.",
-    heroImage: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08758.avif",
     cards: bungalowCards,
     galleryTabs: ["Exterior", "Bungalow", "Premium Stay"],
-    galleryImage: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08759.avif",
   },
   {
     slug: "della-data-resort",
@@ -640,29 +640,29 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "PACKAGE DETAILS",
     introBody:
       "Weekday package pricing is structured for Monday to Thursday bookings with Classic at Rs. 4,500, Signature at Rs. 5,500, and Premium Luxe at Rs. 6,500 per person per day.",
-    heroImage: "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08846.avif",
     cards: [
       {
         label: "WEEKDAY",
         title: "Classic Package",
         description: "Rs. 4,500 per person including 5 meals, stay, and venue access.",
-        image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08846.avif",
       },
       {
         label: "WEEKDAY",
         title: "Signature Package",
         description: "Rs. 5,500 per person including Classic package benefits, extra 2 starters, and 1 gravy extra each in lunch and dinner.",
-        image: "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08853.avif",
       },
       {
         label: "WEEKDAY",
         title: "Premium Luxe Package",
         description: "Rs. 6,500 per person including Signature package benefits and 2 live counters.",
-        image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08849.avif",
       },
     ],
     galleryTabs: ["Classic", "Signature", "Premium Luxe"],
-    galleryImage: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08837.avif",
   },
   {
     slug: "weekend-package",
@@ -671,29 +671,29 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "PACKAGE DETAILS",
     introBody:
       "Weekend package pricing applies to Friday to Sunday bookings with Classic at Rs. 5,500, Signature at Rs. 6,500, and Premium Luxe at Rs. 7,500 per person per day.",
-    heroImage: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08849.avif",
     cards: [
       {
         label: "WEEKEND",
         title: "Classic Package",
         description: "Rs. 5,500 per person including 5 meals, stay, and venue access.",
-        image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08846.avif",
       },
       {
         label: "WEEKEND",
         title: "Signature Package",
         description: "Rs. 6,500 per person including Classic package benefits, extra 2 starters, and 1 gravy extra each in lunch and dinner.",
-        image: "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08853.avif",
       },
       {
         label: "WEEKEND",
         title: "Premium Luxe Package",
         description: "Rs. 7,500 per person including Signature package benefits and 2 live counters.",
-        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08849.avif",
       },
     ],
     galleryTabs: ["Classic", "Signature", "Premium Luxe"],
-    galleryImage: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08831.avif",
   },
   {
     slug: "classic-package",
@@ -702,23 +702,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "PACKAGE DETAILS",
     introBody:
       "The Classic Package is the base wedding package at The Mountain and is structured for guests who need stay, meals, services, and venue access in one plan.",
-    heroImage: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08846.avif",
     cards: [
       {
         label: "WEEKDAY OFFER",
         title: "Weekday Offer",
         description: "Classic\nRs. 4,500\n5 Meals + Stay + Venue Access",
-        image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08846.avif",
       },
       {
         label: "WEEKEND OFFER",
         title: "Weekend Offer",
         description: "Classic\nRs. 5,500\n5 Meals + Stay + Venue Access",
-        image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08837.avif",
       },
     ],
     galleryTabs: ["Meals", "Stay", "Pricing"],
-    galleryImage: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08831.avif",
     packageComparison: standardPackageComparison,
   },
   {
@@ -728,25 +728,25 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "PACKAGE DETAILS",
     introBody:
       "The Signature Package builds on the Classic Package by adding extra 2 starters and 1 gravy extra each in lunch and dinner for fuller event hospitality.",
-    heroImage: "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08853.avif",
     cards: [
       {
         label: "WEEKDAY OFFER",
         title: "Weekday Offer",
         description:
           "Signature\nRs. 5,500\nClassic Package + Extra 2 Starter + 1 Gravy extra each in Lunch and Dinner",
-        image: "https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08853.avif",
       },
       {
         label: "WEEKEND OFFER",
         title: "Weekend Offer",
         description:
           "Signature\nRs. 6,500\nClassic Package + Extra 2 Starter + 1 Gravy extra each in Lunch and Dinner",
-        image: "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08836.avif",
       },
     ],
     galleryTabs: ["Hospitality", "Dining", "Pricing"],
-    galleryImage: "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08820.avif",
     packageComparison: standardPackageComparison,
   },
   {
@@ -756,25 +756,25 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "PACKAGE DETAILS",
     introBody:
       "The Premium Luxe Package is the top package tier at The Mountain and includes Signature-level hospitality plus two live counters.",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08849.avif",
     cards: [
       {
         label: "WEEKDAY OFFER",
         title: "Weekday Offer",
         description:
           "Premium Luxe\nRs. 6,500\nSignature Package + 2 Live Counters",
-        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08849.avif",
       },
       {
         label: "WEEKEND OFFER",
         title: "Weekend Offer",
         description:
           "Premium Luxe\nRs. 7,500\nSignature Package + 2 Live Counters",
-        image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08831.avif",
       },
     ],
     galleryTabs: ["Premium", "Hospitality", "Pricing"],
-    galleryImage: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08807.avif",
     packageComparison: standardPackageComparison,
   },
   {

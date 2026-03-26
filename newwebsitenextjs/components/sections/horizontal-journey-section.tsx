@@ -1,10 +1,17 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { homeSectionContent, horizontalPanels } from "@/lib/data/resort-content";
+
+const panelLinks: Record<string, string> = {
+  "Classic Package": "/classic-package",
+  "Signature Package": "/signature-package",
+  "Premium Luxe Package": "/premium-luxo-package",
+};
 
 export function HorizontalJourneySection() {
   const content = homeSectionContent.horizontalJourney;
@@ -114,9 +121,11 @@ export function HorizontalJourneySection() {
         style={{ width: `${horizontalPanels.length * 100}vw` }}
       >
         {horizontalPanels.map((panel, index) => (
-          <article
+          <Link
             key={panel.title}
-            className="journey-panel relative min-h-[78svh] overflow-hidden md:h-full md:w-screen"
+            href={panelLinks[panel.title] ?? "/offers"}
+            className="journey-panel block relative min-h-[78svh] overflow-hidden md:h-full md:w-screen"
+            data-cursor="hover"
           >
             <div className="absolute inset-0 will-transform" data-zoom-scroll>
               <Image
@@ -151,7 +160,7 @@ export function HorizontalJourneySection() {
                 </ul>
               ) : null}
             </div>
-          </article>
+          </Link>
         ))}
       </div>
     </section>
