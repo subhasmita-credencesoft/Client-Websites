@@ -18,7 +18,7 @@ export default function OffersPage() {
       >
         <OffersPageClient />
       </Suspense>
-      <GlobalPageSections />
+      <GlobalPageSections hideContactAndStay hideReservation />
       <SiteFooter />
     </main>
   );

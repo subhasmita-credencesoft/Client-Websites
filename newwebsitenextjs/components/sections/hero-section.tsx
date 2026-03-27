@@ -1,26 +1,24 @@
 "use client";
 
-import { useMemo } from "react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
-import { heroBackgroundUrls, heroVideoUrls, pickRandomMedia } from "@/lib/data/media-assets";
+import { heroBackgroundUrls, heroVideoUrls } from "@/lib/data/media-assets";
 import { homeSectionContent } from "@/lib/data/resort-content";
 
 export function HeroSection() {
   const rootRef = useRef<HTMLElement>(null);
-  const defaultMedia = useMemo(
-    () => ({ background: heroBackgroundUrls[0], video: heroVideoUrls[0] }),
-    [],
-  );
-  const [heroMedia, setHeroMedia] = useState(defaultMedia);
+  const [activeBackgroundIndex, setActiveBackgroundIndex] = useState(0);
   const [videoReadySrc, setVideoReadySrc] = useState("");
 
   useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      setHeroMedia(pickRandomMedia());
-    });
-    return () => cancelAnimationFrame(frame);
+    if (heroBackgroundUrls.length <= 1) return;
+
+    const interval = window.setInterval(() => {
+      setActiveBackgroundIndex((current) => (current + 1) % heroBackgroundUrls.length);
+    }, 3000);
+
+    return () => window.clearInterval(interval);
   }, []);
 
   useLayoutEffect(() => {
@@ -56,24 +54,27 @@ export function HeroSection() {
       className="relative flex min-h-[100svh] items-end overflow-hidden pb-20 pt-32"
     >
       <div className="absolute inset-0 will-transform" data-zoom-scroll data-bg-parallax data-bg-depth="8">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroMedia.background})` }}
-        />
-        {heroMedia.video ? (
+        {heroBackgroundUrls.map((background, index) => (
+          <div
+            key={background}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${index === activeBackgroundIndex ? "opacity-100" : "opacity-0"}`}
+            style={{ backgroundImage: `url(${background})` }}
+          />
+        ))}
+        {heroVideoUrls[0] ? (
           <video
-            key={heroMedia.video}
-            className={`h-full w-full object-cover transition-opacity duration-700 ${videoReadySrc === heroMedia.video ? "opacity-100" : "opacity-0"}`}
+            key={heroVideoUrls[0]}
+            className={`h-full w-full object-cover transition-opacity duration-700 ${videoReadySrc === heroVideoUrls[0] ? "opacity-100" : "opacity-0"}`}
             autoPlay
             muted
             loop
             playsInline
             preload="metadata"
-            poster={heroMedia.background}
-            onCanPlay={() => setVideoReadySrc(heroMedia.video)}
+            poster={heroBackgroundUrls[activeBackgroundIndex]}
+            onCanPlay={() => setVideoReadySrc(heroVideoUrls[0])}
             onError={() => setVideoReadySrc("")}
           >
-            <source src={heroMedia.video} type="video/mp4" />
+            <source src={heroVideoUrls[0]} type="video/mp4" />
           </video>
         ) : null}
       </div>

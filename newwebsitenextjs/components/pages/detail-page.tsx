@@ -23,12 +23,25 @@ export function DetailPageView({ page }: DetailPageProps) {
   const videoGallery = page.galleryVideos ?? [];
   const [activeTab, setActiveTab] = useState<"image" | "video">(videoGallery.length > 0 ? "image" : "image");
   const isPackagePage = Boolean(page.packageComparison);
+  const isRoomDetailPage = [
+    "garden-villa-resort",
+    "luxury-resort",
+    "camp-della-resort-room",
+    "adventure-resort",
+    "della-enclave-villa-rooms",
+    "della-data-resort",
+  ].includes(page.slug);
   const hideAllSharedSections = page.slug === "key-advantages";
   const hideContactAndStaySections =
     isPackagePage ||
+    isRoomDetailPage ||
     page.slug === "offers" ||
     page.slug === "weekday-package" ||
     page.slug === "weekend-package";
+  const bookingHref = isPackagePage
+    ? `/booking?package=${encodeURIComponent(page.title)}`
+    : `/booking?room=${encodeURIComponent(page.title)}`;
+  const bookingContextHref = `${bookingHref}&page=${encodeURIComponent(page.title)}&details=${encodeURIComponent(page.subtitle)}`;
 
   return (
     <main className="relative overflow-hidden bg-[#2d4a3e] text-white">
@@ -42,9 +55,6 @@ export function DetailPageView({ page }: DetailPageProps) {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.58)_60%,rgba(0,0,0,0.9)_100%)]" />
         <div className="relative z-10 mx-auto flex min-h-[110svh] max-w-[96rem] items-start px-6 pb-8 pt-28 md:px-12 md:pb-12 md:pt-36">
           <div className="max-w-5xl">
-            <div className="mb-8 inline-flex rounded-r-full bg-[#f3b100] px-6 py-3 text-black">
-              <span className="text-base font-semibold">Amongst Top 1% Hotels Worldwide</span>
-            </div>
             <h1 data-section-title className="text-4xl md:text-6xl">
               {page.title}
             </h1>
@@ -57,7 +67,7 @@ export function DetailPageView({ page }: DetailPageProps) {
         <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]">{page.introTitle}</p>
         <p className="mx-auto mt-6 max-w-5xl text-xl leading-relaxed md:text-2xl">{page.introBody}</p>
         <Link
-          href="/booking"
+          href={bookingContextHref}
           className="mt-10 inline-flex border border-[#c8a871] bg-[#c8a871] px-9 py-3 text-sm font-semibold uppercase tracking-wide text-black"
           data-cursor="hover"
         >
@@ -71,7 +81,7 @@ export function DetailPageView({ page }: DetailPageProps) {
         </h2>
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {page.cards.map((card) => (
-            <article key={card.title} data-card className="overflow-hidden bg-black">
+            <article key={card.title} data-card className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#16261f] shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
               <div className="relative h-[28rem] overflow-hidden">
                 <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="9">
                   <Image src={card.image} alt={card.title} fill className="object-cover" sizes="(max-width:768px) 100vw, 50vw" />
@@ -105,7 +115,7 @@ export function DetailPageView({ page }: DetailPageProps) {
                 </button>
                 <div>
                   <Link
-                    href="/booking"
+                    href={`${bookingContextHref}&offer=${encodeURIComponent(card.title)}&label=${encodeURIComponent(card.label)}&details=${encodeURIComponent(card.description.replace(/\n/g, " | "))}`}
                     className="mt-6 inline-flex border border-[#c8a871] bg-[#c8a871] px-9 py-3 text-sm font-semibold uppercase tracking-wide text-black"
                     data-cursor="hover"
                   >
@@ -144,7 +154,11 @@ export function DetailPageView({ page }: DetailPageProps) {
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {(activeTab === "video" ? videoGallery : imageGallery).map((media, index) => (
-            <div key={`${activeTab}-${media}-${index}`} className="relative h-[28rem] overflow-hidden bg-black" data-card>
+            <div
+              key={`${activeTab}-${media}-${index}`}
+              className="relative h-[28rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#16261f] shadow-[0_18px_36px_rgba(8,16,11,0.18)]"
+              data-card
+            >
               <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="7">
                 <Image
                   src={media}
@@ -166,7 +180,9 @@ export function DetailPageView({ page }: DetailPageProps) {
         </div>
       </section>
 
-      {hideAllSharedSections ? null : <GlobalPageSections hideContactAndStay={hideContactAndStaySections} />}
+      {hideAllSharedSections ? null : (
+        <GlobalPageSections hideContactAndStay={hideContactAndStaySections} hideReservation={isRoomDetailPage} />
+      )}
       <SiteFooter />
     </main>
   );

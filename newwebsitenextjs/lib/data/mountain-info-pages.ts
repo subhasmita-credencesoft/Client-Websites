@@ -74,7 +74,7 @@ export const quotationPageData: MountainInfoPageData = {
   hero: {
     title: "Quotation & Final Estimate",
     subtitle: "Selected package, guest count, dates, and stay duration determine the final quotation at The Mountain, Karjat.",
-    image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2200&q=80",
+    image: "/images/DSC08836.avif",
   },
   intro: {
     eyebrow: "Quotation Summary",
@@ -87,25 +87,25 @@ export const quotationPageData: MountainInfoPageData = {
       label: "QUOTATION",
       title: "Selected Package & Event Type",
       description: "Event type: Wedding. Venue: The Mountain, Karjat. Final costing depends on whether the selected package is Classic, Signature, or Premium Luxo.",
-      image: "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08849.avif",
     },
     {
       label: "QUOTATION",
       title: "Dates, Guests & Stay",
       description: "Dates, total guests, weekday or weekend booking, and the total stay required all directly influence the final quotation estimate.",
-      image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08831.avif",
     },
     {
       label: "QUOTATION",
       title: "Billing Basis",
       description: "Packages are calculated per person per day, inclusive of stay, meals, services, lawn access, and venue usage, with final billing based on the confirmed headcount.",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08837.avif",
     },
     {
       label: "QUOTATION",
       title: "Booking Note",
       description: "50% advance is required to block dates. Remaining payment terms, headcount confirmation, and schedule alignment are finalized before check-in.",
-      image: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08846.avif",
     },
   ],
   highlights: {
@@ -165,7 +165,7 @@ export const keyAdvantagesPageData: MountainInfoPageData = {
     title: "Key Advantages",
     subtitle:
       "Unlimited music, full venue control, 24x7 pool access, total privacy, and wedding-ready celebration spaces at The Mountain, Karjat.",
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=2200&q=80",
+    image: "/images/DSC08853.avif",
   },
   intro: {
     eyebrow: "Key Advantages",
@@ -178,43 +178,43 @@ export const keyAdvantagesPageData: MountainInfoPageData = {
       label: "ADVANTAGE",
       title: "Unlimited Music Hours",
       description: "Enjoy music anytime on the lawn with no sound restrictions, giving every wedding function more freedom, energy, and celebration flow.",
-      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08717.avif",
     },
     {
       label: "ADVANTAGE",
       title: "24x7 Pool Access",
       description: "Take a dip or unwind whenever you like, with round-the-clock pool access adding relaxation and fun to the full wedding stay experience.",
-      image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08720.avif",
     },
     {
       label: "ADVANTAGE",
       title: "Zero Sound License Required",
       description: "No additional sound permits or extra fees are needed, helping you plan music-led events more easily and with fewer approval hurdles.",
-      image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08758.avif",
     },
     {
       label: "ADVANTAGE",
       title: "Full Venue Access",
       description: "The entire property is exclusively yours for the event, supporting smooth movement, event planning flexibility, and complete celebration control.",
-      image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08759.avif",
     },
     {
       label: "ADVANTAGE",
       title: "Private Estate",
       description: "Absolute privacy with no outsider interference, making the venue feel secure, exclusive, and more comfortable for all wedding guests.",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08763.avif",
     },
     {
       label: "ADVANTAGE",
       title: "Perfect For All Wedding Events",
       description: "Ideal for sangeet, haldi, mehendi, cocktails, receptions, and staycation weddings with a natural destination setting.",
-      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08769.avif",
     },
     {
       label: "ADVANTAGE",
       title: "Pool + Rain Dance Zone",
       description: "Celebrate against a stunning mountain and lake view backdrop with poolside and rain dance moments that feel memorable and photogenic.",
-      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08801.avif",
     },
   ],
   highlights: {
@@ -241,7 +241,7 @@ export const rulesPageData: MountainInfoPageData = {
   hero: {
     title: "Rules & Regulations",
     subtitle: "Guest ID, vendor approval, property limits, and responsible usage guidelines for event stays.",
-    image: "https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=2200&q=80",
+    image: "/images/DSC08802.avif",
   },
   intro: {
     eyebrow: "Rules",
@@ -254,13 +254,13 @@ export const rulesPageData: MountainInfoPageData = {
       label: "RULES",
       title: "Guest & Vendor Policy",
       description: "Staying guests require valid ID, outside catering is not allowed in package bookings, and decorators or vendors need prior property approval before execution.",
-      image: "https://images.unsplash.com/photo-1578808534343-171f6908071a?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08807.avif",
     },
     {
       label: "RULES",
       title: "Property Terms",
       description: "Property damage is chargeable, loud music must remain within limits, smoking is only in designated areas, and guest belongings remain under guest responsibility.",
-      image: "https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08812.avif",
     },
   ],
   highlights: {
@@ -286,7 +286,7 @@ export const checkInPageData: MountainInfoPageData = {
   hero: {
     title: "Check-In / Payment Terms",
     subtitle: "50% advance to block dates with check-in, check-out, and headcount-based billing terms.",
-    image: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?auto=format&fit=crop&w=2200&q=80",
+    image: "/images/DSC08820.avif",
   },
   intro: {
     eyebrow: "Check-In",
@@ -299,13 +299,13 @@ export const checkInPageData: MountainInfoPageData = {
       label: "TERMS",
       title: "Check-In Details",
       description: "Check-in starts at 2 PM and check-out is at 11 AM to support smooth operational planning during multi-day destination events.",
-      image: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08836.avif",
     },
     {
       label: "TERMS",
       title: "Advance & Billing",
       description: "50% advance blocks the date, remaining payment is due before check-in, final billing depends on headcount, and date changes remain subject to availability.",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/DSC08849.avif",
     },
   ],
   highlights: {

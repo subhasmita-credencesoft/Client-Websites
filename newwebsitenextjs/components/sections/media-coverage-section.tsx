@@ -10,7 +10,7 @@ export function MediaCoverageSection() {
       <div className="mx-auto grid max-w-[92rem] gap-12 md:grid-cols-2 md:items-center">
         <div data-card className="relative mx-auto h-[30rem] w-full max-w-[38rem] overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80"
+            src="/images/DSC08849.avif"
             alt="Media coverage"
             fill
             className="object-cover"

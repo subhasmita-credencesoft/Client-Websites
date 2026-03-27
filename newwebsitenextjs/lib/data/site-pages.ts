@@ -90,7 +90,7 @@ const standardRoomCards = [
   {
     label: "ROOM TYPE",
     title: "Standard Room",
-    description: "Room tariff Rs. 5,000 with per person package pricing at Rs. 3,000 including stay and all meals.",
+    description: "Comfortable premium room designed for practical stays with modern essentials and a relaxed guest experience.",
     image: "/images/DSC08717.avif  ",
   },
   {
@@ -105,7 +105,7 @@ const cliffRoomCards = [
   {
     label: "ROOM TYPE",
     title: "Cliff Room",
-    description: "Room tariff Rs. 6,500 with per person package pricing at Rs. 3,500 including stay and all meals.",
+    description: "Scenic premium room offering added privacy, calm ambience, and a more elevated stay experience.",
     image: "/images/DSC08769.avif",
   },
   {
@@ -120,7 +120,7 @@ const familyRoomCards = [
   {
     label: "ROOM TYPE",
     title: "Family Room",
-    description: "Room tariff Rs. 20,000 with per person package pricing at Rs. 2,500 including stay and all meals.",
+    description: "Spacious family-friendly accommodation planned for group comfort, convenience, and easy event stays.",
     image: "/images/DSC08812.avif",
   },
   {
@@ -135,7 +135,7 @@ const classicCottageCards = [
   {
     label: "ROOM TYPE",
     title: "Glass Cottage",
-    description: "Room tariff Rs. 12,000 with per person package pricing at Rs. 7,500 including stay and all meals.",
+    description: "Private cottage-style stay with a quieter atmosphere, more exclusivity, and a distinctive room experience.",
     image: "/images/DSC08802.avif",
   },
   {
@@ -150,7 +150,7 @@ const bungalowCards = [
   {
     label: "ROOM TYPE",
     title: "Bungalow",
-    description: "Bungalow tariff Rs. 25,000 with per person package pricing at Rs. 3,500 including stay and all meals.",
+    description: "Large premium bungalow stay ideal for families and groups who need more space and longer-stay comfort.",
     image: "/images/DSC08758.avif",
   },
   {
@@ -165,7 +165,7 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "garden-villa-resort",
     title: "Standard Room",
-    subtitle: "Room tariff Rs. 5,000 and per person package Rs. 3,000 with stay and all meals.",
+    subtitle: "Comfortable premium room accommodation with modern essentials for relaxed guest stays.",
     introTitle: "STAY DETAILS",
     introBody:
       "Standard Room accommodation at The Mountain is designed for practical comfort with a room tariff of Rs. 5,000 and a stay plus all meals package at Rs. 3,000 per person.",
@@ -177,7 +177,7 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "luxury-resort",
     title: "Cliff Room",
-    subtitle: "Room tariff Rs. 6,500 and per person package Rs. 3,500 with stay and all meals.",
+    subtitle: "Scenic premium room stay designed for guests who prefer added privacy and ambience.",
     introTitle: "STAY DETAILS",
     introBody:
       "Cliff Room accommodation at The Mountain is designed for guests who want scenic ambience with a room tariff of Rs. 6,500 and a stay plus all meals package at Rs. 3,500 per person.",
@@ -189,7 +189,7 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "camp-della-resort-room",
     title: "Family Room",
-    subtitle: "Room tariff Rs. 20,000 and per person package Rs. 2,500 with stay and all meals.",
+    subtitle: "Spacious family-oriented accommodation suited for group stays and event guest comfort.",
     introTitle: "STAY DETAILS",
     introBody:
       "Family Room stays at The Mountain support group and family accommodation with a room tariff of Rs. 20,000 and a stay plus all meals package at Rs. 2,500 per person.",
@@ -201,7 +201,7 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "adventure-resort",
     title: "Glass Cottage",
-    subtitle: "Room tariff Rs. 12,000 and per person package Rs. 7,500 with stay and all meals.",
+    subtitle: "Private cottage-style stay experience with a quieter, more exclusive accommodation feel.",
     introTitle: "STAY DETAILS",
     introBody:
       "Glass Cottage accommodation provides a more private stay option with a room tariff of Rs. 12,000 and a stay plus all meals package at Rs. 7,500 per person.",
@@ -213,7 +213,7 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "della-enclave-villa-rooms",
     title: "Bungalow",
-    subtitle: "Bungalow tariff Rs. 25,000 and per person package Rs. 3,500 with stay and all meals.",
+    subtitle: "Large premium bungalow accommodation created for families, groups, and longer private stays.",
     introTitle: "STAY DETAILS",
     introBody:
       "Bungalow accommodation at The Mountain is ideal for guests who need spacious premium furnished stays with a bungalow tariff of Rs. 25,000 and a stay plus all meals package at Rs. 3,500 per person.",
@@ -225,14 +225,14 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "della-data-resort",
     title: "Premium Stay",
-    subtitle: "All properties are premium, furnished, and well-maintained for destination wedding guests.",
+    subtitle: "A curated overview of furnished premium stay options prepared for destination event guests.",
     introTitle: "STAY DETAILS",
     introBody:
       "All available guest properties at The Mountain are prepared for comfortable accommodation across weddings, rituals, family stays, and event functions.",
-    heroImage: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08831.avif",
     cards: bungalowCards,
     galleryTabs: ["Exterior", "Premium Stay", "Guest Stay"],
-    galleryImage: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08837.avif",
   },
   {
     slug: "della-suites",
@@ -241,23 +241,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "QUOTATION SUMMARY",
     introBody:
       "The Mountain quotation is based on selected package, total guests, weekday or weekend booking, and required stay duration for the event.",
-    heroImage: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08846.avif",
     cards: [
       {
         label: "PACKAGE",
         title: "Weekday Package",
         description: "Monday to Thursday package options include Classic at Rs. 4,500, Signature at Rs. 5,500, and Premium Luxe at Rs. 6,500 per person.",
-        image: "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08853.avif",
       },
       {
         label: "PACKAGE",
         title: "Weekend Package",
         description: "Friday to Sunday package options include Classic at Rs. 5,500, Signature at Rs. 6,500, and Premium Luxe at Rs. 7,500 per person.",
-        image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08717.avif",
       },
     ],
     galleryTabs: ["Weekday", "Weekend", "Summary"],
-    galleryImage: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08720.avif",
   },
   {
     slug: "cafe24",
@@ -266,23 +266,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "MEALS",
     introBody:
       "Meals at The Mountain are package-led and may include roti, sabji, dal, rice, salad, papad, pickle, hi-tea, starters, breakfast, tea, coffee, and live counters.",
-    heroImage: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08758.avif",
     cards: [
       {
         label: "MEAL",
         title: "Lunch & Hi-Tea",
         description: "Lunch includes roti, 2 sabji, dal, rice, salad, papad, and pickle, while hi-tea includes tea or coffee with 2 snacks.",
-        image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08759.avif",
       },
       {
         label: "MEAL",
         title: "Dinner & Breakfast",
         description: "Dinner includes roti, 2 sabji, dal, rice, salad, papad, and pickle, while breakfast includes tea or coffee with 2 dishes.",
-        image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08763.avif",
       },
     ],
     galleryTabs: ["Lunch", "Dinner", "Hospitality"],
-    galleryImage: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08769.avif",
   },
   {
     slug: "villa-bistro",
@@ -291,23 +291,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "VENUE HIGHLIGHTS",
     introBody:
       "The Mountain offers scenic mountain surroundings, green natural landscape, spacious lawns, and beautiful photography-ready destination ambience for wedding events.",
-    heroImage: "https://images.unsplash.com/photo-1532372576444-dda954194ad0?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08801.avif",
     cards: [
       {
         label: "VENUE",
         title: "Scenic Valley-Facing Ambience",
         description: "Scenic surroundings create a strong backdrop for wedding photography and immersive guest experiences.",
-        image: "https://images.unsplash.com/photo-1532372576444-dda954194ad0?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08802.avif",
       },
       {
         label: "VENUE",
         title: "Beautiful Destination Setting",
         description: "The property blends natural views and open event-ready space for memorable ceremonies and hospitality planning.",
-        image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08807.avif",
       },
     ],
     galleryTabs: ["Scenic Views", "Lawns", "Destination"],
-    galleryImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08812.avif",
   },
   {
     slug: "key-advantages",
@@ -316,35 +316,35 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "KEY ADVANTAGES",
     introBody:
       "The Mountain, Karjat is designed for destination weddings with unlimited music hours, 24x7 pool access, zero sound license requirement, full venue control, private estate privacy, and spaces ideal for all wedding functions.",
-    heroImage: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08820.avif",
     cards: [
       {
         label: "ADVANTAGE",
         title: "Unlimited Music Hours",
         description: "Enjoy music anytime on the lawn within property limits, giving wedding celebrations more flexibility and energy.",
-        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08836.avif",
       },
       {
         label: "ADVANTAGE",
         title: "24x7 Pool Access",
         description: "Take a dip or unwind whenever you like, with pool access adding leisure value to the destination wedding stay.",
-        image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08849.avif",
       },
       {
         label: "ADVANTAGE",
         title: "Full Venue & Private Estate Access",
         description: "The entire property is exclusively yours for the event, supporting privacy, smooth event flow, and full celebration control.",
-        image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08831.avif",
       },
       {
         label: "ADVANTAGE",
         title: "Perfect For All Wedding Events",
         description: "Ideal for sangeet, haldi, mehendi, cocktails, receptions, and pool plus rain dance celebrations with scenic backdrops.",
-        image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08837.avif",
       },
     ],
     galleryTabs: ["Music", "Pool Access", "Venue Access", "Wedding Events"],
-    galleryImage: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08846.avif",
   },
   {
     slug: "rules",
@@ -353,23 +353,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "RULES",
     introBody:
       "Government ID is mandatory for staying guests, outside catering is not allowed in package bookings, property damage is chargeable, vendors require prior approval, loud music must remain within property limits, smoking is allowed only in designated areas, and lost belongings remain the guest's responsibility.",
-    heroImage: "https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08853.avif",
     cards: [
       {
         label: "RULES",
         title: "Guest & Vendor Policy",
         description: "Staying guests require valid ID, outside catering is not allowed in package bookings, and decorators or vendors need prior property approval before execution.",
-        image: "https://images.unsplash.com/photo-1578808534343-171f6908071a?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08717.avif",
       },
       {
         label: "RULES",
         title: "Property Terms",
         description: "Property damage is chargeable, loud music must remain within limits, smoking is only in designated areas, and guest belongings remain under guest responsibility.",
-        image: "https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08720.avif",
       },
     ],
     galleryTabs: ["Rules", "Policies", "Terms"],
-    galleryImage: "https://images.unsplash.com/photo-1578808534343-171f6908071a?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08758.avif",
   },
   {
     slug: "check-in",
@@ -378,23 +378,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "PAYMENT TERMS",
     introBody:
       "Check-in time is 2 PM, check-out time is 11 AM, 50% advance is required to block dates, the remaining 50% is due before check-in, packages are calculated on the final headcount, and the advance is non-refundable though dates may be rescheduled subject to availability.",
-    heroImage: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08759.avif",
     cards: [
       {
         label: "TERMS",
         title: "Check-In Details",
         description: "Check-in starts at 2 PM and check-out is at 11 AM to support smooth operational planning during multi-day destination events.",
-        image: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08763.avif",
       },
       {
         label: "TERMS",
         title: "Advance & Billing",
         description: "50% advance blocks the date, remaining payment is due before check-in, final billing depends on headcount, and date changes remain subject to availability.",
-        image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08769.avif",
       },
     ],
     galleryTabs: ["Check-In", "Payment", "Booking"],
-    galleryImage: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08801.avif",
   },
   {
     slug: "quotation",
@@ -403,35 +403,35 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "QUOTATION SUMMARY",
     introBody:
       "The final quotation is prepared based on event type, venue selection, booking dates, selected package, total guests, weekday or weekend booking, and the stay required for the celebration.",
-    heroImage: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08802.avif",
     cards: [
       {
         label: "QUOTATION",
         title: "Selected Package & Event Type",
         description: "Event type: Wedding. Venue: The Mountain, Karjat. Final costing depends on whether the selected package is Classic, Signature, or Premium Luxo.",
-        image: "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08807.avif",
       },
       {
         label: "QUOTATION",
         title: "Dates, Guests & Stay",
         description: "Dates, total guests, weekday or weekend booking, and the total stay required all directly influence the final quotation estimate.",
-        image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08812.avif",
       },
       {
         label: "QUOTATION",
         title: "Billing Basis",
         description: "Packages are calculated per person per day, inclusive of stay, meals, services, lawn access, and venue usage, with final billing based on the confirmed headcount.",
-        image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08820.avif",
       },
       {
         label: "QUOTATION",
         title: "Booking Note",
         description: "50% advance is required to block dates. Remaining payment terms, headcount confirmation, and schedule alignment are finalized before check-in.",
-        image: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08836.avif",
       },
     ],
     galleryTabs: ["Package", "Guests", "Estimate", "Booking"],
-    galleryImage: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08849.avif",
   },
   {
     slug: "salaam-manekshaw",
@@ -440,23 +440,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "EVENT SPACES",
     introBody:
       "The Mountain includes private event spaces suited for sangeet, haldi, mehendi, cocktails, reception, and other destination wedding celebrations.",
-    heroImage: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08831.avif",
     cards: [
       {
         label: "SPACE",
         title: "Dedicated Ceremony Areas",
         description: "Large lawns and event-ready zones support rituals, guest gathering flow, and destination wedding execution.",
-        image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08837.avif",
       },
       {
         label: "SPACE",
         title: "Reception & Cocktail Spaces",
         description: "The venue is suited for multiple functions from haldi and mehendi to cocktails and reception gatherings.",
-        image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08846.avif",
       },
     ],
     galleryTabs: ["Ceremonies", "Cocktails", "Reception"],
-    galleryImage: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08853.avif",
   },
   {
     slug: "sky-garden",
@@ -465,23 +465,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "CONTACT",
     introBody:
       "For quotation and package details, contact The Mountain, Karjat on +91 9833866655 or 9892011179, visit instagram.com/themountain.karjat, or browse www.themountainresorts.com.",
-    heroImage: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08717.avif",
     cards: [
       {
         label: "CONTACT",
         title: "Phone & Instagram",
         description: "+91 9833866655 | 9892011179 | instagram.com/themountain.karjat",
-        image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08720.avif",
       },
       {
         label: "CONTACT",
         title: "Website & Venue",
         description: "www.themountainresorts.com | The Mountain, Karjat destination wedding venue",
-        image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08758.avif",
       },
     ],
     galleryTabs: ["Contact", "Venue", "Reach Us"],
-    galleryImage: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08759.avif",
   },
   {
     slug: "weddings",
@@ -490,23 +490,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "WEDDINGS",
     introBody:
       "The Mountain, Karjat is a destination wedding and event venue spread across 7 acres of green beauty with stay, meals, services, and venue usage included in curated packages.",
-    heroImage: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08763.avif",
     cards: [
       {
         label: "PACKAGE",
         title: "Wedding Packages",
         description: "Classic, Signature, and Premium Luxo options are available for weekday and weekend destination wedding bookings.",
-        image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08769.avif",
       },
       {
         label: "VENUE",
         title: "Venue & Hospitality",
         description: "The property includes scenic lawns, guest stays, meal planning, and flexible event zones for celebrations.",
-        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08801.avif",
       },
     ],
     galleryTabs: ["Packages", "Venue", "Wedding Stay"],
-    galleryImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08802.avif",
   },
   {
     slug: "della-corporate-events",
@@ -515,23 +515,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "EVENTS",
     introBody:
       "The Mountain also supports corporate events with private venue access, stay options, hospitality service, and structured event planning.",
-    heroImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08807.avif",
     cards: [
       {
         label: "EVENT",
         title: "Venue Infrastructure",
         description: "The estate supports business meets and private gatherings with flexible indoor and outdoor event zones.",
-        image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08812.avif",
       },
       {
         label: "EVENT",
         title: "Stay & Hospitality",
         description: "Guest stay, meals, and venue access can be aligned for multi-day conferences and team experiences.",
-        image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08820.avif",
       },
     ],
     galleryTabs: ["Corporate", "Venue", "Stay"],
-    galleryImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08836.avif",
   },
   {
     slug: "adventure-park",
@@ -540,23 +540,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "EXPERIENCES",
     introBody:
       "Beyond destination weddings, The Mountain experience can include leisure, poolside moments, and scenic outdoor environments for guests.",
-    heroImage: "https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08849.avif",
     cards: [
       {
         label: "EXPERIENCE",
         title: "Outdoor Moments",
         description: "Open-air spaces and scenic surroundings support guests looking for leisure beyond formal event schedules.",
-        image: "https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08831.avif",
       },
       {
         label: "EXPERIENCE",
         title: "Poolside Leisure",
         description: "Pool and rain dance access help shape relaxed destination event experiences for guests.",
-        image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08837.avif",
       },
     ],
     galleryTabs: ["Outdoors", "Poolside", "Scenic"],
-    galleryImage: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08846.avif",
   },
   {
     slug: "della-entertainment",
@@ -565,23 +565,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "CELEBRATIONS",
     introBody:
       "The Mountain is suited for social wedding functions including cocktails, music celebrations, and family events in a private scenic setting.",
-    heroImage: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08853.avif",
     cards: [
       {
         label: "EVENT",
         title: "Cocktail Moments",
         description: "Poolside and open-air spaces create a strong atmosphere for vibrant wedding celebration events.",
-        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08717.avif",
       },
       {
         label: "EVENT",
         title: "Music & Energy",
         description: "Unlimited music hours and private venue access support immersive destination event experiences.",
-        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08720.avif",
       },
     ],
     galleryTabs: ["Cocktail", "Music", "Celebration"],
-    galleryImage: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08758.avif",
   },
   {
     slug: "spa",
@@ -590,23 +590,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "COMFORT",
     introBody:
       "The Mountain prioritizes guest comfort across furnished rooms, spacious stays, scenic surroundings, and package-based hospitality planning.",
-    heroImage: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08759.avif",
     cards: [
       {
         label: "COMFORT",
         title: "Premium Furnishing",
         description: "Rooms and stay zones are designed to support smooth guest experience across the event schedule.",
-        image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08763.avif",
       },
       {
         label: "COMFORT",
         title: "Private Property Feel",
         description: "Spacious estate planning helps guests feel relaxed and comfortable during longer bookings.",
-        image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08769.avif",
       },
     ],
     galleryTabs: ["Comfort", "Stay", "Relaxed"],
-    galleryImage: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08801.avif",
   },
   {
     slug: "della-experiences",
@@ -615,23 +615,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "EXPERIENCES",
     introBody:
       "The Mountain experience brings together destination wedding planning, guest accommodation, scenic surroundings, and event-friendly hospitality in one property.",
-    heroImage: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08802.avif",
     cards: [
       {
         label: "EXPERIENCE",
         title: "Destination Stay",
         description: "Stay options, venue access, and meals work together to create a well-coordinated guest journey.",
-        image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08807.avif",
       },
       {
         label: "EXPERIENCE",
         title: "Celebration Property",
         description: "The estate supports weddings, private functions, cocktails, and family events in a scenic destination setting.",
-        image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08812.avif",
       },
     ],
     galleryTabs: ["Stay", "Venue", "Celebration"],
-    galleryImage: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08820.avif",
   },
   {
     slug: "weekday-package",
@@ -784,23 +784,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "PACKAGES",
     introBody:
       "The Mountain packages are structured around weekday and weekend bookings with Classic, Signature, and Premium Luxo options including stay, meals, services, and venue usage.",
-    heroImage: "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=2200&q=80",
+    heroImage: "/images/DSC08836.avif",
     cards: [
       {
         label: "PACKAGE",
         title: "Classic & Signature",
         description: "Core package tiers designed around destination event stays and meal inclusions.",
-        image: "https://images.unsplash.com/photo-1602002418672-43121356c3a9?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08849.avif",
       },
       {
         label: "PACKAGE",
         title: "Premium Luxo",
         description: "Enhanced package option for guests looking for premium event hospitality and inclusions.",
-        image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80",
+        image: "/images/DSC08831.avif",
       },
     ],
     galleryTabs: ["Weekday", "Weekend", "Packages"],
-    galleryImage: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2200&q=80",
+    galleryImage: "/images/DSC08837.avif",
   },
 ] satisfies DetailSeed[];
 

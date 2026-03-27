@@ -135,7 +135,7 @@ export default function QuotationPage() {
         </section>
       ) : null}
 
-      <GlobalPageSections />
+      <GlobalPageSections hideContactAndStay hideReservation />
       <SiteFooter />
     </main>
   );

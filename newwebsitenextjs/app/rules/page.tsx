@@ -97,7 +97,7 @@ export default function RulesPage() {
         </div>
       </section>
 
-      <GlobalPageSections />
+      <GlobalPageSections hideContactAndStay hideReservation />
       <SiteFooter />
     </main>
   );

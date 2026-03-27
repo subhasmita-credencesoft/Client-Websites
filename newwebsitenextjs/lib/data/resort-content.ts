@@ -27,11 +27,11 @@ export const homeSectionContent = {
     awardSubtitle: "Scenic stays, spacious lawns, and complete hospitality experiences",
   },
   media: {
-    eyebrow: "Wedding Packages",
-    title: "Weekday and Weekend wedding packages designed for intimate to large celebrations",
+    eyebrow: "Event Experiences",
+    title: "Weekday and weekend event hosting designed for private gatherings, corporate meets, and milestone celebrations",
     description:
-      "Weekday pricing runs Monday to Thursday and weekend pricing runs Friday to Sunday, with Classic, Signature, and Premium Luxe packages covering 5 meals, stay, venue access, enhanced meal upgrades, and live-counter inclusions.",
-    cta: "COMPARE PACKAGES",
+      "Host social events, family functions, team offsites, and special celebrations with stay options, curated meals, venue access, and hospitality support tailored for both weekday and weekend formats.",
+    cta: "EXPLORE EVENTS",
   },
   gastronomy: {
     title: "MEALS INCLUDES",
@@ -153,6 +153,76 @@ export const homeSectionContent = {
   },
 } as const;
 
+export const aboutPageContent = {
+  hero: {
+    eyebrow: "About The Mountain Resorts",
+    title: "A private mountain destination designed for stays, celebrations, and memorable event hosting",
+    description:
+      "The Mountain, Karjat brings together scenic surroundings, premium stay options, event-friendly spaces, curated hospitality, and a calm private-estate setting for weddings, corporate offsites, family gatherings, and special occasions.",
+    image: "/images/DSC08846.avif",
+  },
+  story: {
+    eyebrow: "Our Story",
+    title: "Built to feel like a complete destination, not just a venue booking",
+    paragraphs: [
+      "Spread across seven acres of green landscape, The Mountain is shaped around privacy, comfort, and celebration. Guests experience mountain views, generous open spaces, multiple stay categories, and venue zones that work equally well for intimate plans and larger-format events.",
+      "From room stays and curated meals to event flow and guest hospitality, the property is designed to keep everything in one place. That makes it easier for hosts to plan weddings, milestone celebrations, corporate meets, and weekend getaways without splitting the experience across multiple vendors or locations.",
+    ],
+    quote:
+      "A scenic resort experience where stay, space, food, and celebration come together under one roof.",
+    image: "/images/DSC08831.avif",
+  },
+  stats: [
+    { value: "7 Acres", label: "Private green destination estate" },
+    { value: "5 Stay Types", label: "Rooms, cottages, and bungalow options" },
+    { value: "24x7", label: "Pool access and relaxed destination rhythm" },
+    { value: "All-in-One", label: "Stay, meals, venue access, and hosting support" },
+  ],
+  pillars: {
+    eyebrow: "What Defines The Stay",
+    title: "The key experiences that shape every visit at The Mountain",
+    items: [
+      {
+        title: "Scenic Destination Setting",
+        description:
+          "Mountain-facing views, open-air lawns, landscaped pockets, and a calm private-property atmosphere create a strong backdrop for both stays and events.",
+        image: "/images/DSC08849.avif",
+      },
+      {
+        title: "Flexible Stay Options",
+        description:
+          "Standard rooms, cliff rooms, family rooms, glass cottages, and bungalow stays make it easier to host mixed guest groups with comfort and variety.",
+        image: "/images/DSC08769.avif",
+      },
+      {
+        title: "Celebration-Ready Hospitality",
+        description:
+          "Meals, venue access, stay planning, guest movement, and event support are aligned to help hosts manage private functions and destination gatherings smoothly.",
+        image: "/images/DSC08853.avif",
+      },
+    ],
+  },
+  hosting: {
+    eyebrow: "Ideal For",
+    title: "Designed for destination weddings, social events, corporate escapes, and family occasions",
+    description:
+      "The property works well for guests who want a venue that supports celebration energy and overnight comfort in the same place. Spacious lawns, stay inventory, curated package options, and private-estate character allow each event to feel intentional rather than standard.",
+    bullets: [
+      "Destination weddings and multi-function celebrations",
+      "Corporate offsites, retreats, and team gatherings",
+      "Birthdays, anniversaries, and private milestone events",
+      "Relaxed weekend stays with family and friends",
+    ],
+    image: "/images/DSC08837.avif",
+  },
+  cta: {
+    eyebrow: "Plan With Us",
+    title: "See the spaces, compare package options, and start your booking enquiry",
+    description:
+      "Explore room categories, venue highlights, and package details, then connect with the team for availability and planning support.",
+  },
+} as const;
+
 export const storytellingBlocks = [
   {
     title: "Venue Highlights - Mountain View Destination",
@@ -173,7 +243,7 @@ export const storytellingBlocks = [
     description:
       "Government ID is mandatory for staying guests. Outside catering is not allowed in package bookings. Property damage is chargeable. Decorators and vendors require prior approval, and loud music must remain within property limits.",
     image:
-      "https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=1400&q=80",
+      "/images/DSC08846.avif",
   },
 ];
 

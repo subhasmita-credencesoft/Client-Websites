@@ -8,9 +8,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { homeSectionContent, horizontalPanels } from "@/lib/data/resort-content";
 
 const panelLinks: Record<string, string> = {
-  "Classic Package": "/classic-package",
-  "Signature Package": "/signature-package",
-  "Premium Luxe Package": "/premium-luxo-package",
+  "Classic Package": "/offers?package=classic",
+  "Signature Package": "/offers?package=signature",
+  "Premium Luxe Package": "/offers?package=premium-luxo",
 };
 
 export function HorizontalJourneySection() {

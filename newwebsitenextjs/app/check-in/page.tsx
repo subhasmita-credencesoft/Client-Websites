@@ -91,7 +91,7 @@ export default function CheckInPage() {
         </div>
       </section>
 
-      <GlobalPageSections />
+      <GlobalPageSections hideContactAndStay hideReservation />
       <SiteFooter />
     </main>
   );

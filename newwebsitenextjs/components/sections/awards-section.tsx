@@ -34,7 +34,7 @@ export function AwardsSection() {
       </div>
 
       <div className="mt-12 text-center">
-        <MagneticButton>{content.cta}</MagneticButton>
+        <MagneticButton href="/rules">{content.cta}</MagneticButton>
       </div>
     </section>
   );

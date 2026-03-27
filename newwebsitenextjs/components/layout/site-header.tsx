@@ -13,6 +13,10 @@ import { homeSectionContent } from "@/lib/data/resort-content";
 
 const leftMainLinks = mainLinks.slice(0, 3);
 const rightMainLinks = mainLinks.slice(3);
+const topLinkHrefs: Record<string, string> = {
+  "ABOUT US": "/about",
+  GALLERY: "/gallery",
+};
 
 function MailIcon() {
   return (
@@ -104,7 +108,7 @@ export function SiteHeader() {
                 <DiamondIcon />
               </span>
               {topLeftLinks.map((item) => (
-                <Link key={item} href="/" className="transition-colors hover:text-[#c9a46e]" data-cursor="hover">
+                <Link key={item} href={topLinkHrefs[item] ?? "/"} className="transition-colors hover:text-[#c9a46e]" data-cursor="hover">
                   {item}
                 </Link>
               ))}
@@ -126,13 +130,13 @@ export function SiteHeader() {
                   {item}
                 </Link>
               ))}
-              <button
-                type="button"
+              <Link
+                href="/booking"
                 className="border border-white bg-white px-6 py-2 text-[0.68rem] tracking-wide text-black"
                 data-cursor="hover"
               >
                 {content.primaryCta}
-              </button>
+              </Link>
 
             </div>
 
@@ -143,7 +147,11 @@ export function SiteHeader() {
         <nav className="relative hidden grid-cols-[1fr_auto_1fr] items-center py-3 md:grid" onMouseLeave={() => setActiveDropdown(null)}>
           <div className="hidden items-center gap-10 md:flex">
             {leftMainLinks.map((item) => (
-              <div key={item} className="relative" onMouseEnter={() => setActiveDropdown(item)}>
+              <div
+                key={item}
+                className="relative"
+                onMouseEnter={() => setActiveDropdown((headerDropdownLinks[item] ?? []).length > 0 ? item : null)}
+              >
                 <Link
                   href={mainNavLinks[item] ?? "/"}
                   className={`text-[0.72rem] font-semibold uppercase tracking-wide transition-colors ${
@@ -152,7 +160,7 @@ export function SiteHeader() {
                   data-cursor="hover"
                 >
                   {item}
-                  <ChevronDownIcon />
+                  {(headerDropdownLinks[item] ?? []).length > 0 ? <ChevronDownIcon /> : null}
                 </Link>
 
                 {activeDropdown === item && dropdownItems.length > 0 ? (
@@ -230,12 +238,13 @@ export function SiteHeader() {
             })}
           </div>
 
-          <button
-            type="button"
-            className="mb-4 w-full border border-white bg-white px-7 py-2 text-[0.72rem] tracking-wide text-black"
+          <Link
+            href="/booking"
+            className="mb-4 block w-full border border-white bg-white px-7 py-2 text-center text-[0.72rem] tracking-wide text-black"
+            onClick={() => setMobileMenuOpen(false)}
           >
             {content.primaryCta}
-          </button>
+          </Link>
         </nav>
       </div>
     </header>

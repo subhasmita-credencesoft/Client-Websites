@@ -5,15 +5,16 @@ import { TownshipsSection } from "@/components/sections/townships-section";
 
 type GlobalPageSectionsProps = {
   hideContactAndStay?: boolean;
+  hideReservation?: boolean;
 };
 
-export function GlobalPageSections({ hideContactAndStay = false }: GlobalPageSectionsProps) {
+export function GlobalPageSections({ hideContactAndStay = false, hideReservation = false }: GlobalPageSectionsProps) {
   return (
     <>
       {hideContactAndStay ? null : <PartnerLogosSection />}
       {hideContactAndStay ? null : <TownshipsSection />}
       <AwardsSection />
-      <ReservationSection />
+      {hideReservation ? null : <ReservationSection />}
     </>
   );
 }

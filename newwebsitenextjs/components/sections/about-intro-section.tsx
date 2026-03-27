@@ -23,7 +23,7 @@ export function AboutIntroSection() {
             {content.body}
           </p>
           <div className="mt-8">
-            <MagneticButton>{content.cta}</MagneticButton>
+            <MagneticButton href="/about">{content.cta}</MagneticButton>
           </div>
         </div>
 
