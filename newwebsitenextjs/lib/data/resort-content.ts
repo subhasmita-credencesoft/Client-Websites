@@ -156,20 +156,20 @@ export const homeSectionContent = {
 export const aboutPageContent = {
   hero: {
     eyebrow: "About The Mountain Resorts",
-    title: "A private mountain destination designed for stays, celebrations, and memorable event hosting",
+    title: "More than a resort stay, The Mountain is a complete experiential destination for celebrations and escapes",
     description:
-      "The Mountain, Karjat brings together scenic surroundings, premium stay options, event-friendly spaces, curated hospitality, and a calm private-estate setting for weddings, corporate offsites, family gatherings, and special occasions.",
-    image: "/images/DSC08846.avif",
+      "Set against scenic mountain surroundings in Karjat, The Mountain brings together premium stays, destination event spaces, curated hospitality, and a private-estate atmosphere designed for weddings, social occasions, corporate retreats, and elevated weekend getaways.",
+    image: "/images/DSC08763.avif",
   },
   story: {
     eyebrow: "Our Story",
-    title: "Built to feel like a complete destination, not just a venue booking",
+    title: "Built to feel like a complete destination, not just another venue booking",
     paragraphs: [
-      "Spread across seven acres of green landscape, The Mountain is shaped around privacy, comfort, and celebration. Guests experience mountain views, generous open spaces, multiple stay categories, and venue zones that work equally well for intimate plans and larger-format events.",
-      "From room stays and curated meals to event flow and guest hospitality, the property is designed to keep everything in one place. That makes it easier for hosts to plan weddings, milestone celebrations, corporate meets, and weekend getaways without splitting the experience across multiple vendors or locations.",
+      "Spread across seven acres of green landscape, The Mountain is shaped around privacy, comfort, and celebration. Guests experience scenic views, open-air spaces, multiple stay categories, and event-ready zones that work equally well for intimate gatherings and larger-format functions.",
+      "From room stays and curated meals to venue flow and guest hospitality, the property is designed to keep everything in one place. That makes it easier for hosts to plan weddings, milestone celebrations, corporate meets, and leisure escapes without splitting the experience across multiple vendors or scattered locations.",
     ],
     quote:
-      "A scenic resort experience where stay, space, food, and celebration come together under one roof.",
+      "A scenic hospitality destination where stay, space, food, and celebration come together with intent.",
     image: "/images/DSC08831.avif",
   },
   stats: [
@@ -202,6 +202,60 @@ export const aboutPageContent = {
       },
     ],
   },
+  ethos: {
+    eyebrow: "Our Ethos",
+    title: "Hospitality that goes beyond the expected and leaves every visit with a lasting sense of occasion",
+    description:
+      "At The Mountain, we focus on experiences that feel intentional from arrival to departure. Design, comfort, landscape, food, and service are brought together to create stays and celebrations that feel elevated without losing warmth.",
+    cards: [
+      {
+        title: "Purposeful Hospitality",
+        body: "Every guest touchpoint is designed to feel attentive, personal, and smoothly managed.",
+      },
+      {
+        title: "Design With Atmosphere",
+        body: "Rooms, lawns, poolside zones, and event spaces are shaped to feel memorable in both use and appearance.",
+      },
+      {
+        title: "Complete Destination Thinking",
+        body: "Stay, meals, event flow, and venue planning are treated as one connected experience rather than separate bookings.",
+      },
+    ],
+  },
+  founder: {
+    eyebrow: "A Message",
+    title: "The vision behind The Mountain is simple: create a place people remember not just for the event, but for the feeling of being there",
+    body:
+      "The Mountain was imagined as a destination where scenery, stays, hospitality, and celebrations could all live in one cohesive environment. That idea continues to shape the resort today through every room category, every venue zone, and every guest experience created on the property.",
+    signature: "The Mountain Resorts",
+    image: "/images/DSC08846.avif",
+  },
+  journey: {
+    eyebrow: "Journey",
+    title: "How the destination experience comes together across the property",
+    items: [
+      {
+        year: "01",
+        title: "Arrival Into A Scenic Estate",
+        body: "Guests enter into a mountain-facing destination with landscaped open spaces and a strong sense of privacy.",
+      },
+      {
+        year: "02",
+        title: "Premium Stay Choices",
+        body: "Multiple accommodation categories support families, groups, wedding guests, and longer-stay comfort.",
+      },
+      {
+        year: "03",
+        title: "Celebration-Ready Venues",
+        body: "Lawns, event spaces, and poolside settings create flexibility for rituals, gatherings, and social occasions.",
+      },
+      {
+        year: "04",
+        title: "Curated Hospitality",
+        body: "Meals, planning support, and venue flow are aligned to make the overall experience feel seamless.",
+      },
+    ],
+  },
   hosting: {
     eyebrow: "Ideal For",
     title: "Designed for destination weddings, social events, corporate escapes, and family occasions",
@@ -214,6 +268,19 @@ export const aboutPageContent = {
       "Relaxed weekend stays with family and friends",
     ],
     image: "/images/DSC08837.avif",
+  },
+  impact: {
+    eyebrow: "Responsible Growth",
+    title: "A destination experience shaped with care for people, property, and long-term value",
+    description:
+      "The Mountain is built around experiences that respect the destination itself. That means thoughtful upkeep, guest discipline, well-maintained stay areas, and a hospitality approach that values lasting quality over temporary spectacle.",
+    bullets: [
+      "Well-maintained stay inventory and venue spaces",
+      "Private-estate atmosphere with controlled guest flow",
+      "Curated event planning over overcrowded execution",
+      "A hospitality-first approach to every celebration",
+    ],
+    image: "/images/DSC08849.avif",
   },
   cta: {
     eyebrow: "Plan With Us",

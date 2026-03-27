@@ -13,24 +13,35 @@ import { homeSectionContent } from "@/lib/data/resort-content";
 
 const leftMainLinks = mainLinks.slice(0, 3);
 const rightMainLinks = mainLinks.slice(3);
+const contactPhone = "+91 9833866655";
+const contactPhoneHref = "tel:+919833866655";
+const whatsappHref = "https://wa.me/919833866655";
 const topLinkHrefs: Record<string, string> = {
   "ABOUT US": "/about",
   GALLERY: "/gallery",
 };
 
-function MailIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.8]">
-      <path d="M4 6h16v12H4z" />
-      <path d="m5 7 7 6 7-6" />
-    </svg>
-  );
-}
-
 function DiamondIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 fill-current">
       <path d="M12 3 21 12 12 21 3 12 12 3Z" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.8]">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72l.34 2.71a2 2 0 0 1-.57 1.73L7.1 9.91a16 16 0 0 0 7 7l1.75-1.78a2 2 0 0 1 1.73-.57l2.71.34A2 2 0 0 1 22 16.92z" />
+    </svg>
+  );
+}
+
+function WhatsAppIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.8]">
+      <path d="M20.5 11.5a8.5 8.5 0 1 0-15.7 4.46L4 21l5.2-.77A8.5 8.5 0 0 0 20.5 11.5Z" />
+      <path d="M8.9 7.9c.2-.5.4-.5.7-.5h.6c.2 0 .4 0 .6.4.2.5.8 1.8.9 1.9.1.2.1.4 0 .6l-.4.6c-.1.1-.2.3 0 .5.2.4.8 1.3 1.7 2 .3.3.6.5 1 .6.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1.3.1 1.8.8 2.1.9.3.1.5.2.5.4 0 .2 0 1-.3 1.4-.3.4-1.6.9-2.1.9-.6 0-1.3-.1-2.1-.5-.5-.2-1.2-.6-2-1.3-1.5-1.2-2.4-2.7-2.7-3.2-.3-.6-.3-1.1-.1-1.5.2-.5.5-.8.7-1.1Z" />
     </svg>
   );
 }
@@ -101,9 +112,6 @@ export function SiteHeader() {
             </button>
 
             <div className="hidden items-center gap-5 border-b border-white/35 pb-2 text-[0.66rem] font-semibold tracking-wide text-white md:flex">
-              <span className="text-white/85">
-                <MailIcon />
-              </span>
               <span className="text-white/75">
                 <DiamondIcon />
               </span>
@@ -130,6 +138,29 @@ export function SiteHeader() {
                   {item}
                 </Link>
               ))}
+              <div className="group relative flex items-center">
+                <a
+                  href={contactPhoneHref}
+                  className="text-white/85 transition-colors hover:text-[#c9a46e]"
+                  aria-label={`Call ${contactPhone}`}
+                  data-cursor="hover"
+                >
+                  <PhoneIcon />
+                </a>
+                <span className="pointer-events-none absolute right-1/2 top-[calc(100%+0.7rem)] z-50 min-w-max translate-x-1/2 rounded-full border border-[#c9a46e]/30 bg-[#182920] px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.16em] text-[#f6ead8] opacity-0 shadow-[0_10px_24px_rgba(0,0,0,0.24)] transition-opacity duration-200 group-hover:opacity-100">
+                  {contactPhone}
+                </span>
+              </div>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                className="text-white/85 transition-colors hover:text-[#c9a46e]"
+                aria-label="Open WhatsApp chat"
+                data-cursor="hover"
+              >
+                <WhatsAppIcon />
+              </a>
               <Link
                 href="/booking"
                 className="border border-white bg-white px-6 py-2 text-[0.68rem] tracking-wide text-black"
