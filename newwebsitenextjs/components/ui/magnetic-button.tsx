@@ -2,6 +2,7 @@
 
 import type { MouseEvent } from "react";
 import { useRef } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 
@@ -35,6 +36,25 @@ export function MagneticButton({ children, className, href }: MagneticButtonProp
     "will-transform",
     className,
   );
+
+  const isInternalHref = typeof href === "string" && (href.startsWith("/") || href.startsWith("#"));
+
+  if (href && isInternalHref) {
+    return (
+      <Link href={href} className="inline-flex">
+        <motion.span
+          ref={ref as import("react").RefObject<HTMLSpanElement>}
+          data-cursor="hover"
+          onMouseMove={handleMove as unknown as (event: MouseEvent<HTMLSpanElement>) => void}
+          onMouseLeave={handleLeave}
+          whileTap={{ scale: 0.96 }}
+          className={commonClassName}
+        >
+          {children}
+        </motion.span>
+      </Link>
+    );
+  }
 
   if (href) {
     return (

@@ -8,8 +8,8 @@ import {
   mainNavLinks,
   topLeftLinks,
   topRightLinks,
-} from "@/lib/data/mountain-content";
-import { homeSectionContent } from "@/lib/data/resort-content";
+} from "@/lib/data/content/mountain-content";
+import { homeSectionContent } from "@/lib/data/content/resort-content";
 
 const leftMainLinks = mainLinks.slice(0, 3);
 const rightMainLinks = mainLinks.slice(3);
@@ -31,7 +31,7 @@ function DiamondIcon() {
 
 function PhoneIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.8]">
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-none stroke-current stroke-[1.9]">
       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72l.34 2.71a2 2 0 0 1-.57 1.73L7.1 9.91a16 16 0 0 0 7 7l1.75-1.78a2 2 0 0 1 1.73-.57l2.71.34A2 2 0 0 1 22 16.92z" />
     </svg>
   );
@@ -39,7 +39,7 @@ function PhoneIcon() {
 
 function WhatsAppIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.8]">
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-none stroke-current stroke-[1.9]">
       <path d="M20.5 11.5a8.5 8.5 0 1 0-15.7 4.46L4 21l5.2-.77A8.5 8.5 0 0 0 20.5 11.5Z" />
       <path d="M8.9 7.9c.2-.5.4-.5.7-.5h.6c.2 0 .4 0 .6.4.2.5.8 1.8.9 1.9.1.2.1.4 0 .6l-.4.6c-.1.1-.2.3 0 .5.2.4.8 1.3 1.7 2 .3.3.6.5 1 .6.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1.3.1 1.8.8 2.1.9.3.1.5.2.5.4 0 .2 0 1-.3 1.4-.3.4-1.6.9-2.1.9-.6 0-1.3-.1-2.1-.5-.5-.2-1.2-.6-2-1.3-1.5-1.2-2.4-2.7-2.7-3.2-.3-.6-.3-1.1-.1-1.5.2-.5.5-.8.7-1.1Z" />
     </svg>
@@ -82,7 +82,7 @@ export function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#1e3329]/98 backdrop-blur-sm">
       <div className="mx-auto max-w-[96rem] px-4 md:px-10">
-        <div className="relative border-b border-white/25 py-3 md:py-2">
+        <div className="relative border-b border-white/25 py-2 md:py-1.5">
           <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4 md:grid-cols-[1fr_auto_1fr] md:gap-6">
             <button
               type="button"
@@ -124,7 +124,7 @@ export function SiteHeader() {
 
             <Link
               href="/"
-              className="mx-auto inline-flex h-[76px] w-[96px] items-center justify-center border border-[#9b7a4a] bg-[#08090c] px-3 text-center text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-[#d9b57f] md:h-[84px] md:w-[104px] md:text-[0.66rem]"
+              className="mx-auto inline-flex h-[68px] w-[90px] items-center justify-center border border-[#9b7a4a] bg-[#08090c] px-3 text-center text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-[#d9b57f] md:h-[72px] md:w-[94px] md:text-[0.62rem]"
               data-cursor="hover"
             >
               {content.logoLines[0]}
@@ -132,7 +132,7 @@ export function SiteHeader() {
               {content.logoLines[1]}
             </Link>
 
-            <div className="hidden items-center justify-end gap-5 border-b border-white/35 pb-2 text-[0.66rem] font-semibold tracking-wide text-white md:flex">
+            <div className="hidden items-center justify-end gap-4 border-b border-white/35 pb-2 text-[0.66rem] font-semibold tracking-wide text-white md:flex">
               {topRightLinks.map((item) => (
                 <Link key={item} href="/" className="transition-colors hover:text-[#c9a46e]" data-cursor="hover">
                   {item}
@@ -141,7 +141,7 @@ export function SiteHeader() {
               <div className="group relative flex items-center">
                 <a
                   href={contactPhoneHref}
-                  className="text-white/85 transition-colors hover:text-[#c9a46e]"
+                  className="flex h-9 w-9 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#c9a46e]"
                   aria-label={`Call ${contactPhone}`}
                   data-cursor="hover"
                 >
@@ -155,7 +155,7 @@ export function SiteHeader() {
                 href={whatsappHref}
                 target="_blank"
                 rel="noreferrer"
-                className="text-white/85 transition-colors hover:text-[#c9a46e]"
+                className="flex h-9 w-9 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#c9a46e]"
                 aria-label="Open WhatsApp chat"
                 data-cursor="hover"
               >
@@ -163,7 +163,7 @@ export function SiteHeader() {
               </a>
               <Link
                 href="/booking"
-                className="border border-white bg-white px-6 py-2 text-[0.68rem] tracking-wide text-black"
+                className="border border-white bg-white px-5 py-2 text-[0.66rem] tracking-wide text-black"
                 data-cursor="hover"
               >
                 {content.primaryCta}
@@ -175,7 +175,7 @@ export function SiteHeader() {
           </div>
         </div>
 
-        <nav className="relative hidden grid-cols-[1fr_auto_1fr] items-center py-3 md:grid" onMouseLeave={() => setActiveDropdown(null)}>
+        <nav className="relative hidden grid-cols-[1fr_auto_1fr] items-center py-2.5 md:grid" onMouseLeave={() => setActiveDropdown(null)}>
           <div className="hidden items-center gap-10 md:flex">
             {leftMainLinks.map((item) => (
               <div

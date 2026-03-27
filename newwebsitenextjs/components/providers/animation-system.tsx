@@ -31,6 +31,11 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
     window.addEventListener("load", onLoad);
 
     const ctx = gsap.context(() => {
+      const isOwnedByFeatureStage = (element: Element) =>
+        Boolean(element.closest("[data-feature-stage]"));
+      const hasScrollParallax = (element: HTMLElement) =>
+        element.hasAttribute("data-bg-parallax") || element.hasAttribute("data-parallax");
+
       if (reducedMotion) {
         gsap.set(
           [
@@ -228,6 +233,7 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
       const cardImages = gsap.utils.toArray<HTMLElement>("[data-card-image]");
       cardImages.forEach((image) => {
         if (reducedMotion) return;
+        if (hasScrollParallax(image) || isOwnedByFeatureStage(image)) return;
 
         gsap.fromTo(
           image,
@@ -252,19 +258,33 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
         if (reducedMotion) return;
 
         const rawDepth = Number(item.dataset.parallaxDepth ?? "18");
-        const depth = isDesktop() ? rawDepth : Math.max(4, Math.round(rawDepth * 0.4));
+        const depth = isDesktop() ? rawDepth : Math.max(5, Math.round(rawDepth * 0.5));
+
+        gsap.set(item, {
+          transformPerspective: 1200,
+          transformOrigin: "center center",
+          willChange: "transform",
+        });
 
         gsap.fromTo(
           item,
-          { yPercent: -depth * 0.5 },
           {
-            yPercent: depth,
+            yPercent: -depth * 0.85,
+            scale: isDesktop() ? 1.12 : 1.06,
+            rotateX: isDesktop() ? 2.4 : 0.8,
+            z: isDesktop() ? -18 : -6,
+          },
+          {
+            yPercent: depth * 0.95,
+            scale: isDesktop() ? 1.22 : 1.1,
+            rotateX: isDesktop() ? -2.4 : -0.8,
+            z: isDesktop() ? 18 : 6,
             ease: "none",
             scrollTrigger: {
-              trigger: item,
+              trigger: item.parentElement ?? item,
               start: "top bottom",
               end: "bottom top",
-              scrub: 0.8,
+              scrub: 0.6,
               invalidateOnRefresh: true,
             },
           },
@@ -274,22 +294,36 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
       const bgParallaxItems = gsap.utils.toArray<HTMLElement>("[data-bg-parallax]");
       bgParallaxItems.forEach((item) => {
         if (reducedMotion) return;
+        if (isOwnedByFeatureStage(item) && item.hasAttribute("data-feature-image")) return;
 
         const rawDepth = Number(item.dataset.bgDepth ?? "12");
-        const depth = isDesktop() ? rawDepth : Math.max(3, Math.round(rawDepth * 0.4));
+        const depth = isDesktop() ? rawDepth : Math.max(4, Math.round(rawDepth * 0.5));
+
+        gsap.set(item, {
+          transformPerspective: 1400,
+          transformOrigin: "center center",
+          willChange: "transform",
+        });
 
         gsap.fromTo(
           item,
-          { yPercent: -depth * 0.4, scale: 1.015 },
           {
-            yPercent: depth * 0.7,
-            scale: isDesktop() ? 1.06 : 1.03,
+            yPercent: -depth * 0.7,
+            scale: isDesktop() ? 1.08 : 1.04,
+            rotateX: isDesktop() ? 1.8 : 0.6,
+            z: isDesktop() ? -14 : -4,
+          },
+          {
+            yPercent: depth * 0.82,
+            scale: isDesktop() ? 1.17 : 1.08,
+            rotateX: isDesktop() ? -1.8 : -0.6,
+            z: isDesktop() ? 14 : 4,
             ease: "none",
             scrollTrigger: {
-              trigger: item,
+              trigger: item.parentElement ?? item,
               start: "top bottom",
               end: "bottom top",
-              scrub: 0.7,
+              scrub: 0.45,
               invalidateOnRefresh: true,
             },
           },
@@ -356,7 +390,7 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
             scale: isDesktop() ? 1.08 : 1.03,
             ease: "none",
             scrollTrigger: {
-              trigger: item,
+              trigger: item.parentElement ?? item,
               start: "top bottom",
               end: "bottom top",
               scrub: 0.6,
@@ -500,6 +534,9 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
             },
           );
         }
+
+        const nestedRevealItems = stage.querySelectorAll<HTMLElement>("[data-reveal]");
+        nestedRevealItems.forEach((item) => gsap.set(item, { clearProps: "opacity,visibility,transform,filter,clipPath" }));
       });
 
       const sections = gsap.utils.toArray<HTMLElement>("[data-section-id]");
