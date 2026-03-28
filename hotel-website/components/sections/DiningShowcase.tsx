@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
@@ -58,6 +58,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function DiningShowcase() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const scrollWrapRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollCards = useCallback((direction: "left" | "right") => {
+    const container = scrollWrapRef.current;
+    if (!container) return;
+
+    const firstCard = container.querySelector<HTMLElement>(".dining-card");
+    const step = firstCard ? firstCard.offsetWidth + 24 : Math.round(container.clientWidth * 0.85);
+
+    container.scrollBy({
+      left: direction === "left" ? -step : step,
+      behavior: "smooth",
+    });
+  }, []);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
@@ -216,7 +230,25 @@ export default function DiningShowcase() {
       </Container>
 
       <div className="relative mt-10 sm:mt-12">
-        <div className="dining-scroll-wrap w-full overflow-x-auto pb-3 lg:pb-0">
+        <button
+          type="button"
+          aria-label="Previous dining slide"
+          onClick={() => scrollCards("left")}
+          className="dining-nav-btn dining-nav-btn--left"
+        >
+          <span aria-hidden="true">&lt;</span>
+        </button>
+
+        <button
+          type="button"
+          aria-label="Next dining slide"
+          onClick={() => scrollCards("right")}
+          className="dining-nav-btn dining-nav-btn--right"
+        >
+          <span aria-hidden="true">&gt;</span>
+        </button>
+
+        <div ref={scrollWrapRef} className="dining-scroll-wrap w-full overflow-x-auto pb-3 lg:pb-0">
           <div className="dining-card-track flex min-w-max snap-x snap-mandatory gap-4 sm:gap-5 lg:gap-6">
             {diningItems.map((item) => (
               <article
@@ -273,6 +305,53 @@ export default function DiningShowcase() {
         }
         .dining-scroll-wrap::-webkit-scrollbar {
           display: none;
+        }
+        .dining-nav-btn {
+          position: absolute;
+          top: 50%;
+          z-index: 20;
+          display: flex;
+          height: 2.9rem;
+          width: 2.9rem;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(255, 255, 255, 0.34);
+          border-radius: 999px;
+          background: rgba(17, 24, 28, 0.56);
+          color: #fff;
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          transform: translateY(-50%);
+          transition:
+            background 0.25s ease,
+            border-color 0.25s ease,
+            transform 0.25s ease;
+        }
+        .dining-nav-btn:hover {
+          background: rgba(17, 24, 28, 0.8);
+          border-color: rgba(255, 255, 255, 0.65);
+        }
+        .dining-nav-btn span {
+          font-size: 1.3rem;
+          line-height: 1;
+        }
+        .dining-nav-btn--left {
+          left: 0.85rem;
+        }
+        .dining-nav-btn--right {
+          right: 0.85rem;
+        }
+        @media (max-width: 639px) {
+          .dining-nav-btn {
+            height: 2.45rem;
+            width: 2.45rem;
+          }
+          .dining-nav-btn--left {
+            left: 0.55rem;
+          }
+          .dining-nav-btn--right {
+            right: 0.55rem;
+          }
         }
         @media (min-width: 1024px) {
           .dining-card {

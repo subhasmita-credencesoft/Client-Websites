@@ -24,7 +24,7 @@ export default function RoomCard({ room }: RoomCardProps) {
       <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 bg-gradient-to-t from-black/70 via-black/20 to-transparent px-6 pb-6 pt-24 text-center text-white">
         <h3 className="font-serif text-2xl">{room.name}</h3>
         <p className="text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-white/80">
-          {room.size} · {room.capacity} PERSON · {room.bedType}
+          {room.size} &middot; {room.capacity} PERSON &middot; {room.bedType}
         </p>
         <Link
           href={`/rooms/${room.slug}`}

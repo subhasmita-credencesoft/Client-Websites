@@ -51,6 +51,11 @@ function normalizeLabel(value: string) {
   return value.trim().toLowerCase();
 }
 
+function formatCapacityLabel(minOccupancy: number, capacity: number) {
+  const guestLabel = capacity > 1 ? "Persons" : "Person";
+  return `${minOccupancy}-${capacity} ${guestLabel}`;
+}
+
 function RoomCard({ room, virtualTourUrl }: { room: DisplayRoom; virtualTourUrl: string }) {
   const [flipped, setFlipped] = useState(false);
 
@@ -78,38 +83,32 @@ function RoomCard({ room, virtualTourUrl }: { room: DisplayRoom; virtualTourUrl:
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           <button
-  type="button"
-  className="absolute left-4 top-4 rounded-full border border-white/50 bg-black/40 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/55"
-  onClick={(event) => {
-    event.stopPropagation();
-    window.open(virtualTourUrl, "_blank", "noopener,noreferrer");
-  }}
->
-  <span className="inline-flex items-center gap-1.5">
-    
-    {/* 360 Rotate Icon */}
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="h-3.5 w-3.5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {/* Top arc */}
-      <path d="M3 12a9 9 0 0 1 14-7" />
-      <polyline points="17 3 17 7 13 7" />
-
-      {/* Bottom arc */}
-      <path d="M21 12a9 9 0 0 1-14 7" />
-      <polyline points="7 21 7 17 11 17" />
-    </svg>
-
-    <span>360° Tour</span>
-  </span>
-</button>
+            type="button"
+            className="absolute left-4 top-4 rounded-full border border-white/45 bg-black/35 px-2.5 py-1 text-[0.56rem] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-black/50 sm:left-5 sm:top-5 sm:px-3 sm:text-[0.6rem]"
+            onClick={(event) => {
+              event.stopPropagation();
+              window.open(virtualTourUrl, "_blank", "noopener,noreferrer");
+            }}
+          >
+            <span className="inline-flex items-center gap-1.5 leading-none">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-3.5 w-3.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 12a9 9 0 0 1 14-7" />
+                <polyline points="17 3 17 7 13 7" />
+                <path d="M21 12a9 9 0 0 1-14 7" />
+                <polyline points="7 21 7 17 11 17" />
+              </svg>
+              <span>360 Tour</span>
+            </span>
+          </button>
           <div className="absolute right-4 top-4 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-white shadow-md">
             <span className="text-[9px] font-semibold uppercase tracking-widest leading-tight text-[#1f3c44]/60">
               From
@@ -121,8 +120,8 @@ function RoomCard({ room, virtualTourUrl }: { room: DisplayRoom; virtualTourUrl:
 
           <div className="absolute bottom-0 left-0 w-full px-6 pb-5 text-white">
             <h3 className="mb-1 font-serif text-2xl font-light">{room.name}</h3>
-            <p className="mb-2 text-xs uppercase tracking-widest text-white/80">
-              {room.size} Â· {room.minOccupancy}-{room.capacity} Person Â· {room.bedType}
+            <p className="mb-2 text-[0.72rem] uppercase tracking-[0.18em] text-white/80 sm:text-xs">
+              {room.size} &middot; {formatCapacityLabel(room.minOccupancy, room.capacity)} &middot; {room.bedType}
             </p>
             <span className="border-b border-white/40 pb-px text-[0.6rem] uppercase tracking-[0.2em] text-white/60">
               Click to view facilities 

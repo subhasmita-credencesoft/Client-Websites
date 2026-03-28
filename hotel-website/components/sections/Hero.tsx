@@ -14,8 +14,32 @@ const HeroBookingBar = dynamic(() => import("../features/HeroBookingBar"), {
 });
 
 const HERO_VIDEO_SRC = "https://bookonelocal.in/cdn/UK%27s+Resort-Hero-Video.mp4";
-const HERO_FALLBACK_IMAGE = "https://bookonelocal.in/cdn/3.png";
-// const HERO_TAGLINE = "Experience elegant and comfortable rooms designed for a relaxing stay at UK Resort.";
+
+function canPlayVideo(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const nav = navigator as Navigator & {
+    deviceMemory?: number;
+    connection?: { saveData?: boolean; effectiveType?: string };
+  };
+
+  if (nav.connection?.saveData) return false;
+  if (["slow-2g", "2g", "3g"].includes(nav.connection?.effectiveType ?? "")) return false;
+  if ((nav.deviceMemory ?? 8) <= 2) return false;
+  if (navigator.hardwareConcurrency <= 2) return false;
+
+  return true;
+}
+
+type VideoState = {
+  shouldRender: boolean;
+  isReady: boolean;
+};
+
+type IdleWindow = Window &
+  typeof globalThis & {
+    requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+    cancelIdleCallback?: (handle: number) => void;
+  };
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,101 +47,84 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [shouldRenderVideo, setShouldRenderVideo] = useState(false);
-  const [videoPreload, setVideoPreload] = useState<"none" | "metadata">("none");
+  const [video, setVideo] = useState<VideoState>({ shouldRender: false, isReady: false });
 
   useEffect(() => {
-    const nav = navigator as Navigator & {
-      deviceMemory?: number;
-      connection?: { saveData?: boolean; effectiveType?: string };
-    };
-    const isLowPower = (nav.deviceMemory ?? 8) <= 4 || navigator.hardwareConcurrency <= 4;
-    const saveData = Boolean(nav.connection?.saveData);
-    const lowBandwidth = ["slow-2g", "2g", "3g"].includes(nav.connection?.effectiveType ?? "");
-    const allowVideo = !(saveData || lowBandwidth || isLowPower);
+    if (!canPlayVideo()) return;
 
-    if (!allowVideo) {
-      setShouldRenderVideo(false);
-      return;
+    const trigger = () => setVideo({ shouldRender: true, isReady: false });
+    const browserWindow = window as IdleWindow;
+
+    if (typeof browserWindow.requestIdleCallback === "function") {
+      const id = browserWindow.requestIdleCallback(trigger, { timeout: 300 });
+      return () => browserWindow.cancelIdleCallback?.(id);
     }
 
-    const startVideo = () => {
-      setVideoPreload("metadata");
-      setShouldRenderVideo(true);
-    };
-
-    if ("requestIdleCallback" in window) {
-      const idleId = window.requestIdleCallback(() => startVideo(), { timeout: 1200 });
-      return () => window.cancelIdleCallback(idleId);
-    }
-
-    const timerId = globalThis.setTimeout(startVideo, 350);
-    return () => globalThis.clearTimeout(timerId);
+    const id = globalThis.setTimeout(trigger, 80);
+    return () => globalThis.clearTimeout(id);
   }, []);
+
+  useEffect(() => {
+    if (!video.shouldRender) return;
+    const element = videoRef.current;
+    if (!element) return;
+    element.load();
+    element.play().catch(() => undefined);
+  }, [video.shouldRender]);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    const introTag = section.querySelector(".hero-intro-tag");
-    const titleLines = section.querySelectorAll(".hero-title-line");
-    const bookingWrap = section.querySelector(".hero-booking-wrap");
-    const heroMedia = section.querySelector(".hero-media");
+    const titleLines = section.querySelectorAll<HTMLElement>(".hero-title-line");
+    const bookingWrap = section.querySelector<HTMLElement>(".hero-booking-wrap");
+    const heroMedia = section.querySelector<HTMLElement>(".hero-media");
+    const tagline = section.querySelector<HTMLElement>(".hero-tagline");
+
     if (!titleLines.length || !bookingWrap || !heroMedia) return;
 
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const ctx = gsap.context(() => {
-        if (introTag) gsap.set(introTag, { y: 18, autoAlpha: 0 });
-        gsap.set(titleLines, { yPercent: 100, autoAlpha: 0 });
-        gsap.set(bookingWrap, { y: 22, autoAlpha: 0 });
-        gsap.set(heroMedia, { scale: 1.04, yPercent: 0, transformOrigin: "center center" });
+        gsap.set(titleLines, { yPercent: 105, autoAlpha: 0 });
+        gsap.set(bookingWrap, { y: 20, autoAlpha: 0 });
+        gsap.set(heroMedia, { scale: 1.06, transformOrigin: "center center" });
+        if (tagline) gsap.set(tagline, { y: 14, autoAlpha: 0 });
 
-        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-        if (introTag) {
-          tl.to(introTag, { y: 0, autoAlpha: 1, duration: 0.75 }, 0.08);
-        }
-        tl.to(
-            titleLines,
-            { yPercent: 0, autoAlpha: 1, duration: 0.95, stagger: 0.1, ease: "power4.out" },
-            0.14,
-          )
-          .to(bookingWrap, { y: 0, autoAlpha: 1, duration: 0.8 }, 0.3)
-          .to(heroMedia, { scale: 1, duration: 1.5, ease: "power2.out" }, 0);
+        gsap
+          .timeline({ defaults: { ease: "power4.out" } })
+          .to(heroMedia, { scale: 1, duration: 1.6, ease: "power2.out" }, 0)
+          .to(titleLines, { yPercent: 0, autoAlpha: 1, duration: 0.9, stagger: 0.1 }, 0.1)
+          .to(tagline ?? [], { y: 0, autoAlpha: 1, duration: 0.7 }, 0.35)
+          .to(bookingWrap, { y: 0, autoAlpha: 1, duration: 0.75 }, 0.3);
 
         gsap
           .timeline({
             scrollTrigger: {
-              trigger: sectionRef.current,
+              trigger: section,
               start: "top top",
               end: "bottom top",
-              scrub: 0.65,
+              scrub: 0.5,
               invalidateOnRefresh: true,
             },
           })
-          .to(heroMedia, { yPercent: 10, scale: 1.05, ease: "none" }, 0)
-          .to(contentRef.current, { y: -48, autoAlpha: 0.62, ease: "none" }, 0);
-      }, sectionRef);
+          .to(heroMedia, { yPercent: 12, scale: 1.06, ease: "none" }, 0)
+          .to(contentRef.current, { y: -44, autoAlpha: 0.55, ease: "none" }, 0);
+      }, section);
 
       return () => ctx.revert();
     });
 
     mm.add("(prefers-reduced-motion: reduce)", () => {
       gsap.set([titleLines, bookingWrap, heroMedia], { clearProps: "all" });
-      if (introTag) gsap.set(introTag, { clearProps: "all" });
+      if (tagline) gsap.set(tagline, { clearProps: "all" });
     });
 
     return () => mm.revert();
   }, []);
 
-  useEffect(() => {
-    if (!shouldRenderVideo) return;
-    const videoEl = videoRef.current;
-    if (!videoEl) return;
-    videoEl.load();
-    videoEl.play().catch(() => undefined);
-  }, [shouldRenderVideo]);
+  const showSkeleton = video.shouldRender && !video.isReady;
 
   return (
     <section
@@ -125,51 +132,62 @@ export default function Hero() {
       data-no-global-gsap
       className="relative min-h-[100svh] overflow-hidden text-white"
     >
-      <div className="hero-media absolute inset-0 isolate will-change-transform">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url("${HERO_FALLBACK_IMAGE}")` }}
-          aria-hidden="true"
-        />
-        {shouldRenderVideo && (
+      <div className="hero-media absolute inset-0 isolate bg-[#143b47] will-change-transform">
+        {video.shouldRender && (
           <video
             ref={videoRef}
-            className="hero-video absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2"
+            className="hero-video absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover"
             src={HERO_VIDEO_SRC}
             autoPlay
             muted
             loop
             playsInline
-            preload={videoPreload}
+            preload="none"
+            onCanPlay={() => setVideo((state) => ({ ...state, isReady: true }))}
           />
         )}
+
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.18) 50%, rgba(0,0,0,0.52) 100%)",
+          }}
+          aria-hidden="true"
+        />
       </div>
+
+      {showSkeleton && (
+        <div className="site-skeleton-shell pointer-events-none absolute inset-0 z-20" aria-hidden="true">
+          <div className="site-skeleton-shimmer absolute inset-0 opacity-90" />
+          <div className="absolute inset-x-0 top-[22%] flex flex-col items-center px-6">
+            <div className="site-skeleton-line h-14 w-[min(78vw,36rem)] rounded-full sm:h-20" />
+            <div className="site-skeleton-line mt-4 h-4 w-[min(60vw,26rem)] rounded-full sm:h-5" />
+          </div>
+          <div className="absolute inset-x-0 bottom-10 flex justify-center px-4 sm:bottom-12 md:bottom-14">
+            <div className="site-skeleton-line h-16 w-[min(88vw,62rem)] rounded-[1.8rem] sm:h-[4.5rem]" />
+          </div>
+        </div>
+      )}
 
       <Container className="relative z-10 flex min-h-[100svh] w-full flex-col items-center justify-center px-4 text-center sm:px-6 md:px-8">
         <div
           ref={contentRef}
           className="flex w-full max-w-[72rem] flex-col items-center justify-center px-2 pb-28 pt-[calc(7rem+env(safe-area-inset-top))] sm:px-3 sm:pb-28 sm:pt-28 md:px-4 md:pb-32 md:pt-32 lg:pb-32 lg:pt-36"
         >
-          <div>
-            {/* <p className="hero-intro-tag mx-auto max-w-[22rem] text-[0.68rem] font-bold uppercase tracking-[0.34em] text-white/85 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:max-w-[34rem] sm:text-[0.8rem] sm:tracking-[0.42em] md:text-[0.85rem]">
-              {HERO_TAGLINE}
-            </p> */}
+          <div className="mt-3 space-y-0 sm:mt-5 md:mt-6">
+            {["UK's Resort"].map((line, index) => (
+              <div key={index} className="overflow-hidden leading-none">
+                <h1 className="hero-title-line font-serif text-[2.45rem] font-normal leading-[1] tracking-[-0.015em] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)] sm:text-[3.5rem] md:text-[4.6rem] lg:text-[5.4rem] xl:text-[6rem]">
+                  {line === "UK's Resort" ? <>UK&apos;s Resort</> : line}
+                </h1>
+              </div>
+            ))}
           </div>
 
-      <div className="mt-3 space-y-0 sm:mt-5 md:mt-6">
-  {["UK's Resort"].map((line, i) => (
-    <div key={i} className="overflow-hidden leading-none">
-      <h1 className="hero-title-line font-serif text-[2.45rem] font-normal leading-[1.0] tracking-[-0.015em] text-white sm:text-[3.5rem] md:text-[4.6rem] lg:text-[5.4rem] xl:text-[6rem]">
-        {line === "UK's Resort" ? <>UK&apos;s Resort</> : line}
-      </h1>
-    </div>
-  ))}
-</div>
-
-          <p className="mt-3 max-w-[40rem] px-2 text-center text-[0.86rem] leading-relaxed text-white/92 drop-shadow-[0_5px_18px_rgba(0,0,0,0.45)] sm:mt-4 sm:text-[0.95rem] md:text-[1.02rem]">
+          <p className="hero-tagline mt-3 max-w-[40rem] px-2 text-center text-[0.86rem] leading-relaxed text-white/90 drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)] sm:mt-4 sm:text-[0.95rem] md:text-[1.02rem]">
             Experience elegant and comfortable rooms designed for a relaxing stay at UK Resort.
           </p>
-
         </div>
 
         <div className="hero-booking-wrap absolute bottom-10 left-1/2 z-20 w-full -translate-x-1/2 px-2 sm:bottom-12 sm:px-3 md:bottom-14 md:px-4">
@@ -183,18 +201,19 @@ export default function Hero() {
           object-position: 50% 50%;
           transform-origin: center center;
         }
+
         .hero-booking-wrap {
           display: flex;
           width: 100%;
           justify-content: center;
         }
+
         .hero-booking-wrap > form {
-          margin-top: 0 !important;
-          margin-left: auto !important;
-          margin-right: auto !important;
+          margin: 0 auto !important;
           width: min(88vw, 62rem) !important;
           max-width: 62rem !important;
         }
+
         @media (min-width: 1024px) {
           .hero-booking-wrap > form {
             width: min(82vw, 62rem) !important;

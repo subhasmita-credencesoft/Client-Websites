@@ -200,14 +200,14 @@ export default function Testimonials() {
           </div>
 
           {/* RIGHT — YouTube Video Card */}
-          <div className="testimonials-video relative h-full overflow-hidden rounded-3xl shadow-sm">
+          <div className="testimonials-video relative h-full min-h-[420px] overflow-hidden rounded-3xl bg-black shadow-sm sm:min-h-[460px] lg:min-h-[500px]">
             <iframe
               src={TESTIMONIALS_VIDEO_URL}
               title="Resort Video"
               loading="eager"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              className="absolute inset-0 h-full w-full"
+              className="testimonials-video-frame absolute inset-0 block h-full w-full border-0"
             />
           </div>
 
@@ -222,7 +222,13 @@ export default function Testimonials() {
             Hotel Sai International
           </h2>
         </div>
-
+      <style>{`
+        .testimonials-video-frame {
+          width: 100% !important;
+          height: 100% !important;
+          min-height: 100% !important;
+        }
+      `}</style>
       </Container>
     </section>
   );

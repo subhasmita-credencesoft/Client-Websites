@@ -88,12 +88,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://bookonelocal.in" crossOrigin="" />
         <link rel="dns-prefetch" href="//bookonelocal.in" />
-        <link
-          rel="preload"
-          href="https://bookonelocal.in/cdn/UK%27s+Resort-Hero-Video.mp4"
-          as="video"
-          type="video/mp4"
-        />
       </head>
       <body suppressHydrationWarning className="theme-hotel flex min-h-screen flex-col antialiased">
         <SmoothScrollProvider>
