@@ -10,6 +10,7 @@ import Container from "../ui/Container";
 type PageHeroProps = {
   title: string;
   backgroundImage: string;
+  backgroundVideo?: string;
   subtitle?: string;
   breadcrumb?: string;
   minHeightClassName?: string;
@@ -20,6 +21,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function PageHero({
   title,
   backgroundImage,
+  backgroundVideo,
   subtitle,
   breadcrumb,
   minHeightClassName = "min-h-[100vh]",
@@ -110,19 +112,31 @@ export default function PageHero({
       className={`relative overflow-hidden bg-[#0f1216] text-white ${minHeightClassName}`}
     >
       <div ref={mediaRef} className="absolute inset-0 will-change-transform">
-        <Image
-          src={backgroundImage}
-          alt={title}
-          fill
-          sizes="100vw"
-          quality={68}
-          priority
-          fetchPriority="high"
-          placeholder="blur"
-          blurDataURL={HERO_BLUR}
-          className="object-cover"
-          unoptimized={backgroundImage.startsWith("http")}
-        />
+        {backgroundVideo ? (
+          <video
+            src={backgroundVideo}
+            className="h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+        ) : (
+          <Image
+            src={backgroundImage}
+            alt={title}
+            fill
+            sizes="100vw"
+            quality={68}
+            priority
+            fetchPriority="high"
+            placeholder="blur"
+            blurDataURL={HERO_BLUR}
+            className="object-cover"
+            unoptimized={backgroundImage.startsWith("http")}
+          />
+        )}
       </div>
       <div ref={overlayRef} className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/70" />
 

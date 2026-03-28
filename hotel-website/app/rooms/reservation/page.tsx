@@ -405,6 +405,7 @@ function RoomsReservationContent() {
       <PageHero
         title="Reservation"
         backgroundImage="https://bookonelocal.in/cdn/room_3.jpg"
+        backgroundVideo="https://bookonelocal.in/cdn/Curtains_opening_revealing_202603191629.mp4"
         breadcrumb="Home / Reservation"
       />
 
