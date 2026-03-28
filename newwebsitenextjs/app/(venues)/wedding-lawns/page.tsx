@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
 
 const heroImages = ["/images/DSC08831.avif", "/images/DSC08849.avif", "/images/DSC08853.avif"] as const;
 
@@ -74,6 +74,7 @@ const awards = [
 export default function WeddingLawnsPage() {
   const [tab, setTab] = useState<"image" | "video">("image");
   const [activeHeroImage, setActiveHeroImage] = useState(0);
+  const bookingHref = `/booking?page=${encodeURIComponent("Wedding Lawns")}&offer=${encodeURIComponent("Wedding Lawns")}`;
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -141,9 +142,19 @@ export default function WeddingLawnsPage() {
       </section>
 
       <section className="mx-auto max-w-[96rem] px-8 pb-24 pt-40" data-section-id="wedding-lawns-intro">
-        <p className="text-2xl text-black/85 md:text-3xl">
-          Home &gt; <span className="font-semibold">Destination Wedding &amp; Event Venue</span>
-        </p>
+        <nav aria-label="Breadcrumb" className="flex items-center">
+          <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-white/55 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#263129] backdrop-blur-sm md:text-xs">
+            <li>
+              <Link href="/" className="transition-colors hover:text-[#b88948]">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true" className="text-[#b88948]">
+              /
+            </li>
+            <li className="text-[#b88948]">Wedding Lawns</li>
+          </ol>
+        </nav>
 
         <div className="mt-12 max-w-[62rem]" data-reveal>
           <h2 className="text-balance text-4xl leading-tight text-[#b2863d] md:text-6xl" data-section-title>
@@ -180,13 +191,13 @@ export default function WeddingLawnsPage() {
               Crafted for ceremonies, guest arrivals, evening receptions, and styled wedding functions with the openness and luxury a destination
               event deserves.
             </p>
-            <button
-              type="button"
-              className="mt-10 border border-white px-10 py-4 text-sm uppercase tracking-[0.18em]"
+            <Link
+              href={bookingHref}
+              className="mt-10 inline-flex items-center justify-center border border-white px-10 py-4 text-sm uppercase tracking-[0.18em]"
               data-cursor="hover"
             >
               Enquire Now
-            </button>
+            </Link>
           </div>
 
           <div className="relative h-[36rem] overflow-hidden" data-card>
@@ -255,13 +266,13 @@ export default function WeddingLawnsPage() {
         </div>
 
         <div className="mt-10 text-center">
-          <button
-            type="button"
-            className="bg-black px-12 py-4 text-sm uppercase tracking-[0.18em] text-white"
+          <Link
+            href={bookingHref}
+            className="inline-flex items-center justify-center bg-black px-12 py-4 text-sm uppercase tracking-[0.18em] text-white"
             data-cursor="hover"
           >
             Explore Venues
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -271,13 +282,13 @@ export default function WeddingLawnsPage() {
             We support destination wedding and event celebrations with decor flexibility, guest comfort, premium hospitality flow, and scenic
             ambience.
           </p>
-          <button
-            type="button"
-            className="self-start bg-[#c89a55] px-10 py-4 text-sm uppercase tracking-[0.18em] text-black md:self-auto"
+          <Link
+            href={bookingHref}
+            className="inline-flex self-start items-center justify-center bg-[#c89a55] px-10 py-4 text-sm uppercase tracking-[0.18em] text-black md:self-auto"
             data-cursor="hover"
           >
             Enquire Now
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -362,7 +373,6 @@ export default function WeddingLawnsPage() {
         </div>
       </section>
 
-      <GlobalPageSections />
       <SiteFooter />
     </main>
   );

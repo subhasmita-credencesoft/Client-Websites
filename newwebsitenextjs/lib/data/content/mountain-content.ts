@@ -29,11 +29,11 @@ export const headerDropdowns: Record<string, string[]> = {
 
 export const headerDropdownLinks: Record<string, Array<{ label: string; href: string }>> = {
   "STAY DETAILS": [
-    { label: "Standard Room", href: "/garden-villa-resort" },
-    { label: "Cliff Room", href: "/luxury-resort" },
-    { label: "Family Room", href: "/camp-della-resort-room" },
-    { label: "Glass Cottage", href: "/adventure-resort" },
-    { label: "Bungalow", href: "/della-enclave-villa-rooms" },
+    { label: "Standard Room", href: "/standard-room" },
+    { label: "Cliff Room", href: "/cliff-room" },
+    { label: "Family Room", href: "/family-room" },
+    { label: "Glass Cottage", href: "/glass-cottage" },
+    { label: "Bungalow", href: "/bungalow" },
   ],
   "VENUE HIGHLIGHTS": [
     { label: "Mountain View Destination", href: "/mountain-view-destination" },
@@ -45,7 +45,7 @@ export const headerDropdownLinks: Record<string, Array<{ label: string; href: st
 
 export const mainNavLinks: Record<string, string> = {
   "PACKAGES & OFFERS": "/offers",
-  "STAY DETAILS": "/luxury-resort",
+  "STAY DETAILS": "/cliff-room",
   "VENUE HIGHLIGHTS": "/mountain-view-destination",
   "KEY ADVANTAGES": "/key-advantages",
   RULES: "/rules",
@@ -309,7 +309,7 @@ export const footerSections: FooterLinkItem[][] = [
   ],
   [
     { label: "Venue Highlights", href: "/mountain-view-destination" },
-    { label: "Stay Details", href: "/luxury-resort" },
+    { label: "Stay Details", href: "/cliff-room" },
     { label: "Key Advantages", href: "/key-advantages" },
     { label: "Rules & Regulations", href: "/rules" },
     { label: "Check-In Terms", href: "/check-in" },

@@ -173,6 +173,15 @@ const detailPageSeeds: DetailSeed[] = [
     cards: standardRoomCards,
     galleryTabs: ["Exterior", "Standard Room", "Guest Stay"],
     galleryImage: "/images/DSC08720.avif",
+    galleryImages: [
+      "/images/DSC08717.avif",
+      "/images/DSC08720.avif",
+      "/images/DSC08753.avif",
+      "/images/DSC08745.avif",
+      "/images/DSC08749.avif",
+      "/images/DSC08798.avif",
+      "/images/DSC08796.avif",
+    ],
   },
   {
     slug: "luxury-resort",
@@ -185,6 +194,14 @@ const detailPageSeeds: DetailSeed[] = [
     cards: cliffRoomCards,
     galleryTabs: ["Exterior", "Cliff Room", "Premium Stay"],
     galleryImage: "/images/DSC08801.avif",
+    galleryImages: [
+      "/images/DSC08769.avif",
+      "/images/DSC08801.avif",
+      "/images/DSC08798.avif",
+      "/images/DSC08796.avif",
+      "/images/DSC08790.avif",
+      "/images/DSC08792.avif",
+    ],
   },
   {
     slug: "camp-della-resort-room",
@@ -197,6 +214,13 @@ const detailPageSeeds: DetailSeed[] = [
     cards: familyRoomCards,
     galleryTabs: ["Exterior", "Family Room", "Guest Stay"],
     galleryImage: "/images/DSC08820.avif",
+    galleryImages: [
+      "/images/DSC08812.avif",
+      "/images/DSC08820.avif",
+      "/images/DSC08822.avif",
+      "/images/DSC08824.avif",
+      "/images/DSC08827.avif",
+    ],
   },
   {
     slug: "adventure-resort",

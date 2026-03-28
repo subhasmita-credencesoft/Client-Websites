@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import type { MountainVenuePageData } from "@/lib/data/pages/mountain-venue-pages";
@@ -12,6 +13,7 @@ type MountainVenueShowcasePageProps = {
 
 export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePageProps) {
   const [activeHeroImage, setActiveHeroImage] = useState(0);
+  const bookingHref = `/booking?page=${encodeURIComponent(page.hero.title)}&offer=${encodeURIComponent(page.hero.title)}`;
 
   const heroImages = useMemo(
     () =>
@@ -86,9 +88,19 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
       </section>
 
       <section className="mx-auto max-w-[96rem] px-8 pb-24 pt-40" data-section-id={`${page.slug}-intro`}>
-        <p className="text-2xl text-black/85 md:text-3xl">
-          Home &gt; <span className="font-semibold">{page.intro.eyebrow}</span>
-        </p>
+        <nav aria-label="Breadcrumb" className="flex items-center">
+          <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-white/55 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#263129] backdrop-blur-sm md:text-xs">
+            <li>
+              <Link href="/" className="transition-colors hover:text-[#b88948]">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true" className="text-[#b88948]">
+              /
+            </li>
+            <li className="text-[#b88948]">{page.hero.title}</li>
+          </ol>
+        </nav>
 
         <div className="mt-12 max-w-[62rem]" data-reveal>
           <h2 className="text-balance text-4xl leading-tight text-[#b2863d] md:text-6xl" data-section-title>
@@ -116,13 +128,13 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
             <p data-reveal-child className="mt-8 max-w-2xl text-xl leading-relaxed text-white/90 md:text-2xl">
               {page.summary.body}
             </p>
-            <button
-              type="button"
-              className="mt-10 border border-white px-10 py-4 text-sm uppercase tracking-[0.18em]"
+            <Link
+              href={bookingHref}
+              className="mt-10 inline-flex items-center justify-center border border-white px-10 py-4 text-sm uppercase tracking-[0.18em]"
               data-cursor="hover"
             >
               Enquire Now
-            </button>
+            </Link>
           </div>
 
           <div className="relative h-[36rem] overflow-hidden" data-card>
@@ -194,13 +206,13 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
           <p data-reveal-child className="max-w-4xl text-xl md:text-2xl">
             {page.summary.body}
           </p>
-          <button
-            type="button"
-            className="self-start bg-[#c89a55] px-10 py-4 text-sm uppercase tracking-[0.18em] text-black md:self-auto"
+          <Link
+            href={bookingHref}
+            className="inline-flex self-start items-center justify-center bg-[#c89a55] px-10 py-4 text-sm uppercase tracking-[0.18em] text-black md:self-auto"
             data-cursor="hover"
           >
             Explore Venue
-          </button>
+          </Link>
         </div>
       </section>
 

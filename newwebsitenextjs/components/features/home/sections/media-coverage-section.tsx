@@ -30,7 +30,7 @@ export function MediaCoverageSection() {
             {content.description}
           </p>
           <div className="mt-9">
-            <MagneticButton>{content.cta}</MagneticButton>
+            <MagneticButton href="/mountain-view-destination">{content.cta}</MagneticButton>
           </div>
         </div>
       </div>

@@ -56,9 +56,19 @@ export function OffersPageClient() {
       </section>
 
       <section className="mx-auto max-w-[96rem] px-8 py-14 text-center">
-        <p className="text-2xl text-black/90 md:text-3xl">
-          Home <span className="px-1">-&gt;</span> <span className="text-[#be9557]">{intro.breadcrumb}</span>
-        </p>
+        <nav aria-label="Breadcrumb" className="flex items-center justify-center">
+          <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-white/50 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#263129] backdrop-blur-sm md:text-xs">
+            <li>
+              <Link href="/" className="transition-colors hover:text-[#b88948]">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true" className="text-[#b88948]">
+              /
+            </li>
+            <li className="text-[#b88948]">{intro.breadcrumb}</li>
+          </ol>
+        </nav>
         <h2 className="mx-auto mt-8 max-w-6xl text-balance text-3xl font-semibold leading-[1.35] md:text-4xl" data-section-title>
           {activeTitle}
         </h2>

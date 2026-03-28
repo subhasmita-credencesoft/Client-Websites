@@ -83,7 +83,7 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#1e3329]/98 backdrop-blur-sm">
       <div className="mx-auto max-w-[96rem] px-4 md:px-10">
         <div className="relative border-b border-white/25 py-2 md:py-1.5">
-          <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4 md:grid-cols-[1fr_auto_1fr] md:gap-6">
+          <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-6">
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -171,7 +171,13 @@ export function SiteHeader() {
 
             </div>
 
-            <div className="h-10 w-10 md:hidden" />
+            <Link
+              href="/booking"
+              className="inline-flex items-center justify-center border border-white bg-white px-3 py-2 text-[0.68rem] font-semibold tracking-wide text-black md:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {content.primaryCta}
+            </Link>
           </div>
         </div>
 
@@ -230,13 +236,14 @@ export function SiteHeader() {
 
         <nav
           id="mobile-menu"
-          className={`border-b border-white/20 transition-[max-height,opacity] duration-300 md:hidden ${
+          data-lenis-prevent
+          className={`no-scrollbar border-b border-white/20 transition-[max-height,opacity] duration-300 md:hidden ${
             mobileMenuOpen
-              ? "max-h-[calc(100vh-7rem)] overflow-y-auto opacity-100"
+              ? "max-h-[calc(100vh-6.5rem)] overflow-y-auto overscroll-contain touch-pan-y opacity-100"
               : "max-h-0 overflow-hidden opacity-0"
           }`}
         >
-          <div className="space-y-1 py-3">
+          <div className="space-y-1 py-3" data-lenis-prevent>
             {mobileMainLinks.map((item) => {
               const nested = headerDropdownLinks[item] ?? [];
 

@@ -1,13 +1,5 @@
-import { notFound } from "next/navigation";
-import { DetailPageView } from "@/components/features/detail/detail-page";
-import { getDetailPage } from "@/lib/data/pages/site-pages";
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  const page = getDetailPage("luxury-resort");
-
-  if (!page) {
-    notFound();
-  }
-
-  return <DetailPageView page={page} />;
+  redirect("/cliff-room");
 }
