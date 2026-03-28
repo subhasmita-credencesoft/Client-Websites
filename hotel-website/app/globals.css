@@ -77,8 +77,8 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(31, 60, 68, 0.38) transparent;
 }
 
 html,
@@ -202,10 +202,26 @@ html.lenis body {
   overscroll-behavior: contain;
 }
 
-html::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  display: none;
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: rgba(31, 60, 68, 0.38);
+  border-radius: 999px;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: rgba(31, 60, 68, 0.56);
 }
 
 a {

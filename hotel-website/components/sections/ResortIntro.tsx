@@ -230,7 +230,8 @@ export default function ResortIntro() {
             <div className="resort-intro-cta mt-8 sm:mt-10">
               <Button
                 href="/rooms"
-                className="h-11 rounded-full border-[#1f3c44]/35 px-7 text-[0.68rem] uppercase tracking-[0.22em] text-[#1f3c44] transition-colors hover:border-[#1f3c44] hover:bg-[#1f3c44] hover:text-white"
+                variant="outline"
+                className="h-11 rounded-full bg-transparent border-[#1f3c44]/35 px-7 text-[0.68rem] uppercase tracking-[0.22em] text-[#1f3c44] transition-colors hover:border-[#1f3c44]/45 hover:bg-[#f1ece3] hover:text-[#1f3c44]"
               >
                 Explore more
               </Button>
