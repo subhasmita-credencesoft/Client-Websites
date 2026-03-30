@@ -37,25 +37,25 @@ export function OffersPageClient() {
 
   return (
     <>
-      <section className="relative min-h-[108svh] overflow-hidden pt-44 md:pt-48" data-section-id="offers-hero">
-        <div className="absolute inset-0" data-bg-parallax data-bg-depth="9">
+      <section className="relative min-h-[108svh] overflow-hidden pt-44 md:pt-48" data-section-id="offers-hero" data-hero-stage>
+        <div className="absolute inset-0" data-hero-bg data-bg-parallax data-bg-depth="9">
           <Image src={heroImage} alt="Special offers and packages" fill className="object-cover" priority sizes="100vw" />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.3)_0%,rgba(0,0,0,0.42)_45%,rgba(0,0,0,0.62)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.3)_0%,rgba(0,0,0,0.42)_45%,rgba(0,0,0,0.62)_100%)]" data-hero-overlay />
         <div className="relative z-10 mx-auto flex min-h-[108svh] max-w-[96rem] items-center justify-center px-8 pb-16 pt-8 text-center md:pb-24">
-          <div>
-            <h1 className="text-balance text-[clamp(42px,5.2vw,76px)] leading-[1.08] text-[#ceb17e]" data-section-title>
+          <div data-hero-copy>
+            <h1 className="text-balance text-[clamp(42px,5.2vw,76px)] leading-[1.08] text-[#ceb17e]" data-hero-title>
               {hero.title}
             </h1>
-            <p className="mt-3 text-[clamp(24px,3.1vw,44px)] font-semibold tracking-wide text-white">
+            <p className="mt-3 text-[clamp(24px,3.1vw,44px)] font-semibold tracking-wide text-white" data-hero-subtitle>
               {hero.subtitle}
             </p>
-            <div className="mx-auto mt-4 h-[2px] w-20 bg-[#c89a55]" />
+            <div className="mx-auto mt-4 h-[2px] w-20 bg-[#c89a55]" data-hero-divider />
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-8 py-14 text-center">
+      <section className="mx-auto max-w-[96rem] px-8 py-14 text-center" data-stage-section>
         <nav aria-label="Breadcrumb" className="flex items-center justify-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-white/50 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#263129] backdrop-blur-sm md:text-xs">
             <li>
@@ -69,10 +69,10 @@ export function OffersPageClient() {
             <li className="text-[#b88948]">{intro.breadcrumb}</li>
           </ol>
         </nav>
-        <h2 className="mx-auto mt-8 max-w-6xl text-balance text-3xl font-semibold leading-[1.35] md:text-4xl" data-section-title>
+        <h2 className="mx-auto mt-8 max-w-6xl text-balance text-3xl font-semibold leading-[1.35] md:text-4xl" data-stage-line>
           {activeTitle}
         </h2>
-        <p className="mx-auto mt-6 max-w-6xl text-balance text-xl leading-[1.6] text-black/85 md:text-2xl" data-reveal>
+        <p className="mx-auto mt-6 max-w-6xl text-balance text-xl leading-[1.6] text-black/85 md:text-2xl" data-stage-line>
           {activeDescription}
         </p>
       </section>

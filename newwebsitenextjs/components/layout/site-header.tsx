@@ -80,14 +80,14 @@ export function SiteHeader() {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#1e3329]/98 backdrop-blur-sm">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[#c89a55]/14 bg-[rgba(8,7,6,0.94)] backdrop-blur-md">
       <div className="mx-auto max-w-[96rem] px-4 md:px-10">
         <div className="relative border-b border-white/25 py-2 md:py-1.5">
           <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-6">
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="flex h-10 w-10 items-center justify-center border border-white/30 text-white md:hidden"
+              className="flex h-10 w-10 items-center justify-center border border-[#c89a55]/28 text-white md:hidden"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
@@ -111,12 +111,12 @@ export function SiteHeader() {
               </span>
             </button>
 
-            <div className="hidden items-center gap-5 border-b border-white/35 pb-2 text-[0.66rem] font-semibold tracking-wide text-white md:flex">
+            <div className="hidden items-center gap-5 border-b border-[#c89a55]/18 pb-2 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] md:flex">
               <span className="text-white/75">
                 <DiamondIcon />
               </span>
               {topLeftLinks.map((item) => (
-                <Link key={item} href={topLinkHrefs[item] ?? "/"} className="transition-colors hover:text-[#c9a46e]" data-cursor="hover">
+                <Link key={item} href={topLinkHrefs[item] ?? "/"} className="transition-colors hover:text-[#d8b67f]" data-cursor="hover">
                   {item}
                 </Link>
               ))}
@@ -132,16 +132,16 @@ export function SiteHeader() {
               {content.logoLines[1]}
             </Link>
 
-            <div className="hidden items-center justify-end gap-4 border-b border-white/35 pb-2 text-[0.66rem] font-semibold tracking-wide text-white md:flex">
+            <div className="hidden items-center justify-end gap-4 border-b border-[#c89a55]/18 pb-2 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] md:flex">
               {topRightLinks.map((item) => (
-                <Link key={item} href="/" className="transition-colors hover:text-[#c9a46e]" data-cursor="hover">
+                <Link key={item} href="/" className="transition-colors hover:text-[#d8b67f]" data-cursor="hover">
                   {item}
                 </Link>
               ))}
               <div className="group relative flex items-center">
                 <a
                   href={contactPhoneHref}
-                  className="flex h-9 w-9 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#c9a46e]"
+                  className="flex h-9 w-9 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#d8b67f]"
                   aria-label={`Call ${contactPhone}`}
                   data-cursor="hover"
                 >
@@ -155,7 +155,7 @@ export function SiteHeader() {
                 href={whatsappHref}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#c9a46e]"
+                  className="flex h-9 w-9 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#d8b67f]"
                 aria-label="Open WhatsApp chat"
                 data-cursor="hover"
               >
@@ -163,7 +163,7 @@ export function SiteHeader() {
               </a>
               <Link
                 href="/booking"
-                className="border border-white bg-white px-5 py-2 text-[0.66rem] tracking-wide text-black"
+                className="border border-[#f1e7d7] bg-[#f1e7d7] px-5 py-2 text-[0.66rem] tracking-wide text-black transition-colors hover:bg-[#fff7ea]"
                 data-cursor="hover"
               >
                 {content.primaryCta}
@@ -173,7 +173,7 @@ export function SiteHeader() {
 
             <Link
               href="/booking"
-              className="inline-flex items-center justify-center border border-white bg-white px-3 py-2 text-[0.68rem] font-semibold tracking-wide text-black md:hidden"
+              className="inline-flex items-center justify-center border border-[#f1e7d7] bg-[#f1e7d7] px-3 py-2 text-[0.68rem] font-semibold tracking-wide text-black md:hidden"
               onClick={() => setMobileMenuOpen(false)}
             >
               {content.primaryCta}
@@ -201,7 +201,7 @@ export function SiteHeader() {
                 </Link>
 
                 {activeDropdown === item && dropdownItems.length > 0 ? (
-                  <div className="absolute left-0 top-[2rem] z-50 min-w-[16rem] border border-[#c9a46e]/30 bg-[#1e3329] p-1 shadow-[0_10px_30px_rgba(11,22,16,0.45)]">
+                  <div className="absolute left-0 top-[2rem] z-50 min-w-[16rem] border border-[#c9a46e]/24 bg-[#14110f] p-1 shadow-[0_14px_34px_rgba(0,0,0,0.42)]">
                     {dropdownItems.map((dropdownItem) => (
                       <Link
                         key={dropdownItem.label}
@@ -237,7 +237,7 @@ export function SiteHeader() {
         <nav
           id="mobile-menu"
           data-lenis-prevent
-          className={`no-scrollbar border-b border-white/20 transition-[max-height,opacity] duration-300 md:hidden ${
+          className={`no-scrollbar border-b border-[#c89a55]/18 transition-[max-height,opacity] duration-300 md:hidden ${
             mobileMenuOpen
               ? "max-h-[calc(100vh-6.5rem)] overflow-y-auto overscroll-contain touch-pan-y opacity-100"
               : "max-h-0 overflow-hidden opacity-0"

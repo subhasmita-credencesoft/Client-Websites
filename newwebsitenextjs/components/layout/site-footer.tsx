@@ -3,10 +3,10 @@ import { footerSections } from "@/lib/data/content/mountain-content";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[#c9a46e]/20 bg-[#1e3329] px-5 py-16 md:px-10">
+    <footer className="border-t border-[#c9a46e]/20 bg-[#0f0d0b] px-5 py-16 md:px-10">
       <div className="mx-auto grid max-w-[92rem] gap-8 md:grid-cols-3 md:gap-12">
         {footerSections.map((section, sectionIndex) => (
-          <ul key={sectionIndex} className="space-y-3 text-base text-white/85 md:text-lg">
+          <ul key={sectionIndex} className="space-y-3 text-base text-[#f2e8d8]/88 md:text-lg">
             {section.map((item) => (
               <li key={item.label}>
                 {item.external ? (
@@ -14,7 +14,7 @@ export function SiteFooter() {
                     href={item.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="leading-relaxed transition-colors hover:text-[#c9a46e]"
+                    className="leading-relaxed transition-colors hover:text-[#d5b07a]"
                     data-cursor="hover"
                   >
                     {item.label}
@@ -22,7 +22,7 @@ export function SiteFooter() {
                 ) : item.href.startsWith("tel:") ? (
                   <a
                     href={item.href}
-                    className="leading-relaxed transition-colors hover:text-[#c9a46e]"
+                    className="leading-relaxed transition-colors hover:text-[#d5b07a]"
                     data-cursor="hover"
                   >
                     {item.label}
@@ -30,7 +30,7 @@ export function SiteFooter() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="leading-relaxed transition-colors hover:text-[#c9a46e]"
+                    className="leading-relaxed transition-colors hover:text-[#d5b07a]"
                     data-cursor="hover"
                   >
                     {item.label}

@@ -42,31 +42,33 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
       <div className="noise-overlay" />
       <SiteHeader />
 
-      <section className="relative min-h-[100svh] overflow-hidden" data-section-id={`${page.slug}-hero`}>
+      <section className="relative min-h-[100svh] overflow-hidden" data-section-id={`${page.slug}-hero`} data-hero-stage>
         {heroImages.map((image, index) => (
           <div
             key={`${page.slug}-${image}`}
             className={`absolute inset-0 transition-opacity duration-[1400ms] ${
               index === activeHeroImage ? "opacity-100" : "opacity-0"
             }`}
+            data-hero-bg
             data-bg-parallax
             data-bg-depth={String(10 + index)}
           >
             <Image src={image} alt={page.hero.title} fill className="object-cover" sizes="100vw" priority={index === 0} />
           </div>
         ))}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,12,0.22)_0%,rgba(8,10,12,0.34)_42%,rgba(8,10,12,0.82)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,12,0.22)_0%,rgba(8,10,12,0.34)_42%,rgba(8,10,12,0.82)_100%)]" data-hero-overlay />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,rgba(8,10,12,0)_0%,rgba(8,10,12,0.74)_100%)]" />
 
         <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[96rem] items-end px-8 pb-16 pt-36 md:px-10 md:pb-20">
-          <div className="max-w-5xl" data-reveal>
+          <div className="max-w-5xl" data-hero-copy>
             <p data-reveal-child className="text-xs font-semibold uppercase tracking-[0.2em] text-white/75">
               {page.intro.eyebrow}
             </p>
-            <h1 className="mt-6 max-w-5xl text-balance text-4xl leading-tight text-white md:text-6xl" data-section-title>
+            <h1 className="mt-6 max-w-5xl text-balance text-4xl leading-tight text-white md:text-6xl" data-hero-title>
               {page.hero.title}
             </h1>
-            <p data-reveal-child className="mt-6 max-w-4xl text-balance text-xl leading-relaxed text-white/90 md:text-2xl">
+            <div className="mt-6 h-px w-24 bg-gradient-to-r from-[#d7b67f] via-[#f0d9ae] to-transparent md:w-36" data-hero-divider />
+            <p className="mt-6 max-w-4xl text-balance text-xl leading-relaxed text-white/90 md:text-2xl" data-hero-subtitle>
               {page.hero.subtitle}
             </p>
             <div data-reveal-child className="mt-8 flex gap-3">
@@ -87,7 +89,7 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-8 pb-24 pt-40" data-section-id={`${page.slug}-intro`}>
+      <section className="mx-auto max-w-[96rem] px-8 pb-24 pt-40" data-section-id={`${page.slug}-intro`} data-stage-section>
         <nav aria-label="Breadcrumb" className="flex items-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-white/55 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#263129] backdrop-blur-sm md:text-xs">
             <li>
@@ -102,13 +104,13 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
           </ol>
         </nav>
 
-        <div className="mt-12 max-w-[62rem]" data-reveal>
-          <h2 className="text-balance text-4xl leading-tight text-[#b2863d] md:text-6xl" data-section-title>
+        <div className="mt-12 max-w-[62rem]" data-stage-copy>
+          <h2 className="text-balance text-4xl leading-tight text-[#b2863d] md:text-6xl" data-stage-line>
             {page.intro.title}
           </h2>
           <div className="mt-10 border-l border-black/25 pl-8 text-xl leading-relaxed text-black/95 md:text-2xl">
-            <p data-reveal-child>{page.intro.body}</p>
-            <p data-reveal-child className="mt-6">
+            <p data-stage-line>{page.intro.body}</p>
+            <p className="mt-6" data-stage-line>
               Explore the venue through cinematic highlights, scenic imagery, and destination-led storytelling designed to match the premium
               wedding journey across the site.
             </p>

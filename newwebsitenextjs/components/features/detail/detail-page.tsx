@@ -38,42 +38,46 @@ export function DetailPageView({ page }: DetailPageProps) {
   const bookingContextHref = `${bookingHref}&page=${encodeURIComponent(page.title)}&details=${encodeURIComponent(page.subtitle)}`;
 
   return (
-    <main className="relative overflow-hidden bg-[#2d4a3e] text-white">
+    <main className="relative overflow-hidden bg-[#0c0a08] text-white">
       <div className="noise-overlay" />
       <SiteHeader />
 
-      <section className="relative min-h-[110svh] overflow-hidden pt-44 md:pt-48" data-section-id={page.slug}>
-        <div className="absolute inset-0" data-bg-parallax data-bg-depth="8">
+      <section className="relative min-h-[110svh] overflow-hidden pt-44 md:pt-48" data-section-id={page.slug} data-hero-stage>
+        <div className="absolute inset-0" data-hero-bg data-bg-parallax data-bg-depth="8">
           <Image src={page.heroImage} alt={page.title} fill className="object-cover" sizes="100vw" priority />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.58)_60%,rgba(0,0,0,0.9)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.58)_60%,rgba(0,0,0,0.9)_100%)]" data-hero-overlay />
         <div className="relative z-10 mx-auto flex min-h-[110svh] max-w-[96rem] items-start px-6 pb-8 pt-28 md:px-12 md:pb-12 md:pt-36">
-          <div className="max-w-5xl">
-            <h1 data-section-title className="text-4xl md:text-6xl">
+          <div className="max-w-5xl" data-hero-copy>
+            <h1 data-hero-title className="text-4xl md:text-6xl">
               {page.title}
             </h1>
-            <p className="mt-5 max-w-4xl text-xl text-white/90 md:text-2xl">{page.subtitle}</p>
+            <div className="mt-5 h-px w-24 bg-gradient-to-r from-[#d7b67f] via-[#f0d9ae] to-transparent md:w-36" data-hero-divider />
+            <p className="mt-5 max-w-4xl text-xl text-white/90 md:text-2xl" data-hero-subtitle>{page.subtitle}</p>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20 text-center md:px-10">
-        <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]">{page.introTitle}</p>
-        <p className="mx-auto mt-6 max-w-5xl text-xl leading-relaxed md:text-2xl">{page.introBody}</p>
+      <section className="mx-auto max-w-6xl px-6 py-20 text-center md:px-10" data-stage-section>
+        <div data-stage-copy>
+          <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-stage-line>{page.introTitle}</p>
+          <p className="mx-auto mt-6 max-w-5xl text-xl leading-relaxed md:text-2xl" data-stage-line>{page.introBody}</p>
+        </div>
         <Link
           href={bookingContextHref}
           className="mt-10 inline-flex border border-[#c8a871] bg-[#c8a871] px-9 py-3 text-sm font-semibold uppercase tracking-wide text-black"
           data-cursor="hover"
+          data-stage-line
         >
           BOOK NOW
         </Link>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-10">
-        <h2 data-section-title className="text-center text-4xl md:text-5xl">
+      <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-10" data-stage-section>
+        <h2 className="text-center text-4xl md:text-5xl" data-stage-line>
           {isPackagePage ? "Package Details" : "Room Types"}
         </h2>
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
+        <div className="mt-12 grid gap-8 md:grid-cols-2" data-stage-visual>
           {page.cards.map((card) => (
             <article key={card.title} data-card className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#16261f] shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
               <div className="relative h-[28rem] overflow-hidden">
@@ -122,11 +126,11 @@ export function DetailPageView({ page }: DetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-6 py-16 md:px-10">
-        <h2 data-section-title className="text-center text-4xl md:text-5xl">
+      <section className="mx-auto max-w-[96rem] px-6 py-16 md:px-10" data-stage-section>
+        <h2 className="text-center text-4xl md:text-5xl" data-stage-line>
           Gallery
         </h2>
-        <div className="mt-8 flex justify-center gap-8 text-2xl md:text-3xl">
+        <div className="mt-8 flex justify-center gap-8 text-2xl md:text-3xl" data-stage-copy>
           <button
             type="button"
             onClick={() => setActiveTab("image")}
@@ -146,7 +150,7 @@ export function DetailPageView({ page }: DetailPageProps) {
             </button>
           ) : null}
         </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <div className="mt-10 grid gap-4 md:grid-cols-2" data-stage-visual>
           {(activeTab === "video" ? videoGallery : imageGallery).map((media, index) => (
             <div
               key={`${activeTab}-${media}-${index}`}

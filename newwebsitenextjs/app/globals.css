@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-    --background: #2d4a3e;
-  --foreground: #f7f3ec;
-  --sand: #d7c0a3;
-  --mist: #eee4d8;
-  --shadow: #1a2e24;
-  --accent-gold: #c49a6c;
-  --section-dark: #1e3329;
-  --section-dark-soft: #365143;
-  --section-light: #f8f5ef;
+  --background: #090806;
+  --foreground: #f4ede2;
+  --sand: #d6bea0;
+  --mist: #f3ebe1;
+  --shadow: #120f0c;
+  --accent-gold: #c89a55;
+  --section-dark: #11100e;
+  --section-dark-soft: #1b1814;
+  --section-light: #f5efe7;
   --font-body: "Poppins", "Helvetica Neue", Arial, sans-serif;
   --font-display: "Cormorant Garamond", Georgia, serif;
 }
@@ -41,9 +41,9 @@ main {
 body {
   overflow-x: hidden;
   background-image:
-    radial-gradient(circle at 10% 20%, rgba(100, 160, 120, 0.14) 0%, transparent 40%),
-    radial-gradient(circle at 90% 0%, rgba(20, 55, 38, 0.32) 0%, transparent 45%),
-    linear-gradient(180deg, #1e3329 0%, #2d4a3e 45%, #1e3329 100%);
+    radial-gradient(circle at 14% 14%, rgba(200, 154, 85, 0.12) 0%, transparent 26%),
+    radial-gradient(circle at 88% 0%, rgba(90, 63, 27, 0.2) 0%, transparent 28%),
+    linear-gradient(180deg, #080706 0%, #100d0b 38%, #0c0a08 100%);
 }
 
 h1,
@@ -86,19 +86,27 @@ h5 {
 /* ── Utilities ── */
 
 .noise-overlay {
-  display: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 4px 4px;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
 }
 
 .glass-panel {
   backdrop-filter: blur(26px);
-  background: rgba(54, 81, 67, 0.78);
-  border: 1px solid rgba(201, 169, 110, 0.34);
+  background: rgba(19, 16, 13, 0.78);
+  border: 1px solid rgba(200, 154, 85, 0.28);
 }
 
 .luxury-shadow {
   box-shadow:
-    0 20px 45px rgba(8, 16, 11, 0.22),
-    0 0 24px rgba(201, 169, 110, 0.2);
+    0 20px 45px rgba(8, 7, 6, 0.35),
+    0 0 24px rgba(200, 154, 85, 0.12);
 }
 
 .bg-black {
