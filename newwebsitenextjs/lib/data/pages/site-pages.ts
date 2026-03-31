@@ -90,13 +90,13 @@ const standardRoomCards = [
   {
     label: "ROOM TYPE",
     title: "Standard Room",
-    description: "Comfortable premium room designed for practical stays with modern essentials and a relaxed guest experience.",
+    description: "A comfortable, well-kept stay option for wedding guests who value ease, warmth, and a smooth arrival into the celebration weekend.",
     image: "/images/DSC08717.avif",
   },
   {
-    label: "INCLUSION",
-    title: "Package Includes",
-    description: "Per person package includes stay and all meals, making the Standard Room a practical and value-led option for guests.",
+    label: "WEDDING HOSTING ROLE",
+    title: "Ideal For Family Guests",
+    description: "Well suited for friends and family who need a practical premium room with stay and all meals bundled into the event plan.",
     image: "/images/DSC08720.avif",
   },
 ] satisfies DetailPage["cards"];
@@ -105,13 +105,13 @@ const cliffRoomCards = [
   {
     label: "ROOM TYPE",
     title: "Cliff Room",
-    description: "Scenic premium room offering added privacy, calm ambience, and a more elevated stay experience.",
+    description: "A scenic premium room with a calmer, more elevated feel for guests who want privacy, ambience, and a stronger sense of destination.",
     image: "/images/DSC08769.avif",
   },
   {
-    label: "INCLUSION",
-    title: "Premium Stay Benefits",
-    description: "Cliff Room stays combine scenic ambience with a stay plus all meals package suited for premium guest accommodation.",
+    label: "WEDDING HOSTING ROLE",
+    title: "Ideal For Close Family",
+    description: "A strong fit for close family members or premium guest hosting where the stay experience should feel more scenic and special.",
     image: "/images/DSC08801.avif",
   },
 ] satisfies DetailPage["cards"];
@@ -120,13 +120,13 @@ const familyRoomCards = [
   {
     label: "ROOM TYPE",
     title: "Family Room",
-    description: "Spacious family-friendly accommodation planned for group comfort, convenience, and easy event stays.",
+    description: "A spacious stay category designed for group comfort, shared family movement, and easier hosting during multi-function wedding itineraries.",
     image: "/images/DSC08812.avif",
   },
   {
-    label: "INCLUSION",
-    title: "Wedding Guest Comfort",
-    description: "Family-friendly room planning supports group accommodation with a stay plus all meals package for event-day convenience.",
+    label: "WEDDING HOSTING ROLE",
+    title: "Ideal For Groups",
+    description: "Best suited for families and group stays who want to remain together through Haldi, Sangeet, ceremony, and reception flow.",
     image: "/images/DSC08820.avif",
   },
 ] satisfies DetailPage["cards"];
@@ -135,13 +135,13 @@ const classicCottageCards = [
   {
     label: "ROOM TYPE",
     title: "Glass Cottage",
-    description: "Private cottage-style stay with a quieter atmosphere, more exclusivity, and a distinctive room experience.",
+    description: "A more distinctive cottage stay with private character, modern styling, and a premium atmosphere within the estate.",
     image: "/images/DSC08802.avif",
   },
   {
-    label: "INCLUSION",
-    title: "Private Cottage Stay",
-    description: "Glass Cottage stays offer a more private accommodation choice with stay and all meals included in the package.",
+    label: "WEDDING HOSTING ROLE",
+    title: "Ideal For Special Guests",
+    description: "A strong choice for guests who should enjoy a more elevated accommodation experience during the celebration weekend.",
     image: "/images/DSC08807.avif",
   },
 ] satisfies DetailPage["cards"];
@@ -150,13 +150,13 @@ const bungalowCards = [
   {
     label: "ROOM TYPE",
     title: "Bungalow",
-    description: "Large premium bungalow stay ideal for families and groups who need more space and longer-stay comfort.",
+    description: "A large-format premium bungalow designed for host families, longer stays, and guests who need more private space on-site.",
     image: "/images/DSC08758.avif",
   },
   {
-    label: "INCLUSION",
-    title: "Spacious Premium Stay",
-    description: "Best suited for families or groups needing larger furnished accommodation with stay and all meals included in the package.",
+    label: "WEDDING HOSTING ROLE",
+    title: "Ideal For Hosts",
+    description: "Perfect for key family members or hosts who need privacy, more room to settle in, and better on-property convenience.",
     image: "/images/DSC08759.avif",
   },
 ] satisfies DetailPage["cards"];
@@ -165,10 +165,10 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "garden-villa-resort",
     title: "Standard Room",
-    subtitle: "Comfortable premium room accommodation with modern essentials for relaxed guest stays.",
+    subtitle: "A practical premium stay for wedding guests who need comfort, convenience, and seamless participation across the celebration.",
     introTitle: "STAY DETAILS",
     introBody:
-      "Standard Room accommodation at The Mountain is designed for practical comfort with a room tariff of Rs. 5,000 and a stay plus all meals package at Rs. 3,000 per person.",
+      "Standard Room accommodation at The Mountain is designed for practical guest comfort with a room tariff of Rs. 5,000 and a stay plus all meals package at Rs. 3,000 per person, making it a dependable choice for family-led destination celebrations.",
     heroImage: "/images/DSC08717.avif",
     cards: standardRoomCards,
     galleryTabs: ["Exterior", "Standard Room", "Guest Stay"],
@@ -186,10 +186,10 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "luxury-resort",
     title: "Cliff Room",
-    subtitle: "Scenic premium room stay designed for guests who prefer added privacy and ambience.",
+    subtitle: "A scenic premium stay for guests who want privacy, mountain ambience, and a more elevated destination-wedding experience.",
     introTitle: "STAY DETAILS",
     introBody:
-      "Cliff Room accommodation at The Mountain is designed for guests who want scenic ambience with a room tariff of Rs. 6,500 and a stay plus all meals package at Rs. 3,500 per person.",
+      "Cliff Room accommodation at The Mountain is designed for guests who want scenic ambience, a stronger sense of privacy, and a room tariff of Rs. 6,500 with a stay plus all meals package at Rs. 3,500 per person.",
     heroImage: "/images/DSC08769.avif",
     cards: cliffRoomCards,
     galleryTabs: ["Exterior", "Cliff Room", "Premium Stay"],
@@ -206,10 +206,10 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "camp-della-resort-room",
     title: "Family Room",
-    subtitle: "Spacious family-oriented accommodation suited for group stays and event guest comfort.",
+    subtitle: "A spacious family stay designed for group comfort, togetherness, and easier guest hosting during wedding weekends.",
     introTitle: "STAY DETAILS",
     introBody:
-      "Family Room stays at The Mountain support group and family accommodation with a room tariff of Rs. 20,000 and a stay plus all meals package at Rs. 2,500 per person.",
+      "Family Room stays at The Mountain support group accommodation with a room tariff of Rs. 20,000 and a stay plus all meals package at Rs. 2,500 per person, helping families stay together more comfortably through multi-event celebrations.",
     heroImage: "/images/DSC08812.avif",
     cards: familyRoomCards,
     galleryTabs: ["Exterior", "Family Room", "Guest Stay"],
@@ -225,10 +225,10 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "adventure-resort",
     title: "Glass Cottage",
-    subtitle: "Private cottage-style stay experience with a quieter, more exclusive accommodation feel.",
+    subtitle: "A premium cottage stay with privacy, design character, and a more distinctive destination-wedding atmosphere.",
     introTitle: "STAY DETAILS",
     introBody:
-      "Glass Cottage accommodation provides a more private stay option with a room tariff of Rs. 12,000 and a stay plus all meals package at Rs. 7,500 per person.",
+      "Glass Cottage accommodation provides a more private and premium stay option with a room tariff of Rs. 12,000 and a stay plus all meals package at Rs. 7,500 per person.",
     heroImage: "/images/DSC08802.avif",
     cards: classicCottageCards,
     galleryTabs: ["Exterior", "Glass Cottage", "Guest Stay"],
@@ -237,7 +237,7 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "della-enclave-villa-rooms",
     title: "Bungalow",
-    subtitle: "Large premium bungalow accommodation created for families, groups, and longer private stays.",
+    subtitle: "A spacious premium bungalow for host families, longer stays, and guests who need more privacy within the estate.",
     introTitle: "STAY DETAILS",
     introBody:
       "Bungalow accommodation at The Mountain is ideal for guests who need spacious premium furnished stays with a bungalow tariff of Rs. 25,000 and a stay plus all meals package at Rs. 3,500 per person.",
@@ -248,23 +248,23 @@ const detailPageSeeds: DetailSeed[] = [
   },
   {
     slug: "cafe24",
-    title: "Meals Includes",
-    subtitle: "Lunch, hi-tea, starters, dinner, breakfast, venue access, and live counters as per package.",
+    title: "Wedding Hospitality Inclusions",
+    subtitle: "Lunch, hi-tea, starters, dinner, breakfast, venue access, and live counters are structured to support full celebration flow.",
     introTitle: "MEALS",
     introBody:
-      "Meals at The Mountain are package-led and may include roti, sabji, dal, rice, salad, papad, pickle, hi-tea, starters, breakfast, tea, coffee, and live counters.",
+      "Hospitality at The Mountain is package-led and designed to support destination wedding hosting through coordinated meals, guest convenience, and smoother family planning across the day.",
     heroImage: "/images/DSC08758.avif",
     cards: [
       {
         label: "MEAL",
         title: "Lunch & Hi-Tea",
-        description: "Lunch includes roti, 2 sabji, dal, rice, salad, papad, and pickle, while hi-tea includes tea or coffee with 2 snacks.",
+        description: "Lunch includes roti, 2 sabji, dal, rice, salad, papad, and pickle, while hi-tea includes tea or coffee with 2 snacks to keep the celebration moving comfortably between functions.",
         image: "/images/DSC08759.avif",
       },
       {
         label: "MEAL",
         title: "Dinner & Breakfast",
-        description: "Dinner includes roti, 2 sabji, dal, rice, salad, papad, and pickle, while breakfast includes tea or coffee with 2 dishes.",
+        description: "Dinner includes roti, 2 sabji, dal, rice, salad, papad, and pickle, while breakfast includes tea or coffee with 2 dishes for an easy start to the next event day.",
         image: "/images/DSC08763.avif",
       },
     ],
@@ -274,10 +274,10 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "classic-package",
     title: "Classic Package",
-    subtitle: "Core destination wedding package with stay, meals, and venue access.",
+    subtitle: "A clear bundled starting point for destination weddings with stay, meals, and venue access included.",
     introTitle: "PACKAGE DETAILS",
     introBody:
-      "The Classic Package is the base wedding package at The Mountain and is structured for guests who need stay, meals, services, and venue access in one plan.",
+      "The Classic Package is the base wedding package at The Mountain and is structured for families who want stay, meals, services, and venue access simplified into one clear plan.",
     heroImage: "/images/DSC08846.avif",
     cards: [
       {
@@ -300,10 +300,10 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "signature-package",
     title: "Signature Package",
-    subtitle: "Enhanced destination wedding package with extra starters and live counter support.",
+    subtitle: "A richer destination wedding package with added starters and stronger meal depth for family celebrations.",
     introTitle: "PACKAGE DETAILS",
     introBody:
-      "The Signature Package builds on the Classic Package by adding extra 2 starters and 1 gravy extra each in lunch and dinner for fuller event hospitality.",
+      "The Signature Package builds on the Classic Package by adding extra 2 starters and 1 gravy extra each in lunch and dinner for a fuller hospitality experience across wedding functions.",
     heroImage: "/images/DSC08853.avif",
     cards: [
       {
@@ -328,10 +328,10 @@ const detailPageSeeds: DetailSeed[] = [
   {
     slug: "premium-luxo-package",
     title: "Premium Luxe Package",
-    subtitle: "Premium destination wedding package with expanded dining and live counter inclusions.",
+    subtitle: "An elevated destination wedding package with expanded dining, live counters, and a stronger premium-hosting feel.",
     introTitle: "PACKAGE DETAILS",
     introBody:
-      "The Premium Luxe Package is the top package tier at The Mountain and includes Signature-level hospitality plus two live counters.",
+      "The Premium Luxe Package is the top package tier at The Mountain and includes Signature-level hospitality plus two live counters for celebrations that call for a more premium dining presence.",
     heroImage: "/images/DSC08849.avif",
     cards: [
       {

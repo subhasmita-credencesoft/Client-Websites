@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import gsap from "gsap";
 import { heroBackgroundUrls, heroVideoUrls } from "@/lib/data/content/media-assets";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
@@ -24,6 +25,7 @@ export function HeroSection() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const letters = gsap.utils.toArray<HTMLElement>(".hero-letter");
+
       gsap.fromTo(
         letters,
         {
@@ -38,7 +40,7 @@ export function HeroSection() {
           duration: 1.2,
           ease: "power3.out",
           stagger: 0.03,
-          delay: 0.3,
+          delay: 0.25,
         },
       );
     }, rootRef);
@@ -84,7 +86,7 @@ export function HeroSection() {
       <div className="relative z-10 mx-auto flex w-full max-w-[95rem] flex-col gap-8 px-6 md:px-14">
         <h1
           data-section-title
-          className="max-w-5xl text-[1.95rem] leading-[1.04] text-[#c9a467] md:text-[4.85rem]"
+          className="max-w-4xl text-[1.3rem] leading-[1.08] text-[#c9a467] md:text-[3.15rem] xl:text-[3.45rem]"
         >
           {homeSectionContent.hero.title.split("").map((char, index) => (
             <span
@@ -99,20 +101,42 @@ export function HeroSection() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 1 }}
-          className="max-w-5xl text-balance text-2xl leading-snug text-white md:text-[3.1rem]"
+          transition={{ delay: 1.05, duration: 0.9 }}
+          className="max-w-4xl text-balance text-lg leading-snug text-white md:text-[1.9rem] xl:text-[2.15rem]"
         >
           {homeSectionContent.hero.subtitle}
         </motion.p>
 
-        {/* <motion.div
+        <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.25, duration: 0.95 }}
-          className="mt-2 flex items-center gap-4"
+          transition={{ delay: 1.2, duration: 0.85 }}
+          className="max-w-3xl text-balance text-[0.82rem] leading-relaxed text-white/78 md:text-base"
         >
-          <MagneticButton href="#reserve">{homeSectionContent.hero.cta}</MagneticButton>
-        </motion.div> */}
+          {homeSectionContent.hero.description}
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.3, duration: 0.85 }}
+          className="mt-1 flex flex-wrap items-center gap-4"
+        >
+          <Link
+            href="/booking"
+            className="border border-[#c9a467] bg-[#c9a467] px-6 py-3 text-[0.72rem] font-semibold tracking-[0.18em] text-black transition-colors hover:bg-[#d7b57c]"
+            data-cursor="hover"
+          >
+            {homeSectionContent.hero.primaryCta}
+          </Link>
+          <Link
+            href="/offers"
+            className="border border-white/35 px-6 py-3 text-[0.72rem] font-semibold tracking-[0.18em] text-white transition-colors hover:border-[#c9a467] hover:text-[#c9a467]"
+            data-cursor="hover"
+          >
+            {homeSectionContent.hero.secondaryCta}
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

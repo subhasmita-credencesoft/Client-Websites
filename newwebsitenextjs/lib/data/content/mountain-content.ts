@@ -57,21 +57,21 @@ export const mainNavLinks: Record<string, string> = {
 export const stayCardsPrimary = [
   {
     title: "Standard Room",
-    description: "Comfortable premium room with modern amenities",
+    description: "A comfortable premium stay option for wedding guests who value ease, warmth, and convenience.",
     tariff: "Room Tariff Rs. 5,000/-",
     packagePrice: "Per Person Package (Stay + All Meals) Rs. 3,000/-",
     image: "/images/DSC08717.avif",
   },
   {
     title: "Cliff Room",
-    description: "Scenic room option with enhanced privacy",
+    description: "A scenic room experience with a more elevated destination feel, ideal for close family or premium guest hosting.",
     tariff: "Room Tariff Rs. 6,500/-",
     packagePrice: "Per Person Package (Stay + All Meals) Rs. 3,500/-",
     image: "/images/DSC08769.avif",
   },
   {
     title: "Family Room",
-    description: "Spacious room ideal for families and groups",
+    description: "A spacious stay option designed for group comfort during multi-function family celebrations.",
     tariff: "Room Tariff Rs. 20,000/-",
     packagePrice: "Per Person Package (Stay + All Meals) Rs. 2,500/-",
     image: "/images/DSC08812.avif",
@@ -81,14 +81,14 @@ export const stayCardsPrimary = [
 export const stayCardsSecondary = [
   {
     title: "Glass Cottage",
-    description: "Private cottage-style stay with calm ambience",
+    description: "A private cottage stay with a distinctive premium atmosphere for special guests or hosted family stays.",
     tariff: "Room Tariff Rs. 12,000/-",
     packagePrice: "Per Person Package (Stay + All Meals) Rs. 7,500/-",
     image: "/images/DSC08802.avif",
   },
   {
     title: "Bungalow",
-    description: "Large premium bungalow for longer stays",
+    description: "A larger-format stay suited for hosts, key family members, and wedding weekends that need more private space.",
     tariff: "Bungalow Tariff Rs. 25,000/-",
     packagePrice: "Per Person Package (Stay + All Meals) Rs. 3,500/-",
     image: "/images/DSC08758.avif",
@@ -141,38 +141,17 @@ export const gastronomyCards = [
 export const offersCards = [
   {
     title: "Weekday Package",
-    subtitle: "Monday to Thursday pricing",
-    description: "Classic Rs. 4,500, Signature Rs. 5,500, and Premium Luxe Rs. 6,500 per person per day with 5 meals, stay, and venue access.",
+    subtitle: "Monday to Thursday pricing for better bundled value",
+    description: "Classic ₹4,500, Signature ₹5,500, and Premium Luxe ₹6,500 per person per day with stay, meals, services, lawn access, and venue usage.",
     image: "/images/DSC08846.avif",
     tabs: ["WEEKDAY"],
   },
   {
     title: "Weekend Package",
-    subtitle: "Friday to Sunday pricing",
-    description: "Classic Rs. 5,500, Signature Rs. 6,500, and Premium Luxe Rs. 7,500 per person per day with 5 meals, stay, and venue access.",
+    subtitle: "Friday to Sunday pricing for celebration weekends",
+    description: "Classic ₹5,500, Signature ₹6,500, and Premium Luxe ₹7,500 per person per day with stay, meals, services, lawn access, and venue usage.",
     image: "/images/DSC08849.avif",
     tabs: ["WEEKEND"],
-  },
-  {
-    title: "Classic Package",
-    subtitle: "5 meals + stay + venue access",
-    description: "Includes 5 meals, stay, and venue access as the base package option for destination wedding groups.",
-    image: "/images/DSC08846.avif",
-    tabs: ["CLASSIC"],
-  },
-  {
-    title: "Signature Package",
-    subtitle: "Classic + extra 2 starters + 1 gravy extra each in lunch and dinner",
-    description: "Adds extra 2 starters and 1 gravy extra each in lunch and dinner on top of the Classic package for fuller hospitality.",
-    image: "/images/DSC08853.avif",
-    tabs: ["SIGNATURE"],
-  },
-  {
-    title: "Premium Luxe Package",
-    subtitle: "Signature package + 2 live counters",
-    description: "Premium package tier with Signature inclusions plus 2 live counters for elevated event dining and guest service.",
-    image: "/images/DSC08849.avif",
-    tabs: ["PREMIUM LUXE"],
   },
 ] as const;
 
@@ -181,7 +160,7 @@ export const splitFeatures = [
     id: "weddings",
     title: "Venue Highlights",
     description:
-      "7 acres of lush green natural landscape, spacious lawns, scenic mountain surroundings, and dedicated areas for wedding rituals.",
+      "7 acres of lush greenery, scenic mountain surroundings, spacious lawns, and dedicated areas for Haldi, Mehendi, Sangeet, Cocktail, and Reception.",
     cta: "DISCOVER WEDDINGS",
     href: "/wedding-lawns",
     image: "/images/DSC08831.avif",
@@ -190,7 +169,7 @@ export const splitFeatures = [
     id: "corporates",
     title: "Key Advantages",
     description:
-      "Unlimited music hours, full venue access, private estate control, 24x7 pool access, and spaces tailored for all wedding functions.",
+      "Unlimited Music Hours, 24×7 Pool Access, Zero Sound License Required, Full Venue Access, and a private estate designed for complete celebration flow.",
     cta: "DISCOVER MORE",
     href: "/key-advantages",
     image: "/images/DSC08849.avif",
@@ -199,7 +178,7 @@ export const splitFeatures = [
     id: "adventure",
     title: "Rules & Regulations",
     description:
-      "Government ID mandatory for guests, outside catering not allowed in packages, vendors need prior approval, and property limits must be respected.",
+      "Government ID is mandatory for staying guests, outside catering is not allowed in package bookings, and decorators or vendors require prior approval.",
     cta: "LEARN MORE",
     href: "/rules",
     image: "/images/DSC08837.avif",
@@ -208,7 +187,7 @@ export const splitFeatures = [
     id: "entertainment",
     title: "Check-In / Payment Terms",
     description:
-      "Check-in at 2 PM, check-out at 11 AM, 50% advance to block dates, and final package calculations based on the final headcount.",
+      "Check-in is 2:00 PM, check-out is 11:00 AM, 50% advance is required to block dates, and final package billing is based on confirmed headcount.",
     cta: "DISCOVER MORE",
     href: "/check-in",
     image: "/images/DSC08846.avif",
@@ -217,7 +196,7 @@ export const splitFeatures = [
     id: "spa",
     title: "Final Quotation Summary",
     description:
-      "Selected package, dates, total guests, weekend or weekday booking, and stay duration determine the final package estimate.",
+      "Event type, selected package, dates, guest count, weekday or weekend selection, and total stay required shape the final package estimate.",
     cta: "DISCOVER MORE",
     href: "/quotation",
     image: "/images/DSC08853.avif",
@@ -261,20 +240,20 @@ export const townshipCards = [
 
 export const awardCards = [
   {
-    title: "Key Advantages",
-    subtitle: "Unlimited music hours, 24x7 pool access, full venue control",
+    title: "Advance & Booking Terms",
+    subtitle: "50% advance to block dates, remaining 50% before check-in, with rescheduling subject to availability",
     image:
       "/images/DSC08807.avif",
   },
   {
     title: "Rules & Regulations",
-    subtitle: "Guest ID, vendor approval, no outside catering in package bookings",
+    subtitle: "Guest ID mandatory, outside catering not allowed, and vendors require prior approval",
     image:
       "/images/DSC08812.avif",
   },
   {
     title: "Check-In / Payment Terms",
-    subtitle: "2 PM check-in, 11 AM check-out, 50% advance to block dates",
+    subtitle: "Packages are based on final headcount, check-in is 2:00 PM, and check-out is 11:00 AM",
     image:
       "/images/DSC08820.avif",
   },
@@ -317,9 +296,9 @@ export const footerSections: FooterLinkItem[][] = [
   ],
   [
     { label: "+91 9833866655", href: "tel:+919833866655" },
-    { label: "9892011179", href: "tel:+919892011179" },
+    { label: "+91 9892011179", href: "tel:+919892011179" },
     { label: "instagram.com/themountain.karjat", href: "https://instagram.com/themountain.karjat", external: true },
-    { label: "www.themountainresorts.com", href: "https://www.themountainresorts.com", external: true },
+    { label: "themountainresorts.com", href: "https://www.themountainresorts.com", external: true },
     {
       label: "The Mountain, Karjat",
       href: "https://maps.google.com/?q=The+Mountain+Karjat",

@@ -23,6 +23,7 @@ export function DetailPageView({ page }: DetailPageProps) {
   const videoGallery = page.galleryVideos ?? [];
   const [activeTab, setActiveTab] = useState<"image" | "video">(videoGallery.length > 0 ? "image" : "image");
   const isPackagePage = Boolean(page.packageComparison);
+  const isMealPage = page.slug === "cafe24";
   const isRoomDetailPage = [
     "garden-villa-resort",
     "luxury-resort",
@@ -36,6 +37,12 @@ export function DetailPageView({ page }: DetailPageProps) {
     ? `/booking?package=${encodeURIComponent(page.title)}`
     : `/booking?room=${encodeURIComponent(page.title)}`;
   const bookingContextHref = `${bookingHref}&page=${encodeURIComponent(page.title)}&details=${encodeURIComponent(page.subtitle)}`;
+  const primaryCtaLabel = isPackagePage
+    ? "REQUEST PACKAGE QUOTE"
+    : isMealPage
+      ? "PLAN HOSPITALITY"
+      : "PLAN GUEST STAY";
+  const sectionTitle = isPackagePage ? "Package Highlights" : isMealPage ? "Hospitality Highlights" : "Stay Highlights";
 
   return (
     <main className="relative overflow-hidden bg-[#0c0a08] text-white">
@@ -69,13 +76,13 @@ export function DetailPageView({ page }: DetailPageProps) {
           data-cursor="hover"
           data-stage-line
         >
-          BOOK NOW
+          {primaryCtaLabel}
         </Link>
       </section>
 
       <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-10" data-stage-section>
         <h2 className="text-center text-4xl md:text-5xl" data-stage-line>
-          {isPackagePage ? "Package Details" : "Room Types"}
+          {sectionTitle}
         </h2>
         <div className="mt-12 grid gap-8 md:grid-cols-2" data-stage-visual>
           {page.cards.map((card) => (
@@ -109,7 +116,7 @@ export function DetailPageView({ page }: DetailPageProps) {
                   <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/90 md:text-xl">{card.description}</p>
                 )}
                 <button type="button" className="mt-4 text-xl text-[#c9a46e]" data-cursor="hover">
-                  View Details {"->"}
+                  {isPackagePage ? "See Inclusions" : isMealPage ? "See Hospitality Notes" : "See Stay Details"} {"->"}
                 </button>
                 <div>
                   <Link
@@ -117,7 +124,7 @@ export function DetailPageView({ page }: DetailPageProps) {
                     className="mt-6 inline-flex border border-[#c8a871] bg-[#c8a871] px-9 py-3 text-sm font-semibold uppercase tracking-wide text-black"
                     data-cursor="hover"
                   >
-                    BOOK NOW
+                    {primaryCtaLabel}
                   </Link>
                 </div>
               </div>
@@ -125,6 +132,48 @@ export function DetailPageView({ page }: DetailPageProps) {
           ))}
         </div>
       </section>
+
+      {page.packageComparison ? (
+        <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-10" data-stage-section>
+          <h2 className="text-center text-4xl md:text-5xl" data-stage-line>
+            Compare Package Value
+          </h2>
+          <div className="mt-12 grid gap-8 xl:grid-cols-2">
+            {[page.packageComparison.weekday, page.packageComparison.weekend].map((pricing) => (
+              <article
+                key={pricing.title}
+                className="rounded-[1.75rem] border border-white/10 bg-[#16261f] p-6 shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:p-8"
+                data-card
+              >
+                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">{pricing.title}</p>
+                <div className="mt-6 space-y-4">
+                  {pricing.rows.map((row) => (
+                    <div key={`${pricing.title}-${row.package}`} className="rounded-[1.35rem] border border-white/10 bg-black/20 p-5">
+                      <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+                        <h3 className="text-2xl text-white md:text-3xl">{row.package}</h3>
+                        <p className="text-lg text-[#c9a46e] md:text-xl">{row.price} per person per day</p>
+                      </div>
+                      <p className="mt-3 text-base leading-relaxed text-white/82 md:text-lg">{row.includes}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <article className="mt-8 rounded-[1.75rem] border border-white/10 bg-[#16261f] p-6 shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:p-8" data-card>
+            <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">{page.packageComparison.meals.title}</p>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {page.packageComparison.meals.items.map((item) => (
+                <div key={item} className="rounded-[1.25rem] border border-white/10 bg-black/20 px-5 py-4 text-base leading-relaxed text-white/85 md:text-lg">
+                  {item}
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 text-sm leading-relaxed text-white/65 md:text-base">{page.packageComparison.meals.note}</p>
+          </article>
+        </section>
+      ) : null}
 
       <section className="mx-auto max-w-[96rem] px-6 py-16 md:px-10" data-stage-section>
         <h2 className="text-center text-4xl md:text-5xl" data-stage-line>

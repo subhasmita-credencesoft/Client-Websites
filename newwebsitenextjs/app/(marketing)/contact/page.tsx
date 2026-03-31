@@ -42,6 +42,11 @@ export default function ContactPage() {
         <section className="mx-auto max-w-[96rem] px-6 pb-10 pt-0 md:px-10">
           <div className="mx-auto max-w-[72rem]">
             <form className="glass-panel rounded-[2rem] p-8 md:p-10" data-card data-panel-content>
+              <div className="mb-6">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">{page.form.eyebrow}</p>
+                <h2 className="mt-3 text-3xl md:text-4xl">{page.form.title}</h2>
+                <p className="mt-3 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg">{page.form.description}</p>
+              </div>
               <div className="grid gap-5 md:grid-cols-2">
                 <input
                   type="text"
@@ -217,7 +222,7 @@ export default function ContactPage() {
           <div className="grid gap-8 md:grid-cols-2">
             {page.extraSections.map((section) => (
               <article key={section.title} className="glass-panel rounded-[2rem] p-8" data-reveal>
-                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Section</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Planning Note</p>
                 <h3 className="mt-4 text-3xl md:text-4xl" data-section-title data-reveal-child>{section.title}</h3>
                 <p className="mt-5 text-lg leading-relaxed text-white/85 md:text-xl" data-reveal-child>{section.body}</p>
               </article>

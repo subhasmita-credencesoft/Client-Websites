@@ -11,6 +11,7 @@ import { OffersSection } from "@/components/features/home/sections/offers-sectio
 import { ParallaxGallerySection } from "@/components/features/home/sections/parallax-gallery-section";
 import { StaySection } from "@/components/features/home/sections/stay-section";
 import { StorytellingSection } from "@/components/features/home/sections/storytelling-section";
+import { ReservationSection } from "@/components/features/shared/sections/reservation-section";
 
 export function LuxuryResortPage() {
   return (
@@ -30,7 +31,7 @@ export function LuxuryResortPage() {
       {/* <PartnerLogosSection /> */}
       {/* <TownshipsSection /> */}
       <AwardsSection />
-      {/* <ReservationSection /> */}
+      <ReservationSection />
       <SiteFooter />
     </main>
   );

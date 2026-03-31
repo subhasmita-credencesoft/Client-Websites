@@ -73,86 +73,97 @@ export const quotationPageData: MountainInfoPageData = {
   slug: "quotation",
   hero: {
     title: "Quotation & Final Estimate",
-    subtitle: "Selected package, guest count, dates, and stay duration determine the final quotation at The Mountain, Karjat.",
+    subtitle: "Your final quotation is shaped by package choice, dates, guest count, stay duration, and whether the celebration falls on weekday or weekend dates.",
     image: "/images/DSC08836.avif",
   },
   intro: {
     eyebrow: "Quotation Summary",
-    title: "Plan your destination wedding quotation with the right package, dates, and guest count",
+    title: "Plan your wedding quotation with clear package, guest, and stay details before you confirm your dates",
     body:
-      "The final quotation is prepared based on event type, venue selection, booking dates, selected package, total guests, weekday or weekend booking, and the stay required for the celebration.",
+      "The final quotation at The Mountain, Karjat is prepared around your event type, selected package, booking dates, total guests, weekday or weekend selection, and the total stay required for the celebration weekend.",
   },
   cards: [
     {
       label: "QUOTATION",
       title: "Selected Package & Event Type",
-      description: "Event type: Wedding. Venue: The Mountain, Karjat. Final costing depends on whether the selected package is Classic, Signature, or Premium Luxo.",
+      description: "Your event type and selected package tier help define the overall structure of the quotation, whether you are planning an intimate ceremony, a multi-function wedding, or a celebration weekend.",
       image: "/images/DSC08849.avif",
     },
     {
       label: "QUOTATION",
       title: "Dates, Guests & Stay",
-      description: "Dates, total guests, weekday or weekend booking, and the total stay required all directly influence the final quotation estimate.",
+      description: "Dates, total guests, weekday or weekend booking, and the total stay required all directly influence the final quotation estimate and the best package direction for your family.",
       image: "/images/DSC08831.avif",
     },
     {
       label: "QUOTATION",
       title: "Billing Basis",
-      description: "Packages are calculated per person per day, inclusive of stay, meals, services, lawn access, and venue usage, with final billing based on the confirmed headcount.",
+      description: "Packages are calculated per person per day, inclusive of stay, meals, services, lawn access, and venue usage, with final billing based on the confirmed headcount before check-in.",
       image: "/images/DSC08837.avif",
     },
     {
       label: "QUOTATION",
-      title: "Booking Note",
-      description: "50% advance is required to block dates. Remaining payment terms, headcount confirmation, and schedule alignment are finalized before check-in.",
+      title: "Advance & Date Blocking",
+      description: "50% advance is required to block dates. The remaining 50% is due before check-in, with headcount confirmation and quotation alignment completed before the event.",
       image: "/images/DSC08846.avif",
     },
   ],
   highlights: {
     title: "Quotation Includes",
     items: [
-      "Event type and venue selection",
-      "Selected package and package tier",
+      "Event type and celebration format",
+      "Venue and package selection",
+      "Selected package tier: Classic, Signature, or Premium Luxe",
       "Dates and weekday or weekend booking",
-      "Total guest count and final headcount",
-      "Required stay duration",
-      "Per person per day package basis",
+      "Total guest count and final confirmed headcount",
+      "Total stay required and guest hosting requirement",
+      "Tentative total package estimate",
     ],
   },
   extraSections: [
     {
       title: "How the final estimate is prepared",
       body:
-        "The final quotation at The Mountain is prepared after confirming the package type, total guests, event schedule, stay duration, and whether the celebration falls on weekday or weekend dates.",
+        "The final quotation at The Mountain is prepared after confirming the package tier, total guests, event schedule, stay duration, and whether the celebration falls on weekday or weekend dates.",
     },
     {
       title: "What is included in package costing",
       body:
-        "Package costing is calculated per person per day and may include stay, meals, services, lawn access, venue usage, and package-specific hospitality features depending on the selected plan.",
+        "Package costing is calculated per person per day and includes stay, meals, services, lawn access, venue usage, and package-specific hospitality features depending on the selected plan.",
+    },
+    {
+      title: "Why bundled wedding quotations help families plan better",
+      body:
+        "Because stay, meals, venue usage, and hospitality are considered together, the quotation becomes easier for families to understand than managing separate room, food, and venue costs across different vendors.",
+    },
+    {
+      title: "What to share for a faster quotation response",
+      body:
+        "Share your preferred dates, event type, estimated guest count, selected package direction, and stay requirement. That helps our team respond with clearer package guidance and availability support.",
     },
   ],
   checklist: {
     title: "Quotation details to confirm",
     items: [
-      "Event type: Wedding",
-      "Venue: The Mountain, Karjat",
-      "Selected package: Classic / Signature / Premium Luxo",
-      "Dates of celebration",
-      "Total guests",
-      "Weekday or weekend booking",
-      "Total stay required",
-      "Tentative total package estimate",
+      "Event Type",
+      "Venue",
+      "Dates",
+      "Selected Package",
+      "Total Guests",
+      "Weekend / Weekday",
+      "Total Stay Required",
+      "Tentative Total Package Estimate",
     ],
   },
   summary: {
-    title: "Need a final custom estimate?",
-    body: "Share your dates, package choice, and expected guest count with The Mountain team to prepare the final quotation for your celebration.",
+    title: "Need a clearer custom estimate for your celebration?",
+    body: "Share your dates, guest count, package preference, and stay requirement with The Mountain team to receive the right quotation direction for your wedding or event.",
   },
   contact: {
-    title: "Quotation Contact",
+    title: "Quotation & Dates Contact",
     lines: [
       "+91 9833866655",
-      "9892011179",
+      "+91 9892011179",
       "instagram.com/themountain.karjat",
       "www.themountainresorts.com",
     ],
@@ -171,7 +182,7 @@ export const keyAdvantagesPageData: MountainInfoPageData = {
     eyebrow: "Key Advantages",
     title: "Everything needed for a private destination wedding under one roof",
     body:
-      "The Mountain, Karjat is designed for destination weddings with unlimited music hours, 24x7 pool access, zero sound license requirement, full venue access, private estate privacy, and celebration zones that work beautifully for haldi, mehendi, sangeet, cocktails, receptions, and staycation weddings.",
+      "The Mountain, Karjat is designed for destination weddings with unlimited music hours, 24×7 pool access, zero sound license requirement, full venue access, private estate privacy, and celebration zones that work beautifully for Haldi, Mehendi, Sangeet, Cocktail Night, Reception, and staycation-style wedding weekends.",
   },
   cards: [
     {
@@ -207,7 +218,7 @@ export const keyAdvantagesPageData: MountainInfoPageData = {
     {
       label: "ADVANTAGE",
       title: "Perfect For All Wedding Events",
-      description: "Ideal for sangeet, haldi, mehendi, cocktails, receptions, and staycation weddings with a natural destination setting.",
+      description: "Ideal for Sangeet, Haldi, Mehendi, Cocktail Night, Reception, and staycation-style wedding celebrations with a natural destination setting.",
       image: "/images/DSC08769.avif",
     },
     {
@@ -347,7 +358,7 @@ export const contactPageData: MountainInfoPageData = {
     },
     {
       label: "ALTERNATE",
-      title: "9892011179",
+      title: "+91 9892011179",
       description: "Alternate contact number for booking support, destination wedding discussions, and guest stay planning.",
       image: "/images/DSC08831.avif",
     },
@@ -369,6 +380,7 @@ export const contactPageData: MountainInfoPageData = {
     items: [
       "Wedding package discussions",
       "Weekday and weekend quotation guidance",
+      "Package-led planning support for wedding families",
       "Stay and accommodation planning",
       "Venue availability checks",
       "Final quotation coordination",
@@ -433,7 +445,7 @@ export const contactPageData: MountainInfoPageData = {
     title: "Direct Contact Details",
     lines: [
       "+91 9833866655",
-      "9892011179",
+      "+91 9892011179",
       "instagram.com/themountain.karjat",
       "www.themountainresorts.com",
       "The Mountain, Karjat",
@@ -448,10 +460,78 @@ export const contactPageData: MountainInfoPageData = {
       name: "Your Name",
       email: "Email Address",
       phone: "Phone Number",
-      eventDate: "Event Date",
-      guestCount: "Guest Count",
-      message: "Tell us about your event",
+      eventDate: "Preferred Dates",
+      guestCount: "Number of Guests",
+      message: "Tell us about your celebration, event type, and package direction",
     },
-    submitLabel: "SEND ENQUIRY",
+    submitLabel: "REQUEST A WEDDING QUOTE",
+  },
+};
+
+export const mediaAwardsPageData: MountainInfoPageData = {
+  slug: "media-awards",
+  hero: {
+    title: "Media & Awards",
+    subtitle: "A closer look at the visual character, trust signals, and editorial appeal that make The Mountain, Karjat stand out as a wedding destination.",
+    image: "/images/DSC08853.avif",
+  },
+  intro: {
+    eyebrow: "Brand Story",
+    title: "Visual appeal, planning confidence, and destination atmosphere matter long before the first guest arrives",
+    body:
+      "The Mountain, Karjat is designed to feel strong both on-site and on-screen. Scenic backdrops, private-estate flow, open celebration spaces, and wedding-ready hospitality make the venue naturally suited for cinematic presentation, family trust, and premium event storytelling.",
+  },
+  cards: [
+    {
+      label: "MEDIA",
+      title: "Editorial-Style Landscapes",
+      description: "Mountain views, open lawns, poolside scenes, and green estate corners give the property a naturally cinematic visual quality for wedding storytelling and destination-led content.",
+      image: "/images/DSC08831.avif",
+    },
+    {
+      label: "MEDIA",
+      title: "Photography & Video Appeal",
+      description: "From pre-function portraits to ceremony frames and evening reception visuals, the venue supports imagery that feels premium, warm, and celebration-led.",
+      image: "/images/DSC08846.avif",
+    },
+    {
+      label: "TRUST",
+      title: "Clear Planning Terms",
+      description: "Families gain confidence through clear package structure, 50% advance terms, headcount-based billing, and a more transparent bundled planning process.",
+      image: "/images/DSC08849.avif",
+    },
+    {
+      label: "TRUST",
+      title: "A Venue That Presents Well Across Every Page",
+      description: "The Mountain is not positioned as a generic resort listing. It is presented as one private estate where families can stay, dine, and celebrate together in one destination.",
+      image: "/images/DSC08837.avif",
+    },
+  ],
+  highlights: {
+    title: "What this page helps communicate",
+    items: [
+      "Scenic mountain and lawn visuals",
+      "Strong wedding photography potential",
+      "Private-estate destination feel",
+      "Clear package and policy trust signals",
+      "Premium but warm brand presentation",
+      "A venue built for multiple celebrations in one place",
+    ],
+  },
+  extraSections: [
+    {
+      title: "Why visual identity matters for destination weddings",
+      body:
+        "Families often choose destination venues not only for capacity and pricing, but for how the place feels. The Mountain is designed to communicate beauty, privacy, and togetherness before the inquiry even begins.",
+    },
+    {
+      title: "Why trust-building details matter just as much as visuals",
+      body:
+        "A beautiful venue still needs clear package direction, honest policy information, and confidence-building planning language. That balance helps couples and families enquire with more clarity and less confusion.",
+    },
+  ],
+  summary: {
+    title: "A destination wedding brand should feel as strong in story as it does in space",
+    body: "The Mountain, Karjat combines scenic presentation, wedding-ready planning clarity, and a private-estate atmosphere that makes the venue feel memorable long before the event day arrives.",
   },
 };

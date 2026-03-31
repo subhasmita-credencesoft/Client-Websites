@@ -14,7 +14,7 @@ export function GalleryPage() {
 
   const visibleItems = useMemo(() => {
     if (activeTab === "All Images") return galleryPageData.items;
-    return galleryPageData.items.filter((item) => item.category === activeTab || activeTab === "All Facilities" && item.category === "All Facilities");
+    return galleryPageData.items.filter((item) => item.category === activeTab);
   }, [activeTab]);
 
   return (

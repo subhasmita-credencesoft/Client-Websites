@@ -47,10 +47,39 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
             "[data-section-title]",
           ],
           {
-            clearProps: "all",
-            autoAlpha: 1,
+          clearProps: "all",
+          autoAlpha: 1,
           },
         );
+      } else {
+        gsap.set("[data-reveal]", {
+          autoAlpha: 0,
+          y: isDesktop() ? 56 : 30,
+          scale: 0.992,
+          filter: "blur(10px)",
+          clipPath: "inset(0 0 14% 0)",
+        });
+
+        gsap.set("[data-reveal-child]", {
+          autoAlpha: 0,
+          y: 34,
+        });
+
+        gsap.set("[data-section-title]", {
+          autoAlpha: 0,
+          y: 20,
+          letterSpacing: "0.12em",
+        });
+
+        gsap.set("[data-panel-content]", {
+          autoAlpha: 0,
+          y: 56,
+        });
+
+        gsap.set("[data-panel-line]", {
+          autoAlpha: 0,
+          y: 28,
+        });
       }
 
       const revealItems = gsap.utils.toArray<HTMLElement>("[data-reveal]");

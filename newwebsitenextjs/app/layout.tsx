@@ -3,8 +3,8 @@ import "./globals.css";
 import { AppProviders } from "@/components/providers/app-providers";
 
 export const metadata: Metadata = {
-  title: "The Mountain Resorts",
-  description: "Cinematic luxury resort interface with Lenis and GSAP storytelling.",
+  title: "The Mountain, Karjat | Destination Wedding & Event Venue",
+  description: "Private destination wedding and event venue in Karjat with stay, meals, venue access, and scenic mountain celebrations across 7 acres.",
 };
 
 export default function RootLayout({

@@ -12,8 +12,8 @@ export function StorytellingSection() {
       className="relative z-10 mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32"
     >
       <SectionHeading
-        eyebrow="About The Mountain Resorts"
-        title="A Complete Luxury Destination, Not Just a Stay"
+        eyebrow="The Mountain, Karjat"
+        title="One Private Estate For Every Celebration"
         description={homeSectionContent.about.body}
       />
 

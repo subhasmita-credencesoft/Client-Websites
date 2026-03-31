@@ -19,6 +19,7 @@ const whatsappHref = "https://wa.me/919833866655";
 const topLinkHrefs: Record<string, string> = {
   "ABOUT US": "/about",
   GALLERY: "/gallery",
+  "MEDIA & AWARDS": "/media-awards",
 };
 
 function DiamondIcon() {

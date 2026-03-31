@@ -5,6 +5,10 @@ export type MountainVenuePageData = {
     subtitle: string;
     image: string;
   };
+  stats: Array<{
+    value: string;
+    label: string;
+  }>;
   intro: {
     eyebrow: string;
     title: string;
@@ -27,6 +31,17 @@ export type MountainVenuePageData = {
       alt: string;
     }>;
   };
+  experienceJourney: Array<{
+    title: string;
+    body: string;
+    image: string;
+  }>;
+  cinematicBand: {
+    title: string;
+    body: string;
+    image: string;
+    tags: string[];
+  };
   extraSections: Array<{
     title: string;
     body: string;
@@ -44,11 +59,17 @@ export const mountainViewDestinationPageData: MountainVenuePageData = {
     subtitle: "7 acres of green landscape, scenic mountain surroundings, and a destination wedding backdrop crafted for unforgettable celebrations.",
     image: "/images/DSC08831.avif",
   },
+  stats: [
+    { value: "7 Acres", label: "Private green estate" },
+    { value: "Mountain Views", label: "Scenic ceremony backdrop" },
+    { value: "Multi-Event", label: "From Haldi to Reception" },
+    { value: "All In One", label: "Stay, venue, hospitality" },
+  ],
   intro: {
     eyebrow: "Venue Highlights",
-    title: "A scenic destination venue designed for ceremonies, celebrations, and memorable guest experiences",
+    title: "A scenic destination venue designed for ceremonies, celebrations, and memorable family gatherings",
     body:
-      "The Mountain, Karjat offers lush green natural surroundings, beautiful valley views, open lawns, and a peaceful destination setting ideal for weddings, photography, rituals, and private event celebrations.",
+      "The Mountain, Karjat offers lush natural surroundings, valley views, open lawns, and a peaceful destination setting ideal for weddings, photography, rituals, and private event celebrations hosted in one estate.",
   },
   cards: [
     {
@@ -60,19 +81,19 @@ export const mountainViewDestinationPageData: MountainVenuePageData = {
     {
       label: "HIGHLIGHT",
       title: "Spacious Event Lawns",
-      description: "Large lawns support haldi, mehendi, sangeet, cocktail functions, wedding ceremonies, and reception planning with comfortable guest movement.",
+      description: "Large lawns support Haldi, Mehendi, Sangeet, Cocktail Night, wedding ceremonies, and receptions with comfortable guest movement.",
       image: "/images/DSC08837.avif",
     },
     {
       label: "HIGHLIGHT",
       title: "Photography-Ready Backdrops",
-      description: "The property layout gives scenic corners, natural greenery, and destination-style compositions for pre-wedding, wedding, and hospitality photography.",
+      description: "The property layout gives scenic corners, natural greenery, and destination-style compositions for rituals, portraits, and celebration storytelling.",
       image: "/images/DSC08846.avif",
     },
     {
       label: "HIGHLIGHT",
       title: "Private Estate Feel",
-      description: "The Mountain offers a private venue atmosphere that helps celebrations feel exclusive, calm, and fully centered around the event family and guests.",
+      description: "The Mountain offers a private estate atmosphere that keeps the celebration focused on the family, the couple, and the shared experience of being together.",
       image: "/images/DSC08853.avif",
     },
   ],
@@ -95,6 +116,29 @@ export const mountainViewDestinationPageData: MountainVenuePageData = {
       { src: "/images/DSC08849.avif", alt: "Poolside mountain-facing venue" },
       { src: "/images/DSC08853.avif", alt: "Scenic venue destination corner" },
     ],
+  },
+  experienceJourney: [
+    {
+      title: "Arrival that feels like a destination reveal",
+      body: "The approach into the estate sets the mood immediately, with greenery, open skies, and a mountain-facing calm that makes the celebration feel removed from the city.",
+      image: "/images/DSC08831.avif",
+    },
+    {
+      title: "Ceremonies framed by natural depth and light",
+      body: "Morning rituals, couple portraits, and family moments all benefit from a softer natural backdrop that feels more cinematic than a standard venue setting.",
+      image: "/images/DSC08846.avif",
+    },
+    {
+      title: "Evenings that transition beautifully into celebration",
+      body: "As the light changes, the estate holds its atmosphere with open-air elegance, making cocktails, receptions, and family gatherings feel connected to the landscape.",
+      image: "/images/DSC08853.avif",
+    },
+  ],
+  cinematicBand: {
+    title: "Where celebrations unfold against the calm of the mountains",
+    body: "This venue is especially suited for families who want scenery, privacy, and shared celebration flow in one place instead of moving guests between disconnected locations.",
+    image: "/images/DSC08849.avif",
+    tags: ["Scenic ceremonies", "Portrait-ready corners", "Private-estate feel", "Natural wedding mood"],
   },
   extraSections: [
     {
@@ -120,7 +164,7 @@ export const mountainViewDestinationPageData: MountainVenuePageData = {
   ],
   summary: {
     title: "A destination setting that elevates every celebration",
-    body: "From scenic ceremonies to open-air receptions, The Mountain gives couples and families a venue backdrop that feels private, natural, and celebration-ready throughout the event journey.",
+    body: "From scenic ceremonies to open-air receptions, The Mountain gives couples and families a venue backdrop that feels private, natural, and celebration-ready throughout the full event journey.",
   },
 };
 
@@ -131,17 +175,23 @@ export const privateEventSpacesPageData: MountainVenuePageData = {
     subtitle: "Dedicated zones for ceremonies, rituals, cocktails, reception functions, and family celebrations within one destination venue.",
     image: "/images/DSC08837.avif",
   },
+  stats: [
+    { value: "Multiple Zones", label: "Distinct event moods" },
+    { value: "Private Flow", label: "Family-first movement" },
+    { value: "Planner Friendly", label: "Better setup logistics" },
+    { value: "Full Estate", label: "One connected celebration" },
+  ],
   intro: {
     eyebrow: "Event Spaces",
     title: "Multiple private event areas planned for destination weddings, rituals, and celebration flow",
     body:
-      "The Mountain, Karjat includes dedicated venue areas for haldi, mehendi, sangeet, cocktails, weddings, receptions, and family gatherings so every event can be hosted with comfort, privacy, and smooth movement across the property.",
+      "The Mountain, Karjat includes dedicated venue areas for Haldi, Mehendi, Sangeet, Cocktail Night, wedding ceremonies, receptions, and family gatherings so every event can be hosted with comfort, privacy, and smooth movement across the property.",
   },
   cards: [
     {
       label: "SPACE",
       title: "Ceremony & Ritual Zones",
-      description: "Private spaces can be arranged for haldi, mehendi, wedding rituals, and traditional functions with scenic surroundings and comfortable guest access.",
+      description: "Private spaces can be arranged for Haldi, Mehendi, wedding rituals, and traditional functions with scenic surroundings and comfortable guest access.",
       image: "/images/DSC08846.avif",
     },
     {
@@ -183,6 +233,29 @@ export const privateEventSpacesPageData: MountainVenuePageData = {
       { src: "/images/DSC08769.avif", alt: "Celebration venue space" },
     ],
   },
+  experienceJourney: [
+    {
+      title: "Dedicated spaces for every ritual",
+      body: "Instead of compressing every moment into one generic lawn, the estate gives different events their own energy, scale, and sense of occasion.",
+      image: "/images/DSC08846.avif",
+    },
+    {
+      title: "Smoother movement for guests and planners",
+      body: "Separate celebration zones help decor teams, hospitality teams, photographers, and families move through the day with less crowding and more control.",
+      image: "/images/DSC08831.avif",
+    },
+    {
+      title: "A wedding itinerary that feels intentional",
+      body: "From Haldi and Mehendi to Sangeet, Cocktail Night, and Reception, every function can feel distinct while still belonging to one estate-wide wedding story.",
+      image: "/images/DSC08849.avif",
+    },
+  ],
+  cinematicBand: {
+    title: "One estate, many celebrations, one seamless family experience",
+    body: "These event spaces are ideal for families who want the warmth of staying together while still giving each wedding function its own visual identity and flow.",
+    image: "/images/DSC08769.avif",
+    tags: ["Haldi zones", "Sangeet spaces", "Cocktail flow", "Reception-ready layouts"],
+  },
   extraSections: [
     {
       title: "Spaces that support every wedding function",
@@ -218,11 +291,17 @@ export const weddingLawnsPageData: MountainVenuePageData = {
     subtitle: "Open green lawns designed for ceremonies, sangeet, mehendi, and grand wedding celebrations.",
     image: "/images/DSC08831.avif",
   },
+  stats: [
+    { value: "Open-Air", label: "Ceremony scale and comfort" },
+    { value: "Day To Night", label: "Natural to illuminated mood" },
+    { value: "Large Gatherings", label: "Comfortable guest flow" },
+    { value: "Scenic Backdrop", label: "Mountain-facing moments" },
+  ],
   intro: {
     eyebrow: "Wedding Lawns",
     title: "Spacious lawns for destination wedding functions",
     body:
-      "The Mountain's wedding lawns provide open-air space for traditional rituals, wedding ceremonies, and festive celebrations with scenic mountain surroundings.",
+      "The Mountain's wedding lawns provide open-air space for traditional rituals, wedding ceremonies, and festive celebrations with scenic mountain surroundings and full-estate character.",
   },
   cards: [
     {
@@ -234,13 +313,13 @@ export const weddingLawnsPageData: MountainVenuePageData = {
     {
       label: "LAWN",
       title: "Sangeet & Mehendi Setup",
-      description: "Flexible lawn layouts for music, dance, and themed decor with beautiful outdoor ambience.",
+      description: "Flexible lawn layouts for music, dance, themed decor, and family celebration energy with beautiful outdoor ambience.",
       image: "/images/DSC08849.avif",
     },
     {
       label: "LAWN",
       title: "Reception-Style Flow",
-      description: "Evening reception setups work naturally on the lawns with lighting, stage, and dining flow.",
+      description: "Evening reception setups work naturally on the lawns with lighting, stage, dining flow, and scenic mountain calm after sundown.",
       image: "/images/DSC08853.avif",
     },
     {
@@ -269,6 +348,29 @@ export const weddingLawnsPageData: MountainVenuePageData = {
       { src: "/images/DSC08849.avif", alt: "Evening lawn ambience" },
       { src: "/images/DSC08853.avif", alt: "Outdoor celebration area" },
     ],
+  },
+  experienceJourney: [
+    {
+      title: "A lawn that feels grand without feeling impersonal",
+      body: "The open setting allows larger gatherings, ceremony setups, and family seating while still preserving the warmth of a private-estate celebration.",
+      image: "/images/DSC08837.avif",
+    },
+    {
+      title: "Beautifully suited for rituals, entries, and portraits",
+      body: "The lawn works especially well for varmala, bridal entries, phera setups, and wide-angle family moments that deserve a scenic backdrop.",
+      image: "/images/DSC08849.avif",
+    },
+    {
+      title: "A smooth shift from daylight ritual to evening reception",
+      body: "As the celebration moves into the evening, the lawns support lighting, stage design, dining, and entertainment flow without losing their natural character.",
+      image: "/images/DSC08853.avif",
+    },
+  ],
+  cinematicBand: {
+    title: "A wedding lawn designed for ceremony emotion and reception scale",
+    body: "For families planning multiple functions or one grand central celebration, the lawns bring together openness, beauty, and guest comfort in a way that feels cinematic throughout the day.",
+    image: "/images/DSC08846.avif",
+    tags: ["Ceremony-ready", "Sangeet energy", "Reception scale", "Scenic entry moments"],
   },
   extraSections: [
     {
@@ -305,11 +407,17 @@ export const poolsideCelebrationsPageData: MountainVenuePageData = {
     subtitle: "Poolside zones for cocktails, music nights, and relaxed celebration moments.",
     image: "/images/DSC08849.avif",
   },
+  stats: [
+    { value: "24x7 Pool Access", label: "Leisure meets celebration" },
+    { value: "Cocktail Ready", label: "Evening social energy" },
+    { value: "Rain Dance Zone", label: "Fun wedding moments" },
+    { value: "Photo Friendly", label: "Modern premium backdrop" },
+  ],
   intro: {
     eyebrow: "Poolside",
     title: "A relaxed poolside setting for wedding festivities",
     body:
-      "The poolside area creates a festive yet relaxed zone for cocktail evenings, music gatherings, and celebration moments with a destination feel.",
+      "The poolside area creates a festive yet relaxed zone for cocktail evenings, music gatherings, rain-dance energy, and celebration moments with a destination feel.",
   },
   cards: [
     {
@@ -321,7 +429,7 @@ export const poolsideCelebrationsPageData: MountainVenuePageData = {
     {
       label: "POOL",
       title: "Leisure + Celebration",
-      description: "Poolside moments offer a perfect mix of leisure and celebration during multi-day weddings.",
+      description: "Poolside moments offer a strong mix of leisure and celebration during multi-day weddings, arrivals, and in-between hosting hours.",
       image: "/images/DSC08769.avif",
     },
     {
@@ -333,7 +441,7 @@ export const poolsideCelebrationsPageData: MountainVenuePageData = {
     {
       label: "POOL",
       title: "Evening Festivities",
-      description: "Perfect for evenings with music, lighting, and styled decor for a destination wedding mood.",
+      description: "Perfect for evenings with music, lighting, and styled decor for a destination wedding mood that feels relaxed but still premium.",
       image: "/images/DSC08837.avif",
     },
   ],
@@ -356,6 +464,29 @@ export const poolsideCelebrationsPageData: MountainVenuePageData = {
       { src: "/images/DSC08853.avif", alt: "Evening poolside mood" },
       { src: "/images/DSC08837.avif", alt: "Poolside celebration setup" },
     ],
+  },
+  experienceJourney: [
+    {
+      title: "A relaxed chapter inside the wedding weekend",
+      body: "Poolside celebrations create a lighter, more social rhythm for guests arriving early, gathering between events, or extending the celebration beyond formal rituals.",
+      image: "/images/DSC08849.avif",
+    },
+    {
+      title: "Ideal for cocktails, music, and casual family moments",
+      body: "This zone works especially well for Cocktail Night, pre-event hosting, and a more modern gathering style that complements the rest of the wedding itinerary.",
+      image: "/images/DSC08769.avif",
+    },
+    {
+      title: "Visually strong after sunset",
+      body: "The poolside atmosphere becomes even more striking in the evening, when lighting, reflections, music, and decor combine into a memorable celebration setting.",
+      image: "/images/DSC08853.avif",
+    },
+  ],
+  cinematicBand: {
+    title: "Poolside celebrations that feel festive, relaxed, and unmistakably destination-led",
+    body: "For couples and families who want part of the wedding to feel social, modern, and leisure-rich, the poolside zone adds a distinctive chapter to the full estate experience.",
+    image: "/images/DSC08837.avif",
+    tags: ["Cocktail nights", "Music-led evenings", "Rain-dance moments", "Guest leisure time"],
   },
   extraSections: [
     {

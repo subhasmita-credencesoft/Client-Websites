@@ -4,10 +4,10 @@ import Image from "next/image";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
-import { quotationPageData } from "@/lib/data/pages/mountain-info-pages";
+import { mediaAwardsPageData } from "@/lib/data/pages/mountain-info-pages";
 
-export default function QuotationPage() {
-  const page = quotationPageData;
+export default function MediaAwardsPage() {
+  const page = mediaAwardsPageData;
 
   return (
     <main className="relative overflow-hidden bg-[#2d4a3e] text-white">
@@ -23,7 +23,7 @@ export default function QuotationPage() {
         <div className="relative z-10 mx-auto flex min-h-[110svh] max-w-[96rem] items-start px-6 pb-8 pt-28 md:px-12 md:pb-12 md:pt-36">
           <div className="max-w-5xl" data-panel-content>
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#c9a46e]" data-panel-line>
-              Final Estimate
+              Brand Presentation
             </p>
             <h1 data-section-title data-panel-line className="max-w-5xl text-4xl md:text-6xl">
               {page.hero.title}
@@ -86,7 +86,7 @@ export default function QuotationPage() {
           <div className="grid gap-8 md:grid-cols-2">
             {page.extraSections.map((section) => (
               <article key={section.title} className="glass-panel rounded-[2rem] p-8" data-reveal>
-                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Planning Note</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Perspective</p>
                 <h3 className="mt-4 text-3xl md:text-4xl" data-section-title data-reveal-child>{section.title}</h3>
                 <p className="mt-5 text-lg leading-relaxed text-white/85 md:text-xl" data-reveal-child>{section.body}</p>
               </article>
@@ -95,23 +95,7 @@ export default function QuotationPage() {
         </section>
       ) : null}
 
-      {page.checklist ? (
-        <section className="mx-auto max-w-[96rem] px-6 py-16 md:px-10">
-          <div className="glass-panel rounded-[2rem] p-8 md:p-10" data-reveal>
-            <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Checklist</p>
-            <h3 className="mt-4 text-3xl md:text-4xl" data-section-title data-reveal-child>{page.checklist.title}</h3>
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
-              {page.checklist.items.map((item) => (
-                <div key={item} className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-lg text-white/90 md:text-xl" data-card>
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      <section className="mx-auto max-w-6xl px-6 pb-20 pt-4 text-center md:px-10" data-reveal>
+      <section className="mx-auto max-w-6xl px-6 pb-20 pt-10 text-center md:px-10" data-reveal>
         <div className="glass-panel rounded-[2.4rem] px-8 py-12 md:px-16 md:py-14">
           <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Final Note</p>
           <h3 className="mx-auto mt-5 max-w-4xl text-3xl md:text-4xl" data-section-title data-reveal-child>
@@ -120,20 +104,6 @@ export default function QuotationPage() {
           <p className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-white/85 md:text-xl" data-reveal-child>{page.summary.body}</p>
         </div>
       </section>
-
-      {page.contact ? (
-        <section className="mx-auto max-w-6xl px-6 pb-20 pt-0 text-center md:px-10">
-          <div className="glass-panel rounded-[2rem] p-8 md:p-10" data-reveal>
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Contact</p>
-            <h3 className="mx-auto mt-5 max-w-4xl text-3xl md:text-4xl" data-section-title data-reveal-child>{page.contact.title}</h3>
-            <div className="mt-8 space-y-3 text-lg text-white/90 md:text-xl">
-              {page.contact.lines.map((line) => (
-                <p key={line} data-reveal-child>{line}</p>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
 
       <GlobalPageSections hideContactAndStay hideReservation />
       <SiteFooter />

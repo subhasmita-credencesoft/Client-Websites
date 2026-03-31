@@ -18,7 +18,7 @@ export function AboutPage() {
         <div className="absolute inset-0" data-bg-parallax data-bg-depth="9">
           <Image
             src={content.hero.image}
-            alt="The Mountain Resorts overview"
+            alt="The Mountain, Karjat overview"
             fill
             className="object-cover object-center"
             priority
@@ -40,9 +40,9 @@ export function AboutPage() {
               {content.hero.description}
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4" data-reveal-child>
-              <MagneticButton href="/booking">Book now</MagneticButton>
+              <MagneticButton href="/booking">Plan Your Celebration</MagneticButton>
               <MagneticButton href="/contact" className="bg-transparent">
-                Contact us
+                Request A Wedding Quote
               </MagneticButton>
             </div>
             <p className="mt-14 text-sm uppercase tracking-[0.2em] text-white/85" data-reveal-child>Scroll To Discover</p>
@@ -207,7 +207,7 @@ export function AboutPage() {
             <div className="relative h-[24rem] overflow-hidden rounded-[1.6rem] md:h-[36rem]">
               <Image
                 src={content.hosting.image}
-                alt="Event hosting at The Mountain Resorts"
+                alt="Event hosting at The Mountain, Karjat"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40rem"
@@ -259,12 +259,12 @@ export function AboutPage() {
             {content.cta.description}
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-4" data-reveal-child>
-            <MagneticButton href="/offers">View packages</MagneticButton>
+            <MagneticButton href="/offers">Explore Wedding Packages</MagneticButton>
             <Link
               href="/booking"
               className="inline-flex items-center justify-center rounded-full border border-[#d5b07a]/35 px-7 py-3 text-xs uppercase tracking-[0.24em] text-[#fff6ea] transition-colors hover:bg-white/5"
             >
-              Start booking
+              Check Venue Availability
             </Link>
           </div>
         </div>

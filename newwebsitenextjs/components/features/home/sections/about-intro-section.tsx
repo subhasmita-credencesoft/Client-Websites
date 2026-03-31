@@ -16,8 +16,7 @@ export function AboutIntroSection() {
             {content.title}
           </h2>
           <p className="mt-6 max-w-4xl text-xl leading-snug text-white md:text-[2.15rem]">
-            {content.highlight.split(" Design, Gastronomy, Adventure & Entertainment.")[0]}
-            <span className="text-[#cba977]"> Design, Gastronomy, Adventure & Entertainment.</span>
+            {content.highlight}
           </p>
           <p className="mt-7 max-w-4xl text-sm leading-relaxed text-white/85 md:text-base">
             {content.body}

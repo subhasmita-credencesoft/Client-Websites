@@ -118,6 +118,22 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
         </div>
       </section>
 
+      <section className="mx-auto max-w-[96rem] px-8 pb-20 pt-0" data-section-id={`${page.slug}-stats`}>
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {page.stats.map((stat) => (
+            <article
+              key={`${page.slug}-${stat.label}`}
+              className="overflow-hidden rounded-[1.7rem] border border-black/10 bg-white/70 px-6 py-7 shadow-[0_20px_40px_rgba(10,18,12,0.08)] backdrop-blur-sm"
+              data-card
+              data-clip-reveal
+            >
+              <p className="text-3xl text-[#b2863d] md:text-4xl">{stat.value}</p>
+              <p className="mt-3 text-sm uppercase tracking-[0.22em] text-black/72">{stat.label}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="bg-black px-8 py-20 text-white" data-feature-stage data-section-id={`${page.slug}-plan`}>
         <div className="mx-auto grid max-w-[96rem] items-center gap-10 md:grid-cols-2">
           <div data-feature-content data-reveal>
@@ -135,7 +151,7 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
               className="mt-10 inline-flex items-center justify-center border border-white px-10 py-4 text-sm uppercase tracking-[0.18em]"
               data-cursor="hover"
             >
-              Enquire Now
+              Request Venue Quote
             </Link>
           </div>
 
@@ -143,6 +159,49 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
             <div className="absolute inset-0" data-feature-image data-card-image data-bg-parallax data-bg-depth="9">
               <Image src={page.gallery.images[0]?.src ?? page.hero.image} alt={page.gallery.images[0]?.alt ?? page.hero.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="overflow-hidden bg-[#f7f2ea] px-8 py-22"
+        data-section-id={`${page.slug}-journey`}
+        data-horizontal-scroll
+        data-horizontal-end="+=1800"
+      >
+        <div className="mx-auto max-w-[96rem]">
+          <div className="max-w-4xl text-center md:mx-auto" data-reveal>
+            <p className="text-xs uppercase tracking-[0.28em] text-[#b88947]" data-reveal-child>
+              Celebration Journey
+            </p>
+            <h3 className="mt-4 text-4xl leading-tight text-[#c89a55] md:text-5xl" data-section-title>
+              How this venue experience unfolds across the wedding
+            </h3>
+            <p className="mx-auto mt-6 max-w-4xl text-xl leading-relaxed text-black/85 md:text-2xl" data-reveal-child>
+              Richer visual rhythm, stronger storytelling, and clearer hosting flow help these venue pages feel more premium without changing the core design language.
+            </p>
+          </div>
+
+          <div className="mt-14 flex gap-6 md:gap-8" data-horizontal-track>
+            {page.experienceJourney.map((item, index) => (
+              <article
+                key={`${page.slug}-${item.title}`}
+                className="w-[85vw] shrink-0 overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_22px_55px_rgba(10,18,12,0.12)] md:w-[38rem]"
+                data-card
+              >
+                <div className="relative h-[20rem] overflow-hidden md:h-[24rem]">
+                  <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth={String(8 + index)}>
+                    <Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 768px) 85vw, 38rem" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent" />
+                </div>
+                <div className="p-7 md:p-8">
+                  <p className="text-xs uppercase tracking-[0.24em] text-[#b88947]">Chapter 0{index + 1}</p>
+                  <h4 className="mt-3 text-3xl leading-tight text-[#1b201d] md:text-4xl">{item.title}</h4>
+                  <p className="mt-5 text-lg leading-relaxed text-black/78 md:text-xl">{item.body}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -173,6 +232,39 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-[#111317] px-8 py-24 text-white" data-section-id={`${page.slug}-cinematic-band`}>
+        <div className="absolute inset-0">
+          <Image src={page.cinematicBand.image} alt={page.cinematicBand.title} fill className="object-cover opacity-30" sizes="100vw" />
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,10,12,0.9)_0%,rgba(8,10,12,0.72)_45%,rgba(8,10,12,0.9)_100%)]" />
+
+        <div className="relative z-10 mx-auto grid max-w-[96rem] gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+          <div data-reveal>
+            <p className="text-xs uppercase tracking-[0.28em] text-[#d7ae71]" data-reveal-child>
+              Editorial Perspective
+            </p>
+            <h3 className="mt-5 max-w-4xl text-balance text-4xl leading-tight text-[#f2dfbf] md:text-6xl" data-section-title>
+              {page.cinematicBand.title}
+            </h3>
+            <p className="mt-7 max-w-3xl text-xl leading-relaxed text-white/88 md:text-2xl" data-reveal-child>
+              {page.cinematicBand.body}
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2" data-reveal>
+            {page.cinematicBand.tags.map((tag) => (
+              <div
+                key={`${page.slug}-${tag}`}
+                className="rounded-[1.4rem] border border-white/10 bg-white/5 px-5 py-4 text-base uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm md:text-lg"
+                data-reveal-child
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -213,7 +305,7 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
             className="inline-flex self-start items-center justify-center bg-[#c89a55] px-10 py-4 text-sm uppercase tracking-[0.18em] text-black md:self-auto"
             data-cursor="hover"
           >
-            Explore Venue
+            Check Venue Availability
           </Link>
         </div>
       </section>
@@ -230,7 +322,7 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
           <div className="space-y-4">
             {page.extraSections.map((section, index) => (
               <article key={section.title} className="border border-[#d9c6a5] bg-white/70 px-6 py-5 text-black/88" data-card>
-                <p className="mb-2 text-xs uppercase tracking-[0.24em] text-[#b88947]">Note 0{index + 1}</p>
+                <p className="mb-2 text-xs uppercase tracking-[0.24em] text-[#b88947]">Planning Note 0{index + 1}</p>
                 <h4 className="text-xl leading-tight md:text-2xl">{section.title}</h4>
                 <p className="mt-3 text-lg leading-relaxed md:text-xl">{section.body}</p>
               </article>
