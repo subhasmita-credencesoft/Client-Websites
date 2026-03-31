@@ -8,6 +8,7 @@ export const homePageData = {
     description:
       "Escape the city and unwind in nature’s comfort. Discover serene stays, refreshing vibes, and moments that stay with you forever.",
     whatsappHint: "Or book directly via WhatsApp for best rates",
+    searchTargetLink: "/property/orchard-resort",
     destinations: [
       "All Locations",
       "Near Pune, Maharashtra",

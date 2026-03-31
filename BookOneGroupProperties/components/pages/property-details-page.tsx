@@ -3,6 +3,7 @@
 import type { ComponentType, SVGProps } from "react";
 import { useMemo, useState } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import {
   Star,
   MapPin,
@@ -43,12 +44,16 @@ type PropertyDetailsPageProps = {
 };
 
 export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
+  const searchParams = useSearchParams();
   const [activeImage, setActiveImage] = useState(0);
-  const defaultCheckIn = useMemo(() => getInitialDate(property.booking.checkIn, 0), [property.booking.checkIn]);
-  const defaultCheckOut = useMemo(() => getInitialDate(property.booking.checkOut, 2), [property.booking.checkOut]);
+  const searchCheckIn = searchParams?.get("checkIn") ?? null;
+  const searchCheckOut = searchParams?.get("checkOut") ?? null;
+  const searchGuests = searchParams?.get("guests") ?? null;
+  const defaultCheckIn = useMemo(() => getInitialDate(searchCheckIn ?? property.booking.checkIn, 0), [property.booking.checkIn, searchCheckIn]);
+  const defaultCheckOut = useMemo(() => getInitialCheckoutDate(searchCheckOut ?? property.booking.checkOut, defaultCheckIn), [defaultCheckIn, property.booking.checkOut, searchCheckOut]);
   const [checkInDate, setCheckInDate] = useState(defaultCheckIn);
-  const [checkOutDate, setCheckOutDate] = useState(defaultCheckOut > defaultCheckIn ? defaultCheckOut : addDays(defaultCheckIn, 1));
-  const [guestCount, setGuestCount] = useState(getInitialGuestCount(property.booking.guests));
+  const [checkOutDate, setCheckOutDate] = useState(defaultCheckOut);
+  const [guestCount, setGuestCount] = useState(getInitialGuestCount(searchGuests, property.booking.guests));
 
   const nextImage = () => setActiveImage((prev) => (prev + 1) % property.images.length);
   const prevImage = () => setActiveImage((prev) => (prev - 1 + property.images.length) % property.images.length);
@@ -424,6 +429,11 @@ function PolicyCard({ title, items }: { title: string; items: string[] }) {
 }
 
 function getInitialDate(value: string, fallbackDays: number) {
+  const isoParsed = new Date(value);
+  if (isValid(isoParsed)) {
+    return isoParsed;
+  }
+
   const parsed = parse(value, "MMM d, yyyy", new Date());
   if (isValid(parsed)) {
     return parsed;
@@ -432,7 +442,17 @@ function getInitialDate(value: string, fallbackDays: number) {
   return addDays(new Date(), fallbackDays);
 }
 
-function getInitialGuestCount(guests: string[]) {
+function getInitialCheckoutDate(value: string, checkInDate: Date) {
+  const parsedDate = getInitialDate(value, 2);
+  return parsedDate > checkInDate ? parsedDate : addDays(checkInDate, 1);
+}
+
+function getInitialGuestCount(guestQuery: string | null, guests: string[]) {
+  const parsedQueryCount = Number.parseInt(guestQuery ?? "", 10);
+  if (!Number.isNaN(parsedQueryCount) && parsedQueryCount > 0) {
+    return parsedQueryCount;
+  }
+
   const firstGuestOption = guests[0] ?? "2 Guests";
   const parsedCount = Number.parseInt(firstGuestOption, 10);
   return Number.isNaN(parsedCount) ? 2 : parsedCount;

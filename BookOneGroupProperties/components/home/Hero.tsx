@@ -1,12 +1,37 @@
-﻿import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { DateRangeField } from "@/components/ui/date-range-field";
 import { MessageCircle, MapPin, Users, Search } from "lucide-react";
+import { addDays, format } from "date-fns";
+import type { DateRange } from "react-day-picker";
 import { siteImages } from "@/lib/site-images";
 import { homePageData } from "@/data/home";
+import { siteContact } from "@/data/site";
 
 export function Hero() {
   const { hero } = homePageData;
+  const router = useRouter();
+  const [destination, setDestination] = useState(hero.destinations[0] ?? "All Locations");
+  const [dateRange, setDateRange] = useState<DateRange | undefined>();
+  const [guest, setGuest] = useState(hero.guests[0] ?? "2 Guests");
+
+  const handleSearch = () => {
+    const checkInDate = dateRange?.from ?? new Date();
+    const checkOutDate = dateRange?.to ?? addDays(checkInDate, 1);
+    const guestCount = Number.parseInt(guest, 10) || 2;
+    const params = new URLSearchParams({
+      checkIn: format(checkInDate, "yyyy-MM-dd"),
+      checkOut: format(checkOutDate, "yyyy-MM-dd"),
+      guests: guestCount.toString(),
+      destination,
+    });
+
+    router.push(`${hero.searchTargetLink}?${params.toString()}`);
+  };
 
   return (
     <div className="relative min-h-[820px] md:min-h-[90vh] w-full overflow-visible flex items-center justify-center">
@@ -40,35 +65,49 @@ export function Hero() {
             <MapPin className="w-5 h-5 text-primary shrink-0" />
             <div className="text-left flex-1 min-w-0">
               <label className="block text-[0.65rem] font-bold text-gray-500 uppercase tracking-wider">Destination</label>
-              <select className="w-full bg-transparent text-gray-900 font-bold text-sm focus:outline-none appearance-none cursor-pointer truncate">
-                {hero.destinations.map((destination) => (
-                  <option key={destination}>{destination}</option>
+              <select
+                value={destination}
+                onChange={(event) => setDestination(event.target.value)}
+                className="w-full bg-transparent text-gray-900 font-bold text-sm focus:outline-none appearance-none cursor-pointer truncate"
+              >
+                {hero.destinations.map((destinationOption) => (
+                  <option key={destinationOption}>{destinationOption}</option>
                 ))}
               </select>
             </div>
           </div>
 
-          <DateRangeField />
+          <DateRangeField value={dateRange} onChange={setDateRange} />
 
           <div className="flex-1 bg-gray-50 rounded-md px-4 py-3 flex items-center gap-3 border border-transparent focus-within:border-primary/50 transition-colors min-w-0">
             <Users className="w-5 h-5 text-primary shrink-0" />
             <div className="text-left flex-1 min-w-0">
               <label className="block text-[0.65rem] font-bold text-gray-500 uppercase tracking-wider">Guests</label>
-              <select className="w-full bg-transparent text-gray-900 font-bold text-sm focus:outline-none appearance-none cursor-pointer truncate">
-                {hero.guests.map((guest) => (
-                  <option key={guest}>{guest}</option>
+              <select
+                value={guest}
+                onChange={(event) => setGuest(event.target.value)}
+                className="w-full bg-transparent text-gray-900 font-bold text-sm focus:outline-none appearance-none cursor-pointer truncate"
+              >
+                {hero.guests.map((guestOption) => (
+                  <option key={guestOption}>{guestOption}</option>
                 ))}
               </select>
             </div>
           </div>
 
           <div className="flex gap-2 w-full md:w-auto md:self-stretch">
-            <Button className="flex-1 md:flex-none h-full min-h-[3.5rem] bg-primary hover:bg-primary/90 text-white font-bold px-6 md:px-8 rounded-md text-sm uppercase tracking-wide">
+            <Button
+              type="button"
+              onClick={handleSearch}
+              className="flex-1 md:flex-none h-full min-h-[3.5rem] bg-primary hover:bg-primary/90 text-white font-bold px-6 md:px-8 rounded-md text-sm uppercase tracking-wide"
+            >
               <Search className="w-4 h-4 mr-2" />
               Search
             </Button>
-            <Button className="flex-1 md:flex-none h-full min-h-[3.5rem] bg-[#25D366] hover:bg-[#1ebd59] text-white font-bold px-6 rounded-md text-sm uppercase tracking-wide">
-              <MessageCircle className="w-5 h-5" />
+            <Button asChild className="flex-1 md:flex-none h-full min-h-[3.5rem] bg-[#25D366] hover:bg-[#1ebd59] text-white font-bold px-6 rounded-md text-sm uppercase tracking-wide">
+              <a href={siteContact.whatsappHref} target="_blank" rel="noreferrer" aria-label="Book on WhatsApp">
+                <MessageCircle className="w-5 h-5" />
+              </a>
             </Button>
           </div>
         </div>

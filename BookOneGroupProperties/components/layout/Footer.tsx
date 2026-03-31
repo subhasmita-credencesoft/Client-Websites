@@ -1,5 +1,6 @@
-﻿import { Facebook, Instagram, Twitter, MapPin, Mail, Phone } from "lucide-react";
+import { MapPin, Mail, Phone } from "lucide-react";
 import { footerData } from "@/data/footer";
+import { siteContact } from "@/data/site";
 
 export function Footer() {
   return (
@@ -31,7 +32,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 shrink-0" />
-                <span>{footerData.contact.phone}</span>
+                <a href={siteContact.phoneHref} className="hover:text-white transition-colors">{footerData.contact.phone}</a>
               </li>
               <li className="mt-6">
                 <p className="font-bold uppercase tracking-wide text-xs mb-2 text-white/60">Follow Us</p>

@@ -1,4 +1,6 @@
-﻿export const navigationData = {
+import { siteContact } from "@/data/site";
+
+export const navigationData = {
   brand: {
     name: "The Pune Resort",
     tagline: "It's Your Day",
@@ -21,7 +23,7 @@
 };
 
 export const stickySidebarData = [
-  { label: "Contact Us", href: "#", colorClass: "bg-[#2D3A45] hover:bg-[#1a2229]", type: "mail" },
-  { label: "WhatsApp", href: "#", colorClass: "bg-[#25D366] hover:bg-[#1ebd59]", type: "message" },
-  { label: "Call Us", href: "#", colorClass: "bg-[#4EA699] hover:bg-[#3d8c80]", type: "phone" },
+  { label: "Contact Us", href: `mailto:${siteContact.email}`, colorClass: "bg-[#2D3A45] hover:bg-[#1a2229]", type: "mail" },
+  { label: "WhatsApp", href: siteContact.whatsappHref, colorClass: "bg-[#25D366] hover:bg-[#1ebd59]", type: "message" },
+  { label: "Call Us", href: siteContact.phoneHref, colorClass: "bg-[#4EA699] hover:bg-[#3d8c80]", type: "phone" },
 ] as const;

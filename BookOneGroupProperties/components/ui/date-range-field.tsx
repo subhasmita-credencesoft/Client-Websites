@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -37,10 +37,23 @@ const dayPickerClassNames = {
   day_hidden: "invisible",
 };
 
-export function DateRangeField() {
+type DateRangeFieldProps = {
+  value?: DateRange;
+  onChange?: (range: DateRange | undefined) => void;
+};
+
+export function DateRangeField({ value, onChange }: DateRangeFieldProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [range, setRange] = useState<DateRange | undefined>();
+  const [internalRange, setInternalRange] = useState<DateRange | undefined>();
+  const range = value ?? internalRange;
+
+  const handleSelect = (nextRange: DateRange | undefined) => {
+    if (value === undefined) {
+      setInternalRange(nextRange);
+    }
+    onChange?.(nextRange);
+  };
 
   useEffect(() => {
     if (range?.from && range?.to) {
@@ -105,7 +118,7 @@ export function DateRangeField() {
             mode="range"
             numberOfMonths={1}
             selected={range}
-            onSelect={setRange}
+            onSelect={handleSelect}
             defaultMonth={range?.from}
             showOutsideDays
             disabled={{ before: new Date() }}

@@ -1,4 +1,4 @@
-﻿import { Phone, MessageCircle, Mail } from "lucide-react";
+import { Phone, MessageCircle, Mail } from "lucide-react";
 import { stickySidebarData } from "@/data/navigation";
 
 const iconMap = {
@@ -17,6 +17,8 @@ export function StickySidebar() {
           <a
             key={item.label}
             href={item.href}
+            target={item.type === "message" ? "_blank" : undefined}
+            rel={item.type === "message" ? "noreferrer" : undefined}
             className={`${item.colorClass} text-white p-3 transition-all rounded-r-md group flex items-center gap-2 w-10 hover:w-32 overflow-hidden whitespace-nowrap`}
           >
             <div className="min-w-[1.25rem]"><Icon className="w-5 h-5" /></div>

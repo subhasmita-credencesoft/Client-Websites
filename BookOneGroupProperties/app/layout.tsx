@@ -3,6 +3,7 @@ import { Montserrat, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { siteContact } from "@/data/site";
 import { absoluteUrl, getSiteUrl, siteSeo } from "@/lib/seo";
 
 const montserrat = Montserrat({
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     "holiday homes",
     "boutique stays",
     "mahabaleshwar stays",
-    "The pune resort",
+    "The Pune Resort",
   ],
   authors: [{ name: siteSeo.siteName }],
   creator: siteSeo.siteName,
@@ -93,9 +94,9 @@ const siteSchema = [
     logo: absoluteUrl("/puneresortlogo.png"),
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-555-123-4567",
+      telephone: siteContact.phoneDisplay,
       contactType: "customer service",
-      email: "info@Thepuneresort.com",
+      email: siteContact.email,
       availableLanguage: ["English"],
     },
   },

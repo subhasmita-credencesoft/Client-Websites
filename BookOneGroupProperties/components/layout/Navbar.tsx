@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ChevronDown, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { navigationData } from "@/data/navigation";
+import { siteContact } from "@/data/site";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,7 +29,7 @@ export function Navbar() {
               width={150}
               height={153}
               priority
-              className="h-auto w-[118px] sm:w-[150px]"
+              className="h-auto w-[88px] sm:w-[112px]"
             />
           </Link>
 
@@ -63,8 +64,10 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-4">
-            <Button className="hidden rounded-md bg-primary hover:bg-primary/90 md:flex" size="icon">
-              <MessageCircleIcon className="h-5 w-5" />
+            <Button asChild className="hidden rounded-md bg-primary hover:bg-primary/90 md:flex" size="icon">
+              <a href={siteContact.whatsappHref} target="_blank" rel="noreferrer" aria-label="Contact on WhatsApp">
+                <MessageCircleIcon className="h-5 w-5" />
+              </a>
             </Button>
             <button
               className="rounded-full p-2 text-primary hover:bg-white/20 md:hidden"
@@ -113,9 +116,11 @@ export function Navbar() {
                   </Link>
                 ),
               )}
-              <Button className="mt-2 w-full rounded-xl bg-primary hover:bg-primary/90">
-                <MessageCircleIcon className="mr-2 h-5 w-5" />
-                {navigationData.mobileCtaLabel}
+              <Button asChild className="mt-2 w-full rounded-xl bg-primary hover:bg-primary/90">
+                <a href={siteContact.whatsappHref} target="_blank" rel="noreferrer" onClick={closeMenu}>
+                  <MessageCircleIcon className="mr-2 h-5 w-5" />
+                  {navigationData.mobileCtaLabel}
+                </a>
               </Button>
             </div>
           </div>

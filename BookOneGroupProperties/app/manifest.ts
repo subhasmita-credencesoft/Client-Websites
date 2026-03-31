@@ -4,8 +4,8 @@ export const dynamic = "force-static";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "The pune resort",
-    short_name: "The pune resort",
+    name: "The Pune Resort",
+    short_name: "The Pune Resort",
     description: "Crafting unforgettable hospitality experiences across curated villas, resorts, and boutique stays.",
     start_url: "/",
     display: "standalone",

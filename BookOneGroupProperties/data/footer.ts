@@ -1,4 +1,5 @@
-﻿import { Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
+import { Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
+import { siteContact, siteLegalLinks } from "@/data/site";
 
 export const footerData = {
   brand: {
@@ -7,13 +8,13 @@ export const footerData = {
       "It's Your Day. Dedicated to crafting welcoming and unforgettable hospitality experiences for every traveler.",
   },
   quickLinks: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms And Conditions", href: "#" },
-    { label: "Refund Policy", href: "#" },
+    { label: "Privacy Policy", href: siteLegalLinks.privacyPolicy },
+    { label: "Terms And Conditions", href: siteLegalLinks.termsAndConditions },
+    { label: "Refund Policy", href: siteLegalLinks.refundPolicy },
   ],
   contact: {
-    email: " myresortspune@gmail.com",
-    phone: " +91 9130583132",
+    email: siteContact.email,
+    phone: siteContact.phoneDisplay,
     socialLinks: [
       { label: "Instagram", href: "#", icon: Instagram },
       { label: "Twitter", href: "#", icon: Twitter },
@@ -21,7 +22,7 @@ export const footerData = {
     ],
   },
   locations: [
-    "Shirke's Holiday Home, Near Pawna Lake, Lonavala Road, Pune, Maharashtra 410406",
+    siteContact.address,
   ],
   legal: {
     copyright: "Copyright © 2026 credencesoft. All rights reserved.",
@@ -32,12 +33,12 @@ export const footerData = {
 export const contactSectionData = [
   {
     title: "Email",
-    value: "myresortspune@gmail.com",
+    value: siteContact.email,
     icon: Mail,
   },
   {
     title: "Phone",
-    value: " +91 9130583132",
+    value: siteContact.phoneDisplay,
     icon: Phone,
   },
 ];
