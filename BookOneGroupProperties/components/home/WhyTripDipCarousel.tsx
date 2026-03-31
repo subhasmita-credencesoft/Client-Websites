@@ -1,7 +1,8 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -49,8 +50,8 @@ export function WhyTripDipCarousel() {
                     <p className="text-base md:text-xl text-white/90 max-w-2xl leading-relaxed mb-6 md:mb-8">
                       {reason.description}
                     </p>
-                    <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-primary rounded-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg">
-                      Learn More
+                    <Button asChild variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-primary rounded-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg">
+                      <Link href="/properties">Learn More</Link>
                     </Button>
                   </div>
                 </div>

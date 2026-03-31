@@ -214,6 +214,15 @@ export async function getFeaturedPropertiesData(): Promise<FeaturedCard[]> {
   );
 }
 
+export async function getPropertyGalleryImages() {
+  const locationHighlightsData = await getLocationHighlightsData();
+
+  return Object.values(locationHighlightsData.propertiesByLocation)
+    .flat()
+    .map((property) => property.image)
+    .filter((image, index, images) => Boolean(image) && images.indexOf(image) === index);
+}
+
 function mapHotelMatePropertyToDetails(
   property: HotelMateProperty,
   slug: string,

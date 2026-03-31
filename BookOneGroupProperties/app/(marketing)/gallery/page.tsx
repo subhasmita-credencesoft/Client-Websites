@@ -1,8 +1,8 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { GalleryPage } from "@/components/pages/gallery-page";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { homePageData } from "@/data/home";
 import { pageContent } from "@/data/pages";
+import { getPropertyGalleryImages } from "@/lib/hotelmate-properties";
 import { buildPageMetadata, absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -11,20 +11,21 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/gallery",
 });
 
-export default function Page() {
+export default async function Page() {
+  const images = await getPropertyGalleryImages();
   const schema = {
     "@context": "https://schema.org",
     "@type": "ImageGallery",
     name: pageContent.gallery.title,
     url: absoluteUrl("/gallery"),
     description: pageContent.gallery.description,
-    image: homePageData.gallery.images.map((image) => absoluteUrl(image)),
+    image: images.map((image) => absoluteUrl(image)),
   };
 
   return (
     <>
       <JsonLd data={schema} />
-      <GalleryPage />
+      <GalleryPage images={images} />
     </>
   );
 }

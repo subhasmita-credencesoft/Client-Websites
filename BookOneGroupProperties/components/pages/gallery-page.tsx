@@ -1,7 +1,11 @@
-﻿import { GallerySection } from "@/components/home/GallerySection";
+import { GallerySection } from "@/components/home/GallerySection";
 import { pageContent } from "@/data/pages";
 
-export function GalleryPage() {
+type GalleryPageProps = {
+  images: string[];
+};
+
+export function GalleryPage({ images }: GalleryPageProps) {
   const { gallery } = pageContent;
 
   return (
@@ -19,7 +23,7 @@ export function GalleryPage() {
           </p>
         </div>
       </section>
-      <GallerySection />
+      <GallerySection images={images} />
     </main>
   );
 }

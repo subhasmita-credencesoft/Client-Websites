@@ -154,21 +154,21 @@ export const homePageData = {
         description:
           "From personalized welcome drinks to 24/7 concierge support, we ensure every moment of your stay is curated for perfection. Our local staff is trained to anticipate your needs before you even ask.",
         icon: Sparkles,
-        image: siteImages.happyGuests,
+        image: siteImages.hero,
       },
       {
         title: "Cost Effective Luxury",
         description:
           "Experience 5-star amenities without the 5-star price tag. By partnering directly with property owners, we cut out the middlemen to pass the savings directly to you.",
         icon: Wallet,
-        image: siteImages.affordableLuxuryRoom,
+        image: siteImages.modernTropicalVilla,
       },
       {
         title: "Verified Excellence",
         description:
           "Every The Pune Resort property undergoes a rigorous 150-point inspection checklist. We don't just list properties; we verify experiences to ensure safety, hygiene, and comfort.",
         icon: ShieldCheck,
-        image: siteImages.luxuryVillaSunset,
+        image: siteImages.resortPool,
       },
     ],
   },
@@ -185,14 +185,14 @@ export const homePageData = {
       "Professional Property Maintenance",
       "24/7 Guest Support Team",
     ],
-    image: siteImages.propertyManager,
+    image: siteImages.resortPool,
     benefitIcon: CheckCircle2,
   },
   services: {
     title: "Our Services",
     description:
       "Our Services are designed to elevate your stay. Enjoy a sparkling infinity pool, a fully equipped fitness center, and a serene spa for ultimate relaxation. Dine at our exquisite multi-cuisine restaurant, unwind at the beachside bar, and revel in curated activities for all ages.",
-    image: siteImages.modernHotelRestaurant,
+    image: siteImages.modernTropicalVilla,
     items: [
       { icon: Waves, label: "Infinity Pool" },
       { icon: Dumbbell, label: "Fitness Centre" },
