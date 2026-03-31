@@ -8,15 +8,16 @@ import { PropertyOwnerCTA } from "@/components/home/PropertyOwnerCTA";
 
 type HomePageProps = {
   locationHighlightsData: Awaited<ReturnType<typeof import("@/lib/hotelmate-properties").getLocationHighlightsData>>;
+  featuredPropertiesData: Awaited<ReturnType<typeof import("@/lib/hotelmate-properties").getFeaturedPropertiesData>>;
 };
 
-export function HomePage({ locationHighlightsData }: HomePageProps) {
+export function HomePage({ locationHighlightsData, featuredPropertiesData }: HomePageProps) {
   return (
     <>
       <Hero />
       <LocationHighlights data={locationHighlightsData} />
       <WhyTripDipCarousel />
-      <FeaturedSection />
+      <FeaturedSection data={featuredPropertiesData} />
       <PropertyOwnerCTA />
       <ServicesSection />
       <GallerySection />

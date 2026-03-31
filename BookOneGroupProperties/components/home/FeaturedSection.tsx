@@ -1,7 +1,11 @@
-﻿import { PropertyCard } from "@/components/property/PropertyCard";
+import { PropertyCard } from "@/components/property/PropertyCard";
 import { homePageData } from "@/data/home";
 
-export function FeaturedSection() {
+type FeaturedSectionProps = {
+  data: Awaited<ReturnType<typeof import("@/lib/hotelmate-properties").getFeaturedPropertiesData>>;
+};
+
+export function FeaturedSection({ data }: FeaturedSectionProps) {
   const { featured } = homePageData;
 
   return (
@@ -13,7 +17,7 @@ export function FeaturedSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {featured.properties.map((property) => (
+          {data.map((property) => (
             <PropertyCard key={property.id} {...property} />
           ))}
         </div>

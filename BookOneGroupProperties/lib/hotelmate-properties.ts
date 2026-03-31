@@ -89,6 +89,23 @@ type LocationCard = {
   link: string;
 };
 
+type FeaturedCard = {
+  id: string;
+  slug: string;
+  title: string;
+  location: string;
+  amenity: string;
+  price: string;
+  image: string;
+};
+
+const featuredPropertySlugs = [
+  "vedanta-resort",
+  "orchard-resort",
+  "rajgad-water-park-resort",
+  "prathamesh-resort",
+] as const;
+
 export const getDynamicPropertyBySlug = cache(async (slug: string): Promise<PropertyDetails | null> => {
   const source = propertySourceBySlug[slug];
 
@@ -162,6 +179,39 @@ export async function getLocationHighlightsData() {
     ...base,
     propertiesByLocation: Object.fromEntries(entries),
   };
+}
+
+export async function getFeaturedPropertiesData(): Promise<FeaturedCard[]> {
+  const fallbackImage = homePageData.locationHighlights.propertiesByLocation["near-pune"][0]?.image ?? "";
+
+  return Promise.all(
+    featuredPropertySlugs.map(async (slug, index) => {
+      const dynamicProperty = await getDynamicPropertyBySlug(slug);
+      const source = propertySourceBySlug[slug];
+
+      if (!dynamicProperty) {
+        return {
+          id: `featured-${index + 1}`,
+          slug,
+          title: slugToTitle(slug),
+          location: "Location details available on booking confirmation.",
+          amenity: "Comfortable Stay",
+          price: "Rs. 0/ night",
+          image: source?.fallbackImage ?? fallbackImage,
+        } satisfies FeaturedCard;
+      }
+
+      return {
+        id: `featured-${index + 1}`,
+        slug: dynamicProperty.slug,
+        title: dynamicProperty.title,
+        location: dynamicProperty.location,
+        amenity: dynamicProperty.amenities[0]?.label ?? dynamicProperty.typeBadge,
+        price: `Rs. ${dynamicProperty.booking.basePrice}/ night`,
+        image: dynamicProperty.images[0] ?? source?.fallbackImage ?? fallbackImage,
+      } satisfies FeaturedCard;
+    }),
+  );
 }
 
 function mapHotelMatePropertyToDetails(
