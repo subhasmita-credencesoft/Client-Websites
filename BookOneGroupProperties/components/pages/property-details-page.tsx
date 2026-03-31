@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentType, SVGProps } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import {
@@ -45,11 +45,38 @@ type PropertyDetailsPageProps = {
 };
 
 export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
+  return (
+    <Suspense fallback={<PropertyDetailsContent property={property} searchCheckIn={null} searchCheckOut={null} searchGuests={null} />}>
+      <PropertyDetailsFromSearchParams property={property} />
+    </Suspense>
+  );
+}
+
+function PropertyDetailsFromSearchParams({ property }: PropertyDetailsPageProps) {
   const searchParams = useSearchParams();
-  const [activeImage, setActiveImage] = useState(0);
   const searchCheckIn = searchParams?.get("checkIn") ?? null;
   const searchCheckOut = searchParams?.get("checkOut") ?? null;
   const searchGuests = searchParams?.get("guests") ?? null;
+
+  return (
+    <PropertyDetailsContent
+      property={property}
+      searchCheckIn={searchCheckIn}
+      searchCheckOut={searchCheckOut}
+      searchGuests={searchGuests}
+    />
+  );
+}
+
+type PropertyDetailsContentProps = {
+  property: PropertyDetails;
+  searchCheckIn: string | null;
+  searchCheckOut: string | null;
+  searchGuests: string | null;
+};
+
+function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searchGuests }: PropertyDetailsContentProps) {
+  const [activeImage, setActiveImage] = useState(0);
   const defaultCheckIn = useMemo(() => getInitialDate(searchCheckIn ?? property.booking.checkIn, 0), [property.booking.checkIn, searchCheckIn]);
   const defaultCheckOut = useMemo(() => getInitialCheckoutDate(searchCheckOut ?? property.booking.checkOut, defaultCheckIn), [defaultCheckIn, property.booking.checkOut, searchCheckOut]);
   const [checkInDate, setCheckInDate] = useState(defaultCheckIn);

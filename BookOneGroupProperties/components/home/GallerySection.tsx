@@ -1,19 +1,24 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import { homePageData } from "@/data/home";
 
-export function GallerySection() {
+type GallerySectionProps = {
+  images?: string[];
+};
+
+export function GallerySection({ images }: GallerySectionProps) {
   const { gallery } = homePageData;
+  const galleryImages = images?.length ? images : gallery.images;
 
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-6">
-         <div className="text-center mb-12">
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-2">{gallery.title}</h2>
           <p className="text-muted-foreground text-sm uppercase tracking-widest">{gallery.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {gallery.images.map((image, index) => (
+          {galleryImages.map((image, index) => (
             <div key={index} className="relative group overflow-hidden rounded-lg aspect-[4/3] cursor-pointer">
               <Image
                 src={image}

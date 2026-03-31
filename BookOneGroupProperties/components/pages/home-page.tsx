@@ -12,6 +12,11 @@ type HomePageProps = {
 };
 
 export function HomePage({ locationHighlightsData, featuredPropertiesData }: HomePageProps) {
+  const galleryImages = Object.values(locationHighlightsData.propertiesByLocation)
+    .flat()
+    .map((property) => property.image)
+    .filter((image, index, images) => Boolean(image) && images.indexOf(image) === index);
+
   return (
     <>
       <Hero />
@@ -20,7 +25,7 @@ export function HomePage({ locationHighlightsData, featuredPropertiesData }: Hom
       <FeaturedSection data={featuredPropertiesData} />
       <PropertyOwnerCTA />
       <ServicesSection />
-      <GallerySection />
+      <GallerySection images={galleryImages} />
     </>
   );
 }

@@ -19,7 +19,7 @@ export function Hero() {
   const router = useRouter();
   const [destination, setDestination] = useState(hero.destinations[0] ?? "All Locations");
   const [dateRange, setDateRange] = useState<DateRange | undefined>();
-  const [guest, setGuest] = useState(hero.guests[0] ?? "2 Guests");
+  const [guestCount, setGuestCount] = useState(1);
   const locationId = useMemo(() => getLocationIdFromDestination(destination), [destination]);
   const propertyOptions = useMemo(() => getPropertiesForLocation(locationId), [locationId]);
   const [selectedPropertyLink, setSelectedPropertyLink] = useState(propertyOptions[0]?.link ?? "");
@@ -31,7 +31,6 @@ export function Hero() {
   const handleSearch = () => {
     const checkInDate = dateRange?.from ?? new Date();
     const checkOutDate = dateRange?.to ?? addDays(checkInDate, 1);
-    const guestCount = Number.parseInt(guest, 10) || 2;
     const selectedSlug = getSlugFromPropertyLink(selectedPropertyLink);
     const propertySource = selectedSlug ? propertySourceBySlug[selectedSlug] : null;
 
@@ -128,15 +127,27 @@ export function Hero() {
             <Users className="w-5 h-5 text-primary shrink-0" />
             <div className="text-left flex-1 min-w-0">
               <label className="block text-[0.65rem] font-bold text-gray-500 uppercase tracking-wider">Guests</label>
-              <select
-                value={guest}
-                onChange={(event) => setGuest(event.target.value)}
-                className="w-full bg-transparent text-gray-900 font-bold text-sm focus:outline-none appearance-none cursor-pointer truncate"
-              >
-                {hero.guests.map((guestOption) => (
-                  <option key={guestOption}>{guestOption}</option>
-                ))}
-              </select>
+              <div className="flex items-center justify-between gap-2">
+                <button
+                  type="button"
+                  onClick={() => setGuestCount((current) => Math.max(1, current - 1))}
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-200 text-base font-bold text-primary transition-colors hover:border-primary hover:bg-primary/5"
+                  aria-label="Decrease guests"
+                >
+                  -
+                </button>
+                <div className="min-w-0 flex-1 text-center text-gray-900 font-bold text-sm truncate">
+                  {guestCount} Guest{guestCount === 1 ? "" : "s"}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setGuestCount((current) => Math.min(20, current + 1))}
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-200 text-base font-bold text-primary transition-colors hover:border-primary hover:bg-primary/5"
+                  aria-label="Increase guests"
+                >
+                  +
+                </button>
+              </div>
             </div>
           </div>
 
