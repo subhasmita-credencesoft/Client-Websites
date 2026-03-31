@@ -6,11 +6,15 @@ import { GallerySection } from "@/components/home/GallerySection";
 import { WhyTripDipCarousel } from "@/components/home/WhyTripDipCarousel";
 import { PropertyOwnerCTA } from "@/components/home/PropertyOwnerCTA";
 
-export function HomePage() {
+type HomePageProps = {
+  locationHighlightsData: Awaited<ReturnType<typeof import("@/lib/hotelmate-properties").getLocationHighlightsData>>;
+};
+
+export function HomePage({ locationHighlightsData }: HomePageProps) {
   return (
     <>
       <Hero />
-      <LocationHighlights />
+      <LocationHighlights data={locationHighlightsData} />
       <WhyTripDipCarousel />
       <FeaturedSection />
       <PropertyOwnerCTA />

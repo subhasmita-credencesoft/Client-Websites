@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentType, SVGProps } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import {
@@ -25,8 +25,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { AmenityIconKey, PropertyDetails } from "@/data/property-details";
+import { buildBookingEngineUrl } from "@/lib/booking-engine";
 import { formatCurrency } from "@/lib/currency";
-import { addDays, format, parse, isValid } from "date-fns";
+import { addDays, format, parse, isValid, startOfDay } from "date-fns";
 
 const amenityIconMap: Record<AmenityIconKey, ComponentType<{ className?: string }>> = {
   wifi: Wifi,
@@ -54,11 +55,60 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
   const [checkInDate, setCheckInDate] = useState(defaultCheckIn);
   const [checkOutDate, setCheckOutDate] = useState(defaultCheckOut);
   const [guestCount, setGuestCount] = useState(getInitialGuestCount(searchGuests, property.booking.guests));
+  const [availabilityLabel, setAvailabilityLabel] = useState(property.booking.availability);
 
   const nextImage = () => setActiveImage((prev) => (prev + 1) % property.images.length);
   const prevImage = () => setActiveImage((prev) => (prev - 1 + property.images.length) % property.images.length);
   const checkInValue = format(checkInDate, "yyyy-MM-dd");
   const checkOutValue = format(checkOutDate, "yyyy-MM-dd");
+
+  const handleBookNow = () => {
+    const bookingUrl = buildBookingEngineUrl({
+      baseUrl: property.booking.externalBookingUrl ?? `https://bookone.io/${property.slug}?bookingEngine=true`,
+      checkIn: checkInDate,
+      checkOut: checkOutDate,
+      adults: guestCount,
+      children: 0,
+      rooms: 1,
+    });
+
+    window.location.assign(bookingUrl);
+  };
+
+  useEffect(() => {
+    if (!property.booking.availabilityApiUrl) {
+      setAvailabilityLabel(property.booking.availability);
+      return;
+    }
+
+    const controller = new AbortController();
+    const availabilityUrl = new URL(property.booking.availabilityApiUrl);
+    availabilityUrl.searchParams.set("fromDate", checkInValue);
+    availabilityUrl.searchParams.set("toDate", checkOutValue);
+    availabilityUrl.searchParams.set("noOfRooms", "1");
+    availabilityUrl.searchParams.set("noOfPersons", guestCount.toString());
+
+    setAvailabilityLabel("Checking Availability");
+
+    fetch(availabilityUrl.toString(), { signal: controller.signal })
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error(`Availability request failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setAvailabilityLabel(getAvailabilityLabel(data, property.booking.availability));
+      })
+      .catch((error) => {
+        if (error instanceof Error && error.name === "AbortError") {
+          return;
+        }
+
+        setAvailabilityLabel(property.booking.availability);
+      });
+
+    return () => controller.abort();
+  }, [checkInValue, checkOutValue, guestCount, property.booking.availability, property.booking.availabilityApiUrl]);
 
   return (
     <main className="relative min-h-screen bg-background font-sans">
@@ -321,7 +371,7 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
                   <span className="text-muted-foreground"> / night</span>
                 </div>
                 <div className="flex w-fit items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-bold text-green-600">
-                  <Check className="h-3 w-3" /> {property.booking.availability}
+                  <Check className="h-3 w-3" /> {availabilityLabel}
                 </div>
               </div>
 
@@ -391,7 +441,11 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
               </div>
 
               <div className="space-y-3">
-                <Button className="h-12 w-full bg-primary text-base font-bold shadow-lg shadow-primary/20 hover:bg-primary/90">
+                <Button
+                  type="button"
+                  onClick={handleBookNow}
+                  className="h-12 w-full bg-primary text-base font-bold shadow-lg shadow-primary/20 hover:bg-primary/90"
+                >
                   Book Now
                 </Button>
                 <Button variant="outline" className="h-12 w-full border-primary text-base font-bold text-primary hover:bg-primary/5">
@@ -429,17 +483,19 @@ function PolicyCard({ title, items }: { title: string; items: string[] }) {
 }
 
 function getInitialDate(value: string, fallbackDays: number) {
+  const today = startOfDay(new Date());
+
   const isoParsed = new Date(value);
   if (isValid(isoParsed)) {
-    return isoParsed;
+    return isoParsed >= today ? isoParsed : addDays(today, fallbackDays);
   }
 
   const parsed = parse(value, "MMM d, yyyy", new Date());
   if (isValid(parsed)) {
-    return parsed;
+    return parsed >= today ? parsed : addDays(today, fallbackDays);
   }
 
-  return addDays(new Date(), fallbackDays);
+  return addDays(today, fallbackDays);
 }
 
 function getInitialCheckoutDate(value: string, checkInDate: Date) {
@@ -456,6 +512,65 @@ function getInitialGuestCount(guestQuery: string | null, guests: string[]) {
   const firstGuestOption = guests[0] ?? "2 Guests";
   const parsedCount = Number.parseInt(firstGuestOption, 10);
   return Number.isNaN(parsedCount) ? 2 : parsedCount;
+}
+
+function getAvailabilityLabel(data: unknown, fallback: string) {
+  if (!data || typeof data !== "object") {
+    return fallback;
+  }
+
+  const record = data as Record<string, unknown>;
+  const directLabel = getStringValue(record.availability) ?? getStringValue(record.message) ?? getStringValue(record.status);
+  if (directLabel) {
+    return directLabel;
+  }
+
+  const availableRooms =
+    getNumberValue(record.availableRooms)
+    ?? getNumberValue(record.noOfRooms)
+    ?? getNumberValue(record.roomsAvailable)
+    ?? getNumberValue(record.available);
+
+  if (availableRooms !== null) {
+    return availableRooms > 0 ? `${availableRooms} Room${availableRooms === 1 ? "" : "s"} Available` : "Sold Out";
+  }
+
+  const successFlag = getBooleanValue(record.success) ?? getBooleanValue(record.availableStatus);
+  if (successFlag !== null) {
+    return successFlag ? "Available" : "Unavailable";
+  }
+
+  return fallback;
+}
+
+function getStringValue(value: unknown) {
+  return typeof value === "string" && value.trim() ? value.trim() : null;
+}
+
+function getNumberValue(value: unknown) {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return value;
+  }
+
+  if (typeof value === "string") {
+    const parsed = Number.parseFloat(value);
+    return Number.isNaN(parsed) ? null : parsed;
+  }
+
+  return null;
+}
+
+function getBooleanValue(value: unknown) {
+  if (typeof value === "boolean") {
+    return value;
+  }
+
+  if (typeof value === "string") {
+    if (value.toLowerCase() === "true") return true;
+    if (value.toLowerCase() === "false") return false;
+  }
+
+  return null;
 }
 
 function ShieldCheckIcon(props: SVGProps<SVGSVGElement>) {

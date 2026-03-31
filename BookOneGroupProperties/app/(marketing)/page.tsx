@@ -2,6 +2,7 @@
 import { HomePage } from "@/components/pages/home-page";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { homePageData } from "@/data/home";
+import { getLocationHighlightsData } from "@/lib/hotelmate-properties";
 import { buildPageMetadata, absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -10,7 +11,8 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/",
 });
 
-export default function Page() {
+export default async function Page() {
+  const locationHighlightsData = await getLocationHighlightsData();
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -30,7 +32,7 @@ export default function Page() {
   return (
     <>
       <JsonLd data={schema} />
-      <HomePage />
+      <HomePage locationHighlightsData={locationHighlightsData} />
     </>
   );
 }

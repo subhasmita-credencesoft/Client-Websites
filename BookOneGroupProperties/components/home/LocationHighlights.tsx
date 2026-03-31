@@ -11,27 +11,34 @@ import Image from "next/image";
 import { homePageData } from "@/data/home";
 import { formatCurrency } from "@/lib/currency";
 
-export function LocationHighlights() {
+type LocationHighlightsData = Awaited<ReturnType<typeof import("@/lib/hotelmate-properties").getLocationHighlightsData>>;
+
+type LocationHighlightsProps = {
+  data?: LocationHighlightsData;
+};
+
+export function LocationHighlights({ data }: LocationHighlightsProps) {
   return (
-    <Suspense fallback={<LocationHighlightsContent locationFromUrl={null} />}>
-      <LocationHighlightsFromSearchParams />
+    <Suspense fallback={<LocationHighlightsContent locationFromUrl={null} data={data} />}>
+      <LocationHighlightsFromSearchParams data={data} />
     </Suspense>
   );
 }
 
-function LocationHighlightsFromSearchParams() {
+function LocationHighlightsFromSearchParams({ data }: LocationHighlightsProps) {
   const searchParams = useSearchParams();
   const locationFromUrl = searchParams?.get("location") ?? null;
 
-  return <LocationHighlightsContent locationFromUrl={locationFromUrl} />;
+  return <LocationHighlightsContent locationFromUrl={locationFromUrl} data={data} />;
 }
 
 type LocationHighlightsContentProps = {
   locationFromUrl: string | null;
+  data?: LocationHighlightsData;
 };
 
-function LocationHighlightsContent({ locationFromUrl }: LocationHighlightsContentProps) {
-  const { locationHighlights } = homePageData;
+function LocationHighlightsContent({ locationFromUrl, data }: LocationHighlightsContentProps) {
+  const locationHighlights = data ?? homePageData.locationHighlights;
   const defaultLocation = useMemo(
     () =>
       locationHighlights.locations.some((location) => location.id === locationFromUrl)

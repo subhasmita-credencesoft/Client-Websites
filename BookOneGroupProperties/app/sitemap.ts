@@ -1,11 +1,13 @@
-﻿import type { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { propertySlugs } from "@/data/property-details";
+import { propertySources } from "@/data/property-sources";
 import { absoluteUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const slugs = Array.from(new Set([...propertySlugs, ...propertySources.map((source) => source.slug)]));
 
   return [
     {
@@ -50,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    ...propertySlugs.map((slug) => ({
+    ...slugs.map((slug) => ({
       url: absoluteUrl(`/property/${slug}`),
       lastModified: now,
       changeFrequency: "weekly" as const,
