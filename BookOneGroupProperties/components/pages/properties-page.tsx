@@ -2,7 +2,11 @@ import { FeaturedSection } from "@/components/home/FeaturedSection";
 import { LocationHighlights } from "@/components/home/LocationHighlights";
 import { pageContent } from "@/data/pages";
 
-export function PropertiesPage() {
+type PropertiesPageProps = {
+  locationHighlightsData: Awaited<ReturnType<typeof import("@/lib/hotelmate-properties").getLocationHighlightsData>>;
+};
+
+export function PropertiesPage({ locationHighlightsData }: PropertiesPageProps) {
   const { properties } = pageContent;
 
   return (
@@ -20,7 +24,7 @@ export function PropertiesPage() {
           </p>
         </div>
       </section>
-      <LocationHighlights />
+      <LocationHighlights data={locationHighlightsData} />
       <FeaturedSection />
     </main>
   );

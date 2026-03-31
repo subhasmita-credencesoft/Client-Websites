@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,9 @@ import { addDays, format } from "date-fns";
 import type { DateRange } from "react-day-picker";
 import { siteImages } from "@/lib/site-images";
 import { homePageData } from "@/data/home";
+import { propertySourceBySlug } from "@/data/property-sources";
 import { siteContact } from "@/data/site";
+import { buildBookingEngineUrl } from "@/lib/booking-engine";
 
 export function Hero() {
   const { hero } = homePageData;
@@ -18,19 +20,44 @@ export function Hero() {
   const [destination, setDestination] = useState(hero.destinations[0] ?? "All Locations");
   const [dateRange, setDateRange] = useState<DateRange | undefined>();
   const [guest, setGuest] = useState(hero.guests[0] ?? "2 Guests");
+  const locationId = useMemo(() => getLocationIdFromDestination(destination), [destination]);
+  const propertyOptions = useMemo(() => getPropertiesForLocation(locationId), [locationId]);
+  const [selectedPropertyLink, setSelectedPropertyLink] = useState(propertyOptions[0]?.link ?? "");
+
+  useEffect(() => {
+    setSelectedPropertyLink(propertyOptions[0]?.link ?? "");
+  }, [propertyOptions]);
 
   const handleSearch = () => {
     const checkInDate = dateRange?.from ?? new Date();
     const checkOutDate = dateRange?.to ?? addDays(checkInDate, 1);
     const guestCount = Number.parseInt(guest, 10) || 2;
+    const selectedSlug = getSlugFromPropertyLink(selectedPropertyLink);
+    const propertySource = selectedSlug ? propertySourceBySlug[selectedSlug] : null;
+
+    if (propertySource?.bookingPath) {
+      const bookingUrl = buildBookingEngineUrl({
+        baseUrl: `https://bookone.io/${propertySource.bookingPath}?bookingEngine=true`,
+        checkIn: checkInDate,
+        checkOut: checkOutDate,
+        adults: guestCount,
+        children: 0,
+        rooms: 1,
+      });
+
+      window.location.assign(bookingUrl);
+      return;
+    }
+
     const params = new URLSearchParams({
       checkIn: format(checkInDate, "yyyy-MM-dd"),
       checkOut: format(checkOutDate, "yyyy-MM-dd"),
       guests: guestCount.toString(),
       destination,
+      ...(locationId ? { location: locationId } : {}),
     });
 
-    router.push(`${hero.searchTargetLink}?${params.toString()}`);
+    router.push(selectedPropertyLink ? `${selectedPropertyLink}?${params.toString()}` : `/properties?${params.toString()}`);
   };
 
   return (
@@ -77,6 +104,24 @@ export function Hero() {
             </div>
           </div>
 
+          <div className="flex-1 bg-gray-50 rounded-md px-4 py-3 flex items-center gap-3 border border-transparent focus-within:border-primary/50 transition-colors min-w-0">
+            <MapPin className="w-5 h-5 text-primary shrink-0" />
+            <div className="text-left flex-1 min-w-0">
+              <label className="block text-[0.65rem] font-bold text-gray-500 uppercase tracking-wider">Property</label>
+              <select
+                value={selectedPropertyLink}
+                onChange={(event) => setSelectedPropertyLink(event.target.value)}
+                className="w-full bg-transparent text-gray-900 font-bold text-sm focus:outline-none appearance-none cursor-pointer truncate"
+              >
+                {propertyOptions.map((propertyOption) => (
+                  <option key={propertyOption.link} value={propertyOption.link}>
+                    {propertyOption.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
           <DateRangeField value={dateRange} onChange={setDateRange} />
 
           <div className="flex-1 bg-gray-50 rounded-md px-4 py-3 flex items-center gap-3 border border-transparent focus-within:border-primary/50 transition-colors min-w-0">
@@ -118,4 +163,35 @@ export function Hero() {
       </div>
     </div>
   );
+}
+
+function getLocationIdFromDestination(destination: string) {
+  const normalizedDestination = destination.trim().toLowerCase();
+
+  if (normalizedDestination === "all locations") {
+    return "near-pune";
+  }
+
+  const locationMatch = homePageData.locationHighlights.locations.find((location) =>
+    normalizedDestination.includes(location.name.trim().toLowerCase()),
+  );
+
+  return locationMatch?.id ?? "near-pune";
+}
+
+function getPropertiesForLocation(locationId: string) {
+  const properties =
+    homePageData.locationHighlights.propertiesByLocation[
+      locationId as keyof typeof homePageData.locationHighlights.propertiesByLocation
+    ] ?? homePageData.locationHighlights.propertiesByLocation["near-pune"];
+
+  return properties;
+}
+
+function getSlugFromPropertyLink(link: string) {
+  if (!link.startsWith("/property/")) {
+    return null;
+  }
+
+  return link.replace("/property/", "");
 }
