@@ -2,6 +2,7 @@
 
 import type { SVGProps } from "react";
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,12 +21,15 @@ export function Navbar() {
     <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent py-4 md:py-6">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex h-16 items-center justify-between gap-4 sm:h-20">
-          <Link href="/" className="flex shrink-0 flex-col items-center">
-            <div className="mb-1 rounded-t-lg bg-primary/90 p-2 text-white shadow-lg">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
-            </div>
-            <span className="text-xl font-bold italic tracking-wide text-primary sm:text-2xl">{navigationData.brand.name}</span>
-            <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-primary/80">{navigationData.brand.tagline}</span>
+          <Link href="/" className="flex shrink-0 items-center" aria-label={`${navigationData.brand.name} home`}>
+            <Image
+              src="/puneresortlogo.png"
+              alt={navigationData.brand.name}
+              width={150}
+              height={153}
+              priority
+              className="h-auto w-[118px] sm:w-[150px]"
+            />
           </Link>
 
           <div className="hidden items-center gap-10 text-sm font-bold uppercase tracking-wider text-primary/80 md:flex">

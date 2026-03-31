@@ -67,9 +67,9 @@ export const metadata: Metadata = {
     images: [absoluteUrl("/opengraph.jpg")],
   },
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/puneresortlogo.png",
+    shortcut: "/puneresortlogo.png",
+    apple: "/puneresortlogo.png",
   },
   robots: {
     index: true,
@@ -90,7 +90,7 @@ const siteSchema = [
     "@type": "Organization",
     name: siteSeo.siteName,
     url: absoluteUrl("/"),
-    logo: absoluteUrl("/favicon.png"),
+    logo: absoluteUrl("/puneresortlogo.png"),
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+1-555-123-4567",
