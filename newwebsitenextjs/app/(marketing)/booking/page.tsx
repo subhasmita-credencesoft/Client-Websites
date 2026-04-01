@@ -15,6 +15,9 @@ import {
   type LiveRoomCard,
 } from "@/lib/hotelmate/redwings-availability";
 
+type MarketingRoomCard = (typeof stayCardsPrimary)[number];
+type ActiveLiveRoomCard = LiveRoomCard & { roomId: number };
+
 type RoomPlanCard = {
   title: string;
   subtitle: string;
@@ -105,6 +108,10 @@ function mapRoomPlansToCards(roomPlans: HotelMateRoomPlan[], roomImage: string):
       extraChargePerPerson: plan.extraChargePerPerson ?? null,
     };
   });
+}
+
+function isLiveRoomCard(room: MarketingRoomCard | LiveRoomCard | null): room is ActiveLiveRoomCard {
+  return !!room && "propertyId" in room && "roomId" in room && typeof room.propertyId === "number" && typeof room.roomId === "number";
 }
 
 function buildBookOneBookingUrl(args: {
@@ -233,7 +240,7 @@ function BookingPageContent() {
     () => false,
   );
   const searchParams = useSearchParams();
-  const roomCatalog = useMemo(() => [...stayCardsPrimary, ...stayCardsSecondary], []);
+  const roomCatalog = useMemo<MarketingRoomCard[]>(() => [...stayCardsPrimary, ...stayCardsSecondary], []);
   const selectedRoomFromQuery = searchParams.get("room") ?? "";
   const selectedPackageFromQuery = searchParams.get("package") ?? "";
   const initialRoomValue = roomCatalog.some((room) => room.title === selectedRoomFromQuery) ? selectedRoomFromQuery : "";
@@ -250,7 +257,7 @@ function BookingPageContent() {
   const [packageValue, setPackageValue] = useState(initialPackageValue);
   const [roomFilterQuery, setRoomFilterQuery] = useState("");
   const [packageFilterQuery, setPackageFilterQuery] = useState("");
-  const [liveRooms, setLiveRooms] = useState<typeof roomCatalog>([]);
+  const [liveRooms, setLiveRooms] = useState<LiveRoomCard[]>([]);
   const [liveRoomPlans, setLiveRoomPlans] = useState<RoomPlanCard[]>([]);
   const [livePropertyName, setLivePropertyName] = useState("Hotel Redwings Castle");
   const [availabilityError, setAvailabilityError] = useState("");
@@ -270,6 +277,7 @@ function BookingPageContent() {
   );
 
   const activeRoomCard = selectedRoomCard ?? activeRoomCatalog[0] ?? null;
+  const activeLiveRoomCard = isLiveRoomCard(activeRoomCard) ? activeRoomCard : null;
   const activePackageCard = selectedPackageCard ?? activePackageCatalog[0] ?? null;
   const fallbackAvailabilityImage = useMemo(
     () => activeRoomCard?.image ?? roomCatalog[0]?.image ?? "https://bookonelocal.in/cdn/2025-06-24-095348564-6.jpg",
@@ -346,18 +354,19 @@ function BookingPageContent() {
   }, [checkIn, checkOut, guestCount, fallbackAvailabilityImage, roomCatalog, roomValue]);
 
   useEffect(() => {
-    if (!activeRoomCard?.propertyId || !activeRoomCard?.roomId) {
+    if (!activeLiveRoomCard) {
       setLiveRoomPlans([]);
       return;
     }
 
+    const liveRoomCard = activeLiveRoomCard;
     const abortController = new AbortController();
 
     async function loadRoomPlans() {
       try {
         setRoomPlansLoading(true);
         const response = await fetch(
-          buildRedwingsRoomPlanUrl(activeRoomCard.propertyId, activeRoomCard.roomId),
+          buildRedwingsRoomPlanUrl(liveRoomCard.propertyId, liveRoomCard.roomId),
           {
             signal: abortController.signal,
             cache: "no-store",
@@ -369,7 +378,7 @@ function BookingPageContent() {
         }
 
         const payload = (await response.json()) as HotelMateRoomPlan[];
-        const mappedPlans = mapRoomPlansToCards(payload, activeRoomCard.image);
+        const mappedPlans = mapRoomPlansToCards(payload, liveRoomCard.image);
         setLiveRoomPlans(mappedPlans);
 
         if (mappedPlans.length > 0 && !mappedPlans.some((plan) => plan.title === packageValue)) {
@@ -388,7 +397,7 @@ function BookingPageContent() {
     void loadRoomPlans();
 
     return () => abortController.abort();
-  }, [activeRoomCard?.image, activeRoomCard?.propertyId, activeRoomCard?.roomId, packageValue]);
+  }, [activeLiveRoomCard, packageValue]);
 
   useEffect(() => {
     if (!packageValue && activePackageCatalog[0]) {
@@ -411,7 +420,7 @@ function BookingPageContent() {
       guests: guestCount,
       roomTitle: activeRoomCard?.title ?? roomValue ?? "Hotel Room",
       packageTitle: activePackageCard?.title ?? packageValue ?? "Room Plan",
-      liveRoomCard: activeRoomCard,
+      liveRoomCard: activeLiveRoomCard,
       selectedPlan: activePackageCard,
     });
     window.location.assign(redirectUrl);

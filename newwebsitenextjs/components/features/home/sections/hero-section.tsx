@@ -98,24 +98,6 @@ export function HeroSection() {
           ))}
         </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.05, duration: 0.9 }}
-          className="max-w-4xl text-balance text-lg leading-snug text-white md:text-[1.9rem] xl:text-[2.15rem]"
-        >
-          {homeSectionContent.hero.subtitle}
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.85 }}
-          className="max-w-3xl text-balance text-[0.82rem] leading-relaxed text-white/78 md:text-base"
-        >
-          {homeSectionContent.hero.description}
-        </motion.p>
-
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -125,12 +126,17 @@ export function SiteHeader() {
 
             <Link
               href="/"
-              className="mx-auto inline-flex h-[68px] w-[90px] items-center justify-center border border-[#9b7a4a] bg-[#08090c] px-3 text-center text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-[#d9b57f] md:h-[72px] md:w-[94px] md:text-[0.62rem]"
+              className="mx-auto inline-flex h-[68px] w-[90px] items-center justify-center overflow-hidden border border-[#9b7a4a] bg-[#08090c] p-0 text-center text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-[#d9b57f] md:h-[72px] md:w-[94px] md:text-[0.62rem]"
               data-cursor="hover"
             >
-              {content.logoLines[0]}
-              <br />
-              {content.logoLines[1]}
+              <Image
+                src="/images/hotel-redwings-castle-logo.svg"
+                alt="Hotel Redwings Castle logo"
+                width={94}
+                height={72}
+                className="h-full w-full object-contain"
+                priority
+              />
             </Link>
 
             <div className="hidden items-center justify-end gap-4 border-b border-[#c89a55]/18 pb-2 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] md:flex">
