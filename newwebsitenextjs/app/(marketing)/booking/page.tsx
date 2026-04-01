@@ -77,6 +77,10 @@ function formatCurrency(amount?: number | null) {
   return `Rs. ${amount.toLocaleString("en-IN")}`;
 }
 
+function toSlug(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
 function mapRoomPlansToCards(roomPlans: HotelMateRoomPlan[], roomImage: string): RoomPlanCard[] {
   return roomPlans.map((plan) => {
     const minimumOccupancy = Math.max(1, plan.minimumOccupancy ?? 1);
@@ -141,17 +145,21 @@ function buildBookOneBookingUrl(args: {
   params.set("numGuests", String(safeGuestCount));
   params.set("adults", String(safeGuestCount));
   params.set("numAdults", String(safeGuestCount));
-  params.set("children", "0");
-  params.set("Children", "0");
-  params.set("rooms", "1");
-  params.set("noOfRooms", "1");
-  params.set("noOfPersons", String(safeGuestCount));
-  params.set("room", args.roomTitle);
-  params.set("roomType", args.roomTitle);
-
   const room = args.liveRoomCard;
   const planTitle = args.selectedPlan?.title || room?.ratePlanName || args.packageTitle;
   const roomTitle = room?.roomName || args.roomTitle;
+  const roomSlug = toSlug(roomTitle);
+
+  params.set("children", "0");
+  params.set("Children", "0");
+  params.set("rooms", "1");
+  params.set("numRooms", "1");
+  params.set("roomCount", "1");
+  params.set("noOfRooms", "1");
+  params.set("noOfPersons", String(safeGuestCount));
+  params.set("room", roomSlug);
+  params.set("roomSlug", roomSlug);
+  params.set("roomType", roomTitle);
 
   params.set("plan", planTitle);
   params.set("package", planTitle);
@@ -164,7 +172,7 @@ function buildBookOneBookingUrl(args: {
   if (room?.roomId) params.set("roomId", String(room.roomId));
   if (roomTitle) {
     params.set("roomName", roomTitle);
-    params.set("selectedRoom", roomTitle);
+    params.set("selectedRoom", roomSlug);
   }
   if (args.selectedPlan?.ratePlanCode || room?.ratePlanCode) {
     const ratePlanCode = args.selectedPlan?.ratePlanCode || room?.ratePlanCode || "";

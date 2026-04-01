@@ -11,15 +11,10 @@ function StayCard({
   description: string;
   image: string;
 }) {
-  const hrefMap: Record<string, string> = {
-    "Standard Room": "/standard-room",
-    "Cliff Room": "/cliff-room",
-    "Family Room": "/family-room",
-    "Glass Cottage": "/glass-cottage",
-    Bungalow: "/bungalow",
+  const href = {
+    pathname: "/booking",
+    query: { room: title },
   };
-
-  const href = hrefMap[title] ?? "/cliff-room";
 
   return (
     <article
