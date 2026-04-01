@@ -137,7 +137,7 @@ export function Hero() {
                   -
                 </button>
                 <div className="min-w-0 flex-1 text-center text-gray-900 font-bold text-sm truncate">
-                  {guestCount} Guest{guestCount === 1 ? "" : "s"}
+                  {guestCount}
                 </div>
                 <button
                   type="button"
