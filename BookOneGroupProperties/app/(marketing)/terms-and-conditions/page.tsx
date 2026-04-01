@@ -4,7 +4,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Terms And Conditions",
-  description: "Booking and stay terms for reservations made with The Pune Resort.",
+  description: "Booking and stay terms for reservations made with My Resort Pune.",
   path: "/terms-and-conditions",
 });
 

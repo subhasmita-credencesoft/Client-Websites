@@ -84,7 +84,7 @@ export const pageContent = {
     eyebrow: "Guest Gallery",
     title: "Moments From Our Stays",
     description:
-      "Browse snapshots of our stays, spaces, and experiences from across the The pune resort collection.",
+      "Browse snapshots of our stays, spaces, and experiences from across the My Resort Pune collection.",
   },
   contact: {
     eyebrow: "Contact Us",

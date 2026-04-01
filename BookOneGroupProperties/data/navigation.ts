@@ -2,7 +2,7 @@ import { siteContact } from "@/data/site";
 
 export const navigationData = {
   brand: {
-    name: "The Pune Resort",
+    name: "My Resort Pune",
     tagline: "It's Your Day",
   },
   links: [

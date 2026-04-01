@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "holiday homes",
     "boutique stays",
     "mahabaleshwar stays",
-    "The Pune Resort",
+    "My Resort Pune",
   ],
   authors: [{ name: siteSeo.siteName }],
   creator: siteSeo.siteName,
