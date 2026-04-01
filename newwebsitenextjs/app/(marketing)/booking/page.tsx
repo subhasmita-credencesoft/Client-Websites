@@ -8,9 +8,12 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { stayCardsPrimary, stayCardsSecondary } from "@/lib/data/content/mountain-content";
 import {
   buildRedwingsAvailabilityUrl,
+  buildRedwingsPropertyDetailsUrl,
   buildRedwingsRoomPlanUrl,
+  mapRedwingsPropertyDetailsToRoomCards,
   mapRedwingsAvailabilityToRoomCards,
   type HotelMatePropertyAvailability,
+  type HotelMatePropertyDetails,
   type HotelMateRoomPlan,
   type LiveRoomCard,
 } from "@/lib/hotelmate/redwings-availability";
@@ -339,8 +342,33 @@ function BookingPageContent() {
         }
       } catch {
         if (abortController.signal.aborted) return;
-        setAvailabilityError("Live room availability could not be loaded right now. Showing the hotel stay catalog instead.");
-        setLiveRooms([]);
+        try {
+          const fallbackResponse = await fetch(buildRedwingsPropertyDetailsUrl(), {
+            signal: abortController.signal,
+            cache: "no-store",
+          });
+
+          if (!fallbackResponse.ok) {
+            throw new Error(`Property details request failed with ${fallbackResponse.status}`);
+          }
+
+          const fallbackPayload = (await fallbackResponse.json()) as HotelMatePropertyDetails;
+          const mappedRooms = mapRedwingsPropertyDetailsToRoomCards(
+            fallbackPayload,
+            fallbackAvailabilityImage,
+          );
+
+          setLiveRooms(mappedRooms);
+          setLivePropertyName(fallbackPayload.name || "Hotel Redwings Castle");
+          if (mappedRooms.length > 0 && !mappedRooms.some((room) => room.title === roomValue)) {
+            setRoomValue(mappedRooms[0].title);
+          }
+          setAvailabilityError("Live room availability could not be loaded right now. Showing current property room data instead.");
+        } catch {
+          if (abortController.signal.aborted) return;
+          setAvailabilityError("Live room availability could not be loaded right now. Showing the hotel stay catalog instead.");
+          setLiveRooms([]);
+        }
       } finally {
         if (!abortController.signal.aborted) {
           setAvailabilityLoading(false);

@@ -1,18 +1,7 @@
-## App Structure
+# App Routes
 
-- `(marketing)`
-  Marketing and conversion pages such as About, Booking, Contact, Gallery, and Offers.
-- `(detail)`
-  Shared room and package detail routes powered by the detail-page system.
-- `(information)`
-  Informational routes such as rules, quotation, check-in, and key advantages.
-- `(venues)`
-  Venue showcase routes.
+This folder contains Next.js App Router entrypoints only.
 
-These are Next.js route groups, so they organize the filesystem without changing public URL paths.
-
-Root files remain at the app level:
-- `layout.tsx`
-- `globals.css`
-- `page.tsx`
-- `favicon.ico`
+- Keep route files focused on page composition and metadata.
+- Move reusable UI into `components/features/`, `components/layout/`, or `components/ui/`.
+- Keep static content in `lib/data/`.
