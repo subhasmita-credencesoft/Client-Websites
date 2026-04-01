@@ -144,6 +144,7 @@ function createSimplePropertyDetails(config: {
   guests: string[];
   couponHint: string;
   couponDiscount: number;
+  availabilityApiUrl?: string;
 }): PropertyDetails {
   return {
     slug: config.slug,
@@ -228,6 +229,7 @@ function createSimplePropertyDetails(config: {
       checkOut: "Oct 20, 2025",
       guests: config.guests,
       availabilityApiUrl:
+        config.availabilityApiUrl ??
         config.slug === "vedanta-resort"
           ? "https://api.thehotelmate.co/api/thm/checkAvailability/1331"
           : undefined,
@@ -1027,7 +1029,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
       checkIn: "Oct 18, 2025",
       checkOut: "Oct 20, 2025",
       guests: ["2 Guests", "4 Guests", "6 Guests"],
-      availabilityApiUrl: "https://api.thehotelmate.co/api/thm/checkAvailability/1331",
+      availabilityApiUrl: "https://bookone.io//api/thm/checkAvailability/1331",
       couponHint: "VEDANTA10",
       couponDiscount: 300,
       secureLabel: "Secure Booking",
@@ -1226,6 +1228,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
     guests: ["2 Guests", "6 Guests", "12 Guests"],
     couponHint: "RUTURANG10",
     couponDiscount: 500,
+    availabilityApiUrl: "https://api.thehotelmate.co/api/thm/checkAvailability/712",
   }),
   "rajgad-water-park-resort": {
     slug: "rajgad-water-park-resort",
@@ -1713,6 +1716,45 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
     guests: ["4 Guests", "8 Guests", "12 Guests"],
     couponHint: "PURANDAR10",
     couponDiscount: 1000,
+    availabilityApiUrl: "https://api.thehotelmate.co/api/thm/checkAvailability/714",
+  }),
+  "k-l-farmhouse": createSimplePropertyDetails({
+    slug: "k-l-farmhouse",
+    title: "K L Farmhouse",
+    location: "Bopdev-Saswad Road, Purandar, Pune, Maharashtra 412301, India",
+    ratingLabel: "- (0 Reviews)",
+    typeBadge: "Resort",
+    description:
+      "K L Farmhouse is a private group-friendly resort stay near Purandar for couples, families, corporate groups, ladies groups, events, and get-togethers. The property offers a large compounded premises with swimming pool, kids pool, lawn space, event setup, dining hall, and multiple stay options including AC cottages, deluxe rooms, and container rooms.",
+    price: 25000,
+    roomName: "Farmhouse Stay",
+    occupancy: "Up to 35 Guests",
+    availability: "Available Now",
+    image: siteImages.resortPool,
+    features: ["4 AC Cottages", "2 Deluxe Rooms", "2 Container Rooms", "Swimming Pool"],
+    guests: ["10 Guests", "20 Guests", "35 Guests"],
+    couponHint: "KLFARM10",
+    couponDiscount: 1500,
+    availabilityApiUrl: "https://api.thehotelmate.co/api/thm/checkAvailability/1401",
+  }),
+  "peacock-hills-resort-pune": createSimplePropertyDetails({
+    slug: "peacock-hills-resort-pune",
+    title: "Peacock Hills Resort Pune",
+    location: "at Village Degaon, Bhor, Pune, Maharashtra 412213, India",
+    ratingLabel: "- (0 Reviews)",
+    typeBadge: "Resort",
+    description:
+      "Peacock Hills Resort Pune offers a peaceful stay surrounded by natural views and a quiet atmosphere away from city noise. The property is suited for families, couples, and solo travellers looking for a calm nature-focused getaway with modern room comfort and a relaxed resort setting.",
+    price: 0,
+    roomName: "Resort Stay",
+    occupancy: "Guests on Request",
+    availability: "Available Now",
+    image: siteImages.resortPool,
+    features: ["Nature Stay", "Family Friendly", "Scenic Resort", "Peaceful Getaway"],
+    guests: ["2 Guests", "4 Guests", "6 Guests"],
+    couponHint: "PEACOCK10",
+    couponDiscount: 500,
+    availabilityApiUrl: "https://api.thehotelmate.co/api/thm/checkAvailability/3519",
   }),
   "bamboo-house-5-bhk": createSimplePropertyDetails({
     slug: "bamboo-house-5-bhk",
