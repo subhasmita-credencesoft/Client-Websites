@@ -1,275 +1,260 @@
 export const topLeftLinks = ["ABOUT US", "GALLERY", "MEDIA & AWARDS"];
 export const topRightLinks: string[] = [];
 export const mainLinks = [
-  "PACKAGES & OFFERS",
-  "STAY DETAILS",
-  "VENUE HIGHLIGHTS",
-  "KEY ADVANTAGES",
-  "RULES",
+  "ROOM TYPES",
+  "HOTEL SERVICES",
+  "PROPERTY HIGHLIGHTS",
+  "WHY STAY",
+  "TERMS",
   "CHECK-IN",
-  "QUOTATION",
+  "BOOKING",
   "CONTACT",
 ];
 
 export const headerDropdowns: Record<string, string[]> = {
-  "STAY DETAILS": [
+  "ROOM TYPES": [
     "Standard Room",
-    "Cliff Room",
-    "Family Room",
-    "Glass Cottage",
-    "Bungalow",
+    "Deluxe Room",
+    "Luxury Room",
+    "Supreme Room",
+    "Maharaja Suite Room",
   ],
-  "VENUE HIGHLIGHTS": [
-    "Mountain View Destination",
-    "Private Event Spaces",
-    "Wedding Lawns",
-    "Poolside Celebrations",
+  "HOTEL SERVICES": [
+    "Free WiFi",
+    "Free Hotel Parking",
+    "24-hour Room Service",
+    "Housekeeping",
   ],
 };
 
 export const headerDropdownLinks: Record<string, Array<{ label: string; href: string }>> = {
-  "STAY DETAILS": [
+  "ROOM TYPES": [
     { label: "Standard Room", href: "/standard-room" },
-    { label: "Cliff Room", href: "/cliff-room" },
-    { label: "Family Room", href: "/family-room" },
-    { label: "Glass Cottage", href: "/glass-cottage" },
-    { label: "Bungalow", href: "/bungalow" },
+    { label: "Deluxe Room", href: "/family-room" },
+    { label: "Luxury Room", href: "/cliff-room" },
+    { label: "Supreme Room", href: "/glass-cottage" },
+    { label: "Maharaja Suite Room", href: "/bungalow" },
   ],
-  "VENUE HIGHLIGHTS": [
-    { label: "Mountain View Destination", href: "/mountain-view-destination" },
-    { label: "Private Event Spaces", href: "/private-event-spaces" },
-    { label: "Wedding Lawns", href: "/wedding-lawns" },
-    { label: "Poolside Celebrations", href: "/poolside-celebrations" },
+  "HOTEL SERVICES": [
+    { label: "Free WiFi", href: "/key-advantages" },
+    { label: "Free Hotel Parking", href: "/key-advantages" },
+    { label: "24-hour Room Service", href: "/key-advantages" },
+    { label: "Housekeeping", href: "/key-advantages" },
   ],
 };
 
 export const mainNavLinks: Record<string, string> = {
-  "PACKAGES & OFFERS": "/offers",
-  "STAY DETAILS": "/cliff-room",
-  "VENUE HIGHLIGHTS": "/mountain-view-destination",
-  "KEY ADVANTAGES": "/key-advantages",
-  RULES: "/rules",
+  "ROOM TYPES": "/standard-room",
+  "HOTEL SERVICES": "/key-advantages",
+  "PROPERTY HIGHLIGHTS": "/mountain-view-destination",
+  "WHY STAY": "/private-event-spaces",
+  TERMS: "/rules",
   "CHECK-IN": "/check-in",
-  QUOTATION: "/quotation",
+  BOOKING: "/booking",
   CONTACT: "/contact",
 };
 
 export const stayCardsPrimary = [
   {
     title: "Standard Room",
-    description: "A comfortable premium stay option for wedding guests who value ease, warmth, and convenience.",
-    tariff: "Room Tariff Rs. 5,000/-",
-    packagePrice: "Per Person Package (Stay + All Meals) Rs. 3,000/-",
-    image: "/images/DSC08717.avif",
+    description: "A budget-friendly room category for solo travellers and couples who want a comfortable Panvel stay with essential hotel amenities.",
+    tariff: "Room Tariff Rs. 2,750/-",
+    packagePrice: "Air-conditioning, Wi-Fi, room service support",
+    image: "https://bookonelocal.in/cdn/2025-06-24-095047456-30.jpg",
   },
   {
-    title: "Cliff Room",
-    description: "A scenic room experience with a more elevated destination feel, ideal for close family or premium guest hosting.",
-    tariff: "Room Tariff Rs. 6,500/-",
-    packagePrice: "Per Person Package (Stay + All Meals) Rs. 3,500/-",
-    image: "/images/DSC08769.avif",
+    title: "Deluxe Room",
+    description: "A cozy and comfortable room with soft interiors and a practical layout for relaxed city stays.",
+    tariff: "Room Tariff Rs. 3,300/-",
+    packagePrice: "Modern furnishing, room service, comfortable stay",
+    image: "https://bookonelocal.in/cdn/2025-06-24-094800530-16.jpg",
   },
   {
-    title: "Family Room",
-    description: "A spacious stay option designed for group comfort during multi-function family celebrations.",
-    tariff: "Room Tariff Rs. 20,000/-",
-    packagePrice: "Per Person Package (Stay + All Meals) Rs. 2,500/-",
-    image: "/images/DSC08812.avif",
+    title: "Luxury Room",
+    description: "A stronger premium option for guests who want more polished room comfort for work or leisure stays.",
+    tariff: "Room Tariff Rs. 3,850/-",
+    packagePrice: "Premium comfort, Wi-Fi, room service",
+    image: "https://bookonelocal.in/cdn/2025-06-24-094826961-26.jpg",
   },
 ];
 
 export const stayCardsSecondary = [
   {
-    title: "Glass Cottage",
-    description: "A private cottage stay with a distinctive premium atmosphere for special guests or hosted family stays.",
-    tariff: "Room Tariff Rs. 12,000/-",
-    packagePrice: "Per Person Package (Stay + All Meals) Rs. 7,500/-",
-    image: "/images/DSC08802.avif",
+    title: "Supreme Room",
+    description: "A stylish room category offering a refined stay atmosphere with improved comfort and hotel convenience.",
+    tariff: "Room Tariff Rs. 6,050/-",
+    packagePrice: "Premium room design with stronger amenity mix",
+    image: "https://bookonelocal.in/cdn/2025-06-24-094924878-18.jpg",
   },
   {
-    title: "Bungalow",
-    description: "A larger-format stay suited for hosts, key family members, and wedding weekends that need more private space.",
-    tariff: "Bungalow Tariff Rs. 25,000/-",
-    packagePrice: "Per Person Package (Stay + All Meals) Rs. 3,500/-",
-    image: "/images/DSC08758.avif",
+    title: "Maharaja Suite Room",
+    description: "The top-category suite stay at Hotel Redwings Castle, designed for guests who want spacious luxury and elegant room styling.",
+    tariff: "Room Tariff Rs. 8,250/-",
+    packagePrice: "Suite-style comfort for premium stays",
+    image: "https://bookonelocal.in/cdn/2025-06-24-095002532-20.jpg",
   },
 ];
 
 export const gastronomyCards = [
   {
-    title: "Lunch",
-    image:
-      "/images/DSC08831.avif",
+    title: "Free WiFi",
+    image: "https://bookonelocal.in/cdn/2025-06-24-092820440-5.jpg",
   },
   {
-    title: "Hi-Tea",
-    image:
-      "/images/DSC08837.avif",
+    title: "Free Hotel Parking",
+    image: "https://bookonelocal.in/cdn/2025-06-24-092828011-2.jpg",
   },
   {
-    title: "Starters",
-    image:
-      "/images/DSC08846.avif",
+    title: "Air Conditioning",
+    image: "https://bookonelocal.in/cdn/2025-06-24-094826961-26.jpg",
   },
   {
-    title: "Dinner",
-    image:
-      "/images/DSC08853.avif",
+    title: "24-hour Room Service",
+    image: "https://bookonelocal.in/cdn/2025-06-24-092831095-3.jpg",
   },
   {
-    title: "Breakfast",
-    image:
-      "/images/DSC08717.avif",
+    title: "Housekeeping",
+    image: "https://bookonelocal.in/cdn/2025-06-24-092839204-10.jpg",
   },
   {
-    title: "Venue Access",
-    image:
-      "/images/DSC08720.avif",
+    title: "Power Backup",
+    image: "https://bookonelocal.in/cdn/2025-06-24-094800530-16.jpg",
   },
   {
-    title: "Live Counters",
-    image:
-      "/images/DSC08758.avif",
+    title: "Luggage Storage",
+    image: "https://bookonelocal.in/cdn/2025-06-24-094930729-24.jpg",
   },
   {
-    title: "Wedding Hospitality",
-    image:
-      "/images/DSC08759.avif",
+    title: "Doctor on Call",
+    image: "https://bookonelocal.in/cdn/2025-06-24-095145740-23.jpg",
   },
 ];
 
 export const offersCards = [
   {
-    title: "Weekday Package",
-    subtitle: "Monday to Thursday pricing for better bundled value",
-    description: "Classic ₹4,500, Signature ₹5,500, and Premium Luxe ₹6,500 per person per day with stay, meals, services, lawn access, and venue usage.",
-    image: "/images/DSC08846.avif",
-    tabs: ["WEEKDAY"],
+    title: "Value Stays",
+    subtitle: "Comfort-first room choices for budget-conscious and short-stay guests",
+    description: "Standard Room and Deluxe Room categories offer a practical Panvel stay with hotel essentials and dependable comfort.",
+    image: "https://bookonelocal.in/cdn/2025-06-24-095047456-30.jpg",
+    tabs: ["FEATURED"],
   },
   {
-    title: "Weekend Package",
-    subtitle: "Friday to Sunday pricing for celebration weekends",
-    description: "Classic ₹5,500, Signature ₹6,500, and Premium Luxe ₹7,500 per person per day with stay, meals, services, lawn access, and venue usage.",
-    image: "/images/DSC08849.avif",
-    tabs: ["WEEKEND"],
+    title: "Premium Stays",
+    subtitle: "Elevated room options for guests who want more polish and space",
+    description: "Luxury Room, Supreme Room, and Maharaja Suite Room create stronger comfort tiers for business, leisure, and premium city stays.",
+    image: "https://bookonelocal.in/cdn/2025-06-24-095002532-20.jpg",
+    tabs: ["PREMIUM"],
   },
 ] as const;
 
 export const splitFeatures = [
   {
-    id: "weddings",
-    title: "Venue Highlights",
+    id: "rooms",
+    title: "Room Categories",
     description:
-      "7 acres of lush greenery, scenic mountain surroundings, spacious lawns, and dedicated areas for Haldi, Mehendi, Sangeet, Cocktail, and Reception.",
-    cta: "DISCOVER WEDDINGS",
-    href: "/wedding-lawns",
-    image: "/images/DSC08831.avif",
+      "Five stay options from Standard Room to Maharaja Suite Room make it easier for every guest to find the right fit.",
+    cta: "EXPLORE ROOMS",
+    href: "/standard-room",
+    image: "https://bookonelocal.in/cdn/2025-06-24-094939625-29.jpg",
   },
   {
-    id: "corporates",
-    title: "Key Advantages",
+    id: "services",
+    title: "Hotel Services",
     description:
-      "Unlimited Music Hours, 24×7 Pool Access, Zero Sound License Required, Full Venue Access, and a private estate designed for complete celebration flow.",
-    cta: "DISCOVER MORE",
+      "Wi-Fi, parking, room service, housekeeping, power backup, and luggage support help the stay feel smoother from arrival to departure.",
+    cta: "VIEW SERVICES",
     href: "/key-advantages",
-    image: "/images/DSC08849.avif",
+    image: "https://bookonelocal.in/cdn/2025-06-24-092904251-25.jpg",
   },
   {
-    id: "adventure",
-    title: "Rules & Regulations",
+    id: "location",
+    title: "Panvel Accessibility",
     description:
-      "Government ID is mandatory for staying guests, outside catering is not allowed in package bookings, and decorators or vendors require prior approval.",
+      "Near Orion Mall, New Panvel Bridge, Panvel station, and the Mumbai Pune Expressway, the hotel works well for city movement and travel convenience.",
     cta: "LEARN MORE",
-    href: "/rules",
-    image: "/images/DSC08837.avif",
+    href: "/mountain-view-destination",
+    image: "https://bookonelocal.in/cdn/2025-06-24-092853092-22.jpg",
   },
   {
-    id: "entertainment",
-    title: "Check-In / Payment Terms",
+    id: "terms",
+    title: "Check-In & Policies",
     description:
-      "Check-in is 2:00 PM, check-out is 11:00 AM, 50% advance is required to block dates, and final package billing is based on confirmed headcount.",
-    cta: "DISCOVER MORE",
+      "Important stay notes, booking guidance, and arrival clarity help guests prepare better before reaching the hotel.",
+    cta: "VIEW TERMS",
     href: "/check-in",
-    image: "/images/DSC08846.avif",
+    image: "https://bookonelocal.in/cdn/2025-06-24-095124999-4.jpg",
   },
   {
-    id: "spa",
-    title: "Final Quotation Summary",
+    id: "contact",
+    title: "Booking Assistance",
     description:
-      "Event type, selected package, dates, guest count, weekday or weekend selection, and total stay required shape the final package estimate.",
-    cta: "DISCOVER MORE",
-    href: "/quotation",
-    image: "/images/DSC08853.avif",
+      "Connect with the hotel team directly for stay planning, room availability, and booking support through phone, WhatsApp, or enquiry.",
+    cta: "CONTACT HOTEL",
+    href: "/contact",
+    image: "https://bookonelocal.in/cdn/2025-06-24-095348564-6.jpg",
   },
 ];
 
 export const townshipCards = [
   {
-    title: "Mountain View Lawns",
-    city: "KARJAT",
-    image:
-      "/images/DSC08763.avif",
-    metric: "Scenic valley-facing event zone",
-    signed: "Ideal for ceremonies and rituals",
+    title: "Maharaja Suite Room",
+    city: "PANVEL",
+    image: "https://bookonelocal.in/cdn/2025-06-24-095012773-12.jpg",
+    metric: "Elegant suite-style stay",
+    signed: "Ideal for premium guests",
   },
   {
-    title: "Premium Villas",
-    city: "KARJAT",
-    image:
-      "/images/DSC08769.avif",
-    metric: "Private modern furnished stays",
-    signed: "Ideal for family accommodation",
+    title: "Supreme Room",
+    city: "PANVEL",
+    image: "https://bookonelocal.in/cdn/2025-06-24-094930729-24.jpg",
+    metric: "Comfortable upgraded room",
+    signed: "Ideal for refined stays",
   },
   {
-    title: "Poolside Experiences",
-    city: "KARJAT",
-    image:
-      "/images/DSC08801.avif",
-    metric: "Pool + rain dance zone access",
-    signed: "Perfect for cocktails and leisure",
+    title: "Luxury Room",
+    city: "PANVEL",
+    image: "https://bookonelocal.in/cdn/2025-06-24-094832431-19.jpg",
+    metric: "Premium room comfort",
+    signed: "Good for business or leisure",
   },
   {
-    title: "Wedding Setups",
-    city: "KARJAT",
-    image:
-      "/images/DSC08802.avif",
-    metric: "Beautiful destination wedding ambiance",
-    signed: "Photography-ready scenic estate",
+    title: "Deluxe Room",
+    city: "PANVEL",
+    image: "https://bookonelocal.in/cdn/2025-06-24-094807016-15.jpg",
+    metric: "Cozy modern stay option",
+    signed: "Balanced comfort and value",
   },
 ];
 
 export const awardCards = [
   {
-    title: "Advance & Booking Terms",
-    subtitle: "50% advance to block dates, remaining 50% before check-in, with rescheduling subject to availability",
-    image:
-      "/images/DSC08807.avif",
+    title: "Room Variety",
+    subtitle: "Five room categories help guests choose the right stay based on comfort level and budget.",
+    image: "https://bookonelocal.in/cdn/2025-06-24-095108957-15.jpg",
   },
   {
-    title: "Rules & Regulations",
-    subtitle: "Guest ID mandatory, outside catering not allowed, and vendors require prior approval",
-    image:
-      "/images/DSC08812.avif",
+    title: "Useful Hotel Amenities",
+    subtitle: "Wi-Fi, room service, parking, housekeeping, and power backup support day-to-day guest comfort.",
+    image: "https://bookonelocal.in/cdn/2025-06-24-092834179-1.jpg",
   },
   {
-    title: "Check-In / Payment Terms",
-    subtitle: "Packages are based on final headcount, check-in is 2:00 PM, and check-out is 11:00 AM",
-    image:
-      "/images/DSC08820.avif",
+    title: "Panvel Location Advantage",
+    subtitle: "Close to rail, road, and city access points for easier movement across Panvel and beyond.",
+    image: "https://bookonelocal.in/cdn/2025-06-24-092904251-25.jpg",
   },
 ];
 
 export const brandLogos = [
-  "7 Acres Green Beauty",
-  "Destination Wedding Venue",
-  "Private Estate Access",
-  "Scenic Mountain Views",
-  "Spacious Lawns",
-  "Stay + Meals Included",
-  "Venue Access Included",
-  "Custom Wedding Setup",
-  "Pool + Rain Dance Zone",
-  "Complete Hospitality",
+  "Panvel Location",
+  "5 Room Categories",
+  "Wi-Fi Access",
+  "Room Service",
+  "Free Hotel Parking",
+  "Housekeeping",
+  "Power Backup",
+  "Doctor on Call",
+  "Luggage Storage",
+  "Comfortable Premium Stay",
 ];
 
 export type FooterLinkItem = {
@@ -280,30 +265,24 @@ export type FooterLinkItem = {
 
 export const footerSections: FooterLinkItem[][] = [
   [
-    { label: "The Mountain, Karjat", href: "/" },
-    { label: "Quotation & Package Details", href: "/quotation" },
-    { label: "Destination Wedding Venue", href: "/wedding-lawns" },
-    { label: "Wedding Packages", href: "/offers" },
-    { label: "Venue Usage", href: "/private-event-spaces" },
+    { label: "Hotel Redwings Castle", href: "/" },
+    { label: "Room Types", href: "/standard-room" },
+    { label: "Hotel Services", href: "/key-advantages" },
+    { label: "Gallery", href: "/gallery" },
+    { label: "Booking Support", href: "/booking" },
   ],
   [
-    { label: "Venue Highlights", href: "/mountain-view-destination" },
-    { label: "Stay Details", href: "/cliff-room" },
-    { label: "Key Advantages", href: "/key-advantages" },
-    { label: "Rules & Regulations", href: "/rules" },
-    { label: "Check-In Terms", href: "/check-in" },
-    { label: "Quotation Summary", href: "/quotation" },
+    { label: "About The Hotel", href: "/about" },
+    { label: "Property Highlights", href: "/mountain-view-destination" },
+    { label: "Check-In Details", href: "/check-in" },
+    { label: "Terms & Policies", href: "/rules" },
+    { label: "Contact", href: "/contact" },
   ],
   [
-    { label: "+91 9833866655", href: "tel:+919833866655" },
-    { label: "+91 9892011179", href: "tel:+919892011179" },
-    { label: "instagram.com/themountain.karjat", href: "https://instagram.com/themountain.karjat", external: true },
-    { label: "themountainresorts.com", href: "https://www.themountainresorts.com", external: true },
-    {
-      label: "The Mountain, Karjat",
-      href: "https://maps.google.com/?q=The+Mountain+Karjat",
-      external: true,
-    },
-    { label: "Wedding Enquiries", href: "/contact" },
+    { label: "+91 9930022229", href: "tel:+919930022229" },
+    { label: "WhatsApp Booking", href: "https://wa.me/919930022229", external: true },
+    { label: "info@redwingscatlegmailcom", href: "mailto:info@redwingscatlegmailcom" },
+    { label: "Panvel, Maharashtra", href: "https://maps.google.com/?q=Hotel+Redwings+Castle+Panvel", external: true },
+    { label: "Room Enquiries", href: "/contact" },
   ],
 ];

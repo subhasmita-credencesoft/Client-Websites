@@ -23,7 +23,7 @@ export default function RulesPage() {
         <div className="relative z-10 mx-auto flex min-h-[110svh] max-w-[96rem] items-start px-6 pb-8 pt-28 md:px-12 md:pb-12 md:pt-36">
           <div className="max-w-5xl" data-panel-content>
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#c9a46e]" data-panel-line>
-              Venue Guidelines
+              Hotel Guidelines
             </p>
             <h1 data-section-title data-panel-line className="max-w-5xl text-4xl md:text-6xl">
               {page.hero.title}

@@ -76,7 +76,7 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
                 <button
                   key={`${image}-${index}`}
                   type="button"
-                  aria-label={`Show venue hero image ${index + 1}`}
+                  aria-label={`Show property hero image ${index + 1}`}
                   onClick={() => setActiveHeroImage(index)}
                   className={`h-1.5 rounded-full transition-all duration-500 ${
                     index === activeHeroImage ? "w-14 bg-[#d7ae71]" : "w-7 bg-white/35"
@@ -111,8 +111,8 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
           <div className="mt-10 border-l border-black/25 pl-8 text-xl leading-relaxed text-black/95 md:text-2xl">
             <p data-stage-line>{page.intro.body}</p>
             <p className="mt-6" data-stage-line>
-              Explore the venue through cinematic highlights, scenic imagery, and destination-led storytelling designed to match the premium
-              wedding journey across the site.
+              Explore the property through cinematic highlights, room imagery, and stay-led storytelling designed to match the premium
+              hotel journey across the site.
             </p>
           </div>
         </div>
@@ -138,10 +138,10 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
         <div className="mx-auto grid max-w-[96rem] items-center gap-10 md:grid-cols-2">
           <div data-feature-content data-reveal>
             <p data-reveal-child className="text-xs uppercase tracking-[0.28em] text-[#d7ae71]">
-              Signature Venue Story
+              Signature Property Story
             </p>
             <h3 className="mt-4 text-4xl leading-tight text-[#c89a55] md:text-5xl" data-section-title>
-              Designed for premium destination celebrations
+              Designed for premium hotel stays
             </h3>
             <p data-reveal-child className="mt-8 max-w-2xl text-xl leading-relaxed text-white/90 md:text-2xl">
               {page.summary.body}
@@ -151,7 +151,7 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
               className="mt-10 inline-flex items-center justify-center border border-white px-10 py-4 text-sm uppercase tracking-[0.18em]"
               data-cursor="hover"
             >
-              Request Venue Quote
+              Request Booking Support
             </Link>
           </div>
 
@@ -172,13 +172,13 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
         <div className="mx-auto max-w-[96rem]">
           <div className="max-w-4xl text-center md:mx-auto" data-reveal>
             <p className="text-xs uppercase tracking-[0.28em] text-[#b88947]" data-reveal-child>
-              Celebration Journey
+              Stay Journey
             </p>
             <h3 className="mt-4 text-4xl leading-tight text-[#c89a55] md:text-5xl" data-section-title>
-              How this venue experience unfolds across the wedding
+              How this property experience unfolds across the stay
             </h3>
             <p className="mx-auto mt-6 max-w-4xl text-xl leading-relaxed text-black/85 md:text-2xl" data-reveal-child>
-              Richer visual rhythm, stronger storytelling, and clearer hosting flow help these venue pages feel more premium without changing the core design language.
+              Richer visual rhythm, stronger storytelling, and clearer stay flow help these property pages feel more premium without changing the core design language.
             </p>
           </div>
 
@@ -275,7 +275,7 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
           </h3>
           <div className="mx-auto mt-4 h-[2px] w-20 bg-[#c89a55]" />
           <p data-reveal-child className="mx-auto mt-7 max-w-5xl text-xl leading-relaxed text-black/90 md:text-2xl">
-            Venue imagery, scenic corners, and event-ready details help planners and families understand how the celebration can flow across the property.
+            Property imagery, room details, and stay-ready highlights help guests understand how the hotel experience can flow across the property.
           </p>
         </div>
 
@@ -305,7 +305,7 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
             className="inline-flex self-start items-center justify-center bg-[#c89a55] px-10 py-4 text-sm uppercase tracking-[0.18em] text-black md:self-auto"
             data-cursor="hover"
           >
-            Check Venue Availability
+            Check Room Availability
           </Link>
         </div>
       </section>
@@ -315,7 +315,7 @@ export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePagePro
           <article className="border border-[#d9c6a5] bg-white/80 px-8 py-10 backdrop-blur-sm" data-reveal>
             <p className="text-xs uppercase tracking-[0.22em] text-[#b88947]">Planning Notes</p>
             <h3 className="mt-4 text-4xl leading-tight text-[#c89a55] md:text-5xl" data-section-title>
-              Venue details that support a smoother celebration
+              Property details that support a smoother stay
             </h3>
           </article>
 

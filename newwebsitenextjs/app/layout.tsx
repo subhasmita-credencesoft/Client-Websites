@@ -3,8 +3,9 @@ import "./globals.css";
 import { AppProviders } from "@/components/providers/app-providers";
 
 export const metadata: Metadata = {
-  title: "The Mountain, Karjat | Destination Wedding & Event Venue",
-  description: "Private destination wedding and event venue in Karjat with stay, meals, venue access, and scenic mountain celebrations across 7 acres.",
+  title: "Hotel Redwings Castle | Panvel Hotel Stay",
+  description:
+    "Hotel Redwings Castle in Panvel offers Maharaja Suite, Supreme, Luxury, Deluxe, and Standard room stays with practical amenities and accessible city connectivity.",
 };
 
 export default function RootLayout({

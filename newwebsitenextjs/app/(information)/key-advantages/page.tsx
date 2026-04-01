@@ -22,7 +22,7 @@ export default function KeyAdvantagesPage() {
         <div className="relative z-10 mx-auto flex min-h-[110svh] max-w-[96rem] items-start px-6 pb-8 pt-28 md:px-12 md:pb-12 md:pt-36">
           <div className="max-w-5xl" data-panel-content>
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#c9a46e]" data-panel-line>
-              Signature Wedding Advantage
+              Hotel Stay Advantages
             </p>
             <h1 data-section-title data-panel-line className="mt-5 max-w-5xl text-4xl md:text-6xl">
               {page.hero.title}
@@ -31,9 +31,9 @@ export default function KeyAdvantagesPage() {
               {page.hero.subtitle}
             </p>
             <div className="mt-10 flex flex-wrap gap-4 text-sm uppercase tracking-[0.24em] text-white/75" data-panel-line>
-              <span className="rounded-full border border-white/20 bg-black/20 px-5 py-3 backdrop-blur-md">Private Estate</span>
-              <span className="rounded-full border border-white/20 bg-black/20 px-5 py-3 backdrop-blur-md">Unlimited Music</span>
-              <span className="rounded-full border border-white/20 bg-black/20 px-5 py-3 backdrop-blur-md">Poolside Celebrations</span>
+              <span className="rounded-full border border-white/20 bg-black/20 px-5 py-3 backdrop-blur-md">Panvel Stay</span>
+              <span className="rounded-full border border-white/20 bg-black/20 px-5 py-3 backdrop-blur-md">Room Comfort</span>
+              <span className="rounded-full border border-white/20 bg-black/20 px-5 py-3 backdrop-blur-md">Hotel Services</span>
             </div>
           </div>
         </div>

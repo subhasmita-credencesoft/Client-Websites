@@ -10,8 +10,8 @@ export function MediaCoverageSection() {
       <div className="mx-auto grid max-w-[92rem] gap-12 md:grid-cols-2 md:items-center">
         <div data-card className="relative mx-auto h-[30rem] w-full max-w-[38rem] overflow-hidden">
           <Image
-            src="/images/DSC08849.avif"
-            alt="Wedding hospitality and culinary experience"
+            src="https://bookonelocal.in/cdn/2025-06-24-092831095-3.jpg"
+            alt="Hotel Redwings Castle premium room"
             fill
             className="object-cover"
             data-card-image
@@ -21,7 +21,7 @@ export function MediaCoverageSection() {
 
         <div data-reveal className="text-center md:text-left">
           <p data-section-title className="text-sm uppercase tracking-[0.35em] text-[#cba977]">
-            Culinary Experience
+            Hotel Comfort
           </p>
           <h3 className="mt-5 text-3xl leading-tight text-white md:text-5xl" data-section-title>
             {content.title}
@@ -38,7 +38,7 @@ export function MediaCoverageSection() {
             ))}
           </div>
           <div className="mt-9">
-            <MagneticButton href="/offers">EXPLORE PACKAGES</MagneticButton>
+            <MagneticButton href="/key-advantages">EXPLORE HOTEL SERVICES</MagneticButton>
           </div>
         </div>
       </div>

@@ -1,11 +1,10 @@
-export const heroVideoUrls = [
-  "",
-];
+export const heroVideoUrls = [""];
 
 export const heroBackgroundUrls = [
-  "/images/DSC08849.avif",
-  "/images/DSC08831.avif",
-  "/images/DSC08837.avif",
+  "https://bookonelocal.in/cdn/2025-06-24-092820440-5.jpg",
+  "https://bookonelocal.in/cdn/2025-06-24-092828011-2.jpg",
+  "https://bookonelocal.in/cdn/2025-06-24-092831095-3.jpg",
+  "https://bookonelocal.in/cdn/2025-06-24-092839204-10.jpg",
 ];
 
 export function pickRandomMedia() {

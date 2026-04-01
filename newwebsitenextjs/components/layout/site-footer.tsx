@@ -42,7 +42,7 @@ export function SiteFooter() {
         ))}
       </div>
       <div className="mx-auto mt-10 max-w-[92rem] border-t border-white/10 pt-6 text-center text-sm tracking-[0.08em] text-white/70 md:text-base">
-        © 2026 The Mountain, Karjat. Private Destination Wedding & Event Venue.
+        © 2026 Hotel Redwings Castle. Designed and Developed by CredenceSoft and Powered By BookOne.
       </div>
     </footer>
   );

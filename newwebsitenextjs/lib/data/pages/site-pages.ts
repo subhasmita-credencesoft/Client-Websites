@@ -40,337 +40,404 @@ export type DetailPage = {
   };
 };
 
-type DetailSeed = {
-  slug: string;
-  title: string;
-  subtitle: string;
-  introTitle: string;
-  introBody: string;
-  heroImage: string;
-  cards: DetailPage["cards"];
-  galleryTabs: string[];
-  galleryImage: string;
-  galleryImages?: DetailPage["galleryImages"];
-  galleryVideos?: DetailPage["galleryVideos"];
-  packageComparison?: DetailPage["packageComparison"];
-};
+type DetailSeed = DetailPage;
 
-const standardPackageComparison = {
+const hotelRoomComparison = {
   weekday: {
-    title: "Weekday - Monday to Thursday",
+    title: "Featured Room Pricing",
     rows: [
-      { package: "Classic", price: "Rs. 4,500", includes: "5 Meals + Stay + Venue Access" },
-      { package: "Signature", price: "Rs. 5,500", includes: "Classic Package + Extra 2 Starter + 1 Gravy extra each in Lunch and Dinner" },
-      { package: "Premium Luxe", price: "Rs. 6,500", includes: "Signature Package + 2 Live Counters" },
+      { package: "Standard Room", price: "Rs. 2,750", includes: "Budget-friendly room with essentials" },
+      { package: "Deluxe Room", price: "Rs. 3,300", includes: "Cozy room with comfortable modern furnishing" },
+      { package: "Luxury Room", price: "Rs. 3,850", includes: "Balanced premium comfort for city stays" },
     ],
   },
   weekend: {
-    title: "Weekend - Friday to Sunday",
+    title: "Premium Room Pricing",
     rows: [
-      { package: "Classic", price: "Rs. 5,500", includes: "5 Meals + Stay + Venue Access" },
-      { package: "Signature", price: "Rs. 6,500", includes: "Classic Package + Extra 2 Starter + 1 Gravy extra each in Lunch and Dinner" },
-      { package: "Premium Luxe", price: "Rs. 7,500", includes: "Signature Package + 2 Live Counters" },
+      { package: "Supreme Room", price: "Rs. 6,050", includes: "Refined room comfort with useful amenities" },
+      { package: "Maharaja Suite", price: "Rs. 8,250", includes: "Royal suite-style stay for elevated comfort" },
+      { package: "Extra Person", price: "Rs. 1,100", includes: "Applicable in premium room plan categories" },
     ],
   },
   meals: {
-    title: "Meals Includes",
+    title: "Key Hotel Amenities",
     items: [
-      "Lunch - Roti, 2 Sabji, Dal, Rice, Salad, Papad & Pickle",
-      "Hi-Tea - Tea/Coffee & 2 Snacks",
-      "Starters - 2 Starters",
-      "Dinner - Roti, 2 Sabji, Dal, Rice, Salad, Papad & Pickle",
-      "Breakfast - Tea/Coffee & 2 Dishes",
+      "Air-conditioning across room categories",
+      "Room service and housekeeping support",
+      "Wi-Fi in selected room categories",
+      "Parking and luggage assistance",
+      "Power backup and doctor on call support",
     ],
     note:
-      "Note: Additional items can be customised as per your preference and will be charged separately on a per-person, per-day basis.",
+      "Room availability, final room plan, and any applicable person-based extras are subject to confirmation at the time of booking.",
   },
 } satisfies NonNullable<DetailPage["packageComparison"]>;
-
-const standardRoomCards = [
-  {
-    label: "ROOM TYPE",
-    title: "Standard Room",
-    description: "A comfortable, well-kept stay option for wedding guests who value ease, warmth, and a smooth arrival into the celebration weekend.",
-    image: "/images/DSC08717.avif",
-  },
-  {
-    label: "WEDDING HOSTING ROLE",
-    title: "Ideal For Family Guests",
-    description: "Well suited for friends and family who need a practical premium room with stay and all meals bundled into the event plan.",
-    image: "/images/DSC08720.avif",
-  },
-] satisfies DetailPage["cards"];
-
-const cliffRoomCards = [
-  {
-    label: "ROOM TYPE",
-    title: "Cliff Room",
-    description: "A scenic premium room with a calmer, more elevated feel for guests who want privacy, ambience, and a stronger sense of destination.",
-    image: "/images/DSC08769.avif",
-  },
-  {
-    label: "WEDDING HOSTING ROLE",
-    title: "Ideal For Close Family",
-    description: "A strong fit for close family members or premium guest hosting where the stay experience should feel more scenic and special.",
-    image: "/images/DSC08801.avif",
-  },
-] satisfies DetailPage["cards"];
-
-const familyRoomCards = [
-  {
-    label: "ROOM TYPE",
-    title: "Family Room",
-    description: "A spacious stay category designed for group comfort, shared family movement, and easier hosting during multi-function wedding itineraries.",
-    image: "/images/DSC08812.avif",
-  },
-  {
-    label: "WEDDING HOSTING ROLE",
-    title: "Ideal For Groups",
-    description: "Best suited for families and group stays who want to remain together through Haldi, Sangeet, ceremony, and reception flow.",
-    image: "/images/DSC08820.avif",
-  },
-] satisfies DetailPage["cards"];
-
-const classicCottageCards = [
-  {
-    label: "ROOM TYPE",
-    title: "Glass Cottage",
-    description: "A more distinctive cottage stay with private character, modern styling, and a premium atmosphere within the estate.",
-    image: "/images/DSC08802.avif",
-  },
-  {
-    label: "WEDDING HOSTING ROLE",
-    title: "Ideal For Special Guests",
-    description: "A strong choice for guests who should enjoy a more elevated accommodation experience during the celebration weekend.",
-    image: "/images/DSC08807.avif",
-  },
-] satisfies DetailPage["cards"];
-
-const bungalowCards = [
-  {
-    label: "ROOM TYPE",
-    title: "Bungalow",
-    description: "A large-format premium bungalow designed for host families, longer stays, and guests who need more private space on-site.",
-    image: "/images/DSC08758.avif",
-  },
-  {
-    label: "WEDDING HOSTING ROLE",
-    title: "Ideal For Hosts",
-    description: "Perfect for key family members or hosts who need privacy, more room to settle in, and better on-property convenience.",
-    image: "/images/DSC08759.avif",
-  },
-] satisfies DetailPage["cards"];
 
 const detailPageSeeds: DetailSeed[] = [
   {
     slug: "garden-villa-resort",
+    title: "Hotel Overview",
+    subtitle: "An overview of Hotel Redwings Castle as a comfort-led Panvel stay with multiple room categories and practical guest services.",
+    introTitle: "HOTEL OVERVIEW",
+    introBody:
+      "Hotel Redwings Castle offers guests a polished city-stay experience with five room categories, useful hotel amenities, and a Panvel location close to major travel connections.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-092820440-5.jpg",
+    cards: [
+      {
+        label: "PROPERTY",
+        title: "Comfortable Panvel Hotel",
+        description: "Designed for business, leisure, family visits, and transit stays with practical luxury and approachable comfort.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-092828011-2.jpg",
+      },
+      {
+        label: "LOCATION",
+        title: "Easy Access",
+        description: "Near Orion Mall, New Panvel Bridge, Old Mumbai Pune Expressway, Panvel station, and airport-linked routes.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-092904251-25.jpg",
+      },
+    ],
+    galleryTabs: ["Hotel", "Rooms", "Stay"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-092834179-1.jpg",
+    galleryImages: [
+      "https://bookonelocal.in/cdn/2025-06-24-092820440-5.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-092828011-2.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-092831095-3.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-092839204-10.jpg",
+    ],
+  },
+  {
+    slug: "standard-room",
     title: "Standard Room",
-    subtitle: "A practical premium stay for wedding guests who need comfort, convenience, and seamless participation across the celebration.",
-    introTitle: "STAY DETAILS",
+    subtitle: "A comfortable and budget-friendly room for solo travelers and couples looking for a dependable Panvel hotel stay.",
+    introTitle: "ROOM DETAILS",
     introBody:
-      "Standard Room accommodation at The Mountain is designed for practical guest comfort with a room tariff of Rs. 5,000 and a stay plus all meals package at Rs. 3,000 per person, making it a dependable choice for family-led destination celebrations.",
-    heroImage: "/images/DSC08717.avif",
-    cards: standardRoomCards,
-    galleryTabs: ["Exterior", "Standard Room", "Guest Stay"],
-    galleryImage: "/images/DSC08720.avif",
+      "Standard Room offers cozy comfort with essential amenities and practical value, making it ideal for short stays and budget-conscious travel.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-095047456-30.jpg",
+    cards: [
+      {
+        label: "ROOM TYPE",
+        title: "Standard Room",
+        description: "A simple, comfortable room category with air-conditioning, Wi-Fi, and room service support.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-095052417-28.jpg",
+      },
+      {
+        label: "TARIFF",
+        title: "Starting From Rs. 2,750",
+        description: "A strong value stay option for travelers who want comfort and convenience without stepping into premium pricing tiers.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-095108957-15.jpg",
+      },
+    ],
+    galleryTabs: ["Standard", "Comfort", "Stay"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-095108957-15.jpg",
     galleryImages: [
-      "/images/DSC08717.avif",
-      "/images/DSC08720.avif",
-      "/images/DSC08753.avif",
-      "/images/DSC08745.avif",
-      "/images/DSC08749.avif",
-      "/images/DSC08798.avif",
-      "/images/DSC08796.avif",
+      "https://bookonelocal.in/cdn/2025-06-24-095047456-30.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-095052417-28.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-095108957-15.jpg",
     ],
   },
   {
-    slug: "luxury-resort",
-    title: "Cliff Room",
-    subtitle: "A scenic premium stay for guests who want privacy, mountain ambience, and a more elevated destination-wedding experience.",
-    introTitle: "STAY DETAILS",
+    slug: "cliff-room",
+    title: "Luxury Room",
+    subtitle: "A polished room category that balances elevated comfort with practical hotel convenience for longer or premium stays.",
+    introTitle: "ROOM DETAILS",
     introBody:
-      "Cliff Room accommodation at The Mountain is designed for guests who want scenic ambience, a stronger sense of privacy, and a room tariff of Rs. 6,500 with a stay plus all meals package at Rs. 3,500 per person.",
-    heroImage: "/images/DSC08769.avif",
-    cards: cliffRoomCards,
-    galleryTabs: ["Exterior", "Cliff Room", "Premium Stay"],
-    galleryImage: "/images/DSC08801.avif",
+      "Luxury Room offers a blend of comfort and elegance with modern amenities, cozy interiors, and a peaceful atmosphere for guests who want a more premium stay feel.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-094826961-26.jpg",
+    cards: [
+      {
+        label: "ROOM TYPE",
+        title: "Luxury Room",
+        description: "A better-appointed room with air-conditioning, Wi-Fi, room service, and a more premium layout.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-094832431-19.jpg",
+      },
+      {
+        label: "TARIFF",
+        title: "Starting From Rs. 3,850",
+        description: "Good for guests who want a more refined stay option while keeping the booking practical and accessible.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-095124999-4.jpg",
+      },
+    ],
+    galleryTabs: ["Luxury", "Premium Stay", "Comfort"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-095124999-4.jpg",
     galleryImages: [
-      "/images/DSC08769.avif",
-      "/images/DSC08801.avif",
-      "/images/DSC08798.avif",
-      "/images/DSC08796.avif",
-      "/images/DSC08790.avif",
-      "/images/DSC08792.avif",
+      "https://bookonelocal.in/cdn/2025-06-24-094826961-26.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-094832431-19.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-095124999-4.jpg",
     ],
   },
   {
-    slug: "camp-della-resort-room",
-    title: "Family Room",
-    subtitle: "A spacious family stay designed for group comfort, togetherness, and easier guest hosting during wedding weekends.",
-    introTitle: "STAY DETAILS",
+    slug: "family-room",
+    title: "Deluxe Room",
+    subtitle: "A cozy and comfortable stay option with modern furnishing and a peaceful room environment.",
+    introTitle: "ROOM DETAILS",
     introBody:
-      "Family Room stays at The Mountain support group accommodation with a room tariff of Rs. 20,000 and a stay plus all meals package at Rs. 2,500 per person, helping families stay together more comfortably through multi-event celebrations.",
-    heroImage: "/images/DSC08812.avif",
-    cards: familyRoomCards,
-    galleryTabs: ["Exterior", "Family Room", "Guest Stay"],
-    galleryImage: "/images/DSC08820.avif",
+      "Deluxe Room is designed for guests who want a dependable, comfortable stay with upgraded finishing and essential hotel amenities.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-094800530-16.jpg",
+    cards: [
+      {
+        label: "ROOM TYPE",
+        title: "Deluxe Room",
+        description: "A practical choice for guests who want a calmer room environment with air-conditioning and room service support.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-094807016-15.jpg",
+      },
+      {
+        label: "TARIFF",
+        title: "Starting From Rs. 3,300",
+        description: "A balanced mid-tier room category that improves comfort while staying cost-effective for many travelers.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-095145740-23.jpg",
+      },
+    ],
+    galleryTabs: ["Deluxe", "Comfort", "Room"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-095145740-23.jpg",
     galleryImages: [
-      "/images/DSC08812.avif",
-      "/images/DSC08820.avif",
-      "/images/DSC08822.avif",
-      "/images/DSC08824.avif",
-      "/images/DSC08827.avif",
+      "https://bookonelocal.in/cdn/2025-06-24-094800530-16.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-094807016-15.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-095145740-23.jpg",
     ],
   },
   {
-    slug: "adventure-resort",
-    title: "Glass Cottage",
-    subtitle: "A premium cottage stay with privacy, design character, and a more distinctive destination-wedding atmosphere.",
-    introTitle: "STAY DETAILS",
+    slug: "glass-cottage",
+    title: "Supreme Room",
+    subtitle: "A stylish upgraded room that offers a stronger balance of comfort, design, and premium hotel atmosphere.",
+    introTitle: "ROOM DETAILS",
     introBody:
-      "Glass Cottage accommodation provides a more private and premium stay option with a room tariff of Rs. 12,000 and a stay plus all meals package at Rs. 7,500 per person.",
-    heroImage: "/images/DSC08802.avif",
-    cards: classicCottageCards,
-    galleryTabs: ["Exterior", "Glass Cottage", "Guest Stay"],
-    galleryImage: "/images/DSC08807.avif",
+      "Supreme Room combines comfort and style for guests who want a more refined room environment with useful amenities and better room presence.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-094924878-18.jpg",
+    cards: [
+      {
+        label: "ROOM TYPE",
+        title: "Supreme Room",
+        description: "A refined room category with Wi-Fi, air-conditioning, room service, and a polished stay atmosphere.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-094930729-24.jpg",
+      },
+      {
+        label: "TARIFF",
+        title: "Starting From Rs. 6,050",
+        description: "Well suited to guests who want a noticeably stronger room category for work trips or leisure comfort.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-094939625-29.jpg",
+      },
+    ],
+    galleryTabs: ["Supreme", "Premium", "Stay"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-094939625-29.jpg",
+    galleryImages: [
+      "https://bookonelocal.in/cdn/2025-06-24-094924878-18.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-094930729-24.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-094939625-29.jpg",
+    ],
   },
   {
-    slug: "della-enclave-villa-rooms",
-    title: "Bungalow",
-    subtitle: "A spacious premium bungalow for host families, longer stays, and guests who need more privacy within the estate.",
-    introTitle: "STAY DETAILS",
+    slug: "bungalow",
+    title: "Maharaja Suite Room",
+    subtitle: "The most elevated room category at Hotel Redwings Castle, offering spacious interiors and a more luxurious stay feel.",
+    introTitle: "ROOM DETAILS",
     introBody:
-      "Bungalow accommodation at The Mountain is ideal for guests who need spacious premium furnished stays with a bungalow tariff of Rs. 25,000 and a stay plus all meals package at Rs. 3,500 per person.",
-    heroImage: "/images/DSC08758.avif",
-    cards: bungalowCards,
-    galleryTabs: ["Exterior", "Bungalow", "Premium Stay"],
-    galleryImage: "/images/DSC08759.avif",
+      "Maharaja Suite Room is built for guests who want royal comfort, elegant decor, and a more spacious premium stay with top-class amenities.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-095002532-20.jpg",
+    cards: [
+      {
+        label: "ROOM TYPE",
+        title: "Maharaja Suite Room",
+        description: "A premium suite-style category with elegant decor, polished interiors, and an upgraded in-room experience.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-095012773-12.jpg",
+      },
+      {
+        label: "TARIFF",
+        title: "Starting From Rs. 8,250",
+        description: "The best fit for guests who want the highest level of room comfort currently available at the property.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-095022974-24.jpg",
+      },
+    ],
+    galleryTabs: ["Suite", "Luxury", "Premium Stay"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-095022974-24.jpg",
+    galleryImages: [
+      "https://bookonelocal.in/cdn/2025-06-24-095002532-20.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-095012773-12.jpg",
+      "https://bookonelocal.in/cdn/2025-06-24-095022974-24.jpg",
+    ],
   },
   {
     slug: "cafe24",
-    title: "Wedding Hospitality Inclusions",
-    subtitle: "Lunch, hi-tea, starters, dinner, breakfast, venue access, and live counters are structured to support full celebration flow.",
-    introTitle: "MEALS",
+    title: "Hotel Services",
+    subtitle: "A look at the practical amenities and service features that support guest comfort across the property.",
+    introTitle: "HOTEL SERVICES",
     introBody:
-      "Hospitality at The Mountain is package-led and designed to support destination wedding hosting through coordinated meals, guest convenience, and smoother family planning across the day.",
-    heroImage: "/images/DSC08758.avif",
+      "Hotel Redwings Castle combines room comfort with useful service support, helping guests enjoy a smoother Panvel stay from check-in to departure.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-092839204-10.jpg",
     cards: [
       {
-        label: "MEAL",
-        title: "Lunch & Hi-Tea",
-        description: "Lunch includes roti, 2 sabji, dal, rice, salad, papad, and pickle, while hi-tea includes tea or coffee with 2 snacks to keep the celebration moving comfortably between functions.",
-        image: "/images/DSC08759.avif",
+        label: "SERVICE",
+        title: "Stay Essentials",
+        description: "Free WiFi, air-conditioning, room service, and housekeeping support are designed to make daily stay comfort easier.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-092831095-3.jpg",
       },
       {
-        label: "MEAL",
-        title: "Dinner & Breakfast",
-        description: "Dinner includes roti, 2 sabji, dal, rice, salad, papad, and pickle, while breakfast includes tea or coffee with 2 dishes for an easy start to the next event day.",
-        image: "/images/DSC08763.avif",
+        label: "SERVICE",
+        title: "Guest Support",
+        description: "Free hotel parking, luggage storage, doctor on call, first aid support, and CCTV in public areas strengthen convenience and peace of mind.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-092853092-22.jpg",
       },
     ],
-    galleryTabs: ["Lunch", "Dinner", "Hospitality"],
-    galleryImage: "/images/DSC08769.avif",
+    galleryTabs: ["Amenities", "Service", "Hotel"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-095348564-6.jpg",
+    packageComparison: hotelRoomComparison,
   },
   {
     slug: "classic-package",
-    title: "Classic Package",
-    subtitle: "A clear bundled starting point for destination weddings with stay, meals, and venue access included.",
-    introTitle: "PACKAGE DETAILS",
+    title: "Standard Comfort Plan",
+    subtitle: "An introductory stay direction built around the Standard and Deluxe room categories.",
+    introTitle: "PLAN DETAILS",
     introBody:
-      "The Classic Package is the base wedding package at The Mountain and is structured for families who want stay, meals, services, and venue access simplified into one clear plan.",
-    heroImage: "/images/DSC08846.avif",
+      "This plan direction is ideal for guests who want practical room comfort, city convenience, and a more value-oriented booking choice.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-095047456-30.jpg",
     cards: [
       {
-        label: "WEEKDAY OFFER",
-        title: "Weekday Offer",
-        description: "Classic\nRs. 4,500\n5 Meals + Stay + Venue Access",
-        image: "/images/DSC08846.avif",
+        label: "FEATURED",
+        title: "Standard Room",
+        description: "Rs. 2,750 | Budget-friendly room with essential amenities and comfortable stay support.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-095052417-28.jpg",
       },
       {
-        label: "WEEKEND OFFER",
-        title: "Weekend Offer",
-        description: "Classic\nRs. 5,500\n5 Meals + Stay + Venue Access",
-        image: "/images/DSC08837.avif",
+        label: "FEATURED",
+        title: "Deluxe Room",
+        description: "Rs. 3,300 | A step up in comfort for guests who want a slightly more polished room environment.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-094807016-15.jpg",
       },
     ],
-    galleryTabs: ["Meals", "Stay", "Pricing"],
-    galleryImage: "/images/DSC08831.avif",
-    packageComparison: standardPackageComparison,
+    galleryTabs: ["Value", "Comfort", "Plan"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-094800530-16.jpg",
+    packageComparison: hotelRoomComparison,
   },
   {
     slug: "signature-package",
-    title: "Signature Package",
-    subtitle: "A richer destination wedding package with added starters and stronger meal depth for family celebrations.",
-    introTitle: "PACKAGE DETAILS",
+    title: "Premium Comfort Plan",
+    subtitle: "A room-booking direction centered on Luxury and Supreme stays for guests who want more comfort and polish.",
+    introTitle: "PLAN DETAILS",
     introBody:
-      "The Signature Package builds on the Classic Package by adding extra 2 starters and 1 gravy extra each in lunch and dinner for a fuller hospitality experience across wedding functions.",
-    heroImage: "/images/DSC08853.avif",
+      "This stay direction is ideal for travelers who want a better in-room experience and stronger hotel comfort during their Panvel visit.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-094924878-18.jpg",
     cards: [
       {
-        label: "WEEKDAY OFFER",
-        title: "Weekday Offer",
-        description:
-          "Signature\nRs. 5,500\nClassic Package + Extra 2 Starter + 1 Gravy extra each in Lunch and Dinner",
-        image: "/images/DSC08853.avif",
+        label: "FEATURED",
+        title: "Luxury Room",
+        description: "Rs. 3,850 | Premium room comfort with a refined and practical stay experience.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-094832431-19.jpg",
       },
       {
-        label: "WEEKEND OFFER",
-        title: "Weekend Offer",
-        description:
-          "Signature\nRs. 6,500\nClassic Package + Extra 2 Starter + 1 Gravy extra each in Lunch and Dinner",
-        image: "/images/DSC08836.avif",
+        label: "FEATURED",
+        title: "Supreme Room",
+        description: "Rs. 6,050 | Stylish upgraded room category with a stronger amenity mix and better room presence.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-094939625-29.jpg",
       },
     ],
-    galleryTabs: ["Hospitality", "Dining", "Pricing"],
-    galleryImage: "/images/DSC08820.avif",
-    packageComparison: standardPackageComparison,
+    galleryTabs: ["Premium", "Comfort", "Plan"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-094930729-24.jpg",
+    packageComparison: hotelRoomComparison,
   },
   {
     slug: "premium-luxo-package",
-    title: "Premium Luxe Package",
-    subtitle: "An elevated destination wedding package with expanded dining, live counters, and a stronger premium-hosting feel.",
-    introTitle: "PACKAGE DETAILS",
+    title: "Royal Suite Plan",
+    subtitle: "A premium stay direction built around the Maharaja Suite Room for guests who want the hotel’s most elevated experience.",
+    introTitle: "PLAN DETAILS",
     introBody:
-      "The Premium Luxe Package is the top package tier at The Mountain and includes Signature-level hospitality plus two live counters for celebrations that call for a more premium dining presence.",
-    heroImage: "/images/DSC08849.avif",
+      "This room plan direction highlights the best suite-style category in the property for premium city stays, special visits, or guests who want more spacious comfort.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-095002532-20.jpg",
     cards: [
       {
-        label: "WEEKDAY OFFER",
-        title: "Weekday Offer",
-        description: "Premium Luxe\nRs. 6,500\nSignature Package + 2 Live Counters",
-        image: "/images/DSC08849.avif",
+        label: "FEATURED",
+        title: "Maharaja Suite Room",
+        description: "Rs. 8,250 | Royal comfort, elegant decor, and spacious interiors for the hotel’s strongest room experience.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-095012773-12.jpg",
       },
       {
-        label: "WEEKEND OFFER",
-        title: "Weekend Offer",
-        description: "Premium Luxe\nRs. 7,500\nSignature Package + 2 Live Counters",
-        image: "/images/DSC08831.avif",
+        label: "NOTE",
+        title: "Extra Person Charge",
+        description: "Premium room plans can include additional person charges of Rs. 1,100 where applicable, subject to final room confirmation.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-095022974-24.jpg",
       },
     ],
-    galleryTabs: ["Premium", "Hospitality", "Pricing"],
-    galleryImage: "/images/DSC08807.avif",
-    packageComparison: standardPackageComparison,
+    galleryTabs: ["Suite", "Luxury", "Plan"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-095022974-24.jpg",
+    packageComparison: hotelRoomComparison,
+  },
+  {
+    slug: "adventure-resort",
+    title: "Property Highlights",
+    subtitle: "A visual and practical look at what makes Hotel Redwings Castle useful for Panvel travellers.",
+    introTitle: "PROPERTY HIGHLIGHTS",
+    introBody:
+      "From room variety to location convenience, the hotel is built to make business and leisure travel more comfortable and manageable.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-092853092-22.jpg",
+    cards: [
+      {
+        label: "HIGHLIGHT",
+        title: "Useful Location",
+        description: "Near Panvel station, road links, mall access, and airport-connected travel corridors.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-092904251-25.jpg",
+      },
+      {
+        label: "HIGHLIGHT",
+        title: "Practical Amenities",
+        description: "Wi-Fi, parking, housekeeping, room service, and support services create a more complete stay experience.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-092839204-10.jpg",
+      },
+    ],
+    galleryTabs: ["Hotel", "Highlights", "Stay"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-095348564-6.jpg",
+  },
+  {
+    slug: "della-enclave-villa-rooms",
+    title: "Premium Room Collection",
+    subtitle: "A quick view of the property’s higher-comfort room categories.",
+    introTitle: "PREMIUM ROOMS",
+    introBody:
+      "Luxury Room, Supreme Room, and Maharaja Suite Room together form the hotel’s stronger premium stay collection.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-094930729-24.jpg",
+    cards: [
+      {
+        label: "COLLECTION",
+        title: "Luxury To Suite Comfort",
+        description: "Guests can scale up from refined premium rooms to the full Maharaja suite experience based on comfort goals and budget.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-095012773-12.jpg",
+      },
+      {
+        label: "BOOKING",
+        title: "Better Room Choice",
+        description: "The premium collection gives business and leisure travelers more flexibility than a single-room-type hotel setup.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-094832431-19.jpg",
+      },
+    ],
+    galleryTabs: ["Premium", "Rooms", "Collection"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-095022974-24.jpg",
+  },
+  {
+    slug: "camp-della-resort-room",
+    title: "Stay Collection",
+    subtitle: "An overview of the hotel’s complete room inventory, from value stays to the premium suite category.",
+    introTitle: "STAY COLLECTION",
+    introBody:
+      "Hotel Redwings Castle offers 22 rooms across five categories so guests can find a stay style that matches their plan and budget.",
+    heroImage: "https://bookonelocal.in/cdn/2025-06-24-092831095-3.jpg",
+    cards: [
+      {
+        label: "INVENTORY",
+        title: "22 Total Rooms",
+        description: "Standard, Deluxe, Luxury, Supreme, and Maharaja Suite categories together create a broader room mix for varied guest needs.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-092828011-2.jpg",
+      },
+      {
+        label: "FLEXIBILITY",
+        title: "Stay Options For Every Need",
+        description: "The range supports short stays, business visits, family travel, and premium city booking requirements.",
+        image: "https://bookonelocal.in/cdn/2025-06-24-095348564-6.jpg",
+      },
+    ],
+    galleryTabs: ["Inventory", "Rooms", "Hotel"],
+    galleryImage: "https://bookonelocal.in/cdn/2025-06-24-092839204-10.jpg",
   },
 ] satisfies DetailSeed[];
 
 export const detailPages: Record<string, DetailPage> = Object.fromEntries(
-  detailPageSeeds.map((page) => [
-    page.slug,
-    {
-      slug: page.slug,
-      title: page.title,
-      subtitle: page.subtitle,
-      introTitle: page.introTitle,
-      introBody: page.introBody,
-      heroImage: page.heroImage,
-      cards: page.cards,
-      galleryTabs: page.galleryTabs,
-      galleryImage: page.galleryImage,
-      galleryImages: page.galleryImages,
-      galleryVideos: page.galleryVideos,
-      packageComparison: page.packageComparison,
-    } satisfies DetailPage,
-  ]),
+  detailPageSeeds.map((page) => [page.slug, page]),
 ) as Record<string, DetailPage>;
 
 export const detailPageSlugs = detailPageSeeds.map((seed) => seed.slug);

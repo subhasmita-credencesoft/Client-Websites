@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "bookonelocal.in",
+      },
+      {
+        protocol: "https",
         hostname: "images.unsplash.com",
       },
       {

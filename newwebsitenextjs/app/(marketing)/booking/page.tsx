@@ -1,59 +1,220 @@
 "use client";
 
 import Image from "next/image";
-import { Suspense, useMemo, useState, useSyncExternalStore } from "react";
+import { Suspense, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { stayCardsPrimary, stayCardsSecondary } from "@/lib/data/content/mountain-content";
+import {
+  buildRedwingsAvailabilityUrl,
+  buildRedwingsRoomPlanUrl,
+  mapRedwingsAvailabilityToRoomCards,
+  type HotelMatePropertyAvailability,
+  type HotelMateRoomPlan,
+  type LiveRoomCard,
+} from "@/lib/hotelmate/redwings-availability";
 
-const packageCatalog = [
-  {
-    title: "Classic Package",
-    subtitle: "A clear bundled starting point for elegant destination celebrations.",
-    description:
-      "Perfect for families who want stay, meals, and venue access bundled into one easier wedding-planning format.",
-    image: "/images/DSC08836.avif",
-  },
-  {
-    title: "Signature Package",
-    subtitle: "A richer hospitality format for fuller family hosting.",
-    description:
-      "Adds extra starters and more variety across key meals for wedding functions that need a more generous spread.",
-    image: "/images/DSC08849.avif",
-  },
-  {
-    title: "Premium Luxe Package",
-    subtitle: "An elevated package for celebrations that call for added dining theatre.",
-    description:
-      "Built for premium destination wedding weekends with stronger presentation, fuller hospitality, and live counters.",
-    image: "/images/DSC08831.avif",
-  },
-] as const;
-
-const packagePricing: Record<string, { weekday: string; weekend: string; highlight: string }> = {
-  "Classic Package": {
-    weekday: "Rs. 4,500 / person",
-    weekend: "Rs. 5,500 / person",
-    highlight: "5 meals + stay + venue access",
-  },
-  "Signature Package": {
-    weekday: "Rs. 5,500 / person",
-    weekend: "Rs. 6,500 / person",
-    highlight: "Classic package + 2 extra starters + 1 extra gravy",
-  },
-  "Premium Luxe Package": {
-    weekday: "Rs. 6,500 / person",
-    weekend: "Rs. 7,500 / person",
-    highlight: "Signature package + 2 live counters",
-  },
+type RoomPlanCard = {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  amount: number | null;
+  currencyCode: string;
+  ratePlanCode: string;
+  minimumOccupancy: number;
+  maximumOccupancy: number;
+  extraChargePerPerson: number | null;
 };
+
+const fallbackPackageCatalog: RoomPlanCard[] = [
+  {
+    title: "Comfort Plan",
+    subtitle: "A practical stay direction for guests who want dependable comfort and value.",
+    description:
+      "Best suited to Standard Room and Deluxe Room bookings for short stays, transit travel, and budget-conscious visits.",
+    image: "https://bookonelocal.in/cdn/2025-06-24-095047456-30.jpg",
+    amount: null,
+    currencyCode: "INR",
+    ratePlanCode: "",
+    minimumOccupancy: 1,
+    maximumOccupancy: 2,
+    extraChargePerPerson: null,
+  },
+  {
+    title: "Premium Plan",
+    subtitle: "A stronger room-comfort direction for guests who want more polish.",
+    description:
+      "Built around Luxury Room and Supreme Room stays for travelers who want an upgraded hotel experience in Panvel.",
+    image: "https://bookonelocal.in/cdn/2025-06-24-094924878-18.jpg",
+    amount: null,
+    currencyCode: "INR",
+    ratePlanCode: "",
+    minimumOccupancy: 1,
+    maximumOccupancy: 4,
+    extraChargePerPerson: null,
+  },
+  {
+    title: "Royal Suite Plan",
+    subtitle: "The most elevated stay direction available in the property.",
+    description:
+      "Designed for guests considering the Maharaja Suite Room and looking for the hotel's top-category room comfort.",
+    image: "https://bookonelocal.in/cdn/2025-06-24-095002532-20.jpg",
+    amount: null,
+    currencyCode: "INR",
+    ratePlanCode: "",
+    minimumOccupancy: 1,
+    maximumOccupancy: 4,
+    extraChargePerPerson: 1100,
+  },
+];
+
+const BOOKONE_REDWINGS_BASE_URL = "https://bookone.io/Hotel-Redwings-Castle";
+
+function formatCurrency(amount?: number | null) {
+  if (typeof amount !== "number" || Number.isNaN(amount)) return "On request";
+  return `Rs. ${amount.toLocaleString("en-IN")}`;
+}
+
+function mapRoomPlansToCards(roomPlans: HotelMateRoomPlan[], roomImage: string): RoomPlanCard[] {
+  return roomPlans.map((plan) => {
+    const minimumOccupancy = Math.max(1, plan.minimumOccupancy ?? 1);
+    const maximumOccupancy = Math.max(minimumOccupancy, plan.maximumOccupancy ?? minimumOccupancy);
+    const lengthText =
+      plan.minimumLengthOfStay && plan.maximumLengthOfStay
+        ? `Stay ${plan.minimumLengthOfStay}-${plan.maximumLengthOfStay} nights`
+        : "Flexible stay duration";
+
+    return {
+      title: plan.name || "Room Plan",
+      subtitle: `${formatCurrency(plan.amount)} | ${minimumOccupancy}-${maximumOccupancy} guests`,
+      description:
+        plan.description ||
+        `${lengthText} | ${plan.status || "Open"} | ${plan.restriction || "No restrictions"}`,
+      image: roomImage,
+      amount: plan.amount ?? null,
+      currencyCode: plan.currencyCode || "INR",
+      ratePlanCode: plan.code || "",
+      minimumOccupancy,
+      maximumOccupancy,
+      extraChargePerPerson: plan.extraChargePerPerson ?? null,
+    };
+  });
+}
+
+function buildBookOneBookingUrl(args: {
+  checkIn: string;
+  checkOut: string;
+  guests: number;
+  roomTitle: string;
+  packageTitle: string;
+  liveRoomCard: LiveRoomCard | null;
+  selectedPlan: RoomPlanCard | null;
+}) {
+  const [checkInYear, checkInMonth, checkInDay] = args.checkIn.split("-").map(Number);
+  const [checkOutYear, checkOutMonth, checkOutDay] = args.checkOut.split("-").map(Number);
+  const checkInDate = new Date(checkInYear, checkInMonth - 1, checkInDay);
+  const checkOutDate = new Date(checkOutYear, checkOutMonth - 1, checkOutDay);
+  const safeGuestCount = Math.max(1, args.guests);
+  const nights = Math.max(
+    1,
+    Math.round((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)),
+  );
+  const params = new URLSearchParams();
+  params.set("bookingEngine", "true");
+  params.set("checkinDay", String(checkInDay));
+  params.set("checkinMonth", String(checkInMonth));
+  params.set("checkinYear", String(checkInYear));
+  params.set("checkoutDay", String(checkOutDay));
+  params.set("checkoutMonth", String(checkOutMonth));
+  params.set("checkoutYear", String(checkOutYear));
+  params.set("checkIn", args.checkIn);
+  params.set("checkin", args.checkIn);
+  params.set("checkOut", args.checkOut);
+  params.set("checkout", args.checkOut);
+  params.set("fromDate", args.checkIn);
+  params.set("toDate", args.checkOut);
+  params.set("date_to", args.checkOut);
+  params.set("nights", String(nights));
+  params.set("guests", String(safeGuestCount));
+  params.set("numGuests", String(safeGuestCount));
+  params.set("adults", String(safeGuestCount));
+  params.set("numAdults", String(safeGuestCount));
+  params.set("children", "0");
+  params.set("Children", "0");
+  params.set("rooms", "1");
+  params.set("noOfRooms", "1");
+  params.set("noOfPersons", String(safeGuestCount));
+  params.set("room", args.roomTitle);
+  params.set("roomType", args.roomTitle);
+
+  const room = args.liveRoomCard;
+  const planTitle = args.selectedPlan?.title || room?.ratePlanName || args.packageTitle;
+  const roomTitle = room?.roomName || args.roomTitle;
+
+  params.set("plan", planTitle);
+  params.set("package", planTitle);
+  params.set("planName", planTitle);
+  params.set("roomPlanName", planTitle);
+  params.set("selectedPlan", planTitle);
+
+  if (room?.propertyId) params.set("propertyId", String(room.propertyId));
+  if (room?.propertyName) params.set("propertyName", room.propertyName);
+  if (room?.roomId) params.set("roomId", String(room.roomId));
+  if (roomTitle) {
+    params.set("roomName", roomTitle);
+    params.set("selectedRoom", roomTitle);
+  }
+  if (args.selectedPlan?.ratePlanCode || room?.ratePlanCode) {
+    const ratePlanCode = args.selectedPlan?.ratePlanCode || room?.ratePlanCode || "";
+    params.set("ratePlanCode", ratePlanCode);
+    params.set("planCode", ratePlanCode);
+    params.set("roomPlanCode", ratePlanCode);
+  }
+  if (args.selectedPlan?.title || room?.ratePlanName) {
+    const ratePlanName = args.selectedPlan?.title || room?.ratePlanName || "";
+    params.set("ratePlanName", ratePlanName);
+    params.set("selectedRatePlan", ratePlanName);
+  }
+  if (args.selectedPlan?.currencyCode || room?.currencyCode) {
+    params.set("currencyCode", args.selectedPlan?.currencyCode || room?.currencyCode || "INR");
+  }
+  if (typeof args.selectedPlan?.amount === "number") {
+    params.set("price", String(args.selectedPlan.amount));
+  } else if (typeof room?.price === "number") {
+    params.set("price", String(room.price));
+  }
+  if (typeof room?.availableRooms === "number") params.set("availableRooms", String(room.availableRooms));
+  if (typeof room?.totalRooms === "number") params.set("totalRooms", String(room.totalRooms));
+  if (typeof args.selectedPlan?.maximumOccupancy === "number") {
+    params.set("maxOccupancy", String(args.selectedPlan.maximumOccupancy));
+  } else if (typeof room?.maxOccupancy === "number") {
+    params.set("maxOccupancy", String(room.maxOccupancy));
+  }
+  if (typeof args.selectedPlan?.extraChargePerPerson === "number") {
+    params.set("extraChargePerPerson", String(args.selectedPlan.extraChargePerPerson));
+  } else if (typeof room?.extraChargePerPerson === "number") {
+    params.set("extraChargePerPerson", String(room.extraChargePerPerson));
+  }
+
+  return `${BOOKONE_REDWINGS_BASE_URL}?${params.toString()}`;
+}
 
 function getTodayDateString() {
   const now = new Date();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function addDays(dateString: string, days: number) {
+  const date = new Date(`${dateString}T00:00:00`);
+  date.setDate(date.getDate() + days);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
 
@@ -67,52 +228,185 @@ function BookingPageContent() {
   const roomCatalog = useMemo(() => [...stayCardsPrimary, ...stayCardsSecondary], []);
   const selectedRoomFromQuery = searchParams.get("room") ?? "";
   const selectedPackageFromQuery = searchParams.get("package") ?? "";
-  const selectedOffer = searchParams.get("offer") ?? "";
   const initialRoomValue = roomCatalog.some((room) => room.title === selectedRoomFromQuery) ? selectedRoomFromQuery : "";
-  const initialPackageValue = packageCatalog.some((pkg) => pkg.title === selectedPackageFromQuery)
+  const initialPackageValue = fallbackPackageCatalog.some((pkg) => pkg.title === selectedPackageFromQuery)
     ? selectedPackageFromQuery
     : "";
   const todayDate = getTodayDateString();
+  const tomorrowDate = addDays(todayDate, 1);
 
   const [checkIn, setCheckIn] = useState(todayDate);
-  const [checkOut, setCheckOut] = useState(todayDate);
-  const [guestCount, setGuestCount] = useState(0);
+  const [checkOut, setCheckOut] = useState(tomorrowDate);
+  const [guestCount, setGuestCount] = useState(1);
   const [roomValue, setRoomValue] = useState(initialRoomValue);
   const [packageValue, setPackageValue] = useState(initialPackageValue);
   const [roomFilterQuery, setRoomFilterQuery] = useState("");
   const [packageFilterQuery, setPackageFilterQuery] = useState("");
+  const [liveRooms, setLiveRooms] = useState<typeof roomCatalog>([]);
+  const [liveRoomPlans, setLiveRoomPlans] = useState<RoomPlanCard[]>([]);
+  const [livePropertyName, setLivePropertyName] = useState("Hotel Redwings Castle");
+  const [availabilityError, setAvailabilityError] = useState("");
+  const [availabilityLoading, setAvailabilityLoading] = useState(false);
+  const [roomPlansLoading, setRoomPlansLoading] = useState(false);
+
+  const activeRoomCatalog = liveRooms.length > 0 ? liveRooms : roomCatalog;
+  const activePackageCatalog = liveRoomPlans.length > 0 ? liveRoomPlans : fallbackPackageCatalog;
 
   const selectedRoomCard = useMemo(
-    () => roomCatalog.find((room) => room.title === roomValue) ?? null,
-    [roomCatalog, roomValue],
+    () => activeRoomCatalog.find((room) => room.title === roomValue) ?? null,
+    [activeRoomCatalog, roomValue],
   );
   const selectedPackageCard = useMemo(
-    () => packageCatalog.find((pkg) => pkg.title === packageValue) ?? null,
-    [packageValue],
+    () => activePackageCatalog.find((pkg) => pkg.title === packageValue) ?? null,
+    [activePackageCatalog, packageValue],
   );
 
-  const activeRoomCard = selectedRoomCard ?? roomCatalog[0] ?? null;
-  const activePackageCard = selectedPackageCard ?? packageCatalog[0] ?? null;
-  const activePackagePricing = activePackageCard ? packagePricing[activePackageCard.title] : null;
+  const activeRoomCard = selectedRoomCard ?? activeRoomCatalog[0] ?? null;
+  const activePackageCard = selectedPackageCard ?? activePackageCatalog[0] ?? null;
+  const fallbackAvailabilityImage = useMemo(
+    () => activeRoomCard?.image ?? roomCatalog[0]?.image ?? "https://bookonelocal.in/cdn/2025-06-24-095348564-6.jpg",
+    [activeRoomCard?.image, roomCatalog],
+  );
   const filteredRooms = useMemo(() => {
     const query = roomFilterQuery.trim().toLowerCase();
-    if (!query) return roomCatalog;
-    return roomCatalog.filter((room) =>
+    if (!query) return activeRoomCatalog;
+    return activeRoomCatalog.filter((room) =>
       `${room.title} ${room.description} ${room.tariff} ${room.packagePrice}`.toLowerCase().includes(query),
     );
-  }, [roomCatalog, roomFilterQuery]);
+  }, [activeRoomCatalog, roomFilterQuery]);
   const filteredPackages = useMemo(() => {
     const query = packageFilterQuery.trim().toLowerCase();
-    if (!query) return packageCatalog;
-    return packageCatalog.filter((pkg) =>
+    if (!query) return activePackageCatalog;
+    return activePackageCatalog.filter((pkg) =>
       `${pkg.title} ${pkg.subtitle} ${pkg.description}`.toLowerCase().includes(query),
     );
-  }, [packageFilterQuery]);
+  }, [activePackageCatalog, packageFilterQuery]);
   const decrementGuestCount = () => {
-    setGuestCount((current) => Math.max(0, current - 1));
+    setGuestCount((current) => Math.max(1, current - 1));
   };
   const incrementGuestCount = () => {
     setGuestCount((current) => current + 1);
+  };
+
+  useEffect(() => {
+    if (!checkIn || !checkOut) return;
+
+    const abortController = new AbortController();
+
+    async function loadAvailability() {
+      try {
+        setAvailabilityLoading(true);
+        setAvailabilityError("");
+
+        const response = await fetch(
+          buildRedwingsAvailabilityUrl(checkIn, checkOut, guestCount),
+          {
+            signal: abortController.signal,
+            cache: "no-store",
+          },
+        );
+
+        if (!response.ok) {
+          throw new Error(`Availability request failed with ${response.status}`);
+        }
+
+        const payload = (await response.json()) as HotelMatePropertyAvailability;
+        const mappedRooms = mapRedwingsAvailabilityToRoomCards(
+          payload,
+          fallbackAvailabilityImage,
+        );
+
+        setLiveRooms(mappedRooms);
+        setLivePropertyName(payload.name || "Hotel Redwings Castle");
+        if (mappedRooms.length > 0 && !mappedRooms.some((room) => room.title === roomValue)) {
+          setRoomValue(mappedRooms[0].title);
+        }
+      } catch {
+        if (abortController.signal.aborted) return;
+        setAvailabilityError("Live room availability could not be loaded right now. Showing the hotel stay catalog instead.");
+        setLiveRooms([]);
+      } finally {
+        if (!abortController.signal.aborted) {
+          setAvailabilityLoading(false);
+        }
+      }
+    }
+
+    void loadAvailability();
+
+    return () => abortController.abort();
+  }, [checkIn, checkOut, guestCount, fallbackAvailabilityImage, roomCatalog, roomValue]);
+
+  useEffect(() => {
+    if (!activeRoomCard?.propertyId || !activeRoomCard?.roomId) {
+      setLiveRoomPlans([]);
+      return;
+    }
+
+    const abortController = new AbortController();
+
+    async function loadRoomPlans() {
+      try {
+        setRoomPlansLoading(true);
+        const response = await fetch(
+          buildRedwingsRoomPlanUrl(activeRoomCard.propertyId, activeRoomCard.roomId),
+          {
+            signal: abortController.signal,
+            cache: "no-store",
+          },
+        );
+
+        if (!response.ok) {
+          throw new Error(`Room plan request failed with ${response.status}`);
+        }
+
+        const payload = (await response.json()) as HotelMateRoomPlan[];
+        const mappedPlans = mapRoomPlansToCards(payload, activeRoomCard.image);
+        setLiveRoomPlans(mappedPlans);
+
+        if (mappedPlans.length > 0 && !mappedPlans.some((plan) => plan.title === packageValue)) {
+          setPackageValue(mappedPlans[0].title);
+        }
+      } catch {
+        if (abortController.signal.aborted) return;
+        setLiveRoomPlans([]);
+      } finally {
+        if (!abortController.signal.aborted) {
+          setRoomPlansLoading(false);
+        }
+      }
+    }
+
+    void loadRoomPlans();
+
+    return () => abortController.abort();
+  }, [activeRoomCard?.image, activeRoomCard?.propertyId, activeRoomCard?.roomId, packageValue]);
+
+  useEffect(() => {
+    if (!packageValue && activePackageCatalog[0]) {
+      setPackageValue(activePackageCatalog[0].title);
+    }
+  }, [activePackageCatalog, packageValue]);
+
+  const handleCheckInChange = (value: string) => {
+    setCheckIn(value);
+    if (!checkOut || checkOut <= value) {
+      setCheckOut(addDays(value, 1));
+    }
+  };
+
+  const handlePlannerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const redirectUrl = buildBookOneBookingUrl({
+      checkIn,
+      checkOut,
+      guests: guestCount,
+      roomTitle: activeRoomCard?.title ?? roomValue ?? "Hotel Room",
+      packageTitle: activePackageCard?.title ?? packageValue ?? "Room Plan",
+      liveRoomCard: activeRoomCard,
+      selectedPlan: activePackageCard,
+    });
+    window.location.assign(redirectUrl);
   };
 
   if (!isMounted) {
@@ -135,7 +429,7 @@ function BookingPageContent() {
         <div className="absolute inset-0">
           <Image
             src={activeRoomCard?.image ?? "/images/DSC08717.avif"}
-            alt={activeRoomCard?.title ?? "Celebration planning at The Mountain, Karjat"}
+            alt={activeRoomCard?.title ?? "Hotel Redwings Castle booking support"}
             fill
             priority
             sizes="100vw"
@@ -151,17 +445,17 @@ function BookingPageContent() {
               className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d6b07a]"
               data-reveal-child
             >
-              Celebration Booking
+              Hotel Booking
             </p>
             <h1
               className="mt-4 text-balance text-[clamp(40px,5vw,74px)] leading-[0.96] text-[#f6ead8]"
               data-section-title
             >
-              {activeRoomCard?.title ?? "Plan Your Celebration Stay"}
+              {activeRoomCard?.title ?? "Plan Your Hotel Stay"}
             </h1>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/88 md:text-xl" data-reveal-child>
               {activeRoomCard?.description ??
-                "Share your preferred dates, guest count, stay plan, and package preference. The Mountain team will guide availability, hosting fit, and quotation details for your wedding or event."}
+                "Share your preferred dates, guest count, room plan, and stay preference. The Hotel Redwings Castle team will guide room fit and availability support for your visit."}
             </p>
           </div>
         </div>
@@ -169,16 +463,24 @@ function BookingPageContent() {
       <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-12 md:py-14">
         <div className="grid gap-8 xl:grid-cols-[minmax(22rem,0.76fr)_minmax(0,1.24fr)] xl:items-start">
           <div className="xl:sticky xl:top-28 xl:self-start">
-            <form className="glass-panel rounded-[1.75rem] border border-[#c9a46e]/20 p-5 shadow-[0_18px_36px_rgba(8,16,11,0.14)] md:p-6">
+            <form
+              onSubmit={handlePlannerSubmit}
+              className="glass-panel rounded-[1.75rem] border border-[#c9a46e]/20 p-5 shadow-[0_18px_36px_rgba(8,16,11,0.14)] md:p-6"
+            >
               <div className="mb-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#c9a46e]">
-                  Wedding Quote Planner
+                  Stay Planner
                 </p>
-                <h2 className="mt-2 text-[1.8rem] text-[#f4eee2] md:text-[2rem]">Plan your celebration stay</h2>
+                <h2 className="mt-2 text-[1.8rem] text-[#f4eee2] md:text-[2rem]">Plan your hotel stay</h2>
                 <p className="mt-2 text-sm leading-relaxed text-white/72">
-                  Choose your dates, guest count, stay option, and wedding package. This panel stays visible while you
-                  scroll so families can compare guest stays and bundled celebration value in one place.
+                  Choose your dates, guest count, stay option, and room plan. Availability is checked automatically
+                  for your selected stay.
                 </p>
+                {availabilityError ? (
+                  <div className="mt-4 rounded-[1rem] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-relaxed text-white/82">
+                    {availabilityError}
+                  </div>
+                ) : null}
               </div>
 
               <div className="grid gap-3.5 md:grid-cols-2">
@@ -190,7 +492,7 @@ function BookingPageContent() {
                     type="date"
                     required
                     value={checkIn}
-                    onChange={(e) => setCheckIn(e.target.value)}
+                    onChange={(e) => handleCheckInChange(e.target.value)}
                     className="rounded-[1.05rem] border border-white/10 bg-black/20 px-4 py-3 text-[0.95rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50"
                   />
                 </label>
@@ -203,6 +505,7 @@ function BookingPageContent() {
                     required
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
+                    min={addDays(checkIn, 1)}
                     className="rounded-[1.05rem] border border-white/10 bg-black/20 px-4 py-3 text-[0.95rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50"
                   />
                 </label>
@@ -215,7 +518,7 @@ function BookingPageContent() {
                       type="button"
                       onClick={decrementGuestCount}
                       className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-lg text-white transition-colors hover:border-[#c9a46e]/40 hover:text-[#f6ead8] disabled:cursor-not-allowed disabled:opacity-40"
-                      disabled={guestCount === 0}
+                      disabled={guestCount === 1}
                       aria-label="Decrease guest count"
                     >
                       -
@@ -247,7 +550,7 @@ function BookingPageContent() {
                     <option value="" disabled>
                       Select stay option
                     </option>
-                    {roomCatalog.map((room) => (
+                    {activeRoomCatalog.map((room) => (
                       <option key={room.title} value={room.title} className="text-black">
                         {room.title}
                       </option>
@@ -256,7 +559,7 @@ function BookingPageContent() {
                 </label>
                 <label className="grid gap-2 md:col-span-2">
                   <span className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
-                    Wedding package
+                    Room plan
                   </span>
                   <select
                     required
@@ -265,9 +568,9 @@ function BookingPageContent() {
                     className="rounded-[1.05rem] border border-white/10 bg-black/20 px-4 py-3 text-[0.95rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50"
                   >
                     <option value="" disabled>
-                      Select wedding package
+                      Select room plan
                     </option>
-                    {packageCatalog.map((pkg) => (
+                    {activePackageCatalog.map((pkg) => (
                       <option key={pkg.title} value={pkg.title} className="text-black">
                         {pkg.title}
                       </option>
@@ -280,7 +583,7 @@ function BookingPageContent() {
                 type="submit"
                 className="mt-6 inline-flex w-full items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
               >
-                Book Now
+                {availabilityLoading ? "Checking Availability..." : "Book Now"}
               </button>
             </form>
           </div>
@@ -305,14 +608,14 @@ function BookingPageContent() {
 
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
-                    Wedding Inquiry Snapshot
+                    Booking Snapshot
                   </p>
                   <h2 className="mt-2 text-[1.55rem] leading-tight text-[#f6ead8] md:text-[1.75rem]">
                     {activeRoomCard?.title ?? "Choose a stay option to view planning details"}
                   </h2>
                   <p className="mt-2 max-w-3xl text-[0.92rem] leading-relaxed text-white/85">
                     {activeRoomCard?.description ??
-                      "Select a stay option and wedding package to see tariff, package pricing, and the bundled hospitality direction for your event."}
+                      "Select a stay option and room plan to see tariff, rate direction, and the hotel comfort highlights for your stay."}
                   </p>
 
                   <div className="mt-4 rounded-[1.05rem] border border-white/10 bg-[#2d463b] px-4 py-3.5">
@@ -324,29 +627,26 @@ function BookingPageContent() {
                         </p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Per Person Package</p>
+                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Stay Highlights</p>
                         <p className="mt-1 text-[1rem] leading-snug text-white md:text-[1.1rem]">
                           {activeRoomCard?.packagePrice ?? "Select package"}
                         </p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Selected Package</p>
+                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Room Plan</p>
                         <p className="mt-1 text-[1rem] leading-snug text-white md:text-[1.1rem]">
                           {activePackageCard?.title ?? "Select package"}
                         </p>
-                        <p className="mt-1 text-sm leading-relaxed text-white/78">
-                          {activePackagePricing?.highlight ??
-                            activePackageCard?.subtitle ??
-                            "Choose a package to view the hospitality inclusions."}
+                        <p className="mt-1 text-sm text-white/78">
+                          {roomPlansLoading ? "Loading room plan..." : activePackageCard?.subtitle ?? "Plan on request"}
                         </p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Offer Pricing</p>
-                        <p className="mt-1 text-sm text-white md:text-[0.96rem]">
-                          Weekday: {activePackagePricing?.weekday ?? "On request"}
-                        </p>
-                        <p className="mt-1 text-sm text-white md:text-[0.96rem]">
-                          Weekend: {activePackagePricing?.weekend ?? "On request"}
+                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Availability</p>
+                        <p className="mt-1 text-sm text-white/86">
+                          {availabilityLoading
+                            ? "Checking current room stock"
+                            : activeRoomCard?.packagePrice ?? "Will appear after availability check"}
                         </p>
                       </div>
                       <div>
@@ -362,60 +662,10 @@ function BookingPageContent() {
                         <p className="mt-1 text-sm text-white/86">{checkOut || "Not selected yet"}</p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Selected Package</p>
-                        <p className="mt-1 text-sm text-white/86">{(activePackageCard?.title ?? packageValue) || "Not selected yet"}</p>
-                      </div>
-                      <div className="md:col-span-2">
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Selected Offer</p>
-                        <p className="mt-1 text-sm text-white/86">{selectedOffer || "Standard wedding enquiry"}</p>
+                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Hotel</p>
+                        <p className="mt-1 text-sm text-white/86">{livePropertyName}</p>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              <article className="rounded-[1.4rem] border border-[#c9a46e]/20 bg-[#1f342b] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.14)]">
-                <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">How Quotation Works</p>
-                <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
-                  Final pricing is shaped by package tier, guest count, dates, weekday or weekend selection, and total stay required.
-                </p>
-              </article>
-              <article className="rounded-[1.4rem] border border-[#c9a46e]/20 bg-[#1f342b] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.14)]">
-                <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Package Basis</p>
-                <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
-                  Packages are calculated per person per day and include stay, meals, services, lawn access, and venue usage.
-                </p>
-              </article>
-              <article className="rounded-[1.4rem] border border-[#c9a46e]/20 bg-[#1f342b] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.14)]">
-                <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Guest Overflow Note</p>
-                <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
-                  If guest count exceeds 140 people, a nearby 10 BHK property is available at additional cost for overflow stay planning.
-                </p>
-              </article>
-            </div>
-
-            <div className="rounded-[1.5rem] border border-[#c9a46e]/20 bg-[#182920] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.14)] md:p-6">
-              <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
-                <div>
-                  <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Planning Overview</p>
-                  <h3 className="mt-3 text-2xl leading-tight text-[#f6ead8] md:text-[2rem]">
-                    Stay, meals, venue access, and package value reviewed together
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/80 md:text-base">
-                    This page helps families compare guest stay options and wedding package levels in one place, making it easier to move from interest to booking with more confidence.
-                  </p>
-                </div>
-                <div className="grid gap-3">
-                  <div className="rounded-[1.1rem] border border-white/10 bg-[#21382e] px-4 py-3 text-sm leading-relaxed text-white/82 md:text-base">
-                    Classic Package: 5 meals + stay + venue access
-                  </div>
-                  <div className="rounded-[1.1rem] border border-white/10 bg-[#21382e] px-4 py-3 text-sm leading-relaxed text-white/82 md:text-base">
-                    Signature Package: Classic package + 2 extra starters + 1 extra gravy in lunch and dinner
-                  </div>
-                  <div className="rounded-[1.1rem] border border-white/10 bg-[#21382e] px-4 py-3 text-sm leading-relaxed text-white/82 md:text-base">
-                    Premium Luxe: Signature package + 2 live counters
                   </div>
                 </div>
               </div>
@@ -430,7 +680,7 @@ function BookingPageContent() {
                     {filteredRooms.length} {filteredRooms.length === 1 ? "stay option" : "stay options"} shown
                   </p>
                   <p className="mt-2 max-w-3xl text-sm leading-relaxed text-white/72 md:text-base">
-                    These stay categories are designed to support wedding hosting, guest comfort, and family togetherness across the full celebration.
+                    These stay categories are designed to support business travel, family visits, transit bookings, and premium city stays.
                   </p>
                 </div>
                 <label className="block w-full md:max-w-xs">
@@ -509,21 +759,21 @@ function BookingPageContent() {
             <div>
               <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <h3 className="text-2xl text-[#f4eee2] md:text-3xl">Wedding Package Options</h3>
+                  <h3 className="text-2xl text-[#f4eee2] md:text-3xl">Room Plan Options</h3>
                   <p className="mt-1 text-sm uppercase tracking-[0.18em] text-[#c9a46e]">
-                    {filteredPackages.length} {filteredPackages.length === 1 ? "package" : "packages"} shown
+                    {filteredPackages.length} {filteredPackages.length === 1 ? "plan" : "plans"} shown
                   </p>
                   <p className="mt-2 max-w-3xl text-sm leading-relaxed text-white/72 md:text-base">
-                    Compare weekday and weekend pricing to understand how each package tier changes in hospitality depth and guest experience.
+                    Compare the room-plan directions to understand how comfort level and room category can change across your stay choice.
                   </p>
                 </div>
                 <label className="block w-full md:max-w-xs">
-                  <span className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">Filter packages</span>
+                  <span className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">Filter plans</span>
                   <input
                     type="text"
                     value={packageFilterQuery}
                     onChange={(e) => setPackageFilterQuery(e.target.value)}
-                    placeholder="Search package, pricing, inclusions..."
+                    placeholder="Search plan, pricing, room type..."
                     className="w-full rounded-[1.05rem] border border-white/10 bg-[#20362c] px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/40 focus:border-[#c9a46e]/50"
                   />
                 </label>
@@ -531,7 +781,6 @@ function BookingPageContent() {
 
               <div className="grid gap-6 md:grid-cols-3">
                 {filteredPackages.map((pkg) => {
-                  const pricing = packagePricing[pkg.title];
                   return (
                     <article
                       key={pkg.title}
@@ -551,37 +800,37 @@ function BookingPageContent() {
                         />
                       </div>
                       <div className="p-6">
-                        <p className="text-xs uppercase tracking-[0.18em] text-[#c9a46e]">Package Details</p>
-                        <h4 className="mt-2 text-2xl leading-tight text-white md:text-[2rem]">{pkg.title}</h4>
-                        <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
-                          {pkg.description}
-                        </p>
+                          <p className="text-xs uppercase tracking-[0.18em] text-[#c9a46e]">Plan Details</p>
+                          <h4 className="mt-2 text-2xl leading-tight text-white md:text-[2rem]">{pkg.title}</h4>
+                          <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
+                            {pkg.description}
+                          </p>
 
-                        <div className="mt-5 space-y-3">
-                          <div className="rounded-[1.1rem] border border-white/10 bg-[#2d463b] px-4 py-3">
-                            <p className="text-[0.68rem] uppercase tracking-[0.18em] text-[#c9a46e]">Weekday</p>
-                            <p className="mt-1 text-base text-white md:text-lg">
-                              {pricing?.weekday ?? "On request"}
-                            </p>
+                          <div className="mt-5 space-y-3">
+                            <div className="rounded-[1.1rem] border border-white/10 bg-[#2d463b] px-4 py-3">
+                              <p className="text-[0.68rem] uppercase tracking-[0.18em] text-[#c9a46e]">Plan Amount</p>
+                              <p className="mt-1 text-base text-white md:text-lg">
+                                {formatCurrency(pkg.amount)}
+                              </p>
+                            </div>
+                            <div className="rounded-[1.1rem] border border-white/10 bg-[#2d463b] px-4 py-3">
+                              <p className="text-[0.68rem] uppercase tracking-[0.18em] text-[#c9a46e]">Occupancy</p>
+                              <p className="mt-1 text-base text-white md:text-lg">
+                                {pkg.minimumOccupancy}-{pkg.maximumOccupancy} guests
+                              </p>
+                            </div>
                           </div>
-                          <div className="rounded-[1.1rem] border border-white/10 bg-[#2d463b] px-4 py-3">
-                            <p className="text-[0.68rem] uppercase tracking-[0.18em] text-[#c9a46e]">Weekend</p>
-                            <p className="mt-1 text-base text-white md:text-lg">
-                              {pricing?.weekend ?? "On request"}
-                            </p>
-                          </div>
-                        </div>
 
-                        <p className="mt-4 text-sm leading-relaxed text-white/78">
-                          {pricing?.highlight ?? pkg.subtitle}
-                        </p>
+                          <p className="mt-4 text-sm leading-relaxed text-white/78">
+                            {pkg.subtitle}
+                          </p>
 
                         <button
                           type="button"
                           onClick={() => setPackageValue(pkg.title)}
                           className="mt-5 rounded-full border border-[#c9a46e]/40 bg-[#2e453a] px-5 py-2 text-xs uppercase tracking-[0.18em] text-[#f6e2c0]"
                         >
-                          Select Package
+                          Select Plan
                         </button>
                       </div>
                     </article>
@@ -590,28 +839,11 @@ function BookingPageContent() {
               </div>
               {filteredPackages.length === 0 ? (
                 <div className="mt-6 rounded-[1.5rem] border border-dashed border-white/15 bg-[#182920] px-5 py-6 text-sm text-white/70">
-                  No package options matched your filter.
+                  No room plans matched your filter.
                 </div>
               ) : null}
             </div>
 
-            <div className="rounded-[1.5rem] border border-[#c9a46e]/20 bg-[#1f342b] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.16)] md:p-6">
-              <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Booking Terms</p>
-              <div className="mt-4 grid gap-3 md:grid-cols-2">
-                <div className="rounded-[1.1rem] border border-white/10 bg-[#21382e] px-4 py-3 text-sm leading-relaxed text-white/82 md:text-base">
-                  50% advance is required to block dates, with the remaining 50% due before check-in.
-                </div>
-                <div className="rounded-[1.1rem] border border-white/10 bg-[#21382e] px-4 py-3 text-sm leading-relaxed text-white/82 md:text-base">
-                  Final billing is based on confirmed headcount and outside catering is not allowed in package bookings.
-                </div>
-                <div className="rounded-[1.1rem] border border-white/10 bg-[#21382e] px-4 py-3 text-sm leading-relaxed text-white/82 md:text-base">
-                  Check-in is 2:00 PM and check-out is 11:00 AM for smooth multi-day event planning.
-                </div>
-                <div className="rounded-[1.1rem] border border-white/10 bg-[#21382e] px-4 py-3 text-sm leading-relaxed text-white/82 md:text-base">
-                  Decorators and vendors require prior approval, and staying guests must carry valid government ID.
-                </div>
-              </div>
-            </div>
           </div>
           {/* ── END RIGHT COLUMN ─────────────────────────────────────────── */}
 
@@ -630,11 +862,11 @@ function BookingPageFallback() {
       <SiteHeader />
       <section className="mx-auto max-w-[96rem] px-6 pb-12 pt-44 md:px-12 md:pt-48">
         <div className="max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">Wedding Inquiry</p>
-          <h1 className="mt-5 text-4xl md:text-6xl">Plan Your Celebration Stay</h1>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">Stay Enquiry</p>
+          <h1 className="mt-5 text-4xl md:text-6xl">Plan Your Hotel Stay</h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/85 md:text-xl">
-            Share your dates, guest count, stay preferences, and package direction. The Mountain team will confirm
-            availability and guide the next step toward your wedding quotation.
+            Share your dates, guest count, stay preferences, and room direction. The hotel team will confirm
+            availability and guide the next step toward your booking.
           </p>
         </div>
       </section>

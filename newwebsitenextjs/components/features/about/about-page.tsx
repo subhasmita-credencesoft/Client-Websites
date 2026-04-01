@@ -18,7 +18,7 @@ export function AboutPage() {
         <div className="absolute inset-0" data-bg-parallax data-bg-depth="9">
           <Image
             src={content.hero.image}
-            alt="The Mountain, Karjat overview"
+            alt={content.hero.eyebrow}
             fill
             className="object-cover object-center"
             priority
@@ -40,9 +40,9 @@ export function AboutPage() {
               {content.hero.description}
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4" data-reveal-child>
-              <MagneticButton href="/booking">Plan Your Celebration</MagneticButton>
+              <MagneticButton href="/booking">Plan Your Stay</MagneticButton>
               <MagneticButton href="/contact" className="bg-transparent">
-                Request A Wedding Quote
+                Request Booking Support
               </MagneticButton>
             </div>
             <p className="mt-14 text-sm uppercase tracking-[0.2em] text-white/85" data-reveal-child>Scroll To Discover</p>
@@ -66,7 +66,7 @@ export function AboutPage() {
           <div className="relative h-[22rem] overflow-hidden rounded-[2rem] md:h-[34rem]" data-reveal>
             <Image
               src={content.story.image}
-              alt="The Mountain destination landscape"
+              alt={content.story.eyebrow}
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 40rem"
@@ -143,7 +143,7 @@ export function AboutPage() {
             <div className="relative h-[24rem] overflow-hidden rounded-[1.7rem] md:h-[36rem]">
               <Image
                 src={content.founder.image}
-                alt="The Mountain hospitality vision"
+                alt={content.founder.eyebrow}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40rem"
@@ -207,7 +207,7 @@ export function AboutPage() {
             <div className="relative h-[24rem] overflow-hidden rounded-[1.6rem] md:h-[36rem]">
               <Image
                 src={content.hosting.image}
-                alt="Event hosting at The Mountain, Karjat"
+                alt={content.hosting.eyebrow}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40rem"
@@ -223,7 +223,7 @@ export function AboutPage() {
             <div className="relative h-[24rem] overflow-hidden rounded-[1.6rem] md:h-[35rem]">
               <Image
                 src={content.impact.image}
-                alt="Responsible hospitality at The Mountain"
+                alt={content.impact.eyebrow}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40rem"
@@ -259,12 +259,12 @@ export function AboutPage() {
             {content.cta.description}
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-4" data-reveal-child>
-            <MagneticButton href="/offers">Explore Wedding Packages</MagneticButton>
+            <MagneticButton href="/offers">Explore Room Options</MagneticButton>
             <Link
               href="/booking"
               className="inline-flex items-center justify-center rounded-full border border-[#d5b07a]/35 px-7 py-3 text-xs uppercase tracking-[0.24em] text-[#fff6ea] transition-colors hover:bg-white/5"
             >
-              Check Venue Availability
+              Check Room Availability
             </Link>
           </div>
         </div>

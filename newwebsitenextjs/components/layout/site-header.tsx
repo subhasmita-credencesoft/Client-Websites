@@ -13,9 +13,9 @@ import { homeSectionContent } from "@/lib/data/content/resort-content";
 
 const leftMainLinks = mainLinks.slice(0, 3);
 const rightMainLinks = mainLinks.slice(3);
-const contactPhone = "+91 9833866655";
-const contactPhoneHref = "tel:+919833866655";
-const whatsappHref = "https://wa.me/919833866655";
+const contactPhone = "+91 9930022229";
+const contactPhoneHref = "tel:+919930022229";
+const whatsappHref = "https://wa.me/919930022229";
 const topLinkHrefs: Record<string, string> = {
   "ABOUT US": "/about",
   GALLERY: "/gallery",

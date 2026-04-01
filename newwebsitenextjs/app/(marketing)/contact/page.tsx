@@ -20,7 +20,7 @@ export default function ContactPage() {
         <div className="relative z-10 mx-auto flex min-h-[110svh] max-w-[96rem] items-start px-6 pb-8 pt-28 md:px-12 md:pb-12 md:pt-36">
           <div className="max-w-5xl" data-panel-content>
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#c9a46e]" data-panel-line>
-              Direct Venue Contact
+              Direct Hotel Contact
             </p>
             <h1 data-section-title data-panel-line className="max-w-5xl text-4xl md:text-6xl">
               {page.hero.title}
@@ -137,7 +137,7 @@ export default function ContactPage() {
             <div className="text-center" data-reveal>
               <p className="text-xs uppercase tracking-[0.26em] text-[#b88947]">Location</p>
               <h3 className="mt-4 text-4xl md:text-5xl" data-section-title>
-                Find The Mountain, Karjat
+                Find {page.locationDetails.venue}
               </h3>
               <div className="mx-auto mt-4 h-[2px] w-16 bg-[#b88947]" />
             </div>
@@ -164,7 +164,7 @@ export default function ContactPage() {
                 <div className="relative h-[24rem] md:h-[28rem]">
                   <iframe
                     src={page.locationDetails.embedSrc ?? page.locationDetails.mapHref}
-                    title="The Mountain, Karjat map"
+                    title={`${page.locationDetails.venue} map`}
                     className="h-full w-full border-0"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"

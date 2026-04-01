@@ -31,8 +31,8 @@ export function AboutIntroSection() {
             <div className="border-[4px] border-[#d9bf8e] bg-white p-4">
               <div className="relative h-[22rem] overflow-hidden">
                 <Image
-                  src="/images/DSC08846.avif"
-                  alt="The Mountain quotation detail"
+                  src="https://bookonelocal.in/cdn/2025-06-24-095348564-6.jpg"
+                  alt="Hotel Redwings Castle exterior"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 22rem"
