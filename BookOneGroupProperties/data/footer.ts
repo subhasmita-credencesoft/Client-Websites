@@ -25,7 +25,7 @@ export const footerData = {
     siteContact.address,
   ],
   legal: {
-    copyright: "Copyright © 2026 credencesoft. All rights reserved.",
+    copyright: "Designed and Developed by CredenceSoft and Powered By BookOne",
     locale: "US English",
   },
 };

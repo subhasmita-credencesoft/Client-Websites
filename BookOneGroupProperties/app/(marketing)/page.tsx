@@ -33,7 +33,10 @@ export default async function Page() {
   return (
     <>
       <JsonLd data={schema} />
-      <HomePage locationHighlightsData={locationHighlightsData} featuredPropertiesData={featuredPropertiesData} />
+      <HomePage
+        locationHighlightsData={locationHighlightsData}
+        featuredPropertiesData={featuredPropertiesData}
+      />
     </>
   );
 }

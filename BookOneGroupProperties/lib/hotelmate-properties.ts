@@ -216,10 +216,26 @@ export async function getFeaturedPropertiesData(): Promise<FeaturedCard[]> {
 
 export async function getPropertyGalleryImages() {
   const locationHighlightsData = await getLocationHighlightsData();
+  const propertyCards = Object.values(locationHighlightsData.propertiesByLocation).flat();
+  const imageGroups = await Promise.all(
+    propertyCards.map(async (property) => {
+      const slug = getSlugFromLink(property.link);
 
-  return Object.values(locationHighlightsData.propertiesByLocation)
+      if (!slug || !propertySourceBySlug[slug]) {
+        return property.image ? [property.image] : [];
+      }
+
+      try {
+        const dynamicProperty = await getDynamicPropertyBySlug(slug);
+        return dynamicProperty?.images?.length ? dynamicProperty.images : property.image ? [property.image] : [];
+      } catch {
+        return property.image ? [property.image] : [];
+      }
+    }),
+  );
+
+  return imageGroups
     .flat()
-    .map((property) => property.image)
     .filter((image, index, images) => Boolean(image) && images.indexOf(image) === index);
 }
 

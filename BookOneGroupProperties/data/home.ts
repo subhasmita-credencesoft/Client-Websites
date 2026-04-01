@@ -21,7 +21,7 @@ export const homePageData = {
     title: "Explore by Location",
     description: "Discover curated stays in our most popular destinations.",
     locations: [
-      { id: "near-pune", name: "Near Pune", count: "7 Properties" },
+      { id: "near-pune", name: "Near Pune", count: "6 Properties" },
       { id: "lonavala", name: "Lonavala", count: "8 Properties" },
       { id: "mahabaleshwar", name: "Mahabaleshwar", count: "15 Properties" },
     ],
@@ -29,7 +29,7 @@ export const homePageData = {
       "near-pune": [
         {
           id: "a1",
-          title: "Vedanta Resort",
+          title: "a Resort",
           image: siteImages.hero,
           location: "Kelawade Village, Bhor, Pune, Maharashtra 412213, India",
           price: 3000,
@@ -70,17 +70,6 @@ export const homePageData = {
           type: "Farmhouse",
           features: "Entire Property, Private Pool, Rain Dance, Nature Stay",
           link: "/property/mayurwan-farmhouse",
-        },
-        {
-          id: "a6",
-          title: "Pipul Bandhan Inn Hotel",
-          image: siteImages.luxuryVillaSunset,
-          location: "702 Ice Factory Lane, Cuttack Rd, Bhubaneswar, Odisha 751006, India",
-          price: 500,
-          rating: "-",
-          type: "Hotel",
-          features: "Deluxe AC Room, WiFi, Budget Stay",
-          link: "/property/pipul-bandhan-inn-hotel",
         },
         {
           id: "a8",
@@ -204,12 +193,12 @@ export const homePageData = {
     title: "Views",
     subtitle: "Where Every Moment Feels Like a Vacation.",
     images: [
-      siteImages.modernTropicalVilla,
-      siteImages.mountainChalet,
-      siteImages.santoriniVilla,
-      siteImages.luxuryVillaSunset,
-      siteImages.modernHotelRestaurant,
-      siteImages.hero,
+      "https://bookonelocal.in/cdn/2024-01-08-065412233-401645166_122147993198006333_123707134858111653_n.jpg",
+      "https://bookonelocal.in/cdn/2024-03-01-051349130-426935121_122169034250006333_9039345014199561333_n.jpg",
+      "https://bookonelocal.in/cdn/2024-03-01-051445031-427971542_122169034100006333_1658124531121856720_n.jpg",
+      "https://bookonelocal.in/cdn/2024-03-01-051400025-20240204_112740.jpg",
+      "https://bookonelocal.in/cdn/2024-01-08-071004612-399661072_122147993342006333_532831277423942348_n.jpg",
+      "https://bookonelocal.in/cdn/2024-03-01-051409235-20240204_162513.jpg",
     ],
   },
 };
