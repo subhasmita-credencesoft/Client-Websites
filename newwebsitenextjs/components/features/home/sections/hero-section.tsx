@@ -115,30 +115,32 @@ export function HeroSection() {
           {homeSectionContent.hero.subtitle}
         </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.85 }}
-          className="max-w-3xl text-balance text-[0.82rem] leading-relaxed text-white/78 md:text-base"
-        >
-          {homeSectionContent.hero.description}
-        </motion.p>
+        {homeSectionContent.hero.description ? (
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.85 }}
+            className="max-w-3xl text-balance text-[0.82rem] leading-relaxed text-white/78 md:text-base"
+          >
+            {homeSectionContent.hero.description}
+          </motion.p>
+        ) : null}
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3, duration: 0.85 }}
-          className="mt-1 flex flex-wrap items-center gap-4"
+          className="mt-1 flex flex-wrap items-center gap-3"
         >
           <Link
-            href="/booking"
+            href="/booking?eventType=Destination%20Wedding"
             className="border border-[#c9a467] bg-[#c9a467] px-6 py-3 text-[0.72rem] font-semibold tracking-[0.18em] text-black transition-colors hover:bg-[#d7b57c]"
             data-cursor="hover"
           >
             {homeSectionContent.hero.primaryCta}
           </Link>
           <Link
-            href="/offers"
+            href="/booking?eventType=Luxury%20Stay"
             className="border border-white/35 px-6 py-3 text-[0.72rem] font-semibold tracking-[0.18em] text-white transition-colors hover:border-[#c9a467] hover:text-[#c9a467]"
             data-cursor="hover"
           >

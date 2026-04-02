@@ -8,9 +8,9 @@ export const galleryPageData = {
   },
   intro: {
     breadcrumb: "Gallery",
-    title: "A visual story of celebrations, hospitality, and destination wedding atmosphere",
+    title: "A visual story of celebrations, hospitality, and destination atmosphere",
     description:
-      "Explore the property through wedding-ready lawns, celebration settings, stay experiences, scenic backdrops, and private estate spaces designed for multi-function family weddings.",
+      "Explore the property through wedding-ready lawns, celebration settings, stay experiences, scenic backdrops, and private estate spaces designed for multi-function family weddings and hosted stays.",
   },
   tabs: [
     "All Images",

@@ -42,8 +42,8 @@ export function SiteFooter() {
         ))}
       </div>
       <div className="mx-auto mt-10 max-w-[92rem] border-t border-white/10 pt-6 text-center text-sm tracking-[0.08em] text-white/70 md:text-base">
-        <p>&copy; 2026 mountain resort</p>
-        <p className="mt-2">Designed and Developed by CredenceSoft and Powered By BookOne</p>
+        <p>&copy; 2026 The Mountain, Karjat. All rights reserved.</p>
+        <p className="mt-2">Luxury destination weddings, private celebrations, and premium stays in Karjat.</p>
       </div>
     </footer>
   );

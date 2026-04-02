@@ -25,7 +25,7 @@ export function ReservationSection() {
               {content.description}
             </p>
           </div>
-          <MagneticButton href="#home" className="w-fit whitespace-nowrap">
+          <MagneticButton href="/booking" className="w-fit whitespace-nowrap">
             {content.cta}
           </MagneticButton>
         </div>

@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Suspense, useMemo, useState, useSyncExternalStore } from "react";
+import { type FormEvent, Suspense, useMemo, useState, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { stayCardsPrimary, stayCardsSecondary } from "@/lib/data/content/mountain-content";
@@ -10,23 +11,23 @@ import { stayCardsPrimary, stayCardsSecondary } from "@/lib/data/content/mountai
 const packageCatalog = [
   {
     title: "Classic Package",
-    subtitle: "A clear bundled starting point for elegant destination celebrations.",
+    subtitle: "A balanced bundled format for beautifully hosted wedding stays.",
     description:
-      "Perfect for families who want stay, meals, and venue access bundled into one easier wedding-planning format.",
+      "Designed for families who want stay, meals, and venue access combined into one clear planning direction.",
     image: "/images/DSC08836.avif",
   },
   {
     title: "Signature Package",
-    subtitle: "A richer hospitality format for fuller family hosting.",
+    subtitle: "A richer hospitality format for more generous hosting.",
     description:
-      "Adds extra starters and more variety across key meals for wedding functions that need a more generous spread.",
+      "Adds extra starters and more dining depth for wedding functions that call for a fuller guest experience.",
     image: "/images/DSC08849.avif",
   },
   {
     title: "Premium Luxe Package",
-    subtitle: "An elevated package for celebrations that call for added dining theatre.",
+    subtitle: "An elevated package for premium destination celebrations.",
     description:
-      "Built for premium destination wedding weekends with stronger presentation, fuller hospitality, and live counters.",
+      "Built for wedding weekends that deserve stronger presentation, richer hospitality, and live dining counters.",
     image: "/images/DSC08831.avif",
   },
 ] as const;
@@ -49,8 +50,9 @@ const packagePricing: Record<string, { weekday: string; weekend: string; highlig
   },
 };
 
-function getTodayDateString() {
+function getTodayDateString(offsetDays = 0) {
   const now = new Date();
+  now.setDate(now.getDate() + offsetDays);
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(now.getDate()).padStart(2, "0");
@@ -68,15 +70,21 @@ function BookingPageContent() {
   const selectedRoomFromQuery = searchParams.get("room") ?? "";
   const selectedPackageFromQuery = searchParams.get("package") ?? "";
   const selectedOffer = searchParams.get("offer") ?? "";
+  const selectedEventTypeFromQuery = searchParams.get("eventType") ?? "Destination Wedding";
+  const selectedCheckInFromQuery = searchParams.get("checkIn") ?? getTodayDateString();
+  const selectedCheckOutFromQuery = searchParams.get("checkOut") ?? getTodayDateString(1);
+  const selectedGuestsFromQuery = Number(searchParams.get("guests") ?? "2");
   const initialRoomValue = roomCatalog.some((room) => room.title === selectedRoomFromQuery) ? selectedRoomFromQuery : "";
   const initialPackageValue = packageCatalog.some((pkg) => pkg.title === selectedPackageFromQuery)
     ? selectedPackageFromQuery
     : "";
   const todayDate = getTodayDateString();
+  const tomorrowDate = getTodayDateString(1);
 
-  const [checkIn, setCheckIn] = useState(todayDate);
-  const [checkOut, setCheckOut] = useState(todayDate);
-  const [guestCount, setGuestCount] = useState(0);
+  const [checkIn, setCheckIn] = useState(selectedCheckInFromQuery || todayDate);
+  const [checkOut, setCheckOut] = useState(selectedCheckOutFromQuery || tomorrowDate);
+  const [guestCount, setGuestCount] = useState(Number.isFinite(selectedGuestsFromQuery) && selectedGuestsFromQuery > 0 ? selectedGuestsFromQuery : 2);
+  const [eventType, setEventType] = useState(selectedEventTypeFromQuery);
   const [roomValue, setRoomValue] = useState(initialRoomValue);
   const [packageValue, setPackageValue] = useState(initialPackageValue);
   const [roomFilterQuery, setRoomFilterQuery] = useState("");
@@ -108,11 +116,48 @@ function BookingPageContent() {
       `${pkg.title} ${pkg.subtitle} ${pkg.description}`.toLowerCase().includes(query),
     );
   }, [packageFilterQuery]);
+  const isFormComplete = Boolean(checkIn && checkOut && guestCount > 0 && roomValue && packageValue);
+  const enquiryWhatsAppHref = useMemo(() => {
+    const message = [
+      "Hello The Mountain, Karjat team,",
+      "",
+      "I would like to check availability.",
+      `Event Type: ${eventType}`,
+      `Check-In: ${checkIn || "Not selected"}`,
+      `Check-Out: ${checkOut || "Not selected"}`,
+      `Guests: ${guestCount || 0}`,
+      `Room Type: ${roomValue || "Not selected"}`,
+      `Package: ${packageValue || "Not selected"}`,
+      `Selected Offer: ${selectedOffer || "Standard enquiry"}`,
+    ].join("\n");
+
+    return `https://wa.me/919833866655?text=${encodeURIComponent(message)}`;
+  }, [checkIn, checkOut, eventType, guestCount, packageValue, roomValue, selectedOffer]);
+  const enquiryContactHref = useMemo(() => {
+    const params = new URLSearchParams({
+      eventType,
+      checkIn,
+      checkOut,
+      guests: String(guestCount),
+      room: roomValue,
+      package: packageValue,
+      offer: selectedOffer || "Standard enquiry",
+    });
+
+    return `/contact?${params.toString()}`;
+  }, [checkIn, checkOut, eventType, guestCount, packageValue, roomValue, selectedOffer]);
   const decrementGuestCount = () => {
-    setGuestCount((current) => Math.max(0, current - 1));
+    setGuestCount((current) => Math.max(1, current - 1));
   };
   const incrementGuestCount = () => {
     setGuestCount((current) => current + 1);
+  };
+  const handleAvailabilitySubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!isFormComplete) return;
+
+    window.open(enquiryWhatsAppHref, "_blank", "noopener,noreferrer");
   };
 
   if (!isMounted) {
@@ -120,7 +165,7 @@ function BookingPageContent() {
   }
 
   return (
-    <main className="relative bg-[#2d4a3e] text-white">
+    <main className="relative bg-[#11100e] text-white">
       <div
         className="pointer-events-none absolute inset-0 overflow-hidden"
         aria-hidden="true"
@@ -147,21 +192,17 @@ function BookingPageContent() {
 
         <div className="relative z-10 mx-auto flex min-h-[72svh] max-w-[96rem] items-end px-6 pb-12 md:px-12 md:pb-16">
           <div className="max-w-4xl" data-reveal>
-            <p
-              className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d6b07a]"
-              data-reveal-child
-            >
-              Celebration Booking
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d6b07a]" data-reveal-child>
+              Availability Planning
             </p>
             <h1
               className="mt-4 text-balance text-[clamp(40px,5vw,74px)] leading-[0.96] text-[#f6ead8]"
               data-section-title
             >
-              {activeRoomCard?.title ?? "Plan Your Celebration Stay"}
+              Check Availability For Your Dates
             </h1>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/88 md:text-xl" data-reveal-child>
-              {activeRoomCard?.description ??
-                "Share your preferred dates, guest count, stay plan, and package preference. The Mountain team will guide availability, hosting fit, and quotation details for your wedding or event."}
+              Plan your destination wedding, guest stay, or celebration weekend with dates, room choice, and package preference in one premium booking flow.
             </p>
           </div>
         </div>
@@ -169,19 +210,37 @@ function BookingPageContent() {
       <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-12 md:py-14">
         <div className="grid gap-8 xl:grid-cols-[minmax(22rem,0.76fr)_minmax(0,1.24fr)] xl:items-start">
           <div className="xl:sticky xl:top-28 xl:self-start">
-            <form className="glass-panel rounded-[1.75rem] border border-[#c9a46e]/20 p-5 shadow-[0_18px_36px_rgba(8,16,11,0.14)] md:p-6">
+            <form
+              className="rounded-[1.75rem] border border-[#c9a46e]/20 bg-[#182920] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.22)] md:p-6"
+              onSubmit={handleAvailabilitySubmit}
+            >
               <div className="mb-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#c9a46e]">
-                  Wedding Quote Planner
+                  Availability Planner
                 </p>
-                <h2 className="mt-2 text-[1.8rem] text-[#f4eee2] md:text-[2rem]">Plan your celebration stay</h2>
+                <h2 className="mt-2 text-[1.8rem] text-[#f4eee2] md:text-[2rem]">Plan your wedding or stay</h2>
                 <p className="mt-2 text-sm leading-relaxed text-white/72">
-                  Choose your dates, guest count, stay option, and wedding package. This panel stays visible while you
-                  scroll so families can compare guest stays and bundled celebration value in one place.
+                  Choose dates, guests, stay option, and package tier. This planner keeps the booking journey clear while you compare rooms and celebration value.
                 </p>
               </div>
 
-              <div className="grid gap-3.5 md:grid-cols-2">
+                <div className="grid gap-3.5 md:grid-cols-2">
+                <label className="grid gap-2 md:col-span-2">
+                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
+                    Event type
+                  </span>
+                  <select
+                    value={eventType}
+                    onChange={(e) => setEventType(e.target.value)}
+                    className="rounded-[1.05rem] border border-white/10 bg-black/20 px-4 py-3 text-[0.95rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50"
+                  >
+                    {["Destination Wedding", "Wedding Guest Stay", "Luxury Stay", "Private Event"].map((option) => (
+                      <option key={option} value={option} className="text-black">
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </label>
                 <label className="grid gap-2">
                   <span className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
                     Preferred check-in
@@ -215,7 +274,7 @@ function BookingPageContent() {
                       type="button"
                       onClick={decrementGuestCount}
                       className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-lg text-white transition-colors hover:border-[#c9a46e]/40 hover:text-[#f6ead8] disabled:cursor-not-allowed disabled:opacity-40"
-                      disabled={guestCount === 0}
+                      disabled={guestCount <= 1}
                       aria-label="Decrease guest count"
                     >
                       -
@@ -278,10 +337,17 @@ function BookingPageContent() {
 
               <button
                 type="submit"
-                className="mt-6 inline-flex w-full items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
+                disabled={!isFormComplete}
+                className="mt-6 inline-flex w-full items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Book Now
+                Check Availability On WhatsApp
               </button>
+              <Link
+                href={enquiryContactHref}
+                className="mt-3 inline-flex w-full items-center justify-center rounded-[1rem] border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
+              >
+                Send Detailed Enquiry
+              </Link>
             </form>
           </div>
 
@@ -289,7 +355,7 @@ function BookingPageContent() {
           <div className="space-y-8">
 
             {/* Inquiry Snapshot */}
-            <div className="rounded-[1.5rem] border border-[#c9a46e]/20 bg-[#1f342b] p-4 shadow-[0_18px_36px_rgba(8,16,11,0.16)] md:p-5">
+            <div className="rounded-[1.5rem] border border-[#c9a46e]/20 bg-[#182920] p-4 shadow-[0_18px_36px_rgba(8,16,11,0.2)] md:p-5">
               <div className="grid gap-4 xl:grid-cols-[18rem_minmax(0,1fr)] xl:items-start">
                 <div className="relative overflow-hidden rounded-[1.15rem] border border-white/10 bg-[#182920] xl:sticky xl:top-28">
                   <div className="relative aspect-[4/3] min-h-[14rem] w-full md:min-h-[15rem]">
@@ -305,7 +371,7 @@ function BookingPageContent() {
 
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
-                    Wedding Inquiry Snapshot
+                    Booking Snapshot
                   </p>
                   <h2 className="mt-2 text-[1.55rem] leading-tight text-[#f6ead8] md:text-[1.75rem]">
                     {activeRoomCard?.title ?? "Choose a stay option to view planning details"}
@@ -327,6 +393,12 @@ function BookingPageContent() {
                         <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Per Person Package</p>
                         <p className="mt-1 text-[1rem] leading-snug text-white md:text-[1.1rem]">
                           {activeRoomCard?.packagePrice ?? "Select package"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Event Type</p>
+                        <p className="mt-1 text-[1rem] leading-snug text-white md:text-[1.1rem]">
+                          {eventType}
                         </p>
                       </div>
                       <div>
@@ -363,10 +435,6 @@ function BookingPageContent() {
                       </div>
                       <div>
                         <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Selected Package</p>
-                        <p className="mt-1 text-sm text-white/86">{(activePackageCard?.title ?? packageValue) || "Not selected yet"}</p>
-                      </div>
-                      <div className="md:col-span-2">
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Selected Offer</p>
                         <p className="mt-1 text-sm text-white/86">{selectedOffer || "Standard wedding enquiry"}</p>
                       </div>
                     </div>
@@ -376,19 +444,19 @@ function BookingPageContent() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-3">
-              <article className="rounded-[1.4rem] border border-[#c9a46e]/20 bg-[#1f342b] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.14)]">
+              <article className="rounded-[1.4rem] border border-[#c9a46e]/20 bg-[#182920] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
                 <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">How Quotation Works</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
                   Final pricing is shaped by package tier, guest count, dates, weekday or weekend selection, and total stay required.
                 </p>
               </article>
-              <article className="rounded-[1.4rem] border border-[#c9a46e]/20 bg-[#1f342b] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.14)]">
+              <article className="rounded-[1.4rem] border border-[#c9a46e]/20 bg-[#182920] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
                 <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Package Basis</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
                   Packages are calculated per person per day and include stay, meals, services, lawn access, and venue usage.
                 </p>
               </article>
-              <article className="rounded-[1.4rem] border border-[#c9a46e]/20 bg-[#1f342b] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.14)]">
+              <article className="rounded-[1.4rem] border border-[#c9a46e]/20 bg-[#182920] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
                 <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Guest Overflow Note</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
                   If guest count exceeds 140 people, a nearby 10 BHK property is available at additional cost for overflow stay planning.
@@ -396,7 +464,7 @@ function BookingPageContent() {
               </article>
             </div>
 
-            <div className="rounded-[1.5rem] border border-[#c9a46e]/20 bg-[#182920] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.14)] md:p-6">
+            <div className="rounded-[1.5rem] border border-[#c9a46e]/20 bg-[#182920] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.2)] md:p-6">
               <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
                 <div>
                   <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Planning Overview</p>
@@ -404,7 +472,7 @@ function BookingPageContent() {
                     Stay, meals, venue access, and package value reviewed together
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/80 md:text-base">
-                    This page helps families compare guest stay options and wedding package levels in one place, making it easier to move from interest to booking with more confidence.
+                    This page helps families compare guest stay options and package depth in one place, making it easier to move from interest to confirmed enquiry with more confidence.
                   </p>
                 </div>
                 <div className="grid gap-3">
@@ -595,7 +663,7 @@ function BookingPageContent() {
               ) : null}
             </div>
 
-            <div className="rounded-[1.5rem] border border-[#c9a46e]/20 bg-[#1f342b] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.16)] md:p-6">
+            <div className="rounded-[1.5rem] border border-[#c9a46e]/20 bg-[#182920] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.2)] md:p-6">
               <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Booking Terms</p>
               <div className="mt-4 grid gap-3 md:grid-cols-2">
                 <div className="rounded-[1.1rem] border border-white/10 bg-[#21382e] px-4 py-3 text-sm leading-relaxed text-white/82 md:text-base">
@@ -630,11 +698,11 @@ function BookingPageFallback() {
       <SiteHeader />
       <section className="mx-auto max-w-[96rem] px-6 pb-12 pt-44 md:px-12 md:pt-48">
         <div className="max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">Wedding Inquiry</p>
-          <h1 className="mt-5 text-4xl md:text-6xl">Plan Your Celebration Stay</h1>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">Booking Enquiry</p>
+          <h1 className="mt-5 text-4xl md:text-6xl">Plan Your Stay Or Celebration</h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/85 md:text-xl">
             Share your dates, guest count, stay preferences, and package direction. The Mountain team will confirm
-            availability and guide the next step toward your wedding quotation.
+            availability and guide the next step toward your booking quotation.
           </p>
         </div>
       </section>

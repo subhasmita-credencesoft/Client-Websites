@@ -72,44 +72,44 @@ export type MountainInfoPageData = {
 export const quotationPageData: MountainInfoPageData = {
   slug: "quotation",
   hero: {
-    title: "Quotation & Final Estimate",
-    subtitle: "Your final quotation is shaped by package choice, dates, guest count, stay duration, and whether the celebration falls on weekday or weekend dates.",
+    title: "Wedding Proposal & Availability",
+    subtitle: "A refined quotation begins with the right dates, guest count, stay plan, and package direction.",
     image: "/images/DSC08836.avif",
   },
   intro: {
-    eyebrow: "Quotation Summary",
-    title: "Plan your wedding quotation with clear package, guest, and stay details before you confirm your dates",
+    eyebrow: "Proposal Planning",
+    title: "Share the essentials clearly and we can shape a more accurate wedding proposal from the very first conversation",
     body:
-      "The final quotation at The Mountain, Karjat is prepared around your event type, selected package, booking dates, total guests, weekday or weekend selection, and the total stay required for the celebration weekend.",
+      "At The Mountain, Karjat, every proposal is shaped around how your celebration will actually unfold, from preferred dates and stay duration to guest count, package tier, and whether you are planning a weekday or weekend wedding.",
   },
   cards: [
     {
-      label: "QUOTATION",
+        label: "PROPOSAL",
       title: "Selected Package & Event Type",
-      description: "Your event type and selected package tier help define the overall structure of the quotation, whether you are planning an intimate ceremony, a multi-function wedding, or a celebration weekend.",
+      description: "Your event format and selected package tier help define the structure of the proposal, whether you are planning an intimate gathering, a destination wedding weekend, or a larger multi-function celebration.",
       image: "/images/DSC08849.avif",
     },
     {
-      label: "QUOTATION",
+        label: "PROPOSAL",
       title: "Dates, Guests & Stay",
-      description: "Dates, total guests, weekday or weekend booking, and the total stay required all directly influence the final quotation estimate and the best package direction for your family.",
+      description: "Preferred dates, guest count, weekday or weekend selection, and the stay requirement directly influence both availability and the most suitable package direction for your family.",
       image: "/images/DSC08831.avif",
     },
     {
-      label: "QUOTATION",
+        label: "PROPOSAL",
       title: "Billing Basis",
-      description: "Packages are calculated per person per day, inclusive of stay, meals, services, lawn access, and venue usage, with final billing based on the confirmed headcount before check-in.",
+      description: "Packages are calculated per person per day and include stay, meals, services, lawn access, and venue usage, with final billing aligned to the confirmed headcount before check-in.",
       image: "/images/DSC08837.avif",
     },
     {
-      label: "QUOTATION",
+        label: "PROPOSAL",
       title: "Advance & Date Blocking",
-      description: "50% advance is required to block dates. The remaining 50% is due before check-in, with headcount confirmation and quotation alignment completed before the event.",
+      description: "A 50% advance secures your dates. The remaining balance is completed before check-in after headcount confirmation and final proposal alignment.",
       image: "/images/DSC08846.avif",
     },
   ],
   highlights: {
-    title: "Quotation Includes",
+    title: "What shapes your proposal",
     items: [
       "Event type and celebration format",
       "Venue and package selection",
@@ -156,11 +156,11 @@ export const quotationPageData: MountainInfoPageData = {
     ],
   },
   summary: {
-    title: "Need a clearer custom estimate for your celebration?",
-    body: "Share your dates, guest count, package preference, and stay requirement with The Mountain team to receive the right quotation direction for your wedding or event.",
+    title: "Ready for a more accurate wedding proposal?",
+    body: "Share your dates, guest count, package preference, and stay requirement so our team can guide availability and shape the right proposal for your celebration.",
   },
   contact: {
-    title: "Quotation & Dates Contact",
+    title: "Availability & Dates Contact",
     lines: [
       "+91 9833866655",
       "+91 9892011179",
@@ -180,21 +180,21 @@ export const keyAdvantagesPageData: MountainInfoPageData = {
   },
   intro: {
     eyebrow: "Key Advantages",
-    title: "Everything needed for a private destination wedding under one roof",
+    title: "Everything needed for a private destination wedding and premium hosted stay in one estate",
     body:
-      "The Mountain, Karjat is designed for destination weddings with unlimited music hours, 24×7 pool access, zero sound license requirement, full venue access, private estate privacy, and celebration zones that work beautifully for Haldi, Mehendi, Sangeet, Cocktail Night, Reception, and staycation-style wedding weekends.",
+      "The Mountain, Karjat is designed for destination weddings with unlimited music hours, 24x7 pool access, zero sound license requirement, full venue access, private estate privacy, and celebration zones that work beautifully for Haldi, Mehendi, Sangeet, Cocktail Night, Reception, and staycation-style wedding weekends.",
   },
   cards: [
     {
       label: "ADVANTAGE",
       title: "Unlimited Music Hours",
-      description: "Enjoy music anytime on the lawn with no sound restrictions, giving every wedding function more freedom, energy, and celebration flow.",
+      description: "Enjoy music across the celebration with greater freedom, giving every wedding function more energy and a smoother destination rhythm.",
       image: "/images/DSC08717.avif",
     },
     {
       label: "ADVANTAGE",
       title: "24x7 Pool Access",
-      description: "Take a dip or unwind whenever you like, with round-the-clock pool access adding relaxation and fun to the full wedding stay experience.",
+      description: "Take a dip or unwind whenever you like, with round-the-clock pool access adding relaxation and destination charm to the full stay experience.",
       image: "/images/DSC08720.avif",
     },
     {
@@ -212,7 +212,7 @@ export const keyAdvantagesPageData: MountainInfoPageData = {
     {
       label: "ADVANTAGE",
       title: "Private Estate",
-      description: "Absolute privacy with no outsider interference, making the venue feel secure, exclusive, and more comfortable for all wedding guests.",
+      description: "Private-estate exclusivity keeps the venue feeling secure, exclusive, and more comfortable for couples, families, and wedding guests.",
       image: "/images/DSC08763.avif",
     },
     {
@@ -224,7 +224,7 @@ export const keyAdvantagesPageData: MountainInfoPageData = {
     {
       label: "ADVANTAGE",
       title: "Pool + Rain Dance Zone",
-      description: "Celebrate against a stunning mountain and lake view backdrop with poolside and rain dance moments that feel memorable and photogenic.",
+      description: "Celebrate against a striking mountain backdrop with poolside and rain dance moments that feel memorable, playful, and photogenic.",
       image: "/images/DSC08801.avif",
     },
   ],
@@ -250,32 +250,32 @@ export const keyAdvantagesPageData: MountainInfoPageData = {
 export const rulesPageData: MountainInfoPageData = {
   slug: "rules",
   hero: {
-    title: "Rules & Regulations",
-    subtitle: "Guest ID, vendor approval, property limits, and responsible usage guidelines for event stays.",
+    title: "Booking Terms & Venue Guidelines",
+    subtitle: "Clear, guest-friendly booking terms help celebrations feel smooth, respectful, and well-managed from arrival to departure.",
     image: "/images/DSC08802.avif",
   },
   intro: {
-    eyebrow: "Rules",
-    title: "Important guidelines for stays, vendors, music, and property usage",
+    eyebrow: "Booking Terms",
+    title: "A few essential guidelines help us host your wedding or stay with more comfort, clarity, and care",
     body:
-      "Government ID is mandatory for staying guests, outside catering is not allowed in package bookings, property damage is chargeable, vendors require prior approval, loud music must remain within property limits, smoking is allowed only in designated areas, and lost belongings remain the guest's responsibility.",
+      "To keep the experience comfortable for every family and guest, we ask that staying guests carry valid ID, vendors be approved in advance, and all celebrations follow the property’s simple hosting guidelines.",
   },
   cards: [
     {
       label: "RULES",
       title: "Guest & Vendor Policy",
-      description: "Staying guests require valid ID, outside catering is not allowed in package bookings, and decorators or vendors need prior property approval before execution.",
+      description: "Staying guests are required to present valid ID at check-in, outside catering is not permitted with package bookings, and decorators or other vendors need prior venue approval.",
       image: "/images/DSC08807.avif",
     },
     {
       label: "RULES",
       title: "Property Terms",
-      description: "Property damage is chargeable, loud music must remain within limits, smoking is only in designated areas, and guest belongings remain under guest responsibility.",
+      description: "Property damage is chargeable, music should remain within venue limits, smoking is permitted only in designated areas, and personal belongings remain the responsibility of the guest.",
       image: "/images/DSC08812.avif",
     },
   ],
   highlights: {
-    title: "Rules overview",
+    title: "Important terms at a glance",
     items: [
       "Government ID mandatory for staying guests",
       "Outside catering not allowed in package bookings",
@@ -287,40 +287,40 @@ export const rulesPageData: MountainInfoPageData = {
     ],
   },
   summary: {
-    title: "Respectful celebrations work best",
-    body: "Following the venue rules helps keep the property safe, the event smooth, and the destination wedding experience enjoyable for everyone.",
+    title: "Well-guided celebrations always feel easier",
+    body: "Following the venue terms helps keep the property protected, the event well-managed, and the overall destination experience enjoyable for everyone staying on-site.",
   },
 };
 
 export const checkInPageData: MountainInfoPageData = {
   slug: "check-in",
   hero: {
-    title: "Check-In / Payment Terms",
-    subtitle: "50% advance to block dates with check-in, check-out, and headcount-based billing terms.",
+    title: "Arrival, Stay & Payment Terms",
+    subtitle: "Understand the arrival schedule, payment flow, and booking confirmation process before your celebration begins.",
     image: "/images/DSC08820.avif",
   },
   intro: {
     eyebrow: "Check-In",
-    title: "Booking terms, arrival timing, and payment schedule for confirmed events",
+    title: "Everything your family should know before arrival, from check-in timing to payment completion",
     body:
-      "Check-in time is 2 PM, check-out time is 11 AM, 50% advance is required to block dates, the remaining 50% is due before check-in, final billing depends on headcount, and date changes remain subject to availability.",
+      "Check-in is from 2:00 PM and check-out is at 11:00 AM. Date blocking requires a 50% advance, the remaining balance is completed before check-in, and final billing is aligned to the confirmed headcount.",
   },
   cards: [
     {
       label: "TERMS",
       title: "Check-In Details",
-      description: "Check-in starts at 2 PM and check-out is at 11 AM to support smooth operational planning during multi-day destination events.",
+      description: "Check-in begins at 2:00 PM and check-out is at 11:00 AM, allowing the estate to prepare rooms and event spaces smoothly for multi-day destination stays.",
       image: "/images/DSC08836.avif",
     },
     {
       label: "TERMS",
       title: "Advance & Billing",
-      description: "50% advance blocks the date, remaining payment is due before check-in, final billing depends on headcount, and date changes remain subject to availability.",
+      description: "A 50% advance secures your booking, the remaining balance is due before check-in, final billing is based on confirmed headcount, and date changes remain subject to availability.",
       image: "/images/DSC08849.avif",
     },
   ],
   highlights: {
-    title: "Payment terms overview",
+    title: "Arrival and payment essentials",
     items: [
       "Check-in time: 2 PM",
       "Check-out time: 11 AM",
@@ -331,8 +331,8 @@ export const checkInPageData: MountainInfoPageData = {
     ],
   },
   summary: {
-    title: "Confirm dates with confidence",
-    body: "The Mountain team aligns booking, check-in, payment, and final guest-count planning before arrival so destination events can run smoothly.",
+    title: "Arrive with everything clearly aligned",
+    body: "Our team coordinates booking, arrival timing, payment completion, and final guest-count planning before check-in so your stay begins with clarity and confidence.",
   },
 };
 
@@ -340,14 +340,14 @@ export const contactPageData: MountainInfoPageData = {
   slug: "contact",
   hero: {
     title: "Contact The Mountain, Karjat",
-    subtitle: "Reach our team for wedding packages, quotation details, stay planning, and venue booking support.",
+    subtitle: "Speak directly with our team for wedding dates, room reservations, package guidance, and booking support.",
     image: "/images/DSC08849.avif",
   },
   intro: {
     eyebrow: "Contact",
-    title: "Wedding enquiry, location details, and official contact information",
+    title: "Wedding enquiries, stay planning, and direct booking support in one place",
     body:
-      "Reach The Mountain team for wedding package details, venue booking support, stay planning, and final quotation guidance through the enquiry form and our official contact channels.",
+      "Reach The Mountain team for destination wedding planning, room reservations, package guidance, final proposal support, and direct help with choosing the right dates and stay format.",
   },
   cards: [
     {
@@ -390,16 +390,16 @@ export const contactPageData: MountainInfoPageData = {
   extraSections: [
     {
       title: "Venue location",
-      body: "The Mountain, Karjat is a destination wedding and event venue designed for celebrations, guest stays, scenic photography, and private function planning in a scenic Karjat setting.",
+      body: "The Mountain, Karjat is a private destination venue for weddings, guest stays, scenic celebrations, and multi-day hosted events in a beautifully connected Karjat setting.",
     },
     {
       title: "Best way to reach out",
-      body: "For the fastest response, submit the enquiry form with your dates and guest count, then use the contact numbers for immediate follow-up on pricing, availability, and booking discussions.",
+      body: "For the fastest response, share your preferred dates, guest count, and celebration type through the enquiry form, then use the contact numbers for immediate follow-up on availability and booking guidance.",
     },
   ],
   summary: {
-    title: "Ready to plan your celebration?",
-    body: "Share your dates, guest count, and preferred package with The Mountain team to receive the right guidance for your event and final booking process.",
+    title: "Ready to begin planning?",
+    body: "Share your dates, guest count, and package direction with The Mountain team to receive the right guidance for your event, stay, and final booking journey.",
   },
   locationDetails: {
     title: "Location",
@@ -453,9 +453,9 @@ export const contactPageData: MountainInfoPageData = {
   },
   form: {
     eyebrow: "Enquiry Form",
-    title: "Send Your Wedding Enquiry",
+    title: "Send Your Booking Enquiry",
     description:
-      "Share your preferred dates, guest count, and package requirement. The Mountain team will get back to you for quotation and booking support.",
+      "Share your preferred dates, guest count, and celebration requirements. Our team will guide you on availability, package fit, and the next step toward confirming your booking.",
     fields: {
       name: "Your Name",
       email: "Email Address",
@@ -464,7 +464,7 @@ export const contactPageData: MountainInfoPageData = {
       guestCount: "Number of Guests",
       message: "Tell us about your celebration, event type, and package direction",
     },
-    submitLabel: "REQUEST A WEDDING QUOTE",
+    submitLabel: "SEND ENQUIRY",
   },
 };
 
@@ -535,3 +535,4 @@ export const mediaAwardsPageData: MountainInfoPageData = {
     body: "The Mountain, Karjat combines scenic presentation, wedding-ready planning clarity, and a private-estate atmosphere that makes the venue feel memorable long before the event day arrives.",
   },
 };
+

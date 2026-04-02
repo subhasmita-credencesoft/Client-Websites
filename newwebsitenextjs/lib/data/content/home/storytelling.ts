@@ -2,13 +2,13 @@ export const storytellingBlocks = [
   {
     title: "Celebrate Every Event In One Estate",
     description:
-      "From Haldi and Mehendi to Sangeet, Cocktail Night, Wedding Ceremony, and Reception, The Mountain creates a single destination where every event feels connected, scenic, and easier for families to host.",
+      "From Haldi and Mehendi to Sangeet, Cocktail Night, Wedding Ceremony, and Reception, The Mountain creates one private destination where every event feels connected, scenic, and easier for families to host.",
     image: "/images/DSC08837.avif",
   },
   {
     title: "Scenic Privacy With Celebration Flow",
     description:
-      "The atmosphere here feels naturally cinematic: green views, open-air lawns, private estate calm, poolside energy, and event-ready zones that work beautifully for rituals, photographs, and evening celebrations.",
+      "The atmosphere here feels naturally cinematic: green views, open-air lawns, private estate calm, poolside energy, and event-ready zones that work beautifully for rituals, portraits, guest stays, and evening celebrations.",
     image: "/images/DSC08849.avif",
   },
   {
@@ -26,7 +26,7 @@ export const horizontalPanels = [
     bullets: [
       "Weekday Offer: Rs. 4,500 per person",
       "Weekend Offer: Rs. 5,500 per person",
-      "Includes 5 meals + stay + venue access",
+      "Includes stay + 5 meals + venue access",
     ],
     image: "/images/DSC08846.avif",
   },
@@ -36,7 +36,7 @@ export const horizontalPanels = [
     bullets: [
       "Weekday Offer: Rs. 5,500 per person",
       "Weekend Offer: Rs. 6,500 per person",
-      "Classic Package + extra 2 starters + 1 gravy extra each in lunch and dinner",
+      "Classic Package + 2 extra starters + 1 extra gravy in lunch and dinner",
     ],
     image: "/images/DSC08853.avif",
   },

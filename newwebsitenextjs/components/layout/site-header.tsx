@@ -17,7 +17,7 @@ const contactPhone = "+91 9833866655";
 const contactPhoneHref = "tel:+919833866655";
 const whatsappHref = "https://wa.me/919833866655";
 const topLinkHrefs: Record<string, string> = {
-  "ABOUT US": "/about",
+  ABOUT: "/about",
   GALLERY: "/gallery",
   "MEDIA & AWARDS": "/media-awards",
 };

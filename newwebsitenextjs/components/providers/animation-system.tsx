@@ -65,6 +65,14 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
           y: 34,
         });
 
+        // Keep nested content inside cards/panels visible unless it belongs to
+        // an explicit reveal container. This prevents empty-looking cards.
+        gsap.set("[data-card] [data-reveal-child], [data-panel-content] [data-reveal-child]", {
+          clearProps: "all",
+          autoAlpha: 1,
+          y: 0,
+        });
+
         gsap.set("[data-section-title]", {
           autoAlpha: 0,
           y: 20,

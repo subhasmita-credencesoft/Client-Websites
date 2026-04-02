@@ -1,52 +1,62 @@
 export const homeSectionContent = {
   siteHeader: {
     logoLines: ["The Mountain", "Karjat"],
-    primaryCta: "Book now",
+    primaryCta: "Check Availability",
   },
   hero: {
-    title: "Your Dream Wedding in the Lap of Nature",
+    title: "Where Wedding Dreams Stay Longer",
     subtitle:
-      "Celebrate Love at The Mountain, Karjat, a private destination wedding estate set across 7 acres of green beauty and scenic mountain calm.",
-    description:
-      "A luxurious, private, and fully equipped venue where families can host every function, stay together, dine together, and celebrate together in one unforgettable destination.",
-    primaryCta: "BOOK NOW",
-    secondaryCta: "EXPLORE WEDDING PACKAGES",
+      "A private 7-acre mountain estate in Karjat for destination weddings, celebration weekends, and luxury stays.",
+    description: "",
+    primaryCta: "PLAN YOUR WEDDING",
+    secondaryCta: "RESERVE STAY",
+  },
+  quickBooking: {
+    title: "Check Dates And Stay Options",
+    fields: {
+      checkIn: "Check-In",
+      checkOut: "Check-Out",
+      guests: "Guests",
+      eventType: "Event Type",
+    },
+    eventTypes: ["Destination Wedding", "Wedding Guest Stay", "Luxury Stay", "Private Event"],
+    cta: "CHECK AVAILABILITY",
   },
   about: {
-    title: "WHERE NATURE MEETS CELEBRATION",
+    title: "A DESTINATION MADE FOR MEANINGFUL CELEBRATIONS",
     highlight:
-      "Green Beauty in 7 Acres | A private destination wedding and event venue designed for families, rituals, and celebration weekends.",
+      "7 acres of greenery, mountain views, private-estate exclusivity, and wedding-ready hospitality in one destination.",
     body:
-      "Thank you for considering The Mountain, Karjat as your venue for creating unforgettable memories. Surrounded by lush greenery and mountain views, the estate brings together spacious lawns, multiple stay options, complete hospitality services, and venue-led wedding planning in one place. It is designed for couples, families, and planners who want the ease of hosting Haldi, Mehendi, Sangeet, Cocktail, Wedding Ceremony, and Reception in one destination.",
-    cta: "DISCOVER THE DESTINATION",
-    awardTitle: "Private estate. Scenic backdrop. One celebration destination.",
-    awardSubtitle: "Stay, meals, venue access, and hospitality curated for premium wedding hosting",
+      "The Mountain, Karjat is more than a venue. It is a private estate where weddings unfold with beauty, ease, and intimacy against a backdrop of green lawns and mountain light. Families can stay together, dine together, and celebrate every function in one destination crafted for elegant multi-day hosting.",
+    cta: "DISCOVER THE ESTATE",
+    awardTitle: "Private estate. Scenic setting. One seamless celebration.",
+    awardSubtitle: "Stay, meals, venue access, and warm hospitality designed for destination weddings and refined stays.",
   },
   media: {
-    eyebrow: "Wedding Celebrations",
-    title: "From intimate rituals to grand receptions, every celebration finds its place here",
+    eyebrow: "Wedding Experience",
+    title: "From Haldi mornings to grand receptions, every celebration finds its own atmosphere",
     description:
-      "The Mountain, Karjat is built for Haldi, Mehendi, Sangeet, Cocktail Night, Wedding Ceremony, Reception, and staycation-style family wedding weekends. The venue experience is designed so families can move through every event without losing the warmth of staying together in one estate.",
+      "At The Mountain, each wedding function feels distinct yet beautifully connected. The estate supports Haldi, Mehendi, Sangeet, Cocktail Night, Wedding Ceremony, Reception, and guest stays with one smooth destination flow that feels private, warm, and memorable throughout.",
     cta: "EXPLORE WEDDING SPACES",
   },
   gastronomy: {
-    title: "DELIGHTFUL CULINARY EXPERIENCE",
-    subtitle: "Curated meals that support the full celebration journey, from welcome gatherings to farewell breakfast",
+    title: "HOSPITALITY THAT KEEPS THE CELEBRATION FLOWING",
+    subtitle: "Thoughtfully structured meals from arrival to farewell breakfast, designed for wedding weekends and stay-led hosting",
     description:
-      "Packages include Lunch, Hi-Tea, Starters, Dinner, and Breakfast, creating a more convenient and better coordinated hospitality experience for wedding families. Additional items can be customised as per preference and charged separately on a per-person, per-day basis.",
+      "Packages include Lunch, Hi-Tea, Evening Starters, Dinner, and Breakfast, creating a polished and easier hospitality rhythm for couples, families, and wedding guests. Upgrades, live counters, and custom additions can be arranged to elevate the overall dining experience.",
     highlights: [
-      "Lunch: Roti, 2 Sabji, Dal, Rice, Salad, Papad & Pickle",
-      "Hi-Tea: Tea/Coffee & 2 Snacks",
+      "Lunch: A complete mid-day spread crafted for wedding and stay guests",
+      "Hi-Tea: Tea or coffee paired with curated snacks",
       "Starters: 2 Starters",
-      "Dinner: Roti, 2 Sabji, Dal, Rice, Salad, Papad & Pickle",
-      "Breakfast: Tea/Coffee & 2 Dishes",
+      "Dinner: A full evening meal designed for celebration hosting",
+      "Breakfast: Tea or coffee with 2 dishes to begin the next day with ease",
     ],
   },
   parallax: {
     eyebrow: "Venue Highlights",
-    title: "A scenic private estate designed for wedding weekends, family gatherings, and celebration flow",
+    title: "A scenic private estate designed for wedding weekends, family gatherings, and elevated stays",
     description:
-      "Spread across 7 acres of lush green natural landscape, The Mountain, Karjat offers spacious lawns, multiple event spaces, scenic mountain surroundings, private estate comfort, and natural ambience that feels cinematic even before the first decor element arrives.",
+      "Spread across 7 acres of lush greenery, The Mountain, Karjat brings together open lawns, mountain views, premium accommodations, and multiple celebration zones in one exclusive estate that feels cinematic before the first decor detail arrives.",
     images: [
       {
         src: "/images/DSC08831.avif",
@@ -68,26 +78,26 @@ export const homeSectionContent = {
   },
   experiences: {
     eyebrow: "Key Advantages",
-    title: "Why families choose to host everything in one destination",
+    title: "Why couples and families choose to host everything in one destination",
     description:
-      "Unlimited Music Hours, 24x7 Pool Access, Zero Sound License Required, Full Venue Access, and a private estate setting make The Mountain ideal for intimate weddings, multi-function family celebrations, and scenic celebration weekends.",
+      "Exclusive private-estate bookings, scenic ceremony backdrops, multi-function event spaces, and stay-plus-meals planning make The Mountain ideal for destination weddings, wedding guest stays, and premium celebration weekends.",
   },
   reservation: {
-    eyebrow: "Wedding Quote",
-    title: "Tell us about your celebration and we will guide the right package direction",
+    eyebrow: "Check Availability",
+    title: "Share your dates and let us guide the right stay or wedding booking experience",
     description:
-      "Share your event type, dates, guest count, selected package, and total stay requirement. Our team will help you understand availability, bundled package fit, and the right next step toward your quotation.",
-    cta: "REQUEST A WEDDING QUOTE",
+      "Whether you are planning a destination wedding, reserving rooms for guests, or comparing package options, our team will help with availability, package guidance, and the next step toward booking.",
+    cta: "CHECK AVAILABILITY",
   },
   offers: {
-    title: "WEDDING PACKAGES DESIGNED TO MAKE PLANNING CLEARER",
-    subtitle: "Choose between weekday and weekend pricing, then explore the hospitality depth of each package tier",
+    title: "PACKAGES DESIGNED FOR ELEGANT, EFFORTLESS HOSTING",
+    subtitle: "Choose between weekday and weekend pricing, then compare Classic, Signature, and Premium Luxe hospitality depth",
     tabs: ["WEEKDAY", "WEEKEND"],
   },
   logos: {
     eyebrow: "Contact",
     title: "Connect with The Mountain, Karjat",
-    description: "For quotation and package details, reach us through phone, Instagram, or our official website.",
+    description: "For wedding dates, stay reservations, and curated package guidance, connect with us directly.",
     items: [
       {
         label: "Call Us",
@@ -112,9 +122,9 @@ export const homeSectionContent = {
     ],
   },
   townships: {
-    title: "STAY & ACCOMMODATION DETAILS",
-    subtitle: "Multiple premium stay options available with modern amenities and comfortable furnishing",
-    cardLabel: "ALL PROPERTIES PREMIUM, FURNISHED, WELL-MAINTAINED",
+    title: "STAY BEAUTIFULLY, CELEBRATE FULLY",
+    subtitle: "Luxury rooms, cottages, and private-format stays designed for wedding guests, hosts, and leisure travellers",
+    cardLabel: "PREMIUM STAYS FOR WEDDING WEEKENDS, FAMILY HOSTING, AND PRIVATE ESCAPES",
     roomTypes: [
       {
         title: "Standard Room",
@@ -144,9 +154,9 @@ export const homeSectionContent = {
     ],
   },
   awards: {
-    title: "RULES, TERMS & BOOKING CLARITY",
-    subtitle: "Clear policies help families plan with confidence before they send the final inquiry",
-    cta: "VIEW FULL TERMS",
+    title: "BOOKING CLARITY FOR A SMOOTHER EXPERIENCE",
+    subtitle: "Friendly, clear terms help couples and families confirm dates with confidence",
+    cta: "VIEW BOOKING DETAILS",
   },
   horizontalJourney: {
     prefix: "Package",

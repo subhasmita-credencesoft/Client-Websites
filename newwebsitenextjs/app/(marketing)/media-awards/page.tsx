@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
@@ -10,7 +11,7 @@ export default function MediaAwardsPage() {
   const page = mediaAwardsPageData;
 
   return (
-    <main className="relative overflow-hidden bg-[#2d4a3e] text-white">
+    <main className="relative overflow-hidden bg-[#11100e] text-white">
       <div className="noise-overlay" />
       <SiteHeader />
 
@@ -29,6 +30,20 @@ export default function MediaAwardsPage() {
               {page.hero.title}
             </h1>
             <p className="mt-5 max-w-4xl text-xl text-white/90 md:text-2xl" data-panel-line>{page.hero.subtitle}</p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="/gallery"
+                className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
+              >
+                View Gallery
+              </Link>
+              <Link
+                href="/booking?eventType=Destination%20Wedding"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
+              >
+                Check Availability
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -43,22 +58,19 @@ export default function MediaAwardsPage() {
 
       <section className="mx-auto max-w-[96rem] px-6 py-6 md:px-10">
         <div className="grid gap-8 md:grid-cols-2">
-          {page.cards.map((card, index) => (
+          {page.cards.map((card) => (
             <article
               key={card.title}
               data-card
-              className="group overflow-hidden rounded-[1.8rem] border border-white/10 bg-[#0a0d0d] shadow-[0_22px_70px_rgba(0,0,0,0.28)] transition-colors duration-500 hover:border-[#c9a46e]/45"
+              className="rounded-[1.8rem] border border-white/10 bg-[#111614] p-8 shadow-[0_22px_70px_rgba(0,0,0,0.22)] transition-colors duration-500 hover:border-[#c9a46e]/35 md:p-10"
             >
-              <div className="relative h-[26rem] overflow-hidden">
-                <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth={String(8 + (index % 3))}>
-                  <Image src={card.image} alt={card.title} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.06]" sizes="(max-width:768px) 100vw, 50vw" />
+              <div className="flex items-start gap-4" data-panel-content>
+                <div className="mt-1 h-3 w-3 shrink-0 rounded-full bg-[#c9a46e]" />
+                <div className="min-w-0">
+                  <p className="text-xs uppercase tracking-[0.15em] text-[#c9a46e]" data-panel-line>{card.label}</p>
+                  <h3 className="mt-3 text-3xl md:text-4xl" data-panel-line>{card.title}</h3>
+                  <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/90 md:text-xl" data-panel-line>{card.description}</p>
                 </div>
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,10,0.08)_0%,rgba(8,10,10,0.1)_34%,rgba(8,10,10,0.88)_100%)]" />
-              </div>
-              <div className="px-6 pb-8 pt-8 md:px-8 md:pb-10" data-panel-content>
-                <p className="text-xs uppercase tracking-[0.15em] text-[#c9a46e]" data-panel-line>{card.label}</p>
-                <h3 className="mt-3 text-3xl md:text-4xl" data-panel-line>{card.title}</h3>
-                <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/90 md:text-xl" data-panel-line>{card.description}</p>
               </div>
             </article>
           ))}
@@ -67,11 +79,11 @@ export default function MediaAwardsPage() {
 
       <section className="mx-auto max-w-[96rem] px-6 py-16 md:px-10">
         <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr]">
-          <div className="glass-panel rounded-[2rem] p-8" data-reveal>
+          <div className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-reveal>
             <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Highlights</p>
             <h3 className="mt-4 text-3xl md:text-4xl" data-section-title data-reveal-child>{page.highlights.title}</h3>
           </div>
-          <div className="glass-panel rounded-[2rem] p-8" data-panel-content>
+          <div className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-panel-content>
             <ul className="space-y-4 text-lg leading-relaxed text-white/85 md:text-xl">
               {page.highlights.items.map((item) => (
                 <li key={item} data-panel-line>- {item}</li>
@@ -85,7 +97,7 @@ export default function MediaAwardsPage() {
         <section className="mx-auto max-w-[96rem] px-6 py-4 md:px-10">
           <div className="grid gap-8 md:grid-cols-2">
             {page.extraSections.map((section) => (
-              <article key={section.title} className="glass-panel rounded-[2rem] p-8" data-reveal>
+              <article key={section.title} className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-reveal>
                 <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Perspective</p>
                 <h3 className="mt-4 text-3xl md:text-4xl" data-section-title data-reveal-child>{section.title}</h3>
                 <p className="mt-5 text-lg leading-relaxed text-white/85 md:text-xl" data-reveal-child>{section.body}</p>
@@ -96,12 +108,26 @@ export default function MediaAwardsPage() {
       ) : null}
 
       <section className="mx-auto max-w-6xl px-6 pb-20 pt-10 text-center md:px-10" data-reveal>
-        <div className="glass-panel rounded-[2.4rem] px-8 py-12 md:px-16 md:py-14">
+        <div className="rounded-[2.4rem] border border-white/10 bg-[#182920] px-8 py-12 md:px-16 md:py-14">
           <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Final Note</p>
           <h3 className="mx-auto mt-5 max-w-4xl text-3xl md:text-4xl" data-section-title data-reveal-child>
             {page.summary.title}
           </h3>
           <p className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-white/85 md:text-xl" data-reveal-child>{page.summary.body}</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4" data-reveal-child>
+            <Link
+              href="/gallery"
+              className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
+            >
+              View Gallery
+            </Link>
+            <Link
+              href="/booking?eventType=Destination%20Wedding"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
+            >
+              Check Availability
+            </Link>
+          </div>
         </div>
       </section>
 

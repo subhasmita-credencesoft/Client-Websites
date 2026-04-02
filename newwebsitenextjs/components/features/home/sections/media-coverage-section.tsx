@@ -21,7 +21,7 @@ export function MediaCoverageSection() {
 
         <div data-reveal className="text-center md:text-left">
           <p data-section-title className="text-sm uppercase tracking-[0.35em] text-[#cba977]">
-            Culinary Experience
+            Wedding Hospitality
           </p>
           <h3 className="mt-5 text-3xl leading-tight text-white md:text-5xl" data-section-title>
             {content.title}

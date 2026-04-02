@@ -1,15 +1,15 @@
 export const offersPageData = {
   heroImage: "/images/DSC08807.avif",
   hero: {
-    title: "WEDDING PACKAGES",
+    title: "WEDDING & STAY PACKAGES",
     subtitle: "AT THE MOUNTAIN, KARJAT.",
   },
   intro: {
     breadcrumb: "Offers",
-    title: "Explore weekday, weekend, and package-wise planning options for destination wedding celebrations",
+    title: "Explore weekday, weekend, and package-wise planning options for destination wedding hosting and guest stays",
     description:
-      "The packages are designed to make family planning easier: stay, meals, venue usage, and hospitality are bundled into one clearer wedding proposal with Classic, Signature, and Premium Luxe formats.",
-    cta: "REQUEST A WEDDING QUOTE",
+      "The packages are designed to make planning easier: stay, meals, venue usage, and hospitality are bundled into one clearer booking proposal with Classic, Signature, and Premium Luxe formats.",
+    cta: "CHECK AVAILABILITY",
   },
   offers: [
     {
@@ -17,14 +17,14 @@ export const offersPageData = {
       title: "WEEKDAY PACKAGE",
       image: "/images/DSC08812.avif",
       description:
-        "Monday to Thursday pricing for families who want better bundled value without losing the full destination wedding experience.",
+        "Monday to Thursday pricing for families who want stronger bundled value without losing the full destination wedding experience.",
       bullets: [
         "Classic Package: Rs. 4,500 per person",
         "Signature Package: Rs. 5,500 per person",
         "Premium Luxe Package: Rs. 6,500 per person",
-        "Classic includes 5 meals + stay + venue access",
-        "Signature includes Classic package + extra 2 starters + 1 gravy extra each in lunch and dinner",
-        "Premium Luxe includes Signature package + 2 live counters",
+        "Classic includes stay, 5 meals, and venue access",
+        "Signature includes Classic package plus 2 extra starters and 1 extra gravy in lunch and dinner",
+        "Premium Luxe includes Signature package plus 2 live counters",
       ],
     },
     {
@@ -37,9 +37,9 @@ export const offersPageData = {
         "Classic Package: Rs. 5,500 per person",
         "Signature Package: Rs. 6,500 per person",
         "Premium Luxe Package: Rs. 7,500 per person",
-        "Classic includes 5 meals + stay + venue access",
-        "Signature includes Classic package + extra 2 starters + 1 gravy extra each in lunch and dinner",
-        "Premium Luxe includes Signature package + 2 live counters",
+        "Classic includes stay, 5 meals, and venue access",
+        "Signature includes Classic package plus 2 extra starters and 1 extra gravy in lunch and dinner",
+        "Premium Luxe includes Signature package plus 2 live counters",
       ],
     },
     {
@@ -61,8 +61,8 @@ export const offersPageData = {
       description:
         "A richer hospitality format for families who want stronger food depth and a more generous celebration table.",
       bullets: [
-        "Classic package + extra 2 starters",
-        "1 gravy extra each in lunch and dinner",
+        "Classic package + 2 extra starters",
+        "1 extra gravy each in lunch and dinner",
         "Weekday price: Rs. 5,500 per person | Weekend price: Rs. 6,500 per person",
       ],
     },
@@ -80,5 +80,5 @@ export const offersPageData = {
     },
   ],
   contactLine:
-    "Pricing is per person per day and includes stay, meals, services, lawn access, and venue usage. Additional items can be customized as per preference and are charged separately on a per-person, per-day basis.",
+    "Pricing is per person per day and includes stay, meals, services, lawn access, and venue usage. Additional items and hospitality upgrades can be customised as per preference and are charged separately on a per-person, per-day basis.",
 } as const;

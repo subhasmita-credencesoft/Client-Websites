@@ -6,7 +6,7 @@ import { OffersPageClient } from "@/components/features/offers/offers-page-clien
 
 export default function OffersPage() {
   return (
-    <main className="relative overflow-hidden bg-[#ececec] text-[#111317]">
+    <main className="relative overflow-hidden bg-[#11100e] text-[#f4ede2]">
       <div className="noise-overlay" />
       <SiteHeader />
       <Suspense

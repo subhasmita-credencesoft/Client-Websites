@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { galleryPageData } from "@/lib/data/pages/gallery-page";
@@ -34,13 +35,17 @@ export function GalleryPage() {
               {galleryPageData.hero.eyebrow}
             </p>
             <h1 className="mt-5 text-balance text-[clamp(56px,7vw,112px)] leading-[0.98] text-[#f5ebda]" data-section-title>
-              GALLERY
+              {galleryPageData.hero.title}
             </h1>
             <div className="mx-auto mt-5 h-[2px] w-24 bg-[#d6b07a]" />
             <p className="mx-auto mt-6 max-w-4xl text-balance text-lg leading-relaxed text-white/88 md:text-2xl" data-reveal-child>
               {galleryPageData.hero.description}
             </p>
-            <p className="mt-16 text-sm uppercase tracking-[0.2em] text-white/85" data-reveal-child>Scroll To Discover</p>
+            <div className="mt-10 flex flex-wrap justify-center gap-4" data-reveal-child>
+              <MagneticButton href="/booking?eventType=Destination%20Wedding">Check Availability</MagneticButton>
+              <MagneticButton href="/contact" className="bg-transparent">Contact The Team</MagneticButton>
+            </div>
+            <p className="mt-16 text-sm uppercase tracking-[0.2em] text-white/85" data-reveal-child>Discover The Story</p>
           </div>
         </div>
       </section>
@@ -52,11 +57,13 @@ export function GalleryPage() {
             <span className="text-[#d6b07a]">{galleryPageData.intro.breadcrumb}</span>
           </p>
           <h2 className="mx-auto mt-8 max-w-5xl text-balance text-3xl leading-tight text-[#f6ead8] md:text-5xl" data-section-title>
-          {galleryPageData.intro.title}
+            {galleryPageData.intro.title}
           </h2>
-          <p className="mx-auto mt-6 max-w-5xl text-lg leading-relaxed text-white/78 md:text-xl" data-reveal>
-            {galleryPageData.intro.description}
-          </p>
+          <div data-reveal>
+            <p className="mx-auto mt-6 max-w-5xl text-lg leading-relaxed text-white/78 md:text-xl" data-reveal-child>
+              {galleryPageData.intro.description}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -108,6 +115,24 @@ export function GalleryPage() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-20 md:px-10" data-reveal>
+        <div className="rounded-[2.2rem] border border-[#d6b07a]/18 bg-[#182920] px-8 py-12 text-center shadow-[0_24px_60px_rgba(8,16,11,0.16)] md:px-12 md:py-16">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d6b07a]" data-reveal-child>
+            Booking Intent
+          </p>
+          <h3 className="mx-auto mt-5 max-w-4xl text-balance text-3xl leading-tight text-[#f6ead8] md:text-5xl" data-section-title>
+            Seen the setting. Now choose your dates.
+          </h3>
+          <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg" data-reveal-child>
+            Explore availability for destination weddings, wedding guest stays, and celebration weekends at The Mountain, Karjat.
+          </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-4" data-reveal-child>
+            <MagneticButton href="/booking?eventType=Destination%20Wedding">Check Availability</MagneticButton>
+            <MagneticButton href="/contact" className="bg-transparent">Plan Your Visit</MagneticButton>
+          </div>
         </div>
       </section>
 

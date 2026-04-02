@@ -1,13 +1,42 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { type FormEvent, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { contactPageData } from "@/lib/data/pages/mountain-info-pages";
 
 export default function ContactPage() {
   const page = contactPageData;
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [eventDate, setEventDate] = useState("");
+  const [guestCount, setGuestCount] = useState("");
+  const [message, setMessage] = useState("");
+  const enquiryHref = useMemo(() => {
+    const lines = [
+      "Hello The Mountain, Karjat team,",
+      "",
+      "I would like to make an enquiry.",
+      `Name: ${name || "Not shared"}`,
+      `Email: ${email || "Not shared"}`,
+      `Phone: ${phone || "Not shared"}`,
+      `Preferred Dates: ${eventDate || "Not shared"}`,
+      `Guest Count: ${guestCount || "Not shared"}`,
+      `Message: ${message || "Not shared"}`,
+    ];
+
+    return `https://wa.me/919833866655?text=${encodeURIComponent(lines.join("\n"))}`;
+  }, [email, eventDate, guestCount, message, name, phone]);
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    window.open(enquiryHref, "_blank", "noopener,noreferrer");
+  };
 
   return (
-    <main className="relative overflow-hidden bg-[#2d4a3e] text-white">
+    <main className="relative overflow-hidden bg-[#11100e] text-white">
       <div className="noise-overlay" />
       <SiteHeader />
 
@@ -26,6 +55,20 @@ export default function ContactPage() {
               {page.hero.title}
             </h1>
             <p className="mt-5 max-w-4xl text-xl text-white/90 md:text-2xl" data-panel-line>{page.hero.subtitle}</p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="/booking?eventType=Destination%20Wedding"
+                className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
+              >
+                Check Availability
+              </Link>
+              <a
+                href="tel:+919833866655"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
+              >
+                Call The Team
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -41,7 +84,7 @@ export default function ContactPage() {
       {page.form ? (
         <section className="mx-auto max-w-[96rem] px-6 pb-10 pt-0 md:px-10">
           <div className="mx-auto max-w-[72rem]">
-            <form className="glass-panel rounded-[2rem] p-8 md:p-10" data-card data-panel-content>
+            <form className="rounded-[2rem] border border-white/10 bg-[#182920] p-8 md:p-10" data-card data-panel-content onSubmit={handleSubmit}>
               <div className="mb-6">
                 <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">{page.form.eyebrow}</p>
                 <h2 className="mt-3 text-3xl md:text-4xl">{page.form.title}</h2>
@@ -51,42 +94,62 @@ export default function ContactPage() {
                 <input
                   type="text"
                   placeholder={page.form.fields.name}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45"
                 />
                 <input
                   type="email"
                   placeholder={page.form.fields.email}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45"
                 />
                 <input
                   type="tel"
                   placeholder={page.form.fields.phone}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45"
                 />
                 <input
                   type="text"
                   placeholder={page.form.fields.eventDate}
+                  value={eventDate}
+                  onChange={(e) => setEventDate(e.target.value)}
                   className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45"
                 />
                 <input
                   type="text"
                   placeholder={page.form.fields.guestCount}
+                  value={guestCount}
+                  onChange={(e) => setGuestCount(e.target.value)}
                   className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45 md:col-span-2"
                 />
                 <textarea
                   placeholder={page.form.fields.message}
                   rows={6}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45 md:col-span-2"
                 />
               </div>
 
-              <button
-                type="submit"
-                className="mt-8 border border-[#c8a871] bg-[#c8a871] px-9 py-3 text-sm font-semibold uppercase tracking-wide text-black"
-                data-panel-line
-              >
-                {page.form.submitLabel}
-              </button>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <button
+                  type="submit"
+                  className="border border-[#c8a871] bg-[#c8a871] px-9 py-3 text-sm font-semibold uppercase tracking-wide text-black"
+                  data-panel-line
+                >
+                  {page.form.submitLabel}
+                </button>
+                <Link
+                  href="/booking?eventType=Destination%20Wedding"
+                  className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
+                >
+                  Open Booking Planner
+                </Link>
+              </div>
             </form>
           </div>
         </section>
@@ -95,7 +158,7 @@ export default function ContactPage() {
       <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-10">
         <div className="grid gap-8 md:grid-cols-3">
           {page.locationDetails ? (
-            <article className="glass-panel rounded-[2rem] p-8" data-card data-panel-content>
+            <article className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-card data-panel-content>
               <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Location</p>
               <h3 className="mt-4 text-3xl md:text-4xl">{page.locationDetails.title}</h3>
               <p className="mt-6 text-xl text-white md:text-2xl">{page.locationDetails.venue}</p>
@@ -105,7 +168,7 @@ export default function ContactPage() {
           ) : null}
 
           {page.officialAddress ? (
-            <article className="glass-panel rounded-[2rem] p-8" data-card data-panel-content>
+            <article className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-card data-panel-content>
               <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Official Address</p>
               <h3 className="mt-4 text-3xl md:text-4xl">{page.officialAddress.title}</h3>
               <div className="mt-6 space-y-2 text-base leading-relaxed text-white/85 md:text-lg">
@@ -118,7 +181,7 @@ export default function ContactPage() {
           ) : null}
 
           {page.contact ? (
-            <article className="glass-panel rounded-[2rem] p-8" data-card data-panel-content>
+            <article className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-card data-panel-content>
               <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Direct Contact</p>
               <h3 className="mt-4 text-3xl md:text-4xl">{page.contact.title}</h3>
               <div className="mt-6 space-y-3 text-base leading-relaxed text-white/85 md:text-lg">
@@ -133,7 +196,7 @@ export default function ContactPage() {
 
       {page.locationDetails ? (
         <section className="mx-auto max-w-[96rem] px-6 py-8 md:px-10">
-          <div className="glass-panel rounded-[2rem] p-6 text-white md:p-8" data-card>
+          <div className="rounded-[2rem] border border-white/10 bg-[#182920] p-6 text-white md:p-8" data-card>
             <div className="text-center" data-reveal>
               <p className="text-xs uppercase tracking-[0.26em] text-[#b88947]">Location</p>
               <h3 className="mt-4 text-4xl md:text-5xl" data-section-title>
@@ -192,7 +255,7 @@ export default function ContactPage() {
       <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-10">
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {page.cards.map((card) => (
-            <article key={card.title} className="glass-panel rounded-[1.8rem] border border-white/10 px-6 py-7" data-card data-panel-content>
+            <article key={card.title} className="rounded-[1.8rem] border border-white/10 bg-[#182920] px-6 py-7" data-card data-panel-content>
               <p className="text-xs uppercase tracking-[0.18em] text-[#c9a46e]">{card.label}</p>
               <h3 className="mt-4 break-words text-2xl md:text-3xl">{card.title}</h3>
               <p className="mt-4 text-base leading-relaxed text-white/85 md:text-lg">{card.description}</p>
@@ -203,11 +266,11 @@ export default function ContactPage() {
 
       <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-10">
         <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
-          <div className="glass-panel rounded-[2rem] p-8" data-reveal>
+          <div className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-reveal>
             <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Support</p>
             <h3 className="mt-4 text-3xl md:text-4xl" data-section-title>{page.highlights.title}</h3>
           </div>
-          <div className="glass-panel rounded-[2rem] p-8" data-panel-content>
+          <div className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-panel-content>
             <ul className="space-y-4 text-lg leading-relaxed text-white/85 md:text-xl">
               {page.highlights.items.map((item) => (
                 <li key={item} data-panel-line>- {item}</li>
@@ -221,7 +284,7 @@ export default function ContactPage() {
         <section className="mx-auto max-w-[96rem] px-6 py-4 md:px-10">
           <div className="grid gap-8 md:grid-cols-2">
             {page.extraSections.map((section) => (
-              <article key={section.title} className="glass-panel rounded-[2rem] p-8" data-reveal>
+              <article key={section.title} className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-reveal>
                 <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Planning Note</p>
                 <h3 className="mt-4 text-3xl md:text-4xl" data-section-title data-reveal-child>{section.title}</h3>
                 <p className="mt-5 text-lg leading-relaxed text-white/85 md:text-xl" data-reveal-child>{section.body}</p>
@@ -232,12 +295,26 @@ export default function ContactPage() {
       ) : null}
 
       <section className="mx-auto max-w-6xl px-6 pb-20 pt-10 text-center md:px-10" data-reveal>
-        <div className="glass-panel rounded-[2.4rem] px-8 py-12 md:px-16 md:py-14">
+        <div className="rounded-[2.4rem] border border-white/10 bg-[#182920] px-8 py-12 md:px-16 md:py-14">
           <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Final Note</p>
           <h3 className="mx-auto mt-5 max-w-4xl text-3xl md:text-4xl" data-section-title data-reveal-child>
             {page.summary.title}
           </h3>
           <p className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-white/85 md:text-xl" data-reveal-child>{page.summary.body}</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4" data-reveal-child>
+            <Link
+              href="/booking?eventType=Destination%20Wedding"
+              className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
+            >
+              Check Availability
+            </Link>
+            <a
+              href="tel:+919833866655"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
+            >
+              Call Now
+            </a>
+          </div>
         </div>
       </section>
 

@@ -5,10 +5,14 @@ import { stayCardsPrimary, stayCardsSecondary } from "@/lib/data/content/mountai
 function StayCard({
   title,
   description,
+  tariff,
+  packagePrice,
   image,
 }: {
   title: string;
   description: string;
+  tariff: string;
+  packagePrice: string;
   image: string;
 }) {
   const hrefMap: Record<string, string> = {
@@ -26,8 +30,8 @@ function StayCard({
       data-card
       className="group relative h-[31rem] overflow-hidden rounded-[1.45rem] border border-[#b99253]/45 bg-black transition-all duration-700 hover:-translate-y-1.5 hover:border-[#dfbf86] hover:shadow-[0_28px_58px_rgba(9,18,14,0.3)]"
     >
-      <Link href={href} className="absolute inset-0 z-10" aria-label={`View ${title}`}>
-        <span className="sr-only">View details</span>
+      <Link href={href} className="absolute inset-0 z-10" aria-label={`View ${title} details`}>
+        <span className="sr-only">View stay details</span>
       </Link>
 
       <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="10">
@@ -52,6 +56,9 @@ function StayCard({
         <h4 className="max-w-[12ch] text-3xl leading-tight text-[#ccab74] drop-shadow-[0_2px_12px_rgba(0,0,0,0.2)] transition-all duration-700 group-hover:scale-[1.04] group-hover:text-[#e8c995] group-hover:tracking-[0.03em] md:text-[3.2rem]">
           {title}
         </h4>
+        <div className="mt-4 rounded-full border border-[#d9b983]/45 bg-black/25 px-4 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#f5e7cd]">
+          Explore Stay
+        </div>
       </div>
 
       <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(16,24,20,0.06)_22%,rgba(16,24,20,0.5)_100%)] px-5 pb-4 pt-22 text-left md:px-7">
@@ -60,6 +67,19 @@ function StayCard({
         </div>
         <div className="mt-8 translate-y-5 opacity-0 transition-all duration-700 delay-100 group-hover:translate-y-0 group-hover:opacity-100">
           <p className="text-sm leading-relaxed text-[#efe3ce] md:text-base">{description}</p>
+          <div className="mt-4 space-y-1 text-sm text-white/86">
+            <p>{tariff}</p>
+            <p>{packagePrice}</p>
+          </div>
+          <div className="relative z-20 mt-5 flex justify-center">
+            <Link
+              href={`/booking?room=${encodeURIComponent(title)}&eventType=Wedding%20Guest%20Stay`}
+              className="inline-flex rounded-full border border-[#c9a467] bg-[#c9a467] px-5 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-black transition-colors hover:bg-[#d7b57c]"
+              data-cursor="hover"
+            >
+              Check Availability
+            </Link>
+          </div>
         </div>
       </div>
     </article>

@@ -33,24 +33,37 @@ export function AboutPage() {
               {content.hero.eyebrow}
             </p>
             <h1 className="mt-5 text-balance text-[clamp(52px,7vw,108px)] leading-[0.96] text-[#f5ebda]" data-section-title>
-              ABOUT
+              {content.hero.title}
             </h1>
             <div className="mx-auto mt-5 h-[2px] w-24 bg-[#d6b07a]" />
             <p className="mx-auto mt-6 max-w-4xl text-balance text-lg leading-relaxed text-white/88 md:text-2xl" data-reveal-child>
               {content.hero.description}
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4" data-reveal-child>
-              <MagneticButton href="/booking">Plan Your Celebration</MagneticButton>
-              <MagneticButton href="/contact" className="bg-transparent">
-                Request A Wedding Quote
+              <MagneticButton href="/booking?eventType=Destination%20Wedding">Plan Your Wedding</MagneticButton>
+              <MagneticButton href="/booking?eventType=Luxury%20Stay" className="bg-transparent">
+                Reserve Your Stay
               </MagneticButton>
             </div>
-            <p className="mt-14 text-sm uppercase tracking-[0.2em] text-white/85" data-reveal-child>Scroll To Discover</p>
+            <p className="mt-14 text-sm uppercase tracking-[0.2em] text-white/85" data-reveal-child>Discover The Estate</p>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-[96rem] px-6 py-14 md:px-10">
+        <div className="mb-8 flex justify-center">
+          <ol className="inline-flex items-center gap-3 rounded-full border border-[#d5b07a]/20 bg-[#182920]/85 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
+            <li>
+              <Link href="/" className="transition-colors hover:text-[#d5b07a]">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true" className="text-[#d5b07a]">
+              /
+            </li>
+            <li className="text-[#d5b07a]">About</li>
+          </ol>
+        </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {content.stats.map((stat) => (
             <article key={stat.label} className="rounded-[1.7rem] border border-white/10 bg-[#294236] px-6 py-6" data-card>
@@ -259,9 +272,9 @@ export function AboutPage() {
             {content.cta.description}
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-4" data-reveal-child>
-            <MagneticButton href="/offers">Explore Wedding Packages</MagneticButton>
+            <MagneticButton href="/offers">Explore Packages</MagneticButton>
             <Link
-              href="/booking"
+              href="/booking?eventType=Destination%20Wedding"
               className="inline-flex items-center justify-center rounded-full border border-[#d5b07a]/35 px-7 py-3 text-xs uppercase tracking-[0.24em] text-[#fff6ea] transition-colors hover:bg-white/5"
             >
               Check Venue Availability
