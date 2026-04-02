@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import { buildDirectBookingEngineUrl } from "@/lib/constants/booking";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 
 function getTodayDateString(offsetDays = 0) {
@@ -19,17 +19,16 @@ export function QuickBookingStrip() {
   const [checkOut, setCheckOut] = useState(getTodayDateString(1));
   const [guests, setGuests] = useState("2");
   const [eventType, setEventType] = useState<string>(content.eventTypes[0] ?? "Destination Wedding");
-
-  const bookingHref = useMemo(() => {
-    const params = new URLSearchParams({
+  const handleBookingRedirect = () => {
+    const bookingHref = buildDirectBookingEngineUrl({
       checkIn,
       checkOut,
-      guests,
-      eventType,
+      guests: Number(guests) || 1,
+      rooms: 1,
     });
 
-    return `/booking?${params.toString()}`;
-  }, [checkIn, checkOut, guests, eventType]);
+    window.location.assign(bookingHref);
+  };
 
   return (
     <section className="relative z-20 -mt-3 px-4 pb-6 md:-mt-6 md:px-8 md:pb-8">
@@ -95,13 +94,14 @@ export function QuickBookingStrip() {
             </label>
 
             <div className="col-span-2 grid items-end xl:col-span-1">
-              <Link
-                href={bookingHref}
+              <button
+                type="button"
+                onClick={handleBookingRedirect}
                 className="inline-flex h-9 items-center justify-center rounded-[0.8rem] border border-[#c9a467] bg-[#c9a467] px-4 text-[0.64rem] font-semibold tracking-[0.16em] text-black transition-colors hover:bg-[#d7b57c] md:h-10 md:px-5 xl:min-w-[10rem]"
                 data-cursor="hover"
               >
                 {content.cta}
-              </Link>
+              </button>
             </div>
           </div>
         </div>

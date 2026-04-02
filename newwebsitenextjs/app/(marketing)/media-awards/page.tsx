@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
+import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 import { mediaAwardsPageData } from "@/lib/data/pages/info-pages";
 
 export default function MediaAwardsPage() {
@@ -38,7 +39,7 @@ export default function MediaAwardsPage() {
                 View Gallery
               </Link>
               <Link
-                href="/booking?eventType=Destination%20Wedding"
+                href={DIRECT_BOOKING_ENGINE_URL}
                 className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
               >
                 Check Availability
@@ -122,7 +123,7 @@ export default function MediaAwardsPage() {
               View Gallery
             </Link>
             <Link
-              href="/booking?eventType=Destination%20Wedding"
+              href={DIRECT_BOOKING_ENGINE_URL}
               className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
             >
               Check Availability

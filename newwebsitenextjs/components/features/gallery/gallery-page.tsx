@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 import { galleryPageData } from "@/lib/data/pages/gallery-page";
 
 type GalleryTab = (typeof galleryPageData.tabs)[number];
@@ -42,7 +43,7 @@ export function GalleryPage() {
               {galleryPageData.hero.description}
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4" data-reveal-child>
-              <MagneticButton href="/booking?eventType=Destination%20Wedding">Check Availability</MagneticButton>
+              <MagneticButton href={DIRECT_BOOKING_ENGINE_URL}>Check Availability</MagneticButton>
               <MagneticButton href="/contact" className="bg-transparent">Contact The Team</MagneticButton>
             </div>
             <p className="mt-16 text-sm uppercase tracking-[0.2em] text-white/85" data-reveal-child>Discover The Story</p>
@@ -130,7 +131,7 @@ export function GalleryPage() {
             Explore availability for destination weddings, wedding guest stays, and celebration weekends at The Mountain, Karjat.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-4" data-reveal-child>
-            <MagneticButton href="/booking?eventType=Destination%20Wedding">Check Availability</MagneticButton>
+            <MagneticButton href={DIRECT_BOOKING_ENGINE_URL}>Check Availability</MagneticButton>
             <MagneticButton href="/contact" className="bg-transparent">Plan Your Visit</MagneticButton>
           </div>
         </div>

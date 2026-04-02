@@ -5,6 +5,7 @@ import Link from "next/link";
 import { type FormEvent, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 import { contactPageData } from "@/lib/data/pages/info-pages";
 
 export default function ContactPage() {
@@ -57,7 +58,7 @@ export default function ContactPage() {
             <p className="mt-5 max-w-4xl text-xl text-white/90 md:text-2xl" data-panel-line>{page.hero.subtitle}</p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/booking?eventType=Destination%20Wedding"
+                href={DIRECT_BOOKING_ENGINE_URL}
                 className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
               >
                 Check Availability
@@ -144,7 +145,7 @@ export default function ContactPage() {
                   {page.form.submitLabel}
                 </button>
                 <Link
-                  href="/booking?eventType=Destination%20Wedding"
+                  href={DIRECT_BOOKING_ENGINE_URL}
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
                 >
                   Open Booking Planner
@@ -303,7 +304,7 @@ export default function ContactPage() {
           <p className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-white/85 md:text-xl" data-reveal-child>{page.summary.body}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4" data-reveal-child>
             <Link
-              href="/booking?eventType=Destination%20Wedding"
+              href={DIRECT_BOOKING_ENGINE_URL}
               className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
             >
               Check Availability

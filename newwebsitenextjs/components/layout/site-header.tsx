@@ -9,6 +9,7 @@ import {
   topLeftLinks,
   topRightLinks,
 } from "@/lib/data/content/mountain-content";
+import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 
 const leftMainLinks = mainLinks.slice(0, 3);
@@ -169,7 +170,7 @@ export function SiteHeader() {
                 <WhatsAppIcon />
               </a>
               <Link
-                href="/booking"
+                href={DIRECT_BOOKING_ENGINE_URL}
                 className="inline-flex items-center justify-center rounded-full border border-[#f1e7d7]/55 px-5 py-2 text-[0.67rem] font-semibold uppercase tracking-[0.2em] text-[#f7efe2] transition-colors hover:border-[#d8b67f] hover:text-[#d8b67f]"
                 data-cursor="hover"
               >
@@ -178,7 +179,7 @@ export function SiteHeader() {
             </div>
 
             <Link
-              href="/booking"
+              href={DIRECT_BOOKING_ENGINE_URL}
               className="inline-flex shrink-0 items-center justify-center whitespace-nowrap border border-[#f1e7d7] bg-[#f1e7d7] px-3 py-2 text-[0.64rem] font-semibold tracking-wide text-black md:hidden"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -277,7 +278,7 @@ export function SiteHeader() {
           </div>
 
           <Link
-            href="/booking"
+            href={DIRECT_BOOKING_ENGINE_URL}
             className="mb-4 block w-full border border-white bg-white px-7 py-2 text-center text-[0.72rem] tracking-wide text-black"
             onClick={() => setMobileMenuOpen(false)}
           >

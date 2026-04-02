@@ -1,3 +1,5 @@
+import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
+
 export const topLeftLinks = ["ABOUT", "GALLERY", "MEDIA & AWARDS"] as const;
 export const topRightLinks: string[] = [];
 export const mainLinks = [
@@ -31,7 +33,7 @@ export const mainNavLinks: Record<string, string> = {
   PACKAGES: "/offers",
   STAY: "/cliff-room",
   "VENUE HIGHLIGHTS": "/mountain-view-destination",
-  "CHECK AVAILABILITY": "/booking?eventType=Destination%20Wedding",
+  "CHECK AVAILABILITY": DIRECT_BOOKING_ENGINE_URL,
   "BOOKING TERMS": "/rules",
   "CHECK-IN": "/check-in",
   "PLAN YOUR WEDDING": "/booking?eventType=Destination%20Wedding",
@@ -55,7 +57,7 @@ export const footerSections: FooterLinkItem[][] = [
   [
     { label: "Venue Highlights", href: "/mountain-view-destination" },
     { label: "Stay", href: "/cliff-room" },
-    { label: "Check Availability", href: "/booking?eventType=Destination%20Wedding" },
+    { label: "Check Availability", href: DIRECT_BOOKING_ENGINE_URL, external: true },
     { label: "Booking Terms", href: "/rules" },
     { label: "Check-In", href: "/check-in" },
     { label: "Reserve Your Dates", href: "/booking?eventType=Destination%20Wedding" },

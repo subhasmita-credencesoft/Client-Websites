@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 import { offersPageData } from "@/lib/data/pages/offers-pages";
 
 export function OffersPageClient() {
@@ -16,10 +17,7 @@ export function OffersPageClient() {
   const activeTitle = visibleOffers.length === 1 ? visibleOffers[0].title : intro.title;
   const activeDescription =
     visibleOffers.length === 1 ? visibleOffers[0].description : intro.description;
-  const selectedOfferHref =
-    visibleOffers.length === 1
-      ? `/booking?offer=${encodeURIComponent(visibleOffers[0].title)}&page=${encodeURIComponent("Offers")}&details=${encodeURIComponent(visibleOffers[0].description)}`
-      : "/booking?page=Offers";
+  const selectedOfferHref = DIRECT_BOOKING_ENGINE_URL;
 
   const getOfferBookingHref = (offer: (typeof offers)[number]) => {
     const packageMap: Record<string, string> = {
@@ -30,9 +28,7 @@ export function OffersPageClient() {
     const selectedPackageTitle = packageMap[offer.id];
     const packageQuery = selectedPackageTitle ? `package=${encodeURIComponent(selectedPackageTitle)}&` : "";
 
-    return `/booking?${packageQuery}offer=${encodeURIComponent(offer.title)}&page=${encodeURIComponent("Offers")}&details=${encodeURIComponent(
-      [offer.description, ...offer.bullets].join(" | "),
-    )}`;
+    return DIRECT_BOOKING_ENGINE_URL;
   };
 
   return (

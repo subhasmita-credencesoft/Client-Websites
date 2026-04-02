@@ -7,6 +7,7 @@ import type { DetailPage } from "@/lib/data/pages/detail-pages";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
+import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 
 type DetailPageProps = {
   page: DetailPage;
@@ -33,10 +34,7 @@ export function DetailPageView({ page }: DetailPageProps) {
   const facts = page.facts ?? [];
   const hideAllSharedSections = false;
   const hideContactAndStaySections = isPackagePage || isRoomDetailPage;
-  const bookingHref = isPackagePage
-    ? `/booking?package=${encodeURIComponent(page.title)}`
-    : `/booking?room=${encodeURIComponent(page.title)}`;
-  const bookingContextHref = `${bookingHref}&page=${encodeURIComponent(page.title)}&details=${encodeURIComponent(page.subtitle)}`;
+  const bookingContextHref = DIRECT_BOOKING_ENGINE_URL;
   const primaryCtaLabel = isPackagePage
     ? "CHECK PACKAGE AVAILABILITY"
     : "CHECK ROOM AVAILABILITY";

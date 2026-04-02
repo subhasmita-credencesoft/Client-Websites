@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
+import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 import { rulesPageData } from "@/lib/data/pages/info-pages";
 
 export default function RulesPage() {
@@ -34,7 +35,7 @@ export default function RulesPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/booking?eventType=Destination%20Wedding"
+                href={DIRECT_BOOKING_ENGINE_URL}
                 className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
               >
                 Check Availability
@@ -108,7 +109,7 @@ export default function RulesPage() {
           <p className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-white/85 md:text-xl" data-reveal-child>{page.summary.body}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4" data-reveal-child>
             <Link
-              href="/booking?eventType=Destination%20Wedding"
+              href={DIRECT_BOOKING_ENGINE_URL}
               className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
             >
               Plan Your Wedding

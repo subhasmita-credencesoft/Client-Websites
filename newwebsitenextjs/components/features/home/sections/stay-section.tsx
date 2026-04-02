@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 import { stayCardsPrimary, stayCardsSecondary } from "@/lib/data/content/mountain-content";
 
 function StayCard({
@@ -74,7 +75,7 @@ function StayCard({
           </div>
           <div className="relative z-30 mt-5 flex justify-center">
             <Link
-              href={`/booking?room=${encodeURIComponent(title)}&eventType=Wedding%20Guest%20Stay`}
+              href={DIRECT_BOOKING_ENGINE_URL}
               className="inline-flex rounded-full border border-[#c9a467] bg-[#c9a467] px-5 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-black transition-colors hover:bg-[#d7b57c]"
               data-cursor="hover"
             >
