@@ -18,7 +18,7 @@ export function QuickBookingStrip() {
   const [checkIn, setCheckIn] = useState(getTodayDateString());
   const [checkOut, setCheckOut] = useState(getTodayDateString(1));
   const [guests, setGuests] = useState("2");
-  const [eventType, setEventType] = useState(content.eventTypes[0] ?? "Destination Wedding");
+  const [eventType, setEventType] = useState<string>(content.eventTypes[0] ?? "Destination Wedding");
 
   const bookingHref = useMemo(() => {
     const params = new URLSearchParams({
