@@ -3,9 +3,9 @@ export const heroVideoUrls = [
 ];
 
 export const heroBackgroundUrls = [
-  "/images/DSC08849.avif",
-  "/images/DSC08831.avif",
-  "/images/DSC08837.avif",
+  "https://bookonelocal.in/cdn/DJI_0409.JPG",
+  "https://bookonelocal.in/cdn/DJI_0424.JPG",
+  "https://bookonelocal.in/cdn/DSC00086.JPG",
 ];
 
 export function pickRandomMedia() {

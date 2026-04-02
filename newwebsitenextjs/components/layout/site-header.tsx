@@ -66,6 +66,7 @@ export function SiteHeader() {
   );
 
   const mobileMainLinks = [...leftMainLinks, ...rightMainLinks];
+  const desktopMainLinks = [...leftMainLinks, ...rightMainLinks];
 
   useEffect(() => {
     if (!mobileMenuOpen) {
@@ -83,8 +84,8 @@ export function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#c89a55]/14 bg-[rgba(8,7,6,0.94)] backdrop-blur-md">
       <div className="mx-auto max-w-[96rem] px-4 md:px-10">
-        <div className="relative border-b border-white/25 py-2 md:py-1.5">
-          <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-6">
+        <div className="relative border-b border-white/15 py-1.5 md:py-1.5">
+          <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-8">
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -112,12 +113,17 @@ export function SiteHeader() {
               </span>
             </button>
 
-            <div className="hidden items-center gap-5 border-b border-[#c89a55]/18 pb-2 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] md:flex">
+            <div className="hidden items-center gap-5 border-b border-[#c89a55]/18 pb-1.5 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] md:flex">
               <span className="text-white/75">
                 <DiamondIcon />
               </span>
               {topLeftLinks.map((item) => (
-                <Link key={item} href={topLinkHrefs[item] ?? "/"} className="transition-colors hover:text-[#d8b67f]" data-cursor="hover">
+                <Link
+                  key={item}
+                  href={topLinkHrefs[item] ?? "/"}
+                  className="transition-colors hover:text-[#d8b67f]"
+                  data-cursor="hover"
+                >
                   {item}
                 </Link>
               ))}
@@ -125,7 +131,7 @@ export function SiteHeader() {
 
             <Link
               href="/"
-              className="mx-auto inline-flex h-[68px] w-[90px] items-center justify-center border border-[#9b7a4a] bg-[#08090c] px-3 text-center text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-[#d9b57f] md:h-[72px] md:w-[94px] md:text-[0.62rem]"
+              className="mx-auto inline-flex h-[60px] w-[84px] items-center justify-center border border-[#9b7a4a] bg-[#08090c] px-3 text-center text-[0.57rem] font-semibold uppercase tracking-[0.2em] text-[#d9b57f] md:h-[64px] md:w-[88px] md:text-[0.6rem]"
               data-cursor="hover"
             >
               {content.logoLines[0]}
@@ -133,7 +139,7 @@ export function SiteHeader() {
               {content.logoLines[1]}
             </Link>
 
-            <div className="hidden items-center justify-end gap-4 border-b border-[#c89a55]/18 pb-2 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] md:flex">
+            <div className="hidden items-center justify-end gap-3 border-b border-[#c89a55]/18 pb-1.5 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] md:flex">
               {topRightLinks.map((item) => (
                 <Link key={item} href="/" className="transition-colors hover:text-[#d8b67f]" data-cursor="hover">
                   {item}
@@ -142,7 +148,7 @@ export function SiteHeader() {
               <div className="group relative flex items-center">
                 <a
                   href={contactPhoneHref}
-                  className="flex h-9 w-9 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#d8b67f]"
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#d8b67f]"
                   aria-label={`Call ${contactPhone}`}
                   data-cursor="hover"
                 >
@@ -156,7 +162,7 @@ export function SiteHeader() {
                 href={whatsappHref}
                 target="_blank"
                 rel="noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#d8b67f]"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#d8b67f]"
                 aria-label="Open WhatsApp chat"
                 data-cursor="hover"
               >
@@ -164,12 +170,11 @@ export function SiteHeader() {
               </a>
               <Link
                 href="/booking"
-                className="border border-[#f1e7d7] bg-[#f1e7d7] px-5 py-2 text-[0.66rem] tracking-wide text-black transition-colors hover:bg-[#fff7ea]"
+                className="inline-flex items-center justify-center rounded-full border border-[#f1e7d7]/55 px-5 py-2 text-[0.67rem] font-semibold uppercase tracking-[0.2em] text-[#f7efe2] transition-colors hover:border-[#d8b67f] hover:text-[#d8b67f]"
                 data-cursor="hover"
               >
                 {content.primaryCta}
               </Link>
-
             </div>
 
             <Link
@@ -182,9 +187,12 @@ export function SiteHeader() {
           </div>
         </div>
 
-        <nav className="relative hidden grid-cols-[1fr_auto_1fr] items-center py-2.5 md:grid" onMouseLeave={() => setActiveDropdown(null)}>
-          <div className="hidden items-center gap-10 md:flex">
-            {leftMainLinks.map((item) => (
+        <nav
+          className="relative hidden items-center justify-center border-t border-white/8 bg-[rgba(8,7,6,0.94)] px-6 py-2 md:flex"
+          onMouseLeave={() => setActiveDropdown(null)}
+        >
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-center">
+            {desktopMainLinks.map((item, index) => (
               <div
                 key={item}
                 className="relative"
@@ -192,8 +200,8 @@ export function SiteHeader() {
               >
                 <Link
                   href={mainNavLinks[item] ?? "/"}
-                  className={`text-[0.72rem] font-semibold uppercase tracking-wide transition-colors ${
-                    activeDropdown === item ? "text-[#c9a46e]" : "text-white"
+                  className={`text-[0.9rem] font-medium transition-colors ${
+                    activeDropdown === item ? "text-[#e0b675]" : "text-white"
                   }`}
                   data-cursor="hover"
                 >
@@ -201,8 +209,14 @@ export function SiteHeader() {
                   {(headerDropdownLinks[item] ?? []).length > 0 ? <ChevronDownIcon /> : null}
                 </Link>
 
+                {index < desktopMainLinks.length - 1 ? (
+                  <span className="pointer-events-none absolute left-[calc(100%+0.65rem)] top-1/2 -translate-y-1/2 text-white/35">
+                    •
+                  </span>
+                ) : null}
+
                 {activeDropdown === item && dropdownItems.length > 0 ? (
-                  <div className="absolute left-0 top-[2rem] z-50 min-w-[16rem] border border-[#c9a46e]/24 bg-[#14110f] p-1 shadow-[0_14px_34px_rgba(0,0,0,0.42)]">
+                  <div className="absolute left-1/2 top-[2.2rem] z-50 min-w-[16rem] -translate-x-1/2 rounded-[1.1rem] border border-[#c9a46e]/24 bg-[#14110f] p-1 shadow-[0_14px_34px_rgba(0,0,0,0.42)]">
                     {dropdownItems.map((dropdownItem) => (
                       <Link
                         key={dropdownItem.label}
@@ -216,21 +230,6 @@ export function SiteHeader() {
                   </div>
                 ) : null}
               </div>
-            ))}
-          </div>
-
-          <div />
-
-          <div className="hidden items-center justify-end gap-10 md:flex">
-            {rightMainLinks.map((item) => (
-              <Link
-                key={item}
-                href={mainNavLinks[item] ?? "/"}
-                className="text-[0.72rem] font-semibold uppercase tracking-wide text-white transition-colors hover:text-[#c9a46e]"
-                data-cursor="hover"
-              >
-                {item}
-              </Link>
             ))}
           </div>
         </nav>
