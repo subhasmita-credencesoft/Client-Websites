@@ -32,79 +32,76 @@ export function QuickBookingStrip() {
   }, [checkIn, checkOut, guests, eventType]);
 
   return (
-    <section className="relative z-20 -mt-6 px-5 pb-6 md:-mt-8 md:px-10 md:pb-8">
-      <div className="mx-auto max-w-[94rem]">
-        <div className="rounded-[1.55rem] border border-[#c9a46e]/20 bg-[#15110d]/94 px-4 py-3 shadow-[0_18px_36px_rgba(8,16,11,0.18)] backdrop-blur-sm md:px-5 md:py-3">
-          <div className="grid gap-3 xl:grid-cols-[minmax(9.5rem,0.72fr)_minmax(0,4.28fr)] xl:items-end">
-            <div className="min-w-0">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[#c9a46e]">Quick Booking</p>
-              <h2 className="mt-1 hidden text-balance text-lg leading-tight text-[#fff0d9] md:text-[1.15rem] xl:block">{content.title}</h2>
-            </div>
+    <section className="relative z-20 -mt-3 px-4 pb-6 md:-mt-6 md:px-8 md:pb-8">
+      <div className="mx-auto max-w-[76rem]">
+        <div className="rounded-[1.25rem] border border-[#c9a46e]/20 bg-[#15110d]/95 px-3 py-3 shadow-[0_18px_36px_rgba(8,16,11,0.18)] backdrop-blur-sm md:px-4 md:py-4">
+          <div className="mb-2 flex items-center justify-between gap-3">
+            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-[#c9a46e]">Quick Booking</p>
+          </div>
 
-            <div className="grid gap-2.5 sm:grid-cols-2 xl:grid-cols-[1fr_1fr_0.78fr_1.12fr_auto] xl:items-end">
-              <label className="grid gap-1">
-                <span className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#c9a46e]">
-                  {content.fields.checkIn}
-                </span>
-                <input
-                  type="date"
-                  value={checkIn}
-                  onChange={(e) => setCheckIn(e.target.value)}
-                  className="h-11 rounded-[0.9rem] border border-white/10 bg-black/20 px-4 text-sm text-white outline-none transition-colors focus:border-[#c9a46e]/50"
-                />
-              </label>
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-2 xl:grid-cols-[1fr_1fr_0.7fr_1fr_auto] xl:items-end">
+            <label className="grid gap-1">
+              <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#c9a46e]">
+                {content.fields.checkIn}
+              </span>
+              <input
+                type="date"
+                value={checkIn}
+                onChange={(e) => setCheckIn(e.target.value)}
+                className="h-9 rounded-[0.8rem] border border-white/10 bg-black/20 px-3 text-[0.82rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50 md:h-10 md:text-[0.88rem]"
+              />
+            </label>
 
-              <label className="grid gap-1">
-                <span className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#c9a46e]">
-                  {content.fields.checkOut}
-                </span>
-                <input
-                  type="date"
-                  value={checkOut}
-                  onChange={(e) => setCheckOut(e.target.value)}
-                  className="h-11 rounded-[0.9rem] border border-white/10 bg-black/20 px-4 text-sm text-white outline-none transition-colors focus:border-[#c9a46e]/50"
-                />
-              </label>
+            <label className="grid gap-1">
+              <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#c9a46e]">
+                {content.fields.checkOut}
+              </span>
+              <input
+                type="date"
+                value={checkOut}
+                onChange={(e) => setCheckOut(e.target.value)}
+                className="h-9 rounded-[0.8rem] border border-white/10 bg-black/20 px-3 text-[0.82rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50 md:h-10 md:text-[0.88rem]"
+              />
+            </label>
 
-              <label className="grid gap-1">
-                <span className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#c9a46e]">
-                  {content.fields.guests}
-                </span>
-                <input
-                  type="number"
-                  min={1}
-                  value={guests}
-                  onChange={(e) => setGuests(e.target.value)}
-                  className="h-11 rounded-[0.9rem] border border-white/10 bg-black/20 px-4 text-sm text-white outline-none transition-colors focus:border-[#c9a46e]/50"
-                />
-              </label>
+            <label className="grid gap-1">
+              <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#c9a46e]">
+                {content.fields.guests}
+              </span>
+              <input
+                type="number"
+                min={1}
+                value={guests}
+                onChange={(e) => setGuests(e.target.value)}
+                className="h-9 rounded-[0.8rem] border border-white/10 bg-black/20 px-3 text-[0.82rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50 md:h-10 md:text-[0.88rem]"
+              />
+            </label>
 
-              <label className="grid gap-1">
-                <span className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#c9a46e]">
-                  {content.fields.eventType}
-                </span>
-                <select
-                  value={eventType}
-                  onChange={(e) => setEventType(e.target.value)}
-                  className="h-11 rounded-[0.9rem] border border-white/10 bg-black/20 px-4 text-sm text-white outline-none transition-colors focus:border-[#c9a46e]/50"
-                >
-                  {content.eventTypes.map((option) => (
-                    <option key={option} value={option} className="text-black">
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </label>
+            <label className="grid gap-1">
+              <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#c9a46e]">
+                {content.fields.eventType}
+              </span>
+              <select
+                value={eventType}
+                onChange={(e) => setEventType(e.target.value)}
+                className="h-9 rounded-[0.8rem] border border-white/10 bg-black/20 px-3 text-[0.82rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50 md:h-10 md:text-[0.88rem]"
+              >
+                {content.eventTypes.map((option) => (
+                  <option key={option} value={option} className="text-black">
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
 
-              <div className="grid items-end">
-                <Link
-                  href={bookingHref}
-                  className="inline-flex h-11 items-center justify-center rounded-[0.9rem] border border-[#c9a467] bg-[#c9a467] px-5 text-[0.72rem] font-semibold tracking-[0.18em] text-black transition-colors hover:bg-[#d7b57c] xl:min-w-[11rem]"
-                  data-cursor="hover"
-                >
-                  {content.cta}
-                </Link>
-              </div>
+            <div className="col-span-2 grid items-end xl:col-span-1">
+              <Link
+                href={bookingHref}
+                className="inline-flex h-9 items-center justify-center rounded-[0.8rem] border border-[#c9a467] bg-[#c9a467] px-4 text-[0.64rem] font-semibold tracking-[0.16em] text-black transition-colors hover:bg-[#d7b57c] md:h-10 md:px-5 xl:min-w-[10rem]"
+                data-cursor="hover"
+              >
+                {content.cta}
+              </Link>
             </div>
           </div>
         </div>

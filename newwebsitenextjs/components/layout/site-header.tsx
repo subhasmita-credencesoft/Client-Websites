@@ -174,7 +174,7 @@ export function SiteHeader() {
 
             <Link
               href="/booking"
-              className="inline-flex items-center justify-center border border-[#f1e7d7] bg-[#f1e7d7] px-3 py-2 text-[0.68rem] font-semibold tracking-wide text-black md:hidden"
+              className="inline-flex shrink-0 items-center justify-center whitespace-nowrap border border-[#f1e7d7] bg-[#f1e7d7] px-3 py-2 text-[0.64rem] font-semibold tracking-wide text-black md:hidden"
               onClick={() => setMobileMenuOpen(false)}
             >
               {content.primaryCta}

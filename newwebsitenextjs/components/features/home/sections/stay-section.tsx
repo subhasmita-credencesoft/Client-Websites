@@ -51,27 +51,28 @@ function StayCard({
       <div className="absolute bottom-6 right-6 h-8 w-8 rounded-br-[0.8rem] border-b border-r border-[#e1c089]/50 opacity-65 transition-all duration-700 group-hover:opacity-100" />
       <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-[#cba977]/0 via-[#d9b983]/65 to-[#cba977]/0 opacity-75" />
       <div className="absolute inset-x-0 bottom-[5.75rem] h-px bg-white/20 transition-all duration-700 group-hover:bg-[#d3b07b]/55" />
+      <Link
+        href={href}
+        className="absolute right-6 top-6 z-30 rounded-full border border-[#d9b983]/45 bg-black/25 px-4 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#f5e7cd]"
+        data-cursor="hover"
+      >
+        Explore Stay
+      </Link>
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center transition-all duration-700 group-hover:-translate-y-7">
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center transition-all duration-700 group-hover:-translate-y-7">
         <h4 className="max-w-[12ch] text-3xl leading-tight text-[#ccab74] drop-shadow-[0_2px_12px_rgba(0,0,0,0.2)] transition-all duration-700 group-hover:scale-[1.04] group-hover:text-[#e8c995] group-hover:tracking-[0.03em] md:text-[3.2rem]">
           {title}
         </h4>
-        <div className="mt-4 rounded-full border border-[#d9b983]/45 bg-black/25 px-4 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#f5e7cd]">
-          Explore Stay
-        </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(16,24,20,0.06)_22%,rgba(16,24,20,0.5)_100%)] px-5 pb-4 pt-22 text-left md:px-7">
-        <div className="translate-y-6 opacity-0 transition-all duration-700 group-hover:translate-y-0 group-hover:opacity-100">
-          <p className="text-center text-xl text-[#d7b57f] transition-all duration-700 group-hover:tracking-[0.08em] md:text-2xl">View Details {">"}</p>
-        </div>
-        <div className="mt-8 translate-y-5 opacity-0 transition-all duration-700 delay-100 group-hover:translate-y-0 group-hover:opacity-100">
+      <div className="absolute inset-x-0 bottom-0 z-20 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(16,24,20,0.06)_22%,rgba(16,24,20,0.5)_100%)] px-5 pb-4 pt-22 text-left md:px-7">
+        <div className="translate-y-5 opacity-0 transition-all duration-700 delay-100 group-hover:translate-y-0 group-hover:opacity-100">
           <p className="text-sm leading-relaxed text-[#efe3ce] md:text-base">{description}</p>
           <div className="mt-4 space-y-1 text-sm text-white/86">
             <p>{tariff}</p>
             <p>{packagePrice}</p>
           </div>
-          <div className="relative z-20 mt-5 flex justify-center">
+          <div className="relative z-30 mt-5 flex justify-center">
             <Link
               href={`/booking?room=${encodeURIComponent(title)}&eventType=Wedding%20Guest%20Stay`}
               className="inline-flex rounded-full border border-[#c9a467] bg-[#c9a467] px-5 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-black transition-colors hover:bg-[#d7b57c]"
