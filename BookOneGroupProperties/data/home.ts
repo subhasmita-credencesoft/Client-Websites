@@ -30,7 +30,7 @@ export const homePageData = {
         {
           id: "a1",
           title: "vedanta Resort",
-          image: siteImages.hero,
+          image: siteImages.vedantaResortLive,
           location: "Kelawade Village, Bhor, Pune, Maharashtra 412213, India",
           price: 3000,
           rating: "-",
@@ -41,7 +41,7 @@ export const homePageData = {
         {
           id: "a2",
           title: "Orchard Resort",
-          image: siteImages.modernTropicalVilla,
+          image: siteImages.orchardResortLive,
           location: "Pune Satara NH48, Kelawade, Bhor, Pune, Maharashtra 412213, India",
           price: 5000,
           rating: "5.0",
@@ -52,7 +52,7 @@ export const homePageData = {
         {
           id: "a4",
           title: "Rajgad Water Park & Resort",
-          image: siteImages.resortPool,
+          image: siteImages.rajgadWaterPark,
           location: "Pune Satara National Highway 48, Varve, Bhor, Pune, Maharashtra 412213, India",
           price: 6000,
           rating: "-",
@@ -63,7 +63,7 @@ export const homePageData = {
         {
           id: "a5",
           title: "Mayurwan Farmhouse",
-          image: siteImages.modernTropicalVilla,
+          image: siteImages.mayurwanFarmhouseLive,
           location: "Kusgav Khind Rd, Parwadi, Bhor, Pune, Maharashtra 412205, India",
           price: 10000,
           rating: "-",
@@ -74,7 +74,7 @@ export const homePageData = {
         {
           id: "a8",
           title: "4 BHK, Bhor",
-          image: siteImages.suiteOceanView,
+          image: siteImages.fourBhkBhor,
           location: "Bhor, Pune, Maharashtra 412206, India",
           price: 20000,
           rating: "-",
@@ -85,7 +85,7 @@ export const homePageData = {
         {
           id: "a9",
           title: "Prathamesh Resort",
-          image: siteImages.resortPool,
+          image: siteImages.prathameshResortLive,
           location: "Village Salawade, near Khed-Shivapur, Bhor, Pune, Maharashtra 412213, India",
           price: 8000,
           rating: "-",
@@ -96,7 +96,7 @@ export const homePageData = {
         {
           id: "a10",
           title: "K L Farmhouse",
-          image: siteImages.resortPool,
+          image: siteImages.klFarmhouseLive,
           location: "Bopdev-Saswad Road, Purandar, Pune, Maharashtra 412301, India",
           price: 25000,
           rating: "-",
@@ -107,7 +107,7 @@ export const homePageData = {
         {
           id: "a11",
           title: "Peacock Hills Resort Pune",
-          image: siteImages.resortPool,
+          image: siteImages.peacockHills,
           location: "at Village Degaon, Bhor, Pune, Maharashtra 412213, India",
           price: 0,
           rating: "-",
@@ -118,7 +118,7 @@ export const homePageData = {
         {
           id: "a12",
           title: "3 BHK Purandar",
-          image: siteImages.luxuryVillaSunset,
+          image: siteImages.threeBhkPurandarLive,
           location: "Diwale-Narayanpur Road, Purandar, Pune, Maharashtra 412205, India",
           price: 8000,
           rating: "-",
@@ -129,7 +129,7 @@ export const homePageData = {
         {
           id: "a13",
           title: "Ruturang Agro Resort",
-          image: siteImages.resortPool,
+          image: siteImages.ruturangAgroResort,
           location: "Bhor, Pune, Maharashtra 412213, India",
           price: 90000,
           rating: "-",
@@ -142,7 +142,7 @@ export const homePageData = {
         {
           id: "l1",
           title: "4 BHK Villa (Karla)",
-          image: siteImages.mountainChalet,
+          image: siteImages.fourBhkVillaKarla,
           location: "Karla, in-karla, Lonavala, India",
           price: 14000,
           rating: 4.9,
@@ -187,21 +187,21 @@ export const homePageData = {
         description:
           "From personalized welcome drinks to 24/7 concierge support, we ensure every moment of your stay is curated for perfection. Our local staff is trained to anticipate your needs before you even ask.",
         icon: Sparkles,
-        image: siteImages.hero,
+        image: siteImages.rajgadWaterPark,
       },
       {
         title: "Cost Effective Luxury",
         description:
           "Experience 5-star amenities without the 5-star price tag. By partnering directly with property owners, we cut out the middlemen to pass the savings directly to you.",
         icon: Wallet,
-        image: siteImages.modernTropicalVilla,
+        image: siteImages.ruturangAgroResort,
       },
       {
         title: "Verified Excellence",
         description:
           "Every My Resort Pune property undergoes a rigorous 150-point inspection checklist. We don't just list properties; we verify experiences to ensure safety, hygiene, and comfort.",
         icon: ShieldCheck,
-        image: siteImages.resortPool,
+        image: siteImages.fourBhkVillaKarla,
       },
     ],
   },
@@ -218,14 +218,18 @@ export const homePageData = {
       "Professional Property Maintenance",
       "24/7 Guest Support Team",
     ],
-    image: siteImages.resortPool,
+    image: siteImages.propertyOwner,
     benefitIcon: CheckCircle2,
   },
   services: {
     title: "Our Services",
     description:
       "Our Services are designed to elevate your stay. Enjoy a sparkling infinity pool, a fully equipped fitness center, and a serene spa for ultimate relaxation. Dine at our exquisite multi-cuisine restaurant, unwind at the beachside bar, and revel in curated activities for all ages.",
-    image: siteImages.modernTropicalVilla,
+    image: siteImages.fourBhkVillaKarla,
+    images: [
+      siteImages.ruturangAgroResort,
+      siteImages.fourBhkVillaKarla,
+    ],
     items: [
       { icon: Waves, label: "Infinity Pool" },
       { icon: Dumbbell, label: "Fitness Centre" },

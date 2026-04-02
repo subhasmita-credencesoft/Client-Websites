@@ -598,7 +598,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
     description:
       "4 BHK Villa (Karla) is designed for guests who want a spacious private stay in Lonavala with room for families and groups to unwind together. Its comfortable villa layout, scenic surroundings, and easy access around Karla make it a strong option for weekend escapes.",
     images: [
-      siteImages.mountainChalet,
+      siteImages.fourBhkVillaKarla,
       siteImages.affordableLuxuryRoom,
       siteImages.modernTropicalVilla,
       siteImages.resortDining,
@@ -614,7 +614,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
         bed: "4 Bedroom Setup",
         view: "Hill View",
         price: 14000,
-        image: siteImages.mountainChalet,
+        image: siteImages.fourBhkVillaKarla,
         features: ["Private Villa", "Group Stay", "Spacious Living Area"],
       },
     ],
@@ -878,7 +878,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
       "Vedanta Resort is a near Pune getaway at Kelawade Village, Bhor, around a 1 hour drive from Pune. The resort offers garden-side rooms, pool-side rooms, a suite room, swimming pool access, rain dance, kids play area, indoor and outdoor games, event-friendly spaces, and veg/non-veg food support for overnight stays, one day trips, and celebrations.",
     tags: ["#Near_Pune", "#Family_Resort", "#Group_Friendly"],
     images: [
-      siteImages.hero,
+      siteImages.vedantaResortLive,
       siteImages.resortPool,
       siteImages.resortRoom,
       siteImages.modernHotelRestaurant,
@@ -1045,7 +1045,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
       "Orchard Resort is a family and couple friendly resort near Kelawade, Bhor, around the Pune Satara highway belt. It offers AC deluxe rooms, AC suite rooms, one day trip access, food packages, pool activities, rain dance, rides, indoor and outdoor games, and a broad setup for family, couple, and corporate group outings near Pune.",
     tags: ["#Family_Resort", "#Couple_Friendly", "#Corporate_Group"],
     images: [
-      siteImages.modernTropicalVilla,
+      siteImages.orchardResortLive,
       siteImages.resortRoom,
       siteImages.modernHotelRestaurant,
       siteImages.resortPool,
@@ -1223,7 +1223,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
     roomName: "Cottage",
     occupancy: "2 Adults",
     availability: "Available Now",
-    image: siteImages.santoriniVilla,
+    image: siteImages.ruturangAgroResort,
     features: ["6 Cottages", "1 Farm Villa", "Nature Stay"],
     guests: ["2 Guests", "6 Guests", "12 Guests"],
     couponHint: "RUTURANG10",
@@ -1240,7 +1240,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
       "Rajgad Water Park & Resort is a family-friendly holiday destination near Pune that combines overnight stays, water park fun, and adventure experiences in one property. With cottages, AC deluxe rooms, jacuzzi rooms, royal tents, food packages, and activity access, it works well for day outings, overnight stays, and group celebrations close to the city.",
     tags: ["#Water_Park", "#Adventure_Park", "#Near_Pune"],
     images: [
-      siteImages.resortPool,
+      siteImages.rajgadWaterPark,
       siteImages.hero,
       siteImages.resortRoom,
       siteImages.modernHotelRestaurant,
@@ -1318,7 +1318,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
         id: 2,
         title: "Combo Package",
         price: 1500,
-        image: siteImages.resortPool,
+        image: siteImages.rajgadWaterPark,
         description: "10 AM to 5 PM combo package including water park, adventure park, breakfast, lunch, and hi-tea.",
       },
       {
@@ -1426,7 +1426,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
       "Mayurwan Farmhouse is a private nature-stay property for family groups, friends groups, and corporate groups looking for a full farmhouse experience near Pune. It offers a 20,000 sq. ft. private premises with hill views, pool access, rain dance, games, bonfire, outdoor seating, pet-friendly stays, and an entire-property setup for larger group bookings.",
     tags: ["#Family_Group", "#Nature_Stay", "#Near_Pune"],
     images: [
-      siteImages.modernTropicalVilla,
+      siteImages.mayurwanFarmhouseLive,
       siteImages.resortPool,
       siteImages.mountainChalet,
       siteImages.resortRoom,
@@ -1711,7 +1711,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
     roomName: "Entire Villa",
     occupancy: "Up to 12 Guests",
     availability: "Available Now",
-    image: siteImages.luxuryVillaSunset,
+    image: siteImages.threeBhkPurandarLive,
     features: ["Entire Villa", "1 Unit Available", "Group Stay"],
     guests: ["4 Guests", "8 Guests", "12 Guests"],
     couponHint: "PURANDAR10",
@@ -1730,7 +1730,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
     roomName: "Farmhouse Stay",
     occupancy: "Up to 35 Guests",
     availability: "Available Now",
-    image: siteImages.resortPool,
+    image: siteImages.klFarmhouseLive,
     features: ["4 AC Cottages", "2 Deluxe Rooms", "2 Container Rooms", "Swimming Pool"],
     guests: ["10 Guests", "20 Guests", "35 Guests"],
     couponHint: "KLFARM10",
@@ -1784,7 +1784,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
       "4 BHK, Bhor, also known as Suryansh Villa, is a private group-stay villa built for guests who want peace, fun, and relaxation together near Pune. The property offers a large 50,000 sq. ft. private area with AC bedrooms, private pool, rain dance, lawn space, indoor and outdoor games, outdoor seating, and a comfortable villa setup for family and friend groups.",
     tags: ["#Suryansh_Villa", "#Private_Pool", "#Near_Pune"],
     images: [
-      siteImages.suiteOceanView,
+      siteImages.fourBhkBhor,
       siteImages.resortPool,
       siteImages.luxuryVillaSunset,
       siteImages.modernTropicalVilla,
@@ -1808,7 +1808,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
         bed: "10 to 18 Guests",
         view: "Private Lawn View",
         price: 20000,
-        image: siteImages.suiteOceanView,
+        image: siteImages.fourBhkBhor,
         features: [
           "4 AC Bedrooms",
           "4 Bathrooms",

@@ -32,11 +32,6 @@ export const metadata: Metadata = {
   applicationName: siteSeo.siteName,
   manifest: "/manifest.webmanifest",
   keywords: [
-    "luxury villas",
-    "resorts",
-    "holiday homes",
-    "boutique stays",
-    "mahabaleshwar stays",
     "My Resort Pune",
   ],
   authors: [{ name: siteSeo.siteName }],

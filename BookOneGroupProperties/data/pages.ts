@@ -43,7 +43,7 @@ export const pageContent = {
       title: "Resort Packages For Relaxed Family Getaways",
       description:
         "Choose complete resort stays designed for couples, families, and group celebrations with dining, recreation, and comfortable room experiences included.",
-      image: siteImages.resortPool,
+      image: siteImages.peacockHills,
       highlights: [
         {
           title: "Stay And Dine",
@@ -63,7 +63,7 @@ export const pageContent = {
       title: "Private Villa Packages For Exclusive Stays",
       description:
         "Book private villa packages for intimate escapes, special occasions, and premium group stays with added privacy and personalized comfort.",
-      image: siteImages.suiteOceanView,
+      image: siteImages.fourBhkVillaKarla,
       highlights: [
         {
           title: "Complete Privacy",

@@ -1,8 +1,25 @@
-﻿import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import { homePageData } from "@/data/home";
 
 export function ServicesSection() {
   const { services } = homePageData;
+  const images = services.images?.length ? services.images : [services.image];
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setActiveImageIndex((currentIndex) => (currentIndex + 1) % images.length);
+    }, 4000);
+
+    return () => window.clearInterval(interval);
+  }, [images.length]);
 
   return (
     <section className="py-16 md:py-24 bg-background overflow-hidden">
@@ -29,8 +46,9 @@ export function ServicesSection() {
           <div className="lg:w-1/2 w-full h-[320px] sm:h-[420px] md:h-[520px]">
             <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src={services.image}
-                alt={services.title}
+                key={images[activeImageIndex] ?? services.image}
+                src={images[activeImageIndex] ?? services.image}
+                alt={`${services.title} ${activeImageIndex + 1}`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="h-full w-full object-cover"

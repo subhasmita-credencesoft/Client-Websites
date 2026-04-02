@@ -246,7 +246,7 @@ function mapHotelMatePropertyToDetails(
 ): PropertyDetails {
   const title = property.name?.trim() || slugToTitle(slug);
   const location = formatAddress(property.address);
-  const images = getImageUrls(property.imageList, fallbackImage);
+  const images = prioritizePrimaryImage(getImageUrls(property.imageList, fallbackImage), slug, fallbackImage);
   const rooms = mapRooms(property, images[0] ?? fallbackImage);
   const services = property.propertyServicesList ?? [];
   const roomNames = rooms.map((room) => room.name).filter(Boolean);
@@ -556,6 +556,14 @@ function getImageUrls(images: HotelMateImage[] | null | undefined, fallbackImage
     .filter((value): value is string => Boolean(value));
 
   return urls.length ? urls.slice(0, 6) : [fallbackImage];
+}
+
+function prioritizePrimaryImage(images: string[], slug: string, fallbackImage: string) {
+  if (!["rajgad-water-park-resort", "ruturang-agro-resort", "4-bhk-bhor", "peacock-hills-resort-pune"].includes(slug)) {
+    return images;
+  }
+
+  return [fallbackImage, ...images.filter((image) => image !== fallbackImage)].slice(0, 6);
 }
 
 function buildTags(property: HotelMateProperty, title: string) {

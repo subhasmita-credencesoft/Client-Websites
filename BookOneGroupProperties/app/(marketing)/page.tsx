@@ -6,7 +6,7 @@ import { getFeaturedPropertiesData, getLocationHighlightsData } from "@/lib/hote
 import { buildPageMetadata, absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Luxury Villas, Resorts and Stays",
+  title: "My Resort Pune",
   description: homePageData.hero.description,
   path: "/",
 });
