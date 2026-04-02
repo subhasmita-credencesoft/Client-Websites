@@ -25,15 +25,27 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body), sans-serif;
   letter-spacing: 0.015em;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
 /* ✅ FIXED: No black override — uses green theme */
 #__next,
 main {
+  width: 100%;
+  max-width: 100%;
   background: var(--background);
   color: var(--foreground);
 }
@@ -107,6 +119,14 @@ h5 {
   box-shadow:
     0 20px 45px rgba(8, 7, 6, 0.35),
     0 0 24px rgba(200, 154, 85, 0.12);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
 }
 
 .cinematic-glow {

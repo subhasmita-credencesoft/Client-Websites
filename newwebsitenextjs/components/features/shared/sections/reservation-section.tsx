@@ -11,9 +11,9 @@ export function ReservationSection() {
       id="reserve"
       data-section-id="reserve"
       data-reveal
-      className="relative mx-auto max-w-7xl px-5 pb-28 pt-6 md:px-8 md:pb-34"
+      className="relative mx-auto max-w-7xl px-4 pb-20 pt-6 sm:px-5 md:px-8 md:pb-34"
     >
-      <div className="glass-panel luxury-shadow overflow-hidden rounded-[2.2rem] p-8 md:p-14">
+      <div className="glass-panel luxury-shadow overflow-hidden rounded-[2rem] p-6 md:rounded-[2.2rem] md:p-14">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(216,189,150,0.23),transparent_36%),radial-gradient(circle_at_100%_0%,rgba(95,121,158,0.2),transparent_36%)]" />
         <div className="relative z-10 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div>
@@ -25,7 +25,7 @@ export function ReservationSection() {
               {content.description}
             </p>
           </div>
-          <MagneticButton href="/booking" className="w-fit whitespace-nowrap">
+          <MagneticButton href="/booking" className="w-full justify-center whitespace-nowrap sm:w-fit">
             {content.cta}
           </MagneticButton>
         </div>

@@ -24,18 +24,18 @@ export function GalleryPage() {
       <div className="noise-overlay" />
       <SiteHeader />
 
-      <section className="relative min-h-[108svh] overflow-hidden pt-44 md:pt-48" data-section-id="gallery-hero">
+      <section className="relative min-h-[86svh] overflow-hidden pt-36 md:min-h-[108svh] md:pt-48" data-section-id="gallery-hero">
         <div className="absolute inset-0" data-bg-parallax data-bg-depth="9">
           <Image src={galleryPageData.hero.image} alt="Gallery overview" fill className="object-cover" priority sizes="100vw" />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.36)_34%,rgba(0,0,0,0.7)_100%)]" />
-        <div className="absolute inset-x-[8%] top-28 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent" />
-        <div className="relative z-10 mx-auto flex min-h-[108svh] max-w-[96rem] items-center justify-center px-8 pb-16 pt-8 text-center md:pb-24">
+        <div className="absolute inset-x-[8%] top-24 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent md:top-28" />
+        <div className="relative z-10 mx-auto flex min-h-[86svh] max-w-[96rem] items-center justify-center px-5 pb-12 pt-8 text-center md:min-h-[108svh] md:px-8 md:pb-24">
           <div className="max-w-5xl" data-reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#d6b07a]" data-reveal-child>
               {galleryPageData.hero.eyebrow}
             </p>
-            <h1 className="mt-5 text-balance text-[clamp(56px,7vw,112px)] leading-[0.98] text-[#f5ebda]" data-section-title>
+            <h1 className="mt-5 text-balance text-[clamp(40px,7vw,112px)] leading-[0.98] text-[#f5ebda]" data-section-title>
               {galleryPageData.hero.title}
             </h1>
             <div className="mx-auto mt-5 h-[2px] w-24 bg-[#d6b07a]" />
@@ -51,7 +51,7 @@ export function GalleryPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-6 py-14 md:px-10">
+      <section className="mx-auto max-w-[96rem] px-4 py-12 md:px-10 md:py-14">
         <div className="rounded-[2.2rem] border border-[#d6b07a]/16 bg-[linear-gradient(180deg,rgba(37,60,49,0.96),rgba(26,43,35,0.96))] px-6 py-12 text-center shadow-[0_24px_60px_rgba(8,16,11,0.16)] md:px-12 md:py-16">
           <p className="text-lg text-white/80 md:text-2xl">
             <Link href="/" className="hover:text-[#d6b07a]">Home</Link> <span className="px-1">&gt;</span>{" "}
@@ -68,7 +68,7 @@ export function GalleryPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-6 pb-6 md:px-10">
+      <section className="mx-auto max-w-[96rem] px-4 pb-6 md:px-10">
         <div className="flex flex-wrap justify-center gap-4" data-reveal>
           {galleryPageData.tabs.map((tab) => (
             <button
@@ -88,7 +88,7 @@ export function GalleryPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-6 pb-20 pt-8 md:px-10">
+      <section className="mx-auto max-w-[96rem] px-4 pb-16 pt-8 md:px-10 md:pb-20">
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-12">
           {visibleItems.map((item, index) => (
             <article
@@ -98,7 +98,7 @@ export function GalleryPage() {
               }`}
               data-card
             >
-              <div className={`relative overflow-hidden ${index % 5 === 0 ? "h-[28rem]" : "h-[20rem]"}`}>
+              <div className={`relative overflow-hidden ${index % 5 === 0 ? "h-[20rem] md:h-[28rem]" : "h-[17rem] md:h-[20rem]"}`}>
                 <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="7">
                   <Image
                     src={item.src}
@@ -119,7 +119,7 @@ export function GalleryPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-20 md:px-10" data-reveal>
+      <section className="mx-auto max-w-6xl px-4 pb-16 md:px-10 md:pb-20" data-reveal>
         <div className="rounded-[2.2rem] border border-[#d6b07a]/18 bg-[#182920] px-8 py-12 text-center shadow-[0_24px_60px_rgba(8,16,11,0.16)] md:px-12 md:py-16">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d6b07a]" data-reveal-child>
             Booking Intent

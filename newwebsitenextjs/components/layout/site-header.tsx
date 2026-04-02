@@ -86,7 +86,7 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#c89a55]/14 bg-[rgba(8,7,6,0.94)] backdrop-blur-md">
       <div className="mx-auto max-w-[96rem] px-4 md:px-10">
         <div className="relative border-b border-white/15 py-1.5 md:py-1.5">
-          <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-8">
+          <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 md:grid-cols-[1fr_auto_1fr] md:gap-8">
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -132,7 +132,7 @@ export function SiteHeader() {
 
             <Link
               href="/"
-              className="mx-auto inline-flex h-[60px] w-[84px] items-center justify-center border border-[#9b7a4a] bg-[#08090c] px-3 text-center text-[0.57rem] font-semibold uppercase tracking-[0.2em] text-[#d9b57f] md:h-[64px] md:w-[88px] md:text-[0.6rem]"
+              className="mx-auto inline-flex h-[56px] w-[78px] items-center justify-center border border-[#9b7a4a] bg-[#08090c] px-2 text-center text-[0.52rem] font-semibold uppercase tracking-[0.18em] text-[#d9b57f] md:h-[64px] md:w-[88px] md:px-3 md:text-[0.6rem]"
               data-cursor="hover"
             >
               {content.logoLines[0]}
@@ -180,7 +180,7 @@ export function SiteHeader() {
 
             <Link
               href={DIRECT_BOOKING_ENGINE_URL}
-              className="inline-flex shrink-0 items-center justify-center whitespace-nowrap border border-[#f1e7d7] bg-[#f1e7d7] px-3 py-2 text-[0.64rem] font-semibold tracking-wide text-black md:hidden"
+              className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-[#f1e7d7] bg-[#f1e7d7] px-2.5 py-2 text-[0.58rem] font-semibold tracking-[0.08em] text-black md:hidden"
               onClick={() => setMobileMenuOpen(false)}
             >
               {content.primaryCta}
@@ -192,7 +192,7 @@ export function SiteHeader() {
           className="relative hidden items-center justify-center border-t border-white/8 bg-[rgba(8,7,6,0.94)] px-6 py-2 md:flex"
           onMouseLeave={() => setActiveDropdown(null)}
         >
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-center">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-center">
             {desktopMainLinks.map((item, index) => (
               <div
                 key={item}
@@ -201,8 +201,8 @@ export function SiteHeader() {
               >
                 <Link
                   href={mainNavLinks[item] ?? "/"}
-                  className={`text-[0.9rem] font-medium transition-colors ${
-                    activeDropdown === item ? "text-[#e0b675]" : "text-white"
+                  className={`inline-flex items-center text-[0.84rem] font-semibold uppercase tracking-[0.08em] transition-all duration-200 ${
+                    activeDropdown === item ? "text-[#e0b675]" : "text-[#f3eadb]/92 hover:text-[#e0b675]"
                   }`}
                   data-cursor="hover"
                 >
@@ -211,18 +211,18 @@ export function SiteHeader() {
                 </Link>
 
                 {index < desktopMainLinks.length - 1 ? (
-                  <span className="pointer-events-none absolute left-[calc(100%+0.65rem)] top-1/2 -translate-y-1/2 text-white/35">
+                  <span className="pointer-events-none absolute left-[calc(100%+0.8rem)] top-1/2 -translate-y-1/2 text-[0.72rem] text-[#c89a55]/58">
                     •
                   </span>
                 ) : null}
 
                 {activeDropdown === item && dropdownItems.length > 0 ? (
-                  <div className="absolute left-1/2 top-[2.2rem] z-50 min-w-[16rem] -translate-x-1/2 rounded-[1.1rem] border border-[#c9a46e]/24 bg-[#14110f] p-1 shadow-[0_14px_34px_rgba(0,0,0,0.42)]">
+                  <div className="absolute left-1/2 top-[2.35rem] z-50 min-w-[15rem] -translate-x-1/2 rounded-[1.1rem] border border-[#c9a46e]/24 bg-[linear-gradient(180deg,#15110e_0%,#1d1612_100%)] p-1 shadow-[0_14px_34px_rgba(0,0,0,0.42)] md:min-w-[18rem]">
                     {dropdownItems.map((dropdownItem) => (
                       <Link
                         key={dropdownItem.label}
                         href={dropdownItem.href}
-                        className="block border-b border-white/10 px-3 py-2 text-left text-sm text-white/90 last:border-b-0 hover:bg-white/4 hover:text-white"
+                        className="block border-b border-white/10 px-4 py-2.5 text-left text-sm leading-snug text-white/90 last:border-b-0 hover:bg-white/4 hover:text-[#f6ead8] md:text-[0.95rem]"
                         data-cursor="hover"
                       >
                         {dropdownItem.label}

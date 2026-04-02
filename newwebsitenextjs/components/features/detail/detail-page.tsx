@@ -52,12 +52,12 @@ export function DetailPageView({ page }: DetailPageProps) {
       <div className="noise-overlay" />
       <SiteHeader />
 
-      <section className="relative min-h-[110svh] overflow-hidden pt-44 md:pt-48" data-section-id={page.slug} data-hero-stage>
+      <section className="relative min-h-[88svh] overflow-hidden pt-36 md:min-h-[110svh] md:pt-48" data-section-id={page.slug} data-hero-stage>
         <div className="absolute inset-0" data-hero-bg data-bg-parallax data-bg-depth="8">
           <Image src={page.heroImage} alt={page.title} fill className="object-cover" sizes="100vw" priority />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.58)_60%,rgba(0,0,0,0.9)_100%)]" data-hero-overlay />
-        <div className="relative z-10 mx-auto flex min-h-[110svh] max-w-[96rem] items-start px-6 pb-8 pt-28 md:px-12 md:pb-12 md:pt-36">
+        <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-[96rem] items-start px-4 pb-8 pt-24 md:min-h-[110svh] md:px-12 md:pb-12 md:pt-36">
           <div className="max-w-5xl" data-hero-copy>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#c9a46e]" data-hero-subtitle>
               {isPackagePage ? "Wedding Package" : "Luxury Stay"}
@@ -104,7 +104,7 @@ export function DetailPageView({ page }: DetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20 text-center md:px-10" data-stage-section>
+      <section className="mx-auto max-w-6xl px-4 py-16 text-center md:px-10 md:py-20" data-stage-section>
         <nav aria-label="Breadcrumb" className="flex items-center justify-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#c8a871]/20 bg-[#16261f]/80 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
             <li>
@@ -137,7 +137,7 @@ export function DetailPageView({ page }: DetailPageProps) {
       </section>
 
       {!isPackagePage && facts.length > 0 ? (
-        <section className="mx-auto max-w-[96rem] px-6 py-8 md:px-10" data-stage-section>
+        <section className="mx-auto max-w-[96rem] px-4 py-8 md:px-10" data-stage-section>
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <article className="rounded-[1.8rem] border border-white/10 bg-[#16261f] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-card>
               <p className="text-xs uppercase tracking-[0.22em] text-[#c9a46e]">Stay Positioning</p>
@@ -158,14 +158,14 @@ export function DetailPageView({ page }: DetailPageProps) {
         </section>
       ) : null}
 
-      <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-10" data-stage-section>
+      <section className="mx-auto max-w-[96rem] px-4 py-10 md:px-10" data-stage-section>
         <h2 className="text-center text-4xl md:text-5xl" data-stage-line>
           {sectionTitle}
         </h2>
         <div className="mt-12 grid gap-8 md:grid-cols-2" data-stage-visual>
           {page.cards.map((card) => (
             <article key={card.title} data-card className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#16261f] shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
-              <div className="relative h-[28rem] overflow-hidden">
+              <div className="relative h-[20rem] overflow-hidden md:h-[28rem]">
                 <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="9">
                   <Image src={card.image} alt={card.title} fill className="object-cover" sizes="(max-width:768px) 100vw, 50vw" />
                 </div>
@@ -212,7 +212,7 @@ export function DetailPageView({ page }: DetailPageProps) {
       </section>
 
       {page.packageComparison ? (
-        <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-10" data-stage-section>
+        <section className="mx-auto max-w-[96rem] px-4 py-10 md:px-10" data-stage-section>
           <h2 className="text-center text-4xl md:text-5xl" data-stage-line>
             Compare Package Value
           </h2>
@@ -253,11 +253,11 @@ export function DetailPageView({ page }: DetailPageProps) {
         </section>
       ) : null}
 
-      <section className="mx-auto max-w-[96rem] px-6 py-16 md:px-10" data-stage-section>
+      <section className="mx-auto max-w-[96rem] px-4 py-14 md:px-10 md:py-16" data-stage-section>
         <h2 className="text-center text-4xl md:text-5xl" data-stage-line>
           {galleryHeading}
         </h2>
-        <div className="mt-8 flex justify-center gap-8 text-2xl md:text-3xl" data-stage-copy>
+        <div className="mt-8 flex flex-wrap justify-center gap-5 text-xl md:text-3xl" data-stage-copy>
           <button
             type="button"
             onClick={() => setActiveTab("image")}
@@ -281,7 +281,7 @@ export function DetailPageView({ page }: DetailPageProps) {
           {(activeTab === "video" ? videoGallery : imageGallery).map((media, index) => (
             <div
               key={`${activeTab}-${media}-${index}`}
-              className="relative h-[28rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#16261f] shadow-[0_18px_36px_rgba(8,16,11,0.18)]"
+              className="relative h-[19rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#16261f] shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:h-[28rem]"
               data-card
             >
               <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="7">
@@ -305,7 +305,7 @@ export function DetailPageView({ page }: DetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-20 md:px-10" data-stage-section>
+      <section className="mx-auto max-w-6xl px-4 pb-16 md:px-10 md:pb-20" data-stage-section>
         <div className="rounded-[2rem] border border-white/10 bg-[#16261f] px-8 py-12 text-center shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:px-12 md:py-14">
           <p className="text-xs uppercase tracking-[0.22em] text-[#c9a46e]" data-stage-line>
             Booking Intent

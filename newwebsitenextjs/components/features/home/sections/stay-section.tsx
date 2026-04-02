@@ -18,10 +18,10 @@ function StayCard({
 }) {
   const hrefMap: Record<string, string> = {
     "Standard Room": "/standard-room",
-    "Cliff Room": "/cliff-room",
+    "Cliff View Room": "/cliff-room",
     "Family Room": "/family-room",
-    "Glass Cottage": "/glass-cottage",
-    Bungalow: "/bungalow",
+    "Glass Jacuzi Room": "/glass-cottage",
+    Bunglow: "/bungalow",
   };
 
   const href = hrefMap[title] ?? "/cliff-room";
@@ -29,7 +29,7 @@ function StayCard({
   return (
     <article
       data-card
-      className="group relative h-[31rem] overflow-hidden rounded-[1.45rem] border border-[#b99253]/45 bg-black transition-all duration-700 hover:-translate-y-1.5 hover:border-[#dfbf86] hover:shadow-[0_28px_58px_rgba(9,18,14,0.3)]"
+      className="group relative h-[26rem] overflow-hidden rounded-[1.45rem] border border-[#b99253]/45 bg-black transition-all duration-700 hover:-translate-y-1.5 hover:border-[#dfbf86] hover:shadow-[0_28px_58px_rgba(9,18,14,0.3)] md:h-[31rem]"
     >
       <Link href={href} className="absolute inset-0 z-10" aria-label={`View ${title} details`}>
         <span className="sr-only">View stay details</span>
@@ -54,29 +54,29 @@ function StayCard({
       <div className="absolute inset-x-0 bottom-[5.75rem] h-px bg-white/20 transition-all duration-700 group-hover:bg-[#d3b07b]/55" />
       <Link
         href={href}
-        className="absolute right-6 top-6 z-30 rounded-full border border-[#d9b983]/45 bg-black/25 px-4 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#f5e7cd]"
+        className="absolute right-4 top-4 z-30 rounded-full border border-[#d9b983]/45 bg-black/25 px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#f5e7cd] md:right-6 md:top-6 md:px-4 md:text-[0.68rem]"
         data-cursor="hover"
       >
         Explore Stay
       </Link>
 
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center transition-all duration-700 group-hover:-translate-y-7">
-        <h4 className="max-w-[12ch] text-3xl leading-tight text-[#ccab74] drop-shadow-[0_2px_12px_rgba(0,0,0,0.2)] transition-all duration-700 group-hover:scale-[1.04] group-hover:text-[#e8c995] group-hover:tracking-[0.03em] md:text-[3.2rem]">
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-5 text-center transition-all duration-700 md:px-6 md:group-hover:-translate-y-7">
+        <h4 className="max-w-[12ch] text-[2rem] leading-tight text-[#ccab74] drop-shadow-[0_2px_12px_rgba(0,0,0,0.2)] transition-all duration-700 md:text-[3.2rem] md:group-hover:scale-[1.04] md:group-hover:text-[#e8c995] md:group-hover:tracking-[0.03em]">
           {title}
         </h4>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 z-20 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(16,24,20,0.06)_22%,rgba(16,24,20,0.5)_100%)] px-5 pb-4 pt-22 text-left md:px-7">
-        <div className="translate-y-5 opacity-0 transition-all duration-700 delay-100 group-hover:translate-y-0 group-hover:opacity-100">
-          <p className="text-sm leading-relaxed text-[#efe3ce] md:text-base">{description}</p>
+      <div className="absolute inset-x-0 bottom-0 z-20 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(16,24,20,0.12)_18%,rgba(16,24,20,0.82)_100%)] px-5 pb-4 pt-22 text-left md:px-7">
+        <div className="translate-y-0 opacity-100 transition-all duration-700 delay-100 md:translate-y-5 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
+          <p className="text-[0.88rem] leading-relaxed text-[#efe3ce] md:text-base">{description}</p>
           <div className="mt-4 space-y-1 text-sm text-white/86">
             <p>{tariff}</p>
             <p>{packagePrice}</p>
           </div>
-          <div className="relative z-30 mt-5 flex justify-center">
+          <div className="relative z-30 mt-5 flex justify-center md:justify-center">
             <Link
               href={DIRECT_BOOKING_ENGINE_URL}
-              className="inline-flex rounded-full border border-[#c9a467] bg-[#c9a467] px-5 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-black transition-colors hover:bg-[#d7b57c]"
+              className="inline-flex w-full justify-center rounded-full border border-[#c9a467] bg-[#c9a467] px-5 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#d7b57c] md:w-auto md:text-[0.72rem] md:tracking-[0.16em]"
               data-cursor="hover"
             >
               Check Availability
@@ -100,12 +100,12 @@ export function StaySection() {
       </div>
 
       <div className="mx-auto mt-12 max-w-[96rem] px-1">
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {stayCardsPrimary.map((card) => (
             <StayCard key={card.title} {...card} />
           ))}
         </div>
-        <div className="mt-5 grid gap-5 md:grid-cols-2">
+        <div className="mt-5 grid gap-5 sm:grid-cols-2">
           {stayCardsSecondary.map((card) => (
             <StayCard key={card.title} {...card} />
           ))}

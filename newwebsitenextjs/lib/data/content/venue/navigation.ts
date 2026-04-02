@@ -6,7 +6,6 @@ export const mainLinks = [
   "PACKAGES",
   "STAY",
   "VENUE HIGHLIGHTS",
-  "CHECK AVAILABILITY",
   "BOOKING TERMS",
   "CHECK-IN",
   "PLAN YOUR WEDDING",
@@ -16,10 +15,10 @@ export const mainLinks = [
 export const headerDropdownLinks: Record<string, Array<{ label: string; href: string }>> = {
   STAY: [
     { label: "Standard Room", href: "/standard-room" },
-    { label: "Cliff Room", href: "/cliff-room" },
+    { label: "Cliff View Room", href: "/cliff-room" },
     { label: "Family Room", href: "/family-room" },
-    { label: "Glass Cottage", href: "/glass-cottage" },
-    { label: "Bungalow", href: "/bungalow" },
+    { label: "Glass Jacuzi Room", href: "/glass-cottage" },
+    { label: "Bunglow", href: "/bungalow" },
   ],
   "VENUE HIGHLIGHTS": [
     { label: "Mountain View Destination", href: "/mountain-view-destination" },

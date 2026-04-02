@@ -11,10 +11,9 @@ export function FeatureSplitSection() {
       {splitFeatures.map((feature, index) => (
         <article key={feature.id} data-feature-stage data-cinematic-section data-section-id={feature.id} className="relative min-h-[72svh] overflow-hidden">
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 z-0"
             data-feature-image
             data-cinematic-media
-            data-zoom-scroll
             data-bg-parallax
             data-bg-depth="10"
           >

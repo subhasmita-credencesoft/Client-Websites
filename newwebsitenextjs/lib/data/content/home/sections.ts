@@ -129,27 +129,27 @@ export const homeSectionContent = {
       {
         title: "Standard Room",
         tariff: "Room Tariff Rs. 5,000/-",
-        package: "Per Person Package (Stay + All Meals) Rs. 3,000/-",
+        package: "Package pricing shared during enquiry",
       },
       {
-        title: "Cliff Room",
+        title: "Cliff View Room",
         tariff: "Room Tariff Rs. 6,500/-",
-        package: "Per Person Package (Stay + All Meals) Rs. 3,500/-",
+        package: "Package pricing shared during enquiry",
       },
       {
         title: "Family Room",
+        tariff: "Room Tariff Rs. 10,000/-",
+        package: "Package pricing shared during enquiry",
+      },
+      {
+        title: "Glass Jacuzi Room",
+        tariff: "Room Tariff Rs. 2,000/-",
+        package: "Package pricing shared during enquiry",
+      },
+      {
+        title: "Bunglow",
         tariff: "Room Tariff Rs. 20,000/-",
-        package: "Per Person Package (Stay + All Meals) Rs. 2,500/-",
-      },
-      {
-        title: "Glass Cottage",
-        tariff: "Room Tariff Rs. 12,000/-",
-        package: "Per Person Package (Stay + All Meals) Rs. 7,500/-",
-      },
-      {
-        title: "Bungalow",
-        tariff: "Bungalow Tariff Rs. 25,000/-",
-        package: "Per Person Package (Stay + All Meals) Rs. 3,500/-",
+        package: "Package pricing shared during enquiry",
       },
     ],
   },

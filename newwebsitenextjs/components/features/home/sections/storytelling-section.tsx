@@ -87,13 +87,13 @@ export function StorytellingSection() {
     >
       <div
         ref={headingRef}
-        className="sticky top-5 z-30 mx-auto max-w-[96rem] rounded-t-[2rem] border border-[#c9a46e]/16 bg-[#f2ede5] px-6 pb-10 pt-7 text-[#151311] md:px-10 md:pb-14 md:pt-10"
+        className="z-30 mx-auto max-w-[96rem] rounded-t-[2rem] border border-[#c9a46e]/16 bg-[linear-gradient(180deg,#17120f_0%,#1f1812_100%)] px-5 pb-8 pt-6 text-[#f4ead9] shadow-[0_24px_50px_rgba(10,18,12,0.24)] md:sticky md:top-5 md:px-10 md:pb-14 md:pt-10"
       >
         <p
           ref={(el) => {
             textRefs.current[0] = el;
           }}
-          className="text-center text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-[#9e7d4f] md:text-left"
+          className="text-center text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-[#c89a55] md:text-left"
         >
           The Mountain, Karjat
         </p>
@@ -109,14 +109,13 @@ export function StorytellingSection() {
           ref={(el) => {
             textRefs.current[2] = el;
           }}
-          className="mx-auto mt-5 max-w-3xl text-center text-sm leading-relaxed text-[#3a342d] md:mx-0 md:text-left md:text-lg"
+          className="mx-auto mt-5 max-w-3xl text-center text-sm leading-relaxed text-white/74 md:mx-0 md:text-left md:text-lg"
         >
           {homeSectionContent.about.body}
         </p>
       </div>
 
       {storytellingBlocks.map((block, index) => {
-        const isDarkCard = index !== 1;
         const zIndexClass = index === 0 ? "z-20" : index === 1 ? "z-10" : "z-0";
 
         return (
@@ -125,20 +124,16 @@ export function StorytellingSection() {
             ref={(el) => {
               cardRefs.current[index] = el;
             }}
-            className={`sticky ${index === 0 ? "top-7 -mt-7" : "top-5 -mt-7"} ${zIndexClass} rounded-t-[2rem] border border-[#c9a46e]/16 ${
-              isDarkCard ? "bg-[#090909] text-white" : "bg-[#f3efe8] text-[#171411]"
-            }`}
+            className={`${index === 0 ? "md:top-7 -mt-7" : "md:top-5 -mt-7"} ${zIndexClass} rounded-t-[2rem] border border-[#c9a46e]/16 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] text-white shadow-[0_24px_50px_rgba(10,18,12,0.24)] md:sticky`}
           >
-            <div className="mx-auto max-w-[96rem] px-6 py-10 md:px-10 md:py-14">
+            <div className="mx-auto max-w-[96rem] px-5 py-8 md:px-10 md:py-14">
               <div className="grid gap-8 md:grid-cols-[0.92fr_1.08fr] md:items-center">
                 <div className={index % 2 === 1 ? "md:order-2" : ""}>
                   <h3
                     ref={(el) => {
                       textRefs.current[index * 2 + 3] = el;
                     }}
-                    className={`mx-auto max-w-4xl text-center text-2xl font-semibold leading-tight md:text-5xl ${
-                      isDarkCard ? "text-gradient-gold" : "text-[#1a1713]"
-                    }`}
+                    className="mx-auto max-w-4xl text-center text-2xl font-semibold leading-tight text-gradient-gold md:text-5xl"
                   >
                     {block.title}
                   </h3>
@@ -146,9 +141,7 @@ export function StorytellingSection() {
                     ref={(el) => {
                       textRefs.current[index * 2 + 4] = el;
                     }}
-                    className={`mx-auto mt-5 max-w-3xl text-center text-sm leading-relaxed md:text-lg ${
-                      isDarkCard ? "text-white/76" : "text-[#3a342d]"
-                    }`}
+                    className="mx-auto mt-5 max-w-3xl text-center text-sm leading-relaxed text-white/76 md:text-lg"
                   >
                     {block.description}
                   </p>

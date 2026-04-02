@@ -42,7 +42,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
       <div className="noise-overlay" />
       <SiteHeader />
 
-      <section className="relative min-h-[100svh] overflow-hidden" data-section-id={`${page.slug}-hero`} data-hero-stage>
+      <section className="relative min-h-[86svh] overflow-hidden pt-32 md:min-h-[100svh] md:pt-0" data-section-id={`${page.slug}-hero`} data-hero-stage>
         {heroImages.map((image, index) => (
           <div
             key={`${page.slug}-${image}`}
@@ -59,7 +59,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,12,0.22)_0%,rgba(8,10,12,0.34)_42%,rgba(8,10,12,0.82)_100%)]" data-hero-overlay />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,rgba(8,10,12,0)_0%,rgba(8,10,12,0.74)_100%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[96rem] items-end px-8 pb-16 pt-36 md:px-10 md:pb-20">
+        <div className="relative z-10 mx-auto flex min-h-[86svh] max-w-[96rem] items-end px-4 pb-12 pt-20 md:min-h-[100svh] md:px-10 md:pb-20 md:pt-36">
           <div className="max-w-5xl" data-hero-copy>
             <p data-reveal-child className="text-xs font-semibold uppercase tracking-[0.2em] text-white/75">
               {page.intro.eyebrow}
@@ -113,7 +113,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-8 pb-24 pt-40" data-section-id={`${page.slug}-intro`} data-stage-section>
+      <section className="mx-auto max-w-[96rem] px-4 pb-16 pt-16 md:px-8 md:pb-24 md:pt-40" data-section-id={`${page.slug}-intro`} data-stage-section>
         <nav aria-label="Breadcrumb" className="flex items-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-[#182920]/85 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
             <li>
@@ -141,7 +141,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-8 pb-20 pt-0" data-section-id={`${page.slug}-stats`}>
+      <section className="mx-auto max-w-[96rem] px-4 pb-16 pt-0 md:px-8 md:pb-20" data-section-id={`${page.slug}-stats`}>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {page.stats.map((stat) => (
             <article
@@ -157,7 +157,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="bg-black px-8 py-20 text-white" data-feature-stage data-section-id={`${page.slug}-plan`}>
+      <section className="bg-black px-4 py-16 text-white md:px-8 md:py-20" data-feature-stage data-section-id={`${page.slug}-plan`}>
         <div className="mx-auto grid max-w-[96rem] items-center gap-10 md:grid-cols-2">
           <div data-feature-content data-reveal>
             <p data-reveal-child className="text-xs uppercase tracking-[0.28em] text-[#d7ae71]">
@@ -178,7 +178,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
             </Link>
           </div>
 
-          <div className="relative h-[36rem] overflow-hidden rounded-[2rem]" data-card>
+          <div className="relative h-[20rem] overflow-hidden rounded-[2rem] md:h-[36rem]" data-card>
             <div className="absolute inset-0" data-feature-image data-card-image data-bg-parallax data-bg-depth="9">
               <Image src={page.gallery.images[0]?.src ?? page.hero.image} alt={page.gallery.images[0]?.alt ?? page.hero.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
             </div>
@@ -186,7 +186,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="bg-[#11100e] px-8 py-18" data-section-id={`${page.slug}-booking-intent`}>
+      <section className="bg-[#11100e] px-4 py-14 md:px-8 md:py-18" data-section-id={`${page.slug}-booking-intent`}>
         <div className="mx-auto grid max-w-[96rem] gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <article className="rounded-[1.9rem] border border-white/10 bg-[#182920] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-reveal>
             <p className="text-xs uppercase tracking-[0.24em] text-[#d7ae71]" data-reveal-child>Booking Direction</p>
@@ -208,7 +208,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
       </section>
 
       <section
-        className="overflow-hidden bg-[#161412] px-8 py-22"
+        className="overflow-hidden bg-[#161412] px-4 py-16 md:px-8 md:py-22"
         data-section-id={`${page.slug}-journey`}
         data-horizontal-scroll
         data-horizontal-end="+=1800"
@@ -250,7 +250,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="bg-black px-8 py-22 text-white" data-section-id={`${page.slug}-highlights`}>
+      <section className="bg-black px-4 py-16 text-white md:px-8 md:py-22" data-section-id={`${page.slug}-highlights`}>
         <div className="mx-auto max-w-[96rem] text-center" data-reveal>
           <h3 className="text-4xl text-[#c89a55] md:text-5xl" data-section-title>
             {page.highlights.title}
@@ -279,7 +279,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#111317] px-8 py-24 text-white" data-section-id={`${page.slug}-cinematic-band`}>
+      <section className="relative overflow-hidden bg-[#111317] px-4 py-16 text-white md:px-8 md:py-24" data-section-id={`${page.slug}-cinematic-band`}>
         <div className="absolute inset-0">
           <Image src={page.cinematicBand.image} alt={page.cinematicBand.title} fill className="object-cover opacity-30" sizes="100vw" />
         </div>
@@ -312,7 +312,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="bg-[#11100e] px-8 py-18" data-section-id={`${page.slug}-gallery`}>
+      <section className="bg-[#11100e] px-4 py-14 md:px-8 md:py-18" data-section-id={`${page.slug}-gallery`}>
         <div className="mx-auto max-w-[96rem] text-center" data-reveal>
           <h3 className="text-4xl text-[#c89a55] md:text-5xl" data-section-title>
             {page.gallery.title}
@@ -339,7 +339,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="bg-black px-8 py-8" data-section-id={`${page.slug}-banner`}>
+      <section className="bg-black px-4 py-8 md:px-8" data-section-id={`${page.slug}-banner`}>
         <div className="mx-auto flex max-w-[96rem] flex-col gap-6 rounded-[1.8rem] border border-[#c89a55] px-8 py-6 text-white md:flex-row md:items-center md:justify-between" data-reveal>
           <p data-reveal-child className="max-w-4xl text-xl md:text-2xl">
             {page.summary.body}
@@ -354,7 +354,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="bg-[#161412] px-8 pb-24 pt-8" data-section-id={`${page.slug}-details`}>
+      <section className="bg-[#161412] px-4 pb-16 pt-8 md:px-8 md:pb-24" data-section-id={`${page.slug}-details`}>
         <div className="mx-auto grid max-w-[96rem] gap-8 md:grid-cols-[0.9fr_1.1fr]">
           <article className="rounded-[1.75rem] border border-[#d9c6a5]/20 bg-[#182920] px-8 py-10 backdrop-blur-sm" data-reveal>
             <p className="text-xs uppercase tracking-[0.22em] text-[#b88947]">Planning Notes</p>
@@ -375,7 +375,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="bg-[#11100e] px-8 pb-24 pt-8" data-section-id={`${page.slug}-summary`}>
+      <section className="bg-[#11100e] px-4 pb-16 pt-8 md:px-8 md:pb-24" data-section-id={`${page.slug}-summary`}>
         <div className="mx-auto max-w-[96rem] text-center" data-reveal>
           <h3 className="text-4xl text-[#c89a55] md:text-5xl" data-section-title>
             {page.summary.title}

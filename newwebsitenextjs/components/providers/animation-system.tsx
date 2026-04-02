@@ -20,6 +20,9 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let isActive = true;
     const cleanups: Array<() => void> = [];
+    let animationFrameId = 0;
+    let nestedAnimationFrameId = 0;
+    let initTimeoutId = 0;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -30,124 +33,127 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
 
     window.addEventListener("load", onLoad);
 
-    const ctx = gsap.context(() => {
-      const isOwnedByFeatureStage = (element: Element) =>
-        Boolean(element.closest("[data-feature-stage]"));
-      const hasScrollParallax = (element: HTMLElement) =>
-        element.hasAttribute("data-bg-parallax") || element.hasAttribute("data-parallax");
+    let ctx: ReturnType<typeof gsap.context> | null = null;
 
-      if (reducedMotion) {
-        gsap.set(
-          [
-            "[data-reveal]",
-            "[data-reveal-child]",
-            "[data-card]",
-            "[data-panel-content]",
-            "[data-panel-line]",
-            "[data-section-title]",
-          ],
-          {
-          clearProps: "all",
-          autoAlpha: 1,
-          },
-        );
-      } else {
-        gsap.set("[data-reveal]", {
-          autoAlpha: 0,
-          y: isDesktop() ? 56 : 30,
-          scale: 0.992,
-          filter: "blur(10px)",
-          clipPath: "inset(0 0 14% 0)",
-        });
+    const initializeAnimations = () => {
+      ctx = gsap.context(() => {
+        const isOwnedByFeatureStage = (element: Element) =>
+          Boolean(element.closest("[data-feature-stage]"));
+        const hasScrollParallax = (element: HTMLElement) =>
+          element.hasAttribute("data-bg-parallax") || element.hasAttribute("data-parallax");
 
-        gsap.set("[data-reveal-child]", {
-          autoAlpha: 0,
-          y: 34,
-        });
-
-        // Keep nested content inside cards/panels visible unless it belongs to
-        // an explicit reveal container. This prevents empty-looking cards.
-        gsap.set("[data-card] [data-reveal-child], [data-panel-content] [data-reveal-child]", {
-          clearProps: "all",
-          autoAlpha: 1,
-          y: 0,
-        });
-
-        gsap.set("[data-section-title]", {
-          autoAlpha: 0,
-          y: 20,
-          letterSpacing: "0.12em",
-        });
-
-        gsap.set("[data-panel-content]", {
-          autoAlpha: 0,
-          y: 56,
-        });
-
-        gsap.set("[data-panel-line]", {
-          autoAlpha: 0,
-          y: 28,
-        });
-      }
-
-      const revealItems = gsap.utils.toArray<HTMLElement>("[data-reveal]");
-      revealItems.forEach((item, index) => {
-        if (reducedMotion) return;
-
-        const revealChildren = item.querySelectorAll("[data-reveal-child]");
-
-        gsap.fromTo(
-          item,
-          {
+        if (reducedMotion) {
+          gsap.set(
+            [
+              "[data-reveal]",
+              "[data-reveal-child]",
+              "[data-card]",
+              "[data-panel-content]",
+              "[data-panel-line]",
+              "[data-section-title]",
+            ],
+            {
+              clearProps: "all",
+              autoAlpha: 1,
+            },
+          );
+        } else {
+          gsap.set("[data-reveal]", {
             autoAlpha: 0,
             y: isDesktop() ? 56 : 30,
             scale: 0.992,
             filter: "blur(10px)",
             clipPath: "inset(0 0 14% 0)",
-          },
-          {
+          });
+
+          gsap.set("[data-reveal-child]", {
+            autoAlpha: 0,
+            y: 34,
+          });
+
+          // Keep nested content inside cards/panels visible unless it belongs to
+          // an explicit reveal container. This prevents empty-looking cards.
+          gsap.set("[data-card] [data-reveal-child], [data-panel-content] [data-reveal-child]", {
+            clearProps: "all",
             autoAlpha: 1,
             y: 0,
-            scale: 1,
-            filter: "blur(0px)",
-            clipPath: "inset(0 0 0% 0)",
-            duration: 1.15,
-            ease: "power3.out",
-            delay: index * 0.02,
-            scrollTrigger: {
-              trigger: item,
-              start: "top 88%",
-              once: true,
-              invalidateOnRefresh: true,
-              fastScrollEnd: true,
-            },
-          },
-        );
+          });
 
-        if (revealChildren.length > 0) {
+          gsap.set("[data-section-title]", {
+            autoAlpha: 0,
+            y: 20,
+            letterSpacing: "0.12em",
+          });
+
+          gsap.set("[data-panel-content]", {
+            autoAlpha: 0,
+            y: 56,
+          });
+
+          gsap.set("[data-panel-line]", {
+            autoAlpha: 0,
+            y: 28,
+          });
+        }
+
+        const revealItems = gsap.utils.toArray<HTMLElement>("[data-reveal]");
+        revealItems.forEach((item, index) => {
+          if (reducedMotion) return;
+
+          const revealChildren = item.querySelectorAll("[data-reveal-child]");
+
           gsap.fromTo(
-            revealChildren,
+            item,
             {
               autoAlpha: 0,
-              y: 34,
+              y: isDesktop() ? 56 : 30,
+              scale: 0.992,
+              filter: "blur(10px)",
+              clipPath: "inset(0 0 14% 0)",
             },
             {
               autoAlpha: 1,
               y: 0,
-              duration: 0.9,
-              stagger: 0.12,
-              delay: 0.16,
-              ease: "power2.out",
+              scale: 1,
+              filter: "blur(0px)",
+              clipPath: "inset(0 0 0% 0)",
+              duration: 1.15,
+              ease: "power3.out",
+              delay: index * 0.02,
               scrollTrigger: {
                 trigger: item,
-                start: "top 84%",
+                start: "top 88%",
                 once: true,
                 invalidateOnRefresh: true,
+                fastScrollEnd: true,
               },
             },
           );
-        }
-      });
+
+          if (revealChildren.length > 0) {
+            gsap.fromTo(
+              revealChildren,
+              {
+                autoAlpha: 0,
+                y: 34,
+              },
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.9,
+                stagger: 0.12,
+                delay: 0.16,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: item,
+                  start: "top 84%",
+                  once: true,
+                  invalidateOnRefresh: true,
+                },
+              },
+            );
+          }
+        });
 
       const cards = gsap.utils.toArray<HTMLElement>("[data-card]");
       cards.forEach((card) => {
@@ -650,10 +656,9 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
         if (image) {
           gsap.fromTo(
             image,
-            { scale: 1.12, autoAlpha: 0.72 },
+            { scale: 1.08, autoAlpha: 1 },
             {
               scale: 1,
-              autoAlpha: 1,
               ease: "none",
               scrollTrigger: {
                 trigger: stage,
@@ -766,15 +771,28 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
         });
       });
 
-      ScrollTrigger.refresh();
-    });
+        ScrollTrigger.refresh();
+      });
+    };
+
+    initTimeoutId = window.setTimeout(() => {
+      animationFrameId = window.requestAnimationFrame(() => {
+        nestedAnimationFrameId = window.requestAnimationFrame(() => {
+          if (!isActive) return;
+          initializeAnimations();
+        });
+      });
+    }, 80);
 
     return () => {
       isActive = false;
+      window.clearTimeout(initTimeoutId);
       window.clearTimeout(delayedRefresh);
+      window.cancelAnimationFrame(animationFrameId);
+      window.cancelAnimationFrame(nestedAnimationFrameId);
       window.removeEventListener("load", onLoad);
       cleanups.forEach((cleanup) => cleanup());
-      ctx.revert();
+      ctx?.revert();
     };
   }, [dispatch, pathname]);
 

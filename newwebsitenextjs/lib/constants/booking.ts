@@ -1,5 +1,4 @@
 const DIRECT_BOOKING_ENGINE_BASE_URL = "https://bookone.io/the-mountain-by-redwings";
-const PROPERTY_AVAILABILITY_ID = 3521;
 
 type DirectBookingUrlOptions = {
   checkIn?: string | Date;
@@ -58,35 +57,16 @@ export function buildDirectBookingEngineUrl({
   const toDate = formatDate(safeCheckOut);
   const safeGuests = Math.max(1, guests);
   const safeRooms = Math.max(1, rooms);
-  const nights = Math.max(
-    1,
-    Math.round((safeCheckOut.getTime() - normalizedCheckIn.getTime()) / (1000 * 60 * 60 * 24)),
-  );
 
   const params = new URLSearchParams({
     bookingEngine: "true",
-    checkinDay: String(normalizedCheckIn.getDate()),
-    checkinMonth: String(normalizedCheckIn.getMonth() + 1),
-    checkinYear: String(normalizedCheckIn.getFullYear()),
-    checkoutDay: String(safeCheckOut.getDate()),
-    checkoutMonth: String(safeCheckOut.getMonth() + 1),
-    checkoutYear: String(safeCheckOut.getFullYear()),
-    checkOut: toDate,
     fromDate,
     toDate,
-    date_to: toDate,
-    nights: String(nights),
     noOfRooms: String(safeRooms),
-    rooms: String(safeRooms),
     noOfPersons: String(safeGuests),
-    numGuests: String(safeGuests),
-    numAdults: String(safeGuests),
-    Children: "0",
-    propertyId: String(PROPERTY_AVAILABILITY_ID),
   });
 
   return `${DIRECT_BOOKING_ENGINE_BASE_URL}?${params.toString()}`;
 }
 
 export const DIRECT_BOOKING_ENGINE_URL = buildDirectBookingEngineUrl();
-export const DIRECT_BOOKING_AVAILABILITY_API_URL = `https://api.thehotelmate.co/api/thm/checkAvailability/${PROPERTY_AVAILABILITY_ID}`;

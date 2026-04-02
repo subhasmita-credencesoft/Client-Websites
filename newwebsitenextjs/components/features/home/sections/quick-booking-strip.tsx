@@ -18,7 +18,6 @@ export function QuickBookingStrip() {
   const [checkIn, setCheckIn] = useState(getTodayDateString());
   const [checkOut, setCheckOut] = useState(getTodayDateString(1));
   const [guests, setGuests] = useState("2");
-  const [eventType, setEventType] = useState<string>(content.eventTypes[0] ?? "Destination Wedding");
   const handleBookingRedirect = () => {
     const bookingHref = buildDirectBookingEngineUrl({
       checkIn,
@@ -38,7 +37,7 @@ export function QuickBookingStrip() {
             <p className="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-[#c9a46e]">Quick Booking</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-2 xl:grid-cols-[1fr_1fr_0.7fr_1fr_auto] xl:items-end">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-2 xl:grid-cols-[1fr_1fr_0.7fr_auto] xl:items-end">
             <label className="grid gap-1">
               <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#c9a46e]">
                 {content.fields.checkIn}
@@ -74,23 +73,6 @@ export function QuickBookingStrip() {
                 onChange={(e) => setGuests(e.target.value)}
                 className="h-9 rounded-[0.8rem] border border-white/10 bg-black/20 px-3 text-[0.82rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50 md:h-10 md:text-[0.88rem]"
               />
-            </label>
-
-            <label className="grid gap-1">
-              <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#c9a46e]">
-                {content.fields.eventType}
-              </span>
-              <select
-                value={eventType}
-                onChange={(e) => setEventType(e.target.value)}
-                className="h-9 rounded-[0.8rem] border border-white/10 bg-black/20 px-3 text-[0.82rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50 md:h-10 md:text-[0.88rem]"
-              >
-                {content.eventTypes.map((option) => (
-                  <option key={option} value={option} className="text-black">
-                    {option}
-                  </option>
-                ))}
-              </select>
             </label>
 
             <div className="col-span-2 grid items-end xl:col-span-1">
