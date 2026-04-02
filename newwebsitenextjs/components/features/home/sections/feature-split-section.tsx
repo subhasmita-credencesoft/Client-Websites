@@ -9,20 +9,23 @@ export function FeatureSplitSection() {
   return (
     <section className="bg-black">
       {splitFeatures.map((feature, index) => (
-        <article key={feature.id} data-feature-stage data-section-id={feature.id} className="relative min-h-[72svh] overflow-hidden">
+        <article key={feature.id} data-feature-stage data-cinematic-section data-section-id={feature.id} className="relative min-h-[72svh] overflow-hidden">
           <div
             className="absolute inset-0"
             data-feature-image
+            data-cinematic-media
             data-zoom-scroll
             data-bg-parallax
             data-bg-depth="10"
           >
             <Image src={feature.image} alt={feature.title} fill className="object-cover" sizes="100vw" />
           </div>
+          <div className="cinematic-glow absolute left-[8%] top-[18%] h-[18rem] w-[18rem]" data-cinematic-glow />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.84)_18%,rgba(0,0,0,0.5)_55%,rgba(0,0,0,0.8)_100%)]" />
           <div className="relative mx-auto flex max-w-[95rem] px-5 py-24 md:px-10">
             <div
               data-feature-content
+              data-cinematic-copy
               className={index % 2 === 0 ? "max-w-4xl" : "ml-auto max-w-4xl text-left md:text-center"}
             >
               <h3 data-section-title className="text-3xl leading-tight text-[#cba977] md:text-5xl">

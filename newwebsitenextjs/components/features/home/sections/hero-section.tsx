@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { heroBackgroundUrls, heroVideoUrls } from "@/lib/data/content/media-assets";
@@ -52,15 +53,20 @@ export function HeroSection() {
     <section
       id="home"
       data-section-id="home"
+      data-cinematic-section
       ref={rootRef}
       className="relative flex min-h-[100svh] items-end overflow-hidden pb-20 pt-32"
     >
-      <div className="absolute inset-0 will-transform" data-zoom-scroll data-bg-parallax data-bg-depth="8">
+      <div className="absolute inset-0 will-transform" data-cinematic-media data-zoom-scroll data-bg-parallax data-bg-depth="8">
         {heroBackgroundUrls.map((background, index) => (
-          <div
+          <Image
             key={background}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${index === activeBackgroundIndex ? "opacity-100" : "opacity-0"}`}
-            style={{ backgroundImage: `url(${background})` }}
+            src={background}
+            alt=""
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            className={`absolute inset-0 object-cover transition-opacity duration-1000 ${index === activeBackgroundIndex ? "opacity-100" : "opacity-0"}`}
           />
         ))}
         {heroVideoUrls[0] ? (
@@ -81,9 +87,11 @@ export function HeroSection() {
         ) : null}
       </div>
 
+      <div className="cinematic-glow absolute left-[-10%] top-[12%] h-[24rem] w-[24rem]" data-cinematic-glow />
+      <div className="cinematic-glow absolute bottom-[-8%] right-[-6%] h-[20rem] w-[20rem]" data-cinematic-glow />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,5,7,0.18)_0%,rgba(8,8,10,0.55)_42%,rgba(3,3,5,0.94)_100%)]" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[95rem] flex-col gap-8 px-6 md:px-14">
+      <div className="relative z-10 mx-auto flex w-full max-w-[95rem] flex-col gap-8 px-6 md:px-14" data-cinematic-copy>
         <h1
           data-section-title
           className="max-w-4xl text-[1.3rem] leading-[1.08] text-[#c9a467] md:text-[3.15rem] xl:text-[3.45rem]"

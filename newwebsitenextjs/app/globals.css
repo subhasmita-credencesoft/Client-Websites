@@ -109,6 +109,17 @@ h5 {
     0 0 24px rgba(200, 154, 85, 0.12);
 }
 
+.cinematic-glow {
+  pointer-events: none;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle, rgba(217, 181, 118, 0.22) 0%, rgba(217, 181, 118, 0.08) 34%, transparent 72%);
+  filter: blur(30px);
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  z-index: 1;
+}
+
 .bg-black {
   background-color: var(--section-dark) !important;
 }

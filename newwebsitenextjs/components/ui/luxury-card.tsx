@@ -12,6 +12,7 @@ export function LuxuryCard({ title, description, image }: LuxuryCardProps) {
   return (
     <article
       data-card
+      data-cinematic-card
       data-cursor="hover"
       className="group relative overflow-hidden rounded-3xl border border-white/20 bg-white/8 shadow-[0_25px_50px_rgba(0,0,0,0.45)]"
     >
@@ -20,6 +21,7 @@ export function LuxuryCard({ title, description, image }: LuxuryCardProps) {
           src={image}
           alt={title}
           fill
+          data-cinematic-media
           className="object-cover transition-transform duration-900 group-hover:scale-110"
           data-card-image
           sizes="(max-width: 768px) 100vw, 33vw"

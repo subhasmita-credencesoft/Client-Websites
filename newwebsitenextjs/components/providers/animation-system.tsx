@@ -287,33 +287,42 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
         if (reducedMotion) return;
 
         const rawDepth = Number(item.dataset.parallaxDepth ?? "18");
-        const depth = isDesktop() ? rawDepth : Math.max(5, Math.round(rawDepth * 0.5));
+        const depth = isDesktop() ? Math.min(rawDepth, 16) : Math.max(4, Math.round(rawDepth * 0.35));
+        const startY = isDesktop() ? -Math.max(4, depth * 0.55) : -Math.max(2, depth * 0.4);
+        const endY = isDesktop() ? Math.max(5, depth * 0.7) : Math.max(3, depth * 0.48);
+        const startScale = isDesktop() ? 1.16 : 1.09;
+        const endScale = isDesktop() ? 1.2 : 1.11;
 
         gsap.set(item, {
           transformPerspective: 1200,
           transformOrigin: "center center",
           willChange: "transform",
+          force3D: true,
+          transformStyle: "preserve-3d",
+          backfaceVisibility: "hidden",
         });
 
         gsap.fromTo(
           item,
           {
-            yPercent: -depth * 0.85,
-            scale: isDesktop() ? 1.12 : 1.06,
-            rotateX: isDesktop() ? 2.4 : 0.8,
-            z: isDesktop() ? -18 : -6,
+            yPercent: startY,
+            scale: startScale,
+            rotateX: isDesktop() ? 1.4 : 0.5,
+            rotateY: isDesktop() ? -1.2 : -0.35,
+            z: isDesktop() ? -10 : -4,
           },
           {
-            yPercent: depth * 0.95,
-            scale: isDesktop() ? 1.22 : 1.1,
-            rotateX: isDesktop() ? -2.4 : -0.8,
-            z: isDesktop() ? 18 : 6,
+            yPercent: endY,
+            scale: endScale,
+            rotateX: isDesktop() ? -1.4 : -0.5,
+            rotateY: isDesktop() ? 1.2 : 0.35,
+            z: isDesktop() ? 10 : 4,
             ease: "none",
             scrollTrigger: {
               trigger: item.parentElement ?? item,
               start: "top bottom",
               end: "bottom top",
-              scrub: 0.6,
+              scrub: 0.85,
               invalidateOnRefresh: true,
             },
           },
@@ -326,37 +335,141 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
         if (isOwnedByFeatureStage(item) && item.hasAttribute("data-feature-image")) return;
 
         const rawDepth = Number(item.dataset.bgDepth ?? "12");
-        const depth = isDesktop() ? rawDepth : Math.max(4, Math.round(rawDepth * 0.5));
+        const depth = isDesktop() ? Math.min(rawDepth, 11) : Math.max(3, Math.round(rawDepth * 0.34));
+        const startY = isDesktop() ? -Math.max(3, depth * 0.45) : -Math.max(2, depth * 0.35);
+        const endY = isDesktop() ? Math.max(4, depth * 0.55) : Math.max(2, depth * 0.4);
 
         gsap.set(item, {
           transformPerspective: 1400,
           transformOrigin: "center center",
           willChange: "transform",
+          force3D: true,
+          transformStyle: "preserve-3d",
+          backfaceVisibility: "hidden",
         });
 
         gsap.fromTo(
           item,
           {
-            yPercent: -depth * 0.7,
-            scale: isDesktop() ? 1.08 : 1.04,
-            rotateX: isDesktop() ? 1.8 : 0.6,
-            z: isDesktop() ? -14 : -4,
+            yPercent: startY,
+            scale: isDesktop() ? 1.1 : 1.05,
+            rotateX: isDesktop() ? 1 : 0.35,
+            rotateY: isDesktop() ? -0.7 : -0.2,
+            z: isDesktop() ? -8 : -3,
           },
           {
-            yPercent: depth * 0.82,
-            scale: isDesktop() ? 1.17 : 1.08,
-            rotateX: isDesktop() ? -1.8 : -0.6,
-            z: isDesktop() ? 14 : 4,
+            yPercent: endY,
+            scale: isDesktop() ? 1.14 : 1.08,
+            rotateX: isDesktop() ? -1 : -0.35,
+            rotateY: isDesktop() ? 0.7 : 0.2,
+            z: isDesktop() ? 8 : 3,
             ease: "none",
             scrollTrigger: {
               trigger: item.parentElement ?? item,
               start: "top bottom",
               end: "bottom top",
-              scrub: 0.45,
+              scrub: 0.7,
               invalidateOnRefresh: true,
             },
           },
         );
+      });
+
+      const cinematicSections = gsap.utils.toArray<HTMLElement>("[data-cinematic-section]");
+      cinematicSections.forEach((section) => {
+        if (reducedMotion) return;
+
+        const mediaItems = section.querySelectorAll<HTMLElement>("[data-cinematic-media]");
+        const copyItems = section.querySelectorAll<HTMLElement>("[data-cinematic-copy]");
+        const glowItems = section.querySelectorAll<HTMLElement>("[data-cinematic-glow]");
+        const cinematicCards = section.querySelectorAll<HTMLElement>("[data-cinematic-card]");
+
+        mediaItems.forEach((item, index) => {
+          gsap.fromTo(
+            item,
+            {
+              yPercent: -2.5 - index,
+              rotateZ: index % 2 === 0 ? -0.2 : 0.2,
+              scale: 1.03,
+            },
+            {
+              yPercent: 3.5 + index,
+              rotateZ: index % 2 === 0 ? 0.2 : -0.2,
+              scale: 1.06,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.9,
+                invalidateOnRefresh: true,
+              },
+            },
+          );
+        });
+
+        copyItems.forEach((item, index) => {
+          gsap.fromTo(
+            item,
+            { y: 22 + index * 6, autoAlpha: 0.94 },
+            {
+              y: -14 - index * 4,
+              autoAlpha: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 92%",
+                end: "bottom top",
+                scrub: 0.55,
+                invalidateOnRefresh: true,
+              },
+            },
+          );
+        });
+
+        glowItems.forEach((item, index) => {
+          gsap.fromTo(
+            item,
+            { autoAlpha: 0.18, scale: 0.84 + index * 0.04, yPercent: -6 },
+            {
+              autoAlpha: 0.62,
+              scale: 1.08 + index * 0.04,
+              yPercent: 8,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1,
+                invalidateOnRefresh: true,
+              },
+            },
+          );
+        });
+
+        cinematicCards.forEach((item, index) => {
+          gsap.fromTo(
+            item,
+            {
+              y: 16 + index * 8,
+              rotateX: index % 2 === 0 ? 1.2 : -1.2,
+              rotateY: index % 2 === 0 ? -1.5 : 1.5,
+            },
+            {
+              y: -12 - index * 3,
+              rotateX: index % 2 === 0 ? -0.9 : 0.9,
+              rotateY: index % 2 === 0 ? 1.1 : -1.1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: item,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.8,
+                invalidateOnRefresh: true,
+              },
+            },
+          );
+        });
       });
 
       const horizontalSections = gsap.utils.toArray<HTMLElement>("[data-horizontal-scroll]");
