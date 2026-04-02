@@ -168,7 +168,7 @@ const bungalowCards = [
 
 const detailPageSeeds: DetailSeed[] = [
   {
-    slug: "garden-villa-resort",
+    slug: "standard-room",
     title: "Standard Room",
     subtitle: "A refined stay for wedding guests who want comfort, convenience, and seamless participation across the celebration.",
     introTitle: "STAY EXPERIENCE",
@@ -195,7 +195,7 @@ const detailPageSeeds: DetailSeed[] = [
     ],
   },
   {
-    slug: "luxury-resort",
+    slug: "cliff-room",
     title: "Cliff Room",
     subtitle: "A scenic premium stay for guests who want privacy, mountain ambience, and a more elevated destination experience.",
     introTitle: "STAY EXPERIENCE",
@@ -221,7 +221,7 @@ const detailPageSeeds: DetailSeed[] = [
     ],
   },
   {
-    slug: "camp-della-resort-room",
+    slug: "family-room",
     title: "Family Room",
     subtitle: "A spacious family stay designed for group comfort, togetherness, and easier guest hosting during wedding weekends.",
     introTitle: "STAY EXPERIENCE",
@@ -246,7 +246,7 @@ const detailPageSeeds: DetailSeed[] = [
     ],
   },
   {
-    slug: "adventure-resort",
+    slug: "glass-cottage",
     title: "Glass Cottage",
     subtitle: "A premium cottage stay with privacy, design character, and a more distinctive destination atmosphere.",
     introTitle: "STAY EXPERIENCE",
@@ -264,7 +264,7 @@ const detailPageSeeds: DetailSeed[] = [
     galleryImage: "/images/DSC08807.avif",
   },
   {
-    slug: "della-enclave-villa-rooms",
+    slug: "bungalow",
     title: "Bungalow",
     subtitle: "A spacious premium bungalow for host families, longer stays, and guests who need more privacy within the estate.",
     introTitle: "STAY EXPERIENCE",
@@ -280,31 +280,6 @@ const detailPageSeeds: DetailSeed[] = [
     cards: bungalowCards,
     galleryTabs: ["Exterior", "Bungalow", "Premium Stay"],
     galleryImage: "/images/DSC08759.avif",
-  },
-  {
-    slug: "cafe24",
-    title: "Wedding Hospitality Inclusions",
-    subtitle: "Lunch, hi-tea, starters, dinner, breakfast, venue access, and live counters are designed to support a polished celebration flow.",
-    introTitle: "HOSPITALITY",
-    introBody:
-      "Hospitality at The Mountain is package-led and designed to support destination wedding hosting through coordinated meals, guest convenience, and smoother family planning across every event day.",
-    heroImage: "/images/DSC08758.avif",
-    cards: [
-      {
-        label: "MEAL",
-        title: "Lunch & Hi-Tea",
-        description: "Lunch includes roti, 2 sabji, dal, rice, salad, papad, and pickle, while hi-tea includes tea or coffee with 2 snacks to keep the celebration flowing comfortably between functions.",
-        image: "/images/DSC08759.avif",
-      },
-      {
-        label: "MEAL",
-        title: "Dinner & Breakfast",
-        description: "Dinner includes roti, 2 sabji, dal, rice, salad, papad, and pickle, while breakfast includes tea or coffee with 2 dishes for an easy start to the next celebration day.",
-        image: "/images/DSC08763.avif",
-      },
-    ],
-    galleryTabs: ["Lunch", "Dinner", "Hospitality"],
-    galleryImage: "/images/DSC08769.avif",
   },
   {
     slug: "classic-package",

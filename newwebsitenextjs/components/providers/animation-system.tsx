@@ -689,6 +689,65 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
         nestedRevealItems.forEach((item) => gsap.set(item, { clearProps: "opacity,visibility,transform,filter,clipPath" }));
       });
 
+      const stickyFadeSections = gsap.utils.toArray<HTMLElement>("[data-sticky-fade-section]");
+      stickyFadeSections.forEach((section) => {
+        if (reducedMotion || !isDesktop()) return;
+
+        const heading = section.querySelector<HTMLElement>("[data-sticky-fade-heading]");
+        const blocks = gsap.utils.toArray<HTMLElement>("[data-sticky-fade-block]", section);
+        const lines = gsap.utils.toArray<HTMLElement>("[data-sticky-fade-line]", section);
+
+        if (heading) {
+          gsap.to(heading, {
+            opacity: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: heading,
+              start: "top 8%",
+              end: "bottom 6%",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          });
+        }
+
+        blocks.forEach((block) => {
+          gsap.to(block, {
+            opacity: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: block,
+              start: "top 8%",
+              end: "bottom 6%",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          });
+        });
+
+        lines.forEach((line) => {
+          gsap.fromTo(
+            line,
+            {
+              y: 40,
+              opacity: 0,
+            },
+            {
+              y: 0,
+              opacity: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: line,
+                start: "top 85%",
+                end: "bottom 72%",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            },
+          );
+        });
+      });
+
       const sections = gsap.utils.toArray<HTMLElement>("[data-section-id]");
       sections.forEach((section) => {
         const id = section.dataset.sectionId;

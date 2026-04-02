@@ -11,11 +11,6 @@ export const mainLinks = [
   "CONTACT",
 ] as const;
 
-export const headerDropdowns: Record<string, string[]> = {
-  STAY: ["Standard Room", "Cliff Room", "Family Room", "Glass Cottage", "Bungalow"],
-  "VENUE HIGHLIGHTS": ["Mountain View Destination", "Private Event Spaces", "Wedding Lawns", "Poolside Celebrations"],
-};
-
 export const headerDropdownLinks: Record<string, Array<{ label: string; href: string }>> = {
   STAY: [
     { label: "Standard Room", href: "/standard-room" },

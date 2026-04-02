@@ -14,7 +14,7 @@ import { StaySection } from "@/components/features/home/sections/stay-section";
 import { StorytellingSection } from "@/components/features/home/sections/storytelling-section";
 import { ReservationSection } from "@/components/features/shared/sections/reservation-section";
 
-export function LuxuryResortPage() {
+export function MountainHomePage() {
   return (
     <main className="relative overflow-x-hidden bg-[#2d4a3e] text-white">
       <div className="noise-overlay" />

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { type FormEvent, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { contactPageData } from "@/lib/data/pages/mountain-info-pages";
+import { contactPageData } from "@/lib/data/pages/info-pages";
 
 export default function ContactPage() {
   const page = contactPageData;

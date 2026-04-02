@@ -5,13 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
-import type { MountainVenuePageData } from "@/lib/data/pages/mountain-venue-pages";
+import type { MountainVenuePageData } from "@/lib/data/pages/venue-pages";
 
-type MountainVenueShowcasePageProps = {
+type VenueShowcasePageProps = {
   page: MountainVenuePageData;
 };
 
-export function MountainVenueShowcasePage({ page }: MountainVenueShowcasePageProps) {
+export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
   const [activeHeroImage, setActiveHeroImage] = useState(0);
   const bookingHref = `/booking?page=${encodeURIComponent(page.hero.title)}&offer=${encodeURIComponent(page.hero.title)}&eventType=${encodeURIComponent("Destination Wedding")}`;
 

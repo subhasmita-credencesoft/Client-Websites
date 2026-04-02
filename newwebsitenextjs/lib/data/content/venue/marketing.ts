@@ -1,14 +1,3 @@
-export const gastronomyCards = [
-  { title: "Lunch", image: "/images/DSC08831.avif" },
-  { title: "Hi-Tea", image: "/images/DSC08837.avif" },
-  { title: "Starters", image: "/images/DSC08846.avif" },
-  { title: "Dinner", image: "/images/DSC08853.avif" },
-  { title: "Breakfast", image: "/images/DSC08717.avif" },
-  { title: "Venue Access", image: "/images/DSC08720.avif" },
-  { title: "Live Counters", image: "/images/DSC08758.avif" },
-  { title: "Wedding Hospitality", image: "/images/DSC08759.avif" },
-] as const;
-
 export const offersCards = [
   {
     title: "Weekday Package",
@@ -90,17 +79,4 @@ export const awardCards = [
     subtitle: "Packages follow final headcount, check-in is 2:00 PM, and check-out is 11:00 AM",
     image: "/images/DSC08820.avif",
   },
-] as const;
-
-export const brandLogos = [
-  "Exclusive Estate Bookings",
-  "Destination Wedding Venue",
-  "7 Acres Of Greenery",
-  "Scenic Mountain Views",
-  "Multi-Event Wedding Spaces",
-  "Premium Stay Options",
-  "Stay + Meals Packages",
-  "Wedding-Ready Hospitality",
-  "Celebration Weekend Flow",
-  "Guest-Friendly Booking Support",
 ] as const;

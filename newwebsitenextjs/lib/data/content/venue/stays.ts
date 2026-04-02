@@ -38,34 +38,3 @@ export const stayCardsSecondary = [
     image: "https://bookonelocal.in/cdn/DSC00173.JPG",
   },
 ] as const;
-
-export const townshipCards = [
-  {
-    title: "Mountain View Lawns",
-    city: "KARJAT",
-    image: "/images/DSC08763.avif",
-    metric: "Scenic estate ceremonies",
-    signed: "Ideal for vows, rituals, and portraits",
-  },
-  {
-    title: "Premium Stay Experiences",
-    city: "KARJAT",
-    image: "/images/DSC08769.avif",
-    metric: "Elegant rooms, cottages, and bungalow stays",
-    signed: "Ideal for families and hosted guests",
-  },
-  {
-    title: "Poolside Experiences",
-    city: "KARJAT",
-    image: "/images/DSC08801.avif",
-    metric: "Relaxed poolside celebration energy",
-    signed: "Perfect for cocktails and leisure-led moments",
-  },
-  {
-    title: "Wedding Setups",
-    city: "KARJAT",
-    image: "/images/DSC08802.avif",
-    metric: "Destination wedding atmosphere",
-    signed: "Photography-ready scenic estate",
-  },
-] as const;

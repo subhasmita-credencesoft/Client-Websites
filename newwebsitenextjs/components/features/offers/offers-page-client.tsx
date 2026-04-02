@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { offersPageData } from "@/lib/data/pages/showcase-pages";
+import { offersPageData } from "@/lib/data/pages/offers-pages";
 
 export function OffersPageClient() {
   const searchParams = useSearchParams();

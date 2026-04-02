@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { keyAdvantagesPageData } from "@/lib/data/pages/mountain-info-pages";
+import { keyAdvantagesPageData } from "@/lib/data/pages/info-pages";
 
 export default function KeyAdvantagesPage() {
   const page = keyAdvantagesPageData;

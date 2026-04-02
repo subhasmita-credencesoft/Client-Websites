@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { DetailPage } from "@/lib/data/pages/site-pages";
+import type { DetailPage } from "@/lib/data/pages/detail-pages";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
@@ -23,13 +23,12 @@ export function DetailPageView({ page }: DetailPageProps) {
   const videoGallery = page.galleryVideos ?? [];
   const [activeTab, setActiveTab] = useState<"image" | "video">(videoGallery.length > 0 ? "image" : "image");
   const isPackagePage = Boolean(page.packageComparison);
-  const isMealPage = page.slug === "cafe24";
   const isRoomDetailPage = [
-    "garden-villa-resort",
-    "luxury-resort",
-    "camp-della-resort-room",
-    "adventure-resort",
-    "della-enclave-villa-rooms",
+    "standard-room",
+    "cliff-room",
+    "family-room",
+    "glass-cottage",
+    "bungalow",
   ].includes(page.slug);
   const facts = page.facts ?? [];
   const hideAllSharedSections = false;
@@ -40,21 +39,15 @@ export function DetailPageView({ page }: DetailPageProps) {
   const bookingContextHref = `${bookingHref}&page=${encodeURIComponent(page.title)}&details=${encodeURIComponent(page.subtitle)}`;
   const primaryCtaLabel = isPackagePage
     ? "CHECK PACKAGE AVAILABILITY"
-    : isMealPage
-      ? "PLAN HOSPITALITY"
-      : "CHECK ROOM AVAILABILITY";
-  const sectionTitle = isPackagePage ? "Package Highlights" : isMealPage ? "Hospitality Highlights" : "Stay Highlights";
-  const galleryHeading = isPackagePage ? "Package Gallery" : isMealPage ? "Hospitality Gallery" : "Stay Gallery";
+    : "CHECK ROOM AVAILABILITY";
+  const sectionTitle = isPackagePage ? "Package Highlights" : "Stay Highlights";
+  const galleryHeading = isPackagePage ? "Package Gallery" : "Stay Gallery";
   const bookingPanelTitle = isPackagePage
     ? "Secure the right package for your dates"
-    : isMealPage
-      ? "Plan hospitality around your celebration flow"
-      : `Reserve ${page.title} for your preferred dates`;
+    : `Reserve ${page.title} for your preferred dates`;
   const bookingPanelBody = isPackagePage
     ? "Share your dates, guest count, and package preference to receive the right bundled celebration direction."
-    : isMealPage
-      ? "Tell us about your event type, meal expectations, and stay duration so the hospitality plan can be shaped correctly."
-      : "Check availability for your preferred room, align guest count, and let our team help you place the right stay inside your wedding or getaway plan.";
+    : "Check availability for your preferred room, align guest count, and let our team help you place the right stay inside your wedding or getaway plan.";
 
   return (
     <main className="relative overflow-hidden bg-[#0c0a08] text-white">
@@ -69,7 +62,7 @@ export function DetailPageView({ page }: DetailPageProps) {
         <div className="relative z-10 mx-auto flex min-h-[110svh] max-w-[96rem] items-start px-6 pb-8 pt-28 md:px-12 md:pb-12 md:pt-36">
           <div className="max-w-5xl" data-hero-copy>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#c9a46e]" data-hero-subtitle>
-              {isPackagePage ? "Wedding Package" : isMealPage ? "Event Hospitality" : "Luxury Stay"}
+              {isPackagePage ? "Wedding Package" : "Luxury Stay"}
             </p>
             <h1 data-hero-title className="text-4xl md:text-6xl">
               {page.title}
@@ -145,7 +138,7 @@ export function DetailPageView({ page }: DetailPageProps) {
         </Link>
       </section>
 
-      {!isPackagePage && !isMealPage && facts.length > 0 ? (
+      {!isPackagePage && facts.length > 0 ? (
         <section className="mx-auto max-w-[96rem] px-6 py-8 md:px-10" data-stage-section>
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <article className="rounded-[1.8rem] border border-white/10 bg-[#16261f] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-card>
@@ -203,7 +196,7 @@ export function DetailPageView({ page }: DetailPageProps) {
                   <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/90 md:text-xl">{card.description}</p>
                 )}
                 <p className="mt-4 text-sm uppercase tracking-[0.16em] text-[#c9a46e]">
-                  {isPackagePage ? "Package details tailored to your dates and guest count" : isMealPage ? "Hospitality details tailored to your celebration flow" : "Room availability depends on selected dates and guest count"}
+                  {isPackagePage ? "Package details tailored to your dates and guest count" : "Room availability depends on selected dates and guest count"}
                 </p>
                 <div>
                   <Link

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
-import { quotationPageData } from "@/lib/data/pages/mountain-info-pages";
+import { quotationPageData } from "@/lib/data/pages/info-pages";
 
 export default function QuotationPage() {
   const page = quotationPageData;

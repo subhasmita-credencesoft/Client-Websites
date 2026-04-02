@@ -5,7 +5,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
-import { mediaAwardsPageData } from "@/lib/data/pages/mountain-info-pages";
+import { mediaAwardsPageData } from "@/lib/data/pages/info-pages";
 
 export default function MediaAwardsPage() {
   const page = mediaAwardsPageData;

@@ -1,6 +1,6 @@
-import { MountainVenueShowcasePage } from "@/components/features/venues/mountain-venue-showcase-page";
-import { weddingLawnsPageData } from "@/lib/data/pages/mountain-venue-pages";
+import { VenueShowcasePage } from "@/components/features/venues/venue-showcase-page";
+import { weddingLawnsPageData } from "@/lib/data/pages/venue-pages";
 
 export default function WeddingLawnsPage() {
-  return <MountainVenueShowcasePage page={weddingLawnsPageData} />;
+  return <VenueShowcasePage page={weddingLawnsPageData} />;
 }

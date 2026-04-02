@@ -20,13 +20,13 @@ export function OffersSection() {
   const visibleCards = offersCards.filter((card) => (card.tabs as readonly OfferTab[]).includes(activeTab));
 
   return (
-    <section data-section-id="offers" className="bg-black px-5 py-20 md:px-10">
-      <div data-reveal className="text-center">
-        <h3 data-section-title className="text-4xl text-[#cba977] md:text-5xl">
+    <section data-section-id="offers" data-sticky-fade-section className="bg-black px-5 py-20 md:px-10">
+      <div data-sticky-fade-heading className="text-center md:sticky md:top-5 md:z-20 md:bg-black/92 md:pb-8 md:backdrop-blur-sm">
+        <h3 data-sticky-fade-line className="text-4xl text-[#cba977] md:text-5xl">
           {content.title}
         </h3>
-        <p className="mt-3 text-2xl text-white md:text-3xl" data-reveal-child>{content.subtitle}</p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-8 text-xl font-semibold text-white/65 md:text-2xl" data-reveal-child>
+        <p className="mt-3 text-2xl text-white md:text-3xl" data-sticky-fade-line>{content.subtitle}</p>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-8 text-xl font-semibold text-white/65 md:text-2xl" data-sticky-fade-line>
           {content.tabs.map((tab) => (
             <button
               key={tab}
@@ -43,12 +43,13 @@ export function OffersSection() {
         </div>
       </div>
 
-      <div className="mx-auto mt-14 grid max-w-[92rem] gap-6 md:grid-cols-3" data-reveal>
+      <div className="mx-auto mt-14 grid max-w-[92rem] gap-6 md:grid-cols-3">
         {visibleCards.map((card) => (
           <Link
             key={card.title}
             href={cardLinks[card.title] ?? "/offers"}
             data-card
+            data-sticky-fade-block
             className="group relative block h-[33rem] overflow-hidden rounded-[1.5rem] border border-white/20"
             data-cursor="hover"
           >

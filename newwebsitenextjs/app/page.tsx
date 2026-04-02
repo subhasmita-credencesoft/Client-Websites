@@ -1,5 +1,5 @@
-import { LuxuryResortPage } from "@/components/features/home/luxury-resort-page";
+import { MountainHomePage } from "@/components/features/home/mountain-home-page";
 
 export default function Home() {
-  return <LuxuryResortPage />;
+  return <MountainHomePage />;
 }

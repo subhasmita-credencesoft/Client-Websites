@@ -1,6 +1,6 @@
-import { MountainVenueShowcasePage } from "@/components/features/venues/mountain-venue-showcase-page";
-import { poolsideCelebrationsPageData } from "@/lib/data/pages/mountain-venue-pages";
+import { VenueShowcasePage } from "@/components/features/venues/venue-showcase-page";
+import { poolsideCelebrationsPageData } from "@/lib/data/pages/venue-pages";
 
 export default function PoolsideCelebrationsPage() {
-  return <MountainVenueShowcasePage page={poolsideCelebrationsPageData} />;
+  return <VenueShowcasePage page={poolsideCelebrationsPageData} />;
 }

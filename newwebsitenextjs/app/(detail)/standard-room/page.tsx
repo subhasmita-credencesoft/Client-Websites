@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { DetailPageView } from "@/components/features/detail/detail-page";
-import { getDetailPage } from "@/lib/data/pages/site-pages";
+import { getDetailPage } from "@/lib/data/pages/detail-pages";
 
 export default function Page() {
-  const page = getDetailPage("garden-villa-resort");
+  const page = getDetailPage("standard-room");
 
   if (!page) {
     notFound();

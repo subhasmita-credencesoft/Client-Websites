@@ -8,9 +8,3 @@ export const heroBackgroundUrls = [
   "https://bookonelocal.in/cdn/DSC00086.JPG",
 ];
 
-export function pickRandomMedia() {
-  return {
-    video: heroVideoUrls[0] ?? "",
-    background: heroBackgroundUrls[0],
-  };
-}
