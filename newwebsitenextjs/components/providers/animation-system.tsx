@@ -113,7 +113,7 @@ export function AnimationSystem() {
               scale: 1,
               filter: "blur(0px)",
               clipPath: "inset(0 0 0% 0)",
-              duration: 1.15,
+              duration: 0.82,
               ease: "power3.out",
               delay: index * 0.02,
               scrollTrigger: {
@@ -136,7 +136,7 @@ export function AnimationSystem() {
               {
                 autoAlpha: 1,
                 y: 0,
-                duration: 0.9,
+                duration: 0.7,
                 stagger: 0.12,
                 delay: 0.16,
                 ease: "power2.out",
@@ -170,7 +170,7 @@ export function AnimationSystem() {
             y: 0,
             scale: 1,
             rotateX: 0,
-            duration: 0.9,
+            duration: 0.72,
             ease: "power3.out",
             scrollTrigger: {
               trigger: card,
@@ -192,20 +192,20 @@ export function AnimationSystem() {
           const py = (event.clientY - bounds.top) / bounds.height - 0.5;
 
           gsap.to(card, {
-            rotateY: px * 8,
-            rotateX: py * -8,
-            y: -6,
-            duration: 0.35,
+            rotateY: px * 5.5,
+            rotateX: py * -5.5,
+            y: -4,
+            duration: 0.22,
             ease: "power2.out",
             overwrite: "auto",
           });
 
           if (image) {
             gsap.to(image, {
-              xPercent: px * 2.2,
-              yPercent: py * 2.2,
-              scale: 1.04,
-              duration: 0.45,
+              xPercent: px * 1.5,
+              yPercent: py * 1.5,
+              scale: 1.025,
+              duration: 0.28,
               ease: "power2.out",
               overwrite: "auto",
             });
@@ -217,7 +217,7 @@ export function AnimationSystem() {
             rotateX: 0,
             rotateY: 0,
             y: 0,
-            duration: 0.45,
+            duration: 0.28,
             ease: "power3.out",
             overwrite: "auto",
           });
@@ -227,7 +227,7 @@ export function AnimationSystem() {
               xPercent: 0,
               yPercent: 0,
               scale: 1,
-              duration: 0.45,
+              duration: 0.28,
               ease: "power3.out",
               overwrite: "auto",
             });
@@ -255,7 +255,7 @@ export function AnimationSystem() {
             {
               y: 0,
               scale: 1,
-              duration: 0.7,
+              duration: 0.52,
               stagger: 0.08,
               ease: "power2.out",
               scrollTrigger: {
@@ -276,11 +276,11 @@ export function AnimationSystem() {
 
         gsap.fromTo(
           image,
-          { scale: 1.08, yPercent: -2 },
+          { scale: 1.04, yPercent: -1.2 },
           {
             scale: 1,
             yPercent: 0,
-            duration: 1.1,
+            duration: 0.7,
             ease: "power3.out",
             scrollTrigger: {
               trigger: image,
@@ -297,11 +297,11 @@ export function AnimationSystem() {
         if (reducedMotion) return;
 
         const rawDepth = Number(item.dataset.parallaxDepth ?? "18");
-        const depth = isDesktop() ? Math.min(rawDepth, 16) : Math.max(4, Math.round(rawDepth * 0.35));
+        const depth = isDesktop() ? Math.min(rawDepth, 10) : Math.max(4, Math.round(rawDepth * 0.28));
         const startY = isDesktop() ? -Math.max(4, depth * 0.55) : -Math.max(2, depth * 0.4);
         const endY = isDesktop() ? Math.max(5, depth * 0.7) : Math.max(3, depth * 0.48);
-        const startScale = isDesktop() ? 1.16 : 1.09;
-        const endScale = isDesktop() ? 1.2 : 1.11;
+        const startScale = isDesktop() ? 1.08 : 1.05;
+        const endScale = isDesktop() ? 1.1 : 1.06;
 
         gsap.set(item, {
           transformPerspective: 1200,
@@ -332,7 +332,7 @@ export function AnimationSystem() {
               trigger: item.parentElement ?? item,
               start: "top bottom",
               end: "bottom top",
-              scrub: 0.85,
+              scrub: 0.45,
               invalidateOnRefresh: true,
             },
           },
@@ -345,7 +345,7 @@ export function AnimationSystem() {
         if (isOwnedByFeatureStage(item) && item.hasAttribute("data-feature-image")) return;
 
         const rawDepth = Number(item.dataset.bgDepth ?? "12");
-        const depth = isDesktop() ? Math.min(rawDepth, 11) : Math.max(3, Math.round(rawDepth * 0.34));
+        const depth = isDesktop() ? Math.min(rawDepth, 8) : Math.max(3, Math.round(rawDepth * 0.26));
         const startY = isDesktop() ? -Math.max(3, depth * 0.45) : -Math.max(2, depth * 0.35);
         const endY = isDesktop() ? Math.max(4, depth * 0.55) : Math.max(2, depth * 0.4);
 
@@ -362,14 +362,14 @@ export function AnimationSystem() {
           item,
           {
             yPercent: startY,
-            scale: isDesktop() ? 1.1 : 1.05,
+            scale: isDesktop() ? 1.05 : 1.03,
             rotateX: isDesktop() ? 1 : 0.35,
             rotateY: isDesktop() ? -0.7 : -0.2,
             z: isDesktop() ? -8 : -3,
           },
           {
             yPercent: endY,
-            scale: isDesktop() ? 1.14 : 1.08,
+            scale: isDesktop() ? 1.08 : 1.05,
             rotateX: isDesktop() ? -1 : -0.35,
             rotateY: isDesktop() ? 0.7 : 0.2,
             z: isDesktop() ? 8 : 3,
@@ -378,7 +378,7 @@ export function AnimationSystem() {
               trigger: item.parentElement ?? item,
               start: "top bottom",
               end: "bottom top",
-              scrub: 0.7,
+              scrub: 0.4,
               invalidateOnRefresh: true,
             },
           },
@@ -398,12 +398,12 @@ export function AnimationSystem() {
           gsap.fromTo(
             item,
             {
-              yPercent: -2.5 - index,
+              yPercent: -1.5 - index * 0.6,
               rotateZ: index % 2 === 0 ? -0.2 : 0.2,
               scale: 1.03,
             },
             {
-              yPercent: 3.5 + index,
+              yPercent: 2.2 + index * 0.7,
               rotateZ: index % 2 === 0 ? 0.2 : -0.2,
               scale: 1.06,
               ease: "none",
@@ -411,7 +411,7 @@ export function AnimationSystem() {
                 trigger: section,
                 start: "top bottom",
                 end: "bottom top",
-                scrub: 0.9,
+                scrub: 0.45,
                 invalidateOnRefresh: true,
               },
             },
@@ -430,7 +430,7 @@ export function AnimationSystem() {
                 trigger: section,
                 start: "top 92%",
                 end: "bottom top",
-                scrub: 0.55,
+                scrub: 0.3,
                 invalidateOnRefresh: true,
               },
             },
@@ -444,13 +444,13 @@ export function AnimationSystem() {
             {
               autoAlpha: 0.62,
               scale: 1.08 + index * 0.04,
-              yPercent: 8,
+              yPercent: 5,
               ease: "none",
               scrollTrigger: {
                 trigger: section,
                 start: "top bottom",
                 end: "bottom top",
-                scrub: 1,
+                scrub: 0.5,
                 invalidateOnRefresh: true,
               },
             },
@@ -474,7 +474,7 @@ export function AnimationSystem() {
                 trigger: item,
                 start: "top bottom",
                 end: "bottom top",
-                scrub: 0.8,
+                scrub: 0.45,
                 invalidateOnRefresh: true,
               },
             },
