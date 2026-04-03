@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type FormEvent, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
@@ -10,31 +9,6 @@ import { contactPageData } from "@/lib/data/pages/info-pages";
 
 export default function ContactPage() {
   const page = contactPageData;
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [eventDate, setEventDate] = useState("");
-  const [guestCount, setGuestCount] = useState("");
-  const [message, setMessage] = useState("");
-  const enquiryHref = useMemo(() => {
-    const lines = [
-      "Hello The Mountain, Karjat team,",
-      "",
-      "I would like to make an enquiry.",
-      `Name: ${name || "Not shared"}`,
-      `Email: ${email || "Not shared"}`,
-      `Phone: ${phone || "Not shared"}`,
-      `Preferred Dates: ${eventDate || "Not shared"}`,
-      `Guest Count: ${guestCount || "Not shared"}`,
-      `Message: ${message || "Not shared"}`,
-    ];
-
-    return `https://wa.me/919833866655?text=${encodeURIComponent(lines.join("\n"))}`;
-  }, [email, eventDate, guestCount, message, name, phone]);
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    window.open(enquiryHref, "_blank", "noopener,noreferrer");
-  };
 
   return (
     <main className="relative overflow-hidden bg-[#11100e] text-white">
@@ -81,80 +55,6 @@ export default function ContactPage() {
         </h2>
         <p className="mx-auto mt-6 max-w-5xl text-lg leading-relaxed md:text-xl" data-reveal-child>{page.intro.body}</p>
       </section>
-
-      {page.form ? (
-        <section className="mx-auto max-w-[96rem] px-6 pb-10 pt-0 md:px-10">
-          <div className="mx-auto max-w-[72rem]">
-            <form className="rounded-[2rem] border border-white/10 bg-[#182920] p-8 md:p-10" data-card data-panel-content onSubmit={handleSubmit}>
-              <div className="mb-6">
-                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">{page.form.eyebrow}</p>
-                <h2 className="mt-3 text-3xl md:text-4xl">{page.form.title}</h2>
-                <p className="mt-3 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg">{page.form.description}</p>
-              </div>
-              <div className="grid gap-5 md:grid-cols-2">
-                <input
-                  type="text"
-                  placeholder={page.form.fields.name}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45"
-                />
-                <input
-                  type="email"
-                  placeholder={page.form.fields.email}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45"
-                />
-                <input
-                  type="tel"
-                  placeholder={page.form.fields.phone}
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45"
-                />
-                <input
-                  type="text"
-                  placeholder={page.form.fields.eventDate}
-                  value={eventDate}
-                  onChange={(e) => setEventDate(e.target.value)}
-                  className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45"
-                />
-                <input
-                  type="text"
-                  placeholder={page.form.fields.guestCount}
-                  value={guestCount}
-                  onChange={(e) => setGuestCount(e.target.value)}
-                  className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45 md:col-span-2"
-                />
-                <textarea
-                  placeholder={page.form.fields.message}
-                  rows={6}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-white outline-none placeholder:text-white/45 md:col-span-2"
-                />
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-                <button
-                  type="submit"
-                  className="border border-[#c8a871] bg-[#c8a871] px-9 py-3 text-sm font-semibold uppercase tracking-wide text-black"
-                  data-panel-line
-                >
-                  {page.form.submitLabel}
-                </button>
-                <Link
-                  href={DIRECT_BOOKING_ENGINE_URL}
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
-                >
-                  Open Booking Planner
-                </Link>
-              </div>
-            </form>
-          </div>
-        </section>
-      ) : null}
 
       <section className="mx-auto max-w-[96rem] px-6 py-10 md:px-10">
         <div className="grid gap-8 md:grid-cols-3">

@@ -56,12 +56,12 @@ export const experienceCards = [
   {
     title: "Unlimited Music Hours",
     description: "Keep the celebration energy alive across Sangeet, Cocktail Night, and Reception without the usual restrictive wedding-venue interruptions.",
-    image: "/images/DSC08849.avif",
+    image: "/images/DSC08769.avif",
   },
   {
     title: "24x7 Pool Access",
     description: "Poolside moments add leisure, fun, and destination charm to wedding weekends, family arrivals, and in-between celebration hours.",
-    image: "/images/DSC08769.avif",
+    image: "/images/DSC08849.avif",
   },
   {
     title: "Private Estate Experience",

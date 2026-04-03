@@ -59,19 +59,13 @@ export default function CheckInPage() {
 
       <section className="mx-auto max-w-[96rem] px-6 py-6 md:px-10">
         <div className="grid gap-8 md:grid-cols-2">
-          {page.cards.map((card, index) => (
+          {page.cards.map((card) => (
             <article
               key={card.title}
               data-card
-              className="group overflow-hidden rounded-[1.8rem] border border-white/10 bg-[#0a0d0d] shadow-[0_22px_70px_rgba(0,0,0,0.28)] transition-colors duration-500 hover:border-[#c9a46e]/45"
+              className="rounded-[1.8rem] border border-white/10 bg-[#0f1312] p-8 shadow-[0_22px_70px_rgba(0,0,0,0.28)] transition-colors duration-500 hover:border-[#c9a46e]/45 md:p-10"
             >
-              <div className="relative h-[26rem] overflow-hidden">
-                <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth={String(8 + (index % 3))}>
-                  <Image src={card.image} alt={card.title} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.06]" sizes="(max-width:768px) 100vw, 50vw" />
-                </div>
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,10,0.08)_0%,rgba(8,10,10,0.1)_34%,rgba(8,10,10,0.88)_100%)]" />
-              </div>
-              <div className="px-6 pb-8 pt-8 md:px-8 md:pb-10" data-panel-content>
+              <div data-panel-content>
                 <p className="text-xs uppercase tracking-[0.15em] text-[#c9a46e]" data-panel-line>{card.label}</p>
                 <h3 className="mt-3 text-3xl md:text-4xl" data-panel-line>{card.title}</h3>
                 <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/90 md:text-xl" data-panel-line>{card.description}</p>

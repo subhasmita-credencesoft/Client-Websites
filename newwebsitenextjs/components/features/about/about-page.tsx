@@ -32,7 +32,7 @@ export function AboutPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#d6b07a]" data-reveal-child>
               {content.hero.eyebrow}
             </p>
-            <h1 className="mt-5 text-balance text-[clamp(52px,7vw,108px)] leading-[0.96] text-[#f5ebda]" data-section-title>
+            <h1 className="mt-5 text-balance text-[clamp(34px,5.4vw,78px)] leading-[1] text-[#f5ebda]" data-section-title>
               {content.hero.title}
             </h1>
             <div className="mx-auto mt-5 h-[2px] w-24 bg-[#d6b07a]" />

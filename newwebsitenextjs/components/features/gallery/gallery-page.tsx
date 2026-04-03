@@ -35,7 +35,7 @@ export function GalleryPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#d6b07a]" data-reveal-child>
               {galleryPageData.hero.eyebrow}
             </p>
-            <h1 className="mt-5 text-balance text-[clamp(40px,7vw,112px)] leading-[0.98] text-[#f5ebda]" data-section-title>
+            <h1 className="mt-5 text-balance text-[clamp(34px,5.6vw,80px)] leading-[1] text-[#f5ebda]" data-section-title>
               {galleryPageData.hero.title}
             </h1>
             <div className="mx-auto mt-5 h-[2px] w-24 bg-[#d6b07a]" />
