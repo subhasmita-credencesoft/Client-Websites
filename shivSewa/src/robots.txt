@@ -1,0 +1,10 @@
+# robots.txt for shivsewa.in
+
+User-agent: *
+Allow: /
+Allow: /booking
+
+# Block internal fleet pages from indexing
+Disallow: /fleet/
+
+Sitemap: https://shivsewa.in/sitemap.xml
