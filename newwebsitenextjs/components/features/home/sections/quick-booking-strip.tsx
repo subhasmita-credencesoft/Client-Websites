@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { buildDirectBookingEngineUrl } from "@/lib/constants/booking";
+import { buildDirectBookingEngineUrl, normalizeDate, formatDate } from "@/lib/constants/booking";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
+import { ThemedDatePicker } from "@/components/ui/themed-date-picker";
 
 function getTodayDateString(offsetDays = 0) {
   const now = new Date();
@@ -18,6 +19,22 @@ export function QuickBookingStrip() {
   const [checkIn, setCheckIn] = useState(getTodayDateString());
   const [checkOut, setCheckOut] = useState(getTodayDateString(1));
   const [guests, setGuests] = useState("2");
+
+  const handleCheckInChange = (nextCheckIn: string) => {
+    setCheckIn(nextCheckIn);
+
+    const nextCheckInDate = normalizeDate(nextCheckIn);
+    const currentCheckOutDate = normalizeDate(checkOut);
+
+    if (!nextCheckInDate || !currentCheckOutDate || currentCheckOutDate > nextCheckInDate) {
+      return;
+    }
+
+    const nextCheckOutDate = new Date(nextCheckInDate);
+    nextCheckOutDate.setDate(nextCheckOutDate.getDate() + 1);
+    setCheckOut(formatDate(nextCheckOutDate));
+  };
+
   const handleBookingRedirect = () => {
     const bookingHref = buildDirectBookingEngineUrl({
       checkIn,
@@ -42,11 +59,11 @@ export function QuickBookingStrip() {
               <span className="text-[0.5rem] font-semibold uppercase tracking-[0.12em] text-[#c9a46e] md:text-[0.52rem]">
                 {content.fields.checkIn}
               </span>
-              <input
-                type="date"
+              <ThemedDatePicker
                 value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
-                className="h-9 rounded-[0.65rem] border border-white/10 bg-black/20 px-2.5 text-[0.74rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50 md:h-9.5 md:text-[0.78rem] lg:h-9"
+                onChange={handleCheckInChange}
+                minDate={getTodayDateString()}
+                className="h-9 border border-white/10 bg-black/20 px-2.5 text-[0.74rem] text-white transition-colors md:h-9.5 md:text-[0.78rem] lg:h-9"
               />
             </label>
 
@@ -54,11 +71,11 @@ export function QuickBookingStrip() {
               <span className="text-[0.5rem] font-semibold uppercase tracking-[0.12em] text-[#c9a46e] md:text-[0.52rem]">
                 {content.fields.checkOut}
               </span>
-              <input
-                type="date"
+              <ThemedDatePicker
                 value={checkOut}
-                onChange={(e) => setCheckOut(e.target.value)}
-                className="h-9 rounded-[0.65rem] border border-white/10 bg-black/20 px-2.5 text-[0.74rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50 md:h-9.5 md:text-[0.78rem] lg:h-9"
+                onChange={setCheckOut}
+                minDate={checkIn}
+                className="h-9 border border-white/10 bg-black/20 px-2.5 text-[0.74rem] text-white transition-colors md:h-9.5 md:text-[0.78rem] lg:h-9"
               />
             </label>
 

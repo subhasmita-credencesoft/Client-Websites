@@ -24,8 +24,6 @@ export const horizontalPanels = [
     title: "Classic Package",
     subtitle: "A clear bundled starting point for elegant destination celebrations with stay, meals, and venue access included.",
     bullets: [
-      "Weekday Offer: Rs. 4,500 per person",
-      "Weekend Offer: Rs. 5,500 per person",
       "Includes stay + 5 meals + venue access",
     ],
     image: "https://bookonelocal.in/cdn/DSC08846.avif",
@@ -34,8 +32,6 @@ export const horizontalPanels = [
     title: "Signature Package",
     subtitle: "A richer wedding-hosting package with stronger food depth for families who want a fuller guest experience.",
     bullets: [
-      "Weekday Offer: Rs. 5,500 per person",
-      "Weekend Offer: Rs. 6,500 per person",
       "Classic Package + 2 extra starters + 1 extra gravy in lunch and dinner",
     ],
     image: "https://bookonelocal.in/cdn/DSC08853.avif",
@@ -43,11 +39,7 @@ export const horizontalPanels = [
   {
     title: "Premium Luxe Package",
     subtitle: "An elevated hospitality format for celebration weekends that call for premium service and added dining theatre.",
-    bullets: [
-      "Weekday Offer: Rs. 6,500 per person",
-      "Weekend Offer: Rs. 7,500 per person",
-      "Signature Package + 2 live counters",
-    ],
+    bullets: [],
     image: "https://bookonelocal.in/cdn/DSC08849.avif",
   },
 ] as const;

@@ -6,13 +6,11 @@ import { stayCardsPrimary, stayCardsSecondary } from "@/lib/data/content/mountai
 function StayCard({
   title,
   description,
-  tariff,
   packagePrice,
   image,
 }: {
   title: string;
   description: string;
-  tariff: string;
   packagePrice: string;
   image: string;
 }) {
@@ -70,7 +68,6 @@ function StayCard({
         <div className="translate-y-0 opacity-100 transition-all duration-700 delay-100 md:translate-y-5 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
           <p className="text-[0.88rem] leading-relaxed text-[#efe3ce] md:text-base">{description}</p>
           <div className="mt-4 space-y-1 text-sm text-white/86">
-            <p>{tariff}</p>
             <p>{packagePrice}</p>
           </div>
           <div className="relative z-30 mt-5 flex justify-center md:justify-center">

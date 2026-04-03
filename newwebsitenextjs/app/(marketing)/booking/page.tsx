@@ -6,8 +6,9 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { buildDirectBookingEngineUrl } from "@/lib/constants/booking";
+import { buildDirectBookingEngineUrl, formatDate, normalizeDate } from "@/lib/constants/booking";
 import { stayCardsPrimary, stayCardsSecondary } from "@/lib/data/content/mountain-content";
+import { ThemedDatePicker } from "@/components/ui/themed-date-picker";
 
 function getTodayDateString(offsetDays = 0) {
   const now = new Date();
@@ -79,6 +80,20 @@ function BookingPageContent() {
   };
   const incrementGuestCount = () => {
     setGuestCount((current) => current + 1);
+  };
+  const handleCheckInChange = (nextCheckIn: string) => {
+    setCheckIn(nextCheckIn);
+
+    const nextCheckInDate = normalizeDate(nextCheckIn);
+    const currentCheckOutDate = normalizeDate(checkOut);
+
+    if (!nextCheckInDate || !currentCheckOutDate || currentCheckOutDate > nextCheckInDate) {
+      return;
+    }
+
+    const nextCheckOutDate = new Date(nextCheckInDate);
+    nextCheckOutDate.setDate(nextCheckOutDate.getDate() + 1);
+    setCheckOut(formatDate(nextCheckOutDate));
   };
   const handleBookingRedirect = () => {
     if (!isFormComplete) return;
@@ -152,24 +167,22 @@ function BookingPageContent() {
                   <span className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
                     Preferred check-in
                   </span>
-                  <input
-                    type="date"
-                    required
+                  <ThemedDatePicker
                     value={checkIn}
-                    onChange={(e) => setCheckIn(e.target.value)}
-                    className="rounded-[1.05rem] border border-white/10 bg-[#120e0b] px-4 py-3 text-[0.95rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50"
+                    onChange={handleCheckInChange}
+                    minDate={todayDate}
+                    className="rounded-[1.05rem] border border-white/10 bg-[#120e0b] px-4 py-3 text-[0.95rem] text-white transition-colors"
                   />
                 </label>
                 <label className="grid gap-2">
                   <span className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
                     Preferred check-out
                   </span>
-                  <input
-                    type="date"
-                    required
+                  <ThemedDatePicker
                     value={checkOut}
-                    onChange={(e) => setCheckOut(e.target.value)}
-                    className="rounded-[1.05rem] border border-white/10 bg-[#120e0b] px-4 py-3 text-[0.95rem] text-white outline-none transition-colors focus:border-[#c9a46e]/50"
+                    onChange={setCheckOut}
+                    minDate={checkIn}
+                    className="rounded-[1.05rem] border border-white/10 bg-[#120e0b] px-4 py-3 text-[0.95rem] text-white transition-colors"
                   />
                 </label>
                 <div className="grid gap-2">

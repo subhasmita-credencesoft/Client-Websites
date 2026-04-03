@@ -228,3 +228,75 @@ html.lenis body {
     transform: none !important;
   }
 }
+
+.mountain-datepicker-popper {
+  z-index: 70 !important;
+}
+
+.mountain-datepicker {
+  border: 1px solid rgba(201, 164, 110, 0.22) !important;
+  border-radius: 1rem !important;
+  overflow: hidden;
+  background: linear-gradient(180deg, #16110e 0%, #211913 100%) !important;
+  color: #f6ead8 !important;
+  box-shadow: 0 18px 40px rgba(8, 16, 11, 0.28) !important;
+  font-family: var(--font-body), sans-serif !important;
+}
+
+.mountain-datepicker .react-datepicker__header {
+  border-bottom: 1px solid rgba(201, 164, 110, 0.16) !important;
+  background: linear-gradient(180deg, #231a15 0%, #1b1511 100%) !important;
+}
+
+.mountain-datepicker .react-datepicker__current-month,
+.mountain-datepicker .react-datepicker-time__header,
+.mountain-datepicker .react-datepicker-year-header {
+  color: #f6ead8 !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+}
+
+.mountain-datepicker .react-datepicker__navigation-icon::before {
+  border-color: #d7b57c !important;
+}
+
+.mountain-datepicker .react-datepicker__day-name {
+  color: rgba(246, 234, 216, 0.82) !important;
+  font-size: 0.72rem !important;
+}
+
+.mountain-datepicker .react-datepicker__month {
+  margin: 0.5rem !important;
+}
+
+.mountain-datepicker .react-datepicker__day,
+.mountain-datepicker .react-datepicker__time-name {
+  color: #f6ead8 !important;
+  border-radius: 0.65rem !important;
+}
+
+.mountain-datepicker .react-datepicker__day:hover,
+.mountain-datepicker .react-datepicker__day--keyboard-selected {
+  background: rgba(201, 164, 110, 0.22) !important;
+}
+
+.mountain-datepicker .react-datepicker__day--selected,
+.mountain-datepicker .react-datepicker__day--in-selecting-range,
+.mountain-datepicker .react-datepicker__day--in-range {
+  background: #c9a467 !important;
+  color: #0f0b08 !important;
+}
+
+.mountain-datepicker .react-datepicker__day--outside-month {
+  color: rgba(246, 234, 216, 0.42) !important;
+}
+
+.mountain-datepicker .react-datepicker__day--disabled {
+  color: rgba(246, 234, 216, 0.24) !important;
+}
+
+.mountain-datepicker .react-datepicker__today-button {
+  border-top: 1px solid rgba(201, 164, 110, 0.16) !important;
+  background: #1a1410 !important;
+  color: #d7b57c !important;
+}

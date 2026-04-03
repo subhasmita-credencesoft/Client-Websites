@@ -7,7 +7,7 @@ type DirectBookingUrlOptions = {
   rooms?: number;
 };
 
-function normalizeDate(value?: string | Date) {
+export function normalizeDate(value?: string | Date) {
   if (!value) return null;
 
   if (value instanceof Date) {
@@ -23,7 +23,7 @@ function normalizeDate(value?: string | Date) {
   return Number.isNaN(parsed.getTime()) ? null : parsed;
 }
 
-function formatDate(date: Date) {
+export function formatDate(date: Date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
