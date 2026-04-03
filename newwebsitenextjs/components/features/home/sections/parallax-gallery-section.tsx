@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { homeSectionContent } from "@/lib/data/content/resort-content";

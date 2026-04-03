@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { Suspense, useMemo, useState, useSyncExternalStore } from "react";
@@ -105,8 +105,8 @@ function BookingPageContent() {
       >
         <div className="absolute inset-0">
           <Image
-            src={activeRoomCard?.image ?? "/images/DSC08717.avif"}
-            alt={activeRoomCard?.title ?? "Celebration planning at The Mountain, Karjat"}
+            src={activeRoomCard?.image ?? "https://bookonelocal.in/cdn/DSC08717.avif"}
+            alt={activeRoomCard?.title ?? "Celebration planning at The Mountain Resort in Karjat , By Redwings"}
             fill
             priority
             sizes="100vw"
@@ -128,7 +128,7 @@ function BookingPageContent() {
               Check Availability For Your Dates
             </h1>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/88 md:text-xl" data-reveal-child>
-              Choose your dates, guest count, and preferred room category to continue into the direct booking engine for The Mountain by Redwings.
+              Choose your dates, guest count, and preferred room category to continue into the direct booking engine for The Mountain Resort in Karjat , By Redwings.
             </p>
           </div>
         </div>
@@ -233,7 +233,7 @@ function BookingPageContent() {
             </div>
           </div>
 
-          {/* ── RIGHT: SCROLLABLE CONTENT ────────────────────────────────── */}
+          {/* â”€â”€ RIGHT: SCROLLABLE CONTENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
           <div className="space-y-8">
 
             {/* Inquiry Snapshot */}
@@ -242,7 +242,7 @@ function BookingPageContent() {
                 <div className="relative overflow-hidden rounded-[1.15rem] border border-white/10 bg-[#15100d] xl:sticky xl:top-28">
                   <div className="relative aspect-[4/3] min-h-[12rem] w-full md:min-h-[15rem]">
                   <Image
-                    src={activeRoomCard?.image ?? "/images/DSC08717.avif"}
+                    src={activeRoomCard?.image ?? "https://bookonelocal.in/cdn/DSC08717.avif"}
                     alt={activeRoomCard?.title ?? "Selected room"}
                     fill
                     className="object-cover object-center"
@@ -280,7 +280,7 @@ function BookingPageContent() {
                       <div>
                         <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Property</p>
                         <p className="mt-1 text-[1rem] leading-snug text-white md:text-[1.1rem]">
-                          The Mountain by Redwings
+                          The Mountain Resort in Karjat , By Redwings
                         </p>
                       </div>
                       <div>
@@ -467,7 +467,7 @@ function BookingPageContent() {
               </div>
             </div>
           </div>
-          {/* ── END RIGHT COLUMN ─────────────────────────────────────────── */}
+          {/* â”€â”€ END RIGHT COLUMN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
 
         </div>
       </section>
@@ -507,3 +507,4 @@ export default function BookingPage() {
     </Suspense>
   );
 }
+

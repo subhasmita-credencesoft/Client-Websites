@@ -13,6 +13,7 @@ type VenueShowcasePageProps = {
 
 export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
   const [activeHeroImage, setActiveHeroImage] = useState(0);
+  const [slideshowReady, setSlideshowReady] = useState(false);
   const bookingHref = `/booking?page=${encodeURIComponent(page.hero.title)}&offer=${encodeURIComponent(page.hero.title)}&eventType=${encodeURIComponent("Destination Wedding")}`;
 
   const heroImages = useMemo(
@@ -28,13 +29,21 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
   );
 
   useEffect(() => {
-    if (heroImages.length <= 1) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion || heroImages.length <= 1) return;
+
+    const bootTimer = window.setTimeout(() => {
+      setSlideshowReady(true);
+    }, 1400);
 
     const timer = window.setInterval(() => {
       setActiveHeroImage((current) => (current + 1) % heroImages.length);
     }, 4200);
 
-    return () => window.clearInterval(timer);
+    return () => {
+      window.clearTimeout(bootTimer);
+      window.clearInterval(timer);
+    };
   }, [heroImages.length]);
 
   return (
@@ -43,19 +52,30 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
       <SiteHeader />
 
       <section className="relative min-h-[86svh] overflow-hidden pt-32 md:min-h-[100svh] md:pt-0" data-section-id={`${page.slug}-hero`} data-hero-stage>
-        {heroImages.map((image, index) => (
-          <div
-            key={`${page.slug}-${image}`}
-            className={`absolute inset-0 transition-opacity duration-[1400ms] ${
-              index === activeHeroImage ? "opacity-100" : "opacity-0"
-            }`}
-            data-hero-bg
-            data-bg-parallax
-            data-bg-depth={String(10 + index)}
-          >
-            <Image src={image} alt={page.hero.title} fill className="object-cover" sizes="100vw" priority={index === 0} />
-          </div>
-        ))}
+        {heroImages.map((image, index) =>
+          slideshowReady || index === 0 ? (
+            <div
+              key={`${page.slug}-${image}`}
+              className={`absolute inset-0 transition-opacity duration-[1400ms] ${
+                index === activeHeroImage ? "opacity-100" : "opacity-0"
+              }`}
+              data-hero-bg
+              data-bg-parallax
+              data-bg-depth={String(10 + index)}
+            >
+              <Image
+                src={image}
+                alt={page.hero.title}
+                fill
+                className="object-cover"
+                sizes="100vw"
+                priority={index === 0}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+            </div>
+          ) : null,
+        )}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,12,0.22)_0%,rgba(8,10,12,0.34)_42%,rgba(8,10,12,0.82)_100%)]" data-hero-overlay />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,rgba(8,10,12,0)_0%,rgba(8,10,12,0.74)_100%)]" />
 
@@ -135,7 +155,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
           <div className="mt-10 border-l border-white/15 pl-8 text-xl leading-relaxed text-white/86 md:text-2xl">
             <p data-stage-line>{page.intro.body}</p>
             <p className="mt-6" data-stage-line>
-              Explore scenic event spaces, celebration flow, and booking-ready venue details crafted for destination weddings at The Mountain, Karjat.
+              Explore scenic event spaces, celebration flow, and booking-ready venue details crafted for destination weddings at The Mountain Resort in Karjat , By Redwings.
             </p>
           </div>
         </div>

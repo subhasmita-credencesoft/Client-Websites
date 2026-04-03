@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { AppProviders } from "@/components/providers/app-providers";
+import { ClientEnhancements } from "@/components/providers/client-enhancements";
 
 export const metadata: Metadata = {
-  title: "The Mountain, Karjat | Destination Wedding & Event Venue",
+  title: "The Mountain Resort in Karjat , By Redwings",
   description: "Private destination wedding and event venue in Karjat with stay, meals, venue access, and scenic mountain celebrations across 7 acres.",
   icons: {
     icon: "/icon.svg",
@@ -20,7 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="overflow-x-hidden antialiased" suppressHydrationWarning>
-        <AppProviders>{children}</AppProviders>
+        {children}
+        <ClientEnhancements />
       </body>
     </html>
   );

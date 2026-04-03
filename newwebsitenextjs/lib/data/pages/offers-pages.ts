@@ -1,5 +1,5 @@
-export const offersPageData = {
-  heroImage: "/images/DSC08807.avif",
+﻿export const offersPageData = {
+  heroImage: "https://bookonelocal.in/cdn/DSC08807.avif",
   hero: {
     title: "WEDDING & STAY PACKAGES",
     subtitle: "AT THE MOUNTAIN, KARJAT.",
@@ -15,7 +15,7 @@ export const offersPageData = {
     {
       id: "weekday",
       title: "WEEKDAY PACKAGE",
-      image: "/images/DSC08812.avif",
+      image: "https://bookonelocal.in/cdn/DSC08812.avif",
       description:
         "Monday to Thursday pricing for families who want stronger bundled value without losing the full destination wedding experience.",
       bullets: [
@@ -30,7 +30,7 @@ export const offersPageData = {
     {
       id: "weekend",
       title: "WEEKEND PACKAGE",
-      image: "/images/DSC08820.avif",
+      image: "https://bookonelocal.in/cdn/DSC08820.avif",
       description:
         "Friday to Sunday pricing for peak celebration dates, wedding weekends, and larger family-led gatherings.",
       bullets: [
@@ -45,7 +45,7 @@ export const offersPageData = {
     {
       id: "classic",
       title: "CLASSIC PACKAGE",
-      image: "/images/DSC08836.avif",
+      image: "https://bookonelocal.in/cdn/DSC08836.avif",
       description:
         "A strong bundled starting point for destination celebrations with 5 meals, stay, venue access, and simple planning clarity.",
       bullets: [
@@ -57,7 +57,7 @@ export const offersPageData = {
     {
       id: "signature",
       title: "SIGNATURE PACKAGE",
-      image: "/images/DSC08849.avif",
+      image: "https://bookonelocal.in/cdn/DSC08849.avif",
       description:
         "A richer hospitality format for families who want stronger food depth and a more generous celebration table.",
       bullets: [
@@ -69,7 +69,7 @@ export const offersPageData = {
     {
       id: "premium-luxo",
       title: "PREMIUM LUXE PACKAGE",
-      image: "/images/DSC08831.avif",
+      image: "https://bookonelocal.in/cdn/DSC08831.avif",
       description:
         "A premium wedding-hosting package for celebrations that call for elevated hospitality, stronger presentation, and added live counters.",
       bullets: [
@@ -82,3 +82,4 @@ export const offersPageData = {
   contactLine:
     "Pricing is per person per day and includes stay, meals, services, lawn access, and venue usage. Additional items and hospitality upgrades can be customised as per preference and are charged separately on a per-person, per-day basis.",
 } as const;
+

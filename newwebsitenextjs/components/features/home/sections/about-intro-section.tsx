@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 
@@ -31,7 +31,7 @@ export function AboutIntroSection() {
             <div className="border-[4px] border-[#d9bf8e] bg-white p-4">
               <div className="relative h-[22rem] overflow-hidden">
                 <Image
-                  src="/images/DSC08846.avif"
+                  src="https://bookonelocal.in/cdn/DSC08846.avif"
                   alt="The Mountain quotation detail"
                   fill
                   className="object-cover"
@@ -47,3 +47,4 @@ export function AboutIntroSection() {
     </section>
   );
 }
+

@@ -1,10 +1,10 @@
-export const aboutPageContent = {
+﻿export const aboutPageContent = {
   hero: {
-    eyebrow: "About The Mountain, Karjat",
+    eyebrow: "About The Mountain Resort in Karjat , By Redwings",
     title: "More than a stay, The Mountain is a private destination wedding estate for celebrations that deserve time and space",
     description:
       "Set against scenic mountain surroundings in Karjat, The Mountain brings together premium stays, elegant event spaces, and hospitality-led hosting for weddings, family gatherings, and destination-style getaways.",
-    image: "/images/DSC08763.avif",
+    image: "https://bookonelocal.in/cdn/DSC08763.avif",
   },
   story: {
     eyebrow: "Our Story",
@@ -15,7 +15,7 @@ export const aboutPageContent = {
     ],
     quote:
       "A scenic estate where guests stay beautifully, celebrate fully, and remember the feeling long after the last event ends.",
-    image: "/images/DSC08831.avif",
+    image: "https://bookonelocal.in/cdn/DSC08831.avif",
   },
   stats: [
     { value: "7 Acres", label: "Private green destination estate" },
@@ -31,19 +31,19 @@ export const aboutPageContent = {
         title: "Scenic Destination Setting",
         description:
           "Mountain-facing views, open-air lawns, and a calm private-estate atmosphere create a beautiful backdrop for rituals, portraits, stays, and celebration weekends.",
-        image: "/images/DSC08849.avif",
+        image: "https://bookonelocal.in/cdn/DSC08849.avif",
       },
       {
         title: "Flexible Guest Stay Options",
         description:
           "Standard rooms, cliff rooms, family rooms, glass cottages, and bungalow stays make it easier to host mixed guest groups with comfort, privacy, and premium destination ease.",
-        image: "/images/DSC08769.avif",
+        image: "https://bookonelocal.in/cdn/DSC08769.avif",
       },
       {
         title: "Celebration-Ready Hospitality",
         description:
           "Meals, venue access, stay planning, guest movement, and event support are aligned to help couples and families host private functions with grace and less coordination stress.",
-        image: "/images/DSC08853.avif",
+        image: "https://bookonelocal.in/cdn/DSC08853.avif",
       },
     ],
   },
@@ -72,8 +72,8 @@ export const aboutPageContent = {
     title: "The vision behind The Mountain is simple: create a place remembered for how beautifully people come together",
     body:
       "The Mountain was imagined as a destination where scenery, stays, hospitality, and celebration could belong to one cohesive experience. That idea continues to shape the estate through every room category, every event zone, and every guest moment created on the property.",
-    signature: "The Mountain, Karjat",
-    image: "/images/DSC08846.avif",
+    signature: "The Mountain Resort in Karjat , By Redwings",
+    image: "https://bookonelocal.in/cdn/DSC08846.avif",
   },
   journey: {
     eyebrow: "Journey",
@@ -112,7 +112,7 @@ export const aboutPageContent = {
       "Birthdays, anniversaries, and private milestone events",
       "Relaxed celebration weekends with family and friends",
     ],
-    image: "/images/DSC08837.avif",
+    image: "https://bookonelocal.in/cdn/DSC08837.avif",
   },
   impact: {
     eyebrow: "Responsible Growth",
@@ -125,7 +125,7 @@ export const aboutPageContent = {
       "Curated event planning over overcrowded execution",
       "A hospitality-first approach to every celebration",
     ],
-    image: "/images/DSC08849.avif",
+    image: "https://bookonelocal.in/cdn/DSC08849.avif",
   },
   cta: {
     eyebrow: "Plan With Us",
@@ -134,3 +134,4 @@ export const aboutPageContent = {
       "Explore guest stay categories, venue highlights, and package details, then connect with the team for availability, quotation support, and booking guidance.",
   },
 } as const;
+

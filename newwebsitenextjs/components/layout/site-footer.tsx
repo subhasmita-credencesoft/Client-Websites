@@ -42,7 +42,7 @@ export function SiteFooter() {
         ))}
       </div>
       <div className="mx-auto mt-10 max-w-[92rem] border-t border-white/10 pt-6 text-center text-xs tracking-[0.06em] text-white/70 sm:text-sm md:text-base">
-        <p>&copy; 2026 The Mountain, Karjat. All rights reserved.</p>
+        <p>&copy; 2026 The Mountain Resort in Karjat , By Redwings. All rights reserved.</p>
         <p className="mt-2">Designed and Developed by CredenceSoft and Powered By BookOne</p>
       </div>
     </footer>

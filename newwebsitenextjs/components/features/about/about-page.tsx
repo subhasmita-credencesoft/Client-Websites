@@ -18,7 +18,7 @@ export function AboutPage() {
         <div className="absolute inset-0" data-bg-parallax data-bg-depth="9">
           <Image
             src={content.hero.image}
-            alt="The Mountain, Karjat overview"
+            alt="The Mountain Resort in Karjat , By Redwings overview"
             fill
             className="object-cover object-center"
             priority
@@ -220,7 +220,7 @@ export function AboutPage() {
             <div className="relative h-[24rem] overflow-hidden rounded-[1.6rem] md:h-[36rem]">
               <Image
                 src={content.hosting.image}
-                alt="Event hosting at The Mountain, Karjat"
+                alt="Event hosting at The Mountain Resort in Karjat , By Redwings"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40rem"

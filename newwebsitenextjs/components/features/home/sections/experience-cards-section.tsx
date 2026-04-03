@@ -1,5 +1,3 @@
-"use client";
-
 import { experienceCards, homeSectionContent } from "@/lib/data/content/resort-content";
 import { LuxuryCard } from "@/components/ui/luxury-card";
 import { SectionHeading } from "@/components/ui/section-heading";

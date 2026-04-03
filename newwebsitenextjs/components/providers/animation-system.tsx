@@ -1,28 +1,24 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useAppDispatch } from "@/store/hooks";
-import { setActiveSection } from "@/store/slices/ui-slice";
-
-type AnimationSystemProps = {
-  children: ReactNode;
-};
-
-export function AnimationSystem({ children }: AnimationSystemProps) {
-  const dispatch = useAppDispatch();
+export function AnimationSystem() {
   const pathname = usePathname();
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isLargeScreen = window.innerWidth >= 1024;
     let isActive = true;
     const cleanups: Array<() => void> = [];
     let animationFrameId = 0;
     let nestedAnimationFrameId = 0;
     let initTimeoutId = 0;
+
+    if (reducedMotion || !isLargeScreen) {
+      return;
+    }
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -753,24 +749,6 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
         });
       });
 
-      const sections = gsap.utils.toArray<HTMLElement>("[data-section-id]");
-      sections.forEach((section) => {
-        const id = section.dataset.sectionId;
-        if (!id) return;
-
-        ScrollTrigger.create({
-          trigger: section,
-          start: "top center",
-          end: "bottom center",
-          onEnter: () => {
-            if (isActive) dispatch(setActiveSection(id));
-          },
-          onEnterBack: () => {
-            if (isActive) dispatch(setActiveSection(id));
-          },
-        });
-      });
-
         ScrollTrigger.refresh();
       });
     };
@@ -794,7 +772,7 @@ export function AnimationSystem({ children }: AnimationSystemProps) {
       cleanups.forEach((cleanup) => cleanup());
       ctx?.revert();
     };
-  }, [dispatch, pathname]);
+  }, [pathname]);
 
-  return <>{children}</>;
+  return null;
 }

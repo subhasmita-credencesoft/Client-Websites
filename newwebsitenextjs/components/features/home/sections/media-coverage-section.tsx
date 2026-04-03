@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 
@@ -10,7 +10,7 @@ export function MediaCoverageSection() {
       <div className="mx-auto grid max-w-[92rem] gap-12 md:grid-cols-2 md:items-center">
         <div data-card className="relative mx-auto h-[30rem] w-full max-w-[38rem] overflow-hidden md:sticky md:top-7">
           <Image
-            src="/images/DSC08849.avif"
+            src="https://bookonelocal.in/cdn/DSC08849.avif"
             alt="Wedding hospitality and culinary experience"
             fill
             className="object-cover"
@@ -45,3 +45,4 @@ export function MediaCoverageSection() {
     </section>
   );
 }
+

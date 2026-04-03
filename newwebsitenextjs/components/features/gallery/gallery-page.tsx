@@ -128,7 +128,7 @@ export function GalleryPage() {
             Seen the setting. Now choose your dates.
           </h3>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg" data-reveal-child>
-            Explore availability for destination weddings, wedding guest stays, and celebration weekends at The Mountain, Karjat.
+            Explore availability for destination weddings, wedding guest stays, and celebration weekends at The Mountain Resort in Karjat , By Redwings.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-4" data-reveal-child>
             <MagneticButton href={DIRECT_BOOKING_ENGINE_URL}>Check Availability</MagneticButton>

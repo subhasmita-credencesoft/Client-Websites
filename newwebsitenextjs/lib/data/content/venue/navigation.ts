@@ -47,7 +47,7 @@ export type FooterLinkItem = {
 
 export const footerSections: FooterLinkItem[][] = [
   [
-    { label: "The Mountain, Karjat", href: "/" },
+    { label: "The Mountain Resort in Karjat , By Redwings", href: "/" },
     { label: "Plan Your Wedding", href: "/booking?eventType=Destination%20Wedding" },
     { label: "Destination Wedding Venue", href: "/wedding-lawns" },
     { label: "Packages", href: "/offers" },
@@ -66,7 +66,7 @@ export const footerSections: FooterLinkItem[][] = [
     { label: "+91 9892011179", href: "tel:+919892011179" },
     { label: "instagram.com/themountain.karjat", href: "https://instagram.com/themountain.karjat", external: true },
     { label: "themountainresorts.com", href: "https://www.themountainresorts.com", external: true },
-    { label: "The Mountain, Karjat", href: "https://maps.google.com/?q=The+Mountain+Karjat", external: true },
+    { label: "The Mountain Resort in Karjat , By Redwings", href: "https://maps.google.com/?q=The+Mountain+Resort+in+Karjat+By+Redwings", external: true },
     { label: "Contact For Wedding And Stay Bookings", href: "/contact" },
   ],
 ];

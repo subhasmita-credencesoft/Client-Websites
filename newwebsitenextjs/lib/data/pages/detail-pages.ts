@@ -1,4 +1,4 @@
-export type DetailPage = {
+﻿export type DetailPage = {
   slug: string;
   title: string;
   subtitle: string;
@@ -96,13 +96,13 @@ const standardRoomCards = [
     label: "ROOM TYPE",
     title: "Standard Room",
     description: "A refined and comfortable stay for wedding guests who value ease, warmth, and a smooth arrival into the celebration weekend.",
-    image: "/images/DSC08717.avif",
+    image: "https://bookonelocal.in/cdn/DSC08717.avif",
   },
   {
     label: "WEDDING HOSTING ROLE",
     title: "Ideal For Wedding Guests",
     description: "Well suited for friends and family who want a practical premium room with stay and meals aligned to the event itinerary.",
-    image: "/images/DSC08720.avif",
+    image: "https://bookonelocal.in/cdn/DSC08720.avif",
   },
 ] satisfies DetailPage["cards"];
 
@@ -126,13 +126,13 @@ const familyRoomCards = [
     label: "ROOM TYPE",
     title: "Family Room",
     description: "A spacious stay category designed for group comfort, shared family movement, and easier hosting during multi-function wedding itineraries.",
-    image: "/images/DSC08812.avif",
+    image: "https://bookonelocal.in/cdn/DSC08812.avif",
   },
   {
     label: "WEDDING HOSTING ROLE",
     title: "Ideal For Groups",
     description: "Best suited for families and group stays who want to remain together through Haldi, Sangeet, ceremony, and reception flow.",
-    image: "/images/DSC08820.avif",
+    image: "https://bookonelocal.in/cdn/DSC08820.avif",
   },
 ] satisfies DetailPage["cards"];
 
@@ -174,7 +174,7 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "STAY EXPERIENCE",
     introBody:
       "Standard Room accommodation at The Mountain is designed for guest comfort with a room tariff of Rs. 5,000 and a stay-plus-all-meals package at Rs. 3,000 per person, making it a dependable choice for destination weddings and hosted family stays.",
-    heroImage: "/images/DSC08717.avif",
+    heroImage: "https://bookonelocal.in/cdn/DSC08717.avif",
     facts: [
       { label: "Room Tariff", value: "Rs. 5,000" },
       { label: "Stay + Meals", value: "Rs. 3,000 per person" },
@@ -183,15 +183,15 @@ const detailPageSeeds: DetailSeed[] = [
     ],
     cards: standardRoomCards,
     galleryTabs: ["Exterior", "Standard Room", "Guest Stay"],
-    galleryImage: "/images/DSC08720.avif",
+    galleryImage: "https://bookonelocal.in/cdn/DSC08720.avif",
     galleryImages: [
-      "/images/DSC08717.avif",
-      "/images/DSC08720.avif",
-      "/images/DSC08753.avif",
-      "/images/DSC08745.avif",
-      "/images/DSC08749.avif",
-      "/images/DSC08798.avif",
-      "/images/DSC08796.avif",
+      "https://bookonelocal.in/cdn/DSC08717.avif",
+      "https://bookonelocal.in/cdn/DSC08720.avif",
+      "https://bookonelocal.in/cdn/DSC08753.avif",
+      "https://bookonelocal.in/cdn/DSC08745.avif",
+      "https://bookonelocal.in/cdn/DSC08749.avif",
+      "https://bookonelocal.in/cdn/DSC08798.avif",
+      "https://bookonelocal.in/cdn/DSC08796.avif",
     ],
   },
   {
@@ -300,23 +300,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "PACKAGE DETAILS",
     introBody:
       "The Classic Package is the base wedding package at The Mountain, created for families who want stay, meals, services, and venue access simplified into one clear and elegant plan.",
-    heroImage: "/images/DSC08846.avif",
+    heroImage: "https://bookonelocal.in/cdn/DSC08846.avif",
     cards: [
       {
         label: "WEEKDAY OFFER",
         title: "Weekday Hosting",
         description: "Classic\nRs. 4,500 per person\nStay + 5 curated meals + venue access",
-        image: "/images/DSC08846.avif",
+        image: "https://bookonelocal.in/cdn/DSC08846.avif",
       },
       {
         label: "WEEKEND OFFER",
         title: "Weekend Hosting",
         description: "Classic\nRs. 5,500 per person\nStay + 5 curated meals + venue access",
-        image: "/images/DSC08837.avif",
+        image: "https://bookonelocal.in/cdn/DSC08837.avif",
       },
     ],
     galleryTabs: ["Meals", "Stay", "Pricing"],
-    galleryImage: "/images/DSC08831.avif",
+    galleryImage: "https://bookonelocal.in/cdn/DSC08831.avif",
     packageComparison: standardPackageComparison,
   },
   {
@@ -326,25 +326,25 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "PACKAGE DETAILS",
     introBody:
       "The Signature Package builds on the Classic Package by adding 2 extra starters and 1 extra gravy in lunch and dinner for a fuller hospitality experience across wedding functions.",
-    heroImage: "/images/DSC08853.avif",
+    heroImage: "https://bookonelocal.in/cdn/DSC08853.avif",
     cards: [
       {
         label: "WEEKDAY OFFER",
         title: "Weekday Hosting",
         description:
           "Signature\nRs. 5,500 per person\nClassic + 2 extra starters + 1 extra gravy in lunch and dinner",
-        image: "/images/DSC08853.avif",
+        image: "https://bookonelocal.in/cdn/DSC08853.avif",
       },
       {
         label: "WEEKEND OFFER",
         title: "Weekend Hosting",
         description:
           "Signature\nRs. 6,500 per person\nClassic + 2 extra starters + 1 extra gravy in lunch and dinner",
-        image: "/images/DSC08836.avif",
+        image: "https://bookonelocal.in/cdn/DSC08836.avif",
       },
     ],
     galleryTabs: ["Hospitality", "Dining", "Pricing"],
-    galleryImage: "/images/DSC08820.avif",
+    galleryImage: "https://bookonelocal.in/cdn/DSC08820.avif",
     packageComparison: standardPackageComparison,
   },
   {
@@ -354,23 +354,23 @@ const detailPageSeeds: DetailSeed[] = [
     introTitle: "PACKAGE DETAILS",
     introBody:
       "The Premium Luxe Package is the top package tier at The Mountain and includes Signature-level hospitality plus two live counters for celebrations that call for a more premium dining presence.",
-    heroImage: "/images/DSC08849.avif",
+    heroImage: "https://bookonelocal.in/cdn/DSC08849.avif",
     cards: [
       {
         label: "WEEKDAY OFFER",
         title: "Weekday Hosting",
         description: "Premium Luxe\nRs. 6,500 per person\nSignature package + 2 live counters",
-        image: "/images/DSC08849.avif",
+        image: "https://bookonelocal.in/cdn/DSC08849.avif",
       },
       {
         label: "WEEKEND OFFER",
         title: "Weekend Hosting",
         description: "Premium Luxe\nRs. 7,500 per person\nSignature package + 2 live counters",
-        image: "/images/DSC08831.avif",
+        image: "https://bookonelocal.in/cdn/DSC08831.avif",
       },
     ],
     galleryTabs: ["Premium", "Hospitality", "Pricing"],
-    galleryImage: "/images/DSC08807.avif",
+    galleryImage: "https://bookonelocal.in/cdn/DSC08807.avif",
     packageComparison: standardPackageComparison,
   },
 ] satisfies DetailSeed[];
@@ -401,3 +401,4 @@ export const detailPageSlugs = detailPageSeeds.map((seed) => seed.slug);
 export function getDetailPage(slug: string) {
   return detailPages[slug];
 }
+

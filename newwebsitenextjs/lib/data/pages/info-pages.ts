@@ -1,4 +1,4 @@
-export type MountainInfoPageData = {
+﻿export type MountainInfoPageData = {
   slug: string;
   hero: {
     title: string;
@@ -74,38 +74,38 @@ export const quotationPageData: MountainInfoPageData = {
   hero: {
     title: "Wedding Proposal & Availability",
     subtitle: "A refined quotation begins with the right dates, guest count, stay plan, and package direction.",
-    image: "/images/DSC08836.avif",
+    image: "https://bookonelocal.in/cdn/DSC08836.avif",
   },
   intro: {
     eyebrow: "Proposal Planning",
     title: "Share the essentials clearly and we can shape a more accurate wedding proposal from the very first conversation",
     body:
-      "At The Mountain, Karjat, every proposal is shaped around how your celebration will actually unfold, from preferred dates and stay duration to guest count, package tier, and whether you are planning a weekday or weekend wedding.",
+      "At The Mountain Resort in Karjat , By Redwings, every proposal is shaped around how your celebration will actually unfold, from preferred dates and stay duration to guest count, package tier, and whether you are planning a weekday or weekend wedding.",
   },
   cards: [
     {
         label: "PROPOSAL",
       title: "Selected Package & Event Type",
       description: "Your event format and selected package tier help define the structure of the proposal, whether you are planning an intimate gathering, a destination wedding weekend, or a larger multi-function celebration.",
-      image: "/images/DSC08849.avif",
+      image: "https://bookonelocal.in/cdn/DSC08849.avif",
     },
     {
         label: "PROPOSAL",
       title: "Dates, Guests & Stay",
       description: "Preferred dates, guest count, weekday or weekend selection, and the stay requirement directly influence both availability and the most suitable package direction for your family.",
-      image: "/images/DSC08831.avif",
+      image: "https://bookonelocal.in/cdn/DSC08831.avif",
     },
     {
         label: "PROPOSAL",
       title: "Billing Basis",
       description: "Packages are calculated per person per day and include stay, meals, services, lawn access, and venue usage, with final billing aligned to the confirmed headcount before check-in.",
-      image: "/images/DSC08837.avif",
+      image: "https://bookonelocal.in/cdn/DSC08837.avif",
     },
     {
         label: "PROPOSAL",
       title: "Advance & Date Blocking",
       description: "A 50% advance secures your dates. The remaining balance is completed before check-in after headcount confirmation and final proposal alignment.",
-      image: "/images/DSC08846.avif",
+      image: "https://bookonelocal.in/cdn/DSC08846.avif",
     },
   ],
   highlights: {
@@ -175,57 +175,57 @@ export const keyAdvantagesPageData: MountainInfoPageData = {
   hero: {
     title: "Key Advantages",
     subtitle:
-      "Unlimited music, full venue control, 24x7 pool access, total privacy, and wedding-ready celebration spaces at The Mountain, Karjat.",
-    image: "/images/DSC08853.avif",
+      "Unlimited music, full venue control, 24x7 pool access, total privacy, and wedding-ready celebration spaces at The Mountain Resort in Karjat , By Redwings.",
+    image: "https://bookonelocal.in/cdn/DSC08853.avif",
   },
   intro: {
     eyebrow: "Key Advantages",
     title: "Everything needed for a private destination wedding and premium hosted stay in one estate",
     body:
-      "The Mountain, Karjat is designed for destination weddings with unlimited music hours, 24x7 pool access, zero sound license requirement, full venue access, private estate privacy, and celebration zones that work beautifully for Haldi, Mehendi, Sangeet, Cocktail Night, Reception, and staycation-style wedding weekends.",
+      "The Mountain Resort in Karjat , By Redwings is designed for destination weddings with unlimited music hours, 24x7 pool access, zero sound license requirement, full venue access, private estate privacy, and celebration zones that work beautifully for Haldi, Mehendi, Sangeet, Cocktail Night, Reception, and staycation-style wedding weekends.",
   },
   cards: [
     {
       label: "ADVANTAGE",
       title: "Unlimited Music Hours",
       description: "Enjoy music across the celebration with greater freedom, giving every wedding function more energy and a smoother destination rhythm.",
-      image: "/images/DSC08717.avif",
+      image: "https://bookonelocal.in/cdn/DSC08717.avif",
     },
     {
       label: "ADVANTAGE",
       title: "24x7 Pool Access",
       description: "Take a dip or unwind whenever you like, with round-the-clock pool access adding relaxation and destination charm to the full stay experience.",
-      image: "/images/DSC08720.avif",
+      image: "https://bookonelocal.in/cdn/DSC08720.avif",
     },
     {
       label: "ADVANTAGE",
       title: "Zero Sound License Required",
       description: "No additional sound permits or extra fees are needed, helping you plan music-led events more easily and with fewer approval hurdles.",
-      image: "/images/DSC08758.avif",
+      image: "https://bookonelocal.in/cdn/DSC08758.avif",
     },
     {
       label: "ADVANTAGE",
       title: "Full Venue Access",
       description: "The entire property is exclusively yours for the event, supporting smooth movement, event planning flexibility, and complete celebration control.",
-      image: "/images/DSC08759.avif",
+      image: "https://bookonelocal.in/cdn/DSC08759.avif",
     },
     {
       label: "ADVANTAGE",
       title: "Private Estate",
       description: "Private-estate exclusivity keeps the venue feeling secure, exclusive, and more comfortable for couples, families, and wedding guests.",
-      image: "/images/DSC08763.avif",
+      image: "https://bookonelocal.in/cdn/DSC08763.avif",
     },
     {
       label: "ADVANTAGE",
       title: "Perfect For All Wedding Events",
       description: "Ideal for Sangeet, Haldi, Mehendi, Cocktail Night, Reception, and staycation-style wedding celebrations with a natural destination setting.",
-      image: "/images/DSC08769.avif",
+      image: "https://bookonelocal.in/cdn/DSC08769.avif",
     },
     {
       label: "ADVANTAGE",
       title: "Pool + Rain Dance Zone",
       description: "Celebrate against a striking mountain backdrop with poolside and rain dance moments that feel memorable, playful, and photogenic.",
-      image: "/images/DSC08801.avif",
+      image: "https://bookonelocal.in/cdn/DSC08801.avif",
     },
   ],
   highlights: {
@@ -252,26 +252,26 @@ export const rulesPageData: MountainInfoPageData = {
   hero: {
     title: "Booking Terms & Venue Guidelines",
     subtitle: "Clear, guest-friendly booking terms help celebrations feel smooth, respectful, and well-managed from arrival to departure.",
-    image: "/images/DSC08802.avif",
+    image: "https://bookonelocal.in/cdn/DSC08802.avif",
   },
   intro: {
     eyebrow: "Booking Terms",
     title: "A few essential guidelines help us host your wedding or stay with more comfort, clarity, and care",
     body:
-      "To keep the experience comfortable for every family and guest, we ask that staying guests carry valid ID, vendors be approved in advance, and all celebrations follow the property’s simple hosting guidelines.",
+      "To keep the experience comfortable for every family and guest, we ask that staying guests carry valid ID, vendors be approved in advance, and all celebrations follow the propertyâ€™s simple hosting guidelines.",
   },
   cards: [
     {
       label: "RULES",
       title: "Guest & Vendor Policy",
       description: "Staying guests are required to present valid ID at check-in, outside catering is not permitted with package bookings, and decorators or other vendors need prior venue approval.",
-      image: "/images/DSC08807.avif",
+      image: "https://bookonelocal.in/cdn/DSC08807.avif",
     },
     {
       label: "RULES",
       title: "Property Terms",
       description: "Property damage is chargeable, music should remain within venue limits, smoking is permitted only in designated areas, and personal belongings remain the responsibility of the guest.",
-      image: "/images/DSC08812.avif",
+      image: "https://bookonelocal.in/cdn/DSC08812.avif",
     },
   ],
   highlights: {
@@ -297,7 +297,7 @@ export const checkInPageData: MountainInfoPageData = {
   hero: {
     title: "Arrival, Stay & Payment Terms",
     subtitle: "Understand the arrival schedule, payment flow, and booking confirmation process before your celebration begins.",
-    image: "/images/DSC08820.avif",
+    image: "https://bookonelocal.in/cdn/DSC08820.avif",
   },
   intro: {
     eyebrow: "Check-In",
@@ -310,13 +310,13 @@ export const checkInPageData: MountainInfoPageData = {
       label: "TERMS",
       title: "Check-In Details",
       description: "Check-in begins at 2:00 PM and check-out is at 11:00 AM, allowing the estate to prepare rooms and event spaces smoothly for multi-day destination stays.",
-      image: "/images/DSC08836.avif",
+      image: "https://bookonelocal.in/cdn/DSC08836.avif",
     },
     {
       label: "TERMS",
       title: "Advance & Billing",
       description: "A 50% advance secures your booking, the remaining balance is due before check-in, final billing is based on confirmed headcount, and date changes remain subject to availability.",
-      image: "/images/DSC08849.avif",
+      image: "https://bookonelocal.in/cdn/DSC08849.avif",
     },
   ],
   highlights: {
@@ -339,9 +339,9 @@ export const checkInPageData: MountainInfoPageData = {
 export const contactPageData: MountainInfoPageData = {
   slug: "contact",
   hero: {
-    title: "Contact The Mountain, Karjat",
+    title: "Contact The Mountain Resort in Karjat , By Redwings",
     subtitle: "Speak directly with our team for wedding dates, room reservations, package guidance, and booking support.",
-    image: "/images/DSC08849.avif",
+    image: "https://bookonelocal.in/cdn/DSC08849.avif",
   },
   intro: {
     eyebrow: "Contact",
@@ -354,25 +354,25 @@ export const contactPageData: MountainInfoPageData = {
       label: "PHONE",
       title: "+91 9833866655",
       description: "Primary wedding and quotation contact number for package enquiries, availability, and event planning coordination.",
-      image: "/images/DSC08846.avif",
+      image: "https://bookonelocal.in/cdn/DSC08846.avif",
     },
     {
       label: "ALTERNATE",
       title: "+91 9892011179",
       description: "Alternate contact number for booking support, destination wedding discussions, and guest stay planning.",
-      image: "/images/DSC08831.avif",
+      image: "https://bookonelocal.in/cdn/DSC08831.avif",
     },
     {
       label: "INSTAGRAM",
       title: "themountain.karjat",
       description: "View recent updates, destination wedding visuals, and venue moments on Instagram: instagram.com/themountain.karjat.",
-      image: "/images/DSC08853.avif",
+      image: "https://bookonelocal.in/cdn/DSC08853.avif",
     },
     {
       label: "WEBSITE",
       title: "www.themountainresorts.com",
       description: "Browse venue information, package direction, and enquiry details through the official Mountain Resorts website.",
-      image: "/images/DSC08769.avif",
+      image: "https://bookonelocal.in/cdn/DSC08769.avif",
     },
   ],
   highlights: {
@@ -390,7 +390,7 @@ export const contactPageData: MountainInfoPageData = {
   extraSections: [
     {
       title: "Venue location",
-      body: "The Mountain, Karjat is a private destination venue for weddings, guest stays, scenic celebrations, and multi-day hosted events in a beautifully connected Karjat setting.",
+      body: "The Mountain Resort in Karjat , By Redwings is a private destination venue for weddings, guest stays, scenic celebrations, and multi-day hosted events in a beautifully connected Karjat setting.",
     },
     {
       title: "Best way to reach out",
@@ -403,7 +403,7 @@ export const contactPageData: MountainInfoPageData = {
   },
   locationDetails: {
     title: "Location",
-    venue: "The Mountain, Karjat",
+    venue: "The Mountain Resort in Karjat , By Redwings",
     description: "Destination wedding and event venue in Karjat, Maharashtra, designed for celebrations, scenic stays, and private function planning.",
     mapLabel: "Karjat, Maharashtra, India",
     mapHref:
@@ -436,7 +436,7 @@ export const contactPageData: MountainInfoPageData = {
   officialAddress: {
     title: "Official Address",
     lines: [
-      "The Mountain, Karjat",
+      "The Mountain Resort in Karjat , By Redwings",
       "Karjat, Maharashtra, India",
     ],
     note: "For exact navigation assistance and booking support, call before arrival so our team can guide you directly to the venue.",
@@ -448,7 +448,7 @@ export const contactPageData: MountainInfoPageData = {
       "+91 9892011179",
       "instagram.com/themountain.karjat",
       "www.themountainresorts.com",
-      "The Mountain, Karjat",
+      "The Mountain Resort in Karjat , By Redwings",
     ],
   },
   form: {
@@ -472,39 +472,39 @@ export const mediaAwardsPageData: MountainInfoPageData = {
   slug: "media-awards",
   hero: {
     title: "Media & Awards",
-    subtitle: "A closer look at the visual character, trust signals, and editorial appeal that make The Mountain, Karjat stand out as a wedding destination.",
-    image: "/images/DSC08853.avif",
+    subtitle: "A closer look at the visual character, trust signals, and editorial appeal that make The Mountain Resort in Karjat , By Redwings stand out as a wedding destination.",
+    image: "https://bookonelocal.in/cdn/DSC08853.avif",
   },
   intro: {
     eyebrow: "Brand Story",
     title: "Visual appeal, planning confidence, and destination atmosphere matter long before the first guest arrives",
     body:
-      "The Mountain, Karjat is designed to feel strong both on-site and on-screen. Scenic backdrops, private-estate flow, open celebration spaces, and wedding-ready hospitality make the venue naturally suited for cinematic presentation, family trust, and premium event storytelling.",
+      "The Mountain Resort in Karjat , By Redwings is designed to feel strong both on-site and on-screen. Scenic backdrops, private-estate flow, open celebration spaces, and wedding-ready hospitality make the venue naturally suited for cinematic presentation, family trust, and premium event storytelling.",
   },
   cards: [
     {
       label: "MEDIA",
       title: "Editorial-Style Landscapes",
       description: "Mountain views, open lawns, poolside scenes, and green estate corners give the property a naturally cinematic visual quality for wedding storytelling and destination-led content.",
-      image: "/images/DSC08831.avif",
+      image: "https://bookonelocal.in/cdn/DSC08831.avif",
     },
     {
       label: "MEDIA",
       title: "Photography & Video Appeal",
       description: "From pre-function portraits to ceremony frames and evening reception visuals, the venue supports imagery that feels premium, warm, and celebration-led.",
-      image: "/images/DSC08846.avif",
+      image: "https://bookonelocal.in/cdn/DSC08846.avif",
     },
     {
       label: "TRUST",
       title: "Clear Planning Terms",
       description: "Families gain confidence through clear package structure, 50% advance terms, headcount-based billing, and a more transparent bundled planning process.",
-      image: "/images/DSC08849.avif",
+      image: "https://bookonelocal.in/cdn/DSC08849.avif",
     },
     {
       label: "TRUST",
       title: "A Venue That Presents Well Across Every Page",
       description: "The Mountain is not positioned as a generic resort listing. It is presented as one private estate where families can stay, dine, and celebrate together in one destination.",
-      image: "/images/DSC08837.avif",
+      image: "https://bookonelocal.in/cdn/DSC08837.avif",
     },
   ],
   highlights: {
@@ -532,7 +532,8 @@ export const mediaAwardsPageData: MountainInfoPageData = {
   ],
   summary: {
     title: "A destination wedding brand should feel as strong in story as it does in space",
-    body: "The Mountain, Karjat combines scenic presentation, wedding-ready planning clarity, and a private-estate atmosphere that makes the venue feel memorable long before the event day arrives.",
+    body: "The Mountain Resort in Karjat , By Redwings combines scenic presentation, wedding-ready planning clarity, and a private-estate atmosphere that makes the venue feel memorable long before the event day arrives.",
   },
 };
+
 

@@ -1,5 +1,3 @@
-"use client";
-
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 

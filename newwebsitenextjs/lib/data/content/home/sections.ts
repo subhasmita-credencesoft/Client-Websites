@@ -1,4 +1,4 @@
-export const homeSectionContent = {
+﻿export const homeSectionContent = {
   siteHeader: {
     logoLines: ["The Mountain", "Karjat"],
     primaryCta: "Check Availability",
@@ -27,7 +27,7 @@ export const homeSectionContent = {
     highlight:
       "7 acres of greenery, mountain views, private-estate exclusivity, and wedding-ready hospitality in one destination.",
     body:
-      "The Mountain, Karjat is more than a venue. It is a private estate where weddings unfold with beauty, ease, and intimacy against a backdrop of green lawns and mountain light. Families can stay together, dine together, and celebrate every function in one destination crafted for elegant multi-day hosting.",
+      "The Mountain Resort in Karjat , By Redwings is more than a venue. It is a private estate where weddings unfold with beauty, ease, and intimacy against a backdrop of green lawns and mountain light. Families can stay together, dine together, and celebrate every function in one destination crafted for elegant multi-day hosting.",
     cta: "DISCOVER THE ESTATE",
     awardTitle: "Private estate. Scenic setting. One seamless celebration.",
     awardSubtitle: "Stay, meals, venue access, and warm hospitality designed for destination weddings and refined stays.",
@@ -56,22 +56,22 @@ export const homeSectionContent = {
     eyebrow: "Venue Highlights",
     title: "A scenic private estate designed for wedding weekends, family gatherings, and elevated stays",
     description:
-      "Spread across 7 acres of lush greenery, The Mountain, Karjat brings together open lawns, mountain views, premium accommodations, and multiple celebration zones in one exclusive estate that feels cinematic before the first decor detail arrives.",
+      "Spread across 7 acres of lush greenery, The Mountain Resort in Karjat , By Redwings brings together open lawns, mountain views, premium accommodations, and multiple celebration zones in one exclusive estate that feels cinematic before the first decor detail arrives.",
     images: [
       {
-        src: "/images/DSC08831.avif",
+        src: "https://bookonelocal.in/cdn/DSC08831.avif",
         alt: "Mountain valley",
       },
       {
-        src: "/images/DSC08849.avif",
+        src: "https://bookonelocal.in/cdn/DSC08849.avif",
         alt: "Pool deck",
       },
       {
-        src: "/images/DSC08769.avif",
+        src: "https://bookonelocal.in/cdn/DSC08769.avif",
         alt: "Luxury room",
       },
       {
-        src: "/images/DSC08853.avif",
+        src: "https://bookonelocal.in/cdn/DSC08853.avif",
         alt: "Forest trail",
       },
     ],
@@ -96,7 +96,7 @@ export const homeSectionContent = {
   },
   logos: {
     eyebrow: "Contact",
-    title: "Connect with The Mountain, Karjat",
+    title: "Connect with The Mountain Resort in Karjat , By Redwings",
     description: "For wedding dates, stay reservations, and curated package guidance, connect with us directly.",
     items: [
       {
@@ -165,3 +165,4 @@ export const homeSectionContent = {
     ctaFallback: "VIEW DETAILS",
   },
 } as const;
+

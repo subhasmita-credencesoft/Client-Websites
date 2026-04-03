@@ -101,7 +101,7 @@ export default function ContactPage() {
             <div className="text-center" data-reveal>
               <p className="text-xs uppercase tracking-[0.26em] text-[#b88947]">Location</p>
               <h3 className="mt-4 text-4xl md:text-5xl" data-section-title>
-                Find The Mountain, Karjat
+                Find The Mountain Resort in Karjat , By Redwings
               </h3>
               <div className="mx-auto mt-4 h-[2px] w-16 bg-[#b88947]" />
             </div>
@@ -128,7 +128,7 @@ export default function ContactPage() {
                 <div className="relative h-[24rem] md:h-[28rem]">
                   <iframe
                     src={page.locationDetails.embedSrc ?? page.locationDetails.mapHref}
-                    title="The Mountain, Karjat map"
+                    title="The Mountain Resort in Karjat , By Redwings map"
                     className="h-full w-full border-0"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"

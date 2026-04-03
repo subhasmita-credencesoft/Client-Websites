@@ -1,9 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { AnimationSystem } from "./animation-system";
-import { ReduxProvider } from "./redux-provider";
-import { SmoothScrollProvider } from "./smooth-scroll-provider";
+import { ClientEnhancements } from "./client-enhancements";
 
 type AppProvidersProps = {
   children: ReactNode;
@@ -11,12 +9,9 @@ type AppProvidersProps = {
 
 export function AppProviders({ children }: AppProvidersProps) {
   return (
-    <ReduxProvider>
-      <SmoothScrollProvider>
-        <AnimationSystem>
-          {children}
-        </AnimationSystem>
-      </SmoothScrollProvider>
-    </ReduxProvider>
+    <>
+      {children}
+      <ClientEnhancements />
+    </>
   );
 }

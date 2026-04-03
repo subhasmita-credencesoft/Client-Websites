@@ -1,30 +1,27 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { useEffect } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-type SmoothScrollProviderProps = {
-  children: ReactNode;
-};
-
-export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
+export function SmoothScrollProvider() {
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) {
+    const isDesktop = window.innerWidth >= 1024;
+
+    if (reducedMotion || !isDesktop) {
       return;
     }
 
     gsap.registerPlugin(ScrollTrigger);
 
     const lenis = new Lenis({
-      duration: 0.55,
-      lerp: 0.16,
+      duration: 0.38,
+      lerp: 0.2,
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1,
+      wheelMultiplier: 1.12,
+      touchMultiplier: 1.05,
       infinite: false,
     });
 
@@ -43,5 +40,5 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     };
   }, []);
 
-  return <>{children}</>;
+  return null;
 }
