@@ -23,30 +23,27 @@ const DateInputButton = forwardRef<HTMLButtonElement, DateInputButtonProps>(func
   { value, onClick, className },
   ref,
 ) {
+  const displayValue = value || "Select date";
+
   return (
     <button
       ref={ref}
       type="button"
       onClick={onClick}
       className={cn(
-        "mountain-datepicker-trigger inline-flex w-full items-center justify-between gap-3 rounded-[inherit] text-left",
+        "mountain-datepicker-trigger inline-flex w-full items-center justify-between gap-3 rounded-[0.65rem] text-left",
         className,
       )}
     >
-      <span>{value || "Select date"}</span>
-      <span aria-hidden="true" className="text-white/42">▾</span>
+      <span className="truncate">{displayValue}</span>
+      <span aria-hidden="true" className="shrink-0 text-white/42">
+        <svg viewBox="0 0 12 12" className="h-3 w-3 fill-current">
+          <path d="M2.15 4.3a.75.75 0 0 1 1.06 0L6 7.09 8.79 4.3a.75.75 0 1 1 1.06 1.06L6.53 8.69a.75.75 0 0 1-1.06 0L2.15 5.36a.75.75 0 0 1 0-1.06Z" />
+        </svg>
+      </span>
     </button>
   );
 });
-
-function formatDisplayDate(value: string) {
-  const parsed = normalizeDate(value);
-  if (!parsed) return "";
-  const day = String(parsed.getDate()).padStart(2, "0");
-  const month = String(parsed.getMonth() + 1).padStart(2, "0");
-  const year = parsed.getFullYear();
-  return `${day}-${month}-${year}`;
-}
 
 export function ThemedDatePicker({
   value,

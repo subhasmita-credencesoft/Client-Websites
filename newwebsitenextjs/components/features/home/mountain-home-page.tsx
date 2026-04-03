@@ -9,7 +9,6 @@ import { HorizontalJourneySection } from "@/components/features/home/sections/ho
 import { MediaCoverageSection } from "@/components/features/home/sections/media-coverage-section";
 import { OffersSection } from "@/components/features/home/sections/offers-section";
 import { ParallaxGallerySection } from "@/components/features/home/sections/parallax-gallery-section";
-import { QuickBookingStrip } from "@/components/features/home/sections/quick-booking-strip";
 import { StaySection } from "@/components/features/home/sections/stay-section";
 import { StorytellingSection } from "@/components/features/home/sections/storytelling-section";
 import { ReservationSection } from "@/components/features/shared/sections/reservation-section";
@@ -20,7 +19,6 @@ export function MountainHomePage() {
       <div className="noise-overlay" />
       <SiteHeader />
       <HeroSection />
-      <QuickBookingStrip />
       <AboutIntroSection />
       <MediaCoverageSection />
       <StaySection />

@@ -233,6 +233,16 @@ html.lenis body {
   z-index: 70 !important;
 }
 
+.mountain-datepicker-trigger {
+  appearance: none;
+  outline: none;
+  line-height: 1;
+}
+
+.mountain-datepicker-trigger:focus-visible {
+  border-color: rgba(201, 164, 110, 0.5) !important;
+}
+
 .mountain-datepicker {
   border: 1px solid rgba(201, 164, 110, 0.22) !important;
   border-radius: 1rem !important;

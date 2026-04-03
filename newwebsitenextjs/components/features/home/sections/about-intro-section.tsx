@@ -29,7 +29,7 @@ export function AboutIntroSection() {
         <aside data-sticky-fade-block className="mx-auto w-full max-w-sm md:sticky md:top-8">
           <div className="border-[5px] border-[#b99253] bg-[#f3eee7] p-4 shadow-[0_0_30px_rgba(185,146,84,0.3)]">
             <div className="border-[4px] border-[#d9bf8e] bg-white p-4">
-              <div className="relative h-[22rem] overflow-hidden">
+              <div className="relative h-[22rem] overflow-hidden" data-card-image data-bg-parallax data-bg-depth="7">
                 <Image
                   src="https://bookonelocal.in/cdn/DSC08846.avif"
                   alt="The Mountain quotation detail"

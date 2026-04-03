@@ -28,7 +28,7 @@ export function HorizontalJourneySection() {
             data-cursor="hover"
             data-horizontal-card
           >
-            <div className="absolute inset-0 will-transform" data-zoom-scroll>
+            <div className="absolute inset-0 will-transform" data-card-image data-bg-parallax data-bg-depth={String(7 + index)} data-zoom-scroll>
               <Image
                 src={panel.image}
                 alt={panel.title}
@@ -51,7 +51,7 @@ export function HorizontalJourneySection() {
               <p data-panel-line className="mt-4 text-base text-white/72 md:text-lg">
                 {panel.subtitle}
               </p>
-              {"bullets" in panel && Array.isArray(panel.bullets) ? (
+              {"bullets" in panel && Array.isArray(panel.bullets) && panel.bullets.length > 0 ? (
                 <ul className="mt-6 space-y-2 text-sm leading-relaxed text-white/80 md:text-base">
                   {panel.bullets.map((bullet) => (
                     <li key={bullet} data-panel-line>

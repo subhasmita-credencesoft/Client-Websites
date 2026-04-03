@@ -47,6 +47,7 @@ export function StorytellingSection() {
                 <div className={index % 2 === 1 ? "md:order-1" : ""}>
                   <div className="overflow-hidden rounded-[1.8rem]">
                     <div className="relative h-[58vw] min-h-[16rem] md:h-[34rem]">
+                      <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth={String(7 + index)}>
                       <Image
                         src={block.image}
                         alt={block.title}
@@ -54,6 +55,7 @@ export function StorytellingSection() {
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 52vw"
                       />
+                      </div>
                       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.12)_0%,rgba(10,10,10,0.22)_45%,rgba(10,10,10,0.48)_100%)]" />
                     </div>
                   </div>

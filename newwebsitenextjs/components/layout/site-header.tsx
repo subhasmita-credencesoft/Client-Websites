@@ -90,7 +90,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="flex h-10 w-10 items-center justify-center border border-[#c89a55]/28 text-white md:hidden"
+              className="flex h-10 w-10 items-center justify-center border border-[#c89a55]/28 text-white lg:hidden"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
@@ -114,7 +114,7 @@ export function SiteHeader() {
               </span>
             </button>
 
-            <div className="hidden items-center gap-5 border-b border-[#c89a55]/18 pb-1.5 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] md:flex">
+            <div className="hidden items-center gap-5 border-b border-[#c89a55]/18 pb-1.5 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] lg:flex">
               <span className="text-white/75">
                 <DiamondIcon />
               </span>
@@ -132,7 +132,7 @@ export function SiteHeader() {
 
             <Link
               href="/"
-              className="mx-auto inline-flex h-[56px] w-[78px] items-center justify-center border border-[#9b7a4a] bg-[#08090c] px-2 text-center text-[0.52rem] font-semibold uppercase tracking-[0.18em] text-[#d9b57f] md:h-[64px] md:w-[88px] md:px-3 md:text-[0.6rem]"
+              className="mx-auto inline-flex h-[56px] w-[78px] items-center justify-center border border-[#9b7a4a] bg-[#08090c] px-2 text-center text-[0.52rem] font-semibold uppercase tracking-[0.18em] text-[#d9b57f] md:h-[60px] md:w-[82px] md:px-3 md:text-[0.56rem] lg:h-[64px] lg:w-[88px] lg:text-[0.6rem]"
               data-cursor="hover"
             >
               {content.logoLines[0]}
@@ -140,7 +140,7 @@ export function SiteHeader() {
               {content.logoLines[1]}
             </Link>
 
-            <div className="hidden items-center justify-end gap-3 border-b border-[#c89a55]/18 pb-1.5 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] md:flex">
+            <div className="hidden items-center justify-end gap-3 border-b border-[#c89a55]/18 pb-1.5 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] lg:flex">
               {topRightLinks.map((item) => (
                 <Link key={item} href="/" className="transition-colors hover:text-[#d8b67f]" data-cursor="hover">
                   {item}
@@ -180,7 +180,7 @@ export function SiteHeader() {
 
             <Link
               href={DIRECT_BOOKING_ENGINE_URL}
-              className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-[#f1e7d7] bg-[#f1e7d7] px-2.5 py-2 text-[0.58rem] font-semibold tracking-[0.08em] text-black md:hidden"
+              className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-[#f1e7d7] bg-[#f1e7d7] px-2.5 py-2 text-[0.58rem] font-semibold tracking-[0.08em] text-black lg:hidden"
               onClick={() => setMobileMenuOpen(false)}
             >
               {content.primaryCta}
@@ -189,7 +189,7 @@ export function SiteHeader() {
         </div>
 
         <nav
-          className="relative hidden items-center justify-center border-t border-white/8 bg-[rgba(8,7,6,0.94)] px-6 py-2 md:flex"
+          className="relative hidden items-center justify-center border-t border-white/8 bg-[rgba(8,7,6,0.94)] px-6 py-2 lg:flex"
           onMouseLeave={() => setActiveDropdown(null)}
         >
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-center">
@@ -242,7 +242,7 @@ export function SiteHeader() {
             mobileMenuOpen
               ? "max-h-[calc(100vh-6.5rem)] overflow-y-auto overscroll-contain touch-pan-y opacity-100"
               : "max-h-0 overflow-hidden opacity-0"
-          }`}
+          } lg:hidden`}
         >
           <div className="space-y-1 py-3" data-lenis-prevent>
             {mobileMainLinks.map((item) => {

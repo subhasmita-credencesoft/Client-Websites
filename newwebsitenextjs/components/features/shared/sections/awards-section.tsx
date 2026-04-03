@@ -18,7 +18,7 @@ export function AwardsSection() {
       <div className="mx-auto mt-14 grid max-w-[92rem] gap-9 md:grid-cols-3">
         {awardCards.map((award) => (
           <article key={award.title} data-card className="border-x border-white/20 px-7 text-center">
-            <div className="mx-auto h-[24rem] max-w-xs overflow-hidden bg-white" data-card-image>
+            <div className="mx-auto h-[24rem] max-w-xs overflow-hidden bg-white" data-card-image data-bg-parallax data-bg-depth="6">
               <Image
                 src={award.image}
                 alt={award.title}

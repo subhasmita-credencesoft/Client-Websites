@@ -276,16 +276,16 @@ export function AnimationSystem() {
 
         gsap.fromTo(
           image,
-          { scale: 1.04, yPercent: -1.2 },
+          { scale: 1.03, yPercent: -1.6 },
           {
-            scale: 1,
-            yPercent: 0,
-            duration: 0.7,
-            ease: "power3.out",
+            scale: 1.06,
+            yPercent: 1.6,
+            ease: "none",
             scrollTrigger: {
-              trigger: image,
-              start: "top 92%",
-              once: true,
+              trigger: image.parentElement ?? image,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.32,
               invalidateOnRefresh: true,
             },
           },
@@ -343,6 +343,45 @@ export function AnimationSystem() {
       bgParallaxItems.forEach((item) => {
         if (reducedMotion) return;
         if (isOwnedByFeatureStage(item) && item.hasAttribute("data-feature-image")) return;
+
+        if (item.hasAttribute("data-hero-media")) {
+          gsap.set(item, {
+            transformPerspective: 1800,
+            transformOrigin: "center center",
+            willChange: "transform",
+            force3D: true,
+            transformStyle: "preserve-3d",
+            backfaceVisibility: "hidden",
+          });
+
+          gsap.fromTo(
+            item,
+            {
+              yPercent: -4,
+              scale: isDesktop() ? 1.08 : 1.04,
+              rotateX: isDesktop() ? 2.2 : 0.8,
+              rotateY: isDesktop() ? -1.6 : -0.45,
+              z: isDesktop() ? -24 : -8,
+            },
+            {
+              yPercent: 5,
+              scale: isDesktop() ? 1.14 : 1.06,
+              rotateX: isDesktop() ? -2.2 : -0.8,
+              rotateY: isDesktop() ? 1.6 : 0.45,
+              z: isDesktop() ? 24 : 8,
+              ease: "none",
+              scrollTrigger: {
+                trigger: item.parentElement ?? item,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.55,
+                invalidateOnRefresh: true,
+              },
+            },
+          );
+
+          return;
+        }
 
         const rawDepth = Number(item.dataset.bgDepth ?? "12");
         const depth = isDesktop() ? Math.min(rawDepth, 8) : Math.max(3, Math.round(rawDepth * 0.26));

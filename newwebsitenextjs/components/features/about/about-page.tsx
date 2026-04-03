@@ -77,13 +77,15 @@ export function AboutPage() {
       <section className="bg-[#182920] px-6 py-20 md:px-12 md:py-28" data-section-id="about-story">
         <div className="mx-auto grid max-w-[96rem] gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div className="relative h-[22rem] overflow-hidden rounded-[2rem] md:h-[34rem]" data-reveal>
-            <Image
-              src={content.story.image}
-              alt="The Mountain destination landscape"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 40rem"
-            />
+            <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="8">
+              <Image
+                src={content.story.image}
+                alt="The Mountain destination landscape"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 40rem"
+              />
+            </div>
           </div>
 
           <div data-reveal>
@@ -137,7 +139,7 @@ export function AboutPage() {
           {content.pillars.items.map((item) => (
             <article key={item.title} className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#1b2f25]" data-card>
               <div className="relative h-[18rem]">
-                <div className="h-full w-full will-transform" data-card-image>
+                <div className="h-full w-full will-transform" data-card-image data-bg-parallax data-bg-depth="7">
                   <Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 33vw" />
                 </div>
               </div>
@@ -154,13 +156,15 @@ export function AboutPage() {
         <div className="mx-auto grid max-w-[96rem] gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
           <div className="glass-panel overflow-hidden rounded-[2.2rem] p-3" data-reveal>
             <div className="relative h-[24rem] overflow-hidden rounded-[1.7rem] md:h-[36rem]">
-              <Image
-                src={content.founder.image}
-                alt="The Mountain hospitality vision"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 40rem"
-              />
+              <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="8">
+                <Image
+                  src={content.founder.image}
+                  alt="The Mountain hospitality vision"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40rem"
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
             </div>
           </div>
@@ -218,13 +222,15 @@ export function AboutPage() {
 
           <div className="glass-panel rounded-[2rem] p-3" data-reveal>
             <div className="relative h-[24rem] overflow-hidden rounded-[1.6rem] md:h-[36rem]">
-              <Image
-                src={content.hosting.image}
-                alt="Event hosting at The Mountain Resort in Karjat , By Redwings"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 40rem"
-              />
+              <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="8">
+                <Image
+                  src={content.hosting.image}
+                  alt="Event hosting at The Mountain Resort in Karjat , By Redwings"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40rem"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -234,13 +240,15 @@ export function AboutPage() {
         <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div className="glass-panel rounded-[2rem] p-3" data-reveal>
             <div className="relative h-[24rem] overflow-hidden rounded-[1.6rem] md:h-[35rem]">
-              <Image
-                src={content.impact.image}
-                alt="Responsible hospitality at The Mountain"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 40rem"
-              />
+              <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="8">
+                <Image
+                  src={content.impact.image}
+                  alt="Responsible hospitality at The Mountain"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40rem"
+                />
+              </div>
             </div>
           </div>
           <div data-reveal>
