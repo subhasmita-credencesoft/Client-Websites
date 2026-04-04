@@ -84,7 +84,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,5,7,0.34)_0%,rgba(8,8,10,0.6)_42%,rgba(3,3,5,0.8)_100%)]" />
 
       <div
-        className="relative z-10 mx-auto flex min-h-[48rem] w-full max-w-[95rem] flex-col px-4 pb-40 sm:min-h-[52rem] sm:px-5 sm:pb-44 md:min-h-[56rem] md:px-8 md:pb-48 lg:min-h-[calc(100svh-6rem)] lg:px-14 lg:pb-32"
+        className="relative z-10 mx-auto flex min-h-[48rem] w-full max-w-[95rem] flex-col px-4 pb-14 sm:min-h-[52rem] sm:px-5 sm:pb-16 md:min-h-[56rem] md:px-8 md:pb-20 lg:min-h-[calc(100svh-6rem)] lg:px-14 lg:pb-32"
         data-cinematic-copy
       >
         <div className="mt-8 flex max-w-[min(100%,19rem)] flex-col gap-3 pb-8 pt-6 sm:mt-12 sm:max-w-[min(100%,24rem)] sm:pt-8 md:mt-16 md:max-w-[min(100%,36rem)] md:pt-10 lg:mt-auto lg:max-w-[min(100%,58rem)] lg:gap-4 lg:pb-10 lg:pt-16">
@@ -125,10 +125,12 @@ export function HeroSection() {
             </p>
           ) : null}
         </div>
-
+        <div className="mt-5 w-full sm:mt-6 md:mt-8 lg:hidden">
+          <QuickBookingStrip insideHero />
+        </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-4 z-20 sm:bottom-5 md:bottom-6 lg:bottom-7">
+      <div className="absolute inset-x-0 bottom-7 z-20 hidden lg:block">
         <QuickBookingStrip insideHero />
       </div>
     </section>
