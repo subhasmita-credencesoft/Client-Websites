@@ -31,7 +31,7 @@ export function ClientEnhancements() {
     }).connection : undefined;
     const prefersDataSaving = connection?.saveData === true;
     const slowConnection = connection?.effectiveType?.includes("2g") ?? false;
-    const isHomeRoute = pathname === "/";
+    const isAnimationEligibleRoute = !pathname.startsWith("/booking-engine");
     const lowMemory = "deviceMemory" in navigator && typeof (navigator as Navigator & { deviceMemory?: number }).deviceMemory === "number"
       ? ((navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 0) <= 4
       : false;
@@ -42,7 +42,7 @@ export function ClientEnhancements() {
 
     const activate = () => {
       setReady(true);
-      setEnableAnimations(isHomeRoute && !lowMemory);
+      setEnableAnimations(isAnimationEligibleRoute && !lowMemory);
       setEnableSmoothScroll(isDesktop && hasFinePointer && !lowMemory);
     };
 
