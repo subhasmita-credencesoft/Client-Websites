@@ -109,6 +109,11 @@ h5 {
   pointer-events: none;
 }
 
+.content-auto-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
+}
+
 .glass-panel {
   backdrop-filter: blur(26px);
   background: rgba(19, 16, 13, 0.78);

@@ -67,6 +67,7 @@ export function OffersPageClient() {
         </div>
       </section>
 
+      <div className="content-auto-section">
       <section className="mx-auto max-w-[96rem] px-4 py-12 text-center md:px-8 md:py-14" data-stage-section>
         <nav aria-label="Breadcrumb" className="flex items-center justify-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
@@ -141,7 +142,7 @@ export function OffersPageClient() {
 
               <div className={textFirst ? "order-2 relative h-[18rem] overflow-hidden md:order-2 md:h-full md:min-h-[30rem]" : "order-1 relative h-[18rem] overflow-hidden md:order-1 md:h-full md:min-h-[30rem]"}>
                 <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="7">
-                  <Image src={offer.image} alt={offer.title} fill className="object-cover" sizes="50vw" />
+                  <Image src={offer.image} alt={offer.title} fill className="object-cover" sizes="(max-width: 767px) 100vw, 50vw" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent" />
               </div>
@@ -179,6 +180,7 @@ export function OffersPageClient() {
           </div>
         </div>
       </section>
+      </div>
     </>
   );
 }

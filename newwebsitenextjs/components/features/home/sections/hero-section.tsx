@@ -14,12 +14,6 @@ export function HeroSection() {
       data-cinematic-section
       className="relative flex min-h-[42rem] items-start pt-20 sm:min-h-[46rem] md:min-h-[50rem] md:pt-24 lg:min-h-[calc(100svh-6rem)] lg:items-center"
     >
-      <link
-        rel="preload"
-        as="image"
-        href={heroBackgroundUrls[0]}
-        fetchPriority="high"
-      />
       <div className="absolute inset-0 overflow-hidden">
         <div
           className="absolute inset-0 will-change-transform"
@@ -75,7 +69,7 @@ export function HeroSection() {
             {heroTitleWords.map((word, wordIndex) => (
               <span
                 key={`${word}-${wordIndex}`}
-                className="hero-letter mr-[0.18em] inline-block whitespace-nowrap animate-[fadeInUp_0.7s_ease-out_forwards] [animation-delay:calc(var(--hero-index)*55ms)] [opacity:0] [transform:translate3d(0,18px,0)] [transform-style:preserve-3d]"
+                className="hero-letter mr-[0.18em] inline-block whitespace-nowrap animate-[fadeInUp_0.42s_ease-out_forwards] [animation-delay:calc(var(--hero-index)*16ms)] [opacity:0] [transform:translate3d(0,10px,0)] [transform-style:preserve-3d]"
                 style={{
                   ["--hero-index" as string]: wordIndex,
                   willChange: wordIndex < 3 ? "opacity, transform" : "auto",
@@ -87,7 +81,7 @@ export function HeroSection() {
           </h1>
 
           <p
-            className="max-w-[17rem] animate-[fadeInUp_0.8s_ease-out_0.65s_forwards] text-balance text-[0.92rem] leading-snug text-white [text-shadow:0_10px_24px_rgba(0,0,0,0.45)] opacity-0 sm:max-w-[22rem] sm:text-[1rem] md:max-w-[30rem] md:text-[1.08rem] lg:max-w-[42rem] lg:text-[1.32rem] xl:text-[1.5rem]"
+            className="max-w-[17rem] animate-[fadeInUp_0.5s_ease-out_0.12s_forwards] text-balance text-[0.92rem] leading-snug text-white [text-shadow:0_10px_24px_rgba(0,0,0,0.45)] opacity-0 sm:max-w-[22rem] sm:text-[1rem] md:max-w-[30rem] md:text-[1.08rem] lg:max-w-[42rem] lg:text-[1.32rem] xl:text-[1.5rem]"
             role="none"
           >
             {homeSectionContent.hero.subtitle}
@@ -95,7 +89,7 @@ export function HeroSection() {
 
           {homeSectionContent.hero.description ? (
             <p
-              className="max-w-[17rem] animate-[fadeInUp_0.8s_ease-out_0.8s_forwards] text-balance text-[0.8rem] leading-relaxed text-white/82 opacity-0 sm:max-w-[22rem] sm:text-[0.86rem] md:max-w-[30rem] md:text-[0.92rem] lg:max-w-[38rem] lg:text-[1rem]"
+              className="max-w-[17rem] animate-[fadeInUp_0.5s_ease-out_0.2s_forwards] text-balance text-[0.8rem] leading-relaxed text-white/82 opacity-0 sm:max-w-[22rem] sm:text-[0.86rem] md:max-w-[30rem] md:text-[0.92rem] lg:max-w-[38rem] lg:text-[1rem]"
               role="none"
             >
               {homeSectionContent.hero.description}

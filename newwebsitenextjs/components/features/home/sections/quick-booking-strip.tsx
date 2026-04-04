@@ -57,6 +57,7 @@ export function QuickBookingStrip({ insideHero = false }: QuickBookingStripProps
         "relative z-20 px-4 md:px-8",
         insideHero ? "w-full px-0 pt-2 md:pt-3" : "-mt-14 bg-black pb-0 md:-mt-20 md:pb-0",
       )}
+      data-reveal={insideHero ? true : undefined}
     >
       <div
         className="mx-auto max-w-[66rem]"

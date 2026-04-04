@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   headerDropdownLinks,
   mainLinks,
@@ -57,6 +58,7 @@ function ChevronDownIcon() {
 }
 
 export function SiteHeader() {
+  const router = useRouter();
   const content = homeSectionContent.siteHeader;
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -81,6 +83,37 @@ export function SiteHeader() {
       document.body.style.overflow = "";
     };
   }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const internalRoutes = new Set<string>([
+      "/",
+      DIRECT_BOOKING_ENGINE_URL.startsWith("/") ? DIRECT_BOOKING_ENGINE_URL : "",
+      ...Object.values(topLinkHrefs),
+      ...Object.values(mainNavLinks),
+      ...Object.values(headerDropdownLinks).flatMap((items) => items.map((item) => item.href)),
+    ]);
+
+    internalRoutes.delete("");
+
+    const prefetchRoutes = () => {
+      internalRoutes.forEach((route) => {
+        if (!route.startsWith("/")) return;
+        router.prefetch(route);
+      });
+    };
+
+    const idleId = "requestIdleCallback" in window
+      ? window.requestIdleCallback(prefetchRoutes, { timeout: 2200 })
+      : 0;
+    const timer = window.setTimeout(prefetchRoutes, 1200);
+
+    return () => {
+      window.clearTimeout(timer);
+      if ("cancelIdleCallback" in window && idleId) {
+        window.cancelIdleCallback(idleId);
+      }
+    };
+  }, [router]);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#c89a55]/14 bg-[rgba(8,7,6,0.94)] backdrop-blur-md">

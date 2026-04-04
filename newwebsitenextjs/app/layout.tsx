@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { ClientEnhancements } from "@/components/providers/client-enhancements";
+import { heroBackgroundUrls } from "@/lib/data/content/media-assets";
 
 export const metadata: Metadata = {
   title: "The Mountain Resort in Karjat , By Redwings",
@@ -20,6 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://bookonelocal.in" crossOrigin="anonymous" />
+        <link rel="preload" as="image" href={heroBackgroundUrls[0]} fetchPriority="high" />
+      </head>
       <body className="overflow-x-hidden antialiased" suppressHydrationWarning>
         {children}
         <ClientEnhancements />

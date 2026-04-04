@@ -104,6 +104,7 @@ export function DetailPageView({ page }: DetailPageProps) {
         </div>
       </section>
 
+      <div className="content-auto-section">
       <section className="mx-auto max-w-6xl px-4 py-16 text-center md:px-10 md:py-20" data-stage-section>
         <nav aria-label="Breadcrumb" className="flex items-center justify-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#c8a871]/20 bg-[#16261f]/80 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
@@ -167,7 +168,7 @@ export function DetailPageView({ page }: DetailPageProps) {
             <article key={card.title} data-card className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#16261f] shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
               <div className="relative h-[20rem] overflow-hidden md:h-[28rem]">
                 <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="9">
-                  <Image src={card.image} alt={card.title} fill className="object-cover" sizes="(max-width:768px) 100vw, 50vw" />
+                  <Image src={card.image} alt={card.title} fill className="object-cover" sizes="(max-width: 767px) 100vw, 50vw" />
                 </div>
               </div>
               <div className="px-6 pb-8 pt-8 md:px-8 md:pb-10">
@@ -290,7 +291,7 @@ export function DetailPageView({ page }: DetailPageProps) {
                   alt={`${page.title} gallery ${index + 1}`}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 767px) 100vw, 50vw"
                 />
               </div>
               {activeTab === "video" ? (
@@ -338,6 +339,7 @@ export function DetailPageView({ page }: DetailPageProps) {
       {hideAllSharedSections ? null : (
         <GlobalPageSections hideContactAndStay={hideContactAndStaySections} hideReservation={isRoomDetailPage} />
       )}
+      </div>
       <SiteFooter />
     </main>
   );

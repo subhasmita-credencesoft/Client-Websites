@@ -50,6 +50,7 @@ export function AboutPage() {
         </div>
       </section>
 
+      <div className="content-auto-section">
       <section className="mx-auto max-w-[96rem] px-6 py-14 md:px-10">
         <div className="mb-8 flex justify-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#d5b07a]/20 bg-[#182920]/85 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
@@ -291,6 +292,7 @@ export function AboutPage() {
         </div>
       </section>
 
+      </div>
       <SiteFooter />
     </main>
   );

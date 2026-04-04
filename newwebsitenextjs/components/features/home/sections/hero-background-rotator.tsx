@@ -18,13 +18,13 @@ export function HeroBackgroundRotator({ images }: HeroBackgroundRotatorProps) {
     const isDesktop = window.innerWidth >= 1024;
     if (reducedMotion || !isDesktop) return;
 
+    let interval = 0;
     const bootTimer = window.setTimeout(() => {
       setSlideshowReady(true);
-    }, 2600);
-
-    const interval = window.setInterval(() => {
-      setActiveBackgroundIndex((current) => (current + 1) % images.length);
-    }, 5200);
+      interval = window.setInterval(() => {
+        setActiveBackgroundIndex((current) => (current + 1) % images.length);
+      }, 5600);
+    }, 4200);
 
     return () => {
       window.clearTimeout(bootTimer);

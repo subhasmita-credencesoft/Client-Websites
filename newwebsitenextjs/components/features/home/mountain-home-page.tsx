@@ -23,19 +23,21 @@ export function MountainHomePage() {
       <div className="noise-overlay" />
       <SiteHeader />
       <HeroSection />
-      <AboutIntroSection />
-      <MediaCoverageSection />
-      <StaySection />
-      <HorizontalJourneySection />
-      <ParallaxGallerySection />
-      <StorytellingSection />
-      <OffersSection />
-      <ExperienceCardsSection />
-      <FeatureSplitSection />
-      {/* <PartnerLogosSection /> */}
-      {/* <TownshipsSection /> */}
-      <AwardsSection />
-      <ReservationSection />
+      <div className="content-auto-section">
+        <AboutIntroSection />
+        <MediaCoverageSection />
+        <StaySection />
+        {/* <HorizontalJourneySection /> */}
+        <ParallaxGallerySection />
+        <StorytellingSection />
+        <OffersSection />
+        <ExperienceCardsSection />
+        <FeatureSplitSection />
+        {/* <PartnerLogosSection /> */}
+        {/* <TownshipsSection /> */}
+        <AwardsSection />
+        <ReservationSection />
+      </div>
       <SiteFooter />
     </main>
   );
