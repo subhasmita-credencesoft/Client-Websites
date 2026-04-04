@@ -1,7 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
-import DatePicker from "react-datepicker";
+import { forwardRef, useEffect, useState } from "react";
 import { formatDate, normalizeDate } from "@/lib/constants/booking";
 import { cn } from "@/lib/utils/cn";
 
@@ -52,6 +51,36 @@ export function ThemedDatePicker({
   className,
   popperClassName,
 }: ThemedDatePickerProps) {
+  const [DatePicker, setDatePicker] = useState<null | typeof import("react-datepicker").default>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    import("react-datepicker").then((module) => {
+      if (!isMounted) return;
+      setDatePicker(() => module.default);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  if (!DatePicker) {
+    return (
+      <input
+        type="date"
+        value={value}
+        min={minDate}
+        onChange={(event) => onChange(event.target.value)}
+        className={cn(
+          "mountain-datepicker-trigger inline-flex w-full items-center justify-between gap-3 rounded-[0.65rem] text-left",
+          className,
+        )}
+      />
+    );
+  }
+
   return (
     <DatePicker
       selected={normalizeDate(value)}

@@ -1,35 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { heroBackgroundUrls, heroVideoUrls } from "@/lib/data/content/media-assets";
+import { heroBackgroundUrls } from "@/lib/data/content/media-assets";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 import { QuickBookingStrip } from "@/components/features/home/sections/quick-booking-strip";
+import { HeroBackgroundRotator } from "./hero-background-rotator";
 
 export function HeroSection() {
-  const [activeBackgroundIndex, setActiveBackgroundIndex] = useState(0);
-  const [slideshowReady, setSlideshowReady] = useState(false);
-  const [videoReadySrc, setVideoReadySrc] = useState("");
   const heroTitleWords = homeSectionContent.hero.title.split(" ");
-
-  useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isDesktop = window.innerWidth >= 1024;
-    if (reducedMotion || !isDesktop || heroBackgroundUrls.length <= 1) return;
-
-    const bootTimer = window.setTimeout(() => {
-      setSlideshowReady(true);
-    }, 1600);
-
-    const interval = window.setInterval(() => {
-      setActiveBackgroundIndex((current) => (current + 1) % heroBackgroundUrls.length);
-    }, 4200);
-
-    return () => {
-      window.clearTimeout(bootTimer);
-      window.clearInterval(interval);
-    };
-  }, []);
 
   return (
     <section
@@ -38,51 +14,51 @@ export function HeroSection() {
       data-cinematic-section
       className="relative flex min-h-[42rem] items-start overflow-hidden pt-20 sm:min-h-[46rem] md:min-h-[50rem] md:pt-24 lg:min-h-[calc(100svh-6rem)] lg:items-center"
     >
+      <link 
+        rel="preload" 
+        as="image" 
+        href={heroBackgroundUrls[0]} 
+        fetchPriority="high" 
+      />
       <div
-        className="absolute inset-0 will-transform"
+        className="absolute inset-0 will-change-transform"
         data-cinematic-media
         data-zoom-scroll
         data-bg-parallax
         data-bg-depth="12"
         data-hero-media
       >
-        {heroBackgroundUrls.map((background, index) =>
-          slideshowReady || index === 0 ? (
-            <Image
-              key={background}
-              src={background}
-              alt=""
-              fill
-              priority={index === 0}
-              fetchPriority={index === 0 ? "high" : "auto"}
-              loading={index === 0 ? "eager" : "lazy"}
-              sizes="100vw"
-              className={`absolute inset-0 object-cover transition-opacity duration-1000 ${index === activeBackgroundIndex ? "opacity-100" : "opacity-0"}`}
-            />
-          ) : null,
-        )}
-        {heroVideoUrls[0] ? (
-          <video
-            key={heroVideoUrls[0]}
-            className={`h-full w-full object-cover transition-opacity duration-700 ${videoReadySrc === heroVideoUrls[0] ? "opacity-100" : "opacity-0"}`}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={heroBackgroundUrls[activeBackgroundIndex]}
-            onCanPlay={() => setVideoReadySrc(heroVideoUrls[0])}
-            onError={() => setVideoReadySrc("")}
-          >
-            <source src={heroVideoUrls[0]} type="video/mp4" />
-          </video>
+        <Image
+          src={heroBackgroundUrls[0]}
+          alt="Resort hero background"
+          fill
+          priority
+          fetchPriority="high"
+          loading="eager"
+          sizes="100vw"
+          quality={80}
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/..."
+          className="absolute inset-0 object-cover"
+        />
+        {heroBackgroundUrls.length > 1 ? (
+          <HeroBackgroundRotator images={heroBackgroundUrls.slice(1)} />
         ) : null}
       </div>
-
-      <div className="cinematic-glow absolute left-[-10%] top-[12%] h-[24rem] w-[24rem]" data-cinematic-glow />
-      <div className="cinematic-glow absolute bottom-[-8%] right-[-6%] h-[20rem] w-[20rem]" data-cinematic-glow />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,5,7,0.34)_0%,rgba(8,8,10,0.6)_42%,rgba(3,3,5,0.8)_100%)]" />
-
+      <div 
+        className="cinematic-glow absolute left-[-10%] top-[12%] h-[24rem] w-[24rem]" 
+        data-cinematic-glow
+        style={{ contentVisibility: "auto" }}
+      />
+      <div 
+        className="cinematic-glow absolute bottom-[-8%] right-[-6%] h-[20rem] w-[20rem]" 
+        data-cinematic-glow
+        style={{ contentVisibility: "auto" }}
+      />
+      <div 
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,5,7,0.34)_0%,rgba(8,8,10,0.6)_42%,rgba(3,3,5,0.8)_100%)]"
+        style={{ willChange: "initial" }}
+      />
       <div
         className="relative z-10 mx-auto flex min-h-[42rem] w-full max-w-[95rem] flex-col px-4 pb-10 sm:min-h-[46rem] sm:px-5 sm:pb-12 md:min-h-[50rem] md:px-8 md:pb-16 lg:min-h-[calc(100svh-6rem)] lg:px-14 lg:pb-32"
         data-cinematic-copy
@@ -92,35 +68,31 @@ export function HeroSection() {
             data-section-title
             className="max-w-[11ch] text-[clamp(2.2rem,9vw,3.2rem)] leading-[0.96] text-[#d7b57c] drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] transition-all duration-700 ease-out sm:max-w-[12ch] md:max-w-[14ch] md:text-[2.6rem] lg:max-w-[18ch] lg:text-[3.2rem] xl:max-w-[20ch] xl:text-[3.6rem]"
           >
-            {(() => {
-              let letterIndex = 0;
-              return heroTitleWords.map((word, wordIndex) => (
-                <span key={`${word}-${wordIndex}`} className="mr-[0.18em] inline-block whitespace-nowrap last:mr-0">
-                  {word.split("").map((char) => {
-                    const currentIndex = letterIndex;
-                    letterIndex += 1;
-
-                    return (
-                      <span
-                        key={`${word}-${char}-${currentIndex}`}
-                        className="hero-letter inline-block animate-[fadeInUp_0.7s_ease-out_forwards] [animation-delay:calc(var(--hero-index)*35ms)] [opacity:0] [transform:translate3d(0,18px,0)] [transform-style:preserve-3d]"
-                        style={{ ["--hero-index" as string]: currentIndex }}
-                      >
-                        {char}
-                      </span>
-                    );
-                  })}
-                </span>
-              ));
-            })()}
+            {heroTitleWords.map((word, wordIndex) => (
+              <span
+                key={`${word}-${wordIndex}`}
+                className="hero-letter mr-[0.18em] inline-block whitespace-nowrap animate-[fadeInUp_0.7s_ease-out_forwards] [animation-delay:calc(var(--hero-index)*55ms)] [opacity:0] [transform:translate3d(0,18px,0)] [transform-style:preserve-3d]"
+                style={{ 
+                  ["--hero-index" as string]: wordIndex,
+                  willChange: wordIndex < 3 ? "opacity, transform" : "auto"
+                }}
+              >
+                {word}
+              </span>
+            ))}
           </h1>
-
-          <p className="max-w-[17rem] animate-[fadeInUp_0.8s_ease-out_0.65s_forwards] text-balance text-[0.92rem] leading-snug text-white [text-shadow:0_10px_24px_rgba(0,0,0,0.45)] opacity-0 sm:max-w-[22rem] sm:text-[1rem] md:max-w-[30rem] md:text-[1.08rem] lg:max-w-[42rem] lg:text-[1.32rem] xl:text-[1.5rem]">
+          <p 
+            className="max-w-[17rem] animate-[fadeInUp_0.8s_ease-out_0.65s_forwards] text-balance text-[0.92rem] leading-snug text-white [text-shadow:0_10px_24px_rgba(0,0,0,0.45)] opacity-0 sm:max-w-[22rem] sm:text-[1rem] md:max-w-[30rem] md:text-[1.08rem] lg:max-w-[42rem] lg:text-[1.32rem] xl:text-[1.5rem]"
+            role="none"
+          >
             {homeSectionContent.hero.subtitle}
           </p>
 
           {homeSectionContent.hero.description ? (
-            <p className="max-w-[17rem] animate-[fadeInUp_0.8s_ease-out_0.8s_forwards] text-balance text-[0.8rem] leading-relaxed text-white/82 opacity-0 sm:max-w-[22rem] sm:text-[0.86rem] md:max-w-[30rem] md:text-[0.92rem] lg:max-w-[38rem] lg:text-[1rem]">
+            <p 
+              className="max-w-[17rem] animate-[fadeInUp_0.8s_ease-out_0.8s_forwards] text-balance text-[0.8rem] leading-relaxed text-white/82 opacity-0 sm:max-w-[22rem] sm:text-[0.86rem] md:max-w-[30rem] md:text-[0.92rem] lg:max-w-[38rem] lg:text-[1rem]"
+              role="none"
+            >
               {homeSectionContent.hero.description}
             </p>
           ) : null}
@@ -129,8 +101,10 @@ export function HeroSection() {
           <QuickBookingStrip insideHero />
         </div>
       </div>
-
-      <div className="absolute inset-x-0 bottom-7 z-20 hidden lg:block">
+      <div 
+        className="absolute inset-x-0 bottom-7 z-20 hidden lg:block"
+        style={{ contentVisibility: "auto" }}
+      >
         <QuickBookingStrip insideHero />
       </div>
     </section>

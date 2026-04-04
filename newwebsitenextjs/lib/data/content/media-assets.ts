@@ -1,10 +1,6 @@
-export const heroVideoUrls = [
-  "",
-];
-
 export const heroBackgroundUrls = [
-  "https://bookonelocal.in/cdn/DJI_0409.JPG",
-  "https://bookonelocal.in/cdn/DJI_0424.JPG",
-  "https://bookonelocal.in/cdn/DSC00086.JPG",
+  "https://bookonelocal.in/cdn/DSC08831.avif",
+  "https://bookonelocal.in/cdn/DSC08849.avif",
+  "https://bookonelocal.in/cdn/DSC08769.avif",
 ];
 

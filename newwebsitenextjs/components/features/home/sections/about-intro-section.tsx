@@ -1,45 +1,110 @@
 ﻿import Image from "next/image";
-import { MagneticButton } from "@/components/ui/magnetic-button";
+import Link from "next/link";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 
 export function AboutIntroSection() {
   const content = homeSectionContent.about;
 
   return (
-    <section data-section-id="about" data-sticky-fade-section className="bg-black px-5 py-24 md:px-12 md:py-30">
+    <section
+      data-section-id="about"
+      data-sticky-fade-section
+      className="bg-black px-5 py-24 md:px-12 md:py-30"
+    >
       <div className="mx-auto grid max-w-[92rem] gap-10 md:grid-cols-[1.3fr_0.7fr] md:items-center">
-        <div data-sticky-fade-heading className="md:sticky md:top-5">
+        <div
+          data-sticky-fade-heading
+          className="md:sticky md:top-5 [will-change:transform]"
+        >
           <h2
             data-sticky-fade-line
             className="text-balance text-2xl font-semibold leading-tight text-[#cba977] md:text-4xl"
           >
             {content.title}
           </h2>
-          <p data-sticky-fade-line className="mt-6 max-w-4xl text-xl leading-snug text-white md:text-[2.15rem]">
+
+          <p
+            data-sticky-fade-line
+            className="mt-6 max-w-4xl text-xl leading-snug text-white md:text-[2.15rem]"
+          >
             {content.highlight}
           </p>
-          <p data-sticky-fade-line className="mt-7 max-w-4xl text-sm leading-relaxed text-white/85 md:text-base">
+
+          <p
+            data-sticky-fade-line
+            className="mt-7 max-w-4xl text-sm leading-relaxed text-white/85 md:text-base"
+          >
             {content.body}
           </p>
+
           <div data-sticky-fade-line className="mt-8">
-            <MagneticButton href="/about">{content.cta}</MagneticButton>
+            <Link
+              href="/about"
+              /*
+               * backdrop-blur is GPU-expensive; isolate it on its own
+               * compositing layer so it doesn't repaint siblings.
+               */
+              className="group inline-flex items-center justify-center rounded-full border border-[#d7b17c]/40 bg-[#365143]/80 px-7 py-3 text-xs uppercase tracking-[0.24em] text-[#fff6ea] [will-change:transform] backdrop-blur-xl transition-all duration-500 hover:border-[#dfbe97]/80 hover:bg-[#415b4e] hover:shadow-[0_0_26px_rgba(224,180,129,0.35)]"
+              data-cursor="hover"
+            >
+              {content.cta}
+            </Link>
           </div>
         </div>
 
-        <aside data-sticky-fade-block className="mx-auto w-full max-w-sm md:sticky md:top-8">
+        {/* RIGHT — sticky image card */}
+        <aside
+          data-sticky-fade-block
+          className="mx-auto w-full max-w-sm md:sticky md:top-8 [will-change:transform]"
+        >
           <div className="border-[5px] border-[#b99253] bg-[#f3eee7] p-4 shadow-[0_0_30px_rgba(185,146,84,0.3)]">
             <div className="border-[4px] border-[#d9bf8e] bg-white p-4">
-              <div className="relative h-[22rem] overflow-hidden" data-card-image data-bg-parallax data-bg-depth="7">
+              {/*
+               * FIX 1 — reserve exact pixel space so the browser never
+               *          shifts layout after the image loads (eliminates CLS).
+               * FIX 2 — `will-change: transform` isolates the JS parallax
+               *          scroll handler onto its own GPU layer; repaints
+               *          no longer cascade to surrounding content.
+               */}
+              <div
+                className="relative overflow-hidden [will-change:transform]"
+                style={{ height: "22rem" }}
+                data-card-image
+                data-bg-parallax
+                data-bg-depth="7"
+              >
                 <Image
                   src="https://bookonelocal.in/cdn/DSC08846.avif"
                   alt="The Mountain quotation detail"
                   fill
+                  /*
+                   * FIX 3 — `priority` tells Next.js to <link rel="preload">
+                   *          this image immediately; critical for LCP when the
+                   *          section is above the fold.
+                   * FIX 4 — `loading="eager"` prevents the lazy-load skip that
+                   *          would otherwise delay first paint.
+                   * FIX 5 — tighter `sizes` matches the actual rendered width
+                   *          (max-w-sm = 384 px, minus 2×(5+4+4) px of borders
+                   *          and padding ≈ 358 px) so the browser fetches the
+                   *          smallest sufficient srcset variant.
+                   * FIX 6 — `quality={65}` is enough for .avif; the codec's
+                   *          own compression is very efficient, so the default
+                   *          75 wastes bandwidth with no perceptible gain.
+                   */
+                  priority
+                  loading="eager"
+                  quality={65}
+                  sizes="(max-width: 768px) calc(100vw - 40px), 358px"
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 22rem"
                 />
               </div>
-              <p className="pt-4 text-center text-base text-black md:text-lg">{content.awardTitle}</p>
-              <p className="text-center text-sm text-black/75 md:text-base">{content.awardSubtitle}</p>
+
+              <p className="pt-4 text-center text-base text-black md:text-lg">
+                {content.awardTitle}
+              </p>
+              <p className="text-center text-sm text-black/75 md:text-base">
+                {content.awardSubtitle}
+              </p>
             </div>
           </div>
         </aside>
@@ -47,4 +112,3 @@ export function AboutIntroSection() {
     </section>
   );
 }
-
