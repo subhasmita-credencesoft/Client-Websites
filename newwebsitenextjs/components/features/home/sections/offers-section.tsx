@@ -50,6 +50,7 @@ export function OffersSection() {
        * compositor thread, preventing main-thread jank.
        */}
       <div
+        data-sticky-fade-heading
         className="text-center [will-change:transform] md:sticky md:top-5 md:z-20 md:bg-black/92 md:pb-8 md:backdrop-blur-sm"
       >
         <h3
