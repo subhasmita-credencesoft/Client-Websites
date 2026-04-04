@@ -28,7 +28,7 @@ export class JourneyCardComponent {
       price: '₹ 1,599',
       description: 'Guaranteed On-Time Pickup',
       additionalInfo: '',
-      image: 'https://www.airport-technology.com/wp-content/uploads/sites/14/2020/09/Mumbai-1stSept.jpg',
+      image: '/assets/airport.avif',
       buttonText: 'Request Ride'
     },
     {
@@ -38,7 +38,7 @@ export class JourneyCardComponent {
       price: '',
       description: 'Optimized Volume Pricing',
       additionalInfo: 'Large Fleet Availability (Various Extras)',
-      image: 'https://www.mrrentacar.com/wp-content/uploads/2025/06/istockphoto-982882130-612x612-1.jpg',
+      image: '/assets/group-travel.avif',
       buttonText: 'Request Quote'
     }
   ];

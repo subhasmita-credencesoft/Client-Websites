@@ -13,7 +13,7 @@
   >
     <ng-template pTemplate="item" let-img>
       <div class="hero-slide">
-        <img [src]="img" class="shivsewa-hero-image" />
+        <img [src]="img" alt="Shiv Sewa cab service banner" class="shivsewa-hero-image" />
       </div>
     </ng-template>
   </p-carousel>
@@ -24,6 +24,8 @@
       class="mobile-slide"
       *ngFor="let img of bannerImages"
       [style.backgroundImage]="'url(' + img + ')'"
+      role="img"
+      aria-label="Shiv Sewa cab service banner"
     ></div>
   </div>
 

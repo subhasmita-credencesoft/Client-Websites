@@ -58,7 +58,7 @@ private destroy$ = new Subject<void>();
         fuel: 'Petrol',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 01 AU 1234',
-        image: 'assets/Hyundai-Aura.png'
+        image: 'assets/Hyundai-Aura.avif'
       },
       {
         id: 2,
@@ -68,7 +68,7 @@ private destroy$ = new Subject<void>();
         fuel: 'Petrol',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 02 DZ 5678',
-        image: 'assets/Maruti-Dzire.png'
+        image: 'assets/Maruti-Dzire.avif'
       }
     ],
     suv: [
@@ -80,7 +80,7 @@ private destroy$ = new Subject<void>();
         fuel: 'Petrol',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 03 XL 1122',
-        image: 'assets/Maruti-XL6.png'
+        image: 'assets/Maruti-XL6.avif'
       },
       {
         id: 4,
@@ -90,7 +90,7 @@ private destroy$ = new Subject<void>();
         fuel: 'Petrol',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 04 RU 3344',
-        image: 'assets/Toyota-Rumion.png'
+        image: 'assets/Toyota-Rumion.avif'
       },
       {
         id: 5,
@@ -100,7 +100,7 @@ private destroy$ = new Subject<void>();
         fuel: 'Petrol',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 05 ER 5566',
-        image: 'assets/Maruti- Ertiga.png'
+        image: 'assets/Maruti-Ertiga.avif'
       }
     ],
     suvPlus: [
@@ -112,7 +112,7 @@ private destroy$ = new Subject<void>();
         fuel: 'Diesel',
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 06 IC 7788',
-        image: 'assets/Toyota-Innova-Crysta.png'
+        image: 'assets/Toyota-Innova-Crysta.avif'
       }
     ]
   };
@@ -124,10 +124,10 @@ private destroy$ = new Subject<void>();
 
   // Banner images
   bannerImages = [
-    'assets/banner-img.png',
-    'https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2024/11/13162031/Satara.jpg',
-    'https://img.nayatrip.com/images/state/big/MAHARASHTRA-GOA.jpg',
-    'assets/mumbai-st.jpg'
+    'assets/banner-img.avif',
+    'assets/satara.avif',
+    'assets/maharasthra-goa.avif',
+    'assets/mumbai-st.avif'
   ];
 
   // Autocomplete

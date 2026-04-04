@@ -69,7 +69,7 @@ carData: { [key: string]: Car[] } = {
       price: '',
       description: '',
       carNumber: 'MH 01 AU 1234',
-      image: 'assets/Hyundai-Aura.png'
+      image: 'assets/Hyundai-Aura.avif'
     },
     {
       id: 2,
@@ -80,7 +80,7 @@ carData: { [key: string]: Car[] } = {
       price: '',
       description: '',
       carNumber: 'MH 02 DZ 5678',
-      image: 'assets/Maruti-Dzire.png'
+      image: 'assets/Maruti-Dzire.avif'
     }
   ],
   suv: [
@@ -93,7 +93,7 @@ carData: { [key: string]: Car[] } = {
       price: '',
       description: '',
       carNumber: 'MH 03 XL 1122',
-      image: 'assets/Maruti-XL6.png'
+      image: 'assets/Maruti-XL6.avif'
     },
     {
       id: 4,
@@ -104,7 +104,7 @@ carData: { [key: string]: Car[] } = {
       price: '',
       description: '',
       carNumber: 'MH 04 RU 3344',
-      image: 'assets/Toyota-Rumion.png'
+      image: 'assets/Toyota-Rumion.avif'
     },
     {
       id: 5,
@@ -115,7 +115,7 @@ carData: { [key: string]: Car[] } = {
       price: '',
       description: '',
       carNumber: 'MH 05 ER 5566',
-      image: 'assets/Maruti- Ertiga.png'
+      image: 'assets/Maruti-Ertiga.avif'
     }
   ],
   suvPlus: [
@@ -128,7 +128,7 @@ carData: { [key: string]: Car[] } = {
       price: '',
       description: '',
       carNumber: 'MH 06 IC 7788',
-      image: 'assets/Toyota-Innova-Crysta.png'
+      image: 'assets/Toyota-Innova-Crysta.avif'
     }
   ],
 };

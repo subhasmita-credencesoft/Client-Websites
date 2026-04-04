@@ -42,7 +42,7 @@ export class PopularTripsComponent {
   trips: Trip[] = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=800&q=80',
+    image: '/assets/mumbai-shirdi.avif',
     pickup: {
       place_id: 'ChIJwe1EZjDG5zsRaYxkjY_tpF0',
       name: 'Mumbai',
@@ -75,7 +75,7 @@ export class PopularTripsComponent {
 
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80',
+    image: '/assets/mumbai-mahabaleswar.avif',
     pickup: {
       place_id: 'ChIJwe1EZjDG5zsRaYxkjY_tpF0',
       name: 'Mumbai',
@@ -108,7 +108,7 @@ export class PopularTripsComponent {
 
   {
     id: 3,
-    image: 'https://www.savaari.com/blog/wp-content/uploads/2019/09/mumbai-lonavala-road-e1568965532217.jpg',
+    image: '/assets/mumbai-lonavala.avif',
     pickup: {
       place_id: 'ChIJwe1EZjDG5zsRaYxkjY_tpF0',
       name: 'Mumbai',
@@ -141,7 +141,7 @@ export class PopularTripsComponent {
 
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80',
+    image: '/assets/mumbai-pune.avif',
     pickup: {
       place_id: 'ChIJwe1EZjDG5zsRaYxkjY_tpF0',
       name: 'Mumbai',
@@ -174,7 +174,7 @@ export class PopularTripsComponent {
 
   {
     id: 5,
-    image: 'https://images.unsplash.com/photo-1568849676085-51415703900f?w=800&q=80',
+    image: '/assets/mumbai-alibaug.avif',
     pickup: {
       place_id: 'ChIJwe1EZjDG5zsRaYxkjY_tpF0',
       name: 'Mumbai',
