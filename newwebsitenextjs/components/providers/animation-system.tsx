@@ -9,14 +9,13 @@ export function AnimationSystem() {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isLargeScreen = window.innerWidth >= 1024;
     let isActive = true;
     const cleanups: Array<() => void> = [];
     let animationFrameId = 0;
     let nestedAnimationFrameId = 0;
     let initTimeoutId = 0;
 
-    if (reducedMotion || !isLargeScreen) {
+    if (reducedMotion) {
       return;
     }
 
@@ -56,15 +55,13 @@ export function AnimationSystem() {
         } else {
           gsap.set("[data-reveal]", {
             autoAlpha: 0,
-            y: isDesktop() ? 56 : 30,
-            scale: 0.992,
-            filter: "blur(10px)",
-            clipPath: "inset(0 0 14% 0)",
+            y: isDesktop() ? 36 : 22,
+            scale: 0.996,
           });
 
           gsap.set("[data-reveal-child]", {
             autoAlpha: 0,
-            y: 34,
+            y: isDesktop() ? 24 : 16,
           });
 
           // Keep nested content inside cards/panels visible unless it belongs to
@@ -102,19 +99,15 @@ export function AnimationSystem() {
             item,
             {
               autoAlpha: 0,
-              y: isDesktop() ? 56 : 30,
-              scale: 0.992,
-              filter: "blur(10px)",
-              clipPath: "inset(0 0 14% 0)",
+              y: isDesktop() ? 36 : 22,
+              scale: 0.996,
             },
             {
               autoAlpha: 1,
               y: 0,
               scale: 1,
-              filter: "blur(0px)",
-              clipPath: "inset(0 0 0% 0)",
-              duration: 0.82,
-              ease: "power3.out",
+              duration: 0.68,
+              ease: "power2.out",
               delay: index * 0.02,
               scrollTrigger: {
                 trigger: item,
@@ -131,14 +124,14 @@ export function AnimationSystem() {
               revealChildren,
               {
                 autoAlpha: 0,
-                y: 34,
+                y: isDesktop() ? 24 : 16,
               },
               {
                 autoAlpha: 1,
                 y: 0,
-                duration: 0.7,
-                stagger: 0.12,
-                delay: 0.16,
+                duration: 0.56,
+                stagger: 0.08,
+                delay: 0.12,
                 ease: "power2.out",
                 scrollTrigger: {
                   trigger: item,
@@ -161,17 +154,17 @@ export function AnimationSystem() {
           card,
           {
             autoAlpha: 0,
-            y: isDesktop() ? 48 : 30,
-            scale: 0.975,
-            rotateX: 2,
+            y: isDesktop() ? 34 : 22,
+            scale: 0.985,
+            rotateX: 1.2,
           },
           {
             autoAlpha: 1,
             y: 0,
             scale: 1,
             rotateX: 0,
-            duration: 0.72,
-            ease: "power3.out",
+            duration: 0.62,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: card,
               start: "top 90%",
@@ -192,20 +185,20 @@ export function AnimationSystem() {
           const py = (event.clientY - bounds.top) / bounds.height - 0.5;
 
           gsap.to(card, {
-            rotateY: px * 5.5,
-            rotateX: py * -5.5,
-            y: -4,
-            duration: 0.22,
+            rotateY: px * 4.2,
+            rotateX: py * -4.2,
+            y: -3,
+            duration: 0.18,
             ease: "power2.out",
             overwrite: "auto",
           });
 
           if (image) {
             gsap.to(image, {
-              xPercent: px * 1.5,
-              yPercent: py * 1.5,
-              scale: 1.025,
-              duration: 0.28,
+              xPercent: px * 1.2,
+              yPercent: py * 1.2,
+              scale: 1.016,
+              duration: 0.22,
               ease: "power2.out",
               overwrite: "auto",
             });
@@ -217,7 +210,7 @@ export function AnimationSystem() {
             rotateX: 0,
             rotateY: 0,
             y: 0,
-            duration: 0.28,
+            duration: 0.22,
             ease: "power3.out",
             overwrite: "auto",
           });
@@ -227,7 +220,7 @@ export function AnimationSystem() {
               xPercent: 0,
               yPercent: 0,
               scale: 1,
-              duration: 0.28,
+              duration: 0.22,
               ease: "power3.out",
               overwrite: "auto",
             });
@@ -276,16 +269,16 @@ export function AnimationSystem() {
 
         gsap.fromTo(
           image,
-          { scale: 1.03, yPercent: -1.6 },
+          { scale: 1.02, yPercent: -1.1 },
           {
-            scale: 1.06,
-            yPercent: 1.6,
+            scale: 1.035,
+            yPercent: 1.1,
             ease: "none",
             scrollTrigger: {
               trigger: image.parentElement ?? image,
               start: "top bottom",
               end: "bottom top",
-              scrub: 0.32,
+              scrub: 0.24,
               invalidateOnRefresh: true,
             },
           },
@@ -297,11 +290,11 @@ export function AnimationSystem() {
         if (reducedMotion) return;
 
         const rawDepth = Number(item.dataset.parallaxDepth ?? "18");
-        const depth = isDesktop() ? Math.min(rawDepth, 10) : Math.max(4, Math.round(rawDepth * 0.28));
+        const depth = isDesktop() ? Math.min(rawDepth, 7) : Math.max(3, Math.round(rawDepth * 0.2));
         const startY = isDesktop() ? -Math.max(4, depth * 0.55) : -Math.max(2, depth * 0.4);
         const endY = isDesktop() ? Math.max(5, depth * 0.7) : Math.max(3, depth * 0.48);
-        const startScale = isDesktop() ? 1.08 : 1.05;
-        const endScale = isDesktop() ? 1.1 : 1.06;
+        const startScale = isDesktop() ? 1.04 : 1.03;
+        const endScale = isDesktop() ? 1.06 : 1.04;
 
         gsap.set(item, {
           transformPerspective: 1200,
@@ -332,7 +325,7 @@ export function AnimationSystem() {
               trigger: item.parentElement ?? item,
               start: "top bottom",
               end: "bottom top",
-              scrub: 0.45,
+              scrub: 0.28,
               invalidateOnRefresh: true,
             },
           },
@@ -357,24 +350,24 @@ export function AnimationSystem() {
           gsap.fromTo(
             item,
             {
-              yPercent: -4,
-              scale: isDesktop() ? 1.08 : 1.04,
-              rotateX: isDesktop() ? 2.2 : 0.8,
-              rotateY: isDesktop() ? -1.6 : -0.45,
-              z: isDesktop() ? -24 : -8,
+              yPercent: -2.8,
+              scale: isDesktop() ? 1.05 : 1.03,
+              rotateX: isDesktop() ? 1.2 : 0.45,
+              rotateY: isDesktop() ? -0.9 : -0.25,
+              z: isDesktop() ? -14 : -5,
             },
             {
-              yPercent: 5,
-              scale: isDesktop() ? 1.14 : 1.06,
-              rotateX: isDesktop() ? -2.2 : -0.8,
-              rotateY: isDesktop() ? 1.6 : 0.45,
-              z: isDesktop() ? 24 : 8,
+              yPercent: 3.5,
+              scale: isDesktop() ? 1.08 : 1.04,
+              rotateX: isDesktop() ? -1.2 : -0.45,
+              rotateY: isDesktop() ? 0.9 : 0.25,
+              z: isDesktop() ? 14 : 5,
               ease: "none",
               scrollTrigger: {
                 trigger: item.parentElement ?? item,
                 start: "top bottom",
                 end: "bottom top",
-                scrub: 0.55,
+                scrub: 0.3,
                 invalidateOnRefresh: true,
               },
             },
@@ -384,7 +377,7 @@ export function AnimationSystem() {
         }
 
         const rawDepth = Number(item.dataset.bgDepth ?? "12");
-        const depth = isDesktop() ? Math.min(rawDepth, 8) : Math.max(3, Math.round(rawDepth * 0.26));
+        const depth = isDesktop() ? Math.min(rawDepth, 6) : Math.max(2, Math.round(rawDepth * 0.18));
         const startY = isDesktop() ? -Math.max(3, depth * 0.45) : -Math.max(2, depth * 0.35);
         const endY = isDesktop() ? Math.max(4, depth * 0.55) : Math.max(2, depth * 0.4);
 
@@ -401,23 +394,23 @@ export function AnimationSystem() {
           item,
           {
             yPercent: startY,
-            scale: isDesktop() ? 1.05 : 1.03,
-            rotateX: isDesktop() ? 1 : 0.35,
-            rotateY: isDesktop() ? -0.7 : -0.2,
-            z: isDesktop() ? -8 : -3,
+            scale: isDesktop() ? 1.03 : 1.02,
+            rotateX: isDesktop() ? 0.7 : 0.24,
+            rotateY: isDesktop() ? -0.45 : -0.14,
+            z: isDesktop() ? -5 : -2,
           },
           {
             yPercent: endY,
-            scale: isDesktop() ? 1.08 : 1.05,
-            rotateX: isDesktop() ? -1 : -0.35,
-            rotateY: isDesktop() ? 0.7 : 0.2,
-            z: isDesktop() ? 8 : 3,
+            scale: isDesktop() ? 1.05 : 1.03,
+            rotateX: isDesktop() ? -0.7 : -0.24,
+            rotateY: isDesktop() ? 0.45 : 0.14,
+            z: isDesktop() ? 5 : 2,
             ease: "none",
             scrollTrigger: {
               trigger: item.parentElement ?? item,
               start: "top bottom",
               end: "bottom top",
-              scrub: 0.4,
+              scrub: 0.26,
               invalidateOnRefresh: true,
             },
           },
@@ -437,20 +430,20 @@ export function AnimationSystem() {
           gsap.fromTo(
             item,
             {
-              yPercent: -1.5 - index * 0.6,
+              yPercent: -1 - index * 0.4,
               rotateZ: index % 2 === 0 ? -0.2 : 0.2,
-              scale: 1.03,
+              scale: 1.02,
             },
             {
-              yPercent: 2.2 + index * 0.7,
+              yPercent: 1.6 + index * 0.5,
               rotateZ: index % 2 === 0 ? 0.2 : -0.2,
-              scale: 1.06,
+              scale: 1.04,
               ease: "none",
               scrollTrigger: {
                 trigger: section,
                 start: "top bottom",
                 end: "bottom top",
-                scrub: 0.45,
+                scrub: 0.26,
                 invalidateOnRefresh: true,
               },
             },
@@ -460,16 +453,16 @@ export function AnimationSystem() {
         copyItems.forEach((item, index) => {
           gsap.fromTo(
             item,
-            { y: 22 + index * 6, autoAlpha: 0.94 },
+            { y: 14 + index * 4, autoAlpha: 0.96 },
             {
-              y: -14 - index * 4,
+              y: -8 - index * 2,
               autoAlpha: 1,
               ease: "none",
               scrollTrigger: {
                 trigger: section,
                 start: "top 92%",
                 end: "bottom top",
-                scrub: 0.3,
+                scrub: 0.18,
                 invalidateOnRefresh: true,
               },
             },
@@ -479,17 +472,17 @@ export function AnimationSystem() {
         glowItems.forEach((item, index) => {
           gsap.fromTo(
             item,
-            { autoAlpha: 0.18, scale: 0.84 + index * 0.04, yPercent: -6 },
+            { autoAlpha: 0.18, scale: 0.9 + index * 0.03, yPercent: -4 },
             {
-              autoAlpha: 0.62,
-              scale: 1.08 + index * 0.04,
-              yPercent: 5,
+              autoAlpha: 0.48,
+              scale: 1.02 + index * 0.03,
+              yPercent: 3,
               ease: "none",
               scrollTrigger: {
                 trigger: section,
                 start: "top bottom",
                 end: "bottom top",
-                scrub: 0.5,
+                scrub: 0.28,
                 invalidateOnRefresh: true,
               },
             },
@@ -500,20 +493,20 @@ export function AnimationSystem() {
           gsap.fromTo(
             item,
             {
-              y: 16 + index * 8,
-              rotateX: index % 2 === 0 ? 1.2 : -1.2,
-              rotateY: index % 2 === 0 ? -1.5 : 1.5,
+              y: 10 + index * 5,
+              rotateX: index % 2 === 0 ? 0.8 : -0.8,
+              rotateY: index % 2 === 0 ? -1 : 1,
             },
             {
-              y: -12 - index * 3,
-              rotateX: index % 2 === 0 ? -0.9 : 0.9,
-              rotateY: index % 2 === 0 ? 1.1 : -1.1,
+              y: -8 - index * 2,
+              rotateX: index % 2 === 0 ? -0.55 : 0.55,
+              rotateY: index % 2 === 0 ? 0.75 : -0.75,
               ease: "none",
               scrollTrigger: {
                 trigger: item,
                 start: "top bottom",
                 end: "bottom top",
-                scrub: 0.45,
+                scrub: 0.24,
                 invalidateOnRefresh: true,
               },
             },
@@ -576,15 +569,15 @@ export function AnimationSystem() {
 
         gsap.fromTo(
           item,
-          { scale: 1.01 },
+          { scale: 1.005 },
           {
-            scale: isDesktop() ? 1.08 : 1.03,
+            scale: isDesktop() ? 1.04 : 1.02,
             ease: "none",
             scrollTrigger: {
               trigger: item.parentElement ?? item,
               start: "top bottom",
               end: "bottom top",
-              scrub: 0.6,
+              scrub: 0.28,
               invalidateOnRefresh: true,
             },
           },

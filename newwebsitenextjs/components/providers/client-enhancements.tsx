@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const SmoothScrollProvider = dynamic(
   () => import("./smooth-scroll-provider").then((mod) => mod.SmoothScrollProvider),
@@ -14,6 +15,7 @@ const AnimationSystem = dynamic(
 );
 
 export function ClientEnhancements() {
+  const pathname = usePathname();
   const [ready, setReady] = useState(false);
   const [enableAnimations, setEnableAnimations] = useState(false);
   const [enableSmoothScroll, setEnableSmoothScroll] = useState(false);
@@ -29,6 +31,7 @@ export function ClientEnhancements() {
     }).connection : undefined;
     const prefersDataSaving = connection?.saveData === true;
     const slowConnection = connection?.effectiveType?.includes("2g") ?? false;
+    const isHomeRoute = pathname === "/";
     const lowMemory = "deviceMemory" in navigator && typeof (navigator as Navigator & { deviceMemory?: number }).deviceMemory === "number"
       ? ((navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 0) <= 4
       : false;
@@ -39,16 +42,16 @@ export function ClientEnhancements() {
 
     const activate = () => {
       setReady(true);
-      setEnableAnimations(isDesktop && hasFinePointer && !lowMemory);
+      setEnableAnimations(isHomeRoute && !lowMemory);
       setEnableSmoothScroll(isDesktop && hasFinePointer && !lowMemory);
     };
 
     const idleId = "requestIdleCallback" in window
-      ? window.requestIdleCallback(() => activate(), { timeout: 1800 })
+      ? window.requestIdleCallback(() => activate(), { timeout: 2400 })
       : 0;
     const timer = window.setTimeout(() => {
       activate();
-    }, 1400);
+    }, 1800);
 
     return () => {
       window.clearTimeout(timer);
@@ -56,7 +59,7 @@ export function ClientEnhancements() {
         window.cancelIdleCallback(idleId);
       }
     };
-  }, []);
+  }, [pathname]);
 
   if (!ready) {
     return null;

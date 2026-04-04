@@ -17,11 +17,11 @@ export function SmoothScrollProvider() {
     gsap.registerPlugin(ScrollTrigger);
 
     const lenis = new Lenis({
-      duration: 0.24,
-      lerp: 0.24,
+      duration: 0.18,
+      lerp: 0.18,
       smoothWheel: true,
-      wheelMultiplier: 1.24,
-      touchMultiplier: 1.08,
+      wheelMultiplier: 1.08,
+      touchMultiplier: 1,
       infinite: false,
     });
 
