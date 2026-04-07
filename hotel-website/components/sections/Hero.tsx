@@ -5,6 +5,12 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
+import {
+  HOME_HERO_SUBTITLE,
+  HOME_HERO_TITLE_LINES,
+  HOME_HERO_VIDEO_POSTER,
+  HOME_HERO_VIDEO_SRC,
+} from "../../data/sections/homeHero";
 
 const HeroBookingBar = dynamic(() => import("../features/HeroBookingBar"), {
   ssr: false,
@@ -12,8 +18,6 @@ const HeroBookingBar = dynamic(() => import("../features/HeroBookingBar"), {
     <div className="h-11 w-full rounded-full bg-white/15 sm:h-12" aria-hidden="true" />
   ),
 });
-
-const HERO_VIDEO_SRC = "https://bookonelocal.in/cdn/Changed-Hero-Video-UK%27s-Resort.mp4";
 
 function canPlayVideo(): boolean {
   if (typeof navigator === "undefined") return false;
@@ -23,9 +27,7 @@ function canPlayVideo(): boolean {
   };
 
   if (nav.connection?.saveData) return false;
-  if (["slow-2g", "2g", "3g"].includes(nav.connection?.effectiveType ?? "")) return false;
-  if ((nav.deviceMemory ?? 8) <= 2) return false;
-  if (navigator.hardwareConcurrency <= 2) return false;
+  if (["slow-2g", "2g"].includes(nav.connection?.effectiveType ?? "")) return false;
 
   return true;
 }
@@ -133,17 +135,26 @@ export default function Hero() {
       className="relative min-h-[100svh] overflow-hidden text-white"
     >
       <div className="hero-media absolute inset-0 isolate bg-[#143b47] will-change-transform">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${HOME_HERO_VIDEO_POSTER})` }}
+        />
         {video.shouldRender && (
           <video
             ref={videoRef}
             className="hero-video absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-            src={HERO_VIDEO_SRC}
+            src={HOME_HERO_VIDEO_SRC}
+            poster={HOME_HERO_VIDEO_POSTER}
             autoPlay
             muted
             loop
             playsInline
-            preload="none"
+            preload="auto"
             onCanPlay={() => setVideo((state) => ({ ...state, isReady: true }))}
+            onLoadedData={() => setVideo((state) => ({ ...state, isReady: true }))}
+            onError={() => setVideo((state) => ({ ...state, isReady: false }))}
+            aria-hidden="true"
           />
         )}
 
@@ -176,7 +187,7 @@ export default function Hero() {
           className="flex w-full max-w-[72rem] flex-col items-center justify-center px-2 pb-28 pt-[calc(7rem+env(safe-area-inset-top))] sm:px-3 sm:pb-28 sm:pt-28 md:px-4 md:pb-32 md:pt-32 lg:pb-32 lg:pt-36"
         >
           <div className="mt-3 space-y-0 sm:mt-5 md:mt-6">
-            {["UK's Resort"].map((line, index) => (
+            {HOME_HERO_TITLE_LINES.map((line, index) => (
               <div key={index} className="overflow-hidden leading-none">
                 <h1 className="hero-title-line font-serif text-[2.45rem] font-normal leading-[1] tracking-[-0.015em] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)] sm:text-[3.5rem] md:text-[4.6rem] lg:text-[5.4rem] xl:text-[6rem]">
                   {line === "UK's Resort" ? <>UK&apos;s Resort</> : line}
@@ -186,7 +197,7 @@ export default function Hero() {
           </div>
 
           <p className="hero-tagline mt-3 max-w-[40rem] px-2 text-center text-[0.86rem] leading-relaxed text-white/90 drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)] sm:mt-4 sm:text-[0.95rem] md:text-[1.02rem]">
-            Experience elegant and comfortable rooms designed for a relaxing stay at UK Resort.
+            {HOME_HERO_SUBTITLE}
           </p>
         </div>
 
