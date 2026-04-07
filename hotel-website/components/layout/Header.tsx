@@ -20,7 +20,7 @@ const DEFAULT_LOGO = "/UK's-Resort-Logo.png";
 
 const HERO_PREFIXES = [
   "/", "/rooms", "/dining", "/picnic", "/corporate", "/about", "/wellness",
-  "/facilities", "/experiences", "/weddings",
+  "/facilities", "/experiences", "/events",
   "/blog", "/around-us", "/contact", "/tariffs",
 ];
 

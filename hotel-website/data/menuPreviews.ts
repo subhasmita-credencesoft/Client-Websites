@@ -7,7 +7,7 @@ const menuPreviews: Record<string, string> = {
   "/corporate": "/images/conference3-1.jpg",
   "/wellness": "/images/2.avif",
   "/experiences": "/images/7-9-25/Copy of IMG_3980.avif",
-  "/weddings": "/images/7-9-25/Copy of IMG_2912.avif",
+  "/events": "/images/7-9-25/Copy of IMG_2912.avif",
   "/tariffs": "/images/conference3-1.jpg",
   "/about": "/images/7-9-25/Copy of IMG_1568.avif",
   "/blog": "/images/room_2.jpg",

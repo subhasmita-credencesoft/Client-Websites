@@ -5,18 +5,18 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
-import { WEDDINGS_MEETING_CARDS } from "@/data/sections/weddingsMeetings";
+import { WEDDINGS_MEETING_CARDS } from "@/data/sections/eventsActivitiesShowcase";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const meetingPills = [
-  "Curated Menus",
-  "Business Support",
-  "High-End Technology",
-  "Responsible Hosting",
+  "Dining Support",
+  "Indoor Leisure",
+  "Corporate Comfort",
+  "Family Flow",
 ] as const;
 
-export default function WeddingsMeetings() {
+export default function EventsActivitiesShowcase() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useLayoutEffect(() => {
@@ -73,15 +73,15 @@ export default function WeddingsMeetings() {
       <Container>
         <div className="mx-auto max-w-4xl text-center">
           <span className="meet-kicker text-xs uppercase tracking-[0.45em] text-[#1f3c44]/70">
-            Why us
+            Event Support
           </span>
           <div className="overflow-hidden">
             <h2 className="meet-title mt-6 font-serif text-[2.6rem] leading-[0.95] md:text-[4.1rem]">
-              Meetings that satisfy
+              Everything around the event feels easier too
             </h2>
           </div>
           <p className="meet-copy mx-auto mt-5 max-w-3xl text-[0.98rem] leading-8 text-[#1f3c44]/75">
-            Our team of experienced consultants are here to help, ensuring your needs are met and your event runs smoothly.
+            This section now focuses on support layers like dining, indoor options, family comfort, and corporate suitability so it doesn&apos;t repeat the same activity content from the section above.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             {meetingPills.map((item) => (
@@ -95,35 +95,42 @@ export default function WeddingsMeetings() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div className="mt-14 space-y-6">
           {WEDDINGS_MEETING_CARDS.map((card, index) => (
             <article
               key={card.title}
-              className="meet-card group relative overflow-hidden rounded-[2rem] bg-white shadow-[0_22px_56px_rgba(16,33,42,0.10)]"
+              className="meet-card group relative overflow-hidden rounded-[2rem] border border-white/40 shadow-[0_24px_60px_rgba(16,33,42,0.14)]"
             >
               <div className="meet-glow absolute right-5 top-5 z-10 h-20 w-20 rounded-full bg-[#d89a55]/18 blur-2xl" />
-              <div className="relative min-h-[18rem] overflow-hidden sm:min-h-[22rem]">
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  fill
-                  sizes="(max-width: 767px) 100vw, 50vw"
-                  className="meet-card-image object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f252d]/70 via-[#0f252d]/12 to-transparent" />
-                <div className="absolute left-5 top-5 rounded-full border border-white/35 bg-black/20 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
-                  {String(index + 1).padStart(2, "0")}
+              <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
+                <div className={`relative min-h-[18rem] overflow-hidden sm:min-h-[22rem] ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    sizes="(max-width: 767px) 100vw, 55vw"
+                    className="meet-card-image object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,37,45,0.36)_0%,rgba(15,37,45,0.10)_100%)]" />
+                  <div className="absolute left-5 top-5 rounded-full border border-white/35 bg-black/20 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
                 </div>
-              </div>
 
-              <div className="p-6 sm:p-7">
-                <h3 className="font-serif text-[2rem] leading-[0.94] text-[#153742] sm:text-[2.35rem]">
-                  {card.title}
-                </h3>
-                <div className="mt-4 h-px w-16 bg-gradient-to-r from-[#d89a55] to-transparent" />
-                <p className="mt-5 text-[0.96rem] leading-8 text-[#1f3c44]/74">
-                  {card.description}
-                </p>
+                <div className={`flex items-center bg-[linear-gradient(180deg,#f8f4ee_0%,#f1e8db_100%)] p-6 sm:p-8 lg:p-10 ${index % 2 === 1 ? "lg:order-1" : ""}`}>
+                  <div className="max-w-xl">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#b17231]">
+                      Experience Track
+                    </p>
+                    <h3 className="mt-4 font-serif text-[2.2rem] leading-[0.94] text-[#153742] sm:text-[2.7rem]">
+                      {card.title}
+                    </h3>
+                    <div className="mt-5 h-px w-16 bg-gradient-to-r from-[#d89a55] to-transparent" />
+                    <p className="mt-5 text-[0.98rem] leading-8 text-[#1f3c44]/78">
+                      {card.description}
+                    </p>
+                  </div>
+                </div>
               </div>
             </article>
           ))}

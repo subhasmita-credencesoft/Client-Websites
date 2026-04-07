@@ -9,11 +9,11 @@ import {
   WEDDINGS_IMMERSIVE_INTRO,
   WEDDINGS_IMMERSIVE_MOMENTS,
   WEDDINGS_IMMERSIVE_STATS,
-} from "@/data/sections/weddingsImmersiveMoments";
+} from "@/data/sections/eventsImmersiveMoments";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function WeddingsImmersiveMoments() {
+export default function EventsImmersiveMoments() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useLayoutEffect(() => {
@@ -134,43 +134,44 @@ export default function WeddingsImmersiveMoments() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-7 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 lg:grid-cols-2">
           {WEDDINGS_IMMERSIVE_MOMENTS.map((moment, index) => (
             <article
               key={moment.title}
-              className="wim-card group relative overflow-hidden rounded-[2rem] border border-white/60 bg-white/74 p-3 shadow-[0_28px_70px_rgba(16,33,42,0.12)] backdrop-blur-md"
+              className={`wim-card group relative overflow-hidden rounded-[2rem] border border-white/40 shadow-[0_28px_70px_rgba(16,33,42,0.14)] ${
+                index === 0 ? "lg:col-span-2" : ""
+              }`}
             >
               <div className="wim-float absolute inset-x-10 top-5 h-24 rounded-full bg-[#d89a55]/14 blur-3xl" aria-hidden="true" />
-              <div className="relative overflow-hidden rounded-[1.5rem]">
-                <div className="relative min-h-[18rem] sm:min-h-[21rem]">
+              <div className="relative">
+                <div className={`relative overflow-hidden ${index === 0 ? "min-h-[24rem] sm:min-h-[30rem]" : "min-h-[20rem] sm:min-h-[24rem]"}`}>
                   <Image
                     src={moment.image}
                     alt={moment.alt}
                     fill
-                    sizes="(max-width: 1023px) 100vw, 33vw"
+                    sizes="(max-width: 1023px) 100vw, 50vw"
                     unoptimized
                     className="wim-card-image object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f252d]/72 via-[#0f252d]/12 to-transparent" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,26,31,0.18)_0%,rgba(12,26,31,0.28)_38%,rgba(12,26,31,0.82)_100%)]" />
                   <div className="absolute left-5 top-5 rounded-full border border-white/35 bg-black/22 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
                     {String(index + 1).padStart(2, "0")}
                   </div>
-                  <div className="wim-orbit absolute bottom-5 right-5 rounded-full border border-white/55 bg-white/88 px-4 py-2 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[#153742] shadow-[0_14px_24px_rgba(16,33,42,0.15)]">
-                    3D Reveal
+                  <div className="wim-orbit absolute right-5 top-5 rounded-full border border-white/40 bg-white/14 px-4 py-2 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_14px_24px_rgba(16,33,42,0.15)] backdrop-blur-md">
+                    Motion Layer
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 z-10 p-6 text-white sm:p-8">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-white/70">
+                      {moment.eyebrow}
+                    </p>
+                    <h3 className={`mt-3 font-serif leading-[0.95] text-white ${index === 0 ? "text-[2.4rem] sm:text-[3.2rem]" : "text-[2rem] sm:text-[2.35rem]"}`}>
+                      {moment.title}
+                    </h3>
+                    <p className="mt-4 max-w-2xl text-[0.97rem] leading-8 text-white/82">
+                      {moment.description}
+                    </p>
                   </div>
                 </div>
-              </div>
-
-              <div className="px-3 pb-4 pt-6 sm:px-4">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#b17231]">
-                  {moment.eyebrow}
-                </p>
-                <h3 className="mt-3 font-serif text-[2rem] leading-[0.95] text-[#153742]">
-                  {moment.title}
-                </h3>
-                <p className="mt-4 text-[0.97rem] leading-8 text-[#1f3c44]/75">
-                  {moment.description}
-                </p>
               </div>
             </article>
           ))}
@@ -184,16 +185,12 @@ export default function WeddingsImmersiveMoments() {
         }
 
         @media (min-width: 1024px) {
-          .wim-card:nth-child(3n + 1) {
+          .wim-card:nth-child(odd) {
             transform: perspective(1550px) rotateY(-5deg) rotateX(2deg);
           }
 
-          .wim-card:nth-child(3n + 2) {
+          .wim-card:nth-child(even) {
             transform: perspective(1550px) translateY(18px) rotateX(3deg);
-          }
-
-          .wim-card:nth-child(3n + 3) {
-            transform: perspective(1550px) rotateY(5deg) rotateX(2deg);
           }
 
           .wim-card {

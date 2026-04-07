@@ -19,7 +19,7 @@ export const HOME_EVENT_PANELS: HomeEventPanel[] = [
     copy: "Say 'I do' amidst breathtaking mountain vistas with curated mehndi, sangeet, wedding ceremonies, and grand receptions crafted to perfection.",
     image: "https://bookonelocal.in/cdn/wedding4-1.jpg",
     mobileImage: "/images/wedding-image.jpg",
-    href: "/weddings",
+    href: "/events",
     mapHref:
       "https://www.google.co.in/maps/place/UK'S+RESORT/@18.817145,73.3046891,3a,90y,82.75h,75.21t/data=!3m7!1e1!3m5!1sEqXPpiFcSuYAAAQvxYn65A!2e0!3e2!7i13312!8i6656!4m5!3m4!1s0x3be7fd68dbb32757:0x45a268bbfa521ef0!8m2!3d18.8171404!4d73.3046807!6m1!1e1?shorturl=1",
     cta: "Discover Weddings",

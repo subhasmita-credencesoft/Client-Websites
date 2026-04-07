@@ -25,7 +25,6 @@ import {
   type TariffRow,
 } from "@/data/sections/tariffInfo";
 
-/* ─────────────────────────── helpers ─────────────────────────── */
 function formatPrice(price?: number | null, currency = "INR") {
   if (typeof price !== "number" || Number.isNaN(price)) return null;
   try {
@@ -41,19 +40,18 @@ function formatPrice(price?: number | null, currency = "INR") {
 
 function formatOccupancyLabel(minimum?: number | null, maximum?: number | null) {
   if (minimum && maximum && minimum === maximum) return `${minimum} Guest${minimum > 1 ? "s" : ""}`;
-  if (minimum && maximum) return `${minimum}–${maximum} Guests`;
+  if (minimum && maximum) return `${minimum}-${maximum} Guests`;
   if (maximum) return `Up to ${maximum} Guests`;
   return "Double Occupancy";
 }
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ─────────────────────────── constants ─────────────────────────── */
 const BOOKING_ENGINE_URL = "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true";
 
 const tariffHighlights = [
   "Breakfast-inclusive plans",
-  "Transparent resort pricing",
+  "Clear room pricing",
   "Direct booking path",
 ] as const;
 
@@ -77,29 +75,34 @@ const dayPicnicFeatureCards = [
 
 type DayPicnicCardTitle = (typeof dayPicnicFeatureCards)[number]["title"];
 
-/* ─────────────────────────── component ─────────────────────────── */
 export default function TariffInfo() {
   const { property } = usePropertyData();
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [hasHydrated, setHasHydrated] = useState(false);
   const [expandedCard, setExpandedCard] = useState<DayPicnicCardTitle | "">(
     dayPicnicFeatureCards[0].title,
   );
 
-  /* GST */
   const gstPercent = useMemo(() => {
     const taxList = property?.taxDetails ?? [];
     const gstItem = taxList.find((tax) => (tax?.name || "").toLowerCase().includes("gst"));
     return gstItem?.percentage ?? taxList[0]?.percentage ?? 12;
   }, [property?.taxDetails]);
 
-  /* room rows */
   const roomTariffRows = useMemo<TariffRow[]>(() => {
+    if (!hasHydrated) {
+      return TARIFF_FALLBACK_ROWS.map((row) => ({
+        ...row,
+        value: row.value.replace("{gst}", String(12)),
+      }));
+    }
+
     const rooms = property?.roomList ?? [];
     const currency = property?.localCurrency || "INR";
+
     const rows = rooms
       .filter((room) => room?.name)
       .map((room) => {
-        const roomName = room?.name?.trim() || "Room";
         const roomPrice =
           formatPrice(room?.pricePerNight, currency) ||
           formatPrice(room?.roomOnlyPrice, currency) ||
@@ -110,90 +113,114 @@ export default function TariffInfo() {
           typeof room?.extraChargePerPerson === "number"
             ? ` | Extra Person ${formatPrice(room.extraChargePerPerson, currency)}`
             : "";
+
         return {
-          name: roomName,
+          name: room?.name?.trim() || "Room",
           value: roomPrice
             ? `${roomPrice} + ${gstPercent}% GST on ${occupancy} with Breakfast${extraPersonText}`
             : `Rate on request + ${gstPercent}% GST`,
         };
       });
+
     if (rows.length > 0) return rows;
+
     return TARIFF_FALLBACK_ROWS.map((row) => ({
       ...row,
       value: row.value.replace("{gst}", String(gstPercent)),
     }));
-  }, [property?.localCurrency, property?.minimumRoomPrice, property?.minimumRoooPrice, property?.roomList, gstPercent]);
+  }, [
+    hasHydrated,
+    property?.localCurrency,
+    property?.minimumRoomPrice,
+    property?.minimumRoooPrice,
+    property?.roomList,
+    gstPercent,
+  ]);
 
-  /* GSAP */
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setHasHydrated(true);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   useEffect(() => {
     const mm = gsap.matchMedia();
+
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-          scrollTrigger: { trigger: sectionRef.current, start: "top 78%", once: true },
+        const introTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
         });
-        tl.fromTo(
-          ".tariff-intro",
-          { y: 14, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.06 },
-        )
+
+        introTl
+          .fromTo(
+            ".tariff-intro",
+            { y: 14, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.55, ease: "power3.out", stagger: 0.06 },
+          )
+          .fromTo(
+            ".tariff-hero-card",
+            { y: 28, autoAlpha: 0, scale: 0.985 },
+            { y: 0, autoAlpha: 1, scale: 1, duration: 0.78, ease: "power3.out", stagger: 0.08 },
+            "<+0.1",
+          )
           .fromTo(
             ".tariff-table-wrap",
             { y: 24, autoAlpha: 0, scale: 0.99 },
-            { y: 0, autoAlpha: 1, scale: 1, duration: 0.85, ease: "power3.out", stagger: 0.08 },
+            { y: 0, autoAlpha: 1, scale: 1, duration: 0.78, ease: "power3.out", stagger: 0.08 },
             "<+0.08",
           )
           .fromTo(
             ".tariff-detail",
-            { y: 12, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.08 },
-            "<+0.08",
+            { y: 18, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.62, ease: "power3.out", stagger: 0.08 },
+            "<+0.06",
           );
 
         gsap.fromTo(
           ".tariff-row",
           { y: 8, autoAlpha: 0 },
           {
-            y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out", stagger: 0.03,
-            scrollTrigger: { trigger: ".tariff-table-wrap", start: "top 85%", once: true },
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.46,
+            ease: "power3.out",
+            stagger: 0.03,
+            scrollTrigger: {
+              trigger: ".tariff-table-wrap",
+              start: "top 86%",
+              once: true,
+            },
           },
         );
 
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 88%",
-            end: "bottom top",
-            scrub: 1,
-          },
-        })
-          .to(".tariff-table-wrap", { y: -12, ease: "none" }, 0)
-          .to(".tariff-detail", { y: -8, autoAlpha: 0.92, ease: "none" }, 0);
+        gsap.to(".tariff-hero-accent", {
+          y: -10,
+          duration: 3.2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          stagger: 0.16,
+        });
       }, sectionRef);
+
       return () => ctx.revert();
     });
+
     return () => mm.revert();
   }, []);
 
-  /* ── render ── */
   return (
     <section
       ref={sectionRef}
       data-no-global-gsap
-      /* 
-        PALETTE:
-          page bg:   #F5F0E8  (warm ivory)
-          deep bg:   #0D2B2F  (deep forest teal — rich, not muddy)
-          mid tone:  #1A4A50  (forest teal)
-          accent:    #C49A3C  (burnished gold — consistent throughout)
-          accent lt: #E8C97A  (light gold for dark surfaces)
-          text dark: #0D2B2F
-          text body: #2C4A50
-          border:    rgba(13,43,47,0.12)
-      */
       className="relative overflow-hidden bg-[#F5F0E8] py-14 text-[#0D2B2F] sm:py-20 lg:py-24"
     >
-      {/* subtle page texture overlay */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -204,15 +231,11 @@ export default function TariffInfo() {
 
       <Container>
         <div className="mx-auto max-w-6xl">
-
-          {/* ── TOP HERO ROW ── */}
-          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-
-            {/* left — intro card */}
-            <div className="rounded-3xl border border-[rgba(13,43,47,0.10)] bg-white/75 p-7 shadow-[0_20px_56px_rgba(13,43,47,0.08)] backdrop-blur-sm sm:p-10">
-              <span className="tariff-intro inline-flex rounded-full border border-[#C49A3C]/35 bg-[#FBF4E4] px-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-[#C49A3C]">
+          <div className="grid gap-8 lg:grid-cols-[1.04fr_0.96fr] lg:items-start">
+            <div className="tariff-hero-card rounded-3xl border border-[rgba(13,43,47,0.10)] bg-white p-7 shadow-[0_16px_40px_rgba(13,43,47,0.06)] sm:p-10">
+              <p className="tariff-intro text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[#C49A3C]">
                 Direct Booking Tariff
-              </span>
+              </p>
 
               <h2 className="tariff-intro mt-5 font-serif text-[2.4rem] leading-[0.9] text-[#0D2B2F] sm:text-[3.6rem]">
                 Plan faster.
@@ -225,199 +248,59 @@ export default function TariffInfo() {
                 directly into the booking engine when you are ready to confirm.
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-2.5">
+              <ul className="mt-7 space-y-2 text-[0.92rem] leading-7 text-[#2C4A50]">
                 {tariffHighlights.map((item) => (
-                  <span
-                    key={item}
-                    className="tariff-intro rounded-full border border-[rgba(13,43,47,0.12)] bg-[#EDF4F5] px-4 py-2 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[#1A4A50]"
-                  >
-                    {item}
-                  </span>
+                  <li key={item} className="tariff-intro flex items-start gap-3">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-[#C49A3C]" />
+                    <span>{item}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
-            {/* right — booking CTA dark card */}
-           {/* ─── RIGHT CARD: Booking CTA ─────────────────────────────────────────
-    ROOT CAUSE OF WASHED-OUT LOOK:
-    1. The <Image> was bleeding through at opacity-30 (warm sage tones)
-    2. Tailwind doesn't generate /8, /12, /22, /55, /80 opacity utilities
-       by default — so bg-white/8, border-white/12, text-white/55 etc.
-       all rendered as TRANSPARENT, making tiles and text invisible/faint.
-    FIX: Remove image entirely. Use inline style={{ }} for every color
-    that uses opacity so they are guaranteed to render correctly.
-─────────────────────────────────────────────────────────────────── */}
-<div
-  className="tariff-detail relative overflow-hidden rounded-3xl p-7 sm:p-10"
-  style={{
-    backgroundColor: "#0D2B2F",
-    color: "#ffffff",
-    border: "1px solid rgba(255,255,255,0.08)",
-    boxShadow: "0 32px 80px rgba(13,43,47,0.40)",
-  }}
->
-  {/* ── Decorative background layers (no image) ── */}
+            <div className="tariff-hero-card rounded-3xl border border-[rgba(13,43,47,0.10)] bg-[#F9F5EE] p-7 shadow-[0_16px_40px_rgba(13,43,47,0.06)] sm:p-10">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[#C49A3C]">
+                Ready To Reserve
+              </p>
 
-  {/* Gold glow — top right */}
-  <div
-    aria-hidden="true"
-    className="pointer-events-none absolute inset-0"
-    style={{
-      background:
-        "radial-gradient(ellipse 70% 55% at 95% 5%,  rgba(196,154,60,0.22) 0%, transparent 55%)," +
-        "radial-gradient(ellipse 60% 50% at 5%  95%, rgba(22,62,69,0.65)   0%, transparent 50%)",
-    }}
-  />
+              <h3 className="mt-5 font-serif text-[2rem] leading-[1.02] text-[#0D2B2F] sm:text-[2.6rem]">
+                Tariff clarity helps guests book faster
+              </h3>
 
-  {/* Subtle dot-grid texture */}
-  <div
-    aria-hidden="true"
-    className="pointer-events-none absolute inset-0"
-    style={{
-      backgroundImage:
-        "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
-      backgroundSize: "22px 22px",
-    }}
-  />
+              <p className="mt-5 max-w-[42ch] text-[0.96rem] leading-8 text-[#2C4A50]">
+                Check the stay timings below and move directly into the booking engine when you are ready.
+              </p>
 
-  {/* Top gold accent line */}
-  <div
-    aria-hidden="true"
-    className="pointer-events-none absolute inset-x-0 top-0"
-    style={{
-      height: "2px",
-      background:
-        "linear-gradient(90deg, transparent 0%, #C49A3C 50%, transparent 100%)",
-    }}
-  />
+              <div className="mt-7 space-y-4 text-[0.98rem] leading-7 text-[#1A4A50]">
+                <p>
+                  <span className="font-semibold text-[#0D2B2F]">Check-in:</span>{" "}
+                  {TARIFF_CHECKIN_TIME}
+                </p>
+                <p>
+                  <span className="font-semibold text-[#0D2B2F]">Check-out:</span>{" "}
+                  {TARIFF_CHECKOUT_TIME}
+                </p>
+              </div>
 
-  {/* ── Content ── */}
-  <div className="relative" style={{ zIndex: 2 }}>
-
-    {/* Eyebrow */}
-    <div className="flex items-center gap-3">
-      <span
-        aria-hidden="true"
-        style={{
-          display: "block",
-          width: 28,
-          height: 2,
-          background: "#C49A3C",
-          borderRadius: 2,
-          flexShrink: 0,
-        }}
-      />
-      <p
-        className="text-[0.65rem] font-bold uppercase tracking-[0.32em]"
-        style={{ color: "#C49A3C" }}
-      >
-        Ready To Reserve
-      </p>
-    </div>
-
-    {/* Headline */}
-    <h3
-      className="mt-5 font-serif"
-      style={{
-        fontSize: "clamp(1.9rem, 3.2vw, 2.7rem)",
-        lineHeight: 1.05,
-        color: "#ffffff",
-        maxWidth: "14ch",
-      }}
-    >
-      Turn tariff browsing{" "}
-      <span style={{ color: "#E8C97A" }}>into a direct booking</span>
-    </h3>
-
-    {/* Body text */}
-    <p
-      className="mt-5 text-[0.96rem]"
-      style={{
-        lineHeight: 1.9,
-        color: "rgba(255,255,255,0.78)",
-        maxWidth: "40ch",
-      }}
-    >
-      Once guests see pricing clearly, the next step should feel effortless.
-      Send them straight to live availability and reservation confirmation.
-    </p>
-
-    {/* Divider */}
-    <div
-      style={{
-        marginTop: 28,
-        height: 1,
-        background: "rgba(255,255,255,0.10)",
-      }}
-    />
-
-    {/* Check-in / Check-out tiles */}
-    <div className="mt-7 grid gap-4 sm:grid-cols-2">
-      {[
-        { label: "Check-in",  value: TARIFF_CHECKIN_TIME  },
-        { label: "Check-out", value: TARIFF_CHECKOUT_TIME },
-      ].map(({ label, value }) => (
-        <div
-          key={label}
-          className="rounded-2xl p-5"
-          style={{
-            background: "rgba(255,255,255,0.07)",  /* was bg-white/8 — broken */
-            border: "1px solid rgba(196,154,60,0.35)",
-          }}
-        >
-          <p
-            className="text-[0.63rem] font-bold uppercase tracking-[0.26em]"
-            style={{ color: "#C49A3C" }}          /* was text-white/55 — invisible */
-          >
-            {label}
-          </p>
-          <p
-            className="mt-3 font-serif leading-none"
-            style={{ fontSize: "1.95rem", color: "#ffffff" }}
-          >
-            {value}
-          </p>
-        </div>
-      ))}
-    </div>
-
-    {/* CTA buttons */}
-    <div className="mt-8 flex flex-wrap gap-4">
-      <Link
-        href={BOOKING_ENGINE_URL}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center justify-center rounded-full px-7 py-3.5 text-[0.7rem] font-bold uppercase tracking-[0.22em] transition hover:-translate-y-0.5 active:translate-y-0"
-        style={{
-          background: "#C49A3C",
-          color: "#0D2B2F",
-          boxShadow: "0 10px 26px rgba(196,154,60,0.45)",
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#D9B455")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#C49A3C")}
-      >
-        Book Now
-      </Link>
-      <Link
-        href="/rooms"
-        className="inline-flex items-center justify-center rounded-full px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] transition"
-        style={{
-          border: "1px solid rgba(255,255,255,0.32)", /* was border-white/22 — broken */
-          color: "#ffffff",
-          background: "transparent",
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.10)")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-      >
-        Explore Rooms
-      </Link>
-    </div>
-
-  </div>
-</div>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href={BOOKING_ENGINE_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-[#C49A3C] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] transition hover:bg-[#D4B05A]"
+                >
+                  Book Now
+                </Link>
+                <Link
+                  href="/rooms"
+                  className="inline-flex items-center justify-center rounded-full border border-[rgba(13,43,47,0.18)] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] transition hover:bg-white"
+                >
+                  Explore Rooms
+                </Link>
+              </div>
+            </div>
           </div>
 
-          {/* ── ROOM TARIFF TABLE ── */}
           <TariffTableBlock
             eyebrow="Room Tariff"
             title={TARIFF_MAIN_TABLE_TITLE}
@@ -427,7 +310,6 @@ export default function TariffInfo() {
             className="mt-10"
           />
 
-          {/* ── GROUP PACKAGE TABLE ── */}
           <TariffTableBlock
             eyebrow="Group Stay Package"
             title={TARIFF_GROUP_PACKAGE_TITLE_LINES[0]}
@@ -437,15 +319,12 @@ export default function TariffInfo() {
             className="mt-10"
           />
 
-          {/* ── DAY PICNIC + CONVERSION ROW ── */}
           <div className="mt-14 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-
-            {/* Day picnic card */}
-            <div className="rounded-3xl border border-[rgba(13,43,47,0.10)] bg-white p-7 shadow-[0_22px_56px_rgba(13,43,47,0.07)] sm:p-9">
-              <h3 className="tariff-detail font-serif text-3xl text-[#0D2B2F] sm:text-4xl">
+            <div className="tariff-detail rounded-3xl border border-[rgba(13,43,47,0.10)] bg-white p-7 shadow-[0_22px_56px_rgba(13,43,47,0.07)] sm:p-9">
+              <h3 className="font-serif text-3xl text-[#0D2B2F] sm:text-4xl">
                 {TARIFF_DAY_PICNIC_TITLE}
               </h3>
-              <p className="tariff-detail mt-5 text-[0.98rem] font-semibold leading-relaxed text-[#1A4A50] sm:text-[1.04rem]">
+              <p className="mt-5 text-[0.98rem] font-semibold leading-relaxed text-[#1A4A50] sm:text-[1.04rem]">
                 {TARIFF_DAY_PICNIC_HIGHLIGHT}
               </p>
 
@@ -453,20 +332,20 @@ export default function TariffInfo() {
                 {dayPicnicFeatureCards.map((item) => {
                   const Icon = item.icon;
                   const isExpanded = expandedCard === item.title;
+
                   return (
                     <button
                       key={item.title}
                       type="button"
                       onClick={() => setExpandedCard(isExpanded ? "" : item.title)}
                       className={[
-                        "tariff-detail group w-full overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300 sm:p-5",
+                        "group w-full overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300 sm:p-5",
                         isExpanded
-                          ? "border-[#C49A3C]/40 bg-[#0D2B2F] text-white shadow-[0_16px_36px_rgba(13,43,47,0.20)]"
+                          ? "border-[#C49A3C]/40 bg-[#10323a] text-white shadow-[0_16px_36px_rgba(13,43,47,0.20)]"
                           : "border-[rgba(13,43,47,0.10)] bg-[#F9F5EE] hover:border-[#C49A3C]/30 hover:bg-white hover:shadow-[0_10px_28px_rgba(13,43,47,0.07)]",
                       ].join(" ")}
                     >
                       <div className="flex items-start gap-4">
-                        {/* icon */}
                         <div
                           className={[
                             "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300",
@@ -524,16 +403,13 @@ export default function TariffInfo() {
                 })}
               </div>
 
-              <p className="tariff-detail mt-6 text-[0.94rem] font-medium leading-7 text-[#2C4A50] sm:text-[0.98rem]">
+              <p className="mt-6 text-[0.94rem] font-medium leading-7 text-[#2C4A50] sm:text-[0.98rem]">
                 {TARIFF_DAY_PICNIC_FOOTNOTE}
               </p>
             </div>
 
-            {/* conversion CTA card — deep forest teal */}
-            <div className="tariff-detail relative overflow-hidden rounded-3xl border border-[#1A4A50]/25 bg-[#1A4A50] p-7 text-white shadow-[0_24px_60px_rgba(13,43,47,0.18)] sm:p-9">
-              {/* glows */}
+            <div className="tariff-detail relative overflow-hidden rounded-3xl border border-[#1A4A50]/25 bg-[linear-gradient(145deg,#143640_0%,#1a4650_58%,#204f5a_100%)] p-7 text-white shadow-[0_24px_60px_rgba(13,43,47,0.18)] sm:p-9">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(196,154,60,0.14),transparent_30%),radial-gradient(circle_at_20%_80%,rgba(13,43,47,0.30),transparent_30%)]" />
-              {/* top shimmer */}
               <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#C49A3C]/40 to-transparent" />
 
               <div className="relative z-10">
@@ -541,25 +417,23 @@ export default function TariffInfo() {
                   Conversion Focus
                 </p>
                 <h3 className="mt-4 font-serif text-[2rem] leading-[0.94] sm:text-[2.6rem]">
-                  Ready to lock in your stay?
+                  Visible pricing. Cleaner action. Faster conversion.
                 </h3>
                 <p className="mt-5 max-w-2xl text-[0.96rem] leading-8 text-white/80">
-                  The tariff page creates pricing clarity. The strongest next step is direct
-                  booking through our engine, where guests can check live availability and
-                  complete their reservation.
+                  Once guests understand the tariff, the next step should feel obvious. Use the
+                  booking engine for live availability or contact the team if you need group help.
                 </p>
 
-                {/* stat pills */}
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   {[
-                    { label: "Direct savings", value: "Best Rate" },
-                    { label: "Booking time", value: "< 3 min" },
+                    { label: "Best for", value: "Direct Booking" },
+                    { label: "Response path", value: "Instant Action" },
                   ].map(({ label, value }) => (
                     <div
                       key={label}
-                      className="rounded-2xl border border-white/12 bg-white/8 p-4 backdrop-blur-sm"
+                      className="rounded-2xl border border-white/12 bg-white/10 p-4 backdrop-blur-sm"
                     >
-                      <p className="text-[0.62rem] font-semibold uppercase tracking-[0.20em] text-white/50">
+                      <p className="text-[0.62rem] font-semibold uppercase tracking-[0.20em] text-white/60">
                         {label}
                       </p>
                       <p className="mt-2 font-serif text-[1.5rem] leading-none text-[#E8C97A]">
@@ -569,7 +443,6 @@ export default function TariffInfo() {
                   ))}
                 </div>
 
-                {/* CTAs */}
                 <div className="mt-8 flex flex-wrap gap-4">
                   <Link
                     href={BOOKING_ENGINE_URL}
@@ -581,14 +454,13 @@ export default function TariffInfo() {
                   </Link>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center rounded-full border border-white/22 px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-white/10 active:bg-white/5"
+                    className="inline-flex items-center justify-center rounded-full border border-white/25 px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-white/10 active:bg-white/5"
                   >
                     Contact Our Team
                   </Link>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </Container>
@@ -596,7 +468,6 @@ export default function TariffInfo() {
   );
 }
 
-/* ─────────────────────────── sub-component ─────────────────────────── */
 interface TariffTableBlockProps {
   eyebrow: string;
   title: string;
@@ -606,15 +477,21 @@ interface TariffTableBlockProps {
   className?: string;
 }
 
-function TariffTableBlock({ eyebrow, title, subtitle, headers, rows, className = "" }: TariffTableBlockProps) {
+function TariffTableBlock({
+  eyebrow,
+  title,
+  subtitle,
+  headers,
+  rows,
+  className = "",
+}: TariffTableBlockProps) {
   return (
     <div
       className={[
-        "tariff-table-wrap overflow-hidden rounded-3xl border border-[rgba(13,43,47,0.10)] bg-white/82 shadow-[0_20px_56px_rgba(13,43,47,0.08)] backdrop-blur-sm",
+        "tariff-table-wrap overflow-hidden rounded-3xl border border-[rgba(13,43,47,0.10)] bg-white/88 shadow-[0_20px_56px_rgba(13,43,47,0.08)] backdrop-blur-sm",
         className,
       ].join(" ")}
     >
-      {/* header */}
       <div className="border-b border-[rgba(13,43,47,0.08)] px-6 py-6 sm:px-9">
         <p className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#C49A3C]">
           {eyebrow}
@@ -625,11 +502,10 @@ function TariffTableBlock({ eyebrow, title, subtitle, headers, rows, className =
         <p className="mt-3 text-[0.95rem] leading-7 text-[#2C4A50]">{subtitle}</p>
       </div>
 
-      {/* table */}
       <div className="overflow-x-auto">
         <table className="w-full min-w-[700px] border-collapse">
           <thead>
-            <tr className="bg-[#0D2B2F] text-white">
+            <tr className="bg-[#10323a] text-white">
               <th className="w-1/2 px-5 py-4 text-center text-[0.92rem] font-semibold tracking-wide">
                 {headers[0]}
               </th>
@@ -659,7 +535,6 @@ function TariffTableBlock({ eyebrow, title, subtitle, headers, rows, className =
         </table>
       </div>
 
-      {/* bottom accent bar */}
       <div className="h-1 w-full bg-gradient-to-r from-[#C49A3C]/60 via-[#C49A3C] to-[#C49A3C]/60" />
     </div>
   );

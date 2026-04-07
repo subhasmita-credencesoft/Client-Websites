@@ -19,7 +19,7 @@ const staticRoutes = [
   "/rooms",
   "/rooms/reservation",
   "/tariffs",
-  "/weddings",
+  "/events",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

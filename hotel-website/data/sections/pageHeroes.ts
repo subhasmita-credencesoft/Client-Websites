@@ -66,10 +66,11 @@ export const TARIFF_HERO_CONFIG: PageHeroConfig = {
 };
 
 export const WEDDINGS_HERO_CONFIG: PageHeroConfig = {
-  title: "Weddings & Events",
-  backgroundImage: "https://bookonelocal.in/cdn/4.avif",
-  backgroundVideo: "https://bookonelocal.in/cdn/Wedding_stage_setup_202603191807.mp4",
-  breadcrumb: "Home / Weddings & Events",
+  title: "Events & Activities",
+  backgroundImage: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
+  backgroundVideo: "https://bookonelocal.in/cdn/Create_a_cinematic_202603191807.mp4",
+  subtitle: "Day events, family outings, play areas, water fun, and adventure-led activities in one lively destination.",
+  breadcrumb: "Home / Events & Activities",
   minHeightClassName: "min-h-screen",
 };
 

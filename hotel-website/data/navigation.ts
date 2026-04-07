@@ -4,7 +4,7 @@ const navigation = [
   { label: "Dining", href: "/dining" },
   { label: "Picnic", href: "/picnic" },
   { label: "Corporate Booking", href: "/corporate" },
-  { label: "Events", href: "/weddings" },
+  { label: "Events", href: "/events" },
   { label: "Experiences", href: "/experiences" },
   { label: "Tariff", href: "/tariffs" },
   { label: "Reservation", href: "/rooms/reservation" },
