@@ -7,6 +7,9 @@ export const WEDDINGS_CELEBRATION_MAP_LINKS = {
     "https://www.google.co.in/maps/@18.8171712,73.3046889,3a,75y,204.45h,83.59t/data=!3m6!1e1!3m4!1sXJbldbTZ-54AAAQvxYVCgA!2e0!7i13312!8i6656!6m1!1e1?shorturl=1",
 } as const;
 
+export const WEDDINGS_BOOKING_ENGINE_URL =
+  "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true";
+
 export type WeddingsCelebrationBlock = {
   id: string;
   layout: "media-left" | "media-right";
@@ -36,11 +39,11 @@ export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
     cardImageAlt: "Couple by the sea",
     cardTitle: "Weddings & honeymoons",
     cardParagraphs: [
-      "Marriage are made in heaven but created on earth and certainly knows how to make them glitter with splendor. From the moment you decide to celebrate your big day with us, we leave no stone unturned to make the occasion an unforgettable one for years to come. Be it traditional or a modern themed wedding, our wedding team understands what you need in a wedding.",
+      "Marriage are made in heaven but created on earth and certainly knows how to make them glitter with splendor. From the moment you decide to celebrate your big day with us, we leave no stone unturned to make the occasion an unforgettable one for years to come.",
       "With warm hospitality and years of experience, our wedding team ensures the wedding arrangement right from small ceremonies, mehndi, sangeet program and extravagant reception runs out smoothly as planned.",
       "Our modern accommodation and Exquisite lawns, Pool side and water park areas gives the perfect setting to make your destination wedding a memorable one.",
     ],
-    enquiryHref: "#",
+    enquiryHref: WEDDINGS_BOOKING_ENGINE_URL,
     virtualTourKey: "weddings",
     virtualTourAriaLabel: "Take a virtual tour of weddings venue",
   },
@@ -53,10 +56,10 @@ export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
     cardImageAlt: "Family picnic setup",
     cardTitle: "Family & School Picnic",
     cardParagraphs: [
-      "Arrive at UK's Resort, Khopoli after a scenic drive along the green countryside. A sumptuous buffet breakfast awaits you. Let down your hair at the Mini water park. Splash around the cool waters and swing to the latest music by the pool side. What's more, we have music, rain & masti all year round with Rain Dance. After a frolicking time in the water enjoy the renowned UK's Resort delicious unlimited buffet lunch.",
-      "Make the most of the 6 acres of open space to play games with your family and friends. The little ones can make merry in the children's play park. Round up an exciting picnic with hot beverages and snacks. The unforgettable experience at UK's Resort Khopoli will have you and your family returning for more.",
+      "Arrive at UK's Resort, Khopoli after a scenic drive along the green countryside. A sumptuous buffet breakfast awaits you. Splash around the cool waters and swing to the latest music by the pool side with Rain Dance all year round.",
+      "Make the most of the 6 acres of open space to play games with your family and friends. The little ones can make merry in the children's play park. The unforgettable experience at UK's Resort Khopoli will have you returning for more.",
     ],
-    enquiryHref: "#",
+    enquiryHref: WEDDINGS_BOOKING_ENGINE_URL,
     virtualTourKey: "picnic",
     virtualTourAriaLabel: "Take a virtual tour of picnic area",
   },
@@ -70,10 +73,9 @@ export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
     cardTitle: "Sports & Activities",
     cardParagraphs: [
       "Make the most of the sprawling lawns to play games like Cricket, Football, Badminton, Throw ball etc. or enjoy an indoor game of Table Tennis / Carrom with your family.",
-      "The impeccable hospitality and a variety of entertainment gives a midas touch to the event like no other.",
-      "We have a spacious 5 acre open space for corporate and education institutes for orgainizing sports events.",
+      "The impeccable hospitality and a variety of entertainment gives a midas touch to the event like no other. We have a spacious 5 acre open space for corporate and education institutes for organizing sports events.",
     ],
-    enquiryHref: "#",
+    enquiryHref: WEDDINGS_BOOKING_ENGINE_URL,
     virtualTourKey: "sports",
     virtualTourAriaLabel: "Take a virtual tour of sports area",
   },

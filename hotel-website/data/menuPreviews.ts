@@ -3,6 +3,8 @@ const menuPreviews: Record<string, string> = {
   "/rooms": "/images/7-9-25/Copy of IMG_2910.avif",
   "/rooms/reservation": "/images/7-9-25/Copy of IMG_2907.avif",
   "/dining": "/images/7-9-25/Copy of IMG_2906.avif",
+  "/picnic": "/images/7-9-25/Copy of IMG_3980.avif",
+  "/corporate": "/images/conference3-1.jpg",
   "/wellness": "/images/2.avif",
   "/experiences": "/images/7-9-25/Copy of IMG_3980.avif",
   "/weddings": "/images/7-9-25/Copy of IMG_2912.avif",

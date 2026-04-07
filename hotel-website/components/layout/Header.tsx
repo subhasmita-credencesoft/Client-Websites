@@ -19,7 +19,7 @@ const DEFAULT_PHONE_2 = "+91 87798 14559";
 const DEFAULT_LOGO = "/images/logo1.png";
 
 const HERO_PREFIXES = [
-  "/", "/rooms", "/dining", "/about", "/wellness",
+  "/", "/rooms", "/dining", "/picnic", "/corporate", "/about", "/wellness",
   "/facilities", "/experiences", "/weddings",
   "/blog", "/around-us", "/contact", "/tariffs",
 ];

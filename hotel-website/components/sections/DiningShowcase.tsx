@@ -12,42 +12,42 @@ const tourUrl =
 const diningItems = [
   {
     title: "UK's Resort Restaurant",
-    label: "Restaurant Dining",
+    label: "Indoor Resort Dining",
     description:
-      "Enjoy a hearty lunch and a delectable dinner with delicious local cuisine and popular Indian favorites.",
-    image: "https://bookonelocal.in/cdn/Copy of IMG_2912.avif",
+      "Relax in our comfortable indoor restaurant space with neatly arranged seating, ideal for families and couples enjoying fresh meals in a peaceful resort atmosphere.",
+    image: "din1.avif",
     position: "center",
   },
   {
-    title: "Traditional Cuisine Hall",
-    label: "Indian | Mughlai | Chinese",
+    title: "Group Dining Hall",
+    label: "School | Picnic | Large Groups",
     description:
-      "Choose from Indian, Mughlai, and Chinese delicacies served with warm hospitality for families and groups.",
-    image: "https://bookonelocal.in/cdn/Copy-of-IMG_2927.avif",
+      "Spacious dining setup specially arranged for school picnics, educational trips, and large group visits with organized seating and quick service support.",
+    image: "din2.avif",
     position: "center 42%",
   },
   {
-    title: "Wedding Dining Hall",
-    label: "Wedding Dining",
+    title: "Garden View Dining Area",
+    label: "Family Outdoor Dining",
     description:
-      "Celebrate wedding functions with curated dining menus, spacious seating, and festive service.",
+      "Enjoy relaxed meals with family and friends in our garden-facing open dining area surrounded by greenery and fresh resort ambience.",
     image: "https://bookonelocal.in/cdn/Copy of IMG_2910.avif",
     position: "center 40%",
   },
   {
-    title: "Outer Garden Dining",
-    label: "Outdoor Dining",
+    title: "Covered Garden Restaurant Seating",
+    label: "Semi-Outdoor Dining",
     description:
-      "Take your meals in a lush green open-air setting between Mumbai and Pune with a peaceful resort ambience.",
-    image: "https://bookonelocal.in/cdn/Copy of IMG_3968.avif",
+      "Experience comfortable semi-outdoor dining with shaded seating and scenic green views, perfect for peaceful resort-style meals.",
+    image: "din3.avif",
     position: "center 32%",
   },
   {
-    title: "Corporate & Group Dining",
-    label: "Conference | Team Events",
+    title: "Corporate & Conference Dining",
+    label: "Meetings | Team Events",
     description:
-      "Plan official getaways, conferences, and one-day trips with coordinated buffet spreads and full dining support.",
-    image: "https://bookonelocal.in/cdn/Copy of IMG_4025.JPG",
+      "Well-arranged dining space designed for corporate meetings, conferences, and team events with structured seating and organized meal service.",
+    image: "uk-conf.avif",
     position: "center 36%",
   },
 ];

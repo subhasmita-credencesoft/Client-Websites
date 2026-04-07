@@ -1,8 +1,10 @@
 const navigation = [
   { label: "Home", href: "/" },
-  { label: "Rooms & Suites", href: "/rooms" },
+  { label: "Rooms", href: "/rooms" },
   { label: "Dining", href: "/dining" },
-  { label: "Weddings & Events", href: "/weddings" },
+    { label: "Picnic", href: "/picnic" },
+    { label: "Corporate Booking", href: "/corporate" },
+  { label: "Events", href: "/weddings" },
   { label: "Facilities", href: "/wellness" },
   { label: "Experiences", href: "/experiences" },
   { label: "Tariff", href: "/tariffs" },

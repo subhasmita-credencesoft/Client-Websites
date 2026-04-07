@@ -1,27 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 import { usePropertyData } from "../providers/PropertyDataProvider";
-
-const offerSlides = [
-  {
-    id: "offer-1",
-    image: "/images/special_offers1.jpg",
-    label: "Early Booking",
-    title: "15% Off Advance Reservations",
-    description: "Plan ahead and enjoy exclusive savings when you book your stay in advance.",
-  },
-  {
-    id: "offer-2",
-    image: "/images/special_offers2.jpg",
-    label: "Summer Escape",
-    title: "Complimentary Breakfast",
-    description: "Start your mornings with a freshly prepared breakfast included in your stay.",
-  },
-];
+import { LOCATION_OFFER_SLIDES } from "@/data/sections/locationOffers";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -146,7 +131,7 @@ export default function LocationOffers() {
   const startTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
-      goTo((prev: number) => (prev + 1) % offerSlides.length);
+      goTo((prev: number) => (prev + 1) % LOCATION_OFFER_SLIDES.length);
     }, 5000);
   }, [goTo]);
 
@@ -226,7 +211,7 @@ export default function LocationOffers() {
       className="lo-section bg-[#f8f6f1] py-14 text-[#1f3c44] sm:py-18 lg:py-24"
     >
       <div className="hidden" aria-hidden="true">
-        {offerSlides.map((slide, index) => (
+        {LOCATION_OFFER_SLIDES.map((slide, index) => (
           <img
             key={`${slide.id}-preload`}
             src={slide.image}
@@ -286,7 +271,7 @@ export default function LocationOffers() {
               <div
                 ref={offerBgRef}
                 className="lo-offer-bg absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${offerSlides[activeIndex].image})` }}
+                style={{ backgroundImage: `url(${LOCATION_OFFER_SLIDES[activeIndex].image})` }}
                 aria-hidden="true"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/20 to-transparent" />
@@ -295,20 +280,25 @@ export default function LocationOffers() {
                 ref={offerTxtRef}
                 className="lo-offer-content relative z-10 flex flex-col items-center justify-end p-6 text-center sm:p-8 lg:p-10"
               >
-                <span className="lo-offer-label">{offerSlides[activeIndex].label}</span>
-                <h3 className="lo-offer-title mt-3">{offerSlides[activeIndex].title}</h3>
-                <p className="lo-offer-desc mt-2.5">{offerSlides[activeIndex].description}</p>
-                <button type="button" className="lo-offer-btn mt-6">
+                <span className="lo-offer-label">{LOCATION_OFFER_SLIDES[activeIndex].label}</span>
+                <h3 className="lo-offer-title mt-3">{LOCATION_OFFER_SLIDES[activeIndex].title}</h3>
+                <p className="lo-offer-desc mt-2.5">{LOCATION_OFFER_SLIDES[activeIndex].description}</p>
+                <Link
+                  href={LOCATION_OFFER_SLIDES[activeIndex].href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="lo-offer-btn mt-6"
+                >
                   Explore Offer
                   <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="lo-offer-btn-icon">
                     <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </button>
+                </Link>
               </div>
             </div>
 
             <div className="lo-dots mt-5 flex items-center gap-2.5">
-              {offerSlides.map((slide, i) => (
+              {LOCATION_OFFER_SLIDES.map((slide, i) => (
                 <button
                   key={slide.id}
                   type="button"
@@ -327,7 +317,7 @@ export default function LocationOffers() {
             <div className="lo-arrow-row mt-5 flex items-center gap-3">
               <button
                 type="button"
-                onClick={() => { startTimer(); goTo((prev: number) => (prev - 1 + offerSlides.length) % offerSlides.length); }}
+                onClick={() => { startTimer(); goTo((prev: number) => (prev - 1 + LOCATION_OFFER_SLIDES.length) % LOCATION_OFFER_SLIDES.length); }}
                 className="lo-arrow-btn"
                 aria-label="Previous offer"
               >
@@ -337,7 +327,7 @@ export default function LocationOffers() {
               </button>
               <button
                 type="button"
-                onClick={() => { startTimer(); goTo((prev: number) => (prev + 1) % offerSlides.length); }}
+                onClick={() => { startTimer(); goTo((prev: number) => (prev + 1) % LOCATION_OFFER_SLIDES.length); }}
                 className="lo-arrow-btn"
                 aria-label="Next offer"
               >
@@ -346,7 +336,7 @@ export default function LocationOffers() {
                 </svg>
               </button>
               <span className="lo-slide-counter">
-                {String(activeIndex + 1).padStart(2, "0")}&ensp;/&ensp;{String(offerSlides.length).padStart(2, "0")}
+                {String(activeIndex + 1).padStart(2, "0")}&ensp;/&ensp;{String(LOCATION_OFFER_SLIDES.length).padStart(2, "0")}
               </span>
             </div>
           </div>

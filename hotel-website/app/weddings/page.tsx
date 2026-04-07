@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import WeddingsHero from "../../components/sections/WeddingsHero";
 import WeddingsCelebration from "../../components/sections/WeddingsCelebration";
+import WeddingsImmersiveMoments from "../../components/sections/WeddingsImmersiveMoments";
 import WeddingsMeetings from "../../components/sections/WeddingsMeetings";
 import { createPageMetadata } from "../../lib/metadata";
 
@@ -18,6 +19,7 @@ export default function WeddingsPage() {
       <WeddingsHero />
       {/* <HeroBookingBarDock /> */}
       <WeddingsCelebration />
+      <WeddingsImmersiveMoments />
       <WeddingsMeetings />
     </>
   );

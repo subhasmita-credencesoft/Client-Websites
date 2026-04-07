@@ -28,9 +28,9 @@ export const RESORT_INTRO_VALUES: ResortIntroValue[] = [
 ];
 
 export const RESORT_INTRO_SLIDES: ResortIntroSlide[] = [
-  { src: "https://bookonelocal.in/cdn/Copy of IMG_1568.avif", alt: "Resort aerial view" },
-  { src: "https://bookonelocal.in/cdn/Copy of IMG_2912.avif", alt: "Resort leisure area" },
-  { src: "https://bookonelocal.in/cdn/Copy of IMG_2911.avif", alt: "Resort landscape" },
+  { src: "/uk.avif", alt: "Resort aerial view" },
+  { src: "/uk1.avif", alt: "Resort leisure area" },
+  { src: "/uk2.avif", alt: "Resort landscape" },
 ];
 
 export const RESORT_INTRO_TITLE =

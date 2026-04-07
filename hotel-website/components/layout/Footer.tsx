@@ -10,8 +10,8 @@ import Container from "../ui/Container";
 import { usePropertyData } from "../providers/PropertyDataProvider";
 import useClientReady from "../../hooks/useClientReady";
 import {
+  buildFooterSocialLinks,
   buildFooterQuickLinks,
-  FOOTER_SOCIAL_LINKS,
   TRIPADVISOR_URL,
 } from "../../data/layout/footer";
 
@@ -20,6 +20,12 @@ function formatPhone(value: string | null | undefined) {
   const digitsOnly = value.replace(/\D/g, "");
   if (digitsOnly.length === 10) return `+91 ${digitsOnly.slice(0, 5)} ${digitsOnly.slice(5)}`;
   return value;
+}
+
+function formatPhoneHref(value: string | null | undefined) {
+  if (!value) return "";
+  const digitsOnly = value.replace(/\D/g, "");
+  return digitsOnly ? `tel:+${digitsOnly}` : "";
 }
 
 function buildAddressLines(parts: Array<string | null | undefined>) {
@@ -34,6 +40,7 @@ export default function Footer() {
   const clientReady = useClientReady();
   const liveProperty = clientReady ? property : null;
   const quickLinks = buildFooterQuickLinks(liveProperty?.website);
+  const socialLinks = buildFooterSocialLinks(liveProperty);
   const socialIconMap = {
     facebook: Facebook,
     instagram: Instagram,
@@ -52,6 +59,8 @@ export default function Footer() {
   ]);
   const phone1 = formatPhone(liveProperty?.mobile) || "+91 98220 12343";
   const phone2 = formatPhone(liveProperty?.whatsApp) || "+91 87798 14559";
+  const phone1Href = formatPhoneHref(liveProperty?.mobile) || "tel:+919822012343";
+  const phone2Href = formatPhoneHref(liveProperty?.whatsApp) || "tel:+918779814559";
   const email = liveProperty?.email || "info@uksresort.com";
 
   useEffect(() => {
@@ -153,25 +162,6 @@ export default function Footer() {
               <p className="mt-2 text-[0.95rem] text-white/70 sm:text-sm">
                 {liveProperty?.businessType || "Accommodation"} {liveProperty?.businessSubtype ? `- ${liveProperty.businessSubtype}` : ""}
               </p>
-              <form className="mt-6 space-y-3 border-b border-white/30 pb-4">
-                <label htmlFor="newsletter-email" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="newsletter-email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="your email"
-                  className="h-11 w-full rounded-md border border-white/30 bg-white/5 px-3 text-[0.95rem] text-white/90 placeholder:text-white/60 focus:border-white/55 focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  className="inline-flex h-10 items-center justify-center rounded-md border border-white/40 px-5 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white transition hover:bg-white/10"
-                >
-                  Subscribe
-                </button>
-              </form>
             </div>
             <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-[minmax(220px,1.3fr)_minmax(170px,1fr)_minmax(150px,1fr)]">
               {addressLines.length > 0 && (
@@ -186,8 +176,18 @@ export default function Footer() {
               )}
               <div className="footer-content-block">
                 <h5 className="font-serif text-lg">Contact</h5>
-                <p className="mt-4 break-words text-[0.97rem] leading-7 text-white/75 sm:text-sm sm:leading-6">{phone1}</p>
-                <p className="break-words text-[0.97rem] leading-7 text-white/75 sm:text-sm sm:leading-6">{phone2}</p>
+                <Link
+                  href={phone1Href}
+                  className="mt-4 block break-words text-[0.97rem] leading-7 text-white/75 hover:text-white sm:text-sm sm:leading-6"
+                >
+                  {phone1}
+                </Link>
+                <Link
+                  href={phone2Href}
+                  className="block break-words text-[0.97rem] leading-7 text-white/75 hover:text-white sm:text-sm sm:leading-6"
+                >
+                  {phone2}
+                </Link>
                 <Link
                   href={`mailto:${email}`}
                   className="break-all text-[0.97rem] leading-7 text-white/75 hover:text-white sm:text-sm sm:leading-6"
@@ -198,13 +198,15 @@ export default function Footer() {
               <div className="footer-content-block">
                 <h5 className="font-serif text-lg">Social</h5>
                 <div className="mt-4 space-y-2">
-                  {FOOTER_SOCIAL_LINKS.map((item) => {
+                  {socialLinks.map((item) => {
                     const Icon = socialIconMap[item.icon];
                     return (
                     <Link
                       key={item.label}
                       href={item.href}
                       className="flex items-center gap-2 text-[0.97rem] leading-7 text-white/75 hover:text-white sm:text-sm sm:leading-6"
+                      target="_blank"
+                      rel="noreferrer"
                     >
                       <Icon className="h-4 w-4" aria-hidden="true" />
                       {item.label}

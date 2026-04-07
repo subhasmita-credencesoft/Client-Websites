@@ -14,6 +14,8 @@ const staticRoutes = [
   "/dining",
   "/experiences",
   "/gallery",
+  "/picnic",
+  "/corporate",
   "/rooms",
   "/rooms/reservation",
   "/tariffs",
