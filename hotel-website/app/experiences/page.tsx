@@ -18,15 +18,23 @@ const ExperiencesShowcase = dynamic(() => import("../../components/sections/Expe
 const ExperiencesExplore = dynamic(() => import("../../components/sections/ExperiencesExplore"), {
   loading: () => <section className="min-h-[65vh] bg-[#f6f3ed]" aria-hidden="true" />,
 });
+const WellnessSpaIntro = dynamic(() => import("../../components/sections/WellnessSpaIntro"), {
+  loading: () => <section className="min-h-[70vh] bg-[#f4f1ea]" aria-hidden="true" />,
+});
+const WellnessMoodSlider = dynamic(() => import("../../components/sections/WellnessMoodSlider"), {
+  loading: () => <section className="min-h-[70vh] bg-[#1c2427]" aria-hidden="true" />,
+});
 
 export default function ExperiencesPage() {
   return (
     <>
       <ExperiencesHero />
-        <BlogFeature />
+      <BlogFeature />
       {/* <ExperiencesIntro /> */}
       <ExperiencesShowcase />
       <ExperiencesExplore />
+      <WellnessSpaIntro />
+      <WellnessMoodSlider />
     </>
   );
 }
