@@ -149,7 +149,7 @@ export default function PageHero({
           </div>
 
           {subtitle && (
-            <p className="page-hero-subtitle mx-auto mt-4 max-w-3xl text-center text-[0.95rem] leading-7 text-white/92 md:text-base">
+            <p className="page-hero-subtitle mx-auto mt-4 max-w-2xl text-center text-[0.82rem] leading-6 text-white/90 sm:text-[0.88rem] md:text-[0.94rem]">
               {subtitle}
             </p>
           )}

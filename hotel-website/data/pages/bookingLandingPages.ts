@@ -76,7 +76,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
   heroSubtitle:
     "Plan vibrant day outings with lawns, family-friendly activities, buffet dining, and a booking flow that feels as relaxed as the day itself.",
   heroImage: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
-  heroVideo: "https://bookonelocal.in/cdn/Create_a_cinematic_202603191807.mp4",
+  heroVideo: "https://bookonelocal.in/cdn/Picnic.mp4",
   path: "/picnic",
   metaTitle: "Picnic",
   metaDescription:

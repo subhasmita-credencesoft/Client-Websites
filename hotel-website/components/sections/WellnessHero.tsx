@@ -161,7 +161,7 @@ export default function WellnessHero() {
       <Container className="relative flex min-h-[80svh] flex-col justify-center pb-12 pt-28 sm:min-h-[90svh] sm:pb-16 sm:pt-36 md:pt-44 lg:min-h-screen lg:pb-20 lg:pt-52">
         <div ref={contentRef}>
 
-          <div className="wellness-eyebrow flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.2em] text-white/80 sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
+          <div className="wellness-eyebrow flex items-center gap-4 text-[0.62rem] uppercase tracking-[0.18em] text-white/78 sm:gap-6 sm:text-[0.68rem] sm:tracking-[0.28em]">
             <span>Experiences That Elevate Your Getaway</span>
           </div>
 

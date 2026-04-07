@@ -49,12 +49,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const BOOKING_ENGINE_URL = "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true";
 
-const tariffHighlights = [
-  "Breakfast-inclusive plans",
-  "Clear room pricing",
-  "Direct booking path",
-] as const;
-
 const dayPicnicFeatureCards = [
   {
     icon: Ticket,
@@ -231,72 +225,50 @@ export default function TariffInfo() {
 
       <Container>
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-8 lg:grid-cols-[1.04fr_0.96fr] lg:items-start">
-            <div className="tariff-hero-card rounded-3xl border border-[rgba(13,43,47,0.10)] bg-white p-7 shadow-[0_16px_40px_rgba(13,43,47,0.06)] sm:p-10">
-              <p className="tariff-intro text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[#C49A3C]">
-                Direct Booking Tariff
-              </p>
+          <div className="tariff-hero-card rounded-[2rem] border border-[rgba(13,43,47,0.10)] bg-white px-7 py-8 shadow-[0_22px_54px_rgba(13,43,47,0.08)] sm:px-10 sm:py-10">
+            <p className="tariff-intro text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#C49A3C]">
+              Tariff & Stay Details
+            </p>
 
-              <h2 className="tariff-intro mt-5 font-serif text-[2.4rem] leading-[0.9] text-[#0D2B2F] sm:text-[3.6rem]">
-                Plan faster.
-                <br />
-                <span className="text-[#1A4A50]">Book with confidence.</span>
-              </h2>
+            <h2 className="tariff-intro mt-5 max-w-[11ch] font-serif text-[2.4rem] leading-[0.92] text-[#0D2B2F] sm:text-[3.5rem]">
+              Clean pricing with a clear next step.
+            </h2>
 
-              <p className="tariff-intro mt-5 max-w-2xl text-[0.97rem] leading-8 text-[#2C4A50]">
-                {TARIFF_INTRO_TEXT} Review the latest room pricing, compare stay options, and move
-                directly into the booking engine when you are ready to confirm.
-              </p>
+            <p className="tariff-intro mt-5 max-w-3xl text-[0.98rem] leading-8 text-[#2C4A50]">
+              {TARIFF_INTRO_TEXT} Review room rates, group packages, and one-day picnic pricing in one
+              simple flow before moving directly to the booking engine.
+            </p>
 
-              <ul className="mt-7 space-y-2 text-[0.92rem] leading-7 text-[#2C4A50]">
-                {tariffHighlights.map((item) => (
-                  <li key={item} className="tariff-intro flex items-start gap-3">
-                    <span className="mt-2 h-2 w-2 rounded-full bg-[#C49A3C]" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <div className="mt-8 rounded-[1.6rem] border border-[rgba(13,43,47,0.10)] bg-[#F9F5EE] px-5 py-5 sm:px-6">
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+                <div className="flex flex-col gap-4 text-[#1A4A50] sm:flex-row sm:flex-wrap sm:items-center sm:gap-8">
+                  <p className="text-[0.95rem] leading-7">
+                    <span className="font-semibold text-[#0D2B2F]">Check-in:</span> {TARIFF_CHECKIN_TIME}
+                  </p>
+                  <p className="text-[0.95rem] leading-7">
+                    <span className="font-semibold text-[#0D2B2F]">Check-out:</span> {TARIFF_CHECKOUT_TIME}
+                  </p>
+                  <p className="text-[0.95rem] leading-7">
+                    <span className="font-semibold text-[#0D2B2F]">Includes:</span> Breakfast-inclusive room plans
+                  </p>
+                </div>
 
-            <div className="tariff-hero-card rounded-3xl border border-[rgba(13,43,47,0.10)] bg-[#F9F5EE] p-7 shadow-[0_16px_40px_rgba(13,43,47,0.06)] sm:p-10">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[#C49A3C]">
-                Ready To Reserve
-              </p>
-
-              <h3 className="mt-5 font-serif text-[2rem] leading-[1.02] text-[#0D2B2F] sm:text-[2.6rem]">
-                Tariff clarity helps guests book faster
-              </h3>
-
-              <p className="mt-5 max-w-[42ch] text-[0.96rem] leading-8 text-[#2C4A50]">
-                Check the stay timings below and move directly into the booking engine when you are ready.
-              </p>
-
-              <div className="mt-7 space-y-4 text-[0.98rem] leading-7 text-[#1A4A50]">
-                <p>
-                  <span className="font-semibold text-[#0D2B2F]">Check-in:</span>{" "}
-                  {TARIFF_CHECKIN_TIME}
-                </p>
-                <p>
-                  <span className="font-semibold text-[#0D2B2F]">Check-out:</span>{" "}
-                  {TARIFF_CHECKOUT_TIME}
-                </p>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Link
-                  href={BOOKING_ENGINE_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-[#C49A3C] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] transition hover:bg-[#D4B05A]"
-                >
-                  Book Now
-                </Link>
-                <Link
-                  href="/rooms"
-                  className="inline-flex items-center justify-center rounded-full border border-[rgba(13,43,47,0.18)] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] transition hover:bg-white"
-                >
-                  Explore Rooms
-                </Link>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href={BOOKING_ENGINE_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center rounded-full bg-[#C49A3C] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] transition hover:bg-[#D4B05A]"
+                  >
+                    Check Availability
+                  </Link>
+                  <Link
+                    href="/rooms"
+                    className="inline-flex items-center justify-center rounded-full border border-[rgba(13,43,47,0.18)] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] transition hover:bg-white"
+                  >
+                    Explore Rooms
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -408,26 +380,25 @@ export default function TariffInfo() {
               </p>
             </div>
 
-            <div className="tariff-detail relative overflow-hidden rounded-3xl border border-[#1A4A50]/25 bg-[linear-gradient(145deg,#143640_0%,#1a4650_58%,#204f5a_100%)] p-7 text-white shadow-[0_24px_60px_rgba(13,43,47,0.18)] sm:p-9">
+            <div className="tariff-detail relative overflow-hidden rounded-3xl border border-[#1A4A50]/18 bg-[linear-gradient(145deg,#143640_0%,#1a4650_58%,#204f5a_100%)] p-7 text-white shadow-[0_24px_60px_rgba(13,43,47,0.18)] sm:p-9">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(196,154,60,0.14),transparent_30%),radial-gradient(circle_at_20%_80%,rgba(13,43,47,0.30),transparent_30%)]" />
               <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#C49A3C]/40 to-transparent" />
 
               <div className="relative z-10">
                 <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[#E8C97A]">
-                  Conversion Focus
+                  Need Help Booking?
                 </p>
                 <h3 className="mt-4 font-serif text-[2rem] leading-[0.94] sm:text-[2.6rem]">
-                  Visible pricing. Cleaner action. Faster conversion.
+                  Make the next step simple and visible.
                 </h3>
                 <p className="mt-5 max-w-2xl text-[0.96rem] leading-8 text-white/80">
-                  Once guests understand the tariff, the next step should feel obvious. Use the
-                  booking engine for live availability or contact the team if you need group help.
+                  Once the tariff is clear, guests should be able to act quickly. Continue to the booking engine for live availability or contact the team for group assistance.
                 </p>
 
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   {[
-                    { label: "Best for", value: "Direct Booking" },
-                    { label: "Response path", value: "Instant Action" },
+                    { label: "Best for", value: "Room Stays" },
+                    { label: "Support", value: "Group Help" },
                   ].map(({ label, value }) => (
                     <div
                       key={label}
@@ -450,7 +421,7 @@ export default function TariffInfo() {
                     rel="noreferrer"
                     className="inline-flex items-center justify-center rounded-full bg-[#C49A3C] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] shadow-[0_10px_24px_rgba(196,154,60,0.28)] transition hover:-translate-y-0.5 hover:bg-[#D4B05A] active:translate-y-0"
                   >
-                    Open Booking Engine
+                    Check Availability
                   </Link>
                   <Link
                     href="/contact"

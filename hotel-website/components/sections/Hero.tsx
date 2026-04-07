@@ -189,7 +189,7 @@ export default function Hero() {
             ))}
           </div>
 
-          <p className="hero-tagline mt-3 max-w-[40rem] px-2 text-center text-[0.86rem] leading-relaxed text-white/90 drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)] sm:mt-4 sm:text-[0.95rem] md:text-[1.02rem]">
+          <p className="hero-tagline mt-3 max-w-[34rem] px-2 text-center text-[0.78rem] leading-6 text-white/88 drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)] sm:mt-4 sm:text-[0.84rem] md:text-[0.9rem]">
             {HOME_HERO_SUBTITLE}
           </p>
         </div>
