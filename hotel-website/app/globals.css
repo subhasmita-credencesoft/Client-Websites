@@ -19,55 +19,12 @@
 /* Design System Tokens                                                       */
 /* -------------------------------------------------------------------------- */
 :root {
-  --surface-1: var(--paper);
-  --surface-2: #ffffff;
-  --surface-3: #f3efe8;
-  --text-primary: var(--ink);
-  --text-muted: color-mix(in srgb, var(--ink) 72%, white 28%);
-  --border-subtle: color-mix(in srgb, var(--ink) 14%, white 86%);
-  --border-strong: color-mix(in srgb, var(--ink) 26%, white 74%);
   --font-body: var(--font-jost), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
-
-  --radius-xs: 8px;
-  --radius-sm: 12px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-pill: 999px;
-
-  --shadow-soft: 0 10px 30px rgba(15, 22, 28, 0.08);
-  --shadow-card: 0 18px 45px rgba(15, 22, 28, 0.14);
-
-  --container-max: 80rem;
+  --surface-1: var(--surface-page);
+  --surface-2: var(--surface-card);
+  --surface-3: var(--surface-muted);
   --container-wide-max: 96rem;
-  --container-pad: 1rem;
-
-  --section-space: clamp(3.5rem, 7vw, 7rem);
-  --section-space-tight: clamp(2.25rem, 4.5vw, 4.5rem);
-
-  --fs-body: clamp(0.95rem, 0.2vw + 0.92rem, 1.05rem);
-  --fs-title-md: clamp(1.7rem, 4.6vw, 2.6rem);
-  --fs-title-lg: clamp(2rem, 5.6vw, 3.8rem);
-
-  --transition-base: 220ms ease;
-}
-
-@media (max-width: 374px) {
-  :root {
-    --container-pad: 0.875rem;
-  }
-}
-
-@media (min-width: 640px) {
-  :root {
-    --container-pad: 1.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  :root {
-    --container-pad: 2.5rem;
-  }
 }
 
 * {
@@ -92,11 +49,12 @@ body {
 
 body {
   min-width: 320px;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--surface-page);
+  color: var(--text-primary);
   font-family: var(--font-body);
-  font-size: var(--fs-body);
-  line-height: 1.55;
+  font-size: var(--font-size-16);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-height-body);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -130,8 +88,8 @@ h5,
 h6 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.08;
+  font-weight: var(--weight-regular);
+  line-height: var(--line-height-heading);
   text-wrap: balance;
 }
 
@@ -236,7 +194,7 @@ a {
 
 :focus-visible {
   outline: 2px solid color-mix(in srgb, var(--accent) 70%, white 30%);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 @keyframes menuDrop {
@@ -270,21 +228,22 @@ a {
 }
 
 .hotel-datepicker {
-  border: 1px solid #d7dce2;
-  border-radius: 14px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
   font-family: var(--font-jost), system-ui, -apple-system, "Segoe UI", sans-serif;
   overflow: hidden;
+  box-shadow: var(--shadow-soft);
 }
 
 .hotel-datepicker .react-datepicker__header {
-  background-color: #f7f8fa;
-  border-bottom: 1px solid #e6eaf0;
+  background-color: var(--surface-muted);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .hotel-datepicker .react-datepicker__day--selected,
 .hotel-datepicker .react-datepicker__day--keyboard-selected {
-  background-color: #df984e;
-  color: #fff;
+  background-color: var(--accent);
+  color: var(--text-inverse);
 }
 
 .react-datepicker-wrapper,
@@ -324,7 +283,7 @@ a {
 
   .site-heading {
     max-width: 42rem;
-    margin-bottom: clamp(2rem, 3vw, 2.5rem);
+    margin-bottom: var(--space-6);
   }
 
   .site-heading--center {
@@ -338,25 +297,26 @@ a {
 
   .site-eyebrow {
     color: var(--bronze);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.3em;
+    font-size: var(--font-size-12);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-eyebrow);
+    line-height: var(--line-height-caption);
     text-transform: uppercase;
   }
 
   .site-title {
-    margin-top: 1rem;
+    margin-top: var(--space-4);
     color: var(--text-primary);
     font-family: var(--font-display);
-    font-size: var(--fs-title-md);
-    line-height: 1.1;
+    font-size: var(--font-size-32);
+    line-height: var(--line-height-heading);
   }
 
   .site-copy {
-    margin-top: 1rem;
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.75;
+    margin-top: var(--space-4);
+    color: var(--text-secondary);
+    font-size: var(--font-size-16);
+    line-height: var(--line-height-body);
     overflow-wrap: break-word;
   }
 
@@ -374,87 +334,97 @@ a {
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-pill);
-    font-weight: 600;
+    min-height: var(--tap-target-min);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
     transition:
-      background-color var(--transition-base),
-      color var(--transition-base),
-      border-color var(--transition-base),
-      box-shadow var(--transition-base),
-      transform var(--transition-base);
+      background-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      transform var(--duration-base) var(--ease-standard);
   }
 
   .site-button--sm {
-    min-height: 2.25rem;
-    padding-inline: 1rem;
-    font-size: 0.875rem;
+    min-height: var(--tap-target-min);
+    padding-inline: var(--space-4);
+    font-size: var(--font-size-14);
   }
 
   .site-button--md {
-    min-height: 2.75rem;
-    padding-inline: 1.5rem;
-    font-size: 0.875rem;
+    min-height: var(--control-height);
+    padding-inline: var(--space-5);
+    font-size: var(--font-size-14);
   }
 
   .site-button--lg {
-    min-height: 3rem;
-    padding-inline: 1.75rem;
-    font-size: 1rem;
+    min-height: var(--control-height-lg);
+    padding-inline: var(--space-6);
+    font-size: var(--font-size-16);
   }
 
   .site-button--primary {
     background: var(--accent);
-    color: #fff;
+    color: var(--text-inverse);
+    box-shadow: var(--shadow-soft);
   }
 
   .site-button--primary:hover {
-    background: #a9552b;
+    background: var(--accent-hover);
   }
 
   .site-button--outline {
-    border: 1px solid color-mix(in srgb, var(--ink) 20%, white 80%);
-    color: var(--ink);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    background: transparent;
   }
 
   .site-button--outline:hover {
-    border-color: color-mix(in srgb, var(--ink) 40%, white 60%);
+    border-color: var(--border-strong);
+    background: color-mix(in srgb, var(--surface-card) 88%, var(--accent) 12%);
   }
 
   .site-button--ghost {
-    color: var(--ink);
+    color: var(--text-primary);
   }
 
   .site-button--ghost:hover {
-    background: color-mix(in srgb, var(--ink) 5%, transparent 95%);
+    background: color-mix(in srgb, var(--text-primary) 6%, transparent 94%);
   }
 
   .site-field {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    color: color-mix(in srgb, var(--ink) 80%, white 20%);
-    font-size: 0.875rem;
+    gap: var(--space-2);
+    color: var(--text-secondary);
+    font-size: var(--font-size-14);
   }
 
   .site-field__label {
-    color: var(--ink);
-    font-weight: 600;
+    color: var(--text-primary);
+    font-size: var(--font-size-14);
+    font-weight: var(--weight-semibold);
+    line-height: var(--line-height-caption);
   }
 
   .site-field__control {
-    min-height: 2.75rem;
-    border: 1px solid color-mix(in srgb, var(--ink) 10%, white 90%);
+    min-height: var(--control-height);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-sm);
-    background: #fff;
-    padding: 0.75rem 1rem;
-    color: var(--ink);
-    font-size: 0.875rem;
+    background: var(--surface-card);
+    padding: var(--space-3) var(--space-4);
+    color: var(--text-primary);
+    font-size: var(--font-size-16);
+    line-height: var(--line-height-body);
     transition:
-      border-color var(--transition-base),
-      box-shadow var(--transition-base);
+      border-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard);
   }
 
   .site-field__control::placeholder {
-    color: color-mix(in srgb, var(--ink) 40%, white 60%);
+    color: var(--text-muted);
   }
 
   .site-field__control:focus {
@@ -464,7 +434,7 @@ a {
   }
 
   .site-field__control--textarea {
-    min-height: 7rem;
+    min-height: 8rem;
     resize: vertical;
   }
 
@@ -482,7 +452,7 @@ a {
   .site-skeleton-shell {
     position: relative;
     overflow: hidden;
-    background: #143b47;
+    background: var(--pine);
   }
 
   .site-skeleton-shimmer {
@@ -502,6 +472,14 @@ a {
     background: rgba(255, 255, 255, 0.14);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(6px);
+  }
+}
+
+@media (min-width: 768px) {
+  @layer components {
+    .site-title {
+      font-size: var(--font-size-48);
+    }
   }
 }
 

@@ -1,13 +1,106 @@
 :root {
   --paper: #f7f3ee;
+  --paper-strong: #ffffff;
+  --paper-muted: #f3efe8;
   --ink: #1b1a17;
+  --ink-soft: #41535a;
+  --ink-muted: #667980;
   --sand: #e8ddcf;
   --bronze: #b68b5b;
   --pine: #244332;
   --mist: #f3f5f4;
   --accent: #c46a3a;
+  --accent-hover: #a9552b;
+  --success: #2f6b4f;
+  --warning: #a86a22;
+  --danger: #a34335;
+
+  --surface-page: var(--paper);
+  --surface-card: var(--paper-strong);
+  --surface-muted: var(--paper-muted);
+
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-soft);
+  --text-muted: var(--ink-muted);
+  --text-inverse: #ffffff;
+
+  --border-subtle: rgba(27, 26, 23, 0.12);
+  --border-default: rgba(27, 26, 23, 0.18);
+  --border-strong: rgba(27, 26, 23, 0.28);
+
+  --shadow-soft: 0 10px 30px rgba(15, 22, 28, 0.08);
+  --shadow-card: 0 18px 45px rgba(15, 22, 28, 0.14);
+  --shadow-modal: 0 24px 60px rgba(15, 22, 28, 0.18);
+
+  --radius-xs: 0.375rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-pill: 999px;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  --font-size-12: 0.75rem;
+  --font-size-14: 0.875rem;
+  --font-size-16: 1rem;
+  --font-size-18: 1.125rem;
+  --font-size-24: 1.5rem;
+  --font-size-32: 2rem;
+  --font-size-48: 3rem;
+
+  --line-height-tight: 1.15;
+  --line-height-heading: 1.2;
+  --line-height-body: 1.6;
+  --line-height-caption: 1.4;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --tracking-body: 0;
+  --tracking-label: 0.08em;
+  --tracking-eyebrow: 0.18em;
+
+  --control-height: 3rem;
+  --control-height-lg: 3.25rem;
+  --tap-target-min: 44px;
+
+  --container-max: 80rem;
+  --container-pad: 1rem;
+  --section-space: 4rem;
+  --section-space-tight: 2.5rem;
+
+  --duration-fast: 160ms;
+  --duration-base: 220ms;
+  --ease-standard: ease;
   --font-jost: "Jost", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-playfair: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --container-pad: 1.5rem;
+    --section-space-tight: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-pad: 2.5rem;
+    --section-space: 5rem;
+    --section-space-tight: 3.5rem;
+    --font-size-32: 2.25rem;
+    --font-size-48: 3.5rem;
+  }
 }
 
 .theme-hotel {

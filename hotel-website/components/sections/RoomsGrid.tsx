@@ -138,32 +138,46 @@ function RoomCard({ room, virtualTourUrl }: { room: DisplayRoom; virtualTourUrl:
             alt={room.name}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover opacity-10"
+            className="object-cover"
             unoptimized={room.image.startsWith("http")}
           />
 
-          <div className="relative z-10 flex h-full flex-col overflow-y-auto px-6 py-5">
-            <div className="mb-4 border-b border-white/10 pb-4">
-              <h3 className="mb-1 font-serif text-xl text-white">{room.name}</h3>
-              <p className="text-[0.65rem] leading-relaxed text-white/70">{room.description}</p>
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,18,22,0.38)_0%,rgba(10,18,22,0.2)_30%,rgba(10,18,22,0.72)_100%)]" />
+
+          <div className="relative z-10 flex h-full flex-col px-6 py-5">
+            <div className="flex justify-end">
+              <span className="inline-flex rounded-full border border-white/45 bg-black/28 px-3 py-1 text-[0.56rem] font-semibold uppercase tracking-[0.14em] text-white">
+                Facilities
+              </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
-              {room.facilities.map((facility) => (
-                <div
-                  key={facility}
-                  className="flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-2 backdrop-blur-sm"
-                >
-                  <span className="text-[0.58rem] font-medium uppercase tracking-wide text-white/80">
+            <div className="pt-4">
+              <h3 className="mb-1 font-serif text-2xl text-white">{room.name}</h3>
+              <p className="mb-4 text-[0.72rem] uppercase tracking-[0.18em] text-white/82 sm:text-xs">
+                {room.size} &middot; {formatCapacityLabel(room.minOccupancy, room.capacity)} &middot; {room.bedType}
+              </p>
+              <p className="max-w-xl text-[0.68rem] leading-relaxed text-white/88">
+                {room.description}
+              </p>
+            </div>
+
+            <div className="flex flex-1 items-center justify-center">
+              <div className="flex max-w-[32rem] flex-wrap items-center justify-center gap-2">
+                {room.facilities.map((facility) => (
+                  <div
+                    key={facility}
+                    className="rounded-full border border-white/22 bg-white/14 px-4 py-2 text-[0.58rem] font-medium uppercase tracking-[0.12em] text-white backdrop-blur-sm"
+                  >
                     {facility}
-                  </span>
-                </div>
-              ))}
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <p className="mt-auto pt-4 text-center text-[0.6rem] uppercase tracking-[0.2em] text-white/30">
-              Click to go back 
+            <p className="pt-4 text-center text-[0.6rem] uppercase tracking-[0.2em] text-white/58">
+              Click to go back
             </p>
+
           </div>
         </div>
       </div>
