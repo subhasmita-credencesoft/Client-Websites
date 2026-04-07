@@ -228,62 +228,62 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
 export const corporateLandingPageContent: BookingLandingPageContent = {
   heroTitle: "Corporate Booking",
   heroSubtitle:
-    "Present offsites, leadership retreats, and team stays with a sharper premium feel, clearer package structure, and a direct booking path.",
+    "Plan corporate stays, team offsites, conferences, and business gatherings with a clearer view of the resort experience and booking path.",
   heroImage: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
   heroVideo: "https://bookonelocal.in/cdn/Curtains_opening_revealing_202603191629.mp4",
   path: "/corporate",
   metaTitle: "Corporate Booking",
   metaDescription:
-    "Book corporate stays, offsites, and business retreats at UK's Resort, Khopoli with a stronger premium presentation and direct booking access.",
+    "Book corporate stays, offsites, retreats, and business gatherings at UK's Resort, Khopoli with clear package details and direct booking access.",
   metaImage: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
   introEyebrow: "Business Stays",
-  introTitle: "A more elevated corporate page built for confidence, speed, and stronger first impressions.",
+  introTitle: "Corporate stays and team bookings presented with more clarity and confidence.",
   introCopy:
-    "The page positions UK&apos;s Resort as a destination for focused planning, premium team experiences, and business hospitality. It keeps the shared brand language intact while giving corporate guests a more refined and decision-oriented journey.",
+    "UK's Resort offers a setting that works well for company stays, offsites, conferences, and team gatherings. This page helps planners understand the atmosphere, compare options, and move more easily toward the right booking choice.",
   highlights: [
     {
-      title: "Executive presentation",
-      description: "The structure feels more premium and composed, helping leadership teams trust the venue before they even begin the booking flow.",
+      title: "Clearer first impression",
+      description: "The page now introduces the resort in a way that helps company planners quickly understand the style and suitability of the venue.",
     },
     {
-      title: "Clear package comparison",
-      description: "Organized cards make it easier for coordinators to compare retreat, offsite, and event formats without visual clutter.",
+      title: "Better package comparison",
+      description: "Corporate formats are easier to compare, helping coordinators review the right stay or event option without extra guesswork.",
     },
     {
-      title: "Direct action path",
-      description: "Guests who are ready to proceed can move from review to booking in one clean step instead of waiting on a separate inquiry loop.",
+      title: "Simpler next step",
+      description: "Guests who are ready can move from review to booking more directly instead of getting stuck in a slower planning loop.",
     },
   ],
   stats: [
-    { value: "Premium", label: "Business-led presentation" },
+    { value: "Corporate", label: "Business-ready stay formats" },
     { value: "Retreat + Stay", label: "Work and downtime balance" },
-    { value: "Direct", label: "Faster booking action" },
+    { value: "Direct", label: "Clear booking path" },
   ],
   gallery: [
     {
       image: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
-      title: "A stronger corporate first impression",
-      copy: "The page now opens with a more premium visual rhythm that better matches executive browsing expectations.",
+      title: "A polished first impression for company bookings",
+      copy: "The opening presentation helps planners understand the tone of the resort before moving deeper into the booking flow.",
     },
     {
       image: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
-      title: "Retreat-ready atmosphere",
-      copy: "Suitable for leadership sessions, offsites, planning workshops, and business stays that need focus and comfort.",
+      title: "A calm setting for focused work and stay comfort",
+      copy: "Suitable for offsites, planning sessions, and business stays that need both comfort and a sense of structure.",
     },
     {
       image: "https://bookonelocal.in/cdn/conference3-1.jpg",
-      title: "Clearer event positioning",
-      copy: "Corporate packages are framed to help planners evaluate fit quickly without losing the hospitality feel.",
+      title: "Suitable for conferences and team gatherings",
+      copy: "The page supports planners looking for a venue that can handle meetings, launches, and company events with clarity.",
     },
   ],
-  packagesTitle: "Corporate formats that read faster and feel more premium.",
+  packagesTitle: "Corporate formats that are easier to compare and plan.",
   packagesSubtitle:
-    "Each package is framed to help planners quickly understand audience fit, event character, and included support.",
+    "Each package helps planners quickly understand who it suits, what it includes, and how it may fit the event or stay requirement.",
   packageOptions: [
     {
       name: "Leadership Retreat",
       audience: "Senior teams and decision makers",
-      description: "A quieter premium format for strategy sessions, executive alignment, and high-comfort overnight planning.",
+      description: "A focused format for strategy sessions, leadership alignment, and overnight stays that require comfort and privacy.",
       includes: ["Priority stay planning", "Meeting-room coordination", "Dining support", "Executive arrival flow"],
     },
     {
@@ -295,17 +295,17 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
     {
       name: "Conference or Launch Event",
       audience: "Large business gatherings",
-      description: "Built for presentations, training sessions, launches, and other business formats that require smoother guest movement.",
+      description: "Built for presentations, training sessions, launches, and other large business formats that require smooth guest flow.",
       includes: ["Venue planning", "Guest coordination", "Hospitality support", "Custom event structure"],
     },
   ],
-  planningTitle: "Made to reduce hesitation during business planning.",
+  planningTitle: "Made to simplify the planning journey for company bookings.",
   planningCopy:
-    "Corporate guests typically scan for clarity, trust, and ease of next action. This upgraded page keeps those signals strong through balanced spacing, richer visual contrast, and motion that supports reading rather than competing with it.",
+    "Corporate guests usually need clarity, ease, and confidence before making a booking decision. This page is structured to help teams move through that process more comfortably.",
   planningPoints: [
     "Use this page for retreats, offsites, business meetings, launches, and room-block stays.",
-    "Keep copy concise and premium so coordinators can scan quickly while leadership teams still feel a strong brand presence.",
-    "Close with a direct booking action when the user has already seen enough to decide.",
+    "Give coordinators enough detail to compare stay types, event fit, and included support.",
+    "Keep the final booking action visible once the guest has seen enough to move ahead.",
   ],
   planningImage: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
   bookingCtaEyebrow: "Book Direct",

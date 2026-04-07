@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
@@ -14,56 +15,56 @@ gsap.registerPlugin(ScrollTrigger);
 const immersiveSpaces = [
   {
     image: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
-    title: "Arrival that feels elevated",
-    copy: "A stronger exterior-first introduction helps the page feel more premium and more business-ready from the first fold.",
+    title: "A polished arrival for business guests",
+    copy: "Set the tone for offsites, planning sessions, and corporate stays with a resort setting that feels professional from the first impression.",
   },
   {
     image: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
-    title: "Retreat and strategy mood",
-    copy: "Spaces are presented to support strategy sessions, offsites, and longer business stays with a calmer visual tone.",
+    title: "Comfort that supports focused work",
+    copy: "The atmosphere balances business purpose with comfort, making it easier for teams to stay productive and settled throughout the visit.",
   },
   {
     image: "https://bookonelocal.in/cdn/conference3-1.jpg",
-    title: "Event and meeting clarity",
-    copy: "Corporate planners can quickly recognize the site as suitable for launches, conferences, and team events.",
+    title: "Suitable for meetings and group events",
+    copy: "From team gatherings to launches and conferences, the venue presentation helps planners quickly understand how the resort can support the format.",
   },
 ];
 
 const planningSteps = [
   {
     step: "01",
-    title: "Choose the right format",
-    copy: "Leadership retreat, team offsite, conference, or launch event. The page makes each use case easy to understand quickly.",
+    title: "Choose the right business format",
+    copy: "Select the stay or event style that suits your team, whether you are planning an offsite, retreat, conference, or company gathering.",
   },
   {
     step: "02",
-    title: "Review stay and venue fit",
-    copy: "Guests can compare the tone, audience, and support included before they decide whether the format suits the event.",
+    title: "Review space and stay details",
+    copy: "Understand the atmosphere, audience fit, and included support before moving ahead with the booking decision.",
   },
   {
     step: "03",
-    title: "Move directly to booking",
-    copy: "Once the decision is made, the booking action is immediate so the user does not lose momentum.",
+    title: "Confirm the booking path",
+    copy: "Once your preferred format is clear, continue directly to the booking step without unnecessary delays.",
   },
   {
     step: "04",
-    title: "Continue with coordination",
-    copy: "After booking, event details can still be aligned with the team, but the site no longer makes that the first barrier.",
+    title: "Align final coordination",
+    copy: "After the booking step, your team can continue coordinating schedules, arrivals, and event-related details with better clarity.",
   },
 ];
 
 const corporateAdvantages = [
   {
-    title: "Executive-friendly visual language",
-    copy: "The page now feels more premium and more composed, which better matches the expectations of leadership teams and coordinators.",
+    title: "Professional first impression",
+    copy: "A stronger visual presentation helps company planners feel confident about the setting before they enquire or book.",
   },
   {
-    title: "Stronger image hierarchy",
-    copy: "Larger media moments and layered cards create a more confident first impression without overwhelming the reading flow.",
+    title: "Clearer venue understanding",
+    copy: "Balanced media and copy help visitors understand the resort environment without making the page feel crowded.",
   },
   {
-    title: "More sections, clearer pacing",
-    copy: "The additional content gives the page enough depth to feel complete while still keeping each section easy to scan.",
+    title: "Easier planning flow",
+    copy: "Each section supports decision-making in a simple order so teams can move from interest to booking with less confusion.",
   },
 ];
 
@@ -163,14 +164,14 @@ export default function CorporateBookingPage() {
             <p className="corp-kicker site-kicker">{corporateLandingPageContent.introEyebrow}</p>
             <div className="overflow-hidden">
               <h2 className="corp-title mt-4 font-serif text-[clamp(2.45rem,4vw,4.5rem)] leading-[0.94] text-[var(--text-primary)]">
-                A corporate landing page that feels sharper, deeper, and more executive.
+                Corporate stays and group bookings presented with more clarity and confidence.
               </h2>
             </div>
             <p className="corp-copy mt-6 max-w-2xl text-[1rem] leading-8 text-[var(--text-muted)] sm:text-[1.05rem]">
               {corporateLandingPageContent.introCopy}
             </p>
             <p className="corp-copy mt-5 max-w-2xl text-[1rem] leading-8 text-[color:color-mix(in_srgb,var(--ink)_86%,white_14%)] sm:text-[1.03rem]">
-              The goal is not just to show packages. It is to present the resort as a premium environment for retreats, executive stays, launches, and business gatherings with enough depth to earn confidence before the booking click.
+              Explore a corporate booking journey designed for teams that need the right mix of comfort, planning ease, and a dependable resort setting in Khopoli.
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -203,10 +204,10 @@ export default function CorporateBookingPage() {
                 01
               </p>
               <h3 className="mt-3 font-serif text-[1.75rem] leading-[0.98] text-[var(--text-primary)]">
-                Premium business tone
+                Business-ready presentation
               </h3>
               <p className="mt-3 text-sm leading-7 text-[var(--text-muted)]">
-                The visual rhythm is designed to feel more intentional and more executive from the first fold.
+                The page introduces the resort in a way that feels suitable for company planners, coordinators, and team leads.
               </p>
             </div>
 
@@ -215,10 +216,10 @@ export default function CorporateBookingPage() {
                 02
               </p>
               <h3 className="mt-3 font-serif text-[1.9rem] leading-[0.96] text-white">
-                Faster decision path
+                Clearer booking flow
               </h3>
               <p className="mt-3 text-sm leading-7 text-white/78">
-                The page now supports direct action without making planners fight through a weak last section.
+                Guests can review the stay format, compare options, and move toward booking without unnecessary confusion.
               </p>
             </div>
 
@@ -227,10 +228,10 @@ export default function CorporateBookingPage() {
                 03
               </p>
               <h3 className="mt-3 font-serif text-[1.7rem] leading-[0.98] text-[var(--text-primary)]">
-                More depth, no clutter
+                Helpful detail without overload
               </h3>
               <p className="mt-3 text-sm leading-7 text-[var(--text-muted)]">
-                Extra sections now add authority and atmosphere while still keeping the booking action obvious.
+                Each section adds useful context for business stays while still keeping the next step simple and visible.
               </p>
             </div>
           </div>
@@ -243,11 +244,11 @@ export default function CorporateBookingPage() {
             <p className="corp-kicker site-kicker">Immersive Spaces</p>
             <div className="overflow-hidden">
               <h2 className="corp-title mt-4 font-serif text-[clamp(2.3rem,4vw,4rem)] leading-[0.95] text-[var(--text-primary)]">
-                More attractive visuals with layered 3D-style presentation.
+                Explore spaces suited for business stays, offsites, and company gatherings.
               </h2>
             </div>
             <p className="corp-copy mt-5 text-[1rem] leading-8 text-[var(--text-muted)]">
-              The media presentation now does more than decorate. It frames the resort as a destination for focused business gatherings and premium retreats.
+              This section gives planners a clearer feel for the atmosphere, scale, and hospitality experience behind corporate stays at UK&apos;s Resort.
             </p>
           </div>
 
@@ -319,7 +320,7 @@ export default function CorporateBookingPage() {
             <p className="corp-kicker site-kicker">Packages</p>
             <div className="overflow-hidden">
               <h2 className="corp-title mt-4 font-serif text-[clamp(2.3rem,4vw,3.9rem)] leading-[0.95] text-[var(--text-primary)]">
-                More refined business formats with clearer reading hierarchy.
+                Corporate stay formats made easier to compare and choose.
               </h2>
             </div>
             <p className="corp-copy mt-5 text-[1rem] leading-8 text-[var(--text-muted)]">
@@ -364,11 +365,11 @@ export default function CorporateBookingPage() {
             <p className="corp-kicker site-kicker">Coordination Flow</p>
             <div className="overflow-hidden">
               <h2 className="corp-title mt-4 font-serif text-[clamp(2.25rem,4vw,3.8rem)] leading-[0.95] text-[var(--text-primary)]">
-                More sections, but each one pushes the user closer to a decision.
+                A clearer path from discovery to booking.
               </h2>
             </div>
             <p className="corp-copy mt-5 max-w-2xl text-[1rem] leading-8 text-[var(--text-muted)]">
-              This section breaks the planning path into a clearer sequence so business users can understand what comes next without feeling buried in copy.
+              Follow the planning journey step by step so your team can understand what to review first and what to do next.
             </p>
           </div>
 
@@ -445,30 +446,38 @@ export default function CorporateBookingPage() {
 
       <section className="corp-section site-page-surface site-section">
         <Container className="max-w-6xl">
-          <div className="corp-card overflow-hidden rounded-[2rem] border border-[var(--border-subtle)] bg-[linear-gradient(135deg,#143b47_0%,#1a4450_48%,#d89a55_170%)] px-6 py-8 text-white shadow-[0_28px_68px_rgba(20,59,71,0.20)] sm:px-8 sm:py-10 lg:px-10 lg:py-12">
-            <p className="corp-kicker text-[0.75rem] font-semibold uppercase tracking-[0.28em] text-white/68">
-              {corporateLandingPageContent.bookingCtaEyebrow}
-            </p>
-            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
-              <div>
-                <div className="overflow-hidden">
-                  <h2 className="corp-title mt-4 font-serif text-[clamp(2.4rem,4vw,4rem)] leading-[0.94] text-white">
-                    {corporateLandingPageContent.bookingCtaTitle}
-                  </h2>
+          <div className="corp-card relative overflow-hidden rounded-[2rem] border border-[rgba(255,255,255,0.14)] bg-[#143b47] px-6 py-8 text-white shadow-[0_28px_68px_rgba(20,59,71,0.20)] sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-cover bg-center opacity-100"
+              style={{ backgroundImage: `url('${corporateLandingPageContent.planningImage}')` }}
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,59,71,0.88)_0%,rgba(20,59,71,0.82)_38%,rgba(20,59,71,0.58)_68%,rgba(20,59,71,0.46)_100%)]" />
+            <div className="relative z-10">
+              <p className="corp-kicker text-[0.75rem] font-semibold uppercase tracking-[0.28em] text-white/72">
+                {corporateLandingPageContent.bookingCtaEyebrow}
+              </p>
+              <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+                <div>
+                  <div className="overflow-hidden">
+                    <h2 className="corp-title mt-4 max-w-[10ch] font-serif text-[clamp(2.6rem,4vw,4.4rem)] leading-[0.92] text-white">
+                      {corporateLandingPageContent.bookingCtaTitle}
+                    </h2>
+                  </div>
+                  <p className="corp-copy mt-5 max-w-3xl text-[1rem] leading-8 text-white/82">
+                    {corporateLandingPageContent.bookingCtaCopy}
+                  </p>
                 </div>
-                <p className="corp-copy mt-5 max-w-3xl text-[1rem] leading-8 text-white/80">
-                  {corporateLandingPageContent.bookingCtaCopy}
-                </p>
-              </div>
-              <div className="corp-cta flex lg:justify-end">
-                <Button
-                  href={corporateLandingPageContent.bookingButtonHref}
-                  size="lg"
-                  className="gap-2 border border-white/30 bg-white text-[#143b47] px-8 uppercase tracking-[0.12em] hover:bg-white/90"
-                >
-                  {corporateLandingPageContent.bookingButtonLabel}
-                  <span aria-hidden="true">&rsaquo;</span>
-                </Button>
+
+                <div className="corp-cta flex lg:justify-end lg:self-center">
+                  <Link
+                    href={corporateLandingPageContent.bookingButtonHref}
+                    className="inline-flex min-h-[3.9rem] items-center justify-center gap-2 rounded-full border border-[#e0b14d] bg-[#d9a538] px-8 text-[0.95rem] font-semibold uppercase tracking-[0.16em] text-[#143b47] shadow-[0_18px_34px_rgba(25,39,46,0.18)] transition hover:bg-[#cf9828]"
+                  >
+                    <span>{corporateLandingPageContent.bookingButtonLabel}</span>
+                    <span aria-hidden="true">&rsaquo;</span>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
