@@ -296,6 +296,103 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
         </Container>
       </section>
 
+      {content.experienceFlow ? (
+        <section className="booking-landing-section site-surface-soft site-section-lg overflow-hidden">
+          <Container>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="booking-kicker site-kicker">{content.experienceFlow.eyebrow}</p>
+              <div className="overflow-hidden">
+                <h2 className="booking-title mt-4 font-serif text-[clamp(2.2rem,4vw,3.7rem)] leading-[0.96] text-[var(--text-primary)]">
+                  {content.experienceFlow.title}
+                </h2>
+              </div>
+              <p className="booking-copy mt-5 text-[1rem] leading-8 text-[var(--text-muted)]">
+                {content.experienceFlow.copy}
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-5 lg:grid-cols-4">
+              {content.experienceFlow.steps.map((item, index) => (
+                <article
+                  key={`${item.time}-${item.title}`}
+                  className="booking-card group relative overflow-hidden rounded-[1.7rem] border border-[var(--border-subtle)] bg-white px-5 py-6 shadow-[0_18px_44px_rgba(26,39,46,0.06)] transition-transform duration-500 hover:-translate-y-1 sm:px-6 sm:py-7"
+                >
+                  <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,var(--accent)_0%,rgba(196,106,58,0.18)_100%)]" />
+                  <div className="absolute -right-10 top-6 h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(196,106,58,0.16)_0%,rgba(196,106,58,0)_70%)]" />
+                  <p className="booking-chip text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[var(--accent)]">
+                    Stop 0{index + 1}
+                  </p>
+                  <h3 className="mt-4 font-serif text-[1.8rem] leading-none text-[var(--text-primary)]">
+                    {item.time}
+                  </h3>
+                  <p className="mt-4 text-[1rem] font-semibold leading-6 text-[var(--text-primary)]">
+                    {item.title}
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-[var(--text-muted)]">
+                    {item.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
+
+      {content.activityShowcase ? (
+        <section className="booking-landing-section site-page-surface site-section-lg">
+          <Container>
+            <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+              <div className="lg:sticky lg:top-28">
+                <p className="booking-kicker site-kicker">{content.activityShowcase.eyebrow}</p>
+                <div className="overflow-hidden">
+                  <h2 className="booking-title mt-4 font-serif text-[clamp(2.2rem,4vw,3.8rem)] leading-[0.96] text-[var(--text-primary)]">
+                    {content.activityShowcase.title}
+                  </h2>
+                </div>
+                <p className="booking-copy mt-5 max-w-xl text-[1rem] leading-8 text-[var(--text-muted)]">
+                  {content.activityShowcase.copy}
+                </p>
+              </div>
+
+              <div className="grid gap-6">
+                {content.activityShowcase.features.map((item, index) => (
+                  <article
+                    key={item.title}
+                    className="booking-media-card group relative overflow-hidden rounded-[2rem] border border-[var(--border-subtle)] bg-white shadow-[0_20px_48px_rgba(26,39,46,0.08)]"
+                  >
+                    <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
+                      <div className="relative min-h-[18rem] lg:min-h-[21rem]">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="(max-width: 1023px) 100vw, 460px"
+                          className="booking-parallax-media object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                          unoptimized
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-tr from-[#163845]/28 via-transparent to-transparent" />
+                      </div>
+                      <div className="relative flex flex-col justify-center px-6 py-7 sm:px-8 sm:py-8">
+                        <div className="pointer-events-none absolute inset-y-8 left-0 hidden w-px bg-[linear-gradient(180deg,rgba(196,106,58,0)_0%,rgba(196,106,58,0.45)_50%,rgba(196,106,58,0)_100%)] lg:block" />
+                        <p className="booking-chip text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
+                          Activity 0{index + 1}
+                        </p>
+                        <h3 className="mt-4 font-serif text-[clamp(1.9rem,3vw,2.5rem)] leading-[0.98] text-[var(--text-primary)]">
+                          {item.title}
+                        </h3>
+                        <p className="mt-4 max-w-xl text-sm leading-7 text-[var(--text-muted)] sm:text-[0.98rem]">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </Container>
+        </section>
+      ) : null}
+
       <section className="booking-landing-section site-page-surface site-section">
         <Container className="max-w-6xl">
           <div className="booking-card overflow-hidden rounded-[2rem] border border-[var(--border-subtle)] bg-white shadow-[0_22px_54px_rgba(26,39,46,0.08)]">
@@ -363,6 +460,47 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
           </div>
         </Container>
       </section>
+
+      {content.memoryWall ? (
+        <section className="booking-landing-section site-page-surface site-section-lg overflow-hidden">
+          <Container>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="booking-kicker site-kicker">{content.memoryWall.eyebrow}</p>
+              <div className="overflow-hidden">
+                <h2 className="booking-title mt-4 font-serif text-[clamp(2.2rem,4vw,3.8rem)] leading-[0.96] text-[var(--text-primary)]">
+                  {content.memoryWall.title}
+                </h2>
+              </div>
+              <p className="booking-copy mt-5 text-[1rem] leading-8 text-[var(--text-muted)]">
+                {content.memoryWall.copy}
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-5 md:grid-cols-2">
+              {content.memoryWall.images.map((item, index) => (
+                <article
+                  key={item.alt}
+                  className={`booking-media-card group relative overflow-hidden rounded-[1.9rem] border border-[var(--border-subtle)] bg-white shadow-[0_18px_44px_rgba(26,39,46,0.07)] ${
+                    index % 3 === 0 ? "md:translate-y-6" : index % 3 === 1 ? "md:-translate-y-2" : "md:translate-y-10"
+                  }`}
+                >
+                  <div className="relative min-h-[18rem] sm:min-h-[21rem]">
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 767px) 100vw, 50vw"
+                      className="booking-parallax-media object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#12262e]/38 via-transparent to-transparent" />
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       <section className="booking-landing-section site-page-surface site-section">
         <Container className="max-w-5xl">

@@ -35,6 +35,35 @@ export type BookingLandingPageContent = {
   planningCopy: string;
   planningPoints: string[];
   planningImage: string;
+  experienceFlow?: {
+    eyebrow: string;
+    title: string;
+    copy: string;
+    steps: Array<{
+      time: string;
+      title: string;
+      description: string;
+    }>;
+  };
+  activityShowcase?: {
+    eyebrow: string;
+    title: string;
+    copy: string;
+    features: Array<{
+      title: string;
+      description: string;
+      image: string;
+    }>;
+  };
+  memoryWall?: {
+    eyebrow: string;
+    title: string;
+    copy: string;
+    images: Array<{
+      image: string;
+      alt: string;
+    }>;
+  };
   bookingCtaEyebrow: string;
   bookingCtaTitle: string;
   bookingCtaCopy: string;
@@ -54,45 +83,108 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
     "Book scenic picnic experiences at UK's Resort, Khopoli with open spaces, dining, and direct booking access.",
   metaImage: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
   introEyebrow: "Day Outings",
-  introTitle: "A more lively picnic page with the same polished rhythm as the rest of the site.",
+  introTitle: "One-day picnic experiences built for energy, movement, and memorable daytime celebrations.",
   introCopy:
-    "This page is designed for families, school groups, and social circles who want clarity before arrival and an exciting sense of place while browsing. The content leads quickly from inspiration to package comparison and then straight into booking.",
+    "The picnic page now leans fully into one-day outings, activity-led group moments, and quick visual planning. It gives families, schools, and celebration groups a clearer sense of the full day before sending them directly into booking.",
   highlights: [
     {
-      title: "Open-air freedom",
-      description: "Large green grounds, leisure corners, and easy movement across the resort make the outing feel expansive from the first glance.",
+      title: "One-day event focus",
+      description: "Every section now supports the rhythm of a full picnic day, from arrival energy and meal breaks to play zones and group memories.",
     },
     {
-      title: "Group-friendly planning",
-      description: "The layout helps guests compare formats quickly, whether they are planning a small family day or a larger celebration group.",
+      title: "Activity-first storytelling",
+      description: "Guests can now scan open lawns, water fun, play spaces, and celebration-friendly corners through more image-led sections.",
     },
     {
-      title: "Faster conversion",
-      description: "Instead of a slow inquiry path, the page closes with a direct booking action so guests can move immediately into the booking engine.",
+      title: "Cleaner decision flow",
+      description: "The upgraded page keeps the direct booking action simple while making the day experience feel fuller and more exciting.",
     },
   ],
   stats: [
-    { value: "6+ Acres", label: "Open picnic-ready space" },
-    { value: "All-Day", label: "Flexible outing rhythm" },
-    { value: "Family First", label: "Dining and leisure mix" },
+    { value: "1 Day", label: "Complete event rhythm" },
+    { value: "6+ Acres", label: "Open activity space" },
+    { value: "All Ages", label: "Play, food, and photo moments" },
   ],
   gallery: [
     {
       image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
-      title: "Wide lawns and open energy",
-      copy: "The first impression is spacious, social, and easy for mixed-age groups to enjoy together.",
+      title: "A day outing that starts with open lawns and easy energy",
+      copy: "From the first look, the page now communicates space, movement, and a more festive day-out atmosphere for families and groups.",
     },
     {
       image: "https://bookonelocal.in/cdn/picnic1.jpg",
-      title: "Food, play, and celebration",
-      copy: "Packages can flex between casual family time, organized outings, and more festive daytime gatherings.",
+      title: "Play zones, food breaks, and shared group moments",
+      copy: "The visual flow now balances activity and comfort so guests can picture a full picnic schedule instead of just a static package list.",
     },
     {
       image: "https://bookonelocal.in/cdn/Copy+of+IMG_4035.JPG",
-      title: "Photo-friendly resort moments",
-      copy: "The atmosphere supports everything from simple getaways to memory-making group celebrations.",
+      title: "Photo-friendly memories through the day",
+      copy: "The page finishes the mood with celebration-ready imagery that feels ideal for birthdays, school outings, and social gatherings.",
     },
   ],
+  experienceFlow: {
+    eyebrow: "One Day Flow",
+    title: "Show guests how the day unfolds from arrival to sunset.",
+    copy:
+      "This section makes the outing feel organized and exciting at the same time. It helps visitors imagine the full flow of a one-day event instead of guessing what happens after entry.",
+    steps: [
+      {
+        time: "09:30 AM",
+        title: "Arrival and welcome start",
+        description: "Guests check in, settle into the lawns, and ease into the resort atmosphere with the group together from the start.",
+      },
+      {
+        time: "11:00 AM",
+        title: "Activities and open play",
+        description: "Water attractions, open spaces, and family-friendly movement zones build the energetic middle of the day.",
+      },
+      {
+        time: "01:30 PM",
+        title: "Lunch and social downtime",
+        description: "A structured meal break gives school groups, families, and celebration guests time to reset comfortably.",
+      },
+      {
+        time: "04:30 PM",
+        title: "Photos, snacks, and final moments",
+        description: "The day closes with memory-making, light refreshments, and a relaxed wrap-up before departure.",
+      },
+    ],
+  },
+  activityShowcase: {
+    eyebrow: "Activity Highlights",
+    title: "Built around one-day fun, group movement, and easy celebration energy.",
+    copy:
+      "The page now brings more attention to the kind of experiences guests actually come for during a picnic event, not just the booking step.",
+    features: [
+      {
+        title: "Water play and rain-dance excitement",
+        description: "Perfect for groups who want a more active and playful daytime experience with high visual energy.",
+        image: "https://bookonelocal.in/cdn/Copy+of+IMG_4035.JPG",
+      },
+      {
+        title: "Lawns for games, mingling, and open-air comfort",
+        description: "Wide green areas support family hangouts, school supervision, and event-style movement without feeling crowded.",
+        image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
+      },
+      {
+        title: "Dining breaks that make the day feel complete",
+        description: "Meal moments help turn a simple visit into a full one-day outing with a better rhythm for all age groups.",
+        image: "https://bookonelocal.in/cdn/picnic1.jpg",
+      },
+    ],
+  },
+  memoryWall: {
+    eyebrow: "Event Gallery",
+    title: "More images so the picnic page feels alive, social, and celebration-ready.",
+    copy:
+      "These extra frames help the page look more complete and give guests more confidence about the one-day outing experience before they book.",
+    images: [
+      { image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif", alt: "Picnic lawn at UK's Resort" },
+      { image: "https://bookonelocal.in/cdn/picnic1.jpg", alt: "Picnic gathering and open activity area" },
+      { image: "https://bookonelocal.in/cdn/Copy+of+IMG_4035.JPG", alt: "Group picnic photo at the resort" },
+      { image: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif", alt: "Open resort environment for daytime events" },
+    ],
+  },
   packagesTitle: "Picnic options presented with more energy and easier comparison.",
   packagesSubtitle:
     "Each package keeps the same visual hierarchy while giving guests enough detail to choose confidently on mobile or desktop.",
@@ -118,10 +210,10 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
   ],
   planningTitle: "Designed to feel fun before guests even arrive.",
   planningCopy:
-    "The upgraded structure gives picnic bookings a stronger emotional pull while keeping planning practical. Guests can quickly understand the vibe, the package differences, and the next step without digging through form-heavy layouts.",
+    "The upgraded structure gives picnic bookings a stronger emotional pull while keeping planning practical. Guests can quickly understand the vibe, the activity mix, the package differences, and the next step without digging through form-heavy layouts.",
   planningPoints: [
     "Use this page for family picnics, school outings, social gatherings, and daytime celebrations.",
-    "Keep the visual rhythm lively with layered cards, stronger spacing, and motion that reveals rather than distracts.",
+    "Keep the visual rhythm lively with layered cards, more photos, and motion that reveals rather than distracts.",
     "Send guests directly to booking when they are already ready to commit.",
   ],
   planningImage: "https://bookonelocal.in/cdn/picnic1.jpg",
