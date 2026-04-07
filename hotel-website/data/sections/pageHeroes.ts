@@ -52,14 +52,13 @@ export const EXPERIENCES_HERO_CONFIG: PageHeroConfig = {
 export const ROOMS_HERO_CONFIG: PageHeroConfig = {
   title: "Rooms & Suites",
   backgroundImage: "https://bookonelocal.in/cdn/3.avif",
-  backgroundVideo: "https://bookonelocal.in/cdn/Hotel_bedroom_interior_202603191619.mp4",
+  backgroundVideo: "https://bookonelocal.in/cdn/Changed-Room-Page-Video.mp4",
   breadcrumb: "Home / Rooms & Suites",
 };
 
 export const TARIFF_HERO_CONFIG: PageHeroConfig = {
   title: "Tariff",
   backgroundImage: "https://bookonelocal.in/cdn/conference3-1.jpg",
-  backgroundVideo: "https://bookonelocal.in/cdn/Hotel_exterior_drone_202603191704.mp4",
   subtitle: "Transparent pricing for every stay. Taxes as per Government Regulations.",
   breadcrumb: "Home / Tariff",
   minHeightClassName: "min-h-screen",

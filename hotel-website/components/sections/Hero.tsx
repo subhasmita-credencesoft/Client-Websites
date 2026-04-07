@@ -8,7 +8,6 @@ import Container from "../ui/Container";
 import {
   HOME_HERO_SUBTITLE,
   HOME_HERO_TITLE_LINES,
-  HOME_HERO_VIDEO_POSTER,
   HOME_HERO_VIDEO_SRC,
 } from "../../data/sections/homeHero";
 
@@ -135,17 +134,11 @@ export default function Hero() {
       className="relative min-h-[100svh] overflow-hidden text-white"
     >
       <div className="hero-media absolute inset-0 isolate bg-[#143b47] will-change-transform">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${HOME_HERO_VIDEO_POSTER})` }}
-        />
         {video.shouldRender && (
           <video
             ref={videoRef}
             className="hero-video absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover"
             src={HOME_HERO_VIDEO_SRC}
-            poster={HOME_HERO_VIDEO_POSTER}
             autoPlay
             muted
             loop

@@ -109,15 +109,16 @@ export default function PageHero({
       className={`relative overflow-hidden bg-[#0f1216] text-white ${minHeightClassName}`}
     >
       <div ref={mediaRef} className="absolute inset-0 will-change-transform">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        />
+        {!backgroundVideo ? (
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${backgroundImage})` }}
+          />
+        ) : null}
         {backgroundVideo ? (
           <video
             src={backgroundVideo}
-            poster={backgroundImage}
             className="absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover object-center"
             autoPlay
             muted

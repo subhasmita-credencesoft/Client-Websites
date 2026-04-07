@@ -60,7 +60,7 @@ const panels: EventPanel[] = [
     title: "UK's KIDS ZONE",
     subtitle: "Play, Learn & Explore",
     copy: "Dedicated kid-friendly zones and activity-based experiences keep little guests engaged while families relax and celebrate.",
-    image: "/corporate3.avif",
+    image: "/kidszone.avif",
     href: "/experiences",
     mapHref:
       "https://www.google.co.in/maps/@18.8171575,73.3046448,3a,90y,119.21h,85.89t/data=!3m7!1e1!3m5!1s2c65xsf3YxUAAAQvxYn66g!2e0!3e2!7i13312!8i6656!6m1!1e1?shorturl=1",

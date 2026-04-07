@@ -230,7 +230,7 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
   heroSubtitle:
     "Plan corporate stays, team offsites, conferences, and business gatherings with a clearer view of the resort experience and booking path.",
   heroImage: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
-  heroVideo: "https://bookonelocal.in/cdn/Curtains_opening_revealing_202603191629.mp4",
+  heroVideo: "https://bookonelocal.in/cdn/Corporate-Page-VIdeo.mp4",
   path: "/corporate",
   metaTitle: "Corporate Booking",
   metaDescription:
