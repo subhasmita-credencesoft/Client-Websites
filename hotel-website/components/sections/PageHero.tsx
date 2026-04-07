@@ -115,7 +115,7 @@ export default function PageHero({
         {backgroundVideo ? (
           <video
             src={backgroundVideo}
-            className="h-full w-full object-cover"
+            className="absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover object-center"
             autoPlay
             muted
             loop
@@ -133,25 +133,38 @@ export default function PageHero({
             fetchPriority="high"
             placeholder="blur"
             blurDataURL={HERO_BLUR}
-            className="object-cover"
+            className="object-cover object-center"
             unoptimized={backgroundImage.startsWith("http")}
           />
         )}
       </div>
-      <div ref={overlayRef} className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/70" />
+      <div
+        ref={overlayRef}
+        className="absolute inset-0 bg-gradient-to-b from-black/28 via-black/14 to-black/54 md:from-black/34 md:via-black/16 md:to-black/60"
+      />
 
-      <Container className={`relative z-10 flex flex-col items-center justify-center text-center ${minHeightClassName}`}>
-        <div ref={contentRef}>
+      <Container
+        className={`relative z-10 flex flex-col items-center justify-center text-center ${minHeightClassName}`}
+      >
+        <div
+          ref={contentRef}
+          className="flex min-h-[100svh] w-full items-center justify-center px-4 pb-8 pt-[calc(4.75rem+env(safe-area-inset-top))] sm:px-6 sm:pb-12 sm:pt-24 md:pb-14 md:pt-28"
+        >
+          <div className="mx-auto w-full max-w-4xl text-center">
           <div className="overflow-hidden">
-            <h1 className="page-hero-title font-serif text-4xl leading-[0.95] text-white md:text-6xl">
+            <h1 className="page-hero-title font-serif text-[2.35rem] leading-[0.96] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.42)] sm:text-[3rem] md:text-6xl">
               {title}
             </h1>
           </div>
 
-          {subtitle && <p className="page-hero-subtitle mt-4 max-w-3xl text-sm text-white/85 md:text-base">{subtitle}</p>}
+          {subtitle && (
+            <p className="page-hero-subtitle mx-auto mt-4 max-w-3xl text-[0.95rem] leading-7 text-white/92 md:text-base">
+              {subtitle}
+            </p>
+          )}
 
           {breadcrumb && (
-            <p className="page-hero-breadcrumb mt-6 text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-white/85 md:text-[0.72rem]">
+            <p className="page-hero-breadcrumb mt-5 text-center text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-white/88 md:mt-6 md:text-[0.72rem]">
               <Link href="/" className="transition-colors hover:text-white">
                 Home
               </Link>
@@ -163,6 +176,7 @@ export default function PageHero({
               ) : null}
             </p>
           )}
+          </div>
         </div>
       </Container>
     </section>

@@ -75,11 +75,15 @@ const dayPicnicFeatureCards = [
   },
 ] as const;
 
+type DayPicnicCardTitle = (typeof dayPicnicFeatureCards)[number]["title"];
+
 /* ─────────────────────────── component ─────────────────────────── */
 export default function TariffInfo() {
   const { property } = usePropertyData();
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [expandedCard, setExpandedCard] = useState(dayPicnicFeatureCards[0].title);
+  const [expandedCard, setExpandedCard] = useState<DayPicnicCardTitle | "">(
+    dayPicnicFeatureCards[0].title,
+  );
 
   /* GST */
   const gstPercent = useMemo(() => {

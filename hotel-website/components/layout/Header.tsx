@@ -16,7 +16,7 @@ import { usePropertyData } from "../providers/PropertyDataProvider";
 const DEFAULT_EMAIL = "info@uksresort.com";
 const DEFAULT_PHONE_1 = "+91 98220 12343";
 const DEFAULT_PHONE_2 = "+91 87798 14559";
-const DEFAULT_LOGO = "/images/logo1.png";
+const DEFAULT_LOGO = "/UK's-Resort-Logo.png";
 
 const HERO_PREFIXES = [
   "/", "/rooms", "/dining", "/picnic", "/corporate", "/about", "/wellness",
@@ -109,7 +109,7 @@ export default function Header() {
 
   const liveProperty = clientReady ? property : null;
 
-  const logoSrc = liveProperty?.logoUrl ?? DEFAULT_LOGO;
+  const logoSrc = DEFAULT_LOGO;
   const propertyName = liveProperty?.name ?? "UK's Resort";
   const email = liveProperty?.email ?? DEFAULT_EMAIL;
   const primaryPhone = formatPhone(liveProperty?.mobile) || DEFAULT_PHONE_1;
