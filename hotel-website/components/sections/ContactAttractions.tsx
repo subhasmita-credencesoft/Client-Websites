@@ -13,6 +13,8 @@ const ATTRACTIONS = [
       "Adlabs Imagica is just 8 kms from UK's Resort. Adlabs Imagica is a theme park near the city of Khopoli on Mumbai-Pune expressway.",
     image: "https://bookonelocal.in/cdn/adlabs-imagica.jpg",
     alt: "Adlabs Imagica amusement park rides",
+    distance: "8 km away",
+    mood: "Theme Park",
   },
   {
     title: "Ashtavinayak Mahad Temple",
@@ -20,6 +22,8 @@ const ATTRACTIONS = [
       "Ashtavinayak Mahad Temple. One of the Eight (Ashta) Ganapati (Vinayak) Temples of Maharashtra. The name of this Vinayak (Ganesha) is Varad Vinayak meaning the one who blesses all the wishes. The temple is 10 mins walking distance from UK's Resort.",
     image: "https://bookonelocal.in/cdn/ashtavinayak.jpg",
     alt: "Ashtavinayak Mahad Temple exterior view",
+    distance: "10 mins walk",
+    mood: "Spiritual Landmark",
   },
   {
     title: "Lonavala and Khandala Hill Station",
@@ -27,6 +31,8 @@ const ATTRACTIONS = [
       "Lonavala or Lonavla and the adjacent Khandala are beautiful, charming and twin hill stations, 622 m. above sea level and 5 Kms apart from each other are situated in the Sahyadri ranges. They are located around 64 km away from the city of Pune and 96 km away from the city Mumbai, popular getaway from Mumbai and Pune.",
     image: "https://bookonelocal.in/cdn/lonavala.jpg",
     alt: "Lonavala and Khandala Hill Station landscape",
+    distance: "Popular day trip",
+    mood: "Hill Escape",
   },
   {
     title: "Zenith Waterfall",
@@ -34,6 +40,8 @@ const ATTRACTIONS = [
       "This is close next to Lonavala's waterfalls in popularity. So expect to see many picnickers here. The waterfall's known to be heavy, so if you expect to just wet yourself with trickles, then this isn't the spot for you. Zenith Waterfall is 5 kms from UK's Resort on the Old Bombay-Pune Highway.",
     image: "https://bookonelocal.in/cdn/Zenith Waterfall.png",
     alt: "Zenith Waterfall landscape",
+    distance: "5 km away",
+    mood: "Scenic Nature Spot",
   },
   {
     title: "Palasdari",
@@ -41,6 +49,8 @@ const ATTRACTIONS = [
       "Palasdhari aka Palasdari Waterfall can be reached both by road and rail. Palasdari Waterfall is 5 kms from UK's resort. To reach Palasdhari by rail, one has to alight at Palasdhari railway station and walk it out to the waterfall and dam.",
     image: "https://bookonelocal.in/cdn/Zenith Waterfall.png",
     alt: "Palasdari Waterfall landscape",
+    distance: "5 km away",
+    mood: "Waterfall Trail",
   },
   {
     title: "Shri Gagangiri Maharaj Ashram",
@@ -48,15 +58,18 @@ const ATTRACTIONS = [
       "Maharaj took samadhi on 4 February 2008 at his Khopoli Ashram. Gagangiri Ashram is 5 kms from UK's Resort.",
     image: "https://bookonelocal.in/cdn/Shri Vireshwar Temple.png",
     alt: "Shri Gagangiri Maharaj Ashram exterior",
+    distance: "5 km away",
+    mood: "Cultural Visit",
   },
   {
     title: "ND Studio",
-    description:
-      "It is famous for shooting of many Historical & Mythological serials.",
+    description: "It is famous for shooting of many Historical & Mythological serials.",
     image: "https://bookonelocal.in/cdn/nithin.jpg",
     alt: "ND Studio set",
+    distance: "Short drive",
+    mood: "Film Destination",
   },
-];
+] as const;
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -64,30 +77,40 @@ function AttractionItem({
   item,
   reverse,
 }: {
-  item: (typeof ATTRACTIONS)[0];
+  item: (typeof ATTRACTIONS)[number];
   reverse: boolean;
 }) {
   return (
     <article
-      className={`ca-card grid items-center gap-8 rounded-[1.4rem] border border-[#d6d1c5] bg-white/70 p-5 shadow-[0_18px_34px_rgba(23,38,46,0.05)] lg:grid-cols-2 lg:gap-12 lg:p-8 ${
+      className={`ca-card group grid items-center gap-8 rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(247,241,233,0.82))] p-5 shadow-[0_24px_48px_rgba(23,38,46,0.08),inset_0_1px_0_rgba(255,255,255,0.92)] lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:p-7 ${
         reverse ? "lg:[&>*:first-child]:order-2" : ""
       }`}
     >
-      <div className="ca-copy">
-        <h2 className="ca-text-line font-serif text-3xl md:text-4xl">{item.title}</h2>
-        <p className="ca-text-line mt-5 text-sm leading-7 text-[#1f3c44]/75 md:text-base">
+      <div className="ca-copy min-w-0">
+        <div className="ca-text-line flex flex-wrap items-center gap-3 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#1f3c44]/52">
+          <span className="rounded-full border border-[#d8cfbf] bg-white/75 px-3 py-1.5">{item.mood}</span>
+          <span>{item.distance}</span>
+        </div>
+        <h2 className="ca-text-line mt-5 font-serif text-[2.35rem] leading-[0.94] text-[#183b48] md:text-[3rem]">
+          {item.title}
+        </h2>
+        <p className="ca-text-line mt-5 max-w-2xl text-[0.98rem] leading-8 text-[#1f3c44]/74 md:text-[1.02rem]">
           {item.description}
         </p>
       </div>
 
-      <div className="ca-image-wrap relative h-[240px] overflow-hidden rounded-2xl sm:h-[300px] md:h-[360px]">
+      <div className="ca-image-wrap relative h-[260px] overflow-hidden rounded-[1.7rem] border border-white/60 shadow-[0_22px_40px_rgba(20,56,71,0.12)] sm:h-[320px] md:h-[380px]">
         <Image
           src={item.image}
           alt={item.alt}
           fill
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          className="ca-image object-cover"
+          sizes="(max-width: 1024px) 100vw, 45vw"
+          className="ca-image object-cover transition duration-700 group-hover:scale-[1.06]"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#102733]/55 via-[#102733]/12 to-transparent" />
+        <div className="absolute left-5 top-5 rounded-full border border-white/25 bg-white/15 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_10px_18px_rgba(0,0,0,0.12)] backdrop-blur-md">
+          Around Us
+        </div>
       </div>
     </article>
   );
@@ -101,21 +124,45 @@ export default function ContactAttractions() {
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const ctx = gsap.context(() => {
+        const intro = sectionRef.current?.querySelector(".ca-intro");
+        const introItems = sectionRef.current?.querySelectorAll<HTMLElement>(".ca-intro-line");
+
+        if (intro && introItems?.length) {
+          gsap.fromTo(
+            introItems,
+            { y: 24, autoAlpha: 0, filter: "blur(8px)" },
+            {
+              y: 0,
+              autoAlpha: 1,
+              filter: "blur(0px)",
+              duration: 0.8,
+              ease: "power3.out",
+              stagger: 0.08,
+              scrollTrigger: {
+                trigger: intro,
+                start: "top 84%",
+                once: true,
+              },
+            },
+          );
+        }
+
         gsap.utils.toArray<HTMLElement>(".ca-card").forEach((card, index) => {
-          const fromX = index % 2 === 0 ? -36 : 36;
+          const fromX = index % 2 === 0 ? -46 : 46;
           const lines = card.querySelectorAll<HTMLElement>(".ca-text-line");
+          const imageWrap = card.querySelector<HTMLElement>(".ca-image-wrap");
           const image = card.querySelector<HTMLElement>(".ca-image");
 
           gsap.set(card, {
-            y: 34,
+            y: 38,
             x: fromX,
             autoAlpha: 0,
-            rotateX: 8,
-            transformPerspective: 1200,
+            rotateX: 9,
+            transformPerspective: 1400,
             transformOrigin: "50% 100%",
           });
 
-          if (lines.length > 0) {
+          if (lines.length) {
             gsap.set(lines, { y: 18, autoAlpha: 0, filter: "blur(7px)" });
           }
 
@@ -132,22 +179,22 @@ export default function ContactAttractions() {
             x: 0,
             autoAlpha: 1,
             rotateX: 0,
-            duration: 0.9,
+            duration: 0.95,
             ease: "power3.out",
           });
 
-          if (lines.length > 0) {
+          if (lines.length) {
             revealTl.to(
               lines,
               {
                 y: 0,
                 autoAlpha: 1,
                 filter: "blur(0px)",
-                duration: 0.6,
+                duration: 0.62,
                 stagger: 0.08,
                 ease: "power3.out",
               },
-              "-=0.6",
+              "-=0.65",
             );
           }
 
@@ -156,14 +203,32 @@ export default function ContactAttractions() {
               image,
               { scale: 1.12, yPercent: 8 },
               {
-                scale: 1.03,
-                yPercent: -6,
+                scale: 1.02,
+                yPercent: -5,
                 ease: "none",
                 scrollTrigger: {
                   trigger: card,
                   start: "top bottom",
                   end: "bottom top",
                   scrub: 1,
+                },
+              },
+            );
+          }
+
+          if (imageWrap) {
+            gsap.fromTo(
+              imageWrap,
+              { y: 18, rotate: index % 2 === 0 ? -1.5 : 1.5 },
+              {
+                y: 0,
+                rotate: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top 82%",
+                  once: true,
                 },
               },
             );
@@ -185,23 +250,42 @@ export default function ContactAttractions() {
         .ca-card {
           transform-style: preserve-3d;
           will-change: transform, opacity;
-          transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 550ms cubic-bezier(0.22, 1, 0.36, 1);
+          transition:
+            transform 550ms cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 550ms cubic-bezier(0.22, 1, 0.36, 1),
+            border-color 550ms cubic-bezier(0.22, 1, 0.36, 1);
         }
         .ca-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 26px 56px rgba(23, 38, 46, 0.14);
+          transform: translateY(-6px);
+          box-shadow: 0 32px 68px rgba(23, 38, 46, 0.16);
+          border-color: rgba(201, 129, 65, 0.34);
         }
       `}</style>
 
-      <section ref={sectionRef} data-no-global-gsap className="bg-[#f6f3ed] py-20 text-[#1f3c44]">
-        <Container className="space-y-16">
-          {ATTRACTIONS.map((item, index) => (
-            <AttractionItem
-              key={item.title}
-              item={item}
-              reverse={index % 2 === 1}
-            />
-          ))}
+      <section
+        ref={sectionRef}
+        data-no-global-gsap
+        className="overflow-hidden bg-[radial-gradient(circle_at_top,#f8f4ed_0%,#f2ece2_38%,#ece4d8_100%)] py-20 text-[#1f3c44]"
+      >
+        <Container>
+          <div className="ca-intro mx-auto max-w-4xl text-center">
+            <p className="ca-intro-line text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-[#c98141]">
+              Explore Nearby
+            </p>
+            <h2 className="ca-intro-line mt-5 font-serif text-[2.8rem] leading-[0.94] text-[#183b48] sm:text-[3.8rem]">
+              Scenic escapes and local attractions around the resort
+            </h2>
+            <p className="ca-intro-line mx-auto mt-6 max-w-3xl text-[1.02rem] leading-8 text-[#1f3c44]/72">
+              Discover places for day trips, spiritual visits, waterfalls, hill stations, and family outings
+              within easy reach of UK&apos;s Resort in Khopoli.
+            </p>
+          </div>
+
+          <div className="mt-14 space-y-10">
+            {ATTRACTIONS.map((item, index) => (
+              <AttractionItem key={item.title} item={item} reverse={index % 2 === 1} />
+            ))}
+          </div>
         </Container>
       </section>
     </>
