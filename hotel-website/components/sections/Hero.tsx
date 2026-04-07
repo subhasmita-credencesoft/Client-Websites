@@ -13,7 +13,7 @@ const HeroBookingBar = dynamic(() => import("../features/HeroBookingBar"), {
   ),
 });
 
-const HERO_VIDEO_SRC = "https://bookonelocal.in/cdn/UK%27s+Resort-Hero-Video.mp4";
+const HERO_VIDEO_SRC = "https://bookonelocal.in/cdn/Changed-Hero-Video-UK%27s-Resort.mp4";
 
 function canPlayVideo(): boolean {
   if (typeof navigator === "undefined") return false;

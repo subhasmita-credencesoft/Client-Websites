@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -188,9 +189,9 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-            <article className="booking-media-card group relative overflow-hidden rounded-[2rem] border border-[var(--border-subtle)] bg-white shadow-[0_22px_54px_rgba(26,39,46,0.08)]">
-              <div className="relative min-h-[23rem] sm:min-h-[28rem]">
+          <div className="mt-12 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+            <article className="booking-media-card group relative h-fit self-start">
+              <div className="relative h-[23rem] overflow-hidden rounded-[2rem] border border-[var(--border-subtle)] shadow-[0_22px_54px_rgba(26,39,46,0.08)] sm:h-[28rem]">
                 <Image
                   src={content.gallery[0].image}
                   alt={content.gallery[0].title}
@@ -504,7 +505,19 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
 
       <section className="booking-landing-section site-page-surface site-section">
         <Container className="max-w-5xl">
-          <div className="booking-card overflow-hidden rounded-[2rem] border border-[var(--border-subtle)] bg-[linear-gradient(135deg,#143b47_0%,#1f4d59_48%,#d89a55_155%)] px-6 py-8 text-white shadow-[0_24px_60px_rgba(20,59,71,0.18)] sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+          <div className="booking-card relative overflow-hidden rounded-[2rem] border border-[var(--border-subtle)] text-white shadow-[0_24px_60px_rgba(20,59,71,0.18)]">
+              <div className="absolute inset-0">
+                <Image
+                  src={content.planningImage || content.heroImage}
+                  alt={content.bookingCtaTitle}
+                  fill
+                  sizes="100vw"
+                  className="object-cover object-center"
+                  unoptimized
+                />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(20,59,71,0.78)_0%,rgba(31,77,89,0.70)_48%,rgba(216,154,85,0.36)_155%)]" />
+            </div>
+            <div className="relative z-10 px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
             <p className="booking-kicker text-[0.75rem] font-semibold uppercase tracking-[0.28em] text-white/70">
               {content.bookingCtaEyebrow}
             </p>
@@ -520,16 +533,18 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
                 </p>
               </div>
               <div className="booking-cta flex lg:justify-end">
-                <Button
+                <Link
                   href={content.bookingButtonHref}
-                  size="lg"
-                  className="gap-2 border border-white/30 bg-white text-[#143b47] px-8 uppercase tracking-[0.12em] hover:bg-white/90"
+                  className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[#d7b06e] bg-[#c49a3c] px-8 text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-[#143b47] shadow-[0_10px_26px_rgba(196,154,60,0.28)] transition hover:bg-[#d1ab58]"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  {content.bookingButtonLabel}
+                  <span className="text-[#143b47]">{content.bookingButtonLabel}</span>
                   <span aria-hidden="true">&rsaquo;</span>
-                </Button>
+                </Link>
               </div>
             </div>
+          </div>
           </div>
         </Container>
       </section>

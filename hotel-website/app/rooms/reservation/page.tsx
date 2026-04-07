@@ -411,25 +411,29 @@ function RoomsReservationContent() {
 
       <section ref={sectionRef} data-no-global-gsap className="bg-[#f6f3ed] py-12 text-[#133e5a] sm:py-14 md:py-18">
         <Container>
-          <p className="rr-kicker text-center text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-[#7b857f] sm:text-[0.72rem]">
-            We have selected the best stays for you
-          </p>
-          <p className="rr-title mx-auto mt-5 max-w-4xl text-center font-serif text-[1.6rem] leading-[1.15] text-[#123f5c] sm:text-[1.9rem] md:text-[2.35rem]">
-            Discover our beautiful Rooms &amp; Suites with outstanding views of valleys, mountains and
-            lake.
-          </p>
+          <div className="mx-auto max-w-5xl text-center">
+            <p className="rr-kicker text-center text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-[#7b857f] sm:text-[0.72rem]">
+              We have selected the best stays for you
+            </p>
+            <div className="mt-5 overflow-hidden">
+              <p className="rr-title mx-auto max-w-4xl text-center font-serif text-[1.6rem] leading-[1.15] text-[#123f5c] sm:text-[1.9rem] md:text-[2.35rem]">
+                Discover our beautiful Rooms &amp; Suites with outstanding views of valleys, mountains and
+                lake.
+              </p>
+            </div>
+          </div>
 
           <div className="mt-10 grid items-start gap-8 md:mt-12 lg:mt-14 lg:grid-cols-[minmax(0,1fr)_21rem]">
-            <div>
-              <div className="rr-toolbar mb-8 flex flex-col gap-3 border-b border-[#ddd7ca] pb-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <div className="rr-toolbar relative z-30 mb-8 flex flex-col items-center gap-3 border-b border-[#ddd7ca] pb-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
                 <p className="rr-card-line text-base text-[#6f7d89] sm:text-lg">
                   {isLoading ? "Loading rooms..." : `${sortedRooms.length} Rooms Found`}
                 </p>
 
-                <div className="relative" ref={sortRef}>
+                <div className="relative z-40 self-center sm:self-auto" ref={sortRef}>
                   <button
                     type="button"
-                    className="flex items-center gap-2 text-sm uppercase tracking-[0.14em] text-[#6f7d89] sm:gap-3"
+                    className="flex items-center justify-center gap-2 text-center text-sm uppercase tracking-[0.14em] text-[#6f7d89] sm:justify-end sm:gap-3"
                     onClick={() => setSortOpen((open) => !open)}
                     disabled={sortedRooms.length === 0}
                   >
@@ -450,7 +454,7 @@ function RoomsReservationContent() {
                   </button>
 
                   {sortOpen && (
-                    <div className="absolute right-0 top-10 z-20 min-w-52 overflow-hidden rounded-xl border border-[#d6d9dd] bg-white shadow-lg">
+                    <div className="absolute right-0 top-10 z-50 min-w-52 overflow-hidden rounded-xl border border-[#d6d9dd] bg-white shadow-lg">
                       {(Object.keys(sortLabels) as SortKey[]).map((key) => (
                         <button
                           key={key}
@@ -496,112 +500,111 @@ function RoomsReservationContent() {
                       key={room.listingId}
                       className="rr-card overflow-hidden rounded-[1.8rem] border border-[#ddd7ca] bg-[#fffdf9] shadow-[0_16px_34px_rgba(26,39,46,0.06)] transition-transform duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(26,39,46,0.12)]"
                     >
-                      <div className="grid gap-0 lg:grid-cols-[1fr_1.15fr]">
-                      <div
-                        className="rr-card-image relative h-64 overflow-hidden bg-[#d8d8d8] sm:h-72 md:h-80 lg:h-full"
-                        style={{
-                          backgroundImage: `url(${room.image})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                        }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-black/15 to-transparent" />
-                                                <button
-                          type="button"
-                          className="absolute left-5 top-5 rounded-full border border-white/55 bg-black/40 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/55"
-                          onClick={() =>
-                            window.open(
-                              roomIndex === 1 ? secondCardVirtualTourUrl : defaultVirtualTourUrl,
-                              "_blank",
-                              "noopener,noreferrer",
-                            )
-                          }
-                        ><span className="inline-flex items-center gap-1.5 leading-none">
-  <svg
-    aria-hidden="true"
-    viewBox="0 0 24 24"
-    className="h-3.5 w-3.5 shrink-0"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    {/* Top arc */}
-    <path d="M3 12a9 9 0 0 1 14-7" />
-    <polyline points="17 3 17 7 13 7" />
-
-    {/* Bottom arc */}
-    <path d="M21 12a9 9 0 0 1-14 7" />
-    <polyline points="7 21 7 17 11 17" />
-  </svg>
-
-  <span>360° Tour</span>
-</span>
-                        </button>
-                        <p className="rr-card-line absolute bottom-5 left-6 text-sm font-semibold uppercase tracking-[0.14em] text-white">
-                          From{" "}
-                          <span className="text-[#e39a50]">
-                            {formatPrice(room.pricePerNight).replace(".00", "")}
-                          </span>{" "}
-                          Per Night
-                        </p>
-                      </div>
-
-                      <div className="p-6 sm:p-7">
-                        <h3 className="rr-card-line font-serif text-[2.2rem] leading-[0.92] text-[#123f5c] sm:text-[2.6rem]">
-                          <Link href={`/rooms/reservation?room=${room.slug}`}>{room.name}</Link>
-                        </h3>
-                        <p className="rr-card-line mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#7d8692]">
-                          {room.size} - {room.minimumOccupancy}-{room.capacity} Person - {room.bedType}
-                        </p>
-                        <p className="rr-card-line mt-4 text-[0.96rem] leading-relaxed text-[#123f5c]/85 md:text-[1rem]">
-                          {room.description}
-                        </p>
-                        <div className="rr-card-line mt-4 flex flex-wrap gap-2 text-[0.64rem] font-semibold uppercase tracking-[0.12em] text-[#7d8692]">
-                          <span>Total: {room.totalNoRooms || room.noOfRooms}</span>
-                          <span>Available: {room.noOfAvailable}</span>
-                          <span>Booked: {room.noOfBooked}</span>
-                          <span>On Hold: {room.noOfOnHold}</span>
-                        </div>
-                        {(room.minStay > 0 || room.maxStay > 0) && (
-                          <p className="rr-card-line mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#7d8692]">
-                            Stay: {room.minStay || 0} - {room.maxStay || "999"} nights
-                          </p>
-                        )}
-                        {room.facilities.length > 0 && (
-                          <div className="mt-3 flex flex-wrap gap-2">
-                            {room.facilities.map((facility) => (
-                              <span
-                                key={facility}
-                                className="rr-card-line rounded-full border border-[#d6d9dd] bg-white/70 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-[#5d6a76]"
-                              >
-                                {facility}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                        {room.ratePlans.length > 0 && (
-                          <div className="mt-3 flex flex-wrap gap-2">
-                            {room.ratePlans.map((plan) => (
-                              <span
-                                key={plan.id}
-                                className="rr-card-line rounded-full bg-[#ece4d7] px-3 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.08em] text-[#123f5c]"
-                              >
-                                {plan.name}: {formatPrice(plan.amount).replace(".00", "")}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                        {/* <div className="mt-6">
-                          <Link
-                            href=""
-                            className="inline-flex h-10 items-center rounded-full border border-[#c9c1b2] px-5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[#123f5c] transition hover:bg-[#f1ece3]"
+                      <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+                        <div
+                          className="rr-card-image relative h-64 overflow-hidden bg-[#d8d8d8] sm:h-72 md:h-80 lg:h-full lg:min-h-[26rem]"
+                          style={{
+                            backgroundImage: `url(${room.image})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-black/15 to-transparent" />
+                          <button
+                            type="button"
+                            className="absolute left-5 top-5 rounded-full border border-white/55 bg-black/40 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/55"
+                            onClick={() =>
+                              window.open(
+                                roomIndex === 1 ? secondCardVirtualTourUrl : defaultVirtualTourUrl,
+                                "_blank",
+                                "noopener,noreferrer",
+                              )
+                            }
                           >
-                            Reserve now
-                          </Link>
-                        </div> */}
-                      </div>
+                            <span className="inline-flex items-center gap-1.5 leading-none">
+                              <svg
+                                aria-hidden="true"
+                                viewBox="0 0 24 24"
+                                className="h-3.5 w-3.5 shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.8"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path d="M3 12a9 9 0 0 1 14-7" />
+                                <polyline points="17 3 17 7 13 7" />
+                                <path d="M21 12a9 9 0 0 1-14 7" />
+                                <polyline points="7 21 7 17 11 17" />
+                              </svg>
+                              <span>360° Tour</span>
+                            </span>
+                          </button>
+                          <p className="rr-card-line absolute bottom-5 left-6 pr-6 text-sm font-semibold uppercase tracking-[0.14em] text-white">
+                            From{" "}
+                            <span className="text-[#e39a50]">
+                              {formatPrice(room.pricePerNight).replace(".00", "")}
+                            </span>{" "}
+                            Per Night
+                          </p>
+                        </div>
+
+                        <div className="flex min-w-0 flex-col justify-center p-6 sm:p-7">
+                          <h3 className="rr-card-line font-serif text-[2.2rem] leading-[0.92] text-[#123f5c] sm:text-[2.6rem]">
+                            <Link href={`/rooms/reservation?room=${room.slug}`}>{room.name}</Link>
+                          </h3>
+                          <div className="rr-card-line mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#7d8692]">
+                            <span>{room.size}</span>
+                            <span>{room.minimumOccupancy}-{room.capacity} Person</span>
+                            <span>{room.bedType}</span>
+                          </div>
+                          <p className="rr-card-line mt-4 text-[0.96rem] leading-relaxed text-[#123f5c]/85 md:text-[1rem]">
+                            {room.description}
+                          </p>
+                          <div className="rr-card-line mt-4 flex flex-wrap gap-2 text-[0.64rem] font-semibold uppercase tracking-[0.12em] text-[#7d8692]">
+                            <span>Total: {room.totalNoRooms || room.noOfRooms}</span>
+                            <span>Available: {room.noOfAvailable}</span>
+                            <span>Booked: {room.noOfBooked}</span>
+                            <span>On Hold: {room.noOfOnHold}</span>
+                          </div>
+                          {(room.minStay > 0 || room.maxStay > 0) && (
+                            <p className="rr-card-line mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#7d8692]">
+                              Stay: {room.minStay || 0} - {room.maxStay || "999"} nights
+                            </p>
+                          )}
+                          {room.facilities.length > 0 && (
+                            <div className="mt-3 flex flex-wrap gap-2">
+                              {room.facilities.map((facility) => (
+                                <span
+                                  key={facility}
+                                  className="rr-card-line rounded-full border border-[#d6d9dd] bg-white/70 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-[#5d6a76]"
+                                >
+                                  {facility}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                          {room.ratePlans.length > 0 && (
+                            <div className="mt-3 flex flex-wrap gap-2">
+                              {room.ratePlans.map((plan) => (
+                                <span
+                                  key={plan.id}
+                                  className="rr-card-line rounded-full bg-[#ece4d7] px-3 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.08em] text-[#123f5c]"
+                                >
+                                  {plan.name}: {formatPrice(plan.amount).replace(".00", "")}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                          {/* <div className="mt-6">
+                            <Link
+                              href=""
+                              className="inline-flex h-10 items-center rounded-full border border-[#c9c1b2] px-5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[#123f5c] transition hover:bg-[#f1ece3]"
+                            >
+                              Reserve now
+                            </Link>
+                          </div> */}
+                        </div>
                       </div>
                     </article>
                   ))}
