@@ -43,7 +43,7 @@ export const DINING_HERO_CONFIG: PageHeroConfig = {
 export const EXPERIENCES_HERO_CONFIG: PageHeroConfig = {
   title: "Experiences",
   backgroundImage: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
-  backgroundVideo: "https://bookonelocal.in/cdn/Create_a_cinematic_202603191807.mp4",
+  backgroundVideo: "https://bookonelocal.in/cdn/Experience-Page-Video.mp4",
   subtitle: "Here&apos;s where memories are truly made.",
   breadcrumb: "Home / Experiences",
   minHeightClassName: "min-h-screen",
