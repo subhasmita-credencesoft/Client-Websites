@@ -7,10 +7,10 @@ import Container from "../ui/Container";
 
 const experiences = [
   {
-    title: "Family",
-    image: "https://bookonelocal.in/cdn/Copy+of+IMG_4035.JPG",
+    title: "sports",
+    image: "sports1.avif",
     description:
-      "From kids' activities to family-friendly adventures, discover moments made for togetherness.",
+      "Get active with sports for all ages—where fun, fitness, and family time come together.",
   },
   {
     title: "Culture",
@@ -20,19 +20,19 @@ const experiences = [
   },
   {
     title: "Entertainment",
-    image: "https://bookonelocal.in/cdn/adventure.png",
+    image: "children6.avif",
     description:
       "Whatever you love doing, you will find an incredible array of choices at the resort.",
   },
   {
     title: "Pools",
-    image: "https://bookonelocal.in/cdn/picnic1.jpg",
+    image: "children7.avif",
     description:
       "Sun-soaked days by the water, with serene pools and golden shoreline escapes.",
   },
   {
     title: "Adventure",
-    image: "https://bookonelocal.in/cdn/pic10.jpeg",
+    image: "sports4.avif",
     description:
       "Elevate your stay with outdoor thrills, curated excursions, and signature experiences.",
   },

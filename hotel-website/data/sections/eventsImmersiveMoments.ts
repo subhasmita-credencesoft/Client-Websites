@@ -26,7 +26,7 @@ export const WEDDINGS_IMMERSIVE_MOMENTS: WeddingsImmersiveMoment[] = [
     title: "Slides, splash zones, and rain-dance energy",
     description:
       "Water-led moments give the page a more exciting character and help guests immediately picture a day outing filled with movement and laughter.",
-    image: "https://bookonelocal.in/cdn/Copy+of+IMG_4035.JPG",
+    image: "children7.avif",
     alt: "Guests enjoying water fun and a lively day event atmosphere",
   },
   {
@@ -34,7 +34,7 @@ export const WEDDINGS_IMMERSIVE_MOMENTS: WeddingsImmersiveMoment[] = [
     title: "Large grounds for games, mingling, and event setups",
     description:
       "Wide lawns support group games, picnic pacing, celebration corners, and informal social movement without losing visual openness.",
-    image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
+    image: "sports1.avif",
     alt: "Large lawn area for events and group activities",
   },
   {
@@ -66,7 +66,7 @@ export const WEDDINGS_IMMERSIVE_MOMENTS: WeddingsImmersiveMoment[] = [
     title: "Indoor activity corners for all-weather fun",
     description:
       "Table games and indoor leisure zones help complete the experience for guests who want more than just outdoor movement in the day plan.",
-    image: "https://bookonelocal.in/cdn/gymnium-image.JPG",
+    image: "sports2.avif",
     alt: "Indoor leisure and activity space at the resort",
   },
 ] as const;

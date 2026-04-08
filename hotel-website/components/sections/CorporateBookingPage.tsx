@@ -12,47 +12,6 @@ import { corporateLandingPageContent } from "../../data/pages/bookingLandingPage
 
 gsap.registerPlugin(ScrollTrigger);
 
-const immersiveSpaces = [
-  {
-    image: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
-    title: "A polished arrival for business guests",
-    copy: "Set the tone for offsites, planning sessions, and corporate stays with a resort setting that feels professional from the first impression.",
-  },
-  {
-    image: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
-    title: "Comfort that supports focused work",
-    copy: "The atmosphere balances business purpose with comfort, making it easier for teams to stay productive and settled throughout the visit.",
-  },
-  {
-    image: "https://bookonelocal.in/cdn/conference3-1.jpg",
-    title: "Suitable for meetings and group events",
-    copy: "From team gatherings to launches and conferences, the venue presentation helps planners quickly understand how the resort can support the format.",
-  },
-];
-
-const planningSteps = [
-  {
-    step: "01",
-    title: "Choose the right business format",
-    copy: "Select the stay or event style that suits your team, whether you are planning an offsite, retreat, conference, or company gathering.",
-  },
-  {
-    step: "02",
-    title: "Review space and stay details",
-    copy: "Understand the atmosphere, audience fit, and included support before moving ahead with the booking decision.",
-  },
-  {
-    step: "03",
-    title: "Confirm the booking path",
-    copy: "Once your preferred format is clear, continue directly to the booking step without unnecessary delays.",
-  },
-  {
-    step: "04",
-    title: "Align final coordination",
-    copy: "After the booking step, your team can continue coordinating schedules, arrivals, and event-related details with better clarity.",
-  },
-];
-
 const corporateAdvantages = [
   {
     title: "Professional first impression",
@@ -65,6 +24,29 @@ const corporateAdvantages = [
   {
     title: "Easier planning flow",
     copy: "Each section supports decision-making in a simple order so teams can move from interest to booking with less confusion.",
+  },
+];
+
+const corporateFlowSteps = [
+  {
+    step: "01",
+    title: "Review the stay objective",
+    copy: "Start with the format your team needs, whether the plan is for room stays, leadership time, meetings, or a larger business event.",
+  },
+  {
+    step: "02",
+    title: "Compare the package fit",
+    copy: "Use the package overview to understand which option supports the right group size, pace, and coordination requirement.",
+  },
+  {
+    step: "03",
+    title: "Check the resort setting",
+    copy: "Visuals and planning details help teams understand the atmosphere, comfort level, and hospitality experience before moving ahead.",
+  },
+  {
+    step: "04",
+    title: "Continue to booking",
+    copy: "Once the format feels right, guests can continue directly to the booking path with less friction and more clarity.",
   },
 ];
 
@@ -164,14 +146,14 @@ export default function CorporateBookingPage() {
             <p className="corp-kicker site-kicker">{corporateLandingPageContent.introEyebrow}</p>
             <div className="overflow-hidden">
               <h2 className="corp-title mt-4 font-serif text-[clamp(2.45rem,4vw,4.5rem)] leading-[0.94] text-[var(--text-primary)]">
-                Corporate stays and group bookings presented with more clarity and confidence.
+                {corporateLandingPageContent.introTitle}
               </h2>
             </div>
             <p className="corp-copy mt-6 max-w-2xl text-[1rem] leading-8 text-[var(--text-muted)] sm:text-[1.05rem]">
               {corporateLandingPageContent.introCopy}
             </p>
             <p className="corp-copy mt-5 max-w-2xl text-[1rem] leading-8 text-[color:color-mix(in_srgb,var(--ink)_86%,white_14%)] sm:text-[1.03rem]">
-              Explore a corporate booking journey designed for teams that need the right mix of comfort, planning ease, and a dependable resort setting in Khopoli.
+              Explore a corporate booking journey built for teams that want a dependable resort setting, a clearer planning flow, and a more direct path to the next step.
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -198,42 +180,27 @@ export default function CorporateBookingPage() {
             </div>
           </div>
 
-          <div className="relative min-h-[34rem]">
-            <div className="corp-card corp-float absolute left-0 top-3 w-[78%] rounded-[1.8rem] border border-white/70 bg-white/95 p-5 shadow-[0_24px_60px_rgba(26,39,46,0.12)] backdrop-blur">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
-                01
-              </p>
-              <h3 className="mt-3 font-serif text-[1.75rem] leading-[0.98] text-[var(--text-primary)]">
-                Business-ready presentation
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-[var(--text-muted)]">
-                The page introduces the resort in a way that feels suitable for company planners, coordinators, and team leads.
-              </p>
-            </div>
-
-            <div className="corp-card corp-float absolute right-0 top-28 w-[74%] rounded-[1.8rem] border border-[#d9c9b8] bg-[linear-gradient(135deg,#153b46_0%,#1f4e5a_100%)] p-6 text-white shadow-[0_30px_70px_rgba(20,59,71,0.22)]">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/65">
-                02
-              </p>
-              <h3 className="mt-3 font-serif text-[1.9rem] leading-[0.96] text-white">
-                Clearer booking flow
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-white/78">
-                Guests can review the stay format, compare options, and move toward booking without unnecessary confusion.
-              </p>
-            </div>
-
-            <div className="corp-card corp-float absolute left-10 bottom-0 w-[70%] rounded-[1.8rem] border border-white/70 bg-[#efe6da] p-5 shadow-[0_26px_60px_rgba(26,39,46,0.10)]">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
-                03
-              </p>
-              <h3 className="mt-3 font-serif text-[1.7rem] leading-[0.98] text-[var(--text-primary)]">
-                Helpful detail without overload
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-[var(--text-muted)]">
-                Each section adds useful context for business stays while still keeping the next step simple and visible.
-              </p>
-            </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {corporateLandingPageContent.highlights.map((item, index) => (
+              <article
+                key={item.title}
+                className={`corp-card rounded-[1.8rem] border p-6 shadow-[0_24px_60px_rgba(26,39,46,0.10)] ${
+                  index === 1
+                    ? "border-[#d9c9b8] bg-[linear-gradient(135deg,#153b46_0%,#1f4e5a_100%)] text-white"
+                    : "border-white/70 bg-white/95 backdrop-blur"
+                } ${index === 2 ? "md:col-span-2" : ""}`}
+              >
+                <p className={`text-[0.72rem] font-semibold uppercase tracking-[0.24em] ${index === 1 ? "text-white/65" : "text-[var(--accent)]"}`}>
+                  0{index + 1}
+                </p>
+                <h3 className={`mt-3 font-serif text-[1.7rem] leading-[0.98] ${index === 1 ? "text-white" : "text-[var(--text-primary)]"}`}>
+                  {item.title}
+                </h3>
+                <p className={`mt-3 text-sm leading-7 ${index === 1 ? "text-white/78" : "text-[var(--text-muted)]"}`}>
+                  {item.description}
+                </p>
+              </article>
+            ))}
           </div>
         </Container>
       </section>
@@ -248,7 +215,7 @@ export default function CorporateBookingPage() {
               </h2>
             </div>
             <p className="corp-copy mt-5 text-[1rem] leading-8 text-[var(--text-muted)]">
-              This section gives planners a clearer feel for the atmosphere, scale, and hospitality experience behind corporate stays at UK&apos;s Resort.
+              The media below helps planners understand the mood, setting, and overall suitability of the resort for different corporate formats.
             </p>
           </div>
 
@@ -256,8 +223,8 @@ export default function CorporateBookingPage() {
             <article className="corp-card relative overflow-hidden rounded-[2rem] border border-[var(--border-subtle)] bg-white shadow-[0_24px_60px_rgba(26,39,46,0.10)]">
               <div className="relative min-h-[24rem] sm:min-h-[31rem]">
                 <Image
-                  src={immersiveSpaces[0].image}
-                  alt={immersiveSpaces[0].title}
+                  src={corporateLandingPageContent.gallery[0].image}
+                  alt={corporateLandingPageContent.gallery[0].title}
                   fill
                   sizes="(max-width: 1023px) 100vw, 720px"
                   className="corp-media-shift object-cover"
@@ -269,17 +236,17 @@ export default function CorporateBookingPage() {
                     Signature Arrival
                   </p>
                   <h3 className="corp-title mt-3 font-serif text-[2.05rem] leading-[0.94] text-white sm:text-[2.8rem]">
-                    {immersiveSpaces[0].title}
+                    {corporateLandingPageContent.gallery[0].title}
                   </h3>
                   <p className="corp-copy mt-4 max-w-2xl text-sm leading-7 text-white/82 sm:text-[0.98rem]">
-                    {immersiveSpaces[0].copy}
+                    {corporateLandingPageContent.gallery[0].copy}
                   </p>
                 </div>
               </div>
             </article>
 
             <div className="grid gap-6">
-              {immersiveSpaces.slice(1).map((item, index) => (
+              {corporateLandingPageContent.gallery.slice(1).map((item, index) => (
                 <article
                   key={item.title}
                   className="corp-card relative overflow-hidden rounded-[1.8rem] border border-[var(--border-subtle)] bg-white shadow-[0_20px_48px_rgba(26,39,46,0.08)]"
@@ -365,16 +332,16 @@ export default function CorporateBookingPage() {
             <p className="corp-kicker site-kicker">Coordination Flow</p>
             <div className="overflow-hidden">
               <h2 className="corp-title mt-4 font-serif text-[clamp(2.25rem,4vw,3.8rem)] leading-[0.95] text-[var(--text-primary)]">
-                A clearer path from discovery to booking.
+                A simple path from first review to the final booking step.
               </h2>
             </div>
             <p className="corp-copy mt-5 max-w-2xl text-[1rem] leading-8 text-[var(--text-muted)]">
-              Follow the planning journey step by step so your team can understand what to review first and what to do next.
+              The flow below helps company planners understand what to check first, what to compare next, and when to continue to booking.
             </p>
           </div>
 
           <div className="grid gap-4">
-            {planningSteps.map((item) => (
+            {corporateFlowSteps.map((item) => (
               <article
                 key={item.step}
                 className="corp-card rounded-[1.5rem] border border-[var(--border-subtle)] bg-white px-5 py-6 shadow-[0_14px_34px_rgba(26,39,46,0.05)] sm:px-6"
@@ -425,6 +392,15 @@ export default function CorporateBookingPage() {
               <p className="corp-copy mt-5 text-[1rem] leading-8 text-[var(--text-muted)]">
                 {corporateLandingPageContent.planningCopy}
               </p>
+
+              <div className="mt-6 space-y-3">
+                {corporateLandingPageContent.planningPoints.map((point) => (
+                  <div key={point} className="flex items-start gap-3 text-sm leading-7 text-[var(--text-muted)]">
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden="true" />
+                    <span>{point}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {corporateAdvantages.map((item) => (

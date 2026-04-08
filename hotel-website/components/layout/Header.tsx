@@ -21,7 +21,7 @@ const DEFAULT_LOGO = "/UK's-Resort-Logo.png";
 const HERO_PREFIXES = [
   "/", "/rooms", "/dining", "/picnic", "/corporate", "/about", "/wellness",
   "/facilities", "/experiences", "/events",
-  "/blog", "/around-us", "/contact", "/tariffs",
+  "/blog", "/around-us", "/contact",
 ];
 
 function resolvePreviewPath(pathname: string): string {
@@ -44,50 +44,47 @@ function formatPhone(value: string | null | undefined) {
   return value;
 }
 
-function compactAddress(parts: Array<string | null | undefined>) {
-  return parts.filter(Boolean).join(", ");
-}
-
 const PhoneIcon = () => (
-  <svg className="h-[0.9rem] w-[0.9rem] shrink-0" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
+    style={{ width: "0.9rem", height: "0.9rem", flexShrink: 0 }} aria-hidden="true">
     <path d="M22 16.9v2a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h2a2 2 0 0 1 2 1.72 12.8 12.8 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.2 9.91a16 16 0 0 0 6.29 6.29l1.27-.97a2 2 0 0 1 2.11-.45 12.8 12.8 0 0 0 2.81.7A2 2 0 0 1 22 17.42Z" />
   </svg>
 );
 
 const MailIcon = () => (
-  <svg className="h-[0.9rem] w-[0.9rem] shrink-0" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
+    style={{ width: "0.9rem", height: "0.9rem", flexShrink: 0 }} aria-hidden="true">
     <rect x="2" y="4" width="20" height="16" rx="2" />
     <path d="m2 7 10 7 10-7" />
   </svg>
 );
 
 const MapPinIcon = () => (
-  <svg className="h-[0.78rem] w-[0.78rem] shrink-0 text-[#d89a55]" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
+    style={{ width: "0.72rem", height: "0.72rem", flexShrink: 0, marginTop: "1px" }} aria-hidden="true">
     <path d="M20 10c0 6-8 13-8 13S4 16 4 10a8 8 0 0 1 16 0Z" />
     <circle cx="12" cy="10" r="3" />
   </svg>
 );
 
-function Hamburger({ open, onClick }: { open: boolean; onClick: () => void }) {
+function Hamburger({ open, onClick, color }: { open: boolean; onClick: () => void; color: string }) {
   return (
     <button
       aria-label={open ? "Close menu" : "Open menu"}
       aria-expanded={open}
       onClick={onClick}
-      className="group relative flex h-10 w-10 flex-col items-start justify-center gap-[5px] sm:gap-[6px]"
+      style={{ color }}
+      className="group flex h-10 w-10 flex-col items-start justify-center gap-[5px] shrink-0"
     >
-      <span className={`block h-[2px] origin-left bg-current transition-all duration-300 ${open ? "w-[22px] sm:w-[26px] rotate-[1deg]" : "w-[24px] sm:w-[28px] group-hover:w-[28px] sm:group-hover:w-[32px]"}`} />
-      <span className={`block h-[2px] origin-left bg-current transition-all duration-300 ${open ? "w-[18px] sm:w-[22px] opacity-60" : "w-[18px] sm:w-[22px] group-hover:w-[22px] sm:group-hover:w-[26px]"}`} />
-      <span className={`block h-[2px] origin-left bg-current transition-all duration-300 ${open ? "w-[14px] sm:w-[18px] opacity-30" : "w-[12px] sm:w-[16px] group-hover:w-[16px] sm:group-hover:w-[20px]"}`} />
+      <span className={`block h-[1.5px] origin-left bg-current transition-all duration-300 ${open ? "w-[20px]" : "w-[22px] group-hover:w-[26px]"}`} />
+      <span className={`block h-[1.5px] origin-left bg-current transition-all duration-300 ${open ? "w-[16px] opacity-60" : "w-[15px] group-hover:w-[19px]"}`} />
+      <span className={`block h-[1.5px] origin-left bg-current transition-all duration-300 ${open ? "w-[11px] opacity-30" : "w-[9px] group-hover:w-[13px]"}`} />
     </button>
   );
 }
-
-const GLASS_BG = "bg-[linear-gradient(90deg,rgba(72,79,45,0.56)_0%,rgba(104,113,124,0.42)_20%,rgba(104,113,124,0.42)_80%,rgba(72,79,45,0.56)_100%)] backdrop-blur-[18px]";
-const GLASS_BG_SCROLLED = "bg-[linear-gradient(90deg,rgba(72,79,45,0.68)_0%,rgba(104,113,124,0.54)_20%,rgba(104,113,124,0.54)_80%,rgba(72,79,45,0.68)_100%)] backdrop-blur-[22px]";
 
 export default function Header() {
   const { property } = usePropertyData();
@@ -116,18 +113,12 @@ export default function Header() {
   const whatsappPhone = formatPhone(liveProperty?.whatsApp) || DEFAULT_PHONE_2;
   const primaryPhoneHref = toTelHref(primaryPhone);
   const whatsappPhoneHref = toTelHref(whatsappPhone);
-
-  const addressLong = compactAddress([
+  const addressLong = [
     liveProperty?.address?.streetName,
     liveProperty?.address?.suburb,
     liveProperty?.address?.city,
     liveProperty?.address?.state,
-  ]) || "Mahad Phata, Old Mumbai-Pune Hwy, Khopoli, Raigad";
-
-  const addressShort = compactAddress([
-    liveProperty?.address?.city,
-    liveProperty?.address?.state,
-  ]) || "Khopoli, Raigad";
+  ].filter(Boolean).join(", ") || "Mahad Phata, Old Mumbai-Pune Hwy, Khopoli, Raigad";
 
   useEffect(() => {
     document.body.style.overflow = menuOpen || menuClosing ? "hidden" : "";
@@ -139,20 +130,16 @@ export default function Header() {
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) return;
-
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".header-anim",
-        { y: -12, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.07, overwrite: "auto" },
+      gsap.fromTo(".header-anim",
+        { y: -10, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.55, ease: "power3.out", stagger: 0.06, overwrite: "auto" },
       );
-      gsap.fromTo(
-        ".header-nav-item",
-        { y: 10, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.45, ease: "power3.out", stagger: 0.035, delay: 0.1, overwrite: "auto" },
+      gsap.fromTo(".header-nav-item",
+        { y: 8, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.4, ease: "power3.out", stagger: 0.03, delay: 0.1, overwrite: "auto" },
       );
     }, headerRef);
-
     return () => ctx.revert();
   }, [pathname, isHeroPage]);
 
@@ -160,45 +147,34 @@ export default function Header() {
     if (!menuOpen || !menuRef.current) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) return;
-
     const ctx = gsap.context(() => {
       gsap.fromTo(menuRef.current,
         { autoAlpha: 0 },
-        { autoAlpha: 1, duration: 0.35, ease: "power2.out" },
+        { autoAlpha: 1, duration: 0.3, ease: "power2.out" },
       );
       gsap.fromTo(".menu-nav-item",
-        { x: -28, autoAlpha: 0, filter: "blur(4px)" },
-        { x: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.55, stagger: 0.055, ease: "power3.out", delay: 0.12 },
-      );
-      gsap.fromTo(".menu-sub-item",
-        { x: -18, autoAlpha: 0 },
-        { x: 0, autoAlpha: 1, duration: 0.4, stagger: 0.04, ease: "power3.out", delay: 0.38 },
+        { x: -24, autoAlpha: 0, filter: "blur(4px)" },
+        { x: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.5, stagger: 0.05, ease: "power3.out", delay: 0.1 },
       );
       gsap.fromTo(".menu-col",
-        { y: 16, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.5, stagger: 0.08, ease: "power3.out", delay: 0.2 },
+        { y: 14, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.45, stagger: 0.07, ease: "power3.out", delay: 0.18 },
       );
       gsap.fromTo(".menu-divider",
         { scaleX: 0, transformOrigin: "left center" },
-        { scaleX: 1, duration: 0.9, ease: "expo.out", delay: 0.15 },
+        { scaleX: 1, duration: 0.8, ease: "expo.out", delay: 0.12 },
       );
     }, menuRef);
-
     return () => ctx.revert();
   }, [menuOpen]);
 
   const closeMenu = useCallback(() => {
     if (!menuRef.current) { setMenuOpen(false); return; }
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     if (reduceMotion) { setMenuOpen(false); return; }
-
     setMenuClosing(true);
     gsap.to(menuRef.current, {
-      autoAlpha: 0,
-      y: -8,
-      duration: 0.32,
-      ease: "power2.in",
+      autoAlpha: 0, y: -8, duration: 0.28, ease: "power2.in",
       onComplete: () => { setMenuOpen(false); setMenuClosing(false); },
     });
   }, []);
@@ -211,118 +187,140 @@ export default function Header() {
 
   const canPortal = clientReady && typeof document !== "undefined";
 
+  /* ── colour tokens ── */
+  const isGlass   = isHeroPage;
+  const bg        = isGlass ? "rgba(246,242,236,0.13)" : "rgba(246,242,236,0.97)";
+  const textMain  = isGlass ? "#ffffff"                : "#2a1e0f";
+  const textMuted = isGlass ? "rgba(255,255,255,0.50)" : "rgba(110,82,45,0.65)";
+  const border    = isGlass ? "rgba(255,255,255,0.15)" : "rgba(190,165,120,0.30)";
+  const navBg     = isGlass ? "rgba(246,242,236,0.09)" : "rgba(236,228,213,0.80)";
+  const navLink   = isGlass ? "rgba(255,255,255,0.72)" : "rgba(70,50,25,0.78)";
+  const navLinkHov= isGlass ? "#ffffff"                : "#2a1e0f";
+  const navDot    = isGlass ? "rgba(255,255,255,0.28)" : "rgba(190,150,80,0.55)";
+  const iconColor = isGlass ? "rgba(255,255,255,0.85)" : "rgba(70,50,25,0.80)";
+  const iconBorder= isGlass ? "rgba(255,255,255,0.22)" : "rgba(190,165,120,0.35)";
+
   return (
     <div
       ref={headerRef}
       className={`hdr-root w-full ${isHeroPage ? "absolute left-0 top-0 z-50" : "sticky top-0 z-50"}`}
     >
-      <div
-        className={`header-anim relative hidden w-full overflow-hidden transition-all duration-500 ease-in-out sm:block ${
-          isHeroPage && scrolled ? "pointer-events-none h-0 opacity-0" : "h-[2.1rem] opacity-100"
-        }`}
-      >
-        <div className={`absolute inset-0 border-b border-white/[0.14] ${GLASS_BG}`}>
-          <div className="hdr-bar flex h-[2.1rem] w-full items-center justify-between">
-            <div className="flex items-center gap-1.5 text-[0.6rem] text-white/70 sm:text-[0.62rem] lg:text-[0.67rem]">
-              <MapPinIcon />
-              <span className="hidden lg:inline">{addressLong}</span>
-              <span className="hidden sm:inline lg:hidden">{addressShort}</span>
-            </div>
-
-            <div className="flex items-center gap-2.5 text-[0.6rem] text-white/70 sm:gap-3 sm:text-[0.62rem] lg:text-[0.67rem]">
-              <a href={primaryPhoneHref} className="flex items-center gap-1 transition-colors hover:text-white">
-                <PhoneIcon />
-                <span className="hidden md:inline">{primaryPhone}</span>
-                <span className="md:hidden">{primaryPhone.replace("+91 ", "")}</span>
-              </a>
-              <span className="text-white/20" aria-hidden="true">|</span>
-              <a href={whatsappPhoneHref} className="hidden items-center gap-1 transition-colors hover:text-white lg:flex">
-                {whatsappPhone}
-              </a>
-              <span className="hidden text-white/20 lg:block" aria-hidden="true">|</span>
-              <a href={`mailto:${email}`} className="hidden items-center gap-1 transition-colors hover:text-white sm:flex">
-                <MailIcon />
-                <span className="hidden md:inline">{email}</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <header
         data-no-global-gsap
-        className={`w-full transition-all duration-500 ${
-          isHeroPage
-            ? `border-b border-white/[0.14] text-white ${scrolled ? GLASS_BG_SCROLLED : GLASS_BG}`
-            : `border-b border-black/10 bg-white text-[#1f3c44] ${scrolled ? "shadow-sm" : ""}`
-        }`}
+        className={`w-full transition-all duration-500${scrolled && !isHeroPage ? " hdr-shadow" : ""}`}
+        style={{
+          background: bg,
+          color: textMain,
+          backdropFilter: "blur(18px) saturate(1.5)",
+          WebkitBackdropFilter: "blur(18px) saturate(1.5)",
+          borderBottom: `1px solid ${border}`,
+        }}
       >
-        <div className="header-anim hdr-bar hdr-bar--main">
-          <div className="relative flex h-[4rem] w-full items-center sm:h-[5rem]">
+
+        {/* ══ SINGLE MAIN ROW — hamburger | logo centre | icons + book ══ */}
+        <div className="header-anim hdr-bar flex items-center justify-between" style={{ minHeight: "4.8rem" }}>
+
+          {/* LEFT — hamburger + menu label */}
+          <div className="flex items-center gap-2 shrink-0 min-w-[7rem] sm:min-w-[10rem]">
             <Hamburger
               open={menuOpen}
+              color={iconColor}
               onClick={() => {
                 if (menuOpen) { closeMenu(); return; }
                 setMenuPreview(resolvePreviewPath(pathname));
                 setMenuOpen(true);
               }}
             />
-
-            <Link
-              href="/"
-              aria-label={`${propertyName} — home`}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            >
-              <span className="relative block h-8 w-[7.25rem] sm:h-10 sm:w-[9rem] lg:h-12 lg:w-[10.5rem]">
-                <Image
-                  src={logoSrc}
-                  alt={propertyName}
-                  fill
-                  sizes="(max-width: 639px) 116px, (max-width: 1023px) 144px, 168px"
-                  className={`object-contain ${isHeroPage ? "" : "invert"}`}
-                  unoptimized={logoSrc.startsWith("http")}
-                  priority
-                />
+            <div className="hidden sm:flex items-center gap-1.5">
+              <span className="font-bold uppercase tracking-[0.26em]"
+                style={{ fontSize: "0.56rem", color: textMuted }}>
+                Menu
               </span>
-            </Link>
+              <span className="h-2.5 w-px" style={{ background: border }} aria-hidden="true" />
+              <span className="font-bold uppercase tracking-[0.22em]"
+                style={{ fontSize: "0.56rem", color: textMuted }}>
+                UK&apos;s Resort
+              </span>
+            </div>
+          </div>
 
-            <div className="ml-auto flex items-center gap-2 sm:gap-3 lg:gap-4">
+          {/* CENTRE — ornament + logo + wordmark */}
+          <Link
+            href="/"
+            aria-label={`${propertyName} — home`}
+            className="group absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+          >
+            {/* Logo */}
+            <span className="relative block"
+              style={{ height: "clamp(1.7rem, 3.6vw, 2.4rem)", width: "clamp(5.4rem, 10.5vw, 8.1rem)" }}>
+              <Image
+                src={logoSrc}
+                alt={propertyName}
+                fill
+                sizes="(max-width: 639px) 104px, (max-width: 1023px) 128px, 136px"
+                className="object-contain transition-opacity duration-300 group-hover:opacity-80"
+                unoptimized={logoSrc.startsWith("http")}
+                priority
+              />
+            </span>
+            {/* Wordmark */}
+            <span className="flex flex-col items-center leading-none">
+              <span className="font-serif font-normal"
+                style={{ fontSize: "clamp(0.78rem, 1.4vw, 1.08rem)", letterSpacing: "0.06em", color: textMain }}>
+                UK&apos;s Resort
+              </span>
+              <span className="font-semibold uppercase"
+                style={{ fontSize: "clamp(0.36rem, 0.65vw, 0.44rem)", letterSpacing: "0.3em", color: textMuted, marginTop: "2px" }}>
+                Khopoli · Maharashtra
+              </span>
+            </span>
+          </Link>
+
+          {/* RIGHT — phone icon, mail icon, book button */}
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 justify-end min-w-[7rem] sm:min-w-[10rem]">
+            <div className="hidden items-center gap-1.5 md:flex md:gap-2">
+              {/* Phone icon button */}
               <a
                 href={primaryPhoneHref}
-                aria-label="Call us"
-                className={`inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors sm:hidden ${
-                  isHeroPage
-                    ? "border-white/45 text-white hover:border-white hover:bg-white/10"
-                    : "border-[#1f3c44]/35 text-[#1f3c44] hover:bg-[#1f3c44]/5"
-                }`}
+                aria-label={`Call ${primaryPhone}`}
+                className="hdr-icon-btn"
+                style={{ border: `1px solid ${iconBorder}`, color: iconColor }}
               >
                 <PhoneIcon />
               </a>
-
-              <Link
-                href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
-                className={`hdr-book-btn flex items-center gap-1.5 rounded-full border transition-all duration-200 ${
-                  isHeroPage
-                    ? "border-white/50 text-white hover:border-white hover:bg-white/10"
-                    : "border-[#1f3c44]/45 text-[#1f3c44] hover:border-[#1f3c44] hover:bg-[#1f3c44]/5"
-                }`}
+              {/* Mail icon button */}
+              <a
+                href={`mailto:${email}`}
+                aria-label={`Email ${email}`}
+                className="hdr-icon-btn"
+                style={{ border: `1px solid ${iconBorder}`, color: iconColor }}
               >
-                <span className="hidden sm:inline">Book your stay</span>
-                <span className="sm:hidden">Book</span>
-                <span className="hdr-book-arrow" aria-hidden="true">&rsaquo;</span>
-              </Link>
+                <MailIcon />
+              </a>
             </div>
+
+            {/* Book CTA */}
+            <Link
+              href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
+              className="hdr-book-btn"
+            >
+              <span className="hidden sm:inline">Book Your Stay</span>
+              <span className="sm:hidden">Book</span>
+              <span className="hdr-book-arrow-wrap" aria-hidden="true">
+                <span className="hdr-book-arrow">&rsaquo;</span>
+              </span>
+            </Link>
           </div>
         </div>
 
+        {/* ══ NAV BAR ══ */}
         <div
-          className={`header-anim hidden border-t lg:block ${
-            isHeroPage
-              ? `border-white/[0.14] ${GLASS_BG}`
-              : "border-black/[0.07] bg-white"
-          }`}
+          className="header-anim"
+          style={{ borderTop: `1px solid ${border}`, background: navBg }}
         >
-          <nav aria-label="Main navigation" className="flex h-[3.2rem] w-full items-center justify-center">
+          {/* Desktop */}
+          <nav aria-label="Main navigation"
+            className="hdr-nav-shell hidden h-[2.4rem] w-full items-center justify-center lg:flex">
             <ul ref={navListRef} className="flex items-center">
               {navigation.map((item, index) => {
                 const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
@@ -332,22 +330,42 @@ export default function Header() {
                       href={item.href}
                       aria-current={isActive ? "page" : undefined}
                       onMouseEnter={() => router.prefetch(item.href)}
-                      className={`header-nav-item hdr-nav-link font-serif transition-colors duration-200 ${
-                        isHeroPage
-                          ? "text-white/82 hover:text-white"
-                          : "text-[#1f3c44]/65 hover:text-[#1f3c44]"
-                      }`}
-                      style={isActive ? { color: "#d89a55" } : undefined}
+                      className="header-nav-item hdr-nav-link"
+                      style={{ color: isActive ? "#c8922a" : navLink }}
+                      onMouseOver={e => { if (!isActive) (e.currentTarget as HTMLAnchorElement).style.color = navLinkHov; }}
+                      onMouseOut={e => { if (!isActive) (e.currentTarget as HTMLAnchorElement).style.color = navLink; }}
                     >
                       {item.label}
                     </Link>
                     {index < navigation.length - 1 && (
-                      <span
-                        aria-hidden="true"
-                        className={`block h-[3px] w-[3px] shrink-0 rounded-full ${
-                          isHeroPage ? "bg-white/30" : "bg-[#1f3c44]/20"
-                        }`}
-                      />
+                      <span aria-hidden="true" className="block shrink-0"
+                        style={{ width: "4px", height: "4px", background: navDot, transform: "rotate(45deg)" }} />
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          {/* Mobile scroll strip */}
+          <nav aria-label="Main navigation"
+            className="hdr-nav-shell hidden h-[2.25rem] w-full items-center overflow-x-auto md:flex lg:hidden">
+            <ul className="flex items-center px-3 shrink-0">
+              {navigation.map((item, index) => {
+                const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+                return (
+                  <li key={item.href} className="flex items-center shrink-0">
+                    <Link
+                      href={item.href}
+                      aria-current={isActive ? "page" : undefined}
+                      className="whitespace-nowrap px-2 font-bold uppercase transition-colors"
+                      style={{ fontSize: "0.55rem", letterSpacing: "0.18em", color: isActive ? "#c8922a" : navLink, textDecoration: "none" }}
+                    >
+                      {item.label}
+                    </Link>
+                    {index < navigation.length - 1 && (
+                      <span aria-hidden="true" className="block shrink-0"
+                        style={{ width: "3px", height: "3px", background: navDot, transform: "rotate(45deg)" }} />
                     )}
                   </li>
                 );
@@ -357,6 +375,7 @@ export default function Header() {
         </div>
       </header>
 
+      {/* ══ FULL-SCREEN MENU OVERLAY ══ */}
       {canPortal && menuOpen && createPortal(
         <div
           ref={menuRef}
@@ -365,26 +384,25 @@ export default function Header() {
           aria-label="Site navigation"
           className="menu-overlay fixed inset-0 z-[999] overflow-y-auto"
         >
-          <div
-            className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center transition-all duration-700 ease-out"
+          <div className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center"
             style={{ backgroundImage: `url("${encodeURI(menuPreviews[menuPreview] ?? menuPreviews["/"])}")` }}
-            aria-hidden="true"
-          />
+            aria-hidden="true" />
           <div className="pointer-events-none absolute inset-0 z-0 bg-[#111015]/55" aria-hidden="true" />
           <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-[#1e1a18]/70 via-[#1a1818]/30 to-transparent" aria-hidden="true" />
           <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-48 bg-gradient-to-b from-black/35 to-transparent" aria-hidden="true" />
           <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.025]"
             style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E\")", backgroundRepeat: "repeat", backgroundSize: "128px" }}
-            aria-hidden="true"
-          />
+            aria-hidden="true" />
 
-          <div className="relative z-10 border-b border-white/[0.1]">
+          {/* Menu top bar */}
+          <div className="relative z-10 border-b border-white/10">
             <div className="hdr-bar hdr-bar--menu">
-              <div className="relative flex h-[4.25rem] w-full items-center sm:h-[5rem]">
+              <div className="relative flex items-center justify-between" style={{ minHeight: "4rem" }}>
+                {/* Close button */}
                 <button
                   aria-label="Close navigation menu"
                   onClick={closeMenu}
-                  className="group flex h-10 w-10 items-center justify-center text-white/70 transition-colors hover:text-white"
+                  className="group flex h-9 w-9 items-center justify-center text-white/70 transition-colors hover:text-white shrink-0"
                 >
                   <svg className="h-5 w-5 transition-transform duration-200 group-hover:rotate-90" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -392,39 +410,37 @@ export default function Header() {
                   </svg>
                 </button>
 
+                {/* Centred logo in menu */}
                 <Link href="/" onClick={closeMenu}
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                  aria-label={`${propertyName} — home`}
-                >
-                  <span className="relative block h-8 w-[7.25rem] sm:h-10 sm:w-[9rem]">
-                    <Image
-                      src={logoSrc}
-                      alt={propertyName}
-                      fill
-                      sizes="(max-width: 639px) 116px, 144px"
-                      className="object-contain"
-                      unoptimized={logoSrc.startsWith("http")}
-                      priority
-                    />
+                  className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-0.5"
+                  aria-label={`${propertyName} — home`}>
+                  <span className="relative block" style={{ height: "2rem", width: "6.5rem" }}>
+                    <Image src={logoSrc} alt={propertyName} fill
+                      sizes="104px" className="object-contain"
+                      unoptimized={logoSrc.startsWith("http")} priority />
+                  </span>
+                  <span className="font-bold uppercase text-white/40"
+                    style={{ fontSize: "0.42rem", letterSpacing: "0.28em" }}>
+                    Khopoli · Maharashtra
                   </span>
                 </Link>
 
-                <div className="ml-auto flex items-center gap-3 lg:gap-5">
+                {/* Right side in menu */}
+                <div className="flex items-center gap-2.5 lg:gap-4 shrink-0">
                   <a href={primaryPhoneHref}
-                    className="hidden items-center gap-1.5 text-[0.75rem] text-white/80 transition-colors hover:text-white lg:flex">
+                    className="hidden items-center gap-1.5 text-white/72 transition-colors hover:text-white lg:flex"
+                    style={{ fontSize: "0.7rem" }}>
                     <PhoneIcon />{primaryPhone}
                   </a>
-                  <span className="hidden h-3 w-px bg-white/20 lg:block" aria-hidden="true" />
+                  <span className="hidden h-3 w-px bg-white/18 lg:block" aria-hidden="true" />
                   <a href={whatsappPhoneHref}
-                    className="hidden text-[0.75rem] text-white/80 transition-colors hover:text-white lg:block">
+                    className="hidden text-white/72 transition-colors hover:text-white lg:block"
+                    style={{ fontSize: "0.7rem" }}>
                     {whatsappPhone}
                   </a>
-                  <span className="hidden h-3 w-px bg-white/20 lg:block" aria-hidden="true" />
-                  <Link
-                    href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
-                    onClick={closeMenu}
-                    className="hdr-book-btn flex items-center gap-1.5 rounded-full border border-white/45 text-white transition hover:border-white hover:bg-white/10"
-                  >
+                  <span className="hidden h-3 w-px bg-white/18 lg:block" aria-hidden="true" />
+                  <Link href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" onClick={closeMenu}
+                    className="hdr-book-btn hdr-book-btn--outline">
                     <span className="hidden sm:inline">Book your stay</span>
                     <span className="sm:hidden">Book</span>
                     <span className="hdr-book-arrow" aria-hidden="true">&rsaquo;</span>
@@ -434,89 +450,72 @@ export default function Header() {
             </div>
           </div>
 
+          {/* Menu body */}
           <div className="relative z-10">
             <Container>
-              <div className="menu-body-grid py-10 sm:py-14 lg:py-16">
+              <div className="menu-body-grid py-10 sm:py-12 lg:py-14">
                 <div className="menu-col">
-                  <div className="menu-divider mb-6 h-px w-full bg-white/10" />
-
-                  <ul className="menu-nav-list space-y-[0.15rem]">
+                  <div className="menu-divider mb-5 h-px w-full bg-white/10" />
+                  <ul className="menu-nav-list space-y-[0.1rem]">
                     {navigation.map((item) => {
                       const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
                       return (
                         <li key={item.href} className="menu-nav-item">
-                          <Link
-                            href={item.href}
-                            aria-current={isActive ? "page" : undefined}
+                          <Link href={item.href} aria-current={isActive ? "page" : undefined}
                             className="menu-nav-link group flex items-center gap-3 font-serif transition-all duration-200"
-                            style={{ color: isActive ? "#d89a55" : "rgba(255,255,255,0.9)" }}
-                            onMouseEnter={() => {
-                              setMenuPreview(resolvePreviewPath(item.href));
-                              router.prefetch(item.href);
-                            }}
+                            style={{ color: isActive ? "#d89a55" : "rgba(255,255,255,0.88)", textDecoration: "none" }}
+                            onMouseEnter={() => { setMenuPreview(resolvePreviewPath(item.href)); router.prefetch(item.href); }}
                             onFocus={() => setMenuPreview(resolvePreviewPath(item.href))}
-                            onClick={closeMenu}
-                          >
-                            <span
-                              className="block h-1 w-1 shrink-0 rounded-full transition-all duration-200"
-                              style={{ background: isActive ? "#d89a55" : "transparent" }}
-                              aria-hidden="true"
-                            />
-                            <span className="group-hover:text-[#d89a55]">{item.label}</span>
+                            onClick={closeMenu}>
+                            <span className="block shrink-0 transition-all duration-200"
+                              style={{ width: "3px", height: "3px", background: isActive ? "#d89a55" : "transparent", transform: "rotate(45deg)" }}
+                              aria-hidden="true" />
+                            <span className="group-hover:text-[#d89a55] transition-colors">{item.label}</span>
                           </Link>
                         </li>
                       );
                     })}
                   </ul>
-
-                  <ul className="mt-5 space-y-1 border-t border-white/10 pt-5">
-                    {["News", "Promotions & Offers", "Testimonials", "Contact"].map((label) => (
-                      <li key={label} className="menu-sub-item">
-                        <span className="cursor-pointer text-[0.88rem] text-white/55 transition-colors hover:text-[#d89a55]">
-                          {label}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
 
                 <div className="menu-col">
-                  <div className="menu-divider mb-6 h-px w-full bg-white/10" />
+                  <div className="menu-divider mb-5 h-px w-full bg-white/10" />
                   <p className="menu-col-heading font-serif text-white/40">Contact</p>
                   <div className="mt-4 space-y-2.5">
                     <a href={`mailto:${email}`}
-                      className="flex items-start gap-2.5 text-[0.82rem] text-white/72 transition-colors hover:text-white">
+                      className="flex items-start gap-2.5 text-white/68 transition-colors hover:text-white"
+                      style={{ fontSize: "0.78rem" }}>
                       <MailIcon /><span>{email}</span>
                     </a>
                     <a href={primaryPhoneHref}
-                      className="flex items-center gap-2.5 text-[0.82rem] text-white/72 transition-colors hover:text-white">
+                      className="flex items-center gap-2.5 text-white/68 transition-colors hover:text-white"
+                      style={{ fontSize: "0.78rem" }}>
                       <PhoneIcon /><span>{primaryPhone}</span>
                     </a>
                     <a href={whatsappPhoneHref}
-                      className="flex items-center gap-2.5 text-[0.82rem] text-white/72 transition-colors hover:text-white">
+                      className="flex items-center gap-2.5 text-white/68 transition-colors hover:text-white"
+                      style={{ fontSize: "0.78rem" }}>
                       <PhoneIcon /><span>{whatsappPhone}</span>
                     </a>
                   </div>
                 </div>
 
                 <div className="menu-col">
-                  <div className="menu-divider mb-6 h-px w-full bg-white/10" />
+                  <div className="menu-divider mb-5 h-px w-full bg-white/10" />
                   <p className="menu-col-heading font-serif text-white/40">Reservations</p>
                   <div className="mt-4 space-y-2.5">
                     <a href={primaryPhoneHref}
-                      className="block text-[0.82rem] text-white/72 transition-colors hover:text-white">
-                      {primaryPhone}
-                    </a>
+                      className="block text-white/68 transition-colors hover:text-white"
+                      style={{ fontSize: "0.78rem" }}>{primaryPhone}</a>
                     <a href={whatsappPhoneHref}
-                      className="block text-[0.82rem] text-white/72 transition-colors hover:text-white">
-                      {whatsappPhone}
-                    </a>
+                      className="block text-white/68 transition-colors hover:text-white"
+                      style={{ fontSize: "0.78rem" }}>{whatsappPhone}</a>
                     <a href={`mailto:${email}`}
-                      className="block text-[0.82rem] text-white/72 transition-colors hover:text-white">
-                      {email}
-                    </a>
+                      className="block text-white/68 transition-colors hover:text-white"
+                      style={{ fontSize: "0.78rem" }}>{email}</a>
                   </div>
-                  <p className="mt-6 flex items-start gap-2 text-[0.78rem] leading-relaxed text-white/40">
+                  <p className="mt-5 flex items-start gap-2 text-white/36 leading-relaxed"
+                    style={{ fontSize: "0.72rem" }}>
                     <MapPinIcon /><span>{addressLong}</span>
                   </p>
                 </div>
@@ -528,99 +527,125 @@ export default function Header() {
       )}
 
       <style>{`
+        .hdr-shadow { box-shadow: 0 4px 24px rgba(80,55,20,0.09); }
+
+        /* Horizontal padding */
         .hdr-bar {
-          width: 100%;
-          padding-left: 1rem;
-          padding-right: 1rem;
+          width: 100%; position: relative;
+          padding-left: 1rem;   padding-right: 1rem;
         }
-        @media (min-width: 640px)  { .hdr-bar { padding-left: 2rem;  padding-right: 2rem; } }
-        @media (min-width: 1024px) { .hdr-bar { padding-left: 3rem;  padding-right: 3rem; } }
-        @media (min-width: 1280px) { .hdr-bar { padding-left: 4rem;  padding-right: 4rem; } }
-        @media (min-width: 1536px) { .hdr-bar { padding-left: 5rem;  padding-right: 5rem; } }
+        @media (min-width: 640px)  { .hdr-bar { padding-left: 1.75rem; padding-right: 1.75rem; } }
+        @media (min-width: 1024px) { .hdr-bar { padding-left: 2.5rem;  padding-right: 2.5rem; } }
+        @media (min-width: 1280px) { .hdr-bar { padding-left: 3.5rem;  padding-right: 3.5rem; } }
+        @media (min-width: 1536px) { .hdr-bar { padding-left: 4.5rem;  padding-right: 4.5rem; } }
 
-        .hdr-bar--menu {
-          padding-left: 1rem;
-          padding-right: 1rem;
+        .hdr-bar--menu { padding-left: 1rem; padding-right: 1rem; }
+        @media (min-width: 640px)  { .hdr-bar--menu { padding-left: 1.75rem; padding-right: 1.75rem; } }
+        @media (min-width: 1024px) { .hdr-bar--menu { padding-left: 2.5rem;  padding-right: 2.5rem; } }
+        @media (min-width: 1280px) { .hdr-bar--menu { padding-left: 3.5rem;  padding-right: 3.5rem; } }
+
+        /* Ornament */
+        .hdr-ornament {
+          display: block; width: 30px; height: 1px;
+          position: relative; margin-bottom: 3px;
         }
-        @media (min-width: 640px)  { .hdr-bar--menu { padding-left: 2rem;  padding-right: 2rem; } }
-        @media (min-width: 1024px) { .hdr-bar--menu { padding-left: 3rem;  padding-right: 3rem; } }
-        @media (min-width: 1280px) { .hdr-bar--menu { padding-left: 4rem;  padding-right: 4rem; } }
+        .hdr-ornament::before, .hdr-ornament::after {
+          content: ""; position: absolute; top: 50%;
+          width: 4px; height: 4px; border-radius: 50%;
+          background: inherit; transform: translateY(-50%); opacity: 0.6;
+        }
+        .hdr-ornament::before { left: -6px; }
+        .hdr-ornament::after  { right: -6px; }
 
+        /* Book button */
         .hdr-book-btn {
-          padding: 0.42rem 0.85rem;
-          font-size: 0.56rem;
-          font-weight: 600;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          text-decoration: none;
+          display: inline-flex; align-items: center; gap: 0.35rem;
+          padding: 0.45rem 0.7rem;
+          border-radius: 9999px;
+          border: 1.5px solid #c8922a;
+          background: #c8922a;
+          color: #fff !important;
+          font-size: 0.58rem; font-weight: 800;
+          letter-spacing: 0.18em; text-transform: uppercase;
+          text-decoration: none; white-space: nowrap; line-height: 1;
+          transition: background 0.18s, border-color 0.18s;
         }
+        .hdr-book-btn:hover { background: #daa93e; border-color: #daa93e; }
         @media (min-width: 640px) {
-          .hdr-book-btn {
-            padding: 0.55rem 1.4rem;
-            font-size: 0.68rem;
-            letter-spacing: 0.2em;
-          }
+          .hdr-book-btn { padding: 0.5rem 0.75rem 0.5rem 1.1rem; font-size: 0.62rem; }
         }
-        @media (min-width: 1024px) {
-          .hdr-book-btn {
-            padding: 0.6rem 1.6rem;
-            font-size: 0.72rem;
-          }
+        .hdr-book-btn--outline {
+          background: transparent !important;
+          border-color: rgba(255,255,255,0.38) !important;
+          color: #fff !important;
         }
-        .hdr-book-arrow {
-          font-size: 0.85rem;
-          line-height: 1;
+        .hdr-book-btn--outline:hover {
+          background: rgba(255,255,255,0.10) !important;
+          border-color: rgba(255,255,255,0.70) !important;
         }
+        .hdr-book-arrow-wrap {
+          display: inline-flex; align-items: center; justify-content: center;
+          width: 1.25rem; height: 1.25rem; border-radius: 9999px;
+          background: rgba(255,255,255,0.22);
+        }
+        .hdr-book-arrow { font-size: 1rem; line-height: 1; }
+
+        /* Icon-only round buttons */
+        .hdr-icon-btn {
+          display: inline-flex; align-items: center; justify-content: center;
+          width: 2rem; height: 2rem; border-radius: 9999px;
+          text-decoration: none; transition: background 0.18s, border-color 0.18s;
+          flex-shrink: 0;
+        }
+        .hdr-icon-btn:hover { background: rgba(246,242,236,0.20); }
+
+        /* Contact reveal chips */
+        .hdr-contact-chip {
+          display: inline-flex; align-items: center; gap: 0.5rem;
+          max-width: 2.2rem; padding: 0.35rem 0.55rem;
+          border-radius: 9999px; border: 1px solid transparent;
+          overflow: hidden; text-decoration: none;
+          transition: max-width 220ms ease, background 220ms ease, border-color 220ms ease, color 220ms ease;
+        }
+        .hdr-contact-chip:hover { max-width: 14rem; }
+        .hdr-contact-chip--hero {
+          border-color: rgba(255,255,255,0.28);
+          background: rgba(255,255,255,0.08);
+          color: rgba(255,255,255,0.95);
+        }
+        .hdr-contact-chip--hero:hover {
+          border-color: rgba(255,255,255,0.45);
+          background: rgba(255,255,255,0.16);
+        }
+        .hdr-contact-text {
+          white-space: nowrap; overflow: hidden;
+          max-width: 0; opacity: 0;
+          font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+          transition: max-width 220ms ease, opacity 180ms ease;
+        }
+        .hdr-contact-chip:hover .hdr-contact-text { max-width: 12rem; opacity: 1; }
+
+        /* Nav bar */
+        .hdr-nav-shell { scrollbar-width: none; }
+        .hdr-nav-shell::-webkit-scrollbar { display: none; }
 
         .hdr-nav-link {
-          padding: 0 0.72rem;
-          font-size: 1rem;
+          padding: 0 0.75rem;
+          font-size: 0.58rem; font-weight: 700;
+          letter-spacing: 0.2em; text-transform: uppercase;
+          text-decoration: none; line-height: 1; transition: color 0.18s;
         }
-        @media (min-width: 1280px) {
-          .hdr-nav-link { padding: 0 0.9rem;  font-size: 1.08rem; }
-        }
-        @media (min-width: 1536px) {
-          .hdr-nav-link { padding: 0 1rem;    font-size: 1.15rem; }
-        }
+        @media (min-width: 1280px) { .hdr-nav-link { padding: 0 0.85rem; font-size: 0.60rem; } }
+        @media (min-width: 1536px) { .hdr-nav-link { padding: 0 0.95rem; font-size: 0.62rem; } }
 
-        .menu-body-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 2rem;
-        }
-        @media (min-width: 640px) {
-          .menu-body-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-          }
-        }
-        @media (min-width: 1024px) {
-          .menu-body-grid {
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-          }
-        }
-        @media (min-width: 1280px) {
-          .menu-body-grid { gap: 4rem; }
-        }
-
-        .menu-nav-link {
-          font-size: clamp(1.3rem, 3.5vw, 1.85rem);
-          line-height: 1.25;
-          padding: 0.2rem 0;
-          text-decoration: none;
-        }
-
-        .menu-col-heading {
-          font-size: 0.65rem;
-          letter-spacing: 0.3em;
-          text-transform: uppercase;
-        }
-
-        .menu-overlay {
-          color: #fff;
-          background: #141319;
-        }
+        /* Menu overlay */
+        .menu-overlay { color: #fff; background: linear-gradient(160deg, #10232b 0%, #19161a 100%); }
+        .menu-body-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        @media (min-width: 640px)  { .menu-body-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
+        @media (min-width: 1024px) { .menu-body-grid { grid-template-columns: 2fr 1fr 1fr; gap: 3rem; } }
+        @media (min-width: 1280px) { .menu-body-grid { gap: 4rem; } }
+        .menu-nav-link { font-size: clamp(1.2rem, 2.8vw, 1.7rem); line-height: 1.25; padding: 0.16rem 0; }
+        .menu-col-heading { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; }
       `}</style>
     </div>
   );

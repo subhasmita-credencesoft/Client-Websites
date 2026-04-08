@@ -143,19 +143,19 @@ export default function PageHero({
         >
           <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
           <div className="overflow-hidden">
-            <h1 className="page-hero-title font-serif text-[2.35rem] leading-[0.96] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.42)] sm:text-[3rem] md:text-6xl">
+            <h1 className="page-hero-title font-serif text-[3.2rem] leading-[0.96] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.42)] sm:text-[4.2rem] md:text-[5.1rem] lg:text-[6.2rem] xl:text-[6.9rem]">
               {title}
             </h1>
           </div>
 
           {subtitle && (
-            <p className="page-hero-subtitle mx-auto mt-4 max-w-2xl text-center text-[0.82rem] leading-6 text-white/90 sm:text-[0.88rem] md:text-[0.94rem]">
+            <p className="page-hero-subtitle mx-auto mt-5 max-w-3xl text-center text-[1.05rem] leading-7 text-white/92 sm:text-[1.12rem] md:text-[1.2rem] md:leading-8">
               {subtitle}
             </p>
           )}
 
           {breadcrumb && (
-            <p className="page-hero-breadcrumb mx-auto mt-5 text-center text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-white/88 md:mt-6 md:text-[0.72rem]">
+            <p className="page-hero-breadcrumb mx-auto mt-6 text-center text-[0.84rem] font-semibold uppercase tracking-[0.32em] text-white/88 md:text-[0.92rem]">
               <Link href="/" className="transition-colors hover:text-white">
                 Home
               </Link>

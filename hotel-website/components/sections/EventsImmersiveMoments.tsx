@@ -157,9 +157,6 @@ export default function EventsImmersiveMoments() {
                   <div className="absolute left-5 top-5 rounded-full border border-white/35 bg-black/22 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
                     {String(index + 1).padStart(2, "0")}
                   </div>
-                  <div className="wim-orbit absolute right-5 top-5 rounded-full border border-white/40 bg-white/14 px-4 py-2 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_14px_24px_rgba(16,33,42,0.15)] backdrop-blur-md">
-                    Motion Layer
-                  </div>
                   <div className="absolute inset-x-0 bottom-0 z-10 p-6 text-white sm:p-8">
                     <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-white/70">
                       {moment.eyebrow}

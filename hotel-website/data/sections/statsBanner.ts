@@ -12,4 +12,4 @@ export const STATS_BANNER_ITEMS: StatsBannerItem[] = [
 ];
 
 export const STATS_BANNER_BG_IMAGE =
-  "https://demo2.wpopal.com/amoja/wp-content/uploads/2024/11/h1_imgbox1.jpg";
+  "/uk2.avif";

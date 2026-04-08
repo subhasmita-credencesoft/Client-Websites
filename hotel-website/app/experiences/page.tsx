@@ -31,10 +31,10 @@ export default function ExperiencesPage() {
       <ExperiencesHero />
       <BlogFeature />
       {/* <ExperiencesIntro /> */}
-      <ExperiencesShowcase />
+      {/* <ExperiencesShowcase /> */}
       <ExperiencesExplore />
       <WellnessSpaIntro />
-      <WellnessMoodSlider />
+      {/* <WellnessMoodSlider /> */}
     </>
   );
 }

@@ -13,6 +13,7 @@ import { usePropertyData } from "../providers/PropertyDataProvider";
 import { fetchPropertyAvailability } from "../../lib/services/propertyService";
 import type { RoomItem } from "../../types/property";
 import useErrorHandler from "@/hooks/useErrorHandler";
+import useClientReady from "../../hooks/useClientReady";
 
 type RoomsGridProps = {
   eyebrow?: string;
@@ -191,6 +192,7 @@ export default function RoomsGrid({
   subtitle = "Choose a suite that pairs handcrafted interiors with thoughtful amenities.",
 }: RoomsGridProps) {
   const { property, isLoading, error } = usePropertyData();
+  const clientReady = useClientReady();
   const { toUserMessage, logError } = useErrorHandler();
   const [fallbackRooms, setFallbackRooms] = useState<RoomItem[] | null>(null);
   const [fallbackLoading, setFallbackLoading] = useState(false);
@@ -272,6 +274,10 @@ export default function RoomsGrid({
     htmlToText(property?.businessDescription).slice(0, 220) ||
     "Choose a suite that pairs handcrafted interiors with thoughtful amenities.";
 
+  const showLoading = !clientReady || isLoading || fallbackLoading;
+  const showError = clientReady && !isLoading && !fallbackLoading && (error || fallbackError) && displayRooms.length === 0;
+  const showEmpty = clientReady && !isLoading && !fallbackLoading && !error && !fallbackError && displayRooms.length === 0;
+
   useEffect(() => {
     const mm = gsap.matchMedia();
 
@@ -333,25 +339,25 @@ export default function RoomsGrid({
           <div className="rooms-grid-divider mx-auto mb-10 h-px w-full max-w-3xl bg-[#1f3c44]/15" />
         </div>
 
-        {(isLoading || fallbackLoading) && (
+        {showLoading && (
           <div className="rounded-2xl border border-[#1f3c44]/10 bg-white p-6 text-center text-sm text-[#1f3c44]/70">
             Loading room list...
           </div>
         )}
 
-        {!isLoading && !fallbackLoading && (error || fallbackError) && displayRooms.length === 0 && (
+        {showError && (
           <div className="rounded-2xl border border-[#1f3c44]/10 bg-white p-6 text-center text-sm text-[#1f3c44]/70">
             {fallbackError || `${error} Trying availability endpoint...`}
           </div>
         )}
 
-        {!isLoading && !fallbackLoading && !error && !fallbackError && displayRooms.length === 0 && (
+        {showEmpty && (
           <div className="rounded-2xl border border-[#1f3c44]/10 bg-white p-6 text-center text-sm text-[#1f3c44]/70">
             No rooms available right now.
           </div>
         )}
 
-        {!isLoading && !fallbackLoading && displayRooms.length > 0 && (
+        {!showLoading && displayRooms.length > 0 && (
           <div className="grid gap-8 md:grid-cols-2">
             {displayRooms.map((room, index) => (
               <RoomCard

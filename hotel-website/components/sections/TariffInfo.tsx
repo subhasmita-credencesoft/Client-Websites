@@ -226,34 +226,54 @@ export default function TariffInfo() {
       <Container>
         <div className="mx-auto max-w-6xl">
           <div className="tariff-hero-card rounded-[2rem] border border-[rgba(13,43,47,0.10)] bg-white px-7 py-8 shadow-[0_22px_54px_rgba(13,43,47,0.08)] sm:px-10 sm:py-10">
-            <p className="tariff-intro text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#C49A3C]">
-              Tariff & Stay Details
-            </p>
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(16rem,0.95fr)] lg:items-start">
+              <div>
+                <p className="tariff-intro text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#C49A3C]">
+                  Tariff & Stay Details
+                </p>
 
-            <h2 className="tariff-intro mt-5 max-w-[11ch] font-serif text-[2.4rem] leading-[0.92] text-[#0D2B2F] sm:text-[3.5rem]">
-              Clean pricing with a clear next step.
-            </h2>
+                <h2 className="tariff-intro mt-5 max-w-[12ch] font-serif text-[2.35rem] leading-[0.94] text-[#0D2B2F] sm:text-[3.3rem]">
+                  Clear pricing for stays, groups, and day outings.
+                </h2>
 
-            <p className="tariff-intro mt-5 max-w-3xl text-[0.98rem] leading-8 text-[#2C4A50]">
-              {TARIFF_INTRO_TEXT} Review room rates, group packages, and one-day picnic pricing in one
-              simple flow before moving directly to the booking engine.
-            </p>
+                <p className="tariff-intro mt-5 max-w-3xl text-[0.98rem] leading-8 text-[#2C4A50]">
+                  {TARIFF_INTRO_TEXT} Review room rates, group stay packages, and one-day picnic pricing in one clean flow before moving to booking.
+                </p>
+              </div>
 
-            <div className="mt-8 rounded-[1.6rem] border border-[rgba(13,43,47,0.10)] bg-[#F9F5EE] px-5 py-5 sm:px-6">
-              <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-                <div className="flex flex-col gap-4 text-[#1A4A50] sm:flex-row sm:flex-wrap sm:items-center sm:gap-8">
-                  <p className="text-[0.95rem] leading-7">
-                    <span className="font-semibold text-[#0D2B2F]">Check-in:</span> {TARIFF_CHECKIN_TIME}
-                  </p>
-                  <p className="text-[0.95rem] leading-7">
-                    <span className="font-semibold text-[#0D2B2F]">Check-out:</span> {TARIFF_CHECKOUT_TIME}
-                  </p>
-                  <p className="text-[0.95rem] leading-7">
-                    <span className="font-semibold text-[#0D2B2F]">Includes:</span> Breakfast-inclusive room plans
-                  </p>
+              <div className="tariff-intro rounded-[1.7rem] border border-[rgba(13,43,47,0.10)] bg-[#F9F5EE] p-5 sm:p-6 lg:sticky lg:top-28">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#C49A3C]">
+                  Quick Booking Summary
+                </p>
+
+                <div className="mt-5 space-y-3">
+                  <div className="rounded-2xl border border-[rgba(13,43,47,0.08)] bg-white px-4 py-3.5">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#6C7C80]">
+                      Check-in
+                    </p>
+                    <p className="mt-1 font-serif text-[1.45rem] leading-none text-[#0D2B2F]">
+                      {TARIFF_CHECKIN_TIME}
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-[rgba(13,43,47,0.08)] bg-white px-4 py-3.5">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#6C7C80]">
+                      Check-out
+                    </p>
+                    <p className="mt-1 font-serif text-[1.45rem] leading-none text-[#0D2B2F]">
+                      {TARIFF_CHECKOUT_TIME}
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-[rgba(13,43,47,0.08)] bg-white px-4 py-3.5">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#6C7C80]">
+                      Includes
+                    </p>
+                    <p className="mt-1 text-[0.95rem] leading-7 text-[#1A4A50]">
+                      Breakfast-inclusive room plans
+                    </p>
+                  </div>
                 </div>
 
-                <div className="flex flex-wrap gap-3">
+                <div className="mt-5 flex flex-wrap gap-3">
                   <Link
                     href={BOOKING_ENGINE_URL}
                     target="_blank"
@@ -380,19 +400,18 @@ export default function TariffInfo() {
               </p>
             </div>
 
-            <div className="tariff-detail relative overflow-hidden rounded-3xl border border-[#1A4A50]/18 bg-[linear-gradient(145deg,#143640_0%,#1a4650_58%,#204f5a_100%)] p-7 text-white shadow-[0_24px_60px_rgba(13,43,47,0.18)] sm:p-9">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(196,154,60,0.14),transparent_30%),radial-gradient(circle_at_20%_80%,rgba(13,43,47,0.30),transparent_30%)]" />
-              <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#C49A3C]/40 to-transparent" />
+            <div className="tariff-detail relative overflow-hidden rounded-3xl border border-[#1A4A50]/12 bg-white p-7 text-[#0D2B2F] shadow-[0_22px_56px_rgba(13,43,47,0.07)] sm:p-9">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(196,154,60,0.10),transparent_28%),radial-gradient(circle_at_20%_80%,rgba(13,43,47,0.05),transparent_28%)]" />
 
               <div className="relative z-10">
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[#E8C97A]">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[#C49A3C]">
                   Need Help Booking?
                 </p>
                 <h3 className="mt-4 font-serif text-[2rem] leading-[0.94] sm:text-[2.6rem]">
-                  Make the next step simple and visible.
+                  Make the booking step clear and easy to act on.
                 </h3>
-                <p className="mt-5 max-w-2xl text-[0.96rem] leading-8 text-white/80">
-                  Once the tariff is clear, guests should be able to act quickly. Continue to the booking engine for live availability or contact the team for group assistance.
+                <p className="mt-5 max-w-2xl text-[0.96rem] leading-8 text-[#2C4A50]">
+                  Once the tariff is clear, guests should be able to move quickly. Continue to the booking engine for live availability or contact the team for group assistance.
                 </p>
 
                 <div className="mt-8 grid grid-cols-2 gap-4">
@@ -402,12 +421,12 @@ export default function TariffInfo() {
                   ].map(({ label, value }) => (
                     <div
                       key={label}
-                      className="rounded-2xl border border-white/12 bg-white/10 p-4 backdrop-blur-sm"
+                      className="rounded-2xl border border-[rgba(13,43,47,0.08)] bg-[#F9F5EE] p-4"
                     >
-                      <p className="text-[0.62rem] font-semibold uppercase tracking-[0.20em] text-white/60">
+                      <p className="text-[0.62rem] font-semibold uppercase tracking-[0.20em] text-[#6C7C80]">
                         {label}
                       </p>
-                      <p className="mt-2 font-serif text-[1.5rem] leading-none text-[#E8C97A]">
+                      <p className="mt-2 font-serif text-[1.5rem] leading-none text-[#0D2B2F]">
                         {value}
                       </p>
                     </div>
@@ -425,7 +444,7 @@ export default function TariffInfo() {
                   </Link>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center rounded-full border border-white/25 px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-white/10 active:bg-white/5"
+                    className="inline-flex items-center justify-center rounded-full border border-[rgba(13,43,47,0.18)] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] transition hover:bg-[#F9F5EE]"
                   >
                     Contact Our Team
                   </Link>

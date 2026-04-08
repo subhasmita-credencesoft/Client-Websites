@@ -27,14 +27,6 @@ const diningItems = [
     position: "center 42%",
   },
   {
-    title: "Garden View Dining Area",
-    label: "Family Outdoor Dining",
-    description:
-      "Enjoy relaxed meals with family and friends in our garden-facing open dining area surrounded by greenery and fresh resort ambience.",
-    image: "https://bookonelocal.in/cdn/Copy of IMG_2910.avif",
-    position: "center 40%",
-  },
-  {
     title: "Covered Garden Restaurant Seating",
     label: "Semi-Outdoor Dining",
     description:

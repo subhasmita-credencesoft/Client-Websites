@@ -9,7 +9,7 @@ const blogFeatures = [
     title: "Off The Beaten Track For Your Corporate Events: UKs Resort, Khopoli",
     description:
       "The dramatic shift in the way we travel has seen many changes, innovations and creativity. And so is it with the corporate world and their business tours. To develop a work-life balance, to hold meetings and launch their new services and products, the companies are inclined towards having an official getaway which is rewarding.",
-    image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
+    image: "event--corp.avif",
     alt: "Corporate event at resort",
   },
   {
@@ -30,14 +30,14 @@ const blogFeatures = [
     title: "UKsResort Plan One Day Trip near Mumbai for Family or Colleagues without any Hassles",
     description:
       "Places near Mumbai for team outing whether for family or office colleagues, should be affordable with many activities. UKsResort is priced competitively and has a myriad of activities to pick from. The staff too is courteous and your colleagues or family is sure not to be disappointed.",
-    image: "https://bookonelocal.in/cdn/Copy+of+IMG_2906.avif",
+    image: "din3.avif",
     alt: "Corporate leisure getaway",
   },
   {
     title: "UK's Resort, Khopoli - Best Destination for Arranging Kitty Party in Mumbai",
     description:
       "Do you want to stay away from the hustle-bustle life? Are you searching for the best destination for celebrating party? If so, then you will choose UK's Resort. Khopoli. It is a perfect place for organizing a party, virtual tour, and other events based on your requirements and demands.",
-    image: "https://bookonelocal.in/cdn/Copy+of+IMG_4035.JPG",
+    image: "uk1.avif",
     alt: "Corporate leisure getaway",
   },
 ];

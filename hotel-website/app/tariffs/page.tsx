@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import TariffHero from "../../components/sections/TariffHero";
 import TariffInfo from "../../components/sections/TariffInfo";
 import { createPageMetadata } from "../../lib/metadata";
 
@@ -12,11 +11,5 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function TariffPage() {
-  return (
-    <>
-      <TariffHero />
-      {/* <HeroBookingBarDock /> */}
-      <TariffInfo />
-    </>
-  );
+  return <TariffInfo />;
 }

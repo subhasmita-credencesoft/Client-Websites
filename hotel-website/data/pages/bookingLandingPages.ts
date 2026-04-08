@@ -117,7 +117,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
       copy: "The visual flow now balances activity and comfort so guests can picture a full picnic schedule instead of just a static package list.",
     },
     {
-      image: "https://bookonelocal.in/cdn/Copy+of+IMG_4035.JPG",
+      image: "children7.avif",
       title: "Photo-friendly memories through the day",
       copy: "The page finishes the mood with celebration-ready imagery that feels ideal for birthdays, school outings, and social gatherings.",
     },
@@ -159,7 +159,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
       {
         title: "Water play and rain-dance excitement",
         description: "Perfect for groups who want a more active and playful daytime experience with high visual energy.",
-        image: "https://bookonelocal.in/cdn/Copy+of+IMG_4035.JPG",
+        image: "children5.avif",
       },
       {
         title: "Lawns for games, mingling, and open-air comfort",
@@ -169,7 +169,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
       {
         title: "Dining breaks that make the day feel complete",
         description: "Meal moments help turn a simple visit into a full one-day outing with a better rhythm for all age groups.",
-        image: "https://bookonelocal.in/cdn/picnic1.jpg",
+        image: "din2.avif",
       },
     ],
   },
@@ -180,8 +180,8 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
       "These extra frames help the page look more complete and give guests more confidence about the one-day outing experience before they book.",
     images: [
       { image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif", alt: "Picnic lawn at UK's Resort" },
-      { image: "https://bookonelocal.in/cdn/picnic1.jpg", alt: "Picnic gathering and open activity area" },
-      { image: "https://bookonelocal.in/cdn/Copy+of+IMG_4035.JPG", alt: "Group picnic photo at the resort" },
+      { image: "children7.avif", alt: "Picnic gathering and open activity area" },
+      { image: "children3.avif", alt: "Group picnic photo at the resort" },
       { image: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif", alt: "Open resort environment for daytime events" },
     ],
   },
