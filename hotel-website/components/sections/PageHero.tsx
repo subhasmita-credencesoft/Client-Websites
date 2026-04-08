@@ -1,10 +1,12 @@
 "use client";
 
-import { useLayoutEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
+import SplitText from "../ui/SplitText";
+import BlurText from "../ui/BlurText";
 
 type PageHeroProps = {
   title: string;
@@ -29,53 +31,31 @@ export default function PageHero({
   const mediaRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
+  const [breadcrumbVisible, setBreadcrumbVisible] = useState(false);
 
   const breadcrumbCurrent = useMemo(() => {
     if (!breadcrumb) return "";
     return breadcrumb.replace(/^Home\s*\/\s*/i, "").trim();
   }, [breadcrumb]);
 
-  useLayoutEffect(() => {
+  const isLongTitle = useMemo(() => title.trim().length > 16, [title]);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setBreadcrumbVisible(true));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    const titleEl = section.querySelector(".page-hero-title");
-    const subtitleEl = section.querySelector(".page-hero-subtitle");
-    const breadcrumbEl = section.querySelector(".page-hero-breadcrumb");
-    if (!titleEl || !mediaRef.current || !contentRef.current || !overlayRef.current) return;
+    if (!mediaRef.current || !contentRef.current || !overlayRef.current) return;
 
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const ctx = gsap.context(() => {
-        gsap.set(titleEl, { yPercent: 100, autoAlpha: 0 });
-        if (subtitleEl) gsap.set(subtitleEl, { y: 16, autoAlpha: 0 });
-        if (breadcrumbEl) gsap.set(breadcrumbEl, { y: 12, autoAlpha: 0 });
         gsap.set(mediaRef.current, { scale: 1.1, yPercent: 0, transformOrigin: "center center" });
-
-        const introTl = gsap.timeline({ defaults: { ease: "power3.out" } });
-        introTl.to(titleEl, {
-          yPercent: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          ease: "power4.out",
-        });
-
-        if (subtitleEl) {
-          introTl.to(
-            subtitleEl,
-            { y: 0, autoAlpha: 1, duration: 0.62 },
-            "<+0.08",
-          );
-        }
-
-        if (breadcrumbEl) {
-          introTl.to(
-            breadcrumbEl,
-            { y: 0, autoAlpha: 1, duration: 0.65 },
-            "<+0.06",
-          );
-        }
 
         gsap.fromTo(
           mediaRef.current,
@@ -141,21 +121,50 @@ export default function PageHero({
           ref={contentRef}
           className="flex min-h-[100svh] w-full items-center justify-center px-4 pb-8 pt-[calc(4.75rem+env(safe-area-inset-top))] sm:px-6 sm:pb-12 sm:pt-24 md:pb-14 md:pt-28"
         >
-          <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
+          <div className="mx-auto flex w-full max-w-5xl flex-col items-center text-center">
           <div className="overflow-hidden">
-            <h1 className="page-hero-title font-serif text-[3.2rem] leading-[0.96] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.42)] sm:text-[4.2rem] md:text-[5.1rem] lg:text-[6.2rem] xl:text-[6.9rem]">
-              {title}
+            <h1
+              className={`page-hero-title font-serif leading-[0.96] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.42)] ${
+                isLongTitle
+                  ? "text-[2.85rem] sm:text-[3.8rem] md:text-[4.35rem] lg:text-[4.9rem] xl:text-[5.35rem] md:whitespace-nowrap"
+                  : "text-[3.2rem] sm:text-[4.2rem] md:text-[5.1rem] lg:text-[6.2rem] xl:text-[6.9rem]"
+              }`}
+            >
+              <SplitText
+                text={title}
+                delay={38}
+                duration={0.85}
+                splitType="chars"
+                from={{ opacity: 0, y: 48, filter: "blur(12px)" }}
+                to={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                className="block"
+                textAlign="center"
+              />
             </h1>
           </div>
 
           {subtitle && (
             <p className="page-hero-subtitle mx-auto mt-5 max-w-3xl text-center text-[1.05rem] leading-7 text-white/92 sm:text-[1.12rem] md:text-[1.2rem] md:leading-8">
-              {subtitle}
+              <BlurText
+                text={subtitle}
+                delay={120}
+                animateBy="words"
+                direction="top"
+                className="block"
+              />
             </p>
           )}
 
           {breadcrumb && (
-            <p className="page-hero-breadcrumb mx-auto mt-6 text-center text-[0.84rem] font-semibold uppercase tracking-[0.32em] text-white/88 md:text-[0.92rem]">
+            <p
+              className="page-hero-breadcrumb mx-auto mt-6 text-center text-[0.84rem] font-semibold uppercase tracking-[0.32em] text-white/88 transition-[opacity,transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:text-[0.92rem]"
+              style={{
+                opacity: breadcrumbVisible ? 1 : 0,
+                filter: breadcrumbVisible ? "blur(0px)" : "blur(8px)",
+                transform: breadcrumbVisible ? "translate3d(0,0,0)" : "translate3d(0,14px,0)",
+                transitionDelay: "220ms",
+              }}
+            >
               <Link href="/" className="transition-colors hover:text-white">
                 Home
               </Link>
