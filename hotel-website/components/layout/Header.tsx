@@ -305,7 +305,7 @@ export default function Header() {
               className="hdr-book-btn"
             >
               <span className="hidden sm:inline">Book Your Stay</span>
-              <span className="sm:hidden">Book</span>
+              <span className="sm:hidden">Book now</span>
               <span className="hdr-book-arrow-wrap" aria-hidden="true">
                 <span className="hdr-book-arrow">&rsaquo;</span>
               </span>

@@ -359,9 +359,10 @@ export default function HomeEventExperiences() {
                         href={panel.mapHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hee-cta hee-btn-ghost group"
+                        className="hee-cta hee-btn-icon group"
                         style={{ "--accent": panel.accentColor } as React.CSSProperties}
-                        aria-label={`Take a virtual tour of ${panel.title}`}
+                        aria-label={`Virtual tour of ${panel.title}`}
+                        title="Virtual Tour"
                       >
                         <svg
                           className="h-4 w-4 flex-shrink-0"
@@ -374,7 +375,6 @@ export default function HomeEventExperiences() {
                           <path d="M12 2a14.5 14.5 0 0 1 4 10 14.5 14.5 0 0 1-4 10 14.5 14.5 0 0 1-4-10A14.5 14.5 0 0 1 12 2z" />
                           <path d="M2 12h20" />
                         </svg>
-                        <span>Virtual Tour</span>
                       </a>
                     )}
                   </div>
@@ -520,6 +520,32 @@ export default function HomeEventExperiences() {
           background: rgba(255,255,255,0.16);
           border-color: var(--accent);
           color: #fff;
+        }
+
+        .hee-btn-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 9999px;
+          color: rgba(255,255,255,0.92);
+          border: 1px solid rgba(255,255,255,0.38);
+          background: rgba(255,255,255,0.08);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          transition:
+            background 0.3s ease,
+            border-color 0.3s ease,
+            color 0.3s ease,
+            transform 0.3s ease;
+        }
+
+        .hee-btn-icon:hover {
+          background: rgba(255,255,255,0.16);
+          border-color: var(--accent);
+          color: #fff;
+          transform: translateY(-2px);
         }
 
         @media (min-width: 1024px) {

@@ -26,7 +26,7 @@ export const BLOG_HERO_CONFIG: PageHeroConfig = {
 export const CONTACT_HERO_CONFIG: PageHeroConfig = {
   title: "Around Us",
   backgroundImage: "https://bookonelocal.in/cdn/Water-Park-1.jpg",
-  backgroundVideo: "https://bookonelocal.in/cdn/around-us-page-video.mp4",
+  backgroundVideo: "https://bookonelocal.in/cdn/Resort_entrance_gate_202603191317.mp4",
   subtitle: "Places of Tourist Attraction in Khopoli Near UK's Resorts",
   breadcrumb: "Home / Around Us",
 };
