@@ -301,7 +301,7 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
   ],
   planningTitle: "Made to simplify the planning journey for company bookings.",
   planningCopy:
-    "Corporate guests usually need clear details before confirming a stay or event. This section helps teams review the essentials and move forward with confidence.",
+    "Company bookings often need the right mix of stay comfort, event space, dining support, and easy coordination. This section helps teams review those essentials before moving ahead with booking.",
   planningPoints: [
     "Use this page for corporate stays, retreats, conferences, launches, offsites, and room-block bookings.",
     "Review stay formats, event suitability, and included support in one place.",

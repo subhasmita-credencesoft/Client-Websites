@@ -275,7 +275,7 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
       </section>
 
       <section className="booking-landing-section site-surface-plain site-section-lg">
-        <Container>
+        {/* <Container>
           <div className="mx-auto max-w-3xl text-center">
             <p className="booking-kicker site-kicker">Packages</p>
             <div className="overflow-hidden">
@@ -324,7 +324,7 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
               </article>
             ))}
           </div>
-        </Container>
+        </Container> */}
       </section>
 
       {/* {content.experienceFlow ? (
@@ -437,7 +437,7 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
                     {isPicnicPage
                       ? "A fuller one-day story without making booking harder."
                       : isCorporatePage
-                        ? "A more professional booking journey without losing warmth."
+                        ? "A clearer corporate stay journey from review to booking."
                         : "More content without losing clarity."}
                   </h2>
                 </div>

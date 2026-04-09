@@ -80,9 +80,9 @@ export default function EventsActivitiesShowcase() {
               Everything around the event feels easier too
             </h2>
           </div>
-          <p className="meet-copy mx-auto mt-5 max-w-3xl text-[0.98rem] leading-8 text-[#1f3c44]/75">
+          {/* <p className="meet-copy mx-auto mt-5 max-w-3xl text-[0.98rem] leading-8 text-[#1f3c44]/75">
             This section now focuses on support layers like dining, indoor options, family comfort, and corporate suitability so it doesn&apos;t repeat the same activity content from the section above.
-          </p>
+          </p> */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             {meetingPills.map((item) => (
               <span
