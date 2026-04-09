@@ -1,29 +1,23 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  Input,
-  QueryList,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { BookingService } from '../../../services/booking.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocationService } from '../../../services/location/location.service';
 import { mapTaxiToSlot } from '../../../services/taxi-to-slot.mapper';
 import { PricingService } from '../../../pricing/pricing.service';
-
+import { ChangeDetectorRef } from '@angular/core';
+import { ReCaptchaV3Service, RecaptchaV3Module } from 'ng-recaptcha';
 @Component({
   selector: 'app-step-summary',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RecaptchaV3Module],
   templateUrl: './step-summary.component.html',
   styleUrl: './step-summary.component.scss',
 })
 export class StepSummaryComponent {
   booking: any = {};
   estimated = 0;
+  isCheckingCustomer = false;
   vehicle:
     | {
         id?: any;
@@ -52,30 +46,17 @@ export class StepSummaryComponent {
   matchedSlot: any;
   propertyDetails: any;
   customerId: any;
-  emailOtp = {
-    sent: false,
-    loading: false,
-    verifying: false,
-    verified: false,
-    sid: null as string | null,
-  };
-  @ViewChildren('otpInput') inputs!: QueryList<ElementRef>;
-  otpValues: string[] = ['', '', '', '', '', ''];
-  resendSeconds = 600;
-  timerRef: any;
-  otpMessage = '';
-  otpError = '';
   customerData: any;
   businessTypeId: any;
   isConfirming = false;
   taxDetails: any;
   inclusions: any[] = [];
-  @ViewChild('realOtp') realOtp!: ElementRef<HTMLInputElement>;
-activeOtpIndex = 0;
   constructor(
     private bookingService: BookingService,
     private locationService: LocationService,
-    private pricingService: PricingService
+    private pricingService: PricingService,
+    private cdr: ChangeDetectorRef,
+    private recaptcha: ReCaptchaV3Service
   ) {
     this.bookingService.booking$.subscribe((b) => {
       this.booking = b;
@@ -111,9 +92,6 @@ activeOtpIndex = 0;
     return num.toString().padStart(2, '0');
   }
 
-  getOtp(): string {
-    return this.otpValues.join('');
-  }
   fetchPropertyDetails() {
     this.locationService.getPropertyDetails(2302).subscribe((res) => {
       this.propertyDetails = res;
@@ -392,14 +370,12 @@ activeOtpIndex = 0;
   validateTravellerForm(
     firstName: any,
     lastName: any,
-    mobile: any,
-    email: any,
+    mobile: any
   ): string | null {
     // Touch all fields before checking
     firstName.control.markAsTouched();
     lastName.control.markAsTouched();
     mobile.control.markAsTouched();
-    email.control.markAsTouched();
 
     const t = this.booking.traveller;
 
@@ -413,10 +389,6 @@ activeOtpIndex = 0;
 
     if (!t.mobile || !/^[6-9][0-9]{9}$/.test(t.mobile)) {
       return 'mobileField';
-    }
-
-    if (!t.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t.email)) {
-      return 'emailField';
     }
 
     return null;
@@ -451,221 +423,6 @@ activeOtpIndex = 0;
     const year = d.getFullYear();
 
     return `${month} ${day}${suffix} ${year}`;
-  }
-  sendEmailOtp() {
-    this.otpError = '';
-    this.otpMessage = '';
-    this.emailOtp.loading = true;
-
-    const payload = {
-      email: this.booking.traveller.email,
-      toNumber: null,
-    };
-
-    this.locationService.sendOtp(payload).subscribe({
-      next: (res: any) => {
-        this.emailOtp.sid = res.sid;
-        this.emailOtp.sent = true;
-        this.otpMessage = 'OTP sent to your email';
-        this.startResendTimer();
-      },
-      error: () => {
-        this.otpError = 'Failed to send OTP. Try again.';
-      },
-      complete: () => {
-        this.emailOtp.loading = false;
-      },
-    });
-  }
-
-  /* ================= OTP INPUT AUTO MOVE ================= */
-  moveOtp(index: number, event: any) {
-    if (event.target.value && index < 5) {
-      event.target.nextElementSibling?.focus();
-    }
-  }
-handleOtpInput(event: Event, index: number): void {
-  const input = event.target as HTMLInputElement;
-  const value = input.value.replace(/\D/g, '');
-
-  // Handle full OTP paste / autofill
-  if (value.length > 1) {
-    value.split('').slice(0, this.otpValues.length).forEach((d, i) => {
-      this.otpValues[i] = d;
-      const el = this.inputs.toArray()[i]?.nativeElement;
-      if (el) el.value = d;
-    });
-    this.inputs.toArray()[this.otpValues.length - 1]?.nativeElement.focus();
-    return;
-  }
-
-  // Assign value ONLY to current index
-  this.otpValues[index] = value;
-  input.value = value;
-
-  // ✅ MOVE FOCUS AFTER iOS FINISHES APPLYING KEY
-  if (value && index < this.otpValues.length - 1) {
-    requestAnimationFrame(() => {
-      this.inputs.toArray()[index + 1].nativeElement.focus();
-    });
-  }
-}
-
-handleOtpKeyDown(event: KeyboardEvent, index: number): void {
-  const key = event.key;
-
-  // ✅ DIGIT PRESSED
-  if (/^\d$/.test(key)) {
-    event.preventDefault(); // ⛔ stop iOS from auto-inserting
-
-    this.otpValues[index] = key;
-
-    // Move forward
-    if (index < this.otpValues.length - 1) {
-      this.inputs.toArray()[index + 1].nativeElement.focus();
-    }
-    return;
-  }
-
-  // ✅ BACKSPACE
-  if (key === 'Backspace') {
-    event.preventDefault();
-
-    if (this.otpValues[index]) {
-      this.otpValues[index] = '';
-    } else if (index > 0) {
-      this.otpValues[index - 1] = '';
-      this.inputs.toArray()[index - 1].nativeElement.focus();
-    }
-    return;
-  }
-
-  // ❌ Block everything else
-  if (key.length === 1) {
-    event.preventDefault();
-  }
-}
-
-@HostListener('paste', ['$event'])
-handlePaste(event: ClipboardEvent) {
-  event.preventDefault();
-
-  const pasted = event.clipboardData
-    ?.getData('text')
-    ?.replace(/\D/g, '')
-    .slice(0, this.otpValues.length);
-
-  if (!pasted) return;
-
-  pasted.split('').forEach((d, i) => {
-    this.otpValues[i] = d;
-  });
-
-  this.inputs.toArray()[pasted.length - 1]?.nativeElement.focus();
-}
-
-focusRealOtp() {
-  this.realOtp.nativeElement.focus();
-    const el = this.realOtp.nativeElement;
-  el.focus();
-}
-
-onRealOtpInput(event: Event) {
-  const value = (event.target as HTMLInputElement)
-    .value
-    .replace(/\D/g, '')
-    .slice(0, 6);
-
-  // Update OTP array
-  this.otpValues = value.split('');
-  while (this.otpValues.length < 6) {
-    this.otpValues.push('');
-  }
-
-  // 🔥 ACTIVE BOX INDEX
-  this.activeOtpIndex =
-    value.length < 6 ? value.length : 5;
-
-  // Optional auto-verify
-  if (value.length === 6) {
-    // this.verifyEmailOtp();
-  }
-}
-
-handleKeyDown(event: KeyboardEvent, index: number): void {
-  const input = event.target as HTMLInputElement;
-
-  if (event.key === 'Backspace') {
-    if (this.otpValues[index]) {
-      this.otpValues[index] = '';
-      input.value = '';
-    } else if (index > 0) {
-      const prev = this.inputs.toArray()[index - 1].nativeElement;
-      prev.focus();
-      prev.value = '';
-      this.otpValues[index - 1] = '';
-    }
-    event.preventDefault();
-  }
-
-  if (event.key.length === 1 && !/^\d$/.test(event.key)) {
-    event.preventDefault();
-  }
-}
-
-
-
-  /* ================= VERIFY OTP ================= */
-  verifyEmailOtp() {
-    this.otpError = '';
-    this.otpMessage = '';
-
-    if (this.otpValues.join('').length !== 6) {
-      this.otpError = 'Please enter 6 digit OTP';
-      return;
-    }
-
-    this.emailOtp.verifying = true;
-
-    const payload = {
-      email: this.booking.traveller.email,
-      toNumber: null,
-      verificationStatus: 'pending',
-      sid: this.emailOtp.sid,
-      notificationStatus: false,
-      verificationCode: this.otpValues.join(''),
-    };
-
-    this.locationService.verifyOtp(payload).subscribe({
-      next: (res: any) => {
-        if (res.verificationStatus === 'approved') {
-          this.emailOtp.verified = true;
-          this.otpMessage = 'Email verified successfully';
-          this.checkCustomerExists();
-        } else {
-          this.otpError = 'Invalid OTP. Please try again.';
-        }
-      },
-      error: () => {
-        this.otpError = 'OTP verification failed. Please retry.';
-      },
-      complete: () => {
-        this.emailOtp.verifying = false;
-      },
-    });
-  }
-
-  /* ================= RESEND TIMER ================= */
-  startResendTimer() {
-    this.resendSeconds = 600;
-
-    this.timerRef = setInterval(() => {
-      this.resendSeconds--;
-      if (this.resendSeconds <= 0) {
-        clearInterval(this.timerRef);
-        this.emailOtp.sent = false;
-      }
-    }, 1000);
   }
 
 private buildInclusions() {
@@ -774,31 +531,22 @@ else {
 
 }
 
-
-  /* ================= CHANGE EMAIL ================= */
-  changeEmail() {
-    clearInterval(this.timerRef);
-    this.emailOtp = {
-      sent: false,
-      loading: false,
-      verifying: false,
-      verified: false,
-      sid: null,
-    };
-    this.otpValues = ['', '', '', '', '', ''];
-    this.otpMessage = '';
-    this.otpError = '';
+onMobileBlur() {
+  if (/^[6-9][0-9]{9}$/.test(this.booking.traveller.mobile)) {
+    this.isCheckingCustomer = true;
+    this.checkCustomerExists();
   }
-
+}
   /* ================= CHECK CUSTOMER ================= */
   checkCustomerExists() {
-    this.locationService.checkEmail(this.booking.traveller.email).subscribe({
-      next: (res: any) => {
-        this.customerData = res; // store for later
-      },
-      error: (err) => {
-        console.error('Email check failed:', err);
-        const customerPayload = {
+  this.locationService.checkMobile(this.booking.traveller.mobile).subscribe({
+    next: (res: any) => {
+      this.customerData = res;
+      this.isCheckingCustomer = false;
+      this.cdr.detectChanges();
+    },
+    error: () => {
+      const customerPayload = {
         isCustomerUpdate: false,
         firstName: this.booking.traveller.firstName,
         lastName: this.booking.traveller.lastName,
@@ -809,20 +557,14 @@ else {
 
       this.locationService.createCustomer(customerPayload).subscribe({
         next: (customerRes) => {
-
-          this.customerId = customerRes?.id;
-          this.customerId = this.customerData?.id;
           this.customerData = customerRes;
-          if (!this.customerId) {
-            return;
-          }
-      }
-
-    });
-      },
-    });
-    // this.locationService.checkMobile(this.booking.traveller.mobile).subscribe();
-  }
+          this.isCheckingCustomer = false;
+          this.cdr.detectChanges();
+        }
+      });
+    }
+  });
+}
 
   private formatDate(date: string | null | undefined): string {
     if (!date) return 'NA';
@@ -1040,23 +782,31 @@ else {
     };
   }
 
-  confirm(firstName: any, lastName: any, mobile: any, email: any) {
+  confirm(firstName: any, lastName: any, mobile: any) {
     if (this.isConfirming) return;
     this.isConfirming = true;
     const invalidField = this.validateTravellerForm(
       firstName,
       lastName,
-      mobile,
-      email,
+      mobile
     );
 
-    if (invalidField && !this.customerData.id) {
+    if (invalidField) {
       this.scrollToField(invalidField);
       this.isConfirming = false;
       return;
     }
 
-    this.bookingService.generateRef();
+    if (!this.customerData?.id) {
+      this.isConfirming = false;
+      alert('Please enter a valid mobile number and wait for verification.');
+      return;
+    }
+
+     this.recaptcha.execute('confirm_booking').subscribe({
+    next: (token) => {
+      console.log('reCAPTCHA token:', token);
+      this.bookingService.generateRef();
     const paymentPayload = this.mapSavePaymentPayload(
       this.booking,
       this.slotPricingDto,
@@ -1290,6 +1040,11 @@ else {
       },
     });
     const payload = this.buildBookingPayload(this.booking);
-
+    },
+    error: () => {
+      console.error('reCAPTCHA failed');
+      this.isConfirming = false;
+    }
+  });
   }
 }
