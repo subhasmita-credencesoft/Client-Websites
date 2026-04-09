@@ -214,9 +214,9 @@ export default function CorporateBookingPage() {
                 Explore spaces suited for business stays, offsites, and company gatherings.
               </h2>
             </div>
-            <p className="corp-copy mt-5 text-[1rem] leading-8 text-[var(--text-muted)]">
+            {/* <p className="corp-copy mt-5 text-[1rem] leading-8 text-[var(--text-muted)]">
               The media below helps planners understand the mood, setting, and overall suitability of the resort for different corporate formats.
-            </p>
+            </p> */}
           </div>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">

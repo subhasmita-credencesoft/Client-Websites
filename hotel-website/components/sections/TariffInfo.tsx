@@ -237,13 +237,13 @@ export default function TariffInfo() {
                 </h2>
 
                 <p className="tariff-intro mt-5 max-w-3xl text-[0.98rem] leading-8 text-[#2C4A50]">
-                  {TARIFF_INTRO_TEXT} Review room rates, group stay packages, and one-day picnic pricing in one clean flow before moving to booking.
+                  {TARIFF_INTRO_TEXT}
                 </p>
               </div>
 
               <div className="tariff-intro rounded-[1.7rem] border border-[rgba(13,43,47,0.10)] bg-[#F9F5EE] p-5 sm:p-6 lg:sticky lg:top-28">
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#C49A3C]">
-                  Quick Booking Summary
+                  Quick Stay Summary
                 </p>
 
                 <div className="mt-5 space-y-3">
@@ -273,20 +273,14 @@ export default function TariffInfo() {
                   </div>
                 </div>
 
-                <div className="mt-5 flex flex-wrap gap-3">
+                <div className="mt-5">
                   <Link
                     href={BOOKING_ENGINE_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center justify-center rounded-full bg-[#C49A3C] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] transition hover:bg-[#D4B05A]"
+                    className="inline-flex w-full items-center justify-center rounded-full bg-[#C49A3C] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] transition hover:bg-[#D4B05A]"
                   >
                     Check Availability
-                  </Link>
-                  <Link
-                    href="/rooms"
-                    className="inline-flex items-center justify-center rounded-full border border-[rgba(13,43,47,0.18)] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] transition hover:bg-white"
-                  >
-                    Explore Rooms
                   </Link>
                 </div>
               </div>
@@ -405,19 +399,19 @@ export default function TariffInfo() {
 
               <div className="relative z-10">
                 <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[#C49A3C]">
-                  Need Help Booking?
+                  Booking Notes
                 </p>
                 <h3 className="mt-4 font-serif text-[2rem] leading-[0.94] sm:text-[2.6rem]">
-                  Make the booking step clear and easy to act on.
+                  Keep the decision simple after the pricing is clear.
                 </h3>
                 <p className="mt-5 max-w-2xl text-[0.96rem] leading-8 text-[#2C4A50]">
-                  Once the tariff is clear, guests should be able to move quickly. Continue to the booking engine for live availability or contact the team for group assistance.
+                  Once guests understand the tariff, they should only need one next step. Review the stay summary, compare the tables, and continue with the booking engine when ready.
                 </p>
 
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   {[
                     { label: "Best for", value: "Room Stays" },
-                    { label: "Support", value: "Group Help" },
+                    { label: "Group size", value: "20+ Guests" },
                   ].map(({ label, value }) => (
                     <div
                       key={label}
@@ -433,21 +427,13 @@ export default function TariffInfo() {
                   ))}
                 </div>
 
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <Link
-                    href={BOOKING_ENGINE_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center rounded-full bg-[#C49A3C] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] shadow-[0_10px_24px_rgba(196,154,60,0.28)] transition hover:-translate-y-0.5 hover:bg-[#D4B05A] active:translate-y-0"
-                  >
-                    Check Availability
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center rounded-full border border-[rgba(13,43,47,0.18)] px-7 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[#0D2B2F] transition hover:bg-[#F9F5EE]"
-                  >
-                    Contact Our Team
-                  </Link>
+                <div className="mt-8 rounded-2xl border border-[rgba(13,43,47,0.08)] bg-[#F9F5EE] p-4 sm:p-5">
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.20em] text-[#6C7C80]">
+                    Recommended next step
+                  </p>
+                  <p className="mt-2 text-[0.96rem] leading-7 text-[#1A4A50]">
+                    Use the single booking button above to check live availability after reviewing the room, group, and picnic tariff details.
+                  </p>
                 </div>
               </div>
             </div>

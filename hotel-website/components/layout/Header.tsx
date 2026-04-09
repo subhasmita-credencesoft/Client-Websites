@@ -233,12 +233,12 @@ export default function Header() {
             />
             <div className="hidden sm:flex items-center gap-1.5">
               <span className="font-bold uppercase tracking-[0.26em]"
-                style={{ fontSize: "0.56rem", color: textMuted }}>
+                style={{ fontSize: "0.68rem", color: textMuted }}>
                 Menu
               </span>
               <span className="h-2.5 w-px" style={{ background: border }} aria-hidden="true" />
               <span className="font-bold uppercase tracking-[0.22em]"
-                style={{ fontSize: "0.56rem", color: textMuted }}>
+                style={{ fontSize: "0.68rem", color: textMuted }}>
                 UK&apos;s Resort
               </span>
             </div>
@@ -266,11 +266,11 @@ export default function Header() {
             {/* Wordmark */}
             <span className="flex flex-col items-center leading-none">
               <span className="font-serif font-normal"
-                style={{ fontSize: "clamp(0.78rem, 1.4vw, 1.08rem)", letterSpacing: "0.06em", color: textMain }}>
+                style={{ fontSize: "clamp(0.9rem, 1.55vw, 1.2rem)", letterSpacing: "0.06em", color: textMain }}>
                 UK&apos;s Resort
               </span>
               <span className="font-semibold uppercase"
-                style={{ fontSize: "clamp(0.36rem, 0.65vw, 0.44rem)", letterSpacing: "0.3em", color: textMuted, marginTop: "2px" }}>
+                style={{ fontSize: "clamp(0.44rem, 0.78vw, 0.54rem)", letterSpacing: "0.3em", color: textMuted, marginTop: "2px" }}>
                 Khopoli · Maharashtra
               </span>
             </span>
@@ -359,7 +359,7 @@ export default function Header() {
                       href={item.href}
                       aria-current={isActive ? "page" : undefined}
                       className="whitespace-nowrap px-2 font-bold uppercase transition-colors"
-                      style={{ fontSize: "0.55rem", letterSpacing: "0.18em", color: isActive ? "#c8922a" : navLink, textDecoration: "none" }}
+                       style={{ fontSize: "0.68rem", letterSpacing: "0.18em", color: isActive ? "#c8922a" : navLink, textDecoration: "none" }}
                     >
                       {item.label}
                     </Link>
@@ -565,14 +565,14 @@ export default function Header() {
           border: 1.5px solid #c8922a;
           background: #c8922a;
           color: #fff !important;
-          font-size: 0.58rem; font-weight: 800;
+          font-size: 0.66rem; font-weight: 800;
           letter-spacing: 0.18em; text-transform: uppercase;
           text-decoration: none; white-space: nowrap; line-height: 1;
           transition: background 0.18s, border-color 0.18s;
         }
         .hdr-book-btn:hover { background: #daa93e; border-color: #daa93e; }
         @media (min-width: 640px) {
-          .hdr-book-btn { padding: 0.5rem 0.75rem 0.5rem 1.1rem; font-size: 0.62rem; }
+          .hdr-book-btn { padding: 0.5rem 0.75rem 0.5rem 1.1rem; font-size: 0.7rem; }
         }
         .hdr-book-btn--outline {
           background: transparent !important;
@@ -631,12 +631,12 @@ export default function Header() {
 
         .hdr-nav-link {
           padding: 0 0.75rem;
-          font-size: 0.58rem; font-weight: 700;
+          font-size: 0.7rem; font-weight: 700;
           letter-spacing: 0.2em; text-transform: uppercase;
           text-decoration: none; line-height: 1; transition: color 0.18s;
         }
-        @media (min-width: 1280px) { .hdr-nav-link { padding: 0 0.85rem; font-size: 0.60rem; } }
-        @media (min-width: 1536px) { .hdr-nav-link { padding: 0 0.95rem; font-size: 0.62rem; } }
+        @media (min-width: 1280px) { .hdr-nav-link { padding: 0 0.85rem; font-size: 0.74rem; } }
+        @media (min-width: 1536px) { .hdr-nav-link { padding: 0 0.95rem; font-size: 0.78rem; } }
 
         /* Menu overlay */
         .menu-overlay { color: #fff; background: linear-gradient(160deg, #10232b 0%, #19161a 100%); }

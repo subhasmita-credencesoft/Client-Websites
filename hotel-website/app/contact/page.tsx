@@ -18,6 +18,11 @@ function compactAddress(parts: Array<string | null | undefined>) {
   return parts.filter(Boolean).join(", ");
 }
 
+function stripHtmlTags(value: string | null | undefined) {
+  if (!value) return "";
+  return value.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
+
 function toTelHref(value: string) {
   return `tel:${value.replace(/\s+/g, "")}`;
 }
@@ -66,7 +71,7 @@ export default function ContactPage() {
   const mapHref = buildMapHref(fullAddress, activeProperty?.latitude, activeProperty?.longitude);
   const primaryImage = activeProperty?.imageList?.[0]?.url || "/images/making-memories.jpg";
   const businessDescription =
-    activeProperty?.businessDescription ||
+    stripHtmlTags(activeProperty?.businessDescription) ||
     `${hotelName} brings together stays, dining, celebrations, and scenic experiences in Khopoli.`;
   const social = activeProperty?.socialMediaLinks?.[0];
 
@@ -74,6 +79,7 @@ export default function ContactPage() {
     <>
       <PageHero
         title="Contact"
+        subtitle="Reach out for room stays, dining visits, celebrations, group bookings, and travel guidance at UK's Resort."
         backgroundImage="https://bookonelocal.in/cdn/4.png"
         backgroundVideo="https://bookonelocal.in/cdn/Contact-Us-Page.mp4"
         breadcrumb="Home / Contact"

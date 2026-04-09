@@ -20,59 +20,59 @@ const sectionPills = ["Event Days", "Play Areas", "Adventure Zones"] as const;
 
 function CelebrationBlock({ block, index }: { block: WeddingsCelebrationBlock; index: number }) {
   return (
-    <article className="wed-block relative overflow-hidden rounded-[2rem] border border-white/45 shadow-[0_28px_70px_rgba(16,33,42,0.16)]">
+    <article className="wed-block relative overflow-hidden border-b border-[#1f3c44]/10 pb-10 last:border-b-0 last:pb-0">
       <div className="wed-glow wed-glow-a" aria-hidden="true" />
       <div className="wed-glow wed-glow-b" aria-hidden="true" />
 
-      <div className="wed-media-card relative min-h-[26rem] sm:min-h-[32rem] lg:min-h-[42rem]">
-        <Image
-          src={block.mediaImage}
-          alt={block.mediaAlt}
-          fill
-          sizes="100vw"
-          unoptimized
-          className="wed-main-image object-cover"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,18,24,0.16)_0%,rgba(8,18,24,0.42)_36%,rgba(8,18,24,0.86)_100%)]" />
-        <div className="wed-shine absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-white/0 via-white/18 to-white/0 opacity-0" />
+      <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-12">
+        <div className={`wed-media-card relative min-h-[20rem] overflow-hidden rounded-[1.8rem] sm:min-h-[25rem] lg:min-h-[31rem] ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+          <Image
+            src={block.mediaImage}
+            alt={block.mediaAlt}
+            fill
+            sizes="(max-width: 1023px) 100vw, 56vw"
+            unoptimized
+            className="wed-main-image object-cover"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,18,24,0.08)_0%,rgba(8,18,24,0.18)_45%,rgba(8,18,24,0.44)_100%)]" />
+          <div className="wed-shine absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-white/0 via-white/18 to-white/0 opacity-0" />
+          <div className="absolute left-5 top-5 z-10 inline-flex rounded-full border border-white/25 bg-black/15 px-4 py-2 text-[0.66rem] font-semibold uppercase tracking-[0.22em] text-white/85 backdrop-blur-md">
+            Experience 0{index + 1}
+          </div>
+          <div className="absolute bottom-5 left-5 z-10 hidden rounded-full border border-white/25 bg-white/12 px-4 py-2 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-white/82 backdrop-blur-md sm:inline-flex">
+            {block.highlightLabel}
+          </div>
+        </div>
 
-        <div className="wed-content relative z-10 flex h-full flex-col justify-between p-6 text-white sm:p-8 lg:p-10">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="inline-flex rounded-full border border-white/24 bg-white/10 px-4 py-2 text-[0.66rem] font-semibold uppercase tracking-[0.22em] text-white/85 backdrop-blur-md">
-              Experience 0{index + 1}
-            </div>
-            <div className="hidden rounded-full border border-white/18 bg-white/10 px-4 py-2 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-white/80 backdrop-blur-md sm:inline-flex">
-              {block.highlightLabel}
-            </div>
+        <div className={`wed-content relative z-10 ${index % 2 === 1 ? "lg:order-1" : ""}`}>
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
+            {block.highlightLabel}
+          </p>
+          <h3 className="mt-4 max-w-[12ch] font-serif text-[2rem] leading-[0.95] text-[#173842] sm:text-[2.35rem] lg:text-[3rem]">
+            {block.cardTitle}
+          </h3>
+          <div className="mt-5 h-px w-20 bg-gradient-to-r from-[#d89a55] to-transparent" />
+
+          <div className="mt-6 space-y-4 max-w-2xl">
+            {block.cardParagraphs.map((paragraph, paragraphIndex) => (
+              <p
+                key={`${block.id}-${paragraphIndex}`}
+                className={`text-[0.98rem] leading-8 text-[#1f3c44]/76 ${paragraphIndex === 0 ? "text-[#1f3c44]/88" : ""}`}
+              >
+                {paragraph}
+              </p>
+            ))}
           </div>
 
-          <div className="max-w-3xl">
-            <h3 className="max-w-[12ch] font-serif text-[2.5rem] leading-[0.9] text-white sm:text-[3.15rem] lg:text-[4.2rem]">
-              {block.cardTitle}
-            </h3>
-            <div className="mt-5 h-px w-20 bg-gradient-to-r from-[#d89a55] to-transparent" />
-
-            <div className="mt-6 max-w-2xl">
-              {block.cardParagraphs.map((paragraph, paragraphIndex) => (
-                <p
-                  key={`${block.id}-${paragraphIndex}`}
-                  className={`text-[0.98rem] leading-8 text-white/84 ${paragraphIndex === 0 ? "text-white/92" : ""}`}
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-2.5">
-              {block.highlights.map((item) => (
-                <span
-                  key={item}
-                  className="wed-chip rounded-full border border-white/16 bg-white/10 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/82 backdrop-blur-md"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
+          <div className="mt-6 flex flex-wrap gap-2.5">
+            {block.highlights.map((item) => (
+              <span
+                key={item}
+                className="wed-chip rounded-full border border-[#1f3c44]/12 bg-white px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#1f3c44]/72 shadow-[0_10px_24px_rgba(31,60,68,0.06)]"
+              >
+                {item}
+              </span>
+            ))}
           </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -88,7 +88,7 @@ function CelebrationBlock({ block, index }: { block: WeddingsCelebrationBlock; i
               href={WEDDINGS_CELEBRATION_MAP_LINKS[block.virtualTourKey]}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-11 items-center gap-2 rounded-full border border-white/28 bg-white/10 px-5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md transition hover:bg-white/16"
+              className="inline-flex h-11 items-center gap-2 rounded-full border border-[#1f3c44]/16 bg-transparent px-5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#1f3c44] transition hover:bg-white/70"
               aria-label={block.virtualTourAriaLabel}
             >
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
@@ -246,7 +246,7 @@ export default function EventsCelebration() {
           </div>
         </div>
 
-        <div className="mt-16 space-y-10 lg:space-y-12">
+        <div className="mt-16 space-y-12 lg:space-y-14">
           {WEDDINGS_CELEBRATION_BLOCKS.map((block, index) => (
             <CelebrationBlock key={block.id} block={block} index={index} />
           ))}
@@ -284,12 +284,12 @@ export default function EventsCelebration() {
 
         @media (min-width: 1024px) {
           .wed-media-card {
-            transform: perspective(1500px) rotateY(-2deg) scale(1.01);
+            transform: perspective(1500px) rotateY(-1.5deg) scale(1.01);
             transition: transform 380ms ease, box-shadow 380ms ease;
           }
 
           .wed-block:hover .wed-media-card {
-            transform: perspective(1500px) rotateY(0deg) translateY(-6px) scale(1.01);
+            transform: perspective(1500px) rotateY(0deg) translateY(-4px) scale(1.01);
           }
         }
       `}</style>

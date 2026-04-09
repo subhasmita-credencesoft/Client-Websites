@@ -85,19 +85,19 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
   introEyebrow: "Day Outings",
   introTitle: "One-day picnic experiences built for energy, movement, and memorable daytime celebrations.",
   introCopy:
-    "The picnic page now leans fully into one-day outings, activity-led group moments, and quick visual planning. It gives families, schools, and celebration groups a clearer sense of the full day before sending them directly into booking.",
+    "Enjoy a full one-day picnic at UK's Resort with spacious lawns, water fun, rain dance, buffet meals, and relaxed group time for families, schools, and celebrations.",
   highlights: [
     {
-      title: "One-day event focus",
-      description: "Every section now supports the rhythm of a full picnic day, from arrival energy and meal breaks to play zones and group memories.",
+      title: "Full-day picnic fun",
+      description: "Spend the day enjoying open lawns, poolside fun, group games, meal breaks, and photo moments in one lively resort setting.",
     },
     {
-      title: "Activity-first storytelling",
-      description: "Guests can now scan open lawns, water fun, play spaces, and celebration-friendly corners through more image-led sections.",
+      title: "Activities for all ages",
+      description: "Families, school groups, and friends can enjoy water attractions, play areas, wide open spaces, and easy social movement throughout the day.",
     },
     {
-      title: "Cleaner decision flow",
-      description: "The upgraded page keeps the direct booking action simple while making the day experience feel fuller and more exciting.",
+      title: "Easy group outing choice",
+      description: "The picnic options are simple to understand, making it easier to choose the right day outing for your group and book quickly.",
     },
   ],
   stats: [
@@ -109,24 +109,24 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
     {
       image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
       title: "A day outing that starts with open lawns and easy energy",
-      copy: "From the first look, the page now communicates space, movement, and a more festive day-out atmosphere for families and groups.",
+      copy: "Start the day with fresh open space, greenery, and a relaxed picnic atmosphere that works well for families and larger groups.",
     },
     {
       image: "https://bookonelocal.in/cdn/picnic1.jpg",
       title: "Play zones, food breaks, and shared group moments",
-      copy: "The visual flow now balances activity and comfort so guests can picture a full picnic schedule instead of just a static package list.",
+      copy: "Enjoy a balanced day with games, water fun, meal breaks, and comfortable spaces where groups can gather and unwind together.",
     },
     {
       image: "children7.avif",
       title: "Photo-friendly memories through the day",
-      copy: "The page finishes the mood with celebration-ready imagery that feels ideal for birthdays, school outings, and social gatherings.",
+      copy: "From birthdays to school outings, every picnic day brings plenty of cheerful group moments and memorable photos.",
     },
   ],
   experienceFlow: {
     eyebrow: "One Day Flow",
     title: "Show guests how the day unfolds from arrival to sunset.",
     copy:
-      "This section makes the outing feel organized and exciting at the same time. It helps visitors imagine the full flow of a one-day event instead of guessing what happens after entry.",
+      "A one-day picnic feels better when guests know how the day moves from arrival and activities to lunch, snacks, and a relaxed departure.",
     steps: [
       {
         time: "09:30 AM",
@@ -154,7 +154,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
     eyebrow: "Activity Highlights",
     title: "Built around one-day fun, group movement, and easy celebration energy.",
     copy:
-      "The page now brings more attention to the kind of experiences guests actually come for during a picnic event, not just the booking step.",
+      "The picnic experience includes the fun guests actually come for: water play, lawn time, shared meals, and group-friendly spaces.",
     features: [
       {
         title: "Water play and rain-dance excitement",
@@ -177,7 +177,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
     eyebrow: "Event Gallery",
     title: "More images so the picnic page feels alive, social, and celebration-ready.",
     copy:
-      "These extra frames help the page look more complete and give guests more confidence about the one-day outing experience before they book.",
+      "These picnic moments show the energy of group outings, family fun, and celebration-ready spaces before guests move to booking.",
     images: [
       { image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif", alt: "Picnic lawn at UK's Resort" },
       { image: "children7.avif", alt: "Picnic gathering and open activity area" },
@@ -187,7 +187,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
   },
   packagesTitle: "Picnic options presented with more energy and easier comparison.",
   packagesSubtitle:
-    "Each package keeps the same visual hierarchy while giving guests enough detail to choose confidently on mobile or desktop.",
+    "Choose the picnic option that best fits your family outing, school trip, or daytime celebration.",
   packageOptions: [
     {
       name: "Family Day Picnic",
@@ -210,17 +210,17 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
   ],
   planningTitle: "Designed to feel fun before guests even arrive.",
   planningCopy:
-    "The upgraded structure gives picnic bookings a stronger emotional pull while keeping planning practical. Guests can quickly understand the vibe, the activity mix, the package differences, and the next step without digging through form-heavy layouts.",
+    "From open lawns and water activities to buffet meals and group-friendly spaces, the picnic details make planning the day easier and more exciting.",
   planningPoints: [
-    "Use this page for family picnics, school outings, social gatherings, and daytime celebrations.",
-    "Keep the visual rhythm lively with layered cards, more photos, and motion that reveals rather than distracts.",
-    "Send guests directly to booking when they are already ready to commit.",
+    "Ideal for one-day family picnics, school outings, social gatherings, and birthday celebrations.",
+    "Includes space for games, dining breaks, photos, and relaxed time together.",
+    "Move directly to booking once you choose the picnic plan that fits your group.",
   ],
   planningImage: "https://bookonelocal.in/cdn/picnic1.jpg",
   bookingCtaEyebrow: "Book Direct",
   bookingCtaTitle: "Ready for a fun day out?",
   bookingCtaCopy:
-    "Move directly into the booking engine to check availability and continue your picnic reservation without an extra inquiry step.",
+    "Move directly into the booking engine to check availability and continue your one-day picnic reservation without an extra inquiry step.",
   bookingButtonLabel: "Book Picnic",
   bookingButtonHref: "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true",
 };
@@ -228,7 +228,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
 export const corporateLandingPageContent: BookingLandingPageContent = {
   heroTitle: "Corporate Booking",
   heroSubtitle:
-    "Plan corporate stays, team offsites, conferences, and business gatherings with a clearer view of the resort experience and booking path.",
+    "Plan corporate stays, team offsites, conferences, and business gatherings at UK's Resort with comfort, space, and direct booking support.",
   heroImage: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
   heroVideo: "https://bookonelocal.in/cdn/Corporate-Page-VIdeo.mp4",
   path: "/corporate",
@@ -239,46 +239,46 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
   introEyebrow: "Business Stays",
   introTitle: "Corporate stays and team bookings presented with more clarity and confidence.",
   introCopy:
-    "UK's Resort offers a setting that works well for company stays, offsites, conferences, and team gatherings. This page helps planners understand the atmosphere, compare options, and move more easily toward the right booking choice.",
+    "UK's Resort is well suited for corporate stays, team outings, conferences, training programs, and business events. Guests can review the stay options, event suitability, and booking details in one clear flow.",
   highlights: [
     {
-      title: "Clearer first impression",
-      description: "The page now introduces the resort in a way that helps company planners quickly understand the style and suitability of the venue.",
+      title: "Suitable for business groups",
+      description: "The resort works well for company stays, meetings, conferences, launches, and team gatherings that need both comfort and open space.",
     },
     {
-      title: "Better package comparison",
-      description: "Corporate formats are easier to compare, helping coordinators review the right stay or event option without extra guesswork.",
+      title: "Easy package comparison",
+      description: "Corporate stay and event options are easier to compare, helping coordinators choose the right format without confusion.",
     },
     {
-      title: "Simpler next step",
-      description: "Guests who are ready can move from review to booking more directly instead of getting stuck in a slower planning loop.",
+      title: "Direct booking path",
+      description: "Once the requirement is clear, guests can move directly from review to booking without extra back-and-forth.",
     },
   ],
   stats: [
-    { value: "Corporate", label: "Business-ready stay formats" },
-    { value: "Retreat + Stay", label: "Work and downtime balance" },
-    { value: "Direct", label: "Clear booking path" },
+    { value: "Corporate", label: "Business stay options" },
+    { value: "Retreat + Stay", label: "Work and relaxation balance" },
+    { value: "Direct", label: "Simple booking path" },
   ],
   gallery: [
     {
       image: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
       title: "A polished first impression for company bookings",
-      copy: "The opening presentation helps planners understand the tone of the resort before moving deeper into the booking flow.",
+      copy: "The resort offers a professional first impression for company stays, leadership visits, conferences, and business gatherings.",
     },
     {
       image: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
       title: "A calm setting for focused work and stay comfort",
-      copy: "Suitable for offsites, planning sessions, and business stays that need both comfort and a sense of structure.",
+      copy: "Ideal for offsites, strategy meetings, and business stays that need a calm setting along with comfortable accommodation.",
     },
     {
       image: "https://bookonelocal.in/cdn/conference3-1.jpg",
       title: "Suitable for conferences and team gatherings",
-      copy: "The page supports planners looking for a venue that can handle meetings, launches, and company events with clarity.",
+      copy: "Conference spaces and event support make the resort suitable for meetings, launches, presentations, and team programs.",
     },
   ],
   packagesTitle: "Corporate formats that are easier to compare and plan.",
   packagesSubtitle:
-    "Each package helps planners quickly understand who it suits, what it includes, and how it may fit the event or stay requirement.",
+    "Choose the corporate stay or event format that best matches your team size, business purpose, and schedule.",
   packageOptions: [
     {
       name: "Leadership Retreat",
@@ -301,17 +301,17 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
   ],
   planningTitle: "Made to simplify the planning journey for company bookings.",
   planningCopy:
-    "Corporate guests usually need clarity, ease, and confidence before making a booking decision. This page is structured to help teams move through that process more comfortably.",
+    "Corporate guests usually need clear details before confirming a stay or event. This section helps teams review the essentials and move forward with confidence.",
   planningPoints: [
-    "Use this page for retreats, offsites, business meetings, launches, and room-block stays.",
-    "Give coordinators enough detail to compare stay types, event fit, and included support.",
-    "Keep the final booking action visible once the guest has seen enough to move ahead.",
+    "Use this page for corporate stays, retreats, conferences, launches, offsites, and room-block bookings.",
+    "Review stay formats, event suitability, and included support in one place.",
+    "Move to booking once your team selects the format that fits best.",
   ],
   planningImage: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
   bookingCtaEyebrow: "Book Direct",
   bookingCtaTitle: "Ready to plan your corporate stay?",
   bookingCtaCopy:
-    "Proceed directly to the booking engine for live availability and the next booking step without returning to a slower manual inquiry flow.",
+    "Proceed directly to the booking engine for live availability and continue with your corporate stay or event booking.",
   bookingButtonLabel: "Book Corporate Stay",
   bookingButtonHref: "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true",
 };

@@ -110,14 +110,14 @@ export default function EventsZoneAtlas() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div className="mt-14 space-y-8">
           {EVENTS_ZONE_ATLAS_CARDS.map((card) => (
             <article
               key={card.title}
-              className="eza-card group relative overflow-hidden rounded-[2rem] border border-white/35 bg-white/96 text-[#153742] shadow-[0_24px_64px_rgba(16,33,42,0.16)]"
+              className="eza-card group relative overflow-hidden border-b border-white/14 pb-8 last:border-b-0 last:pb-0"
             >
-              <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-                <div className="relative min-h-[18rem] overflow-hidden sm:min-h-[21rem]">
+              <div className="grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-10">
+                <div className="relative min-h-[18rem] overflow-hidden rounded-[1.7rem] sm:min-h-[21rem]">
                   <div className="eza-float absolute inset-x-8 top-5 z-10 h-20 rounded-full bg-white/22 blur-3xl" aria-hidden="true" />
                   <Image
                     src={card.image}
@@ -130,8 +130,8 @@ export default function EventsZoneAtlas() {
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,37,45,0.08)_0%,rgba(15,37,45,0.32)_100%)]" />
                 </div>
 
-                <div className="flex items-center p-6 sm:p-8">
-                  <div>
+                <div className="flex items-center">
+                  <div className="max-w-2xl">
                     <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[var(--accent)]">
                       {card.eyebrow}
                     </p>
@@ -165,21 +165,8 @@ export default function EventsZoneAtlas() {
         }
 
         @media (min-width: 1024px) {
-          .eza-card:nth-child(odd) {
-            transform: perspective(1500px) rotateY(-3deg);
-          }
-
-          .eza-card:nth-child(even) {
-            transform: perspective(1500px) rotateY(3deg);
-          }
-
           .eza-card {
-            transition: transform 420ms ease, box-shadow 420ms ease;
-          }
-
-          .eza-card:hover {
-            transform: perspective(1500px) rotateY(0deg) translateY(-8px);
-            box-shadow: 0 30px 80px rgba(16, 33, 42, 0.22);
+            transition: transform 420ms ease;
           }
         }
       `}</style>

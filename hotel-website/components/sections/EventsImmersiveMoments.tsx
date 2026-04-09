@@ -134,40 +134,39 @@ export default function EventsImmersiveMoments() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+        <div className="mt-14 grid gap-8">
           {WEDDINGS_IMMERSIVE_MOMENTS.map((moment, index) => (
             <article
               key={moment.title}
-              className={`wim-card group relative overflow-hidden rounded-[2rem] border border-white/40 shadow-[0_28px_70px_rgba(16,33,42,0.14)] ${
-                index === 0 ? "lg:col-span-2" : ""
-              }`}
+              className="wim-card group relative overflow-hidden border-b border-[#1f3c44]/10 pb-8 last:border-b-0 last:pb-0"
             >
-              <div className="wim-float absolute inset-x-10 top-5 h-24 rounded-full bg-[#d89a55]/14 blur-3xl" aria-hidden="true" />
-              <div className="relative">
-                <div className={`relative overflow-hidden ${index === 0 ? "min-h-[24rem] sm:min-h-[30rem]" : "min-h-[20rem] sm:min-h-[24rem]"}`}>
+              <div className={`grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-10 ${index % 2 === 1 ? "lg:grid-cols-[1.05fr_0.95fr]" : ""}`}>
+                <div className={`relative overflow-hidden rounded-[1.75rem] ${index % 2 === 1 ? "lg:order-2" : ""} ${index === 0 ? "min-h-[21rem] sm:min-h-[26rem]" : "min-h-[19rem] sm:min-h-[23rem]"}`}>
+                  <div className="wim-float absolute inset-x-10 top-5 z-10 h-24 rounded-full bg-[#d89a55]/14 blur-3xl" aria-hidden="true" />
                   <Image
                     src={moment.image}
                     alt={moment.alt}
                     fill
-                    sizes="(max-width: 1023px) 100vw, 50vw"
+                    sizes="(max-width: 1023px) 100vw, 46vw"
                     unoptimized
                     className="wim-card-image object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,26,31,0.18)_0%,rgba(12,26,31,0.28)_38%,rgba(12,26,31,0.82)_100%)]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,26,31,0.08)_0%,rgba(12,26,31,0.12)_45%,rgba(12,26,31,0.42)_100%)]" />
                   <div className="absolute left-5 top-5 rounded-full border border-white/35 bg-black/22 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
                     {String(index + 1).padStart(2, "0")}
                   </div>
-                  <div className="absolute inset-x-0 bottom-0 z-10 p-6 text-white sm:p-8">
-                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-white/70">
-                      {moment.eyebrow}
-                    </p>
-                    <h3 className={`mt-3 font-serif leading-[0.95] text-white ${index === 0 ? "text-[2.4rem] sm:text-[3.2rem]" : "text-[2rem] sm:text-[2.35rem]"}`}>
-                      {moment.title}
-                    </h3>
-                    <p className="mt-4 max-w-2xl text-[0.97rem] leading-8 text-white/82">
-                      {moment.description}
-                    </p>
-                  </div>
+                </div>
+
+                <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                    {moment.eyebrow}
+                  </p>
+                  <h3 className={`mt-3 font-serif leading-[0.95] text-[#173842] ${index === 0 ? "text-[2.2rem] sm:text-[2.8rem]" : "text-[1.95rem] sm:text-[2.25rem]"}`}>
+                    {moment.title}
+                  </h3>
+                  <p className="mt-5 max-w-2xl text-[0.97rem] leading-8 text-[#1f3c44]/78">
+                    {moment.description}
+                  </p>
                 </div>
               </div>
             </article>
@@ -182,21 +181,12 @@ export default function EventsImmersiveMoments() {
         }
 
         @media (min-width: 1024px) {
-          .wim-card:nth-child(odd) {
-            transform: perspective(1550px) rotateY(-5deg) rotateX(2deg);
-          }
-
-          .wim-card:nth-child(even) {
-            transform: perspective(1550px) translateY(18px) rotateX(3deg);
-          }
-
           .wim-card {
-            transition: transform 420ms ease, box-shadow 420ms ease;
+            transition: transform 420ms ease;
           }
 
-          .wim-card:hover {
-            transform: perspective(1550px) rotateY(0deg) rotateX(0deg) translateY(-8px);
-            box-shadow: 0 34px 80px rgba(16, 33, 42, 0.18);
+          .wim-card:hover .wim-card-image {
+            transform: scale(1.04);
           }
         }
       `}</style>

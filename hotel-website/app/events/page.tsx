@@ -21,7 +21,7 @@ export default function EventsPage() {
       {/* <HeroBookingBarDock /> */}
       <EventsCelebration />
       <EventsImmersiveMoments />
-      <EventsZoneAtlas />
+      {/* <EventsZoneAtlas /> */}
       <EventsActivitiesShowcase />
     </>
   );

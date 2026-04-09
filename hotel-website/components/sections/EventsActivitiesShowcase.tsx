@@ -95,15 +95,15 @@ export default function EventsActivitiesShowcase() {
           </div>
         </div>
 
-        <div className="mt-14 space-y-6">
+        <div className="mt-14 space-y-8">
           {WEDDINGS_MEETING_CARDS.map((card, index) => (
             <article
               key={card.title}
-              className="meet-card group relative overflow-hidden rounded-[2rem] border border-white/40 shadow-[0_24px_60px_rgba(16,33,42,0.14)]"
+              className="meet-card group relative overflow-hidden border-b border-[#1f3c44]/10 pb-8 last:border-b-0 last:pb-0"
             >
               <div className="meet-glow absolute right-5 top-5 z-10 h-20 w-20 rounded-full bg-[#d89a55]/18 blur-2xl" />
               <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
-                <div className={`relative min-h-[18rem] overflow-hidden sm:min-h-[22rem] ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                <div className={`relative min-h-[18rem] overflow-hidden rounded-[1.7rem] sm:min-h-[22rem] ${index % 2 === 1 ? "lg:order-2" : ""}`}>
                   <Image
                     src={card.image}
                     alt={card.title}
@@ -117,7 +117,7 @@ export default function EventsActivitiesShowcase() {
                   </div>
                 </div>
 
-                <div className={`flex items-center bg-[linear-gradient(180deg,#f8f4ee_0%,#f1e8db_100%)] p-6 sm:p-8 lg:p-10 ${index % 2 === 1 ? "lg:order-1" : ""}`}>
+                <div className={`flex items-center p-1 pt-6 sm:p-2 sm:pt-6 lg:p-0 ${index % 2 === 1 ? "lg:order-1 lg:pr-10" : "lg:pl-10"}`}>
                   <div className="max-w-xl">
                     <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#b17231]">
                       Experience Track
@@ -144,13 +144,7 @@ export default function EventsActivitiesShowcase() {
 
         @media (min-width: 1024px) {
           .meet-card {
-            transform: perspective(1500px) rotateY(-1.4deg);
-            transition: transform 380ms ease, box-shadow 380ms ease;
-          }
-
-          .meet-card:hover {
-            transform: perspective(1500px) rotateY(0deg) rotateX(1.6deg) translateY(-6px);
-            box-shadow: 0 28px 72px rgba(16, 33, 42, 0.18);
+            transition: transform 380ms ease;
           }
         }
       `}</style>
