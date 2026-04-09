@@ -11,7 +11,7 @@ export const WEDDINGS_IMMERSIVE_INTRO = {
   titleLineOne: "Adventure, play,",
   titleLineTwo: "and day-long energy",
   description:
-    "This section now highlights the parts of the resort that matter most for active guests: movement, water fun, play areas, social zones, and memorable one-day event moments.",
+    "The parts of the resort that matter most for active guests: movement, water fun, play areas, social zones, and memorable one-day event moments.",
 };
 
 export const WEDDINGS_IMMERSIVE_STATS = [
@@ -50,7 +50,7 @@ export const WEDDINGS_IMMERSIVE_MOMENTS: WeddingsImmersiveMoment[] = [
     title: "Meal breaks that complete the one-day event rhythm",
     description:
       "Food and rest moments give the outing a fuller pace, making the resort feel like a complete day destination rather than a single activity stop.",
-    image: "https://bookonelocal.in/cdn/picnic1.jpg",
+    image: "din2.avif",
     alt: "Dining and picnic gathering setup for groups",
   },
   {

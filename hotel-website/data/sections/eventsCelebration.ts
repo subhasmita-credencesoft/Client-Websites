@@ -84,7 +84,7 @@ export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
     mediaAlt: "Corporate event and team outing space",
     cardTitle: "Corporate outings & team event areas",
     cardParagraphs: [
-      "The page now gives corporate groups their own clearer place in the story, showing that the resort works for offsites, team days, launches, and activity-based company gatherings too.",
+      "corporate groups their own clearer place in the story, showing that the resort works for offsites, team days, launches, and activity-based company gatherings too.",
     ],
     highlightLabel: "Ideal For",
     highlights: ["Team offsites", "Launches", "Corporate outings"],

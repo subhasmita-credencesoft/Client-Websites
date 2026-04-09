@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -40,6 +41,8 @@ const experiences = [
 
 // ✅ No `declare module "gsap/ScrollTrigger"` block needed — GSAP v3.11+ ships its own types.
 gsap.registerPlugin(ScrollTrigger);
+
+const BOOKING_ENGINE_URL = "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true";
 
 export default function ExperiencesExplore() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -301,9 +304,14 @@ export default function ExperiencesExplore() {
                   <p className="exp-card-line mt-3 max-w-[60ch] text-[0.84rem] leading-relaxed text-white/85 sm:text-[0.92rem] lg:text-[1.05rem]">
                     {item.description}
                   </p>
-                  <span className="exp-card-line mt-5 inline-flex w-fit text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-white/90 lg:text-[0.72rem]">
+                  <Link
+                    href={BOOKING_ENGINE_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="exp-card-line mt-5 inline-flex w-fit text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-white/90 transition hover:text-white lg:text-[0.72rem]"
+                  >
                     Explore now
-                  </span>
+                  </Link>
                 </div>
               </article>
             ))}

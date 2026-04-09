@@ -9,13 +9,13 @@ export const WEDDINGS_MEETING_CARDS: WeddingsMeetingCard[] = [
     title: "Group dining that fits the full-day flow",
     description:
       "Buffet meals, refreshment breaks, and relaxed dining windows help the event schedule feel smoother for families, schools, and corporate groups.",
-    image: "https://bookonelocal.in/cdn/picnic1.jpg",
+    image: "din2.avif",
   },
   {
     title: "Indoor game corners for all-weather fun",
     description:
       "Indoor leisure options make the page feel more complete and show that the resort has backup fun even when guests want a quieter activity break.",
-    image: "https://bookonelocal.in/cdn/gymnium-image.JPG",
+    image: "sports2.avif",
   },
   {
     title: "Corporate-friendly gathering support",

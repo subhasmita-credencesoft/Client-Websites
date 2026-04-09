@@ -221,7 +221,11 @@ export default function Footer() {
         <div className="footer-bottom flex flex-wrap items-center gap-4 py-6 text-[0.86rem] text-white/65 sm:justify-between sm:text-xs">
           <p className="max-w-3xl leading-6">
             {" "}
-            Designed and Developed By CredenceSoft, Powered By{" "}
+            Designed and Developed By{" "}
+            <Link href="https://credencesoft.in/" target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline">
+              CredenceSoft
+            </Link>
+            , Powered By{" "}
             <Link href="https://bookonepms.com/" target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline">
               BookOne
             </Link>
