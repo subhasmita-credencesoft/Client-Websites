@@ -54,7 +54,7 @@ export function PropertyDataProvider({ children }: { children: React.ReactNode }
   const [property, setProperty] = useState<PropertyApiResponse | null>(() => readCachedProperty());
   const [isLoading, setIsLoading] = useState(() => !readCachedProperty());
   const [error, setError] = useState<string | null>(null);
-  const { toUserMessage, logError } = useErrorHandler();
+  const { logError, notifyError } = useErrorHandler();
 
   const load = useCallback(async (signal?: AbortSignal, background = false) => {
     if (!background) {
@@ -76,7 +76,7 @@ export function PropertyDataProvider({ children }: { children: React.ReactNode }
         logError(`Property fetch failed (attempt ${attempt}/${maxAttempts})`, err);
         if (attempt === maxAttempts) {
           setError(
-            toUserMessage(
+            notifyError(
               err,
               "We could not load property details right now. Please refresh.",
             ),
@@ -90,7 +90,7 @@ export function PropertyDataProvider({ children }: { children: React.ReactNode }
     if (!background) {
       setIsLoading(false);
     }
-  }, [logError, toUserMessage]);
+  }, [logError, notifyError]);
 
   useEffect(() => {
     const controller = new AbortController();

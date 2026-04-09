@@ -3,26 +3,72 @@ import type { PropertyApiResponse } from "../../types/property";
 export const DEFAULT_PROPERTY_ID = 3451;
 const DIRECT_FIND_BY_ID_BASE = "https://api.thehotelmate.co/api/thm/findById";
 const DIRECT_AVAILABILITY_BASE = "https://api.thehotelmate.co/api/thm/checkAvailability";
+const MAX_RETRY_ATTEMPTS = 3;
+const INITIAL_RETRY_DELAY_MS = 400;
+
+function delay(ms: number, signal?: AbortSignal) {
+  return new Promise<void>((resolve, reject) => {
+    const timeoutId = setTimeout(resolve, ms);
+    if (!signal) return;
+
+    const abortHandler = () => {
+      clearTimeout(timeoutId);
+      reject(new DOMException("Request aborted", "AbortError"));
+    };
+
+    if (signal.aborted) {
+      abortHandler();
+      return;
+    }
+
+    signal.addEventListener("abort", abortHandler, { once: true });
+  });
+}
+
+async function fetchWithRetry<T>(
+  execute: () => Promise<T>,
+  signal?: AbortSignal,
+  attempts = MAX_RETRY_ATTEMPTS,
+) {
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await execute();
+    } catch (error) {
+      lastError = error;
+      if ((error as Error).name === "AbortError" || attempt === attempts) {
+        throw error;
+      }
+      const retryDelay = INITIAL_RETRY_DELAY_MS * 2 ** (attempt - 1);
+      await delay(retryDelay, signal);
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error("Request failed");
+}
 
 export async function fetchPropertyById(
   id = DEFAULT_PROPERTY_ID,
   options?: { signal?: AbortSignal },
 ): Promise<PropertyApiResponse | null> {
-  const directResponse = await fetch(`${DIRECT_FIND_BY_ID_BASE}/${id}`, {
-    method: "GET",
-    signal: options?.signal,
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
+  return fetchWithRetry(async () => {
+    const directResponse = await fetch(`${DIRECT_FIND_BY_ID_BASE}/${id}`, {
+      method: "GET",
+      signal: options?.signal,
+      headers: {
+        Accept: "application/json",
+      },
+      cache: "no-store",
+    });
 
-  if (!directResponse.ok) {
-    throw new Error(`Failed to fetch property data (${directResponse.status})`);
-  }
+    if (!directResponse.ok) {
+      throw new Error(`Failed to fetch property data (${directResponse.status})`);
+    }
 
-  const directPayload = (await directResponse.json()) as PropertyApiResponse | null;
-  return directPayload ?? null;
+    const directPayload = (await directResponse.json()) as PropertyApiResponse | null;
+    return directPayload ?? null;
+  }, options?.signal);
 }
 
 export type AvailabilityQuery = {
@@ -45,22 +91,28 @@ export async function fetchPropertyAvailability(
   });
 
   try {
-    const directAvailabilityResponse = await fetch(
-      `${DIRECT_AVAILABILITY_BASE}/${id}?${searchParams.toString()}`,
-      {
-        method: "GET",
-        signal: options?.signal,
-        headers: {
-          Accept: "application/json",
+    return await fetchWithRetry(async () => {
+      const directAvailabilityResponse = await fetch(
+        `${DIRECT_AVAILABILITY_BASE}/${id}?${searchParams.toString()}`,
+        {
+          method: "GET",
+          signal: options?.signal,
+          headers: {
+            Accept: "application/json",
+          },
+          cache: "no-store",
         },
-        cache: "no-store",
-      },
-    );
-    if (directAvailabilityResponse.ok) {
+      );
+      if (!directAvailabilityResponse.ok) {
+        throw new Error(`Failed to fetch availability (${directAvailabilityResponse.status})`);
+      }
       const payload = (await directAvailabilityResponse.json()) as PropertyApiResponse | null;
       return payload ?? null;
+    }, options?.signal);
+  } catch (error) {
+    if ((error as Error).name === "AbortError") {
+      throw error;
     }
-  } catch {
     // fallback to base property payload
   }
 

@@ -185,7 +185,7 @@ function normalizeRoom(room: RoomItem, index: number, fallbackImage: string): Li
 }
 
 function RoomsReservationContent() {
-  const { toUserMessage, logError } = useErrorHandler();
+  const { toUserMessage, logError, notifyError } = useErrorHandler();
   const searchParams = useSearchParams();
   const [sortBy, setSortBy] = useState<SortKey>("title");
   const [sortOpen, setSortOpen] = useState(false);
@@ -238,7 +238,7 @@ function RoomsReservationContent() {
       } catch (err) {
         if (mounted && (err as Error).name !== "AbortError") {
           logError("Reservation availability fetch failed", err);
-          setError(toUserMessage(err, "Unable to load room availability right now."));
+          setError(notifyError(err, "Unable to load room availability right now."));
         }
       } finally {
         if (mounted) setIsLoading(false);
@@ -250,7 +250,7 @@ function RoomsReservationContent() {
       mounted = false;
       controller.abort();
     };
-  }, [initialCheckIn, initialCheckOut, totalGuests, totalRooms, logError, toUserMessage]);
+  }, [initialCheckIn, initialCheckOut, totalGuests, totalRooms, logError, notifyError, toUserMessage]);
 
   const fallbackPropertyImage = propertyData?.imageList?.[0]?.url || "/images/room_3.jpg";
   const listingRooms = useMemo(
@@ -482,7 +482,7 @@ function RoomsReservationContent() {
               )}
 
               {!isLoading && error && (
-                <div className="rounded-2xl border border-[#d6d9dd] bg-white p-6 text-[#6f7d89]">
+                <div role="alert" className="rounded-2xl border border-[#c49a3c]/22 bg-white p-6 text-[#6f7d89]">
                   {error}
                 </div>
               )}

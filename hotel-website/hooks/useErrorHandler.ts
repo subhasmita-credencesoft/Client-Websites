@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
+import { useToast } from "@/components/ui/ToastProvider";
 
 function normalizeError(error: unknown, fallbackMessage: string) {
   if (typeof error === "string" && error.trim()) {
@@ -13,6 +14,8 @@ function normalizeError(error: unknown, fallbackMessage: string) {
 }
 
 export default function useErrorHandler() {
+  const { pushToast } = useToast();
+
   const toUserMessage = useCallback((error: unknown, fallbackMessage: string) => {
     return normalizeError(error, fallbackMessage);
   }, []);
@@ -21,5 +24,11 @@ export default function useErrorHandler() {
     console.error(context, error);
   }, []);
 
-  return { toUserMessage, logError };
+  const notifyError = useCallback((error: unknown, fallbackMessage: string) => {
+    const message = normalizeError(error, fallbackMessage);
+    pushToast(message, "error");
+    return message;
+  }, [pushToast]);
+
+  return { toUserMessage, logError, notifyError };
 }

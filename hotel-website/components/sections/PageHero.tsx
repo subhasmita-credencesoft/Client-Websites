@@ -32,6 +32,7 @@ export default function PageHero({
   const contentRef = useRef<HTMLDivElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const [breadcrumbVisible, setBreadcrumbVisible] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
   const breadcrumbCurrent = useMemo(() => {
     if (!breadcrumb) return "";
@@ -44,6 +45,20 @@ export default function PageHero({
     const frame = window.requestAnimationFrame(() => setBreadcrumbVisible(true));
     return () => window.cancelAnimationFrame(frame);
   }, []);
+
+  useEffect(() => {
+    if (!backgroundVideo) return;
+
+    const preloadLink = document.createElement("link");
+    preloadLink.rel = "preload";
+    preloadLink.as = "video";
+    preloadLink.href = backgroundVideo;
+    document.head.appendChild(preloadLink);
+
+    return () => {
+      document.head.removeChild(preloadLink);
+    };
+  }, [backgroundVideo]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -89,22 +104,26 @@ export default function PageHero({
       className={`relative overflow-hidden bg-[#0f1216] text-white ${minHeightClassName}`}
     >
       <div ref={mediaRef} className="absolute inset-0 will-change-transform">
-        {!backgroundVideo ? (
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
-          />
-        ) : null}
+        <div aria-hidden="true" className="absolute inset-0 bg-[#143b47]" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        />
         {backgroundVideo ? (
           <video
+            key={backgroundVideo}
             src={backgroundVideo}
-            className="absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover object-center"
+            poster={backgroundImage}
+            className={`absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover object-center transition-opacity duration-700 ease-out ${
+              videoReady ? "opacity-100" : "opacity-0"
+            }`}
             autoPlay
             muted
             loop
             playsInline
             preload="auto"
+            onCanPlayThrough={() => setVideoReady(true)}
             aria-hidden="true"
           />
         ) : null}

@@ -7,6 +7,8 @@ import { PropertyDataProvider } from "../components/providers/PropertyDataProvid
 import SmoothScrollProvider from "../components/providers/SmoothScrollProvider";
 import GlobalGsapEffects from "../components/providers/GlobalGsapEffects";
 import ScrollToTopButton from "../components/ui/ScrollToTopButton";
+import ToastProvider from "../components/ui/ToastProvider";
+import RouteTransitionProvider from "../components/ui/RouteTransitionProvider";
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_OG_IMAGE,
@@ -90,15 +92,19 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//bookonelocal.in" />
       </head>
       <body suppressHydrationWarning className="theme-hotel flex min-h-screen flex-col antialiased">
-        <SmoothScrollProvider>
-          <PropertyDataProvider>
-            <GlobalGsapEffects />
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <ScrollToTopButton />
-          </PropertyDataProvider>
-        </SmoothScrollProvider>
+        <ToastProvider>
+          <SmoothScrollProvider>
+            <PropertyDataProvider>
+              <GlobalGsapEffects />
+              <Header />
+              <RouteTransitionProvider>
+                <main className="flex-1">{children}</main>
+              </RouteTransitionProvider>
+              <Footer />
+              <ScrollToTopButton />
+            </PropertyDataProvider>
+          </SmoothScrollProvider>
+        </ToastProvider>
       </body>
     </html>
   );

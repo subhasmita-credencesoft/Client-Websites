@@ -6,9 +6,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 import {
-  HOME_HERO_SUBTITLE,
-  HOME_HERO_TITLE_LINES,
   HOME_HERO_VIDEO_SRC,
+  HOME_HERO_VIDEO_POSTER,
 } from "../../data/sections/homeHero";
 
 const HeroBookingBar = dynamic(() => import("../features/HeroBookingBar"), {
@@ -49,6 +48,18 @@ export default function Hero() {
   const contentRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [video, setVideo] = useState<VideoState>({ shouldRender: false, isReady: false });
+
+  useEffect(() => {
+    const preloadLink = document.createElement("link");
+    preloadLink.rel = "preload";
+    preloadLink.as = "video";
+    preloadLink.href = HOME_HERO_VIDEO_SRC;
+    document.head.appendChild(preloadLink);
+
+    return () => {
+      document.head.removeChild(preloadLink);
+    };
+  }, []);
 
   useEffect(() => {
     if (!canPlayVideo()) return;
@@ -131,21 +142,28 @@ export default function Hero() {
     <section
       ref={sectionRef}
       data-no-global-gsap
-      className="relative min-h-[100svh] overflow-hidden text-white"
+      className="relative min-h-[100svh] overflow-hidden bg-[#0f1216] text-white"
     >
       <div className="hero-media absolute inset-0 isolate bg-[#143b47] will-change-transform">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url("${HOME_HERO_VIDEO_POSTER}")` }}
+        />
         {video.shouldRender && (
           <video
             ref={videoRef}
-            className="hero-video absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover"
+            poster={HOME_HERO_VIDEO_POSTER}
+            className={`hero-video absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover transition-opacity duration-700 ease-out ${
+              video.isReady ? "opacity-100" : "opacity-0"
+            }`}
             src={HOME_HERO_VIDEO_SRC}
             autoPlay
             muted
             loop
             playsInline
             preload="auto"
-            onCanPlay={() => setVideo((state) => ({ ...state, isReady: true }))}
-            onLoadedData={() => setVideo((state) => ({ ...state, isReady: true }))}
+            onCanPlayThrough={() => setVideo((state) => ({ ...state, isReady: true }))}
             onError={() => setVideo((state) => ({ ...state, isReady: false }))}
             aria-hidden="true"
           />

@@ -19,8 +19,8 @@ export default function useSafeInterval(
     const id = window.setInterval(() => {
       try {
         cbRef.current();
-      } catch (error) {
-        console.error("Interval callback failed:", error);
+      } catch {
+        // Swallow interval callback errors so recurring UI timers do not break the layout.
       }
     }, delayMs);
 

@@ -22,9 +22,50 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
       ignoreMobileResize: true,
     });
 
+    let refreshFrame = 0;
+    let delayedRefreshId = 0;
+    let imageRefreshTimeout = 0;
+    const imageCleanupFns: Array<() => void> = [];
+
+    const queueRefresh = () => {
+      if (refreshFrame) {
+        window.cancelAnimationFrame(refreshFrame);
+      }
+      refreshFrame = window.requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
+    };
+
+    const fontSet = (document as Document & {
+      fonts?: { ready?: Promise<unknown> };
+    }).fonts;
+
+    if (fontSet?.ready) {
+      void fontSet.ready.then(() => queueRefresh());
+    }
+
+    const trackedImages = Array.from(document.images).filter((image) => !image.complete);
+    trackedImages.forEach((image) => {
+      const onLoad = () => queueRefresh();
+      image.addEventListener("load", onLoad, { once: true });
+      image.addEventListener("error", onLoad, { once: true });
+      imageCleanupFns.push(() => {
+        image.removeEventListener("load", onLoad);
+        image.removeEventListener("error", onLoad);
+      });
+    });
+
+    imageRefreshTimeout = window.setTimeout(() => queueRefresh(), 900);
+    delayedRefreshId = window.setTimeout(() => queueRefresh(), 180);
+
     if (prefersReducedMotion) {
-      const refreshId = window.requestAnimationFrame(() => ScrollTrigger.refresh());
-      return () => window.cancelAnimationFrame(refreshId);
+      queueRefresh();
+      return () => {
+        window.cancelAnimationFrame(refreshFrame);
+        window.clearTimeout(delayedRefreshId);
+        window.clearTimeout(imageRefreshTimeout);
+        imageCleanupFns.forEach((cleanup) => cleanup());
+      };
     }
 
     const nav = navigator as Navigator & {
@@ -38,8 +79,13 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
     const lowBandwidth = ["slow-2g", "2g"].includes(nav.connection?.effectiveType ?? "");
 
     if (isLowPower || isMobile || saveData || lowBandwidth || isHomePage) {
-      const refreshId = window.requestAnimationFrame(() => ScrollTrigger.refresh());
-      return () => window.cancelAnimationFrame(refreshId);
+      queueRefresh();
+      return () => {
+        window.cancelAnimationFrame(refreshFrame);
+        window.clearTimeout(delayedRefreshId);
+        window.clearTimeout(imageRefreshTimeout);
+        imageCleanupFns.forEach((cleanup) => cleanup());
+      };
     }
 
     const lenis = new Lenis({
@@ -65,12 +111,18 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(500, 33);
-
-    const refreshId = window.requestAnimationFrame(() => ScrollTrigger.refresh());
+    ScrollTrigger.defaults({
+      start: "top 85%",
+      toggleActions: "play none none reverse",
+    });
+    queueRefresh();
 
     return () => {
       window.cancelAnimationFrame(frameId);
-      window.cancelAnimationFrame(refreshId);
+      window.cancelAnimationFrame(refreshFrame);
+      window.clearTimeout(delayedRefreshId);
+      window.clearTimeout(imageRefreshTimeout);
+      imageCleanupFns.forEach((cleanup) => cleanup());
       gsap.ticker.remove(tick);
       lenis.off("scroll", onLenisScroll);
       lenis.destroy();

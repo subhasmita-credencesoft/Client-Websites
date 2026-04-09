@@ -193,7 +193,7 @@ export default function RoomsGrid({
 }: RoomsGridProps) {
   const { property, isLoading, error } = usePropertyData();
   const clientReady = useClientReady();
-  const { toUserMessage, logError } = useErrorHandler();
+  const { toUserMessage, logError, notifyError } = useErrorHandler();
   const [fallbackRooms, setFallbackRooms] = useState<RoomItem[] | null>(null);
   const [fallbackLoading, setFallbackLoading] = useState(false);
   const [fallbackError, setFallbackError] = useState<string | null>(null);
@@ -219,7 +219,7 @@ export default function RoomsGrid({
         logError("RoomsGrid fallback availability fetch failed", err);
         setFallbackRooms([]);
         setFallbackError(
-          toUserMessage(err, "Availability API is temporarily unavailable."),
+          notifyError(err, "Availability API is temporarily unavailable."),
         );
       } finally {
         setFallbackLoading(false);
@@ -233,6 +233,7 @@ export default function RoomsGrid({
     fallbackAttempted,
     isLoading,
     logError,
+    notifyError,
     toUserMessage,
   ]);
 
@@ -346,7 +347,7 @@ export default function RoomsGrid({
         )}
 
         {showError && (
-          <div className="rounded-2xl border border-[#1f3c44]/10 bg-white p-6 text-center text-sm text-[#1f3c44]/70">
+          <div role="alert" className="rounded-2xl border border-[#c49a3c]/22 bg-white p-6 text-center text-sm text-[#1f3c44]/70">
             {fallbackError || `${error} Trying availability endpoint...`}
           </div>
         )}

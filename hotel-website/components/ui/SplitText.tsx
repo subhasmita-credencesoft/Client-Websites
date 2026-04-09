@@ -46,10 +46,21 @@ export default function SplitText({
   showCallback = false,
 }: SplitTextProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateViewport = () => setIsMobileViewport(mediaQuery.matches);
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
+
+  const effectiveSplitType = splitType === "chars" && isMobileViewport ? "words" : splitType;
 
   const parts = useMemo(
-    () => (splitType === "words" ? text.split(" ") : Array.from(text)),
-    [splitType, text],
+    () => (effectiveSplitType === "words" ? text.split(" ") : Array.from(text)),
+    [effectiveSplitType, text],
   );
 
   useEffect(() => {
@@ -74,7 +85,7 @@ export default function SplitText({
       aria-label={text}
     >
       {parts.map((part, index) => {
-        const content = splitType === "words" ? `${part}${index < parts.length - 1 ? " " : ""}` : part;
+        const content = effectiveSplitType === "words" ? `${part}${index < parts.length - 1 ? " " : ""}` : part;
         return (
           <span
             key={`${part}-${index}`}
