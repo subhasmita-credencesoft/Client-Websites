@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Hero from "../components/sections/Hero";
 import HomeLazyStack from "../components/sections/HomeLazyStack";
-import { createPageMetadata } from "../lib/metadata";
+import { createPageMetadata, SITE_NAME } from "../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Home",
+  title: SITE_NAME,
   description:
     "Discover luxury stays, destination dining, weddings, and memorable experiences at UK's Resort, Khopoli.",
   path: "/",
