@@ -124,11 +124,7 @@ export default function PageHero({
           <div className="mx-auto flex w-full max-w-5xl flex-col items-center text-center">
           <div className="overflow-hidden">
             <h1
-              className={`page-hero-title font-serif leading-[0.96] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.42)] ${
-                isLongTitle
-                  ? "text-[2.85rem] sm:text-[3.8rem] md:text-[4.35rem] lg:text-[4.9rem] xl:text-[5.35rem] md:whitespace-nowrap"
-                  : "text-[3.2rem] sm:text-[4.2rem] md:text-[5.1rem] lg:text-[6.2rem] xl:text-[6.9rem]"
-              }`}
+              className={`page-hero-title ${isLongTitle ? "page-hero-title--long" : "page-hero-title--short"}`}
             >
               <SplitText
                 text={title}
@@ -144,7 +140,7 @@ export default function PageHero({
           </div>
 
           {subtitle && (
-            <p className="page-hero-subtitle mx-auto mt-5 max-w-3xl text-center text-[1.05rem] leading-7 text-white/92 sm:text-[1.12rem] md:text-[1.2rem] md:leading-8">
+            <p className="page-hero-subtitle">
               <BlurText
                 text={subtitle}
                 delay={120}
@@ -157,7 +153,7 @@ export default function PageHero({
 
           {breadcrumb && (
             <p
-              className="page-hero-breadcrumb mx-auto mt-6 text-center text-[0.84rem] font-semibold uppercase tracking-[0.32em] text-white/88 transition-[opacity,transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:text-[0.92rem]"
+              className="page-hero-breadcrumb"
               style={{
                 opacity: breadcrumbVisible ? 1 : 0,
                 filter: breadcrumbVisible ? "blur(0px)" : "blur(8px)",
