@@ -23,7 +23,7 @@ export function Footer() {
               </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2">
                 <Phone className="h-4 w-4 text-amber-400" />
-                Placeholder contact editable
+                {hotelInfo.contactPhone}
               </span>
             </div>
             <CtaButton href={hotelInfo.bookingUrl} label="Book Your Stay" />

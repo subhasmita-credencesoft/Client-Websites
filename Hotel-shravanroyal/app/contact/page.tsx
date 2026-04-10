@@ -21,8 +21,6 @@ export default function ContactPage() {
         imageAlt="Hotel reception and contact experience preview"
         imageSrc="/images/gallery-2.jpg"
         title="Plan your stay and send an inquiry in just a few steps"
-        secondaryCtaHref="/location"
-        secondaryCtaLabel="View Location"
       />
       <ContactSection />
     </main>

@@ -12,7 +12,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { hotelInfo } from "@/data/hotel";
-import { PLACEHOLDER_NOTICE, SECTION_IDS } from "@/lib/constants";
+import { SECTION_IDS } from "@/lib/constants";
 import type { ContactFormValues } from "@/types";
 
 interface BookingPageProps {
@@ -121,7 +121,6 @@ export function BookingPage({ initialValues }: BookingPageProps) {
                     <div className="flex items-start gap-3"><Mail className="mt-1 h-4 w-4 shrink-0 text-primary" /><span className="break-all">{hotelInfo.contactEmail}</span></div>
                     <div className="flex items-start gap-3"><Users className="mt-1 h-4 w-4 shrink-0 text-primary" /><span>Suitable for families, couples, and business visitors.</span></div>
                   </div>
-                  <div className="rounded-[1.5rem] bg-secondary/80 p-4 text-sm text-muted-foreground">{PLACEHOLDER_NOTICE}</div>
                   <CtaButton className="w-full justify-center sm:w-auto" href={`/#${SECTION_IDS.home}`} label="Back To Homepage" variant="outline" />
                 </CardContent>
               </Card>

@@ -1,12 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import { MobileNav } from "@/components/layout/mobile-nav";
-import { CtaButton } from "@/components/shared/cta-button";
 import { Container } from "@/components/shared/container";
+import { Button } from "@/components/ui/button";
 import { hotelInfo } from "@/data/hotel";
 import { navigationItems } from "@/data/navigation";
 import { SECTION_IDS } from "@/lib/constants";
@@ -60,34 +61,44 @@ export function Header() {
   }, [isHomePage, sectionIds]);
 
   return (
-    <header className="sticky top-0 z-50 py-3 sm:py-4">
-      <Container>
+    <header
+      className="sticky top-0 z-50 border-b border-[#dfd2be] bg-[#f7f1e8] shadow-[0_12px_32px_rgba(88,60,24,0.12)] transition-all duration-300"
+      data-site-header="true"
+    >
+      <Container className="max-w-[96rem] px-4 sm:px-6 lg:px-8">
         <div
           className={cn(
-            "relative flex items-center justify-between gap-3 rounded-full border px-3 py-2.5 transition-all duration-300 sm:px-6 sm:py-3",
+            "flex min-h-[5.4rem] items-center justify-between gap-4 transition-all duration-300",
             scrolled
-              ? "border-border/80 bg-white/88 shadow-soft backdrop-blur-xl"
-              : "border-white/50 bg-white/70 backdrop-blur-md",
+              ? "py-2.5"
+              : "py-3.5",
           )}
-        >
-          <Link className="min-w-0 flex-1 lg:flex-none" href={`/#${SECTION_IDS.home}`}>
-            <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-600 to-red-900 text-sm font-bold text-white sm:h-11 sm:w-11">
-                SR
+          >
+          <Link className="min-w-0 shrink-0" href={`/#${SECTION_IDS.home}`}>
+            <div className="flex items-center gap-3">
+              <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-[#d8c2a0] bg-white shadow-sm sm:h-14 sm:w-14">
+                <Image
+                  alt={`${hotelInfo.shortName} logo`}
+                  className="object-cover"
+                  fill
+                  priority
+                  sizes="56px"
+                  src="/images/logo.avif"
+                />
               </div>
               <div className="min-w-0">
-                <p className="truncate font-display text-lg font-semibold leading-none text-stone-900 sm:text-2xl">
+                <p className="truncate font-display text-[1.45rem] font-semibold leading-none tracking-[0.01em] text-[#221814] sm:text-[1.72rem] xl:text-[1.9rem]">
                   {hotelInfo.shortName}
                 </p>
-                <p className="mt-1 hidden text-xs uppercase tracking-[0.28em] text-primary/70 sm:block">
+                <p className="mt-1 hidden text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-[#5b4a3d] xl:block">
                   Jaipur Hospitality
                 </p>
               </div>
             </div>
           </Link>
 
-          <nav aria-label="Primary navigation" className="hidden lg:block">
-            <ul className="flex items-center gap-1 rounded-full bg-stone-100/70 p-1">
+          <nav aria-label="Primary navigation" className="hidden flex-1 justify-center lg:flex">
+            <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1">
               {navigationItems.map((item) => {
                 const itemHash = getHash(item.href);
                 const isActive = isHomePage ? activeSection === itemHash : item.matchPath === pathname;
@@ -96,8 +107,8 @@ export function Header() {
                   <li key={item.href}>
                     <Link
                       className={cn(
-                        "rounded-full px-4 py-2 text-sm font-medium text-stone-600 transition hover:text-primary",
-                        isActive && "bg-white text-primary shadow-sm",
+                        "inline-flex items-center rounded-lg px-3 py-2 text-[0.95rem] font-medium text-[#2f241d] transition hover:bg-[#efe4d4] hover:text-[#1f1712] xl:px-3.5",
+                        isActive && "bg-[#f7efe3] text-[#9a672c]",
                       )}
                       href={item.href}
                     >
@@ -109,8 +120,13 @@ export function Header() {
             </ul>
           </nav>
 
-          <div className="hidden lg:block">
-            <CtaButton href={hotelInfo.bookingUrl} label="Book Now" />
+          <div className="hidden shrink-0 items-center justify-end lg:flex">
+            <Button
+              asChild
+              className="h-12 rounded-xl border-0 bg-[#c79a5b] px-8 text-base font-semibold text-white shadow-[0_14px_28px_rgba(103,70,30,0.22)] hover:bg-[#b88b4f]"
+            >
+              <Link href={hotelInfo.bookingUrl}>Book Now</Link>
+            </Button>
           </div>
 
           <MobileNav open={open} setOpen={setOpen} />

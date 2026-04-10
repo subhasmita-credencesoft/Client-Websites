@@ -21,8 +21,6 @@ export default function LocationPage() {
         imageAlt="Exterior-inspired location preview for Hotel Shravan Royal Inn"
         imageSrc="/images/hero.jpg"
         title="Easy-to-reach Jaipur location with quick access to directions"
-        primaryCtaHref={hotelInfo.directionsUrl}
-        primaryCtaLabel="Get Directions"
       />
       <LocationSection />
     </main>

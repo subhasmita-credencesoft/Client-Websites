@@ -67,6 +67,14 @@ export function HeroSection() {
     };
   }, [showLoader]);
 
+  useEffect(() => {
+    document.documentElement.dataset.homeLoading = showLoader ? "true" : "false";
+
+    return () => {
+      delete document.documentElement.dataset.homeLoading;
+    };
+  }, [showLoader]);
+
   useGSAP(
     () => {
       const progress = { value: 0 };
@@ -315,20 +323,7 @@ export function HeroSection() {
                 className="h-full w-0 bg-[linear-gradient(90deg,#7c2d12,#b45309,#f6ad24,#fde68a)] shadow-[0_0_24px_rgba(245,158,11,0.45)]"
               />
             </div>
-            <div className="relative flex flex-1 items-center justify-center px-6">
-              <div className="text-center">
-                <p className="text-xs font-semibold uppercase tracking-[0.45em] text-amber-200/70 sm:text-sm">
-                  Welcome To
-                </p>
-                <p className="mt-4 font-display text-3xl font-semibold uppercase tracking-[0.28em] text-white sm:text-5xl">
-                  Shravan
-                </p>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.4em] text-amber-300 sm:text-base">
-                  Royal Inn
-                </p>
-                <div className="mx-auto mt-5 h-px w-28 bg-gradient-to-r from-transparent via-amber-400/80 to-transparent sm:w-40" />
-              </div>
-            </div>
+            <div className="relative flex flex-1 px-6" />
           </div>
 
           <div
@@ -345,6 +340,21 @@ export function HeroSection() {
             >
               0%
             </p>
+          </div>
+
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-6">
+            <div className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.45em] text-amber-200/70 sm:text-sm">
+                Welcome To
+              </p>
+              <p className="mt-4 font-display text-3xl font-semibold uppercase tracking-[0.28em] text-white sm:text-5xl">
+                Shravan
+              </p>
+              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.4em] text-amber-300 sm:text-base">
+                Royal Inn
+              </p>
+              <div className="mx-auto mt-5 h-px w-28 bg-gradient-to-r from-transparent via-amber-400/80 to-transparent sm:w-40" />
+            </div>
           </div>
         </div>
       ) : null}

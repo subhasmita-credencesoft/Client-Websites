@@ -16,8 +16,9 @@ export const hotelInfo: HotelInfo = {
   directionsUrl: "https://www.google.com/maps/place/HOTEL+SHRAVAN+ROYAL+INN/@26.8340515,75.7557884,17z/data=!3m1!4b1!4m6!3m5!1s0x396db5006b284eff:0xd93ff3b82d34faf9!8m2!3d26.8340515!4d75.7583633!16s%2Fg%2F11z0gv8_53?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D",
   bookingUrl: "/booking",
   websiteUrl: "https://hotelshravanroyalinn.example",
-  contactEmail: "reservations@hotelshravanroyalinn.example",
-  contactPhone: "+91 00000 00000",
+  contactEmail: "hotelshravanroyalinn2026@gmail.com",
+  contactPhone: "9828300089",
+  whatsApp: "9828300089",
   about: [
     "Set in Jaipur, Hotel Shravan Royal Inn is designed for travelers who value a polished environment, calm interiors, and attentive hospitality. The experience is shaped to feel elevated yet welcoming from the moment guests arrive.",
     "Whether you are planning a family visit, a couple's getaway, or a business trip, the hotel combines comfort-driven spaces with thoughtful essentials like connectivity, parking, and responsive guest support.",

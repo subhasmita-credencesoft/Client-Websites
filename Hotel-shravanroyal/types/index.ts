@@ -20,6 +20,7 @@ export interface HotelInfo {
   websiteUrl: string;
   contactEmail: string;
   contactPhone: string;
+  whatsApp: string;
   about: string[];
   highlights: string[];
   trustBadges: string[];
