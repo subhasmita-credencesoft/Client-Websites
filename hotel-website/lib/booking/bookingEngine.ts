@@ -57,3 +57,43 @@ export function buildBookingEngineUrl({
 
   return `${cleanBaseUrl}?${query}`;
 }
+
+const DEFAULT_WHATSAPP_NUMBER = "919822012343";
+
+function normalizeWhatsappNumber(value: string | null | undefined) {
+  const digitsOnly = (value || "").replace(/\D/g, "");
+
+  if (!digitsOnly) return "";
+  if (digitsOnly.length === 10) return `91${digitsOnly}`;
+
+  return digitsOnly;
+}
+
+function compactAddress(parts: Array<string | null | undefined>) {
+  return parts.filter(Boolean).join(", ");
+}
+
+export function getWhatsappShareUrl(
+  businessUser: PropertyApiResponse | null | undefined,
+  useDefaultNumber = true,
+) {
+  const phoneNumber = useDefaultNumber
+    ? DEFAULT_WHATSAPP_NUMBER
+    : normalizeWhatsappNumber(businessUser?.whatsApp) || DEFAULT_WHATSAPP_NUMBER;
+
+  const address = compactAddress([
+    businessUser?.address?.streetName,
+    businessUser?.address?.suburb,
+    businessUser?.address?.city,
+    businessUser?.address?.state,
+    businessUser?.address?.country,
+  ]);
+
+  const message = `*This is an Enquiry from :* The HotelMate Website
+Hotel Name: ${businessUser?.name || "UK's Resort"},
+Property Id: ${businessUser?.id || ""},
+externalSite: Website,
+Address: ${address}`;
+
+  return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+}

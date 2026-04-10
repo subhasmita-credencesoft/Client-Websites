@@ -12,10 +12,11 @@ import menuPreviews from "../../data/menuPreviews";
 import useScrollPosition from "../../hooks/useScrollPosition";
 import useClientReady from "../../hooks/useClientReady";
 import { usePropertyData } from "../providers/PropertyDataProvider";
+import { getWhatsappShareUrl } from "../../lib/booking/bookingEngine";
 
 const DEFAULT_EMAIL = "info@uksresort.com";
 const DEFAULT_PHONE_1 = "+91 98220 12343";
-const DEFAULT_PHONE_2 = "+91 87798 14559";
+const DEFAULT_PHONE_2 = "+91 98220 12343";
 const DEFAULT_LOGO = "/UK's-Resort-Logo.png";
 
 const HERO_PREFIXES = [
@@ -58,6 +59,34 @@ const MailIcon = () => (
     style={{ width: "0.9rem", height: "0.9rem", flexShrink: 0 }} aria-hidden="true">
     <rect x="2" y="4" width="20" height="16" rx="2" />
     <path d="m2 7 10 7 10-7" />
+  </svg>
+);
+
+const WhatsappIcon = () => (
+  <svg
+    viewBox="0 0 32 32"
+    fill="none"
+    style={{ width: "0.98rem", height: "0.98rem", flexShrink: 0 }}
+    aria-hidden="true"
+  >
+    <path
+      d="M16.02 4.2c-6.46 0-11.7 5.14-11.7 11.48 0 2.03.55 4.01 1.59 5.75L4.2 27.8l6.56-1.69a11.88 11.88 0 0 0 5.26 1.21c6.45 0 11.69-5.14 11.69-11.49S22.47 4.2 16.02 4.2Z"
+      fill="currentColor"
+    />
+    <path
+      d="M16.02 6.08c-5.39 0-9.75 4.29-9.75 9.6 0 1.88.56 3.72 1.61 5.29l.25.38-1 3.64 3.75-.97.37.22a9.92 9.92 0 0 0 4.77 1.22c5.38 0 9.74-4.29 9.74-9.6s-4.36-9.78-9.74-9.78Z"
+      fill="#25D366"
+    />
+    <path
+      d="M12.18 10.92c.18-.41.37-.42.54-.43.14-.01.31-.01.47-.01.16 0 .43.06.65.29.22.24.83.81.83 1.97 0 1.16-.76 2.28-.87 2.43-.11.15-.24.34-.1.54.14.2.64 1.03 1.37 1.67.94.84 1.73 1.1 1.98 1.22.24.12.39.1.53-.06.14-.16.6-.69.76-.92.16-.23.32-.19.54-.11.22.08 1.4.65 1.64.77.24.12.4.18.46.28.06.1.06.58-.17 1.14-.22.56-1.28 1.08-1.75 1.15-.47.07-1.04.1-1.67-.1-.39-.12-.88-.28-1.53-.56-2.69-1.16-4.45-3.99-4.59-4.18-.14-.19-1.1-1.44-1.1-2.75 0-1.3.69-1.95.93-2.22Z"
+      fill="#fff"
+    />
+    <path
+      d="M12.18 10.92c.18-.41.37-.42.54-.43.14-.01.31-.01.47-.01.16 0 .43.06.65.29.22.24.83.81.83 1.97 0 1.16-.76 2.28-.87 2.43-.11.15-.24.34-.1.54.14.2.64 1.03 1.37 1.67.94.84 1.73 1.1 1.98 1.22.24.12.39.1.53-.06.14-.16.6-.69.76-.92.16-.23.32-.19.54-.11.22.08 1.4.65 1.64.77.24.12.4.18.46.28.06.1.06.58-.17 1.14-.22.56-1.28 1.08-1.75 1.15-.47.07-1.04.1-1.67-.1-.39-.12-.88-.28-1.53-.56-2.69-1.16-4.45-3.99-4.59-4.18-.14-.19-1.1-1.44-1.1-2.75 0-1.3.69-1.95.93-2.22Z"
+      stroke="#fff"
+      strokeWidth="0.35"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -112,7 +141,7 @@ export default function Header() {
   const primaryPhone = formatPhone(liveProperty?.mobile) || DEFAULT_PHONE_1;
   const whatsappPhone = formatPhone(liveProperty?.whatsApp) || DEFAULT_PHONE_2;
   const primaryPhoneHref = toTelHref(primaryPhone);
-  const whatsappPhoneHref = toTelHref(whatsappPhone);
+  const whatsappShareHref = getWhatsappShareUrl(liveProperty, !(liveProperty?.whatsApp || "").trim());
   const addressLong = [
     liveProperty?.address?.streetName,
     liveProperty?.address?.suburb,
@@ -276,7 +305,7 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* RIGHT — phone icon, mail icon, book button */}
+          {/* RIGHT — phone icon, whatsapp icon, book button */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 justify-end min-w-[7rem] sm:min-w-[10rem]">
             <div className="hidden items-center gap-1.5 md:flex md:gap-2">
               {/* Phone icon button */}
@@ -288,14 +317,16 @@ export default function Header() {
               >
                 <PhoneIcon />
               </a>
-              {/* Mail icon button */}
+              {/* WhatsApp icon button */}
               <a
-                href={`mailto:${email}`}
-                aria-label={`Email ${email}`}
-                className="hdr-icon-btn"
-                style={{ border: `1px solid ${iconBorder}`, color: iconColor }}
+                href={whatsappShareHref}
+                aria-label={`WhatsApp ${whatsappPhone}`}
+                target="_blank"
+                rel="noreferrer"
+                className="hdr-whatsapp-btn"
               >
-                <MailIcon />
+                <WhatsappIcon />
+                <span>Book via WhatsApp</span>
               </a>
             </div>
 
@@ -433,8 +464,10 @@ export default function Header() {
                     <PhoneIcon />{primaryPhone}
                   </a>
                   <span className="hidden h-3 w-px bg-white/18 lg:block" aria-hidden="true" />
-                  <a href={whatsappPhoneHref}
+                  <a href={whatsappShareHref}
                     className="hidden text-white/72 transition-colors hover:text-white lg:block"
+                    target="_blank"
+                    rel="noreferrer"
                     style={{ fontSize: "0.7rem" }}>
                     {whatsappPhone}
                   </a>
@@ -492,10 +525,12 @@ export default function Header() {
                       style={{ fontSize: "0.78rem" }}>
                       <PhoneIcon /><span>{primaryPhone}</span>
                     </a>
-                    <a href={whatsappPhoneHref}
+                    <a href={whatsappShareHref}
                       className="flex items-center gap-2.5 text-white/68 transition-colors hover:text-white"
+                      target="_blank"
+                      rel="noreferrer"
                       style={{ fontSize: "0.78rem" }}>
-                      <PhoneIcon /><span>{whatsappPhone}</span>
+                      <WhatsappIcon /><span>{whatsappPhone}</span>
                     </a>
                   </div>
                 </div>
@@ -507,8 +542,10 @@ export default function Header() {
                     <a href={primaryPhoneHref}
                       className="block text-white/68 transition-colors hover:text-white"
                       style={{ fontSize: "0.78rem" }}>{primaryPhone}</a>
-                    <a href={whatsappPhoneHref}
+                    <a href={whatsappShareHref}
                       className="block text-white/68 transition-colors hover:text-white"
+                      target="_blank"
+                      rel="noreferrer"
                       style={{ fontSize: "0.78rem" }}>{whatsappPhone}</a>
                     <a href={`mailto:${email}`}
                       className="block text-white/68 transition-colors hover:text-white"
@@ -598,6 +635,36 @@ export default function Header() {
           flex-shrink: 0;
         }
         .hdr-icon-btn:hover { background: rgba(246,242,236,0.20); }
+
+        .hdr-whatsapp-btn {
+          display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+          min-height: 2rem;
+          padding: 0.45rem 0.9rem 0.45rem 0.72rem;
+          border-radius: 9999px;
+          background: #25d366;
+          color: #ffffff;
+          text-decoration: none;
+          white-space: nowrap;
+          font-size: 0.64rem; font-weight: 800;
+          letter-spacing: 0.18em; text-transform: uppercase; line-height: 1;
+          transition: background 0.3s ease, transform 0.3s ease;
+          flex-shrink: 0;
+        }
+        .hdr-whatsapp-btn:hover {
+          background: #1fbe59;
+          transform: translateY(-1px);
+        }
+        .hdr-whatsapp-btn svg {
+          width: 0.96rem !important;
+          height: 0.96rem !important;
+          color: #ffffff;
+        }
+        @media (min-width: 1280px) {
+          .hdr-whatsapp-btn {
+            padding: 0.48rem 1rem 0.48rem 0.76rem;
+            font-size: 0.67rem;
+          }
+        }
 
         /* Contact reveal chips */
         .hdr-contact-chip {
