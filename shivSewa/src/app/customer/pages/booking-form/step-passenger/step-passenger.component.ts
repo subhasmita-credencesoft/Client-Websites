@@ -422,11 +422,18 @@ updateCarLists() {
   }
 
   // Helper method to check if a car is from a different category than selected
+  private categoryRank: Record<string, number> = {
+    sedan: 1,
+    suv: 2,
+    suvPlus: 3
+  };
+
   isUpgradeCar(car: Car): boolean {
     const carCategory = Object.keys(this.carData).find(category =>
       this.carData[category].some(c => c.id === car.id)
     );
-    return carCategory !== this.selectedCategory;
+    if (!carCategory) return false;
+    return (this.categoryRank[carCategory] ?? 0) > (this.categoryRank[this.selectedCategory] ?? 0);
   }
 
   goBack() {
