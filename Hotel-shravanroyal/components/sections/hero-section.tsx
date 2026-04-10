@@ -270,7 +270,6 @@ export function HeroSection() {
       ref={sectionRef}
       className="relative -mt-24 overflow-hidden pt-24 sm:-mt-28 sm:pt-32"
       id={SECTION_IDS.home}
-      style={{ perspective: "1600px" }}
     >
       <div
         ref={mediaRef}
