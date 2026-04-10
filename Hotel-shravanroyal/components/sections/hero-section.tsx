@@ -2,13 +2,13 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { CalendarRange, Clock3, Sparkles, Users } from "lucide-react";
-import Link from "next/link";
+import { CalendarRange, Clock3, Loader2, Sparkles, Users } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Container } from "@/components/shared/container";
 import { Button } from "@/components/ui/button";
 import { hotelInfo } from "@/data/hotel";
+import { buildAvailabilityUrl, getGuestCount, normalizeAvailabilityResponse } from "@/lib/booking";
 import { SECTION_IDS } from "@/lib/constants";
 
 gsap.registerPlugin(useGSAP);
@@ -48,6 +48,102 @@ export function HeroSection() {
     guests: "1",
   });
   const [showLoader, setShowLoader] = useState(true);
+  const [availabilityState, setAvailabilityState] = useState<{
+    status: "idle" | "checking" | "available" | "unavailable" | "error";
+    message: string;
+  }>({
+    status: "idle",
+    message: "",
+  });
+
+  const updateBookingBar = (field: "checkIn" | "checkOut" | "guests", value: string) => {
+    setBookingBar((current) => {
+      if (field === "checkIn") {
+        return {
+          ...current,
+          checkIn: value,
+          checkOut: current.checkOut < value ? value : current.checkOut,
+        };
+      }
+
+      return {
+        ...current,
+        [field]: value,
+      };
+    });
+
+    setAvailabilityState({
+      status: "idle",
+      message: "",
+    });
+  };
+
+  const handleAvailabilityAction = async () => {
+    if (availabilityState.status === "available") {
+      window.location.href = hotelInfo.bookingUrl;
+      return;
+    }
+
+    if (!bookingBar.checkIn || !bookingBar.checkOut) {
+      setAvailabilityState({
+        status: "error",
+        message: "Please select both check-in and check-out dates.",
+      });
+      return;
+    }
+
+    if (bookingBar.checkOut < bookingBar.checkIn) {
+      setAvailabilityState({
+        status: "error",
+        message: "Check-out date cannot be earlier than check-in date.",
+      });
+      return;
+    }
+
+    setAvailabilityState({
+      status: "checking",
+      message: "Checking room availability...",
+    });
+
+    try {
+      const apiUrl = buildAvailabilityUrl({
+        checkIn: bookingBar.checkIn,
+        checkOut: bookingBar.checkOut,
+        guests: getGuestCount(bookingBar.guests),
+      });
+
+      const response = await fetch(apiUrl, {
+        cache: "no-store",
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      const payload = (await response.json().catch(() => null)) as unknown;
+      const result = normalizeAvailabilityResponse(payload);
+
+      if (!response.ok) {
+        setAvailabilityState({
+          status: "error",
+          message: "We could not check availability right now. Please try again.",
+        });
+        return;
+      }
+
+      setAvailabilityState({
+        status: result.available ? "available" : "unavailable",
+        message:
+          result.message ??
+          (result.available
+            ? "Rooms are available for your selected dates. Continue to booking."
+            : "Rooms are not available for your selected dates."),
+      });
+    } catch {
+      setAvailabilityState({
+        status: "error",
+        message: "Availability service is temporarily unavailable. Please try again shortly.",
+      });
+    }
+  };
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -220,7 +316,7 @@ export function HeroSection() {
           ref={bookingCardRef}
           className="relative z-20 w-full"
         >
-          <div className="mx-auto max-w-6xl ornament-border rounded-[1.1rem] border border-white/55 bg-white/95 px-3 py-2.5 shadow-glow backdrop-blur-xl sm:rounded-[1.5rem] sm:px-5 sm:py-3.5">
+          {/* <div className="mx-auto max-w-6xl ornament-border rounded-[1.1rem] border border-white/55 bg-white/95 px-3 py-2.5 shadow-glow backdrop-blur-xl sm:rounded-[1.5rem] sm:px-5 sm:py-3.5">
             <div className="flex flex-col gap-2.5 xl:flex-row xl:items-end xl:gap-4">
               <div className="min-w-0 xl:w-[210px]">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary/75 sm:text-[11px]">
@@ -242,16 +338,7 @@ export function HeroSection() {
                     min={today}
                     type="date"
                     value={bookingBar.checkIn}
-                    onChange={(event) =>
-                      setBookingBar((current) => ({
-                        ...current,
-                        checkIn: event.target.value,
-                        checkOut:
-                          current.checkOut < event.target.value
-                            ? event.target.value
-                            : current.checkOut,
-                      }))
-                    }
+                    onChange={(event) => updateBookingBar("checkIn", event.target.value)}
                   />
                 </label>
 
@@ -265,12 +352,7 @@ export function HeroSection() {
                     min={bookingBar.checkIn || today}
                     type="date"
                     value={bookingBar.checkOut}
-                    onChange={(event) =>
-                      setBookingBar((current) => ({
-                        ...current,
-                        checkOut: event.target.value,
-                      }))
-                    }
+                    onChange={(event) => updateBookingBar("checkOut", event.target.value)}
                   />
                 </label>
 
@@ -282,12 +364,7 @@ export function HeroSection() {
                   <select
                     className="h-9 w-full rounded-full border border-border bg-white px-3 text-sm text-stone-900 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:h-10 sm:px-3.5"
                     value={bookingBar.guests}
-                    onChange={(event) =>
-                      setBookingBar((current) => ({
-                        ...current,
-                        guests: event.target.value,
-                      }))
-                    }
+                    onChange={(event) => updateBookingBar("guests", event.target.value)}
                   >
                     <option value="1">1 Guest</option>
                     <option value="2">2 Guests</option>
@@ -298,15 +375,43 @@ export function HeroSection() {
                 </label>
 
                 <div className="flex items-end sm:col-span-2 xl:col-span-1">
-                  <Button asChild className="h-9 w-full rounded-full px-4 text-sm sm:h-10 sm:px-5 sm:text-base xl:min-w-[210px]" size="lg">
-                    <Link href={`${hotelInfo.bookingUrl}?checkIn=${bookingBar.checkIn}&checkOut=${bookingBar.checkOut}&guests=${bookingBar.guests}`}>
-                      Check Availability
-                    </Link>
+                  <Button
+                    className="h-9 w-full rounded-full px-4 text-sm sm:h-10 sm:px-5 sm:text-base xl:min-w-[210px]"
+                    size="lg"
+                    type="button"
+                    disabled={availabilityState.status === "checking"}
+                    onClick={handleAvailabilityAction}
+                  >
+                    {availabilityState.status === "checking" ? (
+                      <span className="inline-flex items-center gap-2">
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Checking...
+                      </span>
+                    ) : availabilityState.status === "available" ? (
+                      "Continue To Booking"
+                    ) : (
+                      "Check Availability"
+                    )}
                   </Button>
                 </div>
               </div>
+
+              {availabilityState.status !== "idle" ? (
+                <p
+                  aria-live="polite"
+                  className={`text-xs sm:text-sm ${
+                    availabilityState.status === "available"
+                      ? "text-emerald-700"
+                      : availabilityState.status === "checking"
+                        ? "text-stone-600"
+                        : "text-red-700"
+                  }`}
+                >
+                  {availabilityState.message}
+                </p>
+              ) : null}
             </div>
-          </div>
+          </div> */}
         </div>
       </Container>
 

@@ -49,9 +49,11 @@ export function Footer() {
               <p className="break-all">{hotelInfo.contactEmail}</p>
               <div className="flex gap-3 pt-2">
                 <Link
-                  aria-label="Instagram placeholder"
+                  aria-label="Instagram"
                   className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 transition hover:border-amber-500 hover:text-white"
-                  href="#"
+                  href="https://www.instagram.com/hotelshravanroyalin?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                  rel="noreferrer"
+                  target="_blank"
                 >
                   <Instagram className="h-4 w-4" />
                 </Link>
@@ -68,7 +70,26 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-6 text-sm text-stone-400">
-          <p>Designed and Developed by CredenceSoft and Powered By BookOne</p>
+          <p>
+            Designed and Developed by{" "}
+            <a
+              className="text-stone-300 underline-offset-4 transition hover:text-white hover:underline"
+              href="https://credencesoft.in/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              CredenceSoft
+            </a>{" "}
+            and Powered By{" "}
+            <a
+              className="text-stone-300 underline-offset-4 transition hover:text-white hover:underline"
+              href="https://bookone.io"
+              rel="noreferrer"
+              target="_blank"
+            >
+              BookOne
+            </a>
+          </p>
         </div>
       </Container>
     </footer>

@@ -24,6 +24,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState(`#${SECTION_IDS.home}`);
   const isHomePage = pathname === "/";
+  const isExternalBookingUrl = hotelInfo.bookingUrl.startsWith("http://") || hotelInfo.bookingUrl.startsWith("https://");
 
   const sectionIds = useMemo(
     () => (isHomePage ? navigationItems.map((item) => item.href.split("#")[1]).filter(Boolean) : []),
@@ -125,7 +126,7 @@ export function Header() {
               asChild
               className="h-12 rounded-xl border-0 bg-[#c79a5b] px-8 text-base font-semibold text-white shadow-[0_14px_28px_rgba(103,70,30,0.22)] hover:bg-[#b88b4f]"
             >
-              <Link href={hotelInfo.bookingUrl}>Book Now</Link>
+              {isExternalBookingUrl ? <a href={hotelInfo.bookingUrl} rel="noreferrer">Book Now</a> : <Link href={hotelInfo.bookingUrl}>Book Now</Link>}
             </Button>
           </div>
 

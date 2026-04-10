@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   description:
     "Experience comfort, elegance, and hospitality at Hotel Shravan Royal Inn in Jaipur. Explore rooms, amenities, gallery, and booking details.",
   keywords: hotelInfo.seoKeywords,
+  icons: {
+    icon: "/images/logo.avif",
+    shortcut: "/images/logo.avif",
+    apple: "/images/logo.avif",
+  },
   alternates: {
     canonical: "/",
   },

@@ -17,6 +17,7 @@ export interface HotelInfo {
   country: string;
   directionsUrl: string;
   bookingUrl: string;
+  availabilityApiUrl: string;
   websiteUrl: string;
   contactEmail: string;
   contactPhone: string;
