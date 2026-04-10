@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 36 43% 97%;
+  --foreground: 18 18% 17%;
+  --card: 0 0% 100%;
+  --card-foreground: 18 18% 17%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 18 18% 17%;
+  --primary: 26 65% 34%;
+  --primary-foreground: 42 50% 97%;
+  --secondary: 34 36% 92%;
+  --secondary-foreground: 18 18% 17%;
+  --muted: 38 28% 93%;
+  --muted-foreground: 24 10% 38%;
+  --accent: 6 53% 26%;
+  --accent-foreground: 42 50% 97%;
+  --border: 32 23% 84%;
+  --input: 32 23% 84%;
+  --ring: 26 65% 34%;
+  --radius: 1.25rem;
+}
+
+* {
+  @apply border-border;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-foreground;
+  background-image:
+    radial-gradient(circle at top, rgba(245, 158, 11, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(120, 53, 15, 0.03), transparent 22%);
+}
+
+section {
+  scroll-margin-top: 6rem;
+}
+
+::selection {
+  background: rgba(146, 64, 14, 0.18);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight text-stone-900;
+  }
+
+  p {
+    @apply leading-7 text-stone-700;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .section-shell {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .glass-panel {
+    @apply border border-white/50 bg-white/75 backdrop-blur-xl;
+  }
+
+  .ornament-border {
+    position: relative;
+  }
+
+  .ornament-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.35), rgba(127, 29, 29, 0.15));
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
