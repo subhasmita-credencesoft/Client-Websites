@@ -24,6 +24,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState(`#${SECTION_IDS.home}`);
   const isHomePage = pathname === "/";
+  const [hideForHomeLoader, setHideForHomeLoader] = useState(isHomePage);
   const isExternalBookingUrl = hotelInfo.bookingUrl.startsWith("http://") || hotelInfo.bookingUrl.startsWith("https://");
 
   const sectionIds = useMemo(
@@ -40,10 +41,23 @@ export function Header() {
 
   useEffect(() => {
     if (!isHomePage) {
+      setHideForHomeLoader(false);
       return;
     }
 
-    const observer = new IntersectionObserver(
+    const syncHeaderVisibility = () => {
+      setHideForHomeLoader(document.documentElement.dataset.homeLoading !== "false");
+    };
+
+    syncHeaderVisibility();
+
+    const observer = new MutationObserver(syncHeaderVisibility);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-home-loading"],
+    });
+
+    const sectionObserver = new IntersectionObserver(
       (entries) => {
         const visibleEntry = entries.find((entry) => entry.isIntersecting);
         if (visibleEntry) {
@@ -55,15 +69,21 @@ export function Header() {
 
     sectionIds.forEach((id) => {
       const element = document.getElementById(id);
-      if (element) observer.observe(element);
+      if (element) sectionObserver.observe(element);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      sectionObserver.disconnect();
+    };
   }, [isHomePage, sectionIds]);
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-[#dfd2be] bg-[#f7f1e8] shadow-[0_12px_32px_rgba(88,60,24,0.12)] transition-all duration-300"
+      className={cn(
+        "sticky top-0 z-50 border-b border-[#dfd2be] bg-[#f7f1e8] shadow-[0_12px_32px_rgba(88,60,24,0.12)] transition-all duration-300",
+        hideForHomeLoader && "pointer-events-none -translate-y-full opacity-0",
+      )}
       data-site-header="true"
     >
       <Container className="max-w-[96rem] px-4 sm:px-6 lg:px-8">

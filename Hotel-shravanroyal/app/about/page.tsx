@@ -19,7 +19,7 @@ export default function AboutPage() {
         description="Discover the story, hospitality philosophy, and refined ambience that shape every stay at Hotel Shravan Royal Inn."
         eyebrow="About"
         imageAlt="Elegant hotel interior seating area"
-        imageSrc="/images/gallery-2.jpg"
+        imageSrc="/images/room-2.jpg"
         title="A modern Jaipur stay built around warmth, comfort, and calm"
       />
       <AboutSection />
