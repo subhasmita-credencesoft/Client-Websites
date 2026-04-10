@@ -266,153 +266,155 @@ export function HeroSection() {
   );
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative -mt-24 overflow-hidden pt-24 sm:-mt-28 sm:pt-32"
-      id={SECTION_IDS.home}
-    >
-      <div
-        ref={mediaRef}
-        className="absolute inset-0 overflow-hidden bg-[url('/images/hero.jpg')] bg-cover bg-center"
+    <>
+      <section
+        ref={sectionRef}
+        className="relative -mt-24 overflow-hidden pt-24 sm:-mt-28 sm:pt-32"
+        id={SECTION_IDS.home}
       >
-        <video
-          autoPlay
-          className="absolute inset-0 h-full w-full object-cover object-[center_72%] brightness-[1.03] contrast-[1.02] saturate-[1.02]"
-          loop
-          muted
-          playsInline
-          poster="/images/hero.jpg"
-          preload="metadata"
-        >
-          <source src="/images/homepage-video.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(12,10,8,0.44),rgba(24,20,18,0.22),rgba(88,28,28,0.08))]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02),rgba(10,8,7,0.10)_62%,rgba(10,8,7,0.22)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-stone-950/12 via-stone-950/4 to-transparent" />
-      </div>
-
-      <Container className="relative z-10 flex min-h-[calc(100svh-7rem)] flex-col justify-between pb-3 sm:min-h-[calc(100svh-7.5rem)] sm:pb-4 lg:min-h-[calc(100svh-8rem)] lg:pb-5">
         <div
-          ref={badgeRef}
-          className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center text-center"
+          ref={mediaRef}
+          className="absolute inset-0 overflow-hidden bg-[url('/images/hero.jpg')] bg-cover bg-center"
         >
-          <div
-            className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] text-white/90 backdrop-blur-md sm:px-4 sm:text-sm"
+          <video
+            autoPlay
+            className="absolute inset-0 h-full w-full object-cover object-[center_72%] brightness-[1.03] contrast-[1.02] saturate-[1.02]"
+            loop
+            muted
+            playsInline
+            poster="/images/hero.jpg"
+            preload="metadata"
           >
-            <Sparkles className="h-4 w-4 shrink-0 text-amber-300" />
-            <span className="truncate">Premium Jaipur hospitality with elegant comfort</span>
+            <source src="/images/homepage-video.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(12,10,8,0.44),rgba(24,20,18,0.22),rgba(88,28,28,0.08))]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02),rgba(10,8,7,0.10)_62%,rgba(10,8,7,0.22)_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-stone-950/12 via-stone-950/4 to-transparent" />
+        </div>
+
+        <Container className="relative z-10 flex min-h-[calc(100svh-7rem)] flex-col justify-between pb-3 sm:min-h-[calc(100svh-7.5rem)] sm:pb-4 lg:min-h-[calc(100svh-8rem)] lg:pb-5">
+          <div
+            ref={badgeRef}
+            className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center text-center"
+          >
+            <div
+              className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] text-white/90 backdrop-blur-md sm:px-4 sm:text-sm"
+            >
+              <Sparkles className="h-4 w-4 shrink-0 text-amber-300" />
+              <span className="truncate">Premium Jaipur hospitality with elegant comfort</span>
+            </div>
+
+            <h1
+              ref={headlineRef}
+              className="mt-4 max-w-5xl text-4xl font-semibold leading-[0.95] text-white sm:mt-5 sm:text-5xl lg:mt-6 lg:text-[4rem] xl:text-[4.5rem]"
+            >
+              {hotelInfo.heroHeadline}
+            </h1>
           </div>
 
-          <h1
-            ref={headlineRef}
-            className="mt-4 max-w-5xl text-4xl font-semibold leading-[0.95] text-white sm:mt-5 sm:text-5xl lg:mt-6 lg:text-[4rem] xl:text-[4.5rem]"
+          <div
+            ref={bookingCardRef}
+            className="relative z-20 w-full"
           >
-            {hotelInfo.heroHeadline}
-          </h1>
-        </div>
-
-        <div
-          ref={bookingCardRef}
-          className="relative z-20 w-full"
-        >
-          {/* <div className="mx-auto max-w-6xl ornament-border rounded-[1.1rem] border border-white/55 bg-white/95 px-3 py-2.5 shadow-glow backdrop-blur-xl sm:rounded-[1.5rem] sm:px-5 sm:py-3.5">
-            <div className="flex flex-col gap-2.5 xl:flex-row xl:items-end xl:gap-4">
-              <div className="min-w-0 xl:w-[210px]">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary/75 sm:text-[11px]">
-                  Quick Booking
-                </p>
-                <h2 className="mt-1 text-sm font-semibold text-stone-900 sm:text-lg lg:text-[1.65rem]">
-                  Reserve your stay
-                </h2>
-              </div>
-
-              <div className="grid flex-1 gap-2 sm:grid-cols-2 xl:grid-cols-[1fr_1fr_0.78fr_auto] xl:items-end">
-                <label className="block">
-                  <span className="mb-1 inline-flex items-center gap-1.5 text-[10px] font-medium text-stone-700 sm:gap-2 sm:text-xs">
-                    <CalendarRange className="h-4 w-4 text-primary" />
-                    Check-in
-                  </span>
-                  <input
-                    className="h-9 w-full rounded-full border border-border bg-white px-3 text-sm text-stone-900 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:h-10 sm:px-3.5"
-                    min={today}
-                    type="date"
-                    value={bookingBar.checkIn}
-                    onChange={(event) => updateBookingBar("checkIn", event.target.value)}
-                  />
-                </label>
-
-                <label className="block">
-                  <span className="mb-1 inline-flex items-center gap-1.5 text-[10px] font-medium text-stone-700 sm:gap-2 sm:text-xs">
-                    <Clock3 className="h-4 w-4 text-primary" />
-                    Check-out
-                  </span>
-                  <input
-                    className="h-9 w-full rounded-full border border-border bg-white px-3 text-sm text-stone-900 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:h-10 sm:px-3.5"
-                    min={bookingBar.checkIn || today}
-                    type="date"
-                    value={bookingBar.checkOut}
-                    onChange={(event) => updateBookingBar("checkOut", event.target.value)}
-                  />
-                </label>
-
-                <label className="block sm:col-span-2 xl:col-span-1">
-                  <span className="mb-1 inline-flex items-center gap-1.5 text-[10px] font-medium text-stone-700 sm:gap-2 sm:text-xs">
-                    <Users className="h-4 w-4 text-primary" />
-                    Guests
-                  </span>
-                  <select
-                    className="h-9 w-full rounded-full border border-border bg-white px-3 text-sm text-stone-900 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:h-10 sm:px-3.5"
-                    value={bookingBar.guests}
-                    onChange={(event) => updateBookingBar("guests", event.target.value)}
-                  >
-                    <option value="1">1 Guest</option>
-                    <option value="2">2 Guests</option>
-                    <option value="3">3 Guests</option>
-                    <option value="4">4 Guests</option>
-                    <option value="5+">5+ Guests</option>
-                  </select>
-                </label>
-
-                <div className="flex items-end sm:col-span-2 xl:col-span-1">
-                  <Button
-                    className="h-9 w-full rounded-full px-4 text-sm sm:h-10 sm:px-5 sm:text-base xl:min-w-[210px]"
-                    size="lg"
-                    type="button"
-                    disabled={availabilityState.status === "checking"}
-                    onClick={handleAvailabilityAction}
-                  >
-                    {availabilityState.status === "checking" ? (
-                      <span className="inline-flex items-center gap-2">
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                        Checking...
-                      </span>
-                    ) : availabilityState.status === "available" ? (
-                      "Continue To Booking"
-                    ) : (
-                      "Check Availability"
-                    )}
-                  </Button>
+            {/* <div className="mx-auto max-w-6xl ornament-border rounded-[1.1rem] border border-white/55 bg-white/95 px-3 py-2.5 shadow-glow backdrop-blur-xl sm:rounded-[1.5rem] sm:px-5 sm:py-3.5">
+              <div className="flex flex-col gap-2.5 xl:flex-row xl:items-end xl:gap-4">
+                <div className="min-w-0 xl:w-[210px]">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary/75 sm:text-[11px]">
+                    Quick Booking
+                  </p>
+                  <h2 className="mt-1 text-sm font-semibold text-stone-900 sm:text-lg lg:text-[1.65rem]">
+                    Reserve your stay
+                  </h2>
                 </div>
-              </div>
 
-              {availabilityState.status !== "idle" ? (
-                <p
-                  aria-live="polite"
-                  className={`text-xs sm:text-sm ${
-                    availabilityState.status === "available"
-                      ? "text-emerald-700"
-                      : availabilityState.status === "checking"
-                        ? "text-stone-600"
-                        : "text-red-700"
-                  }`}
-                >
-                  {availabilityState.message}
-                </p>
-              ) : null}
-            </div>
-          </div> */}
-        </div>
-      </Container>
+                <div className="grid flex-1 gap-2 sm:grid-cols-2 xl:grid-cols-[1fr_1fr_0.78fr_auto] xl:items-end">
+                  <label className="block">
+                    <span className="mb-1 inline-flex items-center gap-1.5 text-[10px] font-medium text-stone-700 sm:gap-2 sm:text-xs">
+                      <CalendarRange className="h-4 w-4 text-primary" />
+                      Check-in
+                    </span>
+                    <input
+                      className="h-9 w-full rounded-full border border-border bg-white px-3 text-sm text-stone-900 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:h-10 sm:px-3.5"
+                      min={today}
+                      type="date"
+                      value={bookingBar.checkIn}
+                      onChange={(event) => updateBookingBar("checkIn", event.target.value)}
+                    />
+                  </label>
+
+                  <label className="block">
+                    <span className="mb-1 inline-flex items-center gap-1.5 text-[10px] font-medium text-stone-700 sm:gap-2 sm:text-xs">
+                      <Clock3 className="h-4 w-4 text-primary" />
+                      Check-out
+                    </span>
+                    <input
+                      className="h-9 w-full rounded-full border border-border bg-white px-3 text-sm text-stone-900 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:h-10 sm:px-3.5"
+                      min={bookingBar.checkIn || today}
+                      type="date"
+                      value={bookingBar.checkOut}
+                      onChange={(event) => updateBookingBar("checkOut", event.target.value)}
+                    />
+                  </label>
+
+                  <label className="block sm:col-span-2 xl:col-span-1">
+                    <span className="mb-1 inline-flex items-center gap-1.5 text-[10px] font-medium text-stone-700 sm:gap-2 sm:text-xs">
+                      <Users className="h-4 w-4 text-primary" />
+                      Guests
+                    </span>
+                    <select
+                      className="h-9 w-full rounded-full border border-border bg-white px-3 text-sm text-stone-900 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:h-10 sm:px-3.5"
+                      value={bookingBar.guests}
+                      onChange={(event) => updateBookingBar("guests", event.target.value)}
+                    >
+                      <option value="1">1 Guest</option>
+                      <option value="2">2 Guests</option>
+                      <option value="3">3 Guests</option>
+                      <option value="4">4 Guests</option>
+                      <option value="5+">5+ Guests</option>
+                    </select>
+                  </label>
+
+                  <div className="flex items-end sm:col-span-2 xl:col-span-1">
+                    <Button
+                      className="h-9 w-full rounded-full px-4 text-sm sm:h-10 sm:px-5 sm:text-base xl:min-w-[210px]"
+                      size="lg"
+                      type="button"
+                      disabled={availabilityState.status === "checking"}
+                      onClick={handleAvailabilityAction}
+                    >
+                      {availabilityState.status === "checking" ? (
+                        <span className="inline-flex items-center gap-2">
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Checking...
+                        </span>
+                      ) : availabilityState.status === "available" ? (
+                        "Continue To Booking"
+                      ) : (
+                        "Check Availability"
+                      )}
+                    </Button>
+                  </div>
+                </div>
+
+                {availabilityState.status !== "idle" ? (
+                  <p
+                    aria-live="polite"
+                    className={`text-xs sm:text-sm ${
+                      availabilityState.status === "available"
+                        ? "text-emerald-700"
+                        : availabilityState.status === "checking"
+                          ? "text-stone-600"
+                          : "text-red-700"
+                    }`}
+                  >
+                    {availabilityState.message}
+                  </p>
+                ) : null}
+              </div>
+            </div> */}
+          </div>
+        </Container>
+      </section>
 
       {showLoader ? (
         <div ref={overlayRef} className="pointer-events-auto fixed inset-0 z-[120]">
@@ -462,6 +464,6 @@ export function HeroSection() {
           </div>
         </div>
       ) : null}
-    </section>
+    </>
   );
 }
