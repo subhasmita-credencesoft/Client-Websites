@@ -99,22 +99,46 @@
 
     <!-- Mobile -->
     <div class="col-md-6" id="mobileField">
-      <label class="form-label small text-muted mb-1">Mobile Number</label>
-      <input class="form-control"
-             name="mobile"
-             [(ngModel)]="booking.traveller.mobile"
-             #mobile="ngModel"
-             required
-             pattern="^[6-9][0-9]{9}$"
-             maxlength="10"
-             (blur)="onMobileBlur()"
-             placeholder="Mobile Number"
-             style="border-radius: 8px;">
+  <label class="form-label small text-muted mb-1">Mobile Number</label>
+  
+  <div class="d-flex gap-2">
+    <input
+      class="form-control"
+      name="mobile"
+      [(ngModel)]="booking.traveller.mobile"
+      (ngModelChange)="onMobileChange()"
+      #mobile="ngModel"
+      required
+      pattern="^[6-9][0-9]{9}$"
+      maxlength="10"
+      placeholder="Mobile Number"
+      style="border-radius: 8px;"
+    />
 
-      <small class="text-danger" *ngIf="mobile.invalid && mobile.touched">
-        Enter a valid 10-digit mobile number.
-      </small>
-    </div>
+    <button
+      class="btn btn-verify px-3"
+      (click)="checkCustomerExists()"
+      [disabled]="mobile.invalid || isCheckingCustomer || isVerified || mobile.value?.length !== 10"
+      style="white-space: nowrap;"
+    >
+      <ng-container *ngIf="!isCheckingCustomer && !isVerified">
+        Verify
+      </ng-container>
+
+      <ng-container *ngIf="isCheckingCustomer">
+        <span class="spinner-border spinner-border-sm"></span>
+      </ng-container>
+
+      <ng-container *ngIf="isVerified">
+        ✓
+      </ng-container>
+    </button>
+  </div>
+
+  <small class="text-danger" *ngIf="mobile.invalid && mobile.touched">
+    Enter a valid 10-digit mobile number.
+  </small>
+</div>
 
 <!-- Email -->
 	<div class="col-md-6">
@@ -342,20 +366,25 @@
         <span>Go back</span>
       </button>
       <button
-        class="btn btn-dark px-5 py-2 forwardMove"
-        [disabled]="isConfirming || firstName.invalid || lastName.invalid || mobile.invalid"
-        (click)="confirm(firstName, lastName, mobile)"
-        style="border-radius: 8px;"
-      >
-        <ng-container *ngIf="!isCheckingCustomer && !isConfirming">
-          Confirm Booking
-        </ng-container>
+  class="btn btn-dark px-5 py-2 forwardMove"
+  [disabled]="isConfirming || isCheckingCustomer || !isVerified || firstName.invalid || lastName.invalid || mobile.invalid"
+  (click)="confirm(firstName, lastName, mobile)"
+  style="border-radius: 8px;"
+>
+  <ng-container *ngIf="!isCheckingCustomer && !isConfirming">
+    Confirm Booking
+  </ng-container>
 
-        <ng-container *ngIf="isConfirming">
-          <span class="spinner-border spinner-border-sm me-2"></span>
-          Confirming your booking…
-        </ng-container>
-      </button>
+  <ng-container *ngIf="isCheckingCustomer">
+  <span class="spinner-border spinner-border-sm me-2"></span>
+    Please wait...
+  </ng-container>
+
+  <ng-container *ngIf="isConfirming">
+    <span class="spinner-border spinner-border-sm me-2"></span>
+    Confirming your booking…
+  </ng-container>
+</button>
 
     </div>
 </div>

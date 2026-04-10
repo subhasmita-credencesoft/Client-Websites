@@ -18,6 +18,7 @@ export class StepSummaryComponent {
   booking: any = {};
   estimated = 0;
   isCheckingCustomer = false;
+  isVerified = false;
   vehicle:
     | {
         id?: any;
@@ -531,18 +532,17 @@ else {
 
 }
 
-onMobileBlur() {
-  if (/^[6-9][0-9]{9}$/.test(this.booking.traveller.mobile)) {
-    this.isCheckingCustomer = true;
-    this.checkCustomerExists();
-  }
-}
   /* ================= CHECK CUSTOMER ================= */
   checkCustomerExists() {
+    if (!/^[6-9][0-9]{9}$/.test(this.booking.traveller.mobile)) return;
+
+  this.isCheckingCustomer = true;
+  this.isVerified = false;
   this.locationService.checkMobile(this.booking.traveller.mobile).subscribe({
     next: (res: any) => {
       this.customerData = res;
       this.isCheckingCustomer = false;
+      this.isVerified = true;
       this.cdr.detectChanges();
     },
     error: () => {
@@ -559,11 +559,18 @@ onMobileBlur() {
         next: (customerRes) => {
           this.customerData = customerRes;
           this.isCheckingCustomer = false;
+          this.isVerified = true;
           this.cdr.detectChanges();
         }
       });
     }
   });
+}
+
+onMobileChange() {
+  this.isVerified = false;
+  this.customerData = null;
+  this.cdr.detectChanges();
 }
 
   private formatDate(date: string | null | undefined): string {

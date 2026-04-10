@@ -337,3 +337,25 @@ hr.new2 {
 .otp-verified .otp-input {
   opacity: 0.7;
 }
+
+.btn-verify {
+  background-color: #FF6B35;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-verify:hover:not(:disabled) {
+  background-color: #e55a25;
+  color: #fff;
+}
+
+.btn-verify:disabled {
+  background-color: #f5c4b0;
+  color: #fff;
+  cursor: not-allowed;
+  opacity: 1;
+}
