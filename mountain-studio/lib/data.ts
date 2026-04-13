@@ -231,7 +231,7 @@ export const amenities: Amenity[] = [
     slug: "concierge",
     icon: Bell,
     title: "Concierge",
-    description: "From local sightseeing plans to curated Karjat itineraries, our team shapes stays around personal preferences.",
+    description: "From local sightseeing plans to curated itineraries, our team shapes stays around personal preferences.",
     hours: "24 Hours",
     image: imageSet.lobby
   },
@@ -638,7 +638,7 @@ export const activities: Activity[] = [
     description: "Explore seasonal produce, regional ingredients, and culinary stories before returning for a tasting lunch."
   },
   {
-    title: "Karjat Valley Tour",
+    title: " Valley Tour",
     duration: "45 min",
     image: imageSet.homeHero,
     description: "A scenic perspective on the hills, waterfalls, and green surroundings that make Karjat such a memorable escape."
