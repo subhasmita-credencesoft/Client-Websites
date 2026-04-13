@@ -66,7 +66,7 @@ const bookingBenefits = [
   },
   {
     title: "Goa Stay Relevance",
-    text: "This page now reflects the real property model: studio apartment stays at Abalone Resort, Arpora, Goa."
+    text: "This page now reflects the real property model: studio apartment stays in Goa."
   }
 ];
 

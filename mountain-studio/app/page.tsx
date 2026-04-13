@@ -52,7 +52,7 @@ export default function HomePage() {
               <span ref={lineThreeRef} className="block">Studio</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-ivory/75">
-              Owner-managed studio apartments, direct booking support, and a well-located Goa stay address come together at Abalone Resort, Arpora.
+              Owner-managed studio apartments, direct booking support, and a well-located Goa .
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <LuxuryButton href="/contact" label="Contact The Team" />

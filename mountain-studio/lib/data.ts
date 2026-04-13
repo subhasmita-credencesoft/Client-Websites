@@ -118,7 +118,7 @@ export const rooms: Room[] = [
     code: "RWS-8616",
     badges: ["Standard", "Popular Choice"],
     description:
-      "Designed for comfort, this room features modern facilities and a cozy ambiance for a pleasant stay in Arpora, Goa.",
+      "Designed for comfort, this room features modern facilities and a cozy ambiance for a pleasant stay in  Goa.",
     highlights: ["Comfort-led room design", "Useful for couples or friends", "Simple stay planning"],
     includes: ["Direct support on call", "Private bathroom", "Essential in-room comforts"],
     images: [

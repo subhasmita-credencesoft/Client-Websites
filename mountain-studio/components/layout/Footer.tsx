@@ -17,7 +17,7 @@ export function Footer() {
         <div className="space-y-5">
           <div className="font-display text-3xl tracking-[0.18em] text-ivory">REDWINGS STUDIO</div>
           <p className="max-w-sm text-sm leading-7 text-ivory/65">
-            Redwings Studio operates selected studio apartments at Abalone Resort, Arpora, Goa, offering comfortable stays under the Redwings banner.
+            Redwings Studio operates selected studio apartments at  Goa, offering comfortable stays under the Redwings banner.
           </p>
           <div className="flex gap-4">
             {socials.map(({ href, icon: Icon, label }) => (
@@ -46,16 +46,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div>
+        {/* <div>
           <h3 className="mb-5 font-display text-2xl">Highlights</h3>
           <div className="space-y-3 text-sm text-ivory/65">
             <p>10 Rooms Available</p>
             <p>Studio Apartments</p>
-            {/* <p>Check-In 1:00 PM</p>
+            <p>Check-In 1:00 PM</p>
             <p>Check-Out 11:00 AM</p>
-            <p>20 Couples + 10 Extra Beds</p> */}
+            <p>20 Couples + 10 Extra Beds</p>
           </div>
-        </div>
+        </div> */}
 
         <div>
           <h3 className="mb-5 font-display text-2xl">Contact</h3>
@@ -73,10 +73,10 @@ export function Footer() {
           <h3 className="mb-5 font-display text-2xl">Stay Snapshot</h3>
           <div className="space-y-3 text-sm leading-7 text-ivory/65">
             <p>Property: Redwings Studio</p>
-            <p>At: Abalone Resort, Arpora, Goa</p>
+            {/* <p>At: Abalone Resort, Arpora, Goa</p> */}
             <p>Owner-managed inventory</p>
-            <p>Direct phone and email support</p>
-            <p>Designed for short Goa stays and group bookings</p>
+            {/* <p>Direct phone and email support</p>
+            <p>Designed for short Goa stays and group bookings</p> */}
           </div>
         </div>
       </div>

@@ -75,7 +75,7 @@ export function Preloader() {
             REDWINGS STUDIO
           </h1>
           <p className="text-xs uppercase tracking-[0.35em] text-ivory/60">
-            ARPORA | GOA
+             GOA
           </p>
         </div>
         <div ref={lineRef} className="gold-line h-px w-44 origin-center" />

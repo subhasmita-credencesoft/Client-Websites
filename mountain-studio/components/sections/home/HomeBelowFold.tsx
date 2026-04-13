@@ -56,7 +56,7 @@ export default function HomeBelowFold() {
           </div>
           <SectionReveal stagger={0.12}>
             <div className="eyebrow">Redwings Studio. Goa location. Direct booking support.</div>
-            <h2 className="display-title">Studio apartment stays at Abalone Resort, managed under the Redwings banner.</h2>
+            <h2 className="display-title">Studio apartment stays managed under the Redwings banner.</h2>
             <p className="max-w-xl text-lg leading-8 text-ivory/68">
               Redwings Studio brings together owner-managed room inventory, Goa location convenience,
               and a visual resort setting designed for short stays, family trips, and group reservations.
@@ -91,7 +91,7 @@ export default function HomeBelowFold() {
         <div className="container-shell grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {[
             ["10 Rooms", "5 owner rooms plus 5 partner-owner rooms ready under the same banner."],
-            ["Arpora, Goa", "Located at Abalone Resort in a stay-friendly North Goa zone."],
+            // ["Arpora, Goa", "Located at Abalone Resort in a stay-friendly North Goa zone."],
             ["1 PM / 11 AM", "Clear check-in and check-out timing for simpler guest planning."],
             ["20 + 10", "Comfortable occupancy for 20 couples plus 10 additional beds."]
           ].map(([title, body]) => (
