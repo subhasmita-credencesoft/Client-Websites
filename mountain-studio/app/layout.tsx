@@ -29,7 +29,7 @@ const mono = DM_Mono({
 
 export const metadata: Metadata = {
   title: "Redwings Studio",
-  description: "Redwings Studio at Abalone Resort, Arpora, Goa. Studio apartment stays with 10 rooms under the Redwings banner, check-in at 1 PM and check-out at 11 AM.",
+  description: "Redwings Studio at   Goa. Studio apartment stays with 10 rooms under the Redwings banner, check-in at 1 PM and check-out at 11 AM.",
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },

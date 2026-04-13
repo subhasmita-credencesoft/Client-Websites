@@ -42,7 +42,7 @@ export default function HomePage() {
         <div className="container-shell relative z-10 pt-28">
           <motion.div style={{ y }} className="max-w-5xl">
             <p ref={eyebrowRef} className="eyebrow">
-              Redwings Studio, Arpora Goa
+              Redwings Studio, Goa
             </p>
             <h1
               className="max-w-5xl font-display text-[clamp(3.5rem,10vw,8rem)] font-light leading-[0.88] text-ivory"

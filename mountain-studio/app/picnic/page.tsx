@@ -174,7 +174,7 @@ export default function PicnicPage() {
         <div className="container-shell grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="grid gap-5">
             {[
-              ["Location", "Abalone Resort, Gorbhat, Arpora, Goa"],
+              ["Location", " Goa"],
               ["Ideal For", "Family outings, birthday groups, and company day events"],
               ["Support", "Food, seating, timing, and setup planning through the team"],
               ["Booking", "Direct call or email support instead of a long request form"]

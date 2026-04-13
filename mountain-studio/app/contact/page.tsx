@@ -32,7 +32,7 @@ export default function ContactPage() {
             <div className="mt-8 grid gap-5 md:grid-cols-2">
               {[
                 ["Property Name", "Redwings Studio"],
-                ["Current Resort", "Abalone Resort"],
+                // ["Current Resort", "Abalone Resort"],
                 ["Inventory", "10 rooms under the Redwings banner"],
                 ["Occupancy", "20 couples + 10 additional beds"],
                 ["Check-In", "1:00 PM"],
@@ -58,18 +58,18 @@ export default function ContactPage() {
                   </span>
                 </p>
                 <p className="text-sm leading-7 text-ivory/64">
-                  Studio apartment stay inventory at Abalone Resort, Gorbhat, Arpora, Goa, managed under the Redwings Studio banner.
+                  Studio apartment stay inventory at  Goa, managed under the Redwings Studio banner.
                 </p>
                 <p className="flex items-start gap-3">
                   <MapPin className="mt-1 text-gold" size={18} />
                   <span>
                     <strong className="block text-ivory">Official Address</strong>
-                    House No. 275/1, F30, Abalone Resort, Gorbhat, Arpora, Goa - 403516
+                    House No. 275/1, F30, Abalone Resort, Gorbhat, Goa - 403516
                   </span>
                 </p>
-                <p className="text-sm leading-7 text-ivory/64">
+                {/* <p className="text-sm leading-7 text-ivory/64">
                   Owner correspondence address: Payal Complex, Sector No. 17, Raigad, New Panvel - 410206.
-                </p>
+                </p> */}
                 <p className="text-sm leading-7 text-ivory/64">Owner: Pratibha Avinash Somvanshi</p>
               </div>
             </div>

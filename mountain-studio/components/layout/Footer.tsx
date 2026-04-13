@@ -65,7 +65,7 @@ export function Footer() {
             <p>+91 9763988999</p>
             <p>+91 9833335933</p>
             <p>psomvanshi9@gmail.com</p>
-            <p>House No. 275/1, F30, Abalone Resort, Gorbhat, Arpora, Goa - 403516</p>
+            <p>House No. 275/1, F30, Abalone Resort, Gorbhat, Goa - 403516</p>
           </div>
         </div>
 

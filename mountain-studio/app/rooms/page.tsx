@@ -34,7 +34,7 @@ export default function RoomsPage() {
         image={imageSet.lobby}
         eyebrow="Rooms"
         title="Room options at Redwings Studio"
-        description="Explore the actual Redwings Studio room inventory, from budget and standard rooms to pool-access and pool-view stays in Arpora, Goa."
+        description="Explore the actual Redwings Studio room inventory, from budget and standard rooms to pool-access and pool-view stays in  Goa."
         priority
       />
 

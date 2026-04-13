@@ -7,7 +7,7 @@ import { LuxuryButton } from "@/components/ui/LuxuryButton";
 
 const propertyFacts = [
   ["Property Name", "Redwings Studio"],
-  ["Location", "Abalone Resort, Arpora, Goa"],
+  ["Location", "  Goa"],
   ["Inventory", "10 rooms under the Redwings banner"],
   ["Occupancy", "20 couples + 10 additional beds"]
 ];
@@ -19,7 +19,7 @@ const aboutHighlights = [
   },
   {
     title: "Goa Stay Focus",
-    body: "The property is built around studio apartment stays in Arpora, Goa, with a relaxed resort environment rather than venue-led hosting."
+    body: "The property is built around studio apartment stays in  Goa, with a relaxed resort environment rather than venue-led hosting."
   },
   {
     title: "Flexible Inventory",
@@ -62,7 +62,7 @@ export default function AboutPage() {
             <p className="eyebrow">About Redwings Studio</p>
             <h2 className="display-title text-5xl">A Goa stay property where direct support, clear inventory, and a relaxed resort setting come together.</h2>
             <p className="mt-6 max-w-[65ch] text-lg leading-9 text-ivory/68">
-              Set within Abalone Resort in Arpora, Redwings Studio brings together owner-managed studio stays,
+              Set within Resort in , Redwings Studio brings together owner-managed studio stays,
               shared resort surroundings, and a cleaner direct-booking experience for guests who want clarity before arrival.
             </p>
             <p className="mt-4 max-w-[65ch] text-lg leading-9 text-ivory/68">
