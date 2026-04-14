@@ -1,11 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 import {
+  HOME_HERO_SUBTITLE,
+  HOME_HERO_TITLE_LINES,
   HOME_HERO_VIDEO_SRC,
   HOME_HERO_VIDEO_POSTER,
 } from "../../data/sections/homeHero";
@@ -142,6 +145,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       data-no-global-gsap
+      aria-labelledby="home-hero-title"
       className="relative min-h-[100svh] overflow-hidden bg-[#0f1216] text-white"
     >
       <div className="hero-media absolute inset-0 isolate bg-[#143b47] will-change-transform">
@@ -192,27 +196,48 @@ export default function Hero() {
         </div>
       )}
 
-      <Container className="relative z-10 flex min-h-[100svh] w-full flex-col items-center justify-center px-4 text-center sm:px-6 md:px-8">
-        <div
+      <Container
+        size="content"
+        className="relative z-10 flex min-h-[100svh] w-full flex-col items-center justify-center text-center"
+      >
+        {/* <div
           ref={contentRef}
-          className="flex w-full max-w-[72rem] flex-col items-center justify-center px-2 pb-28 pt-[calc(7rem+env(safe-area-inset-top))] sm:px-3 sm:pb-28 sm:pt-28 md:px-4 md:pb-32 md:pt-32 lg:pb-32 lg:pt-36"
+          className="flex w-full flex-col items-center justify-center pb-32 pt-[var(--hero-content-offset)] sm:pb-36 lg:pb-40"
         >
-          {/* <div className="mt-3 space-y-0 sm:mt-5 md:mt-6">
+          <div className="w-full max-w-4xl space-y-5 px-1 sm:space-y-6">
             {HOME_HERO_TITLE_LINES.map((line, index) => (
               <div key={index} className="overflow-hidden leading-none">
-                <h1 className="hero-title-line font-serif text-[2.45rem] font-normal leading-[1] tracking-[-0.015em] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)] sm:text-[3.5rem] md:text-[4.6rem] lg:text-[5.4rem] xl:text-[6rem]">
+                <h1
+                  id={index === 0 ? "home-hero-title" : undefined}
+                  className="hero-title-line font-serif text-[clamp(2.6rem,10vw,6.25rem)] font-normal leading-[0.94] tracking-[-0.025em] text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+                >
                   {line === "UK's Resort" ? <>UK&apos;s Resort</> : line}
                 </h1>
               </div>
             ))}
-          </div> */}
+          </div>
 
-          {/* <p className="hero-tagline mt-3 max-w-[34rem] px-2 text-center text-[0.78rem] leading-6 text-white/88 drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)] sm:mt-4 sm:text-[0.84rem] md:text-[0.9rem]">
+          <p className="hero-tagline mt-4 max-w-2xl text-pretty px-1 text-sm leading-7 text-white/90 drop-shadow-[0_4px_16px_rgba(0,0,0,0.4)] sm:text-base sm:leading-8 lg:text-lg">
             {HOME_HERO_SUBTITLE}
-          </p> */}
-        </div>
+          </p>
 
-        <div className="hero-booking-wrap absolute bottom-10 left-1/2 z-20 w-full -translate-x-1/2 px-2 sm:bottom-12 sm:px-3 md:bottom-14 md:px-4">
+          <div className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+            <Link
+              href="/rooms"
+              className="site-button site-button--primary site-button--lg w-full max-w-xs px-8 text-center"
+            >
+              Explore Stays
+            </Link>
+            <Link
+              href="/contact"
+              className="site-button site-button--outline site-button--lg w-full max-w-xs border-white/45 bg-white/10 px-8 text-center text-white hover:border-white hover:bg-white/18"
+            >
+              Plan Your Visit
+            </Link>
+          </div>
+        </div> */}
+
+        <div className="hero-booking-wrap absolute inset-x-0 bottom-6 z-20 px-0 sm:bottom-8 lg:bottom-10">
           <HeroBookingBar />
         </div>
       </Container>
@@ -232,14 +257,8 @@ export default function Hero() {
 
         .hero-booking-wrap > form {
           margin: 0 auto !important;
-          width: min(88vw, 62rem) !important;
-          max-width: 62rem !important;
-        }
-
-        @media (min-width: 1024px) {
-          .hero-booking-wrap > form {
-            width: min(82vw, 62rem) !important;
-          }
+          width: min(calc(100% - (2 * var(--container-pad))), var(--hero-booking-max)) !important;
+          max-width: var(--hero-booking-max) !important;
         }
       `}</style>
     </section>

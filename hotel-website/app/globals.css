@@ -60,6 +60,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body > * {
+  min-width: 0;
+}
+
 main {
   width: 100%;
   overflow-x: clip;
@@ -269,6 +273,10 @@ a {
     padding-right: max(var(--container-pad), env(safe-area-inset-right));
   }
 
+  .site-container--content {
+    max-width: var(--container-content-max);
+  }
+
   .site-container > * {
     min-width: 0;
   }
@@ -314,7 +322,7 @@ a {
 
   .site-copy {
     margin-top: var(--space-4);
-    color: var(--text-secondary);
+    color: var(--text-readable);
     font-size: var(--font-size-16);
     line-height: var(--line-height-body);
     overflow-wrap: break-word;
@@ -521,6 +529,50 @@ a {
       transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
       filter 700ms cubic-bezier(0.22, 1, 0.36, 1);
   }
+
+  /* Raise paragraph contrast across section copy without changing layout or component logic. */
+  .welcome-copy,
+  .booking-copy,
+  .dining-copy,
+  .wim-copy,
+  .eza-copy,
+  .wed-intro,
+  .meet-copy,
+  .ca-intro-line,
+  .testimonials-quote,
+  .wellness-spa-copy,
+  .tariff-intro,
+  .room-desc {
+    color: var(--text-readable) !important;
+  }
+
+  .welcome-eyebrow,
+  .booking-kicker,
+  .eza-kicker,
+  .wed-kicker,
+  .meet-kicker,
+  .exp-explore-kicker,
+  .wellness-spa-kicker,
+  .rooms-showcase-counter {
+    color: var(--text-readable-soft) !important;
+  }
+
+  .welcome-copy--strong {
+    color: #31464f !important;
+  }
+
+  .welcome-copy--muted {
+    color: #55676f !important;
+  }
+
+  .welcome-description,
+  .welcome-description.resort-intro-copy {
+    color: #31464f !important;
+  }
+
+  .welcome-footer-note {
+    color: #55676f !important;
+  }
 }
 
 @media (min-width: 768px) {
@@ -535,7 +587,6 @@ a {
 
     .page-hero-title--long {
       font-size: 4.6rem;
-      white-space: nowrap;
     }
 
     .page-hero-subtitle {
@@ -585,6 +636,16 @@ a {
 
     .page-hero-title--long {
       font-size: 5.7rem;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  @layer components {
+    .page-hero-breadcrumb {
+      letter-spacing: 0.2em;
+      padding: 0.6rem 1rem;
+      font-size: 0.72rem;
     }
   }
 }

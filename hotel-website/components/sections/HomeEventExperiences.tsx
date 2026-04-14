@@ -311,7 +311,7 @@ export default function HomeEventExperiences() {
                 <div className="hee-right-col max-w-[50rem]">
                   <p
                     className="hee-line text-[0.7rem] font-semibold uppercase tracking-[0.38em] sm:text-[0.76rem]"
-                    style={{ color: panel.accentColor }}
+                    style={{ color: "rgba(255, 248, 232, 0.92)" }}
                   >
                     {panel.subtitle}
                   </p>
@@ -325,7 +325,7 @@ export default function HomeEventExperiences() {
                     style={{ backgroundColor: `${panel.accentColor}80` }}
                   />
 
-                  <p className="hee-line mt-6 max-w-xl text-[0.95rem] leading-[1.8] text-white/90 sm:text-[1.05rem]">
+                  <p className="hee-line mt-6 max-w-xl text-[0.95rem] leading-[1.8] text-white sm:text-[1.05rem]">
                     {panel.copy}
                   </p>
 
@@ -432,8 +432,8 @@ export default function HomeEventExperiences() {
 
         .hee-overlay {
           background:
-            linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.18) 100%),
-            linear-gradient(90deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.08) 50%, rgba(0, 0, 0, 0.04) 100%);
+            linear-gradient(180deg, rgba(8, 10, 12, 0.36) 0%, rgba(8, 10, 12, 0.5) 100%),
+            linear-gradient(90deg, rgba(8, 10, 12, 0.58) 0%, rgba(8, 10, 12, 0.26) 52%, rgba(8, 10, 12, 0.18) 100%);
         }
 
         .hee-content-grid {

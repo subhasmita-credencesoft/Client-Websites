@@ -75,7 +75,7 @@ export default function WelcomeSection() {
               "<+0.04",
             )
             .fromTo(
-              ".welcome-copy",
+              ".welcome-footer-note",
               { y: 14, autoAlpha: 0 },
               { y: 0, autoAlpha: 1, duration: 0.56, stagger: 0.04 },
               "<+0.04",
@@ -104,7 +104,7 @@ export default function WelcomeSection() {
             },
           })
             .to(".welcome-image", { yPercent: 6, scale: 1.06, ease: "none" }, 0)
-            .to(".welcome-copy", { y: -6, autoAlpha: 0.92, ease: "none" }, 0)
+            .to(".welcome-footer-note", { y: -6, autoAlpha: 1, ease: "none" }, 0)
             .to(imageWrapRef.current, { y: -10, ease: "none" }, 0);
         }, sectionRef);
 
@@ -113,7 +113,13 @@ export default function WelcomeSection() {
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set(
-          [".welcome-eyebrow", ".welcome-title-line", ".welcome-copy", ".welcome-card", ".welcome-image"],
+          [
+            ".welcome-eyebrow",
+            ".welcome-title-line",
+            ".welcome-footer-note",
+            ".welcome-card",
+            ".welcome-image",
+          ],
           { clearProps: "all" },
         );
         ScrollTrigger.refresh();
@@ -137,23 +143,26 @@ export default function WelcomeSection() {
           {/* â”€â”€ text column â”€â”€ */}
           <div className="text-center lg:text-left">
             {clientReady && typeLine && (
-              <p className="welcome-eyebrow mt-1 text-[0.7rem] uppercase tracking-[0.22em] text-[#1f3c44]/65">
+              <p className="welcome-eyebrow mt-1 text-[0.7rem] uppercase tracking-[0.22em] text-[#55676f]">
                 {typeLine}
               </p>
             )}
 
             <div className="mt-1 overflow-hidden">
-              <h2 className="welcome-title-line font-serif text-[2rem] leading-tight sm:text-[2.4rem] lg:text-[2.8rem]">
+              <h2 className="welcome-title-line font-serif text-[2rem] leading-tight text-[#1f3c44] sm:text-[2.4rem] lg:text-[2.8rem]">
                 {WELCOME_SECTION_TITLE_LINES[0]}
               </h2>
             </div>
             <div className="overflow-hidden">
-              <h2 className="welcome-title-line font-serif text-[2rem] leading-tight sm:text-[2.4rem] lg:text-[2.8rem]">
+              <h2 className="welcome-title-line font-serif text-[2rem] leading-tight text-[#1f3c44] sm:text-[2.4rem] lg:text-[2.8rem]">
                 {WELCOME_SECTION_TITLE_LINES[1].replace("{name}", name)}
               </h2>
             </div>
 
-            <p className="welcome-copy mt-5 text-[0.98rem] leading-relaxed text-[#1f3c44]/80 sm:text-[1.05rem]">
+            <p
+              className="welcome-description mt-5 text-[0.98rem] leading-relaxed sm:text-[1.05rem]"
+              style={{ color: "#31464f", WebkitTextFillColor: "#31464f", opacity: 1, filter: "none" }}
+            >
               {description}
             </p>
           </div>
@@ -177,7 +186,10 @@ export default function WelcomeSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
             </div>
             <div className="border-t border-[#1f3c44]/10 bg-white px-5 py-4">
-              <p className="welcome-copy text-[0.8rem] leading-snug text-[#1f3c44]/65">
+              <p
+                className="welcome-footer-note text-[0.8rem] leading-snug"
+                style={{ color: "#31464f", WebkitTextFillColor: "#31464f", opacity: 1, filter: "none" }}
+              >
                 {WELCOME_SECTION_FOOTER_TEMPLATE.replace("{name}", name)}
               </p>
             </div>

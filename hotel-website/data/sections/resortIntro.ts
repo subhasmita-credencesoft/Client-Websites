@@ -14,12 +14,12 @@ export type ResortIntroSlide = {
 };
 
 export const RESORT_INTRO_HIGHLIGHTS: ResortIntroHighlight[] = [
-  { title: "Water Park & Swimming Pool with Rain Dance", icon: "waves" },
+  { title: "Water Park  with Rain Dance", icon: "waves" },
   { title: "Adventure Activities - Archery, Zorbing, Wall Climbing & more", icon: "tent" },
   { title: "Fully Furnished Gym with Sophisticated Equipment", icon: "dumbbell" },
   { title: "Indoor Games - Table Tennis, Badminton & Carom", icon: "gamepad" },
   { title: "Multi-cuisine Restaurant & Dining Experience", icon: "utensils" },
-  { title: "Outdoor Sports & Exclusively Designed Kid's Park", icon: "tree" },
+  { title: "Outdoor Sports - Exclusive Kids' Park with Cricket Field & Multi-Sport Facilities", icon: "tree" },
 ];
 
 export const RESORT_INTRO_VALUES: ResortIntroValue[] = [

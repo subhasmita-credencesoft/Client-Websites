@@ -172,7 +172,7 @@ export default function ResortIntro() {
     >
       <Container>
         {/* ── kicker ── */}
-        <div className="resort-intro-kicker flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.28em] sm:gap-6 sm:text-xs sm:tracking-[0.38em]">
+        <div className="resort-intro-kicker flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.28em] text-[#55676f] sm:gap-6 sm:text-xs sm:tracking-[0.38em]">
           <span>About UK&apos;s Resort</span>
           <div className="h-px flex-1 bg-[#1f3c44]/15" />
         </div>
@@ -182,7 +182,7 @@ export default function ResortIntro() {
           {/* ── text column ── */}
           <div ref={contentRef}>
             <div className="overflow-hidden">
-              <h2 className="resort-intro-title font-serif text-[1.7rem] leading-[1.12] tracking-[-0.01em] sm:text-[2.1rem] md:text-[2.6rem] lg:text-[3rem]">
+              <h2 className="resort-intro-title font-serif text-[1.7rem] leading-[1.12] tracking-[-0.01em] text-[#1f3c44] sm:text-[2.1rem] md:text-[2.6rem] lg:text-[3rem]">
         {RESORT_INTRO_TITLE.split(" ").map((word, idx) => (
                   <span
                     key={`${word}-${idx}`}
@@ -194,7 +194,7 @@ export default function ResortIntro() {
               </h2>
             </div>
 
-            <div className="mt-6 max-w-xl space-y-4 text-[0.95rem] leading-[1.75] text-[#1f3c44]/70 sm:mt-7 sm:text-[0.98rem]">
+            <div className="mt-6 max-w-xl space-y-4 text-[0.95rem] leading-[1.75] text-[#31464f] sm:mt-7 sm:text-[0.98rem]">
               <p className="resort-intro-copy">
                 Just a few miles from the outskirts of the hustle-n-bustle of Mumbai&apos;s concrete jungle,
                 a complete at-home experience awaits — one that fulfills your heart&apos;s desires and offers
@@ -220,7 +220,7 @@ export default function ResortIntro() {
                   <span className="mt-0.5 min-w-[5.5rem] text-[0.64rem] uppercase tracking-[0.22em] text-[#d89a55] sm:text-[0.68rem] sm:tracking-[0.26em]">
                     {item.title}
                   </span>
-                  <p className="text-[0.9rem] leading-[1.65] text-[#1f3c44]/75 sm:text-[0.93rem]">
+                  <p className="text-[0.9rem] leading-[1.65] text-[#31464f] sm:text-[0.93rem]">
                     {item.text}
                   </p>
                 </div>
@@ -294,7 +294,7 @@ export default function ResortIntro() {
                     className="object-cover"
                   />
                 </span>
-                <p className="text-[0.8rem] leading-snug text-[#1f3c44]/65 sm:text-[0.83rem]">
+                <p className="text-[0.8rem] leading-snug text-[#55676f] sm:text-[0.83rem]">
                   Award-winning resort in the lush green landscape at Khopoli
                 </p>
               </div>
@@ -310,7 +310,7 @@ export default function ResortIntro() {
                   className="resort-intro-highlight flex flex-col gap-2.5 rounded-xl border border-[#1f3c44]/10 bg-white/70 p-4 transition-shadow hover:shadow-md sm:p-5"
                 >
                   <Icon className="h-5 w-5 text-[#d89a55] sm:h-6 sm:w-6" strokeWidth={1.4} />
-                  <p className="text-[0.73rem] leading-[1.45] text-[#1f3c44]/80 sm:text-[0.78rem]">
+                  <p className="text-[0.73rem] leading-[1.45] text-[#3f545c] sm:text-[0.78rem]">
                     {title}
                   </p>
                 </div>

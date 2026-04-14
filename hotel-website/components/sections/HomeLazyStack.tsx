@@ -3,32 +3,33 @@
 import dynamic from "next/dynamic";
 import { type ReactNode } from "react";
 import useInViewOnce from "@/hooks/useInViewOnce";
-
-const WelcomeSection = dynamic(() => import("./WelcomeSection"), {
-  loading: () => <section className="min-h-[55vh] bg-[#f6f2ec]" aria-hidden="true" />,
-});
-const WellnessHero = dynamic(() => import("./WellnessHero"), {
+import { dynamicImportWithRetry } from "@/lib/dynamicImportWithRetry";
+import WelcomeSection from "./WelcomeSection";
+const WellnessHero = dynamic(dynamicImportWithRetry(() => import("./WellnessHero"), "wellness-hero"), {
   loading: () => <section className="min-h-[70vh] bg-[#f6f3ed]" aria-hidden="true" />,
 });
-const ResortIntro = dynamic(() => import("./ResortIntro"), {
+const ResortIntro = dynamic(dynamicImportWithRetry(() => import("./ResortIntro"), "resort-intro"), {
   loading: () => <section className="min-h-[65vh] bg-white" aria-hidden="true" />,
 });
-const RoomsShowcase = dynamic(() => import("./RoomsShowcase"), {
+const RoomsShowcase = dynamic(dynamicImportWithRetry(() => import("./RoomsShowcase"), "rooms-showcase"), {
   loading: () => <section className="min-h-[70vh] bg-white" aria-hidden="true" />,
 });
-const HomeEventExperiences = dynamic(() => import("./HomeEventExperiences"), {
+const HomeEventExperiences = dynamic(
+  dynamicImportWithRetry(() => import("./HomeEventExperiences"), "home-event-experiences"),
+  {
   loading: () => <section className="min-h-[72vh] bg-[#6d4a33]" aria-hidden="true" />,
-});
-const DiningShowcase = dynamic(() => import("./DiningShowcase"), {
+  },
+);
+const DiningShowcase = dynamic(dynamicImportWithRetry(() => import("./DiningShowcase"), "dining-showcase"), {
   loading: () => <section className="min-h-[60vh] bg-[#f3efe8]" aria-hidden="true" />,
 });
-const LocationOffers = dynamic(() => import("./LocationOffers"), {
+const LocationOffers = dynamic(dynamicImportWithRetry(() => import("./LocationOffers"), "location-offers"), {
   loading: () => <section className="min-h-[65vh] bg-[#f6f3ed]" aria-hidden="true" />,
 });
-const StatsBanner = dynamic(() => import("./StatsBanner"), {
+const StatsBanner = dynamic(dynamicImportWithRetry(() => import("./StatsBanner"), "stats-banner"), {
   loading: () => <section className="min-h-[35vh] bg-[#1d1d1d]" aria-hidden="true" />,
 });
-const Testimonials = dynamic(() => import("./Testimonials"), {
+const Testimonials = dynamic(dynamicImportWithRetry(() => import("./Testimonials"), "testimonials"), {
   loading: () => <section className="min-h-[60vh] bg-[#f3efe8]" aria-hidden="true" />,
 });
 

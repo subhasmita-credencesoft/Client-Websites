@@ -25,7 +25,7 @@ export default function PageHero({
   backgroundVideo,
   subtitle,
   breadcrumb,
-  minHeightClassName = "min-h-[100vh]",
+  minHeightClassName = "min-h-[100svh]",
 }: PageHeroProps) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const mediaRef = useRef<HTMLDivElement | null>(null);
@@ -134,11 +134,12 @@ export default function PageHero({
       />
 
       <Container
+        size="content"
         className={`relative z-10 flex flex-col items-center justify-center text-center ${minHeightClassName}`}
       >
         <div
           ref={contentRef}
-          className="flex min-h-[100svh] w-full items-center justify-center px-4 pb-8 pt-[calc(4.75rem+env(safe-area-inset-top))] sm:px-6 sm:pb-12 sm:pt-24 md:pb-14 md:pt-28"
+          className="flex min-h-[100svh] w-full items-center justify-center pb-8 pt-[calc(var(--header-row-min-height)+env(safe-area-inset-top)+1rem)] sm:pb-12 sm:pt-24 md:pb-14 md:pt-28"
         >
           <div className="mx-auto flex w-full max-w-5xl flex-col items-center text-center">
           <div className="overflow-hidden">

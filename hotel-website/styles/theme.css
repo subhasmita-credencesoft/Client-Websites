@@ -3,8 +3,8 @@
   --paper-strong: #ffffff;
   --paper-muted: #f3efe8;
   --ink: #1b1a17;
-  --ink-soft: #41535a;
-  --ink-muted: #667980;
+  --ink-soft: #31464f;
+  --ink-muted: #4f656d;
   --sand: #e8ddcf;
   --bronze: #b68b5b;
   --pine: #244332;
@@ -23,6 +23,8 @@
   --text-secondary: var(--ink-soft);
   --text-muted: var(--ink-muted);
   --text-inverse: #ffffff;
+  --text-readable: color-mix(in srgb, var(--ink) 84%, white 16%);
+  --text-readable-soft: color-mix(in srgb, var(--ink) 72%, white 28%);
 
   --border-subtle: rgba(27, 26, 23, 0.12);
   --border-default: rgba(27, 26, 23, 0.18);
@@ -75,9 +77,14 @@
   --tap-target-min: 44px;
 
   --container-max: 80rem;
+  --container-content-max: 72rem;
   --container-pad: 1rem;
   --section-space: 4rem;
   --section-space-tight: 2.5rem;
+  --hero-min-height: 34rem;
+  --hero-content-offset: calc(5.5rem + env(safe-area-inset-top));
+  --hero-booking-max: 64rem;
+  --header-row-min-height: 4.8rem;
 
   --duration-fast: 160ms;
   --duration-base: 220ms;
@@ -90,6 +97,8 @@
   :root {
     --container-pad: 1.5rem;
     --section-space-tight: 3rem;
+    --hero-min-height: 38rem;
+    --hero-content-offset: calc(6.5rem + env(safe-area-inset-top));
   }
 }
 
@@ -100,6 +109,9 @@
     --section-space-tight: 3.5rem;
     --font-size-32: 2.25rem;
     --font-size-48: 3.5rem;
+    --hero-min-height: 44rem;
+    --hero-content-offset: calc(7.5rem + env(safe-area-inset-top));
+    --hero-booking-max: 68rem;
   }
 }
 

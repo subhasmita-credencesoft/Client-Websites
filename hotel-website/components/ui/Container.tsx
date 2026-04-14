@@ -1,13 +1,20 @@
 import type { ReactNode } from "react";
 
-type ContainerProps = {
+interface ContainerProps {
   children: ReactNode;
   className?: string;
-};
+  size?: "default" | "content";
+}
 
-export default function Container({ children, className = "" }: ContainerProps) {
+export default function Container({
+  children,
+  className = "",
+  size = "default",
+}: ContainerProps) {
+  const sizeClassName = size === "content" ? "site-container--content" : "";
+
   return (
-    <div className={`site-container ${className}`.trim()}>
+    <div className={["site-container", sizeClassName, className].filter(Boolean).join(" ")}>
       {children}
     </div>
   );

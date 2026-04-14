@@ -7,7 +7,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
   {
     name: "Mayur",
     quote:
-      "Awesome resort at such low price.. Had a very rocking weekend.. Rooms are well maintained so is the entire resort including Swimming pool & DJ.. Food quality & quantity is great..Bar menu is normal.. Will definitely replan 2nd visit soon.",
+      "Awesome resort at such low price.. Had a very rocking weekend.. Rooms are well maintained so is the entire resort including Water park & DJ.. Food quality & quantity is great..Bar menu is normal.. Will definitely replan 2nd visit soon.",
   },
   {
     name: "Saurabh Pakhurde",

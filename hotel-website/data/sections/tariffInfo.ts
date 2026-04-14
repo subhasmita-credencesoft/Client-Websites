@@ -13,20 +13,20 @@ export const TARIFF_CHECKOUT_TIME = "11:00 AM";
 
 export const TARIFF_MAIN_TABLE_TITLE = "Room Tariff for Double Occupancy";
 export const TARIFF_MAIN_TABLE_ROOM_TYPE_HEADER = "Room Type";
-export const TARIFF_MAIN_TABLE_PLAN_HEADER = "CP Plan (Room Rate + Break Fast)";
+export const TARIFF_MAIN_TABLE_PLAN_HEADER = "Per person";
 
 export const TARIFF_FALLBACK_ROWS: TariffRow[] = [
   {
     name: "Deluxe",
-    value: "Rs. 3950 + {gst}% GST on Double Occupancy with Breakfast",
+    value: "Rs. 3950 + {gst}% GST ",
   },
   {
     name: "Super Deluxe",
-    value: "Rs. 4950 + {gst}% GST on Double Occupancy with Breakfast",
+    value: "Rs. 4950 + {gst}% GST ",
   },
   {
     name: "Extra Person (Above 5 years)",
-    value: "Rs. 1400 + {gst}% GST with Extra Mattress & Breakfast",
+    value: "Rs. 1400 + {gst}% GST ",
   },
 ];
 
@@ -37,7 +37,7 @@ export const TARIFF_GROUP_PACKAGE_TITLE_LINES = [
 ] as const;
 
 export const TARIFF_GROUP_PACKAGE_OCCUPANCY_HEADER = "Occupancy";
-export const TARIFF_GROUP_PACKAGE_ALL_DAYS_HEADER = "All Days";
+export const TARIFF_GROUP_PACKAGE_ALL_DAYS_HEADER = "Per person";
 
 export const TARIFF_GROUP_PACKAGE_ROWS: TariffRow[] = [
   { name: "Double Occupancy", value: "Rs. 2750 + 18 % GST" },

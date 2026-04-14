@@ -25,9 +25,9 @@ const DateTrigger = forwardRef<HTMLButtonElement, DateTriggerProps>(function Dat
       type="button"
       ref={ref}
       onClick={onClick}
-      className={`flex h-9 w-full items-center justify-between px-2 text-left text-[0.82rem] font-medium text-white md:h-10 md:px-3 md:text-[0.86rem] lg:h-11 lg:text-[0.9rem] ${className}`}
+      className={`flex min-h-[44px] w-full items-center justify-between px-2 text-left text-[0.82rem] font-medium text-white md:min-h-[48px] md:px-3 md:text-[0.86rem] lg:min-h-[52px] lg:text-[0.9rem] ${className}`}
     >
-      <span className="whitespace-nowrap">{displayText}</span>
+      <span className="truncate pr-3">{displayText}</span>
       <svg
         className="h-3.5 w-3.5 text-white/95"
         viewBox="0 0 24 24"
@@ -97,13 +97,15 @@ export default function HeroBookingBar() {
 
   return (
     <form
-      className="relative mx-auto mt-6 w-[85vw] max-w-[22rem] px-0 sm:mt-7 sm:max-w-[26rem] md:mt-8 md:max-w-[38rem] lg:max-w-[58rem] xl:mt-10 xl:max-w-[72rem]"
+      aria-label="Check availability"
+      className="relative mx-auto w-full"
       onSubmit={handleSubmit}
       noValidate
     >
-      <div className="flex w-full flex-col rounded-[1.4rem] border border-white/65 bg-[#746b67]/78 px-3 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.24)] backdrop-blur-[14px] md:px-5 md:py-3 lg:flex-row lg:items-center lg:gap-0 lg:px-6 lg:py-2">
+      {/* Shared heights and spacing keep the booking bar aligned with the site grid at every breakpoint. */}
+      <div className="flex w-full flex-col rounded-[1.5rem] border border-white/65 bg-[#746b67]/78 px-3 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.24)] backdrop-blur-[14px] sm:px-4 md:px-5 md:py-4 lg:flex-row lg:items-center lg:gap-0 lg:px-6 lg:py-3">
         <div className="flex w-full flex-col md:flex-row md:items-center lg:flex-1">
-          <div className="relative flex-1 min-w-[8rem]">
+          <div className="relative flex-1 min-w-0">
             <DatePicker
               selected={checkInDate}
               onChange={(date: Date | null) => {
@@ -118,7 +120,7 @@ export default function HeroBookingBar() {
               popperPlacement="top-start"
               popperClassName="hotel-datepicker-popper"
               calendarClassName="hotel-datepicker"
-              wrapperClassName="block w-full min-w-[8rem]"
+              wrapperClassName="block w-full min-w-0"
               customInput={<DateTrigger displayText={checkInDate ? format(checkInDate, "dd/MM/yyyy") : "Check in"} />}
             />
             {errors.checkIn && (
@@ -126,9 +128,9 @@ export default function HeroBookingBar() {
             )}
           </div>
 
-          <div className="mx-1 h-px bg-white/40 md:h-8 md:w-px lg:h-9" />
+          <div className="mx-1 h-px bg-white/40 md:h-10 md:w-px lg:h-11" />
 
-          <div className="relative flex-1 min-w-[8rem]">
+          <div className="relative flex-1 min-w-0">
             <DatePicker
               selected={checkOutDate}
               onChange={(date: Date | null) => setCheckOutDate(date)}
@@ -140,7 +142,7 @@ export default function HeroBookingBar() {
               popperPlacement="top-start"
               popperClassName="hotel-datepicker-popper"
               calendarClassName="hotel-datepicker"
-              wrapperClassName="block w-full min-w-[8rem]"
+              wrapperClassName="block w-full min-w-0"
               customInput={<DateTrigger displayText={checkOutDate ? format(checkOutDate, "dd/MM/yyyy") : "Check out"} />}
             />
             {errors.checkOut && (
@@ -148,12 +150,15 @@ export default function HeroBookingBar() {
             )}
           </div>
 
-          <div className="mx-1 h-px bg-white/40 md:h-8 md:w-px lg:h-9" />
+          <div className="mx-1 h-px bg-white/40 md:h-10 md:w-px lg:h-11" />
 
           <div className="relative flex-1 overflow-visible" ref={guestPanelRef}>
             <button
               type="button"
-              className={`flex h-9 w-full items-center justify-between px-2 text-left text-[0.82rem] font-medium md:h-10 md:px-3 md:text-[0.86rem] lg:h-11 lg:text-[0.9rem] ${
+              aria-expanded={guestsOpen}
+              aria-haspopup="dialog"
+              aria-controls="hero-booking-guests"
+              className={`flex min-h-[44px] w-full items-center justify-between px-2 text-left text-[0.82rem] font-medium md:min-h-[48px] md:px-3 md:text-[0.86rem] lg:min-h-[52px] lg:text-[0.9rem] ${
                 totalGuests > 0 ? "text-white" : "text-white/70"
               }`}
               onClick={() => {
@@ -184,7 +189,12 @@ export default function HeroBookingBar() {
             )}
 
             {guestsOpen && (
-              <div className="absolute bottom-[calc(100%+0.6rem)] left-1/2 z-50 w-[min(240px,92vw)] -translate-x-1/2 rounded-xl bg-white p-3 text-[#0f415f] shadow-[0_18px_45px_rgba(0,0,0,0.28)] sm:left-auto sm:right-0 sm:translate-x-0">
+              <div
+                id="hero-booking-guests"
+                role="dialog"
+                aria-label="Select guests"
+                className="absolute bottom-[calc(100%+0.75rem)] left-1/2 z-50 w-[min(18rem,92vw)] -translate-x-1/2 rounded-xl bg-white p-3 text-[#0f415f] shadow-[0_18px_45px_rgba(0,0,0,0.28)] sm:left-auto sm:right-0 sm:translate-x-0"
+              >
                 <div className="flex items-center justify-between border-b border-black/8 py-2">
                   <span className="text-[0.88rem] font-medium">Adult</span>
                   <div className="flex items-center gap-2.5">
@@ -237,10 +247,10 @@ export default function HeroBookingBar() {
           </div>
         </div>
 
-        <div className="mt-2.5 w-full md:mt-3 lg:ml-3 lg:mt-0 lg:w-auto">
+        <div className="mt-3 w-full lg:ml-4 lg:mt-0 lg:w-auto">
           <button
             type="submit"
-            className="flex h-9 w-full min-w-0 items-center justify-center gap-1.5 rounded-full bg-[#e29a4e] px-6 text-[0.76rem] font-bold uppercase tracking-[0.06em] text-white transition hover:bg-[#d58b42] md:h-10 md:text-[0.78rem] lg:h-11 lg:min-w-36 lg:text-[0.8rem]"
+            className="flex min-h-[44px] w-full min-w-0 items-center justify-center gap-1.5 rounded-full bg-[#e29a4e] px-6 text-[0.76rem] font-bold uppercase tracking-[0.08em] text-white transition hover:bg-[#d58b42] md:min-h-[48px] md:text-[0.78rem] lg:min-h-[52px] lg:min-w-40 lg:text-[0.8rem]"
           >
             Search
             <svg

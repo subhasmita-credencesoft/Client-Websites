@@ -247,7 +247,10 @@ export default function Header() {
       >
 
         {/* ══ SINGLE MAIN ROW — hamburger | logo centre | icons + book ══ */}
-        <div className="header-anim hdr-bar flex items-center justify-between" style={{ minHeight: "4.8rem" }}>
+        <div
+          className="header-anim hdr-bar flex items-center justify-between"
+          style={{ minHeight: "var(--header-row-min-height)" }}
+        >
 
           {/* LEFT — hamburger + menu label */}
           <div className="flex items-center gap-2 shrink-0 min-w-[7rem] sm:min-w-[10rem]">
@@ -568,18 +571,16 @@ export default function Header() {
 
         /* Horizontal padding */
         .hdr-bar {
-          width: 100%; position: relative;
-          padding-left: 1rem;   padding-right: 1rem;
+          width: 100%;
+          position: relative;
+          padding-left: max(var(--container-pad), env(safe-area-inset-left));
+          padding-right: max(var(--container-pad), env(safe-area-inset-right));
         }
-        @media (min-width: 640px)  { .hdr-bar { padding-left: 1.75rem; padding-right: 1.75rem; } }
-        @media (min-width: 1024px) { .hdr-bar { padding-left: 2.5rem;  padding-right: 2.5rem; } }
-        @media (min-width: 1280px) { .hdr-bar { padding-left: 3.5rem;  padding-right: 3.5rem; } }
-        @media (min-width: 1536px) { .hdr-bar { padding-left: 4.5rem;  padding-right: 4.5rem; } }
 
-        .hdr-bar--menu { padding-left: 1rem; padding-right: 1rem; }
-        @media (min-width: 640px)  { .hdr-bar--menu { padding-left: 1.75rem; padding-right: 1.75rem; } }
-        @media (min-width: 1024px) { .hdr-bar--menu { padding-left: 2.5rem;  padding-right: 2.5rem; } }
-        @media (min-width: 1280px) { .hdr-bar--menu { padding-left: 3.5rem;  padding-right: 3.5rem; } }
+        .hdr-bar--menu {
+          padding-left: max(var(--container-pad), env(safe-area-inset-left));
+          padding-right: max(var(--container-pad), env(safe-area-inset-right));
+        }
 
         /* Ornament */
         .hdr-ornament {
@@ -598,6 +599,7 @@ export default function Header() {
         .hdr-book-btn {
           display: inline-flex; align-items: center; gap: 0.35rem;
           padding: 0.45rem 0.7rem;
+          min-height: 44px;
           border-radius: 9999px;
           border: 1.5px solid #c8922a;
           background: #c8922a;
@@ -630,7 +632,7 @@ export default function Header() {
         /* Icon-only round buttons */
         .hdr-icon-btn {
           display: inline-flex; align-items: center; justify-content: center;
-          width: 2rem; height: 2rem; border-radius: 9999px;
+          width: 44px; height: 44px; border-radius: 9999px;
           text-decoration: none; transition: background 0.18s, border-color 0.18s;
           flex-shrink: 0;
         }
@@ -638,7 +640,7 @@ export default function Header() {
 
         .hdr-whatsapp-btn {
           display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
-          min-height: 2rem;
+          min-height: 44px;
           padding: 0.45rem 0.9rem 0.45rem 0.72rem;
           border-radius: 9999px;
           background: #25d366;
