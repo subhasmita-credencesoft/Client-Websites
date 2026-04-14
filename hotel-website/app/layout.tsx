@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 import Header from "../components/layout/Header";
@@ -15,6 +16,20 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "../lib/metadata";
+
+const bodyFont = Jost({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jost",
+  weight: ["400", "500", "600", "700"],
+});
+
+const displayFont = Cormorant_Garamond({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair",
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -91,7 +106,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://bookonelocal.in" crossOrigin="" />
         <link rel="dns-prefetch" href="//bookonelocal.in" />
       </head>
-      <body suppressHydrationWarning className="theme-hotel flex min-h-screen flex-col antialiased">
+      <body
+        suppressHydrationWarning
+        className={`${bodyFont.variable} ${displayFont.variable} theme-hotel flex min-h-screen flex-col antialiased`}
+      >
         <ToastProvider>
           <SmoothScrollProvider>
             <PropertyDataProvider>

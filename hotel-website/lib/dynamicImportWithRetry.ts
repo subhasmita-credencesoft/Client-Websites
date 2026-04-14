@@ -1,5 +1,3 @@
-"use client";
-
 const CHUNK_ERROR_PATTERN =
   /ChunkLoadError|Failed to fetch dynamically imported module|Loading chunk [\w/-]+ failed/i;
 

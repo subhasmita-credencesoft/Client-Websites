@@ -160,7 +160,7 @@ export default function WelcomeSection() {
             </div>
 
             <p
-              className="welcome-description mt-5 text-[0.98rem] leading-relaxed sm:text-[1.05rem]"
+              className="welcome-description mt-5 text-[0.98rem] leading-relaxed font-small  sm:text-[1.05rem]"
               style={{ color: "#31464f", WebkitTextFillColor: "#31464f", opacity: 1, filter: "none" }}
             >
               {description}
