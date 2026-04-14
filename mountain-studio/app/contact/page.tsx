@@ -101,12 +101,12 @@ export default function ContactPage() {
                     psomvanshi9@gmail.com
                   </Link>
                 </p>
-                <p className="flex items-start gap-3">
+                {/* <p className="flex items-start gap-3">
                   <Globe className="mt-1 text-gold" size={18} />
                   <span className="text-sm leading-7 text-ivory/64">Check-In: 1:00 PM | Check-Out: 11:00 AM</span>
                 </p>
                 <p className="text-sm leading-7 text-ivory/64">Total rooms under banner: 10 (5 + 5)</p>
-                <p className="text-sm leading-7 text-ivory/64">Occupancy: 20 couples + 10 additional beds</p>
+                <p className="text-sm leading-7 text-ivory/64">Occupancy: 20 couples + 10 additional beds</p> */}
               </div>
             </div>
           </div>
