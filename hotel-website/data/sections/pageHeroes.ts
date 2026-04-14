@@ -10,7 +10,7 @@ export type PageHeroConfig = {
 export const ABOUT_HERO_CONFIG: PageHeroConfig = {
   title: "About",
   backgroundImage: "https://bookonelocal.in/cdn/3.png",
-  backgroundVideo: "https://bookonelocal.in/cdn/Resort_entrance_gate_202603191317.mp4",
+  backgroundVideo: "https://bookonelocal.in/cdn/Resort_entrance_gate_202604071226.mp4",
   subtitle: "Discover the story, spirit, and signature hospitality of UK's Resort.",
   breadcrumb: "Home / About",
 };

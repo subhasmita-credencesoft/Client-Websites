@@ -16,7 +16,7 @@ export type ResortIntroSlide = {
 export const RESORT_INTRO_HIGHLIGHTS: ResortIntroHighlight[] = [
   { title: "Water Park  with Rain Dance", icon: "waves" },
   { title: "Adventure Activities - Archery, Zorbing, Wall Climbing & more", icon: "tent" },
-  { title: "Fully Furnished Gym with Sophisticated Equipment", icon: "dumbbell" },
+  { title: "Premium Living Spaces with Sophisticated Interiors", icon: "dumbbell" },
   { title: "Indoor Games - Table Tennis, Badminton & Carom", icon: "gamepad" },
   { title: "Multi-cuisine Restaurant & Dining Experience", icon: "utensils" },
   { title: "Outdoor Sports - Exclusive Kids' Park with Cricket Field & Multi-Sport Facilities", icon: "tree" },
