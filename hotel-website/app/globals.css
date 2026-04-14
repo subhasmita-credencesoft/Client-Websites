@@ -532,7 +532,6 @@ a {
 
   /* Raise paragraph contrast across section copy without changing layout or component logic. */
   .welcome-copy,
-  .booking-copy,
   .dining-copy,
   .wim-copy,
   .eza-copy,
@@ -547,7 +546,6 @@ a {
   }
 
   .welcome-eyebrow,
-  .booking-kicker,
   .eza-kicker,
   .wed-kicker,
   .meet-kicker,
