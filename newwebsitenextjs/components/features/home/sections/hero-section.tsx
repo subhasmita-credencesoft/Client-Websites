@@ -42,15 +42,13 @@ export function HeroSection() {
         </div>
         <div
           aria-hidden="true"
-          className="cinematic-glow absolute left-[-10%] top-[12%] h-[24rem] w-[24rem]"
+          className="cinematic-glow absolute left-[-10%] top-[12%] h-[24rem] w-[24rem] content-auto-section"
           data-cinematic-glow
-          style={{ contentVisibility: "auto" }}
         />
         <div
           aria-hidden="true"
-          className="cinematic-glow absolute bottom-[-8%] right-[-6%] h-[20rem] w-[20rem]"
+          className="cinematic-glow absolute bottom-[-8%] right-[-6%] h-[20rem] w-[20rem] content-auto-section"
           data-cinematic-glow
-          style={{ contentVisibility: "auto" }}
         />
         <div
           aria-hidden="true"
@@ -64,7 +62,7 @@ export function HeroSection() {
         <div className="mt-6 flex max-w-[min(100%,19rem)] flex-col gap-3 pb-4 pt-4 sm:mt-8 sm:max-w-[min(100%,24rem)] sm:pt-6 md:mt-10 md:max-w-[min(100%,36rem)] md:pt-8 lg:mt-auto lg:max-w-[min(100%,58rem)] lg:gap-4 lg:pb-10 lg:pt-16">
           <h1
             data-section-title
-            className="max-w-[11ch] text-[clamp(2.6rem,8vw,5rem)] leading-[0.94] text-[#d7b57c] drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] transition-all duration-700 ease-out sm:max-w-[12ch] md:max-w-[14ch] lg:max-w-[18ch] xl:max-w-[20ch]"
+            className="max-w-[11ch] text-[clamp(2.6rem,8vw,5rem)] leading-[0.94] text-[var(--color-primary-hover)] drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] transition-all duration-700 ease-out sm:max-w-[12ch] md:max-w-[14ch] lg:max-w-[18ch] xl:max-w-[20ch]"
           >
             {heroTitleWords.map((word, wordIndex) => (
               <span

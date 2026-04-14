@@ -32,7 +32,7 @@ export function ResponsiveImage({
   quality = 72,
 }: ResponsiveImageProps) {
   return (
-    <div className={cn("relative overflow-hidden rounded-[1.5rem] bg-[#1a1511]", aspectClassMap[aspectRatio], className)}>
+    <div className={cn("relative overflow-hidden rounded-[var(--radius-xl)] bg-[var(--color-surface)]", aspectClassMap[aspectRatio], className)}>
       <Image
         src={src}
         alt={alt}

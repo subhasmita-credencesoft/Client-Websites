@@ -54,7 +54,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark">
       <head>
         <link rel="preconnect" href="https://bookonelocal.in" crossOrigin="anonymous" />
         <link rel="preload" as="image" href={heroBackgroundUrls[0]} fetchPriority="high" />

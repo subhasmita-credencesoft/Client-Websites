@@ -3,6 +3,7 @@
 import type { MouseEvent } from "react";
 import { useRef } from "react";
 import Link from "next/link";
+import { buttonClassName } from "@/components/ui/button";
 import { cn } from "@/lib/utils/cn";
 import type { ButtonSize, ButtonVariant } from "@/types";
 
@@ -13,18 +14,6 @@ type MagneticButtonProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
 };
-
-const variantClassMap = {
-  primary: "site-button site-button-primary",
-  secondary: "site-button site-button-secondary",
-  outline: "site-button site-button-outline",
-} as const;
-
-const sizeClassMap = {
-  sm: "px-4 text-[0.68rem]",
-  md: "px-7 text-xs",
-  lg: "px-8 text-[0.82rem]",
-} as const;
 
 export function MagneticButton({
   children,
@@ -99,13 +88,7 @@ export function MagneticButton({
     resetTransform(1);
   };
 
-  const commonClassName = cn(
-    "group backdrop-blur-xl hover:shadow-[0_0_26px_rgba(224,180,129,0.25)]",
-    variantClassMap[variant],
-    sizeClassMap[size],
-    "will-transform",
-    className,
-  );
+  const commonClassName = cn(buttonClassName({ variant, size }), "group backdrop-blur-xl hover:shadow-[0_0_26px_rgba(224,180,129,0.25)]", "will-transform", className);
 
   const isInternalHref = typeof href === "string" && (href.startsWith("/") || href.startsWith("#"));
 

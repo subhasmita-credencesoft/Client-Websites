@@ -8,6 +8,7 @@ type ThemedDatePickerProps = {
   value: string;
   onChange: (value: string) => void;
   minDate?: string;
+  disabled?: boolean;
   className?: string;
   popperClassName?: string;
 };
@@ -15,11 +16,12 @@ type ThemedDatePickerProps = {
 type DateInputButtonProps = {
   value?: string;
   onClick?: () => void;
+  disabled?: boolean;
   className?: string;
 };
 
 const DateInputButton = forwardRef<HTMLButtonElement, DateInputButtonProps>(function DateInputButton(
-  { value, onClick, className },
+  { value, onClick, disabled = false, className },
   ref,
 ) {
   const displayValue = value || "Select date";
@@ -29,8 +31,9 @@ const DateInputButton = forwardRef<HTMLButtonElement, DateInputButtonProps>(func
       ref={ref}
       type="button"
       onClick={onClick}
+      disabled={disabled}
       className={cn(
-        "mountain-datepicker-trigger inline-flex w-full items-center justify-between gap-3 rounded-[0.65rem] text-left",
+        "mountain-datepicker-trigger inline-flex w-full items-center justify-between gap-3 rounded-[0.65rem] text-left disabled:cursor-not-allowed disabled:opacity-60",
         className,
       )}
     >
@@ -48,6 +51,7 @@ export function ThemedDatePicker({
   value,
   onChange,
   minDate,
+  disabled = false,
   className,
   popperClassName,
 }: ThemedDatePickerProps) {
@@ -72,9 +76,10 @@ export function ThemedDatePicker({
         type="date"
         value={value}
         min={minDate}
+        disabled={disabled}
         onChange={(event) => onChange(event.target.value)}
         className={cn(
-          "mountain-datepicker-trigger inline-flex w-full items-center justify-between gap-3 rounded-[0.65rem] text-left",
+          "mountain-datepicker-trigger inline-flex w-full items-center justify-between gap-3 rounded-[0.65rem] text-left disabled:cursor-not-allowed disabled:opacity-60",
           className,
         )}
       />
@@ -89,10 +94,11 @@ export function ThemedDatePicker({
         onChange(formatDate(date));
       }}
       minDate={normalizeDate(minDate) ?? undefined}
+      disabled={disabled}
       dateFormat="dd-MM-yyyy"
       calendarClassName="mountain-datepicker"
       popperClassName={cn("mountain-datepicker-popper", popperClassName)}
-      customInput={<DateInputButton className={className} />}
+      customInput={<DateInputButton className={className} disabled={disabled} />}
       showPopperArrow={false}
       fixedHeight
     />

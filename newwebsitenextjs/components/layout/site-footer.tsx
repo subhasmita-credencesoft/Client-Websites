@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PageWrapper } from "@/components/ui/page-wrapper";
 import { footerSections } from "@/lib/data/content/mountain-content";
 import type { FooterSection } from "@/types";
 
@@ -6,11 +7,11 @@ export function SiteFooter() {
   const sections = footerSections as FooterSection[];
 
   return (
-    <footer className="border-t border-[#c9a46e]/20 bg-[#0f0d0b]">
-      <div className="site-container max-w-[92rem] py-14 md:py-16">
+    <footer className="border-t border-[rgba(var(--color-primary-rgb),0.2)] bg-[var(--color-background)]">
+      <PageWrapper size="wide" className="py-14 md:py-16">
         <div className="grid gap-8 md:grid-cols-3 md:gap-12">
           {sections.map((section, sectionIndex) => (
-            <ul key={sectionIndex} className="space-y-3 text-sm text-[#f2e8d8]/88 sm:text-base md:text-lg">
+            <ul key={sectionIndex} className="space-y-3 text-sm text-[var(--color-text-secondary)] sm:text-base md:text-lg">
               {section.map((item) => (
                 <li key={item.label}>
                   {item.external ? (
@@ -18,7 +19,7 @@ export function SiteFooter() {
                       href={item.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="block break-words leading-relaxed transition-colors hover:text-[#d5b07a]"
+                      className="block break-words leading-relaxed transition-colors hover:text-[var(--color-primary-hover)]"
                       data-cursor="hover"
                     >
                       {item.label}
@@ -26,7 +27,7 @@ export function SiteFooter() {
                   ) : item.href.startsWith("tel:") ? (
                     <a
                       href={item.href}
-                      className="block break-words leading-relaxed transition-colors hover:text-[#d5b07a]"
+                      className="block break-words leading-relaxed transition-colors hover:text-[var(--color-primary-hover)]"
                       data-cursor="hover"
                     >
                       {item.label}
@@ -34,7 +35,7 @@ export function SiteFooter() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="block break-words leading-relaxed transition-colors hover:text-[#d5b07a]"
+                      className="block break-words leading-relaxed transition-colors hover:text-[var(--color-primary-hover)]"
                       data-cursor="hover"
                     >
                       {item.label}
@@ -52,7 +53,7 @@ export function SiteFooter() {
               href="https://credencesoft.in/"
               target="_blank"
               rel="noreferrer"
-              className="transition-colors hover:text-[#d5b07a]"
+              className="transition-colors hover:text-[var(--color-primary-hover)]"
               data-cursor="hover"
             >
               CredenceSoft
@@ -62,14 +63,14 @@ export function SiteFooter() {
               href="https://bookonepms.com/"
               target="_blank"
               rel="noreferrer"
-              className="transition-colors hover:text-[#d5b07a]"
+              className="transition-colors hover:text-[var(--color-primary-hover)]"
               data-cursor="hover"
             >
               BookOne
             </a>
           </p>
         </div>
-      </div>
+      </PageWrapper>
     </footer>
   );
 }

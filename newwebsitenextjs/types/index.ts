@@ -1,5 +1,8 @@
-export type ButtonVariant = "primary" | "secondary" | "outline";
+export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "danger";
 export type ButtonSize = "sm" | "md" | "lg";
+
+export type CardVariant = "default" | "subtle" | "emphasis";
+export type InputVariant = "default" | "error";
 
 export type AppLinkItem = {
   label: string;

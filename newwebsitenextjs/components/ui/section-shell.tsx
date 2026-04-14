@@ -1,19 +1,14 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { PageWrapper } from "@/components/ui/page-wrapper";
 import { cn } from "@/lib/utils/cn";
-
-type SectionShellProps = {
+ 
+export type SectionShellProps = {
   children: ReactNode;
   className?: string;
   containerClassName?: string;
   size?: "default" | "narrow" | "wide";
   as?: "section" | "div";
 } & Omit<ComponentPropsWithoutRef<"section">, "children" | "className">;
-
-const sizeClassMap = {
-  narrow: "max-w-5xl",
-  default: "max-w-7xl",
-  wide: "max-w-[96rem]",
-} as const;
 
 export function SectionShell({
   children,
@@ -26,8 +21,14 @@ export function SectionShell({
   const Tag = as;
 
   return (
-    <Tag className={cn("site-section", className)} {...props}>
-      <div className={cn("site-container", sizeClassMap[size], containerClassName)}>{children}</div>
-    </Tag>
+    <PageWrapper
+      as={Tag}
+      className={cn("site-section", className)}
+      contentClassName={containerClassName}
+      size={size}
+      {...props}
+    >
+      {children}
+    </PageWrapper>
   );
 }

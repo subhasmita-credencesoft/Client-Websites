@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { buttonClassName } from "@/components/ui/button";
+import { PageWrapper } from "@/components/ui/page-wrapper";
 import {
   headerDropdownLinks,
   mainLinks,
@@ -116,14 +118,14 @@ export function SiteHeader() {
   }, [router]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[#c89a55]/14 bg-[rgba(8,7,6,0.94)] backdrop-blur-md">
-      <div className="site-container max-w-[96rem]">
-        <div className="relative border-b border-white/12 py-2 lg:py-0">
-          <div className="grid min-h-[4.75rem] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-8">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[rgba(var(--color-primary-rgb),0.14)] bg-[rgba(8,7,6,0.94)] backdrop-blur-md">
+      <PageWrapper size="wide">
+        <div className="relative border-b border-white/12 py-1.5 lg:py-0">
+          <div className="grid min-h-[4.25rem] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-6">
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="flex min-h-11 w-11 items-center justify-center border border-[#c89a55]/28 text-white lg:hidden"
+              className="flex min-h-11 w-11 items-center justify-center border border-[rgba(var(--color-primary-rgb),0.28)] text-white lg:hidden"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
@@ -147,7 +149,7 @@ export function SiteHeader() {
               </span>
             </button>
 
-            <div className="hidden min-h-[4.75rem] items-center gap-5 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] lg:flex">
+            <div className="hidden min-h-[4.25rem] items-center gap-4 text-[0.62rem] font-semibold tracking-wide text-[#f1e7d7] lg:flex">
               <span className="text-white/75">
                 <DiamondIcon />
               </span>
@@ -155,7 +157,7 @@ export function SiteHeader() {
                 <Link
                   key={item}
                   href={topLinkHrefs[item] ?? "/"}
-                  className="transition-colors hover:text-[#d8b67f]"
+                  className="transition-colors hover:text-[var(--color-primary-hover)]"
                   data-cursor="hover"
                 >
                   {item}
@@ -165,7 +167,7 @@ export function SiteHeader() {
 
             <Link
               href="/"
-              className="relative z-10 mx-auto inline-flex h-[60px] w-[82px] items-center justify-center border border-[#9b7a4a] bg-[#08090c] px-2 text-center text-[0.52rem] font-semibold uppercase tracking-[0.18em] text-[#d9b57f] shadow-[0_0_0_10px_rgba(8,7,6,0.94)] md:h-[64px] md:w-[88px] md:px-3 md:text-[0.56rem] lg:h-[78px] lg:w-[112px] lg:text-[0.6rem] lg:leading-[1.65]"
+              className="relative z-10 mx-auto inline-flex h-[56px] w-[78px] items-center justify-center border border-[rgba(var(--color-primary-rgb),0.62)] bg-[var(--color-background)] px-2 text-center text-[0.5rem] font-semibold uppercase tracking-[0.18em] text-[var(--color-primary-hover)] shadow-[0_0_0_10px_rgba(8,7,6,0.94)] md:h-[60px] md:w-[84px] md:px-3 md:text-[0.54rem] lg:h-[72px] lg:w-[104px] lg:text-[0.58rem] lg:leading-[1.6]"
               data-cursor="hover"
             >
               {content.logoLines[0]}
@@ -173,22 +175,22 @@ export function SiteHeader() {
               {content.logoLines[1]}
             </Link>
 
-            <div className="hidden min-h-[4.75rem] items-center justify-end gap-3 text-[0.66rem] font-semibold tracking-wide text-[#f1e7d7] lg:flex">
+            <div className="hidden min-h-[4.25rem] items-center justify-end gap-2.5 text-[0.62rem] font-semibold tracking-wide text-[#f1e7d7] lg:flex">
               {topRightLinks.map((item) => (
-                <Link key={item} href="/" className="transition-colors hover:text-[#d8b67f]" data-cursor="hover">
+                <Link key={item} href="/" className="transition-colors hover:text-[var(--color-primary-hover)]" data-cursor="hover">
                   {item}
                 </Link>
               ))}
               <div className="group relative flex items-center">
                 <a
                   href={contactPhoneHref}
-                  className="flex h-8 w-8 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#d8b67f]"
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[var(--color-primary-hover)]"
                   aria-label={`Call ${contactPhone}`}
                   data-cursor="hover"
                 >
                   <PhoneIcon />
                 </a>
-                <span className="pointer-events-none absolute right-1/2 top-[calc(100%+0.7rem)] z-50 min-w-max translate-x-1/2 rounded-full border border-[#c9a46e]/30 bg-[#182920] px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.16em] text-[#f6ead8] opacity-0 shadow-[0_10px_24px_rgba(0,0,0,0.24)] transition-opacity duration-200 group-hover:opacity-100">
+                <span className="pointer-events-none absolute right-1/2 top-[calc(100%+0.7rem)] z-50 min-w-max translate-x-1/2 rounded-full border border-[rgba(var(--color-primary-rgb),0.3)] bg-[var(--color-surface-soft)] px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.16em] text-[var(--color-text-primary)] opacity-0 shadow-[0_10px_24px_rgba(0,0,0,0.24)] transition-opacity duration-200 group-hover:opacity-100">
                   {contactPhone}
                 </span>
               </div>
@@ -196,7 +198,7 @@ export function SiteHeader() {
                 href={whatsappHref}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-8 w-8 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[#d8b67f]"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-white/85 transition-colors hover:text-[var(--color-primary-hover)]"
                 aria-label="Open WhatsApp chat"
                 data-cursor="hover"
               >
@@ -204,7 +206,11 @@ export function SiteHeader() {
               </a>
               <Link
                 href={DIRECT_BOOKING_ENGINE_URL}
-                className="site-button site-button-outline px-5 text-[0.67rem] text-[#f7efe2] hover:border-[#d8b67f] hover:text-[#d8b67f]"
+                className={buttonClassName({
+                  variant: "primary",
+                  size: "sm",
+                  className: "px-4 text-[0.62rem] shadow-[0_10px_24px_rgba(200,154,85,0.14)] hover:shadow-[0_12px_28px_rgba(214,176,122,0.18)]",
+                })}
                 data-cursor="hover"
               >
                 {content.primaryCta}
@@ -213,7 +219,11 @@ export function SiteHeader() {
 
             <Link
               href={DIRECT_BOOKING_ENGINE_URL}
-              className="site-button site-button-primary shrink-0 whitespace-nowrap px-3 text-[0.58rem] lg:hidden"
+              className={buttonClassName({
+                variant: "primary",
+                size: "sm",
+                className: "shrink-0 whitespace-nowrap px-3 text-[0.58rem] lg:hidden",
+              })}
               onClick={() => setMobileMenuOpen(false)}
             >
               {content.primaryCta}
@@ -222,10 +232,10 @@ export function SiteHeader() {
         </div>
 
         <nav
-          className="relative hidden items-center justify-center bg-[rgba(8,7,6,0.94)] py-3 lg:flex"
+          className="relative hidden items-center justify-center bg-[rgba(8,7,6,0.94)] py-2.5 lg:flex"
           onMouseLeave={() => setActiveDropdown(null)}
         >
-          <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-center">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-center">
             {desktopMainLinks.map((item, index) => (
               <div
                 key={item}
@@ -234,7 +244,7 @@ export function SiteHeader() {
               >
                 <Link
                   href={mainNavLinks[item] ?? "/"}
-                  className={`inline-flex min-h-11 items-center text-[0.76rem] font-semibold uppercase tracking-[0.17em] transition-all duration-200 ${
+                  className={`inline-flex min-h-10 items-center text-[0.72rem] font-semibold uppercase tracking-[0.16em] transition-all duration-200 ${
                     activeDropdown === item ? "text-[#e0b675]" : "text-[#f3eadb]/92 hover:text-[#e0b675]"
                   }`}
                   data-cursor="hover"
@@ -258,7 +268,7 @@ export function SiteHeader() {
                       <Link
                         key={dropdownItem.label}
                         href={dropdownItem.href}
-                        className="block border-b border-white/10 px-4 py-3 text-left text-sm leading-snug text-white/90 last:border-b-0 hover:bg-white/4 hover:text-[#f6ead8] md:text-[0.95rem]"
+                        className="block border-b border-white/10 px-4 py-3 text-left text-sm leading-snug text-white/90 last:border-b-0 hover:bg-white/4 hover:text-[var(--color-text-primary)] md:text-[0.95rem]"
                         data-cursor="hover"
                       >
                         {dropdownItem.label}
@@ -315,13 +325,13 @@ export function SiteHeader() {
 
           <Link
             href={DIRECT_BOOKING_ENGINE_URL}
-            className="site-button site-button-primary mb-4 flex w-full text-center text-[0.72rem]"
+            className={buttonClassName({ variant: "primary", size: "md", className: "mb-4 flex w-full text-center text-[0.72rem]" })}
             onClick={() => setMobileMenuOpen(false)}
           >
             {content.primaryCta}
           </Link>
         </nav>
-      </div>
+      </PageWrapper>
     </header>
   );
 }

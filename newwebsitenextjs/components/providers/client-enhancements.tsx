@@ -23,6 +23,13 @@ export function ClientEnhancements() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
+    let cancelled = false;
+    let settledTimer = 0;
+    let maxWaitTimer = 0;
+    let activationTimer = 0;
+    let activationIdleId = 0;
+    let observer: MutationObserver | null = null;
+
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isDesktop = window.innerWidth >= 1280;
     const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
@@ -37,82 +44,108 @@ export function ClientEnhancements() {
       : false;
 
     if (reducedMotion || prefersDataSaving || slowConnection) {
-      return;
+      const reducedMotionReadyFrame = window.requestAnimationFrame(() => {
+        if (cancelled) return;
+        setReady(true);
+      });
+
+      return () => {
+        cancelled = true;
+        window.cancelAnimationFrame(reducedMotionReadyFrame);
+      };
     }
 
     const activateAnimations = () => {
-      setReady(true);
+      if (cancelled) return;
       setEnableAnimations(isAnimationEligibleRoute && !lowMemory);
     };
 
     const activateSmoothScroll = () => {
-      setReady(true);
+      if (cancelled) return;
       setEnableSmoothScroll(isDesktop && hasFinePointer && !lowMemory);
     };
 
-    let animationActivated = false;
-    const activateAnimationsOnce = () => {
-      if (animationActivated) return;
-      animationActivated = true;
-      activateAnimations();
+    const activateAfterHydration = () => {
+      if (cancelled) return;
+
+      const commitActivation = () => {
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
+            if (cancelled) return;
+            setReady(true);
+            activateAnimations();
+            activateSmoothScroll();
+          });
+        });
+      };
+
+      if ("requestIdleCallback" in window) {
+        activationIdleId = window.requestIdleCallback(() => {
+          if (cancelled) return;
+          commitActivation();
+        }, { timeout: 2200 });
+      }
+
+      activationTimer = window.setTimeout(() => {
+        if (cancelled) return;
+        commitActivation();
+      }, 1400);
     };
 
-    let smoothActivated = false;
-    const activateSmoothScrollOnce = () => {
-      if (smoothActivated) return;
-      smoothActivated = true;
-      activateSmoothScroll();
+    const scheduleSettledActivation = () => {
+      if (cancelled) return;
+      window.clearTimeout(settledTimer);
+      settledTimer = window.setTimeout(() => {
+        observer?.disconnect();
+        activateAfterHydration();
+      }, 420);
     };
 
-    const onScrollIntent = () => {
-      activateAnimationsOnce();
-      window.removeEventListener("scroll", onScrollIntent, listenerOptions);
+    const activateAfterDomSettles = () => {
+      if (cancelled) return;
+
+      observer?.disconnect();
+      observer = new MutationObserver(() => {
+        scheduleSettledActivation();
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+
+      scheduleSettledActivation();
+
+      maxWaitTimer = window.setTimeout(() => {
+        observer?.disconnect();
+        activateAfterHydration();
+      }, 3200);
     };
 
-    const onSmoothIntent = () => {
-      activateAnimationsOnce();
-      activateSmoothScrollOnce();
-      window.removeEventListener("pointerdown", onSmoothIntent, listenerOptions);
-      window.removeEventListener("touchstart", onSmoothIntent, listenerOptions);
-      window.removeEventListener("keydown", onSmoothIntent);
-      window.removeEventListener("wheel", onSmoothIntent, listenerOptions);
+    const onWindowLoad = () => {
+      activateAfterDomSettles();
     };
 
-    const listenerOptions: AddEventListenerOptions = { passive: true };
+    if (document.readyState === "complete") {
+      activateAfterDomSettles();
+    } else {
+      window.addEventListener("load", onWindowLoad, { once: true });
+    }
 
-    window.addEventListener("scroll", onScrollIntent, listenerOptions);
-    window.addEventListener("pointerdown", onSmoothIntent, listenerOptions);
-    window.addEventListener("touchstart", onSmoothIntent, listenerOptions);
-    window.addEventListener("keydown", onSmoothIntent);
-    window.addEventListener("wheel", onSmoothIntent, listenerOptions);
-
-    const animationIdleId = "requestIdleCallback" in window
-      ? window.requestIdleCallback(() => activateAnimationsOnce(), { timeout: 1800 })
-      : 0;
-    const animationTimer = window.setTimeout(() => {
-      activateAnimationsOnce();
-    }, 1100);
-
-    const idleId = "requestIdleCallback" in window
-      ? window.requestIdleCallback(() => activateSmoothScrollOnce(), { timeout: 4200 })
-      : 0;
-    const timer = window.setTimeout(() => {
-      activateSmoothScrollOnce();
-    }, 3600);
+    const fallbackTimer = window.setTimeout(() => {
+      activateAfterDomSettles();
+    }, 1800);
 
     return () => {
-      window.removeEventListener("scroll", onScrollIntent, listenerOptions);
-      window.removeEventListener("pointerdown", onSmoothIntent, listenerOptions);
-      window.removeEventListener("touchstart", onSmoothIntent, listenerOptions);
-      window.removeEventListener("keydown", onSmoothIntent);
-      window.removeEventListener("wheel", onSmoothIntent, listenerOptions);
-      window.clearTimeout(animationTimer);
-      window.clearTimeout(timer);
-      if ("cancelIdleCallback" in window && animationIdleId) {
-        window.cancelIdleCallback(animationIdleId);
-      }
-      if ("cancelIdleCallback" in window && idleId) {
-        window.cancelIdleCallback(idleId);
+      cancelled = true;
+      observer?.disconnect();
+      window.removeEventListener("load", onWindowLoad);
+      window.clearTimeout(settledTimer);
+      window.clearTimeout(maxWaitTimer);
+      window.clearTimeout(activationTimer);
+      window.clearTimeout(fallbackTimer);
+      if ("cancelIdleCallback" in window && activationIdleId) {
+        window.cancelIdleCallback(activationIdleId);
       }
     };
   }, [pathname]);

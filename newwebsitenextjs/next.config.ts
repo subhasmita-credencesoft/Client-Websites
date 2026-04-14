@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  experimental: {
+    optimizePackageImports: ["framer-motion", "gsap"],
+  },
   turbopack: {
     root: process.cwd(),
   },
