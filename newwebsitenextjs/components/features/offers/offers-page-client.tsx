@@ -25,8 +25,7 @@ export function OffersPageClient() {
       signature: "Signature Package",
       "premium-luxo": "Premium Luxe Package",
     };
-    const selectedPackageTitle = packageMap[offer.id];
-    const packageQuery = selectedPackageTitle ? `package=${encodeURIComponent(selectedPackageTitle)}&` : "";
+    void packageMap[offer.id];
 
     return DIRECT_BOOKING_ENGINE_URL;
   };
@@ -38,26 +37,26 @@ export function OffersPageClient() {
           <Image src={heroImage} alt="Special offers and packages" fill className="object-cover" priority sizes="100vw" />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.3)_0%,rgba(0,0,0,0.42)_45%,rgba(0,0,0,0.62)_100%)]" data-hero-overlay />
-        <div className="relative z-10 mx-auto flex min-h-[86svh] max-w-[96rem] items-center justify-center px-5 pb-12 pt-8 text-center md:min-h-[108svh] md:px-8 md:pb-24">
+        <div className="site-container relative z-10 flex min-h-[86svh] max-w-[96rem] items-center justify-center pb-12 pt-8 text-center md:min-h-[108svh] md:pb-24">
           <div data-hero-copy>
-            <h1 className="text-balance text-[clamp(42px,5.2vw,76px)] leading-[1.08] text-[#ceb17e]" data-hero-title>
+            <h1 className="site-title-xl text-balance text-[#ceb17e]" data-hero-title>
               {hero.title}
             </h1>
-            <p className="mt-3 text-[clamp(24px,3.1vw,44px)] font-semibold tracking-wide text-white" data-hero-subtitle>
+            <p className="mt-3 text-[clamp(1.5rem,3vw,2.75rem)] font-semibold tracking-wide text-white" data-hero-subtitle>
               {hero.subtitle}
             </p>
             <div className="mx-auto mt-4 h-[2px] w-20 bg-[#c89a55]" data-hero-divider />
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href={selectedOfferHref}
-                className="inline-flex items-center justify-center border border-[#c89a55] bg-[#c89a55] px-8 py-3 text-sm uppercase tracking-[0.18em] text-black"
+                className="site-button site-button-primary px-8"
                 data-cursor="hover"
               >
                 Check Package Availability
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center border border-white/20 px-8 py-3 text-sm uppercase tracking-[0.18em] text-white transition-colors hover:border-[#c89a55]/50 hover:text-[#f0ddbd]"
+                className="site-button site-button-outline px-8"
                 data-cursor="hover"
               >
                 Contact The Team
@@ -68,7 +67,7 @@ export function OffersPageClient() {
       </section>
 
       <div className="content-auto-section">
-      <section className="mx-auto max-w-[96rem] px-4 py-12 text-center md:px-8 md:py-14" data-stage-section>
+      <section className="site-container max-w-[96rem] py-12 text-center md:py-14" data-stage-section>
         <nav aria-label="Breadcrumb" className="flex items-center justify-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
             <li>
@@ -85,10 +84,10 @@ export function OffersPageClient() {
         <p className="mt-8 text-xs font-semibold uppercase tracking-[0.28em] text-[#c89a55]" data-stage-line>
           Package Selection
         </p>
-        <h2 className="mx-auto mt-8 max-w-6xl text-balance text-3xl font-semibold leading-[1.35] md:text-4xl" data-stage-line>
+        <h2 className="site-title-md mx-auto mt-8 max-w-6xl text-balance" data-stage-line>
           {activeTitle}
         </h2>
-        <p className="mx-auto mt-6 max-w-6xl text-balance text-xl leading-[1.6] text-white/80 md:text-2xl" data-stage-line>
+        <p className="site-copy-lg mx-auto mt-6 max-w-6xl text-balance" data-stage-line>
           {activeDescription}
         </p>
       </section>
@@ -96,14 +95,14 @@ export function OffersPageClient() {
       <section className="py-8 text-center">
         <Link
           href={selectedOfferHref}
-          className="inline-flex items-center justify-center border border-[#c89a55] bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] px-14 py-4 text-sm uppercase tracking-[0.22em] text-white transition hover:scale-[1.03] hover:bg-[#221913]"
+          className="site-button site-button-secondary px-14"
           data-cursor="hover"
         >
           {visibleOffers.length === 1 ? "CHECK PACKAGE AVAILABILITY" : intro.cta}
         </Link>
       </section>
 
-      <section className="mx-auto grid max-w-[96rem] gap-10 px-4 pb-16 pt-8 md:gap-16 md:px-8 md:pb-20">
+      <section className="site-container grid max-w-[96rem] gap-10 pb-16 pt-8 md:gap-16 md:pb-20">
         {visibleOffers.map((offer, index) => {
           const textFirst = index % 2 === 1;
           return (
@@ -114,7 +113,7 @@ export function OffersPageClient() {
             >
               <div className={textFirst ? "order-1 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-8 md:order-1 md:p-12" : "order-2 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-8 md:order-2 md:p-12"}>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#b88948]">Package Overview</p>
-                <h3 className="mt-4 text-3xl leading-[1.15] text-[#f4ead9] md:text-4xl" data-section-title>
+                <h3 className="site-title-md mt-4 text-[#f4ead9]" data-section-title>
                   {offer.title}
                 </h3>
                 <div className="mt-4 h-[2px] w-20 bg-[#c89a55]" />
@@ -133,7 +132,7 @@ export function OffersPageClient() {
                 </div>
                 <Link
                   href={getOfferBookingHref(offer)}
-                  className="mt-8 inline-flex items-center justify-center border border-[#2c221a] bg-[linear-gradient(180deg,#2f241b_0%,#3b2d22_100%)] px-12 py-4 text-sm uppercase tracking-[0.18em] text-white transition hover:scale-[1.03] hover:bg-[#48362a]"
+                  className="site-button site-button-secondary mt-8 px-12"
                   data-cursor="hover"
                 >
                   CHECK PACKAGE AVAILABILITY
@@ -151,28 +150,28 @@ export function OffersPageClient() {
         })}
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-16 text-center md:px-8 md:pb-20" data-stage-section>
+        <section className="site-container max-w-5xl pb-16 text-center md:pb-20" data-stage-section>
         <div className="rounded-[2.2rem] border border-[#c89a55]/18 bg-[linear-gradient(180deg,#15110e_0%,#1c1511_100%)] px-8 py-12 shadow-[0_24px_50px_rgba(10,18,12,0.24)] md:px-12 md:py-16">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#c89a55]" data-stage-line>
             Booking Support
           </p>
-          <h3 className="mx-auto mt-5 max-w-4xl text-balance text-3xl leading-tight text-[#f4ead9] md:text-5xl" data-stage-line>
+          <h3 className="site-title-lg mx-auto mt-5 max-w-4xl text-balance text-[#f4ead9]" data-stage-line>
             Need the right package for your dates and guest count?
           </h3>
-          <p className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-white/78 md:text-xl" data-stage-line>
+          <p className="site-copy-lg mx-auto mt-6 max-w-4xl" data-stage-line>
             Check weekday or weekend availability, compare package value, and let our team guide you toward the right stay and celebration format.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href={selectedOfferHref}
-              className="inline-flex items-center justify-center border border-[#c89a55] bg-[#c89a55] px-8 py-3 text-sm uppercase tracking-[0.18em] text-black"
+              className="site-button site-button-primary px-8"
               data-cursor="hover"
             >
               Check Availability
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center border border-white/20 px-8 py-3 text-sm uppercase tracking-[0.18em] text-white transition-colors hover:border-[#c89a55]/50 hover:text-[#f0ddbd]"
+              className="site-button site-button-outline px-8"
               data-cursor="hover"
             >
               Contact The Team

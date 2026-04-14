@@ -30,7 +30,7 @@ export function ExperienceCardsSection() {
       </div>
 
       <div className="mt-16 grid gap-6 md:grid-cols-3">
-        {experienceCards.map((card, index) => (
+        {experienceCards.map((card) => (
           <div
             key={card.title}
             data-sticky-fade-block

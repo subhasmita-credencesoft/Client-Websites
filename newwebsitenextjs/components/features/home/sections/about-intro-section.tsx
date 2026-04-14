@@ -1,38 +1,39 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
+import { SectionShell } from "@/components/ui/section-shell";
 
 export function AboutIntroSection() {
   const content = homeSectionContent.about;
 
   return (
-    <section
+    <SectionShell
       data-section-id="about"
       data-sticky-fade-section
-      className="bg-black px-5 py-24 md:px-12 md:py-30"
+      className="bg-black"
+      containerClassName="grid max-w-[92rem] gap-10 md:grid-cols-[1.3fr_0.7fr] md:items-center"
     >
-      <div className="mx-auto grid max-w-[92rem] gap-10 md:grid-cols-[1.3fr_0.7fr] md:items-center">
         <div
           data-sticky-fade-heading
           className="md:sticky md:top-5 [will-change:transform]"
         >
           <h2
             data-sticky-fade-line
-            className="text-balance text-2xl font-semibold leading-tight text-[#cba977] md:text-4xl"
+            className="site-title-md max-w-4xl text-balance text-[#cba977]"
           >
             {content.title}
           </h2>
 
           <p
             data-sticky-fade-line
-            className="mt-6 max-w-4xl text-xl leading-snug text-white md:text-[2.15rem]"
+            className="mt-6 max-w-4xl text-[clamp(1.4rem,4vw,2.3rem)] leading-tight text-white"
           >
             {content.highlight}
           </p>
 
           <p
             data-sticky-fade-line
-            className="mt-7 max-w-4xl text-sm leading-relaxed text-white/85 md:text-base"
+            className="site-copy mt-7 max-w-4xl"
           >
             {content.body}
           </p>
@@ -44,7 +45,7 @@ export function AboutIntroSection() {
                * backdrop-blur is GPU-expensive; isolate it on its own
                * compositing layer so it doesn't repaint siblings.
                */
-              className="group inline-flex items-center justify-center rounded-full border border-[#d7b17c]/40 bg-[#365143]/80 px-7 py-3 text-xs uppercase tracking-[0.24em] text-[#fff6ea] [will-change:transform] backdrop-blur-xl transition-all duration-500 hover:border-[#dfbe97]/80 hover:bg-[#415b4e] hover:shadow-[0_0_26px_rgba(224,180,129,0.35)]"
+              className="site-button site-button-secondary px-7 [will-change:transform]"
               data-cursor="hover"
             >
               {content.cta}
@@ -108,7 +109,6 @@ export function AboutIntroSection() {
             </div>
           </div>
         </aside>
-      </div>
-    </section>
+    </SectionShell>
   );
 }

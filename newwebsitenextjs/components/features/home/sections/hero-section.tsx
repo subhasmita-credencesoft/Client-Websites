@@ -58,13 +58,13 @@ export function HeroSection() {
         />
       </div>
       <div
-        className="relative z-10 mx-auto flex min-h-[42rem] w-full max-w-[95rem] flex-col px-4 pb-10 sm:min-h-[46rem] sm:px-5 sm:pb-12 md:min-h-[50rem] md:px-8 md:pb-16 lg:min-h-[calc(100svh-6rem)] lg:px-14 lg:pb-32"
+        className="site-container relative z-10 flex min-h-[42rem] w-full max-w-[96rem] flex-col pb-10 sm:min-h-[46rem] sm:pb-12 md:min-h-[50rem] md:pb-16 lg:min-h-[calc(100svh-6rem)] lg:pb-32"
         data-cinematic-copy
       >
         <div className="mt-6 flex max-w-[min(100%,19rem)] flex-col gap-3 pb-4 pt-4 sm:mt-8 sm:max-w-[min(100%,24rem)] sm:pt-6 md:mt-10 md:max-w-[min(100%,36rem)] md:pt-8 lg:mt-auto lg:max-w-[min(100%,58rem)] lg:gap-4 lg:pb-10 lg:pt-16">
           <h1
             data-section-title
-            className="max-w-[11ch] text-[clamp(2.2rem,9vw,3.2rem)] leading-[0.96] text-[#d7b57c] drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] transition-all duration-700 ease-out sm:max-w-[12ch] md:max-w-[14ch] md:text-[2.6rem] lg:max-w-[18ch] lg:text-[3.2rem] xl:max-w-[20ch] xl:text-[3.6rem]"
+            className="max-w-[11ch] text-[clamp(2.6rem,8vw,5rem)] leading-[0.94] text-[#d7b57c] drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] transition-all duration-700 ease-out sm:max-w-[12ch] md:max-w-[14ch] lg:max-w-[18ch] xl:max-w-[20ch]"
           >
             {heroTitleWords.map((word, wordIndex) => (
               <span
@@ -81,7 +81,7 @@ export function HeroSection() {
           </h1>
 
           <p
-            className="max-w-[17rem] animate-[fadeInUp_0.5s_ease-out_0.12s_forwards] text-balance text-[0.92rem] leading-snug text-white [text-shadow:0_10px_24px_rgba(0,0,0,0.45)] opacity-0 sm:max-w-[22rem] sm:text-[1rem] md:max-w-[30rem] md:text-[1.08rem] lg:max-w-[42rem] lg:text-[1.32rem] xl:text-[1.5rem]"
+            className="max-w-[17rem] animate-[fadeInUp_0.5s_ease-out_0.12s_forwards] text-balance text-base leading-relaxed text-white [text-shadow:0_10px_24px_rgba(0,0,0,0.45)] opacity-0 sm:max-w-[22rem] md:max-w-[30rem] lg:max-w-[42rem] lg:text-[1.2rem] xl:text-[1.35rem]"
             role="none"
           >
             {homeSectionContent.hero.subtitle}
@@ -89,7 +89,7 @@ export function HeroSection() {
 
           {homeSectionContent.hero.description ? (
             <p
-              className="max-w-[17rem] animate-[fadeInUp_0.5s_ease-out_0.2s_forwards] text-balance text-[0.8rem] leading-relaxed text-white/82 opacity-0 sm:max-w-[22rem] sm:text-[0.86rem] md:max-w-[30rem] md:text-[0.92rem] lg:max-w-[38rem] lg:text-[1rem]"
+              className="max-w-[17rem] animate-[fadeInUp_0.5s_ease-out_0.2s_forwards] text-balance text-sm leading-relaxed text-white/82 opacity-0 sm:max-w-[22rem] md:max-w-[30rem] lg:max-w-[38rem] lg:text-base"
               role="none"
             >
               {homeSectionContent.hero.description}

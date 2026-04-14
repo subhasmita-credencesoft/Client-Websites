@@ -5,6 +5,7 @@ import { useState, useCallback } from "react";
 import Image from "next/image";
 import { offersCards } from "@/lib/data/content/mountain-content";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
+import { SectionShell } from "@/components/ui/section-shell";
 
 type OfferTab = (typeof homeSectionContent.offers.tabs)[number];
 
@@ -39,10 +40,11 @@ export function OffersSection() {
   );
 
   return (
-    <section
+    <SectionShell
       data-section-id="offers"
       data-sticky-fade-section
-      className="bg-black px-5 py-20 md:px-10"
+      className="bg-black"
+      containerClassName="max-w-[92rem]"
     >
       {/*
        * FIX 4 — `[will-change:transform]` on the sticky heading promotes it
@@ -55,13 +57,13 @@ export function OffersSection() {
       >
         <h3
           data-sticky-fade-line
-          className="text-4xl text-[#cba977] md:text-5xl"
+          className="site-title-lg text-[#cba977]"
         >
           {content.title}
         </h3>
         <p
           data-sticky-fade-line
-          className="mt-3 text-2xl text-white md:text-3xl"
+          className="mt-3 text-[clamp(1.35rem,3vw,2.1rem)] text-white"
         >
           {content.subtitle}
         </p>
@@ -142,19 +144,19 @@ export function OffersSection() {
 
             {/* Bottom content panel */}
             <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.74)_46%,rgba(0,0,0,0.94)_100%)] px-7 pb-8 pt-24">
-              <h4 className="max-w-[16ch] text-3xl leading-tight text-[#ccab74] md:text-4xl">
+              <h4 className="site-title-md max-w-[16ch] text-[#ccab74]">
                 {card.title}
               </h4>
-              <p className="mt-3 text-base text-white/85 md:text-lg">
+              <p className="site-copy mt-3 text-white/85 md:text-lg">
                 {card.subtitle}
               </p>
-              <p className="mt-2 max-w-[34ch] text-sm leading-relaxed text-white/70 md:text-base">
+              <p className="site-copy-sm mt-2 max-w-[34ch] text-white/70 md:text-base">
                 {card.description}
               </p>
             </div>
           </Link>
         ))}
       </div>
-    </section>
+    </SectionShell>
   );
 }

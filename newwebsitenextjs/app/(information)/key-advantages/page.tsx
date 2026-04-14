@@ -17,15 +17,15 @@ export default function KeyAdvantagesPage() {
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(201,164,110,0.12),transparent_38%),linear-gradient(180deg,rgba(0,0,0,0.14)_0%,rgba(0,0,0,0.56)_56%,rgba(0,0,0,0.92)_100%)]" />
         <div className="absolute inset-x-[8%] top-28 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-        <div className="relative z-10 mx-auto flex min-h-[110svh] max-w-[96rem] items-start px-6 pb-8 pt-28 md:px-12 md:pb-12 md:pt-36">
+        <div className="site-container relative z-10 flex min-h-[110svh] max-w-[96rem] items-start pb-8 pt-28 md:pb-12 md:pt-36">
           <div className="max-w-5xl" data-panel-content>
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#c9a46e]" data-panel-line>
+            <p className="site-eyebrow" data-panel-line>
               Signature Wedding Advantage
             </p>
-            <h1 data-section-title data-panel-line className="mt-5 max-w-5xl text-4xl md:text-6xl">
+            <h1 data-section-title data-panel-line className="mt-5 max-w-5xl">
               {page.hero.title}
             </h1>
-            <p className="mt-5 max-w-4xl text-xl text-white/90 md:text-2xl" data-panel-line>
+            <p className="site-copy-lg mt-5 max-w-4xl text-white/90" data-panel-line>
               {page.hero.subtitle}
             </p>
             <div className="mt-10 flex flex-wrap gap-4 text-sm uppercase tracking-[0.24em] text-white/75" data-panel-line>

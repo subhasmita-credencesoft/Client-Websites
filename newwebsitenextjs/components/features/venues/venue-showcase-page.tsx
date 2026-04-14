@@ -79,29 +79,29 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,12,0.22)_0%,rgba(8,10,12,0.34)_42%,rgba(8,10,12,0.82)_100%)]" data-hero-overlay />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,rgba(8,10,12,0)_0%,rgba(8,10,12,0.74)_100%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[86svh] max-w-[96rem] items-end px-4 pb-12 pt-20 md:min-h-[100svh] md:px-10 md:pb-20 md:pt-36">
+        <div className="site-container relative z-10 flex min-h-[86svh] max-w-[96rem] items-end pb-12 pt-20 md:min-h-[100svh] md:pb-20 md:pt-36">
           <div className="max-w-5xl" data-hero-copy>
-            <p data-reveal-child className="text-xs font-semibold uppercase tracking-[0.2em] text-white/75">
+            <p data-reveal-child className="site-eyebrow text-white/75">
               {page.intro.eyebrow}
             </p>
-            <h1 className="mt-6 max-w-5xl text-balance text-4xl leading-tight text-white md:text-6xl" data-hero-title>
+            <h1 className="site-title-xl mt-6 max-w-5xl text-balance text-white" data-hero-title>
               {page.hero.title}
             </h1>
             <div className="mt-6 h-px w-24 bg-gradient-to-r from-[#d7b67f] via-[#f0d9ae] to-transparent md:w-36" data-hero-divider />
-            <p className="mt-6 max-w-4xl text-balance text-xl leading-relaxed text-white/90 md:text-2xl" data-hero-subtitle>
+            <p className="site-copy-lg mt-6 max-w-4xl text-balance text-white/90" data-hero-subtitle>
               {page.hero.subtitle}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href={bookingHref}
-                className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
+                className="site-button site-button-primary px-8"
                 data-cursor="hover"
               >
                 Check Venue Availability
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
+                className="site-button site-button-outline px-8"
                 data-cursor="hover"
               >
                 Contact The Team
@@ -133,7 +133,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-4 pb-16 pt-16 md:px-8 md:pb-24 md:pt-40" data-section-id={`${page.slug}-intro`} data-stage-section>
+      <section className="site-container max-w-[96rem] pb-16 pt-16 md:pb-24 md:pt-40" data-section-id={`${page.slug}-intro`} data-stage-section>
         <nav aria-label="Breadcrumb" className="flex items-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-[#182920]/85 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
             <li>
@@ -149,7 +149,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </nav>
 
         <div className="mt-12 max-w-[62rem]" data-stage-copy>
-          <h2 className="text-balance text-4xl leading-tight text-[#d7ae71] md:text-6xl" data-stage-line>
+          <h2 className="site-title-lg text-balance text-[#d7ae71] md:text-[clamp(2.5rem,5vw,4.5rem)]" data-stage-line>
             {page.intro.title}
           </h2>
           <div className="mt-10 border-l border-white/15 pl-8 text-xl leading-relaxed text-white/86 md:text-2xl">
@@ -161,7 +161,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-4 pb-16 pt-0 md:px-8 md:pb-20" data-section-id={`${page.slug}-stats`}>
+      <section className="site-container max-w-[96rem] pb-16 pt-0 md:pb-20" data-section-id={`${page.slug}-stats`}>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {page.stats.map((stat) => (
             <article

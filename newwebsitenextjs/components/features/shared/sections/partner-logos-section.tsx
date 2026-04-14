@@ -1,14 +1,15 @@
 import { homeSectionContent } from "@/lib/data/content/resort-content";
+import { SectionShell } from "@/components/ui/section-shell";
 
 export function PartnerLogosSection() {
   const content = homeSectionContent.logos;
 
   return (
-    <section className="bg-black px-5 py-14 md:px-10">
+    <SectionShell className="bg-black" containerClassName="text-center">
       <div className="mx-auto max-w-[92rem] text-center">
-        <p className="text-sm uppercase tracking-[0.35em] text-[#cba977]">{content.eyebrow}</p>
-        <h3 className="mt-3 text-4xl text-white md:text-5xl">{content.title}</h3>
-        <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-white/70 md:text-base">
+        <p className="site-eyebrow">{content.eyebrow}</p>
+        <h3 className="site-title-lg mt-3 text-white">{content.title}</h3>
+        <p className="site-copy mx-auto mt-4 max-w-3xl text-white/70">
           {content.description}
         </p>
       </div>
@@ -21,11 +22,11 @@ export function PartnerLogosSection() {
             className="glass-panel luxury-shadow block rounded-[1.75rem] border border-white/10 px-6 py-7 text-left transition-colors hover:border-[#cba977]/50"
             data-cursor="hover"
           >
-            <p className="text-xs uppercase tracking-[0.28em] text-[#cba977]">{item.label}</p>
-            <p className="mt-4 break-words text-xl leading-snug text-white md:text-2xl">{item.value}</p>
+            <p className="site-eyebrow text-[#cba977]">{item.label}</p>
+            <p className="site-title-md mt-4 break-words text-white md:text-[1.75rem]">{item.value}</p>
           </a>
         ))}
       </div>
-    </section>
+    </SectionShell>
   );
 }

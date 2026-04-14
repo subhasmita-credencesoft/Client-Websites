@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { Suspense, useMemo, useState, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { buildDirectBookingEngineUrl, formatDate, normalizeDate } from "@/lib/constants/booking";
@@ -65,16 +64,6 @@ function BookingPageContent() {
       }),
     [checkIn, checkOut, guestCount],
   );
-  const enquiryContactHref = useMemo(() => {
-    const params = new URLSearchParams({
-      checkIn,
-      checkOut,
-      guests: String(guestCount),
-      room: roomValue,
-    });
-
-    return `/contact?${params.toString()}`;
-  }, [checkIn, checkOut, guestCount, roomValue]);
   const decrementGuestCount = () => {
     setGuestCount((current) => Math.max(1, current - 1));
   };
@@ -158,7 +147,7 @@ function BookingPageContent() {
                 </p>
                 <h2 className="mt-2 text-[1.8rem] text-[#f4eee2] md:text-[2rem]">Plan your stay</h2>
                 <p className="mt-2 text-sm leading-relaxed text-white/72">
-                  Choose dates, guests, and the room category you prefer. This keeps the booking journey aligned with the property's actual room inventory.
+                  Choose dates, guests, and the room category you prefer. This keeps the booking journey aligned with the property&apos;s actual room inventory.
                 </p>
               </div>
 
@@ -342,13 +331,13 @@ function BookingPageContent() {
               <article className="rounded-[1.4rem] border border-[#c9a46e]/22 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
                 <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Property Fit</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
-                  The page is now aligned around the property's actual room inventory and premium stay experience rather than package-led planning.
+                  The page is now aligned around the property&apos;s actual room inventory and premium stay experience rather than package-led planning.
                 </p>
               </article>
               <article className="rounded-[1.4rem] border border-[#c9a46e]/22 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
                 <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Live Availability</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
-                  Book Now sends the selected dates and guests into the direct booking engine so availability is checked against the property flow.
+                  Book Now sends the selected dates and guests into the direct booking engine so availability is checked against the property&apos;s flow.
                 </p>
               </article>
             </div>

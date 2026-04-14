@@ -6,7 +6,6 @@ import { AwardsSection } from "@/components/features/shared/sections/awards-sect
 import { ExperienceCardsSection } from "@/components/features/home/sections/experience-cards-section";
 import { FeatureSplitSection } from "@/components/features/home/sections/feature-split-section";
 import { HeroSection } from "@/components/features/home/sections/hero-section";
-import { HorizontalJourneySection } from "@/components/features/home/sections/horizontal-journey-section";
 import { MediaCoverageSection } from "@/components/features/home/sections/media-coverage-section";
 import { ParallaxGallerySection } from "@/components/features/home/sections/parallax-gallery-section";
 import { StaySection } from "@/components/features/home/sections/stay-section";

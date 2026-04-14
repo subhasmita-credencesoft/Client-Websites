@@ -2,20 +2,21 @@ import Image from "next/image";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { awardCards } from "@/lib/data/content/mountain-content";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
+import { SectionShell } from "@/components/ui/section-shell";
 
 export function AwardsSection() {
   const content = homeSectionContent.awards;
 
   return (
-    <section data-section-id="awards" className="bg-black px-5 py-20 md:px-10">
+    <SectionShell data-section-id="awards" className="bg-black" containerClassName="text-center">
       <div className="text-center" data-reveal>
         <h3
           data-section-title
-          className="text-3xl leading-tight text-[#cba977] md:text-5xl"
+          className="site-title-lg text-[#cba977]"
         >
           {content.title}
         </h3>
-        <p className="mx-auto mt-4 max-w-4xl text-lg text-white md:text-2xl">
+        <p className="site-copy-lg mx-auto mt-4 max-w-4xl text-white">
           {content.subtitle}
         </p>
       </div>
@@ -25,10 +26,10 @@ export function AwardsSection() {
           <article
             key={award.title}
             data-card
-            className="border-x border-white/20 px-7 text-center"
+            className="site-subtle-card px-6 py-7 text-center"
           >
             <div
-              className="mx-auto h-[24rem] max-w-xs overflow-hidden bg-white [will-change:transform]"
+              className="mx-auto aspect-[4/5] max-w-xs overflow-hidden rounded-[1.25rem] bg-white [will-change:transform]"
               data-card-image
               data-bg-parallax
               data-bg-depth="6"
@@ -45,10 +46,10 @@ export function AwardsSection() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <p className="mt-8 text-2xl leading-tight text-white md:text-3xl">
+            <p className="site-title-md mt-8 text-white">
               {award.title}
             </p>
-            <p className="mt-3 text-xl leading-snug text-white/85 md:text-2xl">
+            <p className="site-copy mt-3 text-white/85 md:text-lg">
               {award.subtitle}
             </p>
           </article>
@@ -56,8 +57,8 @@ export function AwardsSection() {
       </div>
 
       <div className="mt-12 text-center">
-        <MagneticButton href="/rules">{content.cta}</MagneticButton>
+        <MagneticButton href="/rules" variant="primary">{content.cta}</MagneticButton>
       </div>
-    </section>
+    </SectionShell>
   );
 }

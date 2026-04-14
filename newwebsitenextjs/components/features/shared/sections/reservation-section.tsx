@@ -1,15 +1,17 @@
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
+import { SectionShell } from "@/components/ui/section-shell";
 
 export function ReservationSection() {
   const content = homeSectionContent.reservation;
 
   return (
-    <section
+    <SectionShell
       id="reserve"
       data-section-id="reserve"
       data-reveal
-      className="relative mx-auto max-w-7xl px-4 pb-20 pt-6 sm:px-5 md:px-8 md:pb-34"
+      className="relative pt-6"
+      size="default"
     >
       <div className="glass-panel luxury-shadow overflow-hidden rounded-[2rem] p-6 md:rounded-[2.2rem] md:p-14">
         <div
@@ -19,19 +21,20 @@ export function ReservationSection() {
 
         <div className="relative z-10 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="mb-4 text-xs uppercase tracking-[0.35em] text-[#deb88c]">
+            <p className="site-eyebrow mb-4 text-[#deb88c]">
               {content.eyebrow}
             </p>
-            <h3 className="max-w-2xl text-balance text-3xl leading-tight text-[#fff0d9] md:text-5xl">
+            <h3 className="site-title-lg max-w-2xl text-balance text-[#fff0d9]">
               {content.title}
             </h3>
-            <p className="mt-4 max-w-xl text-sm text-white/70 md:text-base">
+            <p className="site-copy mt-4 max-w-xl text-white/70">
               {content.description}
             </p>
           </div>
           <div className="w-full sm:w-fit [will-change:transform]">
             <MagneticButton
               href="/booking"
+              variant="primary"
               className="w-full justify-center whitespace-nowrap"
             >
               {content.cta}
@@ -39,6 +42,6 @@ export function ReservationSection() {
           </div>
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

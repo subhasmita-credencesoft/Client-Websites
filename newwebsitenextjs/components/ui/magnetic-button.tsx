@@ -4,14 +4,35 @@ import type { MouseEvent } from "react";
 import { useRef } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils/cn";
+import type { ButtonSize, ButtonVariant } from "@/types";
 
 type MagneticButtonProps = {
   children: import("react").ReactNode;
   className?: string;
   href?: string;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
 };
 
-export function MagneticButton({ children, className, href }: MagneticButtonProps) {
+const variantClassMap = {
+  primary: "site-button site-button-primary",
+  secondary: "site-button site-button-secondary",
+  outline: "site-button site-button-outline",
+} as const;
+
+const sizeClassMap = {
+  sm: "px-4 text-[0.68rem]",
+  md: "px-7 text-xs",
+  lg: "px-8 text-[0.82rem]",
+} as const;
+
+export function MagneticButton({
+  children,
+  className,
+  href,
+  variant = "secondary",
+  size = "md",
+}: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
   const rafRef = useRef<number>(0);
   const rectRef = useRef<DOMRect | null>(null);
@@ -79,7 +100,9 @@ export function MagneticButton({ children, className, href }: MagneticButtonProp
   };
 
   const commonClassName = cn(
-    "group inline-flex items-center justify-center rounded-full border border-[#d7b17c]/40 bg-[#365143]/80 px-7 py-3 text-xs uppercase tracking-[0.24em] text-[#fff6ea] backdrop-blur-xl transition-all duration-500 hover:border-[#dfbe97]/80 hover:bg-[#415b4e] hover:shadow-[0_0_26px_rgba(224,180,129,0.35)]",
+    "group backdrop-blur-xl hover:shadow-[0_0_26px_rgba(224,180,129,0.25)]",
+    variantClassMap[variant],
+    sizeClassMap[size],
     "will-transform",
     className,
   );

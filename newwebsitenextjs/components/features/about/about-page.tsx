@@ -27,21 +27,21 @@ export function AboutPage() {
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.16)_0%,rgba(0,0,0,0.4)_34%,rgba(0,0,0,0.74)_100%)]" />
         <div className="absolute inset-x-[8%] top-28 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent" />
-        <div className="relative z-10 mx-auto flex min-h-[108svh] max-w-[96rem] items-center justify-center px-6 pb-16 pt-8 text-center md:px-12 md:pb-24">
+        <div className="site-container relative z-10 flex min-h-[108svh] max-w-[96rem] items-center justify-center pb-16 pt-8 text-center md:pb-24">
           <div className="max-w-5xl" data-reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#d6b07a]" data-reveal-child>
+            <p className="site-eyebrow" data-reveal-child>
               {content.hero.eyebrow}
             </p>
-            <h1 className="mt-5 text-balance text-[clamp(34px,5.4vw,78px)] leading-[1] text-[#f5ebda]" data-section-title>
+            <h1 className="site-title-xl mt-5 text-balance" data-section-title>
               {content.hero.title}
             </h1>
             <div className="mx-auto mt-5 h-[2px] w-24 bg-[#d6b07a]" />
-            <p className="mx-auto mt-6 max-w-4xl text-balance text-lg leading-relaxed text-white/88 md:text-2xl" data-reveal-child>
+            <p className="site-copy-lg mx-auto mt-6 max-w-4xl text-balance" data-reveal-child>
               {content.hero.description}
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4" data-reveal-child>
-              <MagneticButton href="/booking?eventType=Destination%20Wedding">Plan Your Wedding</MagneticButton>
-              <MagneticButton href="/booking?eventType=Luxury%20Stay" className="bg-transparent">
+              <MagneticButton href="/booking?eventType=Destination%20Wedding" variant="primary">Plan Your Wedding</MagneticButton>
+              <MagneticButton href="/booking?eventType=Luxury%20Stay" variant="outline" className="bg-transparent">
                 Reserve Your Stay
               </MagneticButton>
             </div>
@@ -91,10 +91,10 @@ export function AboutPage() {
 
           <div data-reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.story.eyebrow}</p>
-            <h2 className="mt-5 max-w-4xl text-balance text-3xl leading-tight text-[#f6ead8] md:text-5xl" data-section-title>
+            <h2 className="site-title-lg mt-5 max-w-4xl text-balance" data-section-title>
               {content.story.title}
             </h2>
-            <div className="mt-7 space-y-5 text-base leading-relaxed text-white/80 md:text-lg">
+            <div className="site-copy mt-7 space-y-5 md:text-lg">
               {content.story.paragraphs.map((paragraph) => (
                 <p key={paragraph} data-reveal-child>{paragraph}</p>
               ))}
@@ -110,7 +110,7 @@ export function AboutPage() {
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <div data-reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.ethos.eyebrow}</p>
-            <h2 className="mt-5 max-w-3xl text-balance text-3xl leading-tight text-[#f6ead8] md:text-5xl" data-section-title>
+            <h2 className="site-title-lg mt-5 max-w-3xl text-balance" data-section-title>
               {content.ethos.title}
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg" data-reveal-child>
@@ -274,17 +274,17 @@ export function AboutPage() {
       <section className="mx-auto max-w-[96rem] px-6 py-20 md:px-12 md:py-28" data-section-id="about-cta">
         <div className="rounded-[2.4rem] border border-[#d5b07a]/20 bg-[#243b31] px-6 py-12 text-center md:px-10 md:py-16" data-reveal>
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.cta.eyebrow}</p>
-          <h2 className="mx-auto mt-5 max-w-4xl text-balance text-3xl leading-tight text-[#f6ead8] md:text-5xl" data-section-title>
+          <h2 className="site-title-lg mx-auto mt-5 max-w-4xl text-balance" data-section-title>
             {content.cta.title}
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg" data-reveal-child>
+          <p className="site-copy mx-auto mt-6 max-w-3xl md:text-lg" data-reveal-child>
             {content.cta.description}
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-4" data-reveal-child>
-            <MagneticButton href="/offers">Explore Packages</MagneticButton>
+            <MagneticButton href="/offers" variant="primary">Explore Packages</MagneticButton>
             <Link
               href="/booking?eventType=Destination%20Wedding"
-              className="inline-flex items-center justify-center rounded-full border border-[#d5b07a]/35 px-7 py-3 text-xs uppercase tracking-[0.24em] text-[#fff6ea] transition-colors hover:bg-white/5"
+              className="site-button site-button-outline px-7"
             >
               Check Venue Availability
             </Link>

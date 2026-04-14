@@ -12,9 +12,9 @@ export function LuxuryCard({ title, description, image }: LuxuryCardProps) {
       data-card
       data-cinematic-card
       data-cursor="hover"
-      className="group relative overflow-hidden rounded-3xl border border-white/20 bg-white/8 shadow-[0_25px_50px_rgba(0,0,0,0.45)]"
+      className="site-subtle-card group relative overflow-hidden"
     >
-      <div className="relative h-[25rem] w-full overflow-hidden">
+      <div className="relative aspect-[4/5] w-full overflow-hidden">
         <Image
           src={image}
           alt={title}
@@ -30,13 +30,13 @@ export function LuxuryCard({ title, description, image }: LuxuryCardProps) {
       <div className="absolute inset-x-0 bottom-0 p-6 md:p-7">
         <h3
           data-reveal-child
-          className="translate-y-4 text-3xl text-[#fff3df] opacity-90 transition-all duration-500 group-hover:translate-y-0"
+          className="site-title-md translate-y-4 opacity-90 transition-all duration-500 group-hover:translate-y-0"
         >
           {title}
         </h3>
         <p
           data-reveal-child
-          className="mt-3 translate-y-6 text-sm leading-relaxed text-white/70 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
+          className="site-copy-sm mt-3 translate-y-6 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
         >
           {description}
         </p>

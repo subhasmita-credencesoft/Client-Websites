@@ -57,16 +57,16 @@ export function DetailPageView({ page }: DetailPageProps) {
           <Image src={page.heroImage} alt={page.title} fill className="object-cover" sizes="100vw" priority />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.58)_60%,rgba(0,0,0,0.9)_100%)]" data-hero-overlay />
-        <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-[96rem] items-start px-4 pb-8 pt-24 md:min-h-[110svh] md:px-12 md:pb-12 md:pt-36">
+        <div className="site-container relative z-10 flex min-h-[88svh] max-w-[96rem] items-start pb-8 pt-24 md:min-h-[110svh] md:pb-12 md:pt-36">
           <div className="max-w-5xl" data-hero-copy>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#c9a46e]" data-hero-subtitle>
+            <p className="site-eyebrow" data-hero-subtitle>
               {isPackagePage ? "Wedding Package" : "Luxury Stay"}
             </p>
-            <h1 data-hero-title className="text-4xl md:text-6xl">
+            <h1 data-hero-title className="site-title-xl">
               {page.title}
             </h1>
             <div className="mt-5 h-px w-24 bg-gradient-to-r from-[#d7b67f] via-[#f0d9ae] to-transparent md:w-36" data-hero-divider />
-            <p className="mt-5 max-w-4xl text-xl text-white/90 md:text-2xl" data-hero-subtitle>
+            <p className="site-copy-lg mt-5 max-w-4xl" data-hero-subtitle>
               {page.subtitle}
             </p>
             {isPackagePage ? (
@@ -77,14 +77,14 @@ export function DetailPageView({ page }: DetailPageProps) {
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href={bookingContextHref}
-                className="inline-flex border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
+                className="site-button site-button-primary px-8"
                 data-cursor="hover"
               >
                 {primaryCtaLabel}
               </Link>
               <Link
                 href="/booking?eventType=Destination%20Wedding"
-                className="inline-flex border border-white/20 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:border-[#c9a46e]/40 hover:text-[#f3e7d2]"
+                className="site-button site-button-outline px-8"
                 data-cursor="hover"
               >
                 Plan Your Wedding
@@ -105,7 +105,7 @@ export function DetailPageView({ page }: DetailPageProps) {
       </section>
 
       <div className="content-auto-section">
-      <section className="mx-auto max-w-6xl px-4 py-16 text-center md:px-10 md:py-20" data-stage-section>
+      <section className="site-container max-w-5xl py-16 text-center md:py-20" data-stage-section>
         <nav aria-label="Breadcrumb" className="flex items-center justify-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#c8a871]/20 bg-[#16261f]/80 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
             <li>
@@ -123,13 +123,13 @@ export function DetailPageView({ page }: DetailPageProps) {
           <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-stage-line>
             {page.introTitle}
           </p>
-          <p className="mx-auto mt-6 max-w-5xl text-xl leading-relaxed md:text-2xl" data-stage-line>
+          <p className="site-copy-lg mx-auto mt-6 max-w-5xl" data-stage-line>
             {page.introBody}
           </p>
         </div>
         <Link
           href={bookingContextHref}
-          className="mt-10 inline-flex border border-[#c8a871] bg-[#c8a871] px-9 py-3 text-sm font-semibold uppercase tracking-wide text-black"
+          className="site-button site-button-primary mt-10 px-9"
           data-cursor="hover"
           data-stage-line
         >
@@ -159,8 +159,8 @@ export function DetailPageView({ page }: DetailPageProps) {
         </section>
       ) : null}
 
-      <section className="mx-auto max-w-[96rem] px-4 py-10 md:px-10" data-stage-section>
-        <h2 className="text-center text-4xl md:text-5xl" data-stage-line>
+      <section className="site-container max-w-[96rem] py-10" data-stage-section>
+        <h2 className="site-title-lg text-center" data-stage-line>
           {sectionTitle}
         </h2>
         <div className="mt-12 grid gap-8 md:grid-cols-2" data-stage-visual>
@@ -173,7 +173,7 @@ export function DetailPageView({ page }: DetailPageProps) {
               </div>
               <div className="px-6 pb-8 pt-8 md:px-8 md:pb-10">
                 <p className="text-xs uppercase tracking-[0.15em] text-[#c9a46e]">{card.label}</p>
-                <h3 className="mt-3 text-3xl md:text-4xl">{card.title}</h3>
+                <h3 className="site-title-md mt-3">{card.title}</h3>
                 {isPackagePage ? (
                   <div className="mt-4 max-w-3xl space-y-3 text-white/90">
                     {card.description.split("\n").map((line, index) => (
@@ -200,7 +200,7 @@ export function DetailPageView({ page }: DetailPageProps) {
                 <div>
                   <Link
                     href={`${bookingContextHref}&offer=${encodeURIComponent(card.title)}&label=${encodeURIComponent(card.label)}&details=${encodeURIComponent(card.description.replace(/\n/g, " | "))}`}
-                    className="mt-6 inline-flex border border-[#c8a871] bg-[#c8a871] px-9 py-3 text-sm font-semibold uppercase tracking-wide text-black"
+                    className="site-button site-button-primary mt-6 px-9"
                     data-cursor="hover"
                   >
                     {primaryCtaLabel}
@@ -213,8 +213,8 @@ export function DetailPageView({ page }: DetailPageProps) {
       </section>
 
       {page.packageComparison ? (
-        <section className="mx-auto max-w-[96rem] px-4 py-10 md:px-10" data-stage-section>
-          <h2 className="text-center text-4xl md:text-5xl" data-stage-line>
+        <section className="site-container max-w-[96rem] py-10" data-stage-section>
+          <h2 className="site-title-lg text-center" data-stage-line>
             Compare Package Value
           </h2>
           <div className="mt-12 grid gap-8 xl:grid-cols-2">
@@ -254,8 +254,8 @@ export function DetailPageView({ page }: DetailPageProps) {
         </section>
       ) : null}
 
-      <section className="mx-auto max-w-[96rem] px-4 py-14 md:px-10 md:py-16" data-stage-section>
-        <h2 className="text-center text-4xl md:text-5xl" data-stage-line>
+      <section className="site-container max-w-[96rem] py-14 md:py-16" data-stage-section>
+        <h2 className="site-title-lg text-center" data-stage-line>
           {galleryHeading}
         </h2>
         <div className="mt-8 flex flex-wrap justify-center gap-5 text-xl md:text-3xl" data-stage-copy>
@@ -306,28 +306,28 @@ export function DetailPageView({ page }: DetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-16 md:px-10 md:pb-20" data-stage-section>
+      <section className="site-container max-w-5xl pb-16 md:pb-20" data-stage-section>
         <div className="rounded-[2rem] border border-white/10 bg-[#16261f] px-8 py-12 text-center shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:px-12 md:py-14">
           <p className="text-xs uppercase tracking-[0.22em] text-[#c9a46e]" data-stage-line>
             Booking Intent
           </p>
-          <h3 className="mx-auto mt-5 max-w-4xl text-balance text-3xl leading-tight text-white md:text-5xl" data-stage-line>
+          <h3 className="site-title-lg mx-auto mt-5 max-w-4xl text-balance text-white" data-stage-line>
             {bookingPanelTitle}
           </h3>
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/78 md:text-lg" data-stage-line>
+          <p className="site-copy mx-auto mt-6 max-w-3xl md:text-lg" data-stage-line>
             {bookingPanelBody}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href={bookingContextHref}
-              className="inline-flex border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
+              className="site-button site-button-primary px-8"
               data-cursor="hover"
             >
               {primaryCtaLabel}
             </Link>
             <Link
               href="/contact"
-              className="inline-flex border border-white/20 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:border-[#c9a46e]/40 hover:text-[#f3e7d2]"
+              className="site-button site-button-outline px-8"
               data-cursor="hover"
             >
               Contact The Team
