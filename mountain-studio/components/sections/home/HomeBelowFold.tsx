@@ -229,11 +229,11 @@ export default function HomeBelowFold() {
 
       <section className="section-space overflow-hidden">
         <div className="container-shell mb-10">
-          <SectionHeading
-            eyebrow="Testimonials"
-            title="A chorus of stays remembered long after checkout."
-            description="Guest voices that reflect comfort, easy coordination, and the visual appeal of the property."
-          />
+       <SectionHeading
+  eyebrow="Testimonials"
+  title="Every stay becomes a story."
+  description="Guests from across India share moments of comfort, connection, and quiet luxury."
+/>
         </div>
         <motion.div
           className="flex gap-6 px-5 sm:px-8 lg:px-12"
@@ -255,7 +255,7 @@ export default function HomeBelowFold() {
               </div>
               <p className="text-base leading-8 text-ivory/72">{item.quote}</p>
               <div className="mt-6 text-sm uppercase tracking-[0.28em] text-ivory/55">
-                {item.name} Â· {item.flag} {item.country}
+                {item.name}  {item.flag} 
               </div>
             </article>
           ))}

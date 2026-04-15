@@ -271,68 +271,68 @@ export const amenities: Amenity[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    name: "Camille Laurent",
-    country: "France",
-    rating: 5,
-    quote: "Every detail felt choreographed for comfort. The suite, the spa, and the service all moved with the same quiet confidence.",
-    avatar: imageSet.roomOne,
-    flag: "ðŸ‡«ðŸ‡·"
-  },
-  {
-    name: "Arjun Mehta",
+    name: "Riya Sharma",
     country: "India",
     rating: 5,
-    quote: "Mountain Studio has the kind of hospitality that turns a short stay into a story you keep retelling.",
+    quote: "From the moment we arrived, everything felt thoughtfully curated. The ambiance, service, and comfort were truly exceptional.",
+    avatar: imageSet.roomOne,
+    flag: "🇮🇳"
+  },
+  {
+    name: "Aarav Patel",
+    country: "India",
+    rating: 5,
+    quote: "A perfect blend of luxury and warmth. The hospitality made our short getaway feel incredibly special.",
     avatar: imageSet.exterior,
-    flag: "ðŸ‡®ðŸ‡³"
+    flag: "🇮🇳"
   },
   {
-    name: "Sofia Bennett",
-    country: "United Kingdom",
+    name: "Ananya Iyer",
+    country: "India",
     rating: 5,
-    quote: "The dining program is exceptional, and the staff somehow knew exactly when to appear and when to let the moment breathe.",
+    quote: "The dining experience was outstanding. Every dish felt crafted with care and authentic flavors.",
     avatar: imageSet.dining,
-    flag: "ðŸ‡¬ðŸ‡§"
+    flag: "🇮🇳"
   },
   {
-    name: "Luca Romano",
-    country: "Italy",
+    name: "Rohan Verma",
+    country: "India",
     rating: 4,
-    quote: "Elegant without ever feeling rigid. The private dinner setup and open surroundings alone were worth the trip.",
+    quote: "Elegant yet relaxing. The private dinner arrangement and serene surroundings made it unforgettable.",
     avatar: imageSet.pool,
-    flag: "ðŸ‡®ðŸ‡¹"
+    flag: "🇮🇳"
   },
   {
-    name: "Mia Carter",
-    country: "United States",
+    name: "Neha Kapoor",
+    country: "India",
     rating: 5,
-    quote: "Our anniversary stay felt cinematic in the best way. Beautiful rooms, thoughtful surprises, and stunning sunsets.",
+    quote: "Our anniversary celebration here was magical. The team added thoughtful touches that made it truly memorable.",
     avatar: imageSet.spa,
-    flag: "ðŸ‡ºðŸ‡¸"
+    flag: "🇮🇳"
   },
   {
-    name: "Noah Fischer",
-    country: "Germany",
+    name: "Kabir Singh",
+    country: "India",
     rating: 5,
-    quote: "The architecture, the music, the scent design. It all works together to make the hotel feel unforgettable.",
+    quote: "The design, the atmosphere, and the attention to detail make this place stand out from anywhere else.",
     avatar: imageSet.lobby,
-    flag: "ðŸ‡©ðŸ‡ª"
+    flag: "🇮🇳"
   },
   {
-    name: "Aya Nakamura",
-    country: "Japan",
+    name: "Meera Nair",
+    country: "India",
     rating: 5,
-    quote: "Impeccably run and deeply calming. The spa experience was among the best I have had anywhere in the world.",
+    quote: "Calm, luxurious, and perfectly managed. The spa experience alone is worth visiting again.",
     avatar: imageSet.roomThree,
-    flag: "ðŸ‡¯ðŸ‡µ"
+    flag: "🇮🇳"
   },
   {
-    name: "Elena Ruiz",
-    country: "Spain",
+    name: "Vikram Desai",
+    country: "India",
     rating: 5,
-    quote: "We came for a celebration and left feeling renewed. The team created a weekend that felt completely personal.",
+    quote: "We came for a family celebration and left with unforgettable memories. Truly personalized service.",
     avatar: imageSet.ballroom,
-    flag: "ðŸ‡ªðŸ‡¸"
+    flag: "🇮🇳"
   }
 ];
 
