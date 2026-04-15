@@ -19,7 +19,7 @@ export function ParallaxGallerySection() {
   return (
     <section
       data-cinematic-section
-      className="relative mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-30"
+      className="relative mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-24"
     >
       {/* Glow orbs — unchanged visually */}
       <div
@@ -41,7 +41,7 @@ export function ParallaxGallerySection() {
 
       <div
         data-reveal
-        className="relative mt-16 grid gap-4 md:grid-cols-12 md:grid-rows-2"
+        className="relative mt-14 grid gap-4 md:grid-cols-12 md:grid-rows-2"
       >
         {/* ── Panel 0 — large left, row-span-2 ── */}
         <figure

@@ -8,8 +8,8 @@ const hrefMap: Record<string, string> = {
   "Standard Room": "/standard-room",
   "Cliff View Room": "/cliff-room",
   "Family Room": "/family-room",
-  "Glass Jacuzi Room": "/glass-cottage",
-  Bunglow: "/bungalow",
+  "Glass Jacuzzi Room": "/glass-cottage",
+  Bungalow: "/bungalow",
 };
 
 // Marquee items created once — not inside render
@@ -132,14 +132,14 @@ function StayCard({
 
 export function StaySection() {
   return (
-    <section data-section-id="stay" className="bg-black py-14">
+    <section data-section-id="stay" className="bg-black py-16 md:py-20">
       {/*
        * FIX 8 — marquee wrapper uses `will-change:transform` so the
        * CSS/JS animation runs on the compositor thread, not main thread.
        */}
       <div className="overflow-hidden border-y border-white/15 py-4">
         <div
-          className="flex w-max gap-8 whitespace-nowrap text-2xl text-[#cba977] [will-change:transform] md:text-3xl"
+          className="flex w-max gap-8 whitespace-nowrap text-[1.55rem] text-[var(--color-primary-hover)] [will-change:transform] md:text-[2rem]"
           data-marquee-track
         >
           {/*
@@ -159,12 +159,12 @@ export function StaySection() {
          * FIX 10 — first two cards (above the fold on most viewports) get
          * `priority` so Next.js preloads them; remaining cards stay lazy.
          */}
-        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {stayCardsPrimary.map((card, i) => (
             <StayCard key={card.title} {...card} priority={i < 2} />
           ))}
         </div>
-        <div className="mt-5 grid gap-5 sm:grid-cols-2">
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {stayCardsSecondary.map((card) => (
             <StayCard key={card.title} {...card} />
           ))}

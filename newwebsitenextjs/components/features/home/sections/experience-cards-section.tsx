@@ -9,7 +9,7 @@ export function ExperienceCardsSection() {
       data-section-id="experiences"
       data-cinematic-section
       data-sticky-fade-section
-      className="relative mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32"
+      className="relative mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-24"
     >
       <div
         aria-hidden="true"
@@ -29,7 +29,7 @@ export function ExperienceCardsSection() {
         />
       </div>
 
-      <div className="mt-16 grid gap-6 md:grid-cols-3">
+      <div className="mt-14 grid gap-6 md:grid-cols-3">
         {experienceCards.map((card) => (
           <div
             key={card.title}

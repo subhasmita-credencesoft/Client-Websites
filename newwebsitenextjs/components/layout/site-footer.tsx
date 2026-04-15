@@ -7,9 +7,9 @@ export function SiteFooter() {
   const sections = footerSections as FooterSection[];
 
   return (
-    <footer className="border-t border-[rgba(var(--color-primary-rgb),0.2)] bg-[var(--color-background)]">
-      <PageWrapper size="wide" className="py-14 md:py-16">
-        <div className="grid gap-8 md:grid-cols-3 md:gap-12">
+    <footer className="bg-[var(--color-background)]">
+      <PageWrapper size="wide" className="py-12 md:py-16">
+        <div className="grid gap-8 text-center md:grid-cols-3 md:gap-12 md:text-left">
           {sections.map((section, sectionIndex) => (
             <ul key={sectionIndex} className="space-y-3 text-sm text-[var(--color-text-secondary)] sm:text-base md:text-lg">
               {section.map((item) => (
@@ -46,7 +46,7 @@ export function SiteFooter() {
             </ul>
           ))}
         </div>
-        <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs tracking-[0.06em] text-white/70 sm:text-sm md:text-base">
+        <div className="mt-10 pt-6 text-center text-xs tracking-[0.06em] text-white/70 sm:text-sm md:text-base">
           <p className="mt-2">
             Designed and Developed by{" "}
             <a

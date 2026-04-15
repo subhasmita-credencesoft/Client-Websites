@@ -32,21 +32,21 @@ export function OffersPageClient() {
 
   return (
     <>
-      <section className="relative min-h-[86svh] overflow-hidden pt-36 md:min-h-[108svh] md:pt-48" data-section-id="offers-hero" data-hero-stage>
+      <section className="relative min-h-[42rem] overflow-hidden pt-28 sm:min-h-[46rem] sm:pt-32 md:min-h-[52rem] md:pt-40" data-section-id="offers-hero" data-hero-stage>
         <div className="absolute inset-0" data-hero-bg data-bg-parallax data-bg-depth="9">
           <Image src={heroImage} alt="Special offers and packages" fill className="object-cover" priority sizes="100vw" />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.3)_0%,rgba(0,0,0,0.42)_45%,rgba(0,0,0,0.62)_100%)]" data-hero-overlay />
-        <div className="site-container relative z-10 flex min-h-[86svh] max-w-[96rem] items-center justify-center pb-12 pt-8 text-center md:min-h-[108svh] md:pb-24">
+        <div className="site-container relative z-10 flex min-h-[42rem] items-center justify-center pb-12 pt-8 text-center sm:min-h-[46rem] md:min-h-[52rem] md:pb-20">
           <div data-hero-copy>
             <h1 className="site-title-xl text-balance text-[#ceb17e]" data-hero-title>
               {hero.title}
             </h1>
-            <p className="mt-3 text-[clamp(1.5rem,3vw,2.75rem)] font-semibold tracking-wide text-white" data-hero-subtitle>
+            <p className="mt-3 text-[clamp(1.1rem,2.8vw,2.2rem)] font-semibold tracking-wide text-white" data-hero-subtitle>
               {hero.subtitle}
             </p>
             <div className="mx-auto mt-4 h-[2px] w-20 bg-[#c89a55]" data-hero-divider />
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
               <Link
                 href={selectedOfferHref}
                 className="site-button site-button-primary px-8"
@@ -67,7 +67,7 @@ export function OffersPageClient() {
       </section>
 
       <div className="content-auto-section">
-      <section className="site-container max-w-[96rem] py-12 text-center md:py-14" data-stage-section>
+      <section className="site-container max-w-[80rem] py-12 text-center md:py-14" data-stage-section>
         <nav aria-label="Breadcrumb" className="flex items-center justify-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
             <li>
@@ -102,16 +102,16 @@ export function OffersPageClient() {
         </Link>
       </section>
 
-      <section className="site-container grid max-w-[96rem] gap-10 pb-16 pt-8 md:gap-16 md:pb-20">
+      <section className="site-container grid max-w-[80rem] gap-8 pb-16 pt-8 md:gap-12 md:pb-20">
         {visibleOffers.map((offer, index) => {
           const textFirst = index % 2 === 1;
           return (
             <article
               key={offer.title}
-              className="grid items-start overflow-hidden rounded-[2rem] border border-[#c89a55]/16 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] shadow-[0_24px_50px_rgba(10,18,12,0.24)] md:grid-cols-2"
+              className="grid items-start overflow-hidden rounded-[2rem] border border-[#c89a55]/16 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] shadow-[0_24px_50px_rgba(10,18,12,0.24)] lg:grid-cols-2"
               data-card
             >
-              <div className={textFirst ? "order-1 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-8 md:order-1 md:p-12" : "order-2 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-8 md:order-2 md:p-12"}>
+              <div className={textFirst ? "order-1 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-6 md:order-1 md:p-8 lg:p-12" : "order-2 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-6 md:order-2 md:p-8 lg:p-12"}>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#b88948]">Package Overview</p>
                 <h3 className="site-title-md mt-4 text-[#f4ead9]" data-section-title>
                   {offer.title}
@@ -132,14 +132,14 @@ export function OffersPageClient() {
                 </div>
                 <Link
                   href={getOfferBookingHref(offer)}
-                  className="site-button site-button-secondary mt-8 px-12"
+                  className="site-button site-button-secondary mt-8 w-full px-8 sm:w-auto sm:px-12"
                   data-cursor="hover"
                 >
                   CHECK PACKAGE AVAILABILITY
                 </Link>
               </div>
 
-              <div className={textFirst ? "order-2 relative h-[18rem] overflow-hidden md:order-2 md:h-full md:min-h-[30rem]" : "order-1 relative h-[18rem] overflow-hidden md:order-1 md:h-full md:min-h-[30rem]"}>
+              <div className={textFirst ? "order-2 relative h-[18rem] overflow-hidden md:order-2 md:h-[24rem] lg:h-full lg:min-h-[30rem]" : "order-1 relative h-[18rem] overflow-hidden md:order-1 md:h-[24rem] lg:h-full lg:min-h-[30rem]"}>
                 <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="7">
                   <Image src={offer.image} alt={offer.title} fill className="object-cover" sizes="(max-width: 767px) 100vw, 50vw" />
                 </div>
@@ -151,7 +151,7 @@ export function OffersPageClient() {
       </section>
 
         <section className="site-container max-w-5xl pb-16 text-center md:pb-20" data-stage-section>
-        <div className="rounded-[2.2rem] border border-[#c89a55]/18 bg-[linear-gradient(180deg,#15110e_0%,#1c1511_100%)] px-8 py-12 shadow-[0_24px_50px_rgba(10,18,12,0.24)] md:px-12 md:py-16">
+        <div className="rounded-[2.2rem] border border-[#c89a55]/18 bg-[linear-gradient(180deg,#15110e_0%,#1c1511_100%)] px-6 py-12 shadow-[0_24px_50px_rgba(10,18,12,0.24)] md:px-12 md:py-16">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#c89a55]" data-stage-line>
             Booking Support
           </p>
@@ -161,7 +161,7 @@ export function OffersPageClient() {
           <p className="site-copy-lg mx-auto mt-6 max-w-4xl" data-stage-line>
             Check weekday or weekend availability, compare package value, and let our team guide you toward the right stay and celebration format.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <Link
               href={selectedOfferHref}
               className="site-button site-button-primary px-8"

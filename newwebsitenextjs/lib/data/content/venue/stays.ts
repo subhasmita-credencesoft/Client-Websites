@@ -24,14 +24,14 @@ export const stayCardsPrimary = [
 
 export const stayCardsSecondary = [
   {
-    title: "Glass Jacuzi Room",
+    title: "Glass Jacuzzi Room",
     description: "A distinctive premium room with a private-feel setup and jacuzzi-led appeal for guests who want a more special stay category.",
     tariff: "Room Tariff Rs. 2,000/-",
     packagePrice: "Package pricing shared during enquiry",
     image: "https://bookonelocal.in/cdn/2026-04-02-082005702-DSC08852.jpg",
   },
   {
-    title: "Bunglow",
+    title: "Bungalow",
     description: "A spacious premium stay for guests who need more privacy, independent space, and a larger-format accommodation inside the property.",
     tariff: "Room Tariff Rs. 20,000/-",
     packagePrice: "Package pricing shared during enquiry",

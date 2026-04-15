@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { Card } from "@/components/ui/card";
+import { Grid } from "@/components/ui/grid";
 import { awardCards } from "@/lib/data/content/mountain-content";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 import { SectionShell } from "@/components/ui/section-shell";
@@ -22,7 +23,7 @@ export function AwardsSection() {
         </p>
       </div>
 
-      <div className="mx-auto mt-12 grid max-w-[84rem] gap-6 md:grid-cols-3 xl:gap-8">
+      <Grid columns={3} gap="md" className="mx-auto mt-12 max-w-[84rem] xl:gap-8">
         {awardCards.map((award, index) => (
           <Card
             as="article"
@@ -57,7 +58,7 @@ export function AwardsSection() {
             </p>
           </Card>
         ))}
-      </div>
+      </Grid>
 
       <div className="mt-12 text-center">
         <MagneticButton href="/rules" variant="primary">{content.cta}</MagneticButton>

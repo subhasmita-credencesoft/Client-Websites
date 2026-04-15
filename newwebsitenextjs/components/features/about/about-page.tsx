@@ -14,7 +14,7 @@ export function AboutPage() {
       <div className="noise-overlay" />
       <SiteHeader />
 
-      <section className="relative min-h-[108svh] overflow-hidden pt-44 md:pt-48" data-section-id="about-hero">
+      <section className="relative min-h-[42rem] overflow-hidden pt-28 sm:min-h-[46rem] sm:pt-32 md:min-h-[52rem] md:pt-40" data-section-id="about-hero">
         <div className="absolute inset-0" data-bg-parallax data-bg-depth="9">
           <Image
             src={content.hero.image}
@@ -26,8 +26,7 @@ export function AboutPage() {
           />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.16)_0%,rgba(0,0,0,0.4)_34%,rgba(0,0,0,0.74)_100%)]" />
-        <div className="absolute inset-x-[8%] top-28 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent" />
-        <div className="site-container relative z-10 flex min-h-[108svh] max-w-[96rem] items-center justify-center pb-16 pt-8 text-center md:pb-24">
+        <div className="site-container relative z-10 flex min-h-[42rem] items-center justify-center pb-12 pt-8 text-center sm:min-h-[46rem] md:min-h-[52rem] md:pb-20">
           <div className="max-w-5xl" data-reveal>
             <p className="site-eyebrow" data-reveal-child>
               {content.hero.eyebrow}
@@ -35,11 +34,11 @@ export function AboutPage() {
             <h1 className="site-title-xl mt-5 text-balance" data-section-title>
               {content.hero.title}
             </h1>
-            <div className="mx-auto mt-5 h-[2px] w-24 bg-[#d6b07a]" />
+            <div className="mx-auto mt-5 h-[2px] w-20 bg-[#d6b07a] md:w-24" />
             <p className="site-copy-lg mx-auto mt-6 max-w-4xl text-balance" data-reveal-child>
               {content.hero.description}
             </p>
-            <div className="mt-10 flex flex-wrap justify-center gap-4" data-reveal-child>
+            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4" data-reveal-child>
               <MagneticButton href="/booking?eventType=Destination%20Wedding" variant="primary">Plan Your Wedding</MagneticButton>
               <MagneticButton href="/booking?eventType=Luxury%20Stay" variant="outline" className="bg-transparent">
                 Reserve Your Stay
@@ -51,7 +50,7 @@ export function AboutPage() {
       </section>
 
       <div className="content-auto-section">
-      <section className="mx-auto max-w-[96rem] px-6 py-14 md:px-10">
+      <section className="mx-auto max-w-[80rem] px-4 py-12 md:px-8 md:py-14">
         <div className="mb-8 flex justify-center">
           <ol className="inline-flex items-center gap-3 rounded-full border border-[#d5b07a]/20 bg-[#182920]/85 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
             <li>
@@ -65,7 +64,7 @@ export function AboutPage() {
             <li className="text-[#d5b07a]">About</li>
           </ol>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
           {content.stats.map((stat) => (
             <article key={stat.label} className="rounded-[1.7rem] border border-white/10 bg-[#294236] px-6 py-6" data-card>
               <p className="text-3xl text-[#f6ead8] md:text-4xl" data-reveal-child>{stat.value}</p>
@@ -75,9 +74,9 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#182920] px-6 py-20 md:px-12 md:py-28" data-section-id="about-story">
-        <div className="mx-auto grid max-w-[96rem] gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
-          <div className="relative h-[22rem] overflow-hidden rounded-[2rem] md:h-[34rem]" data-reveal>
+      <section className="bg-[#182920] px-4 py-16 md:px-8 md:py-24" data-section-id="about-story">
+        <div className="mx-auto grid max-w-[80rem] gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+          <div className="relative h-[18rem] overflow-hidden rounded-[2rem] md:h-[34rem]" data-reveal>
             <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="8">
               <Image
                 src={content.story.image}
@@ -106,7 +105,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-6 py-20 md:px-12 md:py-28" data-section-id="about-ethos">
+      <section className="mx-auto max-w-[80rem] px-4 py-16 md:px-8 md:py-24" data-section-id="about-ethos">
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <div data-reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.ethos.eyebrow}</p>
@@ -117,7 +116,7 @@ export function AboutPage() {
               {content.ethos.description}
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {content.ethos.cards.map((card) => (
               <article key={card.title} className="rounded-[2rem] border border-white/10 bg-[#182920] p-7 shadow-[0_20px_40px_rgba(7,14,10,0.14)]" data-card>
                 <p className="text-xs uppercase tracking-[0.24em] text-[#d5b07a]">Ethos</p>
@@ -129,14 +128,14 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-6 py-20 md:px-12 md:py-28" data-section-id="about-pillars">
+      <section className="mx-auto max-w-[80rem] px-4 py-16 md:px-8 md:py-24" data-section-id="about-pillars">
         <SectionHeading
           eyebrow={content.pillars.eyebrow}
           title={content.pillars.title}
           className="max-w-4xl text-left md:text-center"
         />
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-3">
+        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {content.pillars.items.map((item) => (
             <article key={item.title} className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#1b2f25]" data-card>
               <div className="relative h-[18rem]">
@@ -153,10 +152,10 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#182920] px-6 py-20 md:px-12 md:py-28" data-section-id="about-message">
-        <div className="mx-auto grid max-w-[96rem] gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+      <section className="bg-[#182920] px-4 py-16 md:px-8 md:py-24" data-section-id="about-message">
+        <div className="mx-auto grid max-w-[80rem] gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
           <div className="glass-panel overflow-hidden rounded-[2.2rem] p-3" data-reveal>
-            <div className="relative h-[24rem] overflow-hidden rounded-[1.7rem] md:h-[36rem]">
+            <div className="relative h-[20rem] overflow-hidden rounded-[1.7rem] md:h-[36rem]">
               <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="8">
                 <Image
                   src={content.founder.image}
@@ -185,7 +184,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-6 py-20 md:px-12 md:py-28" data-section-id="about-journey">
+      <section className="mx-auto max-w-[80rem] px-4 py-16 md:px-8 md:py-24" data-section-id="about-journey">
         <SectionHeading
           eyebrow={content.journey.eyebrow}
           title={content.journey.title}
@@ -202,8 +201,8 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#182920] px-6 py-20 md:px-12 md:py-28" data-section-id="about-hosting">
-        <div className="mx-auto grid max-w-[96rem] gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+      <section className="bg-[#182920] px-4 py-16 md:px-8 md:py-24" data-section-id="about-hosting">
+        <div className="mx-auto grid max-w-[80rem] gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
           <div data-reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.hosting.eyebrow}</p>
             <h2 className="mt-5 max-w-4xl text-balance text-3xl leading-tight text-[#f6ead8] md:text-5xl" data-section-title>
@@ -222,7 +221,7 @@ export function AboutPage() {
           </div>
 
           <div className="glass-panel rounded-[2rem] p-3" data-reveal>
-            <div className="relative h-[24rem] overflow-hidden rounded-[1.6rem] md:h-[36rem]">
+            <div className="relative h-[20rem] overflow-hidden rounded-[1.6rem] md:h-[36rem]">
               <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="8">
                 <Image
                   src={content.hosting.image}
@@ -237,10 +236,10 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-6 py-20 md:px-12 md:py-28" data-section-id="about-impact">
-        <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+      <section className="mx-auto max-w-[80rem] px-4 py-16 md:px-8 md:py-24" data-section-id="about-impact">
+        <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div className="glass-panel rounded-[2rem] p-3" data-reveal>
-            <div className="relative h-[24rem] overflow-hidden rounded-[1.6rem] md:h-[35rem]">
+            <div className="relative h-[20rem] overflow-hidden rounded-[1.6rem] md:h-[35rem]">
               <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="8">
                 <Image
                   src={content.impact.image}
@@ -271,7 +270,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[96rem] px-6 py-20 md:px-12 md:py-28" data-section-id="about-cta">
+      <section className="mx-auto max-w-[80rem] px-4 py-16 md:px-8 md:py-24" data-section-id="about-cta">
         <div className="rounded-[2.4rem] border border-[#d5b07a]/20 bg-[#243b31] px-6 py-12 text-center md:px-10 md:py-16" data-reveal>
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.cta.eyebrow}</p>
           <h2 className="site-title-lg mx-auto mt-5 max-w-4xl text-balance" data-section-title>
@@ -280,7 +279,7 @@ export function AboutPage() {
           <p className="site-copy mx-auto mt-6 max-w-3xl md:text-lg" data-reveal-child>
             {content.cta.description}
           </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-4" data-reveal-child>
+          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4" data-reveal-child>
             <MagneticButton href="/offers" variant="primary">Explore Packages</MagneticButton>
             <Link
               href="/booking?eventType=Destination%20Wedding"

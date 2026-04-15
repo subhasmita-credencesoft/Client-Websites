@@ -1,4 +1,5 @@
 import { homeSectionContent } from "@/lib/data/content/resort-content";
+import { Grid } from "@/components/ui/grid";
 import { SectionShell } from "@/components/ui/section-shell";
 
 export function PartnerLogosSection() {
@@ -14,7 +15,7 @@ export function PartnerLogosSection() {
         </p>
       </div>
 
-      <div className="mx-auto mt-10 grid max-w-6xl gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <Grid columns={4} gap="md" className="mx-auto mt-10 max-w-6xl">
         {content.items.map((item) => (
           <a
             key={item.label}
@@ -26,7 +27,7 @@ export function PartnerLogosSection() {
             <p className="site-title-md mt-4 break-words text-white md:text-[1.75rem]">{item.value}</p>
           </a>
         ))}
-      </div>
+      </Grid>
     </SectionShell>
   );
 }

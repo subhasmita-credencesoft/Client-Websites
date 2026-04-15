@@ -1,10 +1,19 @@
-﻿export type DetailPage = {
+export type DetailPage = {
   slug: string;
   title: string;
   subtitle: string;
   introTitle: string;
   introBody: string;
   heroImage: string;
+  amenities?: Array<{
+    title: string;
+    description: string;
+  }>;
+  specifications?: Array<{
+    label: string;
+    value: string;
+  }>;
+  perfectFor?: string[];
   facts?: Array<{
     label: string;
     value: string;
@@ -51,6 +60,9 @@ type DetailSeed = {
   introTitle: string;
   introBody: string;
   heroImage: string;
+  amenities?: DetailPage["amenities"];
+  specifications?: DetailPage["specifications"];
+  perfectFor?: DetailPage["perfectFor"];
   facts?: DetailPage["facts"];
   cards: DetailPage["cards"];
   galleryTabs: string[];
@@ -90,6 +102,15 @@ const standardPackageComparison = {
       "Additional items and hospitality upgrades can be customised as per preference and charged separately on a per-person, per-day basis.",
   },
 } satisfies NonNullable<DetailPage["packageComparison"]>;
+
+const sharedStayAmenities = [
+  { title: "Air Conditioning", description: "Climate-controlled comfort for wedding, family, and leisure stays." },
+  { title: "Wi-Fi Access", description: "Reliable internet access for guests, planners, and hosted families." },
+  { title: "Flat-Screen TV", description: "In-room entertainment between functions and overnight stays." },
+  { title: "Geyser & Hot Water", description: "Comfortable bathing support for early departures and late-night returns." },
+  { title: "Room Service", description: "Responsive housekeeping and on-property guest assistance when required." },
+  { title: "Wedding Estate Access", description: "Easy connection to dining, pool, lawns, and celebration movement across the property." },
+] satisfies NonNullable<DetailPage["amenities"]>;
 
 const standardRoomCards = [
   {
@@ -136,10 +157,10 @@ const familyRoomCards = [
   },
 ] satisfies DetailPage["cards"];
 
-const classicCottageCards = [
+const jacuzziRoomCards = [
   {
     label: "ROOM TYPE",
-    title: "Glass Jacuzi Room",
+    title: "Glass Jacuzzi Room",
     description: "A distinctive room category with a premium jacuzzi-led setup and a more private-feeling stay mood inside the property.",
     image: "https://bookonelocal.in/cdn/2026-04-02-082005702-DSC08852.jpg",
   },
@@ -154,7 +175,7 @@ const classicCottageCards = [
 const bungalowCards = [
   {
     label: "ROOM TYPE",
-    title: "Bunglow",
+    title: "Bungalow",
     description: "A large-format premium stay designed for host families, longer stays, and guests who need more private space on-site.",
     image: "https://bookonelocal.in/cdn/2026-04-02-081456220-DSC08807.jpg",
   },
@@ -175,6 +196,20 @@ const detailPageSeeds: DetailSeed[] = [
     introBody:
       "Standard Room accommodation at The Mountain is designed for guest comfort with a room tariff of Rs. 5,000 and a stay-plus-all-meals package at Rs. 3,000 per person, making it a dependable choice for destination weddings and hosted family stays.",
     heroImage: "https://bookonelocal.in/cdn/DSC08717.avif",
+    amenities: sharedStayAmenities,
+    specifications: [
+      { label: "Room Size", value: "Comfort-led standard accommodation for short and mid-length hosted stays" },
+      { label: "Occupancy", value: "Best suited for 2 guests, with flexible short-stay comfort" },
+      { label: "Bedding", value: "Comfortable bedding setup for couples or individual guests" },
+      { label: "Bathroom", value: "Attached bathroom with geyser-supported hot water access" },
+      { label: "Stay Fit", value: "Ideal for wedding guests, couples, and practical destination bookings" },
+    ],
+    perfectFor: [
+      "Wedding guests arriving for one or two function days",
+      "Couples who want a comfortable destination base",
+      "Families needing efficient additional inventory",
+      "Guests who want simple, dependable premium comfort",
+    ],
     facts: [
       { label: "Room Tariff", value: "Rs. 5,000" },
       { label: "Stay + Meals", value: "Rs. 3,000 per person" },
@@ -202,6 +237,23 @@ const detailPageSeeds: DetailSeed[] = [
     introBody:
       "Cliff View Room accommodation at The Mountain is designed for guests who want scenic ambience, a stronger sense of privacy, and a room tariff of Rs. 6,500 for a more premium stay category.",
     heroImage: "https://bookonelocal.in/cdn/2026-04-02-073101502-DSC08801.jpg",
+    amenities: [
+      ...sharedStayAmenities,
+      { title: "Scenic Outlook", description: "A stronger destination feel with a more memorable visual mood for premium guests." },
+    ],
+    specifications: [
+      { label: "Room Size", value: "Premium scenic room layout with a more open destination feel" },
+      { label: "Occupancy", value: "1 to 3 guests" },
+      { label: "Bedding", value: "Comfortable premium bedding aligned to short and leisure stays" },
+      { label: "Bathroom", value: "Attached bathroom with hot water and essential fittings" },
+      { label: "Stay Fit", value: "Strong choice for close family and elevated hosted stays" },
+    ],
+    perfectFor: [
+      "Close family members or premium room allocation",
+      "Guests who value scenic ambience",
+      "Couples wanting a stronger destination-room feel",
+      "Hosted stays where the room itself should feel memorable",
+    ],
     facts: [
       { label: "Room Tariff", value: "Rs. 6,500" },
       { label: "Occupancy", value: "1 to 3 Guests" },
@@ -228,6 +280,23 @@ const detailPageSeeds: DetailSeed[] = [
     introBody:
       "Family Room stays at The Mountain support group accommodation with a room tariff of Rs. 10,000, helping families stay together more comfortably through leisure or celebration travel.",
     heroImage: "https://bookonelocal.in/cdn/2026-04-02-081007160-DSC08828.jpg",
+    amenities: [
+      ...sharedStayAmenities,
+      { title: "Group Comfort Layout", description: "A larger room setup that helps families stay together more easily through the itinerary." },
+    ],
+    specifications: [
+      { label: "Room Size", value: "Spacious family-oriented layout for shared movement and togetherness" },
+      { label: "Occupancy", value: "1 to 3 guests comfortably, ideal for compact family groups" },
+      { label: "Bedding", value: "Multi-bed family-style arrangement depending on allocation" },
+      { label: "Bathroom", value: "Attached bathroom with hot water support and everyday essentials" },
+      { label: "Stay Fit", value: "Best for small families and group-stay planning" },
+    ],
+    perfectFor: [
+      "Parents staying with children",
+      "Small family groups",
+      "Wedding families who want to remain together",
+      "Group comfort across multi-function destination stays",
+    ],
     facts: [
       { label: "Room Tariff", value: "Rs. 10,000" },
       { label: "Occupancy", value: "1 to 3 Guests" },
@@ -247,20 +316,37 @@ const detailPageSeeds: DetailSeed[] = [
   },
   {
     slug: "glass-cottage",
-    title: "Glass Jacuzi Room",
+    title: "Glass Jacuzzi Room",
     subtitle: "A premium room stay with privacy, jacuzzi-led character, and a more distinctive destination atmosphere.",
     introTitle: "STAY EXPERIENCE",
     introBody:
-      "Glass Jacuzi Room accommodation provides a more private and premium stay option with a room tariff of Rs. 2,000 for guests who want a distinctive room category.",
+      "Glass Jacuzzi Room accommodation provides a more private and premium stay option with a room tariff of Rs. 2,000 for guests who want a distinctive room category.",
     heroImage: "https://bookonelocal.in/cdn/2026-04-02-082005702-DSC08852.jpg",
+    amenities: [
+      ...sharedStayAmenities,
+      { title: "Jacuzzi-Led Stay Appeal", description: "A more distinctive premium room category for special stays and celebratory bookings." },
+    ],
+    specifications: [
+      { label: "Room Size", value: "Private-feel premium room layout with a special-use stay character" },
+      { label: "Occupancy", value: "1 to 4 guests" },
+      { label: "Bedding", value: "Premium bedding arrangement suited to shorter elevated stays" },
+      { label: "Bathroom", value: "Attached bathroom with a jacuzzi-led premium positioning" },
+      { label: "Stay Fit", value: "Best for special guests, couples, and standout room allocation" },
+    ],
+    perfectFor: [
+      "Special guest hosting",
+      "Couples wanting a premium upgrade",
+      "Short destination stays with more character",
+      "Celebration bookings needing one standout room type",
+    ],
     facts: [
       { label: "Room Tariff", value: "Rs. 2,000" },
       { label: "Occupancy", value: "1 to 4 Guests" },
       { label: "Inventory", value: "1 Room" },
       { label: "Booking Fit", value: "Distinctive premium escape" },
     ],
-    cards: classicCottageCards,
-    galleryTabs: ["Exterior", "Glass Jacuzi Room", "Guest Stay"],
+    cards: jacuzziRoomCards,
+    galleryTabs: ["Exterior", "Glass Jacuzzi Room", "Guest Stay"],
     galleryImage: "https://bookonelocal.in/cdn/2026-04-02-082011274-DSC08839.jpg",
     galleryImages: [
       "https://bookonelocal.in/cdn/2026-04-02-082005702-DSC08852.jpg",
@@ -271,12 +357,29 @@ const detailPageSeeds: DetailSeed[] = [
   },
   {
     slug: "bungalow",
-    title: "Bunglow",
+    title: "Bungalow",
     subtitle: "A spacious premium bungalow for host families, longer stays, and guests who need more privacy within the estate.",
     introTitle: "STAY EXPERIENCE",
     introBody:
-      "Bunglow accommodation at The Mountain is ideal for guests who need spacious premium furnished stays with a room tariff of Rs. 20,000 and a more private on-property setup.",
+      "Bungalow accommodation at The Mountain is ideal for guests who need spacious premium furnished stays with a room tariff of Rs. 20,000 and a more private on-property setup.",
     heroImage: "https://bookonelocal.in/cdn/2026-04-02-081456220-DSC08807.jpg",
+    amenities: [
+      ...sharedStayAmenities,
+      { title: "Private Residential Feel", description: "A larger-format stay setup with stronger privacy and host-family comfort." },
+    ],
+    specifications: [
+      { label: "Room Size", value: "Large-format premium accommodation with stronger private-use comfort" },
+      { label: "Occupancy", value: "2 to 4 guests" },
+      { label: "Bedding", value: "Host-family-friendly sleeping layout depending on requirement" },
+      { label: "Bathroom", value: "Attached bath facilities with essential premium stay support" },
+      { label: "Stay Fit", value: "Best for host families and longer private stays" },
+    ],
+    perfectFor: [
+      "Wedding hosts or key family members",
+      "Guests needing more private space",
+      "Longer stays inside the estate",
+      "Families wanting an independent on-property base",
+    ],
     facts: [
       { label: "Room Tariff", value: "Rs. 20,000" },
       { label: "Occupancy", value: "2 to 4 Guests" },
@@ -284,7 +387,7 @@ const detailPageSeeds: DetailSeed[] = [
       { label: "Booking Fit", value: "Longer private stays" },
     ],
     cards: bungalowCards,
-    galleryTabs: ["Exterior", "Bunglow", "Premium Stay"],
+    galleryTabs: ["Exterior", "Bungalow", "Premium Stay"],
     galleryImage: "https://bookonelocal.in/cdn/2026-04-02-081502983-DSC08806.jpg",
     galleryImages: [
       "https://bookonelocal.in/cdn/2026-04-02-081456220-DSC08807.jpg",
@@ -385,6 +488,9 @@ export const detailPages: Record<string, DetailPage> = Object.fromEntries(
       introTitle: page.introTitle,
       introBody: page.introBody,
       heroImage: page.heroImage,
+      amenities: page.amenities,
+      specifications: page.specifications,
+      perfectFor: page.perfectFor,
       facts: page.facts,
       cards: page.cards,
       galleryTabs: page.galleryTabs,
@@ -401,4 +507,3 @@ export const detailPageSlugs = detailPageSeeds.map((seed) => seed.slug);
 export function getDetailPage(slug: string) {
   return detailPages[slug];
 }
-

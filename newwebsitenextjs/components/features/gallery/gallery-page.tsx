@@ -24,13 +24,12 @@ export function GalleryPage() {
       <div className="noise-overlay" />
       <SiteHeader />
 
-      <section className="relative min-h-[86svh] overflow-hidden pt-36 md:min-h-[108svh] md:pt-48" data-section-id="gallery-hero">
+      <section className="relative min-h-[42rem] overflow-hidden pt-28 sm:min-h-[46rem] sm:pt-32 md:min-h-[52rem] md:pt-40" data-section-id="gallery-hero">
         <div className="absolute inset-0" data-bg-parallax data-bg-depth="9">
           <Image src={galleryPageData.hero.image} alt="Gallery overview" fill className="object-cover" priority sizes="100vw" />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.36)_34%,rgba(0,0,0,0.7)_100%)]" />
-        <div className="absolute inset-x-[8%] top-24 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent md:top-28" />
-        <div className="site-container relative z-10 flex min-h-[86svh] max-w-[96rem] items-center justify-center pb-12 pt-8 text-center md:min-h-[108svh] md:pb-24">
+        <div className="site-container relative z-10 flex min-h-[42rem] items-center justify-center pb-12 pt-8 text-center sm:min-h-[46rem] md:min-h-[52rem] md:pb-20">
           <div className="max-w-5xl" data-reveal>
             <p className="site-eyebrow" data-reveal-child>
               {galleryPageData.hero.eyebrow}
@@ -38,11 +37,11 @@ export function GalleryPage() {
             <h1 className="site-title-xl mt-5 text-balance" data-section-title>
               {galleryPageData.hero.title}
             </h1>
-            <div className="mx-auto mt-5 h-[2px] w-24 bg-[#d6b07a]" />
+            <div className="mx-auto mt-5 h-[2px] w-20 bg-[#d6b07a] md:w-24" />
             <p className="site-copy-lg mx-auto mt-6 max-w-4xl text-balance" data-reveal-child>
               {galleryPageData.hero.description}
             </p>
-            <div className="mt-10 flex flex-wrap justify-center gap-4" data-reveal-child>
+            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4" data-reveal-child>
               <MagneticButton href={DIRECT_BOOKING_ENGINE_URL} variant="primary">Check Availability</MagneticButton>
               <MagneticButton href="/contact" variant="outline" className="bg-transparent">Contact The Team</MagneticButton>
             </div>
@@ -52,7 +51,7 @@ export function GalleryPage() {
       </section>
 
       <div className="content-auto-section">
-        <section className="site-container max-w-[96rem] py-12 md:py-14">
+        <section className="site-container max-w-[80rem] py-12 md:py-14">
           <div className="rounded-[2.2rem] border border-[#d6b07a]/16 bg-[linear-gradient(180deg,rgba(37,60,49,0.96),rgba(26,43,35,0.96))] px-6 py-12 text-center shadow-[0_24px_60px_rgba(8,16,11,0.16)] md:px-12 md:py-16">
             <p className="text-lg text-white/80 md:text-2xl">
               <Link href="/" className="hover:text-[#d6b07a]">Home</Link> <span className="px-1">&gt;</span>{" "}
@@ -69,7 +68,7 @@ export function GalleryPage() {
           </div>
         </section>
 
-        <section className="site-container max-w-[96rem] pb-6">
+        <section className="site-container max-w-[80rem] pb-6">
           <div className="flex flex-wrap justify-center gap-4" data-reveal>
             {galleryPageData.tabs.map((tab) => (
               <button
@@ -89,17 +88,17 @@ export function GalleryPage() {
           </div>
         </section>
 
-        <section className="site-container max-w-[96rem] pb-16 pt-8 md:pb-20">
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-12">
+        <section className="site-container max-w-[80rem] pb-16 pt-8 md:pb-20">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-6">
             {visibleItems.map((item, index) => (
               <article
                 key={`${item.src}-${item.category}-${index}`}
-                className={`group overflow-hidden rounded-[2rem] border border-white/10 bg-[#172820] shadow-[0_20px_46px_rgba(7,14,10,0.18)] transition-transform duration-500 hover:-translate-y-1 xl:col-span-4 ${
-                  index % 5 === 0 ? "xl:col-span-8" : ""
+                className={`group overflow-hidden rounded-[2rem] border border-white/10 bg-[#172820] shadow-[0_20px_46px_rgba(7,14,10,0.18)] transition-transform duration-500 hover:-translate-y-1 xl:col-span-2 ${
+                  index % 5 === 0 ? "xl:col-span-4" : ""
                 }`}
                 data-card
               >
-                <div className={`relative overflow-hidden ${index % 5 === 0 ? "h-[20rem] md:h-[28rem]" : "h-[17rem] md:h-[20rem]"}`}>
+                  <div className={`relative overflow-hidden ${index % 5 === 0 ? "h-[18rem] md:h-[24rem]" : "h-[16rem] md:h-[18rem]"}`}>
                   <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="7">
                     <Image
                       src={item.src}
@@ -131,7 +130,7 @@ export function GalleryPage() {
             <p className="site-copy mx-auto mt-6 max-w-3xl md:text-lg" data-reveal-child>
               Explore availability for destination weddings, wedding guest stays, and celebration weekends at The Mountain Resort in Karjat , By Redwings.
             </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-4" data-reveal-child>
+            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4" data-reveal-child>
               <MagneticButton href={DIRECT_BOOKING_ENGINE_URL} variant="primary">Check Availability</MagneticButton>
               <MagneticButton href="/contact" variant="outline" className="bg-transparent">Plan Your Visit</MagneticButton>
             </div>

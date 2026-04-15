@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useCallback } from "react";
 import Image from "next/image";
+import { buttonClassName } from "@/components/ui/button";
 import { offersCards } from "@/lib/data/content/mountain-content";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 import { SectionShell } from "@/components/ui/section-shell";
@@ -57,20 +58,20 @@ export function OffersSection() {
       >
         <h3
           data-sticky-fade-line
-          className="site-title-lg text-[#cba977]"
+          className="site-title-lg text-[var(--color-primary-hover)]"
         >
           {content.title}
         </h3>
         <p
           data-sticky-fade-line
-          className="mt-3 text-[clamp(1.35rem,3vw,2.1rem)] text-white"
+          className="mt-3 text-[clamp(1.22rem,2.7vw,1.9rem)] leading-tight text-white"
         >
           {content.subtitle}
         </p>
 
         <div
           data-sticky-fade-line
-          className="mt-10 flex flex-wrap items-center justify-center gap-8 text-xl font-semibold text-white/65 md:text-2xl"
+          className="mt-8 flex flex-wrap items-center justify-center gap-5 text-[var(--text-base)] font-[var(--font-semibold)] uppercase tracking-[0.08em] text-white/65 md:gap-8 md:text-[1.15rem]"
         >
           {content.tabs.map((tab) => (
             <button
@@ -84,7 +85,7 @@ export function OffersSection() {
               onClick={() => handleTabClick(tab)}
               className={`border-b pb-2 transition-colors ${
                 activeTab === tab
-                  ? "border-[#ccab74] text-[#ccab74]"
+                  ? "border-[var(--color-primary-hover)] text-[var(--color-primary-hover)]"
                   : "border-transparent text-white/65 hover:text-white"
               }`}
               data-cursor="hover"
@@ -107,7 +108,7 @@ export function OffersSection() {
              * its own GPU layer so hover scale doesn't trigger a full-section
              * repaint. Also isolates the parallax layer below it.
              */
-            className="group relative block h-[33rem] overflow-hidden rounded-[1.5rem] border border-white/20 [will-change:transform]"
+            className="group relative block h-[31rem] overflow-hidden rounded-[1.5rem] border border-white/18 [will-change:transform] md:h-[33rem]"
             data-cursor="hover"
           >
             {/*
@@ -144,7 +145,7 @@ export function OffersSection() {
 
             {/* Bottom content panel */}
             <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.74)_46%,rgba(0,0,0,0.94)_100%)] px-7 pb-8 pt-24">
-              <h4 className="site-title-md max-w-[16ch] text-[#ccab74]">
+              <h4 className="site-title-md max-w-[16ch] text-[var(--color-primary-hover)]">
                 {card.title}
               </h4>
               <p className="site-copy mt-3 text-white/85 md:text-lg">
@@ -153,6 +154,15 @@ export function OffersSection() {
               <p className="site-copy-sm mt-2 max-w-[34ch] text-white/70 md:text-base">
                 {card.description}
               </p>
+              <span
+                className={buttonClassName({
+                  variant: "outline",
+                  size: "sm",
+                  className: "mt-5 inline-flex w-fit border-white/25 text-white hover:border-[var(--color-primary-hover)] hover:text-[var(--color-primary-hover)]",
+                })}
+              >
+                View Package
+              </span>
             </div>
           </Link>
         ))}
