@@ -81,7 +81,7 @@ export default function Footer() {
         <div className="border-t border-white/12 py-6 text-sm leading-7 text-white/55">
           Designed and Developed by{" "}
           <a
-            href="https://credencesoft.co"
+            href="https://credencesoft.in"
             target="_blank"
             rel="noreferrer"
             className="text-white transition hover:text-[var(--accent-gold)]"
