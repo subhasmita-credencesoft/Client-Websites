@@ -1,0 +1,40 @@
+:root {
+  --primary-50: #eef3f8;
+  --primary-100: #dbe5ef;
+  --primary-200: #bacbdd;
+  --primary-300: #8ea8c3;
+  --primary-400: #6889ac;
+  --primary-500: #40698f;
+  --primary-600: #234d72;
+  --primary-700: #163756;
+  --primary-800: #102843;
+  --primary-900: #0b1d30;
+  --accent-gold: #c68a4b;
+  --accent-gold-dark: #a86e34;
+  --accent-gold-light: #ecd7bf;
+  --neutral-0: #ffffff;
+  --neutral-50: #f8f7f3;
+  --neutral-100: #efede7;
+  --neutral-200: #dfdbd1;
+  --neutral-300: #c9c3b7;
+  --neutral-400: #a8a092;
+  --neutral-500: #7f776a;
+  --neutral-600: #625b50;
+  --neutral-700: #443f37;
+  --neutral-800: #25211d;
+  --neutral-900: #13110f;
+  --bg-light: #fffdfa;
+  --bg-lighter: #f5f1ea;
+  --bg-dark: #ecf1f6;
+  --text-primary: #163756;
+  --text-secondary: #534d45;
+  --text-light: #7f776a;
+  --text-lighter: #a8a092;
+}
+
+.theme-hotel {
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at top left, rgba(198, 138, 75, 0.12), transparent 24%),
+    linear-gradient(180deg, #fffdfa 0%, #f7f3ed 100%);
+}

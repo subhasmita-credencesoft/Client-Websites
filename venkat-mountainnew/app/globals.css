@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import "../styles/theme.css";
+
+@theme inline {
+  --color-background: var(--bg-light);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-cormorant);
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow-y: auto;
+  background: var(--bg-light);
+  color: var(--text-primary);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.hotel-datepicker-popper {
+  z-index: 70 !important;
+}
+
+.hotel-datepicker {
+  border: 1px solid var(--neutral-200);
+  border-radius: 18px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  overflow: hidden;
+}
+
+.hotel-datepicker .react-datepicker__header {
+  background-color: var(--neutral-50);
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.hotel-datepicker .react-datepicker__day--selected,
+.hotel-datepicker .react-datepicker__day--keyboard-selected {
+  background-color: var(--accent-gold);
+  color: #fff;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  width: 100%;
+}
