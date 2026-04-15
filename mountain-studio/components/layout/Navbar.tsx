@@ -26,6 +26,14 @@ export function Navbar() {
   }, [pathname]);
 
   useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  useEffect(() => {
     if (prefersReducedMotion()) {
       return;
     }
@@ -77,7 +85,7 @@ export function Navbar() {
         scrolled ? "border-b border-gold/20 bg-dark/80 backdrop-blur-xl" : "bg-transparent"
       )}
     >
-      <div className="container-shell flex h-20 items-center justify-between gap-6">
+      <div className="container-shell relative z-50 flex h-20 items-center justify-between gap-6">
         <Link
           href="/"
           aria-label="Redwings Studio home"
@@ -106,7 +114,7 @@ export function Navbar() {
 
         <button
           aria-label={open ? "Close menu" : "Open menu"}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/30 text-ivory lg:hidden"
+          className="relative z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/30 text-ivory lg:hidden"
           onClick={() => setOpen((value) => !value)}
         >
           {open ? <X size={20} /> : <Menu size={20} />}
@@ -115,7 +123,7 @@ export function Navbar() {
 
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-40 flex min-h-screen flex-col bg-dark px-6 pt-28 lg:hidden"
+        className="fixed inset-0 z-40 flex min-h-screen flex-col overflow-y-auto overscroll-contain bg-dark px-6 pt-28 lg:hidden"
         style={{ clipPath: "inset(0 0 100% 0)", pointerEvents: open ? "auto" : "none" }}
       >
         <div className="flex flex-col gap-6">
