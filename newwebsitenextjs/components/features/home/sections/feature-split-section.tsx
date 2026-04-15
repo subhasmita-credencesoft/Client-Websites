@@ -11,8 +11,6 @@ export function FeatureSplitSection() {
     <section className="bg-black">
       {splitFeatures.map((feature, index) => {
         const isEven = index % 2 === 0;
-        const isFirst = index === 0;
-
         return (
           <article
             key={feature.id}
@@ -32,8 +30,6 @@ export function FeatureSplitSection() {
                 src={feature.image}
                 alt={feature.title}
                 fill
-                priority={isFirst}
-                loading={isFirst ? "eager" : "lazy"}
                 quality={65}
                 sizes="100vw"
                 className="object-cover"

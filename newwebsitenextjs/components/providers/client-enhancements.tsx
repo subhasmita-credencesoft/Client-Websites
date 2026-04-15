@@ -42,6 +42,11 @@ export function ClientEnhancements() {
     const lowMemory = "deviceMemory" in navigator && typeof (navigator as Navigator & { deviceMemory?: number }).deviceMemory === "number"
       ? ((navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 0) <= 4
       : false;
+    const hasEnhancementTargets = Boolean(
+      document.querySelector(
+        "[data-reveal], [data-card], [data-parallax], [data-bg-parallax], [data-cinematic-section], [data-horizontal-scroll], [data-sticky-fade-section], [data-marquee-track]",
+      ),
+    );
 
     if (reducedMotion || prefersDataSaving || slowConnection) {
       const reducedMotionReadyFrame = window.requestAnimationFrame(() => {
@@ -52,6 +57,18 @@ export function ClientEnhancements() {
       return () => {
         cancelled = true;
         window.cancelAnimationFrame(reducedMotionReadyFrame);
+      };
+    }
+
+    if (!hasEnhancementTargets) {
+      const readyFrame = window.requestAnimationFrame(() => {
+        if (cancelled) return;
+        setReady(true);
+      });
+
+      return () => {
+        cancelled = true;
+        window.cancelAnimationFrame(readyFrame);
       };
     }
 

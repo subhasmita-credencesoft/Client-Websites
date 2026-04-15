@@ -1,6 +1,7 @@
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 import { SectionShell } from "@/components/ui/section-shell";
+import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 
 export function ReservationSection() {
   const content = homeSectionContent.reservation;
@@ -33,7 +34,7 @@ export function ReservationSection() {
           </div>
           <div className="w-full sm:w-fit [will-change:transform]">
             <MagneticButton
-              href="/booking"
+              href={DIRECT_BOOKING_ENGINE_URL}
               variant="primary"
               className="w-full justify-center whitespace-nowrap"
             >

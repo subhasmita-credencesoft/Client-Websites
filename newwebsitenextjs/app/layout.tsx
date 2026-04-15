@@ -4,7 +4,6 @@ import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { ClientEnhancements } from "@/components/providers/client-enhancements";
 import { WebVitals } from "@/components/providers/web-vitals";
-import { heroBackgroundUrls } from "@/lib/data/content/media-assets";
 import { rootMetadata } from "@/lib/metadata";
 
 const bodyFont = Poppins({
@@ -57,7 +56,6 @@ export default function RootLayout({
     <html lang="en" data-theme="dark">
       <head>
         <link rel="preconnect" href="https://bookonelocal.in" crossOrigin="anonymous" />
-        <link rel="preload" as="image" href={heroBackgroundUrls[0]} fetchPriority="high" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(resortSchema) }}

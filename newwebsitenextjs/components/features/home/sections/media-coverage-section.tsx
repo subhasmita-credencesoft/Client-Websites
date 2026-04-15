@@ -17,8 +17,6 @@ export function MediaCoverageSection() {
             src="https://bookonelocal.in/cdn/DSC08849.avif"
             alt="Wedding hospitality and culinary experience"
             fill
-            priority
-            loading="eager"
             quality={65}
             sizes="(max-width: 768px) calc(100vw - 40px), min(608px, 40vw)"
             className="object-cover"

@@ -111,8 +111,6 @@ export function StorytellingSection() {
                            * FIX 9 — tighter sizes: on desktop this column is
                            * ~52 vw (1.08 / 2 of max-w-[96rem]); on mobile 100 vw.
                            */
-                          priority={index === 0}
-                          loading={index === 0 ? "eager" : "lazy"}
                           quality={65}
                           sizes="(max-width: 768px) 100vw, 52vw"
                           className="object-cover"

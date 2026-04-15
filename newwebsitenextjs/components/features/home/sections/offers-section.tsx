@@ -97,7 +97,7 @@ export function OffersSection() {
       </div>
 
       <div className="mx-auto mt-14 grid max-w-[92rem] gap-6 md:grid-cols-3">
-        {visibleCards.map((card, index) => (
+        {visibleCards.map((card) => (
           <Link
             key={card.title}
             href={cardLinks[card.title] ?? "/offers"}
@@ -132,8 +132,6 @@ export function OffersSection() {
                  * with no perceptible visual difference.
                  * FIX 10 — sizes already correct for 3-col layout; kept as-is.
                  */
-                priority={index === 0}
-                loading={index === 0 ? "eager" : "lazy"}
                 quality={65}
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-110"

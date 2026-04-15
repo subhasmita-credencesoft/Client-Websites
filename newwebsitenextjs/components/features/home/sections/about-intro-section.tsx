@@ -55,8 +55,6 @@ export function AboutIntroSection() {
                 src="https://bookonelocal.in/cdn/DSC08846.avif"
                 alt="The Mountain quotation detail"
                 fill
-                priority
-                loading="eager"
                 quality={65}
                 sizes="(max-width: 768px) calc(100vw - 40px), 358px"
                 className="object-cover"

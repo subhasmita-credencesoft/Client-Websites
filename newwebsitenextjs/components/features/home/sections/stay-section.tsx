@@ -160,8 +160,8 @@ export function StaySection() {
          * `priority` so Next.js preloads them; remaining cards stay lazy.
          */}
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {stayCardsPrimary.map((card, i) => (
-            <StayCard key={card.title} {...card} priority={i < 2} />
+          {stayCardsPrimary.map((card) => (
+            <StayCard key={card.title} {...card} />
           ))}
         </div>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">

@@ -7,7 +7,7 @@ import { homeSectionContent } from "@/lib/data/content/resort-content";
  * Avoids re-deriving sizes/priority on every render.
  */
 const IMAGE_META = [
-  { sizes: "(max-width: 768px) 100vw, 60vw",  priority: true  }, // [0] large-left  — LCP
+  { sizes: "(max-width: 768px) 100vw, 60vw",  priority: false },
   { sizes: "(max-width: 768px) 100vw, 40vw",  priority: false }, // [1] small-right
   { sizes: "(max-width: 768px) 100vw, 40vw",  priority: false }, // [2] small-left
   { sizes: "(max-width: 768px) 100vw, 60vw",  priority: false }, // [3] large-right
@@ -78,8 +78,6 @@ export function ParallaxGallerySection() {
                  * FIX 5 — `quality={65}` for AVIF/WebP — saves ~20% bytes
                  * vs the default 75 with no perceptible visual loss.
                  */
-                priority={IMAGE_META[0].priority}
-                loading="eager"
                 quality={65}
                 sizes={IMAGE_META[0].sizes}
                 className="object-cover"

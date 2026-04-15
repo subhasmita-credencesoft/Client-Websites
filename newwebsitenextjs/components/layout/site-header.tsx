@@ -121,7 +121,7 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 bg-[linear-gradient(180deg,rgba(8,7,6,0.96)_0%,rgba(8,7,6,0.9)_100%)] backdrop-blur-lg">
       <PageWrapper size="wide">
         <div className="relative py-1.5 lg:py-0">
-          <div className="grid min-h-[3.2rem] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:min-h-[3.45rem] sm:gap-2.5 md:grid-cols-[1fr_auto_1fr] md:gap-5">
+          <div className="grid min-h-[3.1rem] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-1 sm:min-h-[3.45rem] sm:gap-2.5 md:grid-cols-[1fr_auto_1fr] md:gap-5">
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -167,7 +167,7 @@ export function SiteHeader() {
 
             <Link
               href="/"
-              className="relative z-10 mx-auto inline-flex h-[42px] w-[58px] items-center justify-center rounded-[var(--radius-sm)] border border-[rgba(var(--color-primary-rgb),0.56)] bg-[linear-gradient(180deg,rgba(19,15,12,0.98)_0%,rgba(10,8,6,0.98)_100%)] px-1.5 text-center text-[0.36rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-primary-hover)] shadow-[0_0_0_5px_rgba(8,7,6,0.94),0_8px_18px_rgba(0,0,0,0.18)] sm:h-[48px] sm:w-[72px] sm:px-2 sm:text-[0.44rem] sm:tracking-[0.18em] md:h-[58px] md:w-[86px] md:px-3 md:text-[0.52rem] lg:h-[72px] lg:w-[102px] lg:text-[0.56rem] lg:leading-[1.6]"
+              className="relative z-10 mx-auto inline-flex h-[34px] w-[42px] items-center justify-center rounded-[var(--radius-sm)] border border-[rgba(var(--color-primary-rgb),0.56)] bg-[linear-gradient(180deg,rgba(19,15,12,0.98)_0%,rgba(10,8,6,0.98)_100%)] px-0.5 text-center text-[0.26rem] font-semibold uppercase tracking-[0.06em] leading-[1.05] text-[var(--color-primary-hover)] shadow-[0_0_0_2px_rgba(8,7,6,0.94),0_8px_18px_rgba(0,0,0,0.18)] max-[380px]:h-[32px] max-[380px]:w-[38px] max-[380px]:text-[0.22rem] max-[380px]:tracking-[0.03em] sm:h-[48px] sm:w-[72px] sm:px-2 sm:text-[0.44rem] sm:tracking-[0.18em] sm:leading-normal md:h-[58px] md:w-[86px] md:px-3 md:text-[0.52rem] lg:h-[72px] lg:w-[102px] lg:text-[0.56rem] lg:leading-[1.6]"
               data-cursor="hover"
             >
               {content.logoLines[0]}
@@ -223,11 +223,11 @@ export function SiteHeader() {
                 variant: "primary",
                 size: "sm",
                 className:
-                  "h-9 shrink-0 whitespace-nowrap rounded-full px-2 text-[0.42rem] tracking-[0.1em] shadow-none sm:h-10 sm:px-3 sm:text-[0.5rem] lg:hidden",
+                  "h-8 min-w-0 max-w-[7.4rem] shrink-0 overflow-hidden text-ellipsis whitespace-nowrap rounded-full px-1.5 text-[0.33rem] tracking-[0.03em] shadow-none max-[380px]:max-w-[6.9rem] max-[380px]:px-1 max-[380px]:text-[0.3rem] sm:h-10 sm:max-w-none sm:px-3 sm:text-[0.5rem] lg:hidden",
               })}
               onClick={() => setMobileMenuOpen(false)}
             >
-              {content.primaryCta}
+              Book Now
             </Link>
           </div>
         </div>
