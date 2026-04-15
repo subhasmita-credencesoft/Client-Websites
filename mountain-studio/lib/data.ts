@@ -271,7 +271,7 @@ export const amenities: Amenity[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    name: "Riya Sharma",
+    name: "Sanjana Kulkarni",
     country: "India",
     rating: 5,
     quote: "From the moment we arrived, everything felt thoughtfully curated. The ambiance, service, and comfort were truly exceptional.",
@@ -279,7 +279,7 @@ export const testimonials: Testimonial[] = [
     flag: "🇮🇳"
   },
   {
-    name: "Aarav Patel",
+    name: "Rahul Chatterjee",
     country: "India",
     rating: 5,
     quote: "A perfect blend of luxury and warmth. The hospitality made our short getaway feel incredibly special.",
@@ -287,7 +287,7 @@ export const testimonials: Testimonial[] = [
     flag: "🇮🇳"
   },
   {
-    name: "Ananya Iyer",
+    name: "Divya Reddy",
     country: "India",
     rating: 5,
     quote: "The dining experience was outstanding. Every dish felt crafted with care and authentic flavors.",
@@ -295,7 +295,7 @@ export const testimonials: Testimonial[] = [
     flag: "🇮🇳"
   },
   {
-    name: "Rohan Verma",
+    name: "Kunal Bansal",
     country: "India",
     rating: 4,
     quote: "Elegant yet relaxing. The private dinner arrangement and serene surroundings made it unforgettable.",
@@ -303,7 +303,7 @@ export const testimonials: Testimonial[] = [
     flag: "🇮🇳"
   },
   {
-    name: "Neha Kapoor",
+    name: "Pooja Saxena",
     country: "India",
     rating: 5,
     quote: "Our anniversary celebration here was magical. The team added thoughtful touches that made it truly memorable.",
@@ -311,7 +311,7 @@ export const testimonials: Testimonial[] = [
     flag: "🇮🇳"
   },
   {
-    name: "Kabir Singh",
+    name: "Nikhil Pawar",
     country: "India",
     rating: 5,
     quote: "The design, the atmosphere, and the attention to detail make this place stand out from anywhere else.",
@@ -319,7 +319,7 @@ export const testimonials: Testimonial[] = [
     flag: "🇮🇳"
   },
   {
-    name: "Meera Nair",
+    name: "Aishwarya Menon",
     country: "India",
     rating: 5,
     quote: "Calm, luxurious, and perfectly managed. The spa experience alone is worth visiting again.",
@@ -327,7 +327,7 @@ export const testimonials: Testimonial[] = [
     flag: "🇮🇳"
   },
   {
-    name: "Vikram Desai",
+    name: "Harsh Vardhan",
     country: "India",
     rating: 5,
     quote: "We came for a family celebration and left with unforgettable memories. Truly personalized service.",
