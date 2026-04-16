@@ -13,6 +13,31 @@
   --color-accent: var(--accent);
   --font-sans: var(--font-jost);
   --font-serif: var(--font-playfair);
+
+  --animate-fade-up: fade-up 0.7s ease both;
+  --animate-card-rise: card-rise 0.7s ease both;
+  --animate-ken-burns: ken-burns 14s ease-out both;
+  --animate-bar-slide: bar-slide 0.8s 0.3s ease both;
+}
+
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(28px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-rise {
+  0%   { opacity: 0; transform: translateY(44px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes ken-burns {
+  0%   { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bar-slide {
+  0%   { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
 }
 
 /* -------------------------------------------------------------------------- */

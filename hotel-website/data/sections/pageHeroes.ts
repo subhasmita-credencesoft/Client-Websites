@@ -81,3 +81,11 @@ export const WELLNESS_HERO_PAGE_CONFIG: PageHeroConfig = {
   breadcrumb: "Home / Facilities",
   minHeightClassName: "min-h-screen",
 };
+
+export const OVERVIEW_HERO_CONFIG: PageHeroConfig = {
+  title: "Overview",
+  backgroundImage: "https://bookonelocal.in/cdn/3.png",
+  backgroundVideo: "https://bookonelocal.in/cdn/Resort_entrance_gate_202604071226.mp4",
+  subtitle: "A destination estate where scenic stays, hosted events, and celebration-led weekends come together.",
+  breadcrumb: "Home / Overview",
+};

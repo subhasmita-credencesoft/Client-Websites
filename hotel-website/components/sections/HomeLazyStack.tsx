@@ -5,6 +5,7 @@ import { type ReactNode } from "react";
 import useInViewOnce from "@/hooks/useInViewOnce";
 import { dynamicImportWithRetry } from "@/lib/dynamicImportWithRetry";
 import WelcomeSection from "./WelcomeSection";
+import VisionMission from "./VisionMission";
 const WellnessHero = dynamic(dynamicImportWithRetry(() => import("./WellnessHero"), "wellness-hero"), {
   loading: () => <section className="min-h-[70vh] bg-[#f6f3ed]" aria-hidden="true" />,
 });
@@ -62,8 +63,12 @@ export default function HomeLazyStack() {
         <ResortIntro />
       </DeferredSection>
       <DeferredSection placeholderClassName="min-h-[70vh] bg-white" rootMargin="300px 0px">
+         <VisionMission />
+      </DeferredSection>
+      <DeferredSection placeholderClassName="min-h-[70vh] bg-white" rootMargin="300px 0px">
         <RoomsShowcase />
       </DeferredSection>
+      
       <DeferredSection placeholderClassName="min-h-[72vh] bg-[#6d4a33]" rootMargin="320px 0px">
         <HomeEventExperiences />
       </DeferredSection>
