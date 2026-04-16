@@ -6,6 +6,7 @@ import useInViewOnce from "@/hooks/useInViewOnce";
 import { dynamicImportWithRetry } from "@/lib/dynamicImportWithRetry";
 import WelcomeSection from "./WelcomeSection";
 import VisionMission from "./VisionMission";
+import TestimonialContent from "./TestimonialContent";
 const WellnessHero = dynamic(dynamicImportWithRetry(() => import("./WellnessHero"), "wellness-hero"), {
   loading: () => <section className="min-h-[70vh] bg-[#f6f3ed]" aria-hidden="true" />,
 });
@@ -82,7 +83,8 @@ export default function HomeLazyStack() {
         <StatsBanner />
       </DeferredSection>
       <DeferredSection placeholderClassName="min-h-[60vh] bg-[#f3efe8]" rootMargin="280px 0px">
-        <Testimonials />
+        {/* <Testimonials /> */}
+        <TestimonialContent/>
       </DeferredSection>
     </>
   );

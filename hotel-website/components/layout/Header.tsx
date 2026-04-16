@@ -264,14 +264,10 @@ export default function Header() {
               }}
             />
             <div className="hidden sm:flex items-center gap-1.5">
-              <span className="font-bold uppercase tracking-[0.26em]"
-                style={{ fontSize: "0.68rem", color: textMuted }}>
-                Menu
-              </span>
               <span className="h-2.5 w-px" style={{ background: border }} aria-hidden="true" />
               <span className="font-bold uppercase tracking-[0.22em]"
                 style={{ fontSize: "0.68rem", color: textMuted }}>
-                UK&apos;s Resort
+               Awards
               </span>
             </div>
           </div>

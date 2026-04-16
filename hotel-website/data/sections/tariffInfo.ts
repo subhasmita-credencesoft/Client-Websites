@@ -4,53 +4,67 @@ export type TariffRow = {
 };
 
 export const TARIFF_INTRO_TEXT =
-  "Review room rates, group overnight packages, and one-day picnic pricing in one place. Taxes apply as per government regulations.";
+  "Review room rates, overnight group packages, and one-day picnic pricing in one place. Taxes apply as per government regulations.";
+
 export const TARIFF_LOADING_TEXT = "Loading latest tariff details...";
-export const TARIFF_CHECKIN_LABEL = "Check in Time:";
+
+export const TARIFF_CHECKIN_LABEL = "Check-in:";
 export const TARIFF_CHECKIN_TIME = "12:00 Noon";
-export const TARIFF_CHECKOUT_LABEL = "Check Out Time:";
+
+export const TARIFF_CHECKOUT_LABEL = "Check-out:";
 export const TARIFF_CHECKOUT_TIME = "11:00 AM";
 
-export const TARIFF_MAIN_TABLE_TITLE = "Room Tariff for Double Occupancy";
+// ✅ DOUBLE OCCUPANCY (MATCHED TO IMAGE)
+export const TARIFF_MAIN_TABLE_TITLE = "Double Occupancy";
 export const TARIFF_MAIN_TABLE_ROOM_TYPE_HEADER = "Room Type";
-export const TARIFF_MAIN_TABLE_PLAN_HEADER = "Per person";
+export const TARIFF_MAIN_TABLE_PLAN_HEADER = "All Days (CP Plans)*";
 
 export const TARIFF_FALLBACK_ROWS: TariffRow[] = [
   {
     name: "Deluxe",
-    value: "Rs. 3950 + {gst}% GST ",
+    value: "₹ 3,950",
   },
   {
     name: "Super Deluxe",
-    value: "Rs. 4950 + {gst}% GST ",
+    value: "₹ 4,950",
   },
   {
-    name: "Extra Person (Above 5 years)",
-    value: "Rs. 1400 + {gst}% GST ",
+    name: "Extra Person",
+    value: "₹ 1,450",
   },
 ];
 
+// ✅ GROUP OVERNIGHT PACKAGE (UPDATED TEXT + RATES)
 export const TARIFF_GROUP_PACKAGE_TITLE_LINES = [
-  "Overnight Group Package",
-  "Minimum 20 guests, priced per person per night.",
-  "Includes lunch, hi-tea, dinner, and breakfast.",
+  "Overnight Picnic for Groups",
+  "Per person per night with all meals",
+  "* Check-in 12 noon and Check-out 11am",
+  "Taxes as per Government Regulations",
 ] as const;
 
 export const TARIFF_GROUP_PACKAGE_OCCUPANCY_HEADER = "Occupancy";
-export const TARIFF_GROUP_PACKAGE_ALL_DAYS_HEADER = "Per person";
+export const TARIFF_GROUP_PACKAGE_ALL_DAYS_HEADER = "All Days (All Meals)*";
 
 export const TARIFF_GROUP_PACKAGE_ROWS: TariffRow[] = [
-  { name: "Double Occupancy", value: "Rs. 2750 + 18 % GST" },
-  { name: "Triple Occupancy", value: "Rs. 2550 + 18 % GST" },
-  { name: "Quadriple Occupancy", value: "Rs. 2350 + 18 % GST" },
-  { name: "Five Sharing Occupancy", value: "Rs. 2250 + 18 % GST" },
+  { name: "Double", value: "₹ 3,150" },
+  { name: "Triple", value: "₹ 2,950" },
+  { name: "Quadruple", value: "₹ 2,750" },
+  { name: "Five Sharing", value: "₹ 2,650" },
 ];
 
-export const TARIFF_DAY_PICNIC_TITLE = "Tariff for One Day Picnic";
+// ✅ ONE DAY PICNIC (MATCHED EXACTLY)
+export const TARIFF_DAY_PICNIC_TITLE = "One Day Picnic";
+
 export const TARIFF_DAY_PICNIC_HIGHLIGHT =
-  "For groups of 20 guests or more, the one-day picnic package is Rs. 1099 per person plus 18% GST.";
+  "For groups of 50 pax and above: ₹ 1,099 per person.";
+
 export const TARIFF_DAY_PICNIC_DETAILS = [
-  "(Package Per Person Per Night include 01 Lunch, 01 Hi Tea, 01 Dinner & 01 Break Fast, Entry to Big Water Park, Rain Dance, indoor games, Outdoor Games like cricket, Football & Kids Play Park)",
-  "BREAKFAST, IDLI SAMBHAR CHUTNEY, POHA, BREAD OMLETT, TEA+COFFIE, LUNCH, CHICKEN ROGAN JOSH, VEG KADAI, MIX VEG DRY, DAL FRY, JEERA RICE, ROTI, NAAN, PARATHA, SALAD, PAPAD, PICKLE, GULAB JAMUN, HI TEA, TEA+COFFIE WITH VEG SANDWICH. Any Dish apart from this will be charged extra.",
+  "Includes Breakfast, Lunch, Hi-Tea & entry to Water Park and Rain Dance.",
+  "Indoor games: Chess, Carrom, Table Tennis.",
+  "Outdoor games and access to Multipurpose Hall & Lawn.",
+  "Adventure activities are chargeable.",
 ] as const;
-export const TARIFF_DAY_PICNIC_FOOTNOTE = "*Rates may vary during holidays and festivals.";
+
+// (Keeping this for UI safety even if not shown prominently)
+export const TARIFF_DAY_PICNIC_FOOTNOTE =
+  "Taxes as per Government Regulations.";
