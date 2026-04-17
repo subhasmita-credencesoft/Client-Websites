@@ -265,10 +265,14 @@ export default function Header() {
             />
             <div className="hidden sm:flex items-center gap-1.5">
               <span className="h-2.5 w-px" style={{ background: border }} aria-hidden="true" />
-               <span className="font-bold uppercase tracking-[0.22em]"
-                style={{ fontSize: "0.68rem", color: textMuted }}>
-             Media & Awards
-              </span>
+              <Link
+                href="/awards"
+                onMouseEnter={() => router.prefetch("/awards")}
+                className="font-bold uppercase tracking-[0.22em] transition-colors duration-200 hover:text-[#c8922a]"
+                style={{ fontSize: "0.68rem", color: textMuted, textDecoration: "none" }}
+              >
+                Media & Awards
+              </Link>
             </div>
           </div>
 
