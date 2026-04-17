@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import ExperiencesHero from "../../components/sections/ExperiencesHero";
 import BlogFeature from "@/components/sections/BlogFeature";
+import CinematicParallaxBreak from "../../components/sections/CinematicParallaxBreak";
+import ImmersiveGallery from "../../components/sections/ImmersiveGallery";
 import { dynamicImportWithRetry } from "../../lib/dynamicImportWithRetry";
 import { createPageMetadata } from "../../lib/metadata";
 
@@ -40,15 +42,22 @@ const WellnessMoodSlider = dynamic(
 
 export default function ExperiencesPage() {
   return (
-    <>
+    <div className="site-page">
       <ExperiencesHero />
       <BlogFeature />
-      {/* <ExperiencesIntro /> */}
-      {/* <ExperiencesShowcase /> */}
+      
+      <CinematicParallaxBreak 
+        title="Breathtaking Vistas" 
+        subtitle="Embark on activities designed to ground you in nature while elevating your pulse. Explore the boundless expanse of Khopoli's deep greens." 
+        image="/picnic.avif"
+        reverse={true}
+      />
+      
       <ExperiencesExplore />
       <WellnessSpaIntro />
-      {/* <WellnessMoodSlider /> */}
-    </>
+      
+      {/* <ImmersiveGallery title="Activities In Motion" /> */}
+    </div>
   );
 }
 

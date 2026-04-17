@@ -11,185 +11,155 @@ import {
   WEDDINGS_IMMERSIVE_STATS,
 } from "@/data/sections/eventsImmersiveMoments";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function EventsImmersiveMoments() {
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const containerRef = useRef<HTMLElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    const mm = gsap.matchMedia();
-
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const ctx = gsap.context(() => {
-        const introTimeline = gsap.timeline({
+    let ctx = gsap.context(() => {
+      // 3D Header Reveal
+      gsap.fromTo(
+        ".events-moment-text",
+        { y: 60, autoAlpha: 0, rotationX: 15, filter: "blur(12px)" },
+        {
+          y: 0,
+          autoAlpha: 1,
+          rotationX: 0,
+          filter: "blur(0px)",
+          stagger: 0.1,
+          duration: 1.4,
+          ease: "expo.out",
           scrollTrigger: {
-            trigger: sectionRef.current,
+            trigger: containerRef.current,
+            start: "top 70%",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".events-moment-stat",
+        { scale: 0.8, autoAlpha: 0, y: 30 },
+        {
+          scale: 1,
+          autoAlpha: 1,
+          y: 0,
+          stagger: 0.15,
+          duration: 1.2,
+          ease: "back.out(1.4)",
+          scrollTrigger: {
+            trigger: ".events-moment-stats-grid",
             start: "top 80%",
-            once: true,
+          },
+        }
+      );
+
+      // Horizontal Scroll
+      const track = document.querySelector(".moments-race");
+      if (track) {
+        gsap.to(track, {
+          x: () => -(track.scrollWidth - window.innerWidth + 100),
+          ease: "none",
+          scrollTrigger: {
+            trigger: triggerRef.current,
+            start: "top top",
+            end: () => `+=${track.scrollWidth}`,
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
           },
         });
 
-        introTimeline
-          .fromTo(".wim-kicker", { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.45, ease: "power3.out" })
-          .fromTo(".wim-title-line", { yPercent: 110, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.82, stagger: 0.07, ease: "power4.out" }, "<+0.06")
-          .fromTo(".wim-copy", { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" }, "<+0.08")
-          .fromTo(".wim-stat", { y: 18, autoAlpha: 0, scale: 0.96 }, { y: 0, autoAlpha: 1, scale: 1, duration: 0.5, stagger: 0.06, ease: "power3.out" }, "<+0.08");
-
-        gsap.utils.toArray<HTMLElement>(".wim-card").forEach((card, index) => {
-          const timeline = gsap.timeline({
+        // 3D Rotation during horizontal scroll
+        gsap.utils.toArray<HTMLElement>(".moment-hz-card").forEach((card) => {
+          gsap.to(card.querySelector("img"), {
+            xPercent: 30,
+            scale: 1.2,
+            ease: "none",
             scrollTrigger: {
-              trigger: card,
-              start: "top 84%",
-              once: true,
+              trigger: triggerRef.current, // Pin trigger
+              start: "top top",
+              end: () => `+=${track.scrollWidth}`,
+              scrub: true,
             },
           });
-
-          timeline
-            .fromTo(
-              card,
-              { y: 34, rotateY: index % 2 === 0 ? -7 : 7, rotateX: 8, autoAlpha: 0, transformPerspective: 1600 },
-              { y: 0, rotateY: 0, rotateX: 0, autoAlpha: 1, duration: 0.88, ease: "power3.out" },
-            )
-            .fromTo(
-              card.querySelector(".wim-card-image"),
-              { scale: 1.12 },
-              { scale: 1, duration: 1.1, ease: "power3.out" },
-              "<",
-            )
-            .fromTo(
-              card.querySelector(".wim-orbit"),
-              { y: 14, autoAlpha: 0, scale: 0.85 },
-              { y: 0, autoAlpha: 1, scale: 1, duration: 0.55, ease: "back.out(1.5)" },
-              "<+0.16",
-            );
         });
+      }
 
-        gsap.to(".wim-float", {
-          y: -14,
-          duration: 3.2,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          stagger: 0.18,
-        });
-
-        gsap.to(".wim-orbit", {
-          y: -10,
-          rotate: 4,
-          duration: 3.8,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          stagger: 0.12,
-        });
-      }, sectionRef);
-
-      return () => ctx.revert();
-    });
-
-    return () => mm.revert();
+    }, containerRef);
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      data-no-global-gsap
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#fbf7f1_0%,#f3ece2_50%,#efe6da_100%)] py-20 text-[#173842]"
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(216,154,85,0.18),transparent_26%),radial-gradient(circle_at_80%_20%,rgba(31,60,68,0.1),transparent_24%),radial-gradient(circle_at_bottom,rgba(255,255,255,0.65),transparent_36%)]" />
-
-      <Container>
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <div className="max-w-2xl">
-            <span className="wim-kicker text-xs uppercase tracking-[0.45em] text-[#1f3c44]/70">
-              {WEDDINGS_IMMERSIVE_INTRO.kicker}
-            </span>
-            <div className="mt-6 overflow-hidden">
-              <h2 className="wim-title-line font-serif text-[2.6rem] leading-[0.94] md:text-[4.1rem]">
-                {WEDDINGS_IMMERSIVE_INTRO.titleLineOne}
-              </h2>
-            </div>
-            <div className="overflow-hidden">
-              <h2 className="wim-title-line font-serif text-[2.6rem] leading-[0.94] md:text-[4.1rem]">
-                {WEDDINGS_IMMERSIVE_INTRO.titleLineTwo}
-              </h2>
-            </div>
-            <p className="wim-copy mt-6 max-w-2xl text-[1rem] leading-8 text-[#1f3c44]/76">
-              {WEDDINGS_IMMERSIVE_INTRO.description}
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-3">
-            {WEDDINGS_IMMERSIVE_STATS.map((stat) => (
-              <div
-                key={stat.label}
-                className="wim-stat rounded-[1.6rem] border border-white/65 bg-white/72 p-5 shadow-[0_18px_40px_rgba(16,33,42,0.09)] backdrop-blur-md"
-              >
-                <div className="font-serif text-[2.2rem] leading-none text-[#153742]">{stat.value}</div>
-                <p className="mt-3 text-[0.74rem] font-semibold uppercase tracking-[0.18em] text-[#1f3c44]/66">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
+    <section ref={containerRef} className="relative bg-[#1f3c44] pt-32 pb-0 text-[#f1ece3] overflow-hidden">
+      {/* Decorative ambient lighting */}
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-full bg-[radial-gradient(ellipse_at_top,#143b47_0%,transparent_50%)]" />
+      
+      <Container className="relative z-10 mb-20">
+        {/* Intro */}
+        <div className="flex flex-col items-center text-center">
+          <span className="events-moment-text mb-4 inline-block text-[0.65rem] font-bold uppercase tracking-[0.45em] text-[#d89a55]">
+            {WEDDINGS_IMMERSIVE_INTRO.kicker}
+          </span>
+          <h2 className="events-moment-text mb-2 font-serif text-5xl leading-tight text-white md:text-7xl">
+            {WEDDINGS_IMMERSIVE_INTRO.titleLineOne}
+          </h2>
+          <h2 className="events-moment-text font-serif text-5xl leading-tight text-[#d89a55] italic md:text-7xl">
+            {WEDDINGS_IMMERSIVE_INTRO.titleLineTwo}
+          </h2>
+          <p className="events-moment-text mx-auto mt-8 max-w-2xl text-lg text-[#f1ece3]/90">
+            {WEDDINGS_IMMERSIVE_INTRO.description}
+          </p>
         </div>
 
-        <div className="mt-14 grid gap-8">
-          {WEDDINGS_IMMERSIVE_MOMENTS.map((moment, index) => (
-            <article
-              key={moment.title}
-              className="wim-card group relative overflow-hidden border-b border-[#1f3c44]/10 pb-8 last:border-b-0 last:pb-0"
+        {/* Stats 3D Dashboard */}
+        <div className="events-moment-stats-grid mt-24 grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {WEDDINGS_IMMERSIVE_STATS.map((stat, i) => (
+            <div 
+              key={i} 
+              className="events-moment-stat relative flex flex-col items-center justify-center rounded-[2rem] border border-[#d89a55]/20 bg-[#143b47]/80 p-12 text-center backdrop-blur-md shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
             >
-              <div className={`grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-10 ${index % 2 === 1 ? "lg:grid-cols-[1.05fr_0.95fr]" : ""}`}>
-                <div className={`relative overflow-hidden rounded-[1.75rem] ${index % 2 === 1 ? "lg:order-2" : ""} ${index === 0 ? "min-h-[21rem] sm:min-h-[26rem]" : "min-h-[19rem] sm:min-h-[23rem]"}`}>
-                  <div className="wim-float absolute inset-x-10 top-5 z-10 h-24 rounded-full bg-[#d89a55]/14 blur-3xl" aria-hidden="true" />
-                  <Image
-                    src={moment.image}
-                    alt={moment.alt}
-                    fill
-                    sizes="(max-width: 1023px) 100vw, 46vw"
-                    unoptimized
-                    className="wim-card-image object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,26,31,0.08)_0%,rgba(12,26,31,0.12)_45%,rgba(12,26,31,0.42)_100%)]" />
-                  <div className="absolute left-5 top-5 rounded-full border border-white/35 bg-black/22 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
-                    {String(index + 1).padStart(2, "0")}
-                  </div>
-                </div>
-
-                <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
-                    {moment.eyebrow}
-                  </p>
-                  <h3 className={`mt-3 font-serif leading-[0.95] text-[#173842] ${index === 0 ? "text-[2.2rem] sm:text-[2.8rem]" : "text-[1.95rem] sm:text-[2.25rem]"}`}>
-                    {moment.title}
-                  </h3>
-                  <p className="mt-5 max-w-2xl text-[0.97rem] leading-8 text-[#1f3c44]/78">
-                    {moment.description}
-                  </p>
-                </div>
-              </div>
-            </article>
+              <div className="font-serif text-5xl text-white md:text-6xl">{stat.value}</div>
+              <p className="mt-4 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#d89a55]">
+                {stat.label}
+              </p>
+            </div>
           ))}
         </div>
       </Container>
 
-      <style>{`
-        .wim-card,
-        .wim-stat {
-          transform-style: preserve-3d;
-        }
-
-        @media (min-width: 1024px) {
-          .wim-card {
-            transition: transform 420ms ease;
-          }
-
-          .wim-card:hover .wim-card-image {
-            transform: scale(1.04);
-          }
-        }
-      `}</style>
+      {/* HORIZONTAL GALLERY RUNNER */}
+      <div ref={triggerRef} className="relative h-screen flex items-center overflow-hidden bg-[#0f1216]">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1f3c44] to-transparent h-40 z-10 pointer-events-none" />
+        <div className="moments-race flex items-center gap-12 px-10 md:px-32 will-change-transform">
+          {WEDDINGS_IMMERSIVE_MOMENTS.map((moment, idx) => (
+            <article 
+              key={idx} 
+              className="moment-hz-card group relative h-[60vh] w-[85vw] max-w-3xl shrink-0 overflow-hidden rounded-[2rem] shadow-2xl perspective-1000 transform-style-3d border border-white/10 bg-[#143b47]"
+            >
+              <div className="absolute inset-0 z-0 overflow-hidden">
+                <Image 
+                  src={moment.image}
+                  alt={moment.alt}
+                  fill
+                  className="object-cover object-center will-change-transform scale-110 opacity-70 transition-opacity duration-700 group-hover:opacity-100 mix-blend-overlay"
+                />
+              </div>
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-[#0f1216]/40 to-transparent" />
+              
+              <div className="absolute inset-x-0 bottom-0 z-20 p-8 md:p-14 transform-style-3d translate-z-20">
+                <span className="mb-4 inline-block rounded-full bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white backdrop-blur-md border border-white/20">
+                  {moment.eyebrow}
+                </span>
+                <h3 className="font-serif text-4xl text-white md:text-6xl">{moment.title}</h3>
+                <div className="my-6 h-[1px] w-16 bg-[#d89a55]" />
+                <p className="mt-2 max-w-2xl text-lg leading-relaxed text-[#f1ece3]/90 md:text-xl transform-gpu transition-all duration-500 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
+                  {moment.description}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

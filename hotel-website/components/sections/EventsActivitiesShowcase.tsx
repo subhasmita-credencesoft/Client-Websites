@@ -7,147 +7,157 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 import { WEDDINGS_MEETING_CARDS } from "@/data/sections/eventsActivitiesShowcase";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const meetingPills = [
-  "Dining Support",
-  "Indoor Leisure",
-  "Corporate Comfort",
-  "Family Flow",
-] as const;
-
 export default function EventsActivitiesShowcase() {
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const containerRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
-    const mm = gsap.matchMedia();
-
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
+    let ctx = gsap.context(() => {
+      // 3D Header Reveal
+      gsap.fromTo(
+        ".events-support-header",
+        { y: 80, autoAlpha: 0, rotationX: -20, filter: "blur(15px)" },
+        {
+          y: 0,
+          autoAlpha: 1,
+          rotationX: 0,
+          filter: "blur(0px)",
+          stagger: 0.1,
+          duration: 1.5,
+          ease: "power4.out",
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            once: true,
+            trigger: containerRef.current,
+            start: "top 75%",
           },
+        }
+      );
+
+      // Pinned Panels Sequence
+      const panels = gsap.utils.toArray<HTMLElement>(".showcase-panel");
+      
+      panels.forEach((panel, i) => {
+        const bgImg = panel.querySelector(".showcase-bg");
+        const contentBox = panel.querySelector(".showcase-content-box");
+
+        // The panel itself pins and stacks
+        ScrollTrigger.create({
+          trigger: panel,
+          start: "top top",
+          end: "bottom top", // pin until the next panel completely covers it or it scrolls naturally
+          pin: true,
+          pinSpacing: false, 
         });
 
-        tl.fromTo(".meet-kicker", { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" })
-          .fromTo(".meet-title", { yPercent: 110, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.85, ease: "power4.out" }, "<+0.06")
-          .fromTo(".meet-copy", { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.62, ease: "power3.out" }, "<+0.08")
-          .fromTo(".meet-pill", { y: 10, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.42, stagger: 0.05, ease: "power3.out" }, "<+0.04")
-          .fromTo(".meet-card", { y: 28, rotateX: 10, autoAlpha: 0, transformPerspective: 1400 }, { y: 0, rotateX: 0, autoAlpha: 1, duration: 0.72, stagger: 0.08, ease: "power3.out" }, "<+0.1");
+        // Background Parallax & Dimming
+        if (bgImg) {
+          gsap.fromTo(bgImg, 
+            { scale: 1.1, transformOrigin: 'center center' }, 
+            {
+              scale: 1,
+              opacity: i === panels.length - 1 ? 1 : 0.4, // Dim previous panels
+              scrollTrigger: {
+                trigger: panel,
+                start: "top top",
+                end: "+=100%",
+                scrub: true,
+              }
+            }
+          );
+        }
 
-        gsap.to(".meet-card-image", {
-          yPercent: -7,
-          scale: 1.05,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.8,
-          },
-        });
-
-        gsap.to(".meet-glow", {
-          y: -10,
-          duration: 3.1,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          stagger: 0.16,
-        });
-      }, sectionRef);
-
-      return () => ctx.revert();
-    });
-
-    return () => mm.revert();
+        // Inner Content 3D Reveal
+        if (contentBox) {
+          gsap.fromTo(contentBox,
+            { yPercent: 50, rotationX: 15, scale: 0.9, opacity: 0 },
+            {
+              yPercent: 0,
+              rotationX: 0,
+              scale: 1,
+              opacity: 1,
+              duration: 1,
+              ease: "expo.out",
+              scrollTrigger: {
+                trigger: panel,
+                start: "top center",
+                toggleActions: "play reverse play reverse",
+              }
+            }
+          );
+        }
+      });
+    }, containerRef);
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} data-no-global-gsap className="relative overflow-hidden bg-[#f1ece3] py-20 text-[#1f3c44]">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(216,154,85,0.16),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(20,59,71,0.10),transparent_26%)]" />
-
-      <Container>
-        <div className="mx-auto max-w-4xl text-center">
-          <span className="meet-kicker text-xs uppercase tracking-[0.45em] text-[#1f3c44]/70">
-            Event Support
-          </span>
-          <div className="overflow-hidden">
-            <h2 className="meet-title mt-6 font-serif text-[2.6rem] leading-[0.95] md:text-[4.1rem]">
-              Everything around the event feels easier too
+    <section ref={containerRef} className="relative bg-[#0f1216] text-[#f1ece3] perspective-1000">
+      
+      {/* Intro Header aligned with previous section's dark bg */}
+      <div className="relative pt-32 pb-40 z-10 w-full bg-gradient-to-b from-[#0f1216] to-[#1f3c44]">
+        <Container>
+          <div className="mx-auto max-w-5xl text-center transform-style-3d">
+            <span className="events-support-header mb-6 inline-block rounded-full border border-[#d89a55]/30 bg-[#1f3c44]/50 px-8 py-3 text-xs font-bold uppercase tracking-[0.4em] text-[#d89a55] backdrop-blur-xl shadow-2xl">
+              Event Support
+            </span>
+            <h2 className="events-support-header font-serif text-5xl leading-tight text-white md:text-[5.5rem] lg:text-[7rem]">
+              Every detail, <br />
+              <span className="italic text-[#d89a55]">made effortless.</span>
             </h2>
+            <p className="events-support-header mx-auto mt-8 max-w-2xl text-xl text-[#f1ece3]/70 font-light">
+              From sophisticated dining options to expansive indoor leisure tracks, we ensure layers of comfort for all event attendees.
+            </p>
           </div>
-          {/* <p className="meet-copy mx-auto mt-5 max-w-3xl text-[0.98rem] leading-8 text-[#1f3c44]/75">
-            This section now focuses on support layers like dining, indoor options, family comfort, and corporate suitability so it doesn&apos;t repeat the same activity content from the section above.
-          </p> */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            {meetingPills.map((item) => (
-              <span
-                key={item}
-                className="meet-pill rounded-full border border-[#1f3c44]/10 bg-white/80 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#1f3c44]/72 shadow-[0_12px_24px_rgba(31,60,68,0.06)] backdrop-blur"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
+        </Container>
+      </div>
 
-        <div className="mt-14 space-y-8">
-          {WEDDINGS_MEETING_CARDS.map((card, index) => (
-            <article
-              key={card.title}
-              className="meet-card group relative overflow-hidden border-b border-[#1f3c44]/10 pb-8 last:border-b-0 last:pb-0"
-            >
-              <div className="meet-glow absolute right-5 top-5 z-10 h-20 w-20 rounded-full bg-[#d89a55]/18 blur-2xl" />
-              <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
-                <div className={`relative min-h-[18rem] overflow-hidden rounded-[1.7rem] sm:min-h-[22rem] ${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                  <Image
-                    src={card.image}
-                    alt={card.title}
-                    fill
-                    sizes="(max-width: 767px) 100vw, 55vw"
-                    className="meet-card-image object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,37,45,0.36)_0%,rgba(15,37,45,0.10)_100%)]" />
-                  <div className="absolute left-5 top-5 rounded-full border border-white/35 bg-black/20 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
-                    {String(index + 1).padStart(2, "0")}
-                  </div>
-                </div>
+      {/* Massive Stacking Parallax Panels */}
+      <div className="relative w-full">
+        {WEDDINGS_MEETING_CARDS.map((card, index) => (
+          <div 
+            key={card.title}
+            className="showcase-panel relative h-screen w-full overflow-hidden flex items-center justify-center transform-style-3d bg-[#143b47]"
+            style={{ zIndex: index }}
+          >
+            {/* Massive Background Image */}
+            <div className="absolute inset-0 w-full h-full">
+              <Image
+                src={card.image}
+                alt={card.title}
+                fill
+                className="showcase-bg object-cover object-center will-change-transform mix-blend-overlay"
+              />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(20,59,71,0.4)_0%,rgba(15,18,22,0.95)_100%)] mix-blend-multiply" />
+              <div className="absolute inset-0 bg-black/40" />
+            </div>
 
-                <div className={`flex items-center p-1 pt-6 sm:p-2 sm:pt-6 lg:p-0 ${index % 2 === 1 ? "lg:order-1 lg:pr-10" : "lg:pl-10"}`}>
-                  <div className="max-w-xl">
-                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#b17231]">
-                      Experience Track
-                    </p>
-                    <h3 className="mt-4 font-serif text-[2.2rem] leading-[0.94] text-[#153742] sm:text-[2.7rem]">
-                      {card.title}
-                    </h3>
-                    <div className="mt-5 h-px w-16 bg-gradient-to-r from-[#d89a55] to-transparent" />
-                    <p className="mt-5 text-[0.98rem] leading-8 text-[#1f3c44]/78">
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
+            {/* 3D Floating Glass Content Box */}
+            <div className="showcase-content-box relative z-10 w-[90%] max-w-5xl rounded-[3rem] border border-[#d89a55]/10 bg-[#1f3c44]/40 p-10 md:p-20 text-center backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.8)] transform-style-3d">
+              <div className="mb-6 inline-flex rounded-full bg-[#d89a55]/10 px-6 py-2 border border-[#d89a55]/20">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#d89a55]">
+                  Experience Track {String(index + 1).padStart(2, "0")}
+                </span>
               </div>
-            </article>
-          ))}
-        </div>
-      </Container>
-
-      <style>{`
-        .meet-card {
-          transform-style: preserve-3d;
-        }
-
-        @media (min-width: 1024px) {
-          .meet-card {
-            transition: transform 380ms ease;
-          }
-        }
-      `}</style>
+              
+              <h3 className="mb-8 font-serif text-5xl text-white md:text-7xl lg:text-[6rem] leading-[0.9] drop-shadow-2xl">
+                {card.title}
+              </h3>
+              
+              <div className="mx-auto mb-8 h-[2px] w-32 bg-gradient-to-r from-transparent via-[#d89a55] to-transparent" />
+              
+              <p className="mx-auto max-w-3xl text-xl leading-relaxed text-[#f1ece3] drop-shadow-lg font-light md:text-2xl">
+                {card.description}
+              </p>
+            </div>
+            
+            {/* Scroll Indicator (Only on first few) */}
+            {index < WEDDINGS_MEETING_CARDS.length - 1 && (
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center animate-bounce">
+                <div className="h-16 w-[1px] bg-gradient-to-b from-white/0 via-white/50 to-white/0" />
+                <span className="mt-4 text-[0.6rem] uppercase tracking-widest text-white/70">Scroll</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

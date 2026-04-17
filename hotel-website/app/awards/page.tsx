@@ -5,7 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "@/components/ui/Container";
-
+import ImmersiveGallery from "@/components/sections/ImmersiveGallery";
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -426,7 +426,7 @@ export default function AwardsPage() {
   }, []);
 
   return (
-    <>
+    <div className="site-page">
       <section
         ref={heroRef}
         data-no-global-gsap
@@ -571,6 +571,8 @@ export default function AwardsPage() {
           </div>
         </Container>
       </section>
-    </>
+
+      {/* <ImmersiveGallery title="A Visual Legacy" /> */}
+    </div>
   );
 }

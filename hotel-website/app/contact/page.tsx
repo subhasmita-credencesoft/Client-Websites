@@ -4,6 +4,7 @@ import Link from "next/link";
 import Container from "../../components/ui/Container";
 import { usePropertyData } from "../../components/providers/PropertyDataProvider";
 import PageHero from "../../components/sections/PageHero";
+import ImmersiveGallery from "../../components/sections/ImmersiveGallery";
 import { CONTACT_PAGE_DEFAULTS } from "../../data/pages/contact";
 import useClientReady from "../../hooks/useClientReady";
 
@@ -76,7 +77,7 @@ export default function ContactPage() {
   const social = activeProperty?.socialMediaLinks?.[0];
 
   return (
-    <>
+    <div className="site-page">
       <PageHero
         title="Contact"
         subtitle="Reach out for room stays, dining visits, celebrations, group bookings, and travel guidance at UK's Resort."
@@ -221,6 +222,8 @@ export default function ContactPage() {
           </div>
         </Container>
       </section>
-    </>
+
+      {/* <ImmersiveGallery title="Our Visual Story" /> */}
+    </div>
   );
 }

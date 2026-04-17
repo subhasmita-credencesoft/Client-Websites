@@ -211,7 +211,7 @@ export default function Hero() {
                   id={index === 0 ? "home-hero-title" : undefined}
                   className="hero-title-line font-serif text-[clamp(2.6rem,10vw,6.25rem)] font-normal leading-[0.94] tracking-[-0.025em] text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
                 >
-                  {line === "UK's Resort" ? <>UK&apos;s Resort</> : line}
+                  {line}
                 </h1>
               </div>
             ))}
@@ -224,16 +224,17 @@ export default function Hero() {
           <div className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <Link
               href="/rooms"
-              className="site-button site-button--primary site-button--lg w-full max-w-xs px-8 text-center"
+              className="site-button site-button--primary site-button--lg w-full max-w-xs px-8 text-center animate-pulse-subtle bg-[#1a382d] hover:bg-[#204a3c] text-[#e5d3b3]"
             >
-              Explore Stays
+              Book Now
             </Link>
-            <Link
-              href="/contact"
-              className="site-button site-button--outline site-button--lg w-full max-w-xs border-white/45 bg-white/10 px-8 text-center text-white hover:border-white hover:bg-white/18"
-            >
-              Plan Your Visit
-            </Link>
+          </div>
+          
+          <div className="hero-scroll-indicator mt-16 flex flex-col items-center opacity-80" aria-hidden="true">
+            <span className="text-[0.65rem] uppercase tracking-widest text-white/70 mb-2">Scroll</span>
+            <div className="h-12 w-[1px] bg-white/20 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1/2 bg-white animate-scroll-drop"></div>
+            </div>
           </div>
         </div> */}
 

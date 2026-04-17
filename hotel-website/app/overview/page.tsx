@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import PageHero from "../../components/sections/PageHero";
+import CinematicParallaxBreak from "../../components/sections/CinematicParallaxBreak";
+import ImmersiveGallery from "../../components/sections/ImmersiveGallery";
 import { dynamicImportWithRetry } from "../../lib/dynamicImportWithRetry";
 import { createPageMetadata } from "../../lib/metadata";
 import { OVERVIEW_HERO_CONFIG } from "../../data/sections/pageHeroes";
@@ -28,6 +30,14 @@ export default function OverviewPage() {
     <div className="site-page">
       <PageHero {...OVERVIEW_HERO_CONFIG} />
       <OverviewContent />
+      
+      <CinematicParallaxBreak 
+        title="A Legacy of Elegance" 
+        subtitle="Embark on a journey through history wrapped in lush, earthy landscapes. The very essence of UK's Resort is grounded in providing a regal escape." 
+        image="https://bookonelocal.in/cdn/Copy of IMG_1568.avif"
+      />
+      
+      {/* <ImmersiveGallery title="Resort Essence" /> */}
     </div>
   );
 }

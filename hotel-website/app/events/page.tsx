@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import EventsHero from "../../components/sections/EventsHero";
 import EventsCelebration from "../../components/sections/EventsCelebration";
 import EventsImmersiveMoments from "../../components/sections/EventsImmersiveMoments";
-import EventsZoneAtlas from "../../components/sections/EventsZoneAtlas";
 import EventsActivitiesShowcase from "../../components/sections/EventsActivitiesShowcase";
+import CinematicParallaxBreak from "../../components/sections/CinematicParallaxBreak";
+import ImmersiveGallery from "../../components/sections/ImmersiveGallery";
 import { createPageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -16,13 +17,20 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function EventsPage() {
   return (
-    <>
+    <div className="site-page">
       <EventsHero />
-      {/* <HeroBookingBarDock /> */}
       <EventsCelebration />
+      
+      <CinematicParallaxBreak 
+        title="Unforgettable Milestones" 
+        subtitle="From grand corporate retreats to thrilling one-day picnics, UK's Resort offers impeccably crafted spaces that breathe life into your most significant gatherings." 
+        image="https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif"
+      />
+      
       <EventsImmersiveMoments />
-      {/* <EventsZoneAtlas /> */}
-      <EventsActivitiesShowcase />
-    </>
+      {/* <EventsActivitiesShowcase /> */}
+      
+      {/* <ImmersiveGallery title="Moments of Joy" /> */}
+    </div>
   );
 }
