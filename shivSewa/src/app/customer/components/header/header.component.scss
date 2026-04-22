@@ -66,11 +66,11 @@
       border-radius: 2px;
     }
 
-    .shivsewa-navigation {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-    }
+	    .shivsewa-navigation {
+	      display: flex;
+	      align-items: center;
+	      gap: 1.5rem;
+	    }
 
     .shivsewa-nav-item {
 color: #fff;
@@ -101,25 +101,35 @@ color: #fff;
       width: 100%;
     }
 
-    .shivsewa-btn-whatsapp,
-    .shivsewa-btn-book {
-    padding: 0.65rem 1.75rem;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    font-family: "DM Sans";
-    letter-spacing: 0.6px;
-    letter-spacing: 0.8px;
-    }
+	    .shivsewa-btn-call,
+	    .shivsewa-btn-whatsapp,
+		    .shivsewa-btn-book {
+		    padding: 0.5rem 1rem;
+		    border-radius: 10px;
+		    font-size: 0.95rem;
+		    font-weight: 500;
+		    border: none;
+		    cursor: pointer;
+		    transition: all 0.3s ease;
+	    white-space: nowrap;
+		    font-family: "DM Sans";
+		    letter-spacing: 0.4px;
+		    text-decoration: none;
+		    display: inline-flex;
+		    align-items: center;
+		    justify-content: center;
+		    gap: 0.35rem;
+		    }
 
-    .shivsewa-btn-whatsapp {
-     background-color: transparent;
-    color: #fff;
-    border: 1px solid #fff;
+		    .shivsewa-btn-call {
+		    background: linear-gradient(90deg, #CC4C00 0%, #C67F00 100%);
+		    color: #fff;
+		    }
+
+	    .shivsewa-btn-whatsapp {
+	     background-color: transparent;
+	    color: #fff;
+	    border: 1px solid #fff;
     }
 
     .shivsewa-btn-whatsapp:hover {
@@ -128,16 +138,18 @@ color: #fff;
       color: #fff;
     }
 
-    .shivsewa-btn-book {
-      background: linear-gradient(90deg, #CC4C00 0%, #C67F00 100%);
-      color: #fff;
-    }
+	    .shivsewa-btn-call,
+	    .shivsewa-btn-book {
+	      background: linear-gradient(90deg, #CC4C00 0%, #C67F00 100%);
+	      color: #fff;
+	    }
 
-    .shivsewa-btn-book:hover {
-      background-color: #e55a25;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
-    }
+	    .shivsewa-btn-call:hover,
+	    .shivsewa-btn-book:hover {
+	      background-color: #e55a25;
+	      transform: translateY(-2px);
+	      box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
+	    }
 // responsive
 
 @media (max-width: 1200px) {
@@ -153,25 +165,26 @@ color: #fff;
     align-items: center;
   }
 
-  .shivsewa-navigation {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-  }
+		  .shivsewa-navigation {
+		    flex: 1;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    gap: 1rem;
+		  }
 
   .shivsewa-navigation button {
     margin-left: 0;
   }
 
-  .shivsewa-btn-whatsapp,
-  .shivsewa-btn-book {
-    flex: 0 0 auto;
-  }
+	  .shivsewa-btn-call,
+	  .shivsewa-btn-whatsapp,
+	  .shivsewa-btn-book {
+	    flex: 0 0 auto;
+	  }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1100px) {
   .shivsewa-menu-button {
     display: flex;
   }
@@ -199,11 +212,12 @@ color: #fff;
   }
 
   .shivsewa-nav-item,
-  .shivsewa-btn-whatsapp,
-  .shivsewa-btn-book {
-    width: 100%;
-    text-align: center;
-  }
+	  .shivsewa-btn-call,
+	  .shivsewa-btn-whatsapp,
+	  .shivsewa-btn-book {
+	    width: 100%;
+	    text-align: center;
+	  }
 
   .shivsewa-nav-item::after {
     display: none;
@@ -235,11 +249,12 @@ color: #fff;
     padding: 0 0.8rem;
   }
 
-  .shivsewa-btn-whatsapp,
-  .shivsewa-btn-book {
-    padding: 0.65rem 1.25rem;
-    font-size: 0.9rem;
-  }
+	  .shivsewa-btn-call,
+	  .shivsewa-btn-whatsapp,
+	  .shivsewa-btn-book {
+	    padding: 0.65rem 1.25rem;
+	    font-size: 0.9rem;
+	  }
 
   .shivsewa-navigation {
     padding: 2rem 1.2rem;
@@ -261,11 +276,12 @@ color: #fff;
     font-size: 1.25rem;
   }
 
-  .shivsewa-btn-whatsapp,
-  .shivsewa-btn-book {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.85rem;
-  }
+	  .shivsewa-btn-call,
+	  .shivsewa-btn-whatsapp,
+	  .shivsewa-btn-book {
+	    padding: 0.75rem 1.5rem;
+	    font-size: 0.85rem;
+	  }
 }
 
 @media (max-width: 360px) {
@@ -288,10 +304,11 @@ color: #fff;
     padding: 1.5rem 1rem;
   }
 
-  .shivsewa-btn-whatsapp,
-  .shivsewa-btn-book {
-    padding: 0.6rem 1rem;
-    font-size: 0.8rem;
-  }
+	  .shivsewa-btn-call,
+	  .shivsewa-btn-whatsapp,
+	  .shivsewa-btn-book {
+	    padding: 0.6rem 1rem;
+	    font-size: 0.8rem;
+	  }
 }
 
