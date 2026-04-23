@@ -42,7 +42,7 @@ export class PopularTripsComponent {
   trips: Trip[] = [
   {
     id: 1,
-    image: '/assets/mumbai-shirdi.avif',
+    image: 'https://bookonelocal.in/cdn/Shirdi.jpg',
     pickup: {
       place_id: 'ChIJwe1EZjDG5zsRaYxkjY_tpF0',
       name: 'Mumbai',
@@ -75,7 +75,7 @@ export class PopularTripsComponent {
 
   {
     id: 2,
-    image: '/assets/mumbai-mahabaleswar.avif',
+    image: 'https://bookonelocal.in/cdn/Mahabaleshwar.jpg',
     pickup: {
       place_id: 'ChIJwe1EZjDG5zsRaYxkjY_tpF0',
       name: 'Mumbai',
@@ -141,7 +141,7 @@ export class PopularTripsComponent {
 
   {
     id: 4,
-    image: '/assets/mumbai-pune.avif',
+    image: 'https://bookonelocal.in/cdn/Pune.jpg',
     pickup: {
       place_id: 'ChIJwe1EZjDG5zsRaYxkjY_tpF0',
       name: 'Mumbai',
@@ -174,7 +174,7 @@ export class PopularTripsComponent {
 
   {
     id: 5,
-    image: '/assets/mumbai-alibaug.avif',
+    image: 'https://bookonelocal.in/cdn/Alibag.jpg',
     pickup: {
       place_id: 'ChIJwe1EZjDG5zsRaYxkjY_tpF0',
       name: 'Mumbai',
