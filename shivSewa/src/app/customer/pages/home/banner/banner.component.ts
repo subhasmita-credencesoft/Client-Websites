@@ -158,7 +158,9 @@ export class BannerComponent {
   ) {}
 
   ngOnInit() {
-    this.couponCode = this.bookingService.getCurrent().coupon?.code || '';
+    const existingCoupon = this.bookingService.getCurrent().coupon?.code || '';
+    this.couponCode = existingCoupon;
+    this.setDefaultCouponForTrip();
     this.pickupAutocomplete = new google.maps.places.AutocompleteService();
     this.dropAutocomplete = new google.maps.places.AutocompleteService();
     this.useCurrentLocation();
@@ -166,7 +168,7 @@ export class BannerComponent {
     window.addEventListener('resize', () => this.checkViewport());
     this.setMinDateTime();
   }
-ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
 
   if (changes['tripData'] && this.tripData) {
     this.selectedPickup = this.tripData.pickup;
@@ -176,6 +178,7 @@ ngOnChanges(changes: SimpleChanges): void {
     this.dropLocation = this.tripData.dropoff?.name;
 
     this.selectedTripType = this.tripData.tripTypeValue ?? 'pickup-drop';
+    this.setDefaultCouponForTrip();
   }
 }
   ngAfterViewInit() {
@@ -195,6 +198,7 @@ ngOnChanges(changes: SimpleChanges): void {
   // Trip Type Selection
   selectTripType(type: TripType) {
     this.selectedTripType = type;
+    this.setDefaultCouponForTrip();
     this.resetForm();
   }
 
@@ -553,6 +557,32 @@ ngOnChanges(changes: SimpleChanges): void {
     this.couponCode = this.couponCode.trim().toUpperCase();
   }
 
+  get isCouponApplicableTrip(): boolean {
+    return this.selectedTripType === 'pickup-drop' || this.selectedTripType === 'outstation';
+  }
+
+  get couponLabel(): string {
+    if (this.selectedTripType === 'pickup-drop') {
+      return 'Apply Coupon PICKUP20 For 20% Off';
+    }
+    if (this.selectedTripType === 'outstation') {
+      return 'Apply Coupon OUT10 For 10% Off';
+    }
+    return 'Apply Coupon';
+  }
+
+  private setDefaultCouponForTrip() {
+    if (this.selectedTripType === 'pickup-drop') {
+      this.couponCode = 'PICKUP20';
+      return;
+    }
+    if (this.selectedTripType === 'outstation') {
+      this.couponCode = 'OUT10';
+      return;
+    }
+    this.couponCode = '';
+  }
+
 bookNow(event: Event): void {
   event.preventDefault();
 
@@ -592,7 +622,7 @@ const tripTypeValue: TripTypeValue = this.selectedTripType;
 };
 
   this.bookingService.patchDeep(bookingData);
-  this.bookingService.setCouponCode(this.couponCode);
+  this.bookingService.setCouponCode(this.isCouponApplicableTrip ? this.couponCode : '');
   sessionStorage.setItem('selectedBooking', JSON.stringify(bookingData));
 if (this.selectedPickup && this.selectedDrop) {
         this.calculateDistanceAndDuration(this.selectedPickup, this.selectedDrop);

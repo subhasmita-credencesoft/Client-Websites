@@ -45,6 +45,7 @@
           [class.active]="selectedTripType === 'pickup-drop'"
           (click)="selectTripType('pickup-drop')"
         >
+          <span class="trip-discount-badge">20% OFF</span>
           <i class="fa-solid fa-location-dot"></i>
           <span>Pickup & Drop</span>
         </button>
@@ -55,6 +56,7 @@
           [class.active]="selectedTripType === 'outstation'"
           (click)="selectTripType('outstation')"
         >
+          <span class="trip-discount-badge">10% OFF</span>
           <i class="fa-solid fa-car"></i>
           <span>Outstation</span>
         </button>
@@ -152,14 +154,14 @@
           </div>
         </div>
 
-        <div class="coupon-section">
-          <label class="coupon-label" for="couponCode">Coupon Code</label>
+        <div class="coupon-section" *ngIf="isCouponApplicableTrip">
+          <label class="coupon-label" for="couponCode">{{ couponLabel }}</label>
           <input
             id="couponCode"
             type="text"
             name="couponCode"
             class="ride-input coupon-input"
-            placeholder="Enter coupon (OUT10 / PICKUP20)"
+            placeholder="Have a Coupon? Apply"
             [(ngModel)]="couponCode"
             (blur)="normalizeCouponInput()"
           />

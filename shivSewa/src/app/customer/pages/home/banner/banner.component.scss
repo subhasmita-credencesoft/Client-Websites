@@ -94,7 +94,7 @@ position: relative;
 .shivsewa-booking-panel {
   backdrop-filter: blur(25px);
   background: rgba(255, 255, 255, 0.25);
-  padding: 2.5rem;
+  padding: 1.6rem;
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
               0 0 0 1px rgba(255, 255, 255, 0.2);
@@ -146,7 +146,7 @@ position: relative;
 
 .ride-input {
   width: 100%;
-  padding: 1rem 3.5rem 1rem 2.75rem;
+  padding: 0.85rem 3.25rem 0.85rem 2.75rem;
   border: 2px solid rgba(255, 255, 255, 0.6);
   border-radius: 16px;
   font-size: 0.95rem;
@@ -240,21 +240,27 @@ position: relative;
 }
 
 .quick-ride-button-wrapper {
-  margin-top: 1.5rem;
+  margin-top: 0.9rem;
   display: flex;
   justify-content: center;
 }
 
 .coupon-section {
-  margin-top: 1rem;
+  margin-top: 0.55rem;
 }
 
 .coupon-label {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #1f2937;
+  display: inline-block;
+  margin-bottom: 0.45rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.35rem 0.55rem;
+  border-radius: 999px;
+  color: #ffffff;
+  background: #16a34a;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
 }
 
 .coupon-input {
@@ -265,7 +271,7 @@ position: relative;
 .coupon-hint {
   display: block;
   margin-top: 0.35rem;
-  color: #4b5563;
+  color: #ffffff;
   font-size: 0.78rem;
 }
 
@@ -712,7 +718,7 @@ width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.9rem;
 
   @media (max-width: 480px) {
         grid-template-columns: 1fr 1fr;
@@ -721,11 +727,12 @@ width: 100%;
 }
 
 .trip-type-btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 1rem;
+  padding: 0.75rem 0.9rem;
   background: rgba(255, 255, 255, 0.7);
   border: 2px solid rgba(255, 255, 255, 0.6);
   border-radius: 12px;
@@ -762,6 +769,31 @@ width: 100%;
   @media (max-width: 480px) {
     padding: 0.75rem;
     font-size: 0.9rem;
+  }
+}
+
+.trip-discount-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.28rem 0.4rem;
+  border-radius: 999px;
+  letter-spacing: 0.4px;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
+  z-index: 2;
+}
+
+@media (max-width: 480px) {
+  .trip-discount-badge {
+    top: -8px;
+    right: -6px;
+    font-size: 0.55rem;
+    padding: 0.22rem 0.34rem;
   }
 }
 
@@ -1008,7 +1040,7 @@ width: 100%;
 .shivsewa-booking-panel {
   backdrop-filter: blur(25px);
   background: rgba(255, 255, 255, 0.25);
-  padding: 2.5rem;
+  padding: 1.6rem;
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -1018,7 +1050,7 @@ width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.9rem;
 }
 
 .ride-input-group {
@@ -1048,7 +1080,7 @@ width: 100%;
 
 .ride-input {
   width: 100%;
-  padding: 1rem 3.5rem 1rem 2.75rem;
+  padding: 0.85rem 3.25rem 0.85rem 2.75rem;
   border: 2px solid rgba(255, 255, 255, 0.6);
   border-radius: 16px;
   font-size: 0.95rem;
@@ -1139,12 +1171,12 @@ width: 100%;
 
 .connector-line {
   width: 2px;
-  height: 2.5rem;
+  height: 1.5rem;
   background: rgba(130, 125, 188, 1);
 }
 
 .quick-ride-button-wrapper {
-  margin-top: 1.5rem;
+  margin-top: 0.9rem;
   display: flex;
   justify-content: center;
 }
@@ -1421,8 +1453,8 @@ width: 100%;
   color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 1rem;
-  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  margin-top: 0.9rem;
 
   &:first-child {
     margin-top: 0;
@@ -1433,7 +1465,7 @@ width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.9rem;
 
   @media (max-width: 480px) {
     gap: 0.5rem;
@@ -1509,8 +1541,8 @@ width: 100%;
   color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 1rem;
-  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  margin-top: 0.9rem;
 
   &:first-child {
     margin-top: 0;
@@ -1521,7 +1553,7 @@ width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.9rem;
 
   @media (max-width: 480px) {
     gap: 0.5rem;

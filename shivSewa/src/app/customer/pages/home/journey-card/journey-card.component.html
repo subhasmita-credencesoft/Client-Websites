@@ -15,6 +15,9 @@
         *ngFor="let card of journeyCards"
         class="journey-service-card"
       >
+        <span class="card-discount-badge" *ngIf="hasDiscount(card)">
+          {{ card.discountPercent }}% OFF
+        </span>
         <div class="service-card-inner">
 
           <!-- Image Section -->
@@ -30,7 +33,14 @@
               <p class="service-card-subtitle">{{ card.subtitle }}</p>
 
               <div class="service-card-details">
-                <p class="detail-price" *ngIf="card.price">{{ card.price }}</p>
+                <ng-container *ngIf="card.originalPrice as original">
+                  <p class="detail-price-original" *ngIf="hasDiscount(card)">
+                    {{ formatPrice(original) }}
+                  </p>
+                  <p class="detail-price" [class.detail-price-discounted]="hasDiscount(card)">
+                    {{ formatPrice(getDiscountedPrice(card)) }}
+                  </p>
+                </ng-container>
                 <p class="detail-description">{{ card.description }}</p>
                 <p class="detail-additional" *ngIf="card.additionalInfo">
                   {{ card.additionalInfo }}
