@@ -191,9 +191,19 @@ export class BookingService {
     const coupon = this.revalidateCouponForTripType(current.coupon, tripType);
 
     const safeFareAmount = this.round2(Math.max(0, fareAmount || 0));
+    const discountableFareAmount = this.getDiscountableFareAmount(
+      safeFareAmount,
+      tripType,
+      current.fareQuote
+    );
     const discountAmount =
       coupon.status === 'applied'
-        ? this.round2(Math.min(safeFareAmount, (safeFareAmount * coupon.discountPercentage) / 100))
+        ? this.round2(
+            Math.min(
+              discountableFareAmount,
+              (discountableFareAmount * coupon.discountPercentage) / 100
+            )
+          )
         : 0;
     const taxableAmount = this.round2(Math.max(0, safeFareAmount - discountAmount));
 
@@ -233,18 +243,30 @@ export class BookingService {
 
   getCouponPreviewForFare(
     fareAmount: number,
-    tripTypeValue?: Booking['tripTypeValue']
+    tripTypeValue?: Booking['tripTypeValue'],
+    fareQuote?: FareQuote
   ): { coupon: BookingCoupon; discountAmount: number; finalAmount: number } {
     const current = this._booking.value;
     const safeFare = this.round2(Math.max(0, fareAmount || 0));
+    const activeTripType = tripTypeValue ?? current.tripTypeValue;
     const coupon = this.evaluateCoupon(
       current.coupon?.code || '',
-      tripTypeValue ?? current.tripTypeValue
+      activeTripType
+    );
+    const discountableFareAmount = this.getDiscountableFareAmount(
+      safeFare,
+      activeTripType,
+      fareQuote
     );
 
     const discountAmount =
       coupon.status === 'applied'
-        ? this.round2(Math.min(safeFare, (safeFare * coupon.discountPercentage) / 100))
+        ? this.round2(
+            Math.min(
+              discountableFareAmount,
+              (discountableFareAmount * coupon.discountPercentage) / 100
+            )
+          )
         : 0;
 
     const finalAmount = this.round2(Math.max(0, safeFare - discountAmount));
@@ -419,5 +441,25 @@ export class BookingService {
 
   private round2(value: number): number {
     return +value.toFixed(2);
+  }
+
+  private getDiscountableFareAmount(
+    fareAmount: number,
+    tripTypeValue?: Booking['tripTypeValue'],
+    fareQuote?: FareQuote
+  ): number {
+    const safeFareAmount = this.round2(Math.max(0, fareAmount || 0));
+    if (tripTypeValue !== 'outstation') return safeFareAmount;
+
+    const quote = fareQuote ?? this._booking.value.fareQuote;
+    if (!quote?.lines?.length) return safeFareAmount;
+
+    const driverAllowance = this.round2(
+      quote.lines
+        .filter(line => line.code === 'DRIVER')
+        .reduce((sum, line) => sum + Math.max(0, line.amount || 0), 0)
+    );
+
+    return this.round2(Math.max(0, safeFareAmount - driverAllowance));
   }
 }

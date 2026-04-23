@@ -225,7 +225,8 @@ private mapCategoryForPricing(
     if (!quote) return 0;
     return this.bookingService.getCouponPreviewForFare(
       quote.total,
-      this.bookingService.getCurrent().tripTypeValue
+      this.bookingService.getCurrent().tripTypeValue,
+      quote
     ).finalAmount;
   }
   private mapTripTypeToPricing(
@@ -369,7 +370,8 @@ private canCalculateFare(): boolean {
 
     return this.bookingService.getCouponPreviewForFare(
       fare.total,
-      this.bookingService.getCurrent().tripTypeValue
+      this.bookingService.getCurrent().tripTypeValue,
+      fare
     );
   }
 
