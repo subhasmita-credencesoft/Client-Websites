@@ -8,7 +8,6 @@ import { GeoLocation } from '../../../models/geo-location';
 import { BookingService } from '../../../services/booking.service';
 import { LocationService } from '../../../services/location/location.service';
 import { Booking, TripServiceType, TripTypeValue } from '../../../models/booking.model';
-import { Subject, takeUntil } from 'rxjs';
 
 type TripType = 'pickup-drop' | 'outstation' | 'rental';
 type VehicleCategory = 'sedan' | 'suv' | 'suvPlus';
@@ -46,7 +45,6 @@ export class BannerComponent {
   rentalHours: number = 1;
   rentalDate: string = '';
   rentalTime: string = '';
-private destroy$ = new Subject<void>();
   // Car data
   carData: Record<VehicleCategory, Car[]> = {
     sedan: [
@@ -151,8 +149,8 @@ private destroy$ = new Subject<void>();
   dropAutocomplete!: google.maps.places.AutocompleteService;
   pickupError: string = '';
   dropError: string = '';
+  couponCode = '';
   @Input() tripData: any;
-private resizeHandler!: () => void;
   constructor(
     private router: Router,
     private bookingService: BookingService,
@@ -160,6 +158,7 @@ private resizeHandler!: () => void;
   ) {}
 
   ngOnInit() {
+    this.couponCode = this.bookingService.getCurrent().coupon?.code || '';
     this.pickupAutocomplete = new google.maps.places.AutocompleteService();
     this.dropAutocomplete = new google.maps.places.AutocompleteService();
     this.useCurrentLocation();
@@ -534,6 +533,26 @@ ngOnChanges(changes: SimpleChanges): void {
     return true;
   }
 
+  get couponHint(): string {
+    const code = this.couponCode.trim().toUpperCase();
+    if (!code) return 'Use OUT10 for outstation or PICKUP20 for pickup & drop.';
+    if (code === 'OUT10') {
+      return this.selectedTripType === 'outstation'
+        ? 'OUT10 will apply 10% discount before GST.'
+        : 'OUT10 applies only to outstation trips.';
+    }
+    if (code === 'PICKUP20') {
+      return this.selectedTripType === 'pickup-drop'
+        ? 'PICKUP20 will apply 20% discount before GST.'
+        : 'PICKUP20 applies only to pickup & drop trips.';
+    }
+    return 'This coupon is not supported.';
+  }
+
+  normalizeCouponInput() {
+    this.couponCode = this.couponCode.trim().toUpperCase();
+  }
+
 bookNow(event: Event): void {
   event.preventDefault();
 
@@ -573,6 +592,7 @@ const tripTypeValue: TripTypeValue = this.selectedTripType;
 };
 
   this.bookingService.patchDeep(bookingData);
+  this.bookingService.setCouponCode(this.couponCode);
   sessionStorage.setItem('selectedBooking', JSON.stringify(bookingData));
 if (this.selectedPickup && this.selectedDrop) {
         this.calculateDistanceAndDuration(this.selectedPickup, this.selectedDrop);

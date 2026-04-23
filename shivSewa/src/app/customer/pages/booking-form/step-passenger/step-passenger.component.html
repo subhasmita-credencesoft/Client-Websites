@@ -97,7 +97,7 @@
 
           <div class="vehicle-details">
             <div class="vehicle-name">{{ selectedVehicle.name }}</div>
-            <div class="vehicle-specs">{{ selectedVehicle.seats }} Seats • {{ selectedVehicle.bags }} Bags • {{ selectedVehicle.fuel }}</div>
+            <div class="vehicle-specs">{{ selectedVehicle.seats }} Seats &bull; {{ selectedVehicle.bags }} Bags &bull; {{ selectedVehicle.fuel }}</div>
             <div class="vehicle-model">{{ selectedVehicle.description || 'Hyundai Aura, Dzire, or Similar' }}</div>
 
             <div class="vehicle-features">
@@ -117,9 +117,9 @@
           </div>
 
           <div class="vehicle-price-section">
-            <div class="vehicle-price">₹{{ selectedVehicle.price | number:'1.2-2' }}
+              <div class="vehicle-price">&#8377;{{ selectedVehicle.price | number:'1.2-2' }}
               <br/>
-              <div class="price-label">Estimated fare</div>
+              <div class="price-label">{{ isCouponAppliedInStep2 ? 'After coupon' : 'Estimated fare' }}</div>
             </div>
 
             <button class="breakdown-btn" (click)="showBreakdown = true">View Breakdown</button>
@@ -152,12 +152,12 @@
 
             <div class="option-details">
               <div class="option-name">{{ car.name }}</div>
-              <div class="option-specs">{{ car.seats }} Seats • {{ car.bags }} Bags</div>
+              <div class="option-specs">{{ car.seats }} Seats &bull; {{ car.bags }} Bags</div>
             </div>
 
             <div class="option-price-section">
-              <div class="option-price">₹{{ car.price | number:'1.2-2' }}</div>
-              <div class="option-price-label">Est. fare</div>
+              <div class="option-price">&#8377;{{ car.price | number:'1.2-2' }}</div>
+              <div class="option-price-label">{{ isCouponAppliedInStep2 ? 'After coupon' : 'Est. fare' }}</div>
             </div>
           </div>
         </div>
@@ -192,142 +192,122 @@
 
 <div class="breakdown-items">
 
-  <!-- ================= PICKUP & DROP ================= -->
   <ng-container *ngIf="fare.tripType === 'pickup_drop'">
-
     <div class="breakdown-item">
       <span class="item-label">
         Base Fare
         <small>(Includes {{ fare.meta?.baseKm || 4 }} km)</small>
       </span>
       <span class="item-value">
-        ₹{{ fare.lines[0]?.amount | number:'1.2-2' }}
+        &#8377;{{ fare.lines[0]?.amount | number:'1.2-2' }}
       </span>
     </div>
 
-    <div class="breakdown-item" *ngFor="let line of fare.lines"
-         [hidden]="line.code !== 'EXTRA_KM'">
+    <div class="breakdown-item" *ngFor="let line of fare.lines" [hidden]="line.code !== 'EXTRA_KM'">
       <span class="item-label">
         Extra Distance
-        <small>({{ line.qty | number:'1.2-2' }} km × ₹{{ line.unitPrice | number:'1.2-2' }})</small>
+        <small>({{ line.qty | number:'1.2-2' }} km &times; &#8377;{{ line.unitPrice | number:'1.2-2' }})</small>
       </span>
       <span class="item-value">
-        ₹{{ line.amount | number:'1.2-2' }}
+        &#8377;{{ line.amount | number:'1.2-2' }}
       </span>
     </div>
-
   </ng-container>
 
-  <!-- ================= RENTAL ================= -->
   <ng-container *ngIf="fare.tripType === 'rental'">
-
     <div class="breakdown-item">
       <span class="item-label">
         Rental Package
-        <small>
-          ({{ fare.meta?.packageHours || 8 }} hrs /
-          {{ fare.meta?.packageKm || 80 }} km)
-        </small>
+        <small>({{ fare.meta?.packageHours || 8 }} hrs / {{ fare.meta?.packageKm || 80 }} km)</small>
       </span>
       <span class="item-value">
-        ₹{{ fare.lines[0]?.amount | number:'1.2-2' }}
+        &#8377;{{ fare.lines[0]?.amount | number:'1.2-2' }}
       </span>
     </div>
 
-    <div class="breakdown-item" *ngFor="let line of fare.lines"
-         [hidden]="line.code !== 'EXTRA_KM'">
+    <div class="breakdown-item" *ngFor="let line of fare.lines" [hidden]="line.code !== 'EXTRA_KM'">
       <span class="item-label">
         Extra Distance
-        <small>({{ line.qty }} km × ₹{{ line.unitPrice | number:'1.2-2' }})</small>
+        <small>({{ line.qty }} km &times; &#8377;{{ line.unitPrice | number:'1.2-2' }})</small>
       </span>
       <span class="item-value">
-        ₹{{ line.amount | number:'1.2-2' }}
+        &#8377;{{ line.amount | number:'1.2-2' }}
       </span>
     </div>
 
-    <div class="breakdown-item" *ngFor="let line of fare.lines"
-         [hidden]="line.code !== 'EXTRA_HOUR'">
+    <div class="breakdown-item" *ngFor="let line of fare.lines" [hidden]="line.code !== 'EXTRA_HOUR'">
       <span class="item-label">
         Extra Time
-        <small>({{ line.qty| number:'1.2-2' }} hrs × ₹{{ line.unitPrice | number:'1.2-2' }})</small>
+        <small>({{ line.qty| number:'1.2-2' }} hrs &times; &#8377;{{ line.unitPrice | number:'1.2-2' }})</small>
       </span>
       <span class="item-value">
-        ₹{{ line.amount | number:'1.2-2' }}
+        &#8377;{{ line.amount | number:'1.2-2' }}
       </span>
     </div>
-
   </ng-container>
 
-<!-- ================= OUTSTATION ================= -->
-<ng-container *ngIf="fare.tripType === 'outstation'">
+  <ng-container *ngIf="fare.tripType === 'outstation'">
+    <div class="breakdown-item text-muted">
+      <span class="item-label">Minimum distance per day rule applies</span>
+    </div>
 
-  <!-- Rule explanation -->
-  <div class="breakdown-item text-muted">
-    <span class="item-label">
-      Minimum distance per day rule applies
-    </span>
-  </div>
+    <div class="breakdown-item">
+      <span class="item-label">Actual Distance</span>
+      <span class="item-value">{{ fare.distanceKm | number:'1.2-2' }} km</span>
+    </div>
 
-  <!-- Actual distance -->
-  <div class="breakdown-item">
-    <span class="item-label">
-      Actual Distance
-    </span>
-    <span class="item-value">
-      {{ fare.distanceKm | number:'1.2-2' }} km
-    </span>
-  </div>
+    <div class="breakdown-item">
+      <span class="item-label">
+        Billable Distance
+        <small>(Higher of actual distance <br/> or minimum distance per day)</small>
+      </span>
+      <span class="item-value">{{ fare.lines[0]?.qty | number:'1.2-2' }} km</span>
+    </div>
 
-  <!-- Billable distance explanation -->
-  <div class="breakdown-item">
-    <span class="item-label">
-      Billable Distance
-      <small>
-        (Higher of actual distance <br/> or minimum distance per day)
-      </small>
-    </span>
-    <span class="item-value">
-      {{ fare.lines[0]?.qty | number:'1.2-2' }} km
-    </span>
-  </div>
+    <div class="breakdown-item">
+      <span class="item-label">
+        Distance Charge
+        <small>({{ fare.lines[0]?.qty | number:'1.2-2' }} km &times; &#8377;{{ fare.lines[0]?.unitPrice | number:'1.2-2' }})</small>
+      </span>
+      <span class="item-value">&#8377;{{ fare.lines[0]?.amount | number:'1.2-2' }}</span>
+    </div>
 
-  <!-- Distance charge -->
-  <div class="breakdown-item">
-    <span class="item-label">
-      Distance Charge
-      <small>
-        ({{ fare.lines[0]?.qty | number:'1.2-2' }} km ×
-        ₹{{ fare.lines[0]?.unitPrice | number:'1.2-2' }})
-      </small>
-    </span>
-    <span class="item-value">
-      ₹{{ fare.lines[0]?.amount | number:'1.2-2' }}
-    </span>
-  </div>
-
-  <!-- Driver allowance -->
-  <div class="breakdown-item">
-    <span class="item-label">
-      Driver Allowance
-      <small>
-        ({{ fare.lines[1]?.qty }} day ×
-        ₹{{ fare.lines[1]?.unitPrice | number:'1.2-2' }})
-      </small>
-    </span>
-    <span class="item-value">
-      ₹{{ fare.lines[1]?.amount | number:'1.2-2' }}
-    </span>
-  </div>
-
-</ng-container>
-
+    <div class="breakdown-item">
+      <span class="item-label">
+        Driver Allowance
+        <small>({{ fare.lines[1]?.qty }} day &times; &#8377;{{ fare.lines[1]?.unitPrice | number:'1.2-2' }})</small>
+      </span>
+      <span class="item-value">&#8377;{{ fare.lines[1]?.amount | number:'1.2-2' }}</span>
+    </div>
+  </ng-container>
 
 </div>
 
+<div
+  class="breakdown-item breakdown-discount"
+  *ngIf="breakdownCouponPreview?.coupon?.status === 'applied' && breakdownCouponPreview?.discountAmount"
+>
+  <span class="item-label">
+    Coupon ({{ breakdownCouponPreview?.coupon?.code }}) - {{ breakdownCouponPreview?.coupon?.discountPercentage }}%
+  </span>
+  <span class="item-value">
+    - &#8377;{{ breakdownCouponPreview?.discountAmount | number:'1.2-2' }}
+  </span>
+</div>
+
+<div
+  class="breakdown-item text-danger"
+  *ngIf="breakdownCouponPreview?.coupon?.status === 'invalid' || breakdownCouponPreview?.coupon?.status === 'ineligible'"
+>
+  <span class="item-label">{{ couponBreakdownMessage }}</span>
+</div>
+
 <div class="breakdown-total">
-  <span class="total-label">Total Estimated Fare</span>
+  <span class="total-label">
+    {{ 'Total Estimated Fare' }}
+  </span>
   <span class="total-value">
-    ₹{{ fare.total | number:'1.2-2' }}
+    &#8377;{{ (breakdownCouponPreview?.finalAmount ?? fare.total) | number:'1.2-2' }}
   </span>
 </div>
 

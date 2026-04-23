@@ -130,7 +130,7 @@
       </ng-container>
 
       <ng-container *ngIf="isVerified">
-        ✓
+        &#10003;
       </ng-container>
     </button>
   </div>
@@ -185,7 +185,7 @@
         <small class="text-muted">(Includes base km)</small>
       </div>
       <div class="fw-bold">
-        ₹{{ fare.lines[0]?.amount | number:'1.0-2' }}
+        &#8377;{{ fare.lines[0]?.amount | number:'1.0-2' }}
       </div>
     </div>
 
@@ -197,11 +197,11 @@
       <div class="text-dark small" [hidden]="line.code !== 'EXTRA_KM'">
         Extra Distance
         <small class="text-muted">
-          ({{ line.qty | number:'1.2-2' }} km × ₹{{ line.unitPrice }})
+          ({{ line.qty | number:'1.2-2' }} km &times; &#8377;{{ line.unitPrice }})
         </small>
       </div>
       <div class="fw-bold" [hidden]="line.code !== 'EXTRA_KM'">
-        ₹{{ line.amount | number:'1.0-2' }}
+        &#8377;{{ line.amount | number:'1.0-2' }}
       </div>
     </div>
 
@@ -217,11 +217,11 @@
       <div class="text-dark small">
         {{ line.label }}
         <small class="text-muted" *ngIf="line.code !== 'PACKAGE'">
-          ({{ line.qty | number:'1.2-2' }} × ₹{{ line.unitPrice }})
+          ({{ line.qty | number:'1.2-2' }} &times; &#8377;{{ line.unitPrice }})
         </small>
       </div>
       <div class="fw-bold">
-        ₹{{ line.amount | number:'1.0-2' }}
+        &#8377;{{ line.amount | number:'1.0-2' }}
       </div>
     </div>
 
@@ -257,11 +257,11 @@
       <div class="text-dark small">
         Distance Charge
         <small class="text-muted">
-          ({{ fare.lines[0]?.qty | number:'1.2-2' }} km × ₹{{ fare.lines[0]?.unitPrice }})
+          ({{ fare.lines[0]?.qty | number:'1.2-2' }} km &times; &#8377;{{ fare.lines[0]?.unitPrice }})
         </small>
       </div>
       <div class="fw-bold">
-        ₹{{ fare.lines[0]?.amount | number:'1.0-2' }}
+        &#8377;{{ fare.lines[0]?.amount | number:'1.0-2' }}
       </div>
     </div>
 
@@ -269,11 +269,11 @@
       <div class="text-dark small">
         Driver Allowance
         <small class="text-muted">
-          ({{ fare.lines[1]?.qty }} day × ₹{{ fare.lines[1]?.unitPrice }})
+          ({{ fare.lines[1]?.qty }} day &times; &#8377;{{ fare.lines[1]?.unitPrice }})
         </small>
       </div>
       <div class="fw-bold">
-        ₹{{ fare.lines[1]?.amount | number:'1.0-2' }}
+        &#8377;{{ fare.lines[1]?.amount | number:'1.0-2' }}
       </div>
     </div>
 
@@ -282,13 +282,35 @@
   <hr class="my-3">
     <div
     class="d-flex justify-content-between mb-2"
-    *ngIf="booking?.pricing?.baseAmount"
+    *ngIf="booking?.pricing?.fareAmount"
   >
     <div class="text-dark small">
-      Sub Total:
+      Fare Before Discount
     </div>
     <div class="fw-bold">
-      ₹{{ booking?.pricing?.baseAmount | number:'1.0-2' }}
+      &#8377;{{ booking?.pricing?.fareAmount | number:'1.0-2' }}
+    </div>
+  </div>
+  <div
+    class="d-flex justify-content-between mb-2 text-success"
+    *ngIf="booking?.coupon?.status === 'applied' && booking?.pricing?.discountAmount"
+  >
+    <div class="small">
+      Coupon ({{ booking?.coupon?.code }}) - {{ booking?.coupon?.discountPercentage }}%
+    </div>
+    <div class="fw-bold">
+      - &#8377;{{ booking?.pricing?.discountAmount | number:'1.0-2' }}
+    </div>
+  </div>
+  <div
+    class="d-flex justify-content-between mb-2"
+    *ngIf="booking?.pricing?.taxableAmount"
+  >
+    <div class="text-dark small">
+      Taxable Amount
+    </div>
+    <div class="fw-bold">
+      &#8377;{{ booking?.pricing?.taxableAmount | number:'1.0-2' }}
     </div>
   </div>
   <!-- ================= TAX (DISPLAY ONLY) ================= -->
@@ -300,7 +322,7 @@
       GST ({{ booking.pricing.taxPercentage }}%)
     </div>
     <div class="fw-bold">
-      ₹{{ booking.pricing.taxAmount | number:'1.0-2' }}
+      &#8377;{{ booking.pricing.taxAmount | number:'1.0-2' }}
     </div>
   </div>
 
@@ -308,8 +330,14 @@
   <div class="d-flex justify-content-between align-items-center" *ngIf="booking.pricing.totalAmount" >
     <div class="fw-bold">Total Estimated Fare</div>
     <div class="fw-bold fs-6">
-      ₹{{ booking.pricing.totalAmount | number:'1.0-2' }}
+      &#8377;{{ booking.pricing.totalAmount | number:'1.0-2' }}
     </div>
+  </div>
+  <div
+    class="mt-2"
+    *ngIf="booking?.coupon?.status === 'invalid' || booking?.coupon?.status === 'ineligible'"
+  >
+    <small class="text-danger">{{ booking?.coupon?.message }}</small>
   </div>
 
   <!-- ================= NOTES ================= -->
@@ -382,11 +410,13 @@
 
   <ng-container *ngIf="isConfirming">
     <span class="spinner-border spinner-border-sm me-2"></span>
-    Confirming your booking…
+    Confirming your booking...
   </ng-container>
 </button>
 
     </div>
 </div>
 </div>
+
+
 

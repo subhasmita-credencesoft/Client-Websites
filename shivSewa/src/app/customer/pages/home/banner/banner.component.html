@@ -152,6 +152,20 @@
           </div>
         </div>
 
+        <div class="coupon-section">
+          <label class="coupon-label" for="couponCode">Coupon Code</label>
+          <input
+            id="couponCode"
+            type="text"
+            name="couponCode"
+            class="ride-input coupon-input"
+            placeholder="Enter coupon (OUT10 / PICKUP20)"
+            [(ngModel)]="couponCode"
+            (blur)="normalizeCouponInput()"
+          />
+          <small class="coupon-hint">{{ couponHint }}</small>
+        </div>
+
         <div class="quick-ride-button-wrapper">
           <button type="submit" [disabled]="!isFormValid()" class="request-ride-button">
             Request Ride

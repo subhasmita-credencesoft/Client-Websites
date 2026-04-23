@@ -4,6 +4,15 @@ import { GeoLocation } from "./geo-location";
 export type TripTypeValue = 'pickup-drop' | 'outstation' | 'rental';
 export type TripDirection = 'one-way' | 'return';
 export type TripServiceType = 'pickup_drop' | 'outstation' | 'rental';
+export type CouponStatus = 'none' | 'applied' | 'invalid' | 'ineligible';
+
+export interface BookingCoupon {
+  code: string;
+  status: CouponStatus;
+  discountPercentage: number;
+  discountAmount: number;
+  message: string;
+}
 export interface Booking {
   // Core location info
   pickup?: GeoLocation | null;
@@ -18,9 +27,9 @@ export interface Booking {
   time?: string;
   distanceKm?: number;        // Road distance in kilometers (e.g. 18.4)
   durationMinutes?: number;
-returnDate?: string;
-returnTime?: string;
-fareQuote?: FareQuote;
+  returnDate?: string;
+  returnTime?: string;
+  fareQuote?: FareQuote;
   // Rental specific - Hours and KM
   rentalHours?: number; // Number of hours (default 1, increment/decrement)
   rentalKm?: number; // Number of kilometers (default 10, increment/decrement by 10)
@@ -46,11 +55,15 @@ fareQuote?: FareQuote;
 
   // Traveller info
   pricing: {
-  baseAmount: number;
-  taxPercentage: number;
-  taxAmount: number;
-  totalAmount: number;
-},
+    fareAmount?: number;
+    discountAmount?: number;
+    taxableAmount?: number;
+    baseAmount: number;
+    taxPercentage: number;
+    taxAmount: number;
+    totalAmount: number;
+  };
+  coupon?: BookingCoupon;
   traveller?: {
     firstName?: string;
     lastName?: string;

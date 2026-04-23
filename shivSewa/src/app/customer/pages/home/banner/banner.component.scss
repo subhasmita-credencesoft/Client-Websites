@@ -245,6 +245,30 @@ position: relative;
   justify-content: center;
 }
 
+.coupon-section {
+  margin-top: 1rem;
+}
+
+.coupon-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.coupon-input {
+  padding-left: 1rem;
+  text-transform: uppercase;
+}
+
+.coupon-hint {
+  display: block;
+  margin-top: 0.35rem;
+  color: #4b5563;
+  font-size: 0.78rem;
+}
+
 .request-ride-button {
   width: 100%;
   max-width: 380px;

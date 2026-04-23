@@ -494,6 +494,12 @@
   color: #1a1a1a;
 }
 
+.breakdown-discount .item-label,
+.breakdown-discount .item-value {
+  color: #15803d !important;
+  font-weight: 700;
+}
+
 .breakdown-total {
   display: flex;
   justify-content: space-between;

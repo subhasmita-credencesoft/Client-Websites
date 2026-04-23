@@ -4,7 +4,6 @@ import { BookingService } from '../../../services/booking.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FareQuote } from '../../../pricing/pricing.types';
-import { calculateFare } from '../../../pricing/fare-engine';
 import { QuoteRequest } from '../../../pricing/dto';
 import { PricingService } from '../../../pricing/pricing.service';
 
@@ -15,7 +14,7 @@ interface Car {
   carNumber: string;
   bags: number;
   fuel: string;
-  price: string;
+  price: number;
   description: string;
   image: string;
   fareQuote?: FareQuote;
@@ -57,7 +56,7 @@ export class StepPassengerComponent {
         seats: 4,
         bags: 2,
         fuel: 'Petrol',
-        price: '',
+        price: 0,
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 01 AU 1234',
         image: 'assets/Hyundai-Aura.avif'
@@ -68,7 +67,7 @@ export class StepPassengerComponent {
         seats: 4,
         bags: 2,
         fuel: 'Petrol',
-        price: '',
+        price: 0,
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 02 DZ 5678',
         image: 'assets/Maruti-Dzire.avif'
@@ -81,7 +80,7 @@ export class StepPassengerComponent {
         seats: 6,
         bags: 3,
         fuel: 'Petrol',
-        price: '',
+        price: 0,
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 03 XL 1122',
         image: 'assets/Maruti-XL6.avif'
@@ -92,7 +91,7 @@ export class StepPassengerComponent {
         seats: 6,
         bags: 3,
         fuel: 'Petrol',
-        price: '',
+        price: 0,
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 04 RU 3344',
         image: 'assets/Toyota-Rumion.avif'
@@ -103,7 +102,7 @@ export class StepPassengerComponent {
         seats: 6,
         bags: 3,
         fuel: 'Petrol',
-        price: '',
+        price: 0,
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 05 ER 5566',
         image: 'assets/Maruti-Ertiga.avif'
@@ -116,7 +115,7 @@ export class StepPassengerComponent {
         seats: 6,
         bags: 4,
         fuel: 'Diesel',
-        price: '',
+        price: 0,
         description: 'All-inclusive: car + driver + fuel',
         carNumber: 'MH 06 IC 7788',
         image: 'assets/Toyota-Innova-Crysta.avif'
@@ -221,6 +220,14 @@ private mapCategoryForPricing(
     };
     return this.pricingService.calculate(req, b.distanceKm!);
   }
+
+  private getDisplayFare(quote?: FareQuote): number {
+    if (!quote) return 0;
+    return this.bookingService.getCouponPreviewForFare(
+      quote.total,
+      this.bookingService.getCurrent().tripTypeValue
+    ).finalAmount;
+  }
   private mapTripTypeToPricing(
     ui: 'pickup-drop' | 'outstation' | 'rental'
   ): 'pickup_drop' | 'outstation' | 'rental' {
@@ -244,14 +251,14 @@ private canCalculateFare(): boolean {
     );
   }
 
-updateCarLists() {
+  updateCarLists() {
   if (!this.canCalculateFare()) return;
 
   const trip = this.bookingService.getCurrent().tripTypeValue;
 
   this.recommendedCars = this.carData[this.selectedCategory].map(car => {
     const quote = this.calculateFareForCategory(this.selectedCategory);
-    return { ...car, price: `${quote.total}`, fareQuote: quote };
+    return { ...car, price: this.getDisplayFare(quote), fareQuote: quote };
   });
 
   this.allCars = Object.keys(this.carData).flatMap(cat => {
@@ -264,7 +271,7 @@ updateCarLists() {
       const quote = this.calculateFareForCategory(
         cat as keyof typeof this.carData
       );
-      return { ...car, price: `${quote.total}`, fareQuote: quote };
+      return { ...car, price: this.getDisplayFare(quote), fareQuote: quote };
     });
   });
 
@@ -355,6 +362,26 @@ updateCarLists() {
  get selectedFare(): FareQuote | null {
     return this.selectedVehicle?.fareQuote || null;
   }
+
+  get breakdownCouponPreview() {
+    const fare = this.selectedVehicle?.fareQuote;
+    if (!fare) return null;
+
+    return this.bookingService.getCouponPreviewForFare(
+      fare.total,
+      this.bookingService.getCurrent().tripTypeValue
+    );
+  }
+
+  get couponBreakdownMessage(): string {
+    const preview = this.breakdownCouponPreview;
+    return preview?.coupon?.message || '';
+  }
+
+  get isCouponAppliedInStep2(): boolean {
+    return this.bookingService.getCurrent().coupon?.status === 'applied';
+  }
+
   filterCarsBySlots(slotResponse: any) {
     const available = slotResponse.resourceList
       .filter((r: any) =>
@@ -411,7 +438,7 @@ updateCarLists() {
         name: v.name,
         seats: v.seats,
         bags: v.bags,
-        price: v.fareQuote?.total,
+        price: this.getDisplayFare(v.fareQuote),
         image: v.image,
         carNumber: v.carNumber
       },
@@ -481,7 +508,7 @@ updateCarLists() {
     passengers: { ...this.passengers },
     vehicle: {
       ...this.selectedVehicle,
-      price: this.selectedVehicle?.fareQuote?.total
+      price: this.getDisplayFare(this.selectedVehicle?.fareQuote)
     },
     fareQuote: this.selectedVehicle?.fareQuote
   });

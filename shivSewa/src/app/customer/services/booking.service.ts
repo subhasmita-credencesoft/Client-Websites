@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Booking } from '../models/booking.model';
+import { Booking, BookingCoupon } from '../models/booking.model';
 import { BehaviorSubject } from 'rxjs';
 import { FareQuote } from '../pricing/pricing.types';
 
@@ -7,6 +7,7 @@ import { FareQuote } from '../pricing/pricing.types';
   providedIn: 'root'
 })
 export class BookingService {
+  private lastTaxDetails: any[] = [];
 
   private _booking = new BehaviorSubject<Booking>({
     pickup: null,
@@ -52,11 +53,21 @@ export class BookingService {
       carNumber: '',
     },
     pricing: {
+  fareAmount: 0,
+  discountAmount: 0,
+  taxableAmount: 0,
   baseAmount: 0,
   taxPercentage: 0,
   taxAmount: 0,
   totalAmount: 0,
 },
+    coupon: {
+      code: '',
+      status: 'none',
+      discountPercentage: 0,
+      discountAmount: 0,
+      message: ''
+    },
 
     traveller: {
       firstName: '',
@@ -97,7 +108,7 @@ export class BookingService {
 
   patchDeep(patch: Partial<Booking>) {
     const current = this._booking.value;
-    this._booking.next({
+    const nextState: Booking = {
       ...current,
       ...patch,
 
@@ -105,7 +116,16 @@ export class BookingService {
       tripServiceType: patch.tripTypeValue
         ? this.mapServiceType(patch.tripTypeValue)
         : current.tripServiceType
-    });
+    };
+
+    if (patch.tripTypeValue) {
+      nextState.coupon = this.revalidateCouponForTripType(
+        nextState.coupon ?? current.coupon,
+        patch.tripTypeValue
+      );
+    }
+
+    this._booking.next(nextState);
   }
 
   setCurrent(data: Partial<Booking>) {
@@ -127,6 +147,7 @@ export class BookingService {
       ...this._booking.value,
       fareQuote: quote
     });
+    this.applyTaxAndPricing(quote.total, this.lastTaxDetails);
   }
 
   clearFareQuote() {
@@ -134,6 +155,7 @@ export class BookingService {
       ...this._booking.value,
       fareQuote: undefined
     });
+    this.applyTaxAndPricing(0, this.lastTaxDetails);
   }
 
   /* ---------------- HELPERS ---------------- */
@@ -144,35 +166,90 @@ export class BookingService {
     return ref;
   }
 
-  applyTaxAndPricing(
-  baseAmount: number,
-  taxDetails: any[]
-) {
-  let taxPercentage = 0;
+  setCouponCode(rawCode: string) {
+    const normalized = this.normalizeCouponCode(rawCode);
+    const coupon = this.evaluateCoupon(normalized, this._booking.value.tripTypeValue);
 
-  if (taxDetails?.length) {
-    const gst = taxDetails.find(t => t.name === 'GST');
+    this._booking.next({
+      ...this._booking.value,
+      coupon
+    });
 
-    if (gst?.taxSlabsList?.length) {
-      const slab = gst.taxSlabsList.find(
-        (s: any) => baseAmount >= s.minAmount && baseAmount <= s.maxAmount
-      );
-      taxPercentage = slab?.percentage ?? gst.percentage ?? 0;
-    }
+    const fareAmount = this._booking.value.fareQuote?.total ?? 0;
+    this.applyTaxAndPricing(fareAmount, this.lastTaxDetails);
   }
 
-  const taxAmount = +(baseAmount * taxPercentage / 100).toFixed(2);
-  const totalAmount = +(baseAmount + taxAmount).toFixed(2);
+  clearCoupon() {
+    this.setCouponCode('');
+  }
 
-  this.patchDeep({
-    pricing: {
-      baseAmount,
-      taxPercentage,
-      taxAmount,
-      totalAmount
+  applyTaxAndPricing(fareAmount: number, taxDetails: any[]) {
+    this.lastTaxDetails = taxDetails ?? [];
+
+    const current = this._booking.value;
+    const tripType = current.tripTypeValue;
+    const coupon = this.revalidateCouponForTripType(current.coupon, tripType);
+
+    const safeFareAmount = this.round2(Math.max(0, fareAmount || 0));
+    const discountAmount =
+      coupon.status === 'applied'
+        ? this.round2(Math.min(safeFareAmount, (safeFareAmount * coupon.discountPercentage) / 100))
+        : 0;
+    const taxableAmount = this.round2(Math.max(0, safeFareAmount - discountAmount));
+
+    let taxPercentage = 0;
+    if (this.lastTaxDetails.length) {
+      const gst = this.lastTaxDetails.find(t => t.name === 'GST');
+      if (gst?.taxSlabsList?.length) {
+        const slab = gst.taxSlabsList.find(
+          (s: any) => taxableAmount >= s.minAmount && taxableAmount <= s.maxAmount
+        );
+        taxPercentage = slab?.percentage ?? gst.percentage ?? 0;
+      } else {
+        taxPercentage = gst?.percentage ?? 0;
+      }
     }
-  });
-}
+
+    const taxAmount = this.round2((taxableAmount * taxPercentage) / 100);
+    const totalAmount = this.round2(taxableAmount + taxAmount);
+
+    this._booking.next({
+      ...current,
+      coupon: {
+        ...coupon,
+        discountAmount
+      },
+      pricing: {
+        fareAmount: safeFareAmount,
+        discountAmount,
+        taxableAmount,
+        baseAmount: taxableAmount,
+        taxPercentage,
+        taxAmount,
+        totalAmount
+      }
+    });
+  }
+
+  getCouponPreviewForFare(
+    fareAmount: number,
+    tripTypeValue?: Booking['tripTypeValue']
+  ): { coupon: BookingCoupon; discountAmount: number; finalAmount: number } {
+    const current = this._booking.value;
+    const safeFare = this.round2(Math.max(0, fareAmount || 0));
+    const coupon = this.evaluateCoupon(
+      current.coupon?.code || '',
+      tripTypeValue ?? current.tripTypeValue
+    );
+
+    const discountAmount =
+      coupon.status === 'applied'
+        ? this.round2(Math.min(safeFare, (safeFare * coupon.discountPercentage) / 100))
+        : 0;
+
+    const finalAmount = this.round2(Math.max(0, safeFare - discountAmount));
+    return { coupon: { ...coupon, discountAmount }, discountAmount, finalAmount };
+  }
 
 
   reset() {
@@ -208,10 +285,20 @@ export class BookingService {
         carNumber: '',
       },
       pricing: {
+        fareAmount: 0,
+        discountAmount: 0,
+        taxableAmount: 0,
         baseAmount: 0,
         taxPercentage: 0,
         taxAmount: 0,
         totalAmount: 0,
+      },
+      coupon: {
+        code: '',
+        status: 'none',
+        discountPercentage: 0,
+        discountAmount: 0,
+        message: ''
       },
 
       traveller: {
@@ -264,5 +351,73 @@ export class BookingService {
   ): 'pickup_drop' | 'outstation' | 'rental' {
     if (legacy === 'pickup-drop') return 'pickup_drop';
     return legacy;
+  }
+
+  private normalizeCouponCode(rawCode?: string): string {
+    return (rawCode || '').trim().toUpperCase();
+  }
+
+  private revalidateCouponForTripType(
+    coupon: BookingCoupon | undefined,
+    tripTypeValue: Booking['tripTypeValue']
+  ): BookingCoupon {
+    return this.evaluateCoupon(coupon?.code || '', tripTypeValue);
+  }
+
+  private evaluateCoupon(
+    code: string,
+    tripTypeValue: Booking['tripTypeValue']
+  ): BookingCoupon {
+    const normalizedCode = this.normalizeCouponCode(code);
+
+    if (!normalizedCode) {
+      return {
+        code: '',
+        status: 'none',
+        discountPercentage: 0,
+        discountAmount: 0,
+        message: ''
+      };
+    }
+
+    const couponRules: Record<string, { discountPercentage: number; allowedTripType: Booking['tripTypeValue'] }> = {
+      OUT10: { discountPercentage: 10, allowedTripType: 'outstation' },
+      PICKUP20: { discountPercentage: 20, allowedTripType: 'pickup-drop' }
+    };
+
+    const rule = couponRules[normalizedCode];
+    if (!rule) {
+      return {
+        code: normalizedCode,
+        status: 'invalid',
+        discountPercentage: 0,
+        discountAmount: 0,
+        message: 'Invalid coupon code.'
+      };
+    }
+
+    if (!tripTypeValue || tripTypeValue !== rule.allowedTripType) {
+      return {
+        code: normalizedCode,
+        status: 'ineligible',
+        discountPercentage: 0,
+        discountAmount: 0,
+        message: normalizedCode === 'OUT10'
+          ? 'OUT10 is valid only for outstation trips.'
+          : 'PICKUP20 is valid only for pickup & drop trips.'
+      };
+    }
+
+    return {
+      code: normalizedCode,
+      status: 'applied',
+      discountPercentage: rule.discountPercentage,
+      discountAmount: 0,
+      message: `${normalizedCode} applied successfully.`
+    };
+  }
+
+  private round2(value: number): number {
+    return +value.toFixed(2);
   }
 }
