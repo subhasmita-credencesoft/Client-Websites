@@ -20,6 +20,25 @@
       <span class="shivsewa-hamburger-line"></span>
     </button>
 
+    <div class="shivsewa-tablet-actions">
+      <a href="tel:9136399064" class="shivsewa-btn-call">
+        <i class="pi pi-phone shivsewa-call-icon" aria-hidden="true"></i>
+        <span class="shivsewa-label-full">Book On Call: 9136399064</span>
+        <span class="shivsewa-label-tab">Book On Call: 9136399064</span>
+        <span class="shivsewa-label-mobile">Call</span>
+      </a>
+      <button class="shivsewa-btn-whatsapp" (click)="openWhatsApp()">
+        <img
+          src="assets/whatsapp-icon.svg"
+          alt="WhatsApp"
+          class="shivsewa-whatsapp-icon"
+        />
+        <span class="shivsewa-label-full">Book on WhatsApp</span>
+        <span class="shivsewa-label-tab">Book on WhatsApp</span>
+        <span class="shivsewa-label-mobile">Whatsapp</span>
+      </button>
+    </div>
+
     <nav
       class="shivsewa-navigation"
       [class.shivsewa-navigation-active]="menuOpen"
