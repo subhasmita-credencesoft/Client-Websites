@@ -2,12 +2,12 @@
   --paper: #f7f3ee;
   --paper-strong: #ffffff;
   --paper-muted: #f3efe8;
-  --ink: #1b1a17;
+  --ink: #1f3c44;
   --ink-soft: #31464f;
   --ink-muted: #4f656d;
   --sand: #e8ddcf;
   --bronze: #b68b5b;
-  --pine: #244332;
+  --pine: #1f3c44;
   --mist: #f3f5f4;
   --accent: #c46a3a;
   --accent-hover: #a9552b;
@@ -26,9 +26,9 @@
   --text-readable: color-mix(in srgb, var(--ink) 84%, white 16%);
   --text-readable-soft: color-mix(in srgb, var(--ink) 72%, white 28%);
 
-  --border-subtle: rgba(27, 26, 23, 0.12);
-  --border-default: rgba(27, 26, 23, 0.18);
-  --border-strong: rgba(27, 26, 23, 0.28);
+  --border-subtle: rgba(31, 60, 68, 0.12);
+  --border-default: rgba(31, 60, 68, 0.18);
+  --border-strong: rgba(31, 60, 68, 0.28);
 
   --shadow-soft: 0 10px 30px rgba(15, 22, 28, 0.08);
   --shadow-card: 0 18px 45px rgba(15, 22, 28, 0.14);
@@ -60,7 +60,7 @@
 
   --line-height-tight: 1.15;
   --line-height-heading: 1.2;
-  --line-height-body: 1.6;
+  --line-height-body: 26px;
   --line-height-caption: 1.4;
 
   --weight-regular: 400;
@@ -89,8 +89,6 @@
   --duration-fast: 160ms;
   --duration-base: 220ms;
   --ease-standard: ease;
-  --font-jost: "Jost", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-playfair: "Cormorant Garamond", Georgia, "Times New Roman", serif;
 }
 
 @media (min-width: 640px) {

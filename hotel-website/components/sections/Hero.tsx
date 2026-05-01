@@ -224,7 +224,7 @@ export default function Hero() {
           <div className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <Link
               href="/rooms"
-              className="site-button site-button--primary site-button--lg w-full max-w-xs px-8 text-center animate-pulse-subtle bg-[#1a382d] hover:bg-[#204a3c] text-[#e5d3b3]"
+              className="site-button site-button--primary site-button--lg w-full max-w-xs px-8 text-center animate-pulse-subtle bg-[#1f3c44] hover:bg-[#143b47] text-[#e5d3b3]"
             >
               Book Now
             </Link>

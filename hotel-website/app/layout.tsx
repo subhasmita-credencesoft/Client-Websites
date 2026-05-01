@@ -101,14 +101,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${bodyFont.variable} ${displayFont.variable}`}>
       <head>
         <link rel="preconnect" href="https://bookonelocal.in" crossOrigin="" />
         <link rel="dns-prefetch" href="//bookonelocal.in" />
       </head>
       <body
         suppressHydrationWarning
-        className={`${bodyFont.variable} ${displayFont.variable} theme-hotel flex min-h-screen flex-col antialiased`}
+        className="theme-hotel flex min-h-screen flex-col antialiased"
       >
         <ToastProvider>
           <SmoothScrollProvider>

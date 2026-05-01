@@ -65,7 +65,7 @@ export default function DestinationWedding() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-[#1a382d] py-20 text-[#e5d3b3]">
+    <section ref={sectionRef} className="relative overflow-hidden bg-[#f7f3ee] py-20">
       {/* Particles */}
       {[...Array(6)].map((_, i) => (
         <div
@@ -95,17 +95,17 @@ export default function DestinationWedding() {
 
           {/* Text */}
           <div ref={textRef} className="flex flex-col justify-center space-y-6">
-            <h4 className="wedding-text text-sm font-semibold uppercase tracking-widest text-[#f7c744]">
+            <h4 className="wedding-text text-sm font-semibold uppercase tracking-widest text-[#b68b5b]">
               Destination Wedding
             </h4>
-            <h2 className="wedding-text font-serif text-4xl leading-tight text-white md:text-5xl lg:text-6xl">
+            <h2 className="wedding-text font-serif text-4xl leading-tight text-[#1f3c44] md:text-5xl lg:text-6xl">
               Begin your forever in nature's embrace
             </h2>
-            <p className="wedding-text text-lg text-[#e5d3b3]/80">
+            <p className="wedding-text text-lg text-[#1f3c44]/80">
               Celebrate your milestone moments with bespoke arrangements, grand venues, and immersive natural beauty. With elegant setups and dedicated event planners, we make sure your special day is flawless.
             </p>
             <div className="wedding-text pt-4">
-              <button className="rounded-full border border-[#f7c744] bg-transparent px-8 py-3 text-sm tracking-wider text-[#f7c744] transition-colors hover:bg-[#f7c744] hover:text-[#1a382d]">
+              <button className="rounded-full border border-[#1f3c44] bg-transparent px-8 py-3 text-sm tracking-wider text-[#1f3c44] transition-colors hover:bg-[#1f3c44] hover:text-white">
                 Plan Your Wedding
               </button>
             </div>

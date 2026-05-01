@@ -63,7 +63,7 @@ export default function WhyUksResort() {
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#a9552b]">
             Why UK's Resort
           </p>
-          <h2 className="mt-4 font-serif text-4xl text-[#1a382d] md:text-5xl">
+          <h2 className="mt-4 font-serif text-4xl text-[#1f3c44] md:text-5xl">
             The Ultimate Getaway Experience
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-gray-500">
@@ -74,7 +74,7 @@ export default function WhyUksResort() {
             {benefits.map((benefit, i) => (
               <div key={i} className="benefit-item flex items-center rounded-xl bg-[#f7f3ee] p-6 shadow-sm transition-shadow hover:shadow-md">
                 <CheckCircle2 className="benefit-icon mr-4 h-8 w-8 text-[#a9552b]" />
-                <span className="text-lg font-medium text-[#1a382d]">{benefit}</span>
+                <span className="text-lg font-medium text-[#1f3c44]">{benefit}</span>
               </div>
             ))}
           </div>

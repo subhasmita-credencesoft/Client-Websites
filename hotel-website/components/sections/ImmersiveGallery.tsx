@@ -41,7 +41,7 @@ export default function ImmersiveGallery({ title = "Capturing The Essence" }: { 
     <section ref={wrapperRef} className="bg-[#f7f3ee] py-24 perspective-1000">
       <Container>
         <div className="mb-16 text-center">
-          <h2 className="font-serif text-4xl text-[#1a382d] md:text-5xl">{title}</h2>
+          <h2 className="font-serif text-4xl text-[#1f3c44] md:text-5xl">{title}</h2>
           <div className="mx-auto mt-6 h-0.5 w-24 bg-[#b68b5b]" />
         </div>
         
@@ -57,7 +57,7 @@ export default function ImmersiveGallery({ title = "Capturing The Essence" }: { 
                 fill 
                 className="object-cover transition-transform duration-1000 group-hover:scale-110" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1b1a17]/80 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1f3c44]/80 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <div className="absolute bottom-6 left-6 translate-y-8 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
                 <span className="text-xs uppercase tracking-widest text-[#f7c744]">Moments</span>
                 <p className="mt-1 font-serif text-xl text-white">UK's Resort</p>

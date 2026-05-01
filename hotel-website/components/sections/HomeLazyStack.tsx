@@ -15,7 +15,7 @@ const RoomsShowcase = dynamic(dynamicImportWithRetry(() => import("./RoomsShowca
 const HomeEventExperiences = dynamic(
   dynamicImportWithRetry(() => import("./HomeEventExperiences"), "home-event-experiences"),
   {
-  loading: () => <section className="min-h-[72vh] bg-[#1a382d]" aria-hidden="true" />,
+  loading: () => <section className="min-h-[72vh] bg-[#1f3c44]" aria-hidden="true" />,
   },
 );
 const DiningShowcase = dynamic(dynamicImportWithRetry(() => import("./DiningShowcase"), "dining-showcase"), {
@@ -83,7 +83,7 @@ export default function HomeLazyStack() {
       </DeferredSection>
 
       {/* 5. EVENTS & CONFERENCE */}
-      <DeferredSection placeholderClassName="min-h-[72vh] bg-[#1a382d]" rootMargin="320px 0px">
+      <DeferredSection placeholderClassName="min-h-[72vh] bg-[#1f3c44]" rootMargin="320px 0px">
         <HomeEventExperiences />
       </DeferredSection>
 

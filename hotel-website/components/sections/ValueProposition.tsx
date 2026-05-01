@@ -53,20 +53,20 @@ export default function ValueProposition() {
   ];
 
   return (
-    <section ref={containerRef} className="bg-[#1b1a17] py-20 text-[#e8ddcf]">
+    <section ref={containerRef} className="bg-[#f7f3ee] py-20">
       <Container>
-        <div className="mb-12 text-center text-[#e8ddcf]">
+        <div className="mb-12 text-center text-[#1f3c44]">
           <h2 className="font-serif text-3xl md:text-5xl">Our Promise to You</h2>
           <div className="mx-auto mt-4 h-0.5 w-16 bg-[#b68b5b]" />
         </div>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item, i) => (
-            <div key={i} className="vp-card flex flex-col items-center border border-[#e8ddcf]/10 bg-white/5 p-8 text-center transition-colors hover:border-[#b68b5b]/40">
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#1b1a17] border border-[#b68b5b]/30">
+            <div key={i} className="vp-card flex flex-col items-center border border-[#1f3c44]/10 bg-white p-8 text-center transition-colors hover:border-[#b68b5b]/40 shadow-sm">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#f7f3ee] border border-[#b68b5b]/30">
                 {item.icon}
               </div>
-              <h3 className="mb-3 font-serif text-xl text-white">{item.title}</h3>
-              <p className="text-sm text-gray-400">{item.desc}</p>
+              <h3 className="mb-3 font-serif text-xl text-[#1f3c44]">{item.title}</h3>
+              <p className="text-sm text-[#4f656d]">{item.desc}</p>
             </div>
           ))}
         </div>

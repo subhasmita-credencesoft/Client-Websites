@@ -50,14 +50,14 @@ export default function CinematicParallaxBreak({ title, subtitle, image, reverse
   }, []);
 
   return (
-    <section ref={containerRef} className="relative flex min-h-[60vh] items-center overflow-hidden bg-[#1a382d] text-[#e5d3b3]">
+    <section ref={containerRef} className="relative flex min-h-[60vh] items-center overflow-hidden bg-[#1f3c44] text-[#e5d3b3]">
       <div className="absolute inset-0 z-0">
         <div 
           ref={imageRef}
           className="h-[130%] w-full bg-cover bg-center bg-no-repeat opacity-40 brightness-75 mix-blend-overlay"
           style={{ backgroundImage: `url("${image}")` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1b1a17]/90 via-[#1b1a17]/40 to-[#1b1a17]/90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1f3c44]/90 via-[#1f3c44]/40 to-[#1f3c44]/90" />
       </div>
 
       <Container className="relative z-10 w-full py-24">

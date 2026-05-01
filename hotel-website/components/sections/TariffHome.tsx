@@ -57,8 +57,8 @@ export default function TariffHome() {
     <section ref={wrapperRef} className="bg-[#f7f3ee] py-24">
       <Container>
         <div className="text-center">
-          <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#244332]">Tariff & Pricing</span>
-          <h2 className="mt-3 font-serif text-3xl md:text-5xl text-[#1b1a17]">Select Your Experience</h2>
+          <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#1f3c44]">Tariff & Pricing</span>
+          <h2 className="mt-3 font-serif text-3xl md:text-5xl text-[#1f3c44]">Select Your Experience</h2>
         </div>
         <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3 md:items-center">
           {plans.map((plan, idx) => (
@@ -66,8 +66,8 @@ export default function TariffHome() {
               key={idx}
               className={`tariff-card relative flex flex-col rounded-2xl p-8 transition-shadow hover:shadow-[0_0_30px_rgba(26,56,45,0.15)] ${
                 plan.featured
-                  ? "z-10 scale-105 bg-[#244332] text-white shadow-2xl"
-                  : "bg-white text-[#1b1a17] shadow-lg"
+                  ? "z-10 scale-105 bg-[#1f3c44] text-white shadow-2xl"
+                  : "bg-white text-[#1f3c44] shadow-lg"
               }`}
             >
               {plan.featured && (
@@ -85,7 +85,7 @@ export default function TariffHome() {
               <ul className="mb-8 flex-1 space-y-4">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <Check className={`h-5 w-5 ${plan.featured ? "text-[#b68b5b]" : "text-[#244332]"}`} />
+                    <Check className={`h-5 w-5 ${plan.featured ? "text-[#b68b5b]" : "text-[#1f3c44]"}`} />
                     <span className="text-sm">{feature}</span>
                   </li>
                 ))}
@@ -94,7 +94,7 @@ export default function TariffHome() {
                 className={`w-full rounded-full py-3 text-sm font-semibold uppercase tracking-wider transition-colors ${
                   plan.featured
                     ? "bg-[#b68b5b] text-white hover:bg-[#a57a4a]"
-                    : "border-2 border-[#244332] bg-transparent text-[#244332] hover:bg-[#244332] hover:text-white"
+                    : "border-2 border-[#1f3c44] bg-transparent text-[#1f3c44] hover:bg-[#1f3c44] hover:text-white"
                 }`}
               >
                 Book Now

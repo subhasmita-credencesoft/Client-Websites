@@ -37,11 +37,11 @@ export default function InteractiveGrid() {
   }, []);
 
   return (
-    <section ref={gridRef} className="bg-[#244332] py-20 text-white">
+    <section ref={gridRef} className="bg-[#f7f3ee] py-20">
       <Container>
         <div className="mb-12 text-center">
-          <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#f7c744]">Activities & Fun</span>
-          <h2 className="mt-3 font-serif text-3xl md:text-5xl">One Day Picnic</h2>
+          <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#b68b5b]">Activities & Fun</span>
+          <h2 className="mt-3 font-serif text-3xl md:text-5xl text-[#1f3c44]">One Day Picnic</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-[600px] lg:h-[400px]">
@@ -53,7 +53,7 @@ export default function InteractiveGrid() {
                 fill 
                 className="object-cover transition-transform duration-700 group-hover:scale-110" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1b1a17]/90 via-[#1b1a17]/20 to-transparent transition-opacity duration-300 group-hover:opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1f3c44]/90 via-[#1f3c44]/20 to-transparent transition-opacity duration-300 group-hover:opacity-80" />
               
               <div className="absolute bottom-0 left-0 w-full p-6 transform transition-transform duration-500 group-hover:-translate-y-2">
                 <div className="mb-2 w-10 h-1 bg-[#f7c744] transform origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />

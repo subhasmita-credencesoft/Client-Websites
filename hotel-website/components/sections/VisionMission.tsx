@@ -24,20 +24,20 @@ export default function VisionMission() {
     <section className="overflow-hidden">
 
       {/* ── Top bar ── */}
-      <div className="flex items-center justify-between bg-[#003f8a] px-7 py-3 animate-fade-up">
+      <div className="flex items-center justify-between bg-[#f7f3ee] px-7 py-3 animate-fade-up">
         <div>
-          <p className="text-[13px] font-semibold uppercase tracking-widest text-white">
+          <p className="text-[13px] font-semibold uppercase tracking-widest text-[#1f3c44]">
             UK Resort · Khopoli
           </p>
-          <p className="text-[11px] italic text-[#f7c744]">The break you deserve</p>
+          <p className="text-[11px] italic text-[#b68b5b]">The break you deserve</p>
         </div>
-        <p className="text-[11px] uppercase tracking-[.12em] text-white/50">
+        <p className="text-[11px] uppercase tracking-[.12em] text-[#1f3c44]/60">
           Vision / Mission &amp; Values
         </p>
       </div>
 
       {/* ── Orange accent bar ── */}
-      <div className="h-[3px] origin-left bg-[#f47c20] animate-bar-slide" />
+      <div className="h-[3px] origin-left bg-[#b68b5b] animate-bar-slide" />
 
       {/* ── Cinematic hero ── */}
       <div className="relative h-[300px] overflow-hidden md:h-[360px]">
@@ -61,7 +61,7 @@ export default function VisionMission() {
         >
           <line
             x1="450" y1="0" x2="450" y2="300"
-            stroke="#f7c744" strokeWidth="3.5"
+            stroke="#b68b5b" strokeWidth="3.5"
             strokeDasharray="26 18" opacity=".85"
           >
             <animate
