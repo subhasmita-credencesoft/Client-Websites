@@ -15,6 +15,7 @@ type PageHeroProps = {
   subtitle?: string;
   breadcrumb?: string;
   minHeightClassName?: string;
+  videoAriaLabel?: string;
 };
 
 gsap.registerPlugin(ScrollTrigger);
@@ -26,6 +27,7 @@ export default function PageHero({
   subtitle,
   breadcrumb,
   minHeightClassName = "min-h-[100svh]",
+  videoAriaLabel,
 }: PageHeroProps) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const mediaRef = useRef<HTMLDivElement | null>(null);
@@ -124,7 +126,8 @@ export default function PageHero({
             playsInline
             preload="auto"
             onCanPlayThrough={() => setVideoReady(true)}
-            aria-hidden="true"
+            aria-label={videoAriaLabel}
+            aria-hidden={videoAriaLabel ? undefined : "true"}
           />
         ) : null}
       </div>

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { createPageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Contact",
+  title: "Contact UK's Resort Khopoli — Phone, WhatsApp, Email & Directions | Near Mumbai",
   description:
-    "Get in touch with UK's Resort, Khopoli for reservations, directions, and stay assistance.",
+    "Contact UK's Resort Khopoli for reservations, WhatsApp enquiries, phone support, email assistance, and directions from Mumbai, Pune, and Navi Mumbai.",
   path: "/contact",
   image: "https://bookonelocal.in/cdn/4.png",
 });

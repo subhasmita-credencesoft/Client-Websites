@@ -19,7 +19,7 @@ export default function PicnicPage() {
       
       <CinematicParallaxBreak 
         title="Unwind Under The Sun" 
-        subtitle="Trade the city noise for soothing rain dances, thrilling water park slides, and serene greenery. Designed specially for you to reconnect with friends and family." 
+        subtitle="Morning arrivals, water fun through the day, a proper buffet lunch, and a slow wind-down before the drive home - the kind of outing families and groups talk about after." 
         image="https://bookonelocal.in/cdn/Copy of IMG_3980.avif"
       />
       

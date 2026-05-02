@@ -64,54 +64,67 @@ export type BookingLandingPageContent = {
       alt: string;
     }>;
   };
+  venueCapacities?: Array<{
+    name: string;
+    capacity: string;
+    area: string;
+    features?: string;
+  }>;
   bookingCtaEyebrow: string;
   bookingCtaTitle: string;
   bookingCtaCopy: string;
   bookingButtonLabel: string;
   bookingButtonHref: string;
+  secondaryBookingButtonLabel?: string;
+  secondaryBookingButtonHref?: string;
+  showIntroButton?: boolean;
+  showAtmosphereSection?: boolean;
+  showSummarySection?: boolean;
+  showPlanningSection?: boolean;
+  showMemoryWall?: boolean;
 };
 
 export const picnicLandingPageContent: BookingLandingPageContent = {
   heroTitle: "Picnic",
   heroSubtitle:
-    "Plan vibrant day outings with lawns, family-friendly activities, buffet dining, and a booking flow that feels as relaxed as the day itself.",
+    "Plan vibrant day outings with lawns, family-friendly activities, and buffet dining.",
   heroImage: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
   heroVideo: "https://bookonelocal.in/cdn/Picnic.mp4",
   path: "/picnic",
 
-  metaTitle: "Picnic",
+  metaTitle: "Picnic & Day Outings at UK's Resort Khopoli",
   metaDescription:
-    "Book scenic picnic experiences at UK's Resort, Khopoli with open spaces, dining, and direct booking access.",
+    "Plan family picnics, school outings, and group day trips at UK's Resort Khopoli with water fun, buffet meals, and open lawns near Mumbai.",
   metaImage: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
 
   introEyebrow: "Day Outings",
   introTitle:
-    "One-day picnic experiences built for energy, movement, and memorable daytime celebrations.",
+    "A full day out, done right.",
   introCopy:
-    "Enjoy a full one-day picnic at UK's Resort with water park fun, rain dance, indoor games, lawns, and activities for all age groups.",
+    "UK's Resort has been hosting day picnics for families, schools, birthday groups, and social clubs from Mumbai and Pune for years. Set across 85,000 sq ft of greenery in the Sahyadri foothills, a picnic day here has a natural rhythm to it - morning arrivals, water activities through the heat of the day, a proper sit-down buffet lunch, and a slow wind-down in the late afternoon before the drive home.",
 
   highlights: [
     {
-      title: "Water park & splash fun",
+      title: "What's included",
       description:
-        "Slide into excitement with water rides, cool pools, and relaxing deck areas for all age groups.",
+        "Your picnic day covers water park access, rain dance, open lawn games, a hearty buffet lunch, and all-day use of the resort's outdoor spaces. Just show up - we handle the rest.",
     },
     {
-      title: "Activities for everyone",
+      title: "Activities & energy",
       description:
-        "From kids park to indoor games and adventure activities, there's something engaging for every guest.",
+        "Spend the day at the pool, join the rain dance, challenge each other to lawn games, or simply find a shaded corner and unwind. There's always something happening - and always somewhere quiet if you need it.",
     },
     {
-      title: "Perfect for celebrations",
+      title: "Groups of all kinds",
       description:
-        "Celebrate birthdays, gatherings, and special occasions with music, food, and vibrant spaces.",
+        "Whether you're a family of six or a school group of two hundred, we're set up for it. Organised seating, dedicated group spaces, and a team that's done this hundreds of times.",
     },
   ],
 
   stats: [
-    { value: "1 Day", label: "Complete experience" },
-    { value: "10+ Activities", label: "Fun for all ages" },
-    { value: "All Ages", label: "Family-friendly outing" },
+    { value: "1 Day", label: "Everything from 9am to 6pm" },
+    { value: "6+ Acres", label: "Lawns, pool, play zones" },
+    { value: "All Ages", label: "Toddlers to grandparents" },
   ],
 
   gallery: [
@@ -119,19 +132,19 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
       image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
       title: "Water Park Fun",
       copy:
-        "Splash into cool waters, enjoy slides, and relax by the poolside for a refreshing day.",
+        "Water slides, splash zones, and rain dance energy keep the middle of the day lively and memorable.",
     },
     {
       image: "children7.avif",
-      title: "Kids & Family Moments",
+      title: "Family & Group Moments",
       copy:
-        "Kids enjoy dedicated play areas while families relax and spend quality time together.",
+        "Families, school groups, and social outings all find their own rhythm across the lawns and shaded spaces.",
     },
     {
       image: "https://bookonelocal.in/cdn/picnic1.jpg",
-      title: "Games & Group Activities",
+      title: "Buffet & Open Spaces",
       copy:
-        "Indoor and outdoor games bring energy and excitement to your picnic experience.",
+        "A proper buffet lunch, open grounds, and room to spread out make the day feel easy instead of rushed.",
     },
   ],
 
@@ -299,66 +312,70 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
     },
   ],
 
-  planningTitle: "Everything planned for a perfect day",
+  planningTitle: "Plan your picnic day",
   planningCopy:
-    "Enjoy a seamless experience with activities, meals, and relaxation built into one day.",
-  planningPoints: [
-    "Water park, rain dance, and adventure activities included",
-    "Indoor and outdoor games for all age groups",
-    "Perfect for families, schools, and celebrations",
-  ],
+    "Picnic packages are available for groups of all sizes. WhatsApp us with your group size and preferred date. We'll send you a customised package with pricing within a few hours.",
+  planningPoints: [],
   planningImage: "https://bookonelocal.in/cdn/picnic1.jpg",
 
-  bookingCtaEyebrow: "Book Now",
-  bookingCtaTitle: "Ready for your picnic?",
+  bookingCtaEyebrow: "Enquire Now",
+  bookingCtaTitle: "Ready for a fun day out?",
   bookingCtaCopy:
-    "Check availability and book your one-day picnic experience instantly.",
-  bookingButtonLabel: "Book Picnic",
+    "Picnic packages are available for groups of all sizes. WhatsApp us your group size and preferred date, and we’ll send pricing and availability within a few hours.",
+  bookingButtonLabel: "WhatsApp to Enquire",
   bookingButtonHref:
+    "https://wa.me/919822012343?text=Hi%2C%20I%20want%20to%20plan%20a%20picnic%20day%20at%20UK%27s%20Resort.%20Please%20share%20package%20details.",
+  secondaryBookingButtonLabel: "Book Online",
+  secondaryBookingButtonHref:
     "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true",
+  showIntroButton: false,
+  showAtmosphereSection: false,
+  showSummarySection: false,
+  showPlanningSection: true,
+  showMemoryWall: true,
 };
 
 export const corporateLandingPageContent: BookingLandingPageContent = {
   heroTitle: "Corporate Booking",
   heroSubtitle:
-    "Plan corporate stays, team offsites, conferences, and business gatherings at UK's Resort with comfort, space, and direct booking support.",
+    "Plan corporate stays, team offsites, conferences, and business gatherings at UK's Resort with comfort, space, and direct enquiry support.",
   heroImage: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
   heroVideo: "https://bookonelocal.in/cdn/Corporate-Page-VIdeo.mp4",
   path: "/corporate",
 
-  metaTitle: "Corporate Booking",
+  metaTitle: "Corporate Offsites & Conference Venue Near Mumbai — UK's Resort, Khopoli",
   metaDescription:
-    "Book corporate stays, offsites, retreats, and business gatherings at UK's Resort, Khopoli with clear package details and direct booking access.",
+    "Plan conferences, offsites, team retreats, and training programs at UK's Resort Khopoli near Mumbai with rooms, dining, and event spaces in one venue.",
   metaImage: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
 
   introEyebrow: "Business Stays",
   introTitle:
-    "Corporate stays and team bookings designed for productivity and comfort.",
+    "Corporate offsites and conferences without the logistics headache.",
   introCopy:
-    "UK's Resort is ideal for corporate stays, offsites, conferences, and team-building programs with a balance of workspaces, open areas, and relaxation zones.",
+    "UK's Resort has hosted corporate groups from Mumbai, Pune, and across Maharashtra for over a decade - from leadership retreats to large team conferences. What makes it work for companies is the combination: comfortable accommodation, event-ready spaces, good food, and enough outdoor space for your team to actually decompress.",
 
   highlights: [
     {
-      title: "Business-ready environment",
+      title: "Conference & meeting spaces",
       description:
-        "Perfect for meetings, conferences, and corporate gatherings with a professional setting.",
+        "Conference halls, banquet spaces, and lawns support presentations, training sessions, day conferences, launches, and business events in one property.",
     },
     {
-      title: "Work + relaxation balance",
+      title: "Block accommodation for your team",
       description:
-        "Combine productive sessions with leisure activities, open lawns, and comfortable stays.",
+        "Book rooms for your entire group in one venue with meals, stay coordination, and less back-and-forth during planning.",
     },
     {
-      title: "Easy group coordination",
+      title: "Team building & downtime",
       description:
-        "Simplified planning for team sizes of all scales with clear packages and smooth flow.",
+        "Between sessions, teams can use the pool, lawns, water park, and activity zones for the kind of unstructured time that actually builds teams.",
     },
   ],
 
   stats: [
-    { value: "50+ Guests", label: "Group capacity" },
-    { value: "Stay + Event", label: "Complete experience" },
-    { value: "All-in-One", label: "Work & leisure" },
+    { value: "Corporate", label: "Conferences, offsites & training programs" },
+    { value: "Retreat + Stay", label: "Rooms, meals & activities in one venue" },
+    { value: "Direct", label: "WhatsApp or call for a fast quote" },
   ],
 
   gallery: [
@@ -460,6 +477,15 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
     ],
   },
 
+  venueCapacities: [
+    { name: "Utsav Banquet", capacity: "250 Guests", area: "2500 sq ft", features: "AC" },
+    { name: "Utsav Lawn", capacity: "400 Guests", area: "5000 sq ft" },
+    { name: "Sanskriti Banquet", capacity: "40 Guests", area: "1200 sq ft", features: "AC" },
+    { name: "Sanskriti Lawn", capacity: "200 Guests", area: "2500 sq ft" },
+    { name: "Pool Side Lawns", capacity: "200 Guests", area: "1500 sq ft" },
+    { name: "Lounge", capacity: "40 Guests", area: "600 sq ft" },
+  ],
+
   packagesTitle: "Corporate formats designed for different business needs.",
   packagesSubtitle:
     "Choose the format that matches your team size, objective, and schedule.",
@@ -503,21 +529,24 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
     },
   ],
 
-  planningTitle: "Simplified planning for corporate bookings",
+  planningTitle: "Tell us about your event",
   planningCopy:
-    "Everything from stay to event coordination is structured for easy planning and execution.",
-  planningPoints: [
-    "Suitable for offsites, conferences, training programs, and retreats",
-    "Includes stay, dining, and activity planning",
-    "Designed for smooth coordination and booking flow",
-  ],
+    "Share your group size, preferred dates, and the type of event. We'll send you a tailored package with pricing within a few hours. No forms, no waiting. Just WhatsApp or call.",
+  planningPoints: [],
   planningImage: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
 
-  bookingCtaEyebrow: "Book Direct",
-  bookingCtaTitle: "Ready to plan your corporate event?",
+  bookingCtaEyebrow: "Corporate Enquiry",
+  bookingCtaTitle: "Tell us about your event",
   bookingCtaCopy:
-    "Check availability and proceed with your corporate booking seamlessly.",
-  bookingButtonLabel: "Book Corporate Stay",
+    "Share your group size, preferred dates, and event type. We'll send a tailored package and pricing within a few hours.",
+  bookingButtonLabel: "WhatsApp Your Requirement",
   bookingButtonHref:
-    "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true",
+    "https://wa.me/919822012343?text=Hi%2C%20I%20want%20to%20plan%20a%20corporate%20event%20at%20UK%27s%20Resort.%20Please%20share%20package%20details.",
+  secondaryBookingButtonLabel: "Email us: info@uksresort.com",
+  secondaryBookingButtonHref: "mailto:info@uksresort.com",
+  showIntroButton: false,
+  showAtmosphereSection: false,
+  showSummarySection: false,
+  showPlanningSection: true,
+  showMemoryWall: false,
 };

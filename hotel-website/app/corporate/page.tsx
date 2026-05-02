@@ -19,7 +19,7 @@ export default function CorporatePage() {
       
       <CinematicParallaxBreak 
         title="Elevate Your Agenda" 
-        subtitle="Step away from the boardroom and into inspiration. With cutting-edge facilities surrounded by lush natural reserves, your offsites become catalysts for exceptional teamwork." 
+        subtitle="Trusted by teams from Mumbai and Pune for offsites, conferences, strategy meets, and training programs in one well-connected venue." 
         image="https://bookonelocal.in/cdn/3.png"
         reverse={true}
       />

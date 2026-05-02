@@ -19,11 +19,6 @@ function compactAddress(parts: Array<string | null | undefined>) {
   return parts.filter(Boolean).join(", ");
 }
 
-function stripHtmlTags(value: string | null | undefined) {
-  if (!value) return "";
-  return value.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-}
-
 function toTelHref(value: string) {
   return `tel:${value.replace(/\s+/g, "")}`;
 }
@@ -41,10 +36,10 @@ function buildMapHref(address: string, latitude?: string | null, longitude?: str
 }
 
 const HELP_POINTS = [
-  "Room reservations, availability, and stay planning support",
-  "Dining visits, celebrations, and event-related enquiries",
-  "Picnic, day outing, and group booking assistance",
-  "Directions, arrival guidance, and local travel help",
+  "From Mumbai: NH48 -> Khopoli exit -> Old Mumbai-Pune Highway -> resort on left.",
+  "From Pune: NH48 -> Khopoli exit -> Old Mumbai-Pune Highway to the resort.",
+  "From Navi Mumbai: Via Panvel -> NH48 -> Khopoli exit.",
+  "By train: Central Railway to Khopoli station, then auto or cab to resort.",
 ] as const;
 
 export default function ContactPage() {
@@ -71,9 +66,6 @@ export default function ContactPage() {
   const fullAddress = `${addressLine1}, ${addressLine2}`;
   const mapHref = buildMapHref(fullAddress, activeProperty?.latitude, activeProperty?.longitude);
   const primaryImage = activeProperty?.imageList?.[0]?.url || "/images/making-memories.jpg";
-  const businessDescription =
-    stripHtmlTags(activeProperty?.businessDescription) ||
-    `${hotelName} brings together stays, dining, celebrations, and scenic experiences in Khopoli.`;
   const social = activeProperty?.socialMediaLinks?.[0];
 
   return (
@@ -159,13 +151,13 @@ export default function ContactPage() {
             <div className="space-y-7">
               <div>
                 <p className="text-[0.76rem] font-semibold uppercase tracking-[0.36em] text-[#c98141]">
-                  Plan Your Stay
+                  Not sure where to start?
                 </p>
                 <h2 className="mt-4 max-w-[12ch] font-serif text-[2.8rem] leading-[0.94] text-[#1f3c44] sm:text-[3.5rem]">
-                  A more personal way to reach us
+                  We&apos;ll help you plan the right visit
                 </h2>
                 <p className="mt-5 max-w-2xl text-[1.05rem] leading-8 text-[#1f3c44]/72">
-                  {businessDescription}
+                  WhatsApp us your requirement - group size, type of visit, and preferred date. We&apos;ll respond with options and pricing within a few hours.
                 </p>
               </div>
 
@@ -186,13 +178,13 @@ export default function ContactPage() {
                   target="_blank"
                   className="inline-flex items-center rounded-full border border-[#d8d4ca] bg-white px-6 py-3 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-[#1f3c44] transition hover:border-[#c98141]"
                 >
-                  View Location
+                  View Location on Maps
                 </Link>
                 <Link
                   href={toWhatsAppHref(phone2)}
                   className="inline-flex items-center rounded-full border border-[#d8d4ca] bg-white px-6 py-3 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-[#1f3c44] transition hover:border-[#c98141]"
                 >
-                  WhatsApp Us
+                  WhatsApp {phone2}
                 </Link>
               </div>
 
@@ -219,6 +211,20 @@ export default function ContactPage() {
                 </div>
               )}
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-[#efeee9] pb-20 text-[#123645] md:pb-24">
+        <Container>
+          <div className="overflow-hidden rounded-[2rem] border border-[#d8d4ca] bg-white shadow-[0_18px_48px_rgba(18,54,69,0.08)]">
+            <iframe
+              title="UK's Resort Khopoli location map"
+              src="https://www.google.com/maps?q=18.8171404,73.3046807&z=15&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="h-[360px] w-full border-0 md:h-[460px]"
+            />
           </div>
         </Container>
       </section>

@@ -5,6 +5,7 @@ export type PageHeroConfig = {
   subtitle?: string;
   breadcrumb?: string;
   minHeightClassName?: string;
+  videoAriaLabel?: string;
 };
 
 export const ABOUT_HERO_CONFIG: PageHeroConfig = {
@@ -13,6 +14,16 @@ export const ABOUT_HERO_CONFIG: PageHeroConfig = {
   backgroundVideo: "https://bookonelocal.in/cdn/Resort_entrance_gate_202604071226.mp4",
   subtitle: "Discover the story, spirit, and signature hospitality of UK's Resort.",
   breadcrumb: "Home / About",
+};
+
+export const AWARDS_HERO_CONFIG: PageHeroConfig = {
+  title: "Awards & Recognition",
+  backgroundImage: "/awards/golden-star-award-2012.jpg",
+  backgroundVideo: "https://bookonelocal.in/cdn/Resort_entrance_gate_202604071226.mp4",
+  subtitle: "Explore the recognitions, achievements, and guest appreciation that reflect UK's Resort over the years.",
+  breadcrumb: "Home / Awards",
+  minHeightClassName: "min-h-screen",
+  videoAriaLabel: "Watch: UK's Resort moments and hospitality highlights",
 };
 
 export const BLOG_HERO_CONFIG: PageHeroConfig = {
@@ -27,7 +38,7 @@ export const CONTACT_HERO_CONFIG: PageHeroConfig = {
   title: "Around Us",
   backgroundImage: "https://bookonelocal.in/cdn/Water-Park-1.jpg",
   backgroundVideo: "https://bookonelocal.in/cdn/Resort_entrance_gate_202603191317.mp4",
-  subtitle: "Places of Tourist Attraction in Khopoli Near UK's Resorts",
+  subtitle: "Make UK's Resort your base for waterfalls, temples, hill stations, and theme park day trips around Khopoli.",
   breadcrumb: "Home / Around Us",
 };
 
@@ -35,16 +46,17 @@ export const DINING_HERO_CONFIG: PageHeroConfig = {
   title: "Dining",
   backgroundImage: "https://bookonelocal.in/cdn/Copy of IMG_2912.avif",
   backgroundVideo: "https://bookonelocal.in/cdn/Create_a_cinematic_202603191718.mp4",
-  subtitle: "Enjoy a various amount of dining options from around the world.",
+  subtitle: "From local favorites to classic Indian flavors, every meal at UK's Resort is made to feel warm, familiar, and satisfying.",
   breadcrumb: "Home / Dining",
   minHeightClassName: "min-h-screen",
+  videoAriaLabel: "Watch: Dining and resort atmosphere at UK's Resort, Khopoli",
 };
 
 export const EXPERIENCES_HERO_CONFIG: PageHeroConfig = {
   title: "Experiences",
   backgroundImage: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
   backgroundVideo: "https://bookonelocal.in/cdn/Experience-Page-Video.mp4",
-  subtitle: "Here's where memories are truly made.",
+  subtitle: "Water park fun, sports, indoor games, adventure activities, and family experiences all in one property.",
   breadcrumb: "Home / Experiences",
   minHeightClassName: "min-h-screen",
 };
@@ -55,6 +67,7 @@ export const ROOMS_HERO_CONFIG: PageHeroConfig = {
   backgroundVideo: "https://bookonelocal.in/cdn/Changed-Room-Page-Video.mp4",
   subtitle: "Explore comfortable rooms and suites designed for restful stays, family comfort, and easy resort living.",
   breadcrumb: "Home / Rooms & Suites",
+  videoAriaLabel: "Watch: A look inside our Deluxe and Super Deluxe rooms at UK's Resort",
 };
 
 export const TARIFF_HERO_CONFIG: PageHeroConfig = {
@@ -68,10 +81,11 @@ export const TARIFF_HERO_CONFIG: PageHeroConfig = {
 export const WEDDINGS_HERO_CONFIG: PageHeroConfig = {
   title: "Events & Activities",
   backgroundImage: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
-  backgroundVideo: "https://bookonelocal.in/cdn/Create_a_cinematic_202603191807.mp4",
-  subtitle: "Day events, family outings, play areas, water fun, and adventure-led activities in one lively destination.",
+  backgroundVideo: "https://bookonelocal.in/cdn/Experience-Page-Video.mp4",
+  subtitle: "Birthdays, family outings, school visits, sports, and corporate team days built around real resort spaces and full-day fun.",
   breadcrumb: "Home / Events & Activities",
   minHeightClassName: "min-h-screen",
+  videoAriaLabel: "Watch: Events, activities, and group fun at UK's Resort, Khopoli",
 };
 
 export const WELLNESS_HERO_PAGE_CONFIG: PageHeroConfig = {

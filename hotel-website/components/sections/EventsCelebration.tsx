@@ -16,7 +16,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const sectionPills = ["Event Days", "Play Areas", "Adventure Zones"] as const;
+const sectionPills = ["Water Fun", "Open Lawns", "Kids Zone", "Group Dining", "Corporate Space", "Indoor Games"] as const;
 
 function CelebrationBlock({ block, index }: { block: WeddingsCelebrationBlock; index: number }) {
   return (
@@ -82,7 +82,7 @@ function CelebrationBlock({ block, index }: { block: WeddingsCelebrationBlock; i
               rel="noopener noreferrer"
               className="inline-flex h-11 items-center justify-center rounded-full bg-[var(--accent)] px-5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:brightness-95"
             >
-              Explore now
+              {block.id === "sports" ? "See activities list" : block.id === "corporate" ? "Get a group quote" : "Enquire via WhatsApp"}
             </a>
             <a
               href={WEDDINGS_CELEBRATION_MAP_LINKS[block.virtualTourKey]}
@@ -250,6 +250,34 @@ export default function EventsCelebration() {
           {WEDDINGS_CELEBRATION_BLOCKS.map((block, index) => (
             <CelebrationBlock key={block.id} block={block} index={index} />
           ))}
+        </div>
+
+        <div className="mt-16 rounded-[2rem] border border-[#1f3c44]/10 bg-white/80 p-8 text-center shadow-[0_18px_42px_rgba(31,60,68,0.08)] sm:p-10">
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[#c98141]">
+            Plan Your Day
+          </p>
+          <h3 className="mt-4 font-serif text-[2.3rem] leading-[0.96] text-[#183b48] sm:text-[3rem]">
+            What are you planning?
+          </h3>
+          <p className="mx-auto mt-5 max-w-3xl text-[0.98rem] leading-8 text-[#1f3c44]/74">
+            Tell us what you have in mind - group size, type of day, and preferred date. We&apos;ll put together a plan and quote within a few hours. No long forms. Just a WhatsApp message.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="https://wa.me/919822012343?text=Hi%2C%20I%20want%20to%20plan%20an%20event%20or%20group%20day%20at%20UK%27s%20Resort."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 items-center justify-center rounded-full bg-[var(--accent)] px-6 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:brightness-95"
+            >
+              WhatsApp to Start Planning
+            </a>
+            <a
+              href="tel:+919822012343"
+              className="inline-flex h-11 items-center justify-center rounded-full border border-[#1f3c44]/16 px-6 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#1f3c44] transition hover:bg-white"
+            >
+              Or call: +91 98220 12343
+            </a>
+          </div>
         </div>
       </Container>
 

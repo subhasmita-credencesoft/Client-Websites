@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -107,15 +106,19 @@ export default function DiningCulinaryExperience() {
               </span>
               <div className="overflow-hidden">
                 <h2 className="dining-exp-title-line mx-auto max-w-2xl font-serif text-4xl leading-tight md:text-5xl">
-                  Delicious local cuisines as well as cuisines from all parts of India are served.
+                  From Local Favorites to Classic Indian Flavors.
                 </h2>
               </div>
               <div className="overflow-hidden">
                 <h2 className="dining-exp-title-line mx-auto max-w-2xl font-serif text-4xl leading-tight md:text-5xl">
-                  Enjoy a hearty lunch and a delectable dinner at UK&apos;s Resort
+                  Good Food, Made with Love.
                 </h2>
               </div>
             </div>
+
+            <p className="dining-exp-contact mx-auto max-w-2xl text-sm leading-7 text-[#1f3c44]/78 sm:text-base">
+              We believe a great holiday starts with a great meal. At UK&apos;s Resort, we serve a variety of fresh, flavorful dishes from authentic Indian and Mughlai to popular Chinese favorites. Whether you&apos;re a fan of spicy non-veg curries or looking for a comforting vegetarian spread, our chefs prepare every meal to make you feel right at home.
+            </p>
 
             <div className="mx-auto max-w-xl">
               <h3 className="dining-exp-contact text-xs uppercase tracking-[0.4em] text-[#1f3c44]/70">Contact</h3>
@@ -130,15 +133,6 @@ export default function DiningCulinaryExperience() {
                 </div>
               </div>
 
-              <Link href="/rooms/reservation">
-                <button
-                  type="button"
-                  className="dining-exp-contact mt-8 inline-flex items-center gap-2 rounded-full border border-[#1f3c44]/30 px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#1f3c44] transition hover:border-[#1f3c44] hover:bg-[#1f3c44]/5"
-                >
-                  Book now
-                  <span aria-hidden="true">&gt;</span>
-                </button>
-              </Link>
             </div>
           </div>
 

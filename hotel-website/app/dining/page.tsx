@@ -10,7 +10,7 @@ import { createPageMetadata } from "../../lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Dining",
   description:
-    "Enjoy destination dining, curated menus, and memorable culinary experiences at UK's Resort, Khopoli.",
+    "Discover fresh multi-cuisine dining at UK's Resort, Khopoli with Indian, Mughlai, and Chinese favorites in relaxed indoor and outdoor settings.",
   path: "/dining",
   image: "https://bookonelocal.in/cdn/Copy of IMG_2912.avif",
 });
@@ -24,7 +24,7 @@ export default function DiningPage() {
       
       <CinematicParallaxBreak 
         title="Culinary Excellence" 
-        subtitle="Awaken your senses at our multicuisine dining spaces. Prepared by master chefs and served against lush, deeply green backdrops, every meal is treated like a canvas." 
+        subtitle="Whether it’s a lazy lunch by the pool or a cozy dinner under the stars, every meal is prepared with fresh ingredients and local love." 
         image="https://bookonelocal.in/cdn/Copy of IMG_2912.avif"
         reverse={true}
       />

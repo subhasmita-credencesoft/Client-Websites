@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef } from "react";
@@ -191,25 +191,19 @@ export default function DiningShowcase() {
             </div>
             <div className="mt-4 overflow-hidden">
               <h2 className="dining-title-line max-w-[12ch] font-serif text-[2.2rem] leading-[0.95] text-[#1f3c44] sm:text-[2.8rem] md:text-[3.2rem]">
-                Delicious local cuisines
+                A Taste of Home,
               </h2>
             </div>
             <div className="overflow-hidden">
               <h2 className="dining-title-line max-w-[12ch] font-serif text-[2.2rem] leading-[0.95] text-[#1f3c44] sm:text-[2.8rem] md:text-[3.2rem]">
-                served with warm hospitality
+                Away from Home.
               </h2>
             </div>
           </div>
 
           <div className="dining-copy max-w-md text-[0.95rem] leading-7 text-[#1f3c44]/75 sm:text-sm">
             <p>
-              No holiday can be complete without building up a ravenous appetite. UK&apos;s Resort offers plenty of
-              tongue-tingling cuisines. We pride ourselves on our variety of cuisine that is as innovative as it is
-              appetizing. You can opt for Delicious Chinese, Mughlai and Indian Cuisine. The Restaurant caters to the
-              tastes of each of its Guests. Our Friendly Professional Staff are always on hand to offer advice and
-              assistance with each and every aspect of your meal. Enjoy a hearty lunch and a delectable dinner at
-              UK&apos;s Resort. Non-vegetarian or vegetarian - it does not matter as you get sumptuous varieties of
-              dishes in both categories.
+              There's something about the mountain air that makes every meal taste better. At UK's Resort, we keep things simple and delicious. From local Maharashtrian spices and slow-cooked Mughlai treats to your favorite Chinese comfort food, our kitchen is always humming. Whether you're craving a spicy chicken curry or a simple, fresh veg thali, our chefs cook every plate just the way you like it. Pull up a chair, enjoy the view, and eat to your heart's content.
             </p>
             <Link
               href="/dining"

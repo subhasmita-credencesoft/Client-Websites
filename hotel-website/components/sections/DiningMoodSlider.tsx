@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CurvedLoop from "../ui/CurvedLoop";
+import { Armchair, Soup, Users } from "lucide-react";
 import { DINING_MOOD_SLIDES } from "../../data/sections/diningMoodSlider";
 import useSafeInterval from "@/hooks/useSafeInterval";
 
@@ -26,13 +26,6 @@ export default function DiningMoodSlider() {
     setActiveIndex((prev) => (prev + 1) % DINING_MOOD_SLIDES.length);
   }, 3400, DINING_MOOD_SLIDES.length > 0);
 
-  const marqueeText = useMemo(() => {
-    const prev = DINING_MOOD_SLIDES[(activeIndex - 1 + DINING_MOOD_SLIDES.length) % DINING_MOOD_SLIDES.length].label;
-    const current = DINING_MOOD_SLIDES[activeIndex].label;
-    const next = DINING_MOOD_SLIDES[(activeIndex + 1) % DINING_MOOD_SLIDES.length].label;
-    return `${prev} * ${current} * ${next} * `;
-  }, [activeIndex]);
-
   useEffect(() => {
     const mm = gsap.matchMedia();
 
@@ -50,12 +43,7 @@ export default function DiningMoodSlider() {
           ".dining-mood-stage",
           { y: 24, autoAlpha: 0 },
           { y: 0, autoAlpha: 1, duration: 0.85, ease: "power3.out" },
-        ).fromTo(
-          ".dining-mood-loop",
-          { y: 16, autoAlpha: 0, filter: "blur(6px)" },
-          { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.8, ease: "power3.out" },
-          "<+0.05",
-        );
+        ).fromTo(".dining-mood-strip", { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, "<+0.05");
 
         gsap.timeline({
           scrollTrigger: {
@@ -72,18 +60,6 @@ export default function DiningMoodSlider() {
 
     return () => mm.revert();
   }, []);
-
-  useEffect(() => {
-    const mm = gsap.matchMedia();
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      gsap.fromTo(
-        ".dining-mood-loop",
-        { y: 12, autoAlpha: 0, filter: "blur(4px)" },
-        { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.55, ease: "power3.out", overwrite: "auto" },
-      );
-    });
-    return () => mm.revert();
-  }, [activeIndex]);
 
   return (
     <section ref={sectionRef} data-no-global-gsap className="relative overflow-hidden bg-[#f6f3ed] py-16 text-white md:py-24">
@@ -146,12 +122,22 @@ export default function DiningMoodSlider() {
         </div>
       </div>
 
-      <div className="dining-mood-loop pointer-events-none absolute inset-x-0 top-1/2 z-40 -translate-y-1/2">
-        <CurvedLoop
-          marqueeText={marqueeText}
-          speed={30}
-          className="font-serif text-[2.4rem] text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] md:text-[4.3rem] lg:text-[5.6rem]"
-        />
+      <div className="dining-mood-strip mx-auto mt-8 grid max-w-6xl gap-3 px-3 sm:grid-cols-3 sm:px-6 lg:px-8">
+        {[
+          { icon: Soup, label: "Multi-cuisine menu" },
+          { icon: Armchair, label: "Indoor & outdoor seating" },
+          { icon: Users, label: "Groups & corporates welcome" },
+        ].map(({ icon: Icon, label }) => (
+          <div
+            key={label}
+            className="flex items-center justify-center gap-3 rounded-2xl border border-[#1f3c44]/10 bg-white/75 px-5 py-4 text-center text-[#1f3c44] shadow-[0_14px_32px_rgba(31,60,68,0.06)]"
+          >
+            <Icon className="h-5 w-5 text-[#c78946]" aria-hidden="true" />
+            <span className="text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-[#1f3c44]/80">
+              {label}
+            </span>
+          </div>
+        ))}
       </div>
     </section>
   );

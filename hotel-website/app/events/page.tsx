@@ -8,9 +8,9 @@ import ImmersiveGallery from "../../components/sections/ImmersiveGallery";
 import { createPageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Events & Activities",
+  title: "Events, Activities & Adventure at UK's Resort Khopoli — Birthdays, Sports & Group Days Near Mumbai",
   description:
-    "Explore day events, family outings, play zones, adventure activities, and group experiences at UK's Resort.",
+    "Plan birthdays, school outings, corporate team days, and activity-led group events at UK's Resort Khopoli near Mumbai.",
   path: "/events",
   image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
 });
@@ -23,11 +23,11 @@ export default function EventsPage() {
       
       <CinematicParallaxBreak 
         title="Unforgettable Milestones" 
-        subtitle="From grand corporate retreats to thrilling one-day picnics, UK's Resort offers impeccably crafted spaces that breathe life into your most significant gatherings." 
+        subtitle="Take a virtual walkthrough before you visit, then tell us what kind of day you’re planning and we’ll help shape it around your group." 
         image="https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif"
       />
       
-      <EventsImmersiveMoments />
+      {/* Section intentionally removed to avoid repeating the same event story with AI/meta commentary. */}
       {/* <EventsActivitiesShowcase /> */}
       
       {/* <ImmersiveGallery title="Moments of Joy" /> */}

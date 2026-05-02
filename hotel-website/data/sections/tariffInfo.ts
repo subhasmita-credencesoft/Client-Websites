@@ -15,7 +15,7 @@ export const TARIFF_CHECKOUT_LABEL = "Check-out:";
 export const TARIFF_CHECKOUT_TIME = "11:00 AM";
 
 // ✅ DOUBLE OCCUPANCY (MATCHED TO IMAGE)
-export const TARIFF_MAIN_TABLE_TITLE = "Double Occupancy";
+export const TARIFF_MAIN_TABLE_TITLE = "Room Tariff for Double Occupancy";
 export const TARIFF_MAIN_TABLE_ROOM_TYPE_HEADER = "Room Type";
 export const TARIFF_MAIN_TABLE_PLAN_HEADER = "All Days (CP Plans)*";
 

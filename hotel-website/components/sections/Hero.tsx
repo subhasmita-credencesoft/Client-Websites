@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -209,7 +208,7 @@ export default function Hero() {
               <div key={index} className="overflow-hidden leading-none">
                 <h1
                   id={index === 0 ? "home-hero-title" : undefined}
-                  className="hero-title-line font-serif text-[clamp(2.6rem,10vw,6.25rem)] font-normal leading-[0.94] tracking-[-0.025em] text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+                  className="hero-title-line font-serif text-[clamp(2.6rem,8vw,5.5rem)] font-normal leading-[0.94] tracking-[-0.025em] text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
                 >
                   {line}
                 </h1>
@@ -220,22 +219,6 @@ export default function Hero() {
           <p className="hero-tagline mt-4 max-w-2xl text-pretty px-1 text-sm leading-7 text-white/90 drop-shadow-[0_4px_16px_rgba(0,0,0,0.4)] sm:text-base sm:leading-8 lg:text-lg">
             {HOME_HERO_SUBTITLE}
           </p>
-
-          <div className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <Link
-              href="/rooms"
-              className="site-button site-button--primary site-button--lg w-full max-w-xs px-8 text-center animate-pulse-subtle bg-[#1f3c44] hover:bg-[#143b47] text-[#e5d3b3]"
-            >
-              Book Now
-            </Link>
-          </div>
-          
-          <div className="hero-scroll-indicator mt-16 flex flex-col items-center opacity-80" aria-hidden="true">
-            <span className="text-[0.65rem] uppercase tracking-widest text-white/70 mb-2">Scroll</span>
-            <div className="h-12 w-[1px] bg-white/20 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1/2 bg-white animate-scroll-drop"></div>
-            </div>
-          </div>
         </div> */}
 
         <div className="hero-booking-wrap absolute inset-x-0 bottom-6 z-20 px-0 sm:bottom-8 lg:bottom-10">

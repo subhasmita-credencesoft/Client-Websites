@@ -32,6 +32,14 @@ export default function RoomCard({ room }: RoomCardProps) {
         >
           View details
         </Link>
+        <Link
+          href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
+          target="_blank"
+          rel="noreferrer"
+          className="mt-3 inline-flex rounded-full border border-white/30 bg-white/18 px-5 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-white/24"
+        >
+          Book This Room
+        </Link>
       </div>
     </article>
   );

@@ -34,6 +34,6 @@ export const RESORT_INTRO_SLIDES: ResortIntroSlide[] = [
 ];
 
 export const RESORT_INTRO_TITLE =
-  "The Name That Redefines Hospitality Par-Excellence In The Lush Green Landscape At Khopoli.";
+  "Lush Green Hospitality, Reimagined in Khopoli";
 
 export const RESORT_INTRO_AUTO_SLIDE_MS = 3500;

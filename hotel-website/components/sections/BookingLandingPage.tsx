@@ -20,6 +20,11 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
   const rootRef = useRef<HTMLDivElement | null>(null);
   const isPicnicPage = content.path === "/picnic";
   const isCorporatePage = content.path === "/corporate";
+  const showIntroButton = content.showIntroButton ?? true;
+  const showAtmosphereSection = content.showAtmosphereSection ?? true;
+  const showSummarySection = content.showSummarySection ?? true;
+  const showPlanningSection = content.showPlanningSection ?? true;
+  const showMemoryWall = content.showMemoryWall ?? true;
 
   useLayoutEffect(() => {
     const mm = gsap.matchMedia();
@@ -132,12 +137,14 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
             <p className="booking-copy mt-6 max-w-2xl text-[1rem] leading-8 text-[var(--text-muted)] sm:text-[1.04rem]">
               {content.introCopy}
             </p>
-            <div className="booking-cta mt-8">
-              <Button href={content.bookingButtonHref} size="lg" className="gap-2 px-8 uppercase tracking-[0.12em]">
-                {content.bookingButtonLabel}
-                <span aria-hidden="true">&rsaquo;</span>
-              </Button>
-            </div>
+            {showIntroButton ? (
+              <div className="booking-cta mt-8">
+                <Button href={content.bookingButtonHref} size="lg" className="gap-2 px-8 uppercase tracking-[0.12em]">
+                  {content.bookingButtonLabel}
+                  <span aria-hidden="true">&rsaquo;</span>
+                </Button>
+              </div>
+            ) : null}
 
             <div className={`mt-10 grid gap-4 sm:grid-cols-3 ${isCorporatePage ? "rounded-[1.8rem] border border-[var(--border-subtle)] bg-[#f7f3ec] p-5 sm:p-6" : ""}`}>
               {content.stats.map((item) => (
@@ -189,6 +196,7 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
         </Container>
       </section>
 
+      {showAtmosphereSection ? (
       <section className="booking-landing-section site-surface-soft site-section-lg overflow-hidden">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
@@ -273,6 +281,41 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
           </div>
         </Container>
       </section>
+      ) : null}
+
+      {content.venueCapacities && content.venueCapacities.length > 0 ? (
+        <section className="booking-landing-section site-page-surface site-section-lg bg-[#f7f3ec]">
+          <Container>
+            <div className="mx-auto max-w-3xl text-center mb-12">
+              <p className="booking-kicker site-kicker">Venue Capacities</p>
+              <h2 className="booking-title mt-4 font-serif text-[clamp(2.2rem,4vw,3.8rem)] leading-[0.96] text-[var(--text-primary)]">
+                Spaces for Every Gathering
+              </h2>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {content.venueCapacities.map((venue) => (
+                <article
+                  key={venue.name}
+                  className="booking-card rounded-[1.8rem] border border-[var(--border-subtle)] bg-white p-6 text-center shadow-[0_12px_24px_rgba(20,59,71,0.04)]"
+                >
+                  <h3 className="font-serif text-[1.6rem] leading-tight text-[var(--text-primary)]">
+                    {venue.name}
+                  </h3>
+                  <div className="mt-4 flex flex-col gap-2 text-sm text-[var(--text-muted)]">
+                    <p className="font-semibold text-[1.05rem] text-[#1f3c44]">{venue.capacity}</p>
+                    <p>{venue.area}</p>
+                    {venue.features && (
+                      <span className="mx-auto mt-2 inline-block rounded-full bg-[#1f3c44]/10 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.15em] text-[#1f3c44]">
+                        {venue.features}
+                      </span>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       <section className="booking-landing-section site-surface-plain site-section-lg">
         {/* <Container>
@@ -424,28 +467,29 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
         </section>
       ) : null}
 
+      {showSummarySection ? (
       <section className="booking-landing-section site-page-surface site-section">
         <Container className="max-w-6xl">
           <div className="booking-card overflow-hidden rounded-[2rem]">
             <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
               <div className="rounded-[2rem] bg-[linear-gradient(135deg,#143b47_0%,#1b4652_52%,#204f5a_100%)] px-6 py-8 text-white sm:px-8 sm:py-10 lg:px-10 lg:py-12">
                 <p className="booking-kicker text-[0.75rem] font-semibold uppercase tracking-[0.28em] text-white/65">
-                  {isPicnicPage ? "Why This Picnic Flow Works Better" : isCorporatePage ? "Why This Corporate Flow Works Better" : "Why This Page Works Better"}
+                  {isPicnicPage ? "Picnic Highlights" : isCorporatePage ? "Corporate Highlights" : "Page Highlights"}
                 </p>
                 <div className="overflow-hidden">
                   <h2 className="booking-title mt-4 font-serif text-[clamp(2.15rem,4vw,3.4rem)] leading-[0.96] text-white">
                     {isPicnicPage
-                      ? "A fuller one-day story without making booking harder."
+                      ? "A clearer picnic day story from arrival to enquiry."
                       : isCorporatePage
-                        ? "A clearer corporate stay journey from review to booking."
+                        ? "A clearer corporate journey from venue review to enquiry."
                         : "More content without losing clarity."}
                   </h2>
                 </div>
                 <p className="booking-copy mt-5 max-w-2xl text-[1rem] leading-8 text-white/80">
                   {isPicnicPage
-                    ? "The layout now shows the rhythm of a day picnic more clearly, with stronger visual anchors and easier browsing before the booking step."
+                    ? "The layout now shows the rhythm of a day picnic more clearly, with stronger visual anchors and easier enquiry for groups."
                     : isCorporatePage
-                      ? "The layout now gives planners a more confident read on venue fit, stay comfort, and event support while preserving the direct booking path."
+                      ? "The layout now gives planners a more confident read on venue fit, stay comfort, and event support while preserving the direct enquiry path."
                       : "The layout now carries more storytelling, stronger visual anchors, and a more dimensional feel while still preserving the simple booking action at the end."}
                 </p>
               </div>
@@ -468,7 +512,9 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
           </div>
         </Container>
       </section>
+      ) : null}
 
+      {showPlanningSection ? (
       <section className="booking-landing-section site-surface-soft site-section-lg">
         <Container className={`grid gap-8 lg:items-center ${isCorporatePage ? "lg:grid-cols-[0.9fr_1.1fr]" : "lg:grid-cols-[0.98fr_1.02fr]"}`}>
           <div className="booking-card overflow-hidden rounded-[1.8rem]">
@@ -483,7 +529,7 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
               isCorporatePage ? "rounded-[1.8rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,#ffffff_0%,#f6f1e8_100%)]" : "border-t border-[var(--accent)]/40"
             }`}
           >
-            <p className="booking-kicker site-kicker">Planning Support</p>
+            <p className="booking-kicker site-kicker">{isCorporatePage ? "Planning" : "Details"}</p>
             <div className="overflow-hidden">
               <h2 className="booking-title mt-4 font-serif text-[clamp(2.15rem,4vw,3.4rem)] leading-[0.98] text-[var(--text-primary)]">
                 {content.planningTitle}
@@ -492,19 +538,22 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
             <p className="booking-copy mt-5 text-[1rem] leading-8 text-[var(--text-muted)]">
               {content.planningCopy}
             </p>
-            <ul className="mt-7 space-y-3">
-              {content.planningPoints.map((point) => (
-                <li key={point} className="booking-copy flex items-start gap-3 text-sm leading-7 text-[var(--text-muted)]">
-                  <span className={`mt-2 h-2.5 w-2.5 rounded-full bg-[var(--accent)] ${isCorporatePage ? "shadow-[0_0_0_5px_rgba(196,106,58,0.10)]" : ""}`} />
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
+            {content.planningPoints.length > 0 ? (
+              <ul className="mt-7 space-y-3">
+                {content.planningPoints.map((point) => (
+                  <li key={point} className="booking-copy flex items-start gap-3 text-sm leading-7 text-[var(--text-muted)]">
+                    <span className={`mt-2 h-2.5 w-2.5 rounded-full bg-[var(--accent)] ${isCorporatePage ? "shadow-[0_0_0_5px_rgba(196,106,58,0.10)]" : ""}`} />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         </Container>
       </section>
+      ) : null}
 
-      {content.memoryWall ? (
+      {content.memoryWall && showMemoryWall ? (
         <section className="booking-landing-section site-page-surface site-section-lg overflow-hidden">
           <Container>
             <div className="mx-auto max-w-3xl text-center">
@@ -581,15 +630,27 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
                 </p>
               </div>
               <div className="booking-cta flex lg:justify-end">
-                <Link
-                  href={content.bookingButtonHref}
-                  className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[#d7b06e] bg-[#c49a3c] px-8 text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-[#143b47] shadow-[0_10px_26px_rgba(196,154,60,0.28)] transition hover:bg-[#d1ab58]"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <span className="text-[#143b47]">{content.bookingButtonLabel}</span>
-                  <span aria-hidden="true">&rsaquo;</span>
-                </Link>
+                <div className="flex flex-wrap gap-3 lg:justify-end">
+                  <Link
+                    href={content.bookingButtonHref}
+                    className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[#d7b06e] bg-[#c49a3c] px-8 text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-[#143b47] shadow-[0_10px_26px_rgba(196,154,60,0.28)] transition hover:bg-[#d1ab58]"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span className="text-[#143b47]">{content.bookingButtonLabel}</span>
+                    <span aria-hidden="true">&rsaquo;</span>
+                  </Link>
+                  {content.secondaryBookingButtonLabel && content.secondaryBookingButtonHref ? (
+                    <Link
+                      href={content.secondaryBookingButtonHref}
+                      className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/35 bg-white/12 px-8 text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-white/18"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span>{content.secondaryBookingButtonLabel}</span>
+                    </Link>
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>

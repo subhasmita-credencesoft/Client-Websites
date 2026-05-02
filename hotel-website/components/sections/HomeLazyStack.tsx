@@ -128,9 +128,9 @@ export default function HomeLazyStack() {
       </DeferredSection>
 
       {/* 14. TESTIMONIALS */}
-      <DeferredSection placeholderClassName="min-h-[60vh] bg-[#f3efe8]" rootMargin="280px 0px">
+      {/* <DeferredSection placeholderClassName="min-h-[60vh] bg-[#f3efe8]" rootMargin="280px 0px">
         <TestimonialContent/>
-      </DeferredSection>
+      </DeferredSection> */}
 
       {/* 15. CLIENTS / BRANDS */}
       <DeferredSection placeholderClassName="min-h-[60vh] bg-[#f3efe8]" rootMargin="280px 0px">

@@ -10,7 +10,7 @@ export const WEDDINGS_CELEBRATION_MAP_LINKS = {
 } as const;
 
 export const WEDDINGS_BOOKING_ENGINE_URL =
-  "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true";
+  "https://wa.me/918779814559?text=Hi%2C%20I%20am%20looking%20to%20plan%20a%20wedding%2Fevent%20at%20UK%27s%20Resort.%20Please%20share%20details.";
 
 export type WeddingsCelebrationBlock = {
   id: string;
@@ -27,9 +27,9 @@ export type WeddingsCelebrationBlock = {
 };
 
 export const WEDDINGS_CELEBRATION_KICKER = "Event Destinations";
-export const WEDDINGS_CELEBRATION_TITLE_LINES = ["One page for events,", "play, and adventure"] as const;
+export const WEDDINGS_CELEBRATION_TITLE_LINES = ["What a day here", "looks like"] as const;
 export const WEDDINGS_CELEBRATION_INTRO =
-  "Plan birthdays, family outings, school visits, social get-togethers, and active group days with open lawns, dining breaks, water fun, play zones, and event-friendly spaces that keep the full day exciting.";
+  "UK's Resort is built for full days - not just an activity or two. From the moment your group arrives, there's water fun, sports grounds, open lawns, a kids' zone, and proper sit-down meals to fill the hours naturally. Families pace it slow. Schools run it structured. Birthday groups do whatever they want. The space adapts.";
 
 export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
   {
@@ -37,12 +37,12 @@ export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
     layout: "media-left",
     mediaImage: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
     mediaAlt: "Open resort event space",
-    cardTitle: "Day events & celebration spaces",
+    cardTitle: "Birthdays & Celebrations",
     cardParagraphs: [
-      "From birthdays and reunions to launch gatherings and day celebrations, the resort gives every event a stronger sense of arrival, space, and festive energy.",
+      "Mark it properly. UK's Resort handles birthday setups, decoration space, group dining, and open grounds for games so you show up and celebrate, not manage logistics. Available for groups of 20 and above.",
     ],
     highlightLabel: "Best For",
-    highlights: ["Birthdays", "Launch events", "Family celebrations"],
+    highlights: ["Birthday setups", "Group dining", "20+ guests"],
     enquiryHref: WEDDINGS_BOOKING_ENGINE_URL,
     virtualTourKey: "events",
     virtualTourAriaLabel: "Take a virtual tour of event venue",
@@ -52,12 +52,12 @@ export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
     layout: "media-right",
     mediaImage: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
     mediaAlt: "Family picnic grounds",
-    cardTitle: "Family picnic & play day",
+    cardTitle: "Family & School Outings",
     cardParagraphs: [
-      "This experience is shaped for one-day outings where families, schools, and mixed-age groups can move easily between lawns, meal breaks, and activity zones.",
+      "A full day for every age - toddlers to grandparents. Lawn games, water play, a dedicated kids' zone, and a buffet lunch that keeps everyone happy and on schedule.",
     ],
     highlightLabel: "Includes",
-    highlights: ["Open lawns", "Kids play", "Relaxed group pacing"],
+    highlights: ["Kids zone", "Buffet lunch", "All-age outing"],
     enquiryHref: WEDDINGS_BOOKING_ENGINE_URL,
     virtualTourKey: "picnic",
     virtualTourAriaLabel: "Take a virtual tour of picnic area",
@@ -67,13 +67,13 @@ export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
     layout: "media-left",
     mediaImage: "https://bookonelocal.in/cdn/outdoor-image.jpg",
     mediaAlt: "Sports activities at resort",
-    cardTitle: "Adventure sports & activity grounds",
+    cardTitle: "Adventure & Sports",
     cardParagraphs: [
-      "Sprawling grounds support cricket, football, badminton, throw ball, and other group activities that make the outing feel active from start to finish.",
+      "Cricket, football, badminton, throwball - plus water slides, rain dance, and a splash pool. If your group needs to move, burn energy, and come back tired-happy, this is the day for them.",
     ],
     highlightLabel: "Activities",
-    highlights: ["Cricket", "Football", "Outdoor games"],
-    enquiryHref: WEDDINGS_BOOKING_ENGINE_URL,
+    highlights: ["Cricket", "Football", "Water fun"],
+    enquiryHref: "https://wa.me/919822012343?text=Hi%2C%20please%20share%20the%20activities%20list%20for%20UK%27s%20Resort.",
     virtualTourKey: "sports",
     virtualTourAriaLabel: "Take a virtual tour of sports area",
   },
@@ -82,13 +82,13 @@ export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
     layout: "media-right",
     mediaImage: "https://bookonelocal.in/cdn/conference3-1.jpg",
     mediaAlt: "Corporate event and team outing space",
-    cardTitle: "Corporate outings & team event areas",
+    cardTitle: "Corporate Team Days",
     cardParagraphs: [
-      "corporate groups their own clearer place in the story, showing that the resort works for offsites, team days, launches, and activity-based company gatherings too.",
+      "Mix structured activities with open downtime. Cricket on the lawn in the morning, a working lunch, and team games in the afternoon - the kind of day that actually gets people talking to each other.",
     ],
     highlightLabel: "Ideal For",
-    highlights: ["Team offsites", "Launches", "Corporate outings"],
-    enquiryHref: WEDDINGS_BOOKING_ENGINE_URL,
+    highlights: ["Offsites", "Training days", "Team outings"],
+    enquiryHref: "https://wa.me/919822012343?text=Hi%2C%20I%20want%20a%20group%20quote%20for%20a%20corporate%20team%20day%20at%20UK%27s%20Resort.",
     virtualTourKey: "corporate",
     virtualTourAriaLabel: "Take a virtual tour of corporate event area",
   },

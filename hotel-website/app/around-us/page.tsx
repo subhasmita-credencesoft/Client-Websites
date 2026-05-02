@@ -8,7 +8,7 @@ import { createPageMetadata } from "../../lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Around Us",
   description:
-    "Explore attractions, scenic escapes, and local destinations around UK's Resort in Khopoli.",
+    "Explore Imagicaa, temples, waterfalls, hill stations, and local attractions around UK's Resort in Khopoli.",
   path: "/around-us",
   image: "https://bookonelocal.in/cdn/Water-Park-1.jpg",
 });
@@ -20,8 +20,8 @@ export default function AroundUsPage() {
       <ContactAttractions />
       
       <CinematicParallaxBreak 
-        title="Discover Khopoli" 
-        subtitle="Venture out to discover cascading waterfalls, lush trailing hillsides, and the captivating heritage of Maharashtra right at our doorstep." 
+        title="Make UK's Resort your base" 
+        subtitle="Everything above is within 40 km of UK's Resort. A temple walk in the morning, a waterfall in the afternoon, Imagica the next day - and a comfortable room, good food, and a pool waiting for you each evening." 
         image="https://bookonelocal.in/cdn/Water-Park-1.jpg"
         reverse={true}
       />

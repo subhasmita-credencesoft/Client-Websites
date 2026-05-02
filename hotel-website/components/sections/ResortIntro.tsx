@@ -31,19 +31,17 @@ if (typeof window !== "undefined") {
 
 export default function ResortIntro() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const sectionRef   = useRef<HTMLElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const mediaCardRef = useRef<HTMLDivElement | null>(null);
-  const contentRef   = useRef<HTMLDivElement | null>(null);
-  const slideRefs    = useRef<(HTMLDivElement | null)[]>([]);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  /* ─── auto-slide ─────────────────────────────────────────────── */
   useSafeInterval(
     () => setActiveSlide((p) => (p + 1) % RESORT_INTRO_SLIDES.length),
     RESORT_INTRO_AUTO_SLIDE_MS,
     true,
   );
 
-  /* ─── entrance + scroll parallax ─────────────────────────────── */
   useLayoutEffect(() => {
     let mm: gsap.MatchMedia | null = null;
     const raf = requestAnimationFrame(() => {
@@ -51,12 +49,10 @@ export default function ResortIntro() {
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const ctx = gsap.context(() => {
-
-          /* entrance reveal */
           const revealTl = gsap.timeline({
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 82%",         // fires earlier = snappier
+              start: "top 82%",
               once: true,
               invalidateOnRefresh: true,
             },
@@ -70,7 +66,7 @@ export default function ResortIntro() {
             )
             .fromTo(
               ".resort-intro-title-word",
-              { yPercent: 108, autoAlpha: 0 },   // ← no blur: perf killer on mobile
+              { yPercent: 108, autoAlpha: 0 },
               { yPercent: 0, autoAlpha: 1, duration: 0.72, stagger: 0.016, ease: "power4.out" },
               "<+0.06",
             )
@@ -96,7 +92,7 @@ export default function ResortIntro() {
               ".resort-intro-media",
               { y: 22, autoAlpha: 0 },
               { y: 0, autoAlpha: 1, duration: 0.82, ease: "power3.out" },
-              "<-0.45",                          // starts earlier relative to text
+              "<-0.45",
             )
             .fromTo(
               ".resort-intro-highlight",
@@ -104,9 +100,8 @@ export default function ResortIntro() {
               { y: 0, autoAlpha: 1, duration: 0.55, ease: "power3.out", stagger: 0.05 },
               "<+0.08",
             )
-            .call(() => ScrollTrigger.refresh()); // accurate parallax after entrance
+            .call(() => ScrollTrigger.refresh());
 
-          /* scroll parallax */
           gsap.timeline({
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -116,11 +111,10 @@ export default function ResortIntro() {
               invalidateOnRefresh: true,
             },
           })
-            .to(contentRef.current,              { y: -18, autoAlpha: 0.96, ease: "none" }, 0)
-            .to(mediaCardRef.current,            { y: -22, ease: "none" }, 0)
-            .to(".resort-intro-media-image",     { yPercent: -5, ease: "none" }, 0)
-            .to(".resort-intro-media-shine",     { xPercent: 16, opacity: 0.3, ease: "none" }, 0);
-
+            .to(contentRef.current, { y: -18, autoAlpha: 0.96, ease: "none" }, 0)
+            .to(mediaCardRef.current, { y: -22, ease: "none" }, 0)
+            .to(".resort-intro-media-image", { yPercent: -5, ease: "none" }, 0)
+            .to(".resort-intro-media-shine", { xPercent: 16, opacity: 0.3, ease: "none" }, 0);
         }, sectionRef);
 
         return () => ctx.revert();
@@ -149,7 +143,6 @@ export default function ResortIntro() {
     };
   }, []);
 
-  /* ─── slide brightness transition ────────────────────────────── */
   useEffect(() => {
     const mm = gsap.matchMedia();
     mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -171,19 +164,16 @@ export default function ResortIntro() {
       className="bg-[#f3efe8] py-14 text-[#1f3c44] sm:py-20 lg:py-24"
     >
       <Container>
-        {/* ── kicker ── */}
         <div className="resort-intro-kicker flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.28em] text-[#55676f] sm:gap-6 sm:text-xs sm:tracking-[0.38em]">
           <span>About UK&apos;s Resort</span>
           <div className="h-px flex-1 bg-[#1f3c44]/15" />
         </div>
 
         <div className="mt-10 grid gap-12 lg:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-16">
-
-          {/* ── text column ── */}
           <div ref={contentRef}>
             <div className="overflow-hidden">
               <h2 className="resort-intro-title font-serif text-[1.7rem] leading-[1.12] tracking-[-0.01em] text-[#1f3c44] sm:text-[2.1rem] md:text-[2.6rem] lg:text-[3rem]">
-        {RESORT_INTRO_TITLE.split(" ").map((word, idx) => (
+                {RESORT_INTRO_TITLE.split(" ").map((word, idx) => (
                   <span
                     key={`${word}-${idx}`}
                     className="resort-intro-title-word inline-block will-change-transform"
@@ -196,18 +186,10 @@ export default function ResortIntro() {
 
             <div className="mt-6 max-w-xl space-y-4 text-[0.95rem] leading-[1.75] text-[#31464f] sm:mt-7 sm:text-[0.98rem]">
               <p className="resort-intro-copy">
-                Just a few miles from the outskirts of the hustle-n-bustle of Mumbai&apos;s concrete jungle,
-                a complete at-home experience awaits — one that fulfills your heart&apos;s desires and offers
-                the break you have always longed for.
+                Nestled in the lush Sahyadri foothills, just 90 km from Mumbai via NH48, UK&apos;s Resort Khopoli is where the city unwraps itself into open skies, manicured gardens, and genuine calm.
               </p>
               <p className="resort-intro-copy">
-                A signature business hotel showcasing impeccable hospitality amidst scenic beauty and
-                rich history that blends harmoniously with today&apos;s lifestyles.
-              </p>
-              <p className="resort-intro-copy">
-                Specially manicured landscaped gardens spread across over 85,000 sq. ft., overlooking
-                mountains and greenery as far as the eye can see, creating the perfect setting for your
-                business and leisure events.
+                Spread across 85,000 sq. ft. of greenery, our resort brings together comfortable stay rooms, a thrilling water park, multi-cuisine dining, and space for corporate retreats and celebrations all in one address.
               </p>
             </div>
 
@@ -238,7 +220,6 @@ export default function ResortIntro() {
             </div>
           </div>
 
-          {/* ── media column ── */}
           <div className="space-y-6">
             <div
               ref={mediaCardRef}
@@ -250,7 +231,9 @@ export default function ResortIntro() {
                 {RESORT_INTRO_SLIDES.map((slide, idx) => (
                   <div
                     key={slide.src}
-                    ref={(el) => { slideRefs.current[idx] = el; }}
+                    ref={(el) => {
+                      slideRefs.current[idx] = el;
+                    }}
                     className="absolute inset-0 transition-opacity duration-[600ms] will-change-transform"
                     style={{ opacity: idx === activeSlide ? 1 : 0 }}
                     aria-hidden={idx !== activeSlide}
@@ -270,7 +253,7 @@ export default function ResortIntro() {
                 ))}
 
                 <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-2">
-                {RESORT_INTRO_SLIDES.map((_, idx) => (
+                  {RESORT_INTRO_SLIDES.map((_, idx) => (
                     <button
                       key={idx}
                       type="button"
@@ -285,7 +268,7 @@ export default function ResortIntro() {
               </div>
 
               <div className="flex items-center gap-3 border-t border-[#1f3c44]/8 bg-white px-5 py-4 sm:px-6 sm:py-5">
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#d89a55]/50 sm:h-10 sm:w-10 overflow-hidden">
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#d89a55]/50 sm:h-10 sm:w-10">
                   <Image
                     src="/UK's-Resort-Logo_SVG.webp"
                     alt="UK Resort Logo"
@@ -295,30 +278,28 @@ export default function ResortIntro() {
                   />
                 </span>
                 <p className="text-[0.8rem] leading-snug text-[#55676f] sm:text-[0.83rem]">
-                  Award-winning resort in the lush green landscape at Khopoli
+                  Rated 4.9 star by 1,800+ guests and trusted for stays, dining, and day experiences in Khopoli
                 </p>
               </div>
             </div>
 
-            {/* ── highlights grid ── */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {RESORT_INTRO_HIGHLIGHTS.map(({ title, icon }) => {
                 const Icon = highlightIconMap[icon];
                 return (
-                <div
-                  key={title}
-                  className="resort-intro-highlight flex flex-col gap-2.5 rounded-xl border border-[#1f3c44]/10 bg-white/70 p-4 transition-shadow hover:shadow-md sm:p-5"
-                >
-                  <Icon className="h-5 w-5 text-[#d89a55] sm:h-6 sm:w-6" strokeWidth={1.4} />
-                  <p className="text-[0.73rem] leading-[1.45] text-[#3f545c] sm:text-[0.78rem]">
-                    {title}
-                  </p>
-                </div>
+                  <div
+                    key={title}
+                    className="resort-intro-highlight flex flex-col gap-2.5 rounded-xl border border-[#1f3c44]/10 bg-white/70 p-4 transition-shadow hover:shadow-md sm:p-5"
+                  >
+                    <Icon className="h-5 w-5 text-[#d89a55] sm:h-6 sm:w-6" strokeWidth={1.4} />
+                    <p className="text-[0.73rem] leading-[1.45] text-[#3f545c] sm:text-[0.78rem]">
+                      {title}
+                    </p>
+                  </div>
                 );
               })}
             </div>
           </div>
-
         </div>
       </Container>
     </section>

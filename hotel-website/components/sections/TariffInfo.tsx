@@ -290,7 +290,7 @@ export default function TariffInfo() {
           <TariffTableBlock
             eyebrow="Room Tariff"
             title={TARIFF_MAIN_TABLE_TITLE}
-            subtitle="Breakfast-inclusive room plans with clear pricing visibility for faster decision-making."
+            subtitle="Rates shown per person. Example: a Deluxe room for 2 guests = Rs. 7,900 + GST per night, breakfast included."
             headers={[TARIFF_MAIN_TABLE_ROOM_TYPE_HEADER, TARIFF_MAIN_TABLE_PLAN_HEADER]}
             rows={roomTariffRows}
             className="mt-10"
@@ -399,19 +399,19 @@ export default function TariffInfo() {
 
               <div className="relative z-10">
                 <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[#C49A3C]">
-                  Booking Notes
+                  Ready to book?
                 </p>
                 <h3 className="mt-4 font-serif text-[2rem] leading-[0.94] sm:text-[2.6rem]">
-                  Keep the decision simple after the pricing is clear.
+                  Choose the booking path that fits your visit.
                 </h3>
                 <p className="mt-5 max-w-2xl text-[0.96rem] leading-8 text-[#2C4A50]">
-                  Once guests understand the tariff, they should only need one next step. Review the stay summary, compare the tables, and continue with the booking engine when ready.
+                  For room stays, use the live booking engine. For group packages, picnics, and corporate block bookings, contact the team directly for tailored pricing and availability.
                 </p>
 
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   {[
-                    { label: "Best for", value: "Room Stays" },
-                    { label: "Group size", value: "20+ Guests" },
+                    { label: "Room stays", value: "Check live availability" },
+                    { label: "Groups", value: "WhatsApp your date and size" },
                   ].map(({ label, value }) => (
                     <div
                       key={label}
@@ -429,10 +429,10 @@ export default function TariffInfo() {
 
                 <div className="mt-8 rounded-2xl border border-[rgba(13,43,47,0.08)] bg-[#F9F5EE] p-4 sm:p-5">
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.20em] text-[#6C7C80]">
-                    Recommended next step
+                    Corporate enquiries
                   </p>
                   <p className="mt-2 text-[0.96rem] leading-7 text-[#1A4A50]">
-                    Use the single booking button above to check live availability after reviewing the room, group, and picnic tariff details.
+                    Call or email for group block rates: +91 87798 14559 or info@uksresort.com.
                   </p>
                 </div>
               </div>

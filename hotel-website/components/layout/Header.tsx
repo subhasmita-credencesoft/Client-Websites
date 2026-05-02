@@ -20,9 +20,21 @@ const DEFAULT_PHONE_2 = "+91 98220 12343";
 const DEFAULT_LOGO = "/UK's-Resort-Logo.png";
 
 const HERO_PREFIXES = [
-  "/", "/rooms", "/dining", "/picnic", "/corporate", "/about", "/wellness",
-  "/facilities", "/experiences", "/events",
-  "/blog", "/around-us", "/contact",
+  "/",
+  "/overview",
+  "/rooms",
+  "/dining",
+  "/picnic",
+  "/corporate",
+  "/events",
+  "/experiences",
+  "/around-us",
+  "/contact",
+  "/about",
+  "/wellness",
+  "/facilities",
+  "/blog",
+  "/awards",
 ];
 
 function resolvePreviewPath(pathname: string): string {

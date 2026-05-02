@@ -5,6 +5,8 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "@/components/ui/Container";
+import PageHero from "@/components/sections/PageHero";
+import { AWARDS_HERO_CONFIG } from "@/data/sections/pageHeroes";
 import ImmersiveGallery from "@/components/sections/ImmersiveGallery";
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -26,43 +28,43 @@ type TestimonialItem = {
 const accolades: AwardItem[] = [
   {
     title: "Golden Star Award 2012 – Resort of the Year",
-    image: "/awards/golden-star-award-2012.jpg",
+    image: "/images/tripadviser.jpg",
     alt: "Golden Star Award 2012 Resort of the Year",
     size: "lg",
   },
   {
     title: "Goibibo Excellence Recognition",
-    image: "/awards/goibibo-award.jpg",
+    image: "/images/triplogo.png",
     alt: "Goibibo excellence certificate",
     size: "sm",
   },
   {
     title: "Business Leader Summit & Awards",
-    image: "/awards/business-leader-award.jpg",
+    image: "/images/review-background.jpg",
     alt: "Business Leader Summit and Awards certificate",
     size: "sm",
   },
   {
     title: "Maharashtracha Lokpriya Brand",
-    image: "/awards/lokpriya-brand-trophy.jpg",
+    image: "/uk1.avif",
     alt: "Maharashtracha Lokpriya Brand trophy",
     size: "tall",
   },
   {
     title: "Certificate of Recognition",
-    image: "/awards/certificate-1.jpg",
+    image: "/images/special_offers1.jpg",
     alt: "Recognition certificate",
     size: "sm",
   },
   {
     title: "HolidayIQ India Says Yes",
-    image: "/awards/holidayiq-award.jpg",
+    image: "/images/special_offers2.jpg",
     alt: "HolidayIQ India says yes badge",
     size: "sm",
   },
   {
     title: "Worldwide Achievers Recognition",
-    image: "/awards/worldwide-achievers.jpg",
+    image: "/uk2.avif",
     alt: "Worldwide achievers award presentation",
     size: "md",
   },
@@ -71,22 +73,22 @@ const accolades: AwardItem[] = [
 const testimonials: TestimonialItem[] = [
   {
     title: "Letter of Gratitude",
-    image: "/testimonials/letter-of-gratitude.jpg",
+    image: "/images/making-memories.jpg",
     alt: "Letter of gratitude testimonial",
   },
   {
     title: "Aarya Testimonial Letter",
-    image: "/testimonials/aarya-testimonial.jpg",
+    image: "/images/review-background.jpg",
     alt: "Aarya testimonial letter",
   },
   {
     title: "DGS Consulting Testimonial",
-    image: "/testimonials/dgs-consulting.jpg",
+    image: "/uk-conf.avif",
     alt: "DGS consulting testimonial",
   },
   {
     title: "Drama Review",
-    image: "/testimonials/drama-review.jpg",
+    image: "/images/web-img3.jpg",
     alt: "Drama review testimonial",
   },
 ];
@@ -427,6 +429,8 @@ export default function AwardsPage() {
 
   return (
     <div className="site-page">
+      <PageHero {...AWARDS_HERO_CONFIG} />
+
       <section
         ref={heroRef}
         data-no-global-gsap

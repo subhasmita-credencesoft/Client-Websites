@@ -6,9 +6,9 @@ import { dynamicImportWithRetry } from "../../lib/dynamicImportWithRetry";
 import { createPageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About",
+  title: "About UK's Resort Khopoli — Story, Values & Why Guests Keep Coming Back",
   description:
-    "Learn more about UK's Resort, its hospitality story, and the experiences that define each stay in Khopoli.",
+    "Learn about UK's Resort Khopoli, the story behind the property, and why guests keep returning for stays, dining, and day experiences.",
   path: "/about",
   image: "https://bookonelocal.in/cdn/3.png",
 });

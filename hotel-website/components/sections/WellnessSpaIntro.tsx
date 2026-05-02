@@ -209,16 +209,13 @@ export default function WellnessSpaIntro() {
           <div className="max-w-xl">
             <span className="wellness-spa-kicker text-xs uppercase tracking-[0.45em] text-[#1f3c44]/60">Facilities</span>
             <div className="mt-6 overflow-hidden">
-              <h2 className="wellness-spa-title-line font-serif text-3xl leading-tight md:text-4xl">The Name That Redefines Hospitality</h2>
+              <h2 className="wellness-spa-title-line font-serif text-3xl leading-tight md:text-4xl">Lush Green Hospitality,</h2>
             </div>
             <div className="overflow-hidden">
-              <h2 className="wellness-spa-title-line font-serif text-3xl leading-tight md:text-4xl">Green Par-Excellence In The Lush</h2>
-            </div>
-            <div className="overflow-hidden">
-              <h2 className="wellness-spa-title-line font-serif text-3xl leading-tight md:text-4xl">Landscape At Khopoli.</h2>
+              <h2 className="wellness-spa-title-line font-serif text-3xl leading-tight md:text-4xl">Reimagined in Khopoli</h2>
             </div>
             <p className="wellness-spa-copy mt-6 text-sm leading-7 text-[#1f3c44]/75">
-              Discover the euphoria within you with boundless fun under nonstop sprinkling water and break into a wild Rain dance. Splash into the cool and clear waters of our swimming pools and indulge in a game of water polo or leisurely amble on the poolside deck. Slide into pure merriment and relentless excitement with a fully customized ride through our Water Park. Bounce your afternoon with friends and family with a wide range of Indoor Games including table tennis, badminton and carom. The Evenings are the perfect time to run amok in our lush green environment with a host of Outdoor Sports like volleyball, cricket, and football. Sweat it out in our fully furnished Gym geared with the most sophisticated equipment. Toddlers or Children alike have ample space to swing and breeze through our exclusively designed Kid&apos;s Park. 24 Hours Of Hot & Cold running water, satellite TV channels and luxurious facilities will keep you entranced in your holiday break. Express Laundry services to provide you with the last minute dress code change. Wi-Fi Internet Facility in rooms for those who just want to peek back at their office desk! We also provide adventure activities like Paint Ball, Archery, Rifle Shooting, Body Zorbing, Water Zorbing, Artificial Wall Climbing and Team Building Activities (Extra Charges will be applicable). Pets are not allowed in resort.
+              Nestled in the lush Sahyadri foothills, just 90 km from Mumbai via NH48, UK's Resort Khopoli is where the city unwraps itself into open skies, manicured gardens, and genuine calm. Spread across 85,000 sq. ft. of greenery, our resort brings together comfortable stay rooms, a thrilling water park, multi-cuisine dining, and space for corporate retreats and celebrations—all in one address.
             </p>
 
             <div className="wellness-spa-cta relative z-40 mt-10 inline-block" ref={dropdownRef}>

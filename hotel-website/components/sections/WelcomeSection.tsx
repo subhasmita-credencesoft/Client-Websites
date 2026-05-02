@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 import { usePropertyData } from "../providers/PropertyDataProvider";
 import useClientReady from "../../hooks/useClientReady";
-import { htmlToText } from "../../lib/sanitizeHtml";
 import {
   WELCOME_SECTION_FALLBACK_DESCRIPTION,
   WELCOME_SECTION_FALLBACK_IMAGE,
@@ -27,9 +26,7 @@ export default function WelcomeSection() {
   const imageWrapRef  = useRef<HTMLDivElement | null>(null);
   const safeProperty  = clientReady ? property : null;
   const name          = safeProperty?.name || WELCOME_SECTION_FALLBACK_NAME;
-  const description   =
-    htmlToText(safeProperty?.businessDescription).slice(0, 360) ||
-    WELCOME_SECTION_FALLBACK_DESCRIPTION;
+  const description   = WELCOME_SECTION_FALLBACK_DESCRIPTION;
   const typeLine      = [safeProperty?.businessType, safeProperty?.businessSubtype]
     .filter(Boolean)
     .join(" - ");

@@ -10,64 +10,64 @@ const ATTRACTIONS = [
   {
     title: "ADLABS Imagica",
     description:
-      "Adlabs Imagica is just 8 kms from UK's Resort. Adlabs Imagica is a theme park near the city of Khopoli on Mumbai-Pune expressway.",
+      "One of India's largest theme parks, sitting right on the Mumbai-Pune Expressway just 8 km from UK's Resort. Many guests combine a full day at Imagica with an overnight stay here because the short drive back is far easier than heading home the same day.",
     image: "https://bookonelocal.in/cdn/adlabs-imagica.jpg",
     alt: "Adlabs Imagica amusement park rides",
-    distance: "8 km away",
+    distance: "8 km • ~15 min drive",
     mood: "Theme Park",
   },
   {
-    title: "Ashtavinayak Mahad Temple",
+    title: "Ashtavinayak - Varad Vinayak Temple",
     description:
-      "Ashtavinayak Mahad Temple. One of the Eight (Ashta) Ganapati (Vinayak) Temples of Maharashtra. The name of this Vinayak (Ganesha) is Varad Vinayak meaning the one who blesses all the wishes. The temple is 10 mins walking distance from UK's Resort.",
+      "One of the eight sacred Ashtavinayak Ganesha temples of Maharashtra, this temple is a 10-minute walk from UK's Resort. Many guests pair an early darshan with a relaxed day back at the resort.",
     image: "https://bookonelocal.in/cdn/ashtavinayak.jpg",
     alt: "Ashtavinayak Mahad Temple exterior view",
-    distance: "10 mins walk",
-    mood: "Spiritual Landmark",
+    distance: "10-min walk",
+    mood: "Spiritual",
   },
   {
     title: "Lonavala and Khandala Hill Station",
     description:
-      "Lonavala or Lonavla and the adjacent Khandala are beautiful, charming and twin hill stations, 622 m. above sea level and 5 Kms apart from each other are situated in the Sahyadri ranges. They are located around 64 km away from the city of Pune and 96 km away from the city Mumbai, popular getaway from Mumbai and Pune.",
-    image: "https://bookonelocal.in/cdn/lonavala.jpg",
+      "The Sahyadri's most loved hill stations are close enough for a comfortable half-day or full-day excursion from UK's Resort. Think viewpoints, monsoon drives, chikki stops, and a slower mountain pace.",
+    image: "/images/lonavala.jpg",
     alt: "Lonavala and Khandala Hill Station landscape",
-    distance: "Popular day trip",
-    mood: "Hill Escape",
+    distance: "~40 km • ~1 hr drive",
+    mood: "Hill Station",
   },
   {
     title: "Zenith Waterfall",
     description:
-      "This is close next to Lonavala's waterfalls in popularity. So expect to see many picnickers here. The waterfall's known to be heavy, so if you expect to just wet yourself with trickles, then this isn't the spot for you. Zenith Waterfall is 5 kms from UK's Resort on the Old Bombay-Pune Highway.",
-    image: "https://bookonelocal.in/cdn/Zenith Waterfall.png",
+      "One of the most dramatic seasonal waterfalls near Khopoli, Zenith runs strong in monsoon and is a popular short drive from the resort for groups looking for a quick nature outing.",
+    image: "/images/Zenith Waterfall.png",
     alt: "Zenith Waterfall landscape",
-    distance: "5 km away",
-    mood: "Scenic Nature Spot",
+    distance: "5 km • 10-min drive",
+    mood: "Waterfall",
   },
   {
-    title: "Palasdari",
+    title: "Palasdari Waterfall & Dam",
     description:
-      "Palasdhari aka Palasdari Waterfall can be reached both by road and rail. Palasdari Waterfall is 5 kms from UK's resort. To reach Palasdhari by rail, one has to alight at Palasdhari railway station and walk it out to the waterfall and dam.",
-    image: "https://bookonelocal.in/cdn/Zenith Waterfall.png",
-    alt: "Palasdari Waterfall landscape",
-    distance: "5 km away",
-    mood: "Waterfall Trail",
+      "Accessible by both road and rail, Palasdari offers a quieter outing than some of the busier monsoon spots nearby. Until the correct attraction photo is sourced, this card uses a neutral scenic placeholder.",
+    image: "/uk1.avif",
+    alt: "Scenic placeholder image for Palasdari Waterfall and Dam",
+    distance: "5 km • 10-min drive",
+    mood: "Waterfall & Dam",
   },
   {
     title: "Shri Gagangiri Maharaj Ashram",
     description:
-      "Maharaj took samadhi on 4 February 2008 at his Khopoli Ashram. Gagangiri Ashram is 5 kms from UK's Resort.",
-    image: "https://bookonelocal.in/cdn/Shri Vireshwar Temple.png",
-    alt: "Shri Gagangiri Maharaj Ashram exterior",
-    distance: "5 km away",
-    mood: "Cultural Visit",
+      "A place of spiritual significance in the region, the ashram offers a quieter, reflective outing away from the resort's activity zones. Until the correct attraction image is available, this card uses a neutral placeholder.",
+    image: "/uk2.avif",
+    alt: "Scenic placeholder image for Gagangiri Maharaj Ashram",
+    distance: "5 km • 10-min drive",
+    mood: "Ashram & Spiritual",
   },
   {
     title: "ND Studio",
-    description: "It is famous for shooting of many Historical & Mythological serials.",
+    description: "ND Studio in Karjat is one of India's best-known outdoor film studios, famous for large television and historical productions. A fun short-drive outing for guests interested in film sets and behind-the-scenes spaces.",
     image: "https://bookonelocal.in/cdn/nithin.jpg",
     alt: "ND Studio set",
-    distance: "Short drive",
-    mood: "Film Destination",
+    distance: "Short drive from resort",
+    mood: "Film & TV Destination",
   },
 ] as const;
 
@@ -285,6 +285,36 @@ export default function ContactAttractions() {
             {ATTRACTIONS.map((item, index) => (
               <AttractionItem key={item.title} item={item} reverse={index % 2 === 1} />
             ))}
+          </div>
+
+          <div className="mt-14 rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(247,241,233,0.84))] p-8 text-center shadow-[0_24px_48px_rgba(23,38,46,0.08)] sm:p-10">
+            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-[#c98141]">
+              Plan Your Visit
+            </p>
+            <h3 className="mt-4 font-serif text-[2.3rem] leading-[0.94] text-[#183b48] sm:text-[3rem]">
+              Make UK&apos;s Resort your base
+            </h3>
+            <p className="mx-auto mt-5 max-w-3xl text-[1rem] leading-8 text-[#1f3c44]/72">
+              Everything above is within easy reach of UK&apos;s Resort. A temple walk in the morning, a waterfall in the afternoon, Imagica the next day - and a comfortable room, good food, and a pool waiting for you each evening.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-11 items-center justify-center rounded-full bg-[#c49a3c] px-6 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#143b47] transition hover:bg-[#d1ab58]"
+              >
+                Check Availability & Book
+              </a>
+              <a
+                href="https://wa.me/919822012343?text=Hi%2C%20please%20help%20me%20plan%20my%20visit%20to%20UK%27s%20Resort."
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-11 items-center justify-center rounded-full border border-[#1f3c44]/16 px-6 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#1f3c44] transition hover:bg-white"
+              >
+                WhatsApp to plan your visit
+              </a>
+            </div>
           </div>
         </Container>
       </section>

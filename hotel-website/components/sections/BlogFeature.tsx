@@ -6,39 +6,53 @@ import Container from "../ui/Container";
 
 const blogFeatures = [
   {
-    title: "Off The Beaten Track For Your Corporate Events: UKs Resort, Khopoli",
+    title: "Paintball",
     description:
-      "The dramatic shift in the way we travel has seen many changes, innovations and creativity. And so is it with the corporate world and their business tours. To develop a work-life balance, to hold meetings and launch their new services and products, the companies are inclined towards having an official getaway which is rewarding.",
+      "Team vs team. High-energy, strategy-driven, and one of the most popular activity add-ons for corporate groups and friend trips. Extra charge applies.",
     image: "event--corp.avif",
-    alt: "Corporate event at resort",
+    alt: "Paintball activity at UK's Resort",
   },
   {
-    title: "From Making Memories to Discovering: A treasure trove of experience",
+    title: "Archery",
     description:
-      "No wonder there are endless famous and popular places in India to offer you a special vacation. But this is also true that there are ample places which are largely untouched. There are hidden gems which need to be dug and are unquestionably wonderful and splendid when it comes to celebrating your individuality, freedom as well as togetherness",
+      "Beginner-friendly archery sessions with equipment and guidance provided. A great add-on for families, schools, and mixed-age groups. Extra charge applies.",
     image: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
-    alt: "Executive retreat",
+    alt: "Archery activity",
   },
   {
-    title: "A PLEASANT STAY TODAY",
+    title: "Rifle Shooting",
     description:
-      "Evolution has become an important aspect for the current generation. It brings new changes for good. Everybody tries to fit into the evolving changes and hence the expectation in every field is to come up with something new and surprise us and here it is. The most emerging and dynamic resort near Mumbai at Khopoli which meets all the emerging needs and expectations in today's world making your stay pleasant, a perfect one indeed.",
+      "Air rifle range with supervised sessions and no prior experience needed. A quick, engaging challenge for guests who want something different. Extra charge applies.",
     image: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
-    alt: "Product launch event",
+    alt: "Rifle shooting activity",
   },
   {
-    title: "UKsResort Plan One Day Trip near Mumbai for Family or Colleagues without any Hassles",
+    title: "Body Zorbing",
     description:
-      "Places near Mumbai for team outing whether for family or office colleagues, should be affordable with many activities. UKsResort is priced competitively and has a myriad of activities to pick from. The staff too is courteous and your colleagues or family is sure not to be disappointed.",
+      "Get inside an inflatable ball and roll. Exactly as chaotic and fun as it sounds for group outings and energetic day trips. Extra charge applies.",
     image: "din3.avif",
-    alt: "Corporate leisure getaway",
+    alt: "Body zorbing activity",
   },
   {
-    title: "UK's Resort, Khopoli - Best Destination for Arranging Kitty Party in Mumbai",
+    title: "Water Zorbing",
     description:
-      "Do you want to stay away from the hustle-bustle life? Are you searching for the best destination for celebrating party? If so, then you will choose UK's Resort. Khopoli. It is a perfect place for organizing a party, virtual tour, and other events based on your requirements and demands.",
+      "Walk on water in an inflatable zorb ball on the pool surface. A favorite with kids, teens, and anyone curious enough to try it. Extra charge applies.",
     image: "uk1.avif",
-    alt: "Corporate leisure getaway",
+    alt: "Water zorbing activity",
+  },
+  {
+    title: "Wall Climbing",
+    description:
+      "An artificial climbing wall for all skill levels - good for individuals, school groups, and team challenges. Extra charge applies.",
+    image: "sports4.avif",
+    alt: "Wall climbing activity",
+  },
+  {
+    title: "Team Building",
+    description:
+      "Structured team activity packages are available for corporate groups. Ask the team about formats, timing, and custom combinations. Charges depend on the setup.",
+    image: "conference.avif",
+    alt: "Team building activity setup",
   },
 ];
 
@@ -72,16 +86,13 @@ export default function BlogFeature() {
         <div className="space-y-16 lg:space-y-20">
           <div className="grid gap-7 lg:grid-cols-2 lg:gap-14">
             <div className="space-y-7 lg:pt-2">
-              <p className="text-[0.72rem] uppercase tracking-[0.4em] text-[#1f3c44]/70">Unforgettable Experiences</p>
+              <p className="text-[0.72rem] uppercase tracking-[0.4em] text-[#1f3c44]/70">Adventure Activities</p>
               <h2 className="font-serif text-[2rem] leading-[1] sm:text-[2.6rem] lg:text-[3.8rem]">
-                Journey into the
-                <br />
-                    of coastal luxury
-
-                <br />
-              and timeless escape
+                Adventure activities
               </h2>
-              <p className="max-w-xl text-[1rem] leading-8 text-[#1f3c44]/88">{primary.description}</p>
+              <p className="max-w-xl text-[1rem] leading-8 text-[#1f3c44]/88">
+                Available at an extra charge. Book at reception or WhatsApp us before your visit to check availability, timing, and current pricing for each activity.
+              </p>
             </div>
 
             <div className="reveal-up relative h-[23rem] overflow-hidden rounded-[16px] bg-[#d8d3c8] sm:h-[33rem] lg:h-[41rem]">
