@@ -62,6 +62,57 @@ export class StepConfirmationComponent implements AfterViewInit {
     this.mapLoaded = false;
   }
 
+  getTripTypeLabel(tripType?: string): string {
+    switch (tripType) {
+      case 'pickup-drop':
+        return 'Pickup & Drop';
+      case 'outstation':
+        return 'Outstation';
+      case 'rental':
+        return 'Rental';
+      default:
+        return this.booking?.tripType === 'return' ? 'Return' : 'One-way';
+    }
+  }
+
+  getApproxDropoffTime(): string {
+    const pickupTime = String(this.booking?.time || '').trim();
+    const durationMinutes = Number(this.booking?.durationMinutes);
+
+    if (!pickupTime || !durationMinutes || durationMinutes <= 0) {
+      return '';
+    }
+
+    const parts = pickupTime.split(':');
+    if (parts.length < 2) {
+      return '';
+    }
+
+    const hours = Number(parts[0]);
+    const minutes = Number(parts[1]);
+    if (
+      Number.isNaN(hours) ||
+      Number.isNaN(minutes) ||
+      hours < 0 ||
+      hours > 23 ||
+      minutes < 0 ||
+      minutes > 59
+    ) {
+      return '';
+    }
+
+    const date = new Date();
+    date.setHours(hours, minutes, 0, 0);
+    date.setMinutes(date.getMinutes() + Math.ceil(durationMinutes));
+    return this.formatTime24h(date);
+  }
+
+  private formatTime24h(date: Date): string {
+    const hh = String(date.getHours()).padStart(2, '0');
+    const mm = String(date.getMinutes()).padStart(2, '0');
+    return `${hh}:${mm}`;
+  }
+
   // -----------------------------
   // Initialize Google Map
   // -----------------------------

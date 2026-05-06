@@ -30,6 +30,105 @@
         </div>
       </div>
 
+      <!-- TRIP SUMMARY SECTION -->
+      <div class="section-divider"></div>
+      <div class="summary-section">
+        <h3 class="section-title">Trip Summary</h3>
+        <div class="summary-grid">
+          <!-- Pickup -->
+          <div class="summary-item">
+            <div class="summary-icon pickup-icon">
+              <i class="fa-solid fa-map-pin"></i>
+            </div>
+            <div class="summary-content">
+              <span class="summary-label">PICKUP</span>
+              <span class="summary-value">{{ booking?.pickup?.name }}</span>
+              <span class="summary-location" *ngIf="booking?.time">
+                Pickup Time: {{ booking?.time }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Drop-off -->
+          <div class="summary-item">
+            <div class="summary-icon dropoff-icon">
+              <i class="fa-solid fa-map-pin"></i>
+            </div>
+            <div class="summary-content">
+              <span class="summary-label">DROP-OFF</span>
+              <span class="summary-value">{{ booking?.dropoff?.name }}</span>
+              <span class="summary-location" *ngIf="getApproxDropoffTime()">
+                Est. Drop-off Time: {{ getApproxDropoffTime() }}
+              </span>
+              <span class="summary-location" *ngIf="booking?.distanceKm">
+                Distance: {{ booking?.distanceKm | number:'1.1-1' }} km away
+              </span>
+            </div>
+          </div>
+
+          <!-- Trip Type -->
+          <div class="summary-item">
+            <div class="summary-icon">
+              <i class="fa-solid fa-route"></i>
+            </div>
+            <div class="summary-content">
+              <span class="summary-label">TRIP TYPE</span>
+              <span class="summary-value">{{ getTripTypeLabel(booking?.tripTypeValue) }}</span>
+            </div>
+          </div>
+
+          <!-- Duration -->
+          <div class="summary-item" *ngIf="booking?.durationMinutes">
+            <div class="summary-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div class="summary-content">
+              <span class="summary-label">EST. DURATION</span>
+              <span class="summary-value">{{ booking?.durationMinutes }} min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASSENGER & VEHICLE SECTION -->
+      <div class="summary-section">
+        <h3 class="section-title">Passenger & Vehicle</h3>
+        <div class="passenger-vehicle-grid">
+          <!-- Passengers -->
+          <div class="pv-item">
+            <span class="pv-label">PASSENGERS</span>
+            <span class="pv-value">
+              {{ booking?.passengers?.adults || 1 }} adult<span *ngIf="(booking?.passengers?.adults || 1) > 1">s</span><span *ngIf="booking?.passengers?.children">, {{ booking?.passengers?.children }} child<span *ngIf="booking?.passengers?.children > 1">ren</span></span><span *ngIf="booking?.passengers?.luggage">, {{ booking?.passengers?.luggage }} luggage</span>
+            </span>
+          </div>
+
+          <!-- Vehicle Info -->
+          <div class="pv-item">
+            <span class="pv-label">VEHICLE</span>
+            <span class="pv-value">{{ booking?.vehicle?.name }}</span>
+          </div>
+
+          <!-- Capacity -->
+          <div class="pv-item">
+            <span class="pv-label">CAPACITY</span>
+            <span class="pv-value">
+              {{ booking?.vehicle?.seats || '-' }} seat<span *ngIf="booking?.vehicle?.seats !== 1">s</span>, {{ booking?.vehicle?.bags || '-' }} bag<span *ngIf="booking?.vehicle?.bags !== 1">s</span>
+            </span>
+          </div>
+
+          <!-- Traveller Info -->
+          <div class="pv-item">
+            <span class="pv-label">TRAVELLER</span>
+            <span class="pv-value">
+              {{ booking?.traveller?.firstName }} {{ booking?.traveller?.lastName }}
+            </span>
+            <span class="pv-subvalue" *ngIf="booking?.traveller?.mobile">
+              {{ booking?.traveller?.mobile }}
+            </span>
+          </div>
+        </div>
+      </div>
+
       <!-- Details List -->
       <!-- Fare Breakdown (Same UI Style) -->
       <div class="details-list mt-3" *ngIf="booking?.fareQuote as fare">
