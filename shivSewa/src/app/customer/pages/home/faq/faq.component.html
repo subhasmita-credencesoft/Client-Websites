@@ -1,0 +1,38 @@
+<section class="faq-section">
+  <div class="faq-container">
+    <div class="header-content">
+      <p class="subtitle">Got Questions?</p>
+      <h2 class="main-title">Frequently Asked Questions</h2>
+      <p class="section-description">Everything you need to know before booking your ride with Shiv Sewa.</p>
+    </div>
+
+    <div class="faq-list">
+      <div
+        *ngFor="let item of faqs; let i = index"
+      >
+        <h3 class="faq-category-heading" *ngIf="isCategoryStart(i)">{{ item.category }}</h3>
+        <div
+        class="faq-item"
+        [class.active]="activeIndex === i"
+        (click)="toggle(i)"
+      >
+        <div class="faq-question">
+          <span class="faq-number">{{ (i + 1).toString().padStart(2, '0') }}</span>
+          <span class="faq-q-text">{{ item.question }}</span>
+          <span class="faq-icon">
+            <svg *ngIf="activeIndex !== i" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg *ngIf="activeIndex === i" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="faq-answer">
+          <p *ngIf="item.answer">{{ item.answer }}</p>
+          <ol *ngIf="item.points?.length" class="faq-points">
+            <li *ngFor="let point of item.points">{{ point }}</li>
+          </ol>
+          <p *ngIf="item.note">{{ item.note }}</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

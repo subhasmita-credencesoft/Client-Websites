@@ -12,13 +12,14 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { BookingService } from '../../services/booking.service';
 import { BackToTopComponent } from '../../components/back-to-top/back-to-top.component';
+import { FaqComponent } from './faq/faq.component';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [HeaderComponent, CommonModule, FormsModule, BannerComponent, BannerServicesComponent, PopularTripsComponent, JourneyCardComponent, CarsListingsDataComponent, ReviewsTestimonialsComponent, AboutUsComponent, FooterComponent,ReactiveFormsModule,CommonModule,
-  BackToTopComponent
+  BackToTopComponent, FaqComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
