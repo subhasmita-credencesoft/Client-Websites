@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
-import { DOCUMENT, CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 
 interface Faq {
   category: 'General' | 'Booking & Pricing' | 'Services' | 'Areas Served';
@@ -16,24 +17,8 @@ interface Faq {
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.scss'],
 })
-export class FaqComponent implements OnInit, OnDestroy {
-  private schemaScript: HTMLScriptElement | null = null;
+export class FaqComponent {
   activeIndex: number | null = null;
-  
-  constructor(
-    private renderer: Renderer2,
-    @Inject(DOCUMENT) private document: Document
-  ) {}
-
-  ngOnInit(): void {
-  this.injectFaqSchema();
-}
-
-ngOnDestroy(): void {
-  if (this.schemaScript) {
-    this.renderer.removeChild(this.document.head, this.schemaScript);
-  }
-}
 
   faqs: Faq[] = [
     {
@@ -148,28 +133,4 @@ ngOnDestroy(): void {
     if (index === 0) return true;
     return this.faqs[index].category !== this.faqs[index - 1].category;
   }
-
-  private injectFaqSchema(): void {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": this.faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": [
-          faq.answer,
-          ...(faq.points ?? []),
-          faq.note ?? ''
-        ].filter(Boolean).join(' ')
-      }
-    }))
-  };
-
-  this.schemaScript = this.renderer.createElement('script');
-  this.renderer.setAttribute(this.schemaScript, 'type', 'application/ld+json');
-  this.schemaScript!.textContent = JSON.stringify(schema);
-  this.renderer.appendChild(this.document.head, this.schemaScript);
-}
 }
