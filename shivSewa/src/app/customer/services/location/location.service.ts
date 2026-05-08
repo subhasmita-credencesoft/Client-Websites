@@ -89,4 +89,10 @@ checkMobile(mobile: string) {
   );
 }
 
+getCoupons(propertyId: number): Observable<any[]> {
+  return this.http.get<any[]>(
+    `https://api.bookone.io/promotion-api/api/offer/property?propertyId=${propertyId}`
+  );
+}
+
 }

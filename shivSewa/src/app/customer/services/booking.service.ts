@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Booking, BookingCoupon } from '../models/booking.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { FareQuote } from '../pricing/pricing.types';
+import { LocationService } from './location/location.service';
+import { map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingService {
   private lastTaxDetails: any[] = [];
-
+  private cachedCoupons: any[] = [];
   private _booking = new BehaviorSubject<Booking>({
     pickup: null,
     dropoff: null,
@@ -82,6 +84,8 @@ export class BookingService {
   });
 
   booking$ = this._booking.asObservable();
+
+  constructor(private locationService: LocationService) {}
 
   private _step = new BehaviorSubject<number>(0);
   step$ = this._step.asObservable();
@@ -166,21 +170,31 @@ export class BookingService {
     return ref;
   }
 
-  setCouponCode(rawCode: string) {
+  setCouponCode(rawCode: string, propertyId: number = 2302): Observable<void> {
     const normalized = this.normalizeCouponCode(rawCode);
-    const coupon = this.evaluateCoupon(normalized, this._booking.value.tripTypeValue);
 
-    this._booking.next({
-      ...this._booking.value,
-      coupon
-    });
+    const apply = (coupons: any[]) => {
+      this.cachedCoupons = coupons;
+      const coupon = this.evaluateCoupon(normalized, this._booking.value.tripTypeValue);
+      this._booking.next({ ...this._booking.value, coupon });
+      const fareAmount = this._booking.value.fareQuote?.total ?? 0;
+      this.applyTaxAndPricing(fareAmount, this.lastTaxDetails);
+    };
 
-    const fareAmount = this._booking.value.fareQuote?.total ?? 0;
-    this.applyTaxAndPricing(fareAmount, this.lastTaxDetails);
+    if (this.cachedCoupons.length) {
+      apply(this.cachedCoupons);
+      return of(void 0);
+    }
+
+    return this.locationService.getCoupons(propertyId).pipe(
+      take(1),
+      tap(coupons => apply(coupons)),
+      map(() => void 0)
+    );
   }
 
   clearCoupon() {
-    this.setCouponCode('');
+    this.setCouponCode('').subscribe();
   }
 
   applyTaxAndPricing(fareAmount: number, taxDetails: any[]) {
@@ -393,47 +407,37 @@ export class BookingService {
     const normalizedCode = this.normalizeCouponCode(code);
 
     if (!normalizedCode) {
-      return {
-        code: '',
-        status: 'none',
-        discountPercentage: 0,
-        discountAmount: 0,
-        message: ''
-      };
+      return { code: '', status: 'none', discountPercentage: 0, discountAmount: 0, message: '' };
     }
 
-    const couponRules: Record<string, { discountPercentage: number; allowedTripType: Booking['tripTypeValue'] }> = {
-      OUT10: { discountPercentage: 10, allowedTripType: 'outstation' },
-      PICKUP20: { discountPercentage: 20, allowedTripType: 'pickup-drop' }
-    };
+    const now = Date.now();
+    const match = this.cachedCoupons.find(
+      c => c.couponCode?.trim()?.toUpperCase() === normalizedCode
+    );
 
-    const rule = couponRules[normalizedCode];
-    if (!rule) {
-      return {
-        code: normalizedCode,
-        status: 'invalid',
-        discountPercentage: 0,
-        discountAmount: 0,
-        message: 'Invalid coupon code.'
-      };
+    if (!match) {
+      return { code: normalizedCode, status: 'invalid', discountPercentage: 0, discountAmount: 0, message: 'Invalid coupon code.' };
     }
 
-    if (!tripTypeValue || tripTypeValue !== rule.allowedTripType) {
-      return {
-        code: normalizedCode,
-        status: 'ineligible',
-        discountPercentage: 0,
-        discountAmount: 0,
-        message: normalizedCode === 'OUT10'
-          ? 'OUT10 is valid only for outstation trips.'
-          : 'PICKUP20 is valid only for pickup & drop trips.'
-      };
+    if (now < match.startDate || now > match.endDate) {
+      return { code: normalizedCode, status: 'invalid', discountPercentage: 0, discountAmount: 0, message: 'This coupon has expired.' };
+    }
+
+    const isOutstation = match.name?.toLowerCase().includes('outstation');
+    const isPickupDrop = match.name?.toLowerCase().includes('pickup');
+    const eligible =
+      (isOutstation && tripTypeValue === 'outstation') ||
+      (isPickupDrop && tripTypeValue === 'pickup-drop');
+
+    if (!eligible) {
+      const expectedTrip = isOutstation ? 'outstation' : 'pickup & drop';
+      return { code: normalizedCode, status: 'ineligible', discountPercentage: 0, discountAmount: 0, message: `${normalizedCode} is valid only for ${expectedTrip} trips.` };
     }
 
     return {
       code: normalizedCode,
       status: 'applied',
-      discountPercentage: rule.discountPercentage,
+      discountPercentage: match.discountPercentage,
       discountAmount: 0,
       message: `${normalizedCode} applied successfully.`
     };

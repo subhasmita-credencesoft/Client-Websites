@@ -8,6 +8,7 @@ import { GeoLocation } from '../../../models/geo-location';
 import { BookingService } from '../../../services/booking.service';
 import { LocationService } from '../../../services/location/location.service';
 import { Booking, TripServiceType, TripTypeValue } from '../../../models/booking.model';
+import { MessageService } from 'primeng/api';
 
 type TripType = 'pickup-drop' | 'outstation' | 'rental';
 type VehicleCategory = 'sedan' | 'suv' | 'suvPlus';
@@ -154,7 +155,8 @@ export class BannerComponent {
   constructor(
     private router: Router,
     private bookingService: BookingService,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -622,15 +624,39 @@ const tripTypeValue: TripTypeValue = this.selectedTripType;
 };
 
   this.bookingService.patchDeep(bookingData);
-  this.bookingService.setCouponCode(this.isCouponApplicableTrip ? this.couponCode : '');
-  sessionStorage.setItem('selectedBooking', JSON.stringify(bookingData));
-if (this.selectedPickup && this.selectedDrop) {
-        this.calculateDistanceAndDuration(this.selectedPickup, this.selectedDrop);
+  this.bookingService
+    .setCouponCode(this.isCouponApplicableTrip ? this.couponCode : '', 2302)
+    .subscribe({
+      next: () => {
+        sessionStorage.setItem('selectedBooking', JSON.stringify(bookingData));
+        if (this.selectedPickup && this.selectedDrop) {
+          this.calculateDistanceAndDuration(this.selectedPickup, this.selectedDrop);
+        }
+        this.router.navigate(['/booking']);
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Coupon Unavailable',
+          detail: 'Could not validate coupon right now. Continuing without coupon.',
+          life: 3000
+        });
+        this.bookingService.patchDeep({
+          coupon: {
+            code: '',
+            status: 'none',
+            discountPercentage: 0,
+            discountAmount: 0,
+            message: ''
+          }
+        });
+        sessionStorage.setItem('selectedBooking', JSON.stringify(bookingData));
+        if (this.selectedPickup && this.selectedDrop) {
+          this.calculateDistanceAndDuration(this.selectedPickup, this.selectedDrop);
+        }
+        this.router.navigate(['/booking']);
       }
-  this.router.navigate(['/booking']);
-}
-
-
-
+    });
+  }
 }
 
