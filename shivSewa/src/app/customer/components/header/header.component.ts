@@ -38,7 +38,7 @@ openWhatsApp() {
     '%0A%0AMy Trip Details:' +
     '%0A• Pickup:' +
     '%0A• Drop:' +
-    '%0A• Date:' +
+    '%0A• Date & Time:' +
     '%0A• Car:' +
     '%0A%0APlease send me a quote. Thanks!';
 
