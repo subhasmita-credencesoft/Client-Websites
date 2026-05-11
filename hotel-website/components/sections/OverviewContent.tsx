@@ -191,7 +191,7 @@ export default function OverviewContent() {
         </Container>
       </section>
 
-      {/* ── Timeline ── */}
+      {/* ── Timeline ──
       <section
         ref={timelineContainerRef}
         data-no-global-gsap
@@ -206,7 +206,6 @@ export default function OverviewContent() {
           </div>
 
           <div className="relative mx-auto max-w-4xl">
-            {/* Vertical track */}
             <div className="absolute bottom-0 top-0 left-5 w-px -translate-x-1/2 bg-[#1f3c44]/12 md:left-1/2">
               <div
                 ref={timelineLineRef}
@@ -224,7 +223,6 @@ export default function OverviewContent() {
                       isEven ? "md:flex-row-reverse" : "md:flex-row"
                     }`}
                   >
-                    {/* Dot */}
                     <div className="absolute left-5 z-10 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-[#d89a55] bg-[#f3efe8] md:left-1/2" />
 
                     <div
@@ -249,6 +247,7 @@ export default function OverviewContent() {
           </div>
         </Container>
       </section>
+      ── */}
 
       {/* ── Highlights ── */}
       <section ref={highlightsRef} data-no-global-gsap className="bg-[#f6f2ec] py-20 sm:py-24 lg:py-32">

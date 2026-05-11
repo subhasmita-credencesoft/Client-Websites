@@ -16,7 +16,7 @@ import { getWhatsappShareUrl } from "../../lib/booking/bookingEngine";
 
 const DEFAULT_EMAIL = "info@uksresort.com";
 const DEFAULT_PHONE_1 = "+91 98220 12343";
-const DEFAULT_PHONE_2 = "+91 98220 12343";
+const DEFAULT_PHONE_2 = "+91 87798 14559";
 const DEFAULT_LOGO = "/UK's-Resort-Logo.png";
 
 const HERO_PREFIXES = [
@@ -151,7 +151,11 @@ export default function Header() {
   const propertyName = liveProperty?.name ?? "UK's Resort";
   const email = liveProperty?.email ?? DEFAULT_EMAIL;
   const primaryPhone = formatPhone(liveProperty?.mobile) || DEFAULT_PHONE_1;
-  const whatsappPhone = formatPhone(liveProperty?.whatsApp) || DEFAULT_PHONE_2;
+  let whatsappPhone = formatPhone(liveProperty?.whatsApp) || DEFAULT_PHONE_2;
+  
+  if (primaryPhone === whatsappPhone) {
+    whatsappPhone = DEFAULT_PHONE_2;
+  }
   const primaryPhoneHref = toTelHref(primaryPhone);
   const whatsappShareHref = getWhatsappShareUrl(liveProperty, !(liveProperty?.whatsApp || "").trim());
   const addressLong = [
@@ -351,7 +355,7 @@ export default function Header() {
               className="hdr-book-btn"
             >
               <span className="hidden sm:inline">Book Your Stay</span>
-              <span className="sm:hidden">Book now</span>
+              <span className="sm:hidden">Book</span>
               <span className="hdr-book-arrow-wrap" aria-hidden="true">
                 <span className="hdr-book-arrow">&rsaquo;</span>
               </span>

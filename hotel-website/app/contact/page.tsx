@@ -50,7 +50,12 @@ export default function ContactPage() {
   const hotelName = activeProperty?.name || "UK's Resort";
   const email = activeProperty?.email || CONTACT_PAGE_DEFAULTS.email;
   const phone1 = formatPhone(activeProperty?.mobile) || CONTACT_PAGE_DEFAULTS.phone1;
-  const phone2 = formatPhone(activeProperty?.whatsApp) || CONTACT_PAGE_DEFAULTS.phone2;
+  let phone2 = formatPhone(activeProperty?.whatsApp) || CONTACT_PAGE_DEFAULTS.phone2;
+  
+  // Ensure we don't show the same number twice if the API data is redundant
+  if (phone1 === phone2) {
+    phone2 = CONTACT_PAGE_DEFAULTS.phone2;
+  }
   const address = compactAddress([
     activeProperty?.address?.streetName,
     activeProperty?.address?.suburb,
@@ -106,7 +111,7 @@ export default function ContactPage() {
               <h2 className="mt-4 font-serif text-[2.2rem] leading-none text-[#123645]">Email</h2>
               <div className="mt-5 space-y-2 text-[1.05rem] leading-relaxed text-[#123645]/70">
                 <p>{email}</p>
-                <p>{CONTACT_PAGE_DEFAULTS.secondaryEmail}</p>
+                {/* <p>{CONTACT_PAGE_DEFAULTS.secondaryEmail}</p> */}
               </div>
               <Link
                 href={`mailto:${email}`}
@@ -122,8 +127,8 @@ export default function ContactPage() {
               </p>
               <h2 className="mt-4 font-serif text-[2.2rem] leading-none text-[#123645]">Phone</h2>
               <div className="mt-5 space-y-2 text-[1.05rem] leading-relaxed text-[#123645]/70">
-                <p>{phone1}</p>
-                <p>{phone2}</p>
+                <p>Ph 1: {phone1}</p>
+                <p>Ph 2: {phone2}</p>
               </div>
               <Link
                 href={toTelHref(phone1)}

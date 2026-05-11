@@ -26,14 +26,14 @@ const diningItems = [
     image: "din2.avif",
     position: "center 42%",
   },
-  {
-    title: "Covered Garden Restaurant Seating",
-    label: "Semi-Outdoor Dining",
-    description:
-      "Experience comfortable semi-outdoor dining with shaded seating and scenic green views, perfect for peaceful resort-style meals.",
-    image: "din3.avif",
-    position: "center 32%",
-  },
+  // {
+  //   title: "Covered Garden Restaurant Seating",
+  //   label: "Semi-Outdoor Dining",
+  //   description:
+  //     "Experience comfortable semi-outdoor dining with shaded seating and scenic green views, perfect for peaceful resort-style meals.",
+  //   image: "din3.avif",
+  //   position: "center 32%",
+  // },
   {
     title: "Corporate & Conference Dining",
     label: "Meetings | Team Events",

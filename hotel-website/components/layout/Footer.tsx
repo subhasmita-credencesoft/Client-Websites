@@ -61,9 +61,18 @@ export default function Footer() {
     liveProperty?.address?.country,
   ]);
   const phone1 = formatPhone(liveProperty?.mobile) || "+91 98220 12343";
-  const phone2 = formatPhone(liveProperty?.whatsApp) || "+91 87798 14559";
+  let phone2 = formatPhone(liveProperty?.whatsApp) || "+91 87798 14559";
+  
+  if (phone1 === phone2) {
+    phone2 = "+91 87798 14559";
+  }
+
   const phone1Href = formatPhoneHref(liveProperty?.mobile) || "tel:+919822012343";
-  const phone2Href = formatPhoneHref(liveProperty?.whatsApp) || "tel:+918779814559";
+  let phone2Href = formatPhoneHref(liveProperty?.whatsApp) || "tel:+918779814559";
+
+  if (phone1 === phone2) {
+    phone2Href = "tel:+918779814559";
+  }
   const email = liveProperty?.email || "info@uksresort.com";
 
   useEffect(() => {
