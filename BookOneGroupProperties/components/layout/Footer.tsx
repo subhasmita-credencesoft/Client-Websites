@@ -65,7 +65,7 @@ export function Footer() {
 
         <div className="border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 text-center md:text-left">
           <p className="text-xs text-primary-foreground/50 uppercase tracking-wider">
-            {footerData.legal.copyright}
+            Designed and Developed by <a href="https://www.credencesoft.in/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">CredenceSoft</a> and Powered By <a href="https://bookonepms.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">BookOne</a>
           </p>
           <div className="bg-[#2D3A45] px-4 py-2 rounded text-white flex items-center gap-2 text-xs font-bold cursor-pointer hover:bg-black transition-colors">
             {footerData.legal.locale}
