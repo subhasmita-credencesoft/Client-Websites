@@ -32,6 +32,21 @@ export const WEDDINGS_CELEBRATION_INTRO =
   "UK's Resort is built for full days - not just an activity or two. From the moment your group arrives, there's water fun, sports grounds, open lawns, a kids' zone, and proper sit-down meals to fill the hours naturally. Families pace it slow. Schools run it structured. Birthday groups do whatever they want. The space adapts.";
 
 export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
+   {
+    id: "corporate",
+    layout: "media-right",
+    mediaImage: "https://bookonelocal.in/cdn/conference3-1.jpg",
+    mediaAlt: "Corporate event and team outing space",
+    cardTitle: "Corporate Team Days",
+    cardParagraphs: [
+      "Mix structured activities with open downtime. Cricket on the lawn in the morning, a working lunch, and team games in the afternoon - the kind of day that actually gets people talking to each other.",
+    ],
+    highlightLabel: "Ideal For",
+    highlights: ["Offsites", "Training days", "Team outings"],
+    enquiryHref: "https://wa.me/919822012343?text=Hi%2C%20I%20want%20a%20group%20quote%20for%20a%20corporate%20team%20day%20at%20UK%27s%20Resort.",
+    virtualTourKey: "corporate",
+    virtualTourAriaLabel: "Take a virtual tour of corporate event area",
+  },
   {
     id: "events",
     layout: "media-left",
@@ -77,19 +92,5 @@ export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
     virtualTourKey: "sports",
     virtualTourAriaLabel: "Take a virtual tour of sports area",
   },
-  {
-    id: "corporate",
-    layout: "media-right",
-    mediaImage: "https://bookonelocal.in/cdn/conference3-1.jpg",
-    mediaAlt: "Corporate event and team outing space",
-    cardTitle: "Corporate Team Days",
-    cardParagraphs: [
-      "Mix structured activities with open downtime. Cricket on the lawn in the morning, a working lunch, and team games in the afternoon - the kind of day that actually gets people talking to each other.",
-    ],
-    highlightLabel: "Ideal For",
-    highlights: ["Offsites", "Training days", "Team outings"],
-    enquiryHref: "https://wa.me/919822012343?text=Hi%2C%20I%20want%20a%20group%20quote%20for%20a%20corporate%20team%20day%20at%20UK%27s%20Resort.",
-    virtualTourKey: "corporate",
-    virtualTourAriaLabel: "Take a virtual tour of corporate event area",
-  },
+ 
 ];

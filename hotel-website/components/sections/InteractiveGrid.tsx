@@ -7,9 +7,9 @@ import Container from "../ui/Container";
 
 const activities = [
   { title: "Water Park", image: "/images/main-image.JPG", desc: "Thrilling slides & pools" },
-  { title: "Adventure Games", image: "https://bookonelocal.in/cdn/3.png", desc: "Zipline & rope courses" },
-  { title: "Rain Dance", image: "/picnic.avif", desc: "Groove under the showers" },
-  { title: "Paintball", image: "https://bookonelocal.in/cdn/IMG_1531.avif", desc: "Action-packed group fun" },
+  { title: "Adventure Games", image: "/sports5.avif", desc: "Enjoy action-packed cricket matches, practice sessions, and exciting team tournaments in a lively outdoor sports arena." },
+  { title: "Kids Splash Fun", image: "/children6.avif", desc: "Enjoy playful water games and fun activities for children" },
+  { title: "Angry bird ", image: "/sports2.avif", desc: "Action-packed group fun" },
 ];
 
 export default function InteractiveGrid() {

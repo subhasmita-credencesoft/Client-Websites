@@ -205,12 +205,12 @@ export default function DiningShowcase() {
             <p>
               There's something about the mountain air that makes every meal taste better. At UK's Resort, we keep things simple and delicious. From local Maharashtrian spices and slow-cooked Mughlai treats to your favorite Chinese comfort food, our kitchen is always humming. Whether you're craving a spicy chicken curry or a simple, fresh veg thali, our chefs cook every plate just the way you like it. Pull up a chair, enjoy the view, and eat to your heart's content.
             </p>
-            <Link
+            {/* <Link
               href="/dining"
               className="mt-5 inline-flex text-[0.68rem] font-semibold uppercase tracking-[0.18em] sm:text-xs sm:tracking-[0.3em]"
             >
               Discover more
-            </Link>
+            </Link> */}
           </div>
         </div>
       </Container>
@@ -273,7 +273,8 @@ export default function DiningShowcase() {
                     onClick={() => window.open(tourUrl, "_blank")}
                     className="dining-card-line mt-5 inline-flex w-fit text-[0.62rem] font-semibold uppercase tracking-[0.2em] underline underline-offset-4 lg:text-[0.72rem]"
                   >
-                    Learn more
+                    
+                    view map
                   </button>
                 </div>
               </article>

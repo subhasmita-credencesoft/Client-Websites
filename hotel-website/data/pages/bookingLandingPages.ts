@@ -194,10 +194,10 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
         image: "children5.avif",
       },
       {
-        title: "Rain Dance",
+        title: "Kids Play Area",
         description:
-          "Enjoy nonstop sprinkling water, music, and high-energy rain dance fun.",
-        image: "children3.avif",
+          "A fun-filled zone with exciting slides, swings, games, and safe play activities designed for children to enjoy and explore.",
+        image: "children6.avif",
       },
       {
         title: "Water Zorbing",
@@ -205,48 +205,48 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
           "Experience the thrill of walking on water with exciting zorbing activities.",
         image: "children7.avif",
       },
-      {
-        title: "Indoor Games",
-        description:
-          "Play table tennis, badminton, chess, and carrom with friends and family.",
-        image: "indoor.avif",
-      },
-      {
-        title: "Kids Park",
-        description:
-          "A dedicated play zone for toddlers and children with swings and open space.",
-        image: "kids.avif",
-      },
-      {
-        title: "Rock Climbing",
-        description:
-          "Boost confidence and enjoy the thrill of climbing in a safe environment.",
-        image: "rock.avif",
-      },
+      // {
+      //   title: "Indoor Games",
+      //   description:
+      //     "Play table tennis, badminton, chess, and carrom with friends and family.",
+      //   image: "indoor.avif",
+      // },
+      // {
+      //   title: "Kids Park",
+      //   description:
+      //     "A dedicated play zone for toddlers and children with swings and open space.",
+      //   image: "kids.avif",
+      // },
+      // {
+      //   title: "Rock Climbing",
+      //   description:
+      //     "Boost confidence and enjoy the thrill of climbing in a safe environment.",
+      //   image: "rock.avif",
+      // },
       {
         title: "Outdoor Games",
         description:
           "Enjoy cricket, football, and volleyball in open evening spaces.",
-        image: "outdoor.avif",
+        image: "sports5.avif",
       },
-      {
-        title: "Paintball",
-        description:
-          "A fun and competitive activity suitable for both beginners and experienced players.",
-        image: "paintball.avif",
-      },
+      // {
+      //   title: "Paintball",
+      //   description:
+      //     "A fun and competitive activity suitable for both beginners and experienced players.",
+      //   image: "paintball.avif",
+      // },
       {
         title: "Special Occasions",
         description:
           "Celebrate birthdays and gatherings with music, food, and lively ambiance.",
         image: "din2.avif",
       },
-      {
-        title: "Dance Floor",
-        description:
-          "Enjoy foot-tapping music and let loose on the dance floor.",
-        image: "dance.avif",
-      },
+      // {
+      //   title: "Dance Floor",
+      //   description:
+      //     "Enjoy foot-tapping music and let loose on the dance floor.",
+      //   image: "dance.avif",
+      // },
     ],
   },
 
@@ -282,8 +282,8 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
       includes: [
         "Water park",
         "Lunch buffet",
-        "Indoor games",
-        "Kids park",
+        // "Indoor games",
+        // "Kids park",
       ],
     },
     {
@@ -448,32 +448,32 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
         title: "Team Building Activities",
         description:
           "Engaging activities designed to improve collaboration and team bonding.",
-        image: "outdoor.avif",
+        image: "event--corp.avif",
       },
       {
         title: "Dining & Catering",
         description:
           "Buffet and customized meal options to suit corporate schedules.",
-        image: "din2.avif",
+        image: "din3.avif",
       },
       {
         title: "Outdoor Lawns",
         description:
           "Open spaces for informal meetings, networking, and relaxation.",
-        image: "lawn.avif",
+        image: "sports3.avif",
       },
       {
         title: "Recreational Activities",
         description:
           "Indoor and outdoor games to balance work with relaxation.",
-        image: "indoor.avif",
+        image: "sports2.avif",
       },
-      {
-        title: "Evening Gatherings",
-        description:
-          "Perfect spaces for informal events, celebrations, or team dinners.",
-        image: "dance.avif",
-      },
+      // {
+      //   title: "Evening Gatherings",
+      //   description:
+      //     "Perfect spaces for informal events, celebrations, or team dinners.",
+      //   image: "dance.avif",
+      // },
     ],
   },
 
@@ -535,14 +535,14 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
   planningPoints: [],
   planningImage: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
 
-  bookingCtaEyebrow: "Corporate Enquiry",
+  bookingCtaEyebrow: "Enquire Now",
   bookingCtaTitle: "Tell us about your event",
   bookingCtaCopy:
     "Share your group size, preferred dates, and event type. We'll send a tailored package and pricing within a few hours.",
-  bookingButtonLabel: "WhatsApp Your Requirement",
+  bookingButtonLabel: "WhatsApp to Enquire",
   bookingButtonHref:
     "https://wa.me/919822012343?text=Hi%2C%20I%20want%20to%20plan%20a%20corporate%20event%20at%20UK%27s%20Resort.%20Please%20share%20package%20details.",
-  secondaryBookingButtonLabel: "Email us: info@uksresort.com",
+  secondaryBookingButtonLabel: "Email Us",
   secondaryBookingButtonHref: "mailto:info@uksresort.com",
   showIntroButton: false,
   showAtmosphereSection: false,

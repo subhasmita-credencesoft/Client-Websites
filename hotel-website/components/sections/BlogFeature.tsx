@@ -16,23 +16,23 @@ const blogFeatures = [
     title: "Archery",
     description:
       "Beginner-friendly archery sessions with equipment and guidance provided. A great add-on for families, schools, and mixed-age groups. Extra charge applies.",
-    image: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
+    image: "sports4.avif",
     alt: "Archery activity",
   },
   {
     title: "Rifle Shooting",
     description:
       "Air rifle range with supervised sessions and no prior experience needed. A quick, engaging challenge for guests who want something different. Extra charge applies.",
-    image: "https://bookonelocal.in/cdn/uks-exterior-1.jpg",
+    image: "rifleshoot.avif",
     alt: "Rifle shooting activity",
   },
-  {
-    title: "Body Zorbing",
-    description:
-      "Get inside an inflatable ball and roll. Exactly as chaotic and fun as it sounds for group outings and energetic day trips. Extra charge applies.",
-    image: "din3.avif",
-    alt: "Body zorbing activity",
-  },
+  // {
+  //   title: "Body Zorbing",
+  //   description:
+  //     "Get inside an inflatable ball and roll. Exactly as chaotic and fun as it sounds for group outings and energetic day trips. Extra charge applies.",
+  //   image: "din3.avif",
+  //   alt: "Body zorbing activity",
+  // },
   {
     title: "Water Zorbing",
     description:
@@ -41,11 +41,11 @@ const blogFeatures = [
     alt: "Water zorbing activity",
   },
   {
-    title: "Wall Climbing",
+    title: "Cricket Challenge",
     description:
-      "An artificial climbing wall for all skill levels - good for individuals, school groups, and team challenges. Extra charge applies.",
-    image: "sports4.avif",
-    alt: "Wall climbing activity",
+      "Test your skills in a fun and competitive cricket match. Perfect for teams and individuals looking for a challenge. Extra charge applies.",
+    image: "sports5.avif",
+    alt: "Cricket challenge activity",
   },
   {
     title: "Team Building",

@@ -606,19 +606,14 @@ export default function BookingLandingPage({ content }: BookingLandingPageProps)
                   className="object-cover object-center"
                   unoptimized
                 />
-              <div
-                className={`absolute inset-0 ${
-                  isCorporatePage
-                    ? "bg-[linear-gradient(135deg,rgba(20,59,71,0.84)_0%,rgba(24,56,67,0.78)_48%,rgba(196,154,60,0.26)_155%)]"
-                    : "bg-[linear-gradient(135deg,rgba(20,59,71,0.78)_0%,rgba(31,77,89,0.70)_48%,rgba(216,154,85,0.36)_155%)]"
-                }`}
-              />
+                className="absolute inset-0 bg-[linear-gradient(135deg,rgba(20,59,71,0.78)_0%,rgba(31,77,89,0.70)_48%,rgba(216,154,85,0.36)_155%)]"
+
             </div>
             <div className="relative z-10 px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
             <p className="booking-kicker text-[0.75rem] font-semibold uppercase tracking-[0.28em] text-white/70">
               {content.bookingCtaEyebrow}
             </p>
-            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
               <div>
                 <div className="overflow-hidden">
                   <h2 className="booking-title mt-4 font-serif text-[clamp(2.2rem,4vw,3.8rem)] leading-[0.95] text-white">
