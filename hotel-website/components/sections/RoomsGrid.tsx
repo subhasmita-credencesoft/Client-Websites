@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
 import { formatPrice } from "../../lib/format";
+import { getRoomDisplayImage } from "../../lib/roomImages";
 import { htmlToText } from "../../lib/sanitizeHtml";
 import { usePropertyData } from "../providers/PropertyDataProvider";
 import { fetchPropertyAvailability } from "../../lib/services/propertyService";
@@ -245,7 +246,11 @@ export default function RoomsGrid({
   const displayRooms = useMemo<DisplayRoom[]>(() => {
     return sourceRooms.map((room, index) => {
       const firstRate = room.ratesAndAvailabilityDtos?.[0];
-      const firstImage = room.imageList?.[0]?.url || property?.imageList?.[0]?.url || "/images/room_3.jpg";
+      const firstImage = getRoomDisplayImage(
+        room.name,
+        room.imageList,
+        property?.imageList?.[0]?.url || "/images/room_3.jpg",
+      );
       const facilitiesRaw = (room.roomFacilities || [])
         .map((facility) => facility?.name)
         .filter((value): value is string => Boolean(value));

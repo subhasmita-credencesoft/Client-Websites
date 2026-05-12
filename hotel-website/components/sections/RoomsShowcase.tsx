@@ -7,6 +7,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { formatPrice } from "../../lib/format";
+import { getRoomDisplayImage } from "../../lib/roomImages";
 import { htmlToText } from "../../lib/sanitizeHtml";
 import { fetchPropertyAvailability } from "../../lib/services/propertyService";
 import type { RoomItem } from "../../types/property";
@@ -30,7 +31,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function mapRoomToShowcase(room: RoomItem, index: number, fallbackImage: string): ShowcaseRoom {
   const firstRate = room.ratesAndAvailabilityDtos?.[0];
-  const firstImage = room.imageList?.[0]?.url || fallbackImage || "/images/room_3.jpg";
+  const firstImage = getRoomDisplayImage(room.name, room.imageList, fallbackImage);
   const min = Number(room.minimumOccupancy ?? 1) || 1;
   const max = Number(room.maximumOccupancy ?? min) || min;
   const facilities = (room.roomFacilities || [])

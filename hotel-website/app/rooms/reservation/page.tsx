@@ -10,6 +10,7 @@ import AvailabilityCard from "../../../components/features/AvailabilityCard";
 import Container from "../../../components/ui/Container";
 import PageHero from "../../../components/sections/PageHero";
 import { formatPrice } from "../../../lib/format";
+import { getRoomDisplayImage } from "../../../lib/roomImages";
 import { fetchPropertyAvailability } from "../../../lib/services/propertyService";
 import { htmlToText } from "../../../lib/sanitizeHtml";
 import type { PropertyApiResponse, RoomItem } from "../../../types/property";
@@ -134,7 +135,7 @@ function normalizeRoom(room: RoomItem, index: number, fallbackImage: string): Li
     syntheticDaily.length > 0 ? Math.min(...syntheticDaily.map((item) => item.noOfAvailable)) : 0;
   const firstAvailableDate =
     syntheticDaily.find((item) => item.noOfAvailable > 0)?.date || syntheticDaily[0]?.date || "";
-  const image = room.imageList?.[0]?.url || fallbackImage || "/images/room_3.jpg";
+  const image = getRoomDisplayImage(room.name, room.imageList, fallbackImage);
   const rawDescription = htmlToText(room.description);
   const description = rawDescription || "Comfortable stay with resort amenities.";
   const roomName = room.name || "Room";
