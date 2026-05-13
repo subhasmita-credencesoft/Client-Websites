@@ -1,4 +1,4 @@
-﻿import { Waves, Dumbbell, Flower2, Wine, Sparkles, Wallet, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { Waves, Dumbbell, Flower2, Wine, Sparkles, Wallet, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { siteImages } from "@/lib/site-images";
 
 export const homePageData = {
@@ -8,7 +8,7 @@ export const homePageData = {
     description:
       "Escape the city and unwind in nature’s comfort. Discover serene stays, refreshing vibes, and moments that stay with you forever.",
     whatsappHint: "Or book directly via WhatsApp for best rates",
-    searchTargetLink: "/property/orchard-resort",
+    searchTargetLink: "/orchard-resort",
     destinations: [
       "All Locations",
       "Near Pune, Maharashtra",
@@ -36,7 +36,7 @@ export const homePageData = {
           rating: "-",
           type: "Resort",
           features: "Garden Side Room, Pool Side Room, Suite Room",
-          link: "/property/vedanta-resort",
+          link: "/vedanta-resort",
         },
         {
           id: "a2",
@@ -47,7 +47,7 @@ export const homePageData = {
           rating: "5.0",
           type: "Resort",
           features: "AC Deluxe Room, AC Suite Room, One Day Trip",
-          link: "/property/orchard-resort",
+          link: "/orchard-resort",
         },
         {
           id: "a4",
@@ -58,7 +58,7 @@ export const homePageData = {
           rating: "-",
           type: "Resort",
           features: "AC Deluxe Room, Jacuzzi Room, Royal Tent A/C, AC Cottage, Combo Package",
-          link: "/property/rajgad-water-park-resort",
+          link: "/rajgad-water-park-resort",
         },
         {
           id: "a5",
@@ -69,7 +69,7 @@ export const homePageData = {
           rating: "-",
           type: "Farmhouse",
           features: "Entire Property, Private Pool, Rain Dance, Nature Stay",
-          link: "/property/mayurwan-farmhouse",
+          link: "/mayurwan-farmhouse",
         },
         {
           id: "a8",
@@ -80,7 +80,7 @@ export const homePageData = {
           rating: "-",
           type: "Villa",
           features: "Suryansh Villa, Private Pool, Rain Dance, 4 AC Bedrooms",
-          link: "/property/4-bhk-bhor",
+          link: "/4-bhk-bhor",
         },
         {
           id: "a9",
@@ -91,7 +91,7 @@ export const homePageData = {
           rating: "-",
           type: "Resort",
           features: "Garden View Tent, River View Tent, 3 BHK, One Day Trip",
-          link: "/property/prathamesh-resort",
+          link: "/prathamesh-resort",
         },
         {
           id: "a10",
@@ -102,7 +102,7 @@ export const homePageData = {
           rating: "-",
           type: "Resort",
           features: "4 AC Cottages, Deluxe Rooms, Container Rooms",
-          link: "/property/k-l-farmhouse",
+          link: "/k-l-farmhouse",
         },
         {
           id: "a11",
@@ -113,7 +113,7 @@ export const homePageData = {
           rating: "-",
           type: "Resort",
           features: "Scenic Stay, Family Friendly, Nature Resort",
-          link: "/property/peacock-hills-resort-pune",
+          link: "/peacock-hills-resort-pune",
         },
         {
           id: "a12",
@@ -124,7 +124,7 @@ export const homePageData = {
           rating: "-",
           type: "Homestay",
           features: "3 Bedrooms, Swimming Pool, BBQ Setup",
-          link: "/property/3-bhk-purandar",
+          link: "/3-bhk-purandar",
         },
         {
           id: "a13",
@@ -135,7 +135,7 @@ export const homePageData = {
           rating: "-",
           type: "Resort",
           features: "6 Cottages, Villa Stay, Lake View",
-          link: "/property/ruturang-agro-resort",
+          link: "/ruturang-agro-resort",
         },
       ],
       lonavala: [
@@ -148,7 +148,7 @@ export const homePageData = {
           rating: 4.9,
           type: "Villa",
           features: "Private Villa",
-          link: "/property/4-bhk-villa-karla",
+          link: "/4-bhk-villa-karla",
         },
       ],
       mahabaleshwar: [
@@ -161,7 +161,7 @@ export const homePageData = {
           rating: "-",
           type: "Villa",
           features: "4 BHK Bungalow, Couple Cottage, Swimming Pool",
-          link: "/property/a-r-villa",
+          link: "/a-r-villa",
         },
         {
           id: "g2",
@@ -172,7 +172,7 @@ export const homePageData = {
           rating: 4.7,
           type: "Villa",
           features: "Private Villa",
-          link: "/property/7-bhk-skyabode",
+          link: "/7-bhk-skyabode",
         },
       ],
     },

@@ -53,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     ...slugs.map((slug) => ({
-      url: absoluteUrl(`/property/${slug}`),
+      url: absoluteUrl(`/${slug}`),
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.9,

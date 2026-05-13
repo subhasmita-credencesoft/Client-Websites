@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 
@@ -14,7 +14,7 @@ interface PropertyCardProps {
 
 export function PropertyCard({ id, slug, title, location, amenity, price, image }: PropertyCardProps) {
   return (
-    <Link href={`/property/${slug}`} className="group cursor-pointer flex flex-col items-center text-center gap-4" data-testid={`card-property-${id}`}>
+    <Link href={`/${slug}`} className="group cursor-pointer flex flex-col items-center text-center gap-4" data-testid={`card-property-${id}`}>
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-gray-100 shadow-md">
         <Image
           src={image}

@@ -7,6 +7,15 @@ import type { PropertyDetails, AmenityIconKey } from "@/data/property-details";
 const FIND_BY_ID_BASE = "https://api.thehotelmate.co/api/thm/findById";
 const CHECK_AVAILABILITY_BASE = "https://api.thehotelmate.co/api/thm/checkAvailability";
 
+async function fetchPropertyData(propertyId: number) {
+  const response = await fetch(`${FIND_BY_ID_BASE}/${propertyId}`, {
+    next: { revalidate: 60 },
+    headers: { "Accept": "application/json" },
+  });
+  if (!response.ok) throw new Error(`Failed to fetch property data: ${response.statusText}`);
+  return response.json();
+}
+
 type HotelMateAddress = {
   country?: string | null;
   postcode?: string | null;
@@ -115,15 +124,7 @@ export const getDynamicPropertyBySlug = cache(async (slug: string): Promise<Prop
   }
 
   try {
-    const response = await fetch(`${FIND_BY_ID_BASE}/${source.propertyId}`, {
-      headers: { Accept: "application/json" },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed property fetch: ${response.status}`);
-    }
-
-    const payload = (await response.json()) as HotelMateProperty | null;
+    const payload = await fetchPropertyData(source.propertyId);
 
     if (!payload) {
       return propertyDetailsBySlug[normalizedSlug] ?? buildMinimalPropertyFromSource(source, normalizedSlug);
@@ -243,7 +244,7 @@ export async function getLocationHighlightsData() {
               rating: extractCardRating(dynamicProperty.ratingLabel),
               type: dynamicProperty.typeBadge,
               features: dynamicProperty.rooms.map((room) => room.name).join(", ") || property.features,
-              link: `/property/${dynamicProperty.slug}`,
+              link: `/${dynamicProperty.slug}`,
             } satisfies LocationCard;
           } catch {
             return property;
@@ -733,11 +734,15 @@ function htmlToText(value?: string | null) {
 }
 
 function getSlugFromLink(link?: string) {
-  if (!link?.startsWith("/property/")) {
-    return null;
+  if (!link) return null;
+  if (link.startsWith("/property/")) {
+    return link.replace("/property/", "").trim();
   }
-
-  return link.replace("/property/", "").trim();
+  // For root-level links, ensure it's a single slug
+  if (link.startsWith("/") && !link.slice(1).includes("/")) {
+    return link.slice(1).trim();
+  }
+  return null;
 }
 
 function slugToTitle(slug: string) {
@@ -748,6 +753,12 @@ function slugToTitle(slug: string) {
 }
 
 function buildExternalBookingUrl(seoFriendlyName?: string | null, slug?: string) {
+  if (slug) {
+    const source = propertySourceBySlug[slug.toLowerCase()];
+    if (source?.bookingPath) {
+      return `https://bookone.io/${source.bookingPath}`;
+    }
+  }
   const path = seoFriendlyName?.trim() || slugToTitle(slug ?? "").replace(/\s+/g, "-");
-  return path ? `https://bookone.io/${path}?bookingEngine=true` : undefined;
+  return path ? `https://bookone.io/${path}` : undefined;
 }

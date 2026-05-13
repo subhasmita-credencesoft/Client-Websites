@@ -44,9 +44,14 @@ type DateRangeFieldProps = {
 
 export function DateRangeField({ value, onChange }: DateRangeFieldProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [internalRange, setInternalRange] = useState<DateRange | undefined>();
   const range = value ?? internalRange;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSelect = (nextRange: DateRange | undefined) => {
     if (value === undefined) {
@@ -73,16 +78,15 @@ export function DateRangeField({ value, onChange }: DateRangeFieldProps) {
   }, []);
 
   const formattedValue = useMemo(() => {
+    if (!mounted) return "Check-in - Check-out";
     if (range?.from && range?.to) {
       return `${format(range.from, "MMM d")} - ${format(range.to, "MMM d")}`;
     }
-
     if (range?.from) {
       return `${format(range.from, "MMM d")} - Check-out`;
     }
-
     return "Check-in - Check-out";
-  }, [range]);
+  }, [range, mounted]);
 
   return (
     <div
@@ -105,7 +109,7 @@ export function DateRangeField({ value, onChange }: DateRangeFieldProps) {
           <span
             className={cn(
               "block font-bold text-sm truncate",
-              range?.from ? "text-gray-900" : "text-gray-400"
+              range?.from && mounted ? "text-gray-900" : "text-gray-400"
             )}
           >
             {formattedValue}
@@ -113,7 +117,7 @@ export function DateRangeField({ value, onChange }: DateRangeFieldProps) {
         </div>
       </button>
 
-      {isOpen ? (
+      {isOpen && mounted ? (
         <div className="absolute left-0 md:left-1/2 top-full mt-3 z-[130] w-[min(320px,calc(100vw-2rem))] md:w-[320px] md:-translate-x-1/2 rounded-2xl border border-gray-200 bg-white p-3 text-slate-900 shadow-2xl">
           <DayPicker
             mode="range"

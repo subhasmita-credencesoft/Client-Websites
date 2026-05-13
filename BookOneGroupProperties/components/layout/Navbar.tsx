@@ -33,7 +33,7 @@ export function Navbar() {
             />
           </Link>
 
-          <div className="hidden items-center gap-10 text-sm font-bold uppercase tracking-wider text-primary/80 md:flex">
+          <div className="hidden items-center gap-10 text-sm font-bold uppercase tracking-wider text-primary md:flex [text-shadow:_0_1px_2px_rgb(0_0_0_/_20%)]">
             {navigationData.links.map((link) =>
               link.children?.length ? (
                 <div key={link.label} className="group relative">

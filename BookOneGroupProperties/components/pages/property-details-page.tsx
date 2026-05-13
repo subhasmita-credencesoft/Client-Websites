@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentType, SVGProps } from "react";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -29,6 +29,7 @@ import type { AmenityIconKey, PropertyDetails } from "@/data/property-details";
 import { buildBookingEngineUrl } from "@/lib/booking-engine";
 import { formatCurrency } from "@/lib/currency";
 import { addDays, format, parse, isValid, startOfDay } from "date-fns";
+import { useToast } from "@/lib/hooks/use-toast";
 
 const amenityIconMap: Record<AmenityIconKey, ComponentType<{ className?: string }>> = {
   wifi: Wifi,
@@ -46,91 +47,43 @@ type PropertyDetailsPageProps = {
 };
 
 export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
-  return (
-    <Suspense fallback={<PropertyDetailsContent property={property} searchCheckIn={null} searchCheckOut={null} searchGuests={null} />}>
-      <PropertyDetailsFromSearchParams property={property} />
-    </Suspense>
-  );
-}
-
-function PropertyDetailsFromSearchParams({ property }: PropertyDetailsPageProps) {
+  const [mounted, setMounted] = useState(false);
+  const [activeImage, setActiveImage] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+  const { toast } = useToast();
   const searchParams = useSearchParams();
 
-  // Try to pick up dates from any possible parameter name
-  const searchCheckIn =
-    searchParams?.get("checkIn") ??
-    searchParams?.get("checkin") ??
-    searchParams?.get("fromDate") ??
-    searchParams?.get("checkin_date") ??
-    null;
-
-  const searchCheckOut =
-    searchParams?.get("checkOut") ??
-    searchParams?.get("checkout") ??
-    searchParams?.get("toDate") ??
-    searchParams?.get("checkout_date") ??
-    null;
-
-  const searchGuests =
-    searchParams?.get("guests") ??
-    searchParams?.get("adults") ??
-    searchParams?.get("numGuests") ??
-    searchParams?.get("num_guests") ??
-    null;
-
-  return (
-    <PropertyDetailsContent
-      property={property}
-      searchCheckIn={searchCheckIn}
-      searchCheckOut={searchCheckOut}
-      searchGuests={searchGuests}
-    />
-  );
-}
-
-type PropertyDetailsContentProps = {
-  property: PropertyDetails;
-  searchCheckIn: string | null;
-  searchCheckOut: string | null;
-  searchGuests: string | null;
-};
-
-function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searchGuests }: PropertyDetailsContentProps) {
-  const [activeImage, setActiveImage] = useState(0);
-  const defaultCheckIn = useMemo(() => getInitialDate(searchCheckIn ?? property.booking.checkIn, 0), [property.booking.checkIn, searchCheckIn]);
-  const defaultCheckOut = useMemo(() => getInitialCheckoutDate(searchCheckOut ?? property.booking.checkOut, defaultCheckIn), [defaultCheckIn, property.booking.checkOut, searchCheckOut]);
-  const [checkInDate, setCheckInDate] = useState(defaultCheckIn);
-  const [checkOutDate, setCheckOutDate] = useState(defaultCheckOut);
-  const [guestCount, setGuestCount] = useState(getInitialGuestCount(searchGuests, property.booking.guests));
+  // State initialized with neutral/safe values to prevent hydration mismatch
+  const [checkInDate, setCheckInDate] = useState<Date>(new Date());
+  const [checkOutDate, setCheckOutDate] = useState<Date>(addDays(new Date(), 1));
+  const [guestCount, setGuestCount] = useState(2);
   const [availabilityLabel, setAvailabilityLabel] = useState(property.booking.availability);
 
-  // Sync check-in / check-out when URL search params change (e.g. user searches
-  // again from the Hero or navigates back with different params). useState only
-  // uses its initial value on the first mount, so we need this effect to keep
-  // the booking widget in sync on subsequent navigations.
+  // Initialize all date-dependent and param-dependent state after mount
   useEffect(() => {
-    const newCheckIn = getInitialDate(searchCheckIn ?? property.booking.checkIn, 0);
-    const newCheckOut = getInitialCheckoutDate(searchCheckOut ?? property.booking.checkOut, newCheckIn);
-    setCheckInDate(newCheckIn);
-    setCheckOutDate(newCheckOut);
-  }, [searchCheckIn, searchCheckOut, property.booking.checkIn, property.booking.checkOut]);
+    const searchCheckIn = searchParams.get("checkIn") || searchParams.get("checkin") || null;
+    const searchCheckOut = searchParams.get("checkOut") || searchParams.get("checkout") || null;
+    const searchGuests = searchParams.get("guests") || searchParams.get("adults") || null;
 
-  // Sync guest count when URL param or property changes.
-  useEffect(() => {
-    setGuestCount(getInitialGuestCount(searchGuests, property.booking.guests));
-    // property.booking.guests is an array — use property.slug as a stable scalar
-    // proxy so this only fires on genuine property/param changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchGuests, property.slug]);
+    const initialCheckIn = getInitialDate(searchCheckIn ?? property.booking.checkIn, 0);
+    const initialCheckOut = getInitialCheckoutDate(searchCheckOut ?? property.booking.checkOut, initialCheckIn);
+    const initialGuests = getInitialGuestCount(searchGuests, property.booking.guests);
+
+    setCheckInDate(initialCheckIn);
+    setCheckOutDate(initialCheckOut);
+    setGuestCount(initialGuests);
+    setMounted(true);
+  }, [searchParams, property.booking.checkIn, property.booking.checkOut, property.booking.guests]);
 
   const nextImage = () => setActiveImage((prev) => (prev + 1) % property.images.length);
   const prevImage = () => setActiveImage((prev) => (prev - 1 + property.images.length) % property.images.length);
+
   const checkInValue = format(checkInDate, "yyyy-MM-dd");
   const checkOutValue = format(checkOutDate, "yyyy-MM-dd");
 
   const handleBookNow = () => {
     const bookingUrl = buildBookingEngineUrl({
-      baseUrl: property.booking.externalBookingUrl ?? `https://bookone.io/${property.slug}?bookingEngine=true`,
+      baseUrl: property.booking.externalBookingUrl ?? `https://bookone.io/${property.slug}`,
       checkIn: checkInDate,
       checkOut: checkOutDate,
       adults: guestCount,
@@ -141,11 +94,27 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
     window.location.assign(bookingUrl);
   };
 
-  useEffect(() => {
-    if (!property.booking.availabilityApiUrl) {
-      setAvailabilityLabel(property.booking.availability);
-      return;
+  const handleShare = () => {
+    if (typeof window !== "undefined") {
+      navigator.clipboard.writeText(window.location.href);
+      toast({
+        title: "Link Shared",
+        description: "Property link copied to clipboard.",
+      });
     }
+  };
+
+  const handleLike = () => {
+    setIsLiked(!isLiked);
+    toast({
+      title: !isLiked ? "Property Liked" : "Removed from Liked",
+      description: !isLiked ? "Saved to your favorites." : "Property removed from favorites.",
+    });
+  };
+
+  // Availability Check Effect - only runs when mounted and dependencies change
+  useEffect(() => {
+    if (!mounted || !property.booking.availabilityApiUrl) return;
 
     const controller = new AbortController();
 
@@ -166,23 +135,22 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
 
     fetch(availabilityUrl.toString(), { signal: controller.signal })
       .then(async (response) => {
-        if (!response.ok) {
-          throw new Error(`Availability request failed: ${response.status}`);
-        }
-
+        if (!response.ok) throw new Error(`Availability request failed: ${response.status}`);
         const data = await response.json();
         setAvailabilityLabel(getAvailabilityLabel(data, property.booking.availability));
       })
       .catch((error) => {
-        if (error instanceof Error && error.name === "AbortError") {
-          return;
-        }
-
+        if (error instanceof Error && error.name === "AbortError") return;
         setAvailabilityLabel(property.booking.availability);
       });
 
     return () => controller.abort();
-  }, [checkInValue, checkOutValue, guestCount, property.booking.availability, property.booking.availabilityApiUrl]);
+  }, [checkInValue, checkOutValue, guestCount, property.booking.availability, property.booking.availabilityApiUrl, mounted]);
+
+  // To perfectly prevent hydration mismatch, we render a minimal shell until mounted
+  if (!mounted) {
+    return <div className="min-h-screen bg-background" aria-hidden="true" />;
+  }
 
   return (
     <main className="relative min-h-screen bg-background font-sans">
@@ -196,24 +164,23 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
             sizes="100vw"
             className="h-full w-full object-cover object-center transition-opacity duration-500"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
         </div>
-
-        <button onClick={prevImage} className="absolute left-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-2.5 text-white backdrop-blur-md transition-all hover:bg-white/30 md:left-4 md:p-3 md:opacity-0 md:group-hover:opacity-100">
+        <button onClick={prevImage} className="absolute left-3 top-1/2 z-30 -translate-y-1/2 rounded-full bg-white/20 p-2 text-white backdrop-blur-md transition-all hover:bg-white/40 md:left-4 md:p-3 md:opacity-0 md:group-hover:opacity-100">
           <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
         </button>
-        <button onClick={nextImage} className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-2.5 text-white backdrop-blur-md transition-all hover:bg-white/30 md:left-auto md:right-4 md:p-3 md:opacity-0 md:group-hover:opacity-100">
+        <button onClick={nextImage} className="absolute right-3 top-1/2 z-30 -translate-y-1/2 rounded-full bg-white/20 p-2 text-white backdrop-blur-md transition-all hover:bg-white/40 md:right-4 md:p-3 md:opacity-0 md:group-hover:opacity-100">
           <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
         </button>
 
-
-        <div className="container absolute bottom-5 left-0 right-0 z-20 mx-auto flex flex-col gap-4 px-4 text-white sm:px-6 md:bottom-8 md:flex-row md:items-end md:justify-between">
+        <div className="container absolute bottom-5 left-0 right-0 z-20 mx-auto flex flex-col gap-4 px-14 pr-24 text-white sm:px-6 md:bottom-8 md:flex-row md:items-end md:justify-between md:px-6 md:pr-6">
           <div>
             <div className="mb-2 flex w-fit items-center gap-2 rounded-full bg-primary/80 px-3 py-1 text-sm font-medium backdrop-blur-sm">
               <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
               <span>{property.ratingLabel}</span>
             </div>
-            <h1 className="mb-2 text-3xl font-bold leading-none sm:text-4xl md:text-5xl lg:text-6xl">{property.title}</h1>
+            <h1 className="mb-2 text-2xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">{property.title}</h1>
             <div className="flex items-center gap-2 text-sm text-white/90 sm:text-base">
               <MapPin className="h-4 w-4 shrink-0" />
               <span>{property.location}</span>
@@ -230,18 +197,27 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
           </div>
         </div>
 
-        <div className="absolute bottom-4 right-4 z-20 hidden flex-col items-end gap-2 lg:flex">
-          {/* Share & Heart — above the thumbnails */}
+        <div className="absolute bottom-4 right-4 z-30 flex flex-col items-end gap-3">
           <div className="flex gap-2">
-            <Button variant="outline" size="icon" className="rounded-full border-white/20 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-black">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleShare}
+              className="rounded-full border-white/20 bg-black/40 text-white backdrop-blur-md transition-all hover:bg-white hover:text-black active:scale-95"
+            >
               <Share2 className="h-5 w-5" />
             </Button>
-            <Button variant="outline" size="icon" className="rounded-full border-white/20 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-red-500">
-              <Heart className="h-5 w-5" />
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleLike}
+              className={`rounded-full border-white/20 backdrop-blur-md transition-all active:scale-95 ${isLiked ? "bg-white text-red-500 border-white" : "bg-black/40 text-white hover:bg-white hover:text-red-500"
+                }`}
+            >
+              <Heart className={`h-5 w-5 ${isLiked ? "fill-red-500" : ""}`} />
             </Button>
           </div>
-          {/* Thumbnail strip */}
-          <div className="flex gap-2">
+          <div className="hidden gap-2 lg:flex">
             {property.images.slice(0, 4).map((image, index) => (
               <button
                 key={index}
@@ -272,7 +248,6 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
             <section className="rounded-2xl bg-secondary/20 p-5 sm:p-6 md:p-8">
               <h2 className="mb-6 text-2xl font-bold text-foreground">Packages / Tariff</h2>
               <div className="space-y-6">
-                {/* Render Rooms */}
                 {property.rooms.map((room) => (
                   <div key={`room-${room.id}`} className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
                     <div className="flex flex-col md:flex-row">
@@ -316,37 +291,6 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
                     </div>
                   </div>
                 ))}
-
-                {/* Render Additional Packages / Services */}
-                {property.packages?.map((pkg) => {
-                  // Skip if this package title matches a room name (to avoid duplicates)
-                  if (property.rooms.some((r) => r.name === pkg.title)) return null;
-
-                  return (
-                    <div key={`pkg-${pkg.id}`} className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
-                      <div className="flex flex-col md:flex-row">
-                        <div className="relative h-64 md:h-auto md:w-2/5">
-                          <Image src={pkg.image} alt={pkg.title} fill sizes="(max-width: 768px) 100vw, 40vw" className="h-full w-full object-cover" />
-                        </div>
-                        <div className="flex flex-1 flex-col justify-between gap-5 p-5 md:p-6">
-                          <div>
-                            <div className="mb-3">
-                              <h3 className="text-xl font-bold">{pkg.title}</h3>
-                            </div>
-                            <p className="text-sm leading-relaxed text-muted-foreground">{pkg.description}</p>
-                          </div>
-
-                          <div className="mt-2 flex flex-col gap-4 border-t border-border/50 pt-4 sm:flex-row sm:items-center sm:justify-between">
-                            <div>
-                              <span className="text-2xl font-bold text-primary">{formatCurrency(pkg.price)}</span>
-                              <span className="text-sm text-muted-foreground"> / package</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
               </div>
             </section>
 
@@ -365,62 +309,8 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
                       </li>
                     ))}
                 </ul>
-
-                {property.propertyDetailsSection?.activities?.length ? (
-                  <div className="mt-8">
-                    <h3 className="mb-4 text-lg font-bold text-foreground">Activities</h3>
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      {property.propertyDetailsSection.activities.map((activity) => (
-                        <div key={activity} className="rounded-xl bg-secondary/20 px-4 py-3 text-sm text-foreground/80">
-                          {activity}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-
-                {property.propertyDetailsSection?.address ? (
-                  <div className="mt-8 rounded-xl bg-primary/5 px-4 py-4">
-                    <h3 className="mb-2 text-lg font-bold text-foreground">Address</h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                      {property.propertyDetailsSection.address}
-                    </p>
-                  </div>
-                ) : null}
               </div>
             </section>
-
-            {property.oneDayTripSection ? (
-              <section>
-                <h2 className="mb-6 text-2xl font-bold text-foreground">{property.oneDayTripSection.title}</h2>
-                <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
-                  <div className="mb-4 flex flex-wrap items-center gap-3">
-                    <Badge className="bg-primary text-white hover:bg-primary">{property.oneDayTripSection.time}</Badge>
-                    <span className="text-sm text-muted-foreground">Package timing</span>
-                  </div>
-                  <ul className="space-y-3">
-                    {property.oneDayTripSection.includes.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground sm:text-base">
-                        <Check className="mt-1 h-4 w-4 shrink-0 text-primary" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {property.oneDayTripSection.notes?.length ? (
-                    <div className="mt-6 rounded-xl bg-secondary/20 px-4 py-4">
-                      <h3 className="mb-3 text-base font-bold text-foreground">Note</h3>
-                      <ul className="space-y-2">
-                        {property.oneDayTripSection.notes.map((note) => (
-                          <li key={note} className="text-sm text-muted-foreground">
-                            {note}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : null}
-                </div>
-              </section>
-            ) : null}
 
             {property.policiesSection ? (
               <section>
@@ -429,43 +319,9 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
                   <PolicyCard title="Accommodation" items={property.policiesSection.accommodation} />
                   <PolicyCard title="Refund & Cancellation Policy" items={property.policiesSection.cancellation} />
                   <PolicyCard title="Day Outing" items={property.policiesSection.dayOuting} />
-                  {property.policiesSection.extra?.length ? (
-                    <PolicyCard title="Additional Notes" items={property.policiesSection.extra} />
-                  ) : null}
                 </div>
               </section>
             ) : null}
-
-            <section>
-              <h2 className="mb-6 text-2xl font-bold text-primary">Reviews</h2>
-              {property.reviews.length ? (
-                <div className="space-y-6">
-                  {property.reviews.map((review) => (
-                    <div key={review.id} className="border-b border-border/50 pb-6 last:border-0">
-                      <div className="mb-2 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 font-bold text-gray-500 shrink-0">
-                            {review.user[0]}
-                          </div>
-                          <div>
-                            <h4 className="font-bold">{review.user}</h4>
-                            <span className="text-xs text-muted-foreground">{review.date}</span>
-                          </div>
-                        </div>
-                        <div className="flex w-fit items-center gap-1 rounded bg-green-50 px-2 py-1 text-sm font-bold text-green-700">
-                          {review.rating} <Star className="h-3 w-3 fill-current" />
-                        </div>
-                      </div>
-                      <p className="text-sm text-muted-foreground sm:text-base">{review.comment}</p>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="rounded-2xl border border-dashed border-border bg-secondary/10 p-6 text-sm text-muted-foreground">
-                  No reviews available yet.
-                </div>
-              )}
-            </section>
           </div>
 
           <div className="lg:w-1/3">
@@ -492,9 +348,7 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
                         const nextDate = new Date(event.target.value);
                         if (!isValid(nextDate)) return;
                         setCheckInDate(nextDate);
-                        if (nextDate >= checkOutDate) {
-                          setCheckOutDate(addDays(nextDate, 1));
-                        }
+                        if (nextDate >= checkOutDate) setCheckOutDate(addDays(nextDate, 1));
                       }}
                       className="w-full bg-transparent text-sm font-bold outline-none"
                     />
@@ -525,7 +379,6 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
                       type="button"
                       onClick={() => setGuestCount((count) => Math.max(1, count - 1))}
                       className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-primary transition-colors hover:border-primary hover:bg-primary/5"
-                      aria-label="Decrease guests"
                     >
                       <Minus className="h-4 w-4" />
                     </button>
@@ -537,7 +390,6 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
                       type="button"
                       onClick={() => setGuestCount((count) => Math.min(20, count + 1))}
                       className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-primary transition-colors hover:border-primary hover:bg-primary/5"
-                      aria-label="Increase guests"
                     >
                       <Plus className="h-4 w-4" />
                     </button>
@@ -589,33 +441,19 @@ function PolicyCard({ title, items }: { title: string; items: string[] }) {
 
 function getInitialDate(value: string, fallbackDays: number) {
   const today = startOfDay(new Date());
-
-  if (!value) {
-    return addDays(today, fallbackDays);
-  }
-
-  // Define possible formats to try
+  if (!value) return addDays(today, fallbackDays);
   const formats = ["yyyy-MM-dd", "dd-MM-yyyy", "MMM d, yyyy", "yyyy/MM/dd", "dd/MM/yyyy"];
-
   for (const formatStr of formats) {
     try {
       const parsed = parse(value, formatStr, new Date());
-      if (isValid(parsed)) {
-        // Only return if it's today or in the future
-        return parsed >= today ? parsed : addDays(today, fallbackDays);
-      }
-    } catch {
-      continue;
-    }
+      if (isValid(parsed)) return parsed >= today ? parsed : addDays(today, fallbackDays);
+    } catch { continue; }
   }
-
-  // Last ditch effort for native Date parsing (ISO etc)
   const nativeParsed = new Date(value);
   if (isValid(nativeParsed)) {
     const localDate = startOfDay(nativeParsed);
     return localDate >= today ? localDate : addDays(today, fallbackDays);
   }
-
   return addDays(today, fallbackDays);
 }
 
@@ -624,90 +462,47 @@ function getInitialCheckoutDate(value: string, checkInDate: Date) {
   return parsedDate > checkInDate ? parsedDate : addDays(checkInDate, 1);
 }
 
-function getInitialGuestCount(guestQuery: string | null, guests: string[]) {
+function getInitialGuestCount(guestQuery: string | null | undefined, guests: string[]) {
   const parsedQueryCount = Number.parseInt(guestQuery ?? "", 10);
-  if (!Number.isNaN(parsedQueryCount) && parsedQueryCount > 0) {
-    return parsedQueryCount;
-  }
-
+  if (!Number.isNaN(parsedQueryCount) && parsedQueryCount > 0) return parsedQueryCount;
   const firstGuestOption = guests[0] ?? "2 Guests";
   const parsedCount = Number.parseInt(firstGuestOption, 10);
   return Number.isNaN(parsedCount) ? 2 : parsedCount;
 }
 
 function getAvailabilityLabel(data: unknown, fallback: string) {
-  if (!data || typeof data !== "object") {
-    return fallback;
-  }
-
+  if (!data || typeof data !== "object") return fallback;
   const record = data as Record<string, unknown>;
   const directLabel = getStringValue(record.availability) ?? getStringValue(record.message) ?? getStringValue(record.status);
-  if (directLabel) {
-    return directLabel;
-  }
-
-  const availableRooms =
-    getNumberValue(record.availableRooms)
-    ?? getNumberValue(record.noOfRooms)
-    ?? getNumberValue(record.roomsAvailable)
-    ?? getNumberValue(record.available);
-
-  if (availableRooms !== null) {
-    return availableRooms > 0 ? `${availableRooms} Room${availableRooms === 1 ? "" : "s"} Available` : "Sold Out";
-  }
-
+  if (directLabel) return directLabel;
+  const availableRooms = getNumberValue(record.availableRooms) ?? getNumberValue(record.noOfRooms) ?? getNumberValue(record.roomsAvailable) ?? getNumberValue(record.available);
+  if (availableRooms !== null) return availableRooms > 0 ? `${availableRooms} Room${availableRooms === 1 ? "" : "s"} Available` : "Sold Out";
   const successFlag = getBooleanValue(record.success) ?? getBooleanValue(record.availableStatus);
-  if (successFlag !== null) {
-    return successFlag ? "Available" : "Unavailable";
-  }
-
+  if (successFlag !== null) return successFlag ? "Available" : "Unavailable";
   return fallback;
 }
 
-function getStringValue(value: unknown) {
-  return typeof value === "string" && value.trim() ? value.trim() : null;
-}
-
+function getStringValue(value: unknown) { return typeof value === "string" && value.trim() ? value.trim() : null; }
 function getNumberValue(value: unknown) {
-  if (typeof value === "number" && Number.isFinite(value)) {
-    return value;
-  }
-
+  if (typeof value === "number" && Number.isFinite(value)) return value;
   if (typeof value === "string") {
     const parsed = Number.parseFloat(value);
     return Number.isNaN(parsed) ? null : parsed;
   }
-
   return null;
 }
-
 function getBooleanValue(value: unknown) {
-  if (typeof value === "boolean") {
-    return value;
-  }
-
+  if (typeof value === "boolean") return value;
   if (typeof value === "string") {
     if (value.toLowerCase() === "true") return true;
     if (value.toLowerCase() === "false") return false;
   }
-
   return null;
 }
 
 function ShieldCheckIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
       <path d="m9 12 2 2 4-4" />
     </svg>

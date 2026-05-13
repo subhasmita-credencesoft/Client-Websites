@@ -55,7 +55,7 @@ function LocationHighlightsContent({ locationFromUrl, data }: LocationHighlights
   const activeLocationLabel = locationHighlights.locations.find((location) => location.id === activeLocation);
   const activeProperties =
     locationHighlights.propertiesByLocation[
-      activeLocation as keyof typeof locationHighlights.propertiesByLocation
+    activeLocation as keyof typeof locationHighlights.propertiesByLocation
     ] ?? [];
 
   return (
@@ -71,11 +71,10 @@ function LocationHighlightsContent({ locationFromUrl, data }: LocationHighlights
               <button
                 key={location.id}
                 onClick={() => setActiveLocation(location.id)}
-                className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 ${
-                  activeLocation === location.id
+                className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 ${activeLocation === location.id
                     ? "scale-105 bg-primary text-white shadow-md"
                     : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-100"
-                }`}
+                  }`}
               >
                 {location.name}
               </button>
