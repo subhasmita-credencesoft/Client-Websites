@@ -1,4 +1,4 @@
-﻿import { siteImages } from "@/lib/site-images";
+import { siteImages } from "@/lib/site-images";
 
 export type AmenityIconKey =
   | "wifi"
@@ -973,7 +973,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
         "Maximum occupancy support up to 32 guests across property inventory",
         "Manager: Aniket Konde",
         "Email: vedfarms01@gmail.com",
-        "Contact: 8007273965 / 9130583132",
+        "Contact: 8007273965 / 7666478855",
         "Website: www.myresortspune.in",
       ],
       activities: [
@@ -1139,7 +1139,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
         "Huge Parking Area",
         "Outdoor Seating Area",
         "Restaurant",
-        "Contact: 9130583132",
+        "Contact: 7666478855",
         "Email: orchardresort1@gmail.com",
         "Manager: Shubham Jadhav",
         "Website: https://www.myresortspune.in/#",
@@ -1354,11 +1354,11 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
         "Huge Parking Area",
         "Changing Rooms",
         "Garden, Reception, and Restaurant setup",
-        "Contact: 7030055051 / 9130583132",
+        "Contact: 7030055051 / 7666478855",
         "Landline: 7276333374",
         "Email: g2khospitality@gmail.com / rajgadwaterpark.info@gmail.com",
         "Manager: Akash Gaikwad",
-        "WhatsApp: 9130583132",
+        "WhatsApp: 7666478855",
       ],
       activities: [
         "Water Park Rides (10+ rides)",
@@ -1520,7 +1520,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
         "Short trek and birds chirping sounds",
         "Pets are allowed",
         "Kitchen facilities, dining area, and outdoor seating",
-        "Contact: 9130583132",
+        "Contact: 7666478855",
         "Email: mayurwanfamilyresort@gmail.com",
         "Manager: Prakash J",
       ],
@@ -1872,7 +1872,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
         "Outdoor double story machan",
         "Covered car parking area",
         "Organic farming and caretaker support",
-        "Contact: 9130583132",
+        "Contact: 7666478855",
         "Email: suryanshresort@gmail.com",
         "Manager: Prathamesh V.",
       ],

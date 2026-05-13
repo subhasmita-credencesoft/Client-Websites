@@ -1,4 +1,4 @@
-﻿import type { Metadata, Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   applicationName: siteSeo.siteName,
   manifest: "/manifest.webmanifest",
   keywords: [
-    "My Resort Pune",
+    "TrippDip",
   ],
   authors: [{ name: siteSeo.siteName }],
   creator: siteSeo.siteName,
@@ -63,9 +63,9 @@ export const metadata: Metadata = {
     images: [absoluteUrl("/opengraph.jpg")],
   },
   icons: {
-    icon: "/puneresortlogo.png",
-    shortcut: "/puneresortlogo.png",
-    apple: "/puneresortlogo.png",
+    icon: "/Driptrip.png",
+    shortcut: "/Driptrip.png",
+    apple: "/Driptrip.png",
   },
   robots: {
     index: true,
@@ -86,7 +86,7 @@ const siteSchema = [
     "@type": "Organization",
     name: siteSeo.siteName,
     url: absoluteUrl("/"),
-    logo: absoluteUrl("/puneresortlogo.png"),
+    logo: absoluteUrl("/Driptrip.png"),
     contactPoint: {
       "@type": "ContactPoint",
       telephone: siteContact.phoneDisplay,

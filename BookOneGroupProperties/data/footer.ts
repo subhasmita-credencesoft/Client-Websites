@@ -3,7 +3,7 @@ import { siteContact, siteLegalLinks } from "@/data/site";
 
 export const footerData = {
   brand: {
-    title: " My Resort Pune.",
+    title: "TripDip",
     description:
       "It's Your Day. Dedicated to crafting welcoming and unforgettable hospitality experiences for every traveler.",
   },

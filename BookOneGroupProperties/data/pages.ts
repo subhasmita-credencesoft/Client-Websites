@@ -1,4 +1,4 @@
-﻿import { MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { contactSectionData } from "@/data/footer";
 import { siteImages } from "@/lib/site-images";
 
@@ -7,7 +7,7 @@ export const pageContent = {
     eyebrow: "About Us",
     title: "About Us",
     description:
-      "My Resort's Pune is an online and offline platform for providing reasonable and temporary properties and accommodations near Pune since 2018.",
+      "TripDip is an online and offline platform for providing reasonable and temporary properties and accommodations near Pune since 2018.",
     teamTitle: "Our Team",
     teamDescription: "Meet our team.",
     team: [
@@ -84,7 +84,7 @@ export const pageContent = {
     eyebrow: "Guest Gallery",
     title: "Moments From Our Stays",
     description:
-      "Browse snapshots of our stays, spaces, and experiences from across the My Resort Pune collection.",
+      "Browse snapshots of our stays, spaces, and experiences from across the TripDip collection.",
   },
   contact: {
     eyebrow: "Contact Us",
@@ -95,7 +95,7 @@ export const pageContent = {
       ...contactSectionData,
       {
         title: "Locations",
-        value: "Bhor, Kelawade, Ingavali, Hatve BK and nearby Pune stay destinations.",
+        value: "Autumn villa 10, lohegaon -wagholi road. Pune",
         icon: MapPin,
       },
     ],

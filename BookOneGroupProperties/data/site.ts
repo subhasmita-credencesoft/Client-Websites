@@ -1,10 +1,10 @@
 export const siteContact = {
-  email: "myresortspune@gmail.com",
-  phoneDisplay: "+91 9130583132",
-  phoneHref: "tel:+919130583132",
-  whatsappHref: "https://wa.me/919130583132",
+  email: "tripdip07@gmail.com",
+  phoneDisplay: "+91 7666478855",
+  phoneHref: "tel:+917666478855",
+  whatsappHref: "https://wa.me/917666478855",
   websiteUrl: "https://myresortspune.in/",
-  address: "Shirke's Holiday Home, Near Pawna Lake, Lonavala Road, Pune, Maharashtra 410406",
+  address: "Autumn villa 10, lohegaon -wagholi road. Pune",
 } as const;
 
 export const siteLegalLinks = {
@@ -81,38 +81,38 @@ export const legalPageContent = {
       {
         heading: "Any Further Questions",
         body:
-          "Please leave your message to myresortspune@gmail.com.",
+          "Please leave your message to tripdip07@gmail.com.",
       },
     ],
   },
   termsAndConditions: {
     title: "Terms And Conditions",
-    description: "Agreement terms between My Resorts Pune and Orchard Resort for listings, bookings, commissions, and support.",
+    description: "Agreement terms between TripDip and Orchard Resort for listings, bookings, commissions, and support.",
     sections: [
       {
         heading: "Agreement Overview",
         body:
-          'This Agreement ("Agreement") is entered into between "My Resorts Pune" ("Company") and "Orchard Resort" ("Hotel") as of January 2023. This Agreement outlines the terms and conditions under which My Resorts Pune will list the Hotel on its platform and the Hotel will accept bookings facilitated by My Resorts Pune.',
+          'This Agreement ("Agreement") is entered into between "TripDip" ("Company") and "Orchard Resort" ("Hotel") as of January 2023. This Agreement outlines the terms and conditions under which TripDip will list the Hotel on its platform and the Hotel will accept bookings facilitated by TripDip.',
       },
       {
-        heading: "Listing On My Resorts Pune And License",
+        heading: "Listing On TripDip And License",
         body:
-          "My Resorts Pune agrees to list the Hotel on its online platform, making the Hotel's rooms available for booking by customers. My Resorts Pune will provide the Hotel with a dedicated page or profile on its platform, including relevant information about the Hotel, such as room types, amenities, pricing, and availability. The Hotel agrees to provide accurate and up-to-date information to My Resorts Pune regarding room availability, rates, policies, and any other relevant details necessary for the successful operation of the platform. Upon entering this agreement with My Resorts Pune, the Hotel hereby grants the Company the right to use, install, and implement the software and mobile application for exclusive use of the client's business and commercial purposes and for its dealings with potential third-party customers. This is a royalty-free license agreement whereby the Company will not incur any costs or debts towards the Hotel vis a vis the use and implementation of the app for the client's business dealings and transactions with customers of its own.",
+          "TripDip agrees to list the Hotel on its online platform, making the Hotel's rooms available for booking by customers. TripDip will provide the Hotel with a dedicated page or profile on its platform, including relevant information about the Hotel, such as room types, amenities, pricing, and availability. The Hotel agrees to provide accurate and up-to-date information to TripDip regarding room availability, rates, policies, and any other relevant details necessary for the successful operation of the platform. Upon entering this agreement with TripDip, the Hotel hereby grants the Company the right to use, install, and implement the software and mobile application for exclusive use of the client's business and commercial purposes and for its dealings with potential third-party customers. This is a royalty-free license agreement whereby the Company will not incur any costs or debts towards the Hotel vis a vis the use and implementation of the app for the client's business dealings and transactions with customers of its own.",
       },
       {
         heading: "Booking Commission And Payments",
         body:
-          "For each booking made through the My Resorts Pune platform, the Hotel agrees to pay a commission of 10% of the total booking value excluding taxes. My Resorts Pune will take the advance amount, with a minimum of 20% and a maximum of 100%, from the customer at the time of booking and pay the rest amount, after deducting the commission, to the Hotel after the customer checks in at the Hotel. If the customer has not paid the entire booking amount in advance, the Hotel is entitled to take the remaining amount directly from the customer at the Hotel.",
+          "For each booking made through the TripDip platform, the Hotel agrees to pay a commission of 10% of the total booking value excluding taxes. TripDip will take the advance amount, with a minimum of 20% and a maximum of 100%, from the customer at the time of booking and pay the rest amount, after deducting the commission, to the Hotel after the customer checks in at the Hotel. If the customer has not paid the entire booking amount in advance, the Hotel is entitled to take the remaining amount directly from the customer at the Hotel.",
       },
       {
         heading: "Acceptance Of Bookings",
         body:
-          "The Hotel agrees to accept all bookings received through the My Resorts Pune website, subject to availability and the Hotel's standard policies. The Hotel will make its best efforts to keep the availability status updated in real time on the My Resorts Pune platform. In the event that the Hotel cannot accommodate a booking due to unavailability or any other circumstance, the Hotel agrees to promptly notify My Resorts Pune and provide alternative options if available.",
+          "The Hotel agrees to accept all bookings received through the TripDip website, subject to availability and the Hotel's standard policies. The Hotel will make its best efforts to keep the availability status updated in real time on the TripDip platform. In the event that the Hotel cannot accommodate a booking due to unavailability or any other circumstance, the Hotel agrees to promptly notify TripDip and provide alternative options if available.",
       },
       {
         heading: "Customer Communication And Support",
         body:
-          "My Resorts Pune will handle customer inquiries, bookings, and other related communications up to the point of the guest's arrival at the Hotel. The Hotel will be responsible for providing timely and accurate responses to any guest inquiries or requests received after the guest's arrival, as well as on-site assistance during the guest's stay. The Hotel should be aware that any cancellation from the client side may damage the brand reputation of the platform and their own business, resulting in bad publicity and customer feedback. The service provider will not have any role in manipulating customer feedback or reviews.",
+          "TripDip will handle customer inquiries, bookings, and other related communications up to the point of the guest's arrival at the Hotel. The Hotel will be responsible for providing timely and accurate responses to any guest inquiries or requests received after the guest's arrival, as well as on-site assistance during the guest's stay. The Hotel should be aware that any cancellation from the client side may damage the brand reputation of the platform and their own business, resulting in bad publicity and customer feedback. The service provider will not have any role in manipulating customer feedback or reviews.",
       },
       {
         heading: "Term And Termination",
@@ -138,7 +138,7 @@ export const legalPageContent = {
   },
   refundPolicy: {
     title: "Refund Policy",
-    description: "Cancellation, date change, payment, and guest count terms for bookings made with My Resorts Pune.",
+    description: "Cancellation, date change, payment, and guest count terms for bookings made with TripDip.",
     sections: [
       {
         heading: "Booking Cancellation",

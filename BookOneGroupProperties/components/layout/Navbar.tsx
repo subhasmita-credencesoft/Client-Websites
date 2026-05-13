@@ -24,7 +24,7 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between gap-4 sm:h-20">
           <Link href="/" className="flex shrink-0 items-center" aria-label={`${navigationData.brand.name} home`}>
             <Image
-              src="/puneresortlogo.png"
+              src="/Driptrip.png"
               alt={navigationData.brand.name}
               width={150}
               height={153}

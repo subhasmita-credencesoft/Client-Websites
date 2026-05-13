@@ -1,10 +1,10 @@
-﻿import { Waves, Dumbbell, Flower2, Wine, Sparkles, Wallet, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { Waves, Dumbbell, Flower2, Wine, Sparkles, Wallet, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { siteImages } from "@/lib/site-images";
 
 export const homePageData = {
   hero: {
     badge: "The Best Place On Vacation",
-    title: "My  Resort Pune ",
+    title: " TripDip ",
     description:
       "Escape the city and unwind in nature’s comfort. Discover serene stays, refreshing vibes, and moments that stay with you forever.",
     whatsappHint: "Or book directly via WhatsApp for best rates",
@@ -178,7 +178,7 @@ export const homePageData = {
     },
   },
   whyTripDip: {
-    title: "Why My Resort Pune?",
+    title: "Why TripDip?",
     description:
       "Discover the difference of staying with a brand that puts your experience first.",
     reasons: [
@@ -199,7 +199,7 @@ export const homePageData = {
       {
         title: "Verified Excellence",
         description:
-          "Every My Resort Pune property undergoes a rigorous 150-point inspection checklist. We don't just list properties; we verify experiences to ensure safety, hygiene, and comfort.",
+          "Every TripDip property undergoes a rigorous 150-point inspection checklist. We don't just list properties; we verify experiences to ensure safety, hygiene, and comfort.",
         icon: ShieldCheck,
         image: siteImages.fourBhkVillaKarla,
       },
@@ -210,7 +210,7 @@ export const homePageData = {
   },
   propertyOwnerCta: {
     badge: "For Property Owners",
-    title: "Let My Resort Pune Manage Your Property",
+    title: "Let TripDip Manage Your Property",
     description:
       "Unlock the full potential of your villa or hotel. We handle marketing, guest services, maintenance, and booking management so you can enjoy the returns without the stress.",
     benefits: [

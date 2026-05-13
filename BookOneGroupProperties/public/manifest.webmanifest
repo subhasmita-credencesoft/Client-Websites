@@ -1,6 +1,6 @@
 {
-  "name": "My Resort Pune",
-  "short_name": "My Resort Pune",
+  "name": "TripDip",
+  "short_name": "TripDip",
   "description": "Crafting unforgettable hospitality experiences across curated villas, resorts, and boutique stays.",
   "start_url": "/",
   "display": "standalone",
@@ -8,12 +8,12 @@
   "theme_color": "#4EA699",
   "icons": [
     {
-      "src": "/puneresortlogo.png",
+      "src": "/Driptrip.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/puneresortlogo.png",
+      "src": "/Driptrip.png",
       "sizes": "512x512",
       "type": "image/png"
     }
