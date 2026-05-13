@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
+import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import { siteContact, siteLegalLinks } from "@/data/site";
 
 export const footerData = {
@@ -16,9 +16,16 @@ export const footerData = {
     email: siteContact.email,
     phone: siteContact.phoneDisplay,
     socialLinks: [
-      { label: "Instagram", href: "#", icon: Instagram },
-      { label: "Twitter", href: "#", icon: Twitter },
-      { label: "Facebook", href: "#", icon: Facebook },
+      { 
+        label: "Instagram", 
+        href: "https://www.instagram.com/myresortspune?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", 
+        icon: Instagram 
+      },
+      { 
+        label: "Facebook", 
+        href: "https://www.facebook.com/BookMyResortsPune", 
+        icon: Facebook 
+      },
     ],
   },
   locations: [

@@ -1,4 +1,4 @@
-﻿import { siteImages } from "@/lib/site-images";
+import { siteImages } from "@/lib/site-images";
 
 export type AmenityIconKey =
   | "wifi"
@@ -230,7 +230,7 @@ function createSimplePropertyDetails(config: {
       guests: config.guests,
       availabilityApiUrl:
         config.availabilityApiUrl ??
-        config.slug === "vedanta-resort"
+          config.slug === "vedanta-resort"
           ? "https://api.thehotelmate.co/api/thm/checkAvailability/1331"
           : undefined,
       couponHint: config.couponHint,
@@ -590,7 +590,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
     },
   },
   "4-bhk-villa-karla": {
-    slug: "4-bhk-villa-karla",
+    slug: "4-BHK-Bhor-Pune",
     title: "4 BHK Villa (Karla)",
     location: "Karla, in-karla, Lonavala, India",
     ratingLabel: "4.9 (48 Reviews)",
@@ -1774,6 +1774,150 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
     couponHint: "BAMBOO10",
     couponDiscount: 1200,
   }),
+  "prathamesh-resort": {
+    slug: "prathamesh-resort",
+    title: "Prathamesh Resort",
+    location: "Village Salawade, near Khed-Shivapur, Bhor, Pune, Maharashtra 412213, India",
+    ratingLabel: "- (0 Reviews)",
+    typeBadge: "Resort",
+    description:
+      "Prathamesh Resort is a riverside nature retreat near Khed-Shivapur, Bhor, offering tent accommodations and a 3 BHK stay option for families and groups. With garden and river view tents, a natural setting, and one day trip packages, it is a good option for guests looking for an affordable outdoor getaway close to Pune.",
+    tags: ["#River_View", "#Tent_Stay", "#Near_Pune"],
+    images: [
+      siteImages.prathameshResortLive,
+      siteImages.resortPool,
+      siteImages.resortRoom,
+      siteImages.modernHotelRestaurant,
+      siteImages.suiteOceanView,
+      siteImages.hero,
+    ],
+    amenities: [
+      { icon: "droplets", label: "River View" },
+      { icon: "star", label: "Tent Stay" },
+      { icon: "car", label: "Free Parking" },
+      { icon: "utensils", label: "Meal Packages" },
+      { icon: "coffee", label: "Breakfast Option" },
+      { icon: "monitor", label: "Outdoor Activities" },
+      { icon: "wind", label: "Natural Setting" },
+    ],
+    rooms: [
+      {
+        id: 1,
+        name: "Garden View Tent",
+        size: "Multiple Units",
+        bed: "2 to 4 Guests",
+        view: "Garden View",
+        price: 4500,
+        image: siteImages.prathameshResortLive,
+        features: ["Garden Setting", "Comfortable Bedding", "Attached Washroom", "Nature Stay"],
+        available: "Available",
+        description: "Garden-facing tent accommodation with a comfortable bedding setup and access to resort amenities.",
+      },
+      {
+        id: 2,
+        name: "River View Tent",
+        size: "Multiple Units",
+        bed: "2 to 4 Guests",
+        view: "River View",
+        price: 5500,
+        image: siteImages.resortPool,
+        features: ["River View", "Comfortable Bedding", "Attached Washroom", "Scenic Setting"],
+        available: "Available",
+        description: "River-facing tent stay with scenic views and a relaxed outdoor atmosphere for couples and small families.",
+      },
+      {
+        id: 3,
+        name: "3 BHK",
+        size: "1 Unit",
+        bed: "6 to 10 Guests",
+        view: "Property View",
+        price: 8000,
+        image: siteImages.suiteOceanView,
+        features: ["3 Bedrooms", "Hall & Kitchen", "Ideal for Groups", "Private Accommodation"],
+        available: "1",
+        description: "3 BHK private accommodation ideal for family and friend group stays with more space and privacy.",
+      },
+    ],
+    packages: [
+      {
+        id: 1,
+        title: "One Day Trip",
+        price: 1200,
+        image: siteImages.prathameshResortLive,
+        description: "Day outing package with access to property grounds, tent leisure, and riverside nature experiences.",
+      },
+      {
+        id: 2,
+        title: "Overnight Stay",
+        price: 4500,
+        image: siteImages.resortRoom,
+        description: "Overnight package for couples, families, and small groups at Prathamesh Resort near Bhor.",
+      },
+    ],
+    appPromo: {
+      badge: "Riverside Tent Stay",
+      title: "Nature Stay Near Pune",
+      description:
+        "Enjoy a relaxed riverside tent stay or a 3 BHK private accommodation near Khed-Shivapur, Bhor, with day trip packages and nature access.",
+      image: siteImages.conciergeApp,
+    },
+    reviews: [],
+    propertyDetailsSection: {
+      title: "Property Details",
+      lines: [
+        "Garden View Tent and River View Tent stay options",
+        "3 BHK private accommodation for group stays",
+        "Located near Village Salawade, Khed-Shivapur, Bhor",
+        "One Day Trip packages available",
+        "Contact: 9130583132",
+      ],
+      activities: [
+        "River View Tent Stay",
+        "Garden View Tent Stay",
+        "3 BHK Group Accommodation",
+        "One Day Trip",
+        "Nature Walks",
+      ],
+      address: "Village Salawade, near Khed-Shivapur, Bhor, Pune, Maharashtra 412213, India",
+    },
+    oneDayTripSection: {
+      title: "One Day Trip",
+      time: "9:00 AM to 5:00 PM",
+      includes: [
+        "Property and grounds access",
+        "Riverside and garden nature experience",
+        "Meal package based on booking plan",
+      ],
+      notes: ["Please confirm one day trip availability before booking."],
+    },
+    policiesSection: {
+      title: "Policies",
+      accommodation: [
+        "Check in 12:00 PM and Check out 10:00 AM",
+        "Tent and 3 BHK availability subject to prior booking confirmation",
+      ],
+      cancellation: [
+        "Advance payment terms apply at the time of booking.",
+        "Date changes are subject to availability and prior notice.",
+      ],
+      dayOuting: [
+        "One Day Trip access and timing depends on selected package.",
+        "Guests are expected to follow property and outdoor activity rules.",
+      ],
+      extra: ["Please confirm guest count and meal requirements before arrival."],
+    },
+    booking: {
+      basePrice: 4500,
+      availability: "Available Now",
+      checkIn: "Oct 18, 2025",
+      checkOut: "Oct 20, 2025",
+      guests: ["2 Guests", "4 Guests", "8 Guests"],
+      availabilityApiUrl: "https://api.thehotelmate.co/api/thm/checkAvailability/1370",
+      couponHint: "PRATHAMESH10",
+      couponDiscount: 400,
+      secureLabel: "Secure Booking",
+    },
+  },
   "4-bhk-bhor": {
     slug: "4-bhk-bhor",
     title: "4 BHK, Bhor",
@@ -1929,7 +2073,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
       checkIn: "Oct 18, 2025",
       checkOut: "Oct 20, 2025",
       guests: ["10 Guests", "15 Guests", "18 Guests"],
-      availabilityApiUrl: "https://api.thehotelmate.co/api/thm/checkAvailability/550",
+      availabilityApiUrl: "https://api.thehotelmate.co/api/thm/checkAvailability/3520",
       couponHint: "BHOR10",
       couponDiscount: 1500,
       secureLabel: "Secure Booking",

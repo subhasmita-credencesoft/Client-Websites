@@ -193,7 +193,7 @@ function getLocationIdFromDestination(destination: string) {
 function getPropertiesForLocation(locationId: string) {
   const properties =
     homePageData.locationHighlights.propertiesByLocation[
-      locationId as keyof typeof homePageData.locationHighlights.propertiesByLocation
+    locationId as keyof typeof homePageData.locationHighlights.propertiesByLocation
     ] ?? homePageData.locationHighlights.propertiesByLocation["near-pune"];
 
   return properties;

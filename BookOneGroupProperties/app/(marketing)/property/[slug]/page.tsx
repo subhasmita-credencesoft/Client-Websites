@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PropertyDetailsPage } from "@/components/pages/property-details-page";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -42,20 +42,22 @@ export default async function Page({ params }: { params: PropertyPageParams }) {
     notFound();
   }
 
-  const ratingValue = Number.parseFloat(property.ratingLabel);
+  // notFound() throws, so property is guaranteed non-null below
+  const safeProperty = property!;
+  const ratingValue = Number.parseFloat(safeProperty.ratingLabel);
   const schema = {
     "@context": "https://schema.org",
     "@type": "Hotel",
-    name: property.title,
-    url: absoluteUrl(`/property/${property.slug}`),
-    description: property.description,
-    image: property.images.map((image) => absoluteUrl(image)),
+    name: safeProperty.title,
+    url: absoluteUrl(`/property/${safeProperty.slug}`),
+    description: safeProperty.description,
+    image: safeProperty.images.map((image) => absoluteUrl(image)),
     address: {
       "@type": "PostalAddress",
-      addressLocality: property.location,
+      addressLocality: safeProperty.location,
       addressCountry: "IN",
     },
-    amenityFeature: property.amenities.map((amenity) => ({
+    amenityFeature: safeProperty.amenities.map((amenity) => ({
       "@type": "LocationFeatureSpecification",
       name: amenity.label,
       value: true,
@@ -63,12 +65,12 @@ export default async function Page({ params }: { params: PropertyPageParams }) {
     aggregateRating:
       Number.isFinite(ratingValue) && ratingValue > 0
         ? {
-            "@type": "AggregateRating",
-            ratingValue,
-            reviewCount: property.reviews.length.toString(),
-          }
+          "@type": "AggregateRating",
+          ratingValue,
+          reviewCount: safeProperty.reviews.length.toString(),
+        }
         : undefined,
-    makesOffer: property.rooms.map((room) => ({
+    makesOffer: safeProperty.rooms.map((room) => ({
       "@type": "Offer",
       name: room.name,
       price: room.price,
@@ -80,7 +82,7 @@ export default async function Page({ params }: { params: PropertyPageParams }) {
   return (
     <>
       <JsonLd data={schema} />
-      <PropertyDetailsPage property={property} />
+      <PropertyDetailsPage property={safeProperty} />
     </>
   );
 }

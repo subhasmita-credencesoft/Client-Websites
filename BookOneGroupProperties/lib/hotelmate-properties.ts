@@ -107,16 +107,16 @@ const featuredPropertySlugs = [
 ] as const;
 
 export const getDynamicPropertyBySlug = cache(async (slug: string): Promise<PropertyDetails | null> => {
-  const source = propertySourceBySlug[slug];
+  const normalizedSlug = slug.toLowerCase();
+  const source = propertySourceBySlug[normalizedSlug];
 
   if (!source) {
-    return propertyDetailsBySlug[slug] ?? null;
+    return propertyDetailsBySlug[normalizedSlug] ?? null;
   }
 
   try {
     const response = await fetch(`${FIND_BY_ID_BASE}/${source.propertyId}`, {
       headers: { Accept: "application/json" },
-      cache: "no-store",
     });
 
     if (!response.ok) {
@@ -126,14 +126,94 @@ export const getDynamicPropertyBySlug = cache(async (slug: string): Promise<Prop
     const payload = (await response.json()) as HotelMateProperty | null;
 
     if (!payload) {
-      return propertyDetailsBySlug[slug] ?? null;
+      return propertyDetailsBySlug[normalizedSlug] ?? buildMinimalPropertyFromSource(source, normalizedSlug);
     }
 
-    return mapHotelMatePropertyToDetails(payload, slug, source.fallbackImage);
-  } catch {
-    return propertyDetailsBySlug[slug] ?? null;
+    try {
+      return mapHotelMatePropertyToDetails(payload, normalizedSlug, source.fallbackImage);
+    } catch (mappingError) {
+      console.error(`Error mapping property ${normalizedSlug}:`, mappingError);
+      return propertyDetailsBySlug[normalizedSlug] ?? buildMinimalPropertyFromSource(source, normalizedSlug);
+    }
+  } catch (fetchError) {
+    console.error(`Error fetching property ${normalizedSlug}:`, fetchError);
+    return propertyDetailsBySlug[normalizedSlug] ?? buildMinimalPropertyFromSource(source, normalizedSlug);
   }
 });
+
+function buildMinimalPropertyFromSource(source: import("@/data/property-sources").PropertySource, slug: string): PropertyDetails {
+  const title = slugToTitle(slug);
+  const price = 0;
+  return {
+    slug,
+    title,
+    location: "Location details available on booking confirmation.",
+    ratingLabel: "- (0 Reviews)",
+    typeBadge: "Stay",
+    description: `${title} is a property available for booking. Please contact us or use the booking engine to check availability and rates.`,
+    tags: [],
+    images: [source.fallbackImage],
+    amenities: [{ icon: "star", label: "Comfortable Stay" }],
+    rooms: [
+      {
+        id: 1,
+        name: "Standard Stay",
+        size: "1 Unit",
+        bed: "Guests on request",
+        view: "Property View",
+        price,
+        image: source.fallbackImage,
+        features: ["Comfortable accommodation"],
+      },
+    ],
+    packages: [
+      {
+        id: 1,
+        title: "Standard Stay",
+        price,
+        image: source.fallbackImage,
+        description: "Accommodation package available for booking.",
+      },
+    ],
+    appPromo: {
+      badge: "Book Now",
+      title: `Stay At ${title}`,
+      description: `${title} is available for booking. Contact us for the latest rates and availability.`,
+      image: source.fallbackImage,
+    },
+    reviews: [],
+    propertyDetailsSection: {
+      title: "Property Details",
+      lines: [`Property: ${title}`, "Contact us for rates and availability."],
+      activities: [],
+      address: "Location details available on booking confirmation.",
+    },
+    oneDayTripSection: {
+      title: "Stay Information",
+      time: "Please confirm timing before booking.",
+      includes: ["Accommodation as per selected option"],
+      notes: ["Please contact us to confirm availability before booking."],
+    },
+    policiesSection: {
+      title: "Policies",
+      accommodation: ["Please contact us for full details on accommodation policies."],
+      cancellation: ["Please confirm cancellation policy at time of booking."],
+      dayOuting: ["Day-use packages available on request."],
+      extra: [],
+    },
+    booking: {
+      basePrice: price,
+      availability: "Contact for Availability",
+      checkIn: "Oct 18, 2025",
+      checkOut: "Oct 20, 2025",
+      guests: ["2 Guests", "4 Guests", "6 Guests"],
+      externalBookingUrl: `https://bookone.io/${source.bookingPath}?bookingEngine=true`,
+      couponHint: "BOOKNOW",
+      couponDiscount: 100,
+      secureLabel: "Secure Booking",
+    },
+  };
+}
 
 export async function getLocationHighlightsData() {
   const base = homePageData.locationHighlights;
@@ -162,7 +242,7 @@ export async function getLocationHighlightsData() {
               price: dynamicProperty.booking.basePrice,
               rating: extractCardRating(dynamicProperty.ratingLabel),
               type: dynamicProperty.typeBadge,
-              features: dynamicProperty.rooms.slice(0, 3).map((room) => room.name).join(", ") || property.features,
+              features: dynamicProperty.rooms.map((room) => room.name).join(", ") || property.features,
               link: `/property/${dynamicProperty.slug}`,
             } satisfies LocationCard;
           } catch {
@@ -247,12 +327,20 @@ function mapHotelMatePropertyToDetails(
   const title = property.name?.trim() || slugToTitle(slug);
   const location = formatAddress(property.address);
   const images = prioritizePrimaryImage(getImageUrls(property.imageList, fallbackImage), slug, fallbackImage);
-  const rooms = mapRooms(property, images[0] ?? fallbackImage);
+  // Rooms from live HotelMate API
+  const apiRooms = mapRooms(property, images[0] ?? fallbackImage);
+  // When the API returns an empty roomList (some properties store accommodation as
+  // services rather than rooms), fall back to the static definitions in
+  // property-details.ts so the Rooms section is never blank.
+  const rooms = apiRooms.length > 0
+    ? apiRooms
+    : (propertyDetailsBySlug[slug]?.rooms ?? []);
   const services = property.propertyServicesList ?? [];
   const roomNames = rooms.map((room) => room.name).filter(Boolean);
   const cleanedDescription = htmlToText(property.businessDescription) || `${title} offers a comfortable stay experience.`;
   const detailLines = buildDetailLines(property, cleanedDescription);
   const activities = buildActivities(property);
+  // Use resolved rooms (API or static) for occupancy + pricing
   const guestOptions = buildGuestOptions(property, rooms);
   const basePrice = getBasePrice(property, rooms);
 
@@ -267,7 +355,7 @@ function mapHotelMatePropertyToDetails(
     images,
     amenities: buildAmenities(property),
     rooms,
-    packages: buildPackages(property, images[0] ?? fallbackImage),
+    packages: buildPackages(property, images[0] ?? fallbackImage, slug),
     appPromo: {
       badge: property.slogan?.trim() || normalizePropertyType(property.businessSubtype || property.businessType),
       title: `Stay At ${title}`,
@@ -304,8 +392,8 @@ function mapHotelMatePropertyToDetails(
       availability: "Available Now",
       checkIn: "Oct 18, 2025",
       checkOut: "Oct 20, 2025",
-      guests: guestOptions,
-      availabilityApiUrl: `${CHECK_AVAILABILITY_BASE}/${property.id}`,
+      guests: guestOptions.length > 0 ? guestOptions : ["2 Guests", "4 Guests", "6 Guests"],
+      availabilityApiUrl: property.id ? `${CHECK_AVAILABILITY_BASE}/${property.id}` : undefined,
       externalBookingUrl: buildExternalBookingUrl(property.seoFriendlyName, slug),
       couponHint: "BOOKNOW",
       couponDiscount: Math.max(100, Math.round(basePrice * 0.05 / 100) * 100),
@@ -316,49 +404,47 @@ function mapHotelMatePropertyToDetails(
 
 function mapRooms(property: HotelMateProperty, fallbackImage: string): PropertyDetails["rooms"] {
   return (property.roomList ?? []).map((room, index) => {
-    const features = (room.roomFacilities ?? [])
-      .map((facility) => facility.name?.trim())
-      .filter((value): value is string => Boolean(value))
-      .slice(0, 8);
-
+    const images = getImageUrls(room.imageList, fallbackImage);
     return {
-      id: room.id ?? index + 1,
+      id: room.id || index + 1,
       name: room.name?.trim() || `Room ${index + 1}`,
       size: room.noOfRooms ? `${room.noOfRooms} ${room.noOfRooms === 1 ? "Unit" : "Units"}` : "Stay Option",
       bed: formatOccupancy(room.minimumOccupancy, room.maximumOccupancy),
       view: "Property View",
       price: room.roomOnlyPrice ?? property.pricePerNight ?? 0,
-      image: getImageUrls(room.imageList, fallbackImage)[0] ?? fallbackImage,
-      features: features.length ? features : ["Comfortable Stay"],
+      image: images[0] ?? fallbackImage,
+      features: (room.roomFacilities ?? []).map(f => f.name || "").filter(Boolean) || ["Comfortable Stay"],
       available: room.noOfRooms ? room.noOfRooms.toString() : undefined,
-      description: htmlToText(room.description),
+      description: htmlToText(room.description) || "Comfortable accommodation.",
     };
   });
 }
 
-function buildPackages(property: HotelMateProperty, fallbackImage: string): PropertyDetails["packages"] {
-  const servicePackages = (property.propertyServicesList ?? [])
+function buildPackages(
+  property: HotelMateProperty,
+  fallbackImage: string,
+  slug: string,
+): PropertyDetails["packages"] {
+  // Always prefer the hand-crafted static packages from property-details.ts.
+  // API propertyServicesList often contains generic food add-ons (Lunch, Hi-Tea,
+  // Dinner, Breakfast) which are not meaningful as Package / Tariff listings.
+  // Static packages are intentional and property-specific.
+  const staticPackages = propertyDetailsBySlug[slug]?.packages;
+  if (staticPackages && staticPackages.length > 0) {
+    return staticPackages;
+  }
+
+  // Fall back to API service packages only when no static packages are defined.
+  // Rooms are rendered separately via property.rooms and must NOT appear here.
+  return (property.propertyServicesList ?? [])
     .filter((service) => typeof service.servicePrice === "number" && service.servicePrice > 0)
-    .slice(0, 4)
     .map((service, index) => ({
-      id: index + 1,
-      title: service.name?.trim() || `Package ${index + 1}`,
+      id: index + 100,
+      title: service.name?.trim() || `Service ${index + 1}`,
       price: service.servicePrice ?? 0,
       image: fallbackImage,
       description: service.description?.trim() || "Additional service available with the property.",
     }));
-
-  if (servicePackages.length) {
-    return servicePackages;
-  }
-
-  return (property.roomList ?? []).slice(0, 4).map((room, index) => ({
-    id: room.id ?? index + 1,
-    title: room.name?.trim() || `Stay Option ${index + 1}`,
-    price: room.roomOnlyPrice ?? property.pricePerNight ?? 0,
-    image: getImageUrls(room.imageList, fallbackImage)[0] ?? fallbackImage,
-    description: htmlToText(room.description) || "Stay package available for booking.",
-  }));
 }
 
 function buildAmenities(property: HotelMateProperty): PropertyDetails["amenities"] {
@@ -397,7 +483,7 @@ function buildDetailLines(property: HotelMateProperty, cleanedDescription: strin
     .slice(0, 6);
 
   const lines = [
-    property.id ? `Property ID: ${property.id}` : null,
+    // property.id ? `Property ID: ${property.id}` : null,
     property.slogan?.trim() || null,
     ...descriptionLines,
     property.mobile ? `Contact: ${property.mobile}` : null,

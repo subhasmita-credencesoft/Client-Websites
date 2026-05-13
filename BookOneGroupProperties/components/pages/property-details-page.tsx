@@ -3,6 +3,7 @@
 import type { ComponentType, SVGProps } from "react";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
   Star,
@@ -54,9 +55,28 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
 
 function PropertyDetailsFromSearchParams({ property }: PropertyDetailsPageProps) {
   const searchParams = useSearchParams();
-  const searchCheckIn = searchParams?.get("checkIn") ?? null;
-  const searchCheckOut = searchParams?.get("checkOut") ?? null;
-  const searchGuests = searchParams?.get("guests") ?? null;
+
+  // Try to pick up dates from any possible parameter name
+  const searchCheckIn =
+    searchParams?.get("checkIn") ??
+    searchParams?.get("checkin") ??
+    searchParams?.get("fromDate") ??
+    searchParams?.get("checkin_date") ??
+    null;
+
+  const searchCheckOut =
+    searchParams?.get("checkOut") ??
+    searchParams?.get("checkout") ??
+    searchParams?.get("toDate") ??
+    searchParams?.get("checkout_date") ??
+    null;
+
+  const searchGuests =
+    searchParams?.get("guests") ??
+    searchParams?.get("adults") ??
+    searchParams?.get("numGuests") ??
+    searchParams?.get("num_guests") ??
+    null;
 
   return (
     <PropertyDetailsContent
@@ -84,6 +104,25 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
   const [guestCount, setGuestCount] = useState(getInitialGuestCount(searchGuests, property.booking.guests));
   const [availabilityLabel, setAvailabilityLabel] = useState(property.booking.availability);
 
+  // Sync check-in / check-out when URL search params change (e.g. user searches
+  // again from the Hero or navigates back with different params). useState only
+  // uses its initial value on the first mount, so we need this effect to keep
+  // the booking widget in sync on subsequent navigations.
+  useEffect(() => {
+    const newCheckIn = getInitialDate(searchCheckIn ?? property.booking.checkIn, 0);
+    const newCheckOut = getInitialCheckoutDate(searchCheckOut ?? property.booking.checkOut, newCheckIn);
+    setCheckInDate(newCheckIn);
+    setCheckOutDate(newCheckOut);
+  }, [searchCheckIn, searchCheckOut, property.booking.checkIn, property.booking.checkOut]);
+
+  // Sync guest count when URL param or property changes.
+  useEffect(() => {
+    setGuestCount(getInitialGuestCount(searchGuests, property.booking.guests));
+    // property.booking.guests is an array — use property.slug as a stable scalar
+    // proxy so this only fires on genuine property/param changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchGuests, property.slug]);
+
   const nextImage = () => setActiveImage((prev) => (prev + 1) % property.images.length);
   const prevImage = () => setActiveImage((prev) => (prev - 1 + property.images.length) % property.images.length);
   const checkInValue = format(checkInDate, "yyyy-MM-dd");
@@ -109,7 +148,15 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
     }
 
     const controller = new AbortController();
-    const availabilityUrl = new URL(property.booking.availabilityApiUrl);
+
+    let availabilityUrl: URL;
+    try {
+      availabilityUrl = new URL(property.booking.availabilityApiUrl);
+    } catch {
+      setAvailabilityLabel(property.booking.availability);
+      return;
+    }
+
     availabilityUrl.searchParams.set("fromDate", checkInValue);
     availabilityUrl.searchParams.set("toDate", checkOutValue);
     availabilityUrl.searchParams.set("noOfRooms", "1");
@@ -159,6 +206,7 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
           <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
         </button>
 
+
         <div className="container absolute bottom-5 left-0 right-0 z-20 mx-auto flex flex-col gap-4 px-4 text-white sm:px-6 md:bottom-8 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="mb-2 flex w-fit items-center gap-2 rounded-full bg-primary/80 px-3 py-1 text-sm font-medium backdrop-blur-sm">
@@ -180,29 +228,31 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
               </div>
             ) : null}
           </div>
+        </div>
 
-          <div className="flex gap-3 self-start md:self-auto">
-            <Button variant="outline" size="icon" className="rounded-full border-white/20 bg-white/10 text-white transition-colors hover:bg-white hover:text-black">
+        <div className="absolute bottom-4 right-4 z-20 hidden flex-col items-end gap-2 lg:flex">
+          {/* Share & Heart — above the thumbnails */}
+          <div className="flex gap-2">
+            <Button variant="outline" size="icon" className="rounded-full border-white/20 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-black">
               <Share2 className="h-5 w-5" />
             </Button>
-            <Button variant="outline" size="icon" className="rounded-full border-white/20 bg-white/10 text-white transition-colors hover:bg-white hover:text-red-500">
+            <Button variant="outline" size="icon" className="rounded-full border-white/20 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-red-500">
               <Heart className="h-5 w-5" />
             </Button>
           </div>
-        </div>
-
-        <div className="absolute bottom-4 right-4 z-20 hidden gap-2 lg:flex">
-          {property.images.slice(0, 4).map((image, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveImage(index)}
-              className={`relative h-10 w-14 overflow-hidden rounded-md border-2 transition-all xl:h-12 xl:w-16 ${
-                activeImage === index ? "scale-105 border-primary" : "border-white/50 opacity-70 hover:opacity-100"
-              }`}
-            >
-              <Image src={image} alt={`Thumbnail ${index + 1}`} fill sizes="64px" className="h-full w-full object-cover" />
-            </button>
-          ))}
+          {/* Thumbnail strip */}
+          <div className="flex gap-2">
+            {property.images.slice(0, 4).map((image, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveImage(index)}
+                className={`relative h-10 w-14 overflow-hidden rounded-md border-2 transition-all xl:h-12 xl:w-16 ${activeImage === index ? "scale-105 border-primary" : "border-white/50 opacity-70 hover:opacity-100"
+                  }`}
+              >
+                <Image src={image} alt={`Thumbnail ${index + 1}`} fill sizes="64px" className="h-full w-full object-cover" />
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -222,8 +272,9 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
             <section className="rounded-2xl bg-secondary/20 p-5 sm:p-6 md:p-8">
               <h2 className="mb-6 text-2xl font-bold text-foreground">Packages / Tariff</h2>
               <div className="space-y-6">
+                {/* Render Rooms */}
                 {property.rooms.map((room) => (
-                  <div key={room.id} className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
+                  <div key={`room-${room.id}`} className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
                     <div className="flex flex-col md:flex-row">
                       <div className="relative h-64 md:h-auto md:w-2/5">
                         <Image src={room.image} alt={room.name} fill sizes="(max-width: 768px) 100vw, 40vw" className="h-full w-full object-cover" />
@@ -253,24 +304,49 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
                             ))}
                           </ul>
                           {room.description ? <p className="text-sm leading-relaxed text-muted-foreground">{room.description}</p> : null}
-                          {room.planNote ? (
-                            <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-                              {room.planNote}
-                            </div>
-                          ) : null}
                         </div>
 
                         <div className="mt-2 flex flex-col gap-4 border-t border-border/50 pt-4 sm:flex-row sm:items-center sm:justify-between">
                           <div>
                             <span className="text-2xl font-bold text-primary">{formatCurrency(room.price)}</span>
-                            <span className="text-sm text-muted-foreground"> / night</span>
+                            <span className="text-sm text-muted-foreground"> / unit</span>
                           </div>
-                          <Button className="w-full sm:w-auto">Select Room</Button>
                         </div>
                       </div>
                     </div>
                   </div>
                 ))}
+
+                {/* Render Additional Packages / Services */}
+                {property.packages?.map((pkg) => {
+                  // Skip if this package title matches a room name (to avoid duplicates)
+                  if (property.rooms.some((r) => r.name === pkg.title)) return null;
+
+                  return (
+                    <div key={`pkg-${pkg.id}`} className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
+                      <div className="flex flex-col md:flex-row">
+                        <div className="relative h-64 md:h-auto md:w-2/5">
+                          <Image src={pkg.image} alt={pkg.title} fill sizes="(max-width: 768px) 100vw, 40vw" className="h-full w-full object-cover" />
+                        </div>
+                        <div className="flex flex-1 flex-col justify-between gap-5 p-5 md:p-6">
+                          <div>
+                            <div className="mb-3">
+                              <h3 className="text-xl font-bold">{pkg.title}</h3>
+                            </div>
+                            <p className="text-sm leading-relaxed text-muted-foreground">{pkg.description}</p>
+                          </div>
+
+                          <div className="mt-2 flex flex-col gap-4 border-t border-border/50 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                              <span className="text-2xl font-bold text-primary">{formatCurrency(pkg.price)}</span>
+                              <span className="text-sm text-muted-foreground"> / package</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </section>
 
@@ -280,12 +356,14 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
               </h2>
               <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
                 <ul className="space-y-3">
-                  {property.propertyDetailsSection?.lines.map((line) => (
-                    <li key={line} className="flex items-start gap-3 text-sm text-muted-foreground sm:text-base">
-                      <Check className="mt-1 h-4 w-4 shrink-0 text-primary" />
-                      <span>{line}</span>
-                    </li>
-                  ))}
+                  {property.propertyDetailsSection?.lines
+                    .filter((line) => !line.includes("Property ID:"))
+                    .map((line) => (
+                      <li key={line} className="flex items-start gap-3 text-sm text-muted-foreground sm:text-base">
+                        <Check className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                        <span>{line}</span>
+                      </li>
+                    ))}
                 </ul>
 
                 {property.propertyDetailsSection?.activities?.length ? (
@@ -475,8 +553,8 @@ function PropertyDetailsContent({ property, searchCheckIn, searchCheckOut, searc
                 >
                   Book Now
                 </Button>
-                <Button variant="outline" className="h-12 w-full border-primary text-base font-bold text-primary hover:bg-primary/5">
-                  Contact Host
+                <Button asChild variant="outline" className="h-12 w-full border-primary text-base font-bold text-primary hover:bg-primary/5">
+                  <Link href="/contact">Contact Host</Link>
                 </Button>
               </div>
 
@@ -512,21 +590,37 @@ function PolicyCard({ title, items }: { title: string; items: string[] }) {
 function getInitialDate(value: string, fallbackDays: number) {
   const today = startOfDay(new Date());
 
-  const isoParsed = new Date(value);
-  if (isValid(isoParsed)) {
-    return isoParsed >= today ? isoParsed : addDays(today, fallbackDays);
+  if (!value) {
+    return addDays(today, fallbackDays);
   }
 
-  const parsed = parse(value, "MMM d, yyyy", new Date());
-  if (isValid(parsed)) {
-    return parsed >= today ? parsed : addDays(today, fallbackDays);
+  // Define possible formats to try
+  const formats = ["yyyy-MM-dd", "dd-MM-yyyy", "MMM d, yyyy", "yyyy/MM/dd", "dd/MM/yyyy"];
+
+  for (const formatStr of formats) {
+    try {
+      const parsed = parse(value, formatStr, new Date());
+      if (isValid(parsed)) {
+        // Only return if it's today or in the future
+        return parsed >= today ? parsed : addDays(today, fallbackDays);
+      }
+    } catch {
+      continue;
+    }
+  }
+
+  // Last ditch effort for native Date parsing (ISO etc)
+  const nativeParsed = new Date(value);
+  if (isValid(nativeParsed)) {
+    const localDate = startOfDay(nativeParsed);
+    return localDate >= today ? localDate : addDays(today, fallbackDays);
   }
 
   return addDays(today, fallbackDays);
 }
 
 function getInitialCheckoutDate(value: string, checkInDate: Date) {
-  const parsedDate = getInitialDate(value, 2);
+  const parsedDate = getInitialDate(value, 1);
   return parsedDate > checkInDate ? parsedDate : addDays(checkInDate, 1);
 }
 

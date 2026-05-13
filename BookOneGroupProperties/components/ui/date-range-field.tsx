@@ -92,29 +92,30 @@ export function DateRangeField({ value, onChange }: DateRangeFieldProps) {
         isOpen && "z-[120]"
       )}
     >
-      <CalendarIcon className="w-5 h-5 text-primary shrink-0" />
       <button
         type="button"
         onClick={() => setIsOpen((open) => !open)}
-        className="text-left flex-1 min-w-0"
+        className="text-left flex-1 min-w-0 flex items-center gap-3"
       >
-        <span className="block text-[0.65rem] font-bold text-gray-500 uppercase tracking-wider">
-          Dates
-        </span>
-        <span
-          className={cn(
-            "block font-bold text-sm truncate",
-            range?.from ? "text-gray-900" : "text-gray-400"
-          )}
-        >
-          {formattedValue}
-        </span>
+        <CalendarIcon className="w-5 h-5 text-primary shrink-0" />
+        <div className="min-w-0 flex-1">
+          <span className="block text-[0.65rem] font-bold text-gray-500 uppercase tracking-wider">
+            Dates
+          </span>
+          <span
+            className={cn(
+              "block font-bold text-sm truncate",
+              range?.from ? "text-gray-900" : "text-gray-400"
+            )}
+          >
+            {formattedValue}
+          </span>
+        </div>
       </button>
 
       {isOpen ? (
         <div className="absolute left-0 md:left-1/2 top-full mt-3 z-[130] w-[min(320px,calc(100vw-2rem))] md:w-[320px] md:-translate-x-1/2 rounded-2xl border border-gray-200 bg-white p-3 text-slate-900 shadow-2xl">
           <DayPicker
-            animate
             mode="range"
             numberOfMonths={1}
             selected={range}
@@ -123,6 +124,9 @@ export function DateRangeField({ value, onChange }: DateRangeFieldProps) {
             showOutsideDays
             disabled={{ before: new Date() }}
             classNames={dayPickerClassNames}
+            formatters={{
+              formatWeekdayName: (date) => format(date, "EEE"),
+            }}
           />
         </div>
       ) : null}

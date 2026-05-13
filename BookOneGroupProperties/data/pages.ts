@@ -1,4 +1,4 @@
-﻿import { MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { contactSectionData } from "@/data/footer";
 import { siteImages } from "@/lib/site-images";
 

@@ -20,7 +20,7 @@ export const propertySources: PropertySource[] = [
   { slug: "k-l-farmhouse", propertyId: 1401, fallbackImage: siteImages.klFarmhouseLive, bookingPath: "K-L-Farmhouse" },
   { slug: "peacock-hills-resort-pune", propertyId: 3519, fallbackImage: siteImages.peacockHills, bookingPath: "Peacock-Hills-Resort-Pune" },
   { slug: "a-r-villa", propertyId: 1055, fallbackImage: siteImages.luxuryVillaSunset, bookingPath: "A-R-Villa" },
-  { slug: "4-bhk-bhor", propertyId: 550, fallbackImage: siteImages.fourBhkBhor, bookingPath: "4-BHK-Bhor" },
+  { slug: "4-bhk-bhor", propertyId: 3520, fallbackImage: siteImages.fourBhkBhor, bookingPath: "4-BHK-Bhor-Pune" },
 ];
 
 export const propertySourceBySlug = Object.fromEntries(
