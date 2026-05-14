@@ -1,8 +1,8 @@
-﻿export const siteContact = {
-  email: "tripdip@gmail.com",
-  phoneDisplay: "+91 9130583132",
-  phoneHref: "tel:+919130583132",
-  whatsappHref: "https://wa.me/919130583132",
+export const siteContact = {
+  email: "tripdip07@gmail.com",
+  phoneDisplay: "+91 7666478855",
+  phoneHref: "tel:+917666478855",
+  whatsappHref: "https://wa.me/917666478855",
   websiteUrl: "https://tripdip.in/",
   address: "Shirke's Holiday Home, Near Pawna Lake, Lonavala Road, Pune, Maharashtra 410406",
 } as const;
@@ -81,7 +81,7 @@ export const legalPageContent = {
       {
         heading: "Any Further Questions",
         body:
-          "Please leave your message to tripdip@gmail.com.",
+          "Please leave your message to tripdip07@gmail.com.",
       },
     ],
   },

@@ -163,7 +163,7 @@ function ProductCard({
 
   return (
     <div className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
-      <div className="relative h-44 w-full overflow-hidden bg-muted/30">
+      <div className="relative h-36 w-full overflow-hidden bg-muted/30">
         {image ? (
           <Image
             src={image}
@@ -185,32 +185,32 @@ function ProductCard({
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-4">
-        <h3 className="mb-1 font-bold text-foreground leading-snug">{product.name.trim()}</h3>
+      <div className="flex flex-1 flex-col p-3">
+        <h3 className="mb-0.5 text-sm font-bold text-foreground leading-tight">{product.name.trim()}</h3>
         {product.shortDescription && (
-          <p className="mb-2 text-xs text-muted-foreground leading-relaxed line-clamp-2">{product.shortDescription}</p>
+          <p className="mb-2 text-[11px] text-muted-foreground leading-relaxed line-clamp-2">{product.shortDescription}</p>
         )}
 
         {hasVariations && (
-          <div className="mb-3 space-y-2">
+          <div className="mb-2 mt-1 max-h-28 overflow-y-auto space-y-1.5 pr-1 no-scrollbar">
             {product.productVariationDtoList!.map((variation) => {
               const qty = getQty(variation);
               return (
-                <div key={variation.code} className="flex items-center justify-between text-xs text-muted-foreground">
-                  <div className="flex flex-col">
-                    <span>{variation.name}</span>
+                <div key={variation.code} className="flex items-center justify-between text-[11px] text-muted-foreground bg-muted/20 p-1.5 rounded-lg">
+                  <div className="flex flex-col pr-2">
+                    <span className="font-medium">{variation.name}</span>
                     <span className="font-bold text-primary">{formatCurrency(variation.sellUnitPrice)}</span>
                   </div>
                   {!product.outOfStock && (
-                    <div className="flex items-center gap-2">
+                    <div className="flex shrink-0 items-center gap-1.5">
                       {qty > 0 ? (
                         <>
-                          <button onClick={() => handleUpdate(variation, -1)} className="rounded-full bg-muted p-1 hover:bg-muted-foreground/20"><Minus className="h-3 w-3" /></button>
+                          <button onClick={() => handleUpdate(variation, -1)} className="rounded-full bg-muted p-1 hover:bg-muted-foreground/20"><Minus className="h-2.5 w-2.5" /></button>
                           <span className="font-medium text-foreground w-3 text-center">{qty}</span>
-                          <button onClick={() => handleUpdate(variation, 1)} className="rounded-full bg-primary p-1 text-white hover:bg-primary/90"><Plus className="h-3 w-3" /></button>
+                          <button onClick={() => handleUpdate(variation, 1)} className="rounded-full bg-primary p-1 text-white hover:bg-primary/90"><Plus className="h-2.5 w-2.5" /></button>
                         </>
                       ) : (
-                        <button onClick={() => handleUpdate(variation, 1)} className="rounded-full border border-primary px-3 py-1 text-primary hover:bg-primary/10 transition-colors">Add</button>
+                        <button onClick={() => handleUpdate(variation, 1)} className="rounded-full border border-primary px-2.5 py-0.5 font-bold text-primary hover:bg-primary/10 transition-colors">Add</button>
                       )}
                     </div>
                   )}
@@ -220,7 +220,7 @@ function ProductCard({
           </div>
         )}
 
-        <div className="mt-auto pt-3 border-t border-border/50 flex items-center justify-between">
+        <div className="mt-auto pt-2 border-t border-border/50 flex items-center justify-between">
           <span className="text-base font-bold text-primary">{getDisplayPrice(product)}</span>
           {product.outOfStock ? (
             <span className="text-xs font-medium text-red-500">Unavailable</span>
@@ -228,12 +228,12 @@ function ProductCard({
             <div className="flex items-center gap-2">
               {getQty() > 0 ? (
                 <>
-                  <button onClick={() => handleUpdate(undefined, -1)} className="rounded-full bg-muted p-1.5 hover:bg-muted-foreground/20"><Minus className="h-4 w-4" /></button>
-                  <span className="font-medium text-foreground w-4 text-center">{getQty()}</span>
-                  <button onClick={() => handleUpdate(undefined, 1)} className="rounded-full bg-primary p-1.5 text-white hover:bg-primary/90"><Plus className="h-4 w-4" /></button>
+                  <button onClick={() => handleUpdate(undefined, -1)} className="rounded-full bg-muted p-1 hover:bg-muted-foreground/20"><Minus className="h-3 w-3" /></button>
+                  <span className="font-medium text-foreground w-4 text-center text-sm">{getQty()}</span>
+                  <button onClick={() => handleUpdate(undefined, 1)} className="rounded-full bg-primary p-1 text-white hover:bg-primary/90"><Plus className="h-3 w-3" /></button>
                 </>
               ) : (
-                <button onClick={() => handleUpdate(undefined, 1)} className="rounded-full bg-primary px-4 py-1.5 text-sm font-bold text-white hover:bg-primary/90 transition-colors">Add</button>
+                <button onClick={() => handleUpdate(undefined, 1)} className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-white hover:bg-primary/90 transition-colors">Add</button>
               )}
             </div>
           ) : null}
@@ -415,12 +415,12 @@ export function RestaurantPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Banner */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-teal-700 py-14 md:py-20">
-        <div className="pointer-events-none absolute inset-0 opacity-10">
+      <div className="relative overflow-hidden bg-gradient-to-b from-primary/15 via-background to-background pt-28 pb-8 md:pt-36 md:pb-12 border-b border-border/40">
+        <div className="pointer-events-none absolute inset-0 opacity-[0.04]">
           {plateStyles.map((style, i) => (
             <div
               key={i}
-              className="absolute text-6xl"
+              className="absolute text-4xl md:text-5xl grayscale"
               style={style}
             >
               🍽️
@@ -428,14 +428,14 @@ export function RestaurantPage() {
           ))}
         </div>
         <div className="container relative mx-auto px-4 text-center sm:px-6">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-medium text-white/90 backdrop-blur-sm">
-            <Utensils className="h-4 w-4" />
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/20 px-3 py-1 text-xs font-bold text-primary backdrop-blur-sm shadow-sm">
+            <Utensils className="h-3 w-3" />
             Live Menu
           </div>
-          <h1 className="mb-3 text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+          <h1 className="mb-3 text-2xl font-bold text-foreground sm:text-3xl md:text-4xl">
             Restaurant &amp; Dining
           </h1>
-          <p className="mx-auto max-w-xl text-base text-white/80">
+          <p className="mx-auto max-w-xl text-sm text-muted-foreground">
             Browse the full menu for each property. Fresh ingredients, authentic flavours, served with warmth.
           </p>
         </div>

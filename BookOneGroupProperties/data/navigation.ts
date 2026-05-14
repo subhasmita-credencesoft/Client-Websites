@@ -9,14 +9,14 @@ export const navigationData = {
     { label: "About", href: "/about" },
     { label: "Our Properties", href: "/properties" },
     { label: "Restaurant", href: "/restaurant" },
-    {
-      label: "Packages",
-      href: "/packages/resort",
-      children: [
-        { label: "Resort", href: "/packages/resort" },
-        { label: "Private Villa", href: "/packages/private-villa" },
-      ],
-    },
+    // {
+    //   label: "Packages",
+    //   href: "/packages/resort",
+    //   children: [
+    //     { label: "Resort", href: "/packages/resort" },
+    //     { label: "Private Villa", href: "/packages/private-villa" },
+    //   ],
+    // },
     { label: "Guest Gallery", href: "/gallery" },
     { label: "Contact Us", href: "/contact" },
   ],
