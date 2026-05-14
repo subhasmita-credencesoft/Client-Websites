@@ -7,7 +7,7 @@ export const pageContent = {
     eyebrow: "About Us",
     title: "About Us",
     description:
-      "My Resort's Pune is an online and offline platform for providing reasonable and temporary properties and accommodations near Pune since 2018.",
+      "Tripdip is an online and offline platform for providing reasonable and temporary properties and accommodations since 2018.",
     teamTitle: "Our Team",
     teamDescription: "Meet our team.",
     team: [
@@ -43,7 +43,7 @@ export const pageContent = {
       title: "Resort Packages For Relaxed Family Getaways",
       description:
         "Choose complete resort stays designed for couples, families, and group celebrations with dining, recreation, and comfortable room experiences included.",
-      image: siteImages.peacockHills,
+      image: siteImages.resortPool,
       highlights: [
         {
           title: "Stay And Dine",
@@ -63,7 +63,7 @@ export const pageContent = {
       title: "Private Villa Packages For Exclusive Stays",
       description:
         "Book private villa packages for intimate escapes, special occasions, and premium group stays with added privacy and personalized comfort.",
-      image: siteImages.fourBhkVillaKarla,
+      image: siteImages.luxuryVillaSunset,
       highlights: [
         {
           title: "Complete Privacy",
@@ -84,7 +84,7 @@ export const pageContent = {
     eyebrow: "Guest Gallery",
     title: "Moments From Our Stays",
     description:
-      "Browse snapshots of our stays, spaces, and experiences from across the My Resort Pune collection.",
+      "Browse snapshots of our stays, spaces, and experiences from across the Tripdip collection.",
   },
   contact: {
     eyebrow: "Contact Us",
@@ -95,7 +95,7 @@ export const pageContent = {
       ...contactSectionData,
       {
         title: "Locations",
-        value: "Bhor, Kelawade, Ingavali, Hatve BK and nearby Pune stay destinations.",
+        value: "Near Pune stay destinations.",
         icon: MapPin,
       },
     ],

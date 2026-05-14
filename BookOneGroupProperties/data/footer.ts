@@ -3,7 +3,7 @@ import { siteContact, siteLegalLinks } from "@/data/site";
 
 export const footerData = {
   brand: {
-    title: " My Resort Pune.",
+    title: " Tripdip.",
     description:
       "It's Your Day. Dedicated to crafting welcoming and unforgettable hospitality experiences for every traveler.",
   },
@@ -18,12 +18,12 @@ export const footerData = {
     socialLinks: [
       { 
         label: "Instagram", 
-        href: "https://www.instagram.com/myresortspune?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", 
+        href: "https://www.instagram.com/tripdip", 
         icon: Instagram 
       },
       { 
         label: "Facebook", 
-        href: "https://www.facebook.com/BookMyResortsPune", 
+        href: "https://www.facebook.com/tripdip", 
         icon: Facebook 
       },
     ],

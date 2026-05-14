@@ -4,7 +4,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Privacy Policy",
-  description: "How My Resort Pune collects, uses, and protects guest and inquiry information.",
+  description: "How Tripdip collects, uses, and protects guest and inquiry information.",
   path: "/privacy-policy",
 });
 

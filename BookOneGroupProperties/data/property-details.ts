@@ -1,4 +1,4 @@
-import { siteImages } from "@/lib/site-images";
+﻿import { siteImages } from "@/lib/site-images";
 
 export type AmenityIconKey =
   | "wifi"
@@ -974,7 +974,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
         "Manager: Aniket Konde",
         "Email: vedfarms01@gmail.com",
         "Contact: 8007273965 / 9130583132",
-        "Website: www.myresortspune.in",
+        "Website: www.tripdip.in",
       ],
       activities: [
         "Swimming Pool with attached kids pool",
@@ -1142,7 +1142,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
         "Contact: 9130583132",
         "Email: orchardresort1@gmail.com",
         "Manager: Shubham Jadhav",
-        "Website: https://www.myresortspune.in/#",
+        "Website: https://www.tripdip.in/#",
       ],
       activities: [
         "Mini Water Park",
@@ -2101,3 +2101,5 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
 
 export const propertyDetailsData = propertyDetailsBySlug["vishals-orchard-resort"];
 export const propertySlugs = Object.keys(propertyDetailsBySlug);
+
+

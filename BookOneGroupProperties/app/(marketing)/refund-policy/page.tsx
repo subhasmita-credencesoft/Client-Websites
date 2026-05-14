@@ -4,7 +4,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Refund Policy",
-  description: "Cancellation and refund guidance for bookings handled by My  Resort Pune .",
+  description: "Cancellation and refund guidance for bookings handled by Tripdip.",
   path: "/refund-policy",
 });
 

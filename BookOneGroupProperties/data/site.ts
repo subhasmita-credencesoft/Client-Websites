@@ -1,9 +1,9 @@
-export const siteContact = {
-  email: "myresortspune@gmail.com",
+﻿export const siteContact = {
+  email: "tripdip@gmail.com",
   phoneDisplay: "+91 9130583132",
   phoneHref: "tel:+919130583132",
   whatsappHref: "https://wa.me/919130583132",
-  websiteUrl: "https://myresortspune.in/",
+  websiteUrl: "https://tripdip.in/",
   address: "Shirke's Holiday Home, Near Pawna Lake, Lonavala Road, Pune, Maharashtra 410406",
 } as const;
 
@@ -16,12 +16,12 @@ export const siteLegalLinks = {
 export const legalPageContent = {
   privacyPolicy: {
     title: "Privacy Policy",
-    description: "Privacy details for https://myresortspune.in, including comments, cookies, embedded content, and data rights.",
+    description: "Privacy details for https://tripdip.in, including comments, cookies, embedded content, and data rights.",
     sections: [
       {
         heading: "Who We Are",
         body:
-          "Our website address is https://myresortspune.in.",
+          "Our website address is https://tripdip.in.",
       },
       {
         heading: "What Personal Data We Collect And Why We Collect It",
@@ -31,7 +31,7 @@ export const legalPageContent = {
       {
         heading: "Comments",
         body:
-          "When visitors leave comments on the site, we collect the data shown in the comments form, along with the visitor's IP address and browser user agent string to help with spam detection. An anonymized string created from your email address, also called a hash, may be provided to the Gravatar service to see whether you are using it. The Gravatar service privacy policy is available at https://myresortspune.in/privacy/. After approval of your comment, your profile picture is visible to the public in the context of your comment.",
+          "When visitors leave comments on the site, we collect the data shown in the comments form, along with the visitor's IP address and browser user agent string to help with spam detection. An anonymized string created from your email address, also called a hash, may be provided to the Gravatar service to see whether you are using it. The Gravatar service privacy policy is available at https://tripdip.in/privacy/. After approval of your comment, your profile picture is visible to the public in the context of your comment.",
       },
       {
         heading: "Media",
@@ -81,38 +81,38 @@ export const legalPageContent = {
       {
         heading: "Any Further Questions",
         body:
-          "Please leave your message to myresortspune@gmail.com.",
+          "Please leave your message to tripdip@gmail.com.",
       },
     ],
   },
   termsAndConditions: {
     title: "Terms And Conditions",
-    description: "Agreement terms between My Resorts Pune and Orchard Resort for listings, bookings, commissions, and support.",
+    description: "Agreement terms between Tripdip and Orchard Resort for listings, bookings, commissions, and support.",
     sections: [
       {
         heading: "Agreement Overview",
         body:
-          'This Agreement ("Agreement") is entered into between "My Resorts Pune" ("Company") and "Orchard Resort" ("Hotel") as of January 2023. This Agreement outlines the terms and conditions under which My Resorts Pune will list the Hotel on its platform and the Hotel will accept bookings facilitated by My Resorts Pune.',
+          'This Agreement ("Agreement") is entered into between "Tripdip" ("Company") and "Orchard Resort" ("Hotel") as of January 2023. This Agreement outlines the terms and conditions under which Tripdip will list the Hotel on its platform and the Hotel will accept bookings facilitated by Tripdip.',
       },
       {
-        heading: "Listing On My Resorts Pune And License",
+        heading: "Listing On Tripdip And License",
         body:
-          "My Resorts Pune agrees to list the Hotel on its online platform, making the Hotel's rooms available for booking by customers. My Resorts Pune will provide the Hotel with a dedicated page or profile on its platform, including relevant information about the Hotel, such as room types, amenities, pricing, and availability. The Hotel agrees to provide accurate and up-to-date information to My Resorts Pune regarding room availability, rates, policies, and any other relevant details necessary for the successful operation of the platform. Upon entering this agreement with My Resorts Pune, the Hotel hereby grants the Company the right to use, install, and implement the software and mobile application for exclusive use of the client's business and commercial purposes and for its dealings with potential third-party customers. This is a royalty-free license agreement whereby the Company will not incur any costs or debts towards the Hotel vis a vis the use and implementation of the app for the client's business dealings and transactions with customers of its own.",
+          "Tripdip agrees to list the Hotel on its online platform, making the Hotel's rooms available for booking by customers. Tripdip will provide the Hotel with a dedicated page or profile on its platform, including relevant information about the Hotel, such as room types, amenities, pricing, and availability. The Hotel agrees to provide accurate and up-to-date information to Tripdip regarding room availability, rates, policies, and any other relevant details necessary for the successful operation of the platform. Upon entering this agreement with Tripdip, the Hotel hereby grants the Company the right to use, install, and implement the software and mobile application for exclusive use of the client's business and commercial purposes and for its dealings with potential third-party customers. This is a royalty-free license agreement whereby the Company will not incur any costs or debts towards the Hotel vis a vis the use and implementation of the app for the client's business dealings and transactions with customers of its own.",
       },
       {
         heading: "Booking Commission And Payments",
         body:
-          "For each booking made through the My Resorts Pune platform, the Hotel agrees to pay a commission of 10% of the total booking value excluding taxes. My Resorts Pune will take the advance amount, with a minimum of 20% and a maximum of 100%, from the customer at the time of booking and pay the rest amount, after deducting the commission, to the Hotel after the customer checks in at the Hotel. If the customer has not paid the entire booking amount in advance, the Hotel is entitled to take the remaining amount directly from the customer at the Hotel.",
+          "For each booking made through the Tripdip platform, the Hotel agrees to pay a commission of 10% of the total booking value excluding taxes. Tripdip will take the advance amount, with a minimum of 20% and a maximum of 100%, from the customer at the time of booking and pay the rest amount, after deducting the commission, to the Hotel after the customer checks in at the Hotel. If the customer has not paid the entire booking amount in advance, the Hotel is entitled to take the remaining amount directly from the customer at the Hotel.",
       },
       {
         heading: "Acceptance Of Bookings",
         body:
-          "The Hotel agrees to accept all bookings received through the My Resorts Pune website, subject to availability and the Hotel's standard policies. The Hotel will make its best efforts to keep the availability status updated in real time on the My Resorts Pune platform. In the event that the Hotel cannot accommodate a booking due to unavailability or any other circumstance, the Hotel agrees to promptly notify My Resorts Pune and provide alternative options if available.",
+          "The Hotel agrees to accept all bookings received through the Tripdip website, subject to availability and the Hotel's standard policies. The Hotel will make its best efforts to keep the availability status updated in real time on the Tripdip platform. In the event that the Hotel cannot accommodate a booking due to unavailability or any other circumstance, the Hotel agrees to promptly notify Tripdip and provide alternative options if available.",
       },
       {
         heading: "Customer Communication And Support",
         body:
-          "My Resorts Pune will handle customer inquiries, bookings, and other related communications up to the point of the guest's arrival at the Hotel. The Hotel will be responsible for providing timely and accurate responses to any guest inquiries or requests received after the guest's arrival, as well as on-site assistance during the guest's stay. The Hotel should be aware that any cancellation from the client side may damage the brand reputation of the platform and their own business, resulting in bad publicity and customer feedback. The service provider will not have any role in manipulating customer feedback or reviews.",
+          "Tripdip will handle customer inquiries, bookings, and other related communications up to the point of the guest's arrival at the Hotel. The Hotel will be responsible for providing timely and accurate responses to any guest inquiries or requests received after the guest's arrival, as well as on-site assistance during the guest's stay. The Hotel should be aware that any cancellation from the client side may damage the brand reputation of the platform and their own business, resulting in bad publicity and customer feedback. The service provider will not have any role in manipulating customer feedback or reviews.",
       },
       {
         heading: "Term And Termination",
@@ -138,7 +138,7 @@ export const legalPageContent = {
   },
   refundPolicy: {
     title: "Refund Policy",
-    description: "Cancellation, date change, payment, and guest count terms for bookings made with My Resorts Pune.",
+    description: "Cancellation, date change, payment, and guest count terms for bookings made with Tripdip.",
     sections: [
       {
         heading: "Booking Cancellation",
@@ -173,3 +173,4 @@ export const legalPageContent = {
     ],
   },
 } as const;
+

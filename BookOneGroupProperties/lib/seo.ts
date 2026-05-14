@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from "next";
 
-const siteName = "My Resort Pune";
+const siteName = "Tripdip";
 const defaultDescription =
   "Crafting unforgettable hospitality experiences across curated villas, resorts, and boutique stays.";
 

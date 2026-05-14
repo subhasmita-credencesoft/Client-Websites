@@ -20,7 +20,7 @@ export default function Page() {
     description: pageContent.contact.description,
     mainEntity: {
       "@type": "Organization",
-      name: "TripDip",
+      name: "Tripdip",
       email: footerData.contact.email,
       telephone: footerData.contact.phone,
       address: footerData.locations.map((location) => ({

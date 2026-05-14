@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   applicationName: siteSeo.siteName,
   manifest: "/manifest.webmanifest",
   keywords: [
-    "My Resort Pune",
+    "Tripdip",
   ],
   authors: [{ name: siteSeo.siteName }],
   creator: siteSeo.siteName,

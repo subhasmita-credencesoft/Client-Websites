@@ -109,10 +109,11 @@ type FeaturedCard = {
 };
 
 const featuredPropertySlugs = [
-  "vedanta-resort",
-  "orchard-resort",
-  "rajgad-water-park-resort",
-  "prathamesh-resort",
+  "shalom-maple-leaf",
+  "cherry-blossom",
+  "pool-and-pause",
+  "shirke-holiday-home",
+  "green-didis-cottage",
 ] as const;
 
 export const getDynamicPropertyBySlug = cache(async (slug: string): Promise<PropertyDetails | null> => {
