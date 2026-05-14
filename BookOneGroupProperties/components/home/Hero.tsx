@@ -29,7 +29,6 @@ export function Hero() {
   const [selectedPropertyLink, setSelectedPropertyLink] = useState(propertyOptions[0]?.link ?? "");
 
   useEffect(() => {
-    // Sync with URL params on mount
     const checkInStr = searchParams.get("checkIn") || searchParams.get("checkin");
     const checkOutStr = searchParams.get("checkOut") || searchParams.get("checkout");
     const guestStr = searchParams.get("guests") || searchParams.get("adults");
@@ -55,7 +54,6 @@ export function Hero() {
 
   useEffect(() => {
     if (mounted) {
-      // Only auto-update property if not manually selected
       if (!selectedPropertyLink || !propertyOptions.some(p => p.link === selectedPropertyLink)) {
         setSelectedPropertyLink(propertyOptions[0]?.link ?? "");
       }
@@ -63,14 +61,12 @@ export function Hero() {
   }, [propertyOptions, mounted]);
 
   const handleSearch = () => {
-    // Use start of day for consistency
     const checkInDate = dateRange?.from ? startOfDay(dateRange.from) : startOfDay(new Date());
     const checkOutDate = dateRange?.to ? startOfDay(dateRange.to) : addDays(checkInDate, 1);
     
     const selectedSlug = getSlugFromPropertyLink(selectedPropertyLink);
     const propertySource = selectedSlug ? propertySourceBySlug[selectedSlug.toLowerCase()] : null;
 
-    // If we have a direct booking path for the property, use the booking engine URL
     if (propertySource?.bookingPath) {
       const bookingUrl = buildBookingEngineUrl({
         baseUrl: `https://bookone.io/${propertySource.bookingPath}`,
@@ -81,11 +77,11 @@ export function Hero() {
         rooms: 1,
       });
 
-      window.location.assign(bookingUrl);
+      // ✅ FIXED: open in new tab so BookOne always initializes fresh with new dates
+      window.open(bookingUrl, "_blank", "noopener,noreferrer");
       return;
     }
 
-    // Fallback to internal properties page with search params
     const params = new URLSearchParams({
       checkIn: format(checkInDate, "yyyy-MM-dd"),
       checkOut: format(checkOutDate, "yyyy-MM-dd"),

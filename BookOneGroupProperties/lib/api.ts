@@ -1,3 +1,4 @@
+import { buildHotelMateCheckAvailabilityUrl } from "@/lib/hotelmate-availability";
 
 export async function fetchPropertyData(propertyId: number) {
   const response = await fetch(`https://api.thehotelmate.co/api/thm/findById/${propertyId}`, {
@@ -14,8 +15,19 @@ export async function fetchPropertyData(propertyId: number) {
   return response.json();
 }
 
-export async function fetchAvailability(propertyId: number, checkIn: string, checkOut: string) {
-  const response = await fetch(`https://api.thehotelmate.co/api/thm/checkAvailability/${propertyId}?checkIn=${checkIn}\u0026checkOut=${checkOut}`, {
+export async function fetchAvailability(
+  propertyId: number,
+  fromDate: string,
+  toDate: string,
+  options?: { noOfRooms?: number; noOfPersons?: number },
+) {
+  const url = buildHotelMateCheckAvailabilityUrl(propertyId, {
+    fromDate,
+    toDate,
+    noOfRooms: options?.noOfRooms ?? 1,
+    noOfPersons: options?.noOfPersons ?? 1,
+  });
+  const response = await fetch(url, {
     cache: "no-store", // Availability must always be fresh
     headers: {
       "Accept": "application/json",

@@ -208,6 +208,7 @@ function buildMinimalPropertyFromSource(source: import("@/data/property-sources"
       checkIn: "Oct 18, 2025",
       checkOut: "Oct 20, 2025",
       guests: ["2 Guests", "4 Guests", "6 Guests"],
+      availabilityApiUrl: `${CHECK_AVAILABILITY_BASE}/${source.propertyId}`,
       externalBookingUrl: `https://bookone.io/${source.bookingPath}?bookingEngine=true`,
       couponHint: "BOOKNOW",
       couponDiscount: 100,

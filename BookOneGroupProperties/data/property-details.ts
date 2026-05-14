@@ -230,9 +230,9 @@ function createSimplePropertyDetails(config: {
       guests: config.guests,
       availabilityApiUrl:
         config.availabilityApiUrl ??
-          config.slug === "vedanta-resort"
+        (config.slug === "vedanta-resort"
           ? "https://api.thehotelmate.co/api/thm/checkAvailability/1331"
-          : undefined,
+          : undefined),
       couponHint: config.couponHint,
       couponDiscount: config.couponDiscount,
       secureLabel: "Secure Booking",
@@ -1029,7 +1029,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
       checkIn: "Oct 18, 2025",
       checkOut: "Oct 20, 2025",
       guests: ["2 Guests", "4 Guests", "6 Guests"],
-      availabilityApiUrl: "https://bookone.io//api/thm/checkAvailability/1331",
+      availabilityApiUrl: "https://api.thehotelmate.co/api/thm/checkAvailability/1331",
       couponHint: "VEDANTA10",
       couponDiscount: 300,
       secureLabel: "Secure Booking",
@@ -1578,7 +1578,7 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
       checkIn: "Oct 18, 2025",
       checkOut: "Oct 20, 2025",
       guests: ["10 Guests", "15 Guests", "19 Guests"],
-      availabilityApiUrl: "/552",
+      availabilityApiUrl: "https://api.thehotelmate.co/api/thm/checkAvailability/552",
       couponHint: "MAYURWAN10",
       couponDiscount: 1000,
       secureLabel: "Secure Booking",

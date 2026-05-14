@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentType, SVGProps } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -26,7 +26,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { AmenityIconKey, PropertyDetails } from "@/data/property-details";
+import { propertySourceBySlug } from "@/data/property-sources";
 import { buildBookingEngineUrl } from "@/lib/booking-engine";
+import { buildHotelMateCheckAvailabilityUrl, parseHotelMatePropertyIdFromUrl } from "@/lib/hotelmate-availability";
 import { formatCurrency } from "@/lib/currency";
 import { addDays, format, parse, isValid, startOfDay } from "date-fns";
 import { useToast } from "@/lib/hooks/use-toast";
@@ -112,28 +114,24 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
     });
   };
 
-  // Availability Check Effect - only runs when mounted and dependencies change
+  // Availability: HotelMate contract — /checkAvailability/{propertyId}?fromDate&toDate&noOfRooms&noOfPersons
   useEffect(() => {
-    if (!mounted || !property.booking.availabilityApiUrl) return;
+    if (!mounted) return;
+
+    const propertyId = resolveHotelMatePropertyId(property);
+    if (propertyId == null) return;
 
     const controller = new AbortController();
-
-    let availabilityUrl: URL;
-    try {
-      availabilityUrl = new URL(property.booking.availabilityApiUrl);
-    } catch {
-      setAvailabilityLabel(property.booking.availability);
-      return;
-    }
-
-    availabilityUrl.searchParams.set("fromDate", checkInValue);
-    availabilityUrl.searchParams.set("toDate", checkOutValue);
-    availabilityUrl.searchParams.set("noOfRooms", "1");
-    availabilityUrl.searchParams.set("noOfPersons", guestCount.toString());
+    const availabilityUrl = buildHotelMateCheckAvailabilityUrl(propertyId, {
+      fromDate: checkInValue,
+      toDate: checkOutValue,
+      noOfRooms: 1,
+      noOfPersons: guestCount,
+    });
 
     setAvailabilityLabel("Checking Availability");
 
-    fetch(availabilityUrl.toString(), { signal: controller.signal })
+    fetch(availabilityUrl, { signal: controller.signal })
       .then(async (response) => {
         if (!response.ok) throw new Error(`Availability request failed: ${response.status}`);
         const data = await response.json();
@@ -145,7 +143,14 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
       });
 
     return () => controller.abort();
-  }, [checkInValue, checkOutValue, guestCount, property.booking.availability, property.booking.availabilityApiUrl, mounted]);
+  }, [
+    checkInValue,
+    checkOutValue,
+    guestCount,
+    mounted,
+    property.booking.availability,
+    property.slug,
+  ]);
 
   // To perfectly prevent hydration mismatch, we render a minimal shell until mounted
   if (!mounted) {
@@ -421,6 +426,15 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
       </div>
     </main>
   );
+}
+
+function resolveHotelMatePropertyId(property: PropertyDetails): number | null {
+  const slug = property.slug?.toLowerCase();
+  const registered = slug ? propertySourceBySlug[slug]?.propertyId : undefined;
+  if (typeof registered === "number" && Number.isFinite(registered)) {
+    return registered;
+  }
+  return parseHotelMatePropertyIdFromUrl(property.booking.availabilityApiUrl);
 }
 
 function PolicyCard({ title, items }: { title: string; items: string[] }) {
