@@ -4,7 +4,7 @@ export const siteContact = {
   phoneHref: "tel:+917666478855",
   whatsappHref: "https://wa.me/917666478855",
   websiteUrl: "https://tripdip.in/",
-  address: "Shirke's Holiday Home, Near Pawna Lake, Lonavala Road, Pune, Maharashtra 410406",
+  address: "Green didi’s cottage,Nagaon, Maharashtra 402204",
 } as const;
 
 export const siteLegalLinks = {

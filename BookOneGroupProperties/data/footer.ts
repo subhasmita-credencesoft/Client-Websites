@@ -21,15 +21,18 @@ export const footerData = {
         href: "https://www.instagram.com/tripdip", 
         icon: Instagram 
       },
+      /*
       { 
         label: "Facebook", 
         href: "https://www.facebook.com/tripdip", 
         icon: Facebook 
       },
+      */
     ],
   },
   locations: [
     siteContact.address,
+    "Shirke's Holiday Home, Opp. Kalamba Devi Temple, Alibaug, Akshi, Maharashtra 402204",
   ],
   legal: {
     copyright: "Designed and Developed by CredenceSoft and Powered By BookOne",
