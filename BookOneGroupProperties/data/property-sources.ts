@@ -12,7 +12,7 @@ export const propertySources: PropertySource[] = [
   { slug: "cherry-blossom", propertyId: 3269, fallbackImage: siteImages.santoriniVilla, bookingPath: "Cherry-Blossom" },
   { slug: "pool-and-pause", propertyId: 3270, fallbackImage: siteImages.resortPool, bookingPath: "Pool-And-Pause" },
   { slug: "shirke-holiday-home", propertyId: 2533, fallbackImage: siteImages.modernTropicalVilla, bookingPath: "Shirke-Holiday-Home" },
-  { slug: "green-didis-cottage", propertyId: 2514, fallbackImage: siteImages.mountainChalet, bookingPath: "Green-Didis-Cottage" },
+  { slug: "green-didi-s-cottage", propertyId: 2514, fallbackImage: siteImages.mountainChalet, bookingPath: "Green-Didi-S-Cottage" },
 ];
 
 export const propertySourceBySlug = Object.fromEntries(

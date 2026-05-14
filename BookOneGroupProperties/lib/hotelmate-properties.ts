@@ -113,7 +113,7 @@ const featuredPropertySlugs = [
   "cherry-blossom",
   "pool-and-pause",
   "shirke-holiday-home",
-  "green-didis-cottage",
+  "green-didi-s-cottage",
 ] as const;
 
 export const getDynamicPropertyBySlug = cache(async (slug: string): Promise<PropertyDetails | null> => {
@@ -327,7 +327,12 @@ function mapHotelMatePropertyToDetails(
   slug: string,
   fallbackImage: string,
 ): PropertyDetails {
-  const title = property.name?.trim() || slugToTitle(slug);
+  let title = property.name?.trim() || slugToTitle(slug);
+  // Fix the capitalization/hyphenation if the API returns it weirdly
+  if (title === "Green Didi'S Cottage" || slug === "green-didi-s-cottage") {
+    title = "Green-Didi-S-Cottage";
+  }
+
   const location = formatAddress(property.address);
   const images = prioritizePrimaryImage(getImageUrls(property.imageList, fallbackImage), slug, fallbackImage);
   // Rooms from live HotelMate API
