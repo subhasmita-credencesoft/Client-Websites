@@ -2,11 +2,18 @@
 
 import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
-import { ChevronDown, Search, Utensils, AlertCircle, Loader2 } from "lucide-react";
+import { ChevronDown, Search, Utensils, AlertCircle, Loader2, ShoppingCart, Plus, Minus, X } from "lucide-react";
 import { propertySources, type PropertySource } from "@/data/property-sources";
 import { formatCurrency } from "@/lib/currency";
 
 // ─── API Types ───────────────────────────────────────────────────────────────
+
+export type CartItem = {
+  id: string;
+  product: MenuProduct;
+  variation?: ProductVariation;
+  quantity: number;
+};
 
 type ProductImage = {
   url?: string | null;
@@ -131,10 +138,28 @@ function PropertyDropdown({
   );
 }
 
-function ProductCard({ product }: { product: MenuProduct }) {
+function ProductCard({
+  product,
+  cart,
+  updateCart,
+}: {
+  product: MenuProduct;
+  cart: Record<string, CartItem>;
+  updateCart: (item: CartItem, delta: number) => void;
+}) {
   const image = getProductImage(product);
   const hasVariations =
     product.productVariationDtoList && product.productVariationDtoList.length > 0;
+
+  const handleUpdate = (variation?: ProductVariation, delta = 1) => {
+    const id = variation ? `${product.id}-${variation.code}` : `${product.id}`;
+    updateCart({ id, product, variation, quantity: 0 }, delta);
+  };
+
+  const getQty = (variation?: ProductVariation) => {
+    const id = variation ? `${product.id}-${variation.code}` : `${product.id}`;
+    return cart[id]?.quantity || 0;
+  };
 
   return (
     <div className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
@@ -167,28 +192,66 @@ function ProductCard({ product }: { product: MenuProduct }) {
         )}
 
         {hasVariations && (
-          <div className="mb-3 space-y-1">
-            {product.productVariationDtoList!.map((variation) => (
-              <div key={variation.code} className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>{variation.name}</span>
-                <span className="font-bold text-primary">{formatCurrency(variation.sellUnitPrice)}</span>
-              </div>
-            ))}
+          <div className="mb-3 space-y-2">
+            {product.productVariationDtoList!.map((variation) => {
+              const qty = getQty(variation);
+              return (
+                <div key={variation.code} className="flex items-center justify-between text-xs text-muted-foreground">
+                  <div className="flex flex-col">
+                    <span>{variation.name}</span>
+                    <span className="font-bold text-primary">{formatCurrency(variation.sellUnitPrice)}</span>
+                  </div>
+                  {!product.outOfStock && (
+                    <div className="flex items-center gap-2">
+                      {qty > 0 ? (
+                        <>
+                          <button onClick={() => handleUpdate(variation, -1)} className="rounded-full bg-muted p-1 hover:bg-muted-foreground/20"><Minus className="h-3 w-3" /></button>
+                          <span className="font-medium text-foreground w-3 text-center">{qty}</span>
+                          <button onClick={() => handleUpdate(variation, 1)} className="rounded-full bg-primary p-1 text-white hover:bg-primary/90"><Plus className="h-3 w-3" /></button>
+                        </>
+                      ) : (
+                        <button onClick={() => handleUpdate(variation, 1)} className="rounded-full border border-primary px-3 py-1 text-primary hover:bg-primary/10 transition-colors">Add</button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
 
         <div className="mt-auto pt-3 border-t border-border/50 flex items-center justify-between">
           <span className="text-base font-bold text-primary">{getDisplayPrice(product)}</span>
-          {product.outOfStock && (
+          {product.outOfStock ? (
             <span className="text-xs font-medium text-red-500">Unavailable</span>
-          )}
+          ) : !hasVariations ? (
+            <div className="flex items-center gap-2">
+              {getQty() > 0 ? (
+                <>
+                  <button onClick={() => handleUpdate(undefined, -1)} className="rounded-full bg-muted p-1.5 hover:bg-muted-foreground/20"><Minus className="h-4 w-4" /></button>
+                  <span className="font-medium text-foreground w-4 text-center">{getQty()}</span>
+                  <button onClick={() => handleUpdate(undefined, 1)} className="rounded-full bg-primary p-1.5 text-white hover:bg-primary/90"><Plus className="h-4 w-4" /></button>
+                </>
+              ) : (
+                <button onClick={() => handleUpdate(undefined, 1)} className="rounded-full bg-primary px-4 py-1.5 text-sm font-bold text-white hover:bg-primary/90 transition-colors">Add</button>
+              )}
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
   );
 }
 
-function CategorySection({ category }: { category: MenuCategory }) {
+function CategorySection({
+  category,
+  cart,
+  updateCart,
+}: {
+  category: MenuCategory;
+  cart: Record<string, CartItem>;
+  updateCart: (item: CartItem, delta: number) => void;
+}) {
   const validProducts = category.productDtoList.filter(
     (p) => p.name?.trim()
   );
@@ -205,7 +268,7 @@ function CategorySection({ category }: { category: MenuCategory }) {
       </div>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {validProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} cart={cart} updateCart={updateCart} />
         ))}
       </div>
     </section>
@@ -260,6 +323,35 @@ export function RestaurantPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
   const [plateStyles, setPlateStyles] = useState<{top: string, left: string, transform: string}[]>([]);
+  const [carts, setCarts] = useState<Record<string, Record<string, CartItem>>>({});
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const cart = carts[selectedProperty.slug] || {};
+
+  const updateCart = (item: CartItem, delta: number) => {
+    setCarts((prevCarts) => {
+      const prevCart = prevCarts[selectedProperty.slug] || {};
+      const existing = prevCart[item.id];
+      const newQty = (existing?.quantity || 0) + delta;
+      
+      let nextCart;
+      if (newQty <= 0) {
+        nextCart = { ...prevCart };
+        delete nextCart[item.id];
+      } else {
+        nextCart = { ...prevCart, [item.id]: { ...item, quantity: newQty } };
+      }
+      
+      return { ...prevCarts, [selectedProperty.slug]: nextCart };
+    });
+  };
+
+  const cartItems = Object.values(cart);
+  const cartTotal = cartItems.reduce((sum, item) => {
+    const price = item.variation ? item.variation.sellUnitPrice : item.product.sellUnitPrice;
+    return sum + price * item.quantity;
+  }, 0);
+  const cartItemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   useEffect(() => {
     setPlateStyles(
@@ -425,11 +517,80 @@ export function RestaurantPage() {
         {!loading && !error && filteredData.length > 0 && (
           <div className="space-y-12">
             {filteredData.map((category) => (
-              <CategorySection key={category.id} category={category} />
+              <CategorySection key={category.id} category={category} cart={cart} updateCart={updateCart} />
             ))}
           </div>
         )}
       </div>
+
+      {/* Floating Cart Button */}
+      {cartItemCount > 0 && (
+        <button
+          onClick={() => setIsCartOpen(true)}
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-primary px-5 py-3 text-white shadow-xl hover:bg-primary/90 hover:scale-105 transition-all"
+        >
+          <div className="relative">
+            <ShoppingCart className="h-6 w-6" />
+            <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold shadow-sm">
+              {cartItemCount}
+            </span>
+          </div>
+          <span className="font-bold">{formatCurrency(cartTotal)}</span>
+        </button>
+      )}
+
+      {/* Cart Sidebar */}
+      {isCartOpen && (
+        <div className="fixed inset-0 z-[60] flex justify-end bg-black/50 backdrop-blur-sm transition-opacity">
+          <div className="h-full w-full max-w-md bg-white shadow-2xl flex flex-col">
+            <div className="flex items-center justify-between border-b px-6 py-4">
+              <h2 className="text-lg font-bold text-foreground">Your Order</h2>
+              <button onClick={() => setIsCartOpen(false)} className="rounded-full p-2 hover:bg-muted">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+              {cartItems.length === 0 ? (
+                <div className="flex h-full flex-col items-center justify-center text-muted-foreground">
+                  <ShoppingCart className="h-12 w-12 opacity-20 mb-4" />
+                  <p>Your cart is empty</p>
+                </div>
+              ) : (
+                cartItems.map((item) => {
+                  const price = item.variation ? item.variation.sellUnitPrice : item.product.sellUnitPrice;
+                  return (
+                    <div key={item.id} className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <h4 className="font-bold text-sm leading-tight">{item.product.name}</h4>
+                        {item.variation && <p className="text-xs text-muted-foreground mt-0.5">{item.variation.name}</p>}
+                        <div className="font-bold text-primary text-sm mt-1">{formatCurrency(price * item.quantity)}</div>
+                      </div>
+                      <div className="flex items-center gap-3 bg-muted/50 rounded-full px-2 py-1">
+                        <button onClick={() => updateCart(item, -1)} className="p-1 hover:text-primary"><Minus className="h-3 w-3" /></button>
+                        <span className="text-sm font-medium w-4 text-center">{item.quantity}</span>
+                        <button onClick={() => updateCart(item, 1)} className="p-1 hover:text-primary"><Plus className="h-3 w-3" /></button>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+
+            {cartItems.length > 0 && (
+              <div className="border-t bg-muted/20 p-6">
+                <div className="flex justify-between text-base font-bold mb-4">
+                  <span>Total</span>
+                  <span className="text-primary">{formatCurrency(cartTotal)}</span>
+                </div>
+                <button className="w-full rounded-xl bg-primary py-3.5 font-bold text-white shadow-lg hover:bg-primary/90 transition-all">
+                  Proceed to Checkout
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
