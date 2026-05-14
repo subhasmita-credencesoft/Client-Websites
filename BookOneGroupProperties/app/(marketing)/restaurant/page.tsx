@@ -1,5 +1,19 @@
-import { redirect } from "next/navigation";
+import { Suspense } from "react";
+import type { Metadata } from "next";
+import { RestaurantPage } from "@/components/pages/restaurant-page";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Restaurant & Dining",
+  description:
+    "Browse the full live menu for each Tripdip property — from breakfast to dinner, Kokani specials to Chinese cuisine.",
+  path: "/restaurant",
+});
 
 export default function Page() {
-  redirect("/packages/resort");
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <RestaurantPage />
+    </Suspense>
+  );
 }

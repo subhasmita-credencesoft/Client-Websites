@@ -3,16 +3,17 @@ import { siteImages } from "@/lib/site-images";
 export type PropertySource = {
   slug: string;
   propertyId: number;
+  restaurantId?: number;
   fallbackImage: string;
   bookingPath: string;
 };
 
 export const propertySources: PropertySource[] = [
-  { slug: "shalom-maple-leaf", propertyId: 3268, fallbackImage: siteImages.luxuryVillaSunset, bookingPath: "Shalom-Maple-Leaf" },
-  { slug: "cherry-blossom", propertyId: 3269, fallbackImage: siteImages.santoriniVilla, bookingPath: "Cherry-Blossom" },
-  { slug: "pool-and-pause", propertyId: 3270, fallbackImage: siteImages.resortPool, bookingPath: "Pool-And-Pause" },
-  { slug: "shirke-holiday-home", propertyId: 2533, fallbackImage: siteImages.modernTropicalVilla, bookingPath: "Shirke-Holiday-Home" },
-  { slug: "green-didi-s-cottage", propertyId: 2514, fallbackImage: siteImages.mountainChalet, bookingPath: "Green-Didi-S-Cottage" },
+  { slug: "shalom-maple-leaf", propertyId: 3268, restaurantId: 2334, fallbackImage: siteImages.luxuryVillaSunset, bookingPath: "Shalom-Maple-Leaf" },
+  { slug: "cherry-blossom", propertyId: 3269, restaurantId: 2337, fallbackImage: siteImages.santoriniVilla, bookingPath: "Cherry-Blossom" },
+  { slug: "pool-and-pause", propertyId: 3270, restaurantId: 2332, fallbackImage: siteImages.resortPool, bookingPath: "Pool-And-Pause" },
+  { slug: "shirke-holiday-home", propertyId: 2533, restaurantId: 2150, fallbackImage: siteImages.modernTropicalVilla, bookingPath: "Shirke-Holiday-Home" },
+  { slug: "green-didi-s-cottage", propertyId: 2514, restaurantId: 2148, fallbackImage: siteImages.mountainChalet, bookingPath: "Green-Didi-S-Cottage" },
 ];
 
 export const propertySourceBySlug = Object.fromEntries(

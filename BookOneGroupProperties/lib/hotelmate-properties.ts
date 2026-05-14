@@ -769,3 +769,21 @@ function buildExternalBookingUrl(seoFriendlyName?: string | null, slug?: string)
   const path = seoFriendlyName?.trim() || slugToTitle(slug ?? "").replace(/\s+/g, "-");
   return path ? `https://bookone.io/${path}` : undefined;
 }
+
+/** Returns the next Saturday from today (or today if it is Saturday). */
+function getDefaultCheckInDate(): string {
+  const today = new Date();
+  const daysUntilSaturday = (6 - today.getDay() + 7) % 7 || 7;
+  const checkIn = new Date(today);
+  checkIn.setDate(today.getDate() + daysUntilSaturday);
+  return checkIn.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+/** Returns the Sunday after the default check-in date. */
+function getDefaultCheckOutDate(): string {
+  const today = new Date();
+  const daysUntilSunday = (7 - today.getDay() + 7) % 7 || 7;
+  const checkOut = new Date(today);
+  checkOut.setDate(today.getDate() + daysUntilSunday);
+  return checkOut.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
