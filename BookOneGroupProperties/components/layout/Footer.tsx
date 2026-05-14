@@ -40,7 +40,7 @@ export function Footer() {
                   {footerData.contact.socialLinks.map((link) => {
                     const Icon = link.icon;
                     return (
-                      <a key={link.label} href={link.href} className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors" aria-label={link.label}>
+                      <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors" aria-label={link.label}>
                         <Icon className="w-4 h-4" />
                       </a>
                     );

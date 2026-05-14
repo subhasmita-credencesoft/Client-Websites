@@ -83,19 +83,6 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
   const checkInValue = format(checkInDate, "yyyy-MM-dd");
   const checkOutValue = format(checkOutDate, "yyyy-MM-dd");
 
-  const handleBookNow = () => {
-    const bookingUrl = buildBookingEngineUrl({
-      baseUrl: property.booking.externalBookingUrl ?? `https://bookone.io/${property.slug}`,
-      checkIn: checkInDate,
-      checkOut: checkOutDate,
-      adults: guestCount,
-      children: 0,
-      rooms: 1,
-    });
-
-    window.location.assign(bookingUrl);
-  };
-
   const handleShare = () => {
     if (typeof window !== "undefined") {
       navigator.clipboard.writeText(window.location.href);
@@ -159,7 +146,7 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
 
   return (
     <main className="relative min-h-screen bg-background font-sans">
-      <div className="group relative h-[42vh] min-h-[320px] w-full overflow-hidden md:h-[58vh] lg:h-[62vh]">
+      <div className="group relative h-[45vh] min-h-[420px] w-full overflow-hidden md:h-[58vh] lg:h-[62vh]">
         <div className="absolute inset-0">
           <Image
             src={property.images[activeImage]}
@@ -179,21 +166,21 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
           <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
         </button>
 
-        <div className="container absolute bottom-5 left-0 right-0 z-20 mx-auto flex flex-col gap-4 px-14 pr-24 text-white sm:px-6 md:bottom-8 md:flex-row md:items-end md:justify-between md:px-6 md:pr-6">
+        <div className="container absolute bottom-5 left-0 right-0 z-20 mx-auto flex flex-col gap-2.5 px-6 text-white md:bottom-8 md:flex-row md:items-end md:justify-between md:gap-4">
           <div>
-            <div className="mb-2 flex w-fit items-center gap-2 rounded-full bg-primary/80 px-3 py-1 text-sm font-medium backdrop-blur-sm">
+            <div className="mb-1.5 flex w-fit items-center gap-1.5 rounded-full bg-primary/80 px-2.5 py-0.5 text-[0.75rem] font-medium backdrop-blur-sm sm:px-3 sm:py-1 sm:text-sm">
               <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
               <span>{property.ratingLabel}</span>
             </div>
-            <h1 className="mb-2 text-2xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">{property.title}</h1>
-            <div className="flex items-center gap-2 text-sm text-white/90 sm:text-base">
-              <MapPin className="h-4 w-4 shrink-0" />
-              <span>{property.location}</span>
+            <h1 className="mb-2 text-xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">{property.title}</h1>
+            <div className="flex items-center gap-2 text-[0.8rem] text-white/90 sm:text-base">
+              <MapPin className="h-3.5 w-3.5 shrink-0" />
+              <span className="line-clamp-2">{property.location}</span>
             </div>
             {property.tags?.length ? (
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-2.5 flex flex-wrap gap-2 sm:mt-4">
                 {property.tags.map((tag) => (
-                  <span key={tag} className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold backdrop-blur-sm">
+                  <span key={tag} className="rounded-full bg-white/15 px-2.5 py-0.5 text-[0.65rem] font-bold backdrop-blur-sm sm:px-3 sm:py-1 sm:text-xs">
                     {tag}
                   </span>
                 ))}
@@ -404,11 +391,23 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
 
               <div className="space-y-3">
                 <Button
-                  type="button"
-                  onClick={handleBookNow}
+                  asChild
                   className="h-12 w-full bg-primary text-base font-bold shadow-lg shadow-primary/20 hover:bg-primary/90"
                 >
-                  Book Now
+                  <a
+                    href={buildBookingEngineUrl({
+                      baseUrl: property.booking.externalBookingUrl ?? `https://bookone.io/${property.slug}`,
+                      checkIn: checkInDate,
+                      checkOut: checkOutDate,
+                      adults: guestCount,
+                      children: 0,
+                      rooms: 1,
+                    })}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Book Now
+                  </a>
                 </Button>
                 <Button asChild variant="outline" className="h-12 w-full border-primary text-base font-bold text-primary hover:bg-primary/5">
                   <Link href="/contact">Contact Host</Link>

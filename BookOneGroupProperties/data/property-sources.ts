@@ -21,6 +21,8 @@ export const propertySources: PropertySource[] = [
   { slug: "peacock-hills-resort-pune", propertyId: 3519, fallbackImage: siteImages.peacockHills, bookingPath: "Peacock-Hills-Resort-Pune" },
   { slug: "a-r-villa", propertyId: 1055, fallbackImage: siteImages.luxuryVillaSunset, bookingPath: "A-R-Villa" },
   { slug: "4-bhk-bhor", propertyId: 3520, fallbackImage: siteImages.fourBhkBhor, bookingPath: "4-BHK-Bhor-Pune" },
+  { slug: "7-bhk-skyabode", propertyId: 527, fallbackImage: siteImages.hero, bookingPath: "7-BHK-Skyabode" }
+  
 ];
 
 export const propertySourceBySlug = Object.fromEntries(
