@@ -1,4 +1,5 @@
 ﻿import { Hero } from "@/components/home/Hero";
+import { Suspense } from "react";
 import { LocationHighlights } from "@/components/home/LocationHighlights";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { FeaturedSection } from "@/components/home/FeaturedSection";
@@ -14,8 +15,12 @@ type HomePageProps = {
 export function HomePage({ locationHighlightsData, featuredPropertiesData }: HomePageProps) {
   return (
     <>
-      <Hero />
-      <LocationHighlights data={locationHighlightsData} />
+      <Suspense fallback={null}>
+        <Hero />
+      </Suspense>
+      <Suspense fallback={null}>
+        <LocationHighlights data={locationHighlightsData} />
+      </Suspense>
       <WhyTripDipCarousel />
       <FeaturedSection data={featuredPropertiesData} />
       <PropertyOwnerCTA />

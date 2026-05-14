@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { FeaturedSection } from "@/components/home/FeaturedSection";
 import { LocationHighlights } from "@/components/home/LocationHighlights";
 import { pageContent } from "@/data/pages";
@@ -25,7 +26,9 @@ export function PropertiesPage({ locationHighlightsData, featuredPropertiesData 
           </p>
         </div>
       </section>
-      <LocationHighlights data={locationHighlightsData} />
+      <Suspense fallback={null}>
+        <LocationHighlights data={locationHighlightsData} />
+      </Suspense>
       <FeaturedSection data={featuredPropertiesData} />
     </main>
   );
