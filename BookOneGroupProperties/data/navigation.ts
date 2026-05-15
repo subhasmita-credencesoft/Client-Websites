@@ -1,6 +1,16 @@
 import { siteContact } from "@/data/site";
 
-export const navigationData = {
+interface NavLink {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+}
+
+export const navigationData: {
+  brand: { name: string; tagline: string };
+  links: NavLink[];
+  mobileCtaLabel: string;
+} = {
   brand: {
     name: "Tripdip",
     tagline: "It's Your Day",

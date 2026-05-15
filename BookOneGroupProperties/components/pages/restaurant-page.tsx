@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import Image from "next/image";
-import { ChevronDown, Search, Utensils, AlertCircle, Loader2, ShoppingCart, Plus, Minus, X } from "lucide-react";
+
+import { ChevronDown, ChevronLeft, Search, Utensils, AlertCircle, Loader2, ShoppingCart, Plus, Minus, X, MapPin, ClipboardList, Clock } from "lucide-react";
 import { propertySources, type PropertySource } from "@/data/property-sources";
 import { formatCurrency } from "@/lib/currency";
 
@@ -13,6 +13,7 @@ export type CartItem = {
   product: MenuProduct;
   variation?: ProductVariation;
   quantity: number;
+  notes?: string;
 };
 
 type ProductImage = {
@@ -36,11 +37,38 @@ type MenuProduct = {
   productVariationDtoList?: ProductVariation[];
 };
 
+type Resource = {
+  resourceName: string;
+};
+
 type MenuCategory = {
   id: number;
   name: string;
   businessServiceId: number;
   productDtoList: MenuProduct[];
+};
+
+type SlotAvailability = {
+  noOfBooked: number;
+  noOfAvailable: number;
+};
+
+type SlotTiming = {
+  startTime: string;
+  finishTime: string;
+  duration: number;
+  slotAvailabilityDto: SlotAvailability;
+};
+
+type SlotResource = {
+  name: string;
+  availableTimings: SlotTiming[];
+};
+
+type SlotsResponse = {
+  date: number;
+  day: string;
+  resourceList: SlotResource[];
 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -55,6 +83,35 @@ async function fetchMenuData(propertyId: number): Promise<MenuCategory[]> {
   if (!res.ok) throw new Error(`API error: ${res.status}`);
   const data = await res.json();
   return Array.isArray(data) ? data : [];
+}
+
+async function fetchResources(propertyId: number): Promise<Resource[]> {
+  const res = await fetch(`https://api.bookone.io/api-bookone/api/website/${propertyId}/resources`, {
+    cache: "no-store",
+    headers: { Accept: "application/json" },
+  });
+  if (!res.ok) return [];
+  const data = await res.json();
+  return Array.isArray(data) ? data : [];
+}
+
+async function fetchSlots(propertyId: number, websiteId: number, date: string): Promise<SlotsResponse | null> {
+  try {
+    // Note: websiteId (e.g. 1306) is the Master Website ID for TripDip group
+    const url = `https://api.bookone.io/api-bookone/api/website/${websiteId}/slots?Date=${date}&businessServiceId=${propertyId}`;
+    const res = await fetch(url, {
+      cache: "no-store",
+      headers: { Accept: "application/json" },
+    });
+    if (!res.ok) {
+      console.error(`Slots API Error: ${res.status} for ID ${propertyId}`);
+      return null;
+    }
+    return await res.json();
+  } catch (err) {
+    console.error("Slots Fetch Failed:", err);
+    return null;
+  }
 }
 
 function getProductImage(product: MenuProduct): string | null {
@@ -123,11 +180,10 @@ function PropertyDropdown({
                 onChange(source);
                 setOpen(false);
               }}
-              className={`flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-medium transition-colors ${
-                source.slug === selected.slug
-                  ? "bg-primary/10 text-primary"
-                  : "text-foreground hover:bg-muted/50"
-              }`}
+              className={`flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-medium transition-colors ${source.slug === selected.slug
+                ? "bg-primary/10 text-primary"
+                : "text-foreground hover:bg-muted/50"
+                }`}
             >
               {slugToPropertyName(source.slug)}
             </button>
@@ -142,10 +198,12 @@ function ProductCard({
   product,
   cart,
   updateCart,
+  onShowDetails,
 }: {
   product: MenuProduct;
   cart: Record<string, CartItem>;
   updateCart: (item: CartItem, delta: number) => void;
+  onShowDetails: (product: MenuProduct) => void;
 }) {
   const image = getProductImage(product);
   const hasVariations =
@@ -163,15 +221,16 @@ function ProductCard({
 
   return (
     <div className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
-      <div className="relative h-36 w-full overflow-hidden bg-muted/30">
+      <div
+        className="relative h-36 w-full overflow-hidden bg-muted/30 cursor-pointer"
+        onClick={() => onShowDetails(product)}
+      >
         {image ? (
-          <Image
+          <img
             src={image}
             alt={product.name}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            unoptimized
+            loading="lazy"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
@@ -186,7 +245,12 @@ function ProductCard({
       </div>
 
       <div className="flex flex-1 flex-col p-3">
-        <h3 className="mb-0.5 text-sm font-bold text-foreground leading-tight">{product.name.trim()}</h3>
+        <h3
+          className="mb-0.5 text-sm font-bold text-foreground leading-tight cursor-pointer hover:text-primary transition-colors"
+          onClick={() => onShowDetails(product)}
+        >
+          {product.name.trim()}
+        </h3>
         {product.shortDescription && (
           <p className="mb-2 text-[11px] text-muted-foreground leading-relaxed line-clamp-2">{product.shortDescription}</p>
         )}
@@ -247,10 +311,12 @@ function CategorySection({
   category,
   cart,
   updateCart,
+  onShowDetails,
 }: {
   category: MenuCategory;
   cart: Record<string, CartItem>;
   updateCart: (item: CartItem, delta: number) => void;
+  onShowDetails: (product: MenuProduct) => void;
 }) {
   const validProducts = category.productDtoList.filter(
     (p) => p.name?.trim()
@@ -268,10 +334,153 @@ function CategorySection({
       </div>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {validProducts.map((product) => (
-          <ProductCard key={product.id} product={product} cart={cart} updateCart={updateCart} />
+          <ProductCard key={product.id} product={product} cart={cart} updateCart={updateCart} onShowDetails={onShowDetails} />
         ))}
       </div>
     </section>
+  );
+}
+
+// ─── Product Detail Modal ───────────────────────────────────────────────────
+
+function ProductModal({
+  product,
+  onClose,
+  cart,
+  updateCart,
+}: {
+  product: MenuProduct;
+  onClose: () => void;
+  cart: Record<string, CartItem>;
+  updateCart: (item: CartItem, delta: number) => void;
+}) {
+  const image = getProductImage(product);
+  const hasVariations = product.productVariationDtoList && product.productVariationDtoList.length > 0;
+
+  const handleUpdate = (variation?: ProductVariation, delta = 1) => {
+    const id = variation ? `${product.id}-${variation.code}` : `${product.id}`;
+    updateCart({ id, product, variation, quantity: 0 }, delta);
+  };
+
+  const getQty = (variation?: ProductVariation) => {
+    const id = variation ? `${product.id}-${variation.code}` : `${product.id}`;
+    return cart[id]?.quantity || 0;
+  };
+
+  return (
+    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+      <div className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl animate-in zoom-in-95 duration-200">
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 z-10 rounded-full bg-black/20 p-2 text-white backdrop-blur-md hover:bg-black/40 transition-colors"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        <div className="relative h-64 w-full">
+          {image ? (
+            <img
+              src={image}
+              alt={product.name}
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center bg-muted">
+              <Utensils className="h-16 w-16 text-muted-foreground/20" />
+            </div>
+          )}
+        </div>
+
+        <div className="p-6 md:p-8">
+          <div className="mb-4 flex items-start justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground">{product.name}</h2>
+              <p className="text-sm text-primary font-bold mt-1">{getDisplayPrice(product)}</p>
+            </div>
+            {product.outOfStock && (
+              <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-bold text-red-600">
+                Out of Stock
+              </span>
+            )}
+          </div>
+
+          {product.shortDescription && (
+            <p className="mb-6 text-sm text-muted-foreground leading-relaxed">
+              {product.shortDescription}
+            </p>
+          )}
+
+          {hasVariations ? (
+            <div className="space-y-3">
+              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Select Option</p>
+              {product.productVariationDtoList!.map((variation) => {
+                const qty = getQty(variation);
+                return (
+                  <div key={variation.code} className="flex items-center justify-between rounded-xl border border-border p-3 transition-colors hover:border-primary">
+                    <div>
+                      <p className="text-sm font-bold">{variation.name}</p>
+                      <p className="text-xs text-primary font-bold">{formatCurrency(variation.sellUnitPrice)}</p>
+                    </div>
+                    {!product.outOfStock && (
+                      <div className="flex items-center gap-3">
+                        {qty > 0 ? (
+                          <>
+                            <button onClick={() => handleUpdate(variation, -1)} className="rounded-full bg-muted p-1 hover:bg-muted-foreground/20">
+                              <Minus className="h-3 w-3" />
+                            </button>
+                            <span className="text-sm font-bold w-4 text-center">{qty}</span>
+                            <button onClick={() => handleUpdate(variation, 1)} className="rounded-full bg-primary p-1 text-white hover:bg-primary/90">
+                              <Plus className="h-3 w-3" />
+                            </button>
+                          </>
+                        ) : (
+                          <button
+                            onClick={() => handleUpdate(variation, 1)}
+                            className="rounded-full bg-primary px-4 py-1.5 text-xs font-bold text-white hover:bg-primary/90"
+                          >
+                            Add
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="mt-8 flex items-center justify-between border-t pt-6">
+              <div className="flex flex-col">
+                <span className="text-xs font-bold text-muted-foreground uppercase">Total Price</span>
+                <span className="text-xl font-bold text-primary">{formatCurrency(product.sellUnitPrice)}</span>
+              </div>
+              {!product.outOfStock && (
+                <div className="flex items-center gap-4">
+                  {getQty() > 0 ? (
+                    <>
+                      <button onClick={() => handleUpdate(undefined, -1)} className="rounded-full bg-muted p-2 hover:bg-muted-foreground/20">
+                        <Minus className="h-4 w-4" />
+                      </button>
+                      <span className="text-lg font-bold w-6 text-center">{getQty()}</span>
+                      <button onClick={() => handleUpdate(undefined, 1)} className="rounded-full bg-primary p-2 text-white hover:bg-primary/90">
+                        <Plus className="h-4 w-4" />
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => handleUpdate(undefined, 1)}
+                      className="rounded-xl bg-primary px-8 py-3 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-95"
+                    >
+                      Add to Order
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -300,11 +509,10 @@ function CategoryNav({
             const el = document.getElementById(`category-${cat.id}`);
             if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
-          className={`shrink-0 rounded-full px-4 py-2 text-xs font-bold transition-all ${
-            activeId === cat.id
-              ? "bg-primary text-white shadow-md"
-              : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-100"
-          }`}
+          className={`shrink-0 rounded-full px-4 py-2 text-xs font-bold transition-all ${activeId === cat.id
+            ? "bg-primary text-white shadow-md"
+            : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-100"
+            }`}
         >
           {cat.name.trim()}
         </button>
@@ -322,9 +530,17 @@ export function RestaurantPage() {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
-  const [plateStyles, setPlateStyles] = useState<{top: string, left: string, transform: string}[]>([]);
+  const [plateStyles, setPlateStyles] = useState<{ top: string, left: string, transform: string }[]>([]);
   const [carts, setCarts] = useState<Record<string, Record<string, CartItem>>>({});
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<MenuProduct | null>(null);
+  const [checkoutStep, setCheckoutStep] = useState<'cart' | 'review'>('cart');
+  const [resources, setResources] = useState<Resource[]>([]);
+  const [selectedResource, setSelectedResource] = useState<string>("");
+  const [slotsData, setSlotsData] = useState<SlotsResponse | null>(null);
+  const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split('T')[0]);
+  const [selectedSlot, setSelectedSlot] = useState<string>("");
+  const [loadingSlots, setLoadingSlots] = useState(false);
 
   const cart = carts[selectedProperty.slug] || {};
 
@@ -333,15 +549,24 @@ export function RestaurantPage() {
       const prevCart = prevCarts[selectedProperty.slug] || {};
       const existing = prevCart[item.id];
       const newQty = (existing?.quantity || 0) + delta;
-      
+
       let nextCart;
       if (newQty <= 0) {
         nextCart = { ...prevCart };
         delete nextCart[item.id];
       } else {
-        nextCart = { ...prevCart, [item.id]: { ...item, quantity: newQty } };
+        nextCart = { ...prevCart, [item.id]: { ...(existing || item), quantity: newQty } };
       }
-      
+
+      return { ...prevCarts, [selectedProperty.slug]: nextCart };
+    });
+  };
+
+  const updateItemNotes = (itemId: string, notes: string) => {
+    setCarts((prevCarts) => {
+      const prevCart = prevCarts[selectedProperty.slug] || {};
+      if (!prevCart[itemId]) return prevCarts;
+      const nextCart = { ...prevCart, [itemId]: { ...prevCart[itemId], notes } };
       return { ...prevCarts, [selectedProperty.slug]: nextCart };
     });
   };
@@ -365,31 +590,57 @@ export function RestaurantPage() {
 
   // Fetch menu data whenever selected property changes
   useEffect(() => {
-    let cancelled = false;
-    setLoading(true);
-    setError(null);
-    setMenuData([]);
-    setSearchQuery("");
+    const loadData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const id = selectedProperty.restaurantId || selectedProperty.propertyId;
+        const [menu, resList] = await Promise.all([
+          fetchMenuData(id),
+          fetchResources(id)
+        ]);
+        setMenuData(menu);
+        setResources(resList);
+        if (menu.length > 0) setActiveCategory(menu[0].id);
 
-    fetchMenuData(selectedProperty.restaurantId || selectedProperty.propertyId)
-      .then((data) => {
-        if (!cancelled) {
-          setMenuData(data);
-          setActiveCategory(data[0]?.id ?? null);
-          setLoading(false);
-        }
-      })
-      .catch((err) => {
-        if (!cancelled) {
-          setError(err instanceof Error ? err.message : "Failed to load menu.");
-          setLoading(false);
-        }
-      });
-
-    return () => {
-      cancelled = true;
+        // Fetch slots for initial date
+        setLoadingSlots(true);
+        const slots = await fetchSlots(id, selectedProperty.slotsWebsiteId || 1306, selectedDate);
+        setSlotsData(slots);
+        setLoadingSlots(false);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load menu");
+      } finally {
+        setLoading(false);
+      }
     };
+    loadData();
   }, [selectedProperty]);
+
+  // Fetch slots whenever date changes
+  useEffect(() => {
+    const loadSlots = async () => {
+      const id = selectedProperty.restaurantId || selectedProperty.propertyId;
+      setLoadingSlots(true);
+      const slots = await fetchSlots(id, selectedProperty.slotsWebsiteId || 1306, selectedDate);
+      setSlotsData(slots);
+      setLoadingSlots(false);
+    };
+    if (!loading) loadSlots();
+  }, [selectedDate]);
+
+  const availableSlots = useMemo(() => {
+    if (!slotsData || !slotsData.resourceList) return [];
+    // Combine all timings from all resources and remove duplicates
+    const allTimings = slotsData.resourceList.flatMap(r => r.availableTimings);
+    // Filter for slots that have at least one unit available
+    const unique = Array.from(new Set(
+      allTimings
+        .filter(t => t.slotAvailabilityDto?.noOfAvailable > 0)
+        .map(t => t.startTime)
+    )).sort();
+    return unique;
+  }, [slotsData]);
 
   // Filter categories & products by search query
   const filteredData = useMemo<MenuCategory[]>(() => {
@@ -517,11 +768,26 @@ export function RestaurantPage() {
         {!loading && !error && filteredData.length > 0 && (
           <div className="space-y-12">
             {filteredData.map((category) => (
-              <CategorySection key={category.id} category={category} cart={cart} updateCart={updateCart} />
+              <CategorySection
+                key={category.id}
+                category={category}
+                cart={cart}
+                updateCart={updateCart}
+                onShowDetails={setSelectedProduct}
+              />
             ))}
           </div>
         )}
       </div>
+
+      {selectedProduct && (
+        <ProductModal
+          product={selectedProduct}
+          cart={cart}
+          updateCart={updateCart}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
 
       {/* Floating Cart Button */}
       {cartItemCount > 0 && (
@@ -542,38 +808,281 @@ export function RestaurantPage() {
       {/* Cart Sidebar */}
       {isCartOpen && (
         <div className="fixed inset-0 z-[60] flex justify-end bg-black/50 backdrop-blur-sm transition-opacity">
-          <div className="h-full w-full max-w-md bg-white shadow-2xl flex flex-col">
+          <div className="h-full w-full max-w-md bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
             <div className="flex items-center justify-between border-b px-6 py-4">
-              <h2 className="text-lg font-bold text-foreground">Your Order</h2>
-              <button onClick={() => setIsCartOpen(false)} className="rounded-full p-2 hover:bg-muted">
+              <div className="flex items-center gap-2">
+                {checkoutStep === 'review' && (
+                  <button onClick={() => setCheckoutStep('cart')} className="mr-1 rounded-full p-1 hover:bg-muted">
+                    <ChevronLeft className="h-5 w-5 text-primary" />
+                  </button>
+                )}
+                <h2 className="text-lg font-bold text-foreground">
+                  {checkoutStep === 'cart' ? 'Your Order' : 'Order Details'}
+                </h2>
+              </div>
+              <button onClick={() => { setIsCartOpen(false); setCheckoutStep('cart'); }} className="rounded-full p-2 hover:bg-muted">
                 <X className="h-5 w-5" />
               </button>
             </div>
-            
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+
+            <div className="flex-1 overflow-y-auto p-6">
               {cartItems.length === 0 ? (
                 <div className="flex h-full flex-col items-center justify-center text-muted-foreground">
                   <ShoppingCart className="h-12 w-12 opacity-20 mb-4" />
                   <p>Your cart is empty</p>
                 </div>
-              ) : (
-                cartItems.map((item) => {
-                  const price = item.variation ? item.variation.sellUnitPrice : item.product.sellUnitPrice;
-                  return (
-                    <div key={item.id} className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <h4 className="font-bold text-sm leading-tight">{item.product.name}</h4>
-                        {item.variation && <p className="text-xs text-muted-foreground mt-0.5">{item.variation.name}</p>}
-                        <div className="font-bold text-primary text-sm mt-1">{formatCurrency(price * item.quantity)}</div>
+              ) : checkoutStep === 'cart' ? (
+                <div className="space-y-6">
+                  {cartItems.map((item) => {
+                    const price = item.variation ? item.variation.sellUnitPrice : item.product.sellUnitPrice;
+                    const itemImage = getProductImage(item.product);
+                    return (
+                      <div key={item.id} className="flex items-start justify-between gap-4 animate-in fade-in slide-in-from-bottom-2 duration-200">
+                        <div className="flex items-start gap-3 flex-1">
+                          <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-muted/30 border border-border/40">
+                            {itemImage ? (
+                              <img src={itemImage} alt={item.product.name} className="h-full w-full object-cover" />
+                            ) : (
+                              <div className="flex h-full w-full items-center justify-center">
+                                <Utensils className="h-5 w-5 text-muted-foreground/30" />
+                              </div>
+                            )}
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-bold text-sm leading-tight">{item.product.name}</h4>
+                            {item.variation && <p className="text-xs text-muted-foreground mt-0.5">{item.variation.name}</p>}
+                            <div className="font-bold text-primary text-sm mt-1">{formatCurrency(price * item.quantity)}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 bg-muted/50 rounded-full px-2 py-1 self-center">
+                          <button onClick={() => updateCart(item, -1)} className="p-1 hover:text-primary"><Minus className="h-3 w-3" /></button>
+                          <span className="text-sm font-medium w-4 text-center font-bold">{item.quantity}</span>
+                          <button onClick={() => updateCart(item, 1)} className="p-1 hover:text-primary"><Plus className="h-3 w-3" /></button>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-3 bg-muted/50 rounded-full px-2 py-1">
-                        <button onClick={() => updateCart(item, -1)} className="p-1 hover:text-primary"><Minus className="h-3 w-3" /></button>
-                        <span className="text-sm font-medium w-4 text-center">{item.quantity}</span>
-                        <button onClick={() => updateCart(item, 1)} className="p-1 hover:text-primary"><Plus className="h-3 w-3" /></button>
+                    );
+                  })}
+                </div>
+              ) : (
+                /* Order Details Review View */
+                <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-300">
+                  <div>
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-4 px-1">Order Summary</h3>
+                    <div className="rounded-2xl border border-border/50 bg-muted/5 p-4 space-y-4">
+                      {/* Premium Table Header */}
+                      <div className="hidden md:grid grid-cols-12 gap-2 pb-2 px-1 text-[9px] font-bold uppercase tracking-wider text-muted-foreground/60 border-b border-border/40">
+                        <div className="col-span-3">Description</div>
+                        <div className="col-span-2">Details</div>
+                        <div className="col-span-2 text-center">Types</div>
+                        <div className="col-span-1 text-center">Quantity</div>
+                        <div className="col-span-2 text-right">Unit Price</div>
+                        <div className="col-span-2 text-right">Amount</div>
+                      </div>
+
+                      {cartItems.map((item) => {
+                        const unitPrice = item.variation ? item.variation.sellUnitPrice : item.product.sellUnitPrice;
+                        const amount = unitPrice * item.quantity;
+                        const itemImage = getProductImage(item.product);
+                        return (
+                          <div key={item.id} className="border-b border-border/20 last:border-0 pb-4 md:pb-0">
+                            <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-2 items-center py-3">
+                              <div className="col-span-3 flex gap-3">
+                                <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-white border border-border/40 shadow-sm">
+                                  {itemImage ? (
+                                    <img src={itemImage} alt={item.product.name} className="h-full w-full object-cover" />
+                                  ) : (
+                                    <div className="flex h-full w-full items-center justify-center bg-muted/10">
+                                      <Utensils className="h-5 w-5 text-muted-foreground/20" />
+                                    </div>
+                                  )}
+                                </div>
+                                <div className="flex flex-col justify-center min-w-0">
+                                  <h4 className="text-xs font-bold text-foreground leading-tight truncate">{item.product.name}</h4>
+                                </div>
+                              </div>
+
+                              <div className="col-span-2 hidden md:block">
+                                <p className="text-[10px] text-muted-foreground line-clamp-2">{item.product.shortDescription || 'No details'}</p>
+                              </div>
+
+                              <div className="col-span-2 text-center hidden md:block">
+                                <span className="text-[10px] font-medium text-muted-foreground bg-muted/40 px-2 py-1 rounded-lg">
+                                  {item.variation ? item.variation.name : 'Standard'}
+                                </span>
+                              </div>
+
+                              <div className="col-span-1 text-center hidden md:block">
+                                <span className="text-xs font-bold text-foreground">{item.quantity}</span>
+                              </div>
+
+                              <div className="col-span-2 text-right hidden md:block">
+                                <span className="text-xs font-bold text-muted-foreground">{formatCurrency(unitPrice)}</span>
+                              </div>
+
+                              <div className="col-span-2 text-right flex justify-between md:block items-center">
+                                <div className="md:hidden flex flex-col items-start">
+                                  <span className="text-[10px] font-bold text-muted-foreground">{item.quantity} x {formatCurrency(unitPrice)}</span>
+                                  <span className="text-[10px] text-muted-foreground italic mt-0.5">{item.variation?.name || 'Standard'}</span>
+                                </div>
+                                <span className="text-sm font-black text-primary">{formatCurrency(amount)}</span>
+                              </div>
+                            </div>
+                            {/* Item Notes Field */}
+                            <div className="px-1 mb-2">
+                              <div className="flex items-center gap-2 text-[9px] font-bold uppercase text-muted-foreground/40 mb-1">
+                                <ClipboardList className="h-2.5 w-2.5" /> Notes
+                              </div>
+                              <input
+                                type="text"
+                                placeholder="Add note (e.g. extra spicy, no onion)"
+                                value={item.notes || ''}
+                                onChange={(e) => updateItemNotes(item.id, e.target.value)}
+                                className="w-full bg-muted/20 border-none rounded-lg px-3 py-1.5 text-[10px] outline-none focus:ring-1 focus:ring-primary/30 transition-all"
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                      <div className="bg-white rounded-xl p-5 space-y-3 border border-border/40 mt-4 shadow-sm">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-muted-foreground font-medium">Sub Total:</span>
+                          <span className="font-bold text-foreground">{formatCurrency(cartTotal)}</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-muted-foreground font-medium">Tax Amount:</span>
+                          <span className="font-bold text-foreground">{formatCurrency(cartTotal * 0.05)}</span>
+                        </div>
+                        <div className="border-t border-dashed border-border/60 pt-3 flex justify-between items-center">
+                          <span className="text-base font-bold text-foreground">Total Amount:</span>
+                          <span className="text-xl font-black text-primary">{formatCurrency(cartTotal * 1.05)}</span>
+                        </div>
                       </div>
                     </div>
-                  );
-                })
+                  </div>
+
+                  <div className="space-y-6">
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-2 px-1">Service Details</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Order Date:</label>
+                        <div className="rounded-xl border border-border/40 bg-muted/10 px-4 py-3 text-sm font-bold text-foreground">
+                          {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Pickup/Delivery Date & Time:</label>
+                        <div className="flex gap-2">
+                          <input
+                            type="date"
+                            value={selectedDate}
+                            min={new Date().toISOString().split('T')[0]}
+                            onChange={(e) => setSelectedDate(e.target.value)}
+                            className="flex-1 rounded-xl border border-border/50 bg-white px-4 py-3 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                          />
+                          <div className="flex items-center rounded-xl bg-primary/10 px-3 text-xs font-bold text-primary border border-primary/20">
+                            {selectedSlot || '--:--'}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between px-1">
+                        <label className="text-[10px] font-bold uppercase text-muted-foreground/80">Available Time Slots</label>
+                      </div>
+                      
+                      {loadingSlots ? (
+                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                          {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                            <div key={i} className="h-10 rounded-xl bg-muted/40 animate-pulse border border-border/20" />
+                          ))}
+                        </div>
+                      ) : availableSlots.length > 0 ? (
+                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                          {availableSlots.map((slot) => (
+                            <button
+                              key={slot}
+                              type="button"
+                              onClick={() => setSelectedSlot(slot)}
+                              className={`rounded-xl border py-2.5 text-[11px] font-bold transition-all shadow-sm ${selectedSlot === slot
+                                ? "border-primary bg-primary text-white shadow-primary/20 scale-[1.02]"
+                                : "border-border/40 bg-white text-foreground hover:border-primary/50"
+                                }`}
+                            >
+                              {slot}
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="rounded-xl border border-dashed border-border/60 p-6 text-center bg-muted/5">
+                          <Clock className="h-6 w-6 text-muted-foreground/20 mx-auto mb-2" />
+                          <p className="text-[11px] text-muted-foreground font-medium leading-relaxed">
+                            No available slots found for this date.<br/>Please try another date.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
+                          <MapPin className="h-3 w-3 text-primary" /> Property
+                        </div>
+                        <div className="rounded-2xl border border-border/50 bg-white px-5 py-4 text-sm font-bold text-foreground shadow-sm">
+                          {slugToPropertyName(selectedProperty.slug)}
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
+                          <ClipboardList className="h-3 w-3 text-primary" /> Delivery Info / Table
+                        </div>
+                        {resources.length > 0 ? (
+                          <div className="space-y-3">
+                            <div className="grid grid-cols-4 gap-2">
+                              {resources.map((res) => (
+                                <button
+                                  key={res.resourceName}
+                                  type="button"
+                                  onClick={() => setSelectedResource(res.resourceName)}
+                                  className={`rounded-lg border py-2 text-[10px] font-bold transition-all ${selectedResource === res.resourceName
+                                    ? "border-primary bg-primary/10 text-primary"
+                                    : "border-border/40 bg-white text-muted-foreground"
+                                    }`}
+                                >
+                                  {res.resourceName}
+                                </button>
+                              ))}
+                            </div>
+                            <input
+                              type="text"
+                              placeholder="Or enter manually"
+                              value={selectedResource}
+                              onChange={(e) => setSelectedResource(e.target.value)}
+                              className="w-full rounded-xl border border-border/50 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-primary transition-all shadow-sm"
+                            />
+                          </div>
+                        ) : (
+                          <input
+                            type="text"
+                            placeholder="Room Number or Table Number"
+                            value={selectedResource}
+                            onChange={(e) => setSelectedResource(e.target.value)}
+                            className="w-full rounded-2xl border border-border/50 bg-white px-5 py-4 text-sm font-bold outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all shadow-sm"
+                          />
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Special Notes</label>
+                        <textarea
+                          placeholder="Any special instructions for the chef?"
+                          className="w-full rounded-2xl border border-border/50 bg-white px-5 py-4 text-sm font-medium outline-none focus:border-primary transition-all shadow-sm min-h-[100px] resize-none"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
 
@@ -583,9 +1092,26 @@ export function RestaurantPage() {
                   <span>Total</span>
                   <span className="text-primary">{formatCurrency(cartTotal)}</span>
                 </div>
-                <button className="w-full rounded-xl bg-primary py-3.5 font-bold text-white shadow-lg hover:bg-primary/90 transition-all">
-                  Proceed to Checkout
-                </button>
+                {checkoutStep === 'cart' ? (
+                  <button
+                    onClick={() => setCheckoutStep('review')}
+                    className="w-full rounded-xl bg-primary py-3.5 font-bold text-white shadow-lg hover:bg-primary/90 transition-all active:scale-[0.98]"
+                  >
+                    Proceed to Order Details
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      alert("Order placed successfully! In a real app, this would send data to the restaurant API.");
+                      setCarts(prev => ({ ...prev, [selectedProperty.slug]: {} }));
+                      setIsCartOpen(false);
+                      setCheckoutStep('cart');
+                    }}
+                    className="w-full rounded-xl bg-primary py-3.5 font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98]"
+                  >
+                    Confirm Order
+                  </button>
+                )}
               </div>
             )}
           </div>
