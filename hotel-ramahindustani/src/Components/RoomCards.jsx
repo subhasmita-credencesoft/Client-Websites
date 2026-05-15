@@ -1,63 +1,68 @@
-import React from 'react'
+import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 import { rooms } from '../data/siteContent'
 import { BOOKING_ENGINE_URL } from '../utils/booking'
+import { Wifi, Tv, Headphones, Thermometer, Snowflake, Refrigerator, Bed, Star } from 'lucide-react'
 
-const RoomCards = ({ compact = false }) => {
-  const gridClass = compact ? 'lg:grid-cols-2' : 'lg:grid-cols-2'
+const featureIcons = {
+  WiFi: Wifi, 'Flat TV': Tv, 'Room Service': Headphones,
+  Geyser: Thermometer, AC: Snowflake, 'Mini Fridge': Refrigerator,
+  'Premium Bedding': Bed,
+}
 
-  return (
-    <div className={`grid grid-cols-1 md:grid-cols-2 ${gridClass} gap-6 md:gap-8`}>
-      {rooms.map((room, index) => (
-        <Reveal
-          key={room.id}
-          className='glass-panel rounded-[1.75rem] overflow-hidden border border-white/60 h-full'
-          delay={index * 90}
+const RoomCards = () => (
+  <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6'>
+    {rooms.map((room, i) => (
+      <Reveal key={room.id} delay={i * 0.08}>
+        <motion.div
+          whileHover={{ y: -8 }}
+          className='group bg-white rounded-2xl overflow-hidden border border-[#d4b896]/15 shadow-sm hover:border-[#c8a84e]/30 hover:shadow-xl transition-all duration-400 h-full flex flex-col'
         >
-          <div className='h-full flex flex-col'>
-            <div
-              className='h-56 sm:h-60 md:h-64 bg-cover bg-center p-5 md:p-7 text-white flex flex-col justify-end'
-              style={{ backgroundImage: `linear-gradient(180deg, rgba(15,23,42,0.08), rgba(15,23,42,0.82)), url("${room.image}")` }}
-            >
-              <p className='uppercase tracking-[0.35em] text-xs text-white/85'>Room Type</p>
-              <h3 className='text-2xl md:text-4xl font-bold mt-2 text-3d leading-tight max-w-[18rem] break-words'>{room.name}</h3>
-            </div>
-
-            <div className='p-5 md:p-7 flex flex-col flex-1'>
-              <p className='text-slate-600 leading-7 md:leading-8 text-sm sm:text-base'>{room.description}</p>
-
-              <ul className='mt-5 grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-4 text-sm text-slate-700'>
-                {room.features.map((feature) => (
-                  <li key={`${room.id}-${feature}`} className='flex items-center gap-2'>
-                    <span className='h-2 w-2 rounded-full bg-red-500 shrink-0'></span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-{/* 
-              <div className='mt-6 flex flex-wrap gap-3 text-sm text-slate-700'>
-                <span className='rounded-full bg-red-50 px-3 py-1.5'>Min {room.minimumOccupancy} guests</span>
-                <span className='rounded-full bg-red-50 px-3 py-1.5'>Max {room.maximumOccupancy} guests</span>
-                <span className='rounded-full bg-red-50 px-3 py-1.5'>{room.noOfRooms} rooms</span>
-              </div> */}
-
-              <div className='mt-auto pt-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
-                {/* <p className='font-semibold text-slate-900 text-lg sm:text-xl'>{room.price}</p> */}
-                <a
-                  href={BOOKING_ENGINE_URL}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='brand-button text-white px-5 py-3 rounded-full text-center min-w-[140px] w-full sm:w-auto'
-                >
-                  Book Now
-                </a>
-              </div>
+          <div className='relative h-48 sm:h-52 overflow-hidden'>
+            <img
+              src={room.image}
+              alt={room.name}
+              loading='lazy'
+              className='absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700'
+            />
+            <div className='absolute inset-0 bg-gradient-to-t from-[#1a1923]/70 via-transparent to-transparent' />
+            <div className='absolute bottom-3 left-5 right-5'>
+              <p className='text-[#c8a84e] text-xs tracking-[0.3em] uppercase font-medium'>From</p>
+              <p className='text-white text-2xl font-bold font-display'>
+                &#8377;{room.price}
+                <span className='text-white/50 text-sm font-normal font-body'> / night</span>
+              </p>
             </div>
           </div>
-        </Reveal>
-      ))}
-    </div>
-  )
-}
+
+          <div className='p-5 flex flex-col flex-1'>
+            <h3 className='text-base font-bold font-display text-[#1a1923] mb-2'>{room.name}</h3>
+            <p className='text-[#6b677a] text-sm leading-relaxed mb-4 flex-1 line-clamp-2'>{room.description}</p>
+
+            <div className='flex flex-wrap gap-1.5 mb-5'>
+              {room.features.map((f) => {
+                const Icon = featureIcons[f] || Star
+                return (
+                  <span key={f} className='inline-flex items-center gap-1 text-xs text-[#6b677a] bg-[#f5f0eb] px-2.5 py-1.5 rounded-lg'>
+                    <Icon size={11} /> {f}
+                  </span>
+                )
+              })}
+            </div>
+
+            <a
+              href={BOOKING_ENGINE_URL}
+              target='_blank'
+              rel='noreferrer'
+              className='btn-primary w-full justify-center text-sm !py-3'
+            >
+              Book Now
+            </a>
+          </div>
+        </motion.div>
+      </Reveal>
+    ))}
+  </div>
+)
 
 export default RoomCards

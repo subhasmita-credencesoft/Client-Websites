@@ -1,75 +1,139 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { HiMenuAlt1 } from "react-icons/hi";
-import { FaWhatsapp } from "react-icons/fa";
-import ResponsiveMenu from './ResponsiveMenu';
-import { BOOKING_ENGINE_URL, getWhatsappShareUrl } from '../../utils/booking';
-import { contactDetails } from '../../data/siteContent';
+import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { HiMenuAlt1, HiX } from 'react-icons/hi'
+import { FaWhatsapp } from 'react-icons/fa'
+import { motion, AnimatePresence } from 'framer-motion'
+import { BOOKING_ENGINE_URL, getWhatsappShareUrl } from '../../utils/booking'
+import { contactDetails } from '../../data/siteContent'
+
+const navLinks = [
+  { to: '/', label: 'Home' },
+  { to: '/rooms', label: 'Rooms' },
+  { to: '/restaurant', label: 'Restaurant' },
+  { to: '/services', label: 'Services' },
+  { to: '/gallery', label: 'Gallery' },
+  { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
+]
 
 const Navbar = () => {
-    const [showMenu, setShowMenu] = useState(false)
-    const whatsAppUrl = getWhatsappShareUrl(contactDetails, false)
+  const [showMenu, setShowMenu] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const location = useLocation()
+  const whatsAppUrl = getWhatsappShareUrl(contactDetails, false)
 
-    const toggleMenu = () => {
-        setShowMenu(!showMenu)
-    }
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
-    return (
-        <header className='sticky mx-auto top-0 transition-all bg-transparent z-30'>
-            <div className='fixed w-full z-50 top-0'>
-                <div className='w-full bg-[#400705] shadow-xl'>
-                    <div className='max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center gap-4'>
-                    <Link to='/'>
-                        <img
-                            src='/hotel-ramahindustani-image/rama-hindustanilogo.avif'
-                            alt='Hotel Rama Hindustani'
-                            fetchPriority='high'
-                            className='h-12 sm:h-14 md:h-16 w-auto object-contain'
-                        />
-                    </Link>
-                    <div className='flex items-center gap-3 md:gap-6'>
-                        <nav className='hidden xl:flex gap-6 items-center'>
-                            <ul className='flex items-center font-semibold text-white text-sm 2xl:text-base gap-5 2xl:gap-8'>
-                                <Link className='transition hover:text-[#ff6b6b]' to='/'><li>Home</li></Link>
-                                <Link className='transition hover:text-[#ff6b6b]' to='/about'><li>About Us</li></Link>
-                                <Link className='transition hover:text-[#ff6b6b]' to='/rooms'><li>Rooms</li></Link>
-                                <Link className='transition hover:text-[#ff6b6b]' to='/restaurant'><li>Restaurant</li></Link>
-                                <Link className='transition hover:text-[#ff6b6b]' to='/services'><li>Services</li></Link>
-                                <Link className='transition hover:text-[#ff6b6b]' to='/gallery'><li>Gallery</li></Link>
-                                <Link className='transition hover:text-[#ff6b6b]' to='/contact'><li>Contact</li></Link>
-                            </ul>
-                            <div className='flex items-center gap-3'>
-                                <a
-                                    href={whatsAppUrl}
-                                    target='_blank'
-                                    rel='noreferrer'
-                                    className='flex items-center gap-2 bg-[#25D366] text-white px-4 2xl:px-6 py-3 rounded-xl font-semibold transition hover:bg-[#1ebe5b] shadow-[0_10px_30px_rgba(37,211,102,0.25)] whitespace-nowrap'
-                                >
-                                    <FaWhatsapp size={20} />
-                                    <span>WhatsApp Booking</span>
-                                </a>
-                                <a
-                                    href={BOOKING_ENGINE_URL}
-                                    target='_blank'
-                                    rel='noreferrer'
-                                    className='bg-[#e3342f] text-white px-4 2xl:px-6 py-3 rounded-xl font-semibold transition hover:bg-[#bf2622] shadow-[0_10px_30px_rgba(227,52,47,0.28)] whitespace-nowrap'
-                                >
-                                    Book your stay
-                                </a>
-                            </div>
-                        </nav>
-                        <HiMenuAlt1
-                            onClick={toggleMenu}
-                            className='cursor-pointer xl:hidden text-white'
-                            size={30}
-                        />
-                    </div>
-                </div>
-                </div>
-                <ResponsiveMenu showMenu={showMenu} setShowMenu={setShowMenu} />
+  useEffect(() => { setShowMenu(false) }, [location])
+
+  const linkClass = (path) =>
+    `px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
+      location.pathname === path
+        ? 'text-[#c8a84e] bg-white/10'
+        : 'text-white/75 hover:text-white hover:bg-white/5'
+    }`
+
+  return (
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled ? 'bg-[#1a1923]/95 backdrop-blur-xl shadow-lg shadow-black/10' : 'bg-transparent'
+        }`}
+      >
+        <div className='section-container'>
+          <div className='flex items-center justify-between h-20 md:h-24'>
+            <Link to='/' className='flex items-center gap-3 shrink-0'>
+              <img
+                src='/hotel-ramahindustani-image/rama-hindustanilogo.avif'
+                alt='Hotel Rama Hindustani'
+                className='h-10 md:h-12 w-auto'
+              />
+            </Link>
+
+            <nav className='hidden lg:flex items-center gap-1'>
+              {navLinks.map((link) => (
+                <Link key={link.to} to={link.to} className={linkClass(link.to)}>
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className='hidden lg:flex items-center gap-3 shrink-0'>
+              <a
+                href={whatsAppUrl}
+                target='_blank'
+                rel='noreferrer'
+                className='btn-whatsapp !py-2.5 !px-4 text-sm'
+              >
+                <FaWhatsapp size={16} />
+                <span className='hidden xl:inline'>WhatsApp</span>
+              </a>
+              <a
+                href={BOOKING_ENGINE_URL}
+                target='_blank'
+                rel='noreferrer'
+                className='btn-primary !py-2.5 !px-5 text-sm'
+              >
+                Book Now
+              </a>
             </div>
-        </header>
-    )
+
+            <button onClick={() => setShowMenu(!showMenu)} className='lg:hidden text-white p-2' aria-label='Menu'>
+              {showMenu ? <HiX size={26} /> : <HiMenuAlt1 size={26} />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {showMenu && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className='fixed inset-0 z-40 bg-[#1a1923]/98 lg:hidden'
+          >
+            <div className='flex flex-col items-center justify-center h-full gap-5 px-6'>
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.to}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.06 }}
+                >
+                  <Link
+                    to={link.to}
+                    className={`text-2xl font-medium transition-colors ${
+                      location.pathname === link.to ? 'text-[#c8a84e]' : 'text-white/80 hover:text-white'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className='flex flex-col gap-3 mt-6 w-full max-w-xs'
+              >
+                <a href={whatsAppUrl} target='_blank' rel='noreferrer' className='btn-whatsapp w-full justify-center'>
+                  <FaWhatsapp size={18} /> WhatsApp Booking
+                </a>
+                <a href={BOOKING_ENGINE_URL} target='_blank' rel='noreferrer' className='btn-primary w-full justify-center'>
+                  Book Your Stay
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  )
 }
 
 export default Navbar

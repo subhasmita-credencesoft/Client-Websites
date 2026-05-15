@@ -14,8 +14,8 @@ const Services = lazy(() => import('./Pages/Services'))
 const BookNow = lazy(() => import('./Pages/BookNow'))
 
 const PageLoader = () => (
-  <div className='min-h-screen bg-white pt-32 pb-16 px-4 md:px-6 flex items-start justify-center'>
-    <div className='glass-panel rounded-3xl px-6 py-4 text-slate-700 shadow-xl'>Loading...</div>
+  <div className='min-h-screen bg-[#FFFFF0] pt-32 pb-16 px-4 flex items-start justify-center'>
+    <div className='text-[#6b677a]'>Loading...</div>
   </div>
 )
 
@@ -55,11 +55,11 @@ const App = () => {
         color='white'
         smooth
         style={{
-          background: 'linear-gradient(135deg, #ef4444, #111827)',
+          background: 'linear-gradient(135deg, #c8a84e, #b8922e)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 18px 36px rgba(17, 24, 39, 0.18)',
+          boxShadow: '0 8px 24px rgba(200, 168, 78, 0.3)',
         }}
       />
     </div>

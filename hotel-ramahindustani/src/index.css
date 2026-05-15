@@ -1,218 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
-  --brand-red: #ef4444;
-  --brand-deep: #7f1d1d;
-  --ink: #111827;
-  --shadow-soft: 0 20px 60px rgba(15, 23, 42, 0.12);
-  --shadow-strong: 0 32px 80px rgba(15, 23, 42, 0.2);
+  --gold: #c8a84e;
+  --gold-light: #e8d5a3;
+  --gold-dark: #a8882e;
+  --charcoal: #1a1923;
+  --charcoal-light: #2a2738;
+  --ivory: #FFFFF0;
+  --sand: #d4b896;
+  --sand-light: #f5f0eb;
+  --shadow-sm: 0 4px 20px rgba(26, 25, 35, 0.06);
+  --shadow-md: 0 12px 40px rgba(26, 25, 35, 0.1);
+  --shadow-lg: 0 24px 60px rgba(26, 25, 35, 0.14);
+  --shadow-xl: 0 32px 80px rgba(26, 25, 35, 0.2);
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   margin: 0;
-  color: var(--ink);
-  background:
-    radial-gradient(circle at top left, rgba(239, 68, 68, 0.1), transparent 30%),
-    radial-gradient(circle at top right, rgba(251, 191, 36, 0.14), transparent 24%),
-    linear-gradient(180deg, #fff9f5 0%, #ffffff 24%, #fff6f0 100%);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--charcoal);
+  background: var(--ivory);
+  font-family: 'Inter', system-ui, sans-serif;
   overflow-x: hidden;
 }
 
-* {
-  box-sizing: border-box;
+* { box-sizing: border-box; }
+
+::selection {
+  background: var(--gold);
+  color: white;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f5e8e0;
-}
-
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f5f0eb; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ef4444, #111827);
+  background: linear-gradient(180deg, var(--gold), var(--gold-dark));
   border-radius: 999px;
 }
 
-#root {
-  isolation: isolate;
+#root { isolation: isolate; }
+
+.section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (max-width: 768px) {
+  .section-container { padding: 0 16px; }
 }
 
-.site-shell {
-  position: relative;
+.text-balance { text-wrap: balance; }
+
+.glass {
+  background: rgba(255, 255, 240, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(200, 168, 78, 0.15);
+}
+.glass-dark {
+  background: rgba(26, 25, 35, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 240, 0.08);
 }
 
-.site-shell::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.5), transparent 28%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 55%);
-  z-index: -1;
+.btn-primary {
+  background: linear-gradient(135deg, #c8a84e, #b8922e);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(200, 168, 78, 0.3);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(200, 168, 78, 0.45);
+}
+.btn-primary:active {
+  transform: translateY(-1px);
 }
 
-.section-shell {
-  position: relative;
+.btn-secondary {
+  background: transparent;
+  color: var(--charcoal);
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1.5px solid rgba(26, 25, 35, 0.15);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  background: rgba(200, 168, 78, 0.06);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(200, 168, 78, 0.12);
 }
 
-.section-shell::before {
-  content: "";
-  position: absolute;
-  inset: auto auto 8% -8%;
-  width: 180px;
-  height: 180px;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(239, 68, 68, 0.18), transparent 70%);
-  filter: blur(12px);
-  pointer-events: none;
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.25);
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-whatsapp:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(37, 211, 102, 0.4);
 }
 
-.scroll-reveal {
-  opacity: 0;
-  transform: perspective(1400px) translate3d(0, 56px, -90px) rotateX(10deg) scale(0.96);
-  transform-origin: center bottom;
-  transition:
-    opacity 0.9s ease,
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
+.section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.12;
+  color: var(--charcoal);
 }
 
-.scroll-reveal.is-visible {
-  opacity: 1;
-  transform: perspective(1400px) translate3d(0, 0, 0) rotateX(0deg) scale(1);
+.section-subtitle {
+  font-size: 0.7rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 
-.reveal-left {
-  transform: perspective(1400px) translate3d(-60px, 40px, -100px) rotateY(8deg) scale(0.96);
+.card-hover {
+  transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
 }
 
-.reveal-right {
-  transform: perspective(1400px) translate3d(60px, 40px, -100px) rotateY(-8deg) scale(0.96);
+.price-tag {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--charcoal);
+}
+.price-tag small {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #6b677a;
 }
 
-.scroll-reveal.is-visible.reveal-left,
-.scroll-reveal.is-visible.reveal-right {
-  transform: perspective(1400px) translate3d(0, 0, 0) rotateY(0deg) scale(1);
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(200, 168, 78, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(200, 168, 78, 0.4); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.tilt-card {
-  position: relative;
-  transform-style: preserve-3d;
-  transition:
-    transform 0.45s ease,
-    box-shadow 0.45s ease,
-    border-color 0.45s ease;
+.animate-fade-in-up { animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-fade-in { animation: fadeIn 0.6s ease forwards; }
+.animate-float { animation: float 5s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-scale-in { animation: scaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-slide-down { animation: slideDown 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+.shimmer-bg {
+  background: linear-gradient(90deg, #f5f0eb 25%, #fdf8f0 50%, #f5f0eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
 }
 
-.tilt-card:hover {
-  transform: perspective(1200px) rotateX(7deg) rotateY(-7deg) translateY(-8px) translateZ(12px);
-  box-shadow: var(--shadow-strong);
+.img-loading {
+  background: linear-gradient(90deg, #f5f0eb 25%, #fdf8f0 50%, #f5f0eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+  min-height: 200px;
 }
 
-.glass-panel {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.6));
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(14px);
+.img-loaded {
+  animation: scaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.brand-button {
-  background: linear-gradient(135deg, #ef4444, #b91c1c);
-  box-shadow: 0 16px 32px rgba(239, 68, 68, 0.24);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+/* react-datepicker custom styles */
+.react-datepicker-popper {
+  z-index: 9999 !important;
 }
-
-.brand-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px rgba(127, 29, 29, 0.28);
+.react-datepicker {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  border: 1px solid rgba(200, 168, 78, 0.2) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 40px rgba(26, 25, 35, 0.15) !important;
+  background: white !important;
 }
-
-.dark-button {
-  background: linear-gradient(135deg, #111827, #374151);
-  box-shadow: 0 16px 32px rgba(17, 24, 39, 0.2);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+.react-datepicker__header {
+  background: #fdf8f0 !important;
+  border-bottom: 1px solid rgba(200, 168, 78, 0.15) !important;
+  border-radius: 12px 12px 0 0 !important;
+  padding-top: 12px !important;
 }
-
-.dark-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 38px rgba(17, 24, 39, 0.26);
+.react-datepicker__current-month {
+  font-weight: 600 !important;
+  color: #1a1923 !important;
+  font-size: 0.9rem !important;
 }
-
-.text-3d {
-  text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.25),
-    0 14px 30px rgba(15, 23, 42, 0.22);
+.react-datepicker__day-name {
+  color: #c8a84e !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
 }
-
-.hero-panel {
-  transform-style: preserve-3d;
-  background: linear-gradient(145deg, rgba(17, 24, 39, 0.5), rgba(17, 24, 39, 0.2));
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28);
+.react-datepicker__day {
+  font-size: 0.8rem !important;
+  color: #1a1923 !important;
+  border-radius: 8px !important;
+  transition: all 0.15s ease !important;
 }
-
-.hero-panel > * {
-  transform: translateZ(24px);
+.react-datepicker__day:hover {
+  background: rgba(200, 168, 78, 0.15) !important;
 }
-
-.hero-overlay {
-  background:
-    linear-gradient(130deg, rgba(8, 15, 30, 0.82), rgba(8, 15, 30, 0.35) 45%, rgba(239, 68, 68, 0.22)),
-    radial-gradient(circle at center, transparent 20%, rgba(0, 0, 0, 0.38) 100%);
+.react-datepicker__day--selected {
+  background: linear-gradient(135deg, #c8a84e, #b8922e) !important;
+  color: white !important;
+  font-weight: 600 !important;
 }
-
-.banner-depth {
-  transform-style: preserve-3d;
+.react-datepicker__day--keyboard-selected {
+  background: rgba(200, 168, 78, 0.2) !important;
+  color: #1a1923 !important;
 }
-
-.banner-depth > * {
-  transform: translateZ(16px);
+.react-datepicker__day--disabled {
+  color: #ccc !important;
 }
-
-.floating-orb {
-  animation: float-orb 7s ease-in-out infinite;
+.react-datepicker__navigation-icon::before {
+  border-color: #c8a84e !important;
 }
-
-@keyframes float-orb {
-  0%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -14px, 0);
-  }
+.react-datepicker__triangle {
+  display: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-
-  .scroll-reveal,
-  .scroll-reveal.is-visible,
-  .reveal-left,
-  .reveal-right,
-  .tilt-card,
-  .brand-button,
-  .dark-button,
-  .floating-orb {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
+  html { scroll-behavior: auto; }
 }

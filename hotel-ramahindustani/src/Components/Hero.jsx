@@ -1,29 +1,31 @@
-import React, { useMemo, useState } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import Reveal from './Reveal'
-import { hotelImages } from '../data/siteContent'
-import { buildBookingEngineUrl, checkAvailability, openExternalUrl } from '../utils/booking'
+import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { FaWhatsapp, FaChevronDown, FaCalendarAlt, FaUsers } from 'react-icons/fa'
+import { hotelImages, contactDetails } from '../data/siteContent'
+import { buildBookingEngineUrl, checkAvailability, openExternalUrl, getWhatsappShareUrl, BOOKING_ENGINE_URL } from '../utils/booking'
 
 const Hero = () => {
   const today = useMemo(() => new Date(), [])
   const tomorrow = useMemo(() => {
-    const nextDay = new Date(today)
-    nextDay.setDate(nextDay.getDate() + 1)
-    return nextDay
+    const d = new Date(today)
+    d.setDate(d.getDate() + 1)
+    return d
   }, [today])
 
-  const formatDate = (date) => {
-    const year = date.getFullYear()
-    const month = String(date.getMonth() + 1).padStart(2, '0')
-    const day = String(date.getDate()).padStart(2, '0')
-    return `${year}-${month}-${day}`
+  const formatDate = (d) => {
+    const y = d.getFullYear()
+    const m = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    return `${y}-${m}-${day}`
   }
 
-  const parseDate = (value) => {
-    if (!value) return null
-    const [year, month, day] = value.split('-').map(Number)
-    return new Date(year, month - 1, day)
+  const parseDate = (v) => {
+    if (!v) return null
+    const [y, m, d] = v.split('-').map(Number)
+    return new Date(y, m - 1, d)
   }
 
   const [checkIn, setCheckIn] = useState(formatDate(today))
@@ -31,138 +33,193 @@ const Hero = () => {
   const [guests, setGuests] = useState('1')
   const [status, setStatus] = useState('')
   const [isChecking, setIsChecking] = useState(false)
+  const [showBooking, setShowBooking] = useState(false)
 
-  const handleAvailabilityCheck = async () => {
-    if (!checkIn || !checkOut) {
-      setStatus('Please select both check-in and check-out dates.')
-      return
-    }
+  const whatsAppUrl = useMemo(() => getWhatsappShareUrl(contactDetails, false), [])
 
-    if (checkOut < checkIn) {
-      setStatus('Check-out date must be the same as or after check-in.')
-      return
-    }
-
+  const handleCheck = useCallback(async () => {
+    if (!checkIn || !checkOut) { setStatus('Select both dates.'); return }
+    if (checkOut < checkIn) { setStatus('Check-out must be after check-in.'); return }
     setIsChecking(true)
     setStatus('')
-
-    const payload = {
-      fromDate: checkIn,
-      toDate: checkOut,
-      noOfRooms: 1,
-      noOfPersons: Number(guests),
-    }
-
+    const payload = { fromDate: checkIn, toDate: checkOut, noOfRooms: 1, noOfPersons: Number(guests) }
     try {
       const availability = await checkAvailability(payload)
-      const availableRooms = availability?.roomList ?? []
-
-      if (availableRooms.length > 0) {
-        setStatus('Availability confirmed. Opening booking engine.')
+      if (availability?.roomList?.length > 0) {
+        setStatus('Rooms available! Opening booking engine.')
         openExternalUrl(buildBookingEngineUrl(payload))
         return
       }
-
-      setStatus('No rooms found for the selected dates and guest count.')
-    } catch (error) {
-      setStatus(error.message || 'Unable to check availability right now.')
+      setStatus('No rooms found for selected dates.')
+    } catch {
+      setStatus('Unable to check availability.')
     } finally {
       setIsChecking(false)
     }
-  }
+  }, [checkIn, checkOut, guests])
 
   return (
-    <section className='relative -mt-12 overflow-hidden min-h-[680px] md:min-h-[720px] lg:min-h-[780px]'>
-      <div className='absolute inset-0'>
-        <div
-          className='h-full w-full bg-cover bg-center scale-[1.02]'
-          style={{ backgroundImage: `url("${hotelImages.front}")` }}
-        />
-        <div className='absolute inset-0 bg-[linear-gradient(120deg,rgba(10,15,30,.56),rgba(10,15,30,.18)_48%,rgba(127,29,29,.10))]'></div>
-        <div className='absolute inset-0 bg-white/5'></div>
-      </div>
+    <section className='relative min-h-screen flex items-center justify-center bg-[#1a1923]'>
+      <img
+        src={hotelImages.frontJpg}
+        alt='Hotel Rama Hindustani'
+        className='absolute inset-0 w-full h-full object-cover'
+        fetchpriority='high'
+      />
 
-      <div className='relative max-w-7xl mx-auto px-4 md:px-6 pt-24 pb-14 md:pt-28 md:pb-16 lg:pt-32 lg:pb-16 min-h-[680px] md:min-h-[720px] lg:min-h-[780px] flex flex-col items-center justify-center gap-8 md:gap-10'>
-        <Reveal className='text-center max-w-4xl mx-auto'>
-          <p className='text-red-200 tracking-[0.48em] uppercase text-sm md:text-base'>Hotel Rama Hindustani</p>
-          <h1 className='mt-4 md:mt-5 text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] text-3d'>
-            Welcome to Hotel Rama Hindustani
-          </h1>
-          <p className='mt-3 md:mt-4 text-white/90 text-base sm:text-lg md:text-2xl font-medium'>
-            Where Comfort Meets Tradition
-          </p>
-          <p className='mt-3 md:mt-4 text-white/85 text-sm sm:text-base md:text-lg leading-7 md:leading-8 max-w-3xl mx-auto'>
-            Experience comfort, affordability, and warm Indian hospitality in the heart of Jaipur.
-          </p>
-        </Reveal>
+      <div className='absolute inset-0 bg-gradient-to-r from-[#1a1923]/50 to-transparent' />
+      <div className='absolute inset-0 bg-gradient-to-t from-[#1a1923]/30 via-transparent to-transparent' />
 
-        {/* <Reveal className='max-w-5xl mx-auto w-full'>
-          <div className='glass-panel rounded-[1.15rem] px-3 py-3 md:px-4 md:py-3.5 border border-white/60 shadow-2xl'>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 items-end'>
-              <div className='flex flex-col gap-1.5'>
-                <label className='font-semibold text-slate-700 text-xs'>Check In</label>
-                <DatePicker
-                  selected={parseDate(checkIn)}
-                  onChange={(date) => {
-                    if (!date) return
-                    const nextCheckIn = formatDate(date)
-                    setCheckIn(nextCheckIn)
-                    if (checkOut < nextCheckIn) {
-                      setCheckOut(nextCheckIn)
-                    }
-                  }}
-                  dateFormat='dd-MM-yyyy'
-                  minDate={today}
-                  popperPlacement='bottom-start'
-                  wrapperClassName='w-full'
-                  className='border px-3 border-gray-300/80 rounded-lg bg-white/85 h-[40px] text-sm w-full'
-                />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className='relative z-20 section-container text-center max-w-5xl mx-auto px-4 pt-24'
+      >
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.5 }}
+          className='text-[#c8a84e] tracking-[0.4em] uppercase text-sm md:text-base font-medium mb-4'
+        >
+          Hotel Rama Hindustani
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className='text-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-[1.05] mb-6 text-balance'
+        >
+          Where Comfort
+          <br />
+          <span className='text-[#c8a84e]'>Meets Tradition</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45, duration: 0.5 }}
+          className='text-white/75 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed'
+        >
+          Experience comfort, affordability, and warm Indian hospitality
+          in the heart of Jaipur.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className='flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-10'
+        >
+          <a href={BOOKING_ENGINE_URL} target='_blank' rel='noreferrer' className='btn-primary text-base px-8 py-4'>
+            Book Your Experience
+          </a>
+          <Link to='/rooms' className='btn-secondary !text-white !border-white/30 hover:!border-white/50 text-base px-8 py-4'>
+            Explore Stay
+          </Link>
+          <a href={whatsAppUrl} target='_blank' rel='noreferrer' className='btn-whatsapp text-base px-8 py-4'>
+            <FaWhatsapp size={20} />
+            WhatsApp
+          </a>
+        </motion.div>
+
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.75 }}
+          onClick={() => setShowBooking(!showBooking)}
+          className='text-white/50 hover:text-[#c8a84e] flex items-center gap-2 mx-auto text-sm transition-colors'
+        >
+          <FaCalendarAlt size={14} />
+          <span>Check Availability</span>
+          <FaChevronDown className={`transition-transform duration-300 ${showBooking ? 'rotate-180' : ''}`} size={12} />
+        </motion.button>
+
+        <AnimatePresence>
+          {showBooking && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className='mt-4'
+            >
+              <div className='glass rounded-2xl p-4 md:p-6 max-w-2xl mx-auto'>
+                <div className='grid grid-cols-1 sm:grid-cols-3 gap-3'>
+                  <div>
+                    <label className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
+                      <FaCalendarAlt size={10} className='text-[#c8a84e]' /> Check In
+                    </label>
+                    <DatePicker
+                      selected={parseDate(checkIn)}
+                      onChange={(d) => { if (d) { const n = formatDate(d); setCheckIn(n); if (checkOut < n) setCheckOut(n) }}}
+                      dateFormat='dd-MM-yyyy'
+                      minDate={today}
+                      popperPlacement='bottom-start'
+                      popperModifiers={[
+                        { name: 'preventOverflow', options: { rootBoundary: 'viewport' } },
+                      ]}
+                      wrapperClassName='w-full'
+                      className='w-full border border-[#c8a84e]/20 rounded-xl bg-white px-3 h-11 text-sm focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
+                    />
+                  </div>
+                  <div>
+                    <label className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
+                      <FaCalendarAlt size={10} className='text-[#c8a84e]' /> Check Out
+                    </label>
+                    <DatePicker
+                      selected={parseDate(checkOut)}
+                      onChange={(d) => { if (d) setCheckOut(formatDate(d)) }}
+                      dateFormat='dd-MM-yyyy'
+                      minDate={parseDate(checkIn) ?? today}
+                      popperPlacement='bottom-start'
+                      popperModifiers={[
+                        { name: 'preventOverflow', options: { rootBoundary: 'viewport' } },
+                      ]}
+                      wrapperClassName='w-full'
+                      className='w-full border border-[#c8a84e]/20 rounded-xl bg-white px-3 h-11 text-sm focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
+                    />
+                  </div>
+                  <div>
+                    <label className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
+                      <FaUsers size={10} className='text-[#c8a84e]' /> Guests
+                    </label>
+                    <select
+                      value={guests}
+                      onChange={(e) => setGuests(e.target.value)}
+                      className='w-full border border-[#c8a84e]/20 rounded-xl bg-white px-3 h-11 text-sm focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
+                    >
+                      {[1, 2, 3, 4].map((n) => (
+                        <option key={n} value={n}>{n} Guest{n > 1 ? 's' : ''}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <button onClick={handleCheck} disabled={isChecking} className='btn-primary w-full mt-3 justify-center text-sm'>
+                  {isChecking ? 'Checking...' : 'Check Availability'}
+                </button>
+                {status && <p className='mt-2 text-xs text-center text-[#6b677a]'>{status}</p>}
               </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
 
-              <div className='flex flex-col gap-1.5'>
-                <label className='font-semibold text-slate-700 text-xs'>Check Out</label>
-                <DatePicker
-                  selected={parseDate(checkOut)}
-                  onChange={(date) => {
-                    if (!date) return
-                    setCheckOut(formatDate(date))
-                  }}
-                  dateFormat='dd-MM-yyyy'
-                  minDate={parseDate(checkIn) ?? today}
-                  popperPlacement='bottom-start'
-                  wrapperClassName='w-full'
-                  className='border px-3 border-gray-300/80 rounded-lg bg-white/85 h-[40px] text-sm w-full'
-                />
-              </div>
-
-              <div className='flex flex-col gap-1.5'>
-                <label className='font-semibold text-slate-700 text-xs'>Guests</label>
-                <select
-                  value={guests}
-                  onChange={(event) => setGuests(event.target.value)}
-                  className='border border-gray-300/80 rounded-lg px-3 bg-white/85 h-[40px] text-sm'
-                >
-                  <option value='1'>1 Guest</option>
-                  <option value='2'>2 Guests</option>
-                  <option value='3'>3 Guests</option>
-                  <option value='4'>4 Guests</option>
-                </select>
-              </div>
-
-              <button
-                onClick={handleAvailabilityCheck}
-                disabled={isChecking}
-                className='brand-button text-white px-4 py-2 rounded-lg h-[40px] text-sm disabled:opacity-70 w-full'
-              >
-                {isChecking ? 'Checking...' : 'Check Availability'}
-              </button>
-            </div>
-            {status ? (
-              <p className='mt-3 text-xs md:text-sm text-slate-700 text-center md:text-left'>{status}</p>
-            ) : null}
-          </div>
-        </Reveal> */}
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className='absolute bottom-20 left-1/2 -translate-x-1/2 z-10'
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
+          className='text-white/20'
+        >
+          <FaChevronDown size={18} />
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

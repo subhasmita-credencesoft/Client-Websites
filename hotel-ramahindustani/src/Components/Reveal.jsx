@@ -1,47 +1,34 @@
-import React, { useEffect, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 
-const Reveal = ({
-  as: Tag = 'div',
-  children,
-  className = '',
-  delay = 0,
-  variant = '',
-}) => {
-  const elementRef = useRef(null)
+const Reveal = ({ children, className = '', delay = 0, direction = 'up' }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-50px' })
 
-  useEffect(() => {
-    const element = elementRef.current
-
-    if (!element) {
-      return undefined
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          element.classList.add('is-visible')
-          observer.unobserve(element)
-        }
-      },
-      {
-        threshold: 0.18,
-        rootMargin: '0px 0px -40px 0px',
-      },
-    )
-
-    observer.observe(element)
-
-    return () => observer.disconnect()
-  }, [])
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: direction === 'up' ? 36 : direction === 'down' ? -36 : 0,
+      x: direction === 'left' ? -36 : direction === 'right' ? 36 : 0,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+    },
+  }
 
   return (
-    <Tag
-      ref={elementRef}
-      className={`scroll-reveal ${variant} ${className}`.trim()}
-      style={{ '--reveal-delay': `${delay}ms` }}
+    <motion.div
+      ref={ref}
+      initial='hidden'
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={variants}
+      className={className}
     >
       {children}
-    </Tag>
+    </motion.div>
   )
 }
 

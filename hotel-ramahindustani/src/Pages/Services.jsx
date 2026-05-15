@@ -3,6 +3,7 @@ import Seo from '../Components/Seo'
 import TopBanner from '../Components/TopBanner'
 import Reveal from '../Components/Reveal'
 import ServicesGrid from '../Components/ServicesGrid'
+import { hotelImages } from '../data/siteContent'
 
 const Services = () => {
   return (
@@ -11,13 +12,19 @@ const Services = () => {
         title='Services'
         description='See the hotel services and amenities at Hotel Rama Hindustani including room service, Wi-Fi, reception support, and guest facilities.'
       />
-      <TopBanner text='Services' />
-      <section className='max-w-7xl mx-auto px-4 md:px-6 py-14 section-shell'>
-        <Reveal className='text-center mb-10'>
-          <p className='text-red-500 tracking-[0.35em] uppercase mb-3 text-sm'>Services & Amenities</p>
-          <h1 className='text-3xl md:text-5xl font-bold font-serif text-3d'>Everything You Need For A Relaxed Stay</h1>
-        </Reveal>
-        <ServicesGrid />
+      <TopBanner text='Services' image={hotelImages.reception} />
+
+      <section className='py-16 md:py-24'>
+        <div className='section-container'>
+          <Reveal className='text-center mb-14'>
+            <p className='section-subtitle'>Amenities</p>
+            <h2 className='section-title'>Everything You Need For A Relaxed Stay</h2>
+            <p className='mt-4 text-[#6b677a] max-w-2xl mx-auto leading-relaxed'>
+              We provide all the modern amenities to ensure your stay is comfortable and hassle-free.
+            </p>
+          </Reveal>
+          <ServicesGrid />
+        </div>
       </section>
     </>
   )

@@ -1,62 +1,57 @@
-import React from 'react'
+import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 import { hotelImages } from '../data/siteContent'
-import { BOOKING_ENGINE_URL } from '../utils/booking'
+import { UtensilsCrossed, Coffee, Wheat } from 'lucide-react'
 
-const offerings = [
-  'Delicious Indian cuisine',
-  'Freshly prepared meals',
-  'Hygienic cooking',
-  'Breakfast, lunch & dinner',
+const highlights = [
+  { icon: UtensilsCrossed, text: 'Authentic Indian Cuisine' },
+  { icon: Coffee, text: 'Freshly Prepared Daily' },
+  { icon: Wheat, text: 'Vegetarian & Vegan Options' },
 ]
 
-const RestaurantSection = () => {
-  return (
-    <section className='max-w-7xl mx-auto px-4 md:px-6 py-16 section-shell'>
-      <div className='grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center'>
-        <Reveal className='reveal-left'>
-          <p className='text-red-500 tracking-[0.35em] uppercase mb-3 text-sm'>Restaurant</p>
-          <h2 className='text-3xl md:text-5xl font-bold font-serif text-3d'>Taste the Flavors of India</h2>
-          <p className='mt-6 text-slate-600 leading-8'>
-            Our in-house restaurant serves delicious Indian meals prepared with care, hygiene, and a homely touch. Guests can enjoy breakfast, lunch, and dinner in a relaxed and family-friendly setting.
+const RestaurantSection = () => (
+  <section className='py-16 md:py-24'>
+    <div className='section-container'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
+        <Reveal direction='left'>
+          <p className='section-subtitle'>Rama Rasoi</p>
+          <h2 className='section-title mb-6'>The Taste of Tradition</h2>
+          <p className='text-[#6b677a] leading-relaxed mb-6'>
+            At our in-house restaurant, Rama Rasoi, we serve authentic Indian cuisine prepared with
+            time-honored recipes and the freshest ingredients. Every meal is a celebration of flavor.
           </p>
-          <div className='mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4'>
-            {offerings.map((item, index) => (
-              <Reveal key={item} className='glass-panel rounded-2xl p-4 border border-white/60' delay={index * 70}>
-                <div className='flex items-center gap-3 text-slate-800'>
-                  <span className='h-2.5 w-2.5 rounded-full bg-red-500'></span>
-                  <span className='font-medium'>{item}</span>
+          <div className='space-y-4 mb-8'>
+            {highlights.map((h, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className='flex items-center gap-3'
+              >
+                <div className='w-10 h-10 rounded-xl bg-[#f5f0eb] flex items-center justify-center'>
+                  <h.icon size={18} className='text-[#c8a84e]' />
                 </div>
-              </Reveal>
+                <span className='text-sm text-[#6b677a]'>{h.text}</span>
+              </motion.div>
             ))}
           </div>
+          <a href='/contact' className='btn-secondary'>Visit Us</a>
         </Reveal>
-        <Reveal className='reveal-right'>
-          <div
-            className='rounded-[2rem] overflow-hidden shadow-2xl min-h-[420px] p-8 text-white flex flex-col justify-between bg-cover bg-center'
-            style={{ backgroundImage: `linear-gradient(135deg, rgba(127,29,29,.82), rgba(17,24,39,.78)), url(${hotelImages.restaurant})` }}
-          >
-            <div>
-              <p className='uppercase tracking-[0.35em] text-xs text-red-200'>Homely Dining</p>
-              <h3 className='mt-4 text-3xl font-bold'>Fresh meals, warm service, affordable pricing.</h3>
-            </div>
-            <div className='space-y-4 text-white/90 leading-7'>
-              <p>Every meal is prepared to make guests feel at home while staying in Jaipur.</p>
-              <p>Perfect for families, business travelers, and tourists looking for simple, satisfying Indian food.</p>
-              <a
-                href={BOOKING_ENGINE_URL}
-                target='_blank'
-                rel='noreferrer'
-                className='brand-button inline-flex items-center justify-center text-white px-5 py-3 rounded-full'
-              >
-                Reserve your stay
-              </a>
-            </div>
-          </div>
+
+        <Reveal direction='right'>
+          <motion.div className='rounded-2xl overflow-hidden shadow-xl' whileHover={{ scale: 1.01 }}>
+            <img
+              src={hotelImages.restaurant}
+              alt='Rama Rasoi Restaurant'
+              loading='lazy'
+              className='w-full h-[400px] md:h-[480px] object-cover transition-transform duration-700 hover:scale-105'
+            />
+          </motion.div>
         </Reveal>
       </div>
-    </section>
-  )
-}
+    </div>
+  </section>
+)
 
 export default RestaurantSection

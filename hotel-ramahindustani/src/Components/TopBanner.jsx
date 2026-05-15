@@ -1,28 +1,35 @@
-import React from 'react'
-import Reveal from './Reveal'
-import { hotelImages } from '../data/siteContent'
+import { motion } from 'framer-motion'
 
-const TopBanner = (props) => {
-    return (
-        <div
-            className='h-[240px] sm:h-[280px] md:h-[340px] relative -mt-12 overflow-hidden banner-depth'
-            style={{
-                backgroundImage: `url(${hotelImages.reception})`,
-                backgroundPosition: 'center',
-                backgroundSize: 'cover'
-            }}>
-            <div className='inset-0 hero-overlay absolute'></div>
-            <div className='absolute inset-0 bg-gradient-to-r from-red-900/20 via-transparent to-transparent'></div>
-            <div className='absolute inset-0 flex items-center justify-center px-4 pt-14 sm:pt-16 md:pt-24'>
-                <Reveal className='text-center max-w-4xl'>
-                    <p className='mb-3 text-xs md:text-sm tracking-[0.4em] uppercase text-red-200'>Rama Hindustani</p>
-                    <h1 className='text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif leading-tight drop-shadow-[0_8px_28px_rgba(0,0,0,0.45)]'>
-                        {props.text}
-                    </h1>
-                </Reveal>
-            </div>
-        </div>
-    )
-}
+const TopBanner = ({ text, image }) => (
+  <section className='relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden bg-[#1a1923] min-h-[280px] md:min-h-[320px] flex items-center'>
+    {image && (
+      <img
+        src={image}
+        alt=''
+        className='absolute inset-0 w-full h-full object-cover'
+        loading='lazy'
+      />
+    )}
+    <div className='absolute inset-0 bg-gradient-to-br from-[#1a1923]/90 via-[#1a1923]/70 to-[#1a1923]/50' />
+    <div className='absolute top-10 right-10 w-72 h-72 bg-[#c8a84e]/5 rounded-full blur-3xl' />
+    <div className='absolute bottom-10 left-10 w-48 h-48 bg-white/5 rounded-full blur-3xl' />
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className='relative z-10 section-container text-center w-full'
+    >
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className='text-[#c8a84e] text-xs tracking-[0.4em] uppercase mb-3 font-medium'
+      >
+        Hotel Rama Hindustani
+      </motion.p>
+      <h1 className='text-white text-4xl md:text-6xl font-bold font-display'>{text}</h1>
+    </motion.div>
+  </section>
+)
 
 export default TopBanner
