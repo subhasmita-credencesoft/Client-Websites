@@ -1,4 +1,4 @@
-import { GallerySection } from "@/components/home/GallerySection";
+import { GalleryFilter } from "@/components/gallery/GalleryFilter";
 import { pageContent } from "@/data/pages";
 
 type GalleryPageProps = {
@@ -23,7 +23,9 @@ export function GalleryPage({ images }: GalleryPageProps) {
           </p>
         </div>
       </section>
-      <GallerySection images={images} />
+      <section className="py-24 bg-background">
+        <GalleryFilter />
+      </section>
     </main>
   );
 }

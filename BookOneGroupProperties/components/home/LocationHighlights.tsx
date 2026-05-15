@@ -43,7 +43,7 @@ function LocationHighlightsContent({ locationFromUrl, data }: LocationHighlights
     () =>
       locationHighlights.locations.some((location) => location.id === locationFromUrl)
         ? locationFromUrl
-        : locationHighlights.locations[0]?.id ?? "near-pune",
+        : locationHighlights.locations[0]?.id ?? "alibaug",
     [locationFromUrl, locationHighlights.locations],
   );
   const [activeLocation, setActiveLocation] = useState(defaultLocation);
@@ -72,8 +72,8 @@ function LocationHighlightsContent({ locationFromUrl, data }: LocationHighlights
                 key={location.id}
                 onClick={() => setActiveLocation(location.id)}
                 className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 ${activeLocation === location.id
-                    ? "scale-105 bg-primary text-white shadow-md"
-                    : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-100"
+                  ? "scale-105 bg-primary text-white shadow-md"
+                  : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-100"
                   }`}
               >
                 {location.name}

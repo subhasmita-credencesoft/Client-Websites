@@ -95,7 +95,7 @@ export const pageContent = {
       ...contactSectionData,
       {
         title: "Locations",
-        value: "Near Pune stay destinations.",
+        value: "Our stay destinations.",
         icon: MapPin,
       },
     ],

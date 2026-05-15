@@ -242,7 +242,7 @@ export async function getLocationHighlightsData() {
               title: dynamicProperty.title,
               image: dynamicProperty.images[0] ?? property.image,
               location: dynamicProperty.location,
-              price: dynamicProperty.booking.basePrice,
+              price: dynamicProperty.booking.basePrice ?? 0,
               rating: extractCardRating(dynamicProperty.ratingLabel),
               type: dynamicProperty.typeBadge,
               features: dynamicProperty.rooms.map((room) => room.name).join(", ") || property.features,
@@ -265,7 +265,8 @@ export async function getLocationHighlightsData() {
 }
 
 export async function getFeaturedPropertiesData(): Promise<FeaturedCard[]> {
-  const fallbackImage = homePageData.locationHighlights.propertiesByLocation["near-pune"][0]?.image ?? "";
+  const fallbackImage = (homePageData.locationHighlights.propertiesByLocation["alibaug"]?.[0]?.image) ?? 
+                        (Object.values(homePageData.locationHighlights.propertiesByLocation)[0]?.[0]?.image) ?? "";
 
   return Promise.all(
     featuredPropertySlugs.map(async (slug, index) => {

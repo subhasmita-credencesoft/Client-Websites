@@ -18,12 +18,12 @@ export function Hero() {
   const { hero } = homePageData;
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+
   const [mounted, setMounted] = useState(false);
   const [destination, setDestination] = useState(hero.destinations[0] ?? "All Locations");
   const [dateRange, setDateRange] = useState<DateRange | undefined>();
   const [guestCount, setGuestCount] = useState(2);
-  
+
   const locationId = useMemo(() => getLocationIdFromDestination(destination), [destination]);
   const propertyOptions = useMemo(() => getPropertiesForLocation(locationId), [locationId]);
   const [selectedPropertyLink, setSelectedPropertyLink] = useState(propertyOptions[0]?.link ?? "");
@@ -48,7 +48,7 @@ export function Hero() {
     }
 
     if (destStr) setDestination(destStr);
-    
+
     setMounted(true);
   }, [searchParams]);
 
@@ -63,7 +63,7 @@ export function Hero() {
   const handleSearch = () => {
     const checkInDate = dateRange?.from ? startOfDay(dateRange.from) : startOfDay(new Date());
     const checkOutDate = dateRange?.to ? startOfDay(dateRange.to) : addDays(checkInDate, 1);
-    
+
     const selectedSlug = getSlugFromPropertyLink(selectedPropertyLink);
     const propertySource = selectedSlug ? propertySourceBySlug[selectedSlug.toLowerCase()] : null;
 
@@ -227,17 +227,23 @@ function parseDate(dateStr: string) {
 
 function getLocationIdFromDestination(destination: string) {
   const normalizedDestination = destination.trim().toLowerCase();
-  if (normalizedDestination === "all locations") return "near-pune";
+  if (normalizedDestination === "all locations") return "all";
   const locationMatch = homePageData.locationHighlights.locations.find((location) =>
     normalizedDestination.includes(location.name.trim().toLowerCase()),
   );
-  return locationMatch?.id ?? "near-pune";
+  return locationMatch?.id ?? "all";
 }
 
 function getPropertiesForLocation(locationId: string) {
+  const allProperties = Object.values(homePageData.locationHighlights.propertiesByLocation).flat();
+
+  if (locationId === "all" || !locationId) {
+    return allProperties;
+  }
+
   return homePageData.locationHighlights.propertiesByLocation[
     locationId as keyof typeof homePageData.locationHighlights.propertiesByLocation
-  ] ?? homePageData.locationHighlights.propertiesByLocation["near-pune"];
+  ] ?? allProperties;
 }
 
 function getSlugFromPropertyLink(link: string) {
