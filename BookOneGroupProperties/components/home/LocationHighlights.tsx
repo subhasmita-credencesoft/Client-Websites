@@ -126,8 +126,14 @@ function LocationHighlightsContent({ locationFromUrl, data }: LocationHighlights
                           {property.title}
                         </h3>
                         <span className="shrink-0 font-bold text-primary">
-                          {formatCurrency(property.price)}
-                          <span className="text-xs font-normal text-muted-foreground">/night</span>
+                          {property.price > 0 ? (
+                            <>
+                              {formatCurrency(property.price)}
+                              <span className="text-xs font-normal text-muted-foreground">/night</span>
+                            </>
+                          ) : (
+                            <span className="text-sm">Price on Request</span>
+                          )}
                         </span>
                       </div>
 
@@ -159,7 +165,7 @@ function LocationHighlightsContent({ locationFromUrl, data }: LocationHighlights
                 <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-transform group-hover:scale-110">
                   <ArrowRight className="h-6 w-6" />
                 </div>
-                <h3 className="font-bold text-foreground">View all in {activeLocationLabel?.name}</h3>
+                <h3 className="font-bold text-foreground">View all</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{activeLocationLabel?.count}</p>
               </Link>
             </motion.div>

@@ -11,15 +11,15 @@ export const homePageData = {
     searchTargetLink: "/shalom-maple-leaf",
     destinations: [
       "All Locations",
-      "Near Pune, Maharashtra",
+      "Alibaug, Maharashtra",
     ],
     guests: ["2 Guests", "4 Guests", "6+ Guests"],
   },
   locationHighlights: {
-    title: "Explore by Location",
+    title: "Explore by All properties",
     description: "Discover curated stays in our most popular destinations.",
     locations: [
-      { id: "near-pune", name: "Near Pune", count: "5 Properties" },
+      { id: "near-pune", name: "Alibaug", count: "5 Properties" },
     ],
     propertiesByLocation: {
       "near-pune": [
