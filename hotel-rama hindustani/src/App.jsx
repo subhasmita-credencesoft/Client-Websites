@@ -1,0 +1,69 @@
+import React, { Suspense, lazy } from 'react'
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+import ScrollToTop from 'react-scroll-to-top'
+import Navbar from './Components/Navbar/Navbar'
+import Footer from './Components/Footer'
+
+const Home = lazy(() => import('./Pages/Home'))
+const Tours = lazy(() => import('./Pages/Tours'))
+const Gallery = lazy(() => import('./Pages/Gallery'))
+const About = lazy(() => import('./Pages/About'))
+const Contact = lazy(() => import('./Pages/Contact'))
+const Restaurant = lazy(() => import('./Pages/Restaurant'))
+const Services = lazy(() => import('./Pages/Services'))
+const BookNow = lazy(() => import('./Pages/BookNow'))
+
+const PageLoader = () => (
+  <div className='min-h-screen bg-white pt-32 pb-16 px-4 md:px-6 flex items-start justify-center'>
+    <div className='glass-panel rounded-3xl px-6 py-4 text-slate-700 shadow-xl'>Loading...</div>
+  </div>
+)
+
+const SiteLayout = () => (
+  <>
+    <Navbar />
+    <Suspense fallback={<PageLoader />}>
+      <Outlet />
+    </Suspense>
+    <Footer />
+  </>
+)
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <SiteLayout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'rooms', element: <Tours /> },
+      { path: 'tours', element: <Tours /> },
+      { path: 'gallery', element: <Gallery /> },
+      { path: 'about', element: <About /> },
+      { path: 'contact', element: <Contact /> },
+      { path: 'restaurant', element: <Restaurant /> },
+      { path: 'services', element: <Services /> },
+      { path: 'book-now', element: <BookNow /> },
+    ],
+  },
+])
+
+const App = () => {
+  return (
+    <div className='site-shell'>
+      <RouterProvider router={router} />
+      <ScrollToTop
+        color='white'
+        smooth
+        style={{
+          background: 'linear-gradient(135deg, #ef4444, #111827)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 18px 36px rgba(17, 24, 39, 0.18)',
+        }}
+      />
+    </div>
+  )
+}
+
+export default App
