@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
-import ScrollToTop from 'react-scroll-to-top'
+import ScrollToTopBtn from 'react-scroll-to-top'
+import ScrollToTopOnNavigate from './Components/ScrollToTop'
 import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer'
 
@@ -21,6 +22,7 @@ const PageLoader = () => (
 
 const SiteLayout = () => (
   <>
+    <ScrollToTopOnNavigate />
     <Navbar />
     <Suspense fallback={<PageLoader />}>
       <Outlet />
@@ -51,7 +53,7 @@ const App = () => {
   return (
     <div className='site-shell'>
       <RouterProvider router={router} />
-      <ScrollToTop
+      <ScrollToTopBtn
         color='white'
         smooth
         style={{

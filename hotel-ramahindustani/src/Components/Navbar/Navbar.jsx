@@ -95,8 +95,17 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className='fixed inset-0 z-40 bg-[#1a1923]/98 lg:hidden'
+            className='fixed inset-0 z-[9999] bg-[#1a1923] lg:hidden overflow-y-auto'
           >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowMenu(false)}
+              className='absolute top-5 right-5 text-white p-2 hover:text-[#c8a84e] transition-colors'
+              aria-label='Close menu'
+            >
+              <HiX size={28} />
+            </button>
+
             <div className='flex flex-col items-center justify-center h-full gap-5 px-6'>
               {navLinks.map((link, i) => (
                 <motion.div
