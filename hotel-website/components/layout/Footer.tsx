@@ -169,12 +169,7 @@ export default function Footer() {
             </Link>
           </div>
           <div className="grid gap-8 sm:gap-10 xl:grid-cols-[1.1fr_1.2fr] xl:justify-self-end xl:text-left">
-            <div className="footer-content-block">
-              <h4 className="font-serif text-[1.65rem] leading-tight sm:text-2xl">UK&apos;s Resort, Khopoli | Resort, Stay &amp; Day Experiences Near Mumbai</h4>
-              <p className="mt-2 text-[0.95rem] text-white/70 sm:text-sm">
-                Water park resort, weekend getaway, day picnic, dining, and group experiences near Mumbai.
-              </p>
-            </div>
+
             <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-[minmax(220px,1.3fr)_minmax(170px,1fr)_minmax(150px,1fr)]">
               {addressLines.length > 0 && (
                 <div className="footer-content-block">

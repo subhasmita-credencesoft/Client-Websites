@@ -409,30 +409,54 @@ export default function TariffInfo() {
                 </p>
 
                 <div className="mt-8 grid grid-cols-2 gap-4">
-                  {[
-                    { label: "Room stays", value: "Check live availability" },
-                    { label: "Groups", value: "WhatsApp your date and size" },
-                  ].map(({ label, value }) => (
-                    <div
-                      key={label}
-                      className="rounded-2xl border border-[rgba(13,43,47,0.08)] bg-[#F9F5EE] p-4"
-                    >
-                      <p className="text-[0.62rem] font-semibold uppercase tracking-[0.20em] text-[#6C7C80]">
-                        {label}
-                      </p>
-                      <p className="mt-2 font-serif text-[1.5rem] leading-none text-[#0D2B2F]">
-                        {value}
-                      </p>
-                    </div>
-                  ))}
+                  <a
+                    href={BOOKING_ENGINE_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group block rounded-2xl border border-[rgba(13,43,47,0.08)] bg-[#F9F5EE] p-4 transition hover:border-[#C49A3C]/40 hover:bg-white hover:shadow-[0_8px_24px_rgba(13,43,47,0.10)]"
+                  >
+                    <p className="text-[0.62rem] font-semibold uppercase tracking-[0.20em] text-[#6C7C80]">
+                      Room stays
+                    </p>
+                    <p className="mt-2 font-serif text-[1.5rem] leading-none text-[#0D2B2F] transition-colors group-hover:text-[#C49A3C]">
+                      Check live availability
+                    </p>
+                  </a>
+                  <a
+                    href="https://wa.me/918779814559?text=Hi%2C%20I%27m%20looking%20to%20book%20a%20group%20package%20at%20UK%27s%20Resort.%20Please%20share%20availability%20and%20pricing."
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group block rounded-2xl border border-[rgba(13,43,47,0.08)] bg-[#F9F5EE] p-4 transition hover:border-[#C49A3C]/40 hover:bg-white hover:shadow-[0_8px_24px_rgba(13,43,47,0.10)]"
+                  >
+                    <p className="text-[0.62rem] font-semibold uppercase tracking-[0.20em] text-[#6C7C80]">
+                      Groups
+                    </p>
+                    <p className="mt-2 font-serif text-[1.5rem] leading-none text-[#0D2B2F] transition-colors group-hover:text-[#C49A3C]">
+                      WhatsApp your date and size
+                    </p>
+                  </a>
                 </div>
 
-                <div className="mt-8 rounded-2xl border border-[rgba(13,43,47,0.08)] bg-[#F9F5EE] p-4 sm:p-5">
+                <div className="mt-8 rounded-2xl border border-[rgba(13,43,47,0.08)] bg-[#F9F5EE] p-4 transition hover:border-[#C49A3C]/30 hover:bg-white sm:p-5">
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.20em] text-[#6C7C80]">
                     Corporate enquiries
                   </p>
                   <p className="mt-2 text-[0.96rem] leading-7 text-[#1A4A50]">
-                    Call or email for group block rates: +91 87798 14559 or info@uksresort.com.
+                    Call or email for group block rates:{" "}
+                    <a
+                      href="tel:+918779814559"
+                      className="font-semibold text-[#0D2B2F] underline decoration-[#C49A3C]/40 underline-offset-2 transition hover:text-[#C49A3C] hover:decoration-[#C49A3C]"
+                    >
+                      +91 87798 14559
+                    </a>{" "}
+                    or{" "}
+                    <a
+                      href="mailto:info@uksresort.com"
+                      className="font-semibold text-[#0D2B2F] underline decoration-[#C49A3C]/40 underline-offset-2 transition hover:text-[#C49A3C] hover:decoration-[#C49A3C]"
+                    >
+                      info@uksresort.com
+                    </a>
+                    .
                   </p>
                 </div>
               </div>
@@ -515,3 +539,4 @@ function TariffTableBlock({
     </div>
   );
 }
+ 
