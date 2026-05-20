@@ -1,12 +1,22 @@
-export const HOME_HERO_VIDEO_SRC = "https://bookonelocal.in/cdn/Logo-added-Home-Page-Video.mp4";
+export const HOME_HERO_VIDEO_SRC = "https://bookonelocal.in/cdn/UK's%20Resort-Hero-Video.mp4";
 export const HOME_HERO_VIDEO_POSTER = "/images/main-image.JPG";
 
-export const HOME_HERO_TITLE_LINES = [
-  "Your Perfect Weekend Escape From Mumbai",
-  "UK's Resort, Khopoli!",
+export const HOME_HERO_SLIDE_INTERVAL_MS = 4500;
+
+export const HOME_HERO_SLIDES = [
+  {
+    eyebrow: "Weekend stays",
+    titleLines: ["Weekend Escape", "at UK's Resort"],
+    subtitle: "Comfortable stays near Mumbai, wrapped in greenery and warm hospitality.",
+  },
+  {
+    eyebrow: "Water park",
+    titleLines: ["Splash and Unwind", "with Family"],
+    subtitle: "Water park fun, day picnics, and open spaces close to Imagicaa.",
+  },
+  {
+    eyebrow: "Events",
+    titleLines: ["Celebrate Moments", "in Khopoli"],
+    subtitle: "Weddings, corporate outings, dining, and group celebrations made easy.",
+  },
 ] as const;
-
-export const HOME_HERO_SUBTITLE =
-  "Escape to a relaxing getaway at UK's Resort, Khopoli, where natural greenery meets modern comfort. Located just minutes from Imagicaa, we offer clean, comfortable rooms and wide-open spaces perfect for a peaceful break. Whether you're splashing in our swimming pool and water park or enjoying tasty food with warm hospitality, our calm environment makes us the ideal weekend destination.";
-
-export const HOME_HERO_INTRO_TAG = "";
