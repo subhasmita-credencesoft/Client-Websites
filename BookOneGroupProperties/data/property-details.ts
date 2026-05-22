@@ -1,4 +1,4 @@
-﻿import { siteImages } from "@/lib/site-images";
+import { siteImages } from "@/lib/site-images";
 
 export type AmenityIconKey =
   | "wifi"
@@ -2097,6 +2097,267 @@ export const propertyDetailsBySlug: Record<string, PropertyDetails> = {
     couponHint: "PAWANA10",
     couponDiscount: 2000,
   }),
+  "shalom-maple-leaf": {
+    "slug": "shalom-maple-leaf",
+    "title": "Shalom Maple Leaf",
+    "location": "Villa House No. 3515, Chintamani Guli Road Nagaon Road, Survey No. 1922 Nagaon, Alibaug, Maharashtra, India",
+    "ratingLabel": "New Property",
+    "typeBadge": "Villa",
+    "description": "Welcome to The Shalom Maple Leaf in Alibaug is a serene 4BHK private villa surrounded by lush greenery and peaceful mountain views, offering the perfect escape for relaxation. Spanning 3,500 sq. ft., it features a private swimming pool with a deck, spacious rooms, and generous outdoor areas that blend modern comfort with nature’s tranquility.",
+    "tags": [
+        "#Alibaug",
+        "#Villa_Stay",
+        "#Swimming_Pool"
+    ],
+    "images": [
+        "https://bookonelocal.in/cdn/2025-11-18-071950407-45.jpg"
+    ],
+    "amenities": [
+        {
+            "icon": "droplets",
+            "label": "Swimming Pool"
+        },
+        {
+            "icon": "car",
+            "label": "Free Hotel Parking"
+        },
+        {
+            "icon": "wind",
+            "label": "Air conditioning"
+        },
+        {
+            "icon": "wifi",
+            "label": "Free WiFi"
+        },
+        {
+            "icon": "monitor",
+            "label": "Flat screen TV"
+        }
+    ],
+    "rooms": [
+        {
+            "id": 1,
+            "name": "4BHK Private Villa",
+            "size": "3500 sq.ft",
+            "bed": "4 Bedrooms",
+            "view": "Mountain View",
+            "price": 25000,
+            "image": "https://bookonelocal.in/cdn/2025-11-18-071950407-45.jpg",
+            "features": [
+                "Private Swimming Pool",
+                "Deck",
+                "Spacious Rooms",
+                "Outdoor Areas"
+            ],
+            "available": "1",
+            "description": "A serene 4BHK private villa surrounded by lush greenery and peaceful mountain views."
+        }
+    ],
+    "packages": [],
+    "appPromo": {
+        "badge": "Alibaug Retreat",
+        "title": "Scenic Villa Stay",
+        "description": "Plan a scenic stay with a 4BHK private villa and swimming pool access in Alibaug.",
+        "image": siteImages.conciergeApp
+    },
+    "reviews": [],
+    "propertyDetailsSection": {
+        "title": "Property Details",
+        "lines": [
+            "Property ID: 3268",
+            "Located in Alibaug",
+            "4BHK private villa",
+            "Swimming pool with deck",
+            "Spacious rooms and generous outdoor areas",
+            "Contact: 7666478855",
+            "Email: shalom.bytripdip@gmail.com",
+            "Manager: Rashmi Kulkarni Goswami"
+        ],
+        "activities": [
+            "Swimming Pool",
+            "Garden",
+            "Music system",
+            "Barbeque Stand"
+        ],
+        "address": "Villa House No. 3515, Chintamani Guli Road Nagaon Road, Survey No. 1922 Nagaon, Alibaug, Maharashtra, India"
+    },
+    "oneDayTripSection": {
+        "title": "Stay Information",
+        "time": "Check in 1:00 PM and Check out 11:00 AM",
+        "includes": [
+            "4BHK private villa stay",
+            "Swimming pool access",
+            "Complete privacy"
+        ],
+        "notes": [
+            "Ideal for families and groups."
+        ]
+    },
+    "policiesSection": {
+        "title": "Policies",
+        "accommodation": [
+            "4BHK private villa."
+        ],
+        "cancellation": [
+            "Live availability is checked through the API."
+        ],
+        "dayOuting": [
+            "This property is configured as a stay-focused villa listing."
+        ],
+        "extra": [
+            "Nearby references: Nagaon Beach 1.8 km."
+        ]
+    },
+    "booking": {
+        "basePrice": 25000,
+        "availability": "Available Now",
+        "checkIn": "Mar 16, 2026",
+        "checkOut": "Mar 17, 2026",
+        "guests": [
+            "1 Guest",
+            "5 Guests",
+            "10 Guests"
+        ],
+        "availabilityApiUrl": "https://api.thehotelmate.co/api/thm/checkAvailability/3268",
+        "couponHint": "SHALOM10",
+        "couponDiscount": 500,
+        "secureLabel": "Secure Booking"
+    }
+  },
+  "pool-and-pause": {
+    "slug": "pool-and-pause",
+    "title": "Pool And Pause",
+    "location": "Villa House No. 3514 Chintamani Guli Road Nagaon Road, Survey No. 1922, Nagaon, Alibaug, Maharashtra, India",
+    "ratingLabel": "New Property",
+    "typeBadge": "Villa",
+    "description": "Welcome to Pool And Pause, a serene retreat in the coastal paradise of Alibaug. Surrounded by swaying palms and refreshing sea breezes, our property offers the perfect blend of comfort, tranquility, and warm hospitality.",
+    "tags": [
+        "#Alibaug",
+        "#Villa_Stay",
+        "#Swimming_Pool"
+    ],
+    "images": [
+        "https://bookonelocal.in/cdn/2025-11-18-092550308-38.png",
+        "https://bookonelocal.in/cdn/2025-11-18-092554496-2.png",
+        "https://bookonelocal.in/cdn/2025-11-18-092559036-1.png",
+        "https://bookonelocal.in/cdn/2025-11-18-092607937-60.png",
+        "https://bookonelocal.in/cdn/2025-11-18-092611161-61.png"
+    ],
+    "amenities": [
+        {
+            "icon": "droplets",
+            "label": "Swimming Pool"
+        },
+        {
+            "icon": "car",
+            "label": "Free Hotel Parking"
+        },
+        {
+            "icon": "wind",
+            "label": "Air conditioning"
+        },
+        {
+            "icon": "wifi",
+            "label": "Free WiFi"
+        },
+        {
+            "icon": "monitor",
+            "label": "Flat screen TV"
+        }
+    ],
+    "rooms": [
+        {
+            "id": 7806,
+            "name": "5 BHK Villa",
+            "size": "Entire Villa",
+            "bed": "5 Bedrooms",
+            "view": "Pool View",
+            "price": 25000,
+            "image": "https://bookonelocal.in/cdn/2025-11-18-092849502-30.png",
+            "features": [
+                "AC bedrooms",
+                "Attached washrooms",
+                "Living area",
+                "Outdoor sit-out",
+                "Dining space",
+                "Caretaker support"
+            ],
+            "available": "1",
+            "description": "A spacious private villa ideal for families and groups, featuring AC bedrooms, attached washrooms, living area, outdoor sit-out, dining space, caretaker support, 25KV genset backup, free WiFi, and all essentials for a comfortable stay.",
+            "planNote": "Minimum Occupancy: 20, Maximum Occupancy: 25"
+        }
+    ],
+    "packages": [],
+    "appPromo": {
+        "badge": "Alibaug Retreat",
+        "title": "Scenic Villa Stay",
+        "description": "Plan a scenic stay with a 5 BHK private villa and swimming pool access in Alibaug.",
+        "image": siteImages.conciergeApp
+    },
+    "reviews": [],
+    "propertyDetailsSection": {
+        "title": "Property Details",
+        "lines": [
+            "Property ID: 3270",
+            "Located in Alibaug",
+            "5 BHK private villa",
+            "Swimming pool with deck",
+            "Caretaker support and 25KV genset backup",
+            "Contact: 7666478855",
+            "Email: poolpause.bytripdip@gmail.com",
+            "Manager: Rashmi Kulkarni"
+        ],
+        "activities": [
+            "Swimming Pool",
+            "Garden",
+            "Music system",
+            "Barbeque Stand"
+        ],
+        "address": "Villa House No. 3514 Chintamani Guli Road Nagaon Road, Survey No. 1922, Nagaon, Alibaug, Maharashtra, India"
+    },
+    "oneDayTripSection": {
+        "title": "Stay Information",
+        "time": "Check in 1:00 PM and Check out 11:00 AM",
+        "includes": [
+            "5 BHK private villa stay",
+            "Swimming pool access",
+            "Complete privacy"
+        ],
+        "notes": [
+            "Ideal for leisure and relaxation."
+        ]
+    },
+    "policiesSection": {
+        "title": "Policies",
+        "accommodation": [
+            "5 BHK private villa accommodating larger gatherings with ease."
+        ],
+        "cancellation": [
+            "Live availability is checked through the API."
+        ],
+        "dayOuting": [
+            "This property is configured as a stay-focused villa listing."
+        ],
+        "extra": [
+            "Nearby references: Nagaon Beach 1 km, Kolaba Fort 9 km, Alibaug Beach 10 km."
+        ]
+    },
+    "booking": {
+        "basePrice": 25000,
+        "availability": "Available Now",
+        "checkIn": "Mar 16, 2026",
+        "checkOut": "Mar 17, 2026",
+        "guests": [
+            "5 Guests",
+            "10 Guests",
+            "20 Guests"
+        ],
+        "availabilityApiUrl": "https://api.thehotelmate.co/api/thm/checkAvailability/3270",
+        "couponHint": "POOLPAUSE10",
+        "couponDiscount": 500,
+        "secureLabel": "Secure Booking"
+    }
+  }
 };
 
 export const propertyDetailsData = propertyDetailsBySlug["vishals-orchard-resort"];

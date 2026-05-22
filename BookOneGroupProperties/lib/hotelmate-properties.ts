@@ -5,15 +5,43 @@ import { propertyDetailsBySlug } from "@/data/property-details";
 import type { PropertyDetails, AmenityIconKey } from "@/data/property-details";
 
 const FIND_BY_ID_BASE = "https://api.thehotelmate.co/api/thm/findById";
+const FIND_BY_SEO_BASE = "https://api.thehotelmate.co/api/thm/findByPropertyBySEOFriendlyName";
 const CHECK_AVAILABILITY_BASE = "https://api.thehotelmate.co/api/thm/checkAvailability";
+const PROPERTY_DETAIL_GUESTS = 20;
 
-async function fetchPropertyData(propertyId: number) {
-  const response = await fetch(`${FIND_BY_ID_BASE}/${propertyId}`, {
+async function fetchJson(url: string) {
+  const response = await fetch(url, {
     next: { revalidate: 60 },
     headers: { "Accept": "application/json" },
   });
   if (!response.ok) throw new Error(`Failed to fetch property data: ${response.statusText}`);
   return response.json();
+}
+
+async function fetchPropertyData(source: import("@/data/property-sources").PropertySource) {
+  const { fromDate, toDate } = getDefaultAvailabilityDateRange();
+  const availabilityParams = new URLSearchParams({
+    fromDate,
+    toDate,
+    noOfRooms: "1",
+    noOfPersons: String(PROPERTY_DETAIL_GUESTS),
+  });
+  const urls = [
+    `${CHECK_AVAILABILITY_BASE}/${source.propertyId}?${availabilityParams.toString()}`,
+    `${FIND_BY_SEO_BASE}/${source.bookingPath}`,
+    `${FIND_BY_ID_BASE}/${source.propertyId}`,
+  ];
+
+  let lastError: unknown;
+  for (const url of urls) {
+    try {
+      return await fetchJson(url);
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error("Failed to fetch property data");
 }
 
 type HotelMateAddress = {
@@ -50,6 +78,24 @@ type HotelMateRoom = {
   imageList?: HotelMateImage[] | null;
   roomFacilities?: HotelMateFacility[] | null;
   dayTrip?: boolean | null;
+  ratesAndAvailabilityDtos?: HotelMateRateAvailability[] | null;
+};
+
+type HotelMateRateAvailability = {
+  price?: number | null;
+  noOfAvailable?: number | null;
+  totalNoRooms?: number | null;
+  noOfBooked?: number | null;
+  date?: string | null;
+  status?: string | null;
+  roomRatePlans?: HotelMateRoomRatePlan[] | null;
+};
+
+type HotelMateRoomRatePlan = {
+  name?: string | null;
+  amount?: number | string | null;
+  minimumOccupancy?: number | null;
+  maximumOccupancy?: number | null;
 };
 
 type HotelMateService = {
@@ -76,6 +122,7 @@ type HotelMateProperty = {
   businessType?: string | null;
   businessDescription?: string | null;
   pricePerNight?: number | null;
+  minimumRoooPrice?: number | null;
   maximumOccupancy?: number | null;
   minimumOccupancy?: number | null;
   verified?: boolean | null;
@@ -125,23 +172,79 @@ export const getDynamicPropertyBySlug = cache(async (slug: string): Promise<Prop
   }
 
   try {
-    const payload = await fetchPropertyData(source.propertyId);
+    const payload = await fetchPropertyData(source);
 
     if (!payload) {
-      return propertyDetailsBySlug[normalizedSlug] ?? buildMinimalPropertyFromSource(source, normalizedSlug);
+      const curatedProperty = propertyDetailsBySlug[normalizedSlug];
+      return curatedProperty
+        ? withSourceBookingFallback(curatedProperty, source)
+        : buildMinimalPropertyFromSource(source, normalizedSlug);
     }
 
     try {
-      return mapHotelMatePropertyToDetails(payload, normalizedSlug, source.fallbackImage);
+      const dynamicProperty = mapHotelMatePropertyToDetails(payload, normalizedSlug, source.fallbackImage);
+      return mergeCuratedPropertyDetails(dynamicProperty, propertyDetailsBySlug[normalizedSlug], source);
     } catch (mappingError) {
       console.error(`Error mapping property ${normalizedSlug}:`, mappingError);
-      return propertyDetailsBySlug[normalizedSlug] ?? buildMinimalPropertyFromSource(source, normalizedSlug);
+      const curatedProperty = propertyDetailsBySlug[normalizedSlug];
+      return curatedProperty
+        ? withSourceBookingFallback(curatedProperty, source)
+        : buildMinimalPropertyFromSource(source, normalizedSlug);
     }
   } catch (fetchError) {
     console.error(`Error fetching property ${normalizedSlug}:`, fetchError);
-    return propertyDetailsBySlug[normalizedSlug] ?? buildMinimalPropertyFromSource(source, normalizedSlug);
+    const curatedProperty = propertyDetailsBySlug[normalizedSlug];
+    return curatedProperty
+      ? withSourceBookingFallback(curatedProperty, source)
+      : buildMinimalPropertyFromSource(source, normalizedSlug);
   }
 });
+
+function mergeCuratedPropertyDetails(
+  dynamicProperty: PropertyDetails,
+  curatedProperty: PropertyDetails | undefined,
+  source: import("@/data/property-sources").PropertySource,
+): PropertyDetails {
+  if (!curatedProperty) {
+    return withSourceBookingFallback(dynamicProperty, source);
+  }
+
+  const merged: PropertyDetails = {
+    ...dynamicProperty,
+    ...curatedProperty,
+    slug: dynamicProperty.slug,
+    images: curatedProperty.images.length ? curatedProperty.images : dynamicProperty.images,
+    amenities: curatedProperty.amenities.length ? curatedProperty.amenities : dynamicProperty.amenities,
+    rooms: curatedProperty.rooms.length ? curatedProperty.rooms : dynamicProperty.rooms,
+    packages: curatedProperty.packages.length ? curatedProperty.packages : dynamicProperty.packages,
+    reviews: curatedProperty.reviews.length ? curatedProperty.reviews : dynamicProperty.reviews,
+    propertyDetailsSection: curatedProperty.propertyDetailsSection ?? dynamicProperty.propertyDetailsSection,
+    oneDayTripSection: curatedProperty.oneDayTripSection ?? dynamicProperty.oneDayTripSection,
+    policiesSection: curatedProperty.policiesSection ?? dynamicProperty.policiesSection,
+    booking: {
+      ...dynamicProperty.booking,
+      ...curatedProperty.booking,
+      basePrice: curatedProperty.booking.basePrice || dynamicProperty.booking.basePrice,
+      guests: curatedProperty.booking.guests.length ? curatedProperty.booking.guests : dynamicProperty.booking.guests,
+    },
+  };
+
+  return withSourceBookingFallback(merged, source);
+}
+
+function withSourceBookingFallback(
+  property: PropertyDetails,
+  source: import("@/data/property-sources").PropertySource,
+): PropertyDetails {
+  return {
+    ...property,
+    booking: {
+      ...property.booking,
+      availabilityApiUrl: property.booking.availabilityApiUrl ?? `${CHECK_AVAILABILITY_BASE}/${source.propertyId}`,
+      externalBookingUrl: property.booking.externalBookingUrl ?? `https://bookone.io/${source.bookingPath}`,
+    },
+  };
+}
 
 function buildMinimalPropertyFromSource(source: import("@/data/property-sources").PropertySource, slug: string): PropertyDetails {
   const title = slugToTitle(slug);
@@ -341,9 +444,12 @@ function mapHotelMatePropertyToDetails(
   // When the API returns an empty roomList (some properties store accommodation as
   // services rather than rooms), fall back to the static definitions in
   // property-details.ts so the Rooms section is never blank.
+  const curatedRooms = propertyDetailsBySlug[slug]?.rooms ?? [];
   const rooms = apiRooms.length > 0
     ? apiRooms
-    : (propertyDetailsBySlug[slug]?.rooms ?? []);
+    : curatedRooms.length > 0
+      ? curatedRooms
+      : buildFallbackRooms(property, title, images[0] ?? fallbackImage);
   const services = property.propertyServicesList ?? [];
   const roomNames = rooms.map((room) => room.name).filter(Boolean);
   const cleanedDescription = htmlToText(property.businessDescription) || `${title} offers a comfortable stay experience.`;
@@ -420,13 +526,33 @@ function mapRooms(property: HotelMateProperty, fallbackImage: string): PropertyD
       size: room.noOfRooms ? `${room.noOfRooms} ${room.noOfRooms === 1 ? "Unit" : "Units"}` : "Stay Option",
       bed: formatOccupancy(room.minimumOccupancy, room.maximumOccupancy),
       view: "Property View",
-      price: room.roomOnlyPrice ?? property.pricePerNight ?? 0,
+      price: getRoomPrice(room, property),
       image: images[0] ?? fallbackImage,
       features: (room.roomFacilities ?? []).map(f => f.name || "").filter(Boolean) || ["Comfortable Stay"],
-      available: room.noOfRooms ? room.noOfRooms.toString() : undefined,
+      available: getRoomAvailability(room),
       description: htmlToText(room.description) || "Comfortable accommodation.",
     };
   });
+}
+
+function buildFallbackRooms(
+  property: HotelMateProperty,
+  title: string,
+  fallbackImage: string,
+): PropertyDetails["rooms"] {
+  return [
+    {
+      id: property.id ?? 1,
+      name: normalizePropertyType(property.businessSubtype || property.businessType) || `${title} Stay`,
+      size: "Stay Option",
+      bed: formatOccupancy(property.minimumOccupancy, property.maximumOccupancy),
+      view: "Property View",
+      price: property.minimumRoooPrice ?? property.pricePerNight ?? 0,
+      image: fallbackImage,
+      features: buildActivities(property).slice(0, 6),
+      description: htmlToText(property.businessDescription) || `Comfortable accommodation at ${title}.`,
+    },
+  ];
 }
 
 function buildPackages(
@@ -591,7 +717,43 @@ function hasDayUseRooms(property: HotelMateProperty) {
 
 function getBasePrice(property: HotelMateProperty, rooms: PropertyDetails["rooms"]) {
   const prices = rooms.map((room) => room.price).filter((price) => price > 0);
-  return prices.length ? Math.min(...prices) : property.pricePerNight ?? 0;
+  return prices.length ? Math.min(...prices) : property.minimumRoooPrice ?? property.pricePerNight ?? 0;
+}
+
+function getRoomPrice(room: HotelMateRoom, property: HotelMateProperty) {
+  return getPrimaryRoomRatePlanAmount(room)
+    ?? room.roomOnlyPrice
+    ?? getPrimaryRateAvailability(room)?.price
+    ?? property.minimumRoooPrice
+    ?? property.pricePerNight
+    ?? 0;
+}
+
+function getRoomAvailability(room: HotelMateRoom) {
+  const rateAvailability = getPrimaryRateAvailability(room);
+  if (rateAvailability?.noOfAvailable != null) return rateAvailability.noOfAvailable.toString();
+  if (room.noOfRooms != null) return room.noOfRooms.toString();
+  return undefined;
+}
+
+function getPrimaryRateAvailability(room: HotelMateRoom) {
+  return room.ratesAndAvailabilityDtos?.find((rate) => rate?.status !== "Closed") ?? room.ratesAndAvailabilityDtos?.[0] ?? null;
+}
+
+function getPrimaryRoomRatePlanAmount(room: HotelMateRoom) {
+  const rateAvailability = getPrimaryRateAvailability(room);
+  const ratePlans = rateAvailability?.roomRatePlans ?? [];
+  const planWithAmount = ratePlans.find((plan) => getPositiveNumber(plan?.amount) !== null);
+  return getPositiveNumber(planWithAmount?.amount);
+}
+
+function getPositiveNumber(value: number | string | null | undefined) {
+  if (typeof value === "number" && Number.isFinite(value) && value > 0) return value;
+  if (typeof value === "string") {
+    const parsed = Number.parseFloat(value);
+    if (Number.isFinite(parsed) && parsed > 0) return parsed;
+  }
+  return null;
 }
 
 function buildGuestOptions(property: HotelMateProperty, rooms: PropertyDetails["rooms"]) {
@@ -758,6 +920,22 @@ function slugToTitle(slug: string) {
     .split("-")
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
+}
+
+function getDefaultAvailabilityDateRange() {
+  const from = new Date();
+  const to = new Date(from);
+  to.setDate(from.getDate() + 1);
+
+  return {
+    fromDate: formatApiDate(from),
+    toDate: formatApiDate(to),
+  };
+}
+
+function formatApiDate(date: Date) {
+  const pad = (value: number) => String(value).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
 function buildExternalBookingUrl(seoFriendlyName?: string | null, slug?: string) {

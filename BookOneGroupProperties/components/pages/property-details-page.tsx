@@ -491,6 +491,8 @@ function getAvailabilityLabel(data: unknown, fallback: string) {
   if (directLabel) return directLabel;
   const availableRooms = getNumberValue(record.availableRooms) ?? getNumberValue(record.noOfRooms) ?? getNumberValue(record.roomsAvailable) ?? getNumberValue(record.available);
   if (availableRooms !== null) return availableRooms > 0 ? `${availableRooms} Room${availableRooms === 1 ? "" : "s"} Available` : "Sold Out";
+  const nestedAvailableRooms = getAvailableRoomsFromRoomList(record.roomList);
+  if (nestedAvailableRooms !== null) return nestedAvailableRooms > 0 ? `${nestedAvailableRooms} Room${nestedAvailableRooms === 1 ? "" : "s"} Available` : "Sold Out";
   const successFlag = getBooleanValue(record.success) ?? getBooleanValue(record.availableStatus);
   if (successFlag !== null) return successFlag ? "Available" : "Unavailable";
   return fallback;
@@ -512,6 +514,31 @@ function getBooleanValue(value: unknown) {
     if (value.toLowerCase() === "false") return false;
   }
   return null;
+}
+
+function getAvailableRoomsFromRoomList(value: unknown) {
+  const rooms = Array.isArray(value) ? value : value ? [value] : [];
+  let total = 0;
+  let found = false;
+
+  for (const room of rooms) {
+    if (!room || typeof room !== "object") continue;
+    const record = room as Record<string, unknown>;
+    const rates = Array.isArray(record.ratesAndAvailabilityDtos)
+      ? record.ratesAndAvailabilityDtos
+      : [];
+
+    for (const rate of rates) {
+      if (!rate || typeof rate !== "object") continue;
+      const rateRecord = rate as Record<string, unknown>;
+      const available = getNumberValue(rateRecord.noOfAvailable);
+      if (available === null) continue;
+      total += available;
+      found = true;
+    }
+  }
+
+  return found ? total : null;
 }
 
 function ShieldCheckIcon(props: SVGProps<SVGSVGElement>) {
