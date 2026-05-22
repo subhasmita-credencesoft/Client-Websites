@@ -11,7 +11,7 @@ const ATTRACTIONS = [
     title: "ADLABS Imagica",
     description:
       "One of India's largest theme parks, sitting right on the Mumbai-Pune Expressway just 8 km from UK's Resort. Many guests combine a full day at Imagica with an overnight stay here because the short drive back is far easier than heading home the same day.",
-    image: "https://bookonelocal.in/cdn/adlabs-imagica.jpg",
+    image: "/imagica.png",
     alt: "Adlabs Imagica amusement park rides",
     distance: "8 km • ~15 min drive",
     mood: "Theme Park",
@@ -20,7 +20,7 @@ const ATTRACTIONS = [
     title: "Ashtavinayak - Varad Vinayak Temple",
     description:
       "One of the eight sacred Ashtavinayak Ganesha temples of Maharashtra, this temple is a 10-minute walk from UK's Resort. Many guests pair an early darshan with a relaxed day back at the resort.",
-    image: "https://bookonelocal.in/cdn/ashtavinayak.jpg",
+    image: "/Astavinayak.png",
     alt: "Ashtavinayak Mahad Temple exterior view",
     distance: "10-min walk",
     mood: "Spiritual",
@@ -29,7 +29,7 @@ const ATTRACTIONS = [
     title: "Lonavala and Khandala Hill Station",
     description:
       "The Sahyadri's most loved hill stations are close enough for a comfortable half-day or full-day excursion from UK's Resort. Think viewpoints, monsoon drives, chikki stops, and a slower mountain pace.",
-    image: "/images/lonavala.jpg",
+    image: "/Hillstation.png",
     alt: "Lonavala and Khandala Hill Station landscape",
     distance: "~40 km • ~1 hr drive",
     mood: "Hill Station",
@@ -38,7 +38,7 @@ const ATTRACTIONS = [
     title: "Zenith Waterfall",
     description:
       "One of the most dramatic seasonal waterfalls near Khopoli, Zenith runs strong in monsoon and is a popular short drive from the resort for groups looking for a quick nature outing.",
-    image: "/images/Zenith Waterfall.png",
+    image: "/Zenhills.png",
     alt: "Zenith Waterfall landscape",
     distance: "5 km • 10-min drive",
     mood: "Waterfall",
@@ -47,7 +47,7 @@ const ATTRACTIONS = [
     title: "Palasdari Waterfall & Dam",
     description:
       "Accessible by both road and rail, Palasdari offers a quieter outing than some of the busier monsoon spots nearby. Until the correct attraction photo is sourced, this card uses a neutral scenic placeholder.",
-    image: "/uk1.avif",
+    image: "/paladarsiwaterfall.png",
     alt: "Scenic placeholder image for Palasdari Waterfall and Dam",
     distance: "5 km • 10-min drive",
     mood: "Waterfall & Dam",
@@ -56,7 +56,7 @@ const ATTRACTIONS = [
     title: "Shri Gagangiri Maharaj Ashram",
     description:
       "A place of spiritual significance in the region, the ashram offers a quieter, reflective outing away from the resort's activity zones. Until the correct attraction image is available, this card uses a neutral placeholder.",
-    image: "/uk2.avif",
+    image: "/gagangiri.png",
     alt: "Scenic placeholder image for Gagangiri Maharaj Ashram",
     distance: "5 km • 10-min drive",
     mood: "Ashram & Spiritual",
@@ -64,7 +64,7 @@ const ATTRACTIONS = [
   {
     title: "ND Studio",
     description: "ND Studio in Karjat is one of India's best-known outdoor film studios, famous for large television and historical productions. A fun short-drive outing for guests interested in film sets and behind-the-scenes spaces.",
-    image: "https://bookonelocal.in/cdn/nithin.jpg",
+    image: "/ndstudio.png",
     alt: "ND Studio set",
     distance: "Short drive from resort",
     mood: "Film & TV Destination",
