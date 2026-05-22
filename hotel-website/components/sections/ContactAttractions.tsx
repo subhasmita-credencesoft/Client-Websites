@@ -20,7 +20,7 @@ const ATTRACTIONS = [
     title: "Ashtavinayak - Varad Vinayak Temple",
     description:
       "One of the eight sacred Ashtavinayak Ganesha temples of Maharashtra, this temple is a 10-minute walk from UK's Resort. Many guests pair an early darshan with a relaxed day back at the resort.",
-    image: "/Astavinayak.png",
+    image: "/Astavinayakmandir.png",
     alt: "Ashtavinayak Mahad Temple exterior view",
     distance: "10-min walk",
     mood: "Spiritual",
