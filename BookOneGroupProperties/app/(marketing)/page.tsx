@@ -6,7 +6,7 @@ import { getFeaturedPropertiesData, getLocationHighlightsData } from "@/lib/hote
 import { buildPageMetadata, absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Tripdip",
+  title: "TripDip",
   description: homePageData.hero.description,
   path: "/",
 });

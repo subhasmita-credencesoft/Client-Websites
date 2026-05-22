@@ -6,7 +6,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Restaurant & Dining",
   description:
-    "Browse the full live menu for each Tripdip property — from breakfast to dinner, Kokani specials to Chinese cuisine.",
+    "Browse the full live menu for each TripDip property — from breakfast to dinner, Kokani specials to Chinese cuisine.",
   path: "/restaurant",
 });
 

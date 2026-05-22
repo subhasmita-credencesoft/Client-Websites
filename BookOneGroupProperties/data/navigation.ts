@@ -12,7 +12,7 @@ export const navigationData: {
   mobileCtaLabel: string;
 } = {
   brand: {
-    name: "Tripdip",
+    name: "TripDip",
     tagline: "It's Your Day",
   },
   links: [
