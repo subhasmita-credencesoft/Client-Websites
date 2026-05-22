@@ -20,7 +20,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20">
+      {/* <section className="py-16 md:py-20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mx-auto max-w-5xl">
             <div className="mb-10 text-center">
@@ -56,7 +56,7 @@ export function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }
