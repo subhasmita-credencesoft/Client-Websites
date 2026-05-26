@@ -58,8 +58,10 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
   // State initialized with neutral/safe values to prevent hydration mismatch
   const [checkInDate, setCheckInDate] = useState<Date>(new Date());
   const [checkOutDate, setCheckOutDate] = useState<Date>(addDays(new Date(), 1));
-  const [guestCount, setGuestCount] = useState(2);
+  const [guestCount, setGuestCount] = useState(1);
   const [availabilityLabel, setAvailabilityLabel] = useState(property.booking.availability);
+  const [liveBasePrice, setLiveBasePrice] = useState<number>(property.booking.basePrice);
+  const [apiRooms, setApiRooms] = useState<any[] | null>(null);
 
   // Initialize all date-dependent and param-dependent state after mount
   useEffect(() => {
@@ -136,10 +138,31 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
         if (!response.ok) throw new Error(`Availability request failed: ${response.status}`);
         const data = await response.json();
         setAvailabilityLabel(getAvailabilityLabel(data, property.booking.availability));
+
+        if (data && typeof data === "object") {
+          const record = data as Record<string, unknown>;
+          const roomsList = Array.isArray(record.roomList) ? record.roomList : [];
+          setApiRooms(roomsList);
+          
+          const prices = roomsList
+            .map((room: any) => getRoomPriceFromApi(room, 0))
+            .filter((price: number) => price > 0);
+          
+          if (prices.length > 0) {
+            setLiveBasePrice(Math.min(...prices));
+          } else {
+            const parsedMinPrice = getPositiveNumber(record.minimumRoooPrice) ?? getPositiveNumber(record.pricePerNight);
+            if (parsedMinPrice !== null) {
+              setLiveBasePrice(parsedMinPrice);
+            }
+          }
+        }
       })
       .catch((error) => {
         if (error instanceof Error && error.name === "AbortError") return;
         setAvailabilityLabel(property.booking.availability);
+        setLiveBasePrice(property.booking.basePrice);
+        setApiRooms(null);
       });
 
     return () => controller.abort();
@@ -253,49 +276,54 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
             <section className="rounded-2xl bg-secondary/20 p-5 sm:p-6 md:p-8">
               <h2 className="mb-6 text-2xl font-bold text-foreground">Packages / Tariff</h2>
               <div className="space-y-6">
-                {property.rooms.map((room) => (
-                  <div key={`room-${room.id}`} className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
-                    <div className="flex flex-col md:flex-row">
-                      <div className="relative h-64 md:h-auto md:w-2/5">
-                        <Image src={room.image} alt={room.name} fill sizes="(max-width: 768px) 100vw, 40vw" className="h-full w-full object-cover" />
-                      </div>
-                      <div className="flex flex-1 flex-col justify-between gap-5 p-5 md:p-6">
-                        <div>
-                          <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                            <h3 className="text-xl font-bold">{room.name}</h3>
-                            <Badge className="w-fit bg-primary/10 text-primary hover:bg-primary/20">{room.size}</Badge>
-                          </div>
-                          <ul className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                            <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <Check className="h-3 w-3 shrink-0 text-green-500" /> Occupancy: {room.bed}
-                            </li>
-                            <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <Check className="h-3 w-3 shrink-0 text-green-500" /> View: {room.view}
-                            </li>
-                            {room.available ? (
-                              <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                                <Check className="h-3 w-3 shrink-0 text-green-500" /> Available: {room.available}
-                              </li>
-                            ) : null}
-                            {room.features.map((feature) => (
-                              <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                <Check className="h-3 w-3 shrink-0 text-green-500" /> {feature}
-                              </li>
-                            ))}
-                          </ul>
-                          {room.description ? <p className="text-sm leading-relaxed text-muted-foreground">{room.description}</p> : null}
+                {property.rooms.map((room, index) => {
+                  const apiRoom = apiRooms ? findApiRoomForCuratedRoom(room, index, apiRooms, property.rooms) : null;
+                  const livePrice = apiRoom ? getRoomPriceFromApi(apiRoom, room.price) : room.price;
+                  const liveAvailable = apiRoom ? getRoomAvailabilityFromApi(apiRoom) : room.available;
+                  return (
+                    <div key={`room-${room.id}`} className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
+                      <div className="flex flex-col md:flex-row">
+                        <div className="relative h-64 md:h-auto md:w-2/5">
+                          <Image src={room.image} alt={room.name} fill sizes="(max-width: 768px) 100vw, 40vw" className="h-full w-full object-cover" />
                         </div>
-
-                        <div className="mt-2 flex flex-col gap-4 border-t border-border/50 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="flex flex-1 flex-col justify-between gap-5 p-5 md:p-6">
                           <div>
-                            <span className="text-2xl font-bold text-primary">{formatCurrency(room.price)}</span>
-                            <span className="text-sm text-muted-foreground"> / unit</span>
+                            <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                              <h3 className="text-xl font-bold">{room.name}</h3>
+                              <Badge className="w-fit bg-primary/10 text-primary hover:bg-primary/20">{room.size}</Badge>
+                            </div>
+                            <ul className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                              <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Check className="h-3 w-3 shrink-0 text-green-500" /> Occupancy: {room.bed}
+                              </li>
+                              <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Check className="h-3 w-3 shrink-0 text-green-500" /> View: {room.view}
+                              </li>
+                              {liveAvailable ? (
+                                <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                                  <Check className="h-3 w-3 shrink-0 text-green-500" /> Available: {liveAvailable}
+                                </li>
+                              ) : null}
+                              {room.features.map((feature) => (
+                                <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
+                                  <Check className="h-3 w-3 shrink-0 text-green-500" /> {feature}
+                                </li>
+                              ))}
+                            </ul>
+                            {room.description ? <p className="text-sm leading-relaxed text-muted-foreground">{room.description}</p> : null}
+                          </div>
+
+                          <div className="mt-2 flex flex-col gap-4 border-t border-border/50 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                              <span className="text-2xl font-bold text-primary">{formatCurrency(livePrice)}</span>
+                              <span className="text-sm text-muted-foreground"> / unit</span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </section>
 
@@ -333,7 +361,7 @@ export function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
             <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-xl md:p-6 lg:sticky lg:top-24">
               <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <span className="text-3xl font-bold text-primary">{formatCurrency(property.booking.basePrice)}</span>
+                  <span className="text-3xl font-bold text-primary">{formatCurrency(liveBasePrice)}</span>
                   <span className="text-muted-foreground"> / night</span>
                 </div>
                 <div className="flex w-fit items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-bold text-green-600">
@@ -476,12 +504,12 @@ function getInitialCheckoutDate(value: string, checkInDate: Date) {
   return parsedDate > checkInDate ? parsedDate : addDays(checkInDate, 1);
 }
 
-function getInitialGuestCount(guestQuery: string | null | undefined, guests: string[]) {
+function getInitialGuestCount(guestQuery: string | null | undefined, _guests: string[]) {
+  // If a URL query param (e.g. ?guests=3) is provided, honour it
   const parsedQueryCount = Number.parseInt(guestQuery ?? "", 10);
   if (!Number.isNaN(parsedQueryCount) && parsedQueryCount > 0) return parsedQueryCount;
-  const firstGuestOption = guests[0] ?? "2 Guests";
-  const parsedCount = Number.parseInt(firstGuestOption, 10);
-  return Number.isNaN(parsedCount) ? 2 : parsedCount;
+  // Always default to 1 so the widget starts with the most common / neutral value
+  return 1;
 }
 
 function getAvailabilityLabel(data: unknown, fallback: string) {
@@ -539,6 +567,99 @@ function getAvailableRoomsFromRoomList(value: unknown) {
   }
 
   return found ? total : null;
+}
+
+function getPositiveNumber(value: unknown): number | null {
+  if (typeof value === "number" && Number.isFinite(value) && value > 0) return value;
+  if (typeof value === "string") {
+    const parsed = Number.parseFloat(value);
+    if (Number.isFinite(parsed) && parsed > 0) return parsed;
+  }
+  return null;
+}
+
+function getPrimaryRateAvailability(room: unknown): any | null {
+  if (!room || typeof room !== "object") return null;
+  const rec = room as Record<string, unknown>;
+  const rates = Array.isArray(rec.ratesAndAvailabilityDtos) ? rec.ratesAndAvailabilityDtos : [];
+  const openRate = rates.find((rate: any) => rate && typeof rate === "object" && (rate as Record<string, unknown>).status !== "Closed");
+  return openRate ?? rates[0] ?? null;
+}
+
+function getPrimaryRoomRatePlanAmount(room: unknown): number | null {
+  const rateAvailability = getPrimaryRateAvailability(room);
+  if (!rateAvailability || typeof rateAvailability !== "object") return null;
+  const ratePlans = Array.isArray(rateAvailability.roomRatePlans) ? rateAvailability.roomRatePlans : [];
+  const planWithAmount = ratePlans.find((plan: any) => plan && typeof plan === "object" && getPositiveNumber((plan as Record<string, unknown>).amount) !== null);
+  return planWithAmount ? getPositiveNumber((planWithAmount as Record<string, unknown>).amount) : null;
+}
+
+function getRoomPriceFromApi(room: unknown, fallbackPrice = 0): number {
+  if (!room || typeof room !== "object") return fallbackPrice;
+  const rec = room as Record<string, unknown>;
+  return getPrimaryRoomRatePlanAmount(room)
+    ?? getPositiveNumber(rec.roomOnlyPrice)
+    ?? getPositiveNumber(getPrimaryRateAvailability(room)?.price)
+    ?? fallbackPrice;
+}
+
+function getRoomAvailabilityFromApi(room: unknown): string | undefined {
+  if (!room || typeof room !== "object") return undefined;
+  const rec = room as Record<string, unknown>;
+  const rateAvailability = getPrimaryRateAvailability(room);
+  if (rateAvailability && typeof rateAvailability === "object") {
+    const available = getNumberValue((rateAvailability as Record<string, unknown>).noOfAvailable);
+    if (available !== null) return available.toString();
+  }
+  const noOfRooms = getNumberValue(rec.noOfRooms);
+  if (noOfRooms !== null) return noOfRooms.toString();
+  return undefined;
+}
+
+function findApiRoomForCuratedRoom(
+  curatedRoom: any,
+  curatedIndex: number,
+  apiRooms: any[],
+  curatedRooms: any[]
+): any | null {
+  if (!apiRooms || apiRooms.length === 0) return null;
+  
+  // 1. Match by exact ID
+  const curatedIdStr = String(curatedRoom.id);
+  const matchById = apiRooms.find((r: any) => r && String(r.id) === curatedIdStr);
+  if (matchById) return matchById;
+
+  // 2. Match by exact name (case-insensitive, trimmed)
+  const curatedNameClean = curatedRoom.name?.trim().toLowerCase();
+  if (curatedNameClean) {
+    const matchByName = apiRooms.find((r: any) => r?.name?.trim().toLowerCase() === curatedNameClean);
+    if (matchByName) return matchByName;
+  }
+
+  // 3. Match by normalized name (removing spaces, non-alphanumeric, and strip common filler words)
+  const normalize = (name: string) => {
+    if (!name) return "";
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "")
+      .replace(/private|luxury|standard|room|villa|stay|cottage|suite|home|unit|person|guest/g, "");
+  };
+  
+  const curatedNorm = normalize(curatedRoom.name);
+  if (curatedNorm) {
+    const matchByNormName = apiRooms.find((r: any) => normalize(r?.name) === curatedNorm);
+    if (matchByNormName) return matchByNormName;
+  }
+
+  // 4. Match by index if the lengths are identical, or if both have exactly 1 room
+  if (apiRooms.length === curatedRooms.length) {
+    return apiRooms[curatedIndex] ?? null;
+  }
+  if (curatedRooms.length === 1 && apiRooms.length === 1) {
+    return apiRooms[0] ?? null;
+  }
+
+  return null;
 }
 
 function ShieldCheckIcon(props: SVGProps<SVGSVGElement>) {

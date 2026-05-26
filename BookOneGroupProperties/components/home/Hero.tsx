@@ -29,6 +29,7 @@ export function Hero() {
   const [selectedPropertyLink, setSelectedPropertyLink] = useState(propertyOptions[0]?.link ?? "");
 
   useEffect(() => {
+    const today = startOfDay(new Date());
     const checkInStr = searchParams.get("checkIn") || searchParams.get("checkin");
     const checkOutStr = searchParams.get("checkOut") || searchParams.get("checkout");
     const guestStr = searchParams.get("guests") || searchParams.get("adults");
@@ -39,12 +40,21 @@ export function Hero() {
       if (isValid(from)) {
         const to = checkOutStr ? parseDate(checkOutStr) : addDays(from, 1);
         setDateRange({ from, to: isValid(to) ? to : addDays(from, 1) });
+      } else {
+        // Unparseable param — fall back to today → tomorrow
+        setDateRange({ from: today, to: addDays(today, 1) });
       }
+    } else {
+      // No URL param — always default to today → tomorrow
+      setDateRange({ from: today, to: addDays(today, 1) });
     }
 
     if (guestStr) {
       const g = parseInt(guestStr, 10);
-      if (!isNaN(g)) setGuestCount(g);
+      if (!isNaN(g) && g > 0) setGuestCount(g);
+      else setGuestCount(1);
+    } else {
+      setGuestCount(1);
     }
 
     if (destStr) setDestination(destStr);

@@ -209,13 +209,29 @@ function mergeCuratedPropertyDetails(
     return withSourceBookingFallback(dynamicProperty, source);
   }
 
+  const mergedRooms = curatedProperty.rooms.length
+    ? curatedProperty.rooms.map((curatedRoom, index) => {
+        const dynamicRoom = findMatchingDynamicRoom(
+          curatedRoom,
+          index,
+          dynamicProperty.rooms,
+          curatedProperty.rooms
+        );
+        return {
+          ...curatedRoom,
+          price: dynamicRoom && dynamicRoom.price > 0 ? dynamicRoom.price : curatedRoom.price,
+          available: dynamicRoom ? dynamicRoom.available : curatedRoom.available,
+        };
+      })
+    : dynamicProperty.rooms;
+
   const merged: PropertyDetails = {
     ...dynamicProperty,
     ...curatedProperty,
     slug: dynamicProperty.slug,
     images: curatedProperty.images.length ? curatedProperty.images : dynamicProperty.images,
     amenities: curatedProperty.amenities.length ? curatedProperty.amenities : dynamicProperty.amenities,
-    rooms: curatedProperty.rooms.length ? curatedProperty.rooms : dynamicProperty.rooms,
+    rooms: mergedRooms,
     packages: curatedProperty.packages.length ? curatedProperty.packages : dynamicProperty.packages,
     reviews: curatedProperty.reviews.length ? curatedProperty.reviews : dynamicProperty.reviews,
     propertyDetailsSection: curatedProperty.propertyDetailsSection ?? dynamicProperty.propertyDetailsSection,
@@ -224,7 +240,7 @@ function mergeCuratedPropertyDetails(
     booking: {
       ...dynamicProperty.booking,
       ...curatedProperty.booking,
-      basePrice: curatedProperty.booking.basePrice || dynamicProperty.booking.basePrice,
+      basePrice: dynamicProperty.booking.basePrice || curatedProperty.booking.basePrice || 0,
       guests: curatedProperty.booking.guests.length ? curatedProperty.booking.guests : dynamicProperty.booking.guests,
     },
   };
@@ -965,4 +981,50 @@ function getDefaultCheckOutDate(): string {
   const checkOut = new Date(today);
   checkOut.setDate(today.getDate() + daysUntilSunday);
   return checkOut.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+function findMatchingDynamicRoom(
+  curatedRoom: any,
+  curatedIndex: number,
+  dynamicRooms: any[],
+  curatedRooms: any[]
+): any | null {
+  if (!dynamicRooms || dynamicRooms.length === 0) return null;
+  
+  // 1. Match by exact ID
+  const curatedIdStr = String(curatedRoom.id);
+  const matchById = dynamicRooms.find((r) => r && String(r.id) === curatedIdStr);
+  if (matchById) return matchById;
+
+  // 2. Match by exact name (case-insensitive, trimmed)
+  const curatedNameClean = curatedRoom.name?.trim().toLowerCase();
+  if (curatedNameClean) {
+    const matchByName = dynamicRooms.find((r) => r?.name?.trim().toLowerCase() === curatedNameClean);
+    if (matchByName) return matchByName;
+  }
+
+  // 3. Match by normalized name (removing spaces, non-alphanumeric, and strip common filler words)
+  const normalize = (name: string) => {
+    if (!name) return "";
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "")
+      .replace(/private|luxury|standard|room|villa|stay|cottage|suite|home|unit|person|guest/g, "");
+  };
+  
+  const curatedNorm = normalize(curatedRoom.name);
+  if (curatedNorm) {
+    const matchByNormName = dynamicRooms.find((r) => normalize(r?.name) === curatedNorm);
+    if (matchByNormName) return matchByNormName;
+  }
+
+  // 4. Match by index if the lengths are identical, or if both have exactly 1 room
+  if (dynamicRooms.length === curatedRooms.length) {
+    return dynamicRooms[curatedIndex] ?? null;
+  }
+  if (curatedRooms.length === 1 && dynamicRooms.length === 1) {
+    return dynamicRooms[0] ?? null;
+  }
+
+  return null;
 }
