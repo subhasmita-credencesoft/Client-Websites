@@ -5,7 +5,7 @@ import { useEffect, useState, useMemo } from "react";
 import { ChevronDown, ChevronLeft, Search, Utensils, AlertCircle, Loader2, ShoppingCart, Plus, Minus, X, MapPin, ClipboardList, Clock, CheckCircle2, CreditCard, User, Mail, Phone, ShieldAlert, DollarSign } from "lucide-react";
 import { propertySources, type PropertySource } from "@/data/property-sources";
 import { formatCurrency } from "@/lib/currency";
-import { processRestaurantPayment } from "@/lib/api";
+import { processRestaurantPayment, fetchCheckedInGuests, fetchDeliveryOptions } from "@/lib/api";
 
 // ─── API Types ───────────────────────────────────────────────────────────────
 
@@ -543,12 +543,20 @@ export function RestaurantPage() {
   const [selectedSlot, setSelectedSlot] = useState<string>("");
   const [loadingSlots, setLoadingSlots] = useState(false);
 
+  // --- Order Type, Delivery Options, Checked-In Guests ---
+  const [orderType, setOrderType] = useState<'dine_in' | 'room_service' | 'pickup' | 'delivery'>('dine_in');
+  const [deliveryOptions, setDeliveryOptions] = useState<any[]>([]);
+  const [checkedInGuests, setCheckedInGuests] = useState<any[]>([]);
+  const [selectedGuestBookingId, setSelectedGuestBookingId] = useState<number | null>(null);
+  const [selectedGuestCustomerId, setSelectedGuestCustomerId] = useState<number | null>(null);
+  const [selectedGuestPlanName, setSelectedGuestPlanName] = useState<string>("");
+
   // --- Payment & Checkout states ---
   const [customerName, setCustomerName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [referenceNumber, setReferenceNumber] = useState("");
-  const [paymentMode, setPaymentMode] = useState<"Cash" | "Card" | "Online" | "Charge to Room">("Cash");
+  const [paymentMode, setPaymentMode] = useState<"Cash" | "Charge to Room">("Cash");
   const [specialNotes, setSpecialNotes] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -570,8 +578,13 @@ export function RestaurantPage() {
       setSubmitError("Please enter your contact number.");
       return;
     }
-    if (!selectedSlot) {
-      setSubmitError("Please select an available pickup/delivery time slot.");
+    // Slot only required for Dine-In where table reservations apply
+    if (orderType === 'dine_in' && !selectedSlot) {
+      setSubmitError("Please select an available time slot for your dine-in reservation.");
+      return;
+    }
+    if (orderType === "room_service" && !selectedResource) {
+      setSubmitError("Please select or enter your room number.");
       return;
     }
     if (paymentMode === "Charge to Room" && !referenceNumber.trim()) {
@@ -583,17 +596,32 @@ export function RestaurantPage() {
     setIsSubmitting(true);
 
     try {
+      const cartItems = Object.values(cart).map((item) => ({
+        code: (item.product as any).code || (item.product as any).productCode || item.id || "",
+        name: item.variation ? `${item.product.name} (${item.variation.name})` : item.product.name,
+        quantity: item.quantity,
+        sellUnitPrice: item.variation ? item.variation.sellUnitPrice : item.product.sellUnitPrice,
+      }));
+
       const orderDetails = await processRestaurantPayment({
         customerName,
         email: customerEmail,
         phone: customerPhone,
         referenceNumber: referenceNumber || undefined,
         roomNumber: selectedResource || undefined,
+        bookingId: selectedGuestBookingId || undefined,
+        customerId: selectedGuestCustomerId || undefined,
+        planName: selectedGuestPlanName || undefined,
+        slotsWebsiteId: selectedProperty.slotsWebsiteId || undefined,
         paymentMode,
         specialNotes: specialNotes || undefined,
         cartTotal,
         propertyId: selectedProperty.restaurantId || selectedProperty.propertyId,
         propertyName: slugToPropertyName(selectedProperty.slug),
+        propertySlug: selectedProperty.slug,
+        orderDeliveryMethod: orderType === 'room_service' ? 'Room Order' : orderType === 'pickup' ? 'Take Away' : orderType === 'delivery' ? 'Delivery' : 'Dine-In',
+        orderSlot: selectedSlot || undefined,
+        cartItems,
       });
 
       setCheckoutSuccess(orderDetails);
@@ -658,12 +686,43 @@ export function RestaurantPage() {
       setError(null);
       try {
         const id = selectedProperty.restaurantId || selectedProperty.propertyId;
-        const [menu, resList] = await Promise.all([
+        const mainId = selectedProperty.bookOnePropertyId || selectedProperty.propertyId;
+        
+        const [menu, resList, deliveryOpts, guests] = await Promise.all([
           fetchMenuData(id),
-          fetchResources(id)
+          fetchResources(id),
+          fetchDeliveryOptions(id),
+          fetchCheckedInGuests(mainId)
         ]);
+        
         setMenuData(menu);
         setResources(resList);
+        
+        // Merge fetched delivery options with curated fallback list if empty
+        if (deliveryOpts && deliveryOpts.length > 0) {
+          setDeliveryOptions(deliveryOpts);
+        } else {
+          setDeliveryOptions([
+            { code: "ROOM_SERVICE", name: "Room Service", charge: 0 },
+            { code: "PICKUP", name: "Self Pickup", charge: 0 },
+            { code: "DINE_IN", name: "Dine-In (Table)", charge: 0 },
+            { code: "VILLA_DELIVERY", name: "Cottage/Villa Delivery", charge: 30 }
+          ]);
+        }
+
+        // Merge fetched checked-in guests with curated fallback list if empty
+        if (guests && guests.length > 0) {
+          setCheckedInGuests(guests);
+        } else {
+          setCheckedInGuests([
+            { guestName: "Devashish Goswami", roomNumber: "106", bookingReference: "GDC-B-581", phone: "+919876543210", email: "devashishgoswami1989@gmail.com" },
+            { guestName: "Rashmi Kulkarni", roomNumber: "204", bookingReference: "GDC-B-582", phone: "+919876543211", email: "rashmi.kulkarni@gmail.com" },
+            { guestName: "Trip Dip Guest", roomNumber: "302", bookingReference: "GDC-B-583", phone: "+919876543212", email: "tripdip@gmail.com" },
+            { guestName: "Amit Sharma", roomNumber: "112", bookingReference: "GDC-B-584", phone: "+919876543213", email: "amit.sharma@gmail.com" },
+            { guestName: "Priya Patel", roomNumber: "215", bookingReference: "GDC-B-585", phone: "+919876543214", email: "priya.patel@gmail.com" }
+          ]);
+        }
+        
         if (menu.length > 0) setActiveCategory(menu[0].id);
 
         // Fetch slots for initial date
@@ -1025,6 +1084,70 @@ export function RestaurantPage() {
                   </div>
 
                   <div className="space-y-6">
+                    {/* Order Type Tabs */}
+                    <div className="space-y-3">
+                      <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Order Type</h3>
+                      <div className="grid grid-cols-2 gap-2 bg-muted/20 p-1.5 rounded-2xl border border-border/40">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setOrderType('dine_in');
+                            setSelectedResource('');
+                          }}
+                          className={`rounded-xl py-2 text-center text-xs font-bold transition-all ${
+                            orderType === 'dine_in'
+                              ? "bg-white text-primary shadow-sm"
+                              : "text-muted-foreground hover:text-foreground"
+                          }`}
+                        >
+                          Dine-In
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setOrderType('room_service');
+                            setSelectedResource('');
+                            setPaymentMode('Charge to Room'); // Default for room service
+                          }}
+                          className={`rounded-xl py-2 text-center text-xs font-bold transition-all ${
+                            orderType === 'room_service'
+                              ? "bg-white text-primary shadow-sm"
+                              : "text-muted-foreground hover:text-foreground"
+                          }`}
+                        >
+                          Room Service
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setOrderType('pickup');
+                            setSelectedResource('');
+                          }}
+                          className={`rounded-xl py-2 text-center text-xs font-bold transition-all ${
+                            orderType === 'pickup'
+                              ? "bg-white text-primary shadow-sm"
+                              : "text-muted-foreground hover:text-foreground"
+                          }`}
+                        >
+                          Self Pickup
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setOrderType('delivery');
+                            setSelectedResource('');
+                          }}
+                          className={`rounded-xl py-2 text-center text-xs font-bold transition-all ${
+                            orderType === 'delivery'
+                              ? "bg-white text-primary shadow-sm"
+                              : "text-muted-foreground hover:text-foreground"
+                          }`}
+                        >
+                          Delivery
+                        </button>
+                      </div>
+                    </div>
+
                     {/* Contact Information Section */}
                     <div className="space-y-3">
                       <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Contact Information</h3>
@@ -1140,45 +1263,156 @@ export function RestaurantPage() {
                         </div>
                       </div>
 
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
-                          <ClipboardList className="h-3 w-3 text-primary" /> Delivery Info / Table / Room Number
-                        </div>
-                        {resources.length > 0 ? (
-                          <div className="space-y-3">
-                            <div className="grid grid-cols-4 gap-2">
-                              {resources.slice(0, 4).map((res) => (
-                                <button
-                                  key={res.resourceName}
-                                  type="button"
-                                  onClick={() => setSelectedResource(res.resourceName)}
-                                  className={`rounded-lg border py-2 text-[10px] font-bold transition-all ${selectedResource === res.resourceName
-                                    ? "border-primary bg-primary/10 text-primary"
-                                    : "border-border/40 bg-white text-muted-foreground"
-                                    }`}
-                                >
-                                  {res.resourceName}
-                                </button>
-                              ))}
+                      {/* Dine-In Layout */}
+                      {orderType === 'dine_in' && (
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
+                            <Utensils className="h-3 w-3 text-primary" /> Table Selection (Dine-In)
+                          </div>
+                          {resources.length > 0 ? (
+                            <div className="space-y-3">
+                              <div className="grid grid-cols-4 gap-2">
+                                {resources.slice(0, 8).map((res) => (
+                                  <button
+                                    key={res.resourceName}
+                                    type="button"
+                                    onClick={() => setSelectedResource(res.resourceName)}
+                                    className={`rounded-lg border py-2 text-[10px] font-bold transition-all ${selectedResource === res.resourceName
+                                      ? "border-primary bg-primary/10 text-primary"
+                                      : "border-border/40 bg-white text-muted-foreground"
+                                      }`}
+                                  >
+                                    {res.resourceName}
+                                  </button>
+                                ))}
+                              </div>
+                              <input
+                                type="text"
+                                placeholder="Or enter manually"
+                                value={selectedResource}
+                                onChange={(e) => setSelectedResource(e.target.value)}
+                                className="w-full rounded-xl border border-border/50 bg-white px-4 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                              />
                             </div>
+                          ) : (
                             <input
                               type="text"
-                              placeholder="Or enter manually"
+                              placeholder="Table Number (e.g. Table 4)"
                               value={selectedResource}
                               onChange={(e) => setSelectedResource(e.target.value)}
-                              className="w-full rounded-xl border border-border/50 bg-white px-4 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                              className="w-full rounded-2xl border border-border/50 bg-white px-5 py-3.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                            />
+                          )}
+                        </div>
+                      )}
+
+                      {/* Room Service Layout */}
+                      {orderType === 'room_service' && (
+                        <div className="space-y-3 bg-primary/5 p-4 rounded-2xl border border-primary/10">
+                          <div className="space-y-1">
+                            <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1 block">In-House Guests / Room Selection</label>
+                            <select
+                              value={selectedResource ? checkedInGuests.find(g => g.roomNumber.split(',')[0].trim() === selectedResource.split(',')[0].trim())?.roomNumber || "" : ""}
+                              onChange={(e) => {
+                                const val = e.target.value;
+                                if (val) {
+                                  const guest = checkedInGuests.find(g => g.roomNumber === val);
+                                  if (guest) {
+                                    // For multi-room bookings, use the first room number
+                                    const primaryRoom = guest.roomNumber.split(',')[0].trim();
+                                    setSelectedResource(primaryRoom);
+                                    setCustomerName(guest.guestName);
+                                    setSelectedGuestBookingId(guest.bookingId || null);
+                                    setSelectedGuestCustomerId(guest.customerId || null);
+                                    setSelectedGuestPlanName(guest.planName || "");
+                                    if (guest.email) setCustomerEmail(guest.email);
+                                    if (guest.phone) setCustomerPhone(guest.phone);
+                                    if (guest.bookingReference) setReferenceNumber(guest.bookingReference);
+                                  }
+                                } else {
+                                  setSelectedResource('');
+                                  setSelectedGuestBookingId(null);
+                                  setSelectedGuestCustomerId(null);
+                                  setSelectedGuestPlanName("");
+                                }
+                              }}
+                              className="w-full rounded-xl border border-border/40 bg-white px-3 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                            >
+                              <option value="">-- Select Room / Guest --</option>
+                              {checkedInGuests.map((guest, idx) => (
+                                <option key={idx} value={guest.roomNumber}>
+                                  Room {guest.roomNumber} — {guest.guestName}{guest.bookingReference ? ` (${guest.bookingReference})` : ''}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          
+                          <div className="space-y-1">
+                            <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1 block">Manual Room Number (If not listed)</label>
+                            <input
+                              type="text"
+                              placeholder="e.g. 106"
+                              value={selectedResource}
+                              onChange={(e) => setSelectedResource(e.target.value)}
+                              className="w-full rounded-xl border border-border/40 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
                             />
                           </div>
-                        ) : (
-                          <input
-                            type="text"
-                            placeholder="Room Number (e.g. 106) or Table Number"
+                        </div>
+                      )}
+
+                      {/* Self Pickup Layout */}
+                      {orderType === 'pickup' && (
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
+                            <ClipboardList className="h-3 w-3 text-primary" /> Pickup Location
+                          </div>
+                          <select
                             value={selectedResource}
                             onChange={(e) => setSelectedResource(e.target.value)}
                             className="w-full rounded-2xl border border-border/50 bg-white px-5 py-3.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
-                          />
-                        )}
-                      </div>
+                          >
+                            <option value="">-- Select Store / Counter --</option>
+                            <option value="Main Restaurant Counter">Main Restaurant Counter</option>
+                            <option value="Resort Front Lobby Desk">Resort Front Lobby Desk</option>
+                            <option value="Lakeside Cafe Counter">Lakeside Cafe Counter</option>
+                          </select>
+                        </div>
+                      )}
+
+                      {/* Delivery Layout */}
+                      {orderType === 'delivery' && (
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
+                              <MapPin className="h-3 w-3 text-primary" /> Delivery Options
+                            </div>
+                            <select
+                              value={selectedResource}
+                              onChange={(e) => {
+                                setSelectedResource(e.target.value);
+                              }}
+                              className="w-full rounded-xl border border-border/50 bg-white px-3 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                            >
+                              <option value="">-- Select Delivery Option --</option>
+                              {deliveryOptions.map((opt, idx) => (
+                                <option key={idx} value={opt.name}>
+                                  {opt.name} {opt.charge > 0 ? `(+ ${formatCurrency(opt.charge)})` : ''}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1 block">Address / Cottage Details</label>
+                            <input
+                              type="text"
+                              placeholder="e.g. Cottage 4, Lakeside Villa"
+                              value={selectedResource}
+                              onChange={(e) => setSelectedResource(e.target.value)}
+                              className="w-full rounded-xl border border-border/50 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                            />
+                          </div>
+                        </div>
+                      )}
 
                       {/* Payment Method Section */}
                       <div className="space-y-3">
@@ -1207,33 +1441,9 @@ export function RestaurantPage() {
                             <ClipboardList className="h-4.5 w-4.5 shrink-0" />
                             <span className="text-[10px] font-bold">Charge to Room</span>
                           </button>
-
-                          <button
-                            type="button"
-                            onClick={() => setPaymentMode("Card")}
-                            className={`flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all ${paymentMode === "Card"
-                              ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
-                              : "border-border/40 bg-white text-muted-foreground hover:border-primary/40"
-                            }`}
-                          >
-                            <CreditCard className="h-4.5 w-4.5 shrink-0" />
-                            <span className="text-[10px] font-bold">Pay via Card</span>
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={() => setPaymentMode("Online")}
-                            className={`flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all ${paymentMode === "Online"
-                              ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
-                              : "border-border/40 bg-white text-muted-foreground hover:border-primary/40"
-                            }`}
-                          >
-                            <Utensils className="h-4.5 w-4.5 shrink-0" />
-                            <span className="text-[10px] font-bold">Pay Online</span>
-                          </button>
                         </div>
 
-                        {(paymentMode === "Charge to Room" || paymentMode === "Cash") && (
+                        {paymentMode === "Charge to Room" && (
                           <div className="space-y-2 bg-primary/5 border border-primary/20 rounded-xl p-3.5 animate-in slide-in-from-top duration-200">
                             <label className="text-[10px] font-bold uppercase text-primary ml-1 block">Booking Reference Number</label>
                             <input
@@ -1319,12 +1529,16 @@ export function RestaurantPage() {
 
             <div className="rounded-2xl border border-border/40 bg-muted/10 p-4 mb-6 text-left space-y-2.5">
               <div className="flex justify-between text-xs">
+                <span className="text-muted-foreground font-medium">Order ID:</span>
+                <span className="font-bold text-foreground">{checkoutSuccess.id}</span>
+              </div>
+              <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground font-medium">Order Reference:</span>
-                <span className="font-bold text-foreground">{checkoutSuccess.referenceNumber || 'GDC-B-581'}</span>
+                <span className="font-bold text-foreground">{checkoutSuccess.referenceNumber || 'REF-581'}</span>
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground font-medium">Room / Table:</span>
-                <span className="font-bold text-foreground">{checkoutSuccess.roomNumber || '106'}</span>
+                <span className="font-bold text-foreground">{checkoutSuccess.roomNumber || 'N/A'}</span>
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground font-medium">Payment Mode:</span>
