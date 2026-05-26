@@ -155,12 +155,12 @@ function PropertyDropdown({
         id="btn-property-dropdown"
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="flex min-w-[220px] items-center justify-between gap-3 rounded-xl border border-primary/30 bg-white px-4 py-3 text-sm font-bold text-foreground shadow-sm transition-all hover:border-primary hover:shadow-md"
+        className="flex min-w-[200px] items-center justify-between gap-3 rounded-xl border border-primary/30 bg-white px-3.5 py-2 text-sm font-bold text-foreground shadow-sm transition-all hover:border-primary hover:shadow-md"
         aria-expanded={open}
         aria-haspopup="listbox"
       >
         <span className="flex items-center gap-2">
-          <Utensils className="h-4 w-4 text-primary" />
+          <Utensils className="h-4 w-4 text-primary shrink-0" />
           {slugToPropertyName(selected.slug)}
         </span>
         <ChevronDown className={`h-4 w-4 text-primary transition-transform ${open ? "rotate-180" : ""}`} />
@@ -181,11 +181,16 @@ function PropertyDropdown({
                 onChange(source);
                 setOpen(false);
               }}
-              className={`flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-medium transition-colors ${source.slug === selected.slug
+              className={`flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm font-medium transition-colors ${source.slug === selected.slug
                 ? "bg-primary/10 text-primary"
                 : "text-foreground hover:bg-muted/50"
                 }`}
             >
+              {source.logoUrl ? (
+                <img src={source.logoUrl} className="h-6 w-6 rounded-full object-cover border border-primary/10 shrink-0" alt="" />
+              ) : (
+                <Utensils className="h-4 w-4 text-primary shrink-0" />
+              )}
               {slugToPropertyName(source.slug)}
             </button>
           ))}
@@ -800,7 +805,7 @@ export function RestaurantPage() {
             </div>
           ))}
         </div>
-        <div className="container relative mx-auto px-4 text-center sm:px-6">
+        <div className="max-w-6xl relative mx-auto px-4 text-center sm:px-6 lg:px-8">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/20 px-3 py-1 text-xs font-bold text-primary backdrop-blur-sm shadow-sm">
             <Utensils className="h-3 w-3" />
             Live Menu
@@ -816,13 +821,31 @@ export function RestaurantPage() {
 
       {/* Controls Bar */}
       <div className="sticky top-0 z-40 border-b border-border/40 bg-white/95 backdrop-blur-md shadow-sm">
-        <div className="container mx-auto px-4 py-3 sm:px-6">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Top Row: Logo | Search | Count */}
+          <div className="flex items-center gap-4 py-3">
+
+            {/* Far Left: Big Property Logo */}
+            <div className="shrink-0">
+              {selectedProperty.logoUrl ? (
+                <img
+                  src={selectedProperty.logoUrl}
+                  alt={slugToPropertyName(selectedProperty.slug)}
+                  className="h-11 w-11 rounded-xl object-cover border-2 border-primary/20 shadow-md"
+                />
+              ) : (
+                <div className="h-11 w-11 rounded-xl bg-primary/10 border-2 border-primary/20 flex items-center justify-center">
+                  <Utensils className="h-5 w-5 text-primary" />
+                </div>
+              )}
+            </div>
+
             {/* Property Selector */}
             <PropertyDropdown selected={selectedProperty} onChange={setSelectedProperty} />
 
-            {/* Search */}
-            <div className="relative flex-1 sm:max-w-xs">
+            {/* Search — grows to fill */}
+            <div className="relative flex-1">
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
                 id="input-menu-search"
@@ -836,15 +859,15 @@ export function RestaurantPage() {
 
             {/* Item count */}
             {!loading && !error && (
-              <span className="shrink-0 text-sm text-muted-foreground">
+              <span className="shrink-0 text-sm text-muted-foreground whitespace-nowrap">
                 {totalItems} item{totalItems !== 1 ? "s" : ""}
               </span>
             )}
           </div>
 
-          {/* Category quick-nav */}
+          {/* Bottom Row: Category quick-nav */}
           {!loading && !error && menuData.length > 0 && (
-            <div className="mt-3">
+            <div className="pb-2">
               <CategoryNav
                 categories={menuData}
                 activeId={activeCategory}
@@ -856,7 +879,7 @@ export function RestaurantPage() {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-10 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
         {loading && (
           <div className="flex flex-col items-center justify-center py-24 gap-4 text-muted-foreground">
             <Loader2 className="h-10 w-10 animate-spin text-primary" />
@@ -992,14 +1015,14 @@ export function RestaurantPage() {
                     <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-4 px-1">Order Summary</h3>
                     <div className="rounded-2xl border border-border/50 bg-muted/5 p-4 space-y-4">
                       {/* Premium Table Header */}
-                      <div className="hidden md:grid grid-cols-12 gap-2 pb-2 px-1 text-[9px] font-bold uppercase tracking-wider text-muted-foreground/60 border-b border-border/40">
+                      {/* <div className="hidden md:grid grid-cols-12 gap-2 pb-2 px-1 text-[9px] font-bold uppercase tracking-wider text-muted-foreground/60 border-b border-border/40">
                         <div className="col-span-3">Description</div>
                         <div className="col-span-2">Details</div>
                         <div className="col-span-2 text-center">Types</div>
                         <div className="col-span-1 text-center">Quantity</div>
                         <div className="col-span-2 text-right">Unit Price</div>
                         <div className="col-span-2 text-right">Amount</div>
-                      </div>
+                      </div> */}
 
                       {cartItems.map((item) => {
                         const unitPrice = item.variation ? item.variation.sellUnitPrice : item.product.sellUnitPrice;
@@ -1023,14 +1046,14 @@ export function RestaurantPage() {
                                 </div>
                               </div>
 
-                              <div className="col-span-2 hidden md:block">
+                              {/* <div className="col-span-2 hidden md:block">
                                 <p className="text-[10px] text-muted-foreground line-clamp-2">{item.product.shortDescription || 'No details'}</p>
-                              </div>
+                              </div> */}
 
                               <div className="col-span-2 text-center hidden md:block">
-                                <span className="text-[10px] font-medium text-muted-foreground bg-muted/40 px-2 py-1 rounded-lg">
+                                {/* <span className="text-[10px] font-medium text-muted-foreground bg-muted/40 px-2 py-1 rounded-lg">
                                   {item.variation ? item.variation.name : 'Standard'}
-                                </span>
+                                </span> */}
                               </div>
 
                               <div className="col-span-1 text-center hidden md:block">
@@ -1085,9 +1108,9 @@ export function RestaurantPage() {
 
                   <div className="space-y-6">
                     {/* Order Type Tabs */}
-                    <div className="space-y-3">
-                      <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Order Type</h3>
-                      <div className="grid grid-cols-2 gap-2 bg-muted/20 p-1.5 rounded-2xl border border-border/40">
+                    <div className="space-y-1">
+                      <h3 className="text-[7px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Order Type</h3>
+                <div className="flex items-center justify-around bg-muted/20 p-1.5 rounded-2xl border border-border/40">
                         <button
                           type="button"
                           onClick={() => {
@@ -1129,9 +1152,9 @@ export function RestaurantPage() {
                               : "text-muted-foreground hover:text-foreground"
                           }`}
                         >
-                          Self Pickup
+                          Take Away 
                         </button>
-                        <button
+                        {/* <button
                           type="button"
                           onClick={() => {
                             setOrderType('delivery');
@@ -1144,7 +1167,7 @@ export function RestaurantPage() {
                           }`}
                         >
                           Delivery
-                        </button>
+                        </button> */}
                       </div>
                     </div>
 
@@ -1158,7 +1181,7 @@ export function RestaurantPage() {
                             <User className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
                             <input
                               type="text"
-                              placeholder="Devashish Goswami"
+                              placeholder="Your name"
                               value={customerName}
                               onChange={(e) => setCustomerName(e.target.value)}
                               className="w-full rounded-xl border border-border/50 bg-white py-2.5 pl-9 pr-4 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
@@ -1171,7 +1194,7 @@ export function RestaurantPage() {
                             <Mail className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
                             <input
                               type="email"
-                              placeholder="devashishgoswami1989@gmail.com"
+                              placeholder="gmail.com"
                               value={customerEmail}
                               onChange={(e) => setCustomerEmail(e.target.value)}
                               className="w-full rounded-xl border border-border/50 bg-white py-2.5 pl-9 pr-4 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
@@ -1184,7 +1207,7 @@ export function RestaurantPage() {
                             <Phone className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
                             <input
                               type="tel"
-                              placeholder="+91 98765 43210"
+                              placeholder="Phone number"
                               value={customerPhone}
                               onChange={(e) => setCustomerPhone(e.target.value)}
                               className="w-full rounded-xl border border-border/50 bg-white py-2.5 pl-9 pr-4 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
