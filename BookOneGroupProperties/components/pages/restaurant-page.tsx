@@ -204,11 +204,13 @@ function ProductCard({
   product,
   cart,
   updateCart,
+  onQuickAdd,
   onShowDetails,
 }: {
   product: MenuProduct;
   cart: Record<string, CartItem>;
   updateCart: (item: CartItem, delta: number) => void;
+  onQuickAdd: (item: CartItem, delta: number) => void;
   onShowDetails: (product: MenuProduct) => void;
 }) {
   const image = getProductImage(product);
@@ -280,7 +282,7 @@ function ProductCard({
                           <button onClick={() => handleUpdate(variation, 1)} className="rounded-full bg-primary p-1 text-white hover:bg-primary/90"><Plus className="h-2.5 w-2.5" /></button>
                         </>
                       ) : (
-                        <button onClick={() => handleUpdate(variation, 1)} className="rounded-full border border-primary px-2.5 py-0.5 font-bold text-primary hover:bg-primary/10 transition-colors">Add</button>
+                        <button onClick={() => onQuickAdd({ id: `${product.id}-${variation.code}`, product, variation, quantity: 0 }, 1)} className="rounded-full border border-primary px-2.5 py-0.5 font-bold text-primary hover:bg-primary/10 transition-colors">Add</button>
                       )}
                     </div>
                   )}
@@ -303,7 +305,7 @@ function ProductCard({
                   <button onClick={() => handleUpdate(undefined, 1)} className="rounded-full bg-primary p-1 text-white hover:bg-primary/90"><Plus className="h-3 w-3" /></button>
                 </>
               ) : (
-                <button onClick={() => handleUpdate(undefined, 1)} className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-white hover:bg-primary/90 transition-colors">Add</button>
+                <button onClick={() => onQuickAdd({ id: `${product.id}`, product, quantity: 0 }, 1)} className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-white hover:bg-primary/90 transition-colors">Add</button>
               )}
             </div>
           ) : null}
@@ -317,11 +319,13 @@ function CategorySection({
   category,
   cart,
   updateCart,
+  onQuickAdd,
   onShowDetails,
 }: {
   category: MenuCategory;
   cart: Record<string, CartItem>;
   updateCart: (item: CartItem, delta: number) => void;
+  onQuickAdd: (item: CartItem, delta: number) => void;
   onShowDetails: (product: MenuProduct) => void;
 }) {
   const validProducts = category.productDtoList.filter(
@@ -340,7 +344,7 @@ function CategorySection({
       </div>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {validProducts.map((product) => (
-          <ProductCard key={product.id} product={product} cart={cart} updateCart={updateCart} onShowDetails={onShowDetails} />
+          <ProductCard key={product.id} product={product} cart={cart} updateCart={updateCart} onQuickAdd={onQuickAdd} onShowDetails={onShowDetails} />
         ))}
       </div>
     </section>
@@ -667,6 +671,12 @@ export function RestaurantPage() {
     });
   };
 
+  const handleQuickAddToCart = (item: CartItem, delta: number) => {
+    updateCart(item, delta);
+    setIsCartOpen(true);
+    setCheckoutStep('review');
+  };
+
   const cartItems = Object.values(cart);
   const cartTotal = cartItems.reduce((sum, item) => {
     const price = item.variation ? item.variation.sellUnitPrice : item.product.sellUnitPrice;
@@ -918,6 +928,7 @@ export function RestaurantPage() {
                 category={category}
                 cart={cart}
                 updateCart={updateCart}
+                onQuickAdd={handleQuickAddToCart}
                 onShowDetails={setSelectedProduct}
               />
             ))}
@@ -935,7 +946,7 @@ export function RestaurantPage() {
       )}
 
       {/* Floating Cart Button */}
-      {cartItemCount > 0 && (
+      {!isCartOpen && cartItemCount > 0 && (
         <button
           onClick={() => setIsCartOpen(true)}
           className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-primary px-5 py-3 text-white shadow-xl hover:bg-primary/90 hover:scale-105 transition-all"
@@ -952,8 +963,8 @@ export function RestaurantPage() {
 
       {/* Cart Sidebar */}
       {isCartOpen && (
-        <div className="fixed inset-0 z-[60] flex justify-end bg-black/50 backdrop-blur-sm transition-opacity">
-          <div className="h-full w-full max-w-md bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+        <div className="fixed inset-0 z-[60] flex justify-end bg-black/50 transition-opacity" onClick={() => { setIsCartOpen(false); setCheckoutStep('cart'); }}>
+          <div className="h-full w-full max-w-md bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-300" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between border-b px-6 py-4">
               <div className="flex items-center gap-2">
                 {checkoutStep === 'review' && (
@@ -1042,7 +1053,7 @@ export function RestaurantPage() {
                                   )}
                                 </div>
                                 <div className="flex flex-col justify-center min-w-0">
-                                  <h4 className="text-xs font-bold text-foreground leading-tight truncate">{item.product.name}</h4>
+                                  <h4 className="text-xs font-bold text-foreground leading-tight">{item.product.name}</h4>
                                 </div>
                               </div>
 
@@ -1110,7 +1121,7 @@ export function RestaurantPage() {
                     {/* Order Type Tabs */}
                     <div className="space-y-1">
                       <h3 className="text-[7px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Order Type</h3>
-                <div className="flex items-center justify-around bg-muted/20 p-1.5 rounded-2xl border border-border/40">
+                <div className="grid grid-cols-3 gap-1.5 bg-muted/20 p-1.5 rounded-2xl border border-border/40">
                         <button
                           type="button"
                           onClick={() => {
