@@ -2,9 +2,10 @@
 
 import { useEffect, useState, useMemo } from "react";
 
-import { ChevronDown, ChevronLeft, Search, Utensils, AlertCircle, Loader2, ShoppingCart, Plus, Minus, X, MapPin, ClipboardList, Clock } from "lucide-react";
+import { ChevronDown, ChevronLeft, Search, Utensils, AlertCircle, Loader2, ShoppingCart, Plus, Minus, X, MapPin, ClipboardList, Clock, CheckCircle2, CreditCard, User, Mail, Phone, ShieldAlert, DollarSign } from "lucide-react";
 import { propertySources, type PropertySource } from "@/data/property-sources";
 import { formatCurrency } from "@/lib/currency";
+import { processRestaurantPayment } from "@/lib/api";
 
 // ─── API Types ───────────────────────────────────────────────────────────────
 
@@ -542,7 +543,69 @@ export function RestaurantPage() {
   const [selectedSlot, setSelectedSlot] = useState<string>("");
   const [loadingSlots, setLoadingSlots] = useState(false);
 
+  // --- Payment & Checkout states ---
+  const [customerName, setCustomerName] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const [paymentMode, setPaymentMode] = useState<"Cash" | "Card" | "Online" | "Charge to Room">("Cash");
+  const [specialNotes, setSpecialNotes] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [checkoutSuccess, setCheckoutSuccess] = useState<any>(null);
+
   const cart = carts[selectedProperty.slug] || {};
+
+  const handleConfirmOrder = async () => {
+    // Validations
+    if (!customerName.trim()) {
+      setSubmitError("Please enter your name.");
+      return;
+    }
+    if (!customerEmail.trim() || !customerEmail.includes("@")) {
+      setSubmitError("Please enter a valid email address.");
+      return;
+    }
+    if (!customerPhone.trim()) {
+      setSubmitError("Please enter your contact number.");
+      return;
+    }
+    if (!selectedSlot) {
+      setSubmitError("Please select an available pickup/delivery time slot.");
+      return;
+    }
+    if (paymentMode === "Charge to Room" && !referenceNumber.trim()) {
+      setSubmitError("Booking Reference is required when charging to room.");
+      return;
+    }
+
+    setSubmitError(null);
+    setIsSubmitting(true);
+
+    try {
+      const orderDetails = await processRestaurantPayment({
+        customerName,
+        email: customerEmail,
+        phone: customerPhone,
+        referenceNumber: referenceNumber || undefined,
+        roomNumber: selectedResource || undefined,
+        paymentMode,
+        specialNotes: specialNotes || undefined,
+        cartTotal,
+        propertyId: selectedProperty.restaurantId || selectedProperty.propertyId,
+        propertyName: slugToPropertyName(selectedProperty.slug),
+      });
+
+      setCheckoutSuccess(orderDetails);
+
+      // Clear the cart on success
+      setCarts((prev) => ({ ...prev, [selectedProperty.slug]: {} }));
+    } catch (err: any) {
+      setSubmitError(err.message || "Failed to process payment. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const updateCart = (item: CartItem, delta: number) => {
     setCarts((prevCarts) => {
@@ -962,66 +1025,109 @@ export function RestaurantPage() {
                   </div>
 
                   <div className="space-y-6">
-                    <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-2 px-1">Service Details</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Order Date:</label>
-                        <div className="rounded-xl border border-border/40 bg-muted/10 px-4 py-3 text-sm font-bold text-foreground">
-                          {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    {/* Contact Information Section */}
+                    <div className="space-y-3">
+                      <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Contact Information</h3>
+                      <div className="space-y-3 bg-muted/20 border border-border/40 p-4 rounded-2xl shadow-sm">
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Full Name</label>
+                          <div className="relative">
+                            <User className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
+                            <input
+                              type="text"
+                              placeholder="Devashish Goswami"
+                              value={customerName}
+                              onChange={(e) => setCustomerName(e.target.value)}
+                              className="w-full rounded-xl border border-border/50 bg-white py-2.5 pl-9 pr-4 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Pickup/Delivery Date & Time:</label>
-                        <div className="flex gap-2">
-                          <input
-                            type="date"
-                            value={selectedDate}
-                            min={new Date().toISOString().split('T')[0]}
-                            onChange={(e) => setSelectedDate(e.target.value)}
-                            className="flex-1 rounded-xl border border-border/50 bg-white px-4 py-3 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
-                          />
-                          <div className="flex items-center rounded-xl bg-primary/10 px-3 text-xs font-bold text-primary border border-primary/20">
-                            {selectedSlot || '--:--'}
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Email Address</label>
+                          <div className="relative">
+                            <Mail className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
+                            <input
+                              type="email"
+                              placeholder="devashishgoswami1989@gmail.com"
+                              value={customerEmail}
+                              onChange={(e) => setCustomerEmail(e.target.value)}
+                              className="w-full rounded-xl border border-border/50 bg-white py-2.5 pl-9 pr-4 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Phone Number</label>
+                          <div className="relative">
+                            <Phone className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
+                            <input
+                              type="tel"
+                              placeholder="+91 98765 43210"
+                              value={customerPhone}
+                              onChange={(e) => setCustomerPhone(e.target.value)}
+                              className="w-full rounded-xl border border-border/50 bg-white py-2.5 pl-9 pr-4 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                            />
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between px-1">
-                        <label className="text-[10px] font-bold uppercase text-muted-foreground/80">Available Time Slots</label>
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-2 px-1">Service Details</h3>
+                    <div className="grid grid-cols-1 gap-4">
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Order Date:</label>
+                          <div className="rounded-xl border border-border/40 bg-muted/10 px-4 py-3 text-xs font-bold text-foreground">
+                            {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Pickup/Delivery Date:</label>
+                          <input
+                            type="date"
+                            value={selectedDate}
+                            min={new Date().toISOString().split('T')[0]}
+                            onChange={(e) => setSelectedDate(e.target.value)}
+                            className="w-full rounded-xl border border-border/50 bg-white px-4 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                          />
+                        </div>
                       </div>
-                      
-                      {loadingSlots ? (
-                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                          {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                            <div key={i} className="h-10 rounded-xl bg-muted/40 animate-pulse border border-border/20" />
-                          ))}
+
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between px-1">
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80">Available Time Slots ({selectedSlot || 'Select one'})</label>
                         </div>
-                      ) : availableSlots.length > 0 ? (
-                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                          {availableSlots.map((slot) => (
-                            <button
-                              key={slot}
-                              type="button"
-                              onClick={() => setSelectedSlot(slot)}
-                              className={`rounded-xl border py-2.5 text-[11px] font-bold transition-all shadow-sm ${selectedSlot === slot
-                                ? "border-primary bg-primary text-white shadow-primary/20 scale-[1.02]"
-                                : "border-border/40 bg-white text-foreground hover:border-primary/50"
-                                }`}
-                            >
-                              {slot}
-                            </button>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="rounded-xl border border-dashed border-border/60 p-6 text-center bg-muted/5">
-                          <Clock className="h-6 w-6 text-muted-foreground/20 mx-auto mb-2" />
-                          <p className="text-[11px] text-muted-foreground font-medium leading-relaxed">
-                            No available slots found for this date.<br/>Please try another date.
-                          </p>
-                        </div>
-                      )}
+                        
+                        {loadingSlots ? (
+                          <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                            {[1, 2, 3, 4].map((i) => (
+                              <div key={i} className="h-10 rounded-xl bg-muted/40 animate-pulse border border-border/20" />
+                            ))}
+                          </div>
+                        ) : availableSlots.length > 0 ? (
+                          <div className="grid grid-cols-3 gap-2 max-h-36 overflow-y-auto no-scrollbar p-1">
+                            {availableSlots.map((slot) => (
+                              <button
+                                key={slot}
+                                type="button"
+                                onClick={() => setSelectedSlot(slot)}
+                                className={`rounded-xl border py-2 text-[10px] font-bold transition-all shadow-sm ${selectedSlot === slot
+                                  ? "border-primary bg-primary text-white shadow-primary/20 scale-[1.02]"
+                                  : "border-border/40 bg-white text-foreground hover:border-primary/50"
+                                  }`}
+                              >
+                                {slot}
+                              </button>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="rounded-xl border border-dashed border-border/60 p-4 text-center bg-muted/5">
+                            <Clock className="h-5 w-5 text-muted-foreground/20 mx-auto mb-2" />
+                            <p className="text-[10px] text-muted-foreground font-medium leading-relaxed">
+                              No available slots found for this date. Please try another date.
+                            </p>
+                          </div>
+                        )}
+                      </div>
                     </div>
 
                     <div className="space-y-4">
@@ -1029,18 +1135,19 @@ export function RestaurantPage() {
                         <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
                           <MapPin className="h-3 w-3 text-primary" /> Property
                         </div>
-                        <div className="rounded-2xl border border-border/50 bg-white px-5 py-4 text-sm font-bold text-foreground shadow-sm">
+                        <div className="rounded-2xl border border-border/50 bg-white px-5 py-3 text-xs font-bold text-foreground shadow-sm">
                           {slugToPropertyName(selectedProperty.slug)}
                         </div>
                       </div>
+
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
-                          <ClipboardList className="h-3 w-3 text-primary" /> Delivery Info / Table
+                          <ClipboardList className="h-3 w-3 text-primary" /> Delivery Info / Table / Room Number
                         </div>
                         {resources.length > 0 ? (
                           <div className="space-y-3">
                             <div className="grid grid-cols-4 gap-2">
-                              {resources.map((res) => (
+                              {resources.slice(0, 4).map((res) => (
                                 <button
                                   key={res.resourceName}
                                   type="button"
@@ -1059,25 +1166,97 @@ export function RestaurantPage() {
                               placeholder="Or enter manually"
                               value={selectedResource}
                               onChange={(e) => setSelectedResource(e.target.value)}
-                              className="w-full rounded-xl border border-border/50 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-primary transition-all shadow-sm"
+                              className="w-full rounded-xl border border-border/50 bg-white px-4 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
                             />
                           </div>
                         ) : (
                           <input
                             type="text"
-                            placeholder="Room Number or Table Number"
+                            placeholder="Room Number (e.g. 106) or Table Number"
                             value={selectedResource}
                             onChange={(e) => setSelectedResource(e.target.value)}
-                            className="w-full rounded-2xl border border-border/50 bg-white px-5 py-4 text-sm font-bold outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all shadow-sm"
+                            className="w-full rounded-2xl border border-border/50 bg-white px-5 py-3.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
                           />
+                        )}
+                      </div>
+
+                      {/* Payment Method Section */}
+                      <div className="space-y-3">
+                        <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Payment Method</h3>
+                        <div className="grid grid-cols-2 gap-2.5">
+                          <button
+                            type="button"
+                            onClick={() => setPaymentMode("Cash")}
+                            className={`flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all ${paymentMode === "Cash"
+                              ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
+                              : "border-border/40 bg-white text-muted-foreground hover:border-primary/40"
+                            }`}
+                          >
+                            <DollarSign className="h-4.5 w-4.5 shrink-0" />
+                            <span className="text-[10px] font-bold">Cash on Delivery</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setPaymentMode("Charge to Room")}
+                            className={`flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all ${paymentMode === "Charge to Room"
+                              ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
+                              : "border-border/40 bg-white text-muted-foreground hover:border-primary/40"
+                            }`}
+                          >
+                            <ClipboardList className="h-4.5 w-4.5 shrink-0" />
+                            <span className="text-[10px] font-bold">Charge to Room</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setPaymentMode("Card")}
+                            className={`flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all ${paymentMode === "Card"
+                              ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
+                              : "border-border/40 bg-white text-muted-foreground hover:border-primary/40"
+                            }`}
+                          >
+                            <CreditCard className="h-4.5 w-4.5 shrink-0" />
+                            <span className="text-[10px] font-bold">Pay via Card</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setPaymentMode("Online")}
+                            className={`flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all ${paymentMode === "Online"
+                              ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
+                              : "border-border/40 bg-white text-muted-foreground hover:border-primary/40"
+                            }`}
+                          >
+                            <Utensils className="h-4.5 w-4.5 shrink-0" />
+                            <span className="text-[10px] font-bold">Pay Online</span>
+                          </button>
+                        </div>
+
+                        {(paymentMode === "Charge to Room" || paymentMode === "Cash") && (
+                          <div className="space-y-2 bg-primary/5 border border-primary/20 rounded-xl p-3.5 animate-in slide-in-from-top duration-200">
+                            <label className="text-[10px] font-bold uppercase text-primary ml-1 block">Booking Reference Number</label>
+                            <input
+                              type="text"
+                              placeholder="e.g. GDC-B-581"
+                              value={referenceNumber}
+                              onChange={(e) => setReferenceNumber(e.target.value)}
+                              className="w-full rounded-lg border border-primary/20 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-primary transition-all"
+                            />
+                            <p className="text-[9px] text-primary/70 leading-relaxed">
+                              Enter your hotel stay booking reference to bind this order to your booking.
+                            </p>
+                          </div>
                         )}
                       </div>
 
                       <div className="space-y-2">
                         <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Special Notes</label>
                         <textarea
-                          placeholder="Any special instructions for the chef?"
-                          className="w-full rounded-2xl border border-border/50 bg-white px-5 py-4 text-sm font-medium outline-none focus:border-primary transition-all shadow-sm min-h-[100px] resize-none"
+                          placeholder="Any special instructions for the chef (e.g., extra spicy)?"
+                          value={specialNotes}
+                          onChange={(e) => setSpecialNotes(e.target.value)}
+                          className="w-full rounded-2xl border border-border/50 bg-white px-5 py-4 text-xs font-medium outline-none focus:border-primary transition-all shadow-sm min-h-[100px] resize-none"
                         />
                       </div>
                     </div>
@@ -1088,9 +1267,15 @@ export function RestaurantPage() {
 
             {cartItems.length > 0 && (
               <div className="border-t bg-muted/20 p-6">
+                {submitError && (
+                  <div className="mb-4 flex items-center gap-2 rounded-xl bg-red-50 border border-red-200 p-3 text-xs text-red-600 animate-in shake duration-200 animate-bounce-short">
+                    <ShieldAlert className="h-4 w-4 shrink-0 text-red-500" />
+                    <span className="font-bold">{submitError}</span>
+                  </div>
+                )}
                 <div className="flex justify-between text-base font-bold mb-4">
                   <span>Total</span>
-                  <span className="text-primary">{formatCurrency(cartTotal)}</span>
+                  <span className="text-primary">{formatCurrency(cartTotal * 1.05)}</span>
                 </div>
                 {checkoutStep === 'cart' ? (
                   <button
@@ -1101,19 +1286,70 @@ export function RestaurantPage() {
                   </button>
                 ) : (
                   <button
-                    onClick={() => {
-                      alert("Order placed successfully! In a real app, this would send data to the restaurant API.");
-                      setCarts(prev => ({ ...prev, [selectedProperty.slug]: {} }));
-                      setIsCartOpen(false);
-                      setCheckoutStep('cart');
-                    }}
-                    className="w-full rounded-xl bg-primary py-3.5 font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98]"
+                    onClick={handleConfirmOrder}
+                    disabled={isSubmitting}
+                    className="w-full rounded-xl bg-primary py-3.5 font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98] disabled:bg-muted disabled:text-muted-foreground flex items-center justify-center gap-2"
                   >
-                    Confirm Order
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin text-white" />
+                        <span>Processing Order...</span>
+                      </>
+                    ) : (
+                      <span>Confirm Order ({paymentMode})</span>
+                    )}
                   </button>
                 )}
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {checkoutSuccess && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="relative w-full max-w-md overflow-hidden rounded-3xl bg-white p-6 shadow-2xl animate-in zoom-in-95 duration-200 text-center border border-border/20">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-50 mb-4 border border-green-100">
+              <CheckCircle2 className="h-10 w-10 text-green-500" />
+            </div>
+            <h2 className="text-xl font-bold text-foreground mb-1">Order Placed Successfully!</h2>
+            <p className="text-xs text-muted-foreground mb-6">
+              Your order has been sent to the restaurant kitchen.
+            </p>
+
+            <div className="rounded-2xl border border-border/40 bg-muted/10 p-4 mb-6 text-left space-y-2.5">
+              <div className="flex justify-between text-xs">
+                <span className="text-muted-foreground font-medium">Order Reference:</span>
+                <span className="font-bold text-foreground">{checkoutSuccess.referenceNumber || 'GDC-B-581'}</span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="text-muted-foreground font-medium">Room / Table:</span>
+                <span className="font-bold text-foreground">{checkoutSuccess.roomNumber || '106'}</span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="text-muted-foreground font-medium">Payment Mode:</span>
+                <span className="font-bold text-foreground">{checkoutSuccess.paymentMode}</span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="text-muted-foreground font-medium">Status:</span>
+                <span className="font-bold text-green-600">{checkoutSuccess.status === 'Paid' ? 'Paid' : 'Pending (Pay on Delivery)'}</span>
+              </div>
+              <div className="border-t border-dashed border-border/60 pt-2.5 flex justify-between text-sm font-bold">
+                <span className="text-foreground">Total Amount:</span>
+                <span className="text-primary">{formatCurrency(checkoutSuccess.netReceivableAmount)}</span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                setCheckoutSuccess(null);
+                setIsCartOpen(false);
+                setCheckoutStep('cart');
+              }}
+              className="w-full rounded-xl bg-primary py-3 text-xs font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98]"
+            >
+              Back to Restaurant Menu
+            </button>
           </div>
         </div>
       )}
