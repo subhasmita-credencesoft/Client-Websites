@@ -694,6 +694,18 @@ export function RestaurantPage() {
     );
   }, []);
 
+  // Lock body scroll when sidebar or product details modal is open to avoid multiple scrollbars
+  useEffect(() => {
+    if (isCartOpen || selectedProduct) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isCartOpen, selectedProduct]);
+
   // Fetch menu data whenever selected property changes
   useEffect(() => {
     const loadData = async () => {
@@ -976,7 +988,7 @@ export function RestaurantPage() {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 overflow-y-auto hover-scrollbar p-6">
               {cartItems.length === 0 ? (
                 <div className="flex h-full flex-col items-center justify-center text-muted-foreground">
                   <ShoppingCart className="h-12 w-12 opacity-20 mb-4" />
@@ -1190,7 +1202,7 @@ export function RestaurantPage() {
                       <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Contact Information</h3>
                       <div className="space-y-3 bg-muted/20 border border-border/40 p-4 rounded-2xl shadow-sm">
                         <div className="space-y-1">
-                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Full Name</label>
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Full Name <span className="text-red-500 ml-0.5">*</span></label>
                           <div className="relative">
                             <User className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
                             <input
@@ -1203,7 +1215,7 @@ export function RestaurantPage() {
                           </div>
                         </div>
                         <div className="space-y-1">
-                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Email Address</label>
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Email Address <span className="text-red-500 ml-0.5">*</span></label>
                           <div className="relative">
                             <Mail className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
                             <input
@@ -1216,7 +1228,7 @@ export function RestaurantPage() {
                           </div>
                         </div>
                         <div className="space-y-1">
-                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Phone Number</label>
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Phone Number <span className="text-red-500 ml-0.5">*</span></label>
                           <div className="relative">
                             <Phone className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
                             <input
@@ -1569,10 +1581,12 @@ export function RestaurantPage() {
                 <span className="text-muted-foreground font-medium">Order ID:</span>
                 <span className="font-bold text-foreground">{checkoutSuccess.id}</span>
               </div>
-              <div className="flex justify-between text-xs">
-                <span className="text-muted-foreground font-medium">Order Reference:</span>
-                <span className="font-bold text-foreground">{checkoutSuccess.referenceNumber || 'REF-581'}</span>
-              </div>
+              {checkoutSuccess.referenceNumber && checkoutSuccess.referenceNumber !== checkoutSuccess.id && (
+                <div className="flex justify-between text-xs">
+                  <span className="text-muted-foreground font-medium">Order Reference:</span>
+                  <span className="font-bold text-foreground">{checkoutSuccess.referenceNumber}</span>
+                </div>
+              )}
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground font-medium">Room / Table:</span>
                 <span className="font-bold text-foreground">{checkoutSuccess.roomNumber || 'N/A'}</span>
