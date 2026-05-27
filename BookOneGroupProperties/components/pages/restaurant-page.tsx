@@ -543,7 +543,6 @@ export function RestaurantPage() {
   const [plateStyles, setPlateStyles] = useState<{ top: string, left: string, transform: string }[]>([]);
   const [carts, setCarts] = useState<Record<string, Record<string, CartItem>>>({});
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isHeaderStuck, setIsHeaderStuck] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<MenuProduct | null>(null);
   const [checkoutStep, setCheckoutStep] = useState<'cart' | 'review'>('review');
   const [resources, setResources] = useState<Resource[]>([]);
@@ -555,7 +554,6 @@ export function RestaurantPage() {
 
   // --- Order Type, Delivery Options, Checked-In Guests ---
   const [orderType, setOrderType] = useState<'dine_in' | 'room_service' | 'pickup' | 'delivery'>('dine_in');
-  const [deliveryOptions, setDeliveryOptions] = useState<any[]>([]);
   const [checkedInGuests, setCheckedInGuests] = useState<any[]>([]);
   const [selectedGuestBookingId, setSelectedGuestBookingId] = useState<number | null>(null);
   const [selectedGuestCustomerId, setSelectedGuestCustomerId] = useState<number | null>(null);
@@ -707,24 +705,7 @@ export function RestaurantPage() {
     };
   }, [isCartOpen, selectedProduct]);
 
-  // Track if the controls bar is stuck to the top of the viewport
-  useEffect(() => {
-    const handleScroll = () => {
-      const controlsBar = document.getElementById("controls-bar");
-      if (controlsBar) {
-        const rect = controlsBar.getBoundingClientRect();
-        // Check if stuck at the top of the viewport (top <= 0)
-        setIsHeaderStuck(rect.top <= 0);
-      }
-    };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial check
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   // Fetch menu data whenever selected property changes
   useEffect(() => {
@@ -735,39 +716,17 @@ export function RestaurantPage() {
         const id = selectedProperty.restaurantId || selectedProperty.propertyId;
         const mainId = selectedProperty.bookOnePropertyId || selectedProperty.propertyId;
         
-        const [menu, resList, deliveryOpts, guests] = await Promise.all([
+        const [menu, resList, guests] = await Promise.all([
           fetchMenuData(id),
           fetchResources(id),
-          fetchDeliveryOptions(id),
           fetchCheckedInGuests(mainId)
         ]);
         
         setMenuData(menu);
         setResources(resList);
         
-        // Merge fetched delivery options with curated fallback list if empty
-        if (deliveryOpts && deliveryOpts.length > 0) {
-          setDeliveryOptions(deliveryOpts);
-        } else {
-          setDeliveryOptions([
-            { code: "ROOM_SERVICE", name: "Room Service", charge: 0 },
-            { code: "PICKUP", name: "Self Pickup", charge: 0 },
-            { code: "DINE_IN", name: "Dine-In (Table)", charge: 0 },
-            { code: "VILLA_DELIVERY", name: "Cottage/Villa Delivery", charge: 30 }
-          ]);
-        }
-
-        // Merge fetched checked-in guests with curated fallback list if empty
         if (guests && guests.length > 0) {
           setCheckedInGuests(guests);
-        } else {
-          setCheckedInGuests([
-            { guestName: "Devashish Goswami", roomNumber: "106", bookingReference: "GDC-B-581", phone: "+919876543210", email: "devashishgoswami1989@gmail.com" },
-            { guestName: "Rashmi Kulkarni", roomNumber: "204", bookingReference: "GDC-B-582", phone: "+919876543211", email: "rashmi.kulkarni@gmail.com" },
-            { guestName: "Trip Dip Guest", roomNumber: "302", bookingReference: "GDC-B-583", phone: "+919876543212", email: "tripdip@gmail.com" },
-            { guestName: "Amit Sharma", roomNumber: "112", bookingReference: "GDC-B-584", phone: "+919876543213", email: "amit.sharma@gmail.com" },
-            { guestName: "Priya Patel", roomNumber: "215", bookingReference: "GDC-B-585", phone: "+919876543214", email: "priya.patel@gmail.com" }
-          ]);
         }
         
         if (menu.length > 0) setActiveCategory(menu[0].id);
@@ -868,22 +827,20 @@ export function RestaurantPage() {
           {/* Top Row: Logo | Search | Count */}
           <div className="flex items-center gap-4 py-3">
 
-            {/* Far Left: Property Logo — shown only when controls bar is stuck to top */}
-            {isHeaderStuck && (
-              <div className="shrink-0 animate-in fade-in slide-in-from-left duration-200">
-                {selectedProperty.logoUrl ? (
-                  <img
-                    src={selectedProperty.logoUrl}
-                    alt={slugToPropertyName(selectedProperty.slug)}
-                    className="h-14 w-14 rounded-xl object-contain bg-white border border-border/40 shadow-sm"
-                  />
-                ) : (
-                  <div className="h-14 w-14 rounded-xl bg-primary/10 border border-border/40 flex items-center justify-center">
-                    <Utensils className="h-6 w-6 text-primary" />
-                  </div>
-                )}
-              </div>
-            )}
+            {/* Far Left: Property Logo */}
+            <div className="shrink-0">
+              {selectedProperty.logoUrl ? (
+                <img
+                  src={selectedProperty.logoUrl}
+                  alt={slugToPropertyName(selectedProperty.slug)}
+                  className="h-14 w-14 rounded-xl object-contain bg-white border border-border/40 shadow-sm"
+                />
+              ) : (
+                <div className="h-14 w-14 rounded-xl bg-primary/10 border border-border/40 flex items-center justify-center">
+                  <Utensils className="h-6 w-6 text-primary" />
+                </div>
+              )}
+            </div>
 
             {/* Property Selector */}
             <PropertyDropdown selected={selectedProperty} onChange={setSelectedProperty} />
@@ -1219,126 +1176,12 @@ export function RestaurantPage() {
                       </div>
                     </div>
 
-                    {/* Contact Information Section */}
-                    <div className="space-y-3">
-                      <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Contact Information</h3>
-                      <div className="space-y-3 bg-muted/20 border border-border/40 p-4 rounded-2xl shadow-sm">
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Full Name <span className="text-red-500 ml-0.5">*</span></label>
-                          <div className="relative">
-                            <User className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
-                            <input
-                              type="text"
-                              placeholder="Your name"
-                              value={customerName}
-                              onChange={(e) => setCustomerName(e.target.value)}
-                              className="w-full rounded-xl border border-border/50 bg-white py-2.5 pl-9 pr-4 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
-                            />
-                          </div>
-                        </div>
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Email Address <span className="text-red-500 ml-0.5">*</span></label>
-                          <div className="relative">
-                            <Mail className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
-                            <input
-                              type="email"
-                              placeholder="gmail.com"
-                              value={customerEmail}
-                              onChange={(e) => setCustomerEmail(e.target.value)}
-                              className="w-full rounded-xl border border-border/50 bg-white py-2.5 pl-9 pr-4 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
-                            />
-                          </div>
-                        </div>
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Phone Number <span className="text-red-500 ml-0.5">*</span></label>
-                          <div className="relative">
-                            <Phone className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
-                            <input
-                              type="tel"
-                              placeholder="Phone number"
-                              value={customerPhone}
-                              onChange={(e) => setCustomerPhone(e.target.value)}
-                              className="w-full rounded-xl border border-border/50 bg-white py-2.5 pl-9 pr-4 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-2 px-1">Service Details</h3>
-                    <div className="grid grid-cols-1 gap-4">
-                      <div className="grid grid-cols-2 gap-3">
+                    {/* ──── DINE-IN: Table + Slot Selection ──── */}
+                    {orderType === 'dine_in' && (
+                      <div className="space-y-4 border border-primary/10 bg-primary/[0.03] rounded-2xl p-4">
                         <div className="space-y-2">
-                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Order Date:</label>
-                          <div className="rounded-xl border border-border/40 bg-muted/10 px-4 py-3 text-xs font-bold text-foreground">
-                            {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
-                          </div>
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Pickup/Delivery Date:</label>
-                          <input
-                            type="date"
-                            value={selectedDate}
-                            min={new Date().toISOString().split('T')[0]}
-                            onChange={(e) => setSelectedDate(e.target.value)}
-                            className="w-full rounded-xl border border-border/50 bg-white px-4 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-3">
-                        <div className="flex items-center justify-between px-1">
-                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80">Available Time Slots ({selectedSlot || 'Select one'})</label>
-                        </div>
-                        
-                        {loadingSlots ? (
-                          <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                            {[1, 2, 3, 4].map((i) => (
-                              <div key={i} className="h-10 rounded-xl bg-muted/40 animate-pulse border border-border/20" />
-                            ))}
-                          </div>
-                        ) : availableSlots.length > 0 ? (
-                          <div className="grid grid-cols-3 gap-2 max-h-36 overflow-y-auto no-scrollbar p-1">
-                            {availableSlots.map((slot) => (
-                              <button
-                                key={slot}
-                                type="button"
-                                onClick={() => setSelectedSlot(slot)}
-                                className={`rounded-xl border py-2 text-[10px] font-bold transition-all shadow-sm ${selectedSlot === slot
-                                  ? "border-primary bg-primary text-white shadow-primary/20 scale-[1.02]"
-                                  : "border-border/40 bg-white text-foreground hover:border-primary/50"
-                                  }`}
-                              >
-                                {slot}
-                              </button>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="rounded-xl border border-dashed border-border/60 p-4 text-center bg-muted/5">
-                            <Clock className="h-5 w-5 text-muted-foreground/20 mx-auto mb-2" />
-                            <p className="text-[10px] text-muted-foreground font-medium leading-relaxed">
-                              No available slots found for this date. Please try another date.
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
-                          <MapPin className="h-3 w-3 text-primary" /> Property
-                        </div>
-                        <div className="rounded-2xl border border-border/50 bg-white px-5 py-3 text-xs font-bold text-foreground shadow-sm">
-                          {slugToPropertyName(selectedProperty.slug)}
-                        </div>
-                      </div>
-
-                      {/* Dine-In Layout */}
-                      {orderType === 'dine_in' && (
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
-                            <Utensils className="h-3 w-3 text-primary" /> Table Selection (Dine-In)
+                          <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80">
+                            <Utensils className="h-3 w-3 text-primary" /> Select Table
                           </div>
                           {resources.length > 0 ? (
                             <div className="space-y-3">
@@ -1375,132 +1218,248 @@ export function RestaurantPage() {
                             />
                           )}
                         </div>
-                      )}
 
-                      {/* Room Service Layout */}
-                      {orderType === 'room_service' && (
-                        <div className="space-y-3 bg-primary/5 p-4 rounded-2xl border border-primary/10">
-                          <div className="space-y-1">
-                            <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1 block">In-House Guests / Room Selection</label>
-                            <select
-                              value={selectedResource ? checkedInGuests.find(g => g.roomNumber.split(',')[0].trim() === selectedResource.split(',')[0].trim())?.roomNumber || "" : ""}
-                              onChange={(e) => {
-                                const val = e.target.value;
-                                if (val) {
-                                  const guest = checkedInGuests.find(g => g.roomNumber === val);
-                                  if (guest) {
-                                    // For multi-room bookings, use the first room number
-                                    const primaryRoom = guest.roomNumber.split(',')[0].trim();
-                                    setSelectedResource(primaryRoom);
-                                    setCustomerName(guest.guestName);
-                                    setSelectedGuestBookingId(guest.bookingId || null);
-                                    setSelectedGuestCustomerId(guest.customerId || null);
-                                    setSelectedGuestPlanName(guest.planName || "");
-                                    if (guest.email) setCustomerEmail(guest.email);
-                                    if (guest.phone) setCustomerPhone(guest.phone);
-                                    if (guest.bookingReference) setReferenceNumber(guest.bookingReference);
-                                  }
-                                } else {
-                                  setSelectedResource('');
-                                  setSelectedGuestBookingId(null);
-                                  setSelectedGuestCustomerId(null);
-                                  setSelectedGuestPlanName("");
-                                }
-                              }}
-                              className="w-full rounded-xl border border-border/40 bg-white px-3 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
-                            >
-                              <option value="">-- Select Room / Guest --</option>
-                              {checkedInGuests.map((guest, idx) => (
-                                <option key={idx} value={guest.roomNumber}>
-                                  Room {guest.roomNumber} — {guest.guestName}{guest.bookingReference ? ` (${guest.bookingReference})` : ''}
-                                </option>
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between">
+                            <label className="text-[10px] font-bold uppercase text-muted-foreground/80">Available Time Slots ({selectedSlot || 'Select one'})</label>
+                          </div>
+                          {loadingSlots ? (
+                            <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                              {[1, 2, 3, 4].map((i) => (
+                                <div key={i} className="h-10 rounded-xl bg-muted/40 animate-pulse border border-border/20" />
                               ))}
-                            </select>
-                          </div>
-                          
-                          <div className="space-y-1">
-                            <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1 block">Manual Room Number (If not listed)</label>
-                            <input
-                              type="text"
-                              placeholder="e.g. 106"
-                              value={selectedResource}
-                              onChange={(e) => setSelectedResource(e.target.value)}
-                              className="w-full rounded-xl border border-border/40 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
-                            />
-                          </div>
+                            </div>
+                          ) : availableSlots.length > 0 ? (
+                            <div className="grid grid-cols-3 gap-2 max-h-36 overflow-y-auto no-scrollbar p-1">
+                              {availableSlots.map((slot) => (
+                                <button
+                                  key={slot}
+                                  type="button"
+                                  onClick={() => setSelectedSlot(slot)}
+                                  className={`rounded-xl border py-2 text-[10px] font-bold transition-all shadow-sm ${selectedSlot === slot
+                                    ? "border-primary bg-primary text-white shadow-primary/20 scale-[1.02]"
+                                    : "border-border/40 bg-white text-foreground hover:border-primary/50"
+                                    }`}
+                                >
+                                  {slot}
+                                </button>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="rounded-xl border border-dashed border-border/60 p-4 text-center bg-muted/5">
+                              <Clock className="h-5 w-5 text-muted-foreground/20 mx-auto mb-2" />
+                              <p className="text-[10px] text-muted-foreground font-medium leading-relaxed">
+                                No available slots found for this date. Please try another date.
+                              </p>
+                            </div>
+                          )}
                         </div>
-                      )}
 
-                      {/* Self Pickup Layout */}
-                      {orderType === 'pickup' && (
                         <div className="space-y-2">
-                          <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
-                            <ClipboardList className="h-3 w-3 text-primary" /> Pickup Location
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80">Select Date</label>
+                          <input
+                            type="date"
+                            value={selectedDate}
+                            min={new Date().toISOString().split('T')[0]}
+                            onChange={(e) => setSelectedDate(e.target.value)}
+                            className="w-full rounded-xl border border-border/50 bg-white px-4 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* ──── ROOM SERVICE: Guest Selection ──── */}
+                    {orderType === 'room_service' && (
+                      <div className="space-y-3 bg-primary/5 p-4 rounded-2xl border border-primary/10">
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80">
+                            <User className="h-3 w-3 text-primary" /> Select In-House Guest
                           </div>
                           <select
-                            value={selectedResource}
-                            onChange={(e) => setSelectedResource(e.target.value)}
-                            className="w-full rounded-2xl border border-border/50 bg-white px-5 py-3.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                            value={selectedResource ? checkedInGuests.find(g => g.roomNumber.split(',')[0].trim() === selectedResource.split(',')[0].trim())?.roomNumber || "" : ""}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              if (val) {
+                                const guest = checkedInGuests.find(g => g.roomNumber === val);
+                                if (guest) {
+                                  const primaryRoom = guest.roomNumber.split(',')[0].trim();
+                                  setSelectedResource(primaryRoom);
+                                  setCustomerName(guest.guestName);
+                                  setSelectedGuestBookingId(guest.bookingId || null);
+                                  setSelectedGuestCustomerId(guest.customerId || null);
+                                  setSelectedGuestPlanName(guest.planName || "");
+                                  if (guest.email) setCustomerEmail(guest.email);
+                                  if (guest.phone) setCustomerPhone(guest.phone);
+                                  if (guest.bookingReference) setReferenceNumber(guest.bookingReference);
+                                }
+                              } else {
+                                setSelectedResource('');
+                                setSelectedGuestBookingId(null);
+                                setSelectedGuestCustomerId(null);
+                                setSelectedGuestPlanName("");
+                              }
+                            }}
+                            className="w-full rounded-xl border border-border/40 bg-white px-3 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
                           >
-                            <option value="">-- Select Store / Counter --</option>
-                            <option value="Main Restaurant Counter">Main Restaurant Counter</option>
-                            <option value="Resort Front Lobby Desk">Resort Front Lobby Desk</option>
-                            <option value="Lakeside Cafe Counter">Lakeside Cafe Counter</option>
+                            <option value="">-- Select Room / Guest --</option>
+                            {checkedInGuests.map((guest, idx) => (
+                              <option key={idx} value={guest.roomNumber}>
+                                Room {guest.roomNumber} — {guest.guestName}{guest.bookingReference ? ` (${guest.bookingReference})` : ''}
+                              </option>
+                            ))}
                           </select>
                         </div>
-                      )}
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 block">Manual Room Number (If not listed)</label>
+                          <input
+                            type="text"
+                            placeholder="e.g. 106"
+                            value={selectedResource}
+                            onChange={(e) => setSelectedResource(e.target.value)}
+                            className="w-full rounded-xl border border-border/40 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                          />
+                        </div>
+                      </div>
+                    )}
 
-                      {/* Delivery Layout */}
-                      {orderType === 'delivery' && (
-                        <div className="space-y-3">
-                          <div className="space-y-1">
-                            <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">
-                              <MapPin className="h-3 w-3 text-primary" /> Delivery Options
-                            </div>
-                            <select
-                              value={selectedResource}
-                              onChange={(e) => {
-                                setSelectedResource(e.target.value);
-                              }}
-                              className="w-full rounded-xl border border-border/50 bg-white px-3 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
-                            >
-                              <option value="">-- Select Delivery Option --</option>
-                              {deliveryOptions.map((opt, idx) => (
-                                <option key={idx} value={opt.name}>
-                                  {opt.name} {opt.charge > 0 ? `(+ ${formatCurrency(opt.charge)})` : ''}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                          <div className="space-y-1">
-                            <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1 block">Address / Cottage Details</label>
+                    {/* ──── CONTACT INFORMATION ──── */}
+                    <div className="space-y-3">
+                      <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Contact Information</h3>
+                      <div className="space-y-3 bg-muted/20 border border-border/40 p-4 rounded-2xl shadow-sm">
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Full Name <span className="text-red-500 ml-0.5">*</span></label>
+                          <div className="relative">
+                            <User className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
                             <input
                               type="text"
-                              placeholder="e.g. Cottage 4, Lakeside Villa"
-                              value={selectedResource}
-                              onChange={(e) => setSelectedResource(e.target.value)}
-                              className="w-full rounded-xl border border-border/50 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                              placeholder="Your name"
+                              value={customerName}
+                              onChange={(e) => setCustomerName(e.target.value)}
+                              readOnly={orderType === 'room_service'}
+                              className={`w-full rounded-xl border py-2.5 pl-9 pr-4 text-xs font-bold outline-none shadow-sm transition-all ${
+                                orderType === 'room_service'
+                                  ? "border-primary/20 bg-primary/5 text-foreground/70 cursor-default"
+                                  : "border-border/50 bg-white focus:border-primary"
+                              }`}
                             />
                           </div>
                         </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Email Address <span className="text-red-500 ml-0.5">*</span></label>
+                          <div className="relative">
+                            <Mail className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
+                            <input
+                              type="email"
+                              placeholder="gmail.com"
+                              value={customerEmail}
+                              onChange={(e) => setCustomerEmail(e.target.value)}
+                              readOnly={orderType === 'room_service'}
+                              className={`w-full rounded-xl border py-2.5 pl-9 pr-4 text-xs font-bold outline-none shadow-sm transition-all ${
+                                orderType === 'room_service'
+                                  ? "border-primary/20 bg-primary/5 text-foreground/70 cursor-default"
+                                  : "border-border/50 bg-white focus:border-primary"
+                              }`}
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Phone Number <span className="text-red-500 ml-0.5">*</span></label>
+                          <div className="relative">
+                            <Phone className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground/50" />
+                            <input
+                              type="tel"
+                              placeholder="Phone number"
+                              value={customerPhone}
+                              onChange={(e) => setCustomerPhone(e.target.value)}
+                              readOnly={orderType === 'room_service'}
+                              className={`w-full rounded-xl border py-2.5 pl-9 pr-4 text-xs font-bold outline-none shadow-sm transition-all ${
+                                orderType === 'room_service'
+                                  ? "border-primary/20 bg-primary/5 text-foreground/70 cursor-default"
+                                  : "border-border/50 bg-white focus:border-primary"
+                              }`}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* ──── TAKEAWAY: Counter Selection ──── */}
+                    {orderType === 'pickup' && (
+                      <div className="space-y-2 border border-primary/10 bg-primary/[0.03] rounded-2xl p-4">
+                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-muted-foreground/80">
+                          <ClipboardList className="h-3 w-3 text-primary" /> Select Pickup Counter
+                        </div>
+                        <select
+                          value={selectedResource}
+                          onChange={(e) => setSelectedResource(e.target.value)}
+                          className="w-full rounded-2xl border border-border/50 bg-white px-5 py-3.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                        >
+                          <option value="">-- Select Store / Counter --</option>
+                          <option value="Main Restaurant Counter">Main Restaurant Counter</option>
+                          <option value="Resort Front Lobby Desk">Resort Front Lobby Desk</option>
+                          <option value="Lakeside Cafe Counter">Lakeside Cafe Counter</option>
+                        </select>
+                      </div>
+                    )}
+
+                    {/* ──── ORDER DATE ──── */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Order Date:</label>
+                        <div className="rounded-xl border border-border/40 bg-muted/10 px-4 py-3 text-xs font-bold text-foreground">
+                          {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                        </div>
+                      </div>
+                      {orderType !== 'room_service' && (
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">{orderType === 'pickup' ? 'Pickup Date:' : 'Dine Date:'}</label>
+                          <input
+                            type="date"
+                            value={selectedDate}
+                            min={new Date().toISOString().split('T')[0]}
+                            onChange={(e) => setSelectedDate(e.target.value)}
+                            className="w-full rounded-xl border border-border/50 bg-white px-4 py-2.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
+                          />
+                        </div>
                       )}
+                    </div>
 
-                      {/* Payment Method Section */}
-                      <div className="space-y-3">
-                        <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Payment Method</h3>
-                        <div className="grid grid-cols-2 gap-2.5">
-                          <button
-                            type="button"
-                            onClick={() => setPaymentMode("Cash")}
-                            className={`flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all ${paymentMode === "Cash"
-                              ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
-                              : "border-border/40 bg-white text-muted-foreground hover:border-primary/40"
-                            }`}
-                          >
-                            <DollarSign className="h-4.5 w-4.5 shrink-0" />
-                            <span className="text-[10px] font-bold">Cash on Delivery</span>
-                          </button>
+                    {/* ──── PROPERTY INFO ──── */}
+                    <div className="flex items-center gap-3 rounded-2xl border border-primary/10 bg-primary/[0.03] p-4">
+                      {selectedProperty.logoUrl ? (
+                        <img
+                          src={selectedProperty.logoUrl}
+                          alt={slugToPropertyName(selectedProperty.slug)}
+                          className="h-12 w-12 rounded-xl object-contain bg-white border border-border/40 shadow-sm"
+                        />
+                      ) : (
+                        <div className="h-12 w-12 rounded-xl bg-primary/10 border border-border/40 flex items-center justify-center">
+                          <Utensils className="h-5 w-5 text-primary" />
+                        </div>
+                      )}
+                      <div className="flex flex-col">
+                        <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground/60">Property</span>
+                        <span className="text-sm font-black text-foreground">{slugToPropertyName(selectedProperty.slug)}</span>
+                      </div>
+                    </div>
 
+                    {/* ──── PAYMENT METHOD ──── */}
+                    <div className="space-y-3">
+                      <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Payment Method</h3>
+                      <div className="grid grid-cols-2 gap-2.5">
+                        <button
+                          type="button"
+                          onClick={() => setPaymentMode("Cash")}
+                          className={`flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all ${paymentMode === "Cash"
+                            ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
+                            : "border-border/40 bg-white text-muted-foreground hover:border-primary/40"
+                          }`}
+                        >
+                          <DollarSign className="h-4.5 w-4.5 shrink-0" />
+                          <span className="text-[10px] font-bold">Cash on Delivery</span>
+                        </button>
+
+                        {orderType !== 'pickup' && (
                           <button
                             type="button"
                             onClick={() => setPaymentMode("Charge to Room")}
@@ -1512,34 +1471,35 @@ export function RestaurantPage() {
                             <ClipboardList className="h-4.5 w-4.5 shrink-0" />
                             <span className="text-[10px] font-bold">Charge to Room</span>
                           </button>
-                        </div>
-
-                        {paymentMode === "Charge to Room" && (
-                          <div className="space-y-2 bg-primary/5 border border-primary/20 rounded-xl p-3.5 animate-in slide-in-from-top duration-200">
-                            <label className="text-[10px] font-bold uppercase text-primary ml-1 block">Booking Reference Number</label>
-                            <input
-                              type="text"
-                              placeholder="e.g. GDC-B-581"
-                              value={referenceNumber}
-                              onChange={(e) => setReferenceNumber(e.target.value)}
-                              className="w-full rounded-lg border border-primary/20 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-primary transition-all"
-                            />
-                            <p className="text-[9px] text-primary/70 leading-relaxed">
-                              Enter your hotel stay booking reference to bind this order to your booking.
-                            </p>
-                          </div>
                         )}
                       </div>
 
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Special Notes</label>
-                        <textarea
-                          placeholder="Any special instructions for the chef (e.g., extra spicy)?"
-                          value={specialNotes}
-                          onChange={(e) => setSpecialNotes(e.target.value)}
-                          className="w-full rounded-2xl border border-border/50 bg-white px-5 py-4 text-xs font-medium outline-none focus:border-primary transition-all shadow-sm min-h-[100px] resize-none"
-                        />
-                      </div>
+                      {paymentMode === "Charge to Room" && orderType !== 'pickup' && (
+                        <div className="space-y-2 bg-primary/5 border border-primary/20 rounded-xl p-3.5 animate-in slide-in-from-top duration-200">
+                          <label className="text-[10px] font-bold uppercase text-primary ml-1 block">Booking Reference Number</label>
+                          <input
+                            type="text"
+                            placeholder="e.g. GDC-B-581"
+                            value={referenceNumber}
+                            onChange={(e) => setReferenceNumber(e.target.value)}
+                            className="w-full rounded-lg border border-primary/20 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-primary transition-all"
+                          />
+                          <p className="text-[9px] text-primary/70 leading-relaxed">
+                            Enter your hotel stay booking reference to bind this order to your booking.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* ──── SPECIAL NOTES ──── */}
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase text-muted-foreground/80 ml-1">Special Notes</label>
+                      <textarea
+                        placeholder="Any special instructions for the chef (e.g., extra spicy)?"
+                        value={specialNotes}
+                        onChange={(e) => setSpecialNotes(e.target.value)}
+                        className="w-full rounded-2xl border border-border/50 bg-white px-5 py-4 text-xs font-medium outline-none focus:border-primary transition-all shadow-sm min-h-[100px] resize-none"
+                      />
                     </div>
                   </div>
                 </div>
