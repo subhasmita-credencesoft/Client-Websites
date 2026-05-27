@@ -57,6 +57,8 @@ export type RestaurantOrderInput = {
   propertyId: number;
   propertyName: string;
   propertySlug: string;
+  bookOnePropertyId?: number;
+  hotelmatePropertyId?: number;
   orderDeliveryMethod?: string;
   orderSlot?: string;
   cartItems?: {
@@ -171,13 +173,47 @@ export async function processRestaurantPayment(input: RestaurantOrderInput) {
   const taxAmount = input.cartTotal * 0.05;
 
   const slug = input.propertySlug || "";
-  const config = PROPERTY_PAYMENT_CONFIG[slug] || {
-    posPropertyId: input.propertyId - 1020,
-    slotsWebsiteId: 1306,
-    counterNumber: String(input.propertyId - 1020),
-    counterName: `${input.propertyName}-${input.propertyId - 1020}`,
-    businessEmail: "devashishgoswami1989@gmail.com",
-    managerName: "Rashmi Kulkarni Goswami",
+
+  // 1. Resolve posPropertyId and slotsWebsiteId dynamically
+  const posPropertyId = input.bookOnePropertyId || 
+                        (PROPERTY_PAYMENT_CONFIG[slug]?.posPropertyId) || 
+                        (input.propertyId - 1020);
+
+  const slotsWebsiteId = input.slotsWebsiteId || 
+                         (PROPERTY_PAYMENT_CONFIG[slug]?.slotsWebsiteId) || 
+                         1306;
+
+  // 2. Resolve businessEmail and managerName dynamically
+  let businessEmail = PROPERTY_PAYMENT_CONFIG[slug]?.businessEmail || "devashishgoswami1989@gmail.com";
+  let managerName = PROPERTY_PAYMENT_CONFIG[slug]?.managerName || "Rashmi Kulkarni Goswami";
+
+  const hotelmateId = input.hotelmatePropertyId;
+  if (hotelmateId) {
+    try {
+      const response = await fetch(`https://api.thehotelmate.co/api/thm/findById/${hotelmateId}`, {
+        next: { revalidate: 300 }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.email) {
+          businessEmail = data.email;
+        }
+        if (data.managerFirstName || data.managerLastName) {
+          managerName = `${data.managerFirstName || ""} ${data.managerLastName || ""}`.trim();
+        }
+      }
+    } catch (err) {
+      console.error("Failed to fetch property details dynamically:", err);
+    }
+  }
+
+  const config = {
+    posPropertyId,
+    slotsWebsiteId,
+    counterNumber: String(posPropertyId),
+    counterName: `${input.propertyName}-${posPropertyId}`,
+    businessEmail,
+    managerName,
   };
 
   const midnightDate = new Date();

@@ -555,6 +555,7 @@ export function RestaurantPage() {
   // --- Order Type, Delivery Options, Checked-In Guests ---
   const [orderType, setOrderType] = useState<'dine_in' | 'room_service' | 'pickup' | 'delivery'>('dine_in');
   const [checkedInGuests, setCheckedInGuests] = useState<any[]>([]);
+  const [deliveryOptions, setDeliveryOptions] = useState<any[]>([]);
   const [selectedGuestBookingId, setSelectedGuestBookingId] = useState<number | null>(null);
   const [selectedGuestCustomerId, setSelectedGuestCustomerId] = useState<number | null>(null);
   const [selectedGuestPlanName, setSelectedGuestPlanName] = useState<string>("");
@@ -627,6 +628,8 @@ export function RestaurantPage() {
         propertyId: selectedProperty.restaurantId || selectedProperty.propertyId,
         propertyName: slugToPropertyName(selectedProperty.slug),
         propertySlug: selectedProperty.slug,
+        bookOnePropertyId: selectedProperty.bookOnePropertyId || undefined,
+        hotelmatePropertyId: selectedProperty.propertyId,
         orderDeliveryMethod: orderType === 'room_service' ? 'Room Order' : orderType === 'pickup' ? 'Take Away' : orderType === 'delivery' ? 'Delivery' : 'Dine-In',
         orderSlot: selectedSlot || undefined,
         cartItems,
@@ -716,18 +719,17 @@ export function RestaurantPage() {
         const id = selectedProperty.restaurantId || selectedProperty.propertyId;
         const mainId = selectedProperty.bookOnePropertyId || selectedProperty.propertyId;
         
-        const [menu, resList, guests] = await Promise.all([
+        const [menu, resList, guests, delOpts] = await Promise.all([
           fetchMenuData(id),
           fetchResources(id),
-          fetchCheckedInGuests(mainId)
+          fetchCheckedInGuests(mainId),
+          fetchDeliveryOptions(id).catch(() => [])
         ]);
         
         setMenuData(menu);
         setResources(resList);
-        
-        if (guests && guests.length > 0) {
-          setCheckedInGuests(guests);
-        }
+        setCheckedInGuests(guests || []);
+        setDeliveryOptions(delOpts || []);
         
         if (menu.length > 0) setActiveCategory(menu[0].id);
 
@@ -1395,9 +1397,23 @@ export function RestaurantPage() {
                           className="w-full rounded-2xl border border-border/50 bg-white px-5 py-3.5 text-xs font-bold outline-none focus:border-primary transition-all shadow-sm"
                         >
                           <option value="">-- Select Store / Counter --</option>
-                          <option value="Main Restaurant Counter">Main Restaurant Counter</option>
-                          <option value="Resort Front Lobby Desk">Resort Front Lobby Desk</option>
-                          <option value="Lakeside Cafe Counter">Lakeside Cafe Counter</option>
+                          {deliveryOptions && deliveryOptions.length > 0 ? (
+                            deliveryOptions.map((opt: any, idx: number) => {
+                              const optVal = opt.name || opt.counterName || opt.label || opt.value || opt.locationName || (typeof opt === 'string' ? opt : '');
+                              const optLabel = opt.name || opt.counterName || opt.label || opt.description || optVal;
+                              return (
+                                <option key={idx} value={optVal}>
+                                  {optLabel}
+                                </option>
+                              );
+                            })
+                          ) : (
+                            <>
+                              <option value="Main Restaurant Counter">Main Restaurant Counter</option>
+                              <option value="Resort Front Lobby Desk">Resort Front Lobby Desk</option>
+                              <option value="Lakeside Cafe Counter">Lakeside Cafe Counter</option>
+                            </>
+                          )}
                         </select>
                       </div>
                     )}
