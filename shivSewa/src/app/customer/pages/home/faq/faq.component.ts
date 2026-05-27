@@ -39,7 +39,7 @@ export class FaqComponent {
       answer: 'You can reach Shiv Sewa Cab Service through multiple channels:',
       points: [
         'Phone / WhatsApp: 9136399064 (call or WhatsApp anytime)',
-        'Email: shivsewa@gmail.com',
+        'Email: rides@shivsewa.in',
         'Online booking form: available on our website shivsewa.in'
       ],
       note: 'We respond quickly to WhatsApp messages and confirm bookings within minutes.'
@@ -57,7 +57,7 @@ export class FaqComponent {
       points: [
         'WhatsApp or call us at 9136399064 - fastest method, confirmation within minutes',
         'Fill the booking form on our website shivsewa.in',
-        'Email us at shivsewa@gmail.com for advance bookings'
+        'Email us at rides@shivsewa.in for advance bookings'
       ],
       note: 'We recommend WhatsApp or calling for same-day bookings.'
     },
@@ -71,13 +71,13 @@ export class FaqComponent {
       category: 'Booking & Pricing',
       question: 'Is there any cancellation charge?',
       answer:
-        'For cancellation details and policies, please contact us directly at 9136399064 or shivsewa@gmail.com before booking so we can clarify terms for your specific trip type.',
+        'For cancellation details and policies, please contact us directly at 9136399064 or rides@shivsewa.in before booking so we can clarify terms for your specific trip type.',
     },
     {
       category: 'Booking & Pricing',
       question: 'Can I book a cab in advance?',
       answer:
-        'Yes. Shiv Sewa accepts advance bookings for all trip types - local, airport, and outstation. Advance booking is recommended for early morning airport pickups, outstation trips, and travel during peak seasons or holidays. Contact us at 9136399064 or shivsewa@gmail.com to schedule your ride.',
+        'Yes. Shiv Sewa accepts advance bookings for all trip types - local, airport, and outstation. Advance booking is recommended for early morning airport pickups, outstation trips, and travel during peak seasons or holidays. Contact us at 9136399064 or rides@shivsewa.in to schedule your ride.',
     },
     {
       category: 'Services',
@@ -106,7 +106,7 @@ export class FaqComponent {
       category: 'Services',
       question: 'Does Shiv Sewa offer one-way and round-trip outstation cabs?',
       answer:
-        'Yes. Shiv Sewa offers both one-way and round-trip outstation cab bookings. Fixed rates apply for both options. Contact us at 9136399064 or shivsewa@gmail.com with your travel details to get a quote.',
+        'Yes. Shiv Sewa offers both one-way and round-trip outstation cab bookings. Fixed rates apply for both options. Contact us at 9136399064 or rides@shivsewa.in with your travel details to get a quote.',
     },
     {
       category: 'Areas Served',

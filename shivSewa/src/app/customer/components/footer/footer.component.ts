@@ -34,7 +34,7 @@ companyLinks: NavLink[] = [
   contactInfo: ContactInfo[] = [
     { icon: 'location', label: 'C-6-10-4-1, Sector6, CBD Belapur, Thane- 400614, Maharashtra', value: '' },
     { icon: 'phone', label: '9136399064', value: '' },
-    { icon: 'email', label: 'shivsewa@gmail.com', value: '' }
+    { icon: 'email', label: 'rides@shivsewa.in', value: '' }
   ];
 
 scrollTo(sectionId: string) {
