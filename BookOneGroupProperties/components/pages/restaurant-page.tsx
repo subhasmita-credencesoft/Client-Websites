@@ -544,7 +544,7 @@ export function RestaurantPage() {
   const [carts, setCarts] = useState<Record<string, Record<string, CartItem>>>({});
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<MenuProduct | null>(null);
-  const [checkoutStep, setCheckoutStep] = useState<'cart' | 'review'>('cart');
+  const [checkoutStep, setCheckoutStep] = useState<'cart' | 'review'>('review');
   const [resources, setResources] = useState<Resource[]>([]);
   const [selectedResource, setSelectedResource] = useState<string>("");
   const [slotsData, setSlotsData] = useState<SlotsResponse | null>(null);
@@ -963,20 +963,15 @@ export function RestaurantPage() {
 
       {/* Cart Sidebar */}
       {isCartOpen && (
-        <div className="fixed inset-0 z-[60] flex justify-end bg-black/50 transition-opacity" onClick={() => { setIsCartOpen(false); setCheckoutStep('cart'); }}>
+        <div className="fixed inset-0 z-[60] flex justify-end bg-black/50 transition-opacity" onClick={() => { setIsCartOpen(false); }}>
           <div className="h-full w-full max-w-md bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-300" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between border-b px-6 py-4">
               <div className="flex items-center gap-2">
-                {checkoutStep === 'review' && (
-                  <button onClick={() => setCheckoutStep('cart')} className="mr-1 rounded-full p-1 hover:bg-muted">
-                    <ChevronLeft className="h-5 w-5 text-primary" />
-                  </button>
-                )}
                 <h2 className="text-lg font-bold text-foreground">
-                  {checkoutStep === 'cart' ? 'Your Order' : 'Order Details'}
+                  Order Details
                 </h2>
               </div>
-              <button onClick={() => { setIsCartOpen(false); setCheckoutStep('cart'); }} className="rounded-full p-2 hover:bg-muted">
+              <button onClick={() => { setIsCartOpen(false); }} className="rounded-full p-2 hover:bg-muted">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -1040,9 +1035,10 @@ export function RestaurantPage() {
                         const amount = unitPrice * item.quantity;
                         const itemImage = getProductImage(item.product);
                         return (
-                          <div key={item.id} className="border-b border-border/20 last:border-0 pb-4 md:pb-0">
-                            <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-2 items-center py-3">
-                              <div className="col-span-3 flex gap-3">
+                          <div key={item.id} className="border-b border-border/20 last:border-0 pb-4">
+                            <div className="flex items-center justify-between gap-3 py-3">
+                              {/* Left: Image & Name */}
+                              <div className="flex items-center gap-3 min-w-0 flex-1">
                                 <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-white border border-border/40 shadow-sm">
                                   {itemImage ? (
                                     <img src={itemImage} alt={item.product.name} className="h-full w-full object-cover" />
@@ -1053,34 +1049,41 @@ export function RestaurantPage() {
                                   )}
                                 </div>
                                 <div className="flex flex-col justify-center min-w-0">
-                                  <h4 className="text-xs font-bold text-foreground leading-tight">{item.product.name}</h4>
+                                  <h4 className="text-xs font-bold text-foreground leading-tight truncate">{item.product.name}</h4>
+                                  <div className="flex items-center gap-1.5 mt-0.5">
+                                    <span className="text-[10px] text-muted-foreground font-semibold">{formatCurrency(unitPrice)}</span>
+                                    {item.variation && (
+                                      <>
+                                        <span className="text-[10px] text-muted-foreground/40">•</span>
+                                        <span className="text-[10px] text-muted-foreground bg-muted/40 px-1.5 py-0.5 rounded-md font-medium">{item.variation.name}</span>
+                                      </>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
 
-                              {/* <div className="col-span-2 hidden md:block">
-                                <p className="text-[10px] text-muted-foreground line-clamp-2">{item.product.shortDescription || 'No details'}</p>
-                              </div> */}
-
-                              <div className="col-span-2 text-center hidden md:block">
-                                {/* <span className="text-[10px] font-medium text-muted-foreground bg-muted/40 px-2 py-1 rounded-lg">
-                                  {item.variation ? item.variation.name : 'Standard'}
-                                </span> */}
-                              </div>
-
-                              <div className="col-span-1 text-center hidden md:block">
-                                <span className="text-xs font-bold text-foreground">{item.quantity}</span>
-                              </div>
-
-                              <div className="col-span-2 text-right hidden md:block">
-                                <span className="text-xs font-bold text-muted-foreground">{formatCurrency(unitPrice)}</span>
-                              </div>
-
-                              <div className="col-span-2 text-right flex justify-between md:block items-center">
-                                <div className="md:hidden flex flex-col items-start">
-                                  <span className="text-[10px] font-bold text-muted-foreground">{item.quantity} x {formatCurrency(unitPrice)}</span>
-                                  <span className="text-[10px] text-muted-foreground italic mt-0.5">{item.variation?.name || 'Standard'}</span>
+                              {/* Right: Quantity Selector & Total Amount */}
+                              <div className="flex items-center gap-4 flex-shrink-0">
+                                <div className="flex items-center gap-2 bg-muted/65 rounded-full px-2 py-1 shadow-sm border border-border/10">
+                                  <button
+                                    type="button"
+                                    onClick={() => updateCart(item, -1)}
+                                    className="p-0.5 text-muted-foreground hover:text-primary transition-colors active:scale-75"
+                                  >
+                                    <Minus className="h-2.5 w-2.5" />
+                                  </button>
+                                  <span className="text-xs font-black w-4 text-center text-foreground">{item.quantity}</span>
+                                  <button
+                                    type="button"
+                                    onClick={() => updateCart(item, 1)}
+                                    className="p-0.5 text-muted-foreground hover:text-primary transition-colors active:scale-75"
+                                  >
+                                    <Plus className="h-2.5 w-2.5" />
+                                  </button>
                                 </div>
-                                <span className="text-sm font-black text-primary">{formatCurrency(amount)}</span>
+                                <div className="text-right min-w-[60px]">
+                                  <span className="text-sm font-black text-primary">{formatCurrency(amount)}</span>
+                                </div>
                               </div>
                             </div>
                             {/* Item Notes Field */}
@@ -1592,7 +1595,7 @@ export function RestaurantPage() {
               onClick={() => {
                 setCheckoutSuccess(null);
                 setIsCartOpen(false);
-                setCheckoutStep('cart');
+                setCheckoutStep('review');
               }}
               className="w-full rounded-xl bg-primary py-3 text-xs font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98]"
             >
