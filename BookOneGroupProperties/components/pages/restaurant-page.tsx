@@ -543,6 +543,7 @@ export function RestaurantPage() {
   const [plateStyles, setPlateStyles] = useState<{ top: string, left: string, transform: string }[]>([]);
   const [carts, setCarts] = useState<Record<string, Record<string, CartItem>>>({});
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isHeaderStuck, setIsHeaderStuck] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<MenuProduct | null>(null);
   const [checkoutStep, setCheckoutStep] = useState<'cart' | 'review'>('review');
   const [resources, setResources] = useState<Resource[]>([]);
@@ -706,6 +707,25 @@ export function RestaurantPage() {
     };
   }, [isCartOpen, selectedProduct]);
 
+  // Track if the controls bar is stuck to the top of the viewport
+  useEffect(() => {
+    const handleScroll = () => {
+      const controlsBar = document.getElementById("controls-bar");
+      if (controlsBar) {
+        const rect = controlsBar.getBoundingClientRect();
+        // Check if stuck at the top of the viewport (top <= 0)
+        setIsHeaderStuck(rect.top <= 0);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   // Fetch menu data whenever selected property changes
   useEffect(() => {
     const loadData = async () => {
@@ -842,26 +862,28 @@ export function RestaurantPage() {
       </div>
 
       {/* Controls Bar */}
-      <div className="sticky top-0 z-40 border-b border-border/40 bg-white/95 backdrop-blur-md shadow-sm">
+      <div id="controls-bar" className="sticky top-0 z-40 border-b border-border/40 bg-white/95 backdrop-blur-md shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Top Row: Logo | Search | Count */}
           <div className="flex items-center gap-4 py-3">
 
-            {/* Far Left: Big Property Logo */}
-            <div className="shrink-0">
-              {selectedProperty.logoUrl ? (
-                <img
-                  src={selectedProperty.logoUrl}
-                  alt={slugToPropertyName(selectedProperty.slug)}
-                  className="h-11 w-11 rounded-xl object-cover border-2 border-primary/20 shadow-md"
-                />
-              ) : (
-                <div className="h-11 w-11 rounded-xl bg-primary/10 border-2 border-primary/20 flex items-center justify-center">
-                  <Utensils className="h-5 w-5 text-primary" />
-                </div>
-              )}
-            </div>
+            {/* Far Left: Property Logo — shown only when controls bar is stuck to top */}
+            {isHeaderStuck && (
+              <div className="shrink-0 animate-in fade-in slide-in-from-left duration-200">
+                {selectedProperty.logoUrl ? (
+                  <img
+                    src={selectedProperty.logoUrl}
+                    alt={slugToPropertyName(selectedProperty.slug)}
+                    className="h-14 w-14 rounded-xl object-contain bg-white border border-border/40 shadow-sm"
+                  />
+                ) : (
+                  <div className="h-14 w-14 rounded-xl bg-primary/10 border border-border/40 flex items-center justify-center">
+                    <Utensils className="h-6 w-6 text-primary" />
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Property Selector */}
             <PropertyDropdown selected={selectedProperty} onChange={setSelectedProperty} />
