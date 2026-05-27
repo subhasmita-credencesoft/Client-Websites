@@ -71,7 +71,7 @@ const Footer = () => {
                   className='text-[#c8a84e] mt-0.5 shrink-0'
                 />
 
-                <span>Pratap Nagar, Jaipur, Rajasthan</span>
+                <span>Indian Bank, 34-B1-B2, Haldighati Marg, Tonk Rd, Sector 5, Pratap Nagar, Jaipur, Rajasthan 302033</span>
               </li>
 
               <li className='flex items-center gap-2.5'>
