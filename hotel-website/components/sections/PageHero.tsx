@@ -12,6 +12,7 @@ type PageHeroProps = {
   title: string;
   backgroundImage: string;
   backgroundVideo?: string;
+  preferVideoOnly?: boolean;
   subtitle?: string;
   breadcrumb?: string;
   minHeightClassName?: string;
@@ -24,6 +25,7 @@ export default function PageHero({
   title,
   backgroundImage,
   backgroundVideo,
+  preferVideoOnly = false,
   subtitle,
   breadcrumb,
   minHeightClassName = "min-h-[100svh]",
@@ -107,16 +109,18 @@ export default function PageHero({
     >
       <div ref={mediaRef} className="absolute inset-0 will-change-transform">
         <div aria-hidden="true" className="absolute inset-0 bg-[#143b47]" />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        />
+        {!preferVideoOnly ? (
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${backgroundImage})` }}
+          />
+        ) : null}
         {backgroundVideo ? (
           <video
             key={backgroundVideo}
             src={backgroundVideo}
-            poster={backgroundImage}
+            poster={preferVideoOnly ? undefined : backgroundImage}
             className={`absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover object-center transition-opacity duration-700 ease-out ${
               videoReady ? "opacity-100" : "opacity-0"
             }`}
@@ -125,6 +129,8 @@ export default function PageHero({
             loop
             playsInline
             preload="auto"
+            onLoadedData={() => setVideoReady(true)}
+            onCanPlay={() => setVideoReady(true)}
             onCanPlayThrough={() => setVideoReady(true)}
             aria-label={videoAriaLabel}
             aria-hidden={videoAriaLabel ? undefined : "true"}

@@ -2,6 +2,7 @@ export type PageHeroConfig = {
   title: string;
   backgroundImage: string;
   backgroundVideo?: string;
+  preferVideoOnly?: boolean;
   subtitle?: string;
   breadcrumb?: string;
   minHeightClassName?: string;
@@ -65,6 +66,7 @@ export const ROOMS_HERO_CONFIG: PageHeroConfig = {
   title: "Rooms & Suites",
   backgroundImage: "https://bookonelocal.in/cdn/3.avif",
   backgroundVideo: "https://bookonelocal.in/cdn/Changed-Room-Page-Video.mp4",
+  preferVideoOnly: true,
   subtitle: "Explore comfortable rooms and suites designed for restful stays, family comfort, and easy resort living.",
   breadcrumb: "Home / Rooms & Suites",
   videoAriaLabel: "Watch: A look inside our Deluxe and Super Deluxe rooms at UK's Resort",
