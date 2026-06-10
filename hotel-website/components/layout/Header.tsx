@@ -279,7 +279,7 @@ export default function Header() {
                 setMenuOpen(true);
               }}
             />
-            <div className="hidden sm:flex items-center gap-1.5">
+            {/* <div className="hidden sm:flex items-center gap-1.5">
               <span className="h-2.5 w-px" style={{ background: border }} aria-hidden="true" />
               <Link
                 href="/awards"
@@ -289,7 +289,7 @@ export default function Header() {
               >
                 Media & Awards
               </Link>
-            </div>
+            </div> */}
           </div>
 
           {/* CENTRE — ornament + logo + wordmark */}

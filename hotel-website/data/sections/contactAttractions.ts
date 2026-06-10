@@ -7,11 +7,11 @@ export type ContactAttraction = {
 
 export const CONTACT_ATTRACTIONS: ContactAttraction[] = [
   {
-    title: "ADLABS Imagica",
+    title: " Imagica",
     description:
-      "Adlabs Imagica is just 8 kms from UK's Resort. Adlabs Imagica is a theme park near the city of Khopoli on Mumbai-Pune expressway.",
+      " Imagica is just 8 kms from UK's Resort.  Imagica is a theme park near the city of Khopoli on Mumbai-Pune expressway.",
     image: "https://bookonelocal.in/cdn/adlabs-imagica.jpg",
-    alt: "Adlabs Imagica amusement park rides",
+    alt: " Imagica amusement park rides",
   },
   {
     title: "Ashtavinayak Mahad Temple",

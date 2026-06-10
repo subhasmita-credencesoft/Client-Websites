@@ -8,11 +8,11 @@ import Container from "../ui/Container";
 
 const ATTRACTIONS = [
   {
-    title: "ADLABS Imagica",
+    title: " Imagica",
     description:
       "One of India's largest theme parks, sitting right on the Mumbai-Pune Expressway just 8 km from UK's Resort. Many guests combine a full day at Imagica with an overnight stay here because the short drive back is far easier than heading home the same day.",
     image: "/imagica.png",
-    alt: "Adlabs Imagica amusement park rides",
+    alt: "ADLABS Imagica amusement park rides",
     distance: "8 km • ~15 min drive",
     mood: "Theme Park",
   },

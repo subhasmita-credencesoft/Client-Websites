@@ -163,15 +163,15 @@ export default function Footer() {
               className="object-cover"
                />
             </div>
-              <h3 className="footer-heading font-serif text-3xl leading-tight sm:text-4xl">
+              {/* <h3 className="footer-heading font-serif text-3xl leading-tight sm:text-4xl">
                 Rated {TESTIMONIALS_REVIEW_SCORE.toFixed(1)} star by {TESTIMONIALS_REVIEW_COUNT.toLocaleString("en-IN")}+ guests
                 <br />
                 TripAdvisor Certificate
                 <br />
                 of Excellence
-              </h3>
+              </h3> */}
 
-            <Link
+            {/* <Link
               href={TRIPADVISOR_URL}
               target="_blank"
               rel="noreferrer"
@@ -197,7 +197,7 @@ export default function Footer() {
                   </div>
                 </div>
               </div>
-            </Link>
+            </Link> */}
           </div>
           <div className="grid gap-8 sm:gap-10 xl:grid-cols-[1.1fr_1.2fr] xl:justify-self-end xl:text-left">
 
