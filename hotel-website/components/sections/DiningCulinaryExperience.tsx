@@ -134,6 +134,16 @@ export default function DiningCulinaryExperience() {
               </div>
 
             </div>
+
+              <a
+                href="https://bookonelocal.in/cdn/ukresortmenu.pdf"
+                download
+                target="_blank"
+                rel="noreferrer"
+                className="dining-exp-contact mt-6 inline-flex items-center gap-2 rounded-full bg-[#1f3c44] px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#2a4f5a]"
+              >
+                Download Multi-Cuisine Menu
+              </a>
           </div>
 
           <div className="flex justify-center lg:justify-end">

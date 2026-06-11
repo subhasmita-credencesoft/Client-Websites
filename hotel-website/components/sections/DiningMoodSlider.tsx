@@ -124,20 +124,39 @@ export default function DiningMoodSlider() {
 
       <div className="dining-mood-strip mx-auto mt-8 grid max-w-6xl gap-3 px-3 sm:grid-cols-3 sm:px-6 lg:px-8">
         {[
-          { icon: Soup, label: "Multi-cuisine menu" },
+          { icon: Soup, label: "Multi-cuisine menu", href: "https://bookonelocal.in/cdn/ukresortmenu.pdf" },
           { icon: Armchair, label: "Indoor & outdoor seating" },
           { icon: Users, label: "Groups & corporates welcome" },
-        ].map(({ icon: Icon, label }) => (
-          <div
-            key={label}
-            className="flex items-center justify-center gap-3 rounded-2xl border border-[#1f3c44]/10 bg-white/75 px-5 py-4 text-center text-[#1f3c44] shadow-[0_14px_32px_rgba(31,60,68,0.06)]"
-          >
-            <Icon className="h-5 w-5 text-[#c78946]" aria-hidden="true" />
-            <span className="text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-[#1f3c44]/80">
-              {label}
-            </span>
-          </div>
-        ))}
+        ].map((item) => {
+          const { icon: Icon, label, href } = item;
+          const content = (
+            <>
+              <Icon className="h-5 w-5 text-[#c78946]" aria-hidden="true" />
+              <span className="text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-[#1f3c44]/80">
+                {label}
+              </span>
+            </>
+          );
+          return href ? (
+            <a
+              key={label}
+              href={href}
+              download
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-center gap-3 rounded-2xl border border-[#1f3c44]/10 bg-white/75 px-5 py-4 text-center text-[#1f3c44] shadow-[0_14px_32px_rgba(31,60,68,0.06)] hover:bg-white hover:border-[#c78946]/40 transition-colors"
+            >
+              {content}
+            </a>
+          ) : (
+            <div
+              key={label}
+              className="flex items-center justify-center gap-3 rounded-2xl border border-[#1f3c44]/10 bg-white/75 px-5 py-4 text-center text-[#1f3c44] shadow-[0_14px_32px_rgba(31,60,68,0.06)]"
+            >
+              {content}
+            </div>
+          );
+        })}
       </div>
     </section>
   );
