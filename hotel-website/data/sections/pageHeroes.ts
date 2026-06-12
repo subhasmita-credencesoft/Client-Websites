@@ -57,7 +57,7 @@ export const EXPERIENCES_HERO_CONFIG: PageHeroConfig = {
   title: "Experiences",
   backgroundImage: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
   backgroundVideo: "https://bookonelocal.in/cdn/Experience-Page-Video.mp4",
-  subtitle: "Water Fun & Play fun, sports, indoor games, adventure activities, and family experiences all in one property.",
+  subtitle: "Water Fun & Play fun, sports, indoor games,Outdoor games, adventure activities, and family experiences all in one property.",
   breadcrumb: "Home / Experiences",
   minHeightClassName: "min-h-screen",
 };

@@ -38,7 +38,7 @@ export const TARIFF_FALLBACK_ROWS: TariffRow[] = [
 export const TARIFF_GROUP_PACKAGE_TITLE_LINES = [
   "Overnight Picnic for Groups",
   "Per person per night with all meals",
-  "* Check-in 12 noon and Check-out 11am",
+  "* Check-in 1 noon and Check-out 10am",
   "Taxes as per Government Regulations",
 ] as const;
 

@@ -350,7 +350,7 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
 
   introEyebrow: "Business Stays",
   introTitle:
-    "Corporate offsites and conferences without the logistics headache.",
+    "Seamless Corporate Offsites and Conferences.",
   introCopy:
     "UK's Resort has hosted corporate groups from Mumbai, Pune, and across Maharashtra for over a decade - from leadership retreats to large team conferences. What makes it work for companies is the combination: comfortable accommodation, event-ready spaces, Delicious Food , and enough outdoor space for your team to actually decompress.",
 

@@ -245,7 +245,7 @@ export default function LocationOffers() {
               <div className="lo-divider" aria-hidden="true" />
               <div className="lo-info-item">
                 <p className="lo-info-label">Check in / out</p>
-                <p className="lo-info-text mt-2">Check-in from 2 PM</p>
+                <p className="lo-info-text mt-2">Check-in from 1 PM</p>
                 <p className="lo-info-text">Check-out by 10 AM</p>
               </div>
               <div className="lo-divider" aria-hidden="true" />

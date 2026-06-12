@@ -10,39 +10,32 @@ const tourUrl =
   "https://www.google.co.in/maps/@18.8171454,73.3046935,3a,75y,230.79h,90t/data=!3m8!1e1!3m6!1s9axrwQcgs_QAAAQvxYVCdQ!2e0!3e2!6s%2F%2Fgeo1.ggpht.com%2Fcbk%3Fpanoid%3D9axrwQcgs_QAAAQvxYVCdQ%26output%3Dthumbnail%26cb_client%3Dmaps_sv.tactile.gps%26thumb%3D2%26w%3D203%26h%3D100%26yaw%3D64.35467%26pitch%3D0%26thumbfov%3D100!7i13312!8i6656?shorturl=1";
 
 const diningItems = [
-  {
-    title: "UK's Resort Restaurant",
-    label: "Indoor Resort Dining",
-    description:
-      "Relax in our comfortable indoor restaurant space with neatly arranged seating, ideal for families and couples enjoying fresh meals in a peaceful resort atmosphere.",
-    image: "din1.avif",
-    position: "center",
-  },
-  {
-    title: " Dining Hall",
-    label: "School | Picnic | Large Groups",
-    description:
-      "Spacious dining setup specially arranged for school picnics, educational trips, and large group visits with organized seating and quick service support.",
-    image: "din2.avif",
-    position: "center 42%",
-  },
-  // {
-  //   title: "Covered Garden Restaurant Seating",
-  //   label: "Semi-Outdoor Dining",
-  //   description:
-  //     "Experience comfortable semi-outdoor dining with shaded seating and scenic green views, perfect for peaceful resort-style meals.",
-  //   image: "din3.avif",
-  //   position: "center 32%",
-  // },
-  {
-    title: "Corporate & Conference Dining",
-    label: "Meetings | Team Events",
-    description:
-      "Well-arranged dining space designed for corporate meetings, conferences, and team events with structured seating and organized meal service.",
-    image: "uk-conf.avif",
-    position: "center 36%",
-  },
+{
+title: "UK's Resort Restaurant",
+label: "Multi-Cuisine Restaurant",
+description:
+"Indulge in a delightful selection of Indian, Chinese, Mughlai, Seafood, and Biryani specialties prepared with quality ingredients and served with warm hospitality in a welcoming resort setting.",
+image: "bar1.png",
+position: "center",
+},
+{
+title: "Family Dining Experience",
+label: "Comfortable Air-Conditioned Dining",
+description:
+"Enjoy relaxed meals with family and friends in our spacious air-conditioned restaurant, thoughtfully designed to provide comfort, convenience, and a memorable dining experience.",
+image: "/dining.png",
+position: "center 42%",
+},
+{
+title: "Corporate & Conference Dining",
+label: "Business Meetings & Team Events",
+description:
+"From corporate meetings and conferences to team gatherings, we offer organized dining arrangements, professional service, and customized meal options for every business occasion.",
+image: "uk-conf.avif",
+position: "center 36%",
+},
 ];
+
 
 // âœ… FIX 2: Removed conflicting `declare module "gsap/ScrollTrigger"` block.
 // GSAP v3.11+ ships its own types â€” no manual declaration needed.

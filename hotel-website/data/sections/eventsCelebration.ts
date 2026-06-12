@@ -57,7 +57,7 @@ export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
       "Mark it properly. UK's Resort handles birthday setups, decoration space, group dining, and open grounds for games so you show up and celebrate, not manage logistics. Available for groups of 20 and above.",
     ],
     highlightLabel: "Best For",
-    highlights: ["Birthday setups", "Group dining", "20+ guests"],
+    highlights: [ "Group dining", "1000+ guests"],
     enquiryHref: WEDDINGS_BOOKING_ENGINE_URL,
     virtualTourKey: "events",
     virtualTourAriaLabel: "Take a virtual tour of event venue",
