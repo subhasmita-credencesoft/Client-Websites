@@ -9,7 +9,7 @@ export default function BookingFormSection() {
         <SectionHeading
           eyebrow="Reservation"
           title="Plan your arrival with flexible booking."
-          subtitle="Search availability across our suites and pick the stay that matches your rhythm."
+          subtitle="Search availability across our room and pick the stay that matches your rhythm."
         />
         <BookingForm />
       </Container>

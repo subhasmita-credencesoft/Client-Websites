@@ -59,7 +59,7 @@ export const TARIFF_DAY_PICNIC_HIGHLIGHT =
   "For groups of 50 pax and above: ₹ 1,099 per person.";
 
 export const TARIFF_DAY_PICNIC_DETAILS = [
-  "Includes Breakfast, Lunch, Hi-Tea & entry to Water Park and Rain Dance.",
+  "Includes Breakfast, Lunch, Hi-Tea & entry to Water Fun & Play and Rain Dance.",
   "Indoor games: Chess, Carrom, Table Tennis.",
   "Outdoor games and access to Multipurpose Hall & Lawn.",
   "Adventure activities are chargeable.",

@@ -57,18 +57,18 @@ export const EXPERIENCES_HERO_CONFIG: PageHeroConfig = {
   title: "Experiences",
   backgroundImage: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
   backgroundVideo: "https://bookonelocal.in/cdn/Experience-Page-Video.mp4",
-  subtitle: "Water park fun, sports, indoor games, adventure activities, and family experiences all in one property.",
+  subtitle: "Water Fun & Play fun, sports, indoor games, adventure activities, and family experiences all in one property.",
   breadcrumb: "Home / Experiences",
   minHeightClassName: "min-h-screen",
 };
 
 export const ROOMS_HERO_CONFIG: PageHeroConfig = {
-  title: "Rooms & Suites",
+  title: "Rooms ",
   backgroundImage: "https://bookonelocal.in/cdn/3.avif",
   backgroundVideo: "https://bookonelocal.in/cdn/Changed-Room-Page-Video.mp4",
   preferVideoOnly: true,
-  subtitle: "Explore comfortable rooms and suites designed for restful stays, family comfort, and easy resort living.",
-  breadcrumb: "Home / Rooms & Suites",
+  subtitle: "Explore comfortable rooms  designed for restful stays, family comfort, and easy resort living.",
+  breadcrumb: "Home / Rooms",
   videoAriaLabel: "Watch: A look inside our Deluxe and Super Deluxe rooms at UK's Resort",
 };
 

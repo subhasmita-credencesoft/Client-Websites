@@ -38,7 +38,7 @@ export default function ValueProposition() {
     {
       icon: <Sparkles className="h-6 w-6 text-[#b68b5b]" />,
       title: "Premium Amenities",
-      desc: "Water parks, rain dances, and state-of-the-art conference halls tailored for your absolute comfort.",
+      desc: "Water Fun & Plays, rain dances, and state-of-the-art conference halls tailored for your absolute comfort.",
     },
     {
       icon: <Shield className="h-6 w-6 text-[#b68b5b]" />,

@@ -188,7 +188,7 @@ function RoomCard({ room, virtualTourUrl }: { room: DisplayRoom; virtualTourUrl:
 }
 
 export default function RoomsGrid({
-  eyebrow = "Suites",
+  eyebrow = "rooms",
   title = "Rooms crafted for deep rest.",
   subtitle = "Choose a suite that pairs handcrafted interiors with thoughtful amenities.",
 }: RoomsGridProps) {

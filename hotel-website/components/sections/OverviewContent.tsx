@@ -31,9 +31,9 @@ const timelineSteps = [
   },
   {
     step: "Play",
-    title: "Thrilling Water Park",
+    title: "Thrilling Water Fun & Play",
     description:
-      "Dive into fun at UK's Resort's Water Park — a perfect escape for families, groups, and anyone seeking refreshing leisure under open skies.",
+      "Dive into fun at UK's Resort's Water  fun&  — a perfect escape for families, groups, and anyone seeking refreshing leisure under open skies.",
   },
   {
     step: "Fun",
@@ -295,7 +295,7 @@ export default function OverviewContent() {
               size="md"
               className="rounded-full border-[#1f3c44]/35 px-8 text-[0.68rem] uppercase tracking-[0.22em] text-[#1f3c44] hover:border-[#1f3c44]/50 hover:bg-[#f1ece3]"
             >
-              Explore Rooms &amp; Suites
+              Explore Rooms 
             </Button>
           </div>
         </Container>

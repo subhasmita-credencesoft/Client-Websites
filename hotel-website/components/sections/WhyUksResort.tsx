@@ -11,7 +11,7 @@ const benefits = [
   "Luxurious Modern Accommodations",
   "Tailored Multicuisine Dining",
   "Comprehensive Event Spaces",
-  "Family-Friendly Water Park",
+  "Family-Friendly Water Fun & Play",
   "Exemplary Hospitality",
 ];
 

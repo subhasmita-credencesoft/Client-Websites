@@ -19,7 +19,7 @@ const diningItems = [
     position: "center",
   },
   {
-    title: "Group Dining Hall",
+    title: " Dining Hall",
     label: "School | Picnic | Large Groups",
     description:
       "Spacious dining setup specially arranged for school picnics, educational trips, and large group visits with organized seating and quick service support.",

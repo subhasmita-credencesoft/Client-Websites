@@ -17,7 +17,7 @@ const plans = [
     name: "Premium Escape",
     price: "₹5,499",
     duration: "Per Night",
-    features: ["Super Deluxe Room", "All Meals Included", "Water Park Access", "Evening High Tea", "Spa Discount"],
+    features: ["Super Deluxe Room", "All Meals Included", "Water Fun & Play Access", "Evening High Tea", "Spa Discount"],
     featured: true,
   },
   {

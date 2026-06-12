@@ -111,7 +111,7 @@ export default function DiningCulinaryExperience() {
               </div>
               <div className="overflow-hidden">
                 <h2 className="dining-exp-title-line mx-auto max-w-2xl font-serif text-4xl leading-tight md:text-5xl">
-                  Good Food, Made with Love.
+                  Delicious Food , Made with Love.
                 </h2>
               </div>
             </div>

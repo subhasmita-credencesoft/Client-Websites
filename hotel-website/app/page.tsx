@@ -4,9 +4,9 @@ import HomeLazyStack from "../components/sections/HomeLazyStack";
 import { createPageMetadata } from "../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "UK's Resort Khopoli - Weekend Getaway Near Mumbai | Water Park & Stay",
+  title: "UK's Resort Khopoli - Weekend Getaway Near Mumbai | Water Fun & Play & Stay",
   description:
-    "Just 90 km from Mumbai, UK's Resort Khopoli offers stay packages, water park, day picnics, corporate events and dining in the Sahyadri foothills.",
+    "Just 90 km from Mumbai, UK's Resort Khopoli offers stay packages, Water Fun & Play, day picnics, corporate events and dining in the Sahyadri foothills.",
   path: "/",
   image: "https://bookonelocal.in/cdn/3.png",
 });

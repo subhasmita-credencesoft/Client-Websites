@@ -16,9 +16,9 @@ export function generateMetadata({ params }: RoomDetailProps): Metadata {
 
   if (!room) {
     return createPageMetadata({
-      title: "Rooms & Suites",
+      title: "Rooms ",
       description:
-        "Explore rooms and suites at UK's Resort, Khopoli with comfortable stays and thoughtful amenities.",
+        "Explore rooms  at UK's Resort, Khopoli with comfortable stays and thoughtful amenities.",
       path: "/rooms",
       image: "https://bookonelocal.in/cdn/3.avif",
     });

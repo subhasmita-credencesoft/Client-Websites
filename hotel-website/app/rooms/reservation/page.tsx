@@ -418,7 +418,7 @@ function RoomsReservationContent() {
             </p>
             <div className="mt-5 overflow-hidden">
               <p className="rr-title mx-auto max-w-4xl text-center font-serif text-[1.6rem] leading-[1.15] text-[#123f5c] sm:text-[1.9rem] md:text-[2.35rem]">
-                Discover our beautiful Rooms &amp; Suites with outstanding views of valleys, mountains and
+                Discover our beautiful Rooms  with outstanding views of valleys, mountains and
                 lake.
               </p>
             </div>

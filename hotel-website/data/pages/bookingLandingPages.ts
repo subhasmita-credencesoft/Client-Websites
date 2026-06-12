@@ -107,7 +107,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
     {
       title: "What's included",
       description:
-        "Your picnic day covers water park access, rain dance, open lawn games, a hearty buffet lunch, and all-day use of the resort's outdoor spaces. Just show up - we handle the rest.",
+        "Your picnic day covers Water Fun & Play access, rain dance, open lawn games, a hearty buffet lunch, and all-day use of the resort's outdoor spaces. Just show up - we handle the rest.",
     },
     {
       title: "Activities & energy",
@@ -123,14 +123,14 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
 
   stats: [
     { value: "1 Day", label: "Everything from 9am to 6pm" },
-    { value: "6+ Acres", label: "Lawns, pool, play zones" },
+    { value: "6 lakhs sq. ft", label: "Lawns, pool, play zones" },
     { value: "All Ages", label: "Toddlers to grandparents" },
   ],
 
   gallery: [
     {
       image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
-      title: "Water Park Fun",
+      title: "Water Fun & Play Fun",
       copy:
         "Water slides, splash zones, and rain dance energy keep the middle of the day lively and memorable.",
     },
@@ -162,7 +162,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
       },
       {
         time: "11:00 AM",
-        title: "Water park & activities",
+        title: "Water Fun & Play & activities",
         description:
           "Enjoy water slides, rain dance, zorbing, and various fun activities.",
       },
@@ -188,7 +188,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
       "Explore a wide range of activities designed for fun, relaxation, and group enjoyment.",
     features: [
       {
-        title: "Water Park",
+        title: "Water Fun & Play",
         description:
           "Slide into pure merriment with exciting water rides, cool pools, and relaxing deck areas.",
         image: "children5.avif",
@@ -258,7 +258,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
     images: [
       {
         image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
-        alt: "Water park",
+        alt: "Water Fun & Play",
       },
       { image: "children7.avif", alt: "Kids playing" },
       { image: "children3.avif", alt: "Group fun" },
@@ -278,9 +278,9 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
       name: "Family Picnic",
       audience: "Families",
       description:
-        "Relaxed outing with water park access, games, and dining.",
+        "Relaxed outing with Water Fun & Play access, games, and dining.",
       includes: [
-        "Water park",
+        "Water Fun & Play",
         "Lunch buffet",
         // "Indoor games",
         // "Kids park",
@@ -352,7 +352,7 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
   introTitle:
     "Corporate offsites and conferences without the logistics headache.",
   introCopy:
-    "UK's Resort has hosted corporate groups from Mumbai, Pune, and across Maharashtra for over a decade - from leadership retreats to large team conferences. What makes it work for companies is the combination: comfortable accommodation, event-ready spaces, good food, and enough outdoor space for your team to actually decompress.",
+    "UK's Resort has hosted corporate groups from Mumbai, Pune, and across Maharashtra for over a decade - from leadership retreats to large team conferences. What makes it work for companies is the combination: comfortable accommodation, event-ready spaces, Delicious Food , and enough outdoor space for your team to actually decompress.",
 
   highlights: [
     {
@@ -368,7 +368,7 @@ export const corporateLandingPageContent: BookingLandingPageContent = {
     {
       title: "Team building & downtime",
       description:
-        "Between sessions, teams can use the pool, lawns, water park, and activity zones for the kind of unstructured time that actually builds teams.",
+        "Between sessions, teams can use the pool, lawns, Water Fun & Play, and activity zones for the kind of unstructured time that actually builds teams.",
     },
   ],
 

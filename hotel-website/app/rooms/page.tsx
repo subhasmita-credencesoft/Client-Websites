@@ -6,9 +6,9 @@ import ImmersiveGallery from "../../components/sections/ImmersiveGallery";
 import { createPageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Rooms & Suites",
+  title: "Rooms",
   description:
-    "Explore rooms and suites at UK's Resort, Khopoli with comfortable stays and thoughtful amenities.",
+    "Explore rooms at UK's Resort, Khopoli with comfortable stays and thoughtful amenities.",
   path: "/rooms",
   image: "https://bookonelocal.in/cdn/3.avif",
 });

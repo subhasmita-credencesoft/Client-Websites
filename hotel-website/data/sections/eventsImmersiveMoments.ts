@@ -15,7 +15,7 @@ export const WEDDINGS_IMMERSIVE_INTRO = {
 };
 
 export const WEDDINGS_IMMERSIVE_STATS = [
-  { value: "6+ Acres", label: "Open event grounds" },
+  { value: "6 lakhs sq. ft", label: "Open event grounds" },
   { value: "All Day", label: "Play and dining rhythm" },
   { value: "All Ages", label: "Family-friendly attraction mix" },
 ] as const;

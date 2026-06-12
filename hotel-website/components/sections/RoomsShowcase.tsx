@@ -364,7 +364,7 @@ export default function RoomsShowcase() {
       <Container>
         <div className="flex flex-wrap items-center justify-between gap-4 sm:gap-6">
           <div className="rooms-showcase-kicker flex items-center gap-4 text-[0.68rem] uppercase tracking-[0.22em] sm:gap-6 sm:text-xs sm:tracking-[0.35em]">
-            <span>Rooms &amp; Suites</span>
+            <span>Rooms </span>
           </div>
           <span className="rooms-showcase-counter text-sm text-[#1f3c44]/60">
             {counterCurrent} / {counterTotal}

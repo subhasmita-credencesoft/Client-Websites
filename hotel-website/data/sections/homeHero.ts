@@ -10,9 +10,9 @@ export const HOME_HERO_SLIDES = [
     subtitle: "Comfortable stays near Mumbai, wrapped in greenery and warm hospitality.",
   },
   {
-    eyebrow: "Water park",
+    eyebrow: "Water Fun & Play",
     titleLines: ["Splash and Unwind", "with Family"],
-    subtitle: "Water park fun, day picnics, and open spaces close to Imagicaa.",
+    subtitle: "Water Fun & Play fun, day picnics, and open spaces close to Imagicaa.",
   },
   {
     eyebrow: "Events",

@@ -53,7 +53,7 @@ const dayPicnicFeatureCards = [
   {
     icon: Ticket,
     title: "Access Included",
-    copy: "Package per person per night includes entry to Big Water Park, Rain Dance, indoor games, outdoor games like cricket and football, plus Kids Play Park access.",
+    copy: "Package per person per night includes entry to Big Water Fun & Play, Rain Dance, indoor games, outdoor games like cricket and football, plus Kids Play Park access.",
   },
   {
     icon: UtensilsCrossed,
