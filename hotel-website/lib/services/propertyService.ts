@@ -50,7 +50,7 @@ async function fetchWithRetry<T>(
 
 export async function fetchPropertyById(
   id = DEFAULT_PROPERTY_ID,
-  options?: { signal?: AbortSignal },
+  options?: { signal?: AbortSignal; cache?: RequestCache; next?: NextFetchRequestConfig },
 ): Promise<PropertyApiResponse | null> {
   return fetchWithRetry(async () => {
     const directResponse = await fetch(`${DIRECT_FIND_BY_ID_BASE}/${id}`, {
@@ -59,7 +59,8 @@ export async function fetchPropertyById(
       headers: {
         Accept: "application/json",
       },
-      cache: "no-store",
+      cache: options?.cache ?? "no-store",
+      next: options?.next,
     });
 
     if (!directResponse.ok) {
@@ -81,7 +82,7 @@ export type AvailabilityQuery = {
 export async function fetchPropertyAvailability(
   query: AvailabilityQuery,
   id = DEFAULT_PROPERTY_ID,
-  options?: { signal?: AbortSignal },
+  options?: { signal?: AbortSignal; cache?: RequestCache; next?: NextFetchRequestConfig },
 ): Promise<PropertyApiResponse | null> {
   const searchParams = new URLSearchParams({
     fromDate: query.fromDate,
@@ -100,7 +101,8 @@ export async function fetchPropertyAvailability(
           headers: {
             Accept: "application/json",
           },
-          cache: "no-store",
+          cache: options?.cache ?? "no-store",
+          next: options?.next,
         },
       );
       if (!directAvailabilityResponse.ok) {
@@ -116,5 +118,5 @@ export async function fetchPropertyAvailability(
     // fallback to base property payload
   }
 
-  return fetchPropertyById(id, options);
+  return fetchPropertyById(id, { signal: options?.signal, cache: options?.cache ?? "no-store", next: options?.next });
 }

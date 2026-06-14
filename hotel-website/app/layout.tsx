@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 import Header from "../components/layout/Header";
@@ -17,19 +16,8 @@ import {
   SITE_URL,
 } from "../lib/metadata";
 
-const bodyFont = Jost({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-jost",
-  weight: ["400", "500", "600", "700"],
-});
-
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-playfair",
-  weight: ["400", "500", "600", "700"],
-});
+// Fonts are loaded via CSS @import in globals.css to avoid
+// Turbopack build-time network requests to fonts.gstatic.com
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -101,7 +89,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bodyFont.variable} ${displayFont.variable}`}>
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://bookonelocal.in" crossOrigin="" />
         <link rel="dns-prefetch" href="//bookonelocal.in" />

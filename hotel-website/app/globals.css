@@ -1,5 +1,14 @@
+/* Google Fonts — loaded at browser runtime (no build-time network required) */
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+
 @import "tailwindcss";
 @import "../styles/theme.css";
+
+/* Font CSS variables — mirrors what next/font/google previously injected via className */
+:root {
+  --font-jost: "Jost", system-ui, sans-serif;
+  --font-playfair: "Cormorant Garamond", Georgia, serif;
+}
 
 @theme inline {
   --color-background: var(--paper);

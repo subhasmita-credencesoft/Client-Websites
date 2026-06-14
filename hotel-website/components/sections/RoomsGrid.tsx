@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
@@ -15,6 +15,7 @@ import { fetchPropertyAvailability } from "../../lib/services/propertyService";
 import type { RoomItem } from "../../types/property";
 import useErrorHandler from "@/hooks/useErrorHandler";
 import useClientReady from "../../hooks/useClientReady";
+import { useRouter } from "next/navigation";
 
 type RoomsGridProps = {
   eyebrow?: string;
@@ -59,129 +60,72 @@ function formatCapacityLabel(minOccupancy: number, capacity: number) {
 }
 
 function RoomCard({ room, virtualTourUrl }: { room: DisplayRoom; virtualTourUrl: string }) {
-  const [flipped, setFlipped] = useState(false);
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(`/rooms/${room.id}`);
+  };
 
   return (
     <div
-      className="rooms-grid-card relative h-[320px] w-full cursor-pointer"
-      style={{ perspective: "1200px" }}
-      onClick={() => setFlipped((p) => !p)}
+      className="rooms-grid-card relative h-[320px] w-full cursor-pointer overflow-hidden rounded-2xl group shadow-sm transition hover:shadow-md"
+      onClick={handleCardClick}
     >
-      <div
-        className="relative h-full w-full transition-transform duration-700 ease-in-out"
-        style={{
-          transformStyle: "preserve-3d",
-          transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+      <Image
+        src={room.image}
+        alt={room.name}
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="rooms-grid-media object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        unoptimized={room.image.startsWith("http")}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+      
+      <button
+        type="button"
+        className="absolute left-4 top-4 z-10 rounded-full border border-white/45 bg-black/35 px-2.5 py-1 text-[0.56rem] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[#c67a3a] sm:left-5 sm:top-5 sm:px-3 sm:text-[0.6rem]"
+        onClick={(event) => {
+          event.stopPropagation();
+          window.open(virtualTourUrl, "_blank", "noopener,noreferrer");
         }}
       >
-        <div className="absolute inset-0 overflow-hidden rounded-2xl" style={{ backfaceVisibility: "hidden" }}>
-          <Image
-            src={room.image}
-            alt={room.name}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="rooms-grid-media object-cover"
-            unoptimized={room.image.startsWith("http")}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-          <button
-            type="button"
-            className="absolute left-4 top-4 rounded-full border border-white/45 bg-black/35 px-2.5 py-1 text-[0.56rem] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-black/50 sm:left-5 sm:top-5 sm:px-3 sm:text-[0.6rem]"
-            onClick={(event) => {
-              event.stopPropagation();
-              window.open(virtualTourUrl, "_blank", "noopener,noreferrer");
-            }}
+        <span className="inline-flex items-center gap-1.5 leading-none">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            className="h-3.5 w-3.5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <span className="inline-flex items-center gap-1.5 leading-none">
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                className="h-3.5 w-3.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M3 12a9 9 0 0 1 14-7" />
-                <polyline points="17 3 17 7 13 7" />
-                <path d="M21 12a9 9 0 0 1-14 7" />
-                <polyline points="7 21 7 17 11 17" />
-              </svg>
-              <span>360 Tour</span>
-            </span>
-          </button>
-          <div className="absolute right-4 top-4 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-white shadow-md">
-            <span className="text-[9px] font-semibold uppercase tracking-widest leading-tight text-[#1f3c44]/60">
-              From
-            </span>
-            <span className="text-sm font-bold leading-tight text-[#c67a3a]">
-              {formatPrice(room.pricePerNight)}
-            </span>
-          </div>
+            <path d="M3 12a9 9 0 0 1 14-7" />
+            <polyline points="17 3 17 7 13 7" />
+            <path d="M21 12a9 9 0 0 1-14 7" />
+            <polyline points="7 21 7 17 11 17" />
+          </svg>
+          <span>360 Tour</span>
+        </span>
+      </button>
 
-          <div className="absolute bottom-0 left-0 w-full px-6 pb-5 text-white">
-            <h3 className="mb-1 font-serif text-2xl font-light">{room.name}</h3>
-            <p className="mb-2 text-[0.72rem] uppercase tracking-[0.18em] text-white/80 sm:text-xs">
-              {room.size} &middot; {formatCapacityLabel(room.minOccupancy, room.capacity)} &middot; {room.bedType}
-            </p>
-            <span className="border-b border-white/40 pb-px text-[0.6rem] uppercase tracking-[0.2em] text-white/60">
-              Click to view facilities 
-            </span>
-          </div>
-        </div>
+      <div className="absolute right-4 top-4 z-10 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-white shadow-md">
+        <span className="text-[9px] font-semibold uppercase tracking-widest leading-tight text-[#1f3c44]/60">
+          From
+        </span>
+        <span className="text-sm font-bold leading-tight text-[#c67a3a]">
+          {formatPrice(room.pricePerNight)}
+        </span>
+      </div>
 
-        <div
-          className="absolute inset-0 overflow-hidden rounded-2xl bg-[#1f3c44]"
-          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-        >
-          <Image
-            src={room.image}
-            alt={room.name}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
-            unoptimized={room.image.startsWith("http")}
-          />
-
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,18,22,0.38)_0%,rgba(10,18,22,0.2)_30%,rgba(10,18,22,0.72)_100%)]" />
-
-          <div className="relative z-10 flex h-full flex-col px-6 py-5">
-            <div className="flex justify-end">
-              <span className="inline-flex rounded-full border border-white/45 bg-black/28 px-3 py-1 text-[0.56rem] font-semibold uppercase tracking-[0.14em] text-white">
-                Facilities
-              </span>
-            </div>
-
-            <div className="pt-4">
-              <h3 className="mb-1 font-serif text-2xl text-white">{room.name}</h3>
-              <p className="mb-4 text-[0.72rem] uppercase tracking-[0.18em] text-white/82 sm:text-xs">
-                {room.size} &middot; {formatCapacityLabel(room.minOccupancy, room.capacity)} &middot; {room.bedType}
-              </p>
-              <p className="max-w-xl text-[0.68rem] leading-relaxed text-white/88">
-                {room.description}
-              </p>
-            </div>
-
-            <div className="flex flex-1 items-center justify-center">
-              <div className="flex max-w-[32rem] flex-wrap items-center justify-center gap-2">
-                {room.facilities.map((facility) => (
-                  <div
-                    key={facility}
-                    className="rounded-full border border-white/22 bg-white/14 px-4 py-2 text-[0.58rem] font-medium uppercase tracking-[0.12em] text-white backdrop-blur-sm"
-                  >
-                    {facility}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <p className="pt-4 text-center text-[0.6rem] uppercase tracking-[0.2em] text-white/58">
-              Click to go back
-            </p>
-
-          </div>
-        </div>
+      <div className="absolute bottom-0 left-0 w-full px-6 pb-5 text-white z-10">
+        <h3 className="mb-1 font-serif text-2xl font-light">{room.name}</h3>
+        <p className="mb-2 text-[0.72rem] uppercase tracking-[0.18em] text-white/80 sm:text-xs">
+          {room.size} &middot; {formatCapacityLabel(room.minOccupancy, room.capacity)} &middot; {room.bedType}
+        </p>
+        <span className="border-b border-white/40 pb-px text-[0.6rem] uppercase tracking-[0.2em] text-white/60 group-hover:text-[#c67a3a] group-hover:border-[#c67a3a] transition-all">
+          Click to view details
+        </span>
       </div>
     </div>
   );
