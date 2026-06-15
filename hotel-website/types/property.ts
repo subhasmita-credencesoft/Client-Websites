@@ -51,6 +51,7 @@ export type SocialLinks = {
   instagram?: string | null;
   twitter?: string | null;
   youtube?: string | null;
+  linkedin?: string | null;
 };
 
 export type BusinessServiceDto = {
