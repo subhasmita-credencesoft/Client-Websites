@@ -17,12 +17,12 @@ export default function CorporatePage() {
     <div className="site-page">
       <CorporateBookingPage />
       
-      <CinematicParallaxBreak 
+      {/* <CinematicParallaxBreak 
         title="Elevate Your Agenda" 
         subtitle="Trusted by teams from Mumbai and Pune for offsites, conferences, strategy meets, and training programs in one well-connected venue." 
         image="https://bookonelocal.in/cdn/3.png"
         reverse={true}
-      />
+      /> */}
       
       {/* <ImmersiveGallery title="Corporate Experiences" /> */}
     </div>

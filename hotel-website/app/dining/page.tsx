@@ -22,12 +22,12 @@ export default function DiningPage() {
       <DiningCulinaryExperience />
       <DiningMoodSlider />
       
-      <CinematicParallaxBreak 
+      {/* <CinematicParallaxBreak 
         title="Culinary Excellence" 
         subtitle="Whether it’s a lazy lunch by the pool or a cozy dinner under the stars, every meal is prepared with fresh ingredients and local love." 
         image="https://bookonelocal.in/cdn/Copy of IMG_2912.avif"
         reverse={true}
-      />
+      /> */}
       
       <DiningShowcase />
       

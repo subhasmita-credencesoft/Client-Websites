@@ -19,11 +19,11 @@ export default function RoomsPage() {
       <RoomsHero />
       <RoomsGrid />
       
-      <CinematicParallaxBreak 
+      {/* <CinematicParallaxBreak 
         title="Sanctuaries of Comfort" 
         subtitle="Unwind in impeccably designed eco-friendly spaces combining rustic aesthetics with uncompromising luxury. Find your perfect resting place surrounded by panoramic vistas." 
         image="https://bookonelocal.in/cdn/3.png"
-      />
+      /> */}
       
       {/* <ImmersiveGallery title="A Closer Look at Luxury" /> */}
     </div>
