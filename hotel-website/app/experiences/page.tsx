@@ -4,9 +4,9 @@ import LongFormExperience from "../../components/sections/LongFormExperience";
 import { createPageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "My Experience at UK's Resort Khopoli - Weekend Getaway near Mumbai & Pune",
+  title: "Experience at UK's Resort, Khopoli",
   description:
-    "A detailed first-hand experience review of UK's Resort, Khopoli. Explore family activities, room comfort, buffet dining, swimming pools, rain dance, and nearby spots like Imagicaa.",
+    "Discover a refreshing retreat at UK's Resort, Khopoli. Unwind with spacious rooms, a water park, rain dance, outdoor games, and premium dining near Mumbai & Pune.",
   path: "/experiences",
   image: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
 });
