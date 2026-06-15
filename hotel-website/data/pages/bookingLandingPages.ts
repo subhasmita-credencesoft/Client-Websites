@@ -164,7 +164,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
         time: "11:00 AM",
         title: "Water Fun & Play & activities",
         description:
-          "Enjoy water slides, rain dance, zorbing, and various fun activities.",
+          "Enjoy water slides, rain dance, and various fun activities.",
       },
       {
         time: "01:30 PM",
@@ -200,9 +200,9 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
         image: "children6.avif",
       },
       {
-        title: "Water Zorbing",
+        title: "Water fun dance",
         description:
-          "Experience the thrill of walking on water with exciting zorbing activities.",
+          "Experience the thrill of walking on water with exciting  activities.",
         image: "children7.avif",
       },
       // {
@@ -235,12 +235,12 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
       //     "A fun and competitive activity suitable for both beginners and experienced players.",
       //   image: "paintball.avif",
       // },
-      {
-        title: "Special Occasions",
-        description:
-          "Celebrate birthdays and gatherings with music, food, and lively ambiance.",
-        image: "din2.avif",
-      },
+      // {
+      //   title: "Special Occasions",
+      //   description:
+      //     "Celebrate birthdays and gatherings with music, food, and lively ambiance.",
+      //   image: "din2.avif",
+      // },
       // {
       //   title: "Dance Floor",
       //   description:

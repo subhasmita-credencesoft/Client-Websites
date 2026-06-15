@@ -47,7 +47,7 @@ const panels: EventPanel[] = [
     id: "picnic",
     title: "UK's PICNIC EXPERIENCES",
     subtitle: "Family & Group Experiences",
-    copy: "Enjoy one-day and overnight picnic experiences with poolside fun, lawn games, music, and buffet dining designed for all age groups.",
+    copy: "Enjoy one-day and overnight picnic experiences with Water fun, lawn games, music, and buffet dining designed for all age groups.",
     image: "/picnic.avif",
     href: "/experiences",
     mapHref:

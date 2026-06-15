@@ -21,7 +21,7 @@ export default function AroundUsPage() {
       
       <CinematicParallaxBreak 
         title="Make UK's Resort your base" 
-        subtitle="Everything above is within 30 min of UK's Resort. A temple walk in the morning, a waterfall in the afternoon, Imagica the next day - and a comfortable room, Delicious Food , and a pool waiting for you each evening." 
+        subtitle="Everything above is within 30 min of UK's Resort. A temple walk in the morning, a waterfall in the afternoon, Imagica the next day - and a comfortable room and  Delicious Food  waiting for you each evening." 
         image="https://bookonelocal.in/cdn/Water-Park-1.jpg"
         reverse={true}
       />

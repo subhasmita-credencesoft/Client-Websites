@@ -295,7 +295,7 @@ export default function ContactAttractions() {
               Make UK&apos;s Resort your base
             </h3>
             <p className="mx-auto mt-5 max-w-3xl text-[1rem] leading-8 text-[#1f3c44]/72">
-              Everything above is within easy reach of UK&apos;s Resort. A temple walk in the morning, a waterfall in the afternoon, Imagica the next day - and a comfortable room, Delicious Food , and a pool waiting for you each evening.
+              Everything above is within easy reach of UK&apos;s Resort. A temple walk in the morning, a waterfall in the afternoon, Imagica the next day - and a comfortable room and  Delicious Food  waiting for you each evening.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a

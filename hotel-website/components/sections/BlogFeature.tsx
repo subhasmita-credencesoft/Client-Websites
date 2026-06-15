@@ -33,13 +33,13 @@ const blogFeatures = [
   //   image: "din3.avif",
   //   alt: "Body zorbing activity",
   // },
-  {
-    title: "Water Zorbing",
-    description:
-      "Walk on water in an inflatable zorb ball on the pool surface. A favorite with kids, teens, and anyone curious enough to try it. Extra charge applies.",
-    image: "uk1.avif",
-    alt: "Water zorbing activity",
-  },
+  // {
+  //   title: "Water Zorbing",
+  //   description:
+  //     "Walk on water in an inflatable zorb ball on the pool surface. A favorite with kids, teens, and anyone curious enough to try it. Extra charge applies.",
+  //   image: "uk1.avif",
+  //   alt: "Water zorbing activity",
+  // },
   {
     title: "Cricket Challenge",
     description:
