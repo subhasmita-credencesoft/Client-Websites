@@ -10,12 +10,21 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// Pre-computed static particle data to avoid Math.random() in render (ESLint purity rule)
+const PARTICLES = Array.from({ length: 6 }, (_, i) => ({
+  id: i,
+  width: (((i * 37 + 13) % 8) + 4),
+  height: (((i * 53 + 7) % 8) + 4),
+  left: ((i * 17 + 5) % 100),
+  top: ((i * 29 + 11) % 100),
+}));
+
 export default function DestinationWedding() {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       // Blur to clear reveal on image
       gsap.fromTo(
         ".wedding-img",
@@ -67,15 +76,15 @@ export default function DestinationWedding() {
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-[#f7f3ee] py-20">
       {/* Particles */}
-      {[...Array(6)].map((_, i) => (
+      {PARTICLES.map((p) => (
         <div
-          key={i}
+          key={p.id}
           className="particle absolute rounded-full bg-[#f7c744] opacity-20 blur-[2px]"
           style={{
-            width: Math.random() * 8 + 4 + "px",
-            height: Math.random() * 8 + 4 + "px",
-            left: Math.random() * 100 + "%",
-            top: Math.random() * 100 + "%",
+            width: p.width + "px",
+            height: p.height + "px",
+            left: p.left + "%",
+            top: p.top + "%",
           }}
         />
       ))}
