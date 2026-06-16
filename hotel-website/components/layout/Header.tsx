@@ -136,9 +136,14 @@ export default function Header() {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const navListRef = useRef<HTMLUListElement | null>(null);
 
-  const isHeroPage = HERO_PREFIXES.some((p) =>
-    p === "/" ? pathname === "/" : pathname.startsWith(p),
-  );
+  const isHeroPage = HERO_PREFIXES.some((p) => {
+    if (p === "/") return pathname === "/";
+    if (pathname.startsWith(p)) {
+      if (p === "/rooms" && pathname !== "/rooms" && !pathname.startsWith("/rooms/reservation")) return false;
+      return true;
+    }
+    return false;
+  });
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
