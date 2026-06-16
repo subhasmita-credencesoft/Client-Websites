@@ -27,38 +27,60 @@ export default function DiningMoodSlider() {
   }, 3400, DINING_MOOD_SLIDES.length > 0);
 
   useEffect(() => {
-    const mm = gsap.matchMedia();
+    let mm: gsap.MatchMedia | null = null;
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 78%",
-            once: true,
-          },
-        });
+    const raf = requestAnimationFrame(() => {
+      mm = gsap.matchMedia();
 
-        tl.fromTo(
-          ".dining-mood-stage",
-          { y: 24, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.85, ease: "power3.out" },
-        ).fromTo(".dining-mood-strip", { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, "<+0.05");
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const ctx = gsap.context(() => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 78%",
+              once: true,
+            },
+          });
 
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 88%",
-            end: "bottom top",
-            scrub: 1,
-          },
-        }).to(".dining-mood-slide-image", { yPercent: 7, scale: 1.06, ease: "none" }, 0);
-      }, sectionRef);
+          tl.fromTo(
+            ".dining-mood-stage",
+            { y: 24, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.85, ease: "power3.out" },
+          ).fromTo(".dining-mood-strip", { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, "<+0.05");
 
-      return () => ctx.revert();
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 88%",
+              end: "bottom top",
+              scrub: 1,
+            },
+          }).to(".dining-mood-slide-image", { yPercent: 7, scale: 1.06, ease: "none" }, 0);
+        }, sectionRef);
+
+        return () => ctx.revert();
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(
+          [
+            ".dining-mood-stage",
+            ".dining-mood-strip",
+            ".dining-mood-slide-image",
+          ],
+          { clearProps: "all" },
+        );
+        ScrollTrigger.refresh();
+      });
+
+      // Force a ScrollTrigger recalculation after layout has painted
+      ScrollTrigger.refresh();
     });
 
-    return () => mm.revert();
+    return () => {
+      cancelAnimationFrame(raf);
+      mm?.revert();
+    };
   }, []);
 
   return (

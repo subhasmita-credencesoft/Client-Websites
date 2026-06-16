@@ -59,49 +59,71 @@ export default function DiningShowcase() {
   }, []);
 
   useEffect(() => {
-    const mm = gsap.matchMedia();
+    let mm: gsap.MatchMedia | null = null;
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const ctx = gsap.context(() => {
-        const revealTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 78%",
-            once: true,
-          },
-        });
+    const raf = requestAnimationFrame(() => {
+      mm = gsap.matchMedia();
 
-        revealTl
-          .fromTo(
-            ".dining-kicker",
-            { y: 14, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
-          )
-          .fromTo(
-            ".dining-title-line",
-            { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
-            {
-              yPercent: 0,
-              autoAlpha: 1,
-              filter: "blur(0px)",
-              duration: 0.95,
-              stagger: 0.06,
-              ease: "power4.out",
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const ctx = gsap.context(() => {
+          const revealTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 78%",
+              once: true,
             },
-            "<+0.06",
-          )
-          .fromTo(
-            ".dining-copy",
-            { y: 18, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration: 0.8, ease: "power3.out" },
-            "<+0.08",
-          );
-      }, sectionRef);
+          });
 
-      return () => ctx.revert();
+          revealTl
+            .fromTo(
+              ".dining-kicker",
+              { y: 14, autoAlpha: 0 },
+              { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+            )
+            .fromTo(
+              ".dining-title-line",
+              { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
+              {
+                yPercent: 0,
+                autoAlpha: 1,
+                filter: "blur(0px)",
+                duration: 0.95,
+                stagger: 0.06,
+                ease: "power4.out",
+              },
+              "<+0.06",
+            )
+            .fromTo(
+              ".dining-copy",
+              { y: 18, autoAlpha: 0 },
+              { y: 0, autoAlpha: 1, duration: 0.8, ease: "power3.out" },
+              "<+0.08",
+            );
+        }, sectionRef);
+
+        return () => ctx.revert();
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(
+          [
+            ".dining-kicker",
+            ".dining-title-line",
+            ".dining-copy",
+          ],
+          { clearProps: "all" },
+        );
+        ScrollTrigger.refresh();
+      });
+
+      // Force a ScrollTrigger recalculation after layout has painted
+      ScrollTrigger.refresh();
     });
 
-    return () => mm.revert();
+    return () => {
+      cancelAnimationFrame(raf);
+      mm?.revert();
+    };
   }, []);
 
   useEffect(() => {

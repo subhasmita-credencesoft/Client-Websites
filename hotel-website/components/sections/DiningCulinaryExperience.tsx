@@ -12,69 +12,94 @@ export default function DiningCulinaryExperience() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const mm = gsap.matchMedia();
+    let mm: gsap.MatchMedia | null = null;
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 78%",
-            once: true,
-          },
-        });
+    const raf = requestAnimationFrame(() => {
+      mm = gsap.matchMedia();
 
-        tl.fromTo(
-          ".dining-exp-float-left",
-          { x: -36, autoAlpha: 0 },
-          { x: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out", stagger: 0.08 },
-        )
-          .fromTo(
-            ".dining-exp-kicker",
-            { y: 12, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
-            "<+0.05",
-          )
-          .fromTo(
-            ".dining-exp-title-line",
-            { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
-            {
-              yPercent: 0,
-              autoAlpha: 1,
-              filter: "blur(0px)",
-              duration: 0.95,
-              stagger: 0.06,
-              ease: "power4.out",
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const ctx = gsap.context(() => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 78%",
+              once: true,
             },
-            "<+0.06",
+          });
+
+          tl.fromTo(
+            ".dining-exp-float-left",
+            { x: -36, autoAlpha: 0 },
+            { x: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out", stagger: 0.08 },
           )
-          .fromTo(
+            .fromTo(
+              ".dining-exp-kicker",
+              { y: 12, autoAlpha: 0 },
+              { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+              "<+0.05",
+            )
+            .fromTo(
+              ".dining-exp-title-line",
+              { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
+              {
+                yPercent: 0,
+                autoAlpha: 1,
+                filter: "blur(0px)",
+                duration: 0.95,
+                stagger: 0.06,
+                ease: "power4.out",
+              },
+              "<+0.06",
+            )
+            .fromTo(
+              ".dining-exp-contact",
+              { y: 16, autoAlpha: 0 },
+              { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out", stagger: 0.06 },
+              "<+0.08",
+            )
+            .fromTo(
+              ".dining-exp-media",
+              { x: 38, autoAlpha: 0, scale: 0.95 },
+              { x: 0, autoAlpha: 1, scale: 1, duration: 0.9, ease: "power3.out" },
+              "<-0.65",
+            );
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 88%",
+              end: "bottom top",
+              scrub: 1,
+            },
+          }).to(".dining-exp-media-image", { yPercent: 8, scale: 1.08, ease: "none" }, 0);
+        }, sectionRef);
+
+        return () => ctx.revert();
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(
+          [
+            ".dining-exp-float-left",
+            ".dining-exp-kicker",
+            ".dining-exp-title-line",
             ".dining-exp-contact",
-            { y: 16, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out", stagger: 0.06 },
-            "<+0.08",
-          )
-          .fromTo(
             ".dining-exp-media",
-            { x: 38, autoAlpha: 0, scale: 0.95 },
-            { x: 0, autoAlpha: 1, scale: 1, duration: 0.9, ease: "power3.out" },
-            "<-0.65",
-          );
+            ".dining-exp-media-image",
+          ],
+          { clearProps: "all" },
+        );
+        ScrollTrigger.refresh();
+      });
 
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 88%",
-            end: "bottom top",
-            scrub: 1,
-          },
-        }).to(".dining-exp-media-image", { yPercent: 8, scale: 1.08, ease: "none" }, 0);
-      }, sectionRef);
-
-      return () => ctx.revert();
+      // Force a ScrollTrigger recalculation after layout has painted
+      ScrollTrigger.refresh();
     });
 
-    return () => mm.revert();
+    return () => {
+      cancelAnimationFrame(raf);
+      mm?.revert();
+    };
   }, []);
 
   return (
@@ -140,7 +165,8 @@ export default function DiningCulinaryExperience() {
                 download
                 target="_blank"
                 rel="noreferrer"
-                className="dining-exp-contact mt-6 inline-flex items-center gap-2 rounded-full bg-[#1f3c44] px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#2a4f5a]"
+                style={{ color: "#ffffff" }}
+                className="dining-exp-contact mt-6 inline-flex items-center gap-2 rounded-full bg-[#1f3c44] px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] !text-white transition hover:bg-[#2a4f5a]"
               >
                 Download Multi-Cuisine Menu
               </a>
