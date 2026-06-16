@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronDown, Coffee, Ticket, UtensilsCrossed } from "lucide-react";
@@ -12,7 +12,10 @@ import {
   TARIFF_CHECKOUT_TIME,
   TARIFF_DAY_PICNIC_FOOTNOTE,
   TARIFF_DAY_PICNIC_HIGHLIGHT,
+  TARIFF_DAY_PICNIC_MIN_PAX,
+  TARIFF_DAY_PICNIC_RATE,
   TARIFF_DAY_PICNIC_TITLE,
+  TARIFF_DAY_PICNIC_WASH_ROOM,
   TARIFF_FALLBACK_ROWS,
   TARIFF_GROUP_PACKAGE_ALL_DAYS_HEADER,
   TARIFF_GROUP_PACKAGE_OCCUPANCY_HEADER,
@@ -22,28 +25,9 @@ import {
   TARIFF_MAIN_TABLE_PLAN_HEADER,
   TARIFF_MAIN_TABLE_ROOM_TYPE_HEADER,
   TARIFF_MAIN_TABLE_TITLE,
+  TARIFF_PICNIC_MENU,
   type TariffRow,
 } from "@/data/sections/tariffInfo";
-
-function formatPrice(price?: number | null, currency = "INR") {
-  if (typeof price !== "number" || Number.isNaN(price)) return null;
-  try {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency,
-      maximumFractionDigits: 0,
-    }).format(price);
-  } catch {
-    return `Rs. ${Math.round(price)}`;
-  }
-}
-
-function formatOccupancyLabel(minimum?: number | null, maximum?: number | null) {
-  if (minimum && maximum && minimum === maximum) return `${minimum} Guest${minimum > 1 ? "s" : ""}`;
-  if (minimum && maximum) return `${minimum}-${maximum} Guests`;
-  if (maximum) return `Up to ${maximum} Guests`;
-  return "Double Occupancy";
-}
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,90 +37,33 @@ const dayPicnicFeatureCards = [
   {
     icon: Ticket,
     title: "Access Included",
-    copy: "Package per person per night includes entry to Big Water Fun & Play, Rain Dance, indoor games, outdoor games like cricket and football, plus Kids Play Park access.",
+    copy: "Includes Big Water Park, Rain Dance, Indoor Games, Outdoor Games (Cricket, Football) & Kids Play Park.",
   },
   {
     icon: UtensilsCrossed,
     title: "Meals Covered",
-    copy: "Your package includes 01 Lunch, 01 Hi Tea, 01 Dinner, and 01 Breakfast for each person.",
+    copy: "Breakfast, Lunch & Hi Tea as per the detailed menu below. Any dish outside this menu will be charged extra.",
   },
   {
     icon: Coffee,
-    title: "Breakfast & Hi-Tea Menu",
-    copy: "Idli sambhar chutney, poha, bread omelette, tea or coffee, plus hi-tea with veg sandwich. Extra dishes are chargeable.",
+    title: "Wash & Change Room",
+    copy: "Room for Wash & Change available at ₹ 4,000 per room per day.",
   },
 ] as const;
 
 type DayPicnicCardTitle = (typeof dayPicnicFeatureCards)[number]["title"];
 
 export default function TariffInfo() {
-  const { property } = usePropertyData();
+  // property data kept for future use; tariff rows are static
+  usePropertyData();
+
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [hasHydrated, setHasHydrated] = useState(false);
   const [expandedCard, setExpandedCard] = useState<DayPicnicCardTitle | "">(
     dayPicnicFeatureCards[0].title,
   );
 
-  const gstPercent = useMemo(() => {
-    const taxList = property?.taxDetails ?? [];
-    const gstItem = taxList.find((tax) => (tax?.name || "").toLowerCase().includes("gst"));
-    return gstItem?.percentage ?? taxList[0]?.percentage ?? 12;
-  }, [property?.taxDetails]);
-
-  const roomTariffRows = useMemo<TariffRow[]>(() => {
-    if (!hasHydrated) {
-      return TARIFF_FALLBACK_ROWS.map((row) => ({
-        ...row,
-        value: row.value.replace("{gst}", String(12)),
-      }));
-    }
-
-    const rooms = property?.roomList ?? [];
-    const currency = property?.localCurrency || "INR";
-
-    const rows = rooms
-      .filter((room) => room?.name)
-      .map((room) => {
-        const roomPrice =
-          formatPrice(room?.pricePerNight, currency) ||
-          formatPrice(room?.roomOnlyPrice, currency) ||
-          formatPrice(property?.minimumRoomPrice, currency) ||
-          formatPrice(property?.minimumRoooPrice, currency);
-        const occupancy = formatOccupancyLabel(room?.minimumOccupancy, room?.maximumOccupancy);
-        const extraPersonText =
-          typeof room?.extraChargePerPerson === "number"
-            ? ` | Extra Person ${formatPrice(room.extraChargePerPerson, currency)}`
-            : "";
-
-        return {
-          name: room?.name?.trim() || "Room",
-          value: roomPrice
-            ? `${roomPrice} + ${gstPercent}% GST on ${occupancy} with Breakfast${extraPersonText}`
-            : `Rate on request + ${gstPercent}% GST`,
-        };
-      });
-
-    if (rows.length > 0) return rows;
-
-    return TARIFF_FALLBACK_ROWS.map((row) => ({
-      ...row,
-      value: row.value.replace("{gst}", String(gstPercent)),
-    }));
-  }, [
-    hasHydrated,
-    property?.localCurrency,
-    property?.minimumRoomPrice,
-    property?.minimumRoooPrice,
-    property?.roomList,
-    gstPercent,
-  ]);
-
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      setHasHydrated(true);
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, []);
+  // Static tariff rows — correct rates defined in data/sections/tariffInfo.ts
+  const roomTariffRows = TARIFF_FALLBACK_ROWS;
 
   useEffect(() => {
     const mm = gsap.matchMedia();
@@ -288,98 +215,72 @@ export default function TariffInfo() {
           </div>
 
           <TariffTableBlock
-            eyebrow="Room Tariff"
+            eyebrow="Room Tariff — Double Occupancy"
             title={TARIFF_MAIN_TABLE_TITLE}
-            subtitle="Rates shown per person. Example: a Deluxe room for 2 guests = Rs. 7,900 + GST per night, breakfast included."
+            subtitle="Rates are per room on Double Occupancy, Breakfast included. Check-in: 1 PM | Check-out: 10 AM. GST applicable as per Government Regulations."
             headers={[TARIFF_MAIN_TABLE_ROOM_TYPE_HEADER, TARIFF_MAIN_TABLE_PLAN_HEADER]}
             rows={roomTariffRows}
             className="mt-10"
           />
 
           <TariffTableBlock
-            eyebrow="Group Stay Package"
+            eyebrow="Overnight Stay — Quotation"
             title={TARIFF_GROUP_PACKAGE_TITLE_LINES[0]}
-            subtitle={`${TARIFF_GROUP_PACKAGE_TITLE_LINES[1]} ${TARIFF_GROUP_PACKAGE_TITLE_LINES[2]}`}
+            subtitle={`${TARIFF_GROUP_PACKAGE_TITLE_LINES[1]} · ${TARIFF_GROUP_PACKAGE_TITLE_LINES[2]} · ${TARIFF_GROUP_PACKAGE_TITLE_LINES[3]}`}
             headers={[TARIFF_GROUP_PACKAGE_OCCUPANCY_HEADER, TARIFF_GROUP_PACKAGE_ALL_DAYS_HEADER]}
             rows={TARIFF_GROUP_PACKAGE_ROWS}
             className="mt-10"
           />
 
-          <div className="mt-14 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <div className="mt-14 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <div className="tariff-detail rounded-3xl border border-[rgba(13,43,47,0.10)] bg-white p-7 shadow-[0_22px_56px_rgba(13,43,47,0.07)] sm:p-9">
-              <h3 className="font-serif text-3xl text-[#0D2B2F] sm:text-4xl">
-                {TARIFF_DAY_PICNIC_TITLE}
-              </h3>
-              <p className="mt-5 text-[0.98rem] font-semibold leading-relaxed text-[#1A4A50] sm:text-[1.04rem]">
-                {TARIFF_DAY_PICNIC_HIGHLIGHT}
-              </p>
+              {/* Header + Rate Badge */}
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#C49A3C]">One Day Picnic</p>
+                  <h3 className="mt-2 font-serif text-3xl text-[#0D2B2F] sm:text-4xl">{TARIFF_DAY_PICNIC_TITLE}</h3>
+                </div>
+                <div className="flex flex-col items-end gap-1.5">
+                  <span className="rounded-full bg-[#0D2B2F] px-5 py-2 font-serif text-[1.3rem] font-semibold text-[#C49A3C] sm:text-[1.5rem]">
+                    {TARIFF_DAY_PICNIC_RATE}
+                  </span>
+                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#6C7C80]">{TARIFF_DAY_PICNIC_MIN_PAX}</span>
+                </div>
+              </div>
 
-              <div className="mt-7 grid gap-3.5">
+              <p className="mt-5 text-[0.97rem] leading-7 text-[#1A4A50]">{TARIFF_DAY_PICNIC_HIGHLIGHT}</p>
+
+              {/* Feature highlight cards */}
+              <div className="mt-6 grid gap-3">
                 {dayPicnicFeatureCards.map((item) => {
                   const Icon = item.icon;
                   const isExpanded = expandedCard === item.title;
-
                   return (
                     <button
                       key={item.title}
                       type="button"
                       onClick={() => setExpandedCard(isExpanded ? "" : item.title)}
                       className={[
-                        "group w-full overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300 sm:p-5",
+                        "group w-full overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300",
                         isExpanded
                           ? "border-[#C49A3C]/40 bg-[#10323a] text-white shadow-[0_16px_36px_rgba(13,43,47,0.20)]"
                           : "border-[rgba(13,43,47,0.10)] bg-[#F9F5EE] hover:border-[#C49A3C]/30 hover:bg-white hover:shadow-[0_10px_28px_rgba(13,43,47,0.07)]",
                       ].join(" ")}
                     >
                       <div className="flex items-start gap-4">
-                        <div
-                          className={[
-                            "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300",
-                            isExpanded
-                              ? "scale-110 bg-[#C49A3C] text-[#0D2B2F]"
-                              : "bg-[#1A4A50] text-white group-hover:scale-105",
-                          ].join(" ")}
-                        >
+                        <div className={["flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300", isExpanded ? "bg-[#C49A3C] text-[#0D2B2F]" : "bg-[#1A4A50] text-white"].join(" ")}>
                           <Icon className="h-5 w-5" aria-hidden="true" />
                         </div>
-
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-3">
-                            <h4
-                              className={[
-                                "text-[0.98rem] font-semibold sm:text-[1.02rem]",
-                                isExpanded ? "text-white" : "text-[#0D2B2F]",
-                              ].join(" ")}
-                            >
-                              {item.title}
-                            </h4>
-                            <span
-                              className={[
-                                "ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300",
-                                isExpanded
-                                  ? "rotate-180 border-white/20 bg-white/10 text-white"
-                                  : "border-[rgba(13,43,47,0.12)] bg-white text-[#1A4A50]",
-                              ].join(" ")}
-                            >
+                            <h4 className={["text-[0.97rem] font-semibold", isExpanded ? "text-white" : "text-[#0D2B2F]"].join(" ")}>{item.title}</h4>
+                            <span className={["ml-auto flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300", isExpanded ? "rotate-180 border-white/20 bg-white/10 text-white" : "border-[rgba(13,43,47,0.12)] bg-white text-[#1A4A50]"].join(" ")}>
                               <ChevronDown className="h-4 w-4" aria-hidden="true" />
                             </span>
                           </div>
-
-                          <div
-                            className={[
-                              "grid transition-all duration-300 ease-out",
-                              isExpanded ? "mt-3 grid-rows-[1fr] opacity-100" : "mt-1 grid-rows-[0fr] opacity-0",
-                            ].join(" ")}
-                          >
+                          <div className={["grid transition-all duration-300 ease-out", isExpanded ? "mt-2 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"].join(" ")}>
                             <div className="overflow-hidden">
-                              <p
-                                className={[
-                                  "text-[0.94rem] leading-7 sm:text-[0.97rem]",
-                                  isExpanded ? "text-white/82" : "text-[#2C4A50]",
-                                ].join(" ")}
-                              >
-                                {item.copy}
-                              </p>
+                              <p className={["text-[0.93rem] leading-7", isExpanded ? "text-white/82" : "text-[#2C4A50]"].join(" ")}>{item.copy}</p>
                             </div>
                           </div>
                         </div>
@@ -389,9 +290,34 @@ export default function TariffInfo() {
                 })}
               </div>
 
-              <p className="mt-6 text-[0.94rem] font-medium leading-7 text-[#2C4A50] sm:text-[0.98rem]">
-                {TARIFF_DAY_PICNIC_FOOTNOTE}
-              </p>
+              {/* Full Picnic Menu */}
+              <div className="mt-7 rounded-2xl border border-[rgba(13,43,47,0.10)] bg-[#F9F5EE] p-5 sm:p-6">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#C49A3C]">Full Menu Included</p>
+                <div className="mt-4 grid gap-5 sm:grid-cols-3">
+                  {(Object.values(TARIFF_PICNIC_MENU) as { label: string; items: readonly string[] }[]).map((course) => (
+                    <div key={course.label}>
+                      <p className="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.2em] text-[#0D2B2F]">{course.label}</p>
+                      <ul className="space-y-1">
+                        {course.items.map((item) => (
+                          <li key={item} className="flex items-center gap-2 text-[0.88rem] text-[#2C4A50]">
+                            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#C49A3C]" aria-hidden="true" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Wash Room Charge */}
+              <div className="mt-4 flex items-center gap-3 rounded-2xl border border-[#C49A3C]/30 bg-[#FDF8EE] px-5 py-3.5">
+                <span className="text-[#C49A3C]" aria-hidden="true">🛁</span>
+                <p className="text-[0.9rem] font-semibold text-[#1A4A50]">{TARIFF_DAY_PICNIC_WASH_ROOM}</p>
+              </div>
+
+              {/* Footnote */}
+              <p className="mt-5 text-[0.88rem] leading-7 text-[#6C7C80]">{TARIFF_DAY_PICNIC_FOOTNOTE}</p>
             </div>
 
             <div className="tariff-detail relative overflow-hidden rounded-3xl border border-[#1A4A50]/12 bg-white p-7 text-[#0D2B2F] shadow-[0_22px_56px_rgba(13,43,47,0.07)] sm:p-9">
