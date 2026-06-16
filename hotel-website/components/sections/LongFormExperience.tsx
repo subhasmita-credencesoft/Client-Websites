@@ -62,15 +62,15 @@ const ACTIVITIES = [
       "Our water park resort near Mumbai features high-thrill water slides, a family pool, and dedicated shallow swimming zones for children. Under the supervision of trained lifeguards, it's the perfect environment to beat the heat and spend quality time with family and friends.",
     image: "/children5.avif",
   },
-  // {
-  //   id: "raindance",
-  //   title: "Rain Dance Sessions",
-  //   emoji: "🌧️",
-  //   subtitle: "Dance Under the Cool Sprays",
-  //   description:
-  //     "Experience our energetic rain dance sessions. Outfitted with a professional sound system, overhead water sprinklers, and a live DJ, this interactive experience brings families and friends together for shared laughter and dance.",
-  //   image: "/uk2.avif",
-  // },
+  {
+    id: "raindance",
+    title: "Rain Dance Sessions",
+    emoji: "🌧️",
+    subtitle: "Dance Under the Cool Sprays",
+    description:
+      "Experience our energetic rain dance sessions. Outfitted with a professional sound system, overhead water sprinklers, and a live DJ, this interactive experience brings families and friends together for shared laughter and dance.",
+    image: "/raindance.png",
+  },
   {
     id: "indoor",
     title: "Indoor Recreation",
