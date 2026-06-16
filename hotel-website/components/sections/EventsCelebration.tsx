@@ -16,7 +16,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const sectionPills = ["Water Fun", "Open Lawns", "Kids Zone", "Group Dining", "Corporate Space", "Indoor Games"] as const;
+const sectionPills = ["Water Fun", "Open Lawns", "Kids Zone", "Group Dining", "Corporate Space", "Indoor Games", "Outdoor Games"] as const;
 
 function CelebrationBlock({ block, index }: { block: WeddingsCelebrationBlock; index: number }) {
   return (

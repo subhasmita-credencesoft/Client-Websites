@@ -5,12 +5,12 @@ export type WeddingsMeetingCard = {
 };
 
 export const WEDDINGS_MEETING_CARDS: WeddingsMeetingCard[] = [
-  {
-    title: "Group dining that fits the full-day flow",
-    description:
-      "Buffet meals, refreshment breaks, and relaxed dining windows help the event schedule feel smoother for families, schools, and corporate groups.",
-    image: "din2.avif",
-  },
+  // {
+  //   title: "Group dining that fits the full-day flow",
+  //   description:
+  //     "Buffet meals, refreshment breaks, and relaxed dining windows help the event schedule feel smoother for families, schools, and corporate groups.",
+  //   image: "din2.avif",
+  // },
   {
     title: "Indoor game corners for all-weather fun",
     description:

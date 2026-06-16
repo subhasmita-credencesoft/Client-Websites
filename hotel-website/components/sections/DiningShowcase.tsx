@@ -196,7 +196,7 @@ export default function DiningShowcase() {
 
           <div className="dining-copy max-w-md text-[0.95rem] leading-7 text-[#1f3c44]/75 sm:text-sm">
             <p>
-              There's something about the mountain air that makes every meal taste better. At UK's Resort, we keep things simple and delicious. From local Maharashtrian spices and slow-cooked Mughlai treats to your favorite Chinese comfort food, our kitchen is always humming. Whether you're craving a spicy chicken curry or a simple, fresh veg thali, our chefs cook every plate just the way you like it. Pull up a chair, enjoy the view, and eat to your heart's content.
+              There's something about the mountain air that makes every meal taste better. At UK's Resort, we keep things simple and delicious. From local Maharashtrian spices and slow-cooked Mughlai treats to your favorite Chinese comfort food, our kitchen is always humming. Whether you're craving a spicy chicken curry or a simple, our chefs cook every plate just the way you like it. Pull up a chair, enjoy the view, and eat to your heart's content.
             </p>
             {/* <Link
               href="/dining"

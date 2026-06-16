@@ -45,14 +45,14 @@ export const WEDDINGS_IMMERSIVE_MOMENTS: WeddingsImmersiveMoment[] = [
     image: "https://bookonelocal.in/cdn/kids3.JPG",
     alt: "Kids activity area at the resort",
   },
-  {
-    eyebrow: "Group Dining",
-    title: "Meal breaks that complete the one-day event rhythm",
-    description:
-      "Food and rest moments give the outing a fuller pace, making the resort feel like a complete day destination rather than a single activity stop.",
-    image: "din2.avif",
-    alt: "Dining and picnic gathering setup for groups",
-  },
+  // {
+  //   eyebrow: "Group Dining",
+  //   title: "Meal breaks that complete the one-day event rhythm",
+  //   description:
+  //     "Food and rest moments give the outing a fuller pace, making the resort feel like a complete day destination rather than a single activity stop.",
+  //   image: "din2.avif",
+  //   alt: "Dining and picnic gathering setup for groups",
+  // },
   {
     eyebrow: "Corporate Energy",
     title: "Offsite areas that mix planning with fun",

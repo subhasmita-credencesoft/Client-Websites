@@ -9,10 +9,10 @@ export const TARIFF_INTRO_TEXT =
 export const TARIFF_LOADING_TEXT = "Loading latest tariff details...";
 
 export const TARIFF_CHECKIN_LABEL = "Check-in:";
-export const TARIFF_CHECKIN_TIME = "12:00 Noon";
+export const TARIFF_CHECKIN_TIME = "1 PM";
 
 export const TARIFF_CHECKOUT_LABEL = "Check-out:";
-export const TARIFF_CHECKOUT_TIME = "11:00 AM";
+export const TARIFF_CHECKOUT_TIME = "10:00 AM";
 
 // ✅ DOUBLE OCCUPANCY (MATCHED TO IMAGE)
 export const TARIFF_MAIN_TABLE_TITLE = "Room Tariff for Double Occupancy";
@@ -38,7 +38,7 @@ export const TARIFF_FALLBACK_ROWS: TariffRow[] = [
 export const TARIFF_GROUP_PACKAGE_TITLE_LINES = [
   "Overnight Picnic for Groups",
   "Per person per night with all meals",
-  "* Check-in 1 noon and Check-out 10am",
+  "* Check-in 1 PM and Check-out 10am",
   "Taxes as per Government Regulations",
 ] as const;
 
