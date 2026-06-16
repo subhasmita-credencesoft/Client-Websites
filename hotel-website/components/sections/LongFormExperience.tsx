@@ -128,7 +128,7 @@ export default function LongFormExperience() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24 sm:mb-32">
           <FadeUp className="relative h-[350px] sm:h-[450px] rounded-[2rem] overflow-hidden shadow-[0_16px_50px_rgba(31,60,68,0.15)]">
             <Image
-              src="/Zenhills.png"
+              src="https://bookonelocal.in/cdn/2025-12-04-095643482-19.jpg"
               alt="Lush green surroundings and Sahyadri views at UK's Resort, Khopoli"
               fill
               className="object-cover"
