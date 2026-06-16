@@ -113,43 +113,60 @@ export default function Footer() {
   const email = liveProperty?.email || "info@uksresort.com";
 
   useEffect(() => {
+    const footer = footerRef.current;
+    if (!footer) return;
+
+    // Ensure all footer blocks are visible by default (CSS fallback)
+    const blocks = footer.querySelectorAll<HTMLElement>(".footer-content-block");
+    blocks.forEach((el) => { el.style.opacity = "1"; el.style.transform = "none"; });
+
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const ctx = gsap.context(() => {
+        // Reset for animation
+        blocks.forEach((el) => { el.style.opacity = "0"; el.style.transform = "translateY(16px)"; });
+
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: footerRef.current,
+            trigger: footer,
             start: "top bottom",
             once: true,
+            onEnter: () => {
+              blocks.forEach((el) => { el.style.opacity = ""; el.style.transform = ""; });
+            },
           },
         });
 
         tl.fromTo(
           ".footer-brand",
-          { y: 20, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.75, ease: "power3.out" },
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.75, ease: "power3.out" },
         )
           .fromTo(
             ".footer-heading",
-            { yPercent: 110, autoAlpha: 0, filter: "blur(8px)" },
-            { yPercent: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.9, ease: "power4.out" },
+            { yPercent: 110, opacity: 0, filter: "blur(8px)" },
+            { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 0.9, ease: "power4.out" },
             "<+0.04",
           )
           .fromTo(
             ".footer-content-block",
-            { y: 16, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration: 0.65, ease: "power3.out", stagger: 0.08 },
+            { y: 16, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.65, ease: "power3.out", stagger: 0.08 },
             "<+0.08",
           )
           .fromTo(
             ".footer-bottom",
-            { y: 10, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration: 0.55, ease: "power3.out" },
+            { y: 10, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
             "<+0.06",
           );
-      }, footerRef);
-      return () => ctx.revert();
+      }, footer);
+      return () => {
+        ctx.revert();
+        // Ensure visibility is restored after revert
+        blocks.forEach((el) => { el.style.opacity = "1"; el.style.transform = "none"; });
+      };
     });
 
     return () => mm.revert();
@@ -175,7 +192,7 @@ export default function Footer() {
                 Near Mumbai & Pune
               </h3>
 
-            <Link
+            {/* <Link
               href="https://www.google.co.in/maps/place/UK'S+RESORT/@18.8171404,73.3046807,17z/data=!4m8!3m7!1s0x3be7fd68dbb32757:0x45a268bbfa521ef0!8m2!3d18.8171404!4d73.3046807!9m1!1b1!16s%2Fg%2F11b6gh8g56"
               target="_blank"
               rel="noreferrer"
@@ -208,11 +225,11 @@ export default function Footer() {
                   <span className="transition-transform group-hover:translate-x-0.5">→</span>
                 </div>
               </div>
-            </Link>
+            </Link> */}
           </div>
           <div className="grid gap-8 sm:gap-10 xl:grid-cols-[1.1fr_1.2fr] xl:justify-self-end xl:text-left">
 
-            <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-[minmax(220px,1.3fr)_minmax(170px,1fr)_minmax(150px,1fr)]">
+            <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-[minmax(220px,1.3fr)_minmax(180px,1.1fr)_minmax(170px,1fr)_minmax(150px,1fr)]">
               {addressLines.length > 0 && (
                 <div className="footer-content-block">
                   <h5 className="font-serif text-lg">Address</h5>
@@ -223,6 +240,21 @@ export default function Footer() {
                   </div>
                 </div>
               )}
+              <div className="footer-content-block">
+                <h5 className="font-serif text-lg">Quick Links</h5>
+                <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2">
+                  {quickLinks.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      style={{ color: "rgba(255,255,255,0.75)" }}
+                      className="text-[0.86rem] leading-7 hover:text-white transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
               <div className="footer-content-block">
                 <h5 className="font-serif text-lg">Contact</h5>
                 <Link
@@ -280,19 +312,6 @@ export default function Footer() {
             </Link>
             .
           </p>
-          <div className="flex w-full flex-wrap items-center justify-start gap-x-6 gap-y-2 border-t border-white/10 pt-3 pr-16 sm:ml-auto sm:w-auto sm:justify-end sm:border-t-0 sm:pt-0 sm:pr-0">
-            {quickLinks.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="text-[0.98rem] hover:text-white sm:text-xs"
-                target={item.href.startsWith("http") ? "_blank" : undefined}
-                rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
         </div>
       </Container>
     </footer>

@@ -558,7 +558,7 @@ export default function PicnicDetailSection() {
               },
               {
                 title: "Spacious Grounds",
-                description: "85,000 sq ft property with flat grassy lawns for cricket, volleyball, and outdoor games.",
+                description: "6,00,000 sq ft property with flat grassy lawns for cricket, volleyball, and outdoor games.",
                 icon: "🌿",
               },
               {
@@ -740,13 +740,15 @@ export default function PicnicDetailSection() {
             <Link
               href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
               target="_blank"
-              className="bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider text-xs px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              style={{ color: "#ffffff" }}
+              className="bg-accent hover:bg-accent/90 !text-white font-bold uppercase tracking-wider text-xs px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Book Day Package Online
             </Link>
             <Link
               href="/contact"
-              className="bg-pine hover:bg-pine/90 text-white font-bold uppercase tracking-wider text-xs px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              style={{ color: "#ffffff" }}
+              className="bg-pine hover:bg-pine/90 !text-white font-bold uppercase tracking-wider text-xs px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Enquire for Group Booking
             </Link>

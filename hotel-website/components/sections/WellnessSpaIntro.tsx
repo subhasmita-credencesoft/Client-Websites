@@ -215,7 +215,7 @@ export default function WellnessSpaIntro() {
               <h2 className="wellness-spa-title-line font-serif text-3xl leading-tight md:text-4xl">Reimagined in Khopoli</h2>
             </div>
             <p className="wellness-spa-copy mt-6 text-sm leading-7 text-[#1f3c44]/75">
-              Nestled in the lush Sahyadri foothills, just 90 km from Mumbai via NH48, UK's Resort Khopoli is where the city unwraps itself into open skies, manicured gardens, and genuine calm. Spread across 85,000 sq. ft. of greenery, our resort brings together comfortable stay rooms, a thrilling Water Fun & Play, multi-cuisine dining, and space for corporate retreats and celebrations—all in one address.
+              Nestled in the lush Sahyadri foothills, just 90 km from Mumbai via NH48, UK's Resort Khopoli is where the city unwraps itself into open skies, manicured gardens, and genuine calm. Spread across 600,000 sq ft. of greenery, our resort brings together comfortable stay rooms, a thrilling Water Fun & Play, multi-cuisine dining, and space for corporate retreats and celebrations—all in one address.
             </p>
 
             <div className="wellness-spa-cta relative z-40 mt-10 inline-block" ref={dropdownRef}>

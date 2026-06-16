@@ -80,7 +80,8 @@ function CelebrationBlock({ block, index }: { block: WeddingsCelebrationBlock; i
               href={block.enquiryHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-[var(--accent)] px-5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:brightness-95"
+              className="inline-flex h-11 items-center justify-center rounded-full bg-[var(--accent)] px-5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] !text-white transition hover:brightness-95"
+              style={{ color: "#ffffff" }}
             >
               {block.id === "sports" ? "See activities list" : block.id === "corporate" ? "Get a group quote" : "Enquire via WhatsApp"}
             </a>
@@ -267,7 +268,8 @@ export default function EventsCelebration() {
               href="https://wa.me/919822012343?text=Hi%2C%20I%20want%20to%20plan%20an%20event%20or%20group%20day%20at%20UK%27s%20Resort."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-[var(--accent)] px-6 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:brightness-95"
+              className="inline-flex h-11 items-center justify-center rounded-full bg-[var(--accent)] px-6 text-[0.7rem] font-semibold uppercase tracking-[0.18em] !text-white transition hover:brightness-95"
+              style={{ color: "#ffffff" }}
             >
               WhatsApp to Start Planning
             </a>

@@ -7,7 +7,7 @@ export type FooterSocialItem = {
 };
 
 export type FooterQuickLink = {
-  label: "Blog" | "Website" | "About Us" | "Contact";
+  label: string;
   href: string;
 };
 
@@ -62,9 +62,15 @@ export function buildFooterSocialLinks(
 
 export function buildFooterQuickLinks(website?: string | null): FooterQuickLink[] {
   return [
-    { label: "Blog", href: "/experiences" },
-    { label: "Website", href: website || "#" },
-    { label: "About Us", href: "/about" },
+    { label: "Home", href: "/" },
+    { label: "Rooms", href: "/rooms" },
+    { label: "Dining", href: "/dining" },
+    { label: "Picnic", href: "/picnic" },
+    { label: "Events", href: "/events" },
+    { label: "Experiences", href: "/experiences" },
+    { label: "Tariff", href: "/tariffs" },
+    { label: "Reservation", href: "/rooms/reservation" },
+    { label: "Around Us", href: "/around-us" },
     { label: "Contact", href: "/contact" },
   ];
 }

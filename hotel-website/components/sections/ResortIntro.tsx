@@ -189,7 +189,7 @@ export default function ResortIntro() {
                 Nestled in the lush Sahyadri foothills, just 90 km from Mumbai via NH48, UK&apos;s Resort Khopoli is where the city unwraps itself into open skies, manicured gardens, and genuine calm.
               </p>
               <p className="resort-intro-copy">
-                Spread across 85,000 sq. ft. of greenery, our resort brings together comfortable stay rooms, a thrilling Water Fun & Play, multi-cuisine dining, and space for corporate retreats and celebrations all in one address.
+                Spread across 600,000 sq ft. of greenery, our resort brings together comfortable stay rooms, a thrilling Water Fun & Play, multi-cuisine dining, and space for corporate retreats and celebrations all in one address.
               </p>
             </div>
 

@@ -60,17 +60,17 @@ const ACTIVITIES = [
     subtitle: "Splash into Endless Water Fun",
     description:
       "Our water park resort near Mumbai features high-thrill water slides, a family pool, and dedicated shallow swimming zones for children. Under the supervision of trained lifeguards, it's the perfect environment to beat the heat and spend quality time with family and friends.",
-    image: "/picnic.avif",
+    image: "/children5.avif",
   },
-  {
-    id: "raindance",
-    title: "Rain Dance Sessions",
-    emoji: "🌧️",
-    subtitle: "Dance Under the Cool Sprays",
-    description:
-      "Experience our energetic rain dance sessions. Outfitted with a professional sound system, overhead water sprinklers, and a live DJ, this interactive experience brings families and friends together for shared laughter and dance.",
-    image: "/uk2.avif",
-  },
+  // {
+  //   id: "raindance",
+  //   title: "Rain Dance Sessions",
+  //   emoji: "🌧️",
+  //   subtitle: "Dance Under the Cool Sprays",
+  //   description:
+  //     "Experience our energetic rain dance sessions. Outfitted with a professional sound system, overhead water sprinklers, and a live DJ, this interactive experience brings families and friends together for shared laughter and dance.",
+  //   image: "/uk2.avif",
+  // },
   {
     id: "indoor",
     title: "Indoor Recreation",
@@ -474,13 +474,15 @@ export default function LongFormExperience() {
             <Link
               href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
               target="_blank"
-              className="bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider text-xs px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              style={{ color: "#ffffff" }}
+              className="bg-accent hover:bg-accent/90 !text-white font-bold uppercase tracking-wider text-xs px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Book Your Experience
             </Link>
             <Link
               href="/contact"
-              className="bg-pine hover:bg-pine/90 text-white font-bold uppercase tracking-wider text-xs px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              style={{ color: "#ffffff" }}
+              className="bg-pine hover:bg-pine/90 !text-white font-bold uppercase tracking-wider text-xs px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Contact Reservations
             </Link>

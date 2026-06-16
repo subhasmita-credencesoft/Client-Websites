@@ -101,7 +101,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
   introTitle:
     "A full day out, done right.",
   introCopy:
-    "UK's Resort has been hosting day picnics for families, schools, birthday groups, and social clubs from Mumbai and Pune for years. Set across 85,000 sq ft of greenery in the Sahyadri foothills, a picnic day here has a natural rhythm to it - morning arrivals, water activities through the heat of the day, a proper sit-down buffet lunch, and a slow wind-down in the late afternoon before the drive home.",
+    "UK's Resort has been hosting day picnics for families, schools, birthday groups, and social clubs from Mumbai and Pune for years. Set across 600,000 sq ft of greenery in the Sahyadri foothills, a picnic day here has a natural rhythm to it - morning arrivals, water activities through the heat of the day, a proper sit-down buffet lunch, and a slow wind-down in the late afternoon before the drive home.",
 
   highlights: [
     {
