@@ -292,35 +292,23 @@ export default function Header() {
             </div> */}
           </div>
 
-          {/* CENTRE — ornament + logo + wordmark */}
+          {/* CENTRE — logo only (no wordmark) */}
           <Link
             href="/"
             aria-label={`${propertyName} — home`}
-            className="group absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+            className="group absolute left-1/2 -translate-x-1/2 flex items-center justify-center"
           >
-            {/* Logo */}
             <span className="relative block"
-              style={{ height: "clamp(1.7rem, 3.6vw, 2.4rem)", width: "clamp(5.4rem, 10.5vw, 8.1rem)" }}>
+              style={{ height: "clamp(3rem, 5.5vw, 5rem)", width: "clamp(9rem, 16vw, 14rem)" }}>
               <Image
                 src={logoSrc}
                 alt={propertyName}
                 fill
-                sizes="(max-width: 639px) 104px, (max-width: 1023px) 128px, 136px"
+                sizes="(max-width: 639px) 160px, (max-width: 1023px) 200px, 224px"
                 className="object-contain transition-opacity duration-300 group-hover:opacity-80"
                 unoptimized={logoSrc.startsWith("http")}
                 priority
               />
-            </span>
-            {/* Wordmark */}
-            <span className="flex flex-col items-center leading-none">
-              <span className="font-serif font-normal"
-                style={{ fontSize: "clamp(0.9rem, 1.55vw, 1.2rem)", letterSpacing: "0.06em", color: textMain }}>
-                UK&apos;s Resort
-              </span>
-              <span className="font-semibold uppercase"
-                style={{ fontSize: "clamp(0.44rem, 0.78vw, 0.54rem)", letterSpacing: "0.3em", color: textMuted, marginTop: "2px" }}>
-                Khopoli · Maharashtra
-              </span>
             </span>
           </Link>
 
