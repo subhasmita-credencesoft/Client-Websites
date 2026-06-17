@@ -311,7 +311,9 @@ export default function RoomDetailClient({ id }: RoomDetailClientProps) {
                   <span className="text-[1.8rem] font-bold text-[#c67a3a]">
                     {formatPrice(resolvedRoom.pricePerNight)}
                   </span>
-                  <span className="ml-1 text-xs text-[#1f3c44]/60">per night</span>
+                  <span className="ml-1 text-xs text-[#1f3c44]/60">
+                    {resolvedRoom.name.toLowerCase().includes('overnight stay') ? 'Per Person on AP' : 'per night'}
+                  </span>
                 </div>
                 {resolvedRoom.availableCount > 0 ? (
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-[0.08em] text-emerald-800 border border-emerald-200">

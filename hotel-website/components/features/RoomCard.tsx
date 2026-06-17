@@ -17,9 +17,16 @@ export default function RoomCard({ room }: RoomCardProps) {
           backgroundPosition: "center",
         }}
       />
-      <span className="absolute right-6 top-6 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-white text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#d98a4a]">
-        <span className="text-[#1f3c44]/60">From</span>
-        {formatPrice(room.pricePerNight)}
+      <span className="absolute right-6 top-6 flex min-h-[4rem] min-w-[4rem] px-2 py-1.5 flex-col items-center justify-center rounded-3xl bg-white text-center text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-[#d98a4a] shadow-md">
+        <span className="text-[#1f3c44]/60 leading-tight text-[9px]">
+          {room.name.toLowerCase().includes('overnight stay') ? 'Per Person' : 'From'}
+        </span>
+        <span className="my-0.5 leading-tight text-sm">{formatPrice(room.pricePerNight)}</span>
+        {room.name.toLowerCase().includes('overnight stay') && (
+          <span className="text-[#1f3c44]/60 leading-tight text-[8px]">
+            on AP
+          </span>
+        )}
       </span>
       <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 bg-gradient-to-t from-black/70 via-black/20 to-transparent px-6 pb-6 pt-24 text-center text-white">
         <h3 className="font-serif text-2xl">{room.name}</h3>

@@ -112,13 +112,18 @@ function RoomCard({ room, virtualTourUrl }: { room: DisplayRoom; virtualTourUrl:
         </span>
       </button>
 
-      <div className="absolute right-4 top-4 z-10 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-white shadow-md">
-        <span className="text-[9px] font-semibold uppercase tracking-widest leading-tight text-[#1f3c44]/60">
-          From
+      <div className="absolute right-4 top-4 z-10 flex min-h-[4rem] min-w-[4rem] px-2 py-1.5 flex-col items-center justify-center rounded-3xl bg-white shadow-md">
+        <span className="text-[9px] font-semibold uppercase tracking-widest leading-tight text-[#1f3c44]/60 text-center">
+          {room.name.toLowerCase().includes('overnight stay') ? 'Per Person' : 'From'}
         </span>
-        <span className="text-sm font-bold leading-tight text-[#c67a3a]">
+        <span className="text-sm font-bold leading-tight text-[#c67a3a] my-0.5">
           {formatPrice(room.pricePerNight)}
         </span>
+        {room.name.toLowerCase().includes('overnight stay') && (
+          <span className="text-[8px] font-semibold uppercase tracking-widest leading-tight text-[#1f3c44]/60 text-center">
+            on AP
+          </span>
+        )}
       </div>
 
       <div className="absolute bottom-0 left-0 w-full px-6 pb-5 text-white z-10">

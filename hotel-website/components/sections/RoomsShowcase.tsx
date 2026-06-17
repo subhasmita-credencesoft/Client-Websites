@@ -85,9 +85,16 @@ function RoomShowcaseCard({
           }}
           onLoad={() => setIsImageLoaded(true)}
         />
-        <span className="absolute right-4 top-4 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-white text-center shadow-md sm:right-6 sm:top-6">
-          <span className="text-[0.55rem] font-semibold uppercase tracking-wide text-[#1f3c44]/60">From</span>
-          <span className="text-[0.75rem] font-bold text-[#c67a3a]">{formatPrice(room.pricePerNight)}</span>
+        <span className="absolute right-4 top-4 flex min-h-[4rem] min-w-[4rem] px-2 py-1.5 flex-col items-center justify-center rounded-3xl bg-white text-center shadow-md sm:right-6 sm:top-6">
+          <span className="text-[0.55rem] font-semibold uppercase tracking-wide text-[#1f3c44]/60 leading-tight">
+            {room.name.toLowerCase().includes('overnight stay') ? 'Per Person' : 'From'}
+          </span>
+          <span className="text-[0.75rem] font-bold text-[#c67a3a] my-0.5 leading-tight">{formatPrice(room.pricePerNight)}</span>
+          {room.name.toLowerCase().includes('overnight stay') && (
+            <span className="text-[0.45rem] font-semibold uppercase tracking-wide text-[#1f3c44]/60 leading-tight">
+              on AP
+            </span>
+          )}
         </span>
       </div>
 
