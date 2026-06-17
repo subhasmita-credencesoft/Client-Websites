@@ -262,8 +262,12 @@ export default function RoomDetailClient({ id }: RoomDetailClientProps) {
               </h1>
               <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1f3c44]/70">
                 <span>{resolvedRoom.size}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-[#1f3c44]/30" />
-                <span>{resolvedRoom.bedType}</span>
+                {!resolvedRoom.name.toLowerCase().includes('one day picnic') && (
+                  <>
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#1f3c44]/30" />
+                    <span>{resolvedRoom.bedType}</span>
+                  </>
+                )}
                 <span className="h-1.5 w-1.5 rounded-full bg-[#1f3c44]/30" />
                 <span>{resolvedRoom.floor}</span>
                 <span className="h-1.5 w-1.5 rounded-full bg-[#1f3c44]/30" />
@@ -338,10 +342,12 @@ export default function RoomDetailClient({ id }: RoomDetailClientProps) {
                   <span className="font-medium">Capacity:</span>
                   <span className="font-semibold text-[#1f3c44]">{resolvedRoom.name.toLowerCase().includes('overnight stay') ? `${resolvedRoom.minOccupancy}+ Guests` : `Up to ${resolvedRoom.capacity} Guests`}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="font-medium">Bed Setup:</span>
-                  <span className="font-semibold text-[#1f3c44]">{resolvedRoom.bedType}</span>
-                </div>
+                {!resolvedRoom.name.toLowerCase().includes('one day picnic') && (
+                  <div className="flex justify-between">
+                    <span className="font-medium">Bed Setup:</span>
+                    <span className="font-semibold text-[#1f3c44]">{resolvedRoom.bedType}</span>
+                  </div>
+                )}
                 <div className="flex justify-between">
                   <span className="font-medium">Location:</span>
                   <span className="font-semibold text-[#1f3c44]">{resolvedRoom.floor}</span>

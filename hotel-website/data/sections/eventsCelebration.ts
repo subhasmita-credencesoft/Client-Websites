@@ -65,7 +65,7 @@ export const WEDDINGS_CELEBRATION_BLOCKS: WeddingsCelebrationBlock[] = [
   {
     id: "picnic",
     layout: "media-right",
-    mediaImage: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
+    mediaImage: "/children5.avif",
     mediaAlt: "Family picnic grounds",
     cardTitle: "Family & School Outings",
     cardParagraphs: [

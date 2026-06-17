@@ -129,7 +129,10 @@ function RoomCard({ room, virtualTourUrl }: { room: DisplayRoom; virtualTourUrl:
       <div className="absolute bottom-0 left-0 w-full px-6 pb-5 text-white z-10">
         <h3 className="mb-1 font-serif text-2xl font-light">{room.name}</h3>
         <p className="mb-2 text-[0.72rem] uppercase tracking-[0.18em] text-white/80 sm:text-xs">
-          {room.size} &middot; {formatCapacityLabel(room.minOccupancy, room.capacity, room.name)} &middot; {room.bedType}
+          {room.size} &middot; {formatCapacityLabel(room.minOccupancy, room.capacity, room.name)}
+          {!room.name.toLowerCase().includes('one day picnic') && (
+            <> &middot; {room.bedType}</>
+          )}
         </p>
         <span className="border-b border-white/40 pb-px text-[0.6rem] uppercase tracking-[0.2em] text-white/60 group-hover:text-[#c67a3a] group-hover:border-[#c67a3a] transition-all">
           Click to view details
