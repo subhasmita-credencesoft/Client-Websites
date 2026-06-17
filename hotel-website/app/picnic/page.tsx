@@ -17,7 +17,7 @@ export default function PicnicPage() {
       <PageHero
         title="One Day Picnic"
         backgroundImage="https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif"
-        backgroundVideo="https://bookonelocal.in/cdn/Corporate-Page-VIdeo.mp4"
+        // backgroundVideo="https://bookonelocal.in/cdn/Corporate-Page-VIdeo.mp4"
         subtitle="Plan vibrant day outings with lawns, family-friendly activities, and buffet dining."
         breadcrumb="Home / Picnic"
       />
