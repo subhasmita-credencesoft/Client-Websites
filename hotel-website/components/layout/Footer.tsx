@@ -299,7 +299,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="footer-bottom flex flex-wrap items-center gap-4 py-6 text-[0.86rem] text-white/65 sm:justify-between sm:text-xs">
+        <div className="footer-bottom flex flex-wrap items-center justify-center gap-4 py-6 text-center text-[0.86rem] text-white/65 sm:text-xs">
           <p className="max-w-3xl leading-6">
             {" "}
             Designed and Developed By{" "}
