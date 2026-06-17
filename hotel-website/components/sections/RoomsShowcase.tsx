@@ -42,7 +42,7 @@ function mapRoomToShowcase(room: RoomItem, index: number, fallbackImage: string)
     id: String(room.id ?? index),
     name: room.name || `Room ${index + 1}`,
     image: firstImage,
-    pricePerNight: Number(firstRate?.price ?? room.pricePerNight ?? room.roomOnlyPrice ?? 0),
+    pricePerNight: Number(room.roomOnlyPrice ?? firstRate?.price ?? room.pricePerNight ?? 0),
     capacity: max,
     minOccupancy: min,
     size: room.size || "Resort Room",

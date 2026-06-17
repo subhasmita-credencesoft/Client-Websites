@@ -96,7 +96,7 @@ export default function RoomDetailClient({ id }: RoomDetailClientProps) {
         const description = htmlToText(match.description) || "Impeccably designed room with standard luxury and comfort.";
         const minOcc = Number(match.minimumOccupancy ?? 1) || 1;
         const maxOcc = Number(match.maximumOccupancy ?? minOcc) || minOcc;
-        const price = Number(match.ratesAndAvailabilityDtos?.[0]?.price ?? match.pricePerNight ?? match.roomOnlyPrice ?? 250);
+        const price = Number(match.roomOnlyPrice ?? match.ratesAndAvailabilityDtos?.[0]?.price ?? match.pricePerNight ?? 250);
         const size = match.size || "40 sqm";
         const bedType = maxOcc > 3 ? "King + Twin Bed" : "King Bed";
         const floor = (Number(match.id ?? 1) % 3) + 1; // Systematic mock floor allocation

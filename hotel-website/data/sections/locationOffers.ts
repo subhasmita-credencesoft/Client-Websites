@@ -12,7 +12,7 @@ export const LOCATION_OFFER_SLIDES: LocationOfferSlide[] = [
     id: "offer-1",
     image: "https://bookonelocal.in/cdn/room_3.jpg",
     label: "Early Booking",
-    title: "15% Off Advance Reservations",
+    title: "  Reservations",
     description: "Plan ahead and enjoy exclusive savings when you book your stay in advance.",
     href: "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true",
   },

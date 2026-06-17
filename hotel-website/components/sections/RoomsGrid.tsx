@@ -203,7 +203,7 @@ export default function RoomsGrid({
         : ["Comfort Stay"];
       const min = Number(room.minimumOccupancy ?? 1) || 1;
       const max = Number(room.maximumOccupancy ?? min) || min;
-      const price = Number(firstRate?.price ?? room.pricePerNight ?? room.roomOnlyPrice ?? 0);
+      const price = Number(room.roomOnlyPrice ?? firstRate?.price ?? room.pricePerNight ?? 0);
       return {
         id: String(room.id ?? index),
         name: room.name || `Room ${index + 1}`,
