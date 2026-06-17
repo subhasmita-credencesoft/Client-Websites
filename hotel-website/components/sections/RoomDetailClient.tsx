@@ -267,7 +267,7 @@ export default function RoomDetailClient({ id }: RoomDetailClientProps) {
                 <span className="h-1.5 w-1.5 rounded-full bg-[#1f3c44]/30" />
                 <span>{resolvedRoom.floor}</span>
                 <span className="h-1.5 w-1.5 rounded-full bg-[#1f3c44]/30" />
-                <span>Max {resolvedRoom.capacity} Guests</span>
+                <span>{resolvedRoom.name.toLowerCase().includes('overnight stay') ? `${resolvedRoom.minOccupancy}+ Guests` : `Max ${resolvedRoom.capacity} Guests`}</span>
               </p>
             </div>
 
@@ -334,7 +334,7 @@ export default function RoomDetailClient({ id }: RoomDetailClientProps) {
                 </div>
                 <div className="flex justify-between">
                   <span className="font-medium">Capacity:</span>
-                  <span className="font-semibold text-[#1f3c44]">Up to {resolvedRoom.capacity} Guests</span>
+                  <span className="font-semibold text-[#1f3c44]">{resolvedRoom.name.toLowerCase().includes('overnight stay') ? `${resolvedRoom.minOccupancy}+ Guests` : `Up to ${resolvedRoom.capacity} Guests`}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-medium">Bed Setup:</span>

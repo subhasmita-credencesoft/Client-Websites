@@ -94,7 +94,7 @@ function RoomShowcaseCard({
       <div className="flex flex-1 flex-col justify-between border-t border-[#1f3c44]/8 px-5 py-6 text-center sm:px-7">
         <h3 className="room-title font-serif text-2xl text-[#1f3c44] sm:text-3xl">{room.name}</h3>
         <p className="room-meta mt-2 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-[#1f3c44]/60 sm:text-[0.7rem]">
-          {room.size} - {room.minOccupancy}-{room.capacity} Person - {room.bedType}
+          {room.size} - {room.name.toLowerCase().includes('overnight stay') ? `${room.minOccupancy}+ Persons` : `${room.minOccupancy}-${room.capacity} Person`} - {room.bedType}
         </p>
         <p className="room-desc mt-3 min-h-10 line-clamp-2 text-[0.76rem] leading-relaxed text-[#1f3c44]/65">
           {room.description}
