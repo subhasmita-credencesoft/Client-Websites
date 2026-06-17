@@ -84,7 +84,7 @@
   --hero-min-height: 34rem;
   --hero-content-offset: calc(5.5rem + env(safe-area-inset-top));
   --hero-booking-max: 64rem;
-  --header-row-min-height: 4.8rem;
+  --header-row-min-height: 5.4rem;
 
   --duration-fast: 160ms;
   --duration-base: 220ms;
@@ -110,6 +110,7 @@
     --hero-min-height: 44rem;
     --hero-content-offset: calc(7.5rem + env(safe-area-inset-top));
     --hero-booking-max: 68rem;
+    --header-row-min-height: 6.2rem;
   }
 }
 

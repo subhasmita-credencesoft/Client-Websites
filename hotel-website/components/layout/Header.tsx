@@ -118,11 +118,11 @@ function Hamburger({ open, onClick, color }: { open: boolean; onClick: () => voi
       aria-expanded={open}
       onClick={onClick}
       style={{ color }}
-      className="group flex h-10 w-10 flex-col items-start justify-center gap-[5px] shrink-0"
+      className="group flex h-10 w-10 flex-col items-start justify-center gap-[5.5px] shrink-0"
     >
-      <span className={`block h-[1.5px] origin-left bg-current transition-all duration-300 ${open ? "w-[20px]" : "w-[22px] group-hover:w-[26px]"}`} />
-      <span className={`block h-[1.5px] origin-left bg-current transition-all duration-300 ${open ? "w-[16px] opacity-60" : "w-[15px] group-hover:w-[19px]"}`} />
-      <span className={`block h-[1.5px] origin-left bg-current transition-all duration-300 ${open ? "w-[11px] opacity-30" : "w-[9px] group-hover:w-[13px]"}`} />
+      <span className={`block h-[2.2px] origin-left bg-current transition-all duration-300 ${open ? "w-[20px]" : "w-[22px] group-hover:w-[26px]"}`} />
+      <span className={`block h-[2.2px] origin-left bg-current transition-all duration-300 ${open ? "w-[16px] opacity-60" : "w-[15px] group-hover:w-[19px]"}`} />
+      <span className={`block h-[2.2px] origin-left bg-current transition-all duration-300 ${open ? "w-[11px] opacity-30" : "w-[9px] group-hover:w-[13px]"}`} />
     </button>
   );
 }
@@ -304,12 +304,12 @@ export default function Header() {
             className="group absolute left-1/2 -translate-x-1/2 flex items-center justify-center"
           >
             <span className="relative block"
-              style={{ height: "clamp(3rem, 5.5vw, 5rem)", width: "clamp(9rem, 16vw, 14rem)" }}>
+              style={{ height: "clamp(3.8rem, 6.5vw, 5.6rem)", width: "clamp(12rem, 21vw, 17rem)" }}>
               <Image
                 src={logoSrc}
                 alt={propertyName}
                 fill
-                sizes="(max-width: 639px) 160px, (max-width: 1023px) 200px, 224px"
+                sizes="(max-width: 639px) 200px, (max-width: 1023px) 250px, 280px"
                 className="object-contain transition-opacity duration-300 group-hover:opacity-80"
                 unoptimized={logoSrc.startsWith("http")}
                 priority
@@ -402,7 +402,7 @@ export default function Header() {
                       href={item.href}
                       aria-current={isActive ? "page" : undefined}
                       className="whitespace-nowrap px-2 font-bold uppercase transition-colors"
-                       style={{ fontSize: "0.68rem", letterSpacing: "0.18em", color: isActive ? "#c8922a" : navLink, textDecoration: "none" }}
+                       style={{ fontSize: "0.78rem", letterSpacing: "0.18em", color: isActive ? "#c8922a" : navLink, textDecoration: "none" }}
                     >
                       {item.label}
                     </Link>
@@ -457,13 +457,13 @@ export default function Header() {
                 <Link href="/" onClick={closeMenu}
                   className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-0.5"
                   aria-label={`${propertyName} — home`}>
-                  <span className="relative block" style={{ height: "2rem", width: "6.5rem" }}>
+                  <span className="relative block" style={{ height: "3rem", width: "9.5rem" }}>
                     <Image src={logoSrc} alt={propertyName} fill
-                      sizes="104px" className="object-contain"
+                      sizes="160px" className="object-contain"
                       unoptimized={logoSrc.startsWith("http")} priority />
                   </span>
                   <span className="font-bold uppercase text-white/40"
-                    style={{ fontSize: "0.42rem", letterSpacing: "0.28em" }}>
+                    style={{ fontSize: "0.5rem", letterSpacing: "0.28em" }}>
                     Khopoli · Maharashtra
                   </span>
                 </Link>
@@ -613,14 +613,14 @@ export default function Header() {
           border: 1.5px solid #c8922a;
           background: #c8922a;
           color: #fff !important;
-          font-size: 0.66rem; font-weight: 800;
+          font-size: 0.75rem; font-weight: 800;
           letter-spacing: 0.18em; text-transform: uppercase;
           text-decoration: none; white-space: nowrap; line-height: 1;
           transition: background 0.18s, border-color 0.18s;
         }
         .hdr-book-btn:hover { background: #daa93e; border-color: #daa93e; }
         @media (min-width: 640px) {
-          .hdr-book-btn { padding: 0.5rem 0.75rem 0.5rem 1.1rem; font-size: 0.7rem; }
+          .hdr-book-btn { padding: 0.5rem 0.75rem 0.5rem 1.1rem; font-size: 0.82rem; }
         }
         .hdr-book-btn--outline {
           background: transparent !important;
@@ -636,7 +636,7 @@ export default function Header() {
           width: 1.25rem; height: 1.25rem; border-radius: 9999px;
           background: rgba(255,255,255,0.22);
         }
-        .hdr-book-arrow { font-size: 1rem; line-height: 1; }
+        .hdr-book-arrow { font-size: 1.1rem; line-height: 1; }
 
         /* Icon-only round buttons */
         .hdr-icon-btn {
@@ -656,7 +656,7 @@ export default function Header() {
           color: #ffffff;
           text-decoration: none;
           white-space: nowrap;
-          font-size: 0.64rem; font-weight: 800;
+          font-size: 0.72rem; font-weight: 800;
           letter-spacing: 0.18em; text-transform: uppercase; line-height: 1;
           transition: background 0.3s ease, transform 0.3s ease;
           flex-shrink: 0;
@@ -673,7 +673,7 @@ export default function Header() {
         @media (min-width: 1280px) {
           .hdr-whatsapp-btn {
             padding: 0.48rem 1rem 0.48rem 0.76rem;
-            font-size: 0.67rem;
+            font-size: 0.78rem;
           }
         }
 
@@ -709,12 +709,12 @@ export default function Header() {
 
         .hdr-nav-link {
           padding: 0 0.75rem;
-          font-size: 0.7rem; font-weight: 700;
+          font-size: 0.8rem; font-weight: 700;
           letter-spacing: 0.2em; text-transform: uppercase;
           text-decoration: none; line-height: 1; transition: color 0.18s;
         }
-        @media (min-width: 1280px) { .hdr-nav-link { padding: 0 0.85rem; font-size: 0.74rem; } }
-        @media (min-width: 1536px) { .hdr-nav-link { padding: 0 0.95rem; font-size: 0.78rem; } }
+        @media (min-width: 1280px) { .hdr-nav-link { padding: 0 0.85rem; font-size: 0.84rem; } }
+        @media (min-width: 1536px) { .hdr-nav-link { padding: 0 0.92rem; font-size: 0.88rem; } }
 
         /* Menu overlay */
         .menu-overlay { color: #fff; background: linear-gradient(160deg, #10232b 0%, #19161a 100%); }
