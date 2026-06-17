@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
@@ -535,11 +535,11 @@ function RoomsReservationContent() {
                             </span>
                           </button>
                           <p className="rr-card-line absolute bottom-5 left-6 pr-6 text-sm font-semibold uppercase tracking-[0.14em] text-white">
-                            From{" "}
+                            {room.name.toLowerCase().includes('overnight stay') ? 'Per Person' : 'From'}{" "}
                             <span className="text-[#e39a50]">
                               {formatPrice(room.pricePerNight).replace(".00", "")}
                             </span>{" "}
-                            Per Night
+                            {room.name.toLowerCase().includes('overnight stay') ? 'on AP' : 'Per Night'}
                           </p>
                         </div>
 
@@ -548,10 +548,16 @@ function RoomsReservationContent() {
                             <Link href={`/rooms/reservation?room=${room.slug}`}>{room.name}</Link>
                           </h3>
                           <div className="rr-card-line mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#7d8692]">
-                            <span>{room.size}</span>
-                            <span>{room.minimumOccupancy}-{room.capacity} Person</span>
-                            <span>{room.bedType}</span>
-                          </div>
+                             <span>{room.size}</span>
+                             <span>
+                               {room.name.toLowerCase().includes('overnight stay')
+                                 ? `${room.minimumOccupancy}+ Persons`
+                                 : `${room.minimumOccupancy}-${room.capacity} Person`}
+                             </span>
+                             {!room.name.toLowerCase().includes('one day picnic') && (
+                               <span>{room.bedType}</span>
+                             )}
+                           </div>
                           <p className="rr-card-line mt-4 text-[0.96rem] leading-relaxed text-[#123f5c]/85 md:text-[1rem]">
                             {room.description}
                           </p>
