@@ -3,7 +3,7 @@ const navigation = [
   { label: "Rooms", href: "/rooms" },
   { label: "Dining", href: "/dining" },
   { label: "Picnic", href: "/picnic" },
-  // { label: "Corporate", href: "/corporate" },
+  { label: "Corporate", href: "/corporate" },
   { label: "Events", href: "/events" },
   { label: "Experiences", href: "/experiences" },
   { label: "Tariff", href: "/tariffs" },
