@@ -124,13 +124,6 @@ function normalizeRoom(room: RoomItem, index: number, fallbackImage: string): Li
             price: Number(room.roomOnlyPrice ?? room.pricePerNight ?? 0),
           },
         ];
-  const planPrices = Array.from(ratePlansMap.values())
-    .map((plan) => plan.amount)
-    .filter((amount) => amount > 0);
-  const priceCandidates = [...planPrices, ...syntheticDaily.map((item) => item.price).filter((value) => value > 0)];
-  if (Number(room.roomOnlyPrice ?? 0) > 0) {
-    priceCandidates.push(Number(room.roomOnlyPrice));
-  }
   const minAvailableAcrossDates =
     syntheticDaily.length > 0 ? Math.min(...syntheticDaily.map((item) => item.noOfAvailable)) : 0;
   const firstAvailableDate =
@@ -139,7 +132,7 @@ function normalizeRoom(room: RoomItem, index: number, fallbackImage: string): Li
   const rawDescription = htmlToText(room.description);
   const description = rawDescription || "Comfortable stay with resort amenities.";
   const roomName = room.name || "Room";
-  const price = priceCandidates.length > 0 ? Math.min(...priceCandidates) : 0;
+  const price = Number(room.roomOnlyPrice ?? syntheticDaily[0]?.price ?? room.pricePerNight ?? 0);
   const minOccupancy = Number(room.minimumOccupancy ?? 1) || 1;
   const maxOccupancy = Number(room.maximumOccupancy ?? 1) || 1;
   const totalRoomCount = Number(room.noOfRooms ?? 0);
