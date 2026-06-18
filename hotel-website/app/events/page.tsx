@@ -21,12 +21,12 @@ export default function EventsPage() {
       <EventsHero />
       <EventsCelebration />
       
-      <CinematicParallaxBreak 
+      {/* <CinematicParallaxBreak 
         title="Unforgettable Milestones" 
         subtitle="Take a virtual walkthrough before you visit, then tell us what kind of day you’re planning and we’ll help shape it around your group." 
         image="https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif"
       />
-      
+       */}
       {/* Section intentionally removed to avoid repeating the same event story with AI/meta commentary. */}
       {/* <EventsActivitiesShowcase /> */}
       

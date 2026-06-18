@@ -142,7 +142,7 @@ export default function DiningCulinaryExperience() {
             </div>
 
             <p className="dining-exp-contact mx-auto max-w-2xl text-sm leading-7 text-[#1f3c44]/78 sm:text-base">
-              We believe a great holiday starts with a great meal. At UK&apos;s Resort, we serve a variety of fresh, flavorful dishes from authentic Indian and Mughlai to popular Chinese favorites. Whether you&apos;re a fan of spicy non-veg curries or looking for a comforting vegetarian spread, our chefs prepare every meal to make you feel right at home.
+             We believe a great holiday starts with a great meal. At UK's Resort, we serve a variety of fresh, flavorful dishes, including authentic Indian and Mughlai cuisine, popular Chinese favorites, and a wide range of delicious vegetarian specialties. Whether you're a fan of spicy non-veg curries or looking for a comforting vegetarian spread, our chefs prepare every meal with care to make you feel right at home
             </p>
 
             <div className="mx-auto max-w-xl">

@@ -254,13 +254,13 @@ export default function EventsCelebration() {
         </div>
 
         <div className="mt-16 rounded-[2rem] border border-[#1f3c44]/10 bg-white/80 p-8 text-center shadow-[0_18px_42px_rgba(31,60,68,0.08)] sm:p-10">
-          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[#c98141]">
+          <p className="text-center text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[#c98141]">
             Plan Your Day
           </p>
-          <h3 className="mt-4 font-serif text-[2.3rem] leading-[0.96] text-[#183b48] sm:text-[3rem]">
+          <h3 className="mt-4 text-center font-serif text-[2.3rem] leading-[0.96] text-[#183b48] sm:text-[3rem]">
             What are you planning?
           </h3>
-          <p className="mx-auto mt-5 max-w-3xl text-[0.98rem] leading-8 text-[#1f3c44]/74">
+          <p className="mx-auto mt-5 max-w-3xl text-center text-[0.98rem] leading-8 text-[#1f3c44]/74">
             Tell us what you have in mind - group size, type of day, and preferred date. We&apos;ll put together a plan and quote within a few hours. No long forms. Just a WhatsApp message.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

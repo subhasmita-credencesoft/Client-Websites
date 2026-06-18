@@ -1,6 +1,7 @@
 export type PageHeroConfig = {
   title: string;
-  backgroundImage: string;
+  backgroundImage?: string;
+  backgroundImages?: string[];
   backgroundVideo?: string;
   preferVideoOnly?: boolean;
   subtitle?: string;
@@ -83,11 +84,14 @@ export const TARIFF_HERO_CONFIG: PageHeroConfig = {
 export const WEDDINGS_HERO_CONFIG: PageHeroConfig = {
   title: "Events & Activities",
   backgroundImage: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
-  backgroundVideo: "https://bookonelocal.in/cdn/Create_a_cinematic_202603191807.mp4",
+  backgroundImages: [
+    "https://bookonelocal.in/cdn/outdoor-image.jpg",
+    "/children5.avif",
+    "https://bookonelocal.in/cdn/conference3-1.jpg",
+  ],
   subtitle: "Birthdays, family outings, school visits, sports, and corporate team days built around real resort spaces and full-day fun.",
   breadcrumb: "Home / Events & Activities",
   minHeightClassName: "min-h-screen",
-  videoAriaLabel: "Watch: Events, activities, and group fun at UK's Resort, Khopoli",
 };
 
 export const WELLNESS_HERO_PAGE_CONFIG: PageHeroConfig = {

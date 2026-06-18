@@ -10,7 +10,8 @@ import BlurText from "../ui/BlurText";
 
 type PageHeroProps = {
   title: string;
-  backgroundImage: string;
+  backgroundImage?: string;
+  backgroundImages?: string[];
   backgroundVideo?: string;
   preferVideoOnly?: boolean;
   subtitle?: string;
@@ -24,6 +25,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function PageHero({
   title,
   backgroundImage,
+  backgroundImages,
   backgroundVideo,
   preferVideoOnly = false,
   subtitle,
@@ -37,6 +39,7 @@ export default function PageHero({
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const [breadcrumbVisible, setBreadcrumbVisible] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const breadcrumbCurrent = useMemo(() => {
     if (!breadcrumb) return "";
@@ -49,6 +52,14 @@ export default function PageHero({
     const frame = window.requestAnimationFrame(() => setBreadcrumbVisible(true));
     return () => window.cancelAnimationFrame(frame);
   }, []);
+
+  useEffect(() => {
+    if (!backgroundImages || backgroundImages.length <= 1) return;
+    const interval = setInterval(() => {
+      setActiveImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [backgroundImages]);
 
   useEffect(() => {
     if (!backgroundVideo) return;
@@ -109,19 +120,34 @@ export default function PageHero({
     >
       <div ref={mediaRef} className="absolute inset-0 will-change-transform">
         <div aria-hidden="true" className="absolute inset-0 bg-[#143b47]" />
-        {!preferVideoOnly ? (
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
-          />
-        ) : null}
+        {backgroundImages && backgroundImages.length > 0 ? (
+          backgroundImages.map((src, idx) => (
+            <div
+              key={src}
+              aria-hidden="true"
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out"
+              style={{
+                backgroundImage: `url(${src})`,
+                opacity: idx === activeImageIndex ? 1 : 0,
+                zIndex: idx === activeImageIndex ? 2 : 1,
+              }}
+            />
+          ))
+        ) : (
+          !preferVideoOnly && backgroundImage ? (
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${backgroundImage})` }}
+            />
+          ) : null
+        )}
         {backgroundVideo ? (
           <video
             key={backgroundVideo}
             src={backgroundVideo}
             poster={preferVideoOnly ? undefined : backgroundImage}
-            className={`absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover object-center transition-opacity duration-700 ease-out ${
+            className={`absolute left-1/2 top-1/2 h-auto min-h-full w-auto min-w-full -translate-x-1/2 -translate-y-1/2 object-cover object-center transition-opacity duration-700 ease-out z-10 ${
               videoReady ? "opacity-100" : "opacity-0"
             }`}
             autoPlay
