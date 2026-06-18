@@ -618,7 +618,7 @@ export default function PicnicDetailSection() {
                 title: "Imagicaa Theme Park",
                 distance: "15 mins away",
                 description: "One of India's premier theme parks, offering thrill rides, indoor attractions, and dining.",
-                image: "/imagica.png",
+                image: "/imagica1.png",
               },
               {
                 title: "Zenith & Paladarsi Waterfalls",
@@ -636,7 +636,7 @@ export default function PicnicDetailSection() {
                 title: "Varad Vinayak Temple",
                 distance: "10 mins away",
                 description: "The historic Ashtavinayak Ganesha temple at Mahad, visited by travelers for blessings.",
-                image: "/Astavinayakmandir.png",
+                image: "/astavinayak1.png",
               },
             ].map((item, idx) => (
               <FadeUp

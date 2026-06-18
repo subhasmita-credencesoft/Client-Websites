@@ -10,10 +10,6 @@ export type FooterQuickLink = {
   label: string;
   href: string;
 };
-
-export const TRIPADVISOR_URL =
-  "https://www.tripadvisor.in/Hotel_Review-g1568568-d4609539-Reviews-UK_s_Resort_Khopoli-Khopoli_Raigad_District_Maharashtra.html";
-
 export const FOOTER_FACEBOOK_FALLBACK =
   "https://www.facebook.com/UKsResort/?ref=hl";
 

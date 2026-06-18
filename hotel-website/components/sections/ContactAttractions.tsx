@@ -11,7 +11,7 @@ const ATTRACTIONS = [
     title: " Imagica",
     description:
       "One of India's largest theme parks, sitting right on the Mumbai-Pune Expressway just 8 km from UK's Resort. Many guests combine a full day at Imagica with an overnight stay here because the short drive back is far easier than heading home the same day.",
-    image: "/imagica.png",
+    image: "/imagica1.png",
     alt: "ADLABS Imagica amusement park rides",
     distance: "8 km • ~15 min drive",
     mood: "Theme Park",
@@ -20,7 +20,7 @@ const ATTRACTIONS = [
     title: "Ashtavinayak - Varad Vinayak Temple",
     description:
       "One of the eight sacred Ashtavinayak Ganesha temples of Maharashtra, this temple is a 10-minute walk from UK's Resort. Many guests pair an early darshan with a relaxed day back at the resort.",
-    image: "/Astavinayakmandir.png",
+    image: "/astavinayak1.png",
     alt: "Ashtavinayak Mahad Temple exterior view",
     distance: "10-min walk",
     mood: "Spiritual",

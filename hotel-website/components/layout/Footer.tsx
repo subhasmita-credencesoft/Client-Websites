@@ -177,12 +177,12 @@ export default function Footer() {
       <Container>
         <div className="grid gap-10 border-b border-white/15 py-12 sm:py-14 lg:grid-cols-[1fr_1.6fr] lg:py-16 xl:gap-16">
           <div className="footer-brand space-y-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 text-sm">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/40">
              <Image
               src="/UK's-Resort-Logo_SVG.webp" 
               alt="Property Logo"
-              width={40}
-              height={40}
+              width={64}
+              height={64}
               className="object-cover"
                />
             </div>
@@ -229,7 +229,7 @@ export default function Footer() {
           </div>
           <div className="grid gap-8 sm:gap-10 xl:grid-cols-[1.1fr_1.2fr] xl:justify-self-end xl:text-left">
 
-            <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-[minmax(220px,1.3fr)_minmax(180px,1.1fr)_minmax(170px,1fr)_minmax(150px,1fr)]">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[minmax(220px,1.3fr)_minmax(180px,1.1fr)_minmax(150px,1fr)_minmax(150px,1fr)_minmax(150px,1fr)]">
               {addressLines.length > 0 && (
                 <div className="footer-content-block">
                   <h5 className="font-serif text-lg">Address</h5>
@@ -253,6 +253,25 @@ export default function Footer() {
                       {item.label}
                     </Link>
                   ))}
+                </div>
+              </div>
+              <div className="footer-content-block">
+                <h5 className="font-serif text-lg">Legal</h5>
+                <div className="mt-4 space-y-2">
+                  <Link
+                    href="/terms"
+                    style={{ color: "rgba(255,255,255,0.75)" }}
+                    className="block text-[0.86rem] leading-7 hover:text-white transition-colors"
+                  >
+                    Terms &amp; Conditions
+                  </Link>
+                  <Link
+                    href="/privacy"
+                    style={{ color: "rgba(255,255,255,0.75)" }}
+                    className="block text-[0.86rem] leading-7 hover:text-white transition-colors"
+                  >
+                    Privacy Policy
+                  </Link>
                 </div>
               </div>
               <div className="footer-content-block">
@@ -299,7 +318,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="footer-bottom flex flex-wrap items-center justify-center gap-4 py-6 text-center text-[0.86rem] text-white/65 sm:text-xs">
+        <div className="footer-bottom flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-6 text-center text-[0.86rem] text-white/65 sm:text-xs">
           <p className="max-w-3xl leading-6">
             {" "}
             Designed and Developed By{" "}
