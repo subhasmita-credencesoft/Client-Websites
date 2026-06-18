@@ -12,7 +12,7 @@ export const CONTACT_HIGHLIGHTS: ContactHighlight[] = [
   },
   {
     title: "Amenities",
-    subtitle: "Fitness center, swimming pool, lounge & shop",
+    subtitle: "Fitness center, Water park, lounge & shop",
     image: "/images/room_3.jpg",
   },
   {

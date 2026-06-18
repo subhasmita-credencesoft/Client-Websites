@@ -67,9 +67,9 @@ const TIMELINE_STEPS = [
   },
   {
     time: "11:00 AM",
-    title: "Water Park & Swimming Pools",
-    description: "Dive into our large swimming pools and thrill slides. Join the high-energy rain dance session with a live DJ, overhead sprays, and popular dance tracks.",
-    highlight: "Slides, pools & rain dance DJ"
+    title: "Water Park Play fun ",
+    description: "Dive into our large Water park and thrill slides. Join the high-energy rain dance , overhead sprays, and popular dance tracks.",
+    highlight: "Slides, play fun  & rain dance music"
   },
   {
     time: "01:30 PM",
@@ -80,13 +80,13 @@ const TIMELINE_STEPS = [
   {
     time: "03:30 PM",
     title: "Lawn Sports & Indoor Games",
-    description: "Challenge your group to box cricket, volleyball, or badminton. Head inside to our AC recreation room for table tennis, carrom, and board games.",
+    description: "Challenge your group to box cricket, volleyball, or badminton. Head inside to our  carrom, and board games.",
     highlight: "Field games & indoor recreation"
   },
   {
     time: "05:00 PM",
     title: "Evening High Tea & Departure",
-    description: "Wrap up your outing with freshly made evening tea, coffee, and hot local snacks like pakodas, before taking a scenic drive home.",
+    description: "Wrap up your outing with freshly made evening tea, coffee, and hot local snacks  before taking a scenic drive home.",
     highlight: "Tea, snacks & final memories"
   }
 ];
@@ -95,11 +95,11 @@ const TIMELINE_STEPS = [
 const FAQS = [
   {
     q: "What are the timings for the One Day Picnic package at UK's Resort?",
-    a: "Our standard day outing package runs from 9:30 AM to 6:00 PM. This provides a full day to enjoy the breakfast buffet, pools, slides, lunch, games, and high tea before departure."
+    a: "Our standard day outing package runs from 9:30 AM to 6:00 PM. This provides a full day to enjoy the breakfast buffet, water park, slides, lunch, games, and high tea before departure."
   },
   {
     q: "Is access to the water park and swimming pool included in the package?",
-    a: "Yes! Full access to all slides, splash pools, the family swimming pool, and the daily rain dance session is completely included in your one-day picnic pass."
+    a: "Yes! Full access to all slides, the water park , and the daily rain dance session is completely included in your one-day picnic pass."
   },
   {
     q: "What type of food options are available? Do you serve Jain meals?",
@@ -111,7 +111,7 @@ const FAQS = [
   },
   {
     q: "Are there changing rooms and locker facilities available?",
-    a: "Absolutely. We provide clean, separate changing rooms and shower facilities for ladies and gentlemen. Secure lockers are also available to keep your personal belongings safe while you are in the pools."
+    a: "Absolutely. We provide clean, separate changing rooms and shower facilities for ladies and gentlemen. Secure lockers are also available to keep your personal belongings safe while you are in the water park."
   },
   {
     q: "Do you offer special discounts for corporate team outings or large groups?",
@@ -119,11 +119,11 @@ const FAQS = [
   },
   {
     q: "Is the resort safe for school picnics and young students?",
-    a: "Safety is our priority. We are a trusted school picnic destination, featuring certified lifeguards at all pools, perimeter security, first-aid support, and supervised play zones."
+    a: "Safety is our priority. We are a trusted school picnic destination, featuring certified lifeguards at  Water park, perimeter security, first-aid support, and supervised play zones."
   },
   {
-    q: "What should we wear for the water park and swimming pools?",
-    a: "Nylon or synthetic swimwear is strictly mandatory for accessing the pools and slides. You can bring your own swimwear or purchase it at the resort store."
+    q: "What should we wear for the water park ?",
+    a: "Nylon or synthetic swimwear is mandatory for access to the water park attractions and slides. Guests may bring their own swimwear or purchase it from the resort store"
   },
   {
     q: "Are there comfortable day rooms available if we need to rest?",
@@ -133,14 +133,14 @@ const FAQS = [
     q: "Is there enough parking space at the resort?",
     a: "Yes, we have a very large, secure, and complimentary parking lot that can accommodate private cars, traveler vans, and school/corporate buses easily."
   },
-  {
-    q: "What activities are available besides the pools?",
-    a: "We offer outdoor sports (box cricket, volleyball, badminton), indoor games (table tennis, carrom, chess, board games), and adventure activities like archery and climbing wall setups."
-  },
-  {
-    q: "How far is the resort from Mumbai and Pune?",
-    a: "UK's Resort is located in Khopoli, Maharashtra, roughly 85 km from Mumbai and 80 km from Pune, making it a convenient 1.5 to 2-hour drive via the Expressway."
-  }
+{
+  q: "What activities are available besides the Water Park?",
+  a: "Guests can enjoy rain dance, kids' play areas, relaxation spaces and other recreational activities available within the resort."
+},
+{
+  q: "How far is the resort from Mumbai and Pune?",
+  a: "UK's Resort is conveniently located in Khopoli, Maharashtra, between Mumbai and Pune. It is easily accessible via the Mumbai–Pune Expressway, making it an ideal destination for a day trip or weekend getaway."
+}
 ];
 
 export default function PicnicDetailSection() {
@@ -171,7 +171,7 @@ export default function PicnicDetailSection() {
           </FadeUp>
           <FadeUp delay={200}>
             <p className="text-lg md:text-xl text-pine/80 font-light leading-relaxed mb-8">
-              Escape the concrete hustle and discover one of the most popular one-day picnic destinations near Mumbai and Pune. Tucked away in the serene greenery of Khopoli, UK&apos;s Resort offers a refreshing day outing that brings together dynamic adventure, swimming pool leisure, a full-scale water park, and warm hospitality.
+              Escape the concrete hustle and discover one of the most popular one-day picnic destinations near Mumbai and Pune. Tucked away in the serene greenery of Khopoli, UK&apos;s Resort offers a refreshing day outing that brings together dynamic adventure, Water park, a full-scale water park, and warm hospitality.
             </p>
           </FadeUp>
           <FadeUp delay={300}>
@@ -208,7 +208,7 @@ export default function PicnicDetailSection() {
           <div className="lg:col-span-5">
             <FadeUp className="relative h-[300px] sm:h-[400px] rounded-[2rem] overflow-hidden shadow-[0_16px_40px_rgba(31,60,68,0.12)]">
               <Image
-                src="/uk1.avif"
+                src="/uk2.avif"
                 alt="Lush lawns and nature views at UK's Resort"
                 fill
                 className="object-cover"
@@ -274,8 +274,8 @@ export default function PicnicDetailSection() {
           <div className="lg:col-span-5 lg:order-2">
             <FadeUp className="relative h-[300px] sm:h-[400px] rounded-[2rem] overflow-hidden shadow-[0_16px_40px_rgba(31,60,68,0.12)] animate-ken-burns">
               <Image
-                src="/picnic.avif"
-                alt="Winding water slides and swimming pools"
+                src="/uk1.avif"
+                alt="Winding water slides & play fun"
                 fill
                 className="object-cover"
                 sizes="(max-w-1024px) 100vw, 40vw"
@@ -290,7 +290,7 @@ export default function PicnicDetailSection() {
             </FadeUp>
             <FadeUp delay={50}>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-pine leading-tight">
-                Splash into the Blue: Thrill Slides, Splash Pools &amp; DJ Music
+                Splash into the Blue: Thrilling Water Slides & Attractions
               </h2>
             </FadeUp>
             <FadeUp delay={100}>
@@ -381,6 +381,7 @@ export default function PicnicDetailSection() {
         </div>
 
         {/* ── SECTION 6: IDEAL FOR CORPORATE OUTINGS ── */}
+        {/* Commented out as per request
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24 sm:mb-32">
           <div className="lg:col-span-7 space-y-6">
             <FadeUp>
@@ -404,7 +405,6 @@ export default function PicnicDetailSection() {
               </p>
             </FadeUp>
 
-            {/* Corporate Outing Amenities List */}
             <FadeUp delay={200} className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               {[
                 ["🏢", "AC Conference Halls", "AV systems, projector screens, and private spaces for executive briefings and workshops."],
@@ -434,13 +434,14 @@ export default function PicnicDetailSection() {
             </FadeUp>
           </div>
         </div>
+        */}
 
         {/* ── SECTION 7: SCHOOL & COLLEGE PICNICS ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24 sm:mb-32">
           <div className="lg:col-span-5 lg:order-2">
             <FadeUp className="relative h-[300px] sm:h-[400px] rounded-[2rem] overflow-hidden shadow-[0_16px_40px_rgba(31,60,68,0.12)]">
               <Image
-                src="/uk2.avif"
+                src="/uk1.avif"
                 alt="School group enjoying pool and water slides"
                 fill
                 className="object-cover"
@@ -461,7 +462,7 @@ export default function PicnicDetailSection() {
             </FadeUp>
             <FadeUp delay={100}>
               <p className="text-[#31464f] font-light text-[17px] leading-[1.8]">
-                We are proud to be a trusted school picnic destination for students of all ages. Our large property is secure and supervised, allowing students to play cricket, swim, and run around on our green lawns under the watchful eye of teachers and resort staff.
+                We are proud to be a trusted school picnic destination for students of all ages. Our large property is secure and supervised, allowing students to play cricket, and run around on our green lawns under the watchful eye of teachers and resort staff.
               </p>
             </FadeUp>
             <FadeUp delay={150}>
@@ -568,7 +569,7 @@ export default function PicnicDetailSection() {
               },
               {
                 title: "Outstanding Value",
-                description: "Covers entry, pools, slides, breakfast, lunch, and high tea at competitive package rates.",
+                description: "Covers entry, Water play & fun, slides, breakfast, lunch, and high tea at competitive package rates.",
                 icon: "💰",
               },
             ].map((item, idx) => (

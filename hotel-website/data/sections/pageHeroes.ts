@@ -83,7 +83,7 @@ export const TARIFF_HERO_CONFIG: PageHeroConfig = {
 export const WEDDINGS_HERO_CONFIG: PageHeroConfig = {
   title: "Events & Activities",
   backgroundImage: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
-  backgroundVideo: "https://bookonelocal.in/cdn/Experience-Page-Video.mp4",
+  backgroundVideo: "https://bookonelocal.in/cdn/Create_a_cinematic_202603191807.mp4",
   subtitle: "Birthdays, family outings, school visits, sports, and corporate team days built around real resort spaces and full-day fun.",
   breadcrumb: "Home / Events & Activities",
   minHeightClassName: "min-h-screen",

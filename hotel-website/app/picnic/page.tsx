@@ -6,7 +6,7 @@ import { createPageMetadata } from "../../lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "One Day Picnic at UK's Resort, Khopoli | Resort near Mumbai",
   description:
-    "Escape to UK's Resort, Khopoli for the ultimate one day picnic. Enjoy water park access, pools, rain dance, games, and buffet meals near Mumbai & Pune.",
+    "Escape to UK's Resort, Khopoli for the ultimate one day picnic. Enjoy water park access, rain dance, games, and buffet meals near Mumbai & Pune.",
   path: "/picnic",
   image: "/picnic.avif",
 });

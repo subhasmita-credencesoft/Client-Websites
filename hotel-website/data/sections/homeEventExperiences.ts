@@ -42,7 +42,7 @@ export const HOME_EVENT_PANELS: HomeEventPanel[] = [
     id: "picnic",
     title: "UK RESORT PICNICS",
     subtitle: "Family & Group Experiences",
-    copy: "Enjoy one-day and overnight picnics with poolside fun, lawn games, music, and buffet experiences designed for all age groups.",
+    copy: "Enjoy one-day and overnight picnics with water play fun, lawn games, music, and buffet experiences designed for all age groups.",
     image: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
     mobileImage: "/images/Water-Park-13.jpg",
     href: "/experiences",

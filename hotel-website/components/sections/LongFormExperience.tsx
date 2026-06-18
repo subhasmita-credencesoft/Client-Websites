@@ -55,7 +55,7 @@ function FadeUp({
 const ACTIVITIES = [
   {
     id: "waterpark",
-    title: "Water Park & Pools",
+    title: "Water Park play & fun",
     emoji: "🏊",
     subtitle: "Splash into Endless Water Fun",
     description:
@@ -180,7 +180,7 @@ export default function LongFormExperience() {
             </FadeUp>
             <FadeUp delay={200}>
               <p className="text-[#31464f] font-light text-[17px] leading-[1.8]">
-                With a dedicated children&apos;s play area, safe swimming pools, and engaging outdoor spaces, family members can participate in board games, cricket, or simply relax under the shade of trees. Our thoughtfully designed rooms provide modern comfort, spacious layouts, and cozy features to ensure your family enjoys a deeply restful stay.
+                With a dedicated children&apos;s play area, safe water park fun & play, and engaging outdoor spaces, family members can participate in board games, cricket, or simply relax under the shade of trees. Our thoughtfully designed rooms provide modern comfort, spacious layouts, and cozy features to ensure your family enjoys a deeply restful stay.
               </p>
             </FadeUp>
           </div>
@@ -278,7 +278,7 @@ export default function LongFormExperience() {
           </FadeUp>
           <FadeUp delay={300}>
             <p className="text-[#31464f] font-light text-[17px] leading-[1.8]">
-              Spend your afternoon relaxing on comfortable poolside loungers, reading a book, or breathing in the fresh mountain air. Free from the city rush and daily stressors, this environment provides the mental reset you need to return home fully recharged.
+              Spend your afternoon relaxing on comfortable Water park side loungers, reading a book, or breathing in the fresh mountain air. Free from the city rush and daily stressors, this environment provides the mental reset you need to return home fully recharged.
             </p>
           </FadeUp>
         </div>
@@ -411,7 +411,7 @@ export default function LongFormExperience() {
               {
                 title: "Impeccable Cleanliness",
                 description:
-                  "Well-maintained facilities, clean swimming pools, and spotless, cozy room accommodations.",
+                  "Well-maintained facilities, water park, and spotless, cozy room accommodations.",
                 icon: "✨",
               },
               {

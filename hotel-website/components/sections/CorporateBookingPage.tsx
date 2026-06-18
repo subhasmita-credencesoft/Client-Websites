@@ -190,7 +190,7 @@ export default function CorporateBookingPage() {
         <Container>
 
           {/* ── Top: eyebrow + full-width title + copy ── */}
-          <div className="max-w-4xl">
+          <div className="mx-auto max-w-3xl text-center">
             <p className="corp-kicker text-[0.68rem] font-bold uppercase tracking-[0.42em] text-[#c67a3a]">
               Business Stays
             </p>
@@ -199,7 +199,7 @@ export default function CorporateBookingPage() {
                 Seamless Corporate<br className="hidden sm:block" /> Offsites and Conferences.
               </h2>
             </div>
-            <p className="corp-copy mt-6 max-w-2xl text-[1.02rem] leading-8 text-[#1f3c44]/65">
+            <p className="corp-copy mt-6 mx-auto max-w-2xl text-[1.02rem] leading-8 text-[#1f3c44]/65">
               UK&apos;s Resort has hosted corporate groups from Mumbai, Pune, and across Maharashtra for over a decade —
               from leadership retreats to large team conferences. Comfortable accommodation, event-ready spaces,
               delicious food, and space for your team to actually decompress.
@@ -345,6 +345,7 @@ export default function CorporateBookingPage() {
       </section>
 
       {/* ── PACKAGES ── */}
+      {/* Commented out as per request
       <section className="corp-section bg-[#1f3c44] py-16 sm:py-20 md:py-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-12">
@@ -389,6 +390,7 @@ export default function CorporateBookingPage() {
           </div>
         </Container>
       </section>
+      */}
 
       {/* ── EXPERIENCE FLOW / TIMELINE ── */}
       <section className="corp-section bg-[#f7f3ec] py-16 sm:py-20 md:py-24">

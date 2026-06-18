@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 import Container from "../ui/Container";
 
 const activities = [
-  { title: "Water fun & play", image: "/images/main-image.JPG", desc: "Thrilling slides & pools" },
+  { title: "Water fun & play", image: "/images/main-image.JPG", desc: "Thrilling slides & water park" },
   { title: "Natural Cricket Turf", image: "/sports5.avif", desc: "Experience the thrill of cricket on a professionally maintained natural turf, perfect for friendly matches, practice sessions, and tournaments." },
   { title: "Toy Train (Fun & Play Park)", image: "/children6.avif", desc: "Take a joyful ride through the park with a fun-filled toy train experience designed for entertainment and family enjoyment. " },
   { title: "Angry bird ", image: "/sports2.avif", desc: "Action-packed group fun" },

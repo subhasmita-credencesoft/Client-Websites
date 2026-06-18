@@ -26,10 +26,10 @@ const experiences = [
       "Whatever you love doing, you will find an incredible array of choices at the resort.",
   },
   {
-    title: "Pools",
+    title: "Water park",
     image: "children7.avif",
     description:
-      "Sun-soaked days by the water, with serene pools and golden shoreline escapes.",
+      "Sun-soaked days by the water play fun  and golden shoreline escapes.",
   },
   {
     title: "Adventure",
