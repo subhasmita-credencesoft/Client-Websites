@@ -98,7 +98,7 @@ const FAQS = [
     a: "Our standard day outing package runs from 9:30 AM to 6:00 PM. This provides a full day to enjoy the breakfast buffet, water park, slides, lunch, games, and high tea before departure."
   },
   {
-    q: "Is access to the water park and swimming pool included in the package?",
+    q: "Is access to the water park  included in the package?",
     a: "Yes! Full access to all slides, the water park , and the daily rain dance session is completely included in your one-day picnic pass."
   },
   {
@@ -295,7 +295,7 @@ export default function PicnicDetailSection() {
             </FadeUp>
             <FadeUp delay={100}>
               <p className="text-[#31464f] font-light text-[17px] leading-[1.8]">
-                At the heart of the resort is our water park, designed to bring out the inner child in everyone. Guests can slide down our winding water slides, float in the clean family swimming pool, or watch their little ones enjoy the safe, shallow splash pools. It is a fantastic water park resort near Mumbai option for a refreshing day in the sun.
+                At the heart of the resort is our water park, designed to bring out the inner child in everyone. Guests can slide down our winding water slides, float in the clean family Water park, or watch their little ones enjoy the safe, shallow splash pools. It is a fantastic water park resort near Mumbai option for a refreshing day in the sun.
               </p>
             </FadeUp>
             <FadeUp delay={150}>
@@ -544,7 +544,7 @@ export default function PicnicDetailSection() {
               },
               {
                 title: "Water Park Fun",
-                description: "Features winding thrill slides, a clean family pool, and daily rain dance sessions with a live DJ.",
+                description: "Features winding thrill slides and daily rain dance sessions with a live DJ.",
                 icon: "🌊",
               },
               {
@@ -734,7 +734,7 @@ export default function PicnicDetailSection() {
           </FadeUp>
           <FadeUp delay={100}>
             <p className="text-[#31464f] font-light text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-              Our one day picnic packages offer fantastic value for families, friends, schools, and corporate outings. Spend a memorable day in the Sahyadri mountains with pools, slides, outdoor sports, and a multi-cuisine buffet spread. Book your tickets online today or contact our reservations desk for custom group packages.
+              Our one day picnic packages offer fantastic value for families, friends, schools, and corporate outings. Spend a memorable day in the Sahyadri mountains with slides, outdoor sports, and a multi-cuisine buffet spread. Book your tickets online today or contact our reservations desk for custom group packages.
             </p>
           </FadeUp>
           <FadeUp delay={150} className="flex flex-wrap justify-center gap-4 pt-4">

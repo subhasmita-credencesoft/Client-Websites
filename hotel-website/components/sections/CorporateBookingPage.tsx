@@ -26,7 +26,7 @@ const HIGHLIGHTS = [
   {
     title: "Team Building & Downtime",
     description:
-      "Between sessions, teams can use the pool, lawns, Water Fun & Play, and activity zones for unstructured time that actually builds teams.",
+      "Between sessions, teams can use the  lawns, Water Fun & Play, and activity zones for unstructured time that actually builds teams.",
   },
 ];
 
@@ -41,7 +41,7 @@ const VENUE_CAPACITIES = [
   { name: "Utsav Lawn", capacity: "400 Guests", area: "5000 sq ft", feature: null },
   { name: "Sanskriti Banquet", capacity: "40 Guests", area: "1200 sq ft", feature: "AC" },
   { name: "Sanskriti Lawn", capacity: "200 Guests", area: "2500 sq ft", feature: null },
-  { name: "Pool Side Lawns", capacity: "200 Guests", area: "1500 sq ft", feature: null },
+  { name: "Waterpark Side Lawns", capacity: "200 Guests", area: "1500 sq ft", feature: null },
   { name: "Lounge", capacity: "40 Guests", area: "600 sq ft", feature: null },
 ];
 
@@ -105,7 +105,7 @@ const FEATURES = [
   {
     title: "Team Building Activities",
     description:
-      "Structured and informal activities designed to improve collaboration, morale, and team bonding beyond the boardroom.",
+      "Interactive team experiences designed to build stronger collaboration and elevate employee engagement.",
     image: "https://bookonelocal.in/cdn/Copy+of+IMG_3968.avif",
   },
   {

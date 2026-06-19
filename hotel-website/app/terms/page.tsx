@@ -88,7 +88,7 @@ const policySections = [
           "Right of admission reserved with management",
           "50% advance to be paid at time of booking",
           "Balance should be paid before 08 days from arrival date",
-          "Swimming Costumes are compulsory to enter the swimming pool & water Park",
+          "Swimming Costumes are compulsory to enter the water Park",
           "Outside eatables & beverages are not allowed",
         ].map((item) => (
           <div key={item} className="flex items-start gap-3 rounded-xl border border-[#1f3c44]/8 bg-white p-4 shadow-sm transition hover:border-[#c67a3a]/20 hover:shadow-md">

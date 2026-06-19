@@ -1,9 +1,9 @@
 import type { PropertyApiResponse } from "../../types/property";
 
 export type FooterSocialItem = {
-  label: "Facebook" | "Instagram" | "Twitter" | "YouTube" | "LinkedIn";
+  label: "Facebook" | "Instagram" | "Twitter" | "YouTube" | "LinkedIn" | "WhatsApp";
   href: string;
-  icon: "facebook" | "instagram" | "twitter" | "youtube" | "linkedin";
+  icon: "facebook" | "instagram" | "twitter" | "youtube" | "linkedin" | "whatsapp";
 };
 
 export type FooterQuickLink = {
@@ -26,6 +26,8 @@ export function buildFooterSocialLinks(
   property?: PropertyApiResponse | null,
 ): FooterSocialItem[] {
   const socialLinks = property?.socialMediaLinks?.[0];
+  const whatsappNumber = property?.whatsApp || "+918779814559";
+  const whatsappDigits = whatsappNumber.replace(/\D/g, "");
 
   return [
     {
@@ -52,6 +54,11 @@ export function buildFooterSocialLinks(
       label: "YouTube" as const,
       href: socialLinks?.youtube || "",
       icon: "youtube" as const,
+    },
+    {
+      label: "WhatsApp" as const,
+      href: `https://wa.me/${whatsappDigits}`,
+      icon: "whatsapp" as const,
     },
   ].filter((item) => item.href);
 }

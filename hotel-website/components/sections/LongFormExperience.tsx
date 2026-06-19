@@ -59,7 +59,7 @@ const ACTIVITIES = [
     emoji: "🏊",
     subtitle: "Splash into Endless Water Fun",
     description:
-      "Our water park resort near Mumbai features high-thrill water slides, a family pool, and dedicated shallow swimming zones for children. Under the supervision of trained lifeguards, it's the perfect environment to beat the heat and spend quality time with family and friends.",
+      "Our water park resort near Mumbai features high-thrill water slides, and dedicated shallow   Water fun & play zones for children. Under the supervision of trained lifeguards, it's the perfect environment to beat the heat and spend quality time with family and friends.",
     image: "/children5.avif",
   },
   {
@@ -175,7 +175,7 @@ export default function LongFormExperience() {
             </FadeUp>
             <FadeUp delay={100}>
               <p className="text-[#31464f] font-light text-[17px] leading-[1.8]">
-                For families looking to spend quality time together, UK&apos;s Resort is the ultimate sanctuary. Recognized as a top family resort in Khopoli, we offer an environment that keeps all generations happy. Grandparents can enjoy quiet strolls along paved garden pathways, parents can unwind by the pool, and kids can safely explore our open green lawns.
+                For families looking to spend quality time together, UK&apos;s Resort is the ultimate sanctuary. Recognized as a top family resort in Khopoli, we offer an environment that keeps all generations happy. Grandparents can enjoy quiet strolls along paved garden pathways, parents can unwind by the Water park, and kids can safely explore our open green lawns.
               </p>
             </FadeUp>
             <FadeUp delay={200}>
