@@ -69,7 +69,7 @@ const ACTIVITIES = [
     subtitle: "Dance Under the Cool Sprays",
     description:
       "Experience our energetic rain dance sessions. Outfitted with a professional sound system, overhead water sprinklers, and a live DJ, this interactive experience brings families and friends together for shared laughter and dance.",
-    image: "/raindance.png",
+    image: "/raindance11.png",
   },
   {
     id: "indoor",

@@ -85,6 +85,7 @@ function CelebrationBlock({ block, index }: { block: WeddingsCelebrationBlock; i
             >
               {block.id === "sports" ? "See activities list" : block.id === "corporate" ? "Get a group quote" : "Enquire via WhatsApp"}
             </a>
+            {/* Virtual Tour commented out
             <a
               href={WEDDINGS_CELEBRATION_MAP_LINKS[block.virtualTourKey]}
               target="_blank"
@@ -101,6 +102,7 @@ function CelebrationBlock({ block, index }: { block: WeddingsCelebrationBlock; i
               </svg>
               <span>Virtual Tour</span>
             </a>
+            */}
           </div>
         </div>
       </div>
