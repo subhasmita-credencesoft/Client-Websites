@@ -37,12 +37,11 @@ const STATS = [
 ];
 
 const VENUE_CAPACITIES = [
-  { name: "Utsav Banquet", capacity: "250 Guests", area: "2500 sq ft", feature: "AC" },
-  { name: "Utsav Lawn", capacity: "400 Guests", area: "5000 sq ft", feature: null },
-  { name: "Sanskriti Banquet", capacity: "40 Guests", area: "1200 sq ft", feature: "AC" },
-  { name: "Sanskriti Lawn", capacity: "200 Guests", area: "2500 sq ft", feature: null },
-  { name: "Waterpark Side Lawns", capacity: "200 Guests", area: "1500 sq ft", feature: null },
-  { name: "Lounge", capacity: "40 Guests", area: "600 sq ft", feature: null },
+  { name: "Front Hall — Fun Fest (Fun Carnival)", capacity: "70 PAX", area: "", feature: null },
+  { name: "Family Resturant — Family Flair (Event with Family)", capacity: "150 PAX", area: "", feature: null },
+  { name: "Main Hall & Lawn — Pure Palet (Fine Pallets)", capacity: "1000 PAX", area: "", feature: null },
+  { name: "Big Lawn — Grand Grass (Grand Yard)", capacity: "2000 PAX", area: "", feature: null },
+  { name: "Conference Hall — Magic Meet (Magical Meetings)", capacity: "50 PAX", area: "", feature: null },
 ];
 
 const PACKAGES = [
