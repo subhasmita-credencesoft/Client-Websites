@@ -56,14 +56,14 @@ const TIMELINE_STEPS = [
   {
     time: "09:30 AM",
     title: "Arrival & Warm Welcome",
-    description: "Guests arrive at our lush property, step into the airy lobby, and enjoy a traditional kokum drink. Settle into your day base and get ready for a fun-filled day out.",
-    highlight: "Welcome drink & entry processes"
+    description: "Guests arrive at our lush property, step into the airy lobby, and enjoy . Settle into your day base and get ready for a fun-filled day out.",
+    highlight: " entry processes"
   },
   {
     time: "10:00 AM",
     title: "Hearty Breakfast Spread",
-    description: "Fuel your day with a fresh, hot breakfast buffet featuring live dosa counters, authentic local misal pav, idlis, tea, and coffee in our spacious restaurant.",
-    highlight: "Live counters & local specialties"
+    description: "Fuel your day with a fresh, hot breakfast buffet featuring  authentic local misal pav, tea, and coffee in our spacious restaurant.",
+    highlight: "break fast "
   },
   {
     time: "11:00 AM",
@@ -86,7 +86,7 @@ const TIMELINE_STEPS = [
   {
     time: "05:00 PM",
     title: "Evening High Tea & Departure",
-    description: "Wrap up your outing with freshly made evening tea, coffee, and hot local snacks  before taking a scenic drive home.",
+    description: "Wrap up your outing with freshly made evening tea, coffee, and Sandwich  before taking a scenic drive home.",
     highlight: "Tea, snacks & final memories"
   }
 ];
