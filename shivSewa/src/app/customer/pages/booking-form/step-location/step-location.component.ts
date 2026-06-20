@@ -564,7 +564,6 @@ this.pickupAutocomplete.getPlacePredictions(
     );
   }
 
-  const state = this.selectedPickup.service_address?.state?.toLowerCase();
   validatePickup() {
     if (!this.selectedPickup) {
       this.pickup = '';
