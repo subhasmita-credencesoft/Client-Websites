@@ -548,37 +548,68 @@ this.pickupAutocomplete.getPlacePredictions(
 
 
 
-validatePickup() {
-  if (!this.selectedPickup) {
-    this.pickup = '';
-    return;
+  isWithinAllowedLocations(loc: GeoLocation): boolean {
+    if (!loc || !loc.name) return false;
+    const nameLower = loc.name.toLowerCase();
+    const city = loc.service_address?.city?.toLowerCase() || '';
+    const suburb = loc.service_address?.suburb?.toLowerCase() || '';
+    const locality = loc.service_address?.locality?.toLowerCase() || '';
+
+    const allowedKeywords = ['mumbai', 'navi mumbai', 'panvel', 'thane'];
+    return allowedKeywords.some(keyword => 
+      nameLower.includes(keyword) || 
+      city.includes(keyword) || 
+      suburb.includes(keyword) || 
+      locality.includes(keyword)
+    );
   }
 
   const state = this.selectedPickup.service_address?.state?.toLowerCase();
+  validatePickup() {
+    if (!this.selectedPickup) {
+      this.pickup = '';
+      return;
+    }
 
-  if (state !== 'maharashtra') {
-    this.pickup = '';
-    this.selectedPickup = undefined;
+    if (!this.isWithinAllowedLocations(this.selectedPickup)) {
+      this.pickup = '';
+      this.selectedPickup = undefined;
+      this.pickupSuggestions = [];
+      return;
+    }
+
+    const state = this.selectedPickup.service_address?.state?.toLowerCase();
+
+    if (state !== 'maharashtra') {
+      this.pickup = '';
+      this.selectedPickup = undefined;
+    }
+
+    this.pickupSuggestions = [];
   }
 
-  this.pickupSuggestions = [];
-}
+  validateDrop() {
+    if (!this.selectedDrop) {
+      this.dropoff = '';
+      return;
+    }
 
-validateDrop() {
-  if (!this.selectedDrop) {
-    this.dropoff = '';
-    return;
+    if (this.selectedTripType === 'pickup-drop' && !this.isWithinAllowedLocations(this.selectedDrop)) {
+      this.dropoff = '';
+      this.selectedDrop = undefined;
+      this.dropSuggestions = [];
+      return;
+    }
+
+    const state = this.selectedDrop.service_address?.state?.toLowerCase();
+
+    if (state !== 'maharashtra') {
+      this.dropoff = '';
+      this.selectedDrop = undefined;
+    }
+
+    this.dropSuggestions = [];
   }
-
-  const state = this.selectedDrop.service_address?.state?.toLowerCase();
-
-  if (state !== 'maharashtra') {
-    this.dropoff = '';
-    this.selectedDrop = undefined;
-  }
-
-  this.dropSuggestions = [];
-}
 
 
 

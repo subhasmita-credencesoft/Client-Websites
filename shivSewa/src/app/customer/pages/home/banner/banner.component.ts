@@ -145,6 +145,7 @@ export class BannerComponent {
 
   selectedPickup?: GeoLocation;
   selectedDrop?: GeoLocation;
+  showLocationModal = false;
 
   pickupAutocomplete!: google.maps.places.AutocompleteService;
   dropAutocomplete!: google.maps.places.AutocompleteService;
@@ -199,6 +200,10 @@ export class BannerComponent {
 
   // Trip Type Selection
   selectTripType(type: TripType) {
+    if (type === 'pickup-drop' && this.selectedDrop && !this.isWithinAllowedLocations(this.selectedDrop)) {
+      this.showLocationModal = true;
+      return;
+    }
     this.selectedTripType = type;
     this.setDefaultCouponForTrip();
     this.resetForm();
@@ -361,6 +366,14 @@ export class BannerComponent {
         }
       };
 
+      if (!this.isWithinAllowedLocations(loc)) {
+        this.pickupLocation = '';
+        this.selectedPickup = undefined;
+        this.pickupError = 'Pickup is only available from Mumbai, Navi Mumbai, Panvel, and Thane';
+        this.clearErrorAfterDelay('pickup');
+        return;
+      }
+
       this.selectedPickup = loc;
       this.pickupLocation = loc.name;
       this.pickupSuggestions = [];
@@ -393,6 +406,14 @@ export class BannerComponent {
       this.dropLocation = loc.name;
       this.dropSuggestions = [];
       this.bookingService.setCurrent({ dropoff: loc });
+
+      if (this.selectedTripType === 'pickup-drop' && !this.isWithinAllowedLocations(loc)) {
+        this.showLocationModal = true;
+        this.selectedTripType = 'outstation';
+        this.setDefaultCouponForTrip();
+        this.bookingService.patchDeep({ tripTypeValue: 'outstation' });
+      }
+
       if (this.selectedPickup && this.selectedDrop) {
         this.calculateDistanceAndDuration(this.selectedPickup, this.selectedDrop);
       }
@@ -469,6 +490,14 @@ export class BannerComponent {
             },
           };
 
+          if (!this.isWithinAllowedLocations(loc)) {
+            this.pickupLocation = '';
+            this.selectedPickup = undefined;
+            this.pickupError = 'Pickup is only available from Mumbai, Navi Mumbai, Panvel, and Thane';
+            this.clearErrorAfterDelay('pickup');
+            return;
+          }
+
           this.selectedPickup = loc;
           this.pickupLocation = loc.name;
           this.pickupSuggestions = [];
@@ -479,12 +508,36 @@ export class BannerComponent {
     );
   }
 
+  isWithinAllowedLocations(loc: GeoLocation): boolean {
+    if (!loc || !loc.name) return false;
+    const nameLower = loc.name.toLowerCase();
+    const city = loc.service_address?.city?.toLowerCase() || '';
+    const suburb = loc.service_address?.suburb?.toLowerCase() || '';
+    const locality = loc.service_address?.locality?.toLowerCase() || '';
+
+    const allowedKeywords = ['mumbai', 'navi mumbai', 'panvel', 'thane'];
+    return allowedKeywords.some(keyword => 
+      nameLower.includes(keyword) || 
+      city.includes(keyword) || 
+      suburb.includes(keyword) || 
+      locality.includes(keyword)
+    );
+  }
+
   validatePickup() {
     this.pickupError = '';
 
     if (!this.selectedPickup) {
       this.pickupLocation = '';
       this.pickupError = 'Please select a pickup location';
+      this.clearErrorAfterDelay('pickup');
+      return;
+    }
+
+    if (!this.isWithinAllowedLocations(this.selectedPickup)) {
+      this.pickupLocation = '';
+      this.selectedPickup = undefined;
+      this.pickupError = 'Pickup is only available from Mumbai, Navi Mumbai, Panvel, and Thane';
       this.clearErrorAfterDelay('pickup');
       return;
     }

@@ -177,3 +177,15 @@
     </form>
   </div>
 </section>
+
+<!-- Warning Modal for out-of-bounds drop location -->
+<div class="custom-modal-overlay" *ngIf="showLocationModal" (click)="showLocationModal = false">
+  <div class="custom-modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-icon-wrapper">
+      <i class="fa-solid fa-circle-exclamation warning-icon"></i>
+    </div>
+    <h3>Trip Type Switched</h3>
+    <p>Pickup & Drop is not possible for locations outside Mumbai, Navi Mumbai, Panvel, and Thane. We have automatically changed your trip type to <strong>Outstation</strong>.</p>
+    <button type="button" class="btn-modal-close" (click)="showLocationModal = false">Okay, Got it</button>
+  </div>
+</div>
