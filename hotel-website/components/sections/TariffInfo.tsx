@@ -250,6 +250,16 @@ export default function TariffInfo() {
 
               <p className="mt-5 text-[0.97rem] leading-7 text-[#1A4A50]">{TARIFF_DAY_PICNIC_HIGHLIGHT}</p>
 
+              <a
+                href={BOOKING_ENGINE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-5 flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#C49A3C] to-[#D4B05A] px-6 py-4 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-[#0D2B2F] shadow-[0_8px_24px_rgba(196,154,60,0.35)] transition hover:from-[#D4B05A] hover:to-[#C49A3C] hover:shadow-[0_12px_32px_rgba(196,154,60,0.45)]"
+              >
+                <span>Book Now &amp; Grab 20% Discount</span>
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#0D2B2F]/10 text-xs">→</span>
+              </a>
+
               {/* Feature highlight cards */}
               <div className="mt-6 grid gap-3">
                 {dayPicnicFeatureCards.map((item) => {
