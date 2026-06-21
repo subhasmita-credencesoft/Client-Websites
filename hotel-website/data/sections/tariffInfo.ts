@@ -89,7 +89,7 @@ export const TARIFF_PICNIC_MENU = {
 } as const;
 
 export const TARIFF_DAY_PICNIC_WASH_ROOM =
-  "Room for Wash & Change: ₹ 4,000 per room per day";
+  "Room for Wash & Change: ₹ 5,000 per room per day";
 
 export const TARIFF_DAY_PICNIC_FOOTNOTE =
   "Any dish apart from the above menu will be charged extra. Taxes will be applicable as per Government Regulations.";

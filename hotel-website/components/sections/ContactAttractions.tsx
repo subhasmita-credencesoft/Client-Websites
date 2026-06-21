@@ -8,18 +8,18 @@ import Container from "../ui/Container";
 
 const ATTRACTIONS = [
   {
-    title: " Imagica",
+    title: " Imagicaa",
     description:
-      "One of India's largest theme parks, sitting right on the Mumbai-Pune Expressway just 8 km from UK's Resort. Many guests combine a full day at Imagica with an overnight stay here because the short drive back is far easier than heading home the same day.",
-    image: "/imagica1.png",
-    alt: "ADLABS Imagica amusement park rides",
+      "One of India's largest theme parks, sitting right on the Mumbai-Pune Expressway just 8 km from UK's Resort. Many guests combine a full day at Imagicaa with an overnight stay here because the short drive back is far easier than heading home the same day.",
+    image: "/Imagica1.png",
+    alt: "ADLABS Imagicaa amusement park rides",
     distance: "8 km • ~15 min drive",
     mood: "Theme Park",
   },
   {
     title: "Ashtavinayak - Varad Vinayak Temple",
     description:
-      "One of the eight sacred Ashtavinayak Ganesha temples of Maharashtra, this temple is a 10-minute walk from UK's Resort. Many guests pair an early darshan with a relaxed day back at the resort.",
+      "One of the eight sacred Ashtavinayak Ganesha temples of Maharashtra, this temple is located just 01 KM from UK's Resort. Many guests pair an early darshan with a relaxed day back at the resort.",
     image: "/astavinayak1.png",
     alt: "Ashtavinayak Mahad Temple exterior view",
     distance: "10-min walk",
@@ -295,7 +295,7 @@ export default function ContactAttractions() {
               Make UK&apos;s Resort your base
             </h3>
             <p className="mx-auto mt-5 max-w-3xl text-[1rem] leading-8 text-[#1f3c44]/72">
-              Everything above is within easy reach of UK&apos;s Resort. A temple walk in the morning, a waterfall in the afternoon, Imagica the next day - and a comfortable room and  Delicious Food  waiting for you each evening.
+              Everything above is within easy reach of UK&apos;s Resort. A temple walk in the morning, a waterfall in the afternoon, Imagicaa the next day - and a comfortable room and  Delicious Food  waiting for you each evening.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a

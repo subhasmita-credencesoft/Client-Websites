@@ -1,7 +1,7 @@
 export const WELCOME_SECTION_FALLBACK_NAME = "UK's Resort";
 
 export const WELCOME_SECTION_FALLBACK_DESCRIPTION =
-  "Escape to a relaxing getaway at UK's Resort, Khopoli, where natural greenery meets modern comfort. Located just minutes from Imagicaa, we offer clean, comfortable rooms and wide-open spaces perfect for a peaceful break. Whether you're splashing in our  Water Fun & Play or enjoying tasty food with warm hospitality, our calm environment makes us the ideal weekend destination.";
+  "Escape to a relaxing getaway at UK's Resort, Khopoli, where natural greenery meets modern comfort. Located near to  Imagicaaa, we offer clean, comfortable rooms and wide-open spaces perfect for a peaceful break. Whether you're splashing in our  Water Fun & Play or enjoying tasty food with warm hospitality, our calm environment makes us the ideal weekend destination.";
 
 export const WELCOME_SECTION_FALLBACK_IMAGE =
   "https://bookonelocal.in/cdn/Copy of IMG_1568.avif";
