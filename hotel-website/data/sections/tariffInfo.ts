@@ -55,7 +55,7 @@ export const TARIFF_GROUP_PACKAGE_ROWS: TariffRow[] = [
 // ✅ ONE DAY PICNIC — ₹ 1,299 per person + GST | Minimum 20 Pax
 export const TARIFF_DAY_PICNIC_TITLE = "One Day Picnic";
 
-export const TARIFF_DAY_PICNIC_RATE = "₹ 1,299 Per Person + GST";
+export const TARIFF_DAY_PICNIC_RATE = "₹ 1,399 Per Person + Taxes";
 export const TARIFF_DAY_PICNIC_MIN_PAX = "Minimum 20 Pax";
 
 export const TARIFF_DAY_PICNIC_HIGHLIGHT =

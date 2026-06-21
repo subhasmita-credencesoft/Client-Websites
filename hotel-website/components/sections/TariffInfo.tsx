@@ -240,25 +240,26 @@ export default function TariffInfo() {
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#C49A3C]">One Day Picnic</p>
                   <h3 className="mt-2 font-serif text-3xl text-[#0D2B2F] sm:text-4xl">{TARIFF_DAY_PICNIC_TITLE}</h3>
                 </div>
-                <div className="flex flex-col items-end gap-1.5">
-                  <span className="rounded-full bg-[#0D2B2F] px-5 py-2 font-serif text-[1.3rem] font-semibold text-[#C49A3C] sm:text-[1.5rem]">
-                    {TARIFF_DAY_PICNIC_RATE}
-                  </span>
-                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#6C7C80]">{TARIFF_DAY_PICNIC_MIN_PAX}</span>
-                </div>
               </div>
 
-              <p className="mt-5 text-[0.97rem] leading-7 text-[#1A4A50]">{TARIFF_DAY_PICNIC_HIGHLIGHT}</p>
+              {/* Offer Card */}
+              <div className="mt-6 rounded-2xl border-2 border-[#C49A3C]/30 bg-gradient-to-br from-[#FDF8EE] to-[#F9F5EE] p-6 text-center shadow-[0_12px_36px_rgba(196,154,60,0.20)]">
+                <span className="inline-block rounded-full bg-[#0D2B2F] px-6 py-3 font-serif text-[1.6rem] font-semibold text-[#C49A3C] sm:text-[1.9rem]">
+                  {TARIFF_DAY_PICNIC_RATE}
+                </span>
+                <p className="mt-8 text-[0.95rem] font-bold uppercase tracking-[0.22em] text-[#0D2B2F]">{TARIFF_DAY_PICNIC_MIN_PAX}</p>
+                <a
+                  href={BOOKING_ENGINE_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-7 flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#C49A3C] to-[#D4B05A] px-6 py-4 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-[#0D2B2F] shadow-[0_8px_24px_rgba(196,154,60,0.35)] transition hover:from-[#D4B05A] hover:to-[#C49A3C] hover:shadow-[0_12px_32px_rgba(196,154,60,0.45)]"
+                >
+                  <span>Book Now &amp; Get 20% Discount</span>
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#0D2B2F]/10 text-xs">→</span>
+                </a>
+              </div>
 
-              <a
-                href={BOOKING_ENGINE_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-5 flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#C49A3C] to-[#D4B05A] px-6 py-4 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-[#0D2B2F] shadow-[0_8px_24px_rgba(196,154,60,0.35)] transition hover:from-[#D4B05A] hover:to-[#C49A3C] hover:shadow-[0_12px_32px_rgba(196,154,60,0.45)]"
-              >
-                <span>Book Now &amp; Grab 20% Discount</span>
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#0D2B2F]/10 text-xs">→</span>
-              </a>
+              <p className="mt-6 text-[0.97rem] leading-7 text-[#1A4A50]">{TARIFF_DAY_PICNIC_HIGHLIGHT}</p>
 
               {/* Feature highlight cards */}
               <div className="mt-6 grid gap-3">
