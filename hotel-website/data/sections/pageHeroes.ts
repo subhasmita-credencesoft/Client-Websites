@@ -94,14 +94,6 @@ export const WEDDINGS_HERO_CONFIG: PageHeroConfig = {
   minHeightClassName: "min-h-screen",
 };
 
-export const WELLNESS_HERO_PAGE_CONFIG: PageHeroConfig = {
-  title: "Facilities",
-  backgroundImage: "https://bookonelocal.in/cdn/2.avif",
-  backgroundVideo: "https://bookonelocal.in/cdn/Drone_video_of_202603191519.mp4",
-  breadcrumb: "Home / Facilities",
-  minHeightClassName: "min-h-screen",
-};
-
 export const OVERVIEW_HERO_CONFIG: PageHeroConfig = {
   title: "Overview",
   backgroundImage: "https://bookonelocal.in/cdn/3.png",

@@ -31,7 +31,7 @@ const HERO_PREFIXES = [
   "/around-us",
   "/contact",
   "/about",
-  "/wellness",
+
   "/facilities",
   "/blog",
   "/awards",
