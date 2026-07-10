@@ -143,10 +143,10 @@ const Hero = () => {
           {showBooking && (
             <motion.div
               id='booking-form'
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className='mt-4'
             >
               <div className='glass rounded-2xl p-4 md:p-6 max-w-2xl mx-auto'>
@@ -161,12 +161,8 @@ const Hero = () => {
                       onChange={(d) => { if (d) { const n = formatDate(d); setCheckIn(n); if (checkOut < n) setCheckOut(n) }}}
                       dateFormat='dd-MM-yyyy'
                       minDate={today}
-                      popperPlacement='bottom-start'
-                      popperModifiers={[
-                        { name: 'preventOverflow', options: { rootBoundary: 'viewport' } },
-                      ]}
                       wrapperClassName='w-full'
-                      className='w-full border border-[#c8a84e]/20 rounded-xl bg-white px-3 h-11 text-sm focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
+                      className='w-full border border-[#d4b896]/30 rounded-xl bg-[#fdf8f0] px-3 h-12 text-sm cursor-pointer focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
                     />
                   </div>
                   <div>
@@ -179,12 +175,8 @@ const Hero = () => {
                       onChange={(d) => { if (d) setCheckOut(formatDate(d)) }}
                       dateFormat='dd-MM-yyyy'
                       minDate={parseDate(checkIn) ?? today}
-                      popperPlacement='bottom-start'
-                      popperModifiers={[
-                        { name: 'preventOverflow', options: { rootBoundary: 'viewport' } },
-                      ]}
                       wrapperClassName='w-full'
-                      className='w-full border border-[#c8a84e]/20 rounded-xl bg-white px-3 h-11 text-sm focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
+                      className='w-full border border-[#d4b896]/30 rounded-xl bg-[#fdf8f0] px-3 h-12 text-sm cursor-pointer focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
                     />
                   </div>
                   <div>
@@ -195,7 +187,7 @@ const Hero = () => {
                       id='hero-guests'
                       value={guests}
                       onChange={(e) => setGuests(e.target.value)}
-                      className='w-full border border-[#c8a84e]/20 rounded-xl bg-white px-3 h-11 text-sm focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
+                      className='w-full border border-[#d4b896]/30 rounded-xl bg-[#fdf8f0] px-3 h-12 text-sm focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
                     >
                       {[1, 2, 3, 4].map((n) => (
                         <option key={n} value={n}>{n} Guest{n > 1 ? 's' : ''}</option>

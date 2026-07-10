@@ -57,9 +57,8 @@ const BookingSection = () => {
                     onChange={(d) => { if (d) { const n = fmt(d); setCheckIn(n); if (checkOut < n) setCheckOut(n) }}}
                     dateFormat='dd-MM-yyyy'
                     minDate={today}
-                    withPortal
                     wrapperClassName='w-full'
-                    className='w-full border border-[#d4b896]/30 rounded-xl bg-[#fdf8f0] px-3 h-12 text-sm focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
+                    className='w-full border border-[#d4b896]/30 rounded-xl bg-[#fdf8f0] px-3 h-12 text-sm cursor-pointer focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
                   />
                 </div>
                 <div>
@@ -72,7 +71,6 @@ const BookingSection = () => {
                     onChange={(d) => { if (d) setCheckOut(fmt(d)) }}
                     dateFormat='dd-MM-yyyy'
                     minDate={parse(checkIn) ?? today}
-                    withPortal
                     wrapperClassName='w-full'
                     className='w-full border border-[#d4b896]/30 rounded-xl bg-[#fdf8f0] px-3 h-12 text-sm focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
                   />
