@@ -10,13 +10,13 @@ import { hotelImages, storyBlocks } from '../data/siteContent'
 const About = () => (
   <div>
     <Seo
-      title='About Hotel Rama Hindustani - Budget Family Hotel in Pratap Nagar Jaipur'
-      description='Learn about Hotel Rama Hindustani in Pratap Nagar Jaipur — a budget family hotel near Jaipur Airport, JECC, and Sanganer Railway Station offering clean rooms, homely food, free WiFi, and warm Indian hospitality.'
+      title='Hotel Near Jaipur Airport - Budget Stay in Pratap Nagar'
+      description='Looking for hotel near Jaipur Airport? Hotel Rama Hindustani in Pratap Nagar offers budget AC rooms minutes from Airport, JECC, and Sanganer Railway Station. Free WiFi, parking, and homely vegetarian food at affordable rates.'
       canonicalPath='/about'
-      keywords='About Hotel Rama Hindustani, Hotel in Pratap Nagar Jaipur, Budget Family Hotel Jaipur, Hotel Near Jaipur Airport, Hotel Near Sanganer Railway Station'
+      keywords='Hotel Near Jaipur Airport, Budget Hotel Near Airport Jaipur, Hotel Near JECC Jaipur, Hotel Near Sanganer Railway Station, Pratap Nagar Hotel Jaipur, Family Hotel Near Airport Jaipur, Best Budget Hotel Pratap Nagar, Affordable Hotel Near Jaipur Airport'
     />
     <StructuredData page='about' />
-    <TopBanner text='About Us' image={hotelImages.exteriorFront} />
+    <TopBanner text='About Us' image={hotelImages.exteriorFront} heading='div' />
 
     <section className='py-16 md:py-24'>
       <div className='section-container'>

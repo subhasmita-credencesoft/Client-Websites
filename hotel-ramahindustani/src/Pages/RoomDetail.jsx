@@ -47,7 +47,7 @@ const RoomDetail = () => {
         ogImage={room.image}
       />
       <StructuredData page='rooms' />
-      <TopBanner text={room.name} image={room.image} />
+      <TopBanner text={room.name} image={room.image} heading='div' />
 
       <div className='section-container py-6'>
         <nav aria-label='Breadcrumb' className='flex items-center gap-2 text-xs text-[#6b677a]'>

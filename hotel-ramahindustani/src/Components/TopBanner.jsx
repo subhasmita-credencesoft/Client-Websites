@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 import Breadcrumbs from './Breadcrumbs'
 
-const TopBanner = ({ text, image }) => (
+const TopBanner = ({ text, image, heading: Heading = 'h1' }) => (
   <section className='relative min-h-[45vh] md:min-h-[50vh] flex items-center justify-center bg-[#1a1923] overflow-hidden'>
     {image && (
       <img
@@ -34,7 +34,7 @@ const TopBanner = ({ text, image }) => (
       >
         Hotel Rama Hindustani
       </motion.p>
-      <h1 className='text-white text-4xl md:text-6xl lg:text-7xl font-bold font-display'>{text}</h1>
+      <Heading className='text-white text-4xl md:text-6xl lg:text-7xl font-bold font-display'>{text}</Heading>
     </motion.div>
   </section>
 )

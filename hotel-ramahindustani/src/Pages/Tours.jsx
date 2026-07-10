@@ -35,13 +35,13 @@ const Tours = () => {
   return (
     <>
       <Seo
-        title='Hotel Rooms Jaipur - Budget Rooms in Pratap Nagar'
-        description='Explore rooms at Hotel Rama Hindustani in Pratap Nagar Jaipur. Economy Double Room, Standard Double Room, Deluxe Room, and Superior Double Room with AC, WiFi, and room service. Book budget-friendly family rooms near Jaipur Airport.'
+        title='Hotel Rooms in Pratap Nagar Jaipur - Budget AC Rooms Near Airport'
+        description='Book hotel rooms in Pratap Nagar Jaipur at Hotel Rama Hindustani. Economy, Standard, Deluxe and Superior AC rooms with free WiFi, room service, and parking near Jaipur Airport and JECC. Budget family rooms from affordable rates.'
         canonicalPath='/rooms'
-        keywords='Hotel Rooms Jaipur, Budget Hotel Rooms Pratap Nagar, Deluxe Room Jaipur, Economy Double Room, Standard Double Room, Superior Double Room, Family Rooms Jaipur, AC Rooms Jaipur'
+        keywords='Hotel Rooms in Pratap Nagar Jaipur, Budget AC Rooms Near Jaipur Airport, Deluxe Room Pratap Nagar, Economy Double Room Jaipur, Standard Double Room Jaipur, Superior Double Room Jaipur, Family Rooms Near Airport Jaipur, Affordable Hotel Rooms Pratap Nagar, AC Rooms Jaipur Budget'
       />
       <StructuredData page='rooms' />
-      <TopBanner text='Our Rooms' image={hotelImages.superiorRoom} />
+      <TopBanner text='Our Rooms' image={hotelImages.superiorRoom} heading='div' />
 
       <section className='py-16 md:py-24'>
         <div className='section-container'>

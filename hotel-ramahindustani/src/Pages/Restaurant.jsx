@@ -9,13 +9,13 @@ const Restaurant = () => {
   return (
     <>
       <Seo
-        title='Vegetarian Restaurant in Pratap Nagar Jaipur - Rama Rasoi'
-        description='Discover Rama Rasoi, the in-house vegetarian restaurant at Hotel Rama Hindustani in Pratap Nagar Jaipur. Enjoy authentic Indian cuisine, homely food, and affordable meals near Jaipur Airport and JECC.'
+        title='Vegetarian Restaurant Pratap Nagar Jaipur - Rama Rasoi Near Airport'
+        description='Rama Rasoi — vegetarian restaurant Pratap Nagar Jaipur at Hotel Rama Hindustani. Enjoy authentic Indian thali, homely vegetarian food, and affordable meals. Open for hotel guests and outside visitors near Jaipur Airport and JECC.'
         canonicalPath='/restaurant'
-        keywords='Vegetarian Restaurant Pratap Nagar Jaipur, Hotel with Restaurant Jaipur, Rama Rasoi Jaipur, Family Restaurant Pratap Nagar, Best Vegetarian Food Jaipur, Hotel with Homely Food Jaipur'
+        keywords='Vegetarian Restaurant Pratap Nagar Jaipur, Rama Rasoi Near Jaipur Airport, Hotel Restaurant Pratap Nagar, Best Vegetarian Food Jaipur, Indian Thali Restaurant Jaipur, Family Restaurant Near JECC Jaipur, Budget Restaurant Pratap Nagar, Homely Food Jaipur Hotel'
       />
       <StructuredData page='restaurant' />
-      <TopBanner text='Rama Rasoi' image={hotelImages.restaurant} />
+      <TopBanner text='Vegetarian Restaurant Pratap Nagar Jaipur - Rama Rasoi' image={hotelImages.restaurant} />
       <RestaurantSection />
       <LocalSEOSection compact={true} />
     </>

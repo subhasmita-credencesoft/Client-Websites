@@ -83,7 +83,7 @@ const Hero = () => {
           transition={{ delay: 0.15, duration: 0.5 }}
           className='text-[#c8a84e] tracking-[0.4em] uppercase text-sm md:text-base font-medium mb-4'
         >
-          Hotel Rama Hindustani
+          Hotel in Pratap Nagar Jaipur
         </motion.p>
 
         <motion.h1

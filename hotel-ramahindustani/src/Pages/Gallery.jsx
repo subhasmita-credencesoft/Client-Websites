@@ -11,13 +11,13 @@ const Gallery = () => {
   return (
     <>
       <Seo
-        title='Hotel Photos Jaipur - Hotel Rama Hindustani Gallery'
-        description='View the photo gallery of Hotel Rama Hindustani in Pratap Nagar Jaipur. See rooms, restaurant, reception, exterior, gym, and amenities. Budget family hotel near Jaipur Airport.'
+        title='Hotel Photos Pratap Nagar Jaipur - Rooms, Restaurant & Amenities Gallery'
+        description='Browse hotel photos Pratap Nagar Jaipur at Hotel Rama Hindustani gallery. See AC rooms, restaurant, reception area, gym, rooftop and exterior. Budget hotel near Jaipur Airport with modern amenities in Pratap Nagar.'
         canonicalPath='/gallery'
-        keywords='Hotel Photos Jaipur, Hotel Rama Hindustani Gallery, Hotel Images Pratap Nagar, Budget Hotel Photos Jaipur, Hotel Rooms Gallery'
+        keywords='Hotel Photos Pratap Nagar Jaipur, Hotel Rama Hindustani Gallery, Hotel Images Near Jaipur Airport, Budget Hotel Photos Jaipur, Hotel Rooms Gallery Jaipur, Hotel Exterior Photos Pratap Nagar, Hotel Restaurant Images Jaipur, Hotel Amenities Photos Jaipur'
       />
       <StructuredData page='gallery' />
-      <TopBanner text='Gallery' image={hotelImages.frontAlt} />
+      <TopBanner text='Hotel Photos Pratap Nagar Jaipur - Gallery' image={hotelImages.frontAlt} />
       <GalleryComp />
       <Reveal className='text-center py-16 md:py-24'>
         <div className='section-container'>

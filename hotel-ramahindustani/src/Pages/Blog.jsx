@@ -57,14 +57,14 @@ const Blog = () => {
   return (
     <>
       <Seo
-        title='Blog — Hotel Rama Hindustani | Jaipur Travel Guide & Hotel Tips'
-        description='Read the Hotel Rama Hindustani blog for Jaipur travel guides, hotel tips, local attraction guides, and booking advice. Best budget hotel in Pratap Nagar Jaipur near Airport, JECC, and attractions.'
+        title='Jaipur Travel Guide & Hotel Tips - Pratap Nagar Budget Stay Blog'
+        description='Read Jaipur travel guide and hotel tips at Hotel Rama Hindustani blog. Find budget stay advice, local attraction guides, things to do near Pratap Nagar, and booking tips for hotels near Jaipur Airport, JECC and Sanganer Railway Station.'
         canonicalPath='/blog'
-        keywords='Hotel Rama Hindustani blog, Jaipur travel blog, Pratap Nagar Jaipur guide, hotel near Jaipur Airport blog, budget hotel Jaipur tips, things to do in Jaipur'
+        keywords='Jaipur Travel Guide Blog, Pratap Nagar Jaipur Travel Tips, Budget Hotel Near Airport Blog, Things to Do Near JECC Jaipur, Hotel Booking Tips Jaipur, Jaipur Local Attractions Guide, Pratap Nagar Hotels Blog, Best Budget Stay Jaipur Blog'
       />
       <StructuredData page='blog' />
 
-      <TopBanner text='Blog' image={hotelImages.frontJpg} />
+      <TopBanner text='Blog' image={hotelImages.frontJpg} heading='div' />
 
       <section className='py-12 md:py-16'>
         <div className='section-container'>

@@ -35,13 +35,13 @@ const Contact = () => {
   return (
     <>
       <Seo
-        title='Contact Hotel Rama Hindustani - Budget Hotel Near Sanganer Railway Station Jaipur'
-        description='Contact Hotel Rama Hindustani in Pratap Nagar, Jaipur near Sanganer Railway Station and Airport. Call, WhatsApp, or email for room bookings, availability, and hotel information. Strategically located near Jaipur Airport, JECC, and Sitapura.'
+        title='Contact Hotel Near Sanganer Railway Station Jaipur - Pratap Nagar'
+        description='Contact hotel near Sanganer Railway Station Jaipur — Hotel Rama Hindustani in Pratap Nagar. Located minutes from Airport, JECC Convention Centre, and Sitapura Industrial Area. Call or WhatsApp for room bookings and best rates.'
         canonicalPath='/contact'
-        keywords='Contact Hotel Rama Hindustani, Hotel Near Sanganer Railway Station, Hotel Near Jaipur Airport, Hotel Booking Jaipur, Hotel in Pratap Nagar Jaipur Contact, Hotel Near JECC Jaipur, Hotel Near Sitapura Industrial Area'
+        keywords='Contact Hotel Near Sanganer Railway Station Jaipur, Hotel Near Jaipur Airport Contact, Hotel Near JECC Jaipur, Hotel Booking Pratap Nagar Jaipur, Hotel Near Sitapura Industrial Area, Budget Hotel Near Railway Station Jaipur, Call Hotel Rama Hindustani, WhatsApp Hotel Booking Jaipur'
       />
       <StructuredData page='contact' />
-      <TopBanner text='Contact Us' image={hotelImages.receptionArea} />
+      <TopBanner text='Contact Hotel Near Sanganer Railway Station Jaipur' image={hotelImages.receptionArea} />
       <ContactComp />
       <FAQSection
         title='Hotel Contact & Location Questions'

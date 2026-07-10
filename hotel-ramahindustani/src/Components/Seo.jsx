@@ -16,7 +16,7 @@ const Seo = ({
   modifiedTime,
   keywords,
 }) => {
-  const fullTitle = `${title} | Hotel Rama Hindustani - Best Budget Hotel in Pratap Nagar Jaipur`
+  const fullTitle = `${title} | Hotel Rama Hindustani`
   const canonical = `${SITE_URL}${canonicalPath}`
   const robots = noindex || nofollow
     ? `${noindex ? 'noindex' : 'index'}, ${nofollow ? 'nofollow' : 'follow'}`

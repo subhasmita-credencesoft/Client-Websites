@@ -47,11 +47,11 @@ const homeFaqs = [
 const Home = () => (
   <>
     <Seo
-      title='Best Budget Hotel in Pratap Nagar Jaipur'
-      description='Book Hotel Rama Hindustani in Pratap Nagar Jaipur near Airport, JECC, Sanganer Railway Station, World Trade Park. Budget family hotel with AC rooms, free WiFi, free parking, and vegetarian restaurant. Direct booking with best price guarantee.'
+      title='Hotel in Pratap Nagar Jaipur - Budget Rooms Near Airport & JECC'
+      description='Book budget hotel in Pratap Nagar Jaipur near Airport, JECC, and Sanganer Railway Station. Hotel Rama Hindustani offers clean AC rooms with free WiFi, parking, and vegetarian restaurant. Family-friendly with direct booking best price guarantee.'
       canonicalPath='/'
       ogType='website'
-      keywords='Hotel Rama Hindustani, Hotel in Pratap Nagar Jaipur, Budget Hotel Jaipur, Family Hotel Jaipur, Hotel Near Jaipur Airport, Best Budget Hotel Pratap Nagar, Hotel Near JECC Jaipur, Hotel Near Sanganer Railway Station, Affordable Hotel Jaipur, Hotel Near World Trade Park Jaipur'
+      keywords='Hotel in Pratap Nagar Jaipur, Budget Hotel Near Jaipur Airport, Hotel Near JECC Jaipur, Best Budget Hotel Pratap Nagar, Hotel Near Sanganer Railway Station, Family Hotel Jaipur, Affordable Hotel Near Airport Jaipur, Hotel Near World Trade Park Jaipur, Budget AC Rooms Jaipur, Hotel with Free WiFi Jaipur'
     />
     <StructuredData page='home' />
     <Suspense fallback={<SectionLoader />}>

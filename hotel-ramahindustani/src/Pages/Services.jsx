@@ -11,13 +11,13 @@ const Services = () => {
   return (
     <>
       <Seo
-        title='Hotel Services and Amenities in Pratap Nagar Jaipur'
-        description='Explore hotel services and amenities at Hotel Rama Hindustani in Pratap Nagar Jaipur. Free WiFi, free parking, room service, AC rooms, power backup, laundry, and on-site vegetarian restaurant.'
+        title='Hotel Amenities in Pratap Nagar Jaipur - Free WiFi, Parking & AC Rooms'
+        description='Explore hotel amenities in Pratap Nagar Jaipur at Hotel Rama Hindustani. Free high-speed WiFi, free parking, AC rooms, power backup, elevator, laundry, room service, and on-site vegetarian restaurant near Jaipur Airport.'
         canonicalPath='/services'
-        keywords='Free WiFi Hotel Jaipur, Free Parking Hotel Jaipur, Hotel with Lift Jaipur, Room Service Jaipur, Air Conditioned Rooms Jaipur, Family Rooms Jaipur, Hotel Amenities Pratap Nagar'
+        keywords='Hotel Amenities Pratap Nagar Jaipur, Free WiFi Hotel Jaipur Near Airport, Free Parking Hotel Jaipur, AC Rooms Pratap Nagar, Hotel with Lift Jaipur, Room Service Near Jaipur Airport, Budget Hotel Amenities Jaipur, Family Hotel Services Pratap Nagar, Power Backup Hotel Jaipur, Laundry Service Hotel Jaipur'
       />
       <StructuredData page='services' />
-      <TopBanner text='Services' image={hotelImages.reception} />
+      <TopBanner text='Services' image={hotelImages.reception} heading='div' />
 
       <section className='py-16 md:py-24'>
         <div className='section-container'>
