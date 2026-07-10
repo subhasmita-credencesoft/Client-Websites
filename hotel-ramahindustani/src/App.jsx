@@ -4,7 +4,6 @@ import ScrollToTopBtn from 'react-scroll-to-top'
 import ScrollToTopOnNavigate from './Components/ScrollToTop'
 import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer'
-import Breadcrumbs from './Components/Breadcrumbs'
 
 const Home = lazy(() => import('./Pages/Home'))
 const Tours = lazy(() => import('./Pages/Tours'))
@@ -16,6 +15,7 @@ const Services = lazy(() => import('./Pages/Services'))
 const BookNow = lazy(() => import('./Pages/BookNow'))
 const Blog = lazy(() => import('./Pages/Blog'))
 const BlogPost = lazy(() => import('./Pages/BlogPost'))
+const RoomDetail = lazy(() => import('./Pages/RoomDetail'))
 
 const PageLoader = () => (
   <div className='min-h-screen bg-[#FFFFF0] pt-32 pb-16 px-4 flex items-start justify-center'>
@@ -27,7 +27,6 @@ const SiteLayout = () => (
   <>
     <ScrollToTopOnNavigate />
     <Navbar />
-    <Breadcrumbs />
     <Suspense fallback={<PageLoader />}>
       <Outlet />
     </Suspense>
@@ -42,6 +41,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'rooms', element: <Tours /> },
+      { path: 'rooms/:slug', element: <RoomDetail /> },
       { path: 'tours', element: <Tours /> },
       { path: 'gallery', element: <Gallery /> },
       { path: 'about', element: <About /> },

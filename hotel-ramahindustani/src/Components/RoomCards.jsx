@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 import { rooms } from '../data/siteContent'
 import { BOOKING_ENGINE_URL } from '../utils/booking'
-import { Wifi, Tv, Headphones, Thermometer, Snowflake, Refrigerator, Bed, Star } from 'lucide-react'
+import { Wifi, Tv, Headphones, Thermometer, Snowflake, Refrigerator, Bed, Star, ChevronRight } from 'lucide-react'
 
 const featureIcons = {
   WiFi: Wifi, 'Flat TV': Tv, 'Room Service': Headphones,
@@ -36,7 +37,9 @@ const RoomCards = () => (
           </div>
 
           <div className='p-5 flex flex-col flex-1'>
-            <h3 className='text-base font-bold font-display text-[#1a1923] mb-2'>{room.name}</h3>
+            <Link to={`/rooms/${room.slug}`}>
+              <h3 className='text-base font-bold font-display text-[#1a1923] hover:text-[#c8a84e] transition-colors mb-2'>{room.name}</h3>
+            </Link>
             <p className='text-[#6b677a] text-sm leading-relaxed mb-4 flex-1 line-clamp-2'>{room.description}</p>
 
             <div className='flex flex-wrap gap-1.5 mb-5'>
@@ -50,14 +53,22 @@ const RoomCards = () => (
               })}
             </div>
 
-            <a
-              href={BOOKING_ENGINE_URL}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='btn-primary w-full justify-center text-sm !py-3'
-            >
-              Book Now
-            </a>
+            <div className='flex flex-col gap-2'>
+              <Link
+                to={`/rooms/${room.slug}`}
+                className='btn-secondary w-full justify-center text-sm !py-3'
+              >
+                View Details <ChevronRight size={14} />
+              </Link>
+              <a
+                href={BOOKING_ENGINE_URL}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='btn-primary w-full justify-center text-sm !py-3'
+              >
+                Book Now
+              </a>
+            </div>
           </div>
         </motion.div>
       </Reveal>

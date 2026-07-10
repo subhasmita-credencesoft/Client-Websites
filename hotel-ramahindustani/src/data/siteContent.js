@@ -130,9 +130,14 @@ export const homepageHighlights = [
   'Affordable Pricing',
 ]
 
+function roomSlug(name) {
+  return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+}
+
 export const rooms = [
   {
     id: 8602,
+    slug: roomSlug('Economy Double Room'),
     name: 'Economy Double Room',
     image: img('hotel-rama-hindustani-jaipur-Economy room-pic-22.jpg'),
     gallery: [
@@ -149,6 +154,7 @@ export const rooms = [
   },
   {
     id: 8603,
+    slug: roomSlug('Standard Double Room'),
     name: 'Standard Double Room',
     image: img('hotel-rama-hindustani-jaipur-Standard room -pic-23.jpg'),
     gallery: [
@@ -164,6 +170,7 @@ export const rooms = [
   },
   {
     id: 8604,
+    slug: roomSlug('Deluxe Room'),
     name: 'Deluxe Room',
     image: img('hotel-rama-hindustani-jaipur-Deluxe room-pic-28.jpg'),
     gallery: [
@@ -180,6 +187,7 @@ export const rooms = [
   },
   {
     id: 8605,
+    slug: roomSlug('Superior Double Room'),
     name: 'Superior Double Room',
     image: img('Super Deluxe room with fridge.jpg'),
     gallery: [
