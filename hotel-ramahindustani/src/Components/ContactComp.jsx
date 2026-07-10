@@ -9,7 +9,7 @@ const ContactComp = () => {
   const whatsAppUrl = getWhatsappShareUrl(contactDetails, false)
 
   return (
-    <section className='py-16 md:py-24'>
+    <section className='py-16 md:py-24' aria-label='Contact information'>
       <div className='section-container'>
         <Reveal className='text-center mb-14'>
           <p className='section-subtitle'>Get in Touch</p>
@@ -20,7 +20,7 @@ const ContactComp = () => {
           <Reveal direction='left'>
             <div className='rounded-2xl overflow-hidden shadow-lg h-[400px] border border-[#d4b896]/10'>
               <iframe
-                title='Hotel Location'
+                title='Hotel Rama Hindustani location map in Pratap Nagar Jaipur'
                 src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.4!2d75.8!3d26.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDQ4JzAwLjAiTiA3NcKwNDgnMDAuMCJF!5e0!3m2!1sen!2sin!4v1'
                 width='100%'
                 height='100%'
@@ -51,8 +51,18 @@ const ContactComp = () => {
                     <item.icon className='text-[#c8a84e]' size={20} />
                   </div>
                   <div>
-                    <h4 className='font-semibold text-sm'>{item.label}</h4>
-                    <p className='text-sm text-[#6b677a]'>{item.value}</p>
+                    <h3 className='font-semibold text-sm'>{item.label}</h3>
+                    {item.label === 'Phone' ? (
+                      <a href={`tel:${contactDetails.phone.replace(/\s/g, '')}`} className='text-sm text-[#6b677a] hover:text-[#c8a84e] transition-colors'>
+                        {item.value}
+                      </a>
+                    ) : item.label === 'Email' ? (
+                      <a href={`mailto:${contactDetails.email}`} className='text-sm text-[#6b677a] hover:text-[#c8a84e] transition-colors break-all'>
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className='text-sm text-[#6b677a]'>{item.value}</p>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -60,8 +70,9 @@ const ContactComp = () => {
               <a
                 href={whatsAppUrl}
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
                 className='btn-whatsapp inline-flex mt-4'
+                aria-label='Send us a message on WhatsApp'
               >
                 <FaWhatsapp size={20} />
                 Message on WhatsApp

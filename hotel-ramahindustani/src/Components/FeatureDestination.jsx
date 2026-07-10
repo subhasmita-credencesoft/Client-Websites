@@ -64,9 +64,14 @@ const FeatureDestination = () => (
             ))}
           </div>
 
-          <Link to='/about' className='btn-secondary'>
-            Learn Our Story
-          </Link>
+          <div className='flex flex-wrap gap-3'>
+            <Link to='/rooms' className='btn-secondary'>
+              Explore Rooms
+            </Link>
+            <Link to='/about' className='btn-secondary !text-[#1a1923] !border-[#d4b896]'>
+              Learn Our Story
+            </Link>
+          </div>
         </Reveal>
       </div>
     </div>

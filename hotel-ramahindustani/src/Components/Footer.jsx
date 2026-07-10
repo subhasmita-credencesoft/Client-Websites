@@ -9,18 +9,15 @@ const Footer = () => {
 
   return (
     <footer className='bg-[#1a1923] text-white relative overflow-hidden'>
-      {/* Background Effects */}
       <div className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c8a84e]/40 to-transparent pointer-events-none' />
       <div className='absolute top-20 left-1/4 w-48 h-48 bg-[#c8a84e]/3 rounded-full blur-3xl pointer-events-none' />
 
-      {/* Main Content */}
       <div className='section-container py-16 md:py-20 relative z-10'>
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10'>
-          {/* Logo & Description */}
           <div>
             <img
               src='/hotel-ramahindustani-image/rama-hindustanilogo.avif'
-              alt='Hotel Rama Hindustani'
+              alt='Hotel Rama Hindustani - Best Budget Hotel in Pratap Nagar Jaipur'
               loading='lazy'
               className='h-12 w-auto mb-5'
             />
@@ -30,7 +27,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className='font-display text-base font-semibold mb-5 text-[#c8a84e]'>
               Quick Links
@@ -43,8 +39,10 @@ const Footer = () => {
                 { to: '/restaurant', label: 'Restaurant' },
                 { to: '/services', label: 'Services' },
                 { to: '/gallery', label: 'Gallery' },
+                { to: '/blog', label: 'Blog' },
                 { to: '/about', label: 'About' },
                 { to: '/contact', label: 'Contact' },
+                { to: '/book-now', label: 'Book Now' },
               ].map((link) => (
                 <li key={link.to}>
                   <Link
@@ -58,7 +56,21 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
+          <div>
+            <h4 className='font-display text-base font-semibold mb-5 text-[#c8a84e]'>
+              Nearby Locations
+            </h4>
+
+            <ul className='space-y-2 text-sm text-white/60'>
+              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>Jaipur International Airport (5 km)</span></li>
+              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>Sanganer Railway Station (3 km)</span></li>
+              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>JECC Convention Centre (4 km)</span></li>
+              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>World Trade Park (6 km)</span></li>
+              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>Chokhi Dhani (8 km)</span></li>
+              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>Sitapura / RIICO (3 km)</span></li>
+            </ul>
+          </div>
+
           <div>
             <h4 className='font-display text-base font-semibold mb-5 text-[#c8a84e]'>
               Contact
@@ -66,69 +78,42 @@ const Footer = () => {
 
             <ul className='space-y-3 text-sm text-white/70'>
               <li className='flex items-start gap-2.5'>
-                <MapPin
-                  size={14}
-                  className='text-[#c8a84e] mt-0.5 shrink-0'
-                />
-
+                <MapPin size={14} className='text-[#c8a84e] mt-0.5 shrink-0' />
                 <span>Indian Bank, 34-B1-B2, Haldighati Marg, Tonk Rd, Sector 5, Pratap Nagar, Jaipur, Rajasthan 302033</span>
               </li>
 
               <li className='flex items-center gap-2.5'>
-                <Phone
-                  size={14}
-                  className='text-[#c8a84e] shrink-0'
-                />
-
-                <a
-                  href={`tel:${contactDetails.phone.replace(/\s/g, '')}`}
-                  className='text-white/70 hover:text-[#c8a84e] transition-colors'
-                >
+                <Phone size={14} className='text-[#c8a84e] shrink-0' />
+                <a href={`tel:${contactDetails.phone.replace(/\s/g, '')}`} className='text-white/70 hover:text-[#c8a84e] transition-colors'>
                   {contactDetails.phone}
                 </a>
               </li>
 
               <li className='flex items-center gap-2.5'>
-                <Mail
-                  size={14}
-                  className='text-[#c8a84e] shrink-0'
-                />
-
-                <a
-                  href={`mailto:${contactDetails.email}`}
-                  className='text-white/70 hover:text-[#c8a84e] transition-colors break-all'
-                >
+                <Mail size={14} className='text-[#c8a84e] shrink-0' />
+                <a href={`mailto:${contactDetails.email}`} className='text-white/70 hover:text-[#c8a84e] transition-colors break-all'>
                   {contactDetails.email}
                 </a>
               </li>
             </ul>
-          </div>
 
-          {/* Social Links */}
-          <div>
-            <h4 className='font-display text-base font-semibold mb-5 text-[#c8a84e]'>
-              Connect
-            </h4>
-
-            <div className='flex gap-3 mb-6'>
-              {/* WhatsApp */}
+            <div className='flex gap-3 mt-5'>
               <a
                 href={whatsAppUrl}
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
                 className='w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-[#25D366] transition-all duration-300 hover:scale-110'
-                aria-label='WhatsApp'
+                aria-label='Contact Hotel Rama Hindustani on WhatsApp'
               >
                 <FaWhatsapp size={16} />
               </a>
 
-              {/* Instagram */}
               <a
                 href='https://www.instagram.com/rama_hindustani_jaipur_comfy'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-[#c8a84e] transition-all duration-300 hover:scale-110'
-                aria-label='Instagram'
+                aria-label='Follow Hotel Rama Hindustani on Instagram'
               >
                 <FaInstagram size={16} />
               </a>
@@ -136,25 +121,14 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className='mt-12 pt-8 border-t border-white/8 text-center text-xs text-white/50'>
           <p>
             Designed and Developed By{' '}
-            <a
-              href='https://credencesoft.co.nz/'
-              target='_blank'
-              rel='noreferrer'
-              className='text-[#c8a84e]/70 hover:text-[#c8a84e] transition-colors'
-            >
+            <a href='https://credencesoft.co.nz/' target='_blank' rel='noopener noreferrer' className='text-[#c8a84e]/70 hover:text-[#c8a84e] transition-colors'>
               CredenceSoft
             </a>
             , Powered By{' '}
-            <a
-              href='https://bookonepms.com/'
-              target='_blank'
-              rel='noreferrer'
-              className='text-[#c8a84e]/70 hover:text-[#c8a84e] transition-colors'
-            >
+            <a href='https://bookonepms.com/' target='_blank' rel='noopener noreferrer' className='text-[#c8a84e]/70 hover:text-[#c8a84e] transition-colors'>
               BookOne
             </a>
           </p>

@@ -12,6 +12,7 @@ const navLinks = [
   { to: '/restaurant', label: 'Restaurant' },
   { to: '/services', label: 'Services' },
   { to: '/gallery', label: 'Gallery' },
+  { to: '/blog', label: 'Blog' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]
@@ -46,17 +47,22 @@ const Navbar = () => {
       >
         <div className='section-container'>
           <div className='flex items-center justify-between h-20 md:h-24'>
-            <Link to='/' className='flex items-center gap-3 shrink-0'>
+            <Link to='/' className='flex items-center gap-3 shrink-0' aria-label='Go to homepage'>
               <img
                 src='/hotel-ramahindustani-image/rama-hindustanilogo.avif'
-                alt='Hotel Rama Hindustani'
+                alt='Hotel Rama Hindustani logo'
                 className='h-10 md:h-12 w-auto'
               />
             </Link>
 
-            <nav className='hidden lg:flex items-center gap-1'>
+            <nav className='hidden lg:flex items-center gap-1' aria-label='Main navigation'>
               {navLinks.map((link) => (
-                <Link key={link.to} to={link.to} className={linkClass(link.to)}>
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={linkClass(link.to)}
+                  aria-current={location.pathname === link.to ? 'page' : undefined}
+                >
                   {link.label}
                 </Link>
               ))}
@@ -66,8 +72,9 @@ const Navbar = () => {
               <a
                 href={whatsAppUrl}
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
                 className='btn-whatsapp !py-2.5 !px-4 text-sm'
+                aria-label='Contact via WhatsApp'
               >
                 <FaWhatsapp size={16} />
                 <span className='hidden xl:inline'>WhatsApp</span>
@@ -75,14 +82,15 @@ const Navbar = () => {
               <a
                 href={BOOKING_ENGINE_URL}
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
                 className='btn-primary !py-2.5 !px-5 text-sm'
+                aria-label='Book your stay now'
               >
                 Book Now
               </a>
             </div>
 
-            <button onClick={() => setShowMenu(!showMenu)} className='lg:hidden text-white p-2' aria-label='Menu'>
+            <button onClick={() => setShowMenu(!showMenu)} className='lg:hidden text-white p-2' aria-label={showMenu ? 'Close menu' : 'Open menu'}>
               {showMenu ? <HiX size={26} /> : <HiMenuAlt1 size={26} />}
             </button>
           </div>
@@ -96,8 +104,10 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className='fixed inset-0 z-[9999] bg-[#1a1923] lg:hidden overflow-y-auto'
+            role='dialog'
+            aria-modal='true'
+            aria-label='Mobile navigation menu'
           >
-            {/* Close Button */}
             <button
               onClick={() => setShowMenu(false)}
               className='absolute top-5 right-5 text-white p-2 hover:text-[#c8a84e] transition-colors'
@@ -106,7 +116,7 @@ const Navbar = () => {
               <HiX size={28} />
             </button>
 
-            <div className='flex flex-col items-center justify-center h-full gap-5 px-6'>
+            <nav className='flex flex-col items-center justify-center h-full gap-5 px-6' aria-label='Mobile navigation'>
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.to}
@@ -119,6 +129,7 @@ const Navbar = () => {
                     className={`text-2xl font-medium transition-colors ${
                       location.pathname === link.to ? 'text-[#c8a84e]' : 'text-white/80 hover:text-white'
                     }`}
+                    aria-current={location.pathname === link.to ? 'page' : undefined}
                   >
                     {link.label}
                   </Link>
@@ -130,14 +141,14 @@ const Navbar = () => {
                 transition={{ delay: 0.5 }}
                 className='flex flex-col gap-3 mt-6 w-full max-w-xs'
               >
-                <a href={whatsAppUrl} target='_blank' rel='noreferrer' className='btn-whatsapp w-full justify-center'>
+                <a href={whatsAppUrl} target='_blank' rel='noopener noreferrer' className='btn-whatsapp w-full justify-center' aria-label='Book via WhatsApp'>
                   <FaWhatsapp size={18} /> WhatsApp Booking
                 </a>
-                <a href={BOOKING_ENGINE_URL} target='_blank' rel='noreferrer' className='btn-primary w-full justify-center'>
+                <a href={BOOKING_ENGINE_URL} target='_blank' rel='noopener noreferrer' className='btn-primary w-full justify-center' aria-label='Book your stay online'>
                   Book Your Stay
                 </a>
               </motion.div>
-            </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

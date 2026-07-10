@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 import { hotelImages } from '../data/siteContent'
 import { UtensilsCrossed, Coffee, Wheat } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const highlights = [
   { icon: UtensilsCrossed, text: 'Authentic Indian Cuisine' },
@@ -36,7 +37,10 @@ const RestaurantSection = () => (
               </motion.div>
             ))}
           </div>
-          <a href='/contact' className='btn-secondary'>Visit Us</a>
+          <div className='flex flex-wrap gap-3'>
+            <Link to='/contact' className='btn-secondary'>Visit Us</Link>
+            <Link to='/rooms' className='btn-secondary !text-[#1a1923] !border-[#d4b896]'>View Our Rooms</Link>
+          </div>
         </Reveal>
 
         <Reveal direction='right'>

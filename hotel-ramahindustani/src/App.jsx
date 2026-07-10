@@ -1,9 +1,10 @@
-import React, { Suspense, lazy } from 'react'
+import { Suspense, lazy } from 'react'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import ScrollToTopBtn from 'react-scroll-to-top'
 import ScrollToTopOnNavigate from './Components/ScrollToTop'
 import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer'
+import Breadcrumbs from './Components/Breadcrumbs'
 
 const Home = lazy(() => import('./Pages/Home'))
 const Tours = lazy(() => import('./Pages/Tours'))
@@ -13,6 +14,8 @@ const Contact = lazy(() => import('./Pages/Contact'))
 const Restaurant = lazy(() => import('./Pages/Restaurant'))
 const Services = lazy(() => import('./Pages/Services'))
 const BookNow = lazy(() => import('./Pages/BookNow'))
+const Blog = lazy(() => import('./Pages/Blog'))
+const BlogPost = lazy(() => import('./Pages/BlogPost'))
 
 const PageLoader = () => (
   <div className='min-h-screen bg-[#FFFFF0] pt-32 pb-16 px-4 flex items-start justify-center'>
@@ -24,6 +27,7 @@ const SiteLayout = () => (
   <>
     <ScrollToTopOnNavigate />
     <Navbar />
+    <Breadcrumbs />
     <Suspense fallback={<PageLoader />}>
       <Outlet />
     </Suspense>
@@ -45,6 +49,8 @@ const router = createBrowserRouter([
       { path: 'restaurant', element: <Restaurant /> },
       { path: 'services', element: <Services /> },
       { path: 'book-now', element: <BookNow /> },
+      { path: 'blog', element: <Blog /> },
+      { path: 'blog/:slug', element: <BlogPost /> },
     ],
   },
 ])

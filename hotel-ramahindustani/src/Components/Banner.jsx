@@ -8,7 +8,7 @@ const Banner = () => {
   const whatsAppUrl = getWhatsappShareUrl(contactDetails, false)
 
   return (
-    <section className='py-16 md:py-24'>
+    <section className='py-16 md:py-24' aria-label='Booking banner'>
       <div className='section-container'>
         <Reveal>
           <motion.div
@@ -19,6 +19,7 @@ const Banner = () => {
             <img
               src={hotelImages.exteriorFront}
               alt=''
+              role='presentation'
               className='absolute inset-0 w-full h-full object-cover'
               loading='lazy'
             />
@@ -37,12 +38,12 @@ const Banner = () => {
                 <a
                   href={BOOKING_ENGINE_URL}
                   target='_blank'
-                  rel='noreferrer'
+                  rel='noopener noreferrer'
                   className='btn-primary text-base px-8 py-4 animate-pulse-glow'
                 >
                   Book Your Stay
                 </a>
-                <a href={whatsAppUrl} target='_blank' rel='noreferrer' className='btn-whatsapp text-base px-8 py-4'>
+                <a href={whatsAppUrl} target='_blank' rel='noopener noreferrer' className='btn-whatsapp text-base px-8 py-4'>
                   <FaWhatsapp size={20} />
                   WhatsApp Booking
                 </a>

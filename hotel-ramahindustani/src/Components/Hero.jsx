@@ -62,9 +62,10 @@ const Hero = () => {
     <section className='relative min-h-screen flex items-center justify-center bg-[#1a1923]'>
       <img
         src={hotelImages.frontJpg}
-        alt='Hotel Rama Hindustani'
+        alt=''
+        role='presentation'
         className='absolute inset-0 w-full h-full object-cover'
-        fetchpriority='high'
+        fetchPriority='high'
       />
 
       <div className='absolute inset-0 bg-gradient-to-r from-[#1a1923]/50 to-transparent' />
@@ -112,13 +113,13 @@ const Hero = () => {
           transition={{ delay: 0.6, duration: 0.5 }}
           className='flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-10'
         >
-          <a href={BOOKING_ENGINE_URL} target='_blank' rel='noreferrer' className='btn-primary text-base px-8 py-4'>
+          <a href={BOOKING_ENGINE_URL} target='_blank' rel='noopener noreferrer' className='btn-primary text-base px-8 py-4' aria-label='Book your stay online'>
             Book Your Experience
           </a>
-          <Link to='/rooms' className='btn-secondary !text-white !border-white/30 hover:!border-white/50 text-base px-8 py-4'>
+          <Link to='/rooms' className='btn-secondary !text-white !border-white/30 hover:!border-white/50 text-base px-8 py-4' aria-label='View our rooms'>
             Explore Stay
           </Link>
-          <a href={whatsAppUrl} target='_blank' rel='noreferrer' className='btn-whatsapp text-base px-8 py-4'>
+          <a href={whatsAppUrl} target='_blank' rel='noopener noreferrer' className='btn-whatsapp text-base px-8 py-4' aria-label='Contact via WhatsApp'>
             <FaWhatsapp size={20} />
             WhatsApp
           </a>
@@ -130,6 +131,8 @@ const Hero = () => {
           transition={{ delay: 0.75 }}
           onClick={() => setShowBooking(!showBooking)}
           className='text-white/50 hover:text-[#c8a84e] flex items-center gap-2 mx-auto text-sm transition-colors'
+          aria-expanded={showBooking}
+          aria-controls='booking-form'
         >
           <FaCalendarAlt size={14} />
           <span>Check Availability</span>
@@ -139,6 +142,7 @@ const Hero = () => {
         <AnimatePresence>
           {showBooking && (
             <motion.div
+              id='booking-form'
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -148,10 +152,11 @@ const Hero = () => {
               <div className='glass rounded-2xl p-4 md:p-6 max-w-2xl mx-auto'>
                 <div className='grid grid-cols-1 sm:grid-cols-3 gap-3'>
                   <div>
-                    <label className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
+                    <label htmlFor='hero-checkin' className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
                       <FaCalendarAlt size={10} className='text-[#c8a84e]' /> Check In
                     </label>
                     <DatePicker
+                      id='hero-checkin'
                       selected={parseDate(checkIn)}
                       onChange={(d) => { if (d) { const n = formatDate(d); setCheckIn(n); if (checkOut < n) setCheckOut(n) }}}
                       dateFormat='dd-MM-yyyy'
@@ -165,10 +170,11 @@ const Hero = () => {
                     />
                   </div>
                   <div>
-                    <label className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
+                    <label htmlFor='hero-checkout' className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
                       <FaCalendarAlt size={10} className='text-[#c8a84e]' /> Check Out
                     </label>
                     <DatePicker
+                      id='hero-checkout'
                       selected={parseDate(checkOut)}
                       onChange={(d) => { if (d) setCheckOut(formatDate(d)) }}
                       dateFormat='dd-MM-yyyy'
@@ -182,10 +188,11 @@ const Hero = () => {
                     />
                   </div>
                   <div>
-                    <label className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
+                    <label htmlFor='hero-guests' className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
                       <FaUsers size={10} className='text-[#c8a84e]' /> Guests
                     </label>
                     <select
+                      id='hero-guests'
                       value={guests}
                       onChange={(e) => setGuests(e.target.value)}
                       className='w-full border border-[#c8a84e]/20 rounded-xl bg-white px-3 h-11 text-sm focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
@@ -196,10 +203,10 @@ const Hero = () => {
                     </select>
                   </div>
                 </div>
-                <button onClick={handleCheck} disabled={isChecking} className='btn-primary w-full mt-3 justify-center text-sm'>
+                <button onClick={handleCheck} disabled={isChecking} className='btn-primary w-full mt-3 justify-center text-sm' aria-label='Check room availability'>
                   {isChecking ? 'Checking...' : 'Check Availability'}
                 </button>
-                {status && <p className='mt-2 text-xs text-center text-[#6b677a]'>{status}</p>}
+                {status && <p className='mt-2 text-xs text-center text-[#6b677a]' role='status'>{status}</p>}
               </div>
             </motion.div>
           )}

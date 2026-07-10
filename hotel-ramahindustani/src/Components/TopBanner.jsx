@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { motion } from 'framer-motion'
 
 const TopBanner = ({ text, image }) => (
@@ -6,8 +7,9 @@ const TopBanner = ({ text, image }) => (
       <img
         src={image}
         alt=''
+        role='presentation'
         className='absolute inset-0 w-full h-full object-cover'
-        fetchpriority='high'
+        fetchPriority='high'
       />
     )}
     <div className='absolute inset-0 bg-gradient-to-br from-[#1a1923]/85 via-[#1a1923]/60 to-[#1a1923]/45' />

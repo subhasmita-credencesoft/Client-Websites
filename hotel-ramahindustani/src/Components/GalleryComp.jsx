@@ -15,18 +15,21 @@ const GalleryComp = () => {
     : galleryImages.filter((img) => img.category === activeCategory)
 
   return (
-    <section className='py-16 md:py-24'>
+    <section className='py-16 md:py-24' aria-label='Hotel gallery'>
       <div className='section-container'>
         <Reveal className='text-center mb-12'>
           <p className='section-subtitle'>Gallery</p>
           <h2 className='section-title'>Moments at Rama Hindustani</h2>
         </Reveal>
 
-        <Reveal className='flex flex-wrap justify-center gap-2 mb-10'>
+        <Reveal className='flex flex-wrap justify-center gap-2 mb-10' role='tablist' aria-label='Filter gallery by category'>
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
+              role='tab'
+              aria-selected={activeCategory === cat}
+              aria-label={`Show ${cat} photos`}
               className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === cat
                   ? 'bg-[#c8a84e] text-white shadow-lg shadow-[#c8a84e]/20'
@@ -38,7 +41,7 @@ const GalleryComp = () => {
           ))}
         </Reveal>
 
-        <motion.div layout className='columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4'>
+        <motion.div layout className='columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4' role='tabpanel'>
           <AnimatePresence>
             {filtered.map((img, i) => (
               <motion.div
@@ -49,7 +52,11 @@ const GalleryComp = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3, delay: Math.min(i * 0.03, 0.2) }}
               >
-                <button onClick={() => setSelectedImage(img)} className='group relative w-full overflow-hidden rounded-2xl block'>
+                <button
+                  onClick={() => setSelectedImage(img)}
+                  className='group relative w-full overflow-hidden rounded-2xl block'
+                  aria-label={`View larger image of ${img.alt}`}
+                >
                   <img
                     src={img.src}
                     alt={img.alt}
@@ -80,17 +87,21 @@ const GalleryComp = () => {
             exit={{ opacity: 0 }}
             className='fixed inset-0 z-50 bg-[#1a1923]/97 flex items-center justify-center p-4 cursor-pointer'
             onClick={() => setSelectedImage(null)}
+            role='dialog'
+            aria-modal='true'
+            aria-label={`Image preview: ${selectedImage.alt}`}
           >
             <button
               onClick={() => setSelectedImage(null)}
               className='absolute top-6 right-6 text-white/40 hover:text-white transition-colors z-10'
+              aria-label='Close image preview'
             >
               <X size={28} />
             </button>
             <motion.img
               key={selectedImage.src}
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 0.9 }}
               exit={{ opacity: 0, scale: 0.9 }}
               src={selectedImage.src}
               alt={selectedImage.alt}

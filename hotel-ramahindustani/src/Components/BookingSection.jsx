@@ -36,7 +36,7 @@ const BookingSection = () => {
   }
 
   return (
-    <section className='py-16 md:py-24'>
+    <section className='py-16 md:py-24' aria-label='Online booking form'>
       <div className='section-container'>
         <Reveal className='text-center mb-14'>
           <p className='section-subtitle'>Book Your Stay</p>
@@ -48,10 +48,11 @@ const BookingSection = () => {
             <div className='bg-white rounded-2xl p-6 md:p-8 border border-[#d4b896]/15 shadow-sm'>
               <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5'>
                 <div>
-                  <label className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
+                  <label htmlFor='booking-checkin' className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
                     <FaCalendarAlt size={10} className='text-[#c8a84e]' /> Check In
                   </label>
                   <DatePicker
+                    id='booking-checkin'
                     selected={parse(checkIn)}
                     onChange={(d) => { if (d) { const n = fmt(d); setCheckIn(n); if (checkOut < n) setCheckOut(n) }}}
                     dateFormat='dd-MM-yyyy'
@@ -62,10 +63,11 @@ const BookingSection = () => {
                   />
                 </div>
                 <div>
-                  <label className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
+                  <label htmlFor='booking-checkout' className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
                     <FaCalendarAlt size={10} className='text-[#c8a84e]' /> Check Out
                   </label>
                   <DatePicker
+                    id='booking-checkout'
                     selected={parse(checkOut)}
                     onChange={(d) => { if (d) setCheckOut(fmt(d)) }}
                     dateFormat='dd-MM-yyyy'
@@ -76,10 +78,11 @@ const BookingSection = () => {
                   />
                 </div>
                 <div>
-                  <label className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
+                  <label htmlFor='booking-guests' className='block text-xs font-semibold text-[#1a1923] mb-1.5 flex items-center gap-1.5'>
                     <FaUsers size={10} className='text-[#c8a84e]' /> Guests
                   </label>
                   <select
+                    id='booking-guests'
                     value={guests}
                     onChange={(e) => setGuests(e.target.value)}
                     className='w-full border border-[#d4b896]/30 rounded-xl bg-[#fdf8f0] px-3 h-12 text-sm focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
@@ -90,14 +93,14 @@ const BookingSection = () => {
               </div>
 
               <div className='flex flex-col sm:flex-row gap-3'>
-                <button onClick={handleCheck} disabled={isChecking} className='btn-primary flex-1 justify-center'>
+                <button onClick={handleCheck} disabled={isChecking} className='btn-primary flex-1 justify-center' aria-label='Check room availability'>
                   {isChecking ? 'Checking...' : 'Check Availability'}
                 </button>
-                <a href={BOOKING_ENGINE_URL} target='_blank' rel='noreferrer' className='btn-secondary flex-1 justify-center'>
+                <a href={BOOKING_ENGINE_URL} target='_blank' rel='noopener noreferrer' className='btn-secondary flex-1 justify-center' aria-label='Book directly online'>
                   Book Direct
                 </a>
               </div>
-              {status && <p className='mt-3 text-sm text-center text-[#6b677a]'>{status}</p>}
+              {status && <p className='mt-3 text-sm text-center text-[#6b677a]' role='status'>{status}</p>}
             </div>
           </Reveal>
 
@@ -125,7 +128,7 @@ const BookingSection = () => {
                   </motion.div>
                 ))}
               </div>
-              <a href={whatsAppUrl} target='_blank' rel='noreferrer' className='btn-whatsapp w-full justify-center mt-6'>
+              <a href={whatsAppUrl} target='_blank' rel='noopener noreferrer' className='btn-whatsapp w-full justify-center mt-6' aria-label='Send booking inquiry on WhatsApp'>
                 <FaWhatsapp size={18} />
                 WhatsApp Inquiry
               </a>

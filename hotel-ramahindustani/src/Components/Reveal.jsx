@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 

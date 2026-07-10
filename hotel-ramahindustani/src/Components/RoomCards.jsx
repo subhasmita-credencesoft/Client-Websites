@@ -53,7 +53,7 @@ const RoomCards = () => (
             <a
               href={BOOKING_ENGINE_URL}
               target='_blank'
-              rel='noreferrer'
+              rel='noopener noreferrer'
               className='btn-primary w-full justify-center text-sm !py-3'
             >
               Book Now
