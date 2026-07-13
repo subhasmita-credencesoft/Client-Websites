@@ -6,9 +6,9 @@ import ImmersiveGallery from "../../components/sections/ImmersiveGallery";
 import { createPageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Around Us",
+  title: "Attractions Near UK's Resort Khopoli — Imagicaa, Temples, Waterfalls & Hill Stations",
   description:
-    "Explore Imagicaa, temples, waterfalls, hill stations, and local attractions around UK's Resort in Khopoli.",
+    "Explore Imagicaa, temples, waterfalls, hill stations, and local attractions around UK's Resort in Khopoli, near Mumbai & Pune.",
   path: "/around-us",
   image: "https://bookonelocal.in/cdn/Water-Park-1.jpg",
 });

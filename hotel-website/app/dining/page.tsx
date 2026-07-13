@@ -8,9 +8,9 @@ import ImmersiveGallery from "../../components/sections/ImmersiveGallery";
 import { createPageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Dining",
+  title: "Dining at UK's Resort Khopoli — Multi-Cuisine Restaurant & Family Dining Near Mumbai",
   description:
-    "Discover fresh multi-cuisine dining at UK's Resort, Khopoli with Indian, Mughlai, and Chinese favorites in relaxed indoor and outdoor settings.",
+    "Discover fresh multi-cuisine dining at UK's Resort, Khopoli with Indian, Mughlai, Chinese, and Maharashtrian favorites in relaxed indoor and outdoor settings near Mumbai.",
   path: "/dining",
   image: "https://bookonelocal.in/cdn/Copy of IMG_2912.avif",
 });

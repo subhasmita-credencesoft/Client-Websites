@@ -51,6 +51,7 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
   const [video, setVideo] = useState<VideoState>({ shouldRender: false, isReady: false });
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [typedCharacterCount, setTypedCharacterCount] = useState(0);
@@ -68,30 +69,41 @@ export default function Hero() {
   );
 
   useEffect(() => {
-    const preloadLink = document.createElement("link");
-    preloadLink.rel = "preload";
-    preloadLink.as = "video";
-    preloadLink.href = HOME_HERO_VIDEO_SRC;
-    document.head.appendChild(preloadLink);
+    if (!canPlayVideo()) return;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          const browserWindow = window as IdleWindow;
+
+          const startVideo = () => {
+            setVideo({ shouldRender: true, isReady: false });
+          };
+
+          if (typeof browserWindow.requestIdleCallback === "function") {
+            browserWindow.requestIdleCallback(startVideo, { timeout: 300 });
+          } else {
+            globalThis.setTimeout(startVideo, 80);
+          }
+
+          observerRef.current?.disconnect();
+          observerRef.current = null;
+        }
+      },
+      { rootMargin: "200px 0px" },
+    );
+
+    observerRef.current.observe(section);
 
     return () => {
-      document.head.removeChild(preloadLink);
+      observerRef.current?.disconnect();
+      observerRef.current = null;
     };
-  }, []);
-
-  useEffect(() => {
-    if (!canPlayVideo()) return;
-
-    const trigger = () => setVideo({ shouldRender: true, isReady: false });
-    const browserWindow = window as IdleWindow;
-
-    if (typeof browserWindow.requestIdleCallback === "function") {
-      const id = browserWindow.requestIdleCallback(trigger, { timeout: 300 });
-      return () => browserWindow.cancelIdleCallback?.(id);
-    }
-
-    const id = globalThis.setTimeout(trigger, 80);
-    return () => globalThis.clearTimeout(id);
   }, []);
 
   useEffect(() => {
@@ -182,8 +194,6 @@ export default function Hero() {
     return () => mm.revert();
   }, []);
 
-  const showSkeleton = video.shouldRender && !video.isReady;
-
   return (
     <section
       ref={sectionRef}
@@ -209,7 +219,7 @@ export default function Hero() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
             onCanPlayThrough={() => setVideo((state) => ({ ...state, isReady: true }))}
             onError={() => setVideo((state) => ({ ...state, isReady: false }))}
             aria-hidden="true"
@@ -225,19 +235,6 @@ export default function Hero() {
           aria-hidden="true"
         />
       </div>
-
-      {showSkeleton && (
-        <div className="site-skeleton-shell pointer-events-none absolute inset-0 z-20" aria-hidden="true">
-          <div className="site-skeleton-shimmer absolute inset-0 opacity-90" />
-          <div className="absolute inset-x-0 top-[22%] flex flex-col items-center px-6">
-            <div className="site-skeleton-line h-14 w-[min(78vw,36rem)] rounded-full sm:h-20" />
-            <div className="site-skeleton-line mt-4 h-4 w-[min(60vw,26rem)] rounded-full sm:h-5" />
-          </div>
-          <div className="absolute inset-x-0 bottom-10 flex justify-center px-4 sm:bottom-12 md:bottom-14">
-            <div className="site-skeleton-line h-16 w-[min(88vw,62rem)] rounded-[1.8rem] sm:h-[4.5rem]" />
-          </div>
-        </div>
-      )}
 
       <Container
         size="content"

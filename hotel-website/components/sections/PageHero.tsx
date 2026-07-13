@@ -20,6 +20,12 @@ type PageHeroProps = {
   videoAriaLabel?: string;
 };
 
+type IdleWindow = Window &
+  typeof globalThis & {
+    requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+    cancelIdleCallback?: (handle: number) => void;
+  };
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function PageHero({
@@ -37,8 +43,11 @@ export default function PageHero({
   const mediaRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
   const [breadcrumbVisible, setBreadcrumbVisible] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const breadcrumbCurrent = useMemo(() => {
@@ -64,16 +73,49 @@ export default function PageHero({
   useEffect(() => {
     if (!backgroundVideo) return;
 
-    const preloadLink = document.createElement("link");
-    preloadLink.rel = "preload";
-    preloadLink.as = "video";
-    preloadLink.href = backgroundVideo;
-    document.head.appendChild(preloadLink);
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          const browserWindow = window as IdleWindow;
+
+          const startVideo = () => {
+            setShowVideo(true);
+          };
+
+          if (typeof browserWindow.requestIdleCallback === "function") {
+            browserWindow.requestIdleCallback(startVideo, { timeout: 300 });
+          } else {
+            globalThis.setTimeout(startVideo, 80);
+          }
+
+          observerRef.current?.disconnect();
+          observerRef.current = null;
+        }
+      },
+      { rootMargin: "200px 0px" },
+    );
+
+    observerRef.current.observe(section);
 
     return () => {
-      document.head.removeChild(preloadLink);
+      observerRef.current?.disconnect();
+      observerRef.current = null;
     };
   }, [backgroundVideo]);
+
+  useEffect(() => {
+    if (!showVideo) return;
+    const el = videoRef.current;
+    if (!el) return;
+    el.load();
+    el.play().catch(() => undefined);
+  }, [showVideo]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -142,8 +184,9 @@ export default function PageHero({
             />
           ) : null
         )}
-        {backgroundVideo ? (
+        {backgroundVideo && showVideo ? (
           <video
+            ref={videoRef}
             key={backgroundVideo}
             src={backgroundVideo}
             poster={preferVideoOnly ? undefined : backgroundImage}
@@ -154,7 +197,7 @@ export default function PageHero({
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
             onLoadedData={() => setVideoReady(true)}
             onCanPlay={() => setVideoReady(true)}
             onCanPlayThrough={() => setVideoReady(true)}

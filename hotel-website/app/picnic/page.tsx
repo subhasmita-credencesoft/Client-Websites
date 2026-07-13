@@ -8,7 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Escape to UK's Resort, Khopoli for the ultimate one day picnic. Enjoy water park access, rain dance, games, and buffet meals near Mumbai & Pune.",
   path: "/picnic",
-  image: "/picnic.avif",
+  image: "https://bookonelocal.in/cdn/Copy+of+IMG_3980.avif",
 });
 
 export default function PicnicPage() {
