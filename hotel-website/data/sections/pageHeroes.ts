@@ -20,7 +20,7 @@ export const ABOUT_HERO_CONFIG: PageHeroConfig = {
 
 export const AWARDS_HERO_CONFIG: PageHeroConfig = {
   title: "Awards & Recognition",
-  backgroundImage: "/awards/golden-star-award-2012.jpg",
+  backgroundImage: "https://bookonelocal.in/cdn/3.png",
   backgroundVideo: "https://bookonelocal.in/cdn/Resort_entrance_gate_202604071226.mp4",
   subtitle: "Explore the recognitions, achievements, and guest appreciation that reflect UK's Resort over the years.",
   breadcrumb: "Home / Awards",
@@ -30,7 +30,7 @@ export const AWARDS_HERO_CONFIG: PageHeroConfig = {
 
 export const BLOG_HERO_CONFIG: PageHeroConfig = {
   title: "Our Blog",
-  backgroundImage: "/images/room_2.jpg",
+  backgroundImage: "https://bookonelocal.in/cdn/4.png",
   subtitle: "Stories, updates, and inspiration from UK's Resort.",
   breadcrumb: "Home / Blog",
   minHeightClassName: "min-h-[70vh]",
@@ -86,7 +86,7 @@ export const WEDDINGS_HERO_CONFIG: PageHeroConfig = {
   backgroundImage: "https://bookonelocal.in/cdn/Copy of IMG_3980.avif",
   backgroundImages: [
     "https://bookonelocal.in/cdn/outdoor-image.jpg",
-    "/children5.avif",
+    "https://bookonelocal.in/cdn/children5.avif",
     "https://bookonelocal.in/cdn/conference3-1.jpg",
   ],
   subtitle: "Birthdays, family outings, school visits, sports, and corporate team days built around real resort spaces and full-day fun.",

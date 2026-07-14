@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import Container from "../ui/Container";
 import blogFilterPosts from "../../data/blogFilterPosts";
 import { BLOG_FILTER_OPTIONS } from "../../data/sections/blogFilters";
@@ -40,17 +42,22 @@ export default function BlogFilterGrid() {
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
           {visiblePosts.map((post) => (
-            <article
+            <Link
               key={post.id}
-              className="overflow-hidden rounded-3xl bg-white shadow-[0_18px_40px_rgba(0,0,0,0.08)]"
+              href={`/blog/${post.slug}`}
+              className="block overflow-hidden rounded-3xl bg-white shadow-[0_18px_40px_rgba(0,0,0,0.08)] transition hover:shadow-[0_18px_48px_rgba(0,0,0,0.14)]"
             >
               <div className="grid gap-0 md:grid-cols-[0.95fr_1.05fr]">
-                <div
-                  className="min-h-[260px] bg-cover bg-center"
-                  style={{ backgroundImage: `url(${post.image})` }}
-                  role="img"
-                  aria-label={post.title}
-                />
+                <div className="relative min-h-[260px] bg-[#efeee9]">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                    unoptimized={post.image.startsWith("http")}
+                  />
+                </div>
                 <div className="space-y-4 p-6">
                   <span className="inline-flex rounded-full border border-[#1f3c44]/15 px-3 py-1 text-[0.65rem] uppercase tracking-[0.3em] text-[#c97a42]">
                     {post.category}
@@ -67,7 +74,7 @@ export default function BlogFilterGrid() {
                   </div>
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </Container>

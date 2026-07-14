@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import blogPosts from "../data/blogs";
+import blogFilterPosts from "../data/blogFilterPosts";
 import rooms from "../data/rooms";
 import { SITE_URL } from "../lib/metadata";
 
@@ -16,6 +17,7 @@ const staticRoutes = [
   "/dining",
   "/events",
   "/experiences",
+  "/facilities",
   "/gallery",
   "/overview",
   "/picnic",
@@ -25,6 +27,8 @@ const staticRoutes = [
   "/tariffs",
   "/terms",
 ];
+
+const allBlogPosts = [...blogPosts, ...blogFilterPosts];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -38,9 +42,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         | "monthly",
       priority: route === "" ? 1 : 0.8,
     })),
-    ...blogPosts.map((post) => ({
+    ...allBlogPosts.map((post) => ({
       url: `${SITE_URL}/blog/${post.slug}`,
-      lastModified: new Date(post.date),
+      lastModified: "date" in post ? new Date(post.date) : now,
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

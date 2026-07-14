@@ -208,7 +208,7 @@ export default function PageHero({
       </div>
       <div
         ref={overlayRef}
-        className="absolute inset-0 bg-gradient-to-b from-black/28 via-black/14 to-black/54 md:from-black/34 md:via-black/16 md:to-black/60"
+        className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/8 to-black/40 md:from-black/24 md:via-black/10 md:to-black/48"
       />
 
       <Container

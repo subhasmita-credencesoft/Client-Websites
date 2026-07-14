@@ -51,7 +51,37 @@ export default async function RoomDetailPage({ params }: any) {
     notFound();
   }
 
-  return <RoomDetailClient id={id} />;
+  const staticRoom = roomsData.find((item) => item.id === id || item.slug === id);
+  const productSchema = staticRoom
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: staticRoom.name,
+        description: staticRoom.summary || staticRoom.description,
+        image: staticRoom.image.startsWith("http")
+          ? staticRoom.image
+          : `https://www.uksresort.com${staticRoom.image}`,
+        offers: {
+          "@type": "Offer",
+          price: staticRoom.pricePerNight,
+          priceCurrency: "INR",
+          availability: "https://schema.org/InStock",
+          url: `https://www.uksresort.com/rooms/${id}`,
+        },
+      }
+    : null;
+
+  return (
+    <>
+      {productSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        />
+      )}
+      <RoomDetailClient id={id} />
+    </>
+  );
 }
 
 /**

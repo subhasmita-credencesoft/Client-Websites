@@ -197,8 +197,34 @@ export default function RoomDetailClient({ id }: RoomDetailClientProps) {
     );
   }
 
+  const productSchema = resolvedRoom
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: resolvedRoom.name,
+        description: resolvedRoom.description,
+        image: resolvedRoom.images[0]?.startsWith("http")
+          ? resolvedRoom.images[0]
+          : `https://www.uksresort.com${resolvedRoom.images[0]}`,
+        offers: {
+          "@type": "Offer",
+          price: resolvedRoom.pricePerNight,
+          priceCurrency: "INR",
+          availability: resolvedRoom.availableCount > 0 ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
+          url: `https://www.uksresort.com/rooms/${id}`,
+        },
+      }
+    : null;
+
   return (
-    <section className="bg-[#f3efe8] py-12 text-[#1f3c44] sm:py-16 md:py-20">
+    <>
+      {productSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        />
+      )}
+      <section className="bg-[#f3efe8] py-12 text-[#1f3c44] sm:py-16 md:py-20">
       <Container>
         <div className="mb-8 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1f3c44]/60">
           <Link href="/" className="hover:text-[#c67a3a]">Home</Link>
@@ -391,5 +417,6 @@ export default function RoomDetailClient({ id }: RoomDetailClientProps) {
         </div>
       </Container>
     </section>
+    </>
   );
 }

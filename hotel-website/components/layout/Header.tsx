@@ -118,11 +118,11 @@ function Hamburger({ open, onClick, color }: { open: boolean; onClick: () => voi
       aria-expanded={open}
       onClick={onClick}
       style={{ color }}
-      className="group flex h-10 w-10 flex-col items-start justify-center gap-[5.5px] shrink-0"
+      className="group flex h-10 w-10 flex-col items-center justify-center gap-[5px] shrink-0"
     >
-      <span className={`block h-[2.2px] origin-left bg-current transition-all duration-300 ${open ? "w-[20px]" : "w-[22px] group-hover:w-[26px]"}`} />
-      <span className={`block h-[2.2px] origin-left bg-current transition-all duration-300 ${open ? "w-[16px] opacity-60" : "w-[15px] group-hover:w-[19px]"}`} />
-      <span className={`block h-[2.2px] origin-left bg-current transition-all duration-300 ${open ? "w-[11px] opacity-30" : "w-[9px] group-hover:w-[13px]"}`} />
+      <span className={`block h-[2px] bg-current transition-all duration-300 ${open ? "w-5 rotate-45 translate-y-[3.5px]" : "w-5 group-hover:w-6"}`} />
+      <span className={`block h-[2px] bg-current transition-all duration-300 ${open ? "w-5 opacity-0" : "w-4 group-hover:w-5"}`} />
+      <span className={`block h-[2px] bg-current transition-all duration-300 ${open ? "w-5 -rotate-45 -translate-y-[3.5px]" : "w-3 group-hover:w-4"}`} />
     </button>
   );
 }
@@ -455,16 +455,12 @@ export default function Header() {
 
                 {/* Centred logo in menu */}
                 <Link href="/" onClick={closeMenu}
-                  className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-0.5"
+                  className="absolute left-1/2 -translate-x-1/2"
                   aria-label={`${propertyName} — home`}>
-                  <span className="relative block" style={{ height: "3rem", width: "9.5rem" }}>
+                  <span className="relative block" style={{ height: "3.8rem", width: "11rem" }}>
                     <Image src={logoSrc} alt={propertyName} fill
-                      sizes="160px" className="object-contain"
+                      sizes="180px" className="object-contain"
                       unoptimized={logoSrc.startsWith("http")} priority />
-                  </span>
-                  <span className="font-bold uppercase text-white/40"
-                    style={{ fontSize: "0.5rem", letterSpacing: "0.28em" }}>
-                    Khopoli · Maharashtra
                   </span>
                 </Link>
 
