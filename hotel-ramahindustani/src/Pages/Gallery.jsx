@@ -11,8 +11,8 @@ const Gallery = () => {
   return (
     <>
       <Seo
-        title='Hotel Photos Pratap Nagar Jaipur - Rooms, Restaurant & Amenities Gallery'
-        description='Browse hotel photos Pratap Nagar Jaipur at Hotel Rama Hindustani gallery. See AC rooms, restaurant, reception area, gym, rooftop and exterior. Budget hotel near Jaipur Airport with modern amenities in Pratap Nagar.'
+        title='Photo Gallery | Hotel Rama Hindustani, Jaipur'
+        description='See rooms, restaurant, and property photos of Hotel Rama Hindustani, Pratap Nagar, Jaipur. Browse our photo gallery before booking your stay.'
         canonicalPath='/gallery'
         keywords='Hotel Photos Pratap Nagar Jaipur, Hotel Rama Hindustani Gallery, Hotel Images Near Jaipur Airport, Budget Hotel Photos Jaipur, Hotel Rooms Gallery Jaipur, Hotel Exterior Photos Pratap Nagar, Hotel Restaurant Images Jaipur, Hotel Amenities Photos Jaipur'
       />

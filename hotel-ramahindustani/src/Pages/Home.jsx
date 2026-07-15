@@ -47,8 +47,8 @@ const homeFaqs = [
 const Home = () => (
   <>
     <Seo
-      title='Hotel in Pratap Nagar Jaipur - Budget Rooms Near Airport & JECC'
-      description='Book budget hotel in Pratap Nagar Jaipur near Airport, JECC, and Sanganer Railway Station. Hotel Rama Hindustani offers clean AC rooms with free WiFi, parking, and vegetarian restaurant. Family-friendly with direct booking best price guarantee.'
+      title='Hotel Rama Hindustani — Budget Hotel in Pratap Nagar, Jaipur'
+      description='Budget 3-star hotel in Pratap Nagar, Jaipur near Sanganer Airport, JECC & Sanganer Railway Station. AC rooms, free WiFi, veg restaurant. Book direct & save.'
       canonicalPath='/'
       ogType='website'
       keywords='Hotel in Pratap Nagar Jaipur, Budget Hotel Near Jaipur Airport, Hotel Near JECC Jaipur, Best Budget Hotel Pratap Nagar, Hotel Near Sanganer Railway Station, Family Hotel Jaipur, Affordable Hotel Near Airport Jaipur, Hotel Near World Trade Park Jaipur, Budget AC Rooms Jaipur, Hotel with Free WiFi Jaipur'

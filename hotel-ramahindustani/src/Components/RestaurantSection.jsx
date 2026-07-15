@@ -47,7 +47,7 @@ const RestaurantSection = () => (
           <motion.div className='rounded-2xl overflow-hidden shadow-xl' whileHover={{ scale: 1.01 }}>
             <img
               src={hotelImages.restaurant}
-              alt='Rama Rasoi Restaurant'
+              alt='Rama Rasoi vegetarian restaurant at Hotel Rama Hindustani in Pratap Nagar Jaipur'
               loading='lazy'
               className='w-full h-[400px] md:h-[480px] object-cover transition-transform duration-700 hover:scale-105'
             />

@@ -5,8 +5,10 @@ import ScrollToTopOnNavigate from './Components/ScrollToTop'
 import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer'
 
+import Rooms from './Pages/Rooms'
+import Tours from './Pages/Tours'
+
 const Home = lazy(() => import('./Pages/Home'))
-const Tours = lazy(() => import('./Pages/Tours'))
 const Gallery = lazy(() => import('./Pages/Gallery'))
 const About = lazy(() => import('./Pages/About'))
 const Contact = lazy(() => import('./Pages/Contact'))
@@ -16,6 +18,7 @@ const BookNow = lazy(() => import('./Pages/BookNow'))
 const Blog = lazy(() => import('./Pages/Blog'))
 const BlogPost = lazy(() => import('./Pages/BlogPost'))
 const RoomDetail = lazy(() => import('./Pages/RoomDetail'))
+const NotFound = lazy(() => import('./Pages/NotFound'))
 
 const PageLoader = () => (
   <div className='min-h-screen bg-[#FFFFF0] pt-32 pb-16 px-4 flex items-start justify-center'>
@@ -40,7 +43,7 @@ const router = createBrowserRouter([
     element: <SiteLayout />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'rooms', element: <Tours /> },
+      { path: 'rooms', element: <Rooms /> },
       { path: 'rooms/:slug', element: <RoomDetail /> },
       { path: 'tours', element: <Tours /> },
       { path: 'gallery', element: <Gallery /> },
@@ -51,6 +54,7 @@ const router = createBrowserRouter([
       { path: 'book-now', element: <BookNow /> },
       { path: 'blog', element: <Blog /> },
       { path: 'blog/:slug', element: <BlogPost /> },
+      { path: '*', element: <NotFound /> },
     ],
   },
 ])

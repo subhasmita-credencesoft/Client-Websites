@@ -5,6 +5,3 @@ Disallow: /api/
 
 # Sitemaps
 Sitemap: https://www.hotelramahindustani.com/sitemap.xml
-
-# Crawl rate
-Crawl-Delay: 10

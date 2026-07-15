@@ -5,76 +5,155 @@ import FAQSection from '../Components/FAQSection'
 import LocalSEOSection from '../Components/LocalSEOSection'
 import TopBanner from '../Components/TopBanner'
 import Reveal from '../Components/Reveal'
-import RoomCards from '../Components/RoomCards'
-import { hotelImages, rooms } from '../data/siteContent'
+import NearbyAttractions, { touristPlaces } from '../Components/NearbyAttractions'
+import { hotelImages } from '../data/siteContent'
+import { MapPin, Phone, Clock } from 'lucide-react'
 
-const roomFaqs = [
+const tourFaqs = [
   {
-    question: 'What room types are available at Hotel Rama Hindustani?',
-    answer: `We offer ${rooms.map(r => r.name).join(', ')}. Each room is equipped with AC, WiFi, flat-screen TV, and room service. Prices range from ₹${Math.min(...rooms.map(r => parseInt(r.price.replace(/,/g, ''))))} to ₹${Math.max(...rooms.map(r => parseInt(r.price.replace(/,/g, ''))))} per night.`,
+    question: 'What tourist places are near Hotel Rama Hindustani in Pratap Nagar, Jaipur?',
+    answer:
+      'Hotel Rama Hindustani is close to Chokhi Dhani (6.7 km), Jain Mandir Sanganer (5.7 km), Jawahar Circle & Patrika Gate (4.5 km), JECC (4.9 km), Sanganer Handicraft Market (5 km), and World Trade Park (6 km). Major landmarks like Hawa Mahal and City Palace are 16–18 km away.',
   },
   {
-    question: 'Can I book a room online at Hotel Rama Hindustani?',
-    answer: 'Yes, you can book rooms online through our booking engine or contact us directly via WhatsApp at +91 63767 07091 for instant assistance and room availability.',
+    question: 'How far is Hotel Rama Hindustani from Hawa Mahal and Amer Fort?',
+    answer:
+      'Hawa Mahal is approximately 18 km from the hotel (25–35 minutes drive). Amer Fort is approximately 28 km away (40–50 minutes drive). We can help you arrange a local taxi or auto-rickshaw for sightseeing.',
   },
   {
-    question: 'Are there family-friendly rooms at this Pratap Nagar hotel?',
-    answer: 'Yes, all our rooms can accommodate up to 4 guests, making them ideal for families visiting Jaipur. We recommend the Deluxe Room or Superior Double Room for family stays.',
+    question: 'Can Hotel Rama Hindustani arrange local sightseeing tours?',
+    answer:
+      'Yes! Our front desk can help you arrange local taxis, private drivers, and city sightseeing tours to all major Jaipur attractions. WhatsApp us at +91 63767 07091 for tour assistance.',
   },
   {
-    question: 'What amenities are included in the room price?',
-    answer: 'All rooms include free WiFi, air conditioning, flat-screen TV, room service, geyser for hot water, and daily housekeeping. Deluxe and Superior rooms also include premium bedding and the Superior room has a mini fridge.',
+    question: 'Is Chokhi Dhani near Hotel Rama Hindustani?',
+    answer:
+      'Yes, Chokhi Dhani is just 6.7 km from Hotel Rama Hindustani — approximately 9–12 minutes by car. It is one of the closest major cultural attractions to our hotel.',
   },
   {
-    question: 'Do you offer discounts for direct bookings?',
-    answer: 'Yes, booking directly through our website or WhatsApp ensures you get the best available rates and instant support from our team.',
+    question: 'What is the best way to travel from the hotel to Jaipur tourist attractions?',
+    answer:
+      'Nearby places (within 7 km) are easily accessible by auto-rickshaw or cab (Ola/Uber). For major attractions like Hawa Mahal, City Palace, or Amer Fort, we recommend booking a private taxi for the day (typically ₹800–₹1,200 for a half-day tour).',
   },
+  {
+    question: 'Is Jaipur Airport close to the hotel?',
+    answer:
+      'Yes, Jaipur International Airport (JAI) is just 5 km from Hotel Rama Hindustani — approximately 10–15 minutes drive. We are one of the closest budget hotels to the airport in Pratap Nagar.',
+  },
+]
+
+// Quick-access distance summary for the intro section
+const nearbyQuickList = [
+  { name: 'Chokhi Dhani', km: '6.7 km', time: '9 min' },
+  { name: 'Jain Mandir Sanganer', km: '5.7 km', time: '8 min' },
+  { name: 'Jawahar Circle & Patrika Gate', km: '4.5 km', time: '8 min' },
+  { name: 'JECC Exhibition Centre', km: '4.9 km', time: '7 min' },
+  { name: 'Hawa Mahal', km: '18 km', time: '30 min' },
+  { name: 'Amer Fort', km: '28 km', time: '45 min' },
 ]
 
 const Tours = () => {
   return (
     <>
       <Seo
-        title='Hotel Rooms in Pratap Nagar Jaipur - Budget AC Rooms Near Airport'
-        description='Book hotel rooms in Pratap Nagar Jaipur at Hotel Rama Hindustani. Economy, Standard, Deluxe and Superior AC rooms with free WiFi, room service, and parking near Jaipur Airport and JECC. Budget family rooms from affordable rates.'
-        canonicalPath='/rooms'
-        keywords='Hotel Rooms in Pratap Nagar Jaipur, Budget AC Rooms Near Jaipur Airport, Deluxe Room Pratap Nagar, Economy Double Room Jaipur, Standard Double Room Jaipur, Superior Double Room Jaipur, Family Rooms Near Airport Jaipur, Affordable Hotel Rooms Pratap Nagar, AC Rooms Jaipur Budget'
+        title='Tourist Places Near Hotel Rama Hindustani, Pratap Nagar Jaipur'
+        description='Explore tourist places near Hotel Rama Hindustani in Pratap Nagar, Jaipur — Chokhi Dhani (6.7 km), Patrika Gate (4.5 km), Hawa Mahal (18 km), Amer Fort (28 km) & more. Local sightseeing guide with distances & directions.'
+        canonicalPath='/tours'
+        keywords='tourist places near Hotel Rama Hindustani Jaipur, places to visit near Pratap Nagar Jaipur, Chokhi Dhani near hotel Jaipur, Patrika Gate near Pratap Nagar, Jaipur sightseeing from Pratap Nagar, tourist attractions near Jaipur Airport hotel, Hawa Mahal distance from Pratap Nagar, Amer Fort tour from Pratap Nagar, Jaipur local tour hotel, nearby places Hotel Rama Hindustani'
       />
-      <StructuredData page='rooms' />
-      <TopBanner text='Our Rooms' image={hotelImages.superiorRoom} heading='div' />
+      <StructuredData page='tours' />
+      <TopBanner
+        text='Tourist Places Near Our Hotel'
+        image={hotelImages.superiorRoom}
+        heading='div'
+      />
 
+      {/* ── INTRO SECTION ─────────────────────────── */}
       <section className='py-16 md:py-24'>
         <div className='section-container'>
-          <Reveal className='text-center mb-14'>
-            <p className='section-subtitle'>Accommodations</p>
-            <h1 className='section-title'>Budget Hotel Rooms in Pratap Nagar Jaipur For Every Traveler</h1>
+          <Reveal className='text-center mb-12'>
+            <p className='section-subtitle'>Local Sightseeing Guide</p>
+            <h1 className='section-title'>
+              Tourist Places Near Hotel Rama Hindustani, Pratap Nagar Jaipur
+            </h1>
             <p className='mt-4 text-[#6b677a] max-w-2xl mx-auto leading-relaxed'>
-              From practical standard rooms to spacious family options, we offer comfort and
-              affordability for every guest at our hotel in Pratap Nagar Jaipur.
+              Perfectly located in Pratap Nagar, Hotel Rama Hindustani gives you easy access to
+              Jaipur's top tourist attractions — from the nearby Chokhi Dhani cultural village to
+              the iconic Hawa Mahal and UNESCO-listed Amer Fort. Here is your complete guide to
+              nearby sightseeing with distances and directions.
             </p>
           </Reveal>
-          <RoomCards />
+
+          {/* Quick distance grid */}
+          <Reveal>
+            <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-14'>
+              {nearbyQuickList.map((item) => (
+                <div
+                  key={item.name}
+                  className='bg-white border border-[#d4b896]/20 rounded-xl p-3 text-center shadow-sm hover:border-[#c8a84e]/40 hover:shadow-md transition-all duration-200'
+                >
+                  <div className='flex items-center justify-center gap-1 mb-1'>
+                    <MapPin size={11} className='text-[#c8a84e]' />
+                    <span className='text-[#c8a84e] font-bold text-sm'>{item.km}</span>
+                  </div>
+                  <p className='text-[#1a1923] text-[11px] font-semibold leading-tight'>{item.name}</p>
+                  <p className='text-[#6b677a] text-[10px] mt-0.5'>{item.time} drive</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Attractions Grid */}
+          <NearbyAttractions />
         </div>
       </section>
 
-      <FAQSection
-        title='Room Questions'
-        subtitle='Common questions about our hotel rooms in Pratap Nagar Jaipur.'
-        items={roomFaqs}
-      />
-      <Reveal className='text-center py-16 md:py-24 bg-white/50'>
+      {/* ── TOUR ASSISTANCE BANNER ─────────────────── */}
+      <section className='py-16 md:py-20 bg-gradient-to-br from-[#1a1923] to-[#2d2935]'>
         <div className='section-container'>
-          <p className='section-subtitle'>Complete Your Stay</p>
-          <h2 className='section-title'>More Than Just a Room</h2>
-          <p className='mt-4 text-[#6b677a] max-w-xl mx-auto leading-relaxed'>
-            Enjoy delicious meals at <Link to='/restaurant' className='text-[#c8a84e] hover:underline font-medium'>Rama Rasoi Restaurant</Link> and explore all <Link to='/services' className='text-[#c8a84e] hover:underline font-medium'>hotel amenities</Link> during your stay. Book now for the best rates.
-          </p>
-          <div className='flex flex-wrap justify-center gap-3 mt-8'>
-            <Link to='/restaurant' className='btn-secondary'>Visit Rama Rasoi</Link>
-            <Link to='/book-now' className='btn-primary'>Book Now</Link>
-          </div>
+          <Reveal className='text-center'>
+            <p className='section-subtitle !text-[#c8a84e]'>We Help You Explore</p>
+            <h2 className='section-title !text-white mb-4'>
+              Need Help Planning Your Jaipur Sightseeing?
+            </h2>
+            <p className='text-[#9d99a8] max-w-xl mx-auto leading-relaxed mb-8'>
+              Our front desk team can arrange local taxis, private drivers, and guided city tours
+              to all major Jaipur attractions. WhatsApp us for instant assistance.
+            </p>
+            <div className='flex flex-wrap justify-center gap-4 mb-8'>
+              <div className='flex items-center gap-2 text-white/80 text-sm'>
+                <Clock size={16} className='text-[#c8a84e]' />
+                <span>Front desk open 24 hours</span>
+              </div>
+              <div className='flex items-center gap-2 text-white/80 text-sm'>
+                <Phone size={16} className='text-[#c8a84e]' />
+                <span>Instant WhatsApp assistance</span>
+              </div>
+            </div>
+            <div className='flex flex-wrap justify-center gap-3'>
+              <a
+                href='https://wa.me/916376707091?text=Hi%2C%20I%20need%20help%20with%20Jaipur%20sightseeing%20tours'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='btn-primary'
+              >
+                WhatsApp for Tour Help
+              </a>
+              <Link to='/book-now' className='btn-secondary !text-white !border-white/30 hover:!border-[#c8a84e]'>
+                Book Your Stay
+              </Link>
+            </div>
+          </Reveal>
         </div>
-      </Reveal>
+      </section>
+
+      {/* ── FAQ ─────────────────────────────────────── */}
+      <FAQSection
+        title='Tourist Places & Sightseeing FAQs'
+        subtitle='Common questions about places to visit near Hotel Rama Hindustani in Pratap Nagar, Jaipur.'
+        items={tourFaqs}
+      />
+
       <LocalSEOSection compact={true} />
     </>
   )

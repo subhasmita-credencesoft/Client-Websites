@@ -10,6 +10,7 @@ const navLinks = [
   { to: '/', label: 'Home' },
   { to: '/rooms', label: 'Rooms' },
   { to: '/restaurant', label: 'Restaurant' },
+  { to: '/tours', label: 'Sightseeing' },
   { to: '/services', label: 'Services' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/blog', label: 'Blog' },

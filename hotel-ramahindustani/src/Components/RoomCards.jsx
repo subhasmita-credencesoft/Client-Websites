@@ -22,7 +22,7 @@ const RoomCards = () => (
           <div className='relative h-48 sm:h-52 overflow-hidden'>
             <img
               src={room.image}
-              alt={room.name}
+              alt={`${room.name} at Hotel Rama Hindustani in Pratap Nagar Jaipur`}
               loading='lazy'
               className='absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700'
             />

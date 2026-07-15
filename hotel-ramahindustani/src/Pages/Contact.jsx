@@ -35,8 +35,8 @@ const Contact = () => {
   return (
     <>
       <Seo
-        title='Contact Hotel Near Sanganer Railway Station Jaipur - Pratap Nagar'
-        description='Contact hotel near Sanganer Railway Station Jaipur — Hotel Rama Hindustani in Pratap Nagar. Located minutes from Airport, JECC Convention Centre, and Sitapura Industrial Area. Call or WhatsApp for room bookings and best rates.'
+        title='Contact Us | Hotel Rama Hindustani, Pratap Nagar Jaipur'
+        description='Contact Hotel Rama Hindustani in Pratap Nagar, Jaipur. Call, WhatsApp or email us for room bookings, rates, and inquiries. Near Sanganer Railway Station & Jaipur Airport.'
         canonicalPath='/contact'
         keywords='Contact Hotel Near Sanganer Railway Station Jaipur, Hotel Near Jaipur Airport Contact, Hotel Near JECC Jaipur, Hotel Booking Pratap Nagar Jaipur, Hotel Near Sitapura Industrial Area, Budget Hotel Near Railway Station Jaipur, Call Hotel Rama Hindustani, WhatsApp Hotel Booking Jaipur'
       />
@@ -62,6 +62,36 @@ const Contact = () => {
         </div>
       </Reveal>
       <LocalSEOSection />
+
+      {/* Google Maps Embed — Local SEO Signal */}
+      <section className='py-16 md:py-24 bg-white/50'>
+        <div className='section-container'>
+          <Reveal className='text-center mb-10'>
+            <p className='section-subtitle'>Find Us</p>
+            <h2 className='section-title'>Hotel Location — Pratap Nagar, Jaipur</h2>
+            <p className='mt-3 text-[#6b677a] max-w-xl mx-auto leading-relaxed'>
+              34-B1-B2, Haldighati Marg, Tonk Road, Pratap Nagar, Jaipur, Rajasthan 302033.
+              5 km from Jaipur International Airport &amp; Sanganer Railway Station.
+            </p>
+          </Reveal>
+          <Reveal>
+            <div className='rounded-2xl overflow-hidden shadow-xl border border-[#d4b896]/20'>
+              <iframe
+                id='hotel-google-map'
+                title='Hotel Rama Hindustani Location on Google Maps — Pratap Nagar Jaipur'
+                src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.7609338440937!2d75.78899217534213!3d26.800396976700283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4b5df1efb7f3%3A0x58b5ac4b44e31ef7!2sHotel%20Rama%20Hindustani!5e0!3m2!1sen!2sin!4v1736900000000!5m2!1sen!2sin'
+                width='100%'
+                height='400'
+                style={{ border: 0 }}
+                allowFullScreen=''
+                loading='lazy'
+                referrerPolicy='no-referrer-when-downgrade'
+                aria-label='Google Maps showing Hotel Rama Hindustani in Pratap Nagar, Jaipur'
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </>
   )
 }

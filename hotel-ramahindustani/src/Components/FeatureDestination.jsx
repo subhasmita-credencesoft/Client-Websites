@@ -13,7 +13,7 @@ const FeatureDestination = () => (
             <div className='rounded-2xl overflow-hidden shadow-xl'>
               <img
                 src={hotelImages.exteriorWide}
-                alt='Hotel Rama Hindustani exterior'
+                alt='Hotel Rama Hindustani building exterior and entrance in Pratap Nagar Jaipur'
                 loading='lazy'
                 className='w-full h-[380px] md:h-[480px] object-cover transition-transform duration-700 hover:scale-105'
               />

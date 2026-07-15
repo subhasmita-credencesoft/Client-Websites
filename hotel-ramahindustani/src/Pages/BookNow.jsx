@@ -10,8 +10,8 @@ const BookNow = () => {
   return (
     <>
       <Seo
-        title='Book Hotel in Pratap Nagar Jaipur - Direct Online Booking Best Price'
-        description='Book hotel in Pratap Nagar Jaipur direct at Hotel Rama Hindustani. Online booking with best price guarantee, instant confirmation, free WiFi and parking. AC rooms near Jaipur Airport, JECC and Sanganer Railway Station. No middleman fees.'
+        title='Book Now | Hotel Rama Hindustani — Best Price Guaranteed'
+        description='Book direct at Hotel Rama Hindustani, Jaipur for the best price guarantee — no OTA commission, instant confirmation, WhatsApp support. AC rooms from ₹1,155/night.'
         canonicalPath='/book-now'
         keywords='Book Hotel in Pratap Nagar Jaipur, Direct Hotel Booking Jaipur Best Price, Book Hotel Near Jaipur Airport Online, Affordable Hotel Booking Pratap Nagar, Budget Family Hotel Jaipur Booking, Instant Hotel Confirmation Jaipur, Hotel Near JECC Jaipur Book Now, No Middleman Fee Hotel Jaipur'
       />

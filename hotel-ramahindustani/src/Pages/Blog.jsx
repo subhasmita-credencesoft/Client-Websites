@@ -57,8 +57,8 @@ const Blog = () => {
   return (
     <>
       <Seo
-        title='Jaipur Travel Guide & Hotel Tips - Pratap Nagar Budget Stay Blog'
-        description='Read Jaipur travel guide and hotel tips at Hotel Rama Hindustani blog. Find budget stay advice, local attraction guides, things to do near Pratap Nagar, and booking tips for hotels near Jaipur Airport, JECC and Sanganer Railway Station.'
+        title='Jaipur Travel Blog | Hotel Rama Hindustani'
+        description='Travel tips, local guides, and Jaipur sightseeing advice from Hotel Rama Hindustani, Pratap Nagar. Discover the best of Jaipur with our expert blog posts.'
         canonicalPath='/blog'
         keywords='Jaipur Travel Guide Blog, Pratap Nagar Jaipur Travel Tips, Budget Hotel Near Airport Blog, Things to Do Near JECC Jaipur, Hotel Booking Tips Jaipur, Jaipur Local Attractions Guide, Pratap Nagar Hotels Blog, Best Budget Stay Jaipur Blog'
       />

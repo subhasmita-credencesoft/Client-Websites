@@ -87,6 +87,21 @@ const hotelSchema = {
   checkoutTime: '10:00',
   petsAllowed: false,
   stars: { '@type': 'Rating', ratingValue: '3' },
+  potentialAction: {
+    '@type': 'ReserveAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${SITE_URL}/book-now`,
+      actionPlatform: [
+        'http://schema.org/DesktopWebPlatform',
+        'http://schema.org/MobileWebPlatform',
+      ],
+    },
+    result: {
+      '@type': 'LodgingReservation',
+      name: 'Room Reservation at Hotel Rama Hindustani',
+    },
+  },
 }
 
 const localBusinessSchema = {
@@ -171,6 +186,42 @@ const organizationSchema = {
   },
 }
 
+const restaurantSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  '@id': `${SITE_URL}/restaurant#restaurant`,
+  name: 'Rama Rasoi',
+  description: 'On-site vegetarian Indian restaurant at Hotel Rama Hindustani serving authentic Indian cuisine for breakfast, lunch, and dinner.',
+  servesCuisine: ['Indian', 'Vegetarian', 'Vegan'],
+  url: `${SITE_URL}/restaurant`,
+  telephone: HOTEL_PHONE,
+  image: `${SITE_URL}/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Restaurant-pic-17.jpg`,
+  priceRange: '₹₹',
+  hasMenu: `${SITE_URL}/restaurant`,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '34-B1-B2, Haldighati Marg, Tonk Rd',
+    addressLocality: 'Pratap Nagar',
+    addressRegion: 'Rajasthan',
+    addressCountry: 'IN',
+    postalCode: '302033',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 26.8,
+    longitude: 75.8,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+      opens: '07:00',
+      closes: '22:00',
+    }
+  ],
+  acceptsReservations: true,
+}
+
 const breadcrumbSchemas = {
   home: {
     '@context': 'https://schema.org',
@@ -187,6 +238,15 @@ const breadcrumbSchemas = {
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
       { '@type': 'ListItem', position: 2, name: 'Rooms', item: `${SITE_URL}/rooms` },
+    ],
+  },
+  tours: {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    '@id': `${SITE_URL}/tours#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Nearby Tourist Places', item: `${SITE_URL}/tours` },
     ],
   },
   gallery: {
@@ -505,6 +565,22 @@ const pageSchemas = {
     description: 'Explore room options at Hotel Rama Hindustani in Pratap Nagar Jaipur - Economy, Standard, Deluxe, and Superior Double Rooms with AC, WiFi, and modern amenities.',
     url: `${SITE_URL}/rooms`,
   },
+  tours: {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${SITE_URL}/tours#webpage`,
+    name: 'Tourist Places Near Hotel Rama Hindustani, Pratap Nagar Jaipur',
+    description: 'Explore tourist places near Hotel Rama Hindustani in Pratap Nagar, Jaipur — Chokhi Dhani, Patrika Gate, Hawa Mahal, Amer Fort & more. Distances & directions included.',
+    url: `${SITE_URL}/tours`,
+    about: [
+      { '@type': 'TouristAttraction', name: 'Chokhi Dhani', address: 'Jaipur, Rajasthan' },
+      { '@type': 'TouristAttraction', name: 'Hawa Mahal', address: 'Jaipur, Rajasthan' },
+      { '@type': 'TouristAttraction', name: 'Amer Fort', address: 'Jaipur, Rajasthan' },
+      { '@type': 'TouristAttraction', name: 'City Palace', address: 'Jaipur, Rajasthan' },
+      { '@type': 'TouristAttraction', name: 'Jawahar Circle', address: 'Jaipur, Rajasthan' },
+      { '@type': 'TouristAttraction', name: 'Nahargarh Fort', address: 'Jaipur, Rajasthan' },
+    ],
+  },
   about: {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -563,10 +639,70 @@ const pageSchemas = {
   },
 }
 
-const StructuredData = ({ page = 'home' }) => {
-  const breadcrumb = breadcrumbSchemas[page] || breadcrumbSchemas.home
-  const faq = faqSchemas[page]
-  const pageSchema = pageSchemas[page] || pageSchemas.home
+const StructuredData = ({ page = 'home', room = null }) => {
+  let breadcrumb = breadcrumbSchemas[page] || breadcrumbSchemas.home
+  let faq = faqSchemas[page]
+  let pageSchema = pageSchemas[page] || pageSchemas.home
+  let specificRoomSchema = null
+
+  if (page === 'room-detail' && room) {
+    breadcrumb = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      '@id': `${SITE_URL}/rooms/${room.slug}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Rooms', item: `${SITE_URL}/rooms` },
+        { '@type': 'ListItem', position: 3, name: room.name, item: `${SITE_URL}/rooms/${room.slug}` },
+      ],
+    }
+
+    pageSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${SITE_URL}/rooms/${room.slug}#webpage`,
+      name: `${room.name} in Pratap Nagar Jaipur | Hotel Rama Hindustani`,
+      description: room.description,
+      url: `${SITE_URL}/rooms/${room.slug}`,
+    }
+
+    specificRoomSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'HotelRoom',
+      '@id': `${SITE_URL}/rooms/${room.slug}#room`,
+      name: room.name,
+      description: room.description,
+      image: `${SITE_URL}${room.image}`,
+      bed: {
+        '@type': 'BedDetails',
+        numberOfBeds: 1,
+        typeOfBed: room.features?.includes('Premium Bedding') ? 'Premium Double Bed' : 'Double Bed'
+      },
+      occupancy: {
+        '@type': 'QuantitativeValue',
+        minValue: room.minimumOccupancy,
+        maxValue: room.maximumOccupancy,
+      },
+      amenityFeature: room.features?.map(f => ({
+        '@type': 'LocationFeatureSpecification',
+        name: f,
+        value: true
+      })),
+      offers: {
+        '@type': 'Offer',
+        price: room.price?.replace(/,/g, ''),
+        priceCurrency: 'INR',
+        url: `${SITE_URL}/rooms/${room.slug}`,
+        availability: 'https://schema.org/InStock',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: room.price?.replace(/,/g, ''),
+          priceCurrency: 'INR',
+          unitText: 'NIGHT'
+        }
+      }
+    }
+  }
 
   return (
     <Helmet>
@@ -593,6 +729,16 @@ const StructuredData = ({ page = 'home' }) => {
       <script type='application/ld+json'>
         {JSON.stringify(pageSchema)}
       </script>
+      {specificRoomSchema && (
+        <script type='application/ld+json'>
+          {JSON.stringify(specificRoomSchema)}
+        </script>
+      )}
+      {page === 'restaurant' && (
+        <script type='application/ld+json'>
+          {JSON.stringify(restaurantSchema)}
+        </script>
+      )}
     </Helmet>
   )
 }

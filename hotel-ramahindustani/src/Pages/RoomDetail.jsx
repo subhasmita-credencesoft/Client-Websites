@@ -33,9 +33,18 @@ const RoomDetail = () => {
 
   const whatsAppUrl = getWhatsappShareUrl(contactDetails, false)
   const canonicalPath = `/rooms/${room.slug}`
-  const title = `${room.name} in Pratap Nagar Jaipur — Price, Photos & Amenities`
-  const description = `Book ${room.name} at Hotel Rama Hindustani in Pratap Nagar Jaipur. ₹${room.price}/night with ${room.features.join(', ')}. ${room.description}`
-  const keywords = `${room.name} Jaipur, ${room.name} Pratap Nagar, book ${room.name.toLowerCase()} Jaipur, ${room.name} price Jaipur, hotel rooms Jaipur`
+
+  // Room-specific SEO descriptions (unique per room type)
+  const roomDescriptions = {
+    'economy-double-room': 'Budget-friendly Economy Double Room at Hotel Rama Hindustani — clean, AC, free WiFi, walking distance to Dolphin Park. Best price on direct booking.',
+    'standard-double-room': 'Comfortable Standard Double Room, AC, free WiFi, near Jaipur Airport & JECC. Ideal for couples and solo travelers. Book direct for best rates.',
+    'deluxe-room': 'Spacious AC Deluxe Room at Hotel Rama Hindustani, Pratap Nagar Jaipur — free WiFi, flat-screen TV, private bathroom. Best price on direct booking.',
+    'superior-double-room': 'Superior Double Room with AC, free WiFi, mini fridge & premium bedding at Hotel Rama Hindustani, Jaipur. Ideal for couples and business travelers.',
+  }
+
+  const title = `${room.name} | Hotel Rama Hindustani, Jaipur`
+  const description = roomDescriptions[room.slug] || `Book ${room.name} at Hotel Rama Hindustani in Pratap Nagar Jaipur. ₹${room.price}/night with ${room.features.join(', ')}. ${room.description}`
+  const keywords = `${room.name} Jaipur, ${room.name} Pratap Nagar, book ${room.name.toLowerCase()} Jaipur, ${room.name} price Jaipur, hotel rooms Jaipur, AC room near Jaipur Airport`
 
   return (
     <>
@@ -46,7 +55,7 @@ const RoomDetail = () => {
         keywords={keywords}
         ogImage={room.image}
       />
-      <StructuredData page='rooms' />
+      <StructuredData page='room-detail' room={room} />
       <TopBanner text={room.name} image={room.image} heading='div' />
 
       <div className='section-container py-6'>

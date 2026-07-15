@@ -11,8 +11,8 @@ const Services = () => {
   return (
     <>
       <Seo
-        title='Hotel Amenities in Pratap Nagar Jaipur - Free WiFi, Parking & AC Rooms'
-        description='Explore hotel amenities in Pratap Nagar Jaipur at Hotel Rama Hindustani. Free high-speed WiFi, free parking, AC rooms, power backup, elevator, laundry, room service, and on-site vegetarian restaurant near Jaipur Airport.'
+        title='Hotel Services & Amenities | Hotel Rama Hindustani'
+        description='Free WiFi, free parking, 24-hr front desk, laundry, airport transfer & more at Hotel Rama Hindustani, Jaipur. All amenities included for a comfortable stay.'
         canonicalPath='/services'
         keywords='Hotel Amenities Pratap Nagar Jaipur, Free WiFi Hotel Jaipur Near Airport, Free Parking Hotel Jaipur, AC Rooms Pratap Nagar, Hotel with Lift Jaipur, Room Service Near Jaipur Airport, Budget Hotel Amenities Jaipur, Family Hotel Services Pratap Nagar, Power Backup Hotel Jaipur, Laundry Service Hotel Jaipur'
       />
