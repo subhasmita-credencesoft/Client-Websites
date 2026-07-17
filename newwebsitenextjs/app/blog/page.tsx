@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { createPageMetadata } from "@/lib/metadata";
 import { blogPosts } from "@/lib/data/pages/blog-pages";
 
@@ -33,6 +34,10 @@ export default function BlogIndexPage() {
           </div>
         </div>
       </section>
+
+      <div className="mx-auto max-w-[80rem] px-4 md:px-8">
+        <Breadcrumbs items={[{ label: "Blog" }]} />
+      </div>
 
       <section className="mx-auto max-w-[80rem] px-4 py-16 md:px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

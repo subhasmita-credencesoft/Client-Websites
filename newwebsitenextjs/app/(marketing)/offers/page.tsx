@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
 import { OffersPageClient } from "@/components/features/offers/offers-page-client";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -18,6 +19,9 @@ export default function OffersPage() {
     <main className="relative overflow-hidden bg-[#11100e] text-[#f4ede2]">
       <div className="noise-overlay" />
       <SiteHeader />
+      <div className="mx-auto max-w-[80rem] px-4 pt-28 md:px-8 md:pt-36">
+        <Breadcrumbs items={[{ label: "Offers" }]} />
+      </div>
       <Suspense
         fallback={
           <section className="site-container max-w-[96rem] py-20 text-center text-white/70">

@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { AboutIntroSection } from "@/components/features/home/sections/about-intro-section";
 import { AwardsSection } from "@/components/features/shared/sections/awards-section";
 import { HeroSection } from "@/components/features/home/sections/hero-section";
+import { QuickBookingStrip } from "@/components/features/home/sections/quick-booking-strip";
 import { StaySection } from "@/components/features/home/sections/stay-section";
 import { ReservationSection } from "@/components/features/shared/sections/reservation-section";
 
@@ -32,18 +33,16 @@ export function MountainHomePage() {
       <div className="noise-overlay" />
       <SiteHeader />
       <HeroSection />
+      <QuickBookingStrip />
       <div className="content-auto-section">
         <AboutIntroSection />
         <MediaCoverageSection />
         <StaySection />
-        {/* <HorizontalJourneySection /> */}
         <ParallaxGallerySection />
         <StorytellingSection />
         <OffersSection />
         <ExperienceCardsSection />
         <FeatureSplitSection />
-        {/* <PartnerLogosSection /> */}
-        {/* <TownshipsSection /> */}
         <AwardsSection />
         <ReservationSection />
       </div>

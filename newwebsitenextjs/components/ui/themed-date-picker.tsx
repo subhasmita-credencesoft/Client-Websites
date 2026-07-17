@@ -98,6 +98,10 @@ export function ThemedDatePicker({
       dateFormat="dd-MM-yyyy"
       calendarClassName="mountain-datepicker"
       popperClassName={cn("mountain-datepicker-popper", popperClassName)}
+      popperPlacement="bottom-start"
+      popperProps={{
+        strategy: "fixed",
+      }}
       customInput={<DateInputButton className={className} disabled={disabled} />}
       showPopperArrow={false}
       fixedHeight

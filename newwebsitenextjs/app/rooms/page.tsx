@@ -4,8 +4,9 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { createPageMetadata } from "@/lib/metadata";
-import { detailPageSlugs, detailPages } from "@/lib/data/pages/detail-pages";
+import { detailPages } from "@/lib/data/pages/detail-pages";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Rooms & Stay Options",
@@ -47,6 +48,10 @@ export default function RoomsIndexPage() {
           </div>
         </div>
       </section>
+
+      <div className="mx-auto max-w-6xl px-4 md:px-8">
+        <Breadcrumbs items={[{ label: "Rooms" }]} />
+      </div>
 
       <section className="mx-auto max-w-6xl px-4 py-16 text-center md:px-8 md:py-20" data-reveal>
         <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Stay Categories</p>

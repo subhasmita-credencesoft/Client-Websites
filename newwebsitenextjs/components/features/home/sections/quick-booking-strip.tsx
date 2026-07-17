@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { buildDirectBookingEngineUrl, normalizeDate, formatDate } from "@/lib/constants/booking";
+import {
+  buildDirectBookingEngineUrl,
+  normalizeDate,
+  formatDate,
+} from "@/lib/constants/booking";
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 import { ThemedDatePicker } from "@/components/ui/themed-date-picker";
-import { cn } from "@/lib/utils/cn";
-
-type QuickBookingStripProps = {
-  insideHero?: boolean;
-};
 
 function getTodayDateString(offsetDays = 0) {
   const now = new Date();
@@ -19,7 +18,7 @@ function getTodayDateString(offsetDays = 0) {
   return `${year}-${month}-${day}`;
 }
 
-export function QuickBookingStrip({ insideHero = false }: QuickBookingStripProps) {
+export function QuickBookingStrip() {
   const content = homeSectionContent.quickBooking;
   const [isReady, setIsReady] = useState(false);
   const [checkIn, setCheckIn] = useState("");
@@ -28,29 +27,24 @@ export function QuickBookingStrip({ insideHero = false }: QuickBookingStripProps
 
   useEffect(() => {
     const frameId = window.requestAnimationFrame(() => {
-      const initialCheckIn = getTodayDateString();
-      const initialCheckOut = getTodayDateString(1);
-
-      setCheckIn(initialCheckIn);
-      setCheckOut(initialCheckOut);
+      setCheckIn(getTodayDateString());
+      setCheckOut(getTodayDateString(1));
       setIsReady(true);
     });
-
-    return () => {
-      window.cancelAnimationFrame(frameId);
-    };
+    return () => window.cancelAnimationFrame(frameId);
   }, []);
 
   const handleCheckInChange = (nextCheckIn: string) => {
     setCheckIn(nextCheckIn);
-
     const nextCheckInDate = normalizeDate(nextCheckIn);
     const currentCheckOutDate = normalizeDate(checkOut);
-
-    if (!nextCheckInDate || !currentCheckOutDate || currentCheckOutDate > nextCheckInDate) {
+    if (
+      !nextCheckInDate ||
+      !currentCheckOutDate ||
+      currentCheckOutDate > nextCheckInDate
+    ) {
       return;
     }
-
     const nextCheckOutDate = new Date(nextCheckInDate);
     nextCheckOutDate.setDate(nextCheckOutDate.getDate() + 1);
     setCheckOut(formatDate(nextCheckOutDate));
@@ -63,39 +57,14 @@ export function QuickBookingStrip({ insideHero = false }: QuickBookingStripProps
       guests: Number(guests) || 1,
       rooms: 1,
     });
-
     window.location.assign(bookingHref);
   };
 
   return (
-    <section
-      className={cn(
-        "relative z-20 px-4 md:px-8",
-        insideHero ? "w-full px-0 pt-1 md:pt-1.5" : "-mt-12 bg-black pb-0 md:-mt-16 md:pb-0",
-      )}
-      data-reveal={insideHero ? true : undefined}
-    >
-      <div
-        className="mx-auto max-w-[62rem]"
-        data-parallax={insideHero ? true : undefined}
-        data-parallax-depth={insideHero ? "4" : undefined}
-      >
-        <div className="overflow-hidden rounded-[1.05rem] border border-[rgba(var(--color-primary-rgb),0.18)] bg-[linear-gradient(180deg,rgba(20,16,13,0.96)_0%,rgba(15,12,10,0.92)_100%)] px-2.5 py-2.5 shadow-[0_18px_34px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:px-3 sm:py-3 md:px-3.5 md:py-3">
-          <div className="mb-2 flex flex-col gap-1 border-b border-white/8 pb-2 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-[0.5rem] font-semibold uppercase tracking-[0.22em] text-[var(--color-primary-hover)]">
-                Quick Booking
-              </p>
-              <p className="mt-0.5 text-[0.82rem] font-medium text-white/88 md:text-[0.88rem]">
-                {content.title}
-              </p>
-            </div>
-            <p className="text-[0.64rem] uppercase tracking-[0.14em] text-white/50">
-              Instant availability check
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-[1fr_1fr_0.55fr_auto] xl:items-end">
+    <section className="relative z-30 w-full bg-black px-4 py-3 md:px-8 md:py-4">
+      <div className="mx-auto max-w-[66rem]">
+        <div className="overflow-hidden rounded-[1rem] border border-[rgba(var(--color-primary-rgb),0.22)] bg-[linear-gradient(180deg,rgba(20,16,13,0.97)_0%,rgba(15,12,10,0.94)_100%)] px-3 py-2 shadow-[0_18px_36px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:px-4 sm:py-2.5 md:px-5 md:py-3">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5 xl:grid-cols-[1fr_1fr_0.55fr_auto] xl:items-end">
             <label className="grid gap-1">
               <span className="text-[0.5rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-primary-hover)]">
                 {content.fields.checkIn}
@@ -105,7 +74,7 @@ export function QuickBookingStrip({ insideHero = false }: QuickBookingStripProps
                 onChange={handleCheckInChange}
                 minDate={getTodayDateString()}
                 disabled={!isReady}
-                className="h-10 rounded-[0.75rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[#c9a46e]/50 sm:h-10 sm:text-[0.8rem] xl:h-10 xl:text-[0.76rem]"
+                className="h-9 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[#c9a46e]/50"
               />
             </label>
 
@@ -118,7 +87,7 @@ export function QuickBookingStrip({ insideHero = false }: QuickBookingStripProps
                 onChange={setCheckOut}
                 minDate={checkIn}
                 disabled={!isReady}
-                className="h-10 rounded-[0.75rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[#c9a46e]/50 sm:h-10 sm:text-[0.8rem] xl:h-10 xl:text-[0.76rem]"
+                className="h-9 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[#c9a46e]/50"
               />
             </label>
 
@@ -132,7 +101,7 @@ export function QuickBookingStrip({ insideHero = false }: QuickBookingStripProps
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
                 disabled={!isReady}
-                className="h-10 rounded-[0.75rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white outline-none transition-colors hover:border-white/18 focus:border-[#c9a46e]/50 sm:h-10 sm:text-[0.8rem] xl:h-10 xl:text-[0.76rem]"
+                className="h-9 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white outline-none transition-colors hover:border-white/18 focus:border-[#c9a46e]/50"
               />
             </label>
 
@@ -141,7 +110,7 @@ export function QuickBookingStrip({ insideHero = false }: QuickBookingStripProps
                 type="button"
                 onClick={handleBookingRedirect}
                 disabled={!isReady}
-                className="inline-flex h-10 w-full items-center justify-center rounded-[0.78rem] border border-[#c9a467] bg-[#c9a467] px-4 text-[0.56rem] font-semibold tracking-[0.14em] text-black transition-colors hover:bg-[#d7b57c] sm:h-10 sm:text-[0.58rem] xl:h-10 xl:min-w-[9.5rem] xl:text-[0.56rem]"
+                className="inline-flex h-9 w-full items-center justify-center rounded-[0.7rem] border border-[#c9a467] bg-[#c9a467] px-4 text-[0.56rem] font-semibold tracking-[0.14em] text-black transition-colors hover:bg-[#d7b57c] xl:min-w-[9rem]"
                 data-cursor="hover"
               >
                 {content.cta}

@@ -3,7 +3,9 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import type { LandingPageData } from "@/lib/data/pages/landing-pages";
+import { relatedLandingPages } from "@/lib/data/pages/landing-pages";
 
 type LandingPageViewProps = {
   page: LandingPageData;
@@ -55,6 +57,10 @@ export function LandingPageView({ page }: LandingPageViewProps) {
           </div>
         </div>
       </section>
+
+      <div className="mx-auto max-w-6xl px-4 md:px-8">
+        <Breadcrumbs items={[{ label: page.hero.title }]} />
+      </div>
 
       <section className="mx-auto max-w-6xl px-4 py-16 text-center md:px-8 md:py-20" data-reveal>
         <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>{page.intro.eyebrow}</p>
@@ -145,6 +151,24 @@ export function LandingPageView({ page }: LandingPageViewProps) {
           </div>
         </div>
       </section>
+
+      {relatedLandingPages[page.slug] ? (
+        <section className="mx-auto max-w-6xl px-4 pb-16 md:px-8" data-reveal>
+          <p className="text-center text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Explore More</p>
+          <h3 className="mt-4 text-center text-2xl md:text-3xl" data-section-title data-reveal-child>Related Experiences</h3>
+          <div className="mt-8 flex flex-wrap justify-center gap-3" data-reveal-child>
+            {relatedLandingPages[page.slug].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold tracking-wide text-white/85 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <GlobalPageSections hideContactAndStay hideReservation />
       <SiteFooter />

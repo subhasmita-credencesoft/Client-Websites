@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { createPageMetadata } from "@/lib/metadata";
 import { faqData } from "@/lib/data/pages/faq-page";
 
@@ -53,6 +54,10 @@ export default function FaqPage() {
           </div>
         </div>
       </section>
+
+      <div className="mx-auto max-w-5xl px-4 md:px-8">
+        <Breadcrumbs items={[{ label: "FAQ" }]} />
+      </div>
 
       <section className="mx-auto max-w-5xl px-4 py-16 md:px-8">
         <div className="space-y-16">

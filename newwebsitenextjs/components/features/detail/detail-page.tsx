@@ -7,6 +7,7 @@ import type { DetailPage } from "@/lib/data/pages/detail-pages";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 
 type DetailPageProps = {
@@ -109,19 +110,7 @@ export function DetailPageView({ page }: DetailPageProps) {
 
       <div className="content-auto-section">
       <section className="site-container max-w-5xl py-14 text-center md:py-20" data-stage-section>
-        <nav aria-label="Breadcrumb" className="flex items-center justify-center">
-          <ol className="inline-flex items-center gap-3 rounded-full border border-[#c8a871]/20 bg-[#16261f]/80 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
-            <li>
-              <Link href="/" className="transition-colors hover:text-[#c9a46e]">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true" className="text-[#c9a46e]">
-              /
-            </li>
-            <li className="text-[#c9a46e]">{page.title}</li>
-          </ol>
-        </nav>
+        <Breadcrumbs items={[{ label: page.title }]} />
         <div data-stage-copy>
           <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-stage-line>
             {page.introTitle}

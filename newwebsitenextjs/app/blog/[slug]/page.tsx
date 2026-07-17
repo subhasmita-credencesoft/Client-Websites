@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { createPageMetadata } from "@/lib/metadata";
 import { getBlogPost, blogPosts } from "@/lib/data/pages/blog-pages";
 
@@ -75,15 +76,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(201,164,110,0.12),transparent_38%),linear-gradient(180deg,rgba(0,0,0,0.14)_0%,rgba(0,0,0,0.56)_56%,rgba(0,0,0,0.92)_100%)]" />
         <div className="site-container relative z-10 flex min-h-[32rem] items-end pb-10 pt-16 md:min-h-[42rem] md:pb-16 md:pt-24">
           <div className="max-w-5xl" data-panel-content>
-            <nav aria-label="Breadcrumb" className="mb-6">
-              <ol className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/20 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/75 backdrop-blur-sm">
-                <li><Link href="/" className="transition-colors hover:text-[#c9a46e]">Home</Link></li>
-                <li aria-hidden="true" className="text-[#c9a46e]">/</li>
-                <li><Link href="/blog" className="transition-colors hover:text-[#c9a46e]">Blog</Link></li>
-                <li aria-hidden="true" className="text-[#c9a46e]">/</li>
-                <li className="text-[#c9a46e]">{post.category}</li>
-              </ol>
-            </nav>
+            <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.category }]} />
             <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-panel-line>{post.category} &mdash; {post.publishDate}</p>
             <h1 data-section-title data-panel-line className="mt-4 max-w-5xl">
               {post.title}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import type { MountainVenuePageData } from "@/lib/data/pages/venue-pages";
 
 type VenueShowcasePageProps = {
@@ -134,19 +135,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
       </section>
 
       <section className="site-container max-w-[80rem] pb-16 pt-12 md:pb-24 md:pt-24" data-section-id={`${page.slug}-intro`} data-stage-section>
-        <nav aria-label="Breadcrumb" className="flex items-center">
-          <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-[#182920]/85 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
-            <li>
-              <Link href="/" className="transition-colors hover:text-[#b88948]">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true" className="text-[#b88948]">
-              /
-            </li>
-            <li className="text-[#b88948]">{page.hero.title}</li>
-          </ol>
-        </nav>
+        <Breadcrumbs items={[{ label: page.hero.title }]} />
 
         <div className="mt-12 max-w-[62rem]" data-stage-copy>
           <h2 className="site-title-lg text-balance text-[#d7ae71] md:text-[clamp(2.5rem,5vw,4.5rem)]" data-stage-line>

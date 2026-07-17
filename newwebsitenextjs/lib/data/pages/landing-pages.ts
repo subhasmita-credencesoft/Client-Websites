@@ -34,6 +34,51 @@ export type LandingPageData = {
   };
 };
 
+export const relatedLandingPages: Record<string, Array<{ label: string; href: string }>> = {
+  "luxury-resort-karjat": [
+    { label: "Destination Wedding in Karjat", href: "/destination-wedding-karjat" },
+    { label: "Resort Near Mumbai", href: "/resort-near-mumbai" },
+    { label: "Weekend Getaway in Karjat", href: "/weekend-getaway-karjat" },
+    { label: "Corporate Retreat in Karjat", href: "/corporate-retreat-karjat" },
+    { label: "Family Resort in Karjat", href: "/family-resort-karjat" },
+  ],
+  "destination-wedding-karjat": [
+    { label: "Luxury Resort in Karjat", href: "/luxury-resort-karjat" },
+    { label: "Resort Near Mumbai", href: "/resort-near-mumbai" },
+    { label: "Weekend Getaway in Karjat", href: "/weekend-getaway-karjat" },
+    { label: "Corporate Retreat in Karjat", href: "/corporate-retreat-karjat" },
+    { label: "Family Resort in Karjat", href: "/family-resort-karjat" },
+  ],
+  "resort-near-mumbai": [
+    { label: "Luxury Resort in Karjat", href: "/luxury-resort-karjat" },
+    { label: "Destination Wedding in Karjat", href: "/destination-wedding-karjat" },
+    { label: "Weekend Getaway in Karjat", href: "/weekend-getaway-karjat" },
+    { label: "Corporate Retreat in Karjat", href: "/corporate-retreat-karjat" },
+    { label: "Family Resort in Karjat", href: "/family-resort-karjat" },
+  ],
+  "weekend-getaway-karjat": [
+    { label: "Luxury Resort in Karjat", href: "/luxury-resort-karjat" },
+    { label: "Destination Wedding in Karjat", href: "/destination-wedding-karjat" },
+    { label: "Resort Near Mumbai", href: "/resort-near-mumbai" },
+    { label: "Corporate Retreat in Karjat", href: "/corporate-retreat-karjat" },
+    { label: "Family Resort in Karjat", href: "/family-resort-karjat" },
+  ],
+  "corporate-retreat-karjat": [
+    { label: "Luxury Resort in Karjat", href: "/luxury-resort-karjat" },
+    { label: "Destination Wedding in Karjat", href: "/destination-wedding-karjat" },
+    { label: "Resort Near Mumbai", href: "/resort-near-mumbai" },
+    { label: "Weekend Getaway in Karjat", href: "/weekend-getaway-karjat" },
+    { label: "Family Resort in Karjat", href: "/family-resort-karjat" },
+  ],
+  "family-resort-karjat": [
+    { label: "Luxury Resort in Karjat", href: "/luxury-resort-karjat" },
+    { label: "Destination Wedding in Karjat", href: "/destination-wedding-karjat" },
+    { label: "Resort Near Mumbai", href: "/resort-near-mumbai" },
+    { label: "Weekend Getaway in Karjat", href: "/weekend-getaway-karjat" },
+    { label: "Corporate Retreat in Karjat", href: "/corporate-retreat-karjat" },
+  ],
+};
+
 export const landingPages: Record<string, LandingPageData> = {
   "luxury-resort-karjat": {
     slug: "luxury-resort-karjat",

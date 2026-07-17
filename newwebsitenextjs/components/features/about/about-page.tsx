@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { aboutPageContent } from "@/lib/data/content/resort-content";
 
 export function AboutPage() {
@@ -52,17 +53,7 @@ export function AboutPage() {
       <div className="content-auto-section">
       <section className="mx-auto max-w-[80rem] px-4 py-12 md:px-8 md:py-14">
         <div className="mb-8 flex justify-center">
-          <ol className="inline-flex items-center gap-3 rounded-full border border-[#d5b07a]/20 bg-[#182920]/85 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
-            <li>
-              <Link href="/" className="transition-colors hover:text-[#d5b07a]">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true" className="text-[#d5b07a]">
-              /
-            </li>
-            <li className="text-[#d5b07a]">About</li>
-          </ol>
+          <Breadcrumbs items={[{ label: "About" }]} />
         </div>
         <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
           {content.stats.map((stat) => (

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { GlobalPageSections } from "@/components/features/shared/global-page-sections";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 import type { MountainInfoPageData } from "@/lib/data/pages/info-pages";
 
@@ -78,6 +79,10 @@ export function InfoPageView({
           </div>
         </div>
       </section>
+
+      <div className="mx-auto max-w-6xl px-4 md:px-8">
+        <Breadcrumbs items={[{ label: page.hero.title }]} />
+      </div>
 
       <section className="mx-auto max-w-6xl px-4 py-16 text-center md:px-8 md:py-20" data-reveal>
         <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>{page.intro.eyebrow}</p>

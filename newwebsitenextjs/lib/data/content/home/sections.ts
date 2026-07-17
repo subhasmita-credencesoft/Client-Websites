@@ -4,12 +4,12 @@
     primaryCta: "Check Availability",
   },
   hero: {
-    title: "Where Wedding Dreams Stay Longer",
+    title: "Wedding Dreams Stay Longer",
     subtitle:
       "A private 7-acre mountain estate in Karjat for destination weddings, celebration weekends, and luxury stays.",
     description: "",
-    primaryCta: "PLAN YOUR WEDDING",
-    secondaryCta: "RESERVE STAY",
+    primaryCta: "",
+    secondaryCta: "",
   },
   quickBooking: {
     title: "Check Dates And Stay Options",

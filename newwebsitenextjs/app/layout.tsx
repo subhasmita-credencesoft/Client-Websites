@@ -4,6 +4,7 @@ import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { ClientEnhancements } from "@/components/providers/client-enhancements";
 import { WebVitals } from "@/components/providers/web-vitals";
+import { StickyBookingBar } from "@/components/layout/sticky-booking-bar";
 import { rootMetadata } from "@/lib/metadata";
 
 const bodyFont = Poppins({
@@ -99,6 +100,7 @@ export default function RootLayout({
       </head>
       <body className={`${bodyFont.variable} ${displayFont.variable} overflow-x-hidden antialiased`} suppressHydrationWarning>
         {children}
+        <StickyBookingBar />
         <WebVitals />
         <ClientEnhancements />
       </body>

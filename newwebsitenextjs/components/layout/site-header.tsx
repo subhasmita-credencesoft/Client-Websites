@@ -118,14 +118,14 @@ export function SiteHeader() {
   }, [router]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-[linear-gradient(180deg,rgba(8,7,6,0.96)_0%,rgba(8,7,6,0.9)_100%)] backdrop-blur-lg">
+    <header className="fixed inset-x-0 top-0 z-50 bg-[linear-gradient(180deg,rgba(8,7,6,0.97)_0%,rgba(8,7,6,0.93)_100%)] backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
       <PageWrapper size="wide">
-        <div className="relative py-1.5 lg:py-0">
-          <div className="grid min-h-[3.1rem] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-1 sm:min-h-[3.45rem] sm:gap-2.5 md:grid-cols-[1fr_auto_1fr] md:gap-5">
+        <div className="relative py-2 lg:py-0">
+          <div className="grid min-h-[3.4rem] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:min-h-[3.8rem] sm:gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-6">
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="flex h-9 w-9 items-center justify-center rounded-[var(--radius-md)] border border-[rgba(var(--color-primary-rgb),0.28)] bg-white/[0.03] text-white sm:min-h-10 sm:w-10 lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] border border-[rgba(var(--color-primary-rgb),0.28)] bg-white/[0.03] text-white sm:h-11 sm:w-11 lg:hidden"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
@@ -149,7 +149,7 @@ export function SiteHeader() {
               </span>
             </button>
 
-            <div className="hidden min-h-[3.85rem] items-center gap-4 text-[0.62rem] font-semibold tracking-[0.1em] text-[#f1e7d7] lg:flex">
+            <div className="hidden min-h-[4.2rem] items-center gap-5 text-[0.68rem] font-semibold tracking-[0.12em] text-[#f1e7d7] lg:flex">
               <span className="text-white/75">
                 <DiamondIcon />
               </span>
@@ -167,7 +167,7 @@ export function SiteHeader() {
 
             <Link
               href="/"
-              className="relative z-10 mx-auto inline-flex h-[34px] w-[42px] items-center justify-center rounded-[var(--radius-sm)] border border-[rgba(var(--color-primary-rgb),0.56)] bg-[linear-gradient(180deg,rgba(19,15,12,0.98)_0%,rgba(10,8,6,0.98)_100%)] px-0.5 text-center text-[0.26rem] font-semibold uppercase tracking-[0.06em] leading-[1.05] text-[var(--color-primary-hover)] shadow-[0_0_0_2px_rgba(8,7,6,0.94),0_8px_18px_rgba(0,0,0,0.18)] max-[380px]:h-[32px] max-[380px]:w-[38px] max-[380px]:text-[0.22rem] max-[380px]:tracking-[0.03em] sm:h-[48px] sm:w-[72px] sm:px-2 sm:text-[0.44rem] sm:tracking-[0.18em] sm:leading-normal md:h-[58px] md:w-[86px] md:px-3 md:text-[0.52rem] lg:h-[72px] lg:w-[102px] lg:text-[0.56rem] lg:leading-[1.6]"
+              className="relative z-10 mx-auto inline-flex h-[38px] w-[48px] items-center justify-center rounded-[var(--radius-sm)] border border-[rgba(var(--color-primary-rgb),0.56)] bg-[linear-gradient(180deg,rgba(19,15,12,0.98)_0%,rgba(10,8,6,0.98)_100%)] px-1 text-center text-[0.28rem] font-semibold uppercase tracking-[0.08em] leading-[1.1] text-[var(--color-primary-hover)] shadow-[0_0_0_2px_rgba(8,7,6,0.94),0_8px_20px_rgba(0,0,0,0.22)] max-[380px]:h-[34px] max-[380px]:w-[42px] max-[380px]:text-[0.24rem] sm:h-[52px] sm:w-[78px] sm:px-2.5 sm:text-[0.46rem] sm:tracking-[0.2em] sm:leading-normal md:h-[60px] md:w-[92px] md:px-3.5 md:text-[0.54rem] lg:h-[76px] lg:w-[110px] lg:text-[0.6rem] lg:leading-[1.6]"
               data-cursor="hover"
             >
               {content.logoLines[0]}
@@ -175,7 +175,7 @@ export function SiteHeader() {
               {content.logoLines[1]}
             </Link>
 
-            <div className="hidden min-h-[3.85rem] items-center justify-end gap-2.5 text-[0.62rem] font-semibold tracking-[0.1em] text-[#f1e7d7] lg:flex">
+            <div className="hidden min-h-[4.2rem] items-center justify-end gap-3 text-[0.68rem] font-semibold tracking-[0.12em] text-[#f1e7d7] lg:flex">
               {topRightLinks.map((item) => (
                 <Link key={item} href="/" className="transition-colors hover:text-[var(--color-primary-hover)]" data-cursor="hover">
                   {item}
@@ -184,7 +184,7 @@ export function SiteHeader() {
               <div className="group relative flex items-center">
                 <a
                   href={contactPhoneHref}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/85 transition-colors hover:border-[rgba(var(--color-primary-rgb),0.35)] hover:text-[var(--color-primary-hover)]"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/85 transition-colors hover:border-[rgba(var(--color-primary-rgb),0.35)] hover:text-[var(--color-primary-hover)]"
                   aria-label={`Call ${contactPhone}`}
                   data-cursor="hover"
                 >
@@ -198,7 +198,7 @@ export function SiteHeader() {
                 href={whatsappHref}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/85 transition-colors hover:border-[rgba(var(--color-primary-rgb),0.35)] hover:text-[var(--color-primary-hover)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/85 transition-colors hover:border-[rgba(var(--color-primary-rgb),0.35)] hover:text-[var(--color-primary-hover)]"
                 aria-label="Open WhatsApp chat"
                 data-cursor="hover"
               >
@@ -209,7 +209,7 @@ export function SiteHeader() {
                 className={buttonClassName({
                   variant: "primary",
                   size: "sm",
-                  className: "min-h-[2.55rem] rounded-full px-5 text-[0.6rem] shadow-[0_12px_24px_rgba(200,154,85,0.14)] hover:shadow-[0_14px_28px_rgba(214,176,122,0.18)]",
+                  className: "min-h-[2.7rem] rounded-full px-6 text-[0.64rem] shadow-[0_12px_24px_rgba(200,154,85,0.14)] hover:shadow-[0_14px_28px_rgba(214,176,122,0.18)]",
                 })}
                 data-cursor="hover"
               >
@@ -223,7 +223,7 @@ export function SiteHeader() {
                 variant: "primary",
                 size: "sm",
                 className:
-                  "h-8 min-w-0 max-w-[7.4rem] shrink-0 overflow-hidden text-ellipsis whitespace-nowrap rounded-full px-1.5 text-[0.33rem] tracking-[0.03em] shadow-none max-[380px]:max-w-[6.9rem] max-[380px]:px-1 max-[380px]:text-[0.3rem] sm:h-10 sm:max-w-none sm:px-3 sm:text-[0.5rem] lg:hidden",
+                  "h-9 min-w-0 max-w-[7.8rem] shrink-0 overflow-hidden text-ellipsis whitespace-nowrap rounded-full px-2 text-[0.36rem] tracking-[0.04em] shadow-none max-[380px]:max-w-[7.2rem] max-[380px]:px-1.5 max-[380px]:text-[0.32rem] sm:h-10 sm:max-w-none sm:px-3.5 sm:text-[0.52rem] lg:hidden",
               })}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -233,10 +233,10 @@ export function SiteHeader() {
         </div>
 
         <nav
-          className="relative hidden items-center justify-center bg-[rgba(8,7,6,0.88)] py-2 lg:flex"
+          className="relative hidden items-center justify-center bg-[rgba(8,7,6,0.9)] py-2.5 lg:flex"
           onMouseLeave={() => setActiveDropdown(null)}
         >
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-center">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-center">
             {desktopMainLinks.map((item, index) => (
               <div
                 key={item}
@@ -245,7 +245,7 @@ export function SiteHeader() {
               >
                 <Link
                   href={mainNavLinks[item] ?? "/"}
-                  className={`inline-flex min-h-9 items-center text-[0.7rem] font-semibold uppercase tracking-[0.15em] transition-all duration-200 ${
+                  className={`inline-flex min-h-9 items-center text-[0.76rem] font-semibold uppercase tracking-[0.16em] transition-all duration-200 ${
                     activeDropdown === item ? "text-[#e0b675]" : "text-[#f3eadb]/92 hover:text-[#e0b675]"
                   }`}
                   data-cursor="hover"
@@ -256,7 +256,7 @@ export function SiteHeader() {
 
                 {index < desktopMainLinks.length - 1 ? (
                   <span
-                    className="pointer-events-none absolute left-[calc(100%+0.8rem)] top-1/2 -translate-y-1/2 text-[0.72rem] text-[#c89a55]/58"
+                    className="pointer-events-none absolute left-[calc(100%+1rem)] top-1/2 -translate-y-1/2 text-[0.72rem] text-[#c89a55]/58"
                     aria-hidden="true"
                   >
                     {"\u2022"}
@@ -264,12 +264,12 @@ export function SiteHeader() {
                 ) : null}
 
                 {activeDropdown === item && dropdownItems.length > 0 ? (
-                  <div className="absolute left-1/2 top-[2.55rem] z-50 min-w-[15rem] -translate-x-1/2 rounded-[1.1rem] border border-[#c9a46e]/24 bg-[linear-gradient(180deg,#15110e_0%,#1d1612_100%)] p-1 shadow-[0_14px_34px_rgba(0,0,0,0.42)] md:min-w-[18rem]">
+                  <div className="absolute left-1/2 top-[2.7rem] z-50 min-w-[16rem] -translate-x-1/2 rounded-[1.1rem] border border-[#c9a46e]/24 bg-[linear-gradient(180deg,#15110e_0%,#1d1612_100%)] p-1.5 shadow-[0_14px_34px_rgba(0,0,0,0.42)] md:min-w-[19rem]">
                     {dropdownItems.map((dropdownItem) => (
                       <Link
                         key={dropdownItem.label}
                         href={dropdownItem.href}
-                        className="block border-b border-white/10 px-4 py-3 text-left text-sm leading-snug text-white/90 last:border-b-0 hover:bg-white/4 hover:text-[var(--color-text-primary)] md:text-[0.95rem]"
+                        className="block border-b border-white/10 px-4 py-3.5 text-left text-[0.92rem] leading-snug text-white/90 last:border-b-0 hover:bg-white/4 hover:text-[var(--color-text-primary)]"
                         data-cursor="hover"
                       >
                         {dropdownItem.label}
@@ -287,11 +287,11 @@ export function SiteHeader() {
           data-lenis-prevent
           className={`no-scrollbar border-t border-[#c89a55]/14 transition-[max-height,opacity] duration-300 md:hidden ${
             mobileMenuOpen
-              ? "max-h-[calc(100vh-5.5rem)] overflow-y-auto overscroll-contain touch-pan-y opacity-100"
+              ? "max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain touch-pan-y opacity-100"
               : "max-h-0 overflow-hidden opacity-0"
           } lg:hidden`}
         >
-          <div className="space-y-1 py-3" data-lenis-prevent>
+          <div className="space-y-1 py-4" data-lenis-prevent>
             {mobileMainLinks.map((item) => {
               const nested = headerDropdownLinks[item] ?? [];
 
@@ -299,7 +299,7 @@ export function SiteHeader() {
                 <div key={item} className="border-b border-white/10 pb-2 last:border-b-0">
                   <Link
                     href={mainNavLinks[item] ?? "/"}
-                    className="block min-h-11 px-1 py-2 text-[0.78rem] font-semibold uppercase tracking-wide text-white"
+                    className="block min-h-12 px-1 py-2.5 text-[0.82rem] font-semibold uppercase tracking-wide text-white"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item}
@@ -311,7 +311,7 @@ export function SiteHeader() {
                         <Link
                           key={dropdownItem.label}
                           href={dropdownItem.href}
-                          className="block py-1 text-sm text-white/75 transition-colors hover:text-[#c9a46e]"
+                          className="block py-1.5 text-[0.85rem] text-white/75 transition-colors hover:text-[#c9a46e]"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {dropdownItem.label}
@@ -326,7 +326,7 @@ export function SiteHeader() {
 
           <Link
             href={DIRECT_BOOKING_ENGINE_URL}
-            className={buttonClassName({ variant: "primary", size: "md", className: "mb-4 flex w-full justify-center text-center text-[0.7rem]" })}
+            className={buttonClassName({ variant: "primary", size: "md", className: "mb-4 flex w-full justify-center text-center text-[0.72rem]" })}
             onClick={() => setMobileMenuOpen(false)}
           >
             {content.primaryCta}
