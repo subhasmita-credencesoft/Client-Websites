@@ -21,23 +21,22 @@ export function HomeHero() {
       className="relative isolate flex min-h-[100dvh] flex-col justify-end overflow-hidden pb-24 pt-28 lg:justify-center lg:pb-0 lg:pt-0"
       aria-label="Redwings Studio Goa — luxury studio apartment stays"
     >
-      {/* Background image */}
-      <div className="absolute inset-0">
+      {/* Background image — raw, no blur filter */}
+      <div className="absolute inset-0 bg-dark">
         <Image
           src="/mountain-studio/hero-main.jpeg"
           alt="Redwings Studio Goa — studio apartment property at Abalone Resort, Arpora, North Goa"
           fill
           priority
           fetchPriority="high"
-          className="h-full w-full object-cover object-[center_30%]"
+          className="object-cover object-center"
           sizes="100vw"
-          quality={90}
         />
       </div>
 
-      {/* Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-dark/95" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent" />
+      {/* Overlays — lighter, only bottom gradient for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
 
       {/* Content */}
       <div className="container-shell relative z-10 w-full">
@@ -50,7 +49,7 @@ export function HomeHero() {
             </span>
           </motion.div>
 
-          {/* Heading — smaller, tighter, readable */}
+          {/* Heading */}
           <motion.h1
             variants={fadeUp}
             initial="hidden"
