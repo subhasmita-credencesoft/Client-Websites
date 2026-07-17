@@ -18,7 +18,7 @@ export function StickyBookingBar() {
 
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-[60] transition-all duration-500 ease-out ${
+      className={`fixed inset-x-0 bottom-0 z-[60] hidden transition-all duration-500 ease-out md:block ${
         visible
           ? "translate-y-0 opacity-100"
           : "translate-y-full opacity-0 pointer-events-none"
@@ -37,14 +37,14 @@ export function StickyBookingBar() {
           <div className="flex min-w-0 flex-1 items-center gap-2 sm:flex-none sm:gap-3">
             <Link
               href={DIRECT_BOOKING_ENGINE_URL}
-              className="inline-flex h-11 flex-1 items-center justify-center rounded-xl border border-[#c9a46e] bg-[#c9a46e] px-4 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#d7b57c] sm:flex-none sm:px-6 sm:text-[0.66rem]"
+              className="inline-flex h-11 flex-1 items-center justify-center rounded-xl border border-[#c9a46e] bg-[#c9a46e] px-3 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#d7b57c] sm:flex-none sm:px-6 sm:text-[0.72rem]"
               data-cursor="hover"
             >
               Check Availability
             </Link>
             <Link
               href="/contact"
-              className="inline-flex h-11 flex-1 items-center justify-center rounded-xl border border-white/15 px-4 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white sm:flex-none sm:px-6 sm:text-[0.66rem]"
+              className="inline-flex h-11 flex-1 items-center justify-center rounded-xl border border-white/15 px-3 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white sm:flex-none sm:px-6 sm:text-[0.72rem]"
               data-cursor="hover"
             >
               Contact

@@ -167,7 +167,7 @@ export function SiteHeader() {
 
             <Link
               href="/"
-              className="relative z-10 mx-auto inline-flex h-[62px] w-[84px] flex-col items-center justify-center rounded-[var(--radius-sm)] border border-[rgba(var(--color-primary-rgb),0.56)] bg-[linear-gradient(180deg,rgba(19,15,12,0.98)_0%,rgba(10,8,6,0.98)_100%)] px-2 text-center text-[0.68rem] font-semibold uppercase tracking-[0.04em] leading-[1.25] text-[var(--color-primary-hover)] shadow-[0_0_0_2px_rgba(8,7,6,0.94),0_8px_20px_rgba(0,0,0,0.22)] max-[380px]:h-[54px] max-[380px]:w-[74px] max-[380px]:text-[0.6rem] sm:h-[64px] sm:w-[92px] sm:text-[0.72rem] sm:leading-[1.3] md:h-[70px] md:w-[104px] md:text-[0.78rem] lg:h-[76px] lg:w-[110px] lg:text-[0.82rem] lg:leading-[1.5]"
+              className="relative z-10 mx-auto inline-flex h-[52px] w-[72px] flex-col items-center justify-center rounded-[var(--radius-sm)] border border-[rgba(var(--color-primary-rgb),0.56)] bg-[linear-gradient(180deg,rgba(19,15,12,0.98)_0%,rgba(10,8,6,0.98)_100%)] px-1.5 text-center text-[0.5rem] font-semibold uppercase tracking-[0.04em] leading-[1.2] text-[var(--color-primary-hover)] shadow-[0_0_0_2px_rgba(8,7,6,0.94),0_8px_20px_rgba(0,0,0,0.22)] max-[380px]:h-[46px] max-[380px]:w-[64px] max-[380px]:text-[0.44rem] sm:h-[56px] sm:w-[82px] sm:text-[0.54rem] sm:leading-[1.3] md:h-[60px] md:w-[92px] md:text-[0.58rem] lg:h-[76px] lg:w-[110px] lg:text-[0.64rem] lg:leading-[1.5]"
               data-cursor="hover"
             >
               {content.logoLines[0]}
