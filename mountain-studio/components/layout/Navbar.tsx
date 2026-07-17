@@ -27,31 +27,18 @@ export function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
   useEffect(() => {
-    if (prefersReducedMotion()) {
-      return;
-    }
-
-    if (!overlayRef.current) {
-      return;
-    }
-
+    if (prefersReducedMotion()) return;
+    if (!overlayRef.current) return;
     overlayRef.current.animate(
       [
         { clipPath: open ? "inset(0 0 100% 0)" : "inset(0)" },
         { clipPath: open ? "inset(0)" : "inset(0 0 100% 0)" }
       ],
-      {
-        duration: 450,
-        easing: "cubic-bezier(0.16, 1, 0.3, 1)",
-        fill: "forwards"
-      }
+      { duration: 450, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "forwards" }
     );
   }, [open]);
 
@@ -63,7 +50,7 @@ export function Navbar() {
           <Link
             key={link.href}
             href={link.href}
-            className="group relative overflow-hidden py-2 text-[11px] uppercase tracking-[0.18em] text-ivory/80 transition hover:text-ivory"
+            className="group relative py-2 text-[13px] font-medium uppercase tracking-[0.2em] text-ivory/80 transition hover:text-ivory"
           >
             {link.label}
             <span
@@ -85,11 +72,12 @@ export function Navbar() {
         scrolled ? "border-b border-gold/20 bg-dark/80 backdrop-blur-xl" : "bg-transparent"
       )}
     >
-      <div className="container-shell relative z-50 flex h-20 items-center justify-between gap-6">
+      <div className="container-shell relative z-50 flex h-20 items-center justify-between">
+        {/* Logo */}
         <Link
           href="/"
           aria-label="Redwings Studio home"
-          className="relative block h-10 w-[170px] shrink-0 sm:h-12 sm:w-[200px]"
+          className="relative block h-12 w-[180px] shrink-0 sm:h-14 sm:w-[220px]"
         >
           <Image
             src="/redwings-studio-logo.svg"
@@ -97,56 +85,64 @@ export function Navbar() {
             fill
             priority
             className="object-contain object-left"
-            sizes="250px"
+            sizes="220px"
           />
         </Link>
 
-        <nav className="hidden items-center gap-5 xl:gap-6 lg:flex">{desktopLinks}</nav>
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-7 xl:gap-9 lg:flex">
+          {desktopLinks}
+        </nav>
 
-        <div className="hidden items-center gap-5 lg:flex">
+        {/* Desktop CTA */}
+        <div className="hidden shrink-0 items-center lg:flex">
           <Link
             href={bookingEngineUrl}
-            className="rounded-full border border-gold px-4 py-3 text-[11px] uppercase tracking-[0.2em] text-gold transition hover:bg-gold hover:text-dark"
+            className="rounded-full border border-gold bg-gold/10 px-5 py-2.5 text-[12px] font-medium uppercase tracking-[0.22em] text-gold transition hover:bg-gold hover:text-dark"
           >
             Check Availability
           </Link>
         </div>
 
+        {/* Mobile hamburger */}
         <button
           aria-label={open ? "Close menu" : "Open menu"}
           className="relative z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/30 text-ivory lg:hidden"
-          onClick={() => setOpen((value) => !value)}
+          onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
+      {/* Mobile menu */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-40 flex min-h-screen flex-col overflow-y-auto overscroll-contain bg-dark px-6 pt-28 lg:hidden"
+        className="fixed inset-0 z-40 flex min-h-screen flex-col overflow-y-auto overscroll-contain bg-dark px-8 pt-28 lg:hidden"
         style={{ clipPath: "inset(0 0 100% 0)", pointerEvents: open ? "auto" : "none" }}
       >
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-6">
           {navLinks.map((link, index) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
               className={cn(
-                "translate-x-0 font-display text-3xl tracking-wide text-ivory transition",
+                "font-display text-3xl tracking-wide text-ivory/85 transition",
                 pathname === link.href && "text-gold"
               )}
-              style={{
-                animation: open ? `fadeup 0.7s ${index * 0.08}s both` : undefined
-              }}
+              style={{ animation: open ? `fadeup 0.7s ${index * 0.08}s both` : undefined }}
             >
               {link.label}
             </Link>
           ))}
         </div>
 
-        <div className="mt-auto flex items-center justify-end border-t border-gold/15 py-8 text-sm uppercase tracking-[0.3em] text-ivory/65">
-          <Link href={bookingEngineUrl} onClick={() => setOpen(false)} className="text-gold">
+        <div className="mt-auto border-t border-gold/15 py-8">
+          <Link
+            href={bookingEngineUrl}
+            onClick={() => setOpen(false)}
+            className="inline-block rounded-full border border-gold bg-gold/10 px-6 py-3 text-[12px] font-medium uppercase tracking-[0.22em] text-gold transition hover:bg-gold hover:text-dark"
+          >
             Check Availability
           </Link>
         </div>
@@ -154,4 +150,3 @@ export function Navbar() {
     </header>
   );
 }
-
