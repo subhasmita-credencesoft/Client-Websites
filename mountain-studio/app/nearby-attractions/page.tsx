@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "Top tourist places near Redwings Studio, Goa — beaches, forts, markets, and heritage sites with distances.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&h=630&fit=crop",
+        url: "/mountain-studio/hero.jpeg",
         width: 1200,
         height: 630,
         alt: "Goa Beach — Nearby Attractions from Redwings Studio",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Nearby Attractions — Redwings Studio Goa",
     description: "Top tourist places near Redwings Studio, Goa with distances.",
-    images: ["https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&h=630&fit=crop"],
+    images: ["/mountain-studio/hero.jpeg"],
   },
 };
 
@@ -34,7 +34,7 @@ const attractions = [
     driveTime: "10 min",
     category: "Beach",
     description: "One of North Goa's most popular beaches, known for water sports like parasailing, jet skiing, and banana boat rides. Lively beach shacks and nightlife along the shore.",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-01.jpeg",
     slug: "baga-beach"
   },
   {
@@ -43,7 +43,7 @@ const attractions = [
     driveTime: "12 min",
     category: "Beach",
     description: "Known as the Queen of Beaches, Calangute offers a long stretch of golden sand, bustling markets, and coastal dining. A favourite for swimming and sunbathing.",
-    image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-02.jpeg",
     slug: "calangute-beach"
   },
   {
@@ -52,7 +52,7 @@ const attractions = [
     driveTime: "15 min",
     category: "Beach",
     description: "Famous for its vibrant Wednesday Flea Market and dramatic rocky coastline. Anjuna blends bohemian culture, trance music heritage, and scenic sunset views.",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-03.jpeg",
     slug: "anjuna-beach"
   },
   {
@@ -61,7 +61,7 @@ const attractions = [
     driveTime: "18 min",
     category: "Beach",
     description: "A quieter, picturesque beach flanked by red cliffs and Chapora Fort. Known for its dramatic scenery, beach clubs, and laid-back atmosphere.",
-    image: "https://images.unsplash.com/photo-1520454974749-611b7248ffdb?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-04.jpeg",
     slug: "vagator-beach"
   },
   {
@@ -70,7 +70,7 @@ const attractions = [
     driveTime: "15 min",
     category: "Beach",
     description: "A long, peaceful stretch of sand away from the busiest crowds. Candolim offers calm waters, beach resorts, and a relaxed coastal vibe.",
-    image: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-05.jpeg",
     slug: "candolim-beach"
   },
   {
@@ -79,7 +79,7 @@ const attractions = [
     driveTime: "20 min",
     category: "Heritage",
     description: "A well-preserved 17th-century Portuguese fortress with an iconic lighthouse. Offers sweeping views of the Arabian Sea and surrounding coastline.",
-    image: "https://images.unsplash.com/photo-1590050752117-298138c5b84f?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-06.jpeg",
     slug: "fort-aguada"
   },
   {
@@ -88,7 +88,7 @@ const attractions = [
     driveTime: "18 min",
     category: "Heritage",
     description: "Famous for its panoramic sea views and its appearance in the Bollywood film Dil Chahta Hai. A short hike leads to stunning cliff-top vistas.",
-    image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-07.jpeg",
     slug: "chapora-fort"
   },
   {
@@ -97,7 +97,7 @@ const attractions = [
     driveTime: "15 min",
     category: "Market",
     description: "A legendary Wednesday market offering bohemian clothing, jewellery, handicrafts, and live music. A must-visit for unique souvenirs and local flavour.",
-    image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-08.jpeg",
     slug: "anjuna-flea-market"
   },
   {
@@ -106,7 +106,7 @@ const attractions = [
     driveTime: "8 min",
     category: "Market",
     description: "A vibrant weekly night market with food stalls, live performances, handcrafted goods, and a buzzing atmosphere. Walking distance from the property.",
-    image: "https://images.unsplash.com/photo-1514539079130-25950c84af65?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-09.jpeg",
     slug: "saturday-night-market-arpora"
   },
   {
@@ -115,7 +115,7 @@ const attractions = [
     driveTime: "10 min",
     category: "Nightlife",
     description: "Goa's most famous nightlife strip with clubs, bars, and restaurants. Tito's Lane comes alive after dark with music, dancing, and social energy.",
-    image: "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-10.jpeg",
     slug: "titos-lane-baga"
   },
   {
@@ -124,7 +124,7 @@ const attractions = [
     driveTime: "30 min",
     category: "Heritage",
     description: "Goa's vibrant Latin Quarter with colourful Portuguese-era houses, art galleries, quaint bakeries, and winding narrow streets full of character.",
-    image: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-11.jpeg",
     slug: "fontainhas-panaji"
   },
   {
@@ -133,7 +133,7 @@ const attractions = [
     driveTime: "35 min",
     category: "Heritage",
     description: "A UNESCO World Heritage Site housing the mortal remains of St. Francis Xavier. A masterpiece of Baroque architecture and a key landmark of Old Goa.",
-    image: "https://images.unsplash.com/photo-1590050752117-298138c5b84f?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-12.jpeg",
     slug: "basilica-bom-jesus"
   },
   {
@@ -142,7 +142,7 @@ const attractions = [
     driveTime: "10 min",
     category: "Scenic",
     description: "An iconic palm-tree-lined road perfect for a leisurely drive or bike ride. A popular photography spot and one of Goa's most recognised scenic routes.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-01.jpeg",
     slug: "parra-road"
   },
   {
@@ -151,7 +151,7 @@ const attractions = [
     driveTime: "1 hr 30 min",
     category: "Nature",
     description: "One of India's tallest waterfalls, cascading through lush Western Ghats forest. A spectacular day trip combining nature, wildlife, and spice plantation visits.",
-    image: "https://images.unsplash.com/photo-1432405972618-c6b0cfba8b43?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-02.jpeg",
     slug: "dudhsagar-waterfalls"
   },
   {
@@ -160,7 +160,7 @@ const attractions = [
     driveTime: "25 min",
     category: "Beach",
     description: "A relaxed, bohemian beach in North Goa known for its fresh water lake, drum circles at sunset, and a laid-back traveller community.",
-    image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-03.jpeg",
     slug: "arambol-beach"
   },
   {
@@ -169,7 +169,7 @@ const attractions = [
     driveTime: "40 min",
     category: "Nature",
     description: "Lush spice plantations offering guided tours through cardamom, pepper, and vanilla gardens. Often paired with traditional Goan lunch and elephant encounters.",
-    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop",
+    image: "/mountain-studio/gallery-04.jpeg",
     slug: "spice-plantations-ponda"
   }
 ];
