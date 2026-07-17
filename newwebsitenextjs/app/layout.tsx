@@ -42,13 +42,45 @@ export default function RootLayout({
     name: "The Mountain Resort in Karjat, By Redwings",
     description:
       "Private destination wedding and event venue in Karjat with stay, meals, venue access, and scenic mountain celebrations across 7 acres.",
-    url: "https://mountain-resort.netlify.app",
+    url: "https://themountainresorts.com",
     telephone: "+91 9833866655",
+    image: "https://bookonelocal.in/cdn/DSC08769.avif",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Karjat",
       addressRegion: "Maharashtra",
       addressCountry: "IN",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 18.9847,
+      longitude: 73.3363,
+    },
+    priceRange: "₹6,500 - ₹25,000",
+    starRating: {
+      "@type": "Rating",
+      ratingValue: "4.5",
+    },
+    numberOfRooms: "30+",
+    sameAs: [
+      "https://instagram.com/themountain.karjat",
+      "https://www.themountainresorts.com",
+    ],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "The Mountain Resort in Karjat, By Redwings",
+    url: "https://themountainresorts.com",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate:
+          "https://themountainresorts.com/search?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
     },
   };
 
@@ -59,6 +91,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(resortSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body className={`${bodyFont.variable} ${displayFont.variable} overflow-x-hidden antialiased`} suppressHydrationWarning>

@@ -5,8 +5,10 @@ import { getDetailPage } from "@/lib/data/pages/detail-pages";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Cliff Room",
+  title: "Cliff View Room",
   path: "/cliff-room",
+  description:
+    "Book the Cliff View Room at The Mountain Resort in Karjat — a scenic premium stay with mountain ambience, private views, and destination luxury at ₹6,500 per night.",
 });
 
 export default function Page() {

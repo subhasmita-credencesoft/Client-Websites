@@ -9,6 +9,8 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Offers",
   path: "/offers",
+  description:
+    "Explore wedding packages, luxury stay deals, and curated destination celebration offers at The Mountain Resort in Karjat by Redwings with transparent pricing and booking terms.",
 });
 
 export default function OffersPage() {

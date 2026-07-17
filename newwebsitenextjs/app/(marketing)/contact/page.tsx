@@ -1,9 +1,18 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 import { contactPageData } from "@/lib/data/pages/info-pages";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Contact",
+  path: "/contact",
+  description:
+    "Contact The Mountain Resort in Karjat for destination wedding bookings, room reservations, package guidance, and availability checks. Call +91 9833866655 or +91 9892011179.",
+});
 
 export default function ContactPage() {
   const page = contactPageData;

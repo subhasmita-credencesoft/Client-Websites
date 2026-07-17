@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 const SITE_NAME = "The Mountain Resort in Karjat, By Redwings";
-const SITE_URL = "https://mountain-resort.netlify.app";
+const SITE_URL = "https://themountainresorts.com";
 const DEFAULT_DESCRIPTION =
   "Private destination wedding and event venue in Karjat with scenic mountain views, guest stays, curated packages, and BookOne-powered booking.";
-const DEFAULT_IMAGE = `${SITE_URL}/images/hero-wedding-fallback.svg`;
+const DEFAULT_IMAGE = "https://themountainresorts.com/images/og-default.jpg";
 
 type PageMetadataInput = {
   title: string;

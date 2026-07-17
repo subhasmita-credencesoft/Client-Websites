@@ -6,6 +6,8 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Wedding Lawns",
   path: "/wedding-lawns",
+  description:
+    "Explore spacious wedding lawns at The Mountain Resort in Karjat — private outdoor venues for destination weddings, receptions, mehendi, sangeet, and multi-day celebrations.",
 });
 
 export default function WeddingLawnsPage() {
