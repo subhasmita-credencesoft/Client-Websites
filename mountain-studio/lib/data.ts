@@ -73,9 +73,10 @@ export const navLinks: NavLink[] = [
   // { label: "Dining", href: "/dining" },
   // { label: "Spa", href: "/spa" },
   { label: "Picnic", href: "/picnic" },
-  { label: "gallery", href: "/gallery" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Events", href: "/events" },
   { label: "Activities", href: "/activities" },
+  { label: "Nearby tour", href: "/nearby-attractions" },
   { label: "About", href: "/about" }
 ];
 
@@ -118,7 +119,7 @@ export const rooms: Room[] = [
     code: "RWS-8616",
     badges: ["Standard", "Popular Choice"],
     description:
-      "Designed for comfort, this room features modern facilities and a cozy ambiance for a pleasant stay in  Goa.",
+      "Designed for comfort, this room features modern facilities and a cozy ambiance for a pleasant stay in Goa.",
     highlights: ["Comfort-led room design", "Useful for couples or friends", "Simple stay planning"],
     includes: ["Direct support on call", "Private bathroom", "Essential in-room comforts"],
     images: [

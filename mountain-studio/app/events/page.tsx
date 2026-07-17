@@ -1,9 +1,21 @@
-﻿"use client";
-
+import type { Metadata } from "next";
+import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
 import { bookingEngineUrl, imageSet, studioGallery } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title: "Events at Redwings Studio Goa — Weddings & Private Celebrations",
+  description: "Host weddings, private gatherings, poolside celebrations, and corporate events at Redwings Studio, Goa. Open lawns, scenic mountain surroundings, and full-estate character.",
+  alternates: { canonical: "https://redwingsstudio.com/events" },
+  openGraph: {
+    title: "Events & Celebrations — Redwings Studio Goa",
+    description: "Weddings, poolside celebrations, and private events at Redwings Studio, Goa. Open lawns and scenic surroundings.",
+    images: [{ url: "/mountain-studio/hero-main.jpeg", width: 1200, height: 630, alt: "Events at Redwings Studio Goa" }],
+  },
+  twitter: { card: "summary_large_image", title: "Events — Redwings Studio Goa", description: "Weddings, poolside celebrations, and private events in Goa.", images: ["/mountain-studio/hero-main.jpeg"] },
+};
 
 const journeyChapters = [
   {
@@ -49,7 +61,7 @@ const venueAdvantages = [
     number: "04",
     title: "Private Estate Feel",
     description:
-      "Mountain Studio offers a private estate atmosphere that keeps the celebration focused on the family, the couple, and the shared experience of being together."
+      "Redwings Studio offers a private estate atmosphere that keeps the celebration focused on the family, the couple, and the shared experience of being together."
   }
 ];
 
@@ -64,7 +76,7 @@ const planningNotes = [
     title: "Planning Note 02",
     heading: "A calm venue setting with flexible celebration flow",
     description:
-      "Mountain Studio's layout allows functions to move comfortably from guest arrival to rituals, ceremonies, cocktails, and receptions while preserving a private destination atmosphere."
+      "Redwings Studio's layout allows functions to move comfortably from guest arrival to rituals, ceremonies, cocktails, and receptions while preserving a private destination atmosphere."
   },
   {
     title: "Planning Note 03",
@@ -83,6 +95,10 @@ const planningNotes = [
 export default function EventsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema([{ name: "Home", url: SITE_URL }, { name: "Events", url: `${SITE_URL}/events` }])) }}
+      />
       <PageHero
         image={imageSet.homeHero}
         eyebrow="Property Spaces"
@@ -98,15 +114,15 @@ export default function EventsPage() {
       <section className="section-space">
         <div className="container-shell">
           <div className="mb-12 max-w-5xl">
-            <p className="eyebrow">Home / Mountain View Destination</p>
+            <p className="eyebrow">Goa Destination Venue</p>
             <h2 className="display-title text-5xl">A scenic destination venue designed for ceremonies, celebrations, and memorable family gatherings.</h2>
             <p className="mt-6 max-w-4xl text-lg leading-8 text-ivory/68">
-              Mountain Studio offers lush natural surroundings, valley views, open lawns,
+              Redwings Studio offers lush natural surroundings, valley views, open lawns,
               and a peaceful destination setting ideal for weddings, photography, rituals, and private event celebrations hosted in one estate.
             </p>
             <p className="mt-4 max-w-4xl text-lg leading-8 text-ivory/68">
               Explore scenic event spaces, celebration flow, and booking-ready venue details crafted for destination weddings at
-              Mountain Studio.
+              Redwings Studio.
             </p>
           </div>
 
@@ -171,7 +187,7 @@ export default function EventsPage() {
             <p className="eyebrow">Signature Venue Story</p>
             <h2 className="display-title text-5xl">Designed for premium destination celebrations.</h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-ivory/68">
-              From scenic ceremonies to open-air receptions, Mountain Studio gives couples and families a venue backdrop
+              From scenic ceremonies to open-air receptions, Redwings Studio gives couples and families a venue backdrop
               that feels private, natural, and celebration-ready throughout the full event journey.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -282,7 +298,7 @@ export default function EventsPage() {
           </div>
 
           <p className="mt-8 max-w-4xl text-lg leading-8 text-ivory/68">
-            From scenic ceremonies to open-air receptions, Mountain Studio gives couples and families a venue backdrop that feels private,
+            From scenic ceremonies to open-air receptions, Redwings Studio gives couples and families a venue backdrop that feels private,
             natural, and celebration-ready throughout the full event journey.
           </p>
 
@@ -321,5 +337,3 @@ export default function EventsPage() {
     </>
   );
 }
-
-

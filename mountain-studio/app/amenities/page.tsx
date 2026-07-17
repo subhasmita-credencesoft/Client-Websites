@@ -1,66 +1,48 @@
-﻿"use client";
+import type { Metadata } from "next";
+import { AmenitiesPageClient } from "@/components/amenities/AmenitiesPageClient";
+import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { PageHero } from "@/components/sections/PageHero";
-import { amenities, bookingEngineUrl, imageSet } from "@/lib/data";
-import { cn } from "@/lib/utils";
+export const metadata: Metadata = {
+  title: "Amenities at Redwings Studio Goa \u2014 Pool, Garden & Concierge",
+  description:
+    "Discover amenities at Redwings Studio, Goa \u2014 infinity pool, garden lawn, fitness studio, concierge, and more. Explore all property facilities for a comfortable Goa stay.",
+  alternates: { canonical: "https://redwingsstudio.com/amenities" },
+  openGraph: {
+    title: "Amenities \u2014 Redwings Studio Goa",
+    description:
+      "Infinity pool, garden lawn, fitness studio, concierge, and more at Redwings Studio, Goa.",
+    images: [
+      {
+        url: "/mountain-studio/gallery-06.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Amenities at Redwings Studio Goa",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Amenities \u2014 Redwings Studio Goa",
+    description: "Infinity pool, garden, fitness studio, and concierge in Goa.",
+    images: ["/mountain-studio/gallery-06.jpeg"],
+  },
+};
 
 export default function AmenitiesPage() {
-  const featureItems = amenities.slice(0, 6);
-  const [active, setActive] = useState(featureItems[0].slug);
-
-  useEffect(() => {
-    const sections = featureItems.map((item) => document.getElementById(item.slug)).filter(Boolean) as HTMLElement[];
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) setActive(entry.target.id);
-      });
-    }, { threshold: 0.45 });
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, [featureItems]);
-
   return (
     <>
-      <PageHero
-        image={imageSet.pool}
-        eyebrow="Amenities"
-        title="Amenities that support a smoother stay."
-        description="Discover the spaces that make a stay at Redwings Studio feel comfortable, visual, and easy to navigate."
-        priority
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            breadcrumbSchema([
+              { name: "Home", url: SITE_URL },
+              { name: "Amenities", url: `${SITE_URL}/amenities` },
+            ])
+          ),
+        }}
       />
-
-      <div className="sticky top-20 z-30 border-b border-gold/12 bg-dark/75 backdrop-blur-xl">
-        <div className="container-shell flex gap-4 overflow-x-auto py-4 hide-scrollbar">
-          {featureItems.map((item) => (
-            <a key={item.slug} href={`#${item.slug}`} className={cn("whitespace-nowrap rounded-full border px-4 py-2 text-xs uppercase tracking-[0.28em]", active === item.slug ? "border-gold bg-gold text-dark" : "border-gold/12 text-ivory/55")}>
-              {item.title}
-            </a>
-          ))}
-        </div>
-      </div>
-
-      {featureItems.map((item, index) => (
-        <section id={item.slug} key={item.slug} className="section-space">
-          <div className={`container-shell grid gap-12 lg:grid-cols-2 lg:items-center ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
-            <div className="relative overflow-hidden rounded-[32px]">
-              <Image src={item.image} alt={item.title} width={1000} height={800} className="aspect-[5/4] w-full object-cover" />
-            </div>
-            <div>
-              <div className="eyebrow">Signature Space 0{index + 1}</div>
-              <h2 className="display-title text-5xl">{item.title}</h2>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-ivory/68">{item.description}</p>
-              <p className="mt-5 text-xs uppercase tracking-[0.3em] text-gold-light">{item.hours}</p>
-              <Link href={bookingEngineUrl} className="mt-8 inline-flex rounded-full border border-gold px-5 py-3 text-xs uppercase tracking-[0.3em] text-gold">
-                Reserve Access
-              </Link>
-            </div>
-          </div>
-        </section>
-      ))}
+      <AmenitiesPageClient />
     </>
   );
 }
-

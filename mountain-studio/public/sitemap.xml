@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://redwingsstudio.com/</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://redwingsstudio.com/mountain-studio/hero-main.jpeg</image:loc>
+      <image:title>Redwings Studio Goa — Studio Apartment Stays</image:title>
+    </image:image>
+  </url>
+
+  <!-- Rooms List -->
+  <url>
+    <loc>https://redwingsstudio.com/rooms</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Room Detail Pages -->
+  <url>
+    <loc>https://redwingsstudio.com/rooms/budget-double-room</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bookonelocal.in/cdn/2026-04-13-121856321-image_0.jpg</image:loc>
+      <image:title>Budget Double Room — Redwings Studio Goa</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://redwingsstudio.com/rooms/standard-room</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bookonelocal.in/cdn/2026-04-13-121857444-image_0.jpg</image:loc>
+      <image:title>Standard Room — Redwings Studio Goa</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://redwingsstudio.com/rooms/superior-king-room</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bookonelocal.in/cdn/2026-04-13-121858910-image_0.jpg</image:loc>
+      <image:title>Superior King Room — Redwings Studio Goa</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://redwingsstudio.com/rooms/standard-room-pool-access</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bookonelocal.in/cdn/2026-04-13-121900099-image_0.jpg</image:loc>
+      <image:title>Standard Room Pool Access — Redwings Studio Goa</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://redwingsstudio.com/rooms/superior-pool-view</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bookonelocal.in/cdn/2026-04-13-121901060-image_0.jpg</image:loc>
+      <image:title>Superior Pool View Room — Redwings Studio Goa</image:title>
+    </image:image>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://redwingsstudio.com/contact</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://redwingsstudio.com/about</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://redwingsstudio.com/mountain-studio/hero-secondary.jpeg</image:loc>
+      <image:title>About Redwings Studio Goa</image:title>
+    </image:image>
+  </url>
+
+  <!-- Gallery -->
+  <url>
+    <loc>https://redwingsstudio.com/gallery</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://redwingsstudio.com/mountain-studio/gallery-12.jpeg</image:loc>
+      <image:title>Redwings Studio Property Gallery</image:title>
+    </image:image>
+  </url>
+
+  <!-- Events -->
+  <url>
+    <loc>https://redwingsstudio.com/events</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://redwingsstudio.com/events/wedding-lawns</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://redwingsstudio.com/mountain-studio/gallery-11.jpeg</image:loc>
+      <image:title>Wedding Lawns — Redwings Studio Goa</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://redwingsstudio.com/events/poolside-celebrations</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://redwingsstudio.com/mountain-studio/gallery-06.jpeg</image:loc>
+      <image:title>Poolside Celebrations — Redwings Studio Goa</image:title>
+    </image:image>
+  </url>
+
+  <!-- Picnic -->
+  <url>
+    <loc>https://redwingsstudio.com/picnic</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Activities -->
+  <url>
+    <loc>https://redwingsstudio.com/activities</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- Amenities -->
+  <url>
+    <loc>https://redwingsstudio.com/amenities</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- Corporate Events -->
+  <url>
+    <loc>https://redwingsstudio.com/corporate-events</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Offers -->
+  <url>
+    <loc>https://redwingsstudio.com/offers</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- Tariff -->
+  <url>
+    <loc>https://redwingsstudio.com/tariff</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Dining -->
+  <url>
+    <loc>https://redwingsstudio.com/dining</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+  <!-- FAQ -->
+  <url>
+    <loc>https://redwingsstudio.com/faq</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- Cancellation Policy -->
+  <url>
+    <loc>https://redwingsstudio.com/cancellation-policy</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.50</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://redwingsstudio.com/privacy-policy</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+
+  <!-- Nearby Attractions -->
+  <url>
+    <loc>https://redwingsstudio.com/nearby-attractions</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&h=630&fit=crop</image:loc>
+      <image:title>Nearby Attractions &amp; Tourist Places — Redwings Studio Goa</image:title>
+    </image:image>
+  </url>
+
+</urlset>

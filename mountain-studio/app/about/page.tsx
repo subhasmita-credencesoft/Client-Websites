@@ -1,13 +1,25 @@
-"use client";
-
+import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
 import { bookingEngineUrl, imageSet, studioGallery } from "@/lib/data";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
+import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  title: "About Redwings Studio — Owner-Managed Goa Stay Property",
+  description: "Learn about Redwings Studio, Goa — 10 owner-managed studio apartments at Abalone Resort, Gorbhat, Goa 403516. Direct booking support, check-in 1 PM, check-out 11 AM.",
+  alternates: { canonical: "https://redwingsstudio.com/about" },
+  openGraph: {
+    title: "About Redwings Studio — Owner-Managed Goa Stay Property",
+    description: "10 owner-managed studio apartments in Goa. Direct booking support, check-in 1 PM, check-out 11 AM.",
+    images: [{ url: "/mountain-studio/hero-secondary.jpeg", width: 1200, height: 630, alt: "About Redwings Studio Goa" }],
+  },
+  twitter: { card: "summary_large_image", title: "About Redwings Studio Goa", description: "10 owner-managed studio apartments in Goa.", images: ["/mountain-studio/hero-secondary.jpeg"] },
+};
 
 const propertyFacts = [
   ["Property Name", "Redwings Studio"],
-  ["Location", "  Goa"],
+  ["Location", "Gorbhat, Goa"],
   ["Inventory", "10 rooms under the Redwings banner"],
   ["Occupancy", "20 couples + 10 additional beds"]
 ];
@@ -19,7 +31,7 @@ const aboutHighlights = [
   },
   {
     title: "Goa Stay Focus",
-    body: "The property is built around studio apartment stays in  Goa, with a relaxed resort environment rather than venue-led hosting."
+    body: "The property is built around studio apartment stays in Gorbhat, Goa, with a relaxed resort environment rather than venue-led hosting."
   },
   {
     title: "Flexible Inventory",
@@ -48,6 +60,10 @@ const bookingFlow = [
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema([{ name: "Home", url: SITE_URL }, { name: "About", url: `${SITE_URL}/about` }])) }}
+      />
       <PageHero
         image="/mountain-studio/hero-secondary.jpeg"
         eyebrow="About"
@@ -62,7 +78,7 @@ export default function AboutPage() {
             <p className="eyebrow">About Redwings Studio</p>
             <h2 className="display-title text-5xl">A Goa stay property where direct support, clear inventory, and a relaxed resort setting come together.</h2>
             <p className="mt-6 max-w-[65ch] text-lg leading-9 text-ivory/68">
-              Set within Resort in , Redwings Studio brings together owner-managed studio stays,
+              Set within Abalone Resort in Gorbhat, Goa, Redwings Studio brings together owner-managed studio stays,
               shared resort surroundings, and a cleaner direct-booking experience for guests who want clarity before arrival.
             </p>
             <p className="mt-4 max-w-[65ch] text-lg leading-9 text-ivory/68">

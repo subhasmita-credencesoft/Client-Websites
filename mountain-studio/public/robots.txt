@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /api/
+
+# XML Sitemap
+Sitemap: https://redwingsstudio.com/sitemap.xml

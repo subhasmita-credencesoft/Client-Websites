@@ -1,79 +1,48 @@
-﻿"use client";
+﻿import type { Metadata } from "next";
+import { WeddingLawnsPageClient } from "./WeddingLawnsPageClient";
+import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
-import Image from "next/image";
-import { PageHero } from "@/components/sections/PageHero";
-import { LuxuryButton } from "@/components/ui/LuxuryButton";
-import { bookingEngineUrl, imageSet } from "@/lib/data";
+export const metadata: Metadata = {
+  title: "Wedding Lawns at Redwings Studio Goa — Open Lawn Venues",
+  description:
+    "Host weddings at Redwings Studio, Goa — open lawn spaces for Haldi, Mehendi, Sangeet, ceremonies, and receptions with scenic surroundings. Up to 450 guests.",
+  alternates: { canonical: "https://redwingsstudio.com/events/wedding-lawns" },
+  openGraph: {
+    title: "Wedding Lawns — Redwings Studio Goa",
+    description: "Open lawn wedding venues for ceremonies and receptions at Redwings Studio, Goa.",
+    images: [
+      {
+        url: "/mountain-studio/gallery-11.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Wedding Lawns at Redwings Studio Goa",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wedding Lawns — Redwings Studio Goa",
+    description: "Open lawn wedding venues in Goa.",
+    images: ["/mountain-studio/gallery-11.jpeg"],
+  },
+};
 
 export default function WeddingLawnsPage() {
   return (
     <>
-      <PageHero
-        image={imageSet.ballroom}
-        eyebrow="Wedding Lawns"
-        title="Open Lawn Spaces"
-        description="Open lawn areas suitable for private functions, casual gatherings, and event-led property use."
-        ctaHref={bookingEngineUrl}
-        ctaLabel="Check Venue Availability"
-        secondaryHref="/contact"
-        secondaryLabel="Contact The Team"
-        priority
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            breadcrumbSchema([
+              { name: "Home", url: SITE_URL },
+              { name: "Events", url: `${SITE_URL}/events` },
+              { name: "Wedding Lawns", url: `${SITE_URL}/events/wedding-lawns` },
+            ])
+          ),
+        }}
       />
-
-      <section className="section-space">
-        <div className="container-shell">
-          <div className="mb-12 max-w-5xl">
-            <p className="eyebrow">Home / Wedding Lawns</p>
-            <h2 className="display-title text-5xl">Spacious lawns for destination wedding functions.</h2>
-            <p className="mt-6 max-w-4xl text-lg leading-8 text-ivory/68">
-              Mountain Studio's wedding lawns provide open-air space for traditional rituals, wedding ceremonies,
-              and festive celebrations with scenic mountain surroundings and full-estate character.
-            </p>
-            <p className="mt-4 max-w-4xl text-lg leading-8 text-ivory/68">
-              Explore scenic event spaces, celebration flow, and booking-ready venue details crafted for destination weddings
-              at Mountain Studio.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2 md:grid-rows-2">
-            {[imageSet.ballroom, imageSet.exterior, imageSet.homeHero, imageSet.lobby].map((image, index) => (
-              <div
-                key={`${image}-${index}`}
-                className={`relative overflow-hidden rounded-[28px] ${index === 0 ? "md:row-span-2 min-h-[420px]" : "min-h-[200px]"}`}
-              >
-                <Image src={image} alt="Wedding lawns" fill className="object-cover" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-space bg-dark-2">
-        <div className="container-shell grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
-          <div>
-            <p className="eyebrow">Editorial Perspective</p>
-            <h2 className="display-title text-5xl">A wedding lawn designed for ceremony emotion and reception scale.</h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-ivory/68">
-              The open lawns allow ceremonies and celebrations to feel expansive, scenic, and natural while still supporting
-              structured event planning, guest movement, and strong visual storytelling throughout the wedding.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <LuxuryButton href={bookingEngineUrl} label="Check Venue Availability" />
-              <LuxuryButton href="/contact" label="Plan Your Wedding" variant="ghost" />
-            </div>
-          </div>
-          <div className="rounded-[32px] border border-gold/16 bg-dark p-8">
-            <div className="space-y-4 text-sm leading-8 text-ivory/64">
-              <p>Perfect for Haldi, Mehendi, wedding ceremonies, Sangeet, and receptions.</p>
-              <p>Supports larger guest flow while preserving a destination wedding atmosphere.</p>
-              <p>Works beautifully for both emotional rituals and celebration-scale functions.</p>
-              <p>Pairs naturally with scenic photography, family gatherings, and multi-function hosting.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <WeddingLawnsPageClient />
     </>
   );
 }
-
-

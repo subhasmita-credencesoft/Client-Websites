@@ -1,78 +1,48 @@
-﻿"use client";
+﻿import type { Metadata } from "next";
+import { PoolsideCelebrationsPageClient } from "./PoolsideCelebrationsPageClient";
+import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
-import Image from "next/image";
-import { PageHero } from "@/components/sections/PageHero";
-import { LuxuryButton } from "@/components/ui/LuxuryButton";
-import { bookingEngineUrl, imageSet } from "@/lib/data";
+export const metadata: Metadata = {
+  title: "Poolside Celebrations at Redwings Studio Goa — Cocktail & Music Events",
+  description:
+    "Host poolside celebrations at Redwings Studio, Goa — cocktail evenings, music gatherings, and relaxed destination events with scenic resort setting.",
+  alternates: { canonical: "https://redwingsstudio.com/events/poolside-celebrations" },
+  openGraph: {
+    title: "Poolside Celebrations — Redwings Studio Goa",
+    description: "Poolside cocktail evenings and music gatherings at Redwings Studio, Goa.",
+    images: [
+      {
+        url: "/mountain-studio/gallery-06.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Poolside Celebrations at Redwings Studio Goa",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Poolside Celebrations — Redwings Studio Goa",
+    description: "Poolside events and celebrations in Goa.",
+    images: ["/mountain-studio/gallery-06.jpeg"],
+  },
+};
 
 export default function PoolsideCelebrationsPage() {
   return (
     <>
-      <PageHero
-        image={imageSet.pool}
-        eyebrow="Poolside Celebrations"
-        title="Poolside Gathering Space"
-        description="A poolside zone suited to music nights, private get-togethers, and relaxed celebration moments."
-        ctaHref={bookingEngineUrl}
-        ctaLabel="Check Venue Availability"
-        secondaryHref="/contact"
-        secondaryLabel="Contact The Team"
-        priority
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            breadcrumbSchema([
+              { name: "Home", url: SITE_URL },
+              { name: "Events", url: `${SITE_URL}/events` },
+              { name: "Poolside Celebrations", url: `${SITE_URL}/events/poolside-celebrations` },
+            ])
+          ),
+        }}
       />
-
-      <section className="section-space">
-        <div className="container-shell">
-          <div className="mb-12 max-w-5xl">
-            <p className="eyebrow">Home / Poolside Celebrations</p>
-            <h2 className="display-title text-5xl">A relaxed poolside setting for wedding festivities.</h2>
-            <p className="mt-6 max-w-4xl text-lg leading-8 text-ivory/68">
-              The poolside area creates a festive yet relaxed zone for cocktail evenings, music gatherings,
-              rain-dance energy, and celebration moments with a destination feel.
-            </p>
-            <p className="mt-4 max-w-4xl text-lg leading-8 text-ivory/68">
-              Explore scenic event spaces, celebration flow, and booking-ready venue details crafted for destination weddings
-              at Mountain Studio.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2 md:grid-rows-2">
-            {[imageSet.pool, imageSet.homeHero, imageSet.exterior, imageSet.ballroom].map((image, index) => (
-              <div
-                key={`${image}-${index}`}
-                className={`relative overflow-hidden rounded-[28px] ${index === 0 ? "md:row-span-2 min-h-[420px]" : "min-h-[200px]"}`}
-              >
-                <Image src={image} alt="Poolside celebrations" fill className="object-cover" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-space bg-dark-2">
-        <div className="container-shell grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
-          <div>
-            <p className="eyebrow">Editorial Perspective</p>
-            <h2 className="display-title text-5xl">Poolside celebrations that feel festive, relaxed, and unmistakably destination-led.</h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-ivory/68">
-              This setting works especially well for cocktail nights, music-led gatherings, and informal celebration moments
-              that need atmosphere, flexibility, and a destination mood without losing event clarity.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <LuxuryButton href={bookingEngineUrl} label="Check Venue Availability" />
-              <LuxuryButton href="/contact" label="Plan Your Wedding" variant="ghost" />
-            </div>
-          </div>
-          <div className="rounded-[32px] border border-gold/16 bg-dark p-8">
-            <div className="space-y-4 text-sm leading-8 text-ivory/64">
-              <p>Ideal for cocktails, music nights, family gatherings, and relaxed wedding moments.</p>
-              <p>Supports festive energy with an open, destination-style visual setting.</p>
-              <p>Pairs naturally with evening celebrations, candid photography, and guest interaction.</p>
-              <p>Balances fun, movement, and wedding atmosphere in one celebration zone.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PoolsideCelebrationsPageClient />
     </>
   );
 }
-

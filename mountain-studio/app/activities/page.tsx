@@ -1,13 +1,29 @@
-"use client";
-
+import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
 import { activities, bookingEngineUrl, imageSet } from "@/lib/data";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
+import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  title: "Activities at Redwings Studio Goa — Nature Walks, Wellness & Tours",
+  description: "Explore leisure activities at Redwings Studio, Goa — sunrise nature walks, wellness by water, valley tours, chef-led market walks, and resort art trails during your stay.",
+  alternates: { canonical: "https://redwingsstudio.com/activities" },
+  openGraph: {
+    title: "Activities at Redwings Studio Goa",
+    description: "Sunrise nature walks, wellness sessions, valley tours, and more during your Goa stay.",
+    images: [{ url: "/mountain-studio/hero-main.jpeg", width: 1200, height: 630, alt: "Activities at Redwings Studio Goa" }],
+  },
+  twitter: { card: "summary_large_image", title: "Activities — Redwings Studio Goa", description: "Sunrise nature walks, wellness sessions, valley tours, and more.", images: ["/mountain-studio/hero-main.jpeg"] },
+};
 
 export default function ActivitiesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema([{ name: "Home", url: SITE_URL }, { name: "Activities", url: `${SITE_URL}/activities` }])) }}
+      />
       <PageHero
         image={imageSet.homeHero}
         eyebrow="Activities"

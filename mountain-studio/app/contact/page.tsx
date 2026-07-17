@@ -1,13 +1,27 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin, Phone, Globe, MessageCircle } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { bookingEngineUrl, imageSet } from "@/lib/data";
+import { breadcrumbSchema, localBusinessSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  title: "Contact Redwings Studio Goa — Phone, Email & Address",
+  description: "Contact Redwings Studio at Abalone Resort, Gorbhat, Goa 403516. Call +91 9167680996 or email psomvanshi9@gmail.com for room availability, group bookings, and stay enquiries.",
+  alternates: { canonical: "https://redwingsstudio.com/contact" },
+  openGraph: {
+    title: "Contact Redwings Studio Goa",
+    description: "Call +91 9167680996 or email for room availability and booking support. Located at Abalone Resort, Gorbhat, Goa 403516.",
+    images: [{ url: "/mountain-studio/hero-main.jpeg", width: 1200, height: 630, alt: "Contact Redwings Studio Goa" }],
+  },
+  twitter: { card: "summary_large_image", title: "Contact Redwings Studio Goa", description: "Call +91 9167680996. Abalone Resort, Gorbhat, Goa 403516.", images: ["/mountain-studio/hero-main.jpeg"] },
+};
 
 export default function ContactPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(localBusinessSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema([{ name: "Home", url: SITE_URL }, { name: "Contact", url: `${SITE_URL}/contact` }])) }} />
       <PageHero
         image={imageSet.homeHero}
         eyebrow="Direct Property Contact"
@@ -58,7 +72,7 @@ export default function ContactPage() {
                   </span>
                 </p>
                 <p className="text-sm leading-7 text-ivory/64">
-                  Studio apartment stay inventory at  Goa, managed under the Redwings Studio banner.
+                  Studio apartment stay inventory at Gorbhat, Goa, managed under the Redwings Studio banner.
                 </p>
                 <p className="flex items-start gap-3">
                   <MapPin className="mt-1 text-gold" size={18} />

@@ -77,7 +77,7 @@ export default function HomeBelowFold() {
           <SectionHeading
             eyebrow="Property Overview"
             title="Redwings Studio is built for clear, direct, comfortable Goa stays."
-            description="The property combines studio , owner-managed support, and a location that works well for couples, families, and small groups looking to stay in  Goa."
+            description="The property combines studio apartments, owner-managed support, and a location that works well for couples, families, and small groups looking to stay in Goa."
           />
           <div className="mt-10 flex flex-wrap gap-4">
             <LuxuryButton href="/contact" label="Call Or Email" />

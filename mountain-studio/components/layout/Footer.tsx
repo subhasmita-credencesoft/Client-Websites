@@ -5,9 +5,9 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 import { bookingEngineUrl, navLinks } from "@/lib/data";
 
 const socials = [
-  { label: "Instagram", href: "#", icon: Instagram },
-  { label: "Facebook", href: "#", icon: Facebook },
-  { label: "Twitter", href: "#", icon: Twitter }
+  { label: "Instagram", href: "https://instagram.com/", icon: Instagram },
+  { label: "Facebook", href: "https://facebook.com/", icon: Facebook },
+  { label: "Twitter", href: "https://x.com/", icon: Twitter }
 ];
 
 export function Footer() {
@@ -17,7 +17,7 @@ export function Footer() {
         <div className="space-y-5">
           <div className="font-display text-3xl tracking-[0.18em] text-ivory">REDWINGS STUDIO</div>
           <p className="max-w-sm text-sm leading-7 text-ivory/65">
-            Redwings Studio operates selected studio apartments at  Goa, offering comfortable stays under the Redwings banner.
+            Redwings Studio operates selected studio apartments at Gorbhat, Goa, offering comfortable stays under the Redwings banner.
           </p>
           <div className="flex gap-4">
             {socials.map(({ href, icon: Icon, label }) => (
@@ -41,6 +41,7 @@ export function Footer() {
                 {link.label}
               </Link>
             ))}
+            <Link href="/nearby-attractions" className="block transition hover:text-gold">Nearby Attractions</Link>
             <Link href={bookingEngineUrl} className="block transition hover:text-gold">Check Availability</Link>
             <Link href="/contact" className="block transition hover:text-gold">Contact The Team</Link>
           </div>
@@ -82,7 +83,7 @@ export function Footer() {
       </div>
 
       <div className="container-shell mt-14 flex flex-col gap-4 border-t border-gold/10 pt-6 text-xs uppercase tracking-[0.24em] text-ivory/45 sm:flex-row sm:items-center sm:justify-between">
-        {/* <p>© 2026 Redwings Studio. All rights reserved.</p> */}
+        <p>&copy; {new Date().getFullYear()} Redwings Studio. All rights reserved.</p>
         <div className="flex gap-6">
           <Link
             href="https://credencesoft.in/"

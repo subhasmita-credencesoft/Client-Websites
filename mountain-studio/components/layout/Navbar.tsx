@@ -63,7 +63,7 @@ export function Navbar() {
           <Link
             key={link.href}
             href={link.href}
-            className="group relative overflow-hidden py-2 text-sm uppercase tracking-[0.3em] text-ivory/80 transition hover:text-ivory"
+            className="group relative overflow-hidden py-2 text-[11px] uppercase tracking-[0.18em] text-ivory/80 transition hover:text-ivory"
           >
             {link.label}
             <span
@@ -89,7 +89,7 @@ export function Navbar() {
         <Link
           href="/"
           aria-label="Redwings Studio home"
-          className="relative block h-12 w-[210px] shrink-0 sm:h-14 sm:w-[250px]"
+          className="relative block h-10 w-[170px] shrink-0 sm:h-12 sm:w-[200px]"
         >
           <Image
             src="/redwings-studio-logo.svg"
@@ -101,12 +101,12 @@ export function Navbar() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">{desktopLinks}</nav>
+        <nav className="hidden items-center gap-5 xl:gap-6 lg:flex">{desktopLinks}</nav>
 
         <div className="hidden items-center gap-5 lg:flex">
           <Link
             href={bookingEngineUrl}
-            className="rounded-full border border-gold px-5 py-3 text-xs uppercase tracking-[0.35em] text-gold transition hover:bg-gold hover:text-dark"
+            className="rounded-full border border-gold px-4 py-3 text-[11px] uppercase tracking-[0.2em] text-gold transition hover:bg-gold hover:text-dark"
           >
             Check Availability
           </Link>
@@ -126,14 +126,14 @@ export function Navbar() {
         className="fixed inset-0 z-40 flex min-h-screen flex-col overflow-y-auto overscroll-contain bg-dark px-6 pt-28 lg:hidden"
         style={{ clipPath: "inset(0 0 100% 0)", pointerEvents: open ? "auto" : "none" }}
       >
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-5">
           {navLinks.map((link, index) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
               className={cn(
-                "translate-x-0 font-display text-4xl text-ivory transition",
+                "translate-x-0 font-display text-3xl tracking-wide text-ivory transition",
                 pathname === link.href && "text-gold"
               )}
               style={{
