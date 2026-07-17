@@ -35,7 +35,7 @@ export function NearbyAttractionsPageClient({ attractions }: NearbyAttractionsPa
   return (
     <>
       <PageHero
-        image="/mountain-studio/hero.jpeg"
+        image="/nearbyattraction/bagabeach.jpg"
         eyebrow="Explore Goa"
         title="Nearby Attractions & Tourist Places"
         description="Discover the best beaches, heritage sites, markets, and scenic spots near Redwings Studio, Arpora, North Goa."
