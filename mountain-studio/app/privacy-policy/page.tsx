@@ -3,12 +3,12 @@ import { PageHero } from "@/components/sections/PageHero";
 import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Redwings Studio Goa",
+  title: "Privacy Policy",
   description:
     "Read the privacy policy for Redwings Studio, Goa. Learn how we collect, use, and protect your personal information.",
   alternates: { canonical: "https://redwingsstudio.com/privacy-policy" },
   openGraph: {
-    title: "Privacy Policy — Redwings Studio Goa",
+    title: "Privacy Policy",
     description: "Privacy policy for Redwings Studio, Goa.",
     images: [
       {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Privacy Policy — Redwings Studio Goa",
+    title: "Privacy Policy",
     description: "Privacy policy for Redwings Studio, Goa.",
     images: ["/mountain-studio/hero-main.jpeg"],
   },

@@ -3,11 +3,12 @@ import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
+import Link from "next/link";
 import { bookingEngineUrl, imageSet, studioGallery } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Events at Redwings Studio Goa — Weddings & Private Celebrations",
-  description: "Host weddings, private gatherings, poolside celebrations, and corporate events at Redwings Studio, Goa. Open lawns, scenic mountain surroundings, and full-estate character.",
+  title: "Events — Weddings & Private Celebrations",
+  description: "Host weddings, private gatherings, poolside celebrations, and corporate events at Redwings Studio, Goa. Open lawns, scenic surroundings, and full-estate character.",
   alternates: { canonical: "https://redwingsstudio.com/events" },
   openGraph: {
     title: "Events & Celebrations — Redwings Studio Goa",
@@ -41,9 +42,9 @@ const journeyChapters = [
 const venueAdvantages = [
   {
     number: "01",
-    title: "Scenic Mountain Surroundings",
+    title: "Scenic Surroundings",
     description:
-      "Natural mountain views and open landscapes create a beautiful destination atmosphere for ceremonies, couple portraits, and wedding storytelling moments."
+      "Natural greenery, open skies, and a peaceful resort atmosphere create a beautiful backdrop for ceremonies, couple portraits, and celebration moments."
   },
   {
     number: "02",
@@ -70,7 +71,7 @@ const planningNotes = [
     title: "Planning Note 01",
     heading: "Perfect for destination wedding photography",
     description:
-      "The venue naturally supports couple shoots, family portraits, ceremony frames, and celebration coverage through greenery, open views, and scenic corners spread across the estate."
+              "The venue naturally supports couple shoots, family portraits, ceremony frames, and celebration coverage through greenery, open lawns, and scenic corners spread across the estate."
   },
   {
     title: "Planning Note 02",
@@ -82,7 +83,7 @@ const planningNotes = [
     title: "Planning Note 03",
     heading: "Works beautifully across intimate and larger events",
     description:
-      "Whether the celebration is intimate or larger in scale, the mountain-facing setting and open property planning help create a balanced and memorable event experience."
+              "Whether the celebration is intimate or larger in scale, the open setting and property planning help create a balanced and memorable event experience."
   },
   {
     title: "Planning Note 04",
@@ -129,7 +130,7 @@ export default function EventsPage() {
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {[
               ["7 Acres", "Private green estate"],
-              ["Mountain Views", "Scenic ceremony backdrop"],
+              ["Scenic Views", "Resort ceremony backdrop"],
               ["Multi-Event", "From Haldi to Reception"],
               ["All In One", "Stay, venue, hospitality"]
             ].map(([title, body]) => (
@@ -163,7 +164,7 @@ export default function EventsPage() {
                 text: "Poolside zones for cocktails, music nights, and relaxed celebration moments."
               }
             ].map((item) => (
-              <a
+              <Link
                 key={item.title}
                 href={item.href}
                 className="group overflow-hidden rounded-[30px] border border-gold/16 bg-dark"
@@ -175,7 +176,7 @@ export default function EventsPage() {
                   <h3 className="font-display text-4xl">{item.title}</h3>
                   <p className="mt-4 text-sm leading-7 text-ivory/64">{item.text}</p>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -195,7 +196,7 @@ export default function EventsPage() {
             </div>
           </div>
           <div className="relative overflow-hidden rounded-[32px]">
-            <Image src={imageSet.exterior} alt="Mountain landscape view" width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
+            <Image src={imageSet.exterior} alt="Scenic resort surroundings at Redwings Studio Goa" width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
           </div>
         </div>
       </section>
@@ -243,7 +244,7 @@ export default function EventsPage() {
         <div className="container-shell">
           <div className="mb-10 max-w-4xl">
             <p className="eyebrow">Venue Advantages</p>
-            <h2 className="display-title text-5xl">7 acres of green landscape, scenic mountain surroundings, and a destination wedding backdrop crafted for unforgettable celebrations.</h2>
+            <h2 className="display-title text-5xl">7 acres of green landscape, scenic surroundings, and a wedding backdrop crafted for unforgettable celebrations.</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {venueAdvantages.map((item) => (
@@ -261,7 +262,7 @@ export default function EventsPage() {
         <div className="container-shell grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <p className="eyebrow">Editorial Perspective</p>
-            <h2 className="display-title text-5xl">Where celebrations unfold against the calm of the mountains.</h2>
+            <h2 className="display-title text-5xl">Where celebrations unfold against the calm of the resort surroundings.</h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-ivory/68">
               This venue is especially suited for families who want scenery, privacy, and shared celebration flow in one place instead of moving guests between disconnected locations.
             </p>
@@ -274,7 +275,7 @@ export default function EventsPage() {
             </div>
           </div>
           <div className="relative overflow-hidden rounded-[32px]">
-            <Image src={imageSet.ballroom} alt="Mountain venue perspective" width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
+            <Image src={imageSet.ballroom} alt="Event venue at Redwings Studio Goa" width={1200} height={900} className="aspect-[4/3] w-full object-cover" />
           </div>
         </div>
       </section>

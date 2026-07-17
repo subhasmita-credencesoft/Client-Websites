@@ -84,7 +84,7 @@ export function RoomsPageClient() {
           </div>
 
           {/* Results count */}
-          <p className="mt-6 text-sm text-ivory/40">
+          <p className="mt-6 text-sm text-ivory/55">
             Showing {filtered.length} room{filtered.length !== 1 ? "s" : ""}
           </p>
 
@@ -97,7 +97,7 @@ export function RoomsPageClient() {
 
           {filtered.length === 0 && (
             <div className="mt-20 text-center">
-              <p className="font-display text-3xl text-ivory/40">No rooms match this filter</p>
+              <p className="font-display text-3xl text-ivory/55">No rooms match this filter</p>
               <button onClick={() => setFilter("All")} className="mt-4 text-sm text-gold hover:text-gold-light">
                 View all rooms
               </button>

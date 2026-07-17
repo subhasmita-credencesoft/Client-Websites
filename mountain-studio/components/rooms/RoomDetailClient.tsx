@@ -103,7 +103,7 @@ export function RoomDetailClient({ room, similar }: RoomDetailClientProps) {
             <div className="flex flex-wrap items-start justify-between gap-6">
               <div>
                 <h1 className="display-title text-5xl">{room.name}</h1>
-                <p className="mt-2 text-sm uppercase tracking-[0.25em] text-ivory/45">{room.type}</p>
+                <p className="mt-2 text-sm uppercase tracking-[0.25em] text-ivory/55">{room.type}</p>
                 <div className="mt-4 flex items-center gap-2">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={i} size={15} className="text-gold" fill={i < Math.round(room.rating) ? "currentColor" : "none"} />
@@ -181,6 +181,7 @@ export function RoomDetailClient({ room, similar }: RoomDetailClientProps) {
                   <div key={label} className="overflow-hidden rounded-2xl border border-gold/10 bg-dark-2">
                     <button
                       onClick={() => setRulesOpen((c) => (c === itemIndex ? null : itemIndex))}
+                      aria-expanded={rulesOpen === itemIndex}
                       className="flex w-full items-center justify-between px-6 py-5 text-left"
                     >
                       <span className="font-display text-xl">{label}</span>
@@ -214,8 +215,8 @@ export function RoomDetailClient({ room, similar }: RoomDetailClientProps) {
                     </div>
                     <div className="p-5">
                       <h3 className="font-display text-xl">{item.name}</h3>
-                      <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-ivory/40">{item.type}</p>
-                      <p className="mt-3 font-display text-lg text-gold">₹{item.price.toLocaleString("en-IN")}<span className="text-xs text-ivory/40"> /night</span></p>
+                      <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-ivory/55">{item.type}</p>
+                      <p className="mt-3 font-display text-lg text-gold">₹{item.price.toLocaleString("en-IN")}<span className="text-xs text-ivory/55"> /night</span></p>
                     </div>
                   </Link>
                 ))}
@@ -228,12 +229,12 @@ export function RoomDetailClient({ room, similar }: RoomDetailClientProps) {
             <div className="overflow-hidden rounded-[32px] border border-gold/15 bg-dark-2 shadow-[0_8px_60px_rgba(0,0,0,0.4)]">
               {/* Price header */}
               <div className="border-b border-gold/10 bg-dark-3/50 px-6 py-5">
-                <p className="text-[11px] uppercase tracking-[0.25em] text-ivory/40">Starting from</p>
+                <p className="text-[11px] uppercase tracking-[0.25em] text-ivory/55">Starting from</p>
                 <div className="mt-1 flex items-baseline gap-2">
                   <span className="font-display text-4xl text-gold-light">₹{room.price.toLocaleString("en-IN")}</span>
-                  <span className="text-sm text-ivory/40">/night</span>
+                  <span className="text-sm text-ivory/55">/night</span>
                 </div>
-                <p className="mt-1 text-[11px] text-ivory/35">Inclusive of all taxes</p>
+                <p className="mt-1 text-[11px] text-ivory/50">Inclusive of all taxes</p>
               </div>
 
               {/* Info */}
@@ -272,7 +273,7 @@ export function RoomDetailClient({ room, similar }: RoomDetailClientProps) {
               </div>
 
               {/* Footer note */}
-              <div className="border-t border-gold/8 bg-dark-3/30 px-6 py-4 text-center text-[11px] uppercase tracking-[0.18em] text-ivory/35">
+              <div className="border-t border-gold/8 bg-dark-3/30 px-6 py-4 text-center text-[11px] uppercase tracking-[0.18em] text-ivory/50">
                 Instant confirmation · Free cancellation
               </div>
             </div>

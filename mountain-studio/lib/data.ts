@@ -1,29 +1,22 @@
 ﻿import {
-  Bath,
-  Bell,
   ChefHat,
   Dumbbell,
   Martini,
-  Plane,
   Shell,
   Sparkles,
+  TreePine,
   Waves,
-  Wine
+  Wifi,
 } from "lucide-react";
 import type {
   Activity,
   Amenity,
   CorporateHighlight,
-  EventType,
   NavLink,
-  Offer,
   PicnicPackage,
   Restaurant,
   Room,
-  TeamMember,
   Testimonial,
-  TimelineMilestone,
-  Treatment
 } from "@/types";
 
 export const imageSet = {
@@ -55,8 +48,8 @@ export const studioGallery = [
   { image: "/mountain-studio/gallery-01.jpeg", category: "Exterior", title: "Green estate pathway" },
   { image: "/mountain-studio/gallery-02.jpeg", category: "Events", title: "Celebration setup moment" },
   { image: "/mountain-studio/gallery-03.jpeg", category: "Studios", title: "Guest room composition" },
-  { image: "/mountain-studio/gallery-04.jpeg", category: "Exterior", title: "Scenic mountain-facing lawn" },
-  { image: "/mountain-studio/gallery-05.jpeg", category: "Events", title: "Wedding detail frame" },
+  { image: "/mountain-studio/gallery-04.jpeg", category: "Exterior", title: "Scenic garden-facing lawn" },
+  { image: "/mountain-studio/gallery-05.jpeg", category: "Events", title: "Function detail frame" },
   { image: "/mountain-studio/gallery-06.jpeg", category: "Amenities", title: "Pool and leisure corner" },
   { image: "/mountain-studio/gallery-07.jpeg", category: "Interiors", title: "Interior decor detail" },
   { image: "/mountain-studio/gallery-08.jpeg", category: "Events", title: "Function atmosphere" },
@@ -69,9 +62,6 @@ export const studioGallery = [
 export const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Rooms", href: "/rooms" },
-  // { label: "Tariff", href: "/tariff" },
-  // { label: "Dining", href: "/dining" },
-  // { label: "Spa", href: "/spa" },
   { label: "Picnic", href: "/picnic" },
   { label: "Gallery", href: "/gallery" },
   { label: "Events", href: "/events" },
@@ -205,68 +195,68 @@ export const rooms: Room[] = [
 
 export const amenities: Amenity[] = [
   {
-    slug: "infinity-pool",
+    slug: "swimming-pool",
     icon: Waves,
-    title: "Infinity Pool",
-    description: "Sun-drenched cabanas, underwater soundscapes, and skyline-facing loungers create an all-day ritual of calm.",
-    hours: "6:00 AM - 10:00 PM",
+    title: "Swimming Pool",
+    description: "A clean, well-maintained pool area for relaxation and leisure during your stay.",
+    hours: "8:00 AM - 9:00 PM",
     image: imageSet.pool
   },
   {
-    slug: "mountain-spa",
-    icon: Sparkles,
-    title: "Mountain Spa",
-    description: "A sensorial sanctuary offering thermal journeys, bespoke bodywork, and deeply restorative wellness rituals.",
-    hours: "9:00 AM - 9:00 PM",
-    image: imageSet.spa
-  },
-  {
-    slug: "grand-kitchen",
-    icon: ChefHat,
-    title: "The Grand Kitchen",
-    description: "A vibrant culinary atelier where seasonal tasting menus meet live-fire craft and polished service.",
-    hours: "7:00 AM - 11:30 PM",
-    image: imageSet.dining
-  },
-  {
-    slug: "concierge",
-    icon: Bell,
-    title: "Concierge",
-    description: "From local sightseeing plans to curated itineraries, our team shapes stays around personal preferences.",
+    slug: "free-wifi",
+    icon: Wifi,
+    title: "Free Wi-Fi",
+    description: "Complimentary Wi-Fi access throughout the property for staying connected.",
     hours: "24 Hours",
     image: imageSet.lobby
   },
   {
-    slug: "helipad",
-    icon: Plane,
-    title: "Helipad",
-    description: "Seamless arrivals and travel coordination for guests who value privacy, speed, and elevated logistics.",
-    hours: "By appointment",
-    image: imageSet.exterior
+    slug: "in-house-dining",
+    icon: ChefHat,
+    title: "In-House Dining",
+    description: "On-site dining options serving breakfast, lunch, and dinner with a varied menu.",
+    hours: "7:00 AM - 11:00 PM",
+    image: imageSet.dining
   },
   {
     slug: "garden-lawn",
-    icon: Shell,
+    icon: TreePine,
     title: "Garden Lawn",
-    description: "Open green spaces, attentive service, and golden-hour dining curated for resident guests and celebrations.",
+    description: "Open green spaces around the property for morning walks, relaxation, and events.",
     hours: "Sunrise - Sunset",
     image: imageSet.exterior
   },
   {
-    slug: "fitness-studio",
+    slug: "fitness-area",
     icon: Dumbbell,
-    title: "Fitness Studio",
-    description: "State-of-the-art movement and recovery spaces with private coaching, infrared stretching, and hill views.",
-    hours: "24 Hours",
+    title: "Fitness Area",
+    description: "Basic fitness equipment available for guests who want to stay active during their visit.",
+    hours: "6:00 AM - 9:00 PM",
     image: imageSet.pool
   },
   {
-    slug: "library-lounge",
-    icon: Wine,
-    title: "Library Lounge",
-    description: "A moody retreat for slow afternoons, rare books, tea service, and an intimate evening lounge experience.",
-    hours: "11:00 AM - 12:00 AM",
+    slug: "bar-lounge",
+    icon: Martini,
+    title: "Bar & Lounge",
+    description: "A relaxed bar area for evening drinks, cocktails, and casual socializing.",
+    hours: "5:00 PM - 11:00 PM",
     image: imageSet.lobby
+  },
+  {
+    slug: "event-space",
+    icon: Sparkles,
+    title: "Event Space",
+    description: "Indoor and outdoor areas available for private parties, celebrations, and small gatherings.",
+    hours: "On request",
+    image: imageSet.ballroom
+  },
+  {
+    slug: "parking",
+    icon: Shell,
+    title: "Free Parking",
+    description: "Complimentary on-site parking for guests arriving by private vehicle.",
+    hours: "24 Hours",
+    image: imageSet.exterior
   }
 ];
 
@@ -277,7 +267,7 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     quote: "From the moment we arrived, everything felt thoughtfully curated. The ambiance, service, and comfort were truly exceptional.",
     avatar: imageSet.roomOne,
-    flag: "🇮🇳"
+    flag: "\ud83c\uddee\ud83c\uddf3"
   },
   {
     name: "Rahul Chatterjee",
@@ -285,7 +275,7 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     quote: "A perfect blend of luxury and warmth. The hospitality made our short getaway feel incredibly special.",
     avatar: imageSet.exterior,
-    flag: "🇮🇳"
+    flag: "\ud83c\uddee\ud83c\uddf3"
   },
   {
     name: "Divya Reddy",
@@ -293,7 +283,7 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     quote: "The dining experience was outstanding. Every dish felt crafted with care and authentic flavors.",
     avatar: imageSet.dining,
-    flag: "🇮🇳"
+    flag: "\ud83c\uddee\ud83c\uddf3"
   },
   {
     name: "Kunal Bansal",
@@ -301,7 +291,7 @@ export const testimonials: Testimonial[] = [
     rating: 4,
     quote: "Elegant yet relaxing. The private dinner arrangement and serene surroundings made it unforgettable.",
     avatar: imageSet.pool,
-    flag: "🇮🇳"
+    flag: "\ud83c\uddee\ud83c\uddf3"
   },
   {
     name: "Pooja Saxena",
@@ -309,7 +299,7 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     quote: "Our anniversary celebration here was magical. The team added thoughtful touches that made it truly memorable.",
     avatar: imageSet.spa,
-    flag: "🇮🇳"
+    flag: "\ud83c\uddee\ud83c\uddf3"
   },
   {
     name: "Nikhil Pawar",
@@ -317,15 +307,15 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     quote: "The design, the atmosphere, and the attention to detail make this place stand out from anywhere else.",
     avatar: imageSet.lobby,
-    flag: "🇮🇳"
+    flag: "\ud83c\uddee\ud83c\uddf3"
   },
   {
     name: "Aishwarya Menon",
     country: "India",
     rating: 5,
-    quote: "Calm, luxurious, and perfectly managed. The spa experience alone is worth visiting again.",
+    quote: "Calm, luxurious, and perfectly managed. The pool and garden area alone is worth visiting again.",
     avatar: imageSet.roomThree,
-    flag: "🇮🇳"
+    flag: "\ud83c\uddee\ud83c\uddf3"
   },
   {
     name: "Harsh Vardhan",
@@ -333,372 +323,129 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     quote: "We came for a family celebration and left with unforgettable memories. Truly personalized service.",
     avatar: imageSet.ballroom,
-    flag: "🇮🇳"
-  }
-];
-
-export const offers: Offer[] = [
-  {
-    title: "Moonlit Escape",
-    image: imageSet.roomThree,
-    validUntil: "2026-12-31T23:59:59",
-    price: "From $1,480",
-    badge: "Limited Time",
-    category: "Romantic",
-    description: "Two nights in a signature suite with a spa ritual, welcome refreshments, and a private dinner setup."
-  },
-  {
-    title: "Family Atelier Weekend",
-    image: imageSet.roomTwo,
-    validUntil: "2026-11-15T23:59:59",
-    price: "From $1,120",
-    badge: "Best Value",
-    category: "Family",
-    description: "Second room at reduced rate, daily breakfast, and family concierge planning."
-  },
-  {
-    title: "Executive Stay Elevated",
-    image: imageSet.lobby,
-    validUntil: "2026-10-10T23:59:59",
-    price: "From $780",
-    badge: "Exclusive",
-    category: "Business",
-    description: "Transfer assistance, pressing service, breakfast, and boardroom credits."
-  },
-  {
-    title: "Golden Season Retreat",
-    image: imageSet.exterior,
-    validUntil: "2026-09-20T23:59:59",
-    price: "From $960",
-    badge: "Seasonal",
-    category: "Seasonal",
-    description: "Three-night stay with nature experiences, spa access, and a curated dining experience."
-  },
-  {
-    title: "Wellness Reawakening",
-    image: imageSet.spa,
-    validUntil: "2026-08-01T23:59:59",
-    price: "From $1,290",
-    badge: "Exclusive",
-    category: "Seasonal",
-    description: "Daily treatments, nutrition consultation, hydrotherapy journey, and a calming suite experience."
-  },
-  {
-    title: "Celebration Suite Society",
-    image: imageSet.ballroom,
-    validUntil: "2026-12-01T23:59:59",
-    price: "From $2,240",
-    badge: "Limited Time",
-    category: "Romantic",
-    description: "Penthouse stay paired with private dining, floral styling, and celebration concierge."
+    flag: "\ud83c\uddee\ud83c\uddf3"
   }
 ];
 
 export const restaurants: Restaurant[] = [
   {
-    name: "The Grand Table",
-    cuisine: "Modern Fine Dining",
-    hours: "6:00 PM - 11:00 PM",
-    description: "A refined dining destination where regional produce, live-fire craft, and warm service shape a memorable evening.",
+    name: "The Garden Restaurant",
+    cuisine: "Goan & Indian",
+    hours: "7:00 AM - 11:00 PM",
+    description: "A relaxed dining space serving Goan, Indian, and continental dishes with fresh ingredients and warm service.",
     image: imageSet.dining,
     gallery: [imageSet.dining, imageSet.lobby, imageSet.ballroom],
     menuItems: [
-      { name: "Oyster Leaf", description: "Citrus granita and pearl tapioca", price: "$24", course: "Starter" },
-      { name: "Charred Lobster", description: "Saffron butter and fennel ash", price: "$48", course: "Main" },
-      { name: "Cacao Souffle", description: "Gold leaf and Tahitian vanilla", price: "$21", course: "Dessert" },
-      { name: "Mountain Studio Signature", description: "Chef's seasonal degustation", price: "$145", course: "Signature" }
+      { name: "Goan Fish Curry", description: "Fresh pomfret in coconut-based curry with rice", price: "\u20b9350", course: "Main" },
+      { name: "Butter Chicken", description: "Creamy tomato-based curry with tender chicken", price: "\u20b9280", course: "Main" },
+      { name: "Masala Dosa", description: "Crispy rice crepe with spiced potato filling", price: "\u20b9150", course: "Starter" },
+      { name: "Gulab Jamun", description: "Warm milk-solid dumplings in rose-flavored syrup", price: "\u20b9120", course: "Dessert" }
     ]
   },
   {
-    name: "Mountain Terrace",
-    cuisine: "Mediterranean All-Day Dining",
-    hours: "7:00 AM - 10:30 PM",
-    description: "A light-filled terrace for breakfast, long lunches, and sunset high tea with fresh air and garden herbs.",
+    name: "Poolside Cafe",
+    cuisine: "Casual All-Day Dining",
+    hours: "8:00 AM - 10:00 PM",
+    description: "Light meals, snacks, and refreshments served poolside for a casual dining experience between swims.",
     image: imageSet.pool,
     gallery: [imageSet.pool, imageSet.exterior, imageSet.dining],
     menuItems: [
-      { name: "Burrata & Citrus", description: "Burnt honey and pistachio crumb", price: "$18", course: "Starter" },
-      { name: "Wood-Fired Branzino", description: "Olive tapenade and grilled lemon", price: "$34", course: "Main" },
-      { name: "Olive Oil Cake", description: "Whipped mascarpone and berries", price: "$15", course: "Dessert" },
-      { name: "Terrace Mezze", description: "Chef-curated seasonal spread", price: "$29", course: "Signature" }
+      { name: "Veg Sandwich", description: "Grilled sandwich with fresh vegetables and cheese", price: "\u20b9180", course: "Starter" },
+      { name: "Chicken Pizza", description: "Wood-fired pizza with tandoori chicken toppings", price: "\u20b9250", course: "Main" },
+      { name: "Fresh Lime Soda", description: "Refreshing lime drink with soda", price: "\u20b980", course: "Starter" },
+      { name: "Chocolate Brownie", description: "Warm brownie with vanilla ice cream", price: "\u20b9150", course: "Dessert" }
     ]
   },
   {
-    name: "Cellar Bar",
-    cuisine: "Cocktails & Rare Spirits",
-    hours: "5:00 PM - 1:00 AM",
-    description: "A moody late-night bar with velvet textures, rare pours, live jazz sessions, and cocktails built with precision.",
+    name: "Bar & Lounge",
+    cuisine: "Cocktails & Beverages",
+    hours: "5:00 PM - 11:00 PM",
+    description: "A relaxed evening space with cocktails, mocktails, and a curated selection of spirits for unwinding.",
     image: imageSet.lobby,
     gallery: [imageSet.lobby, imageSet.ballroom, imageSet.dining],
     menuItems: [
-      { name: "Truffle Arancini", description: "Black garlic aioli", price: "$16", course: "Starter" },
-      { name: "Aged Short Rib Sliders", description: "Caramelized onion and smoked cheddar", price: "$24", course: "Main" },
-      { name: "Burnt Basque Cheesecake", description: "Sherry caramel", price: "$14", course: "Dessert" },
-      { name: "Gold Standard", description: "House cocktail with saffron gin", price: "$22", course: "Signature" }
+      { name: "Goan Feni Cocktail", description: "Local feni with lime and spices", price: "\u20b9250", course: "Signature" },
+      { name: "Mango Lassi", description: "Creamy yogurt-based mango drink", price: "\u20b9120", course: "Starter" },
+      { name: "Chicken Tikka Platter", description: "Grilled chicken tikka with mint chutney", price: "\u20b9320", course: "Starter" },
+      { name: "Masala Chai", description: "Traditional Indian spiced tea", price: "\u20b960", course: "Starter" }
     ]
-  }
-];
-
-export const treatments: Treatment[] = [
-  {
-    name: "Swedish Massage",
-    duration: "60 min",
-    price: "$180",
-    description: "Long, flowing strokes ease tension while restoring circulation and deep calm.",
-    image: imageSet.spa
-  },
-  {
-    name: "Hot Stone",
-    duration: "75 min",
-    price: "$220",
-    description: "Warm volcanic stones melt muscular stress and invite deeper release.",
-    image: imageSet.pool
-  },
-  {
-    name: "Facial",
-    duration: "50 min",
-    price: "$160",
-    description: "A brightening ritual tailored to restore radiance, hydration, and tone.",
-    image: imageSet.roomOne
-  },
-  {
-    name: "Body Wrap",
-    duration: "80 min",
-    price: "$210",
-    description: "A mineral-rich cocoon treatment designed to nourish and soften the skin.",
-    image: imageSet.exterior
-  },
-  {
-    name: "Hydrotherapy",
-    duration: "45 min",
-    price: "$140",
-    description: "A warm-cool circuit to invigorate the senses and improve recovery.",
-    image: imageSet.pool
-  },
-  {
-    name: "Meditation",
-    duration: "40 min",
-    price: "$95",
-    description: "Guided breathwork and sound healing for mental clarity and relaxation.",
-    image: imageSet.lobby
-  }
-];
-
-export const events: EventType[] = [
-  {
-    name: "Weddings",
-    description: "Grand celebration setups and intimate outdoor vows shaped with dedicated event artistry.",
-    image: imageSet.ballroom,
-    capacity: "Up to 450 guests",
-    packages: [
-      {
-        name: "Intimate",
-        description: "Elegant ceremony styling, private dining, and dedicated planning.",
-        price: "From $8,000",
-        features: ["Ceremony styling", "Welcome toast", "Junior suite stay"]
-      },
-      {
-        name: "Classic",
-        description: "Full ballroom celebration with curated menu and guestroom block support.",
-        price: "From $18,500",
-        features: ["Ballroom setup", "Custom menu", "Guestroom block"]
-      },
-      {
-        name: "Grand",
-        description: "A destination-level celebration with welcome events and after-party production.",
-        price: "From $32,000",
-        features: ["Multi-day planning", "Production design", "Penthouse stay"]
-      }
-    ]
-  },
-  {
-    name: "Conferences & MICE",
-    description: "Flexible venues, polished technical support, and elevated hospitality for high-stakes gatherings.",
-    image: imageSet.lobby,
-    capacity: "Up to 600 delegates",
-    packages: [
-      {
-        name: "Half-Day",
-        description: "Morning or afternoon meeting package with AV and premium breaks.",
-        price: "From $65 / guest",
-        features: ["AV setup", "Coffee break", "Wi-Fi"]
-      },
-      {
-        name: "Full-Day",
-        description: "A full business day supported by curated catering and breakout rooms.",
-        price: "From $120 / guest",
-        features: ["Lunch", "Breakout rooms", "AV technician"]
-      },
-      {
-        name: "Multi-Day",
-        description: "Residential conferences with room blocks, transport, and concierge management.",
-        price: "Custom proposal",
-        features: ["Room block", "Transport", "Conference concierge"]
-      }
-    ]
-  },
-  {
-    name: "Private Celebrations",
-    description: "Birthdays, galas, and milestone dinners elevated with cinematic settings and attentive service.",
-    image: imageSet.exterior,
-    capacity: "20 to 300 guests",
-    packages: [
-      {
-        name: "Salon Dinner",
-        description: "A polished private dinner for milestone moments and close circles.",
-        price: "From $3,800",
-        features: ["Private salon", "Three-course menu", "Sommelier pairing"]
-      },
-      {
-        name: "Garden Soiree",
-        description: "An outdoor celebration with floral styling and live music staging.",
-        price: "From $7,900",
-        features: ["Garden venue", "Live music", "Custom decor"]
-      },
-      {
-        name: "Mountain Studio Gala",
-        description: "A full-scale event experience with thoughtful design and guest management.",
-        price: "From $15,500",
-        features: ["Production design", "Event host", "Arrival choreography"]
-      }
-    ]
-  }
-];
-
-export const team: TeamMember[] = [
-  {
-    name: "Elise Marlowe",
-    title: "General Manager",
-    bio: "Elise leads the hotel with a focus on intuitive hospitality, design detail, and experiences that feel quietly unforgettable.",
-    image: imageSet.lobby
-  },
-  {
-    name: "Mateo Ricci",
-    title: "Head Chef",
-    bio: "Mateo's menus balance regional produce, modern craft, and precise restraint across every dining concept in the house.",
-    image: imageSet.dining
-  },
-  {
-    name: "Nadia Sorel",
-    title: "Spa Director",
-    bio: "Nadia curates wellbeing journeys that blend bodywork, sensory design, and the restorative tempo of ritual.",
-    image: imageSet.spa
-  },
-  {
-    name: "Jonah Vale",
-    title: "Chief Concierge",
-    bio: "Jonah shapes itineraries, private arrivals, and rare access experiences with warmth, precision, and local insight.",
-    image: imageSet.exterior
-  }
-];
-
-export const timeline: TimelineMilestone[] = [
-  {
-    year: "1923",
-    title: "Founded",
-    description: "The property began as a scenic retreat in Karjat, designed for restful stays, family gatherings, and nature-led escapes."
-  },
-  {
-    year: "1956",
-    title: "First Expansion",
-    description: "A new guest wing and grand salon established the hotel as a destination for society gatherings."
-  },
-  {
-    year: "1989",
-    title: "Restoration",
-    description: "A sensitive renovation preserved the propertyâ€™s character while renewing its guest experience."
-  },
-  {
-    year: "2005",
-    title: "Spa Opening",
-    description: "The spa introduced a wellness philosophy centered on ritual, restoration, and sensory calm."
-  },
-  {
-    year: "2018",
-    title: "Dining Recognition",
-    description: "The signature restaurant earned praise for a dining experience rooted in seasonality, craft, and warm hospitality."
-  },
-  {
-    year: "2024",
-    title: "Relaunch",
-    description: "A bold relaunch reintroduced the hotel with cinematic interiors, new suites, and immersive guest programming."
   }
 ];
 
 export const activities: Activity[] = [
   {
-    title: "Sunrise Nature Walk",
-    duration: "2 hours",
+    title: "Beach Visit",
+    duration: "Half day",
     image: imageSet.exterior,
-    description: "A guided morning nature walk with breakfast baskets, fresh mountain air, and a peaceful golden-hour start."
+    description: "Head to nearby Baga Beach or Calangute Beach for a classic North Goa beach day experience."
   },
   {
-    title: "Chef-Led Market Walk",
-    duration: "3 hours",
-    image: imageSet.dining,
-    description: "Explore seasonal produce, regional ingredients, and culinary stories before returning for a tasting lunch."
-  },
-  {
-    title: " Valley Tour",
-    duration: "45 min",
-    image: imageSet.homeHero,
-    description: "A scenic perspective on the hills, waterfalls, and green surroundings that make Karjat such a memorable escape."
-  },
-  {
-    title: "Wellness by Water",
-    duration: "90 min",
-    image: imageSet.pool,
-    description: "Guided breathwork, hydrotherapy, and restorative movement designed to reset both body and pace."
-  },
-  {
-    title: "Resort Art Trail",
+    title: "Market Walk",
     duration: "2 hours",
-    image: imageSet.lobby,
-    description: "A guided journey through the resort's art, corners, and design details with stories from the property."
+    image: imageSet.dining,
+    description: "Explore the Arpora Saturday Night Market or Anjuna Flea Market for local shopping and street food."
   },
-  // {
-  //   title: "Moonlit Beach Cinema",
-  //   duration: "Evening",
-  //   image: imageSet.ballroom,
-  //   description: "Private screening setup on the sand with candlelight dining, plush throws, and bespoke menus."
-  // }
+  {
+    title: "Poolside Relaxation",
+    duration: "Flexible",
+    image: imageSet.pool,
+    description: "Unwind by the pool with a relaxed afternoon of sun, water, and resort leisure."
+  },
+  {
+    title: "Sunset Viewing",
+    duration: "1 hour",
+    image: imageSet.homeHero,
+    description: "Catch the sunset from the property or take a short ride to a beach viewpoint for golden-hour views."
+  },
+  {
+    title: "Local Temple Visit",
+    duration: "1.5 hours",
+    image: imageSet.lobby,
+    description: "Visit the nearby Chapora Fort or local temples for a cultural walk through North Goa heritage."
+  },
+  {
+    title: "Water Sports",
+    duration: "2 hours",
+    image: imageSet.pool,
+    description: "Enjoy parasailing, jet-skiing, and banana rides at Baga or Calangute beach during your stay."
+  }
 ];
 
 export const picnicPackages: PicnicPackage[] = [
   {
     title: "Garden Picnic",
-    subtitle: "Among olive trees and linen canopies",
+    subtitle: "Relaxed outdoor dining in the resort garden",
     image: imageSet.exterior,
-    inclusions: ["Seasonal grazing menu", "Champagne service", "Live acoustic duo"]
+    inclusions: ["Freshly prepared snack menu", "Seating and shade setup", "Soft drink service"]
   },
   {
-    title: "Clifftop Sunset Picnic",
-    subtitle: "A dramatic golden-hour setup by the sea",
+    title: "Poolside Gathering",
+    subtitle: "A casual group setup near the pool area",
     image: imageSet.homeHero,
-    inclusions: ["Private butler", "Photographer on request", "Signature dessert cart"]
+    inclusions: ["Pool access during event", "Light refreshment spread", "Music and seating"]
   },
   {
     title: "Family Day Picnic",
     subtitle: "Relaxed luxury with activities for all ages",
     image: imageSet.pool,
-    inclusions: ["Kids adventure pack", "Chef-prepared lunch", "Outdoor games curation"]
+    inclusions: ["Kids activity corner", "Chef-prepared lunch", "Outdoor games setup"]
   }
 ];
 
 export const corporateHighlights: CorporateHighlight[] = [
   {
-    title: "Boardroom Precision",
-    description: "Executive-grade meeting suites with seamless AV, privacy, and concierge-managed timing.",
-    stat: "8 private rooms"
+    title: "Private Meeting Rooms",
+    description: "Dedicated indoor spaces for board meetings, training sessions, and team discussions.",
+    stat: "Multiple rooms available"
   },
   {
-    title: "Immersive Summits",
-    description: "Hybrid-ready plenary spaces with staging, branding support, and elegant guest movement design.",
-    stat: "600 delegate capacity"
+    title: "Group Accommodation",
+    description: "Block bookings for corporate teams with direct coordination and flexible check-in support.",
+    stat: "Up to 20 rooms"
   },
   {
-    title: "Residential Retreats",
-    description: "Strategy retreats combining suites, dining, wellness, and off-site programming in one itinerary.",
-    stat: "3-day planning support"
+    title: "Event Coordination",
+    description: "On-ground support for team-building days, annual meets, and corporate social events.",
+    stat: "Tailored planning"
   }
 ];

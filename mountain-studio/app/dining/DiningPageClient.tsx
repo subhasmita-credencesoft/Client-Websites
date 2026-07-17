@@ -90,7 +90,7 @@ export function DiningPageClient() {
             <div key={item.name} className="rounded-2xl border border-gold/12 bg-dark p-5">
               <div className="text-xs uppercase tracking-[0.28em] text-gold-light">{item.course}</div>
               <div className="mt-3 flex items-start justify-between gap-4">
-                <h4 className="font-display text-3xl">{item.name}</h4>
+                <h3 className="font-display text-3xl">{item.name}</h3>
                 <span className="font-mono text-gold-light">{item.price}</span>
               </div>
               <p className="mt-4 text-sm leading-7 text-ivory/64">{item.description}</p>

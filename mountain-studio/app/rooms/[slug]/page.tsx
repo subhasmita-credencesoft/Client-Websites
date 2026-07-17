@@ -13,7 +13,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   if (!room) return {};
 
   return {
-    title: `${room.name} — ${room.type} in Goa | Redwings Studio`,
+    title: `${room.name} — ${room.type} in Goa`,
     description: `${room.name} at Redwings Studio, Goa — ${room.size} sqft, ${room.beds}, ${room.view}. From ₹${room.price}/night. ${room.description}`,
     alternates: { canonical: `https://redwingsstudio.com/rooms/${room.slug}` },
     openGraph: {

@@ -3,7 +3,7 @@ import { PicnicPageClient } from "./PicnicPageClient";
 import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Picnic Experiences at Redwings Studio Goa — Family & Corporate Picnics",
+  title: "Picnic Experiences — Family & Corporate Outdoor Events",
   description:
     "Plan open-air picnic experiences at Redwings Studio, Goa — family outings, corporate lawn events, and curated outdoor gatherings with resort setting and concierge support.",
   alternates: { canonical: "https://redwingsstudio.com/picnic" },

@@ -3,7 +3,7 @@ import { NearbyAttractionsPageClient } from "./NearbyAttractionsPageClient";
 import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Nearby Attractions & Tourist Places — Redwings Studio Goa",
+  title: "Nearby Attractions & Tourist Places",
   description:
     "Explore tourist places near Redwings Studio, Goa — Baga Beach, Calangute Beach, Anjuna Flea Market, Fort Aguada, Chapora Fort, Fontainhas, and more. Distances and travel info included.",
   alternates: { canonical: "https://redwingsstudio.com/nearby-attractions" },

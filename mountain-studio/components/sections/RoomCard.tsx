@@ -38,7 +38,8 @@ export function RoomCard({ room }: RoomCardProps) {
 
         {/* Wishlist */}
         <button
-          aria-label="Add to wishlist"
+          aria-label={liked ? "Remove from wishlist" : "Add to wishlist"}
+          aria-pressed={liked}
           onClick={() => setLiked((v) => !v)}
           className="absolute right-5 top-5 rounded-full border border-white/15 bg-dark/50 p-2.5 text-ivory/80 backdrop-blur-sm transition hover:scale-110 hover:text-gold"
         >
@@ -49,7 +50,7 @@ export function RoomCard({ room }: RoomCardProps) {
         <div className="absolute right-5 bottom-5 rounded-2xl border border-gold/20 bg-dark/70 px-4 py-2.5 backdrop-blur-sm">
           <p className="text-[10px] uppercase tracking-[0.2em] text-ivory/50">From</p>
           <p className="font-display text-xl text-gold-light">₹{room.price.toLocaleString("en-IN")}</p>
-          <p className="text-[10px] text-ivory/40">per night</p>
+          <p className="text-[10px] text-ivory/55">per night</p>
         </div>
 
         {/* Quick stats on hover */}
@@ -70,7 +71,7 @@ export function RoomCard({ room }: RoomCardProps) {
         <div className="flex items-start justify-between gap-3">
           <div>
             <h3 className="font-display text-2xl text-ivory">{room.name}</h3>
-            <p className="mt-1 text-[11px] uppercase tracking-[0.25em] text-ivory/45">{room.beds} · {room.floor}</p>
+            <p className="mt-1 text-[11px] uppercase tracking-[0.25em] text-ivory/55">{room.beds} · {room.floor}</p>
           </div>
           <div className="flex items-center gap-1 rounded-full border border-gold/20 bg-dark-3 px-3 py-1.5">
             <Star size={12} className="text-gold" fill="currentColor" />
@@ -86,7 +87,7 @@ export function RoomCard({ room }: RoomCardProps) {
             </span>
           ))}
           {room.amenities.length > 3 && (
-            <span className="rounded-full bg-dark-3 px-3 py-1 text-[11px] text-ivory/35">
+            <span className="rounded-full bg-dark-3 px-3 py-1 text-[11px] text-ivory/50">
               +{room.amenities.length - 3} more
             </span>
           )}

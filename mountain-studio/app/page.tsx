@@ -13,7 +13,7 @@ import {
 const HomeBelowFold = lazy(() => import("@/components/sections/home/HomeBelowFold"));
 
 export const metadata: Metadata = {
-  title: "Redwings Studio Goa — Studio Apartments in Arpora, North Goa | From ₹1,950/night",
+  title: "Studio Apartments in Arpora, North Goa — From ₹1,950/night",
   description:
     "Book Redwings Studio, Goa — 10 owner-managed studio apartments at Abalone Resort, Gorbhat, Arpora, North Goa. Budget to pool-view rooms from ₹1,950/night. Free cancellation. Check-in 1 PM, check-out 11 AM. Direct booking with instant confirmation.",
   keywords: [

@@ -3,7 +3,7 @@ import { GalleryPageClient } from "@/components/gallery/GalleryPageClient";
 import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Gallery \u2014 Redwings Studio Goa Photos & Property Images",
+  title: "Gallery — Photos & Property Images",
   description:
     "Browse 20+ photos of Redwings Studio, Goa \u2014 studio apartments, poolside setting, exterior views, interior styling, and events across 6 visual categories.",
   alternates: { canonical: "https://redwingsstudio.com/gallery" },

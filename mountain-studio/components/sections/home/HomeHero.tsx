@@ -103,7 +103,7 @@ export function HomeHero() {
             initial="hidden"
             animate="visible"
             custom={5}
-            className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] uppercase tracking-[0.18em] text-ivory/40"
+            className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] uppercase tracking-[0.18em] text-ivory/55"
           >
             <span className="flex items-center gap-2">
               <span className="h-1 w-1 rounded-full bg-gold/60" />
@@ -126,7 +126,7 @@ export function HomeHero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-ivory/40 lg:flex"
+        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-ivory/55 lg:flex"
       >
         <Mouse size={20} className="text-gold/70" />
         <div className="h-6 w-px bg-gold/30" />

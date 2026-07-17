@@ -36,7 +36,7 @@ export function FAQPageClient({ faqs }: FAQPageClientProps) {
                   className="flex w-full items-center justify-between gap-4 p-6 text-left"
                   aria-expanded={openIndex === index}
                 >
-                  <h3 className="font-display text-2xl text-ivory">{faq.question}</h3>
+                  <span className="font-display text-2xl text-ivory">{faq.question}</span>
                   <ChevronDown
                     size={20}
                     className={cn(

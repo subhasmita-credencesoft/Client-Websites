@@ -3,9 +3,9 @@ import { DiningPageClient } from "./DiningPageClient";
 import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Dining at Redwings Studio Goa — Restaurants & Private Dining",
+  title: "Dining — Restaurants & Private Dining",
   description:
-    "Explore dining at Redwings Studio, Goa — The Grand Table, Mountain Terrace, and Cellar Bar. Fine dining, all-day dining, and cocktails with scenic resort setting.",
+    "Explore dining at Redwings Studio, Goa — The Garden Restaurant, Poolside Cafe, and Bar & Lounge. Goan cuisine, casual dining, and cocktails with resort setting.",
   alternates: { canonical: "https://redwingsstudio.com/dining" },
   openGraph: {
     title: "Dining — Redwings Studio Goa",

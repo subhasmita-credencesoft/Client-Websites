@@ -4,16 +4,12 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { usePreloader } from "@/components/providers/PreloaderProvider";
-import { useSplitText } from "@/hooks/useSplitText";
 import { prefersReducedMotion } from "@/lib/utils";
 
 export function Preloader() {
   const { isLoading } = usePreloader();
-  const textRef = useRef<HTMLHeadingElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const [percent, setPercent] = useState(0);
-
-  useSplitText(textRef, 0.2);
 
   useEffect(() => {
     if (!isLoading) {
@@ -71,9 +67,9 @@ export function Preloader() {
           />
         </div>
         <div className="space-y-3">
-          <h1 ref={textRef} className="font-display text-3xl uppercase tracking-[0.35em] text-ivory">
+          <div className="font-display text-3xl uppercase tracking-[0.35em] text-ivory" role="status">
             REDWINGS STUDIO
-          </h1>
+          </div>
           <p className="text-xs uppercase tracking-[0.35em] text-ivory/60">
              GOA
           </p>
@@ -84,4 +80,3 @@ export function Preloader() {
     </motion.div>
   );
 }
-

@@ -82,7 +82,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="container-shell mt-14 flex flex-col gap-4 border-t border-gold/10 pt-6 text-xs uppercase tracking-[0.24em] text-ivory/45 sm:flex-row sm:items-center sm:justify-between">
+      <div className="container-shell mt-14 flex flex-col gap-4 border-t border-gold/10 pt-6 text-xs uppercase tracking-[0.24em] text-ivory/55 sm:flex-row sm:items-center sm:justify-between">
         <p>&copy; {new Date().getFullYear()} Redwings Studio. All rights reserved.</p>
         <div className="flex gap-6">
           <Link

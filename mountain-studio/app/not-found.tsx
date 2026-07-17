@@ -58,7 +58,7 @@ export default function NotFound() {
         </h1>
 
         {/* Description */}
-        <p className="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-ivory/45">
+        <p className="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-ivory/55">
           The page you were looking for doesn&apos;t exist or has been moved.
           Let us help you find your way back.
         </p>
@@ -93,28 +93,28 @@ export default function NotFound() {
                 className="group rounded-2xl border border-white/[0.06] px-4 py-4 transition duration-300 hover:border-gold/30 hover:bg-white/[0.02]"
               >
                 <p className="text-[11px] uppercase tracking-[0.2em] text-ivory/50 group-hover:text-gold">Rooms</p>
-                <p className="mt-1 text-[10px] text-ivory/25">5 types</p>
+                <p className="mt-1 text-[10px] text-ivory/45">5 types</p>
               </Link>
               <Link
                 href="/gallery"
                 className="group rounded-2xl border border-white/[0.06] px-4 py-4 transition duration-300 hover:border-gold/30 hover:bg-white/[0.02]"
               >
                 <p className="text-[11px] uppercase tracking-[0.2em] text-ivory/50 group-hover:text-gold">Gallery</p>
-                <p className="mt-1 text-[10px] text-ivory/25">Photos</p>
+                <p className="mt-1 text-[10px] text-ivory/45">Photos</p>
               </Link>
               <Link
                 href={bookingEngineUrl}
                 className="group rounded-2xl border border-white/[0.06] px-4 py-4 transition duration-300 hover:border-gold/30 hover:bg-white/[0.02]"
               >
                 <p className="text-[11px] uppercase tracking-[0.2em] text-ivory/50 group-hover:text-gold">Book</p>
-                <p className="mt-1 text-[10px] text-ivory/25">From ₹1,950</p>
+                <p className="mt-1 text-[10px] text-ivory/45">From ₹1,950</p>
               </Link>
             </div>
           </div>
         </div>
 
         {/* Contact hint */}
-        <p className="mt-8 text-xs text-ivory/25">
+        <p className="mt-8 text-xs text-ivory/45">
           Need help? <Link href="/contact" className="text-gold/60 underline transition hover:text-gold">Contact the team</Link>
         </p>
       </div>

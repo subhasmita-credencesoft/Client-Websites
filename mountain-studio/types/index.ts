@@ -38,16 +38,6 @@ export interface Testimonial {
   flag: string;
 }
 
-export interface Offer {
-  title: string;
-  image: string;
-  validUntil: string;
-  price: string;
-  badge: string;
-  category: "Romantic" | "Family" | "Business" | "Seasonal";
-  description: string;
-}
-
 export interface MenuItem {
   name: string;
   description: string;
@@ -63,42 +53,6 @@ export interface Restaurant {
   image: string;
   gallery: string[];
   menuItems: MenuItem[];
-}
-
-export interface Treatment {
-  name: string;
-  duration: string;
-  price: string;
-  description: string;
-  image: string;
-}
-
-export interface EventPackage {
-  name: string;
-  description: string;
-  price: string;
-  features: string[];
-}
-
-export interface EventType {
-  name: string;
-  description: string;
-  image: string;
-  capacity: string;
-  packages: EventPackage[];
-}
-
-export interface TeamMember {
-  name: string;
-  title: string;
-  bio: string;
-  image: string;
-}
-
-export interface TimelineMilestone {
-  year: string;
-  title: string;
-  description: string;
 }
 
 export interface NavLink {
