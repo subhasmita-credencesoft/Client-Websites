@@ -1,5 +1,6 @@
 import { heroBackgroundUrls } from "@/lib/data/content/media-assets";
 import { homeSectionContent } from "@/lib/data/content/home/sections";
+import { QuickBookingStrip } from "@/components/features/home/sections/quick-booking-strip";
 
 const { title, subtitle } = homeSectionContent.hero;
 
@@ -46,6 +47,11 @@ export function HeroSection() {
             {subtitle}
           </p>
         </div>
+      </div>
+
+      {/* Booking bar — overlaid at bottom of hero */}
+      <div className="absolute inset-x-0 bottom-0 z-[3]">
+        <QuickBookingStrip />
       </div>
     </section>
   );
