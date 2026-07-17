@@ -111,7 +111,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
             <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4" data-reveal-child>
               {page.stats.map((stat) => (
                 <div key={`${page.slug}-hero-${stat.label}`} className="rounded-[1.35rem] border border-white/10 bg-black/25 px-5 py-4 backdrop-blur-sm">
-                  <p className="text-[0.68rem] uppercase tracking-[0.24em] text-[#d7ae71]">{stat.label}</p>
+                  <p className="text-xs uppercase tracking-[0.24em] text-[#d7ae71]">{stat.label}</p>
                   <p className="mt-2 text-sm leading-relaxed text-white/88 md:text-base">{stat.value}</p>
                 </div>
               ))}
@@ -180,7 +180,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
             </p>
             <Link
               href={bookingHref}
-              className="mt-10 inline-flex items-center justify-center border border-white px-10 py-4 text-sm uppercase tracking-[0.18em]"
+              className="mt-10 inline-flex items-center justify-center border border-white px-6 py-3.5 text-sm uppercase tracking-[0.18em] md:px-10 md:py-4"
               data-cursor="hover"
             >
               Check Venue Availability
@@ -355,7 +355,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
           </p>
           <Link
             href={bookingHref}
-            className="inline-flex self-start items-center justify-center bg-[#c89a55] px-10 py-4 text-sm uppercase tracking-[0.18em] text-black md:self-auto"
+            className="inline-flex self-start items-center justify-center bg-[#c89a55] px-6 py-3.5 text-sm uppercase tracking-[0.18em] text-black md:px-10 md:py-4 md:self-auto"
             data-cursor="hover"
           >
             Check Venue Availability

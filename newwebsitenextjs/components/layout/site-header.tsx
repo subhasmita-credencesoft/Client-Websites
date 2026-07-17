@@ -125,7 +125,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] border border-[rgba(var(--color-primary-rgb),0.28)] bg-white/[0.03] text-white sm:h-11 sm:w-11 lg:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] border border-[rgba(var(--color-primary-rgb),0.28)] bg-white/[0.03] text-white lg:hidden"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
@@ -167,7 +167,7 @@ export function SiteHeader() {
 
             <Link
               href="/"
-              className="relative z-10 mx-auto inline-flex h-[38px] w-[48px] items-center justify-center rounded-[var(--radius-sm)] border border-[rgba(var(--color-primary-rgb),0.56)] bg-[linear-gradient(180deg,rgba(19,15,12,0.98)_0%,rgba(10,8,6,0.98)_100%)] px-1 text-center text-[0.28rem] font-semibold uppercase tracking-[0.08em] leading-[1.1] text-[var(--color-primary-hover)] shadow-[0_0_0_2px_rgba(8,7,6,0.94),0_8px_20px_rgba(0,0,0,0.22)] max-[380px]:h-[34px] max-[380px]:w-[42px] max-[380px]:text-[0.24rem] sm:h-[52px] sm:w-[78px] sm:px-2.5 sm:text-[0.46rem] sm:tracking-[0.2em] sm:leading-normal md:h-[60px] md:w-[92px] md:px-3.5 md:text-[0.54rem] lg:h-[76px] lg:w-[110px] lg:text-[0.6rem] lg:leading-[1.6]"
+              className="relative z-10 mx-auto inline-flex h-[62px] w-[84px] flex-col items-center justify-center rounded-[var(--radius-sm)] border border-[rgba(var(--color-primary-rgb),0.56)] bg-[linear-gradient(180deg,rgba(19,15,12,0.98)_0%,rgba(10,8,6,0.98)_100%)] px-2 text-center text-[0.68rem] font-semibold uppercase tracking-[0.04em] leading-[1.25] text-[var(--color-primary-hover)] shadow-[0_0_0_2px_rgba(8,7,6,0.94),0_8px_20px_rgba(0,0,0,0.22)] max-[380px]:h-[54px] max-[380px]:w-[74px] max-[380px]:text-[0.6rem] sm:h-[64px] sm:w-[92px] sm:text-[0.72rem] sm:leading-[1.3] md:h-[70px] md:w-[104px] md:text-[0.78rem] lg:h-[76px] lg:w-[110px] lg:text-[0.82rem] lg:leading-[1.5]"
               data-cursor="hover"
             >
               {content.logoLines[0]}
@@ -223,7 +223,7 @@ export function SiteHeader() {
                 variant: "primary",
                 size: "sm",
                 className:
-                  "h-9 min-w-0 max-w-[7.8rem] shrink-0 overflow-hidden text-ellipsis whitespace-nowrap rounded-full px-2 text-[0.36rem] tracking-[0.04em] shadow-none max-[380px]:max-w-[7.2rem] max-[380px]:px-1.5 max-[380px]:text-[0.32rem] sm:h-10 sm:max-w-none sm:px-3.5 sm:text-[0.52rem] lg:hidden",
+                  "h-10 min-w-0 max-w-[7.8rem] shrink-0 overflow-hidden text-ellipsis whitespace-nowrap rounded-full px-2.5 text-[0.56rem] tracking-[0.04em] shadow-none max-[380px]:max-w-[7.2rem] max-[380px]:px-1.5 max-[380px]:text-[0.5rem] sm:max-w-none sm:px-3.5 sm:text-[0.6rem] lg:hidden",
               })}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -285,7 +285,7 @@ export function SiteHeader() {
         <nav
           id="mobile-menu"
           data-lenis-prevent
-          className={`no-scrollbar border-t border-[#c89a55]/14 transition-[max-height,opacity] duration-300 md:hidden ${
+          className={`no-scrollbar border-t border-[#c89a55]/14 transition-[max-height,opacity] duration-300 ${
             mobileMenuOpen
               ? "max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain touch-pan-y opacity-100"
               : "max-h-0 overflow-hidden opacity-0"

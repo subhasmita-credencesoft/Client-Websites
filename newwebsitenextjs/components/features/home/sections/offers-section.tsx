@@ -108,7 +108,7 @@ export function OffersSection() {
              * its own GPU layer so hover scale doesn't trigger a full-section
              * repaint. Also isolates the parallax layer below it.
              */
-            className="group relative block h-[31rem] overflow-hidden rounded-[1.5rem] border border-white/18 [will-change:transform] md:h-[33rem]"
+            className="group relative block h-[26rem] overflow-hidden rounded-[1.5rem] border border-white/18 [will-change:transform] sm:h-[31rem] md:h-[33rem]"
             data-cursor="hover"
           >
             {/*

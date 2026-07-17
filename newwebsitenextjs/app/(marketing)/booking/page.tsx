@@ -153,7 +153,7 @@ function BookingPageContent() {
 
               <div className="grid gap-3.5 md:grid-cols-2">
                 <label className="grid gap-2">
-                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
                     Preferred check-in
                   </span>
                   <ThemedDatePicker
@@ -164,7 +164,7 @@ function BookingPageContent() {
                   />
                 </label>
                 <label className="grid gap-2">
-                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
                     Preferred check-out
                   </span>
                   <ThemedDatePicker
@@ -175,7 +175,7 @@ function BookingPageContent() {
                   />
                 </label>
                 <div className="grid gap-2">
-                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
                     Total guests
                   </span>
                   <div className="flex items-center rounded-[1.05rem] border border-white/10 bg-[#120e0b] px-2 py-2">
@@ -190,7 +190,7 @@ function BookingPageContent() {
                     </button>
                     <div className="flex-1 text-center">
                       <p className="text-[1.05rem] font-semibold text-white">{guestCount}</p>
-                      <p className="text-[0.68rem] uppercase tracking-[0.18em] text-white/45">Guests</p>
+                      <p className="text-xs uppercase tracking-[0.18em] text-white/45">Guests</p>
                     </div>
                     <button
                       type="button"
@@ -203,7 +203,7 @@ function BookingPageContent() {
                   </div>
                 </div>
                 <label className="grid gap-2">
-                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
                     Stay option
                   </span>
                   <select
@@ -268,25 +268,25 @@ function BookingPageContent() {
                   <div className="mt-4 rounded-[1.05rem] border border-white/10 bg-[linear-gradient(180deg,#2a221b_0%,#342a22_100%)] px-4 py-3.5">
                     <div className="grid gap-x-6 gap-y-3 md:grid-cols-2">
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Room Tariff</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Room Tariff</p>
                         <p className="mt-1 text-[1rem] leading-snug text-white md:text-[1.1rem]">
                           {activeRoomCard?.tariff ?? "Select room"}
                         </p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Booking Note</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Booking Note</p>
                         <p className="mt-1 text-[1rem] leading-snug text-white md:text-[1.1rem]">
                           {activeRoomCard?.packagePrice ?? "Select package"}
                         </p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Property</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Property</p>
                         <p className="mt-1 text-[1rem] leading-snug text-white md:text-[1.1rem]">
                           The Mountain Resort in Karjat , By Redwings
                         </p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Selected Stay</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Selected Stay</p>
                         <p className="mt-1 text-[1rem] leading-snug text-white md:text-[1.1rem]">
                           {activeRoomCard?.title ?? "Select stay"}
                         </p>
@@ -295,24 +295,24 @@ function BookingPageContent() {
                         </p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Booking Engine</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Booking Engine</p>
                         <p className="mt-1 text-sm text-white md:text-[0.96rem]">Direct property booking</p>
                         <p className="mt-1 text-sm text-white md:text-[0.96rem]">Live availability for selected dates</p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Guest Count</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Guest Count</p>
                         <p className="mt-1 text-sm text-white/86">{guestCount}</p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Check-In</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Check-In</p>
                         <p className="mt-1 text-sm text-white/86">{checkIn || "Not selected yet"}</p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Check-Out</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Check-Out</p>
                         <p className="mt-1 text-sm text-white/86">{checkOut || "Not selected yet"}</p>
                       </div>
                       <div>
-                        <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Room Based Booking</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Room Based Booking</p>
                         <p className="mt-1 text-sm text-white/86">Selected room category will continue into booking</p>
                       </div>
                     </div>
@@ -323,19 +323,19 @@ function BookingPageContent() {
 
             <div className="grid gap-4 md:grid-cols-3">
               <article className="rounded-[1.4rem] border border-[#c9a46e]/22 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
-                <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Room Selection</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Room Selection</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
                   Select the room category that best fits your stay plan, then continue with the dates and guest count already chosen.
                 </p>
               </article>
               <article className="rounded-[1.4rem] border border-[#c9a46e]/22 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
-                <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Property Fit</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Property Fit</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
                   The page is now aligned around the property&apos;s actual room inventory and premium stay experience rather than package-led planning.
                 </p>
               </article>
               <article className="rounded-[1.4rem] border border-[#c9a46e]/22 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
-                <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Live Availability</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Live Availability</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/82 md:text-base">
                   Book Now sends the selected dates and guests into the direct booking engine so availability is checked against the property&apos;s flow.
                 </p>
@@ -345,7 +345,7 @@ function BookingPageContent() {
             <div className="rounded-[1.5rem] border border-[#c9a46e]/22 bg-[linear-gradient(180deg,#16110e_0%,#1b1511_100%)] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.2)] md:p-6">
               <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
                 <div>
-                  <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Planning Overview</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Planning Overview</p>
                   <h3 className="mt-3 text-2xl leading-tight text-[#f6ead8] md:text-[2rem]">
                     Premium room selection reviewed together with your stay dates
                   </h3>
@@ -380,7 +380,7 @@ function BookingPageContent() {
                   </p>
                 </div>
                 <label className="block w-full md:max-w-xs">
-                  <span className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">Filter stay options</span>
+                  <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">Filter stay options</span>
                   <input
                     type="text"
                     value={roomFilterQuery}
@@ -432,11 +432,11 @@ function BookingPageContent() {
 
                       <div className="mt-6 grid gap-4 md:grid-cols-2">
                         <div className="rounded-[1.2rem] border border-white/10 bg-[linear-gradient(180deg,#2a221b_0%,#342a22_100%)] px-4 py-4">
-                          <p className="text-[0.68rem] uppercase tracking-[0.18em] text-[#c9a46e]">Tariff</p>
+                           <p className="text-xs uppercase tracking-[0.18em] text-[#c9a46e]">Tariff</p>
                           <p className="mt-2 text-lg leading-snug text-white md:text-xl">{room.tariff}</p>
                         </div>
                         <div className="rounded-[1.2rem] border border-white/10 bg-[linear-gradient(180deg,#2a221b_0%,#342a22_100%)] px-4 py-4">
-                          <p className="text-[0.68rem] uppercase tracking-[0.18em] text-[#c9a46e]">Stay + Meals</p>
+                           <p className="text-xs uppercase tracking-[0.18em] text-[#c9a46e]">Stay + Meals</p>
                           <p className="mt-2 text-lg leading-snug text-white md:text-xl">{room.packagePrice}</p>
                         </div>
                       </div>
@@ -452,7 +452,7 @@ function BookingPageContent() {
             </div>
 
             <div className="rounded-[1.5rem] border border-[#c9a46e]/22 bg-[linear-gradient(180deg,#16110e_0%,#1b1511_100%)] p-5 shadow-[0_18px_36px_rgba(8,16,11,0.2)] md:p-6">
-              <p className="text-[0.68rem] uppercase tracking-[0.2em] text-[#c9a46e]">Booking Terms</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">Booking Terms</p>
               <div className="mt-4 grid gap-3 md:grid-cols-2">
                 <div className="rounded-[1.1rem] border border-white/10 bg-[linear-gradient(180deg,#241d17_0%,#2e241d_100%)] px-4 py-3 text-sm leading-relaxed text-white/82 md:text-base">
                   50% advance is required to block dates, with the remaining 50% due before check-in.

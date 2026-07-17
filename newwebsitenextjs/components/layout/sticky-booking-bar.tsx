@@ -37,14 +37,14 @@ export function StickyBookingBar() {
           <div className="flex min-w-0 flex-1 items-center gap-2 sm:flex-none sm:gap-3">
             <Link
               href={DIRECT_BOOKING_ENGINE_URL}
-              className="inline-flex h-10 flex-1 items-center justify-center rounded-xl border border-[#c9a46e] bg-[#c9a46e] px-4 text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#d7b57c] sm:flex-none sm:px-6 sm:text-[0.62rem]"
+              className="inline-flex h-11 flex-1 items-center justify-center rounded-xl border border-[#c9a46e] bg-[#c9a46e] px-4 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#d7b57c] sm:flex-none sm:px-6 sm:text-[0.66rem]"
               data-cursor="hover"
             >
               Check Availability
             </Link>
             <Link
               href="/contact"
-              className="inline-flex h-10 flex-1 items-center justify-center rounded-xl border border-white/15 px-4 text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white sm:flex-none sm:px-6 sm:text-[0.62rem]"
+              className="inline-flex h-11 flex-1 items-center justify-center rounded-xl border border-white/15 px-4 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white sm:flex-none sm:px-6 sm:text-[0.66rem]"
               data-cursor="hover"
             >
               Contact

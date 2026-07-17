@@ -89,7 +89,7 @@ export function HorizontalJourneySection() {
               </p>
               <h3
                 data-panel-line
-                className="text-5xl leading-[1.02] text-[#f7eddc] md:text-7xl"
+                className="text-4xl leading-[1.02] text-[#f7eddc] sm:text-5xl md:text-7xl"
               >
                 {panel.title}
               </h3>

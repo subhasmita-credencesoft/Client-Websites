@@ -44,7 +44,7 @@ export function Section({
     >
       <div ref={ref}>
         {(title || subtitle) ? (
-          <div className={cn("mb-12", centered && "text-center")}>
+          <div className={cn("mb-8 md:mb-12", centered && "text-center")}>
             {title ? <h2 className="site-title-lg">{title}</h2> : null}
             {subtitle ? <p className={cn("site-copy mt-4 max-w-3xl", centered && "mx-auto")}>{subtitle}</p> : null}
           </div>

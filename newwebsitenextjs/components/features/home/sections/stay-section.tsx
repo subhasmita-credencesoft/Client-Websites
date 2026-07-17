@@ -41,7 +41,7 @@ function StayCard({
        * FIX 2 — `will-change:transform` on the card promotes it to its own
        * GPU compositing layer so hover translate/scale don't repaint siblings.
        */
-      className="group relative h-[26rem] overflow-hidden rounded-[1.45rem] border border-[#b99253]/45 bg-black [will-change:transform] transition-all duration-700 hover:-translate-y-1.5 hover:border-[#dfbf86] hover:shadow-[0_28px_58px_rgba(9,18,14,0.3)] md:h-[31rem]"
+      className="group relative h-[22rem] overflow-hidden rounded-[1.45rem] border border-[#b99253]/45 bg-black [will-change:transform] transition-all duration-700 hover:-translate-y-1.5 hover:border-[#dfbf86] hover:shadow-[0_28px_58px_rgba(9,18,14,0.3)] sm:h-[26rem] md:h-[31rem]"
     >
       {/* Single invisible cover link — keeps semantics, avoids duplicate <a> nesting */}
       <Link href={href} className="absolute inset-0 z-10" aria-label={`View ${title} details`}>
@@ -91,7 +91,7 @@ function StayCard({
       {/* "Explore Stay" badge — z-30 so it sits above the cover link */}
       <Link
         href={href}
-        className="absolute right-4 top-4 z-30 rounded-full border border-[#d9b983]/45 bg-black/25 px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#f5e7cd] md:right-6 md:top-6 md:px-4 md:text-[0.68rem]"
+        className="absolute right-4 top-4 z-30 rounded-full border border-[#d9b983]/45 bg-black/25 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#f5e7cd] sm:text-[0.72rem] md:right-6 md:top-6 md:px-4 md:text-[0.76rem]"
         data-cursor="hover"
       >
         Explore Stay
@@ -118,7 +118,7 @@ function StayCard({
                * FIX 7 — `will-change:transform` on the CTA scopes any
                * backdrop / box-shadow compositing to its own layer.
                */
-              className="inline-flex w-full justify-center rounded-full border border-[#c9a467] bg-[#c9a467] px-5 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black [will-change:transform] transition-colors hover:bg-[#d7b57c] md:w-auto md:text-[0.72rem] md:tracking-[0.16em]"
+              className="inline-flex w-full justify-center rounded-full border border-[#c9a467] bg-[#c9a467] px-5 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black [will-change:transform] transition-colors hover:bg-[#d7b57c] sm:py-2 md:w-auto md:text-[0.76rem] md:tracking-[0.16em]"
               data-cursor="hover"
             >
               Check Availability

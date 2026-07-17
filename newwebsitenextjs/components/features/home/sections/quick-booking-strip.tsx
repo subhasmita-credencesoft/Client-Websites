@@ -66,7 +66,7 @@ export function QuickBookingStrip() {
         <div className="overflow-hidden rounded-[1rem] border border-[rgba(var(--color-primary-rgb),0.22)] bg-[linear-gradient(180deg,rgba(20,16,13,0.97)_0%,rgba(15,12,10,0.94)_100%)] px-3 py-2 shadow-[0_18px_36px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:px-4 sm:py-2.5 md:px-5 md:py-3">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5 xl:grid-cols-[1fr_1fr_0.55fr_auto] xl:items-end">
             <label className="grid gap-1">
-              <span className="text-[0.5rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-primary-hover)]">
+              <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-primary-hover)] sm:text-[0.65rem] md:text-[0.68rem]">
                 {content.fields.checkIn}
               </span>
               <ThemedDatePicker
@@ -74,12 +74,12 @@ export function QuickBookingStrip() {
                 onChange={handleCheckInChange}
                 minDate={getTodayDateString()}
                 disabled={!isReady}
-                className="h-9 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[#c9a46e]/50"
+                className="h-10 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[#c9a46e]/50 sm:h-9"
               />
             </label>
 
             <label className="grid gap-1">
-              <span className="text-[0.5rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-primary-hover)]">
+              <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-primary-hover)] sm:text-[0.65rem] md:text-[0.68rem]">
                 {content.fields.checkOut}
               </span>
               <ThemedDatePicker
@@ -87,12 +87,12 @@ export function QuickBookingStrip() {
                 onChange={setCheckOut}
                 minDate={checkIn}
                 disabled={!isReady}
-                className="h-9 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[#c9a46e]/50"
+                className="h-10 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[#c9a46e]/50 sm:h-9"
               />
             </label>
 
             <label className="grid gap-1">
-              <span className="text-[0.5rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-primary-hover)]">
+              <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-primary-hover)] sm:text-[0.65rem] md:text-[0.68rem]">
                 {content.fields.guests}
               </span>
               <input
@@ -101,7 +101,7 @@ export function QuickBookingStrip() {
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
                 disabled={!isReady}
-                className="h-9 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white outline-none transition-colors hover:border-white/18 focus:border-[#c9a46e]/50"
+                className="h-10 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white outline-none transition-colors hover:border-white/18 focus:border-[#c9a46e]/50 sm:h-9"
               />
             </label>
 
@@ -110,7 +110,7 @@ export function QuickBookingStrip() {
                 type="button"
                 onClick={handleBookingRedirect}
                 disabled={!isReady}
-                className="inline-flex h-9 w-full items-center justify-center rounded-[0.7rem] border border-[#c9a467] bg-[#c9a467] px-4 text-[0.56rem] font-semibold tracking-[0.14em] text-black transition-colors hover:bg-[#d7b57c] xl:min-w-[9rem]"
+                className="inline-flex h-10 w-full items-center justify-center rounded-[0.7rem] border border-[#c9a467] bg-[#c9a467] px-4 text-[0.68rem] font-semibold tracking-[0.14em] text-black transition-colors hover:bg-[#d7b57c] sm:h-9 sm:text-[0.72rem] xl:min-w-[9rem]"
                 data-cursor="hover"
               >
                 {content.cta}
