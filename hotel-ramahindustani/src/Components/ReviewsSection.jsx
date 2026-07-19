@@ -4,7 +4,7 @@ import { testimonials } from '../data/siteContent'
 import { Star } from 'lucide-react'
 
 const ReviewsSection = () => (
-  <section className='py-20 md:py-28 bg-white/30'>
+  <section className='py-20 md:py-28 bg-white/30' aria-label='Guest Reviews'>
     <div className='section-container'>
       <Reveal className='text-center mb-16'>
         <p className='section-subtitle'>Testimonials</p>
@@ -18,7 +18,7 @@ const ReviewsSection = () => (
               whileHover={{ y: -4 }}
               className='bg-white rounded-2xl p-6 border border-[#d4b896]/15 shadow-sm hover:border-[#c8a84e]/25 hover:shadow-md transition-all duration-300 h-full flex flex-col'
             >
-              <div className='flex items-center gap-1 mb-4'>
+              <div className='flex items-center gap-1 mb-4' aria-label={`${t.rating} out of 5 stars`}>
                 {Array.from({ length: 5 }).map((_, idx) => (
                   <Star
                     key={idx}

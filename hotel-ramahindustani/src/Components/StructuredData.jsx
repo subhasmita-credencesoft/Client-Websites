@@ -2,9 +2,9 @@
 import { Helmet } from 'react-helmet-async'
 import { contactDetails, rooms, testimonials, services, bookingRoomOptions } from '../data/siteContent'
 
-const SITE_URL = 'https://www.hotelramahindustani.com'
+import { SITE_URL } from '../config/site'
 const HOTEL_PHONE = contactDetails.phone.replace(/\s/g, '')
-const HOTEL_IMAGE = `${SITE_URL}/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Front -pic-4.avif`
+const HOTEL_IMAGE = `${SITE_URL}/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-front-pic-4.avif`
 
 const hotelSchema = {
   '@context': 'https://schema.org',
@@ -23,22 +23,23 @@ const hotelSchema = {
   paymentAccepted: 'Cash, Credit Card, Debit Card, UPI',
   sameAs: [
     'https://www.instagram.com/rama_hindustani_jaipur_comfy',
+    'https://www.facebook.com/people/Hotel-Rama-Hindustani/61566712879582/',
+    'https://www.tripadvisor.com/Hotel_Review-g304555-d27804757-Reviews-Hotel_Rama_Hindustani-Jaipur_Rajasthan.html',
+    'https://www.google.com/maps/place/Hotel+Rama+Hindustani/@26.8004,75.7890,17z',
   ],
   hasMap: 'https://maps.google.com/?q=Hotel+Rama+Hindustani+Pratap+Nagar+Jaipur',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: contactDetails.addressParts.streetNumber
-      ? `${contactDetails.addressParts.streetNumber} ${contactDetails.addressParts.streetName}, Haldighati Marg, Tonk Rd`
-      : '34-B1-B2, Haldighati Marg, Tonk Rd',
-    addressLocality: contactDetails.addressParts.locality || 'Pratap Nagar',
+    streetAddress: '34-B1-B2, Haldighati Marg, Tonk Rd',
+    addressLocality: 'Pratap Nagar',
     addressRegion: 'Rajasthan',
     addressCountry: 'IN',
     postalCode: '302033',
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 26.8,
-    longitude: 75.8,
+    latitude: 26.8004,
+    longitude: 75.7890,
   },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -126,8 +127,8 @@ const localBusinessSchema = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 26.8,
-    longitude: 75.8,
+    latitude: 26.8004,
+    longitude: 75.7890,
   },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
@@ -184,6 +185,12 @@ const organizationSchema = {
     addressCountry: 'IN',
     postalCode: '302033',
   },
+  sameAs: [
+    'https://www.instagram.com/rama_hindustani_jaipur_comfy',
+    'https://www.facebook.com/people/Hotel-Rama-Hindustani/61566712879582/',
+    'https://www.tripadvisor.com/Hotel_Review-g304555-d27804757-Reviews-Hotel_Rama_Hindustani-Jaipur_Rajasthan.html',
+    'https://www.google.com/maps/place/Hotel+Rama+Hindustani/@26.8004,75.7890,17z',
+  ],
 }
 
 const restaurantSchema = {
@@ -195,7 +202,7 @@ const restaurantSchema = {
   servesCuisine: ['Indian', 'Vegetarian', 'Vegan'],
   url: `${SITE_URL}/restaurant`,
   telephone: HOTEL_PHONE,
-  image: `${SITE_URL}/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Restaurant-pic-17.jpg`,
+  image: `${SITE_URL}/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-restaurant-pic-17.jpg`,
   priceRange: '₹₹',
   hasMenu: `${SITE_URL}/restaurant`,
   address: {
@@ -208,8 +215,8 @@ const restaurantSchema = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 26.8,
-    longitude: 75.8,
+    latitude: 26.8004,
+    longitude: 75.7890,
   },
   openingHoursSpecification: [
     {

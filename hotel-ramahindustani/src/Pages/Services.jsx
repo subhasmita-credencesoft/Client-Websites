@@ -3,6 +3,7 @@ import Seo from '../Components/Seo'
 import StructuredData from '../Components/StructuredData'
 import LocalSEOSection from '../Components/LocalSEOSection'
 import TopBanner from '../Components/TopBanner'
+import Breadcrumbs from '../Components/Breadcrumbs'
 import Reveal from '../Components/Reveal'
 import ServicesGrid from '../Components/ServicesGrid'
 import { hotelImages } from '../data/siteContent'
@@ -18,6 +19,7 @@ const Services = () => {
       />
       <StructuredData page='services' />
       <TopBanner text='Services' image={hotelImages.reception} heading='div' />
+      <Breadcrumbs />
 
       <section className='py-16 md:py-24'>
         <div className='section-container'>

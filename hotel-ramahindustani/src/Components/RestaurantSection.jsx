@@ -16,7 +16,7 @@ const RestaurantSection = () => (
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
         <Reveal direction='left'>
           <p className='section-subtitle'>Rama Rasoi</p>
-          <h2 className='section-title mb-6'>The Taste of Tradition</h2>
+          <h2 className='section-title mb-6'>Vegetarian Restaurant in Pratap Nagar Jaipur</h2>
           <p className='text-[#6b677a] leading-relaxed mb-6'>
             At our in-house restaurant, Rama Rasoi, we serve authentic Indian cuisine prepared with
             time-honored recipes and the freshest ingredients. Every meal is a celebration of flavor.

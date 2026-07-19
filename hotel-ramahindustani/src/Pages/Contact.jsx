@@ -4,6 +4,7 @@ import StructuredData from '../Components/StructuredData'
 import ContactComp from '../Components/ContactComp'
 import LocalSEOSection from '../Components/LocalSEOSection'
 import FAQSection from '../Components/FAQSection'
+import Breadcrumbs from '../Components/Breadcrumbs'
 import Reveal from '../Components/Reveal'
 import TopBanner from '../Components/TopBanner'
 import { hotelImages, contactDetails } from '../data/siteContent'
@@ -42,6 +43,7 @@ const Contact = () => {
       />
       <StructuredData page='contact' />
       <TopBanner text='Contact Hotel Near Sanganer Railway Station Jaipur' image={hotelImages.receptionArea} />
+      <Breadcrumbs />
       <ContactComp />
       <FAQSection
         title='Hotel Contact & Location Questions'

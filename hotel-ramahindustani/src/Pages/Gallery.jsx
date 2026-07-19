@@ -3,6 +3,7 @@ import Seo from '../Components/Seo'
 import StructuredData from '../Components/StructuredData'
 import LocalSEOSection from '../Components/LocalSEOSection'
 import TopBanner from '../Components/TopBanner'
+import Breadcrumbs from '../Components/Breadcrumbs'
 import Reveal from '../Components/Reveal'
 import GalleryComp from '../Components/GalleryComp'
 import { hotelImages } from '../data/siteContent'
@@ -18,6 +19,7 @@ const Gallery = () => {
       />
       <StructuredData page='gallery' />
       <TopBanner text='Hotel Photos Pratap Nagar Jaipur - Gallery' image={hotelImages.frontAlt} />
+      <Breadcrumbs />
       <GalleryComp />
       <Reveal className='text-center py-16 md:py-24'>
         <div className='section-container'>

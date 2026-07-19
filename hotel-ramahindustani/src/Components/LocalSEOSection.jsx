@@ -102,7 +102,7 @@ const LocalSEOSection = ({ compact = false }) => {
 
         {compact && (
           <Reveal className='text-center mt-8'>
-            <Link to='/contact' className='btn-secondary text-sm'>
+            <Link to='/tours' className='btn-secondary text-sm'>
               View All Nearby Locations
             </Link>
           </Reveal>

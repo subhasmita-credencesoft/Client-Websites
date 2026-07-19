@@ -10,6 +10,8 @@ const NotFound = () => {
         title='Page Not Found | Hotel Rama Hindustani Jaipur'
         description='The page you are looking for does not exist. Return to Hotel Rama Hindustani Jaipur homepage or explore our luxury rooms and restaurant.'
         canonicalPath='/404'
+        noindex={true}
+        nofollow={true}
       />
       <div className='min-h-[80vh] flex items-center justify-center bg-[#fdfbf7] py-20 px-4 md:px-6 relative overflow-hidden'>
         {/* Subtle Decorative backgrounds */}
@@ -37,7 +39,7 @@ const NotFound = () => {
               Lost in the Pink City?
             </h2>
             <p className='text-[#6b677a] max-w-md mx-auto leading-relaxed mb-10'>
-              The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Let's get you back on track.
+              The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Let&apos;s get you back on track.
             </p>
           </Reveal>
 

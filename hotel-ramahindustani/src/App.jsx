@@ -30,9 +30,11 @@ const SiteLayout = () => (
   <>
     <ScrollToTopOnNavigate />
     <Navbar />
-    <Suspense fallback={<PageLoader />}>
-      <Outlet />
-    </Suspense>
+    <main id='main-content'>
+      <Suspense fallback={<PageLoader />}>
+        <Outlet />
+      </Suspense>
+    </main>
     <Footer />
   </>
 )

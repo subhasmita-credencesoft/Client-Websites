@@ -10,7 +10,7 @@ const FAQSection = ({ title = 'Frequently Asked Questions', subtitle = 'Everythi
   const toggle = (index) => setOpenIndex(openIndex === index ? null : index)
 
   return (
-    <section className='py-16 md:py-24 bg-white/30'>
+    <section className='py-16 md:py-24 bg-white/30' aria-label='Frequently Asked Questions'>
       <div className='section-container max-w-3xl mx-auto'>
         <Reveal className='text-center mb-12'>
           <p className='section-subtitle'>FAQ</p>

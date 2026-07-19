@@ -9,6 +9,18 @@ import { BOOKING_ENGINE_URL, getWhatsappShareUrl } from '../utils/booking'
 import { Wifi, Tv, Headphones, Thermometer, Snowflake, Refrigerator, Bed, Star, Users, ChevronRight } from 'lucide-react'
 import { FaWhatsapp as FaWhatsappIcon } from 'react-icons/fa'
 
+import { SITE_URL } from '../config/site'
+
+const breadcrumbSchema = (room) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Rooms', item: `${SITE_URL}/rooms` },
+    { '@type': 'ListItem', position: 3, name: room.name, item: `${SITE_URL}/rooms/${room.slug}` },
+  ],
+})
+
 const featureIcons = {
   WiFi: Wifi, 'Flat TV': Tv, 'Room Service': Headphones,
   Geyser: Thermometer, AC: Snowflake, 'Mini Fridge': Refrigerator,
@@ -48,6 +60,7 @@ const RoomDetail = () => {
 
   return (
     <>
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema(room)) }} />
       <Seo
         title={title}
         description={description}
@@ -64,7 +77,7 @@ const RoomDetail = () => {
           <ChevronRight size={10} />
           <Link to='/rooms' className='hover:text-[#c8a84e] transition-colors'>Rooms</Link>
           <ChevronRight size={10} />
-          <span className='text-[#1a1923] font-medium'>{room.name}</span>
+          <span className='text-[#1a1923] font-medium' aria-current='page'>{room.name}</span>
         </nav>
       </div>
 
@@ -86,7 +99,7 @@ const RoomDetail = () => {
                       <div key={i} className='rounded-xl overflow-hidden shadow-sm'>
                         <img
                           src={img}
-                          alt={`${room.name} gallery image ${i + 2}`}
+                          alt={`${room.name} interior view ${i + 2} at Hotel Rama Hindustani Pratap Nagar Jaipur`}
                           loading='lazy'
                           className='w-full h-20 md:h-28 object-cover hover:scale-105 transition-transform duration-500'
                         />
@@ -164,7 +177,7 @@ const RoomDetail = () => {
                     <img src={r.image} alt={r.name} loading='lazy' className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-700' />
                   </div>
                   <div className='p-5'>
-                    <p className='font-display font-bold text-[#1a1923] group-hover:text-[#c8a84e] transition-colors mb-1'>{r.name}</p>
+                    <h3 className='font-display font-bold text-[#1a1923] group-hover:text-[#c8a84e] transition-colors mb-1'>{r.name}</h3>
                     <p className='text-[#c8a84e] font-bold'>&#8377;{r.price} <span className='text-[#6b677a] text-xs font-normal'>/ night</span></p>
                   </div>
                 </Link>

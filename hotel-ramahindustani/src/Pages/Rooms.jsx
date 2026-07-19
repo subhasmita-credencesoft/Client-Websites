@@ -4,6 +4,7 @@ import StructuredData from '../Components/StructuredData'
 import FAQSection from '../Components/FAQSection'
 import LocalSEOSection from '../Components/LocalSEOSection'
 import TopBanner from '../Components/TopBanner'
+import Breadcrumbs from '../Components/Breadcrumbs'
 import Reveal from '../Components/Reveal'
 import RoomCards from '../Components/RoomCards'
 import { hotelImages, rooms } from '../data/siteContent'
@@ -50,6 +51,7 @@ const Rooms = () => (
     />
     <StructuredData page='rooms' />
     <TopBanner text='Our Rooms' image={hotelImages.deluxeRoom || hotelImages.superiorRoom} heading='div' />
+    <Breadcrumbs />
 
     <section className='py-16 md:py-24'>
       <div className='section-container'>

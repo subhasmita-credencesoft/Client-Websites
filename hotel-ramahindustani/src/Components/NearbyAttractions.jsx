@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Reveal from './Reveal'
 import {
@@ -258,6 +258,17 @@ const NearbyAttractions = ({ limit }) => {
   const [selectedPlace, setSelectedPlace] = useState(null)
   const displayed = limit ? touristPlaces.slice(0, limit) : touristPlaces
 
+  const closeModal = useCallback(() => setSelectedPlace(null), [])
+
+  useEffect(() => {
+    if (!selectedPlace) return
+    const handleKey = (e) => {
+      if (e.key === 'Escape') closeModal()
+    }
+    document.addEventListener('keydown', handleKey)
+    return () => document.removeEventListener('keydown', handleKey)
+  }, [selectedPlace, closeModal])
+
   return (
     <>
       <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6'>
@@ -281,7 +292,7 @@ const NearbyAttractions = ({ limit }) => {
                     itemProp='image'
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = '/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Front -pic-4.jpg';
+                      e.target.src = '/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-front-pic-4.jpg';
                     }}
                   />
                   {/* Glassy overlay for details */}
@@ -391,6 +402,9 @@ const NearbyAttractions = ({ limit }) => {
               exit={{ scale: 0.95, y: 15, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 250 }}
               className='bg-[#fdfbf7] w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl border border-[#d4b896]/30 max-h-[90vh] flex flex-col'
+              role='dialog'
+              aria-modal='true'
+              aria-label={selectedPlace ? `${selectedPlace.name} details` : 'Attraction details'}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image banner with close button */}
@@ -401,7 +415,7 @@ const NearbyAttractions = ({ limit }) => {
                   className='w-full h-full object-cover'
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = '/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Front -pic-4.jpg';
+                    e.target.src = '/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-front-pic-4.jpg';
                   }}
                 />
                 <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent' />

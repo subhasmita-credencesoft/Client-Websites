@@ -9,10 +9,10 @@ const Features = () => (
   <section className='py-20 md:py-28 bg-white/30'>
     <div className='section-container'>
       <Reveal className='text-center mb-16'>
-        <p className='section-subtitle'>Experiences</p>
-        <h2 className='section-title text-balance'>Crafted for the Discerning Traveller</h2>
+        <p className='section-subtitle'>Why Choose Us</p>
+        <h2 className='section-title text-balance'>Hotel Amenities &amp; Experiences in Pratap Nagar Jaipur</h2>
         <p className='mt-4 text-[#6b677a] max-w-2xl mx-auto leading-relaxed'>
-          Every moment at Hotel Rama Hindustani is designed to create lasting memories.
+          Every moment at Hotel Rama Hindustani is designed to create lasting memories with comfort, dining, and warm hospitality.
         </p>
       </Reveal>
 

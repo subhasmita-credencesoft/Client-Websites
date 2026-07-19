@@ -29,10 +29,10 @@ const Banner = () => {
             <div className='relative z-10 text-center max-w-3xl mx-auto'>
               <p className='text-[#c8a84e] tracking-[0.4em] uppercase text-sm font-medium mb-4'>Reserve Your Stay</p>
               <h2 className='text-white text-3xl md:text-5xl lg:text-6xl font-bold font-display leading-[1.1] mb-6'>
-                Experience Jaipur Like Never Before
+                Book Budget Hotel Near Jaipur Airport
               </h2>
               <p className='text-white/50 md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto'>
-                From royal architecture to vibrant bazaars, let Hotel Rama Hindustani be your gateway to the Pink City.
+                From royal architecture to vibrant bazaars, let Hotel Rama Hindustani be your affordable gateway to the Pink City.
               </p>
               <div className='flex flex-col sm:flex-row items-center justify-center gap-4'>
                 <a

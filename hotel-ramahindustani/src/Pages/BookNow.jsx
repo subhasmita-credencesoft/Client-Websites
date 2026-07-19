@@ -1,6 +1,7 @@
 import Seo from '../Components/Seo'
 import StructuredData from '../Components/StructuredData'
 import TopBanner from '../Components/TopBanner'
+import Breadcrumbs from '../Components/Breadcrumbs'
 import BookingSection from '../Components/BookingSection'
 import ContactComp from '../Components/ContactComp'
 import LocalSEOSection from '../Components/LocalSEOSection'
@@ -17,6 +18,7 @@ const BookNow = () => {
       />
       <StructuredData page='bookNow' />
       <TopBanner text='Book Hotel in Pratap Nagar Jaipur - Direct Booking' image={hotelImages.frontJpg} />
+      <Breadcrumbs />
       <BookingSection />
       <LocalSEOSection compact={true} />
       <ContactComp />

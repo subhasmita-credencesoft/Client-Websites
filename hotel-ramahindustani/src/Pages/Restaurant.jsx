@@ -3,6 +3,7 @@ import StructuredData from '../Components/StructuredData'
 import LocalSEOSection from '../Components/LocalSEOSection'
 import TopBanner from '../Components/TopBanner'
 import RestaurantSection from '../Components/RestaurantSection'
+import Breadcrumbs from '../Components/Breadcrumbs'
 import { hotelImages } from '../data/siteContent'
 
 const Restaurant = () => {
@@ -16,6 +17,7 @@ const Restaurant = () => {
       />
       <StructuredData page='restaurant' />
       <TopBanner text='Vegetarian Restaurant Pratap Nagar Jaipur - Rama Rasoi' image={hotelImages.restaurant} />
+      <Breadcrumbs />
       <RestaurantSection />
       <LocalSEOSection compact={true} />
     </>

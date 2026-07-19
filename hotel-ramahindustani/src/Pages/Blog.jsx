@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Seo from '../Components/Seo'
 import StructuredData from '../Components/StructuredData'
 import TopBanner from '../Components/TopBanner'
+import Breadcrumbs from '../Components/Breadcrumbs'
 import BlogCard from '../Components/BlogCard'
 import Reveal from '../Components/Reveal'
 import FAQSection from '../Components/FAQSection'
@@ -65,6 +66,7 @@ const Blog = () => {
       <StructuredData page='blog' />
 
       <TopBanner text='Blog' image={hotelImages.frontJpg} heading='div' />
+      <Breadcrumbs />
 
       <section className='py-12 md:py-16'>
         <div className='section-container'>

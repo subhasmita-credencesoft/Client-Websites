@@ -76,7 +76,7 @@ export const getWhatsappShareUrl = (businessUser, useDefaultNumber = true) => {
   const baseUrl = 'https://api.whatsapp.com/send'
 
   const phoneNumber = useDefaultNumber
-    ? '919004126958'
+    ? '916376707091'
     : (businessUser?.whatsApp || businessUser?.phone || businessUser?.mobile || '').replace(/\D/g, '')
 
   const message = `*This is an Enquiry from :* The HotelMate Website

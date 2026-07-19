@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import Seo from '../Components/Seo'
 import TopBanner from '../Components/TopBanner'
+import Breadcrumbs from '../Components/Breadcrumbs'
 import Reveal from '../Components/Reveal'
 import BlogCard from '../Components/BlogCard'
 import FAQSection from '../Components/FAQSection'
@@ -10,7 +11,7 @@ import LocalSEOSection from '../Components/LocalSEOSection'
 import { getPostBySlug, getRelatedPosts, getCategoryLabel, getPopularPosts } from '../data/blogContent'
 import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 
-const SITE_URL = 'https://www.hotelramahindustani.com'
+import { SITE_URL } from '../config/site'
 
 const BlogPost = () => {
   const { slug } = useParams()
@@ -128,6 +129,7 @@ const BlogPost = () => {
       />
 
       <TopBanner text={post.title} image={post.featuredImage} />
+      <Breadcrumbs />
 
       <article className='py-12 md:py-16'>
         <div className='section-container'>

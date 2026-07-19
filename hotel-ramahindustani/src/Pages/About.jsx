@@ -4,6 +4,7 @@ import Seo from '../Components/Seo'
 import StructuredData from '../Components/StructuredData'
 import LocalSEOSection from '../Components/LocalSEOSection'
 import TopBanner from '../Components/TopBanner'
+import Breadcrumbs from '../Components/Breadcrumbs'
 import Reveal from '../Components/Reveal'
 import { hotelImages, storyBlocks } from '../data/siteContent'
 
@@ -15,8 +16,9 @@ const About = () => (
       canonicalPath='/about'
       keywords='Hotel Near Jaipur Airport, Budget Hotel Near Airport Jaipur, Hotel Near JECC Jaipur, Hotel Near Sanganer Railway Station, Pratap Nagar Hotel Jaipur, Family Hotel Near Airport Jaipur, Best Budget Hotel Pratap Nagar, Affordable Hotel Near Jaipur Airport'
     />
-    <StructuredData page='about' />
-    <TopBanner text='About Us' image={hotelImages.exteriorFront} heading='div' />
+      <StructuredData page='about' />
+      <TopBanner text='About Us' image={hotelImages.exteriorFront} heading='div' />
+      <Breadcrumbs />
 
     <section className='py-16 md:py-24'>
       <div className='section-container'>

@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { Helmet } from 'react-helmet-async'
 
-const SITE_URL = 'https://www.hotelramahindustani.com'
-const DEFAULT_OG_IMAGE = '/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Front -pic-4.avif'
+import { SITE_URL } from '../config/site'
+const DEFAULT_OG_IMAGE = '/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-front-pic-4.avif'
 
 const Seo = ({
   title,
@@ -52,8 +52,8 @@ const Seo = ({
 
       <meta name='geo.region' content='IN-RJ' />
       <meta name='geo.placename' content='Jaipur' />
-      <meta name='geo.position' content='26.8;75.8' />
-      <meta name='ICBM' content='26.8, 75.8' />
+      <meta name='geo.position' content='26.8004;75.7890' />
+      <meta name='ICBM' content='26.8004, 75.7890' />
 
       <meta name='theme-color' content='#1a1923' />
       <meta name='apple-mobile-web-app-capable' content='yes' />

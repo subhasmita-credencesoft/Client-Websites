@@ -25,7 +25,7 @@ const FeatureDestination = () => (
             >
               <div className='flex items-center gap-2'>
                 <Star className='text-[#c8a84e] fill-[#c8a84e]' size={20} />
-                <span className='font-bold font-display text-lg'>4.8</span>
+                <span className='font-bold font-display text-lg'>4.6</span>
                 <span className='text-[#6b677a] text-sm'>Rating</span>
               </div>
               <p className='text-xs text-[#6b677a] mt-1'>Exceptional hospitality</p>

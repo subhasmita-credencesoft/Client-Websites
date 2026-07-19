@@ -4,8 +4,9 @@ import StructuredData from '../Components/StructuredData'
 import FAQSection from '../Components/FAQSection'
 import LocalSEOSection from '../Components/LocalSEOSection'
 import TopBanner from '../Components/TopBanner'
+import Breadcrumbs from '../Components/Breadcrumbs'
 import Reveal from '../Components/Reveal'
-import NearbyAttractions, { touristPlaces } from '../Components/NearbyAttractions'
+import NearbyAttractions from '../Components/NearbyAttractions'
 import { hotelImages } from '../data/siteContent'
 import { MapPin, Phone, Clock } from 'lucide-react'
 
@@ -67,6 +68,7 @@ const Tours = () => {
         image={hotelImages.superiorRoom}
         heading='div'
       />
+      <Breadcrumbs />
 
       {/* ── INTRO SECTION ─────────────────────────── */}
       <section className='py-16 md:py-24'>
@@ -78,7 +80,7 @@ const Tours = () => {
             </h1>
             <p className='mt-4 text-[#6b677a] max-w-2xl mx-auto leading-relaxed'>
               Perfectly located in Pratap Nagar, Hotel Rama Hindustani gives you easy access to
-              Jaipur's top tourist attractions — from the nearby Chokhi Dhani cultural village to
+              Jaipur&apos;s top tourist attractions — from the nearby Chokhi Dhani cultural village to
               the iconic Hawa Mahal and UNESCO-listed Amer Fort. Here is your complete guide to
               nearby sightseeing with distances and directions.
             </p>

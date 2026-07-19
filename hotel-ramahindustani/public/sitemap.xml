@@ -1,208 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.hotelramahindustani.com/</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Front%20-pic-4.avif</image:loc>
-      <image:title>Hotel Rama Hindustani Exterior View</image:title>
-      <image:caption>Hotel Rama Hindustani front exterior in Pratap Nagar Jaipur</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/Hotel%20Rama%20Hindustani%20front%203.jpg</image:loc>
-      <image:title>Hotel Rama Hindustani Building Front</image:title>
-      <image:caption>Hotel Rama Hindustani building exterior view</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/rama-hindustanilogo.avif</image:loc>
-      <image:title>Hotel Rama Hindustani Logo</image:title>
-      <image:caption>Hotel Rama Hindustani brand logo</image:caption>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-front-pic-4.avif</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.hotelramahindustani.com/rooms</loc>
-    <lastmod>2026-07-15</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Economy%20room-pic-22.jpg</image:loc>
-      <image:title>Economy Double Room Hotel Rama Hindustani</image:title>
-      <image:caption>Budget-friendly economy double room at Hotel Rama Hindustani Jaipur</image:caption>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-economy-room-pic-22.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Standard%20room%20-pic-23.jpg</image:loc>
-      <image:title>Standard Double Room Hotel Rama Hindustani</image:title>
-      <image:caption>Comfortable standard double room at Hotel Rama Hindustani</image:caption>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-standard-room-pic-23.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Deluxe%20room-pic-28.jpg</image:loc>
-      <image:title>Deluxe Room Hotel Rama Hindustani</image:title>
-      <image:caption>Spacious deluxe room at Hotel Rama Hindustani in Pratap Nagar</image:caption>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-deluxe-room-pic-28.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/Super%20Deluxe%20room%20with%20fridge.jpg</image:loc>
-      <image:title>Superior Double Room Hotel Rama Hindustani</image:title>
-      <image:caption>Premium superior double room with mini fridge at Hotel Rama Hindustani</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.hotelramahindustani.com/rooms/economy-double-room</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Economy%20room-pic-22.jpg</image:loc>
-      <image:title>Economy Double Room at Hotel Rama Hindustani Jaipur</image:title>
-      <image:caption>Budget-friendly Economy Double Room interior at Hotel Rama Hindustani</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.hotelramahindustani.com/rooms/standard-double-room</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Standard%20room%20-pic-23.jpg</image:loc>
-      <image:title>Standard Double Room at Hotel Rama Hindustani Jaipur</image:title>
-      <image:caption>Standard Double Room with AC and WiFi at Hotel Rama Hindustani</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.hotelramahindustani.com/rooms/deluxe-room</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Deluxe%20room-pic-28.jpg</image:loc>
-      <image:title>Deluxe Room at Hotel Rama Hindustani Jaipur</image:title>
-      <image:caption>Spacious Deluxe Room with premium bedding at Hotel Rama Hindustani</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.hotelramahindustani.com/rooms/superior-double-room</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/Super%20Deluxe%20room%20with%20fridge.jpg</image:loc>
-      <image:title>Superior Double Room at Hotel Rama Hindustani Jaipur</image:title>
-      <image:caption>Superior Double Room with mini fridge at Hotel Rama Hindustani</image:caption>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/super-deluxe-room-with-fridge.jpg</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.hotelramahindustani.com/restaurant</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-Restaurant-pic-17.jpg</image:loc>
-      <image:title>Rama Rasoi Restaurant Hotel Rama Hindustani</image:title>
-      <image:caption>Vegetarian restaurant Rama Rasoi at Hotel Rama Hindustani Jaipur</image:caption>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-restaurant-pic-17.jpg</image:loc>
     </image:image>
   </url>
   <url>
+    <loc>https://www.hotelramahindustani.com/tours</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.hotelramahindustani.com/services</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.hotelramahindustani.com/gallery</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.hotelramahindustani.com/blog</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.hotelramahindustani.com/about</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.hotelramahindustani.com/contact</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.hotelramahindustani.com/tours</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.hotelramahindustani.com/book-now</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://www.hotelramahindustani.com/rooms/economy-double-room</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-economy-room-pic-22.jpg</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/best-budget-hotel-near-jaipur-airport</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://www.hotelramahindustani.com/rooms/standard-double-room</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-standard-room-pic-23.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hotelramahindustani.com/rooms/deluxe-room</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-deluxe-room-pic-28.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hotelramahindustani.com/rooms/superior-double-room</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/super-deluxe-room-with-fridge.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.hotelramahindustani.com/blog/best-budget-hotel-near-jecc-jaipur</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/hotel-near-jecc-jaipur</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://www.hotelramahindustani.com/blog/top-10-things-to-do-in-jaipur</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/family-hotel-in-pratap-nagar-jaipur</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://www.hotelramahindustani.com/blog/jaipur-travel-guide-2025</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/hotel-near-sanganer-railway-station</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://www.hotelramahindustani.com/blog/best-vegetarian-restaurants-in-jaipur</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/where-to-stay-near-jaipur-airport</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://www.hotelramahindustani.com/blog/day-trips-from-jaipur</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/hotels-near-chokhi-dhani-jaipur</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.hotelramahindustani.com/blog/jaipur-travel-guide-first-time-visitors</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://www.hotelramahindustani.com/blog/jaipur-with-kids-family-travel-guide</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/places-to-visit-near-pratap-nagar-jaipur</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.hotelramahindustani.com/blog/hotels-near-sitapura-industrial-area-jaipur</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://www.hotelramahindustani.com/blog/best-time-to-visit-jaipur</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/why-book-direct-with-hotel-rama-hindustani</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://www.hotelramahindustani.com/blog/jaipur-honeymoon-guide</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.hotelramahindustani.com/blog/weekend-getaway-from-delhi-to-jaipur</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.hotelramahindustani.com/blog/business-travel-guide-to-jaipur</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

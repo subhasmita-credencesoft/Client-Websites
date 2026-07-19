@@ -1,4 +1,5 @@
-import { FaWhatsapp, FaInstagram } from 'react-icons/fa'
+import { FaWhatsapp, FaInstagram, FaFacebookF } from 'react-icons/fa'
+import { SiTripadvisor } from 'react-icons/si'
 import { Mail, Phone, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { contactDetails } from '../data/siteContent'
@@ -117,6 +118,36 @@ const Footer = () => {
                 aria-label='Follow Hotel Rama Hindustani on Instagram'
               >
                 <FaInstagram size={16} />
+              </a>
+
+              <a
+                href='https://www.facebook.com/people/Hotel-Rama-Hindustani/61566712879582/'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-[#1877F2] transition-all duration-300 hover:scale-110'
+                aria-label='Follow Hotel Rama Hindustani on Facebook'
+              >
+                <FaFacebookF size={16} />
+              </a>
+
+              <a
+                href='https://www.tripadvisor.com/Hotel_Review-g304555-d27804757-Reviews-Hotel_Rama_Hindustani-Jaipur_Rajasthan.html'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-[#34E0A1] transition-all duration-300 hover:scale-110'
+                aria-label='Hotel Rama Hindustani on TripAdvisor'
+              >
+                <SiTripadvisor size={16} />
+              </a>
+
+              <a
+                href='https://www.google.com/maps/place/Hotel+Rama+Hindustani/@26.8004,75.7890,17z'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-[#EA4335] transition-all duration-300 hover:scale-110'
+                aria-label='Hotel Rama Hindustani on Google Maps'
+              >
+                <MapPin size={16} />
               </a>
             </div>
           </div>

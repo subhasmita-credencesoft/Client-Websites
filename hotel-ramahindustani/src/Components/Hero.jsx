@@ -62,8 +62,7 @@ const Hero = () => {
     <section className='relative min-h-screen flex items-center justify-center bg-[#1a1923]'>
       <img
         src={hotelImages.frontJpg}
-        alt=''
-        role='presentation'
+        alt='Hotel Rama Hindustani exterior building in Pratap Nagar Jaipur — budget hotel near airport'
         className='absolute inset-0 w-full h-full object-cover'
         fetchPriority='high'
       />
@@ -92,9 +91,9 @@ const Hero = () => {
           transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className='text-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-[1.05] mb-6 text-balance'
         >
-          Where Comfort
+          Budget Hotel in
           <br />
-          <span className='text-[#c8a84e]'>Meets Tradition</span>
+          <span className='text-[#c8a84e]'>Pratap Nagar Jaipur</span>
         </motion.h1>
 
         <motion.p
@@ -104,7 +103,7 @@ const Hero = () => {
           className='text-white/75 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed'
         >
           Experience comfort, affordability, and warm Indian hospitality
-          in the heart of Jaipur.
+          near Jaipur Airport, JECC & Sanganer Railway Station.
         </motion.p>
 
         <motion.div
