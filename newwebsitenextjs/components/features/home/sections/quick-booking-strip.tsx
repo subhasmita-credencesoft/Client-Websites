@@ -74,7 +74,7 @@ export function QuickBookingStrip() {
                 onChange={handleCheckInChange}
                 minDate={getTodayDateString()}
                 disabled={!isReady}
-                className="h-10 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[#c9a46e]/50 sm:h-9"
+                className="h-10 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[var(--color-primary)]/50 sm:h-9"
               />
             </label>
 
@@ -87,7 +87,7 @@ export function QuickBookingStrip() {
                 onChange={setCheckOut}
                 minDate={checkIn}
                 disabled={!isReady}
-                className="h-10 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[#c9a46e]/50 sm:h-9"
+                className="h-10 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white transition-colors hover:border-white/18 focus-visible:border-[var(--color-primary)]/50 sm:h-9"
               />
             </label>
 
@@ -101,7 +101,7 @@ export function QuickBookingStrip() {
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
                 disabled={!isReady}
-                className="h-10 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white outline-none transition-colors hover:border-white/18 focus:border-[#c9a46e]/50 sm:h-9"
+                className="h-10 rounded-[0.7rem] border border-white/10 bg-white/[0.04] px-3 text-[0.78rem] text-white outline-none transition-colors hover:border-white/18 focus:border-[var(--color-primary)]/50 sm:h-9"
               />
             </label>
 
@@ -110,8 +110,7 @@ export function QuickBookingStrip() {
                 type="button"
                 onClick={handleBookingRedirect}
                 disabled={!isReady}
-                className="inline-flex h-10 w-full items-center justify-center rounded-[0.7rem] border border-[#c9a467] bg-[#c9a467] px-4 text-[0.68rem] font-semibold tracking-[0.14em] text-black transition-colors hover:bg-[#d7b57c] sm:h-9 sm:text-[0.72rem] xl:min-w-[9rem]"
-                data-cursor="hover"
+                className="inline-flex h-10 w-full items-center justify-center rounded-[0.7rem] border border-[#c9a467] bg-[#c9a467] px-4 text-[0.68rem] font-semibold tracking-[0.14em] text-black transition-colors hover:bg-[var(--color-primary-hover)] sm:h-9 sm:text-[0.72rem] xl:min-w-[9rem]"
               >
                 {content.cta}
               </button>

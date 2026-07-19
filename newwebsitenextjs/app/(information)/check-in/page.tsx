@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/check-in",
   description:
     "Check-in details for The Mountain Resort in Karjat — arrival time, check-out schedule, ID requirements, and guest guidelines for a smooth destination stay experience.",
+  keywords: ["check in time resort karjat", "arrival guide mountain resort", "check out policy", "guest arrival karjat"],
 });
 
 export default function CheckInPage() {

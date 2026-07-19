@@ -8,6 +8,12 @@ export const metadata: Metadata = createPageMetadata({
   path: "/media-awards",
   description:
     "See media features, brand presentations, and recognition for The Mountain Resort in Karjat by Redwings — a premium destination wedding and luxury stay property.",
+  keywords: [
+    "media features mountain resort karjat",
+    "awards redwings resort",
+    "wedding venue press karjat",
+    "destination wedding recognition",
+  ],
 });
 
 export default function MediaAwardsPage() {

@@ -25,6 +25,12 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     path: `/blog/${post.slug}`,
     description: post.excerpt,
     image: post.heroImage,
+    keywords: [
+      post.category.toLowerCase(),
+      "karjat resort blog",
+      "wedding planning tips",
+      "destination wedding insights",
+    ],
   });
 }
 
@@ -43,6 +49,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     description: post.excerpt,
     image: post.heroImage,
     datePublished: post.publishDate,
+    dateModified: post.publishDate,
     author: {
       "@type": "Organization",
       name: "The Mountain Resort in Karjat, By Redwings",
@@ -55,12 +62,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://themountainresorts.com/blog/${post.slug}/`,
+      "@id": `https://themountainresorts.com/blog/${post.slug}`,
     },
   };
 
   return (
-    <main className="relative overflow-hidden bg-[#11100e] text-white">
+    <main className="relative overflow-hidden bg-[var(--section-dark)] text-white">
       <div className="noise-overlay" />
       <SiteHeader />
 
@@ -77,7 +84,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="site-container relative z-10 flex min-h-[32rem] items-end pb-10 pt-16 md:min-h-[42rem] md:pb-16 md:pt-24">
           <div className="max-w-5xl" data-panel-content>
             <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.category }]} />
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-panel-line>{post.category} &mdash; {post.publishDate}</p>
+            <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-primary)]" data-panel-line>{post.category} &mdash; {post.publishDate}</p>
             <h1 data-section-title data-panel-line className="mt-4 max-w-5xl">
               {post.title}
             </h1>
@@ -92,7 +99,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {post.content.map((block, index) => (
             <section key={index} data-reveal>
               {block.heading ? (
-                <h2 className="text-2xl leading-snug text-[#c9a46e] md:text-3xl">{block.heading}</h2>
+                <h2 className="text-2xl leading-snug text-[var(--color-primary)] md:text-3xl">{block.heading}</h2>
               ) : null}
               <p className="mt-5 text-lg leading-relaxed text-white/85 md:text-xl">{block.body}</p>
             </section>
@@ -100,14 +107,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
 
         {post.relatedLinks.length > 0 ? (
-          <div className="mt-16 rounded-[2rem] border border-white/10 bg-[#182920] p-8 md:p-10">
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]">Related</p>
+          <div className="mt-16 rounded-[2rem] border border-white/10 bg-[var(--section-surface)] p-8 md:p-10">
+            <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-primary)]">Related</p>
             <div className="mt-6 flex flex-wrap gap-4">
               {post.relatedLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
+                  className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[var(--color-primary)]/40 hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -118,16 +125,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </article>
 
       <section className="mx-auto max-w-6xl px-4 pb-20 pt-4 text-center md:px-8" data-reveal>
-        <div className="rounded-[2.4rem] border border-white/10 bg-[#182920] px-8 py-12 md:px-16 md:py-14">
-          <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Ready to Plan?</p>
+        <div className="rounded-[2.4rem] border border-white/10 bg-[var(--section-surface)] px-8 py-12 md:px-16 md:py-14">
+          <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-primary)]" data-reveal-child>Ready to Plan?</p>
           <h3 className="mx-auto mt-5 max-w-4xl text-3xl md:text-4xl" data-section-title data-reveal-child>
             Explore packages, rooms, and venue details for your destination celebration
           </h3>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4" data-reveal-child>
-            <Link href="/offers" className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black">
+            <Link href="/offers" className="inline-flex items-center justify-center border border-[var(--color-primary-hover)] bg-[var(--color-primary-hover)] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black">
               View Packages
             </Link>
-            <Link href="/contact" className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white">
+            <Link href="/contact" className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[var(--color-primary)]/40 hover:text-white">
               Contact The Team
             </Link>
           </div>

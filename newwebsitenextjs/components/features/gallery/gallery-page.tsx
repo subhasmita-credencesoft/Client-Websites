@@ -7,6 +7,7 @@ import { MagneticButton } from "@/components/ui/magnetic-button";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { galleryPageData } from "@/lib/data/pages/gallery-page";
 
 type GalleryTab = (typeof galleryPageData.tabs)[number];
@@ -37,7 +38,7 @@ export function GalleryPage() {
             <h1 className="site-title-xl mt-5 text-balance" data-section-title>
               {galleryPageData.hero.title}
             </h1>
-            <div className="mx-auto mt-5 h-[2px] w-20 bg-[#d6b07a] md:w-24" />
+            <div className="mx-auto mt-5 h-[2px] w-20 bg-[var(--color-primary)] md:w-24" />
             <p className="site-copy-lg mx-auto mt-6 max-w-4xl text-balance" data-reveal-child>
               {galleryPageData.hero.description}
             </p>
@@ -52,11 +53,10 @@ export function GalleryPage() {
 
       <div className="content-auto-section">
         <section className="site-container max-w-[80rem] py-12 md:py-14">
-          <div className="rounded-[2.2rem] border border-[#d6b07a]/16 bg-[linear-gradient(180deg,rgba(37,60,49,0.96),rgba(26,43,35,0.96))] px-6 py-12 text-center shadow-[0_24px_60px_rgba(8,16,11,0.16)] md:px-12 md:py-16">
-            <p className="text-lg text-white/80 md:text-2xl">
-              <Link href="/" className="hover:text-[#d6b07a]">Home</Link> <span className="px-1">&gt;</span>{" "}
-              <span className="text-[#d6b07a]">{galleryPageData.intro.breadcrumb}</span>
-            </p>
+          <div className="rounded-[2.2rem] border border-[var(--color-primary)]/16 bg-[linear-gradient(180deg,rgba(37,60,49,0.96),rgba(26,43,35,0.96))] px-6 py-12 text-center shadow-[0_24px_60px_rgba(8,16,11,0.16)] md:px-12 md:py-16">
+            <div className="mx-auto mb-6 max-w-6xl">
+              <Breadcrumbs items={[{ label: "Gallery" }]} />
+            </div>
             <h2 className="site-title-lg mx-auto mt-8 max-w-5xl text-balance" data-section-title>
               {galleryPageData.intro.title}
             </h2>
@@ -77,10 +77,9 @@ export function GalleryPage() {
                 onClick={() => setActiveTab(tab)}
                 className={`rounded-full border px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] transition-colors ${
                   activeTab === tab
-                    ? "border-[#d6b07a]/60 bg-[#31493c] text-[#f6ead8] shadow-[0_14px_30px_rgba(6,12,8,0.18)]"
-                    : "border-white/12 bg-[#21382e] text-white/70 hover:border-[#d6b07a]/35 hover:bg-[#273f33] hover:text-white"
+                    ? "border-[var(--color-primary)]/60 bg-[#31493c] text-[var(--color-text-primary)] shadow-[0_14px_30px_rgba(6,12,8,0.18)]"
+                    : "border-white/12 bg-[#21382e] text-white/70 hover:border-[var(--color-primary)]/35 hover:bg-[#273f33] hover:text-white"
                 }`}
-                data-cursor="hover"
               >
                 {tab}
               </button>
@@ -111,7 +110,7 @@ export function GalleryPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
                 </div>
                 <div className="p-6 md:p-7">
-                  <p className="text-[0.72rem] uppercase tracking-[0.22em] text-[#d6b07a]">{item.category}</p>
+                  <p className="text-[0.72rem] uppercase tracking-[0.22em] text-[var(--color-primary)]">{item.category}</p>
                   <p className="mt-3 text-base leading-relaxed text-white/88 md:text-lg">{item.alt}</p>
                 </div>
               </article>
@@ -120,8 +119,8 @@ export function GalleryPage() {
         </section>
 
         <section className="site-container max-w-5xl pb-16 md:pb-20" data-reveal>
-          <div className="rounded-[2.2rem] border border-[#d6b07a]/18 bg-[#182920] px-8 py-12 text-center shadow-[0_24px_60px_rgba(8,16,11,0.16)] md:px-12 md:py-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d6b07a]" data-reveal-child>
+          <div className="rounded-[2.2rem] border border-[var(--color-primary)]/18 bg-[var(--section-surface)] px-8 py-12 text-center shadow-[0_24px_60px_rgba(8,16,11,0.16)] md:px-12 md:py-16">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-primary)]" data-reveal-child>
               Booking Intent
             </p>
             <h3 className="site-title-lg mx-auto mt-5 max-w-4xl text-balance" data-section-title>

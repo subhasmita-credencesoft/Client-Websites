@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/luxury-resort-karjat",
   description:
     "Book a luxury resort in Karjat near Mumbai — The Mountain Resort offers a 7-acre private estate with mountain views, 5 room types, wedding lawns, poolside celebrations, and curated packages from Rs. 4,500 per person.",
+  keywords: ["luxury resort karjat", "5 star resort maharashtra", "premium resort near mumbai", "luxury stay karjat"],
 });
 
 export default function Page() {

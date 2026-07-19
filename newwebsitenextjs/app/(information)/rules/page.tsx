@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/rules",
   description:
     "Review booking terms and venue guidelines for The Mountain Resort in Karjat — advance payments, check-in policies, ID requirements, and cancellation terms.",
+  keywords: ["resort rules karjat", "venue policies", "wedding venue guidelines", "stay policy mountain resort"],
 });
 
 export default function RulesPage() {

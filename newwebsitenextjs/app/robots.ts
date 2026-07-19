@@ -20,6 +20,22 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "CCBot",
         disallow: "/",
       },
+      {
+        userAgent: "anthropic-ai",
+        disallow: "/",
+      },
+      {
+        userAgent: "Google-Extended",
+        disallow: "/",
+      },
+      {
+        userAgent: "Bytespider",
+        disallow: "/",
+      },
+      {
+        userAgent: "meta-externalagent",
+        disallow: "/",
+      },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
   };

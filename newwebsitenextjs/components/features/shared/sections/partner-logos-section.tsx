@@ -20,10 +20,9 @@ export function PartnerLogosSection() {
           <a
             key={item.label}
             href={item.href}
-            className="glass-panel luxury-shadow block rounded-[1.75rem] border border-white/10 px-6 py-7 text-left transition-colors hover:border-[#cba977]/50"
-            data-cursor="hover"
+            className="glass-panel luxury-shadow block rounded-[1.75rem] border border-white/10 px-6 py-7 text-left transition-colors hover:border-[var(--color-primary)]/50"
           >
-            <p className="site-eyebrow text-[#cba977]">{item.label}</p>
+            <p className="site-eyebrow text-[var(--color-primary)]">{item.label}</p>
             <p className="site-title-md mt-4 break-words text-white md:text-[1.75rem]">{item.value}</p>
           </a>
         ))}

@@ -268,21 +268,7 @@ svg {
   z-index: 1;
 }
 
-.bg-black {
-  background-color: var(--section-dark) !important;
-}
-
-.text-gradient-gold {
-  background: linear-gradient(130deg, #fff8e7 10%, #e2c49f 55%, #b28b60 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Global surface normalization.
-   Several pages were mixing many close-but-different green surfaces, which made
-   cards/sections look inconsistent. These aliases keep the existing markup and
-   logic intact while unifying the rendered palette. */
+/* Unified surface normalization — keep markup intact while using design tokens */
 .bg-\[\#182920\],
 .bg-\[\#16261f\],
 .bg-\[\#172820\] {
@@ -582,10 +568,6 @@ svg {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-[data-cursor="hover"] {
-  cursor: pointer;
 }
 
 html.lenis,

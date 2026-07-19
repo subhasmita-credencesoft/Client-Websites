@@ -12,11 +12,18 @@ export const metadata: Metadata = createPageMetadata({
   path: "/blog",
   description:
     "Read wedding planning tips, travel guides, and destination insights from The Mountain Resort in Karjat — expert advice for couples, families, and travellers.",
+  keywords: [
+    "wedding planning tips karjat",
+    "karjat travel guide",
+    "destination wedding blog",
+    "resort insights maharashtra",
+    "weekend getaway tips karjat",
+  ],
 });
 
 export default function BlogIndexPage() {
   return (
-    <main className="relative overflow-hidden bg-[#11100e] text-white">
+    <main className="relative overflow-hidden bg-[var(--section-dark)] text-white">
       <div className="noise-overlay" />
       <SiteHeader />
 
@@ -42,13 +49,13 @@ export default function BlogIndexPage() {
       <section className="mx-auto max-w-[80rem] px-4 py-16 md:px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} data-card className="group rounded-[1.8rem] border border-white/10 bg-[#182920] shadow-[0_22px_70px_rgba(0,0,0,0.22)] transition-colors duration-500 hover:border-[#c9a46e]/35">
+            <Link key={post.slug} href={`/blog/${post.slug}`} data-card className="group rounded-[1.8rem] border border-white/10 bg-[var(--section-surface)] shadow-[0_22px_70px_rgba(0,0,0,0.22)] transition-colors duration-500 hover:border-[var(--color-primary)]/35">
               <div className="relative h-[16rem] overflow-hidden rounded-t-[1.8rem]">
                 <Image src={post.heroImage} alt={post.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
               <div className="p-7">
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-semibold tracking-[0.15em] text-[#c9a46e]">{post.category}</span>
+                  <span className="text-xs font-semibold tracking-[0.15em] text-[var(--color-primary)]">{post.category}</span>
                   <span className="text-xs text-white/40">{post.publishDate}</span>
                 </div>
                 <h2 className="mt-4 text-2xl leading-snug md:text-3xl">{post.title}</h2>

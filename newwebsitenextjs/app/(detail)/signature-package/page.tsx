@@ -9,6 +9,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/signature-package",
   description:
     "The Signature Wedding Package at The Mountain Resort in Karjat — a premium destination wedding package with curated stays, multi-event venue access, and dedicated hosting.",
+  keywords: ["signature wedding package karjat", "premium wedding package", "wedding package includes meals", "destination wedding karjat"],
 });
 
 export default function Page() {
@@ -18,5 +19,5 @@ export default function Page() {
     notFound();
   }
 
-  return <DetailPageView page={page} />;
+  return <DetailPageView page={page} parentBreadcrumb={{ label: "Offers", href: "/offers" }} />;
 }

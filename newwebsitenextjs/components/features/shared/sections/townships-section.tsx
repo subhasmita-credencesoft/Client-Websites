@@ -1,5 +1,3 @@
-"use client";
-
 import { homeSectionContent } from "@/lib/data/content/resort-content";
 import { SectionShell } from "@/components/ui/section-shell";
 

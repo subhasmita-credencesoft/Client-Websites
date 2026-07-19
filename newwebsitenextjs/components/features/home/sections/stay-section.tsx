@@ -85,14 +85,13 @@ function StayCard({
       <div className="absolute inset-[0.85rem] rounded-[1.05rem] border border-white/8 opacity-70 transition-all duration-700 group-hover:border-[#e0bf88]/28 group-hover:opacity-100" />
       <div className="absolute left-6 top-6 h-8 w-8 rounded-tl-[0.8rem] border-l border-t border-[#e1c089]/50 opacity-65 transition-all duration-700 group-hover:opacity-100" />
       <div className="absolute bottom-6 right-6 h-8 w-8 rounded-br-[0.8rem] border-b border-r border-[#e1c089]/50 opacity-65 transition-all duration-700 group-hover:opacity-100" />
-      <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-[#cba977]/0 via-[#d9b983]/65 to-[#cba977]/0 opacity-75" />
+      <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-[var(--color-primary)]/0 via-[#d9b983]/65 to-[var(--color-primary)]/0 opacity-75" />
       <div className="absolute inset-x-0 bottom-[5.75rem] h-px bg-white/20 transition-all duration-700 group-hover:bg-[#d3b07b]/55" />
 
       {/* "Explore Stay" badge — z-30 so it sits above the cover link */}
       <Link
         href={href}
         className="absolute right-4 top-4 z-30 rounded-full border border-[#d9b983]/45 bg-black/25 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#f5e7cd] sm:text-[0.72rem] md:right-6 md:top-6 md:px-4 md:text-[0.76rem]"
-        data-cursor="hover"
       >
         Explore Stay
       </Link>
@@ -118,8 +117,7 @@ function StayCard({
                * FIX 7 — `will-change:transform` on the CTA scopes any
                * backdrop / box-shadow compositing to its own layer.
                */
-              className="inline-flex w-full justify-center rounded-full border border-[#c9a467] bg-[#c9a467] px-5 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black [will-change:transform] transition-colors hover:bg-[#d7b57c] sm:py-2 md:w-auto md:text-[0.76rem] md:tracking-[0.16em]"
-              data-cursor="hover"
+              className="inline-flex w-full justify-center rounded-full border border-[#c9a467] bg-[#c9a467] px-5 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black [will-change:transform] transition-colors hover:bg-[var(--color-primary-hover)] sm:py-2 md:w-auto md:text-[0.76rem] md:tracking-[0.16em]"
             >
               Check Availability
             </Link>

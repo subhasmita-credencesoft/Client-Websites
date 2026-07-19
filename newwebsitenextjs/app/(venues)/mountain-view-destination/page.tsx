@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/mountain-view-destination",
   description:
     "Explore the mountain view destination at The Mountain Resort in Karjat — scenic lawns, panoramic backdrops, and a private estate setting for weddings and celebrations.",
+  keywords: ["mountain view venue karjat", "scenic wedding destination", "hillside event venue maharashtra", "mountain backdrop wedding"],
 });
 
 export default function MountainViewDestinationPage() {

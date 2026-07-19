@@ -9,6 +9,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/family-room",
   description:
     "Stay in the Family Room at The Mountain Resort in Karjat — spacious accommodation designed for families, wedding guest groups, and multi-day destination celebrations.",
+  keywords: ["family room karjat", "group stay resort", "family accommodation wedding", "spacious room karjat"],
 });
 
 export default function Page() {
@@ -18,5 +19,5 @@ export default function Page() {
     notFound();
   }
 
-  return <DetailPageView page={page} />;
+  return <DetailPageView page={page} parentBreadcrumb={{ label: "Rooms", href: "/rooms" }} />;
 }

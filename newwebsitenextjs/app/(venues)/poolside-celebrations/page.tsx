@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/poolside-celebrations",
   description:
     "Host poolside celebrations at The Mountain Resort in Karjat — 24x7 pool access, cocktail events, leisure gatherings, and scenic outdoor party settings at a private estate.",
+  keywords: ["poolside celebration karjat", "pool party venue maharashtra", "poolside wedding events", "swimming pool venue resort"],
 });
 
 export default function PoolsideCelebrationsPage() {

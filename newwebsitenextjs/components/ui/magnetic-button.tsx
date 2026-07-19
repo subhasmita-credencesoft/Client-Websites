@@ -97,7 +97,6 @@ export function MagneticButton({
       <Link href={href} className="inline-flex">
         <span
           ref={ref as import("react").RefObject<HTMLSpanElement>}
-          data-cursor="hover"
           onMouseEnter={handleEnter}
           onMouseMove={handleMove as unknown as (event: MouseEvent<HTMLSpanElement>) => void}
           onMouseLeave={handleLeave}
@@ -116,7 +115,6 @@ export function MagneticButton({
       <a
         href={href}
         ref={ref as import("react").RefObject<HTMLAnchorElement>}
-        data-cursor="hover"
         onMouseEnter={handleEnter}
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
@@ -133,7 +131,6 @@ export function MagneticButton({
     <button
       ref={ref as import("react").RefObject<HTMLButtonElement>}
       type="button"
-      data-cursor="hover"
       onMouseEnter={handleEnter}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}

@@ -20,7 +20,6 @@ export function SiteFooter() {
                       target="_blank"
                       rel="noreferrer"
                       className="block break-words leading-relaxed transition-colors hover:text-[var(--color-primary-hover)]"
-                      data-cursor="hover"
                     >
                       {item.label}
                     </a>
@@ -28,7 +27,6 @@ export function SiteFooter() {
                     <a
                       href={item.href}
                       className="block break-words leading-relaxed transition-colors hover:text-[var(--color-primary-hover)]"
-                      data-cursor="hover"
                     >
                       {item.label}
                     </a>
@@ -36,7 +34,6 @@ export function SiteFooter() {
                     <Link
                       href={item.href}
                       className="block break-words leading-relaxed transition-colors hover:text-[var(--color-primary-hover)]"
-                      data-cursor="hover"
                     >
                       {item.label}
                     </Link>
@@ -54,7 +51,6 @@ export function SiteFooter() {
               target="_blank"
               rel="noreferrer"
               className="transition-colors hover:text-[var(--color-primary-hover)]"
-              data-cursor="hover"
             >
               CredenceSoft
             </a>{" "}
@@ -64,7 +60,6 @@ export function SiteFooter() {
               target="_blank"
               rel="noreferrer"
               className="transition-colors hover:text-[var(--color-primary-hover)]"
-              data-cursor="hover"
             >
               BookOne
             </a>

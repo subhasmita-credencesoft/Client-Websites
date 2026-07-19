@@ -13,13 +13,22 @@ export const metadata: Metadata = createPageMetadata({
   path: "/rooms",
   description:
     "Explore all room categories at The Mountain Resort in Karjat — Standard, Cliff View, Family, Glass Jacuzzi, and Bungalow stays with packages from Rs. 2,000 to Rs. 20,000 per night.",
+  keywords: [
+    "karjat room booking",
+    "luxury rooms maharashtra",
+    "standard room karjat",
+    "cliff view room karjat",
+    "family room resort karjat",
+    "glass jacuzzi room",
+    "bungalow karjat resort",
+  ],
 });
 
 const roomSlugs = ["standard-room", "cliff-room", "family-room", "glass-cottage", "bungalow"];
 
 export default function RoomsIndexPage() {
   return (
-    <main className="relative overflow-hidden bg-[#11100e] text-[#f4ede2]">
+    <main className="relative overflow-hidden bg-[var(--section-dark)] text-[var(--color-text-primary)]">
       <div className="noise-overlay" />
       <SiteHeader />
 
@@ -54,7 +63,7 @@ export default function RoomsIndexPage() {
       </div>
 
       <section className="mx-auto max-w-6xl px-4 py-16 text-center md:px-8 md:py-20" data-reveal>
-        <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Stay Categories</p>
+        <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-primary)]" data-reveal-child>Stay Categories</p>
         <h2 className="mx-auto mt-5 max-w-5xl text-3xl leading-tight md:text-4xl" data-section-title data-reveal-child>
           Choose the room category that fits your stay, your group, and your celebration
         </h2>
@@ -69,18 +78,18 @@ export default function RoomsIndexPage() {
             const room = detailPages[slug];
             if (!room) return null;
             return (
-              <Link key={slug} href={`/${slug}`} data-card className="group rounded-[1.8rem] border border-white/10 bg-[#111614] shadow-[0_22px_70px_rgba(0,0,0,0.22)] transition-colors duration-500 hover:border-[#c9a46e]/35">
+              <Link key={slug} href={`/${slug}`} data-card className="group rounded-[1.8rem] border border-white/10 bg-[#111614] shadow-[0_22px_70px_rgba(0,0,0,0.22)] transition-colors duration-500 hover:border-[var(--color-primary)]/35">
                 <div className="relative h-[20rem] overflow-hidden rounded-t-[1.8rem]">
                   <Image src={room.heroImage} alt={room.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 50vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                   {room.facts?.[0] ? (
-                    <div className="absolute bottom-4 left-6 rounded-full border border-white/20 bg-black/40 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#c9a46e] backdrop-blur-md">
+                    <div className="absolute bottom-4 left-6 rounded-full border border-white/20 bg-black/40 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-primary)] backdrop-blur-md">
                       {room.facts[0].label}: {room.facts[0].value}
                     </div>
                   ) : null}
                 </div>
                 <div className="p-8">
-                  <p className="text-xs uppercase tracking-[0.15em] text-[#c9a46e]">{room.subtitle ? "STAY CATEGORY" : "ROOM TYPE"}</p>
+                  <p className="text-xs uppercase tracking-[0.15em] text-[var(--color-primary)]">{room.subtitle ? "STAY CATEGORY" : "ROOM TYPE"}</p>
                   <h3 className="mt-3 text-3xl md:text-4xl">{room.title}</h3>
                   <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/90 md:text-xl">{room.subtitle}</p>
                   {room.facts ? (
@@ -100,16 +109,16 @@ export default function RoomsIndexPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 pb-20 pt-4 text-center md:px-8" data-reveal>
-        <div className="rounded-[2.4rem] border border-white/10 bg-[#182920] px-8 py-12 md:px-16 md:py-14">
-          <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Need Help Choosing?</p>
+        <div className="rounded-[2.4rem] border border-white/10 bg-[var(--section-surface)] px-8 py-12 md:px-16 md:py-14">
+          <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-primary)]" data-reveal-child>Need Help Choosing?</p>
           <h3 className="mx-auto mt-5 max-w-4xl text-3xl md:text-4xl" data-section-title data-reveal-child>
             Our team can guide you on the best room category for your stay, group size, and celebration plan
           </h3>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4" data-reveal-child>
-            <Link href="/booking" className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black">
+            <Link href="/booking" className="inline-flex items-center justify-center border border-[var(--color-primary-hover)] bg-[var(--color-primary-hover)] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black">
               Check Availability
             </Link>
-            <Link href="/contact" className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white">
+            <Link href="/contact" className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[var(--color-primary)]/40 hover:text-white">
               Contact The Team
             </Link>
           </div>

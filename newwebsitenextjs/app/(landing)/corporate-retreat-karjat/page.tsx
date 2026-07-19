@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/corporate-retreat-karjat",
   description:
     "Host a corporate retreat in Karjat at The Mountain Resort — private estate with event spaces, group stays, curated dining, and scenic mountain surroundings for team off-sites near Mumbai.",
+  keywords: ["corporate retreat karjat", "team outing resort maharashtra", "corporate event venue karjat", "company offsite resort"],
 });
 
 export default function Page() {

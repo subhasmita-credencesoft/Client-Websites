@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/family-resort-karjat",
   description:
     "Find the best family resort in Karjat — The Mountain Resort offers family rooms, group dining, poolside leisure, and a safe private-estate environment for family holidays near Mumbai and Pune.",
+  keywords: ["family resort karjat", "family vacation maharashtra", "kid friendly resort", "family weekend karjat"],
 });
 
 export default function Page() {

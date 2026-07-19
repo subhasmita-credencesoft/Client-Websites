@@ -81,8 +81,14 @@ export function SiteHeader() {
 
     document.body.style.overflow = "hidden";
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+
     return () => {
       document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [mobileMenuOpen]);
 
@@ -149,7 +155,7 @@ export function SiteHeader() {
               </span>
             </button>
 
-            <div className="hidden min-h-[4.2rem] items-center gap-5 text-[0.68rem] font-semibold tracking-[0.12em] text-[#f1e7d7] lg:flex">
+            <div className="hidden min-h-[4.2rem] items-center gap-5 text-[0.68rem] font-semibold tracking-[0.12em] text-[var(--color-text-primary)] lg:flex">
               <span className="text-white/75">
                 <DiamondIcon />
               </span>
@@ -158,8 +164,7 @@ export function SiteHeader() {
                   key={item}
                   href={topLinkHrefs[item] ?? "/"}
                   className="transition-colors hover:text-[var(--color-primary-hover)]"
-                  data-cursor="hover"
-                >
+                                  >
                   {item}
                 </Link>
               ))}
@@ -168,16 +173,15 @@ export function SiteHeader() {
             <Link
               href="/"
               className="relative z-10 mx-auto inline-flex h-[52px] w-[72px] flex-col items-center justify-center rounded-[var(--radius-sm)] border border-[rgba(var(--color-primary-rgb),0.56)] bg-[linear-gradient(180deg,rgba(19,15,12,0.98)_0%,rgba(10,8,6,0.98)_100%)] px-1.5 text-center text-[0.5rem] font-semibold uppercase tracking-[0.04em] leading-[1.2] text-[var(--color-primary-hover)] shadow-[0_0_0_2px_rgba(8,7,6,0.94),0_8px_20px_rgba(0,0,0,0.22)] max-[380px]:h-[46px] max-[380px]:w-[64px] max-[380px]:text-[0.44rem] sm:h-[56px] sm:w-[82px] sm:text-[0.54rem] sm:leading-[1.3] md:h-[60px] md:w-[92px] md:text-[0.58rem] lg:h-[76px] lg:w-[110px] lg:text-[0.64rem] lg:leading-[1.5]"
-              data-cursor="hover"
             >
               {content.logoLines[0]}
               <br />
               {content.logoLines[1]}
             </Link>
 
-            <div className="hidden min-h-[4.2rem] items-center justify-end gap-3 text-[0.68rem] font-semibold tracking-[0.12em] text-[#f1e7d7] lg:flex">
+            <div className="hidden min-h-[4.2rem] items-center justify-end gap-3 text-[0.68rem] font-semibold tracking-[0.12em] text-[var(--color-text-primary)] lg:flex">
               {topRightLinks.map((item) => (
-                <Link key={item} href="/" className="transition-colors hover:text-[var(--color-primary-hover)]" data-cursor="hover">
+                <Link key={item} href="/" className="transition-colors hover:text-[var(--color-primary-hover)]">
                   {item}
                 </Link>
               ))}
@@ -186,7 +190,6 @@ export function SiteHeader() {
                   href={contactPhoneHref}
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/85 transition-colors hover:border-[rgba(var(--color-primary-rgb),0.35)] hover:text-[var(--color-primary-hover)]"
                   aria-label={`Call ${contactPhone}`}
-                  data-cursor="hover"
                 >
                   <PhoneIcon />
                 </a>
@@ -200,7 +203,6 @@ export function SiteHeader() {
                 rel="noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/85 transition-colors hover:border-[rgba(var(--color-primary-rgb),0.35)] hover:text-[var(--color-primary-hover)]"
                 aria-label="Open WhatsApp chat"
-                data-cursor="hover"
               >
                 <WhatsAppIcon />
               </a>
@@ -211,7 +213,6 @@ export function SiteHeader() {
                   size: "sm",
                   className: "min-h-[2.7rem] rounded-full px-6 text-[0.64rem] shadow-[0_12px_24px_rgba(200,154,85,0.14)] hover:shadow-[0_14px_28px_rgba(214,176,122,0.18)]",
                 })}
-                data-cursor="hover"
               >
                 {content.primaryCta}
               </Link>
@@ -246,9 +247,8 @@ export function SiteHeader() {
                 <Link
                   href={mainNavLinks[item] ?? "/"}
                   className={`inline-flex min-h-9 items-center text-[0.76rem] font-semibold uppercase tracking-[0.16em] transition-all duration-200 ${
-                    activeDropdown === item ? "text-[#e0b675]" : "text-[#f3eadb]/92 hover:text-[#e0b675]"
+                    activeDropdown === item ? "text-[var(--color-warning)]" : "text-[var(--color-text-primary)]/92 hover:text-[var(--color-warning)]"
                   }`}
-                  data-cursor="hover"
                 >
                   {item}
                   {(headerDropdownLinks[item] ?? []).length > 0 ? <ChevronDownIcon /> : null}
@@ -256,7 +256,7 @@ export function SiteHeader() {
 
                 {index < desktopMainLinks.length - 1 ? (
                   <span
-                    className="pointer-events-none absolute left-[calc(100%+1rem)] top-1/2 -translate-y-1/2 text-[0.72rem] text-[#c89a55]/58"
+                    className="pointer-events-none absolute left-[calc(100%+1rem)] top-1/2 -translate-y-1/2 text-[0.72rem] text-[var(--color-primary)]/58"
                     aria-hidden="true"
                   >
                     {"\u2022"}
@@ -264,13 +264,12 @@ export function SiteHeader() {
                 ) : null}
 
                 {activeDropdown === item && dropdownItems.length > 0 ? (
-                  <div className="absolute left-1/2 top-[2.7rem] z-50 min-w-[16rem] -translate-x-1/2 rounded-[1.1rem] border border-[#c9a46e]/24 bg-[linear-gradient(180deg,#15110e_0%,#1d1612_100%)] p-1.5 shadow-[0_14px_34px_rgba(0,0,0,0.42)] md:min-w-[19rem]">
+                  <div className="absolute left-1/2 top-[2.7rem] z-50 min-w-[16rem] -translate-x-1/2 rounded-[1.1rem] border border-[var(--color-primary)]/24 bg-[linear-gradient(180deg,#15110e_0%,#1d1612_100%)] p-1.5 shadow-[0_14px_34px_rgba(0,0,0,0.42)] md:min-w-[19rem]">
                     {dropdownItems.map((dropdownItem) => (
                       <Link
                         key={dropdownItem.label}
                         href={dropdownItem.href}
                         className="block border-b border-white/10 px-4 py-3.5 text-left text-[0.92rem] leading-snug text-white/90 last:border-b-0 hover:bg-white/4 hover:text-[var(--color-text-primary)]"
-                        data-cursor="hover"
                       >
                         {dropdownItem.label}
                       </Link>
@@ -285,7 +284,7 @@ export function SiteHeader() {
         <nav
           id="mobile-menu"
           data-lenis-prevent
-          className={`no-scrollbar border-t border-[#c89a55]/14 transition-[max-height,opacity] duration-300 ${
+          className={`no-scrollbar border-t border-[var(--color-primary)]/14 transition-[max-height,opacity] duration-300 ${
             mobileMenuOpen
               ? "max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain touch-pan-y opacity-100"
               : "max-h-0 overflow-hidden opacity-0"
@@ -311,7 +310,7 @@ export function SiteHeader() {
                         <Link
                           key={dropdownItem.label}
                           href={dropdownItem.href}
-                          className="block py-1.5 text-[0.85rem] text-white/75 transition-colors hover:text-[#c9a46e]"
+                          className="block py-1.5 text-[0.85rem] text-white/75 transition-colors hover:text-[var(--color-primary)]"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {dropdownItem.label}

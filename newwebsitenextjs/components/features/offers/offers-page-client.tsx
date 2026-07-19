@@ -19,17 +19,6 @@ export function OffersPageClient() {
     visibleOffers.length === 1 ? visibleOffers[0].description : intro.description;
   const selectedOfferHref = DIRECT_BOOKING_ENGINE_URL;
 
-  const getOfferBookingHref = (offer: (typeof offers)[number]) => {
-    const packageMap: Record<string, string> = {
-      classic: "Classic Package",
-      signature: "Signature Package",
-      "premium-luxo": "Premium Luxe Package",
-    };
-    void packageMap[offer.id];
-
-    return DIRECT_BOOKING_ENGINE_URL;
-  };
-
   return (
     <>
       <section className="relative min-h-[42rem] overflow-hidden pt-28 sm:min-h-[46rem] sm:pt-32 md:min-h-[52rem] md:pt-40" data-section-id="offers-hero" data-hero-stage>
@@ -45,19 +34,17 @@ export function OffersPageClient() {
             <p className="mt-3 text-[clamp(1.1rem,2.8vw,2.2rem)] font-semibold tracking-wide text-white" data-hero-subtitle>
               {hero.subtitle}
             </p>
-            <div className="mx-auto mt-4 h-[2px] w-20 bg-[#c89a55]" data-hero-divider />
+            <div className="mx-auto mt-4 h-[2px] w-20 bg-[var(--color-primary)]" data-hero-divider />
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
               <Link
                 href={selectedOfferHref}
                 className="site-button site-button-primary px-8"
-                data-cursor="hover"
               >
                 Check Package Availability
               </Link>
               <Link
                 href="/contact"
                 className="site-button site-button-outline px-8"
-                data-cursor="hover"
               >
                 Contact The Team
               </Link>
@@ -69,19 +56,19 @@ export function OffersPageClient() {
       <div className="content-auto-section">
       <section className="site-container max-w-[80rem] py-12 text-center md:py-14" data-stage-section>
         <nav aria-label="Breadcrumb" className="flex items-center justify-center">
-          <ol className="inline-flex items-center gap-3 rounded-full border border-[#c89a55]/20 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
+          <ol className="inline-flex items-center gap-3 rounded-full border border-[var(--color-primary)]/20 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/78 backdrop-blur-sm md:text-xs">
             <li>
-              <Link href="/" className="transition-colors hover:text-[#b88948]">
+              <Link href="/" className="transition-colors hover:text-[var(--color-primary)]">
                 Home
               </Link>
             </li>
-            <li aria-hidden="true" className="text-[#b88948]">
+            <li aria-hidden="true" className="text-[var(--color-primary)]">
               /
             </li>
-            <li className="text-[#b88948]">{intro.breadcrumb}</li>
+            <li className="text-[var(--color-primary)]">{intro.breadcrumb}</li>
           </ol>
         </nav>
-        <p className="mt-8 text-xs font-semibold uppercase tracking-[0.28em] text-[#c89a55]" data-stage-line>
+        <p className="mt-8 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-primary)]" data-stage-line>
           Package Selection
         </p>
         <h2 className="site-title-md mx-auto mt-8 max-w-6xl text-balance" data-stage-line>
@@ -96,7 +83,6 @@ export function OffersPageClient() {
         <Link
           href={selectedOfferHref}
           className="site-button site-button-secondary px-14"
-          data-cursor="hover"
         >
           {visibleOffers.length === 1 ? "CHECK PACKAGE AVAILABILITY" : intro.cta}
         </Link>
@@ -108,32 +94,31 @@ export function OffersPageClient() {
           return (
             <article
               key={offer.title}
-              className="grid items-start overflow-hidden rounded-[2rem] border border-[#c89a55]/16 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] shadow-[0_24px_50px_rgba(10,18,12,0.24)] lg:grid-cols-2"
+              className="grid items-start overflow-hidden rounded-[2rem] border border-[var(--color-primary)]/16 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] shadow-[0_24px_50px_rgba(10,18,12,0.24)] lg:grid-cols-2"
               data-card
             >
               <div className={textFirst ? "order-1 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-6 md:order-1 md:p-8 lg:p-12" : "order-2 bg-[linear-gradient(180deg,#17120f_0%,#1d1612_100%)] p-6 md:order-2 md:p-8 lg:p-12"}>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#b88948]">Package Overview</p>
-                <h3 className="site-title-md mt-4 text-[#f4ead9]" data-section-title>
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-primary)]">Package Overview</p>
+                <h3 className="site-title-md mt-4 text-[var(--color-text-primary)]" data-section-title>
                   {offer.title}
                 </h3>
-                <div className="mt-4 h-[2px] w-20 bg-[#c89a55]" />
+                <div className="mt-4 h-[2px] w-20 bg-[var(--color-primary)]" />
                 <p className="mt-7 text-lg leading-[1.7] text-white/82 md:text-[1.35rem]">{offer.description}</p>
                 <ul className="mt-8 grid gap-4 text-base leading-[1.7] text-white/84 md:text-lg">
                   {offer.bullets.map((item) => (
                     <li key={item} className="flex gap-3">
-                      <span className="mt-2 h-2.5 w-2.5 rounded-full bg-[#c89a55]" />
+                      <span className="mt-2 h-2.5 w-2.5 rounded-full bg-[var(--color-primary)]" />
                       <span className="flex-1">{item}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8 rounded-[1.5rem] border border-[#c89a55]/20 bg-[linear-gradient(180deg,#241d17_0%,#2e241d_100%)] px-5 py-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#b88948]">Pricing Note</p>
+                <div className="mt-8 rounded-[1.5rem] border border-[var(--color-primary)]/20 bg-[linear-gradient(180deg,#241d17_0%,#2e241d_100%)] px-5 py-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-primary)]">Pricing Note</p>
                   <p className="mt-3 text-base leading-[1.7] text-white/75 md:text-lg">{contactLine}</p>
                 </div>
                 <Link
-                  href={getOfferBookingHref(offer)}
+                  href={selectedOfferHref}
                   className="site-button site-button-secondary mt-8 w-full px-8 sm:w-auto sm:px-12"
-                  data-cursor="hover"
                 >
                   CHECK PACKAGE AVAILABILITY
                 </Link>
@@ -151,11 +136,11 @@ export function OffersPageClient() {
       </section>
 
         <section className="site-container max-w-5xl pb-16 text-center md:pb-20" data-stage-section>
-        <div className="rounded-[2.2rem] border border-[#c89a55]/18 bg-[linear-gradient(180deg,#15110e_0%,#1c1511_100%)] px-6 py-12 shadow-[0_24px_50px_rgba(10,18,12,0.24)] md:px-12 md:py-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#c89a55]" data-stage-line>
+        <div className="rounded-[2.2rem] border border-[var(--color-primary)]/18 bg-[linear-gradient(180deg,#15110e_0%,#1c1511_100%)] px-6 py-12 shadow-[0_24px_50px_rgba(10,18,12,0.24)] md:px-12 md:py-16">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-primary)]" data-stage-line>
             Booking Support
           </p>
-          <h3 className="site-title-lg mx-auto mt-5 max-w-4xl text-balance text-[#f4ead9]" data-stage-line>
+          <h3 className="site-title-lg mx-auto mt-5 max-w-4xl text-balance text-[var(--color-text-primary)]" data-stage-line>
             Need the right package for your dates and guest count?
           </h3>
           <p className="site-copy-lg mx-auto mt-6 max-w-4xl" data-stage-line>
@@ -165,14 +150,12 @@ export function OffersPageClient() {
             <Link
               href={selectedOfferHref}
               className="site-button site-button-primary px-8"
-              data-cursor="hover"
             >
               Check Availability
             </Link>
             <Link
               href="/contact"
               className="site-button site-button-outline px-8"
-              data-cursor="hover"
             >
               Contact The Team
             </Link>

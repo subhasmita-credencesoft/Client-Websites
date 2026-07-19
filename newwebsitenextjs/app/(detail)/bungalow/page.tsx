@@ -9,6 +9,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/bungalow",
   description:
     "Reserve the Bungalow at The Mountain Resort in Karjat — a private luxury residence for wedding hosts, close family, and premium multi-day destination stays.",
+  keywords: ["bungalow karjat resort", "private villa resort", "host family stay", "premium bungalow maharashtra"],
 });
 
 export default function Page() {
@@ -18,5 +19,5 @@ export default function Page() {
     notFound();
   }
 
-  return <DetailPageView page={page} />;
+  return <DetailPageView page={page} parentBreadcrumb={{ label: "Rooms", href: "/rooms" }} />;
 }

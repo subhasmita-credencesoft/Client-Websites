@@ -9,6 +9,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/cliff-room",
   description:
     "Book the Cliff View Room at The Mountain Resort in Karjat — a scenic premium stay with mountain ambience, private views, and destination luxury at ₹6,500 per night.",
+  keywords: ["cliff view room karjat", "scenic room maharashtra", "premium room resort", "mountain view room"],
 });
 
 export default function Page() {
@@ -18,5 +19,5 @@ export default function Page() {
     notFound();
   }
 
-  return <DetailPageView page={page} />;
+  return <DetailPageView page={page} parentBreadcrumb={{ label: "Rooms", href: "/rooms" }} />;
 }

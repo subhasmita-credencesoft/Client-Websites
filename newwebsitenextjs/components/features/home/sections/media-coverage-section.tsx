@@ -53,7 +53,6 @@ export function MediaCoverageSection() {
                 size: "md",
                 className: "px-7 [will-change:transform]",
               })}
-              data-cursor="hover"
             >
               Explore Packages
             </Link>

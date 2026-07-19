@@ -20,11 +20,11 @@ export function StorytellingSection() {
        */}
       <div
         data-sticky-fade-heading
-        className="z-30 mx-auto max-w-[96rem] rounded-t-[2rem] border border-[#c9a46e]/16 bg-[linear-gradient(180deg,#17120f_0%,#1f1812_100%)] px-5 pb-8 pt-6 text-[#f4ead9] shadow-[0_24px_50px_rgba(10,18,12,0.24)] [will-change:transform] md:sticky md:top-5 md:px-10 md:pb-14 md:pt-10"
+        className="z-30 mx-auto max-w-[96rem] rounded-t-[2rem] border border-[var(--color-primary)]/16 bg-[linear-gradient(180deg,#17120f_0%,#1f1812_100%)] px-5 pb-8 pt-6 text-[var(--color-text-primary)] shadow-[0_24px_50px_rgba(10,18,12,0.24)] [will-change:transform] md:sticky md:top-5 md:px-10 md:pb-14 md:pt-10"
       >
         <p
           data-sticky-fade-line
-          className="text-center text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-[#c89a55] md:text-left"
+          className="text-center text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-[var(--color-primary)] md:text-left"
         >
           The Mountain Resort in Karjat , By Redwings
         </p>
@@ -57,7 +57,7 @@ export function StorytellingSection() {
              * keeps scroll compositing off the main thread; prevents the
              * stacking repaint cascade between overlapping sticky panels.
              */
-            className={`-mt-7 ${topClass} ${zIndexClass} rounded-t-[2rem] border border-[#c9a46e]/16 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] text-white shadow-[0_24px_50px_rgba(10,18,12,0.24)] [will-change:transform] md:sticky`}
+            className={`-mt-7 ${topClass} ${zIndexClass} rounded-t-[2rem] border border-[var(--color-primary)]/16 bg-[linear-gradient(180deg,#15110e_0%,#1b1511_100%)] text-white shadow-[0_24px_50px_rgba(10,18,12,0.24)] [will-change:transform] md:sticky`}
           >
             <div className="mx-auto max-w-[96rem] px-5 py-8 md:px-10 md:py-14">
               <div className="grid gap-8 md:grid-cols-[0.92fr_1.08fr] md:items-center">

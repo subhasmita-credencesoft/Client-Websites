@@ -35,7 +35,7 @@ export function AboutPage() {
             <h1 className="site-title-xl mt-5 text-balance" data-section-title>
               {content.hero.title}
             </h1>
-            <div className="mx-auto mt-5 h-[2px] w-20 bg-[#d6b07a] md:w-24" />
+            <div className="mx-auto mt-5 h-[2px] w-20 bg-[var(--color-primary)] md:w-24" />
             <p className="site-copy-lg mx-auto mt-6 max-w-4xl text-balance" data-reveal-child>
               {content.hero.description}
             </p>
@@ -55,17 +55,17 @@ export function AboutPage() {
         <div className="mb-8 flex justify-center">
           <Breadcrumbs items={[{ label: "About" }]} />
         </div>
-        <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {content.stats.map((stat) => (
-            <article key={stat.label} className="rounded-[1.7rem] border border-white/10 bg-[#294236] px-6 py-6" data-card>
-              <p className="text-3xl text-[#f6ead8] md:text-4xl" data-reveal-child>{stat.value}</p>
-              <p className="mt-3 text-sm uppercase tracking-[0.18em] text-[#d5b07a]" data-reveal-child>{stat.label}</p>
+            <article key={stat.label} className="rounded-[1.7rem] border border-white/10 bg-[var(--section-surface-soft)] px-6 py-6" data-card>
+              <p className="text-3xl text-[var(--color-text-primary)] md:text-4xl" data-reveal-child>{stat.value}</p>
+              <p className="mt-3 text-sm uppercase tracking-[0.18em] text-[var(--color-primary)]" data-reveal-child>{stat.label}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="bg-[#182920] px-4 py-16 md:px-8 md:py-24" data-section-id="about-story">
+      <section className="bg-[var(--section-surface)] px-4 py-16 md:px-8 md:py-24" data-section-id="about-story">
         <div className="mx-auto grid max-w-[80rem] gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div className="relative h-[18rem] overflow-hidden rounded-[2rem] md:h-[34rem]" data-reveal>
             <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="8">
@@ -80,7 +80,7 @@ export function AboutPage() {
           </div>
 
           <div data-reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.story.eyebrow}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-primary)]" data-reveal-child>{content.story.eyebrow}</p>
             <h2 className="site-title-lg mt-5 max-w-4xl text-balance" data-section-title>
               {content.story.title}
             </h2>
@@ -89,8 +89,8 @@ export function AboutPage() {
                 <p key={paragraph} data-reveal-child>{paragraph}</p>
               ))}
             </div>
-            <div className="mt-8 rounded-[1.8rem] border border-[#d5b07a]/25 bg-[#21382e] p-6" data-reveal-child>
-              <p className="text-xl leading-relaxed text-[#f6ead8] md:text-2xl">{content.story.quote}</p>
+            <div className="mt-8 rounded-[1.8rem] border border-[var(--color-primary)]/25 bg-[#21382e] p-6" data-reveal-child>
+              <p className="text-xl leading-relaxed text-[var(--color-text-primary)] md:text-2xl">{content.story.quote}</p>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@ export function AboutPage() {
       <section className="mx-auto max-w-[80rem] px-4 py-16 md:px-8 md:py-24" data-section-id="about-ethos">
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <div data-reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.ethos.eyebrow}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-primary)]" data-reveal-child>{content.ethos.eyebrow}</p>
             <h2 className="site-title-lg mt-5 max-w-3xl text-balance" data-section-title>
               {content.ethos.title}
             </h2>
@@ -109,9 +109,9 @@ export function AboutPage() {
           </div>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {content.ethos.cards.map((card) => (
-              <article key={card.title} className="rounded-[2rem] border border-white/10 bg-[#182920] p-7 shadow-[0_20px_40px_rgba(7,14,10,0.14)]" data-card>
-                <p className="text-xs uppercase tracking-[0.24em] text-[#d5b07a]">Ethos</p>
-                <h3 className="mt-4 text-2xl leading-tight text-[#f6ead8]" data-section-title>{card.title}</h3>
+              <article key={card.title} className="rounded-[2rem] border border-white/10 bg-[var(--section-surface)] p-7 shadow-[0_20px_40px_rgba(7,14,10,0.14)]" data-card>
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-primary)]">Ethos</p>
+                <h3 className="mt-4 text-2xl leading-tight text-[var(--color-text-primary)]" data-section-title>{card.title}</h3>
                 <p className="mt-4 text-base leading-relaxed text-white/76" data-reveal-child>{card.body}</p>
               </article>
             ))}
@@ -135,7 +135,7 @@ export function AboutPage() {
                 </div>
               </div>
               <div className="p-7">
-                <h3 className="text-2xl leading-tight text-[#f6ead8]" data-section-title>{item.title}</h3>
+                <h3 className="text-2xl leading-tight text-[var(--color-text-primary)]" data-section-title>{item.title}</h3>
                 <p className="mt-4 text-base leading-relaxed text-white/78" data-reveal-child>{item.description}</p>
               </div>
             </article>
@@ -143,7 +143,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#182920] px-4 py-16 md:px-8 md:py-24" data-section-id="about-message">
+      <section className="bg-[var(--section-surface)] px-4 py-16 md:px-8 md:py-24" data-section-id="about-message">
         <div className="mx-auto grid max-w-[80rem] gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
           <div className="glass-panel overflow-hidden rounded-[2.2rem] p-3" data-reveal>
             <div className="relative h-[20rem] overflow-hidden rounded-[1.7rem] md:h-[36rem]">
@@ -160,16 +160,16 @@ export function AboutPage() {
             </div>
           </div>
           <div data-reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.founder.eyebrow}</p>
-            <h2 className="mt-5 max-w-4xl text-balance text-3xl leading-tight text-[#f6ead8] md:text-5xl" data-section-title>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-primary)]" data-reveal-child>{content.founder.eyebrow}</p>
+            <h2 className="mt-5 max-w-4xl text-balance text-3xl leading-tight text-[var(--color-text-primary)] md:text-5xl" data-section-title>
               {content.founder.title}
             </h2>
             <p className="mt-7 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg" data-reveal-child>
               {content.founder.body}
             </p>
-            <div className="mt-8 rounded-[1.8rem] border border-[#d5b07a]/20 bg-[#21382e] p-6" data-reveal-child>
-              <p className="text-sm uppercase tracking-[0.24em] text-[#d5b07a]">Signature</p>
-              <p className="mt-3 text-2xl text-[#f6ead8] md:text-3xl">{content.founder.signature}</p>
+            <div className="mt-8 rounded-[1.8rem] border border-[var(--color-primary)]/20 bg-[#21382e] p-6" data-reveal-child>
+              <p className="text-sm uppercase tracking-[0.24em] text-[var(--color-primary)]">Signature</p>
+              <p className="mt-3 text-2xl text-[var(--color-text-primary)] md:text-3xl">{content.founder.signature}</p>
             </div>
           </div>
         </div>
@@ -183,20 +183,20 @@ export function AboutPage() {
         />
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {content.journey.items.map((item) => (
-            <article key={item.title} className="rounded-[2rem] border border-white/10 bg-[#182920] p-7 shadow-[0_20px_40px_rgba(7,14,10,0.14)]" data-card>
-              <p className="text-xs uppercase tracking-[0.3em] text-[#d5b07a]">{item.year}</p>
-              <h3 className="mt-4 text-2xl leading-tight text-[#f6ead8] md:text-3xl" data-section-title>{item.title}</h3>
+            <article key={item.title} className="rounded-[2rem] border border-white/10 bg-[var(--section-surface)] p-7 shadow-[0_20px_40px_rgba(7,14,10,0.14)]" data-card>
+              <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-primary)]">{item.year}</p>
+              <h3 className="mt-4 text-2xl leading-tight text-[var(--color-text-primary)] md:text-3xl" data-section-title>{item.title}</h3>
               <p className="mt-4 text-base leading-relaxed text-white/76 md:text-lg" data-reveal-child>{item.body}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="bg-[#182920] px-4 py-16 md:px-8 md:py-24" data-section-id="about-hosting">
+      <section className="bg-[var(--section-surface)] px-4 py-16 md:px-8 md:py-24" data-section-id="about-hosting">
         <div className="mx-auto grid max-w-[80rem] gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
           <div data-reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.hosting.eyebrow}</p>
-            <h2 className="mt-5 max-w-4xl text-balance text-3xl leading-tight text-[#f6ead8] md:text-5xl" data-section-title>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-primary)]" data-reveal-child>{content.hosting.eyebrow}</p>
+            <h2 className="mt-5 max-w-4xl text-balance text-3xl leading-tight text-[var(--color-text-primary)] md:text-5xl" data-section-title>
               {content.hosting.title}
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg" data-reveal-child>
@@ -243,8 +243,8 @@ export function AboutPage() {
             </div>
           </div>
           <div data-reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.impact.eyebrow}</p>
-            <h2 className="mt-5 max-w-4xl text-balance text-3xl leading-tight text-[#f6ead8] md:text-5xl" data-section-title>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-primary)]" data-reveal-child>{content.impact.eyebrow}</p>
+            <h2 className="mt-5 max-w-4xl text-balance text-3xl leading-tight text-[var(--color-text-primary)] md:text-5xl" data-section-title>
               {content.impact.title}
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg" data-reveal-child>
@@ -262,8 +262,8 @@ export function AboutPage() {
       </section>
 
       <section className="mx-auto max-w-[80rem] px-4 py-16 md:px-8 md:py-24" data-section-id="about-cta">
-        <div className="rounded-[2.4rem] border border-[#d5b07a]/20 bg-[#243b31] px-6 py-12 text-center md:px-10 md:py-16" data-reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d5b07a]" data-reveal-child>{content.cta.eyebrow}</p>
+        <div className="rounded-[2.4rem] border border-[var(--color-primary)]/20 bg-[var(--section-surface-soft)] px-6 py-12 text-center md:px-10 md:py-16" data-reveal>
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-primary)]" data-reveal-child>{content.cta.eyebrow}</p>
           <h2 className="site-title-lg mx-auto mt-5 max-w-4xl text-balance" data-section-title>
             {content.cta.title}
           </h2>

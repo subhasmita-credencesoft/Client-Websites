@@ -9,6 +9,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/classic-package",
   description:
     "The Classic Wedding Package at The Mountain Resort in Karjat — an all-inclusive destination wedding package with stay, meals, venue access, and celebration hosting support.",
+  keywords: ["classic wedding package karjat", "wedding stay package", "budget wedding package maharashtra", "destination wedding pricing"],
 });
 
 export default function Page() {
@@ -18,5 +19,5 @@ export default function Page() {
     notFound();
   }
 
-  return <DetailPageView page={page} />;
+  return <DetailPageView page={page} parentBreadcrumb={{ label: "Offers", href: "/offers" }} />;
 }

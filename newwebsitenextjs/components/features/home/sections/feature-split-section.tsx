@@ -65,7 +65,6 @@ export function FeatureSplitSection() {
                       size: "md",
                       className: "px-7 [will-change:transform]",
                     })}
-                    data-cursor="hover"
                   >
                     {feature.cta || content.ctaFallback}
                   </Link>

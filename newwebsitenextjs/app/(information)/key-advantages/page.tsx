@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/key-advantages",
   description:
     "Key advantages of The Mountain Resort in Karjat — private 7-acre estate, unlimited music, poolside celebrations, 5 stay types, and all-in-one destination wedding hosting.",
+  keywords: ["why choose mountain resort karjat", "venue advantages", "resort benefits karjat", "best wedding venue maharashtra"],
 });
 
 export default function KeyAdvantagesPage() {

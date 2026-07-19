@@ -35,7 +35,6 @@ export function AboutIntroSection() {
               size: "md",
               className: "px-7 [will-change:transform]",
             })}
-            data-cursor="hover"
           >
             {content.cta}
           </Link>

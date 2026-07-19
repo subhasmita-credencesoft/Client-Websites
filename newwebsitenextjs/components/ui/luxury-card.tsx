@@ -14,7 +14,6 @@ export function LuxuryCard({ title, description, image }: LuxuryCardProps) {
       variant="subtle"
       data-card
       data-cinematic-card
-      data-cursor="hover"
       className="group relative overflow-hidden"
     >
       <div className="relative aspect-[4/5] w-full overflow-hidden">

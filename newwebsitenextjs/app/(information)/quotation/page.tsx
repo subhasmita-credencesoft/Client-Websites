@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/quotation",
   description:
     "Request a wedding or stay quotation for The Mountain Resort in Karjat — share your dates, guest count, and event type for a customized booking proposal.",
+  keywords: ["wedding quotation karjat", "event pricing resort", "wedding cost estimate", "venue quotation maharashtra"],
 });
 
 export default function QuotationPage() {

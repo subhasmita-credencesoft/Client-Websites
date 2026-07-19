@@ -12,6 +12,13 @@ export const metadata: Metadata = createPageMetadata({
   path: "/faq",
   description:
     "Get answers to common questions about The Mountain Resort in Karjat — wedding packages, room rates, check-in times, dining, venue policies, and travel details for your destination stay.",
+  keywords: [
+    "resort FAQ karjat",
+    "wedding venue questions",
+    "room rates karjat resort",
+    "check in time mountain resort",
+    "destination wedding FAQ maharashtra",
+  ],
 });
 
 export default function FaqPage() {
@@ -31,7 +38,7 @@ export default function FaqPage() {
   };
 
   return (
-    <main className="relative overflow-hidden bg-[#11100e] text-white">
+    <main className="relative overflow-hidden bg-[var(--section-dark)] text-white">
       <div className="noise-overlay" />
       <SiteHeader />
 
@@ -64,14 +71,14 @@ export default function FaqPage() {
           {faqData.map((category) => (
             <div key={category.category} data-reveal>
               <div className="mb-10">
-                <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]">{category.category}</p>
-                <div className="mt-3 h-px w-16 bg-[#c9a46e]/40" />
+                <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-primary)]">{category.category}</p>
+                <div className="mt-3 h-px w-16 bg-[var(--color-primary)]/40" />
               </div>
               <div className="space-y-6">
                 {category.items.map((item) => (
                   <article
                     key={item.question}
-                    className="rounded-[1.6rem] border border-white/10 bg-[#182920] p-8 transition-colors duration-500 hover:border-[#c9a46e]/25 md:p-10"
+                    className="rounded-[1.6rem] border border-white/10 bg-[var(--section-surface)] p-8 transition-colors duration-500 hover:border-[var(--color-primary)]/25 md:p-10"
                     data-card
                   >
                     <h2 className="text-2xl leading-snug md:text-3xl">{item.question}</h2>
@@ -85,16 +92,16 @@ export default function FaqPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 pb-20 pt-4 text-center md:px-8" data-reveal>
-        <div className="rounded-[2.4rem] border border-white/10 bg-[#182920] px-8 py-12 md:px-16 md:py-14">
-          <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Still Have Questions?</p>
+        <div className="rounded-[2.4rem] border border-white/10 bg-[var(--section-surface)] px-8 py-12 md:px-16 md:py-14">
+          <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-primary)]" data-reveal-child>Still Have Questions?</p>
           <h3 className="mx-auto mt-5 max-w-4xl text-3xl md:text-4xl" data-section-title data-reveal-child>
             Our team is happy to help with booking, packages, availability, and planning support
           </h3>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4" data-reveal-child>
-            <Link href="/booking" className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black">
+            <Link href="/booking" className="inline-flex items-center justify-center border border-[var(--color-primary-hover)] bg-[var(--color-primary-hover)] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black">
               Check Availability
             </Link>
-            <Link href="/contact" className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white">
+            <Link href="/contact" className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[var(--color-primary)]/40 hover:text-white">
               Contact The Team
             </Link>
           </div>

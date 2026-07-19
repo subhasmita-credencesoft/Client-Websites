@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/destination-wedding-karjat",
   description:
     "Plan a destination wedding in Karjat at The Mountain Resort — a 7-acre private estate with wedding lawns, mountain views, curated packages, and all-in-one celebration hosting near Mumbai and Pune.",
+  keywords: ["destination wedding karjat", "wedding venue near mumbai", "karjat wedding packages", "outstation wedding maharashtra"],
 });
 
 export default function Page() {

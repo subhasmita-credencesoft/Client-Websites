@@ -10,6 +10,7 @@ import type { MountainInfoPageData } from "@/lib/data/pages/info-pages";
 type InfoPageViewProps = {
   page: MountainInfoPageData;
   heroEyebrow: string;
+  parentBreadcrumb?: { label: string; href: string };
   primaryCtaLabel?: string;
   primaryCtaHref?: string;
   secondaryCtaLabel?: string;
@@ -25,6 +26,7 @@ type InfoPageViewProps = {
 export function InfoPageView({
   page,
   heroEyebrow,
+  parentBreadcrumb,
   primaryCtaLabel = "Check Availability",
   primaryCtaHref = DIRECT_BOOKING_ENGINE_URL,
   secondaryCtaLabel = "Contact The Team",
@@ -37,7 +39,7 @@ export function InfoPageView({
   accentTags,
 }: InfoPageViewProps) {
   return (
-    <main className="relative overflow-hidden bg-[#11100e] text-white">
+    <main className="relative overflow-hidden bg-[var(--section-dark)] text-white">
       <div className="noise-overlay" />
       <SiteHeader />
 
@@ -81,11 +83,11 @@ export function InfoPageView({
       </section>
 
       <div className="mx-auto max-w-6xl px-4 md:px-8">
-        <Breadcrumbs items={[{ label: page.hero.title }]} />
+        <Breadcrumbs items={parentBreadcrumb ? [parentBreadcrumb, { label: page.hero.title }] : [{ label: page.hero.title }]} />
       </div>
 
       <section className="mx-auto max-w-6xl px-4 py-16 text-center md:px-8 md:py-20" data-reveal>
-        <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>{page.intro.eyebrow}</p>
+        <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-primary)]" data-reveal-child>{page.intro.eyebrow}</p>
         <h2 className="mx-auto mt-5 max-w-5xl text-3xl leading-tight md:text-4xl" data-section-title data-reveal-child>
           {page.intro.title}
         </h2>
@@ -98,12 +100,12 @@ export function InfoPageView({
             <article
               key={card.title}
               data-card
-              className="rounded-[1.8rem] border border-white/10 bg-[#111614] p-8 shadow-[0_22px_70px_rgba(0,0,0,0.22)] transition-colors duration-500 hover:border-[#c9a46e]/35 md:p-10"
+              className="rounded-[1.8rem] border border-white/10 bg-[#111614] p-8 shadow-[0_22px_70px_rgba(0,0,0,0.22)] transition-colors duration-500 hover:border-[var(--color-primary)]/35 md:p-10"
             >
               <div className="flex items-start gap-4" data-panel-content>
-                <div className="mt-1 h-3 w-3 shrink-0 rounded-full bg-[#c9a46e]" />
+                <div className="mt-1 h-3 w-3 shrink-0 rounded-full bg-[var(--color-primary)]" />
                 <div className="min-w-0">
-                  <p className="text-xs uppercase tracking-[0.15em] text-[#c9a46e]" data-panel-line>{card.label}</p>
+                  <p className="text-xs uppercase tracking-[0.15em] text-[var(--color-primary)]" data-panel-line>{card.label}</p>
                   <h3 className="mt-3 text-3xl md:text-4xl" data-panel-line>{card.title}</h3>
                   <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/90 md:text-xl" data-panel-line>{card.description}</p>
                 </div>
@@ -115,13 +117,13 @@ export function InfoPageView({
 
       <section className="mx-auto max-w-[80rem] px-4 py-16 md:px-8">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-reveal>
-            <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]" data-reveal-child>
+          <div className="rounded-[2rem] border border-white/10 bg-[var(--section-surface)] p-8" data-reveal>
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-primary)]" data-reveal-child>
               {cardIntroLabel ?? "Highlights"}
             </p>
             <h3 className="mt-4 text-3xl md:text-4xl" data-section-title data-reveal-child>{page.highlights.title}</h3>
           </div>
-          <div className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-panel-content>
+          <div className="rounded-[2rem] border border-white/10 bg-[var(--section-surface)] p-8" data-panel-content>
             <ul className="space-y-4 text-lg leading-relaxed text-white/85 md:text-xl">
               {page.highlights.items.map((item) => (
                 <li key={item} data-panel-line>- {item}</li>
@@ -135,8 +137,8 @@ export function InfoPageView({
         <section className="mx-auto max-w-[80rem] px-4 py-4 md:px-8">
           <div className="grid gap-8 md:grid-cols-2">
             {page.extraSections.map((section) => (
-              <article key={section.title} className="rounded-[2rem] border border-white/10 bg-[#182920] p-8" data-reveal>
-                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]" data-reveal-child>{extraSectionLabel}</p>
+              <article key={section.title} className="rounded-[2rem] border border-white/10 bg-[var(--section-surface)] p-8" data-reveal>
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-primary)]" data-reveal-child>{extraSectionLabel}</p>
                 <h3 className="mt-4 text-3xl md:text-4xl" data-section-title data-reveal-child>{section.title}</h3>
                 <p className="mt-5 text-lg leading-relaxed text-white/85 md:text-xl" data-reveal-child>{section.body}</p>
               </article>
@@ -147,8 +149,8 @@ export function InfoPageView({
 
       {page.checklist ? (
         <section className="mx-auto max-w-[80rem] px-4 py-16 md:px-8">
-          <div className="rounded-[2rem] border border-white/10 bg-[#182920] p-8 md:p-10" data-reveal>
-            <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Checklist</p>
+          <div className="rounded-[2rem] border border-white/10 bg-[var(--section-surface)] p-8 md:p-10" data-reveal>
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-primary)]" data-reveal-child>Checklist</p>
             <h3 className="mt-4 text-3xl md:text-4xl" data-section-title data-reveal-child>{page.checklist.title}</h3>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {page.checklist.items.map((item) => (
@@ -162,18 +164,18 @@ export function InfoPageView({
       ) : null}
 
       <section className="mx-auto max-w-6xl px-4 pb-20 pt-4 text-center md:px-8" data-reveal>
-        <div className="rounded-[2.4rem] border border-white/10 bg-[#182920] px-8 py-12 md:px-16 md:py-14">
-          <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>{finalNoteLabel}</p>
+        <div className="rounded-[2.4rem] border border-white/10 bg-[var(--section-surface)] px-8 py-12 md:px-16 md:py-14">
+          <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-primary)]" data-reveal-child>{finalNoteLabel}</p>
           <h3 className="mx-auto mt-5 max-w-4xl text-3xl md:text-4xl" data-section-title data-reveal-child>
             {page.summary.title}
           </h3>
           <p className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-white/85 md:text-xl" data-reveal-child>{page.summary.body}</p>
           {!accentTags?.length ? (
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4" data-reveal-child>
-              <Link href={primaryCtaHref} className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black">
+              <Link href={primaryCtaHref} className="inline-flex items-center justify-center border border-[var(--color-primary-hover)] bg-[var(--color-primary-hover)] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black">
                 {primaryCtaLabel}
               </Link>
-              <Link href={secondaryCtaHref} className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white">
+              <Link href={secondaryCtaHref} className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[var(--color-primary)]/40 hover:text-white">
                 {secondaryCtaLabel}
               </Link>
             </div>
@@ -183,8 +185,8 @@ export function InfoPageView({
 
       {page.contact ? (
         <section className="mx-auto max-w-6xl px-4 pb-20 pt-0 text-center md:px-8">
-          <div className="rounded-[2rem] border border-white/10 bg-[#182920] p-8 md:p-10" data-reveal>
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-reveal-child>Contact</p>
+          <div className="rounded-[2rem] border border-white/10 bg-[var(--section-surface)] p-8 md:p-10" data-reveal>
+            <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-primary)]" data-reveal-child>Contact</p>
             <h3 className="mx-auto mt-5 max-w-4xl text-3xl md:text-4xl" data-section-title data-reveal-child>{page.contact.title}</h3>
             <div className="mt-8 space-y-3 text-lg text-white/90 md:text-xl">
               {page.contact.lines.map((line) => (

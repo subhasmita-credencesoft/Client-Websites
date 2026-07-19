@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Poppins } from "next/font/google";
 import "./globals.css";
-import "react-datepicker/dist/react-datepicker.css";
 import { ClientEnhancements } from "@/components/providers/client-enhancements";
 import { WebVitals } from "@/components/providers/web-vitals";
 import { StickyBookingBar } from "@/components/layout/sticky-booking-bar";
+import { SkipNav } from "@/components/layout/skip-nav";
 import { rootMetadata } from "@/lib/metadata";
 
 const bodyFont = Poppins({
@@ -31,6 +31,10 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
 };
+
+function serializeJsonLd(data: Record<string, unknown>) {
+  return JSON.stringify(data);
+}
 
 export default function RootLayout({
   children,
@@ -62,7 +66,7 @@ export default function RootLayout({
       "@type": "Rating",
       ratingValue: "4.5",
     },
-    numberOfRooms: "30+",
+    numberOfRooms: 30,
     sameAs: [
       "https://instagram.com/themountain.karjat",
       "https://www.themountainresorts.com",
@@ -91,14 +95,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://bookonelocal.in" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(resortSchema) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(resortSchema) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(websiteSchema) }}
         />
       </head>
-      <body className={`${bodyFont.variable} ${displayFont.variable} overflow-x-hidden antialiased`} suppressHydrationWarning>
+      <body className={`${bodyFont.variable} ${displayFont.variable} overflow-x-hidden antialiased`}>
+        <SkipNav />
         {children}
         <StickyBookingBar />
         <WebVitals />

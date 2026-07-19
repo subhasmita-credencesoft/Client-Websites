@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/private-event-spaces",
   description:
     "Discover private event spaces at The Mountain Resort in Karjat — elegant indoor and outdoor venues for destination weddings, receptions, mehendi, sangeet, and corporate events.",
+  keywords: ["private event spaces karjat", "intimate wedding venue", "corporate event space maharashtra", "private celebration hall"],
 });
 
 export default function PrivateEventSpacesPage() {

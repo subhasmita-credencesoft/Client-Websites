@@ -35,7 +35,6 @@ export function HorizontalJourneySection() {
              * preventing main-thread jank.
              */
             className="journey-panel relative block min-h-[78svh] overflow-hidden [will-change:transform] md:h-full md:w-screen md:shrink-0"
-            data-cursor="hover"
             data-horizontal-card
           >
             {/*

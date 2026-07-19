@@ -9,6 +9,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/glass-cottage",
   description:
     "Experience the Glass Jacuzzi Room at The Mountain Resort in Karjat — a premium cottage with private jacuzzi, scenic views, and luxury destination stay ambiance.",
+  keywords: ["glass cottage karjat", "jacuzzi room resort", "luxury cottage maharashtra", "premium stay karjat"],
 });
 
 export default function Page() {
@@ -18,5 +19,5 @@ export default function Page() {
     notFound();
   }
 
-  return <DetailPageView page={page} />;
+  return <DetailPageView page={page} parentBreadcrumb={{ label: "Rooms", href: "/rooms" }} />;
 }

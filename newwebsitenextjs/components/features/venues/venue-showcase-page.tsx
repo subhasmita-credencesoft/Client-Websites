@@ -10,9 +10,10 @@ import type { MountainVenuePageData } from "@/lib/data/pages/venue-pages";
 
 type VenueShowcasePageProps = {
   page: MountainVenuePageData;
+  parentBreadcrumb?: { label: string; href: string };
 };
 
-export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
+export function VenueShowcasePage({ page, parentBreadcrumb }: VenueShowcasePageProps) {
   const [activeHeroImage, setActiveHeroImage] = useState(0);
   const [slideshowReady, setSlideshowReady] = useState(false);
   const bookingHref = `/booking?page=${encodeURIComponent(page.hero.title)}&offer=${encodeURIComponent(page.hero.title)}&eventType=${encodeURIComponent("Destination Wedding")}`;
@@ -48,7 +49,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
   }, [heroImages.length]);
 
   return (
-    <main className="relative overflow-hidden bg-[#11100e] text-[#f4ede2]">
+    <main className="relative overflow-hidden bg-[var(--section-dark)] text-[var(--color-text-primary)]">
       <div className="noise-overlay" />
       <SiteHeader />
 
@@ -96,14 +97,12 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
               <Link
                 href={bookingHref}
                 className="site-button site-button-primary px-8"
-                data-cursor="hover"
               >
                 Check Venue Availability
               </Link>
               <Link
                 href="/contact"
                 className="site-button site-button-outline px-8"
-                data-cursor="hover"
               >
                 Contact The Team
               </Link>
@@ -111,7 +110,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
             <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4" data-reveal-child>
               {page.stats.map((stat) => (
                 <div key={`${page.slug}-hero-${stat.label}`} className="rounded-[1.35rem] border border-white/10 bg-black/25 px-5 py-4 backdrop-blur-sm">
-                  <p className="text-xs uppercase tracking-[0.24em] text-[#d7ae71]">{stat.label}</p>
+                  <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-primary-hover)]">{stat.label}</p>
                   <p className="mt-2 text-sm leading-relaxed text-white/88 md:text-base">{stat.value}</p>
                 </div>
               ))}
@@ -124,9 +123,8 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
                   aria-label={`Show venue hero image ${index + 1}`}
                   onClick={() => setActiveHeroImage(index)}
                   className={`h-1.5 rounded-full transition-all duration-500 ${
-                    index === activeHeroImage ? "w-14 bg-[#d7ae71]" : "w-7 bg-white/35"
+                    index === activeHeroImage ? "w-14 bg-[var(--color-primary-hover)]" : "w-7 bg-white/35"
                   }`}
-                  data-cursor="hover"
                 />
               ))}
             </div>
@@ -135,10 +133,10 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
       </section>
 
       <section className="site-container max-w-[80rem] pb-16 pt-12 md:pb-24 md:pt-24" data-section-id={`${page.slug}-intro`} data-stage-section>
-        <Breadcrumbs items={[{ label: page.hero.title }]} />
+        <Breadcrumbs items={parentBreadcrumb ? [parentBreadcrumb, { label: page.hero.title }] : [{ label: page.hero.title }]} />
 
         <div className="mt-12 max-w-[62rem]" data-stage-copy>
-          <h2 className="site-title-lg text-balance text-[#d7ae71] md:text-[clamp(2.5rem,5vw,4.5rem)]" data-stage-line>
+          <h2 className="site-title-lg text-balance text-[var(--color-primary-hover)] md:text-[clamp(2.5rem,5vw,4.5rem)]" data-stage-line>
             {page.intro.title}
           </h2>
           <div className="mt-10 border-l border-white/15 pl-8 text-xl leading-relaxed text-white/86 md:text-2xl">
@@ -155,11 +153,11 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
           {page.stats.map((stat) => (
             <article
               key={`${page.slug}-${stat.label}`}
-              className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#182920] px-6 py-7 shadow-[0_20px_40px_rgba(10,18,12,0.18)] backdrop-blur-sm"
+              className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-[var(--section-surface)] px-6 py-7 shadow-[0_20px_40px_rgba(10,18,12,0.18)] backdrop-blur-sm"
               data-card
               data-clip-reveal
             >
-              <p className="text-3xl text-[#d7ae71] md:text-4xl">{stat.value}</p>
+              <p className="text-3xl text-[var(--color-primary-hover)] md:text-4xl">{stat.value}</p>
               <p className="mt-3 text-sm uppercase tracking-[0.22em] text-white/72">{stat.label}</p>
             </article>
           ))}
@@ -169,10 +167,10 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
       <section className="bg-black px-4 py-16 text-white md:px-8 md:py-20" data-feature-stage data-section-id={`${page.slug}-plan`}>
         <div className="mx-auto grid max-w-[80rem] items-center gap-10 md:grid-cols-2">
           <div data-feature-content data-reveal>
-            <p data-reveal-child className="text-xs uppercase tracking-[0.28em] text-[#d7ae71]">
+            <p data-reveal-child className="text-xs uppercase tracking-[0.28em] text-[var(--color-primary-hover)]">
               Signature Venue Story
             </p>
-            <h3 className="mt-4 text-4xl leading-tight text-[#c89a55] md:text-5xl" data-section-title>
+            <h3 className="mt-4 text-2xl leading-tight text-[var(--color-primary)] md:text-4xl" data-section-title>
               Designed for premium destination celebrations
             </h3>
             <p data-reveal-child className="mt-8 max-w-2xl text-xl leading-relaxed text-white/90 md:text-2xl">
@@ -181,7 +179,6 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
             <Link
               href={bookingHref}
               className="mt-10 inline-flex items-center justify-center border border-white px-6 py-3.5 text-sm uppercase tracking-[0.18em] md:px-10 md:py-4"
-              data-cursor="hover"
             >
               Check Venue Availability
             </Link>
@@ -195,11 +192,11 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="bg-[#11100e] px-4 py-14 md:px-8 md:py-18" data-section-id={`${page.slug}-booking-intent`}>
+      <section className="bg-[var(--section-dark)] px-4 py-14 md:px-8 md:py-18" data-section-id={`${page.slug}-booking-intent`}>
         <div className="mx-auto grid max-w-[80rem] gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <article className="rounded-[1.9rem] border border-white/10 bg-[#182920] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-reveal>
-            <p className="text-xs uppercase tracking-[0.24em] text-[#d7ae71]" data-reveal-child>Booking Direction</p>
-            <h3 className="mt-4 text-3xl leading-tight text-[#f4ead9] md:text-4xl" data-section-title>
+          <article className="rounded-[1.9rem] border border-white/10 bg-[var(--section-surface)] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-reveal>
+            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-primary-hover)]" data-reveal-child>Booking Direction</p>
+            <h3 className="mt-4 text-3xl leading-tight text-[var(--color-text-primary)] md:text-4xl" data-section-title>
               A venue page should help families understand how the celebration can actually work
             </h3>
             <p className="mt-5 text-base leading-relaxed text-white/78 md:text-lg" data-reveal-child>
@@ -224,10 +221,10 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
       >
         <div className="mx-auto max-w-[80rem]">
           <div className="max-w-4xl text-center md:mx-auto" data-reveal>
-            <p className="text-xs uppercase tracking-[0.28em] text-[#b88947]" data-reveal-child>
+            <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-primary)]" data-reveal-child>
               Celebration Journey
             </p>
-            <h3 className="mt-4 text-4xl leading-tight text-[#c89a55] md:text-5xl" data-section-title>
+            <h3 className="mt-4 text-2xl leading-tight text-[var(--color-primary)] md:text-4xl" data-section-title>
               How this venue experience unfolds across the wedding
             </h3>
             <p className="mx-auto mt-6 max-w-4xl text-xl leading-relaxed text-white/78 md:text-2xl" data-reveal-child>
@@ -239,7 +236,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
             {page.experienceJourney.map((item, index) => (
               <article
                 key={`${page.slug}-${item.title}`}
-                className="w-[88vw] shrink-0 overflow-hidden rounded-[2rem] border border-white/10 bg-[#182920] shadow-[0_22px_55px_rgba(10,18,12,0.22)] md:w-[34rem] xl:w-[38rem]"
+                className="w-[88vw] shrink-0 overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--section-surface)] shadow-[0_22px_55px_rgba(10,18,12,0.22)] md:w-[34rem] xl:w-[38rem]"
                 data-card
               >
                 <div className="relative h-[20rem] overflow-hidden md:h-[24rem]">
@@ -249,8 +246,8 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent" />
                 </div>
                 <div className="p-7 md:p-8">
-                  <p className="text-xs uppercase tracking-[0.24em] text-[#b88947]">Chapter 0{index + 1}</p>
-                  <h4 className="mt-3 text-3xl leading-tight text-[#f4ead9] md:text-4xl">{item.title}</h4>
+                  <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-primary)]">Chapter 0{index + 1}</p>
+                  <h4 className="mt-3 text-3xl leading-tight text-[var(--color-text-primary)] md:text-4xl">{item.title}</h4>
                   <p className="mt-5 text-lg leading-relaxed text-white/78 md:text-xl">{item.body}</p>
                 </div>
               </article>
@@ -261,10 +258,10 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
 
       <section className="bg-black px-4 py-16 text-white md:px-8 md:py-22" data-section-id={`${page.slug}-highlights`}>
         <div className="mx-auto max-w-[80rem] text-center" data-reveal>
-          <h3 className="text-4xl text-[#c89a55] md:text-5xl" data-section-title>
+          <h3 className="text-2xl text-[var(--color-primary)] md:text-4xl" data-section-title>
             {page.highlights.title}
           </h3>
-          <div className="mx-auto mt-4 h-[2px] w-20 bg-[#c89a55]" />
+          <div className="mx-auto mt-4 h-[2px] w-20 bg-[var(--color-primary)]" />
           <p data-reveal-child className="mx-auto mt-7 max-w-4xl text-xl leading-relaxed text-white/90 md:text-2xl">
             {page.hero.subtitle}
           </p>
@@ -280,7 +277,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
               </div>
               <div className="px-6 py-7 md:px-8 md:py-8">
                 <p className="text-xs uppercase tracking-[0.24em] text-white/45">0{index + 1}</p>
-                <h4 className="mt-3 text-2xl text-[#d7ae71] md:text-3xl">{card.title}</h4>
+                <h4 className="mt-3 text-2xl text-[var(--color-primary-hover)] md:text-3xl">{card.title}</h4>
                 <p className="mt-4 text-base leading-relaxed text-white/88 md:text-lg">{card.description}</p>
               </div>
             </article>
@@ -296,7 +293,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
 
         <div className="relative z-10 mx-auto grid max-w-[80rem] gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div data-reveal>
-            <p className="text-xs uppercase tracking-[0.28em] text-[#d7ae71]" data-reveal-child>
+            <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-primary-hover)]" data-reveal-child>
               Editorial Perspective
             </p>
             <h3 className="mt-5 max-w-4xl text-balance text-4xl leading-tight text-[#f2dfbf] md:text-6xl" data-section-title>
@@ -321,12 +318,12 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="bg-[#11100e] px-4 py-14 md:px-8 md:py-18" data-section-id={`${page.slug}-gallery`}>
+      <section className="bg-[var(--section-dark)] px-4 py-14 md:px-8 md:py-18" data-section-id={`${page.slug}-gallery`}>
         <div className="mx-auto max-w-[80rem] text-center" data-reveal>
-          <h3 className="text-4xl text-[#c89a55] md:text-5xl" data-section-title>
+          <h3 className="text-2xl text-[var(--color-primary)] md:text-4xl" data-section-title>
             {page.gallery.title}
           </h3>
-          <div className="mx-auto mt-4 h-[2px] w-20 bg-[#c89a55]" />
+          <div className="mx-auto mt-4 h-[2px] w-20 bg-[var(--color-primary)]" />
           <p data-reveal-child className="mx-auto mt-7 max-w-5xl text-xl leading-relaxed text-white/82 md:text-2xl">
             Venue imagery, scenic corners, and event-ready details help planners and families understand how the celebration can flow across the property.
           </p>
@@ -349,14 +346,13 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
       </section>
 
       <section className="bg-black px-4 py-8 md:px-8" data-section-id={`${page.slug}-banner`}>
-        <div className="mx-auto flex max-w-[80rem] flex-col gap-6 rounded-[1.8rem] border border-[#c89a55] px-6 py-6 text-white md:flex-row md:items-center md:justify-between md:px-8" data-reveal>
+        <div className="mx-auto flex max-w-[80rem] flex-col gap-6 rounded-[1.8rem] border border-[var(--color-primary)] px-6 py-6 text-white md:flex-row md:items-center md:justify-between md:px-8" data-reveal>
           <p data-reveal-child className="max-w-4xl text-xl md:text-2xl">
             {page.summary.body}
           </p>
           <Link
             href={bookingHref}
-            className="inline-flex self-start items-center justify-center bg-[#c89a55] px-6 py-3.5 text-sm uppercase tracking-[0.18em] text-black md:px-10 md:py-4 md:self-auto"
-            data-cursor="hover"
+            className="inline-flex self-start items-center justify-center bg-[var(--color-primary)] px-6 py-3.5 text-sm uppercase tracking-[0.18em] text-black md:px-10 md:py-4 md:self-auto"
           >
             Check Venue Availability
           </Link>
@@ -365,17 +361,17 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
 
       <section className="bg-[#161412] px-4 pb-16 pt-8 md:px-8 md:pb-24" data-section-id={`${page.slug}-details`}>
         <div className="mx-auto grid max-w-[80rem] gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <article className="rounded-[1.75rem] border border-[#d9c6a5]/20 bg-[#182920] px-8 py-10 backdrop-blur-sm" data-reveal>
-            <p className="text-xs uppercase tracking-[0.22em] text-[#b88947]">Planning Notes</p>
-            <h3 className="mt-4 text-4xl leading-tight text-[#c89a55] md:text-5xl" data-section-title>
+          <article className="rounded-[1.75rem] border border-[#d9c6a5]/20 bg-[var(--section-surface)] px-8 py-10 backdrop-blur-sm" data-reveal>
+            <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-primary)]">Planning Notes</p>
+            <h3 className="mt-4 text-2xl leading-tight text-[var(--color-primary)] md:text-4xl" data-section-title>
               Venue details that support a smoother celebration
             </h3>
           </article>
 
           <div className="space-y-4">
             {page.extraSections.map((section, index) => (
-              <article key={section.title} className="rounded-[1.5rem] border border-[#d9c6a5]/18 bg-[#182920] px-6 py-5 text-white/84" data-card>
-                <p className="mb-2 text-xs uppercase tracking-[0.24em] text-[#b88947]">Planning Note 0{index + 1}</p>
+              <article key={section.title} className="rounded-[1.5rem] border border-[#d9c6a5]/18 bg-[var(--section-surface)] px-6 py-5 text-white/84" data-card>
+                <p className="mb-2 text-xs uppercase tracking-[0.24em] text-[var(--color-primary)]">Planning Note 0{index + 1}</p>
                 <h4 className="text-xl leading-tight md:text-2xl">{section.title}</h4>
                 <p className="mt-3 text-lg leading-relaxed md:text-xl">{section.body}</p>
               </article>
@@ -384,9 +380,9 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
       </section>
 
-      <section className="bg-[#11100e] px-4 pb-16 pt-8 md:px-8 md:pb-24" data-section-id={`${page.slug}-summary`}>
+      <section className="bg-[var(--section-dark)] px-4 pb-16 pt-8 md:px-8 md:pb-24" data-section-id={`${page.slug}-summary`}>
         <div className="mx-auto max-w-[96rem] text-center" data-reveal>
-          <h3 className="text-4xl text-[#c89a55] md:text-5xl" data-section-title>
+          <h3 className="text-2xl text-[var(--color-primary)] md:text-4xl" data-section-title>
             {page.summary.title}
           </h3>
           <p data-reveal-child className="mx-auto mt-6 max-w-4xl text-xl leading-relaxed text-white/82 md:text-2xl">
@@ -395,7 +391,7 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         </div>
         <div className="mx-auto mt-12 grid max-w-[80rem] gap-6 md:grid-cols-2 lg:grid-cols-3">
           {page.highlights.items.map((item) => (
-            <div key={item} className="rounded-[1.4rem] border border-white/10 bg-[#182920] px-6 py-6 text-center text-lg leading-relaxed text-white/84 md:text-xl" data-card>
+            <div key={item} className="rounded-[1.4rem] border border-white/10 bg-[var(--section-surface)] px-6 py-6 text-center text-lg leading-relaxed text-white/84 md:text-xl" data-card>
               {item}
             </div>
           ))}
@@ -403,16 +399,14 @@ export function VenueShowcasePage({ page }: VenueShowcasePageProps) {
         <div className="mt-12 flex flex-wrap justify-center gap-4" data-reveal>
           <Link
             href={bookingHref}
-            className="inline-flex items-center justify-center border border-[#c8a871] bg-[#c8a871] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
-            data-cursor="hover"
+            className="inline-flex items-center justify-center border border-[var(--color-primary-hover)] bg-[var(--color-primary-hover)] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-black"
             data-reveal-child
           >
             Check Venue Availability
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white"
-            data-cursor="hover"
+            className="inline-flex items-center justify-center rounded-full border border-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white/88 transition-colors hover:border-[var(--color-primary)]/40 hover:text-white"
             data-reveal-child
           >
             Contact The Team

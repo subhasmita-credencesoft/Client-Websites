@@ -6,11 +6,18 @@ const DEFAULT_DESCRIPTION =
   "Private destination wedding and event venue in Karjat with scenic mountain views, guest stays, curated packages, and BookOne-powered booking.";
 const DEFAULT_IMAGE = "https://themountainresorts.com/images/og-default.jpg";
 
+const DEFAULT_OG_WIDTH = 1200;
+const DEFAULT_OG_HEIGHT = 630;
+
 type PageMetadataInput = {
   title: string;
   description?: string;
   path?: string;
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  keywords?: string[];
+  robots?: Metadata["robots"];
 };
 
 export function createPageMetadata({
@@ -18,12 +25,19 @@ export function createPageMetadata({
   description = DEFAULT_DESCRIPTION,
   path = "/",
   image = DEFAULT_IMAGE,
+  imageWidth = DEFAULT_OG_WIDTH,
+  imageHeight = DEFAULT_OG_HEIGHT,
+  keywords,
+  robots,
 }: PageMetadataInput): Metadata {
-  const canonicalUrl = new URL(path, SITE_URL).toString();
+  const canonicalPath = path.endsWith("/") && path !== "/" ? path.slice(0, -1) : path;
+  const canonicalUrl = new URL(canonicalPath, SITE_URL).toString();
 
   return {
     title,
     description,
+    ...(keywords ? { keywords } : {}),
+    ...(robots ? { robots } : {}),
     alternates: {
       canonical: canonicalUrl,
     },
@@ -37,6 +51,8 @@ export function createPageMetadata({
         {
           url: image,
           alt: title,
+          width: imageWidth,
+          height: imageHeight,
         },
       ],
     },
@@ -57,6 +73,19 @@ export const rootMetadata: Metadata = {
   },
   description: DEFAULT_DESCRIPTION,
   applicationName: SITE_NAME,
+  keywords: [
+    "luxury resort karjat",
+    "destination wedding karjat",
+    "resort near mumbai",
+    "weekend getaway karjat",
+    "mountain resort maharashtra",
+    "wedding venue karjat",
+    "private event spaces karjat",
+    "corporate retreat karjat",
+    "family resort karjat",
+    "poolside celebrations",
+    "redwings resort",
+  ],
   alternates: {
     canonical: "/",
   },
@@ -70,6 +99,8 @@ export const rootMetadata: Metadata = {
       {
         url: DEFAULT_IMAGE,
         alt: SITE_NAME,
+        width: DEFAULT_OG_WIDTH,
+        height: DEFAULT_OG_HEIGHT,
       },
     ],
   },

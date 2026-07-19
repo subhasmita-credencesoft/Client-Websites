@@ -12,9 +12,10 @@ import { DIRECT_BOOKING_ENGINE_URL } from "@/lib/constants/booking";
 
 type DetailPageProps = {
   page: DetailPage;
+  parentBreadcrumb?: { label: string; href: string };
 };
 
-export function DetailPageView({ page }: DetailPageProps) {
+export function DetailPageView({ page, parentBreadcrumb }: DetailPageProps) {
   const imageGallery = useMemo(
     () =>
       Array.from(
@@ -52,7 +53,7 @@ export function DetailPageView({ page }: DetailPageProps) {
     : "Check availability for your preferred room, align guest count, and let our team help you place the right stay inside your wedding or getaway plan.";
 
   return (
-    <main className="relative overflow-hidden bg-[#0c0a08] text-white">
+    <main className="relative overflow-hidden bg-[var(--color-surface)] text-white">
       <div className="noise-overlay" />
       <SiteHeader />
 
@@ -82,14 +83,12 @@ export function DetailPageView({ page }: DetailPageProps) {
               <Link
                 href={bookingContextHref}
                 className="site-button site-button-primary px-8"
-                data-cursor="hover"
               >
                 {primaryCtaLabel}
               </Link>
               <Link
                 href="/booking?eventType=Destination%20Wedding"
                 className="site-button site-button-outline px-8"
-                data-cursor="hover"
               >
                 Plan Your Wedding
               </Link>
@@ -98,7 +97,7 @@ export function DetailPageView({ page }: DetailPageProps) {
               <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                 {facts.map((fact) => (
                   <div key={`${page.slug}-${fact.label}`} className="rounded-[1.35rem] border border-white/10 bg-black/25 px-5 py-4 backdrop-blur-sm">
-                    <p className="text-[0.68rem] uppercase tracking-[0.22em] text-[#c9a46e]">{fact.label}</p>
+                    <p className="text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-primary)]">{fact.label}</p>
                     <p className="mt-2 text-sm leading-relaxed text-white/88 md:text-base">{fact.value}</p>
                   </div>
                 ))}
@@ -110,9 +109,9 @@ export function DetailPageView({ page }: DetailPageProps) {
 
       <div className="content-auto-section">
       <section className="site-container max-w-5xl py-14 text-center md:py-20" data-stage-section>
-        <Breadcrumbs items={[{ label: page.title }]} />
+        <Breadcrumbs items={parentBreadcrumb ? [parentBreadcrumb, { label: page.title }] : [{ label: page.title }]} />
         <div data-stage-copy>
-          <p className="text-xs font-semibold tracking-[0.2em] text-[#c9a46e]" data-stage-line>
+          <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-primary)]" data-stage-line>
             {page.introTitle}
           </p>
           <p className="site-copy-lg mx-auto mt-6 max-w-5xl" data-stage-line>
@@ -122,7 +121,6 @@ export function DetailPageView({ page }: DetailPageProps) {
         <Link
           href={bookingContextHref}
           className="site-button site-button-primary mt-10 px-9"
-          data-cursor="hover"
           data-stage-line
         >
           {primaryCtaLabel}
@@ -132,8 +130,8 @@ export function DetailPageView({ page }: DetailPageProps) {
       {!isPackagePage && facts.length > 0 ? (
         <section className="mx-auto max-w-[80rem] px-4 py-8 md:px-8" data-stage-section>
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <article className="rounded-[1.8rem] border border-white/10 bg-[#16261f] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-card>
-              <p className="text-xs uppercase tracking-[0.22em] text-[#c9a46e]">Stay Positioning</p>
+            <article className="rounded-[1.8rem] border border-white/10 bg-[var(--section-surface-deep)] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-card>
+              <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-primary)]">Stay Positioning</p>
               <h2 className="mt-4 text-3xl leading-tight text-white md:text-4xl">A room choice shaped around who is staying and how the celebration moves</h2>
               <p className="mt-5 text-base leading-relaxed text-white/78 md:text-lg">
                 Each stay category at The Mountain is planned to support a different hosting role, from couple-friendly rooms and scenic premium stays to family-led accommodation and host residences.
@@ -142,7 +140,7 @@ export function DetailPageView({ page }: DetailPageProps) {
             <div className="grid gap-4 sm:grid-cols-2">
               {facts.map((fact) => (
                 <article key={`detail-fact-${fact.label}`} className="rounded-[1.5rem] border border-white/10 bg-[#111815] px-6 py-5 shadow-[0_18px_36px_rgba(8,16,11,0.12)]" data-card>
-                  <p className="text-[0.7rem] uppercase tracking-[0.22em] text-[#c9a46e]">{fact.label}</p>
+                  <p className="text-[0.7rem] uppercase tracking-[0.22em] text-[var(--color-primary)]">{fact.label}</p>
                   <p className="mt-3 text-lg leading-relaxed text-white/88">{fact.value}</p>
                 </article>
               ))}
@@ -155,8 +153,8 @@ export function DetailPageView({ page }: DetailPageProps) {
         <section className="site-container max-w-[80rem] py-10" data-stage-section>
           <div className="grid gap-8 xl:grid-cols-[1.05fr_0.95fr]">
             {amenities.length > 0 ? (
-              <article className="rounded-[1.8rem] border border-white/10 bg-[#16261f] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-card>
-                <p className="text-xs uppercase tracking-[0.22em] text-[#c9a46e]">Premium Amenities</p>
+              <article className="rounded-[1.8rem] border border-white/10 bg-[var(--section-surface-deep)] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-card>
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-primary)]">Premium Amenities</p>
                 <h2 className="mt-4 text-3xl leading-tight text-white md:text-4xl">Thoughtful comforts that support every stay</h2>
                 <div className="mt-8 grid gap-4 md:grid-cols-2">
                   {amenities.map((amenity) => (
@@ -171,12 +169,12 @@ export function DetailPageView({ page }: DetailPageProps) {
 
             {specifications.length > 0 ? (
               <article className="rounded-[1.8rem] border border-white/10 bg-[#111815] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-card>
-                <p className="text-xs uppercase tracking-[0.22em] text-[#c9a46e]">Room Specifications</p>
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-primary)]">Room Specifications</p>
                 <h2 className="mt-4 text-3xl leading-tight text-white md:text-4xl">Quick room details before you enquire</h2>
                 <div className="mt-8 space-y-4">
                   {specifications.map((item) => (
                     <div key={`${page.slug}-${item.label}`} className="rounded-[1.25rem] border border-white/10 bg-black/20 px-5 py-4">
-                      <p className="text-[0.72rem] uppercase tracking-[0.22em] text-[#c9a46e]">{item.label}</p>
+                      <p className="text-[0.72rem] uppercase tracking-[0.22em] text-[var(--color-primary)]">{item.label}</p>
                       <p className="mt-2 text-base leading-relaxed text-white/85 md:text-lg">{item.value}</p>
                     </div>
                   ))}
@@ -189,8 +187,8 @@ export function DetailPageView({ page }: DetailPageProps) {
 
       {!isPackagePage && perfectFor.length > 0 ? (
         <section className="site-container max-w-[80rem] py-10" data-stage-section>
-          <article className="rounded-[1.8rem] border border-white/10 bg-[#16261f] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-card>
-            <p className="text-xs uppercase tracking-[0.22em] text-[#c9a46e]">Perfect For</p>
+          <article className="rounded-[1.8rem] border border-white/10 bg-[var(--section-surface-deep)] p-8 shadow-[0_18px_36px_rgba(8,16,11,0.18)]" data-card>
+            <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-primary)]">Perfect For</p>
             <h2 className="mt-4 text-3xl leading-tight text-white md:text-4xl">Who this stay works best for</h2>
             <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {perfectFor.map((item) => (
@@ -209,14 +207,14 @@ export function DetailPageView({ page }: DetailPageProps) {
         </h2>
         <div className="mt-12 grid gap-8 md:grid-cols-2" data-stage-visual>
           {page.cards.map((card) => (
-            <article key={card.title} data-card className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#16261f] shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
+            <article key={card.title} data-card className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[var(--section-surface-deep)] shadow-[0_18px_36px_rgba(8,16,11,0.18)]">
               <div className="relative h-[18rem] overflow-hidden md:h-[24rem]">
                 <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="9">
                   <Image src={card.image} alt={card.title} fill className="object-cover" sizes="(max-width: 767px) 100vw, 50vw" />
                 </div>
               </div>
               <div className="px-6 pb-8 pt-8 md:px-8 md:pb-10">
-                <p className="text-xs uppercase tracking-[0.15em] text-[#c9a46e]">{card.label}</p>
+                <p className="text-xs uppercase tracking-[0.15em] text-[var(--color-primary)]">{card.label}</p>
                 <h3 className="site-title-md mt-3">{card.title}</h3>
                 {isPackagePage ? (
                   <div className="mt-4 max-w-3xl space-y-3 text-white/90">
@@ -227,7 +225,7 @@ export function DetailPageView({ page }: DetailPageProps) {
                           index === 0
                             ? "text-2xl font-semibold text-white md:text-3xl"
                             : index === 1
-                              ? "text-xl font-semibold text-[#c9a46e] md:text-2xl"
+                              ? "text-xl font-semibold text-[var(--color-primary)] md:text-2xl"
                               : "text-lg leading-relaxed md:text-xl"
                         }
                       >
@@ -238,14 +236,13 @@ export function DetailPageView({ page }: DetailPageProps) {
                 ) : (
                   <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/90 md:text-xl">{card.description}</p>
                 )}
-                <p className="mt-4 text-sm uppercase tracking-[0.16em] text-[#c9a46e]">
+                <p className="mt-4 text-sm uppercase tracking-[0.16em] text-[var(--color-primary)]">
                   {isPackagePage ? "Package details tailored to your dates and guest count" : "Room availability depends on selected dates and guest count"}
                 </p>
                 <div>
                   <Link
                     href={`${bookingContextHref}&offer=${encodeURIComponent(card.title)}&label=${encodeURIComponent(card.label)}&details=${encodeURIComponent(card.description.replace(/\n/g, " | "))}`}
                     className="site-button site-button-primary mt-6 px-9"
-                    data-cursor="hover"
                   >
                     {primaryCtaLabel}
                   </Link>
@@ -265,16 +262,16 @@ export function DetailPageView({ page }: DetailPageProps) {
             {[page.packageComparison.weekday, page.packageComparison.weekend].map((pricing) => (
               <article
                 key={pricing.title}
-                className="rounded-[1.75rem] border border-white/10 bg-[#16261f] p-6 shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:p-8"
+                className="rounded-[1.75rem] border border-white/10 bg-[var(--section-surface-deep)] p-6 shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:p-8"
                 data-card
               >
-                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">{pricing.title}</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-primary)]">{pricing.title}</p>
                 <div className="mt-6 space-y-4">
                   {pricing.rows.map((row) => (
                     <div key={`${pricing.title}-${row.package}`} className="rounded-[1.35rem] border border-white/10 bg-black/20 p-5">
                       <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
                         <h3 className="text-2xl text-white md:text-3xl">{row.package}</h3>
-                        <p className="text-lg text-[#c9a46e] md:text-xl">{row.price} per person per day</p>
+                        <p className="text-lg text-[var(--color-primary)] md:text-xl">{row.price} per person per day</p>
                       </div>
                       <p className="mt-3 text-base leading-relaxed text-white/82 md:text-lg">{row.includes}</p>
                     </div>
@@ -284,8 +281,8 @@ export function DetailPageView({ page }: DetailPageProps) {
             ))}
           </div>
 
-          <article className="mt-8 rounded-[1.75rem] border border-white/10 bg-[#16261f] p-6 shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:p-8" data-card>
-            <p className="text-xs uppercase tracking-[0.2em] text-[#c9a46e]">{page.packageComparison.meals.title}</p>
+          <article className="mt-8 rounded-[1.75rem] border border-white/10 bg-[var(--section-surface-deep)] p-6 shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:p-8" data-card>
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-primary)]">{page.packageComparison.meals.title}</p>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               {page.packageComparison.meals.items.map((item) => (
                 <div key={item} className="rounded-[1.25rem] border border-white/10 bg-black/20 px-5 py-4 text-base leading-relaxed text-white/85 md:text-lg">
@@ -306,8 +303,7 @@ export function DetailPageView({ page }: DetailPageProps) {
           <button
             type="button"
             onClick={() => setActiveTab("image")}
-            className={activeTab === "image" ? "border-b-2 border-[#c9a46e] pb-2 text-[#c9a46e]" : "text-white/55"}
-            data-cursor="hover"
+            className={activeTab === "image" ? "border-b-2 border-[var(--color-primary)] pb-2 text-[var(--color-primary)]" : "text-white/55"}
           >
             Image Gallery
           </button>
@@ -315,8 +311,7 @@ export function DetailPageView({ page }: DetailPageProps) {
             <button
               type="button"
               onClick={() => setActiveTab("video")}
-              className={activeTab === "video" ? "border-b-2 border-[#c9a46e] pb-2 text-[#c9a46e]" : "text-white/55"}
-              data-cursor="hover"
+              className={activeTab === "video" ? "border-b-2 border-[var(--color-primary)] pb-2 text-[var(--color-primary)]" : "text-white/55"}
             >
               Video Gallery
             </button>
@@ -326,7 +321,7 @@ export function DetailPageView({ page }: DetailPageProps) {
           {(activeTab === "video" ? videoGallery : imageGallery).map((media, index) => (
             <div
               key={`${activeTab}-${media}-${index}`}
-              className="relative h-[18rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#16261f] shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:h-[24rem]"
+              className="relative h-[18rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[var(--section-surface-deep)] shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:h-[24rem]"
               data-card
             >
               <div className="absolute inset-0" data-card-image data-bg-parallax data-bg-depth="7">
@@ -351,8 +346,8 @@ export function DetailPageView({ page }: DetailPageProps) {
       </section>
 
       <section className="site-container max-w-5xl pb-16 md:pb-20" data-stage-section>
-        <div className="rounded-[2rem] border border-white/10 bg-[#16261f] px-8 py-12 text-center shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:px-12 md:py-14">
-          <p className="text-xs uppercase tracking-[0.22em] text-[#c9a46e]" data-stage-line>
+        <div className="rounded-[2rem] border border-white/10 bg-[var(--section-surface-deep)] px-8 py-12 text-center shadow-[0_18px_36px_rgba(8,16,11,0.18)] md:px-12 md:py-14">
+          <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-primary)]" data-stage-line>
             Booking Intent
           </p>
           <h3 className="site-title-lg mx-auto mt-5 max-w-4xl text-balance text-white" data-stage-line>
@@ -365,14 +360,12 @@ export function DetailPageView({ page }: DetailPageProps) {
             <Link
               href={bookingContextHref}
               className="site-button site-button-primary px-8"
-              data-cursor="hover"
             >
               {primaryCtaLabel}
             </Link>
             <Link
               href="/contact"
               className="site-button site-button-outline px-8"
-              data-cursor="hover"
             >
               Contact The Team
             </Link>

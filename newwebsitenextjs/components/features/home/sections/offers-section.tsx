@@ -88,7 +88,6 @@ export function OffersSection() {
                   ? "border-[var(--color-primary-hover)] text-[var(--color-primary-hover)]"
                   : "border-transparent text-white/65 hover:text-white"
               }`}
-              data-cursor="hover"
             >
               {tab}
             </button>
@@ -109,7 +108,6 @@ export function OffersSection() {
              * repaint. Also isolates the parallax layer below it.
              */
             className="group relative block h-[26rem] overflow-hidden rounded-[1.5rem] border border-white/18 [will-change:transform] sm:h-[31rem] md:h-[33rem]"
-            data-cursor="hover"
           >
             {/*
              * FIX 7 — `[will-change:transform]` on the parallax wrapper keeps

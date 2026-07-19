@@ -9,6 +9,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/premium-luxo-package",
   description:
     "The Premium Luxo Wedding Package at The Mountain Resort in Karjat — a luxury-tier destination wedding experience with premium stays, curated meals, and exclusive venue access.",
+  keywords: ["premium luxe wedding package", "luxury wedding package karjat", "live counters wedding", "top wedding package maharashtra"],
 });
 
 export default function Page() {
@@ -18,5 +19,5 @@ export default function Page() {
     notFound();
   }
 
-  return <DetailPageView page={page} />;
+  return <DetailPageView page={page} parentBreadcrumb={{ label: "Offers", href: "/offers" }} />;
 }

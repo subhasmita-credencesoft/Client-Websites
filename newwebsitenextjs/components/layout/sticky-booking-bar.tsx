@@ -27,7 +27,7 @@ export function StickyBookingBar() {
       <div className="mx-auto max-w-[96rem] px-3 pb-3 sm:px-4 sm:pb-4">
         <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(200,154,85,0.25)] bg-[rgba(12,10,8,0.96)] px-4 py-3 shadow-[0_-8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:px-6 sm:py-3.5 md:px-8">
           <div className="hidden min-w-0 flex-col sm:flex">
-            <span className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-[#c9a46e]">
+            <span className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
               Quick Booking
             </span>
             <span className="mt-0.5 truncate text-[0.82rem] font-medium text-white/90">
@@ -37,15 +37,13 @@ export function StickyBookingBar() {
           <div className="flex min-w-0 flex-1 items-center gap-2 sm:flex-none sm:gap-3">
             <Link
               href={DIRECT_BOOKING_ENGINE_URL}
-              className="inline-flex h-11 flex-1 items-center justify-center rounded-xl border border-[#c9a46e] bg-[#c9a46e] px-3 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#d7b57c] sm:flex-none sm:px-6 sm:text-[0.72rem]"
-              data-cursor="hover"
+              className="inline-flex h-11 flex-1 items-center justify-center rounded-xl border border-[var(--color-primary)] bg-[var(--color-primary)] px-3 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-black transition-colors hover:bg-[var(--color-primary-hover)] sm:flex-none sm:px-6 sm:text-[0.72rem]"
             >
               Check Availability
             </Link>
             <Link
               href="/contact"
-              className="inline-flex h-11 flex-1 items-center justify-center rounded-xl border border-white/15 px-3 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-white/88 transition-colors hover:border-[#c9a46e]/40 hover:text-white sm:flex-none sm:px-6 sm:text-[0.72rem]"
-              data-cursor="hover"
+              className="inline-flex h-11 flex-1 items-center justify-center rounded-xl border border-white/15 px-3 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-white/88 transition-colors hover:border-[var(--color-primary)]/40 hover:text-white sm:flex-none sm:px-6 sm:text-[0.72rem]"
             >
               Contact
             </Link>

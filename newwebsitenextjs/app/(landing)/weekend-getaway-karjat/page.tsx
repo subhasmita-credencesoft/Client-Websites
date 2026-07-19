@@ -8,6 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/weekend-getaway-karjat",
   description:
     "Plan a weekend getaway in Karjat at The Mountain Resort — mountain views, poolside leisure, curated dining, and luxury stays approx. 2 to 3 hours from Mumbai and Pune.",
+  keywords: ["weekend getaway karjat", "short trip from mumbai", "2 day resort karjat", "weekend break maharashtra"],
 });
 
 export default function Page() {
