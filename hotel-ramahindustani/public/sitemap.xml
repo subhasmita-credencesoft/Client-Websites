@@ -41,7 +41,7 @@
     <loc>https://www.hotelramahindustani.com/tours</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.hotelramahindustani.com/services</loc>
@@ -53,12 +53,12 @@
     <loc>https://www.hotelramahindustani.com/gallery</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.hotelramahindustani.com/blog</loc>
     <lastmod>2026-07-19</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
@@ -66,12 +66,15 @@
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-front-pic-4.avif</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://www.hotelramahindustani.com/contact</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.hotelramahindustani.com/book-now</loc>
@@ -116,63 +119,93 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/best-budget-hotel-near-jecc-jaipur</loc>
+    <loc>https://www.hotelramahindustani.com/blog/best-budget-hotel-near-jaipur-airport</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-front-pic-4.avif</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/top-10-things-to-do-in-jaipur</loc>
+    <loc>https://www.hotelramahindustani.com/blog/hotel-near-jecc-jaipur</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-reception-pic-14.jpg</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/jaipur-travel-guide-2025</loc>
+    <loc>https://www.hotelramahindustani.com/blog/family-hotel-in-pratap-nagar-jaipur</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-front-pic-4.jpg</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/best-vegetarian-restaurants-in-jaipur</loc>
+    <loc>https://www.hotelramahindustani.com/blog/hotel-near-sanganer-railway-station</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-front-3.avif</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/day-trips-from-jaipur</loc>
+    <loc>https://www.hotelramahindustani.com/blog/where-to-stay-near-jaipur-airport</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-front-pic-4.avif</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/jaipur-with-kids-family-travel-guide</loc>
+    <loc>https://www.hotelramahindustani.com/blog/hotels-near-chokhi-dhani-jaipur</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-and-rama-rasoi-front-2.avif</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/best-time-to-visit-jaipur</loc>
+    <loc>https://www.hotelramahindustani.com/blog/jaipur-travel-guide-first-time-visitors</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-front-pic-4.avif</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/jaipur-honeymoon-guide</loc>
+    <loc>https://www.hotelramahindustani.com/blog/places-to-visit-near-pratap-nagar-jaipur</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-front-3.avif</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/weekend-getaway-from-delhi-to-jaipur</loc>
+    <loc>https://www.hotelramahindustani.com/blog/hotels-near-sitapura-industrial-area-jaipur</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-jaipur-reception-pic-14.jpg</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.hotelramahindustani.com/blog/business-travel-guide-to-jaipur</loc>
+    <loc>https://www.hotelramahindustani.com/blog/why-book-direct-with-hotel-rama-hindustani</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.hotelramahindustani.com/hotel-ramahindustani-image/hotel-rama-hindustani-reception-area-1.jpg</image:loc>
+    </image:image>
   </url>
 </urlset>
