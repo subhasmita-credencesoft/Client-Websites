@@ -102,7 +102,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(websiteSchema) }}
         />
       </head>
-      <body className={`${bodyFont.variable} ${displayFont.variable} overflow-x-hidden antialiased`}>
+      <body suppressHydrationWarning className={`${bodyFont.variable} ${displayFont.variable} overflow-x-hidden antialiased`}>
         <SkipNav />
         {children}
         <StickyBookingBar />

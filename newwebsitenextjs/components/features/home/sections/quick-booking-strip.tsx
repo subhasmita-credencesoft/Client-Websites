@@ -61,9 +61,9 @@ export function QuickBookingStrip() {
   };
 
   return (
-    <section className="relative z-30 hidden w-full bg-black px-4 py-3 md:block md:px-8 md:py-4">
+    <section className="relative z-30 hidden w-full bg-transparent px-4 py-3 md:block md:px-8 md:py-4">
       <div className="mx-auto max-w-[66rem]">
-        <div className="overflow-hidden rounded-[1rem] border border-[rgba(var(--color-primary-rgb),0.22)] bg-[linear-gradient(180deg,rgba(20,16,13,0.97)_0%,rgba(15,12,10,0.94)_100%)] px-3 py-2 shadow-[0_18px_36px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:px-4 sm:py-2.5 md:px-5 md:py-3">
+        <div className="overflow-hidden rounded-[1rem] border border-white/10 bg-white/[0.06] px-3 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.18)] backdrop-blur-2xl sm:px-4 sm:py-2.5 md:px-5 md:py-3">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5 xl:grid-cols-[1fr_1fr_0.55fr_auto] xl:items-end">
             <label className="grid gap-1">
               <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-primary-hover)] sm:text-[0.65rem] md:text-[0.68rem]">
@@ -110,7 +110,7 @@ export function QuickBookingStrip() {
                 type="button"
                 onClick={handleBookingRedirect}
                 disabled={!isReady}
-                className="inline-flex h-10 w-full items-center justify-center rounded-[0.7rem] border border-[#c9a467] bg-[#c9a467] px-4 text-[0.68rem] font-semibold tracking-[0.14em] text-black transition-colors hover:bg-[var(--color-primary-hover)] sm:h-9 sm:text-[0.72rem] xl:min-w-[9rem]"
+                className="inline-flex h-10 w-full items-center justify-center rounded-[0.7rem] border border-[var(--color-primary)] bg-[var(--color-primary)] px-4 text-[0.68rem] font-semibold tracking-[0.14em] text-black transition-colors hover:bg-[var(--color-primary-hover)] hover:border-[var(--color-primary-hover)] sm:h-9 sm:text-[0.72rem] xl:min-w-[9rem]"
               >
                 {content.cta}
               </button>
