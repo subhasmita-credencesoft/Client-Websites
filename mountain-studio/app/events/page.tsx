@@ -7,15 +7,41 @@ import Link from "next/link";
 import { bookingEngineUrl, imageSet, studioGallery } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Events — Weddings & Private Celebrations",
-  description: "Host weddings, private gatherings, poolside celebrations, and corporate events at Redwings Studio, Goa. Open lawns, scenic surroundings, and full-estate character.",
+  title:
+    "Events & Weddings | Redwings Studio Goa — Destination Venue in Arpora",
+  description:
+    "Host weddings, private gatherings, poolside celebrations, and corporate events at Redwings Studio, Arpora, Goa. Open lawns, scenic surroundings, and full-estate character. Destination wedding venue near Baga Beach.",
+  keywords: [
+    "Wedding Venue Arpora Goa",
+    "Destination Wedding Goa",
+    "Event Venue Near Baga Beach",
+    "Private Celebrations Arpora",
+    "Poolside Events Goa",
+    "Wedding Lawns Goa",
+    "Redwings Studio Events",
+    "Goa Destination Venue",
+  ],
   alternates: { canonical: "https://redwingsstudio.com/events" },
   openGraph: {
-    title: "Events & Celebrations — Redwings Studio Goa",
-    description: "Weddings, poolside celebrations, and private events at Redwings Studio, Goa. Open lawns and scenic surroundings.",
-    images: [{ url: "/mountain-studio/hero-main.jpeg", width: 1200, height: 630, alt: "Events at Redwings Studio Goa" }],
+    title: "Events & Celebrations — Redwings Studio Goa | Destination Venue",
+    description:
+      "Weddings, poolside celebrations, and private events at Redwings Studio, Arpora, Goa. Open lawns and scenic surroundings.",
+    images: [
+      {
+        url: "/mountain-studio/hero-main.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Events at Redwings Studio Goa — Destination Wedding Venue Arpora",
+      },
+    ],
   },
-  twitter: { card: "summary_large_image", title: "Events — Redwings Studio Goa", description: "Weddings, poolside celebrations, and private events in Goa.", images: ["/mountain-studio/hero-main.jpeg"] },
+  twitter: {
+    card: "summary_large_image",
+    title: "Events — Redwings Studio Goa",
+    description:
+      "Weddings, poolside celebrations, and private events in Arpora, Goa.",
+    images: ["/mountain-studio/hero-main.jpeg"],
+  },
 };
 
 const journeyChapters = [

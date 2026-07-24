@@ -2,21 +2,21 @@
 const nextConfig = {
   output: "export",
   experimental: {
-    scrollRestoration: true
+    scrollRestoration: true,
   },
   images: {
     unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images.unsplash.com"
+        hostname: "images.unsplash.com",
       },
       {
         protocol: "https",
-        hostname: "bookonelocal.in"
-      }
-    ]
-  }
+        hostname: "bookonelocal.in",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

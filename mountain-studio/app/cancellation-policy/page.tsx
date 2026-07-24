@@ -3,13 +3,24 @@ import { PageHero } from "@/components/sections/PageHero";
 import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Cancellation Policy",
+  title:
+    "Cancellation Policy | Redwings Studio Goa — Booking Terms",
   description:
-    "Read the cancellation policy for Redwings Studio, Goa. Understand booking modification, refund, and cancellation terms for your stay.",
-  alternates: { canonical: "https://redwingsstudio.com/cancellation-policy" },
+    "Read the cancellation policy for Redwings Studio, Arpora, Goa. Understand booking modification, refund, and cancellation terms for your stay.",
+  keywords: [
+    "Cancellation Policy Redwings Studio",
+    "Hotel Cancellation Policy Goa",
+    "Booking Terms Arpora",
+    "Refund Policy Hotel Goa",
+  ],
+  alternates: {
+    canonical: "https://redwingsstudio.com/cancellation-policy",
+  },
   openGraph: {
-    title: "Cancellation Policy",
-    description: "Cancellation and refund policy for Redwings Studio, Goa.",
+    title:
+      "Cancellation Policy — Redwings Studio Goa | Booking Terms",
+    description:
+      "Cancellation and refund policy for Redwings Studio, Arpora, Goa.",
     images: [
       {
         url: "/mountain-studio/hero-main.jpeg",
@@ -21,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cancellation Policy",
+    title: "Cancellation Policy — Redwings Studio Goa",
     description: "Cancellation and refund policy for Redwings Studio, Goa.",
     images: ["/mountain-studio/hero-main.jpeg"],
   },

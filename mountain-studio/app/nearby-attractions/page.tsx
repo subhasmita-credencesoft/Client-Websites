@@ -3,26 +3,42 @@ import { NearbyAttractionsPageClient } from "./NearbyAttractionsPageClient";
 import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Nearby Attractions & Tourist Places",
+  title:
+    "Nearby Attractions & Tourist Places | Redwings Studio Goa Arpora",
   description:
-    "Explore tourist places near Redwings Studio, Goa — Baga Beach, Calangute Beach, Anjuna Flea Market, Fort Aguada, Chapora Fort, Fontainhas, and more. Distances and travel info included.",
+    "Explore tourist places near Redwings Studio, Arpora, Goa — Baga Beach, Calangute Beach, Anjuna Flea Market, Fort Aguada, Chapora Fort, Fontainhas, and more. Distances and travel info included.",
+  keywords: [
+    "Things to Do in Arpora",
+    "Places to Visit Near Baga Beach",
+    "Tourist Places North Goa",
+    "Beaches Near Arpora Goa",
+    "Anjuna Flea Market",
+    "Fort Aguada Goa",
+    "Chapora Fort",
+    "Saturday Night Market Arpora",
+    "Goa Travel Guide",
+    "Baga Beach Things to Do",
+    "Calangute Beach Attractions",
+  ],
   alternates: { canonical: "https://redwingsstudio.com/nearby-attractions" },
   openGraph: {
-    title: "Nearby Attractions — Redwings Studio Goa",
-    description: "Top tourist places near Redwings Studio, Goa — beaches, forts, markets, and heritage sites with distances.",
+    title: "Nearby Attractions — Redwings Studio Goa | Things to Do in Arpora",
+    description:
+      "Top tourist places near Redwings Studio, Arpora, Goa — beaches, forts, markets, and heritage sites with distances.",
     images: [
       {
         url: "/nearbyattraction/bagabeach.jpg",
         width: 1200,
         height: 630,
-        alt: "Goa Beach — Nearby Attractions from Redwings Studio",
+        alt: "Goa Beach — Nearby Attractions from Redwings Studio, Arpora",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nearby Attractions — Redwings Studio Goa",
-    description: "Top tourist places near Redwings Studio, Goa with distances.",
+    description:
+      "Top tourist places near Redwings Studio, Arpora, Goa with distances.",
     images: ["/nearbyattraction/bagabeach.jpg"],
   },
 };

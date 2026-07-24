@@ -62,12 +62,20 @@ export const studioGallery = [
 export const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Rooms", href: "/rooms" },
-  { label: "Picnic", href: "/picnic" },
+  { label: "Tariff", href: "/tariff" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+export const MORE_LINKS: NavLink[] = [
+  { label: "Amenities", href: "/amenities" },
   { label: "Events", href: "/events" },
   { label: "Activities", href: "/activities" },
-  { label: "Nearby tour", href: "/nearby-attractions" },
-  { label: "About", href: "/about" }
+  { label: "Nearby Attractions", href: "/nearby-attractions" },
+  { label: "Dining", href: "/dining" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 export const rooms: Room[] = [

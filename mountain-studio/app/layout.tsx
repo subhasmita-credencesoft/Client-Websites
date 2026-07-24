@@ -11,54 +11,71 @@ const display = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
   weight: ["300", "400", "600"],
-  display: "swap"
+  display: "swap",
 });
 
 const body = Jost({
   subsets: ["latin"],
   variable: "--font-body",
   weight: ["300", "400", "500"],
-  display: "swap"
+  display: "swap",
 });
 
 const mono = DM_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   weight: ["400"],
-  display: "swap"
+  display: "swap",
 });
 
-// ─── Viewport ─────────────────────────────────────────────────────────────────
 export const viewport: Viewport = {
   themeColor: "#1a1a1a",
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
 };
 
-// ─── Default Site-Wide Metadata ───────────────────────────────────────────────
 export const metadata: Metadata = {
   metadataBase: new URL("https://redwingsstudio.com"),
   title: {
-    default: "Redwings Studio | Studio Apartment Stays in Goa",
+    default:
+      "Redwings Studio Goa | Studio Apartments in Arpora Near Baga Beach",
     template: "%s | Redwings Studio Goa",
   },
   description:
-    "Stay at Redwings Studio, Goa — 10 owner-managed studio apartments at Abalone Resort, Gorbhat, Goa. Budget to pool-view rooms from ₹1,950/night. Check-in 1 PM. Direct booking support.",
+    "Book your stay at Redwings Studio Goa in Arpora. Comfortable studio apartments with swimming pool access, free Wi-Fi, air conditioning, and easy access to Baga, Calangute, and Anjuna beaches. Ideal for couples, families, and budget travelers. Rooms from ₹1,950/night.",
   keywords: [
-    "redwings studio",
-    "redwings studio goa",
-    "studio apartments goa",
-    "hotel in goa",
-    "budget rooms goa",
-    "pool view rooms goa",
-    "abalone resort goa",
-    "gorbhat goa hotel",
-    "rooms in goa",
-    "goa accommodation",
+    "Redwings Studio Goa",
+    "Redwings Studio Arpora",
+    "Studio Apartments in Goa",
+    "Budget Stay in Goa",
+    "Homestay in Goa",
+    "Hotel in Arpora Goa",
+    "Stay Near Baga Beach",
+    "Budget Hotel Near Baga Beach",
+    "Best Homestay in Arpora",
+    "Affordable Stay in Goa",
+    "Vacation Rental Goa",
+    "Apartments in North Goa",
+    "Hotel Near Calangute Beach",
+    "Hotel Near Anjuna Beach",
+    "Pool View Rooms Goa",
+    "Family Stay in Goa",
+    "Couple Friendly Hotel Goa",
+    "Studio Apartment Near Baga",
+    "Budget Resort in North Goa",
+    "Swimming Pool Hotel Goa",
+    "Free WiFi Hotel Goa",
+    "Free Parking Goa",
   ],
-  authors: [{ name: "Redwings Studio" }],
+  authors: [{ name: "Redwings Studio", url: "https://redwingsstudio.com" }],
   creator: "Redwings Studio",
   publisher: "Redwings Studio",
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
   robots: {
     index: true,
     follow: true,
@@ -78,24 +95,25 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://redwingsstudio.com",
     siteName: "Redwings Studio",
-    title: "Redwings Studio | Studio Apartment Stays in Goa",
+    title:
+      "Redwings Studio Goa | Studio Apartments in Arpora Near Baga Beach",
     description:
-      "Stay at Redwings Studio, Goa — 10 owner-managed studio apartments at Abalone Resort, Gorbhat. Budget to pool-view rooms. Direct booking support.",
+      "Book your stay at Redwings Studio Goa in Arpora. Studio apartments with swimming pool, free Wi-Fi, and easy access to Baga, Calangute, and Anjuna beaches. From ₹1,950/night.",
     images: [
       {
         url: "/mountain-studio/hero-main.jpeg",
         width: 1200,
         height: 630,
-        alt: "Redwings Studio Goa — Studio Apartment Stays",
+        alt: "Redwings Studio Goa — Studio Apartment Stays at Abalone Resort, Arpora",
         type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Redwings Studio | Studio Apartment Stays in Goa",
+    title: "Redwings Studio Goa | Studio Apartments in Arpora",
     description:
-      "10 owner-managed studio apartments in Goa. Budget to pool-view rooms from ₹1,950/night. Direct booking support.",
+      "Studio apartments in Arpora, North Goa from ₹1,950/night. Swimming pool, free Wi-Fi, near Baga Beach. Book direct.",
     images: ["/mountain-studio/hero-main.jpeg"],
   },
   icons: {
@@ -105,14 +123,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-IN" className={`${display.variable} ${body.variable} ${mono.variable}`}>
+    <html
+      lang="en-IN"
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
+    >
       <head>
-        {/* Preconnect to external asset domains */}
         <link rel="preconnect" href="https://bookonelocal.in" />
         <link rel="dns-prefetch" href="https://bookonelocal.in" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
       </head>
       <body>
         <a

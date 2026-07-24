@@ -5,15 +5,40 @@ import { corporateHighlights, imageSet } from "@/lib/data";
 import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Corporate Events at Redwings Studio Goa — Day Events & Group Stays",
-  description: "Plan corporate day events, company gatherings, and team retreats at Redwings Studio, Goa. Private coordination, group room booking, resort setting. Up to 600 delegates.",
+  title:
+    "Corporate Events in Arpora Goa | Day Events & Group Stays | Redwings Studio",
+  description:
+    "Plan corporate day events, company gatherings, and team retreats at Redwings Studio, Arpora, Goa. Private coordination, group room booking, resort setting. Near Baga Beach.",
+  keywords: [
+    "Corporate Events Goa",
+    "Company Day Event Arpora",
+    "Team Retreat Goa",
+    "Group Accommodation Arpora",
+    "Business Meeting Venue Goa",
+    "Corporate Training Goa",
+    "Redwings Studio Corporate",
+  ],
   alternates: { canonical: "https://redwingsstudio.com/corporate-events" },
   openGraph: {
-    title: "Corporate Events — Redwings Studio Goa",
-    description: "Corporate day events, team retreats, and private gatherings at Redwings Studio, Goa.",
-    images: [{ url: "/mountain-studio/gallery-11.jpeg", width: 1200, height: 630, alt: "Corporate Events at Redwings Studio Goa" }],
+    title: "Corporate Events — Redwings Studio Goa | Team Retreats Arpora",
+    description:
+      "Corporate day events, team retreats, and private gatherings at Redwings Studio, Arpora, Goa.",
+    images: [
+      {
+        url: "/mountain-studio/gallery-11.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Corporate Events at Redwings Studio Goa — Arpora",
+      },
+    ],
   },
-  twitter: { card: "summary_large_image", title: "Corporate Events — Redwings Studio Goa", description: "Corporate events, team retreats, and group stays in Goa.", images: ["/mountain-studio/gallery-11.jpeg"] },
+  twitter: {
+    card: "summary_large_image",
+    title: "Corporate Events — Redwings Studio Goa",
+    description:
+      "Corporate events, team retreats, and group stays in Arpora, Goa.",
+    images: ["/mountain-studio/gallery-11.jpeg"],
+  },
 };
 
 export default function CorporateEventsPage() {

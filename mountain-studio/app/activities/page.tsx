@@ -6,15 +6,40 @@ import { LuxuryButton } from "@/components/ui/LuxuryButton";
 import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Activities at Redwings Studio Goa — Nature Walks, Wellness & Tours",
-  description: "Explore leisure activities at Redwings Studio, Goa — sunrise nature walks, wellness by water, valley tours, chef-led market walks, and resort art trails during your stay.",
+  title:
+    "Activities at Redwings Studio Goa | Things to Do in Arpora",
+  description:
+    "Explore leisure activities at Redwings Studio, Arpora, Goa — beach visits, market walks, poolside relaxation, sunset viewing, local temple visits, and water sports. Things to do near Baga Beach.",
+  keywords: [
+    "Things to Do in Arpora",
+    "Activities Near Baga Beach",
+    "Goa Beach Activities",
+    "Water Sports Goa",
+    "Poolside Relaxation Arpora",
+    "Market Walk Arpora",
+    "Sunset Viewing Goa",
+    "Redwings Studio Activities",
+  ],
   alternates: { canonical: "https://redwingsstudio.com/activities" },
   openGraph: {
-    title: "Activities at Redwings Studio Goa",
-    description: "Sunrise nature walks, wellness sessions, valley tours, and more during your Goa stay.",
-    images: [{ url: "/mountain-studio/hero-main.jpeg", width: 1200, height: 630, alt: "Activities at Redwings Studio Goa" }],
+    title: "Activities — Redwings Studio Goa | Things to Do in Arpora",
+    description:
+      "Beach visits, market walks, poolside relaxation, and water sports during your Arpora, Goa stay.",
+    images: [
+      {
+        url: "/mountain-studio/hero-main.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Activities at Redwings Studio Goa — Arpora",
+      },
+    ],
   },
-  twitter: { card: "summary_large_image", title: "Activities — Redwings Studio Goa", description: "Sunrise nature walks, wellness sessions, valley tours, and more.", images: ["/mountain-studio/hero-main.jpeg"] },
+  twitter: {
+    card: "summary_large_image",
+    title: "Activities — Redwings Studio Goa",
+    description: "Beach visits, market walks, and water sports in Arpora, Goa.",
+    images: ["/mountain-studio/hero-main.jpeg"],
+  },
 };
 
 export default function ActivitiesPage() {

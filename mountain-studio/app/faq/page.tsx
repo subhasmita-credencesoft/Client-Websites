@@ -46,13 +46,25 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: "FAQ — Redwings Studio Goa — Rooms, Booking & Stay Questions",
+  title:
+    "FAQ — Redwings Studio Goa | Rooms, Booking & Stay Questions",
   description:
-    "Frequently asked questions about Redwings Studio, Goa — room rates, check-in times, booking process, amenities, group stays, and cancellation policies.",
+    "Frequently asked questions about Redwings Studio, Arpora, Goa — room rates, check-in times, booking process, amenities, group stays, and cancellation policies. Budget stay near Baga Beach.",
+  keywords: [
+    "Redwings Studio FAQ",
+    "Hotel FAQ Arpora Goa",
+    "Booking Questions Goa",
+    "Room Rates FAQ",
+    "Check-in Time Goa Hotel",
+    "Cancellation Policy Hotel",
+    "Group Booking FAQ Goa",
+    "Amenities FAQ Arpora",
+  ],
   alternates: { canonical: "https://redwingsstudio.com/faq" },
   openGraph: {
-    title: "FAQ — Redwings Studio Goa",
-    description: "Answers to common questions about rooms, booking, and stays at Redwings Studio, Goa.",
+    title: "FAQ — Redwings Studio Goa | Rooms, Booking & Stay Questions",
+    description:
+      "Answers to common questions about rooms, booking, and stays at Redwings Studio, Arpora, Goa.",
     images: [
       {
         url: "/mountain-studio/hero-main.jpeg",
@@ -65,7 +77,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "FAQ — Redwings Studio Goa",
-    description: "Common questions about Redwings Studio, Goa.",
+    description: "Common questions about Redwings Studio, Arpora, Goa.",
     images: ["/mountain-studio/hero-main.jpeg"],
   },
 };

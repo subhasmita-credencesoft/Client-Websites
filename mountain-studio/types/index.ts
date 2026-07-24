@@ -79,3 +79,34 @@ export interface CorporateHighlight {
   description: string;
   stat: string;
 }
+
+export interface BlogFAQ {
+  question: string;
+  answer: string;
+}
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  metaTitle: string;
+  metaDescription: string;
+  focusKeyword: string;
+  secondaryKeywords: string[];
+  category: string;
+  categorySlug: string;
+  author: string;
+  authorRole: string;
+  publishedAt: string;
+  updatedAt: string;
+  readingTime: string;
+  featuredImage: string;
+  featuredImageAlt: string;
+  featuredImageWidth: number;
+  featuredImageHeight: number;
+  excerpt: string;
+  toc: Array<{ id: string; label: string; children?: Array<{ id: string; label: string }> }>;
+  content: string;
+  faqs: BlogFAQ[];
+  relatedSlugs: string[];
+  internalLinks: Array<{ label: string; href: string; anchor?: string }>;
+}

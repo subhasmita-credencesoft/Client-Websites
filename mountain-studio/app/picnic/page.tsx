@@ -3,26 +3,36 @@ import { PicnicPageClient } from "./PicnicPageClient";
 import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Picnic Experiences — Family & Corporate Outdoor Events",
+  title:
+    "Picnic Experiences | Family & Corporate Outdoor Events in Arpora Goa",
   description:
-    "Plan open-air picnic experiences at Redwings Studio, Goa — family outings, corporate lawn events, and curated outdoor gatherings with resort setting and concierge support.",
+    "Plan open-air picnic experiences at Redwings Studio, Arpora, Goa — family outings, corporate lawn events, and curated outdoor gatherings with resort setting and concierge support.",
+  keywords: [
+    "Picnic Experience Goa",
+    "Family Outdoor Events Arpora",
+    "Corporate Lawn Events Goa",
+    "Outdoor Gathering Goa",
+    "Resort Picnic Arpora",
+    "Group Picnic North Goa",
+  ],
   alternates: { canonical: "https://redwingsstudio.com/picnic" },
   openGraph: {
-    title: "Picnic Experiences — Redwings Studio Goa",
-    description: "Family picnics, corporate lawn events, and curated outdoor gatherings at Redwings Studio, Goa.",
+    title: "Picnic Experiences — Redwings Studio Goa | Outdoor Events",
+    description:
+      "Family picnics, corporate lawn events, and curated outdoor gatherings at Redwings Studio, Arpora, Goa.",
     images: [
       {
         url: "/mountain-studio/hero-secondary.jpeg",
         width: 1200,
         height: 630,
-        alt: "Picnic Experiences at Redwings Studio Goa",
+        alt: "Picnic Experiences at Redwings Studio Goa — Arpora",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Picnic Experiences — Redwings Studio Goa",
-    description: "Family picnics and corporate lawn events in Goa.",
+    description: "Family picnics and corporate lawn events in Arpora, Goa.",
     images: ["/mountain-studio/hero-secondary.jpeg"],
   },
 };
