@@ -5,10 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { bookingEngineUrl, navLinks, MORE_LINKS } from "@/lib/data";
+import { bookingEngineUrl, navLinks } from "@/lib/data";
 import { cn, prefersReducedMotion } from "@/lib/utils";
 
-const VISIBLE_COUNT = 7;
+const VISIBLE_COUNT = 6;
 
 export function Navbar() {
   const pathname = usePathname();
@@ -17,6 +17,11 @@ export function Navbar() {
   const [moreOpen, setMoreOpen] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const moreRef = useRef<HTMLDivElement>(null);
+
+  const visibleLinks = navLinks.slice(0, VISIBLE_COUNT);
+  const moreLinks = navLinks.slice(VISIBLE_COUNT);
+  const hasMore = moreLinks.length > 0;
+  const isMoreActive = moreLinks.some((l) => pathname === l.href);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -47,7 +52,6 @@ export function Navbar() {
     );
   }, [open]);
 
-  // Close More dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
@@ -57,10 +61,6 @@ export function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
-  const visibleLinks = navLinks.slice(0, VISIBLE_COUNT);
-  const hasMore = navLinks.length > VISIBLE_COUNT;
-  const isMoreActive = MORE_LINKS.some((l) => pathname === l.href);
 
   const desktopLinks = useMemo(
     () =>
@@ -110,10 +110,9 @@ export function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-4 xl:gap-6 2xl:gap-7 lg:flex">
+        <nav className="hidden items-center gap-4 xl:gap-5 2xl:gap-6 lg:flex">
           {desktopLinks}
 
-          {/* More dropdown */}
           {hasMore && (
             <div ref={moreRef} className="relative">
               <button
@@ -141,7 +140,7 @@ export function Navbar() {
 
               {moreOpen && (
                 <div className="absolute right-0 top-full mt-2 min-w-[200px] rounded-[16px] border border-gold/15 bg-dark-2 p-2 shadow-xl">
-                  {MORE_LINKS.map((link) => {
+                  {moreLinks.map((link) => {
                     const active = pathname === link.href;
                     return (
                       <Link
@@ -183,7 +182,7 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — shows ALL links */}
       <div
         ref={overlayRef}
         className="fixed inset-0 z-40 flex min-h-screen flex-col overflow-y-auto overscroll-contain bg-dark px-6 pt-24 sm:px-8 sm:pt-28 lg:hidden"
@@ -200,21 +199,6 @@ export function Navbar() {
                 pathname === link.href && "text-gold"
               )}
               style={{ animation: open ? `fadeup 0.7s ${index * 0.08}s both` : undefined }}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-
-        {/* Mobile secondary links */}
-        <div className="mt-6 flex flex-col gap-3 border-t border-gold/10 pt-5">
-          <p className="text-[10px] uppercase tracking-[0.25em] text-ivory/35">More</p>
-          {MORE_LINKS.filter((l) => !navLinks.some((n) => n.href === l.href)).map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="text-sm text-ivory/50 transition hover:text-gold"
             >
               {link.label}
             </Link>

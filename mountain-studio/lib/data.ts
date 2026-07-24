@@ -67,15 +67,10 @@ export const navLinks: NavLink[] = [
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-];
-
-export const MORE_LINKS: NavLink[] = [
   { label: "Amenities", href: "/amenities" },
   { label: "Events", href: "/events" },
   { label: "Activities", href: "/activities" },
-  { label: "Nearby Attractions", href: "/nearby-attractions" },
-  { label: "Dining", href: "/dining" },
-  { label: "FAQ", href: "/faq" },
+  { label: "Nearby", href: "/nearby-attractions" },
 ];
 
 export const rooms: Room[] = [
