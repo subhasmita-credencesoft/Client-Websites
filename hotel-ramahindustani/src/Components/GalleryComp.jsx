@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Reveal from './Reveal'
 import { galleryImages } from '../data/siteContent'
@@ -9,6 +9,15 @@ const categories = ['All', ...new Set(galleryImages.map((img) => img.category))]
 const GalleryComp = () => {
   const [activeCategory, setActiveCategory] = useState('All')
   const [selectedImage, setSelectedImage] = useState(null)
+
+  useEffect(() => {
+    if (!selectedImage) return
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setSelectedImage(null)
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [selectedImage])
 
   const filtered = activeCategory === 'All'
     ? galleryImages
@@ -60,6 +69,8 @@ const GalleryComp = () => {
                   <img
                     src={img.src}
                     alt={img.alt}
+                    width={800}
+                    height={600}
                     loading='lazy'
                     className='w-full object-cover transition-transform duration-700 group-hover:scale-110'
                     style={{ minHeight: '200px' }}
@@ -101,7 +112,7 @@ const GalleryComp = () => {
             <motion.img
               key={selectedImage.src}
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               src={selectedImage.src}
               alt={selectedImage.alt}

@@ -3,13 +3,8 @@ import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 import { rooms } from '../data/siteContent'
 import { BOOKING_ENGINE_URL } from '../utils/booking'
-import { Wifi, Tv, Headphones, Thermometer, Snowflake, Refrigerator, Bed, Star, ChevronRight } from 'lucide-react'
-
-const featureIcons = {
-  WiFi: Wifi, 'Flat TV': Tv, 'Room Service': Headphones,
-  Geyser: Thermometer, AC: Snowflake, 'Mini Fridge': Refrigerator,
-  'Premium Bedding': Bed,
-}
+import { featureIcons } from '../config/featureIcons'
+import { Star, ChevronRight } from 'lucide-react'
 
 const RoomCards = () => (
   <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6'>
@@ -23,6 +18,8 @@ const RoomCards = () => (
             <img
               src={room.image}
               alt={`${room.name} at Hotel Rama Hindustani in Pratap Nagar Jaipur`}
+              width={1200}
+              height={800}
               loading='lazy'
               className='absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700'
             />

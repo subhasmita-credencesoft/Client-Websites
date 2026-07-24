@@ -69,7 +69,7 @@ const hotelSchema = {
   })),
   aggregateRating: testimonials.length > 0 ? {
     '@type': 'AggregateRating',
-    ratingValue: '4.6',
+    ratingValue: String((testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length).toFixed(1)),
     bestRating: '5',
     ratingCount: String(testimonials.length),
     reviewCount: String(testimonials.length),
@@ -152,14 +152,6 @@ const websiteSchema = {
   name: 'Hotel Rama Hindustani',
   url: SITE_URL,
   description: 'Budget family hotel in Pratap Nagar Jaipur near Airport, JECC, and Sanganer Railway Station.',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
-    },
-    'query-input': 'required name=search_term_string',
-  },
 }
 
 const organizationSchema = {
@@ -190,6 +182,25 @@ const organizationSchema = {
     'https://www.facebook.com/people/Hotel-Rama-Hindustani/61566712879582/',
     'https://www.tripadvisor.com/Hotel_Review-g304555-d27804757-Reviews-Hotel_Rama_Hindustani-Jaipur_Rajasthan.html',
     'https://www.google.com/maps/place/Hotel+Rama+Hindustani/@26.8004,75.7890,17z',
+  ],
+}
+
+const siteNavigationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SiteNavigationElement',
+  '@id': `${SITE_URL}/#navigation`,
+  name: ['Home', 'Rooms', 'Restaurant', 'Sightseeing', 'Services', 'Gallery', 'Blog', 'About', 'Contact', 'Book Now'],
+  url: [
+    `${SITE_URL}/`,
+    `${SITE_URL}/rooms`,
+    `${SITE_URL}/restaurant`,
+    `${SITE_URL}/tours`,
+    `${SITE_URL}/services`,
+    `${SITE_URL}/gallery`,
+    `${SITE_URL}/blog`,
+    `${SITE_URL}/about`,
+    `${SITE_URL}/contact`,
+    `${SITE_URL}/book-now`,
   ],
 }
 
@@ -724,6 +735,9 @@ const StructuredData = ({ page = 'home', room = null }) => {
       </script>
       <script type='application/ld+json'>
         {JSON.stringify(organizationSchema)}
+      </script>
+      <script type='application/ld+json'>
+        {JSON.stringify(siteNavigationSchema)}
       </script>
       <script type='application/ld+json'>
         {JSON.stringify(breadcrumb)}

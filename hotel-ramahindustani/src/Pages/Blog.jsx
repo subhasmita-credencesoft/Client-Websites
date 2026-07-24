@@ -139,7 +139,7 @@ const Blog = () => {
             {activeCategory === 'all' && !searchQuery ? 'Latest Articles' : searchQuery ? `Search Results (${filtered.length})` : `${blogCategories.find(c => c.id === activeCategory)?.label || ''} Articles`}
           </h2>
           {nonFeatured.length > 0 ? (
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' aria-live='polite'>
               {nonFeatured.map(post => (
                 <BlogCard key={post.slug} post={post} />
               ))}

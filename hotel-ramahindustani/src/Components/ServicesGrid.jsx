@@ -1,18 +1,13 @@
 import { motion } from 'framer-motion'
-import { Wifi, Car, Headphones, Shirt, Snowflake, Zap, UtensilsCrossed, ConciergeBell } from 'lucide-react'
+import { ConciergeBell } from 'lucide-react'
 import Reveal from './Reveal'
 import { services } from '../data/siteContent'
-
-const iconMap = {
-  'Free Wi-Fi': Wifi, 'Free Parking': Car, '24/7 Front Desk': Headphones,
-  'Room Service': ConciergeBell, 'Laundry Service': Shirt,
-  'Air Conditioning': Snowflake, 'Power Backup': Zap, 'Restaurant': UtensilsCrossed,
-}
+import { serviceIcons } from '../config/featureIcons'
 
 const ServicesGrid = () => (
   <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5'>
     {services.map((s, i) => {
-      const Icon = iconMap[s.name] || ConciergeBell
+      const Icon = serviceIcons[s.name] || ConciergeBell
       return (
         <Reveal key={i} delay={i * 0.04}>
           <motion.div

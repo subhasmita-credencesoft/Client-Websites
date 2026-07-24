@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Home, Phone, Calendar, ArrowLeft, AlertCircle } from 'lucide-react'
 import Seo from '../Components/Seo'
 import Reveal from '../Components/Reveal'
+import { HOTEL_PHONE_RAW } from '../config/site'
 
 const NotFound = () => {
   return (
@@ -83,7 +84,7 @@ const NotFound = () => {
                 Back to Safety
               </Link>
               <a
-                href='https://wa.me/916376707091'
+                href={`https://wa.me/${HOTEL_PHONE_RAW}`}
                 target='_blank'
                 rel='noopener noreferrer'
                 className='text-sm font-semibold text-[#c8a84e] hover:underline'

@@ -11,12 +11,14 @@ const FeatureDestination = () => (
         <Reveal direction='left'>
           <motion.div className='relative' whileHover={{ scale: 1.01 }} transition={{ duration: 0.4 }}>
             <div className='rounded-2xl overflow-hidden shadow-xl'>
-              <img
-                src={hotelImages.exteriorWide}
-                alt='Hotel Rama Hindustani building exterior and entrance in Pratap Nagar Jaipur'
-                loading='lazy'
-                className='w-full h-[380px] md:h-[480px] object-cover transition-transform duration-700 hover:scale-105'
-              />
+            <img
+              src={hotelImages.exteriorWide}
+              alt='Hotel Rama Hindustani building exterior and entrance in Pratap Nagar Jaipur'
+              width={1920}
+              height={1080}
+              loading='lazy'
+              className='w-full h-[380px] md:h-[480px] object-cover transition-transform duration-700 hover:scale-105'
+            />
             </div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -43,25 +45,42 @@ const FeatureDestination = () => (
           </p>
 
           <div className='space-y-4 mb-8'>
-            {[
-              { icon: MapPin, label: 'Location', value: contactDetails.address },
-              { icon: Phone, label: 'Phone', value: contactDetails.phone },
-              { icon: Mail, label: 'Email', value: contactDetails.email },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className='flex items-start gap-3'
-              >
-                <item.icon className='text-[#c8a84e] mt-1 shrink-0' size={18} />
-                <div>
-                  <p className='font-semibold text-sm'>{item.label}</p>
-                  <p className='text-sm text-[#6b677a]'>{item.value}</p>
-                </div>
-              </motion.div>
-            ))}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0 }}
+              className='flex items-start gap-3'
+            >
+              <MapPin className='text-[#c8a84e] mt-1 shrink-0' size={18} />
+              <div>
+                <p className='font-semibold text-sm'>Location</p>
+                <p className='text-sm text-[#6b677a]'>{contactDetails.address}</p>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className='flex items-start gap-3'
+            >
+              <Phone className='text-[#c8a84e] mt-1 shrink-0' size={18} />
+              <div>
+                <p className='font-semibold text-sm'>Phone</p>
+                <a href={`tel:${contactDetails.phone.replace(/\s/g, '')}`} className='text-sm text-[#6b677a] hover:text-[#c8a84e] transition-colors'>{contactDetails.phone}</a>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className='flex items-start gap-3'
+            >
+              <Mail className='text-[#c8a84e] mt-1 shrink-0' size={18} />
+              <div>
+                <p className='font-semibold text-sm'>Email</p>
+                <a href={`mailto:${contactDetails.email}`} className='text-sm text-[#6b677a] hover:text-[#c8a84e] transition-colors'>{contactDetails.email}</a>
+              </div>
+            </motion.div>
           </div>
 
           <div className='flex flex-wrap gap-3'>

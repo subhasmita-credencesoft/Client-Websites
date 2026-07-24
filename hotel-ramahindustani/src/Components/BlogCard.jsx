@@ -10,6 +10,8 @@ const BlogCard = ({ post, featured = false }) => {
         <img
           src={post.featuredImage}
           alt={post.imageAlt}
+          width={800}
+          height={500}
           loading='lazy'
           className={`w-full object-cover transition-transform duration-700 group-hover:scale-105 ${featured ? 'h-64 lg:h-full' : 'h-52'}`}
         />

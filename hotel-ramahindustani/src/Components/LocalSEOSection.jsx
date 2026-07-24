@@ -2,65 +2,47 @@ import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 import { Train, Plane, Building2, Landmark, ShoppingBag, Hospital } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { nearbyLandmarks as sharedLandmarks } from '../data/locations'
 
-const landmarks = [
-  {
-    name: 'Jaipur International Airport',
-    distance: '5 km',
-    duration: '10-15 min drive',
-    icon: Plane,
-    color: 'from-blue-50 to-sky-50',
-  },
-  {
-    name: 'Sanganer Railway Station',
-    distance: '3 km',
-    duration: '5-8 min drive',
-    icon: Train,
-    color: 'from-green-50 to-emerald-50',
-  },
-  {
-    name: 'JECC (Jaipur Exhibition & Convention Centre)',
-    distance: '4 km',
-    duration: '8-10 min drive',
-    icon: Building2,
-    color: 'from-purple-50 to-violet-50',
-  },
-  {
-    name: 'World Trade Park Jaipur',
-    distance: '6 km',
-    duration: '12-15 min drive',
-    icon: ShoppingBag,
-    color: 'from-amber-50 to-orange-50',
-  },
-  {
-    name: 'Jawahar Circle',
-    distance: '7 km',
-    duration: '15 min drive',
-    icon: Landmark,
-    color: 'from-rose-50 to-pink-50',
-  },
-  {
-    name: 'Chokhi Dhani',
-    distance: '8 km',
-    duration: '15-20 min drive',
-    icon: Landmark,
-    color: 'from-red-50 to-rose-50',
-  },
-  {
-    name: 'Sitapura Industrial Area / RIICO',
-    distance: '3 km',
-    duration: '5-8 min drive',
-    icon: Building2,
-    color: 'from-indigo-50 to-blue-50',
-  },
-  {
-    name: 'Mahatma Gandhi Hospital',
-    distance: '2 km',
-    duration: '5 min drive',
-    icon: Hospital,
-    color: 'from-teal-50 to-cyan-50',
-  },
-]
+const iconMap = {
+  'Jaipur International Airport': Plane,
+  'Sanganer Railway Station': Train,
+  'JECC (Jaipur Exhibition & Convention Centre)': Building2,
+  'World Trade Park Jaipur': ShoppingBag,
+  'Jawahar Circle': Landmark,
+  'Chokhi Dhani': Landmark,
+  'Sitapura Industrial Area / RIICO': Building2,
+  'Mahatma Gandhi Hospital': Hospital,
+}
+
+const colorMap = {
+  'Jaipur International Airport': 'from-blue-50 to-sky-50',
+  'Sanganer Railway Station': 'from-green-50 to-emerald-50',
+  'JECC (Jaipur Exhibition & Convention Centre)': 'from-purple-50 to-violet-50',
+  'World Trade Park Jaipur': 'from-amber-50 to-orange-50',
+  'Jawahar Circle': 'from-rose-50 to-pink-50',
+  'Chokhi Dhani': 'from-red-50 to-rose-50',
+  'Sitapura Industrial Area / RIICO': 'from-indigo-50 to-blue-50',
+  'Mahatma Gandhi Hospital': 'from-teal-50 to-cyan-50',
+}
+
+const durationMap = {
+  'Jaipur International Airport': '10-15 min drive',
+  'Sanganer Railway Station': '5-8 min drive',
+  'JECC (Jaipur Exhibition & Convention Centre)': '8-10 min drive',
+  'World Trade Park Jaipur': '12-15 min drive',
+  'Jawahar Circle': '15 min drive',
+  'Chokhi Dhani': '15-20 min drive',
+  'Sitapura Industrial Area / RIICO': '5-8 min drive',
+  'Mahatma Gandhi Hospital': '5 min drive',
+}
+
+const landmarks = sharedLandmarks.map(lm => ({
+  ...lm,
+  icon: iconMap[lm.name] || Landmark,
+  color: colorMap[lm.name] || 'from-gray-50 to-gray-50',
+  duration: durationMap[lm.name] || '',
+}))
 
 /* eslint-disable react/prop-types */
 const LocalSEOSection = ({ compact = false }) => {

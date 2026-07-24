@@ -1,39 +1,23 @@
-import { useState, useMemo } from 'react'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
 import { FaWhatsapp, FaShieldAlt, FaLock, FaCreditCard, FaCalendarAlt, FaUsers } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import Reveal from './Reveal'
-import { contactDetails } from '../data/siteContent'
-import { BOOKING_ENGINE_URL, getWhatsappShareUrl, buildBookingEngineUrl, checkAvailability, openExternalUrl } from '../utils/booking'
+import { BOOKING_ENGINE_URL } from '../utils/booking'
+import { useBookingForm } from '../hooks/useBookingForm'
 
 const BookingSection = () => {
-  const today = useMemo(() => new Date(), [])
-  const tomorrow = useMemo(() => { const d = new Date(today); d.setDate(d.getDate() + 1); return d }, [today])
-
-  const fmt = (d) => { const y = d.getFullYear(); const m = String(d.getMonth() + 1).padStart(2, '0'); const day = String(d.getDate()).padStart(2, '0'); return `${y}-${m}-${day}` }
-  const parse = (v) => { if (!v) return null; const [y, m, d] = v.split('-').map(Number); return new Date(y, m - 1, d) }
-
-  const [checkIn, setCheckIn] = useState(fmt(today))
-  const [checkOut, setCheckOut] = useState(fmt(tomorrow))
-  const [guests, setGuests] = useState('1')
-  const [status, setStatus] = useState('')
-  const [isChecking, setIsChecking] = useState(false)
-
-  const whatsAppUrl = useMemo(() => getWhatsappShareUrl(contactDetails, false), [])
-
-  const handleCheck = async () => {
-    if (!checkIn || !checkOut) { setStatus('Select both dates.'); return }
-    if (checkOut < checkIn) { setStatus('Check-out must be after check-in.'); return }
-    setIsChecking(true); setStatus('')
-    const payload = { fromDate: checkIn, toDate: checkOut, noOfRooms: 1, noOfPersons: Number(guests) }
-    try {
-      const availability = await checkAvailability(payload)
-      if (availability?.roomList?.length > 0) { setStatus('Rooms available! Redirecting...'); openExternalUrl(buildBookingEngineUrl(payload)); return }
-      setStatus('No rooms found.')
-    } catch { setStatus('Unable to check availability.') }
-    finally { setIsChecking(false) }
-  }
+  const {
+    checkIn, setCheckIn,
+    checkOut, setCheckOut,
+    guests, setGuests,
+    status,
+    isChecking,
+    whatsAppUrl,
+    handleCheck,
+    today,
+    parse,
+  } = useBookingForm()
 
   return (
     <section className='py-16 md:py-24' aria-label='Online booking form'>
@@ -54,7 +38,7 @@ const BookingSection = () => {
                   <DatePicker
                     id='booking-checkin'
                     selected={parse(checkIn)}
-                    onChange={(d) => { if (d) { const n = fmt(d); setCheckIn(n); if (checkOut < n) setCheckOut(n) }}}
+                    onChange={(d) => { if (d) { const n = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; setCheckIn(n); if (checkOut < n) setCheckOut(n) }}}
                     dateFormat='dd-MM-yyyy'
                     minDate={today}
                     wrapperClassName='w-full'
@@ -68,7 +52,7 @@ const BookingSection = () => {
                   <DatePicker
                     id='booking-checkout'
                     selected={parse(checkOut)}
-                    onChange={(d) => { if (d) setCheckOut(fmt(d)) }}
+                    onChange={(d) => { if (d) { const n = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; setCheckOut(n) }}}
                     dateFormat='dd-MM-yyyy'
                     minDate={parse(checkIn) ?? today}
                     wrapperClassName='w-full'

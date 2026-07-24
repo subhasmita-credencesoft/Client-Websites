@@ -44,10 +44,10 @@ const roomFaqs = [
 const Rooms = () => (
   <>
     <Seo
-      title='Hotel Rooms in Pratap Nagar Jaipur | Hotel Rama Hindustani'
-      description='Browse AC hotel rooms at Hotel Rama Hindustani, Pratap Nagar Jaipur — Economy, Standard, Deluxe & Superior Double Rooms with free WiFi, free parking & room service. Book direct for best rates.'
+      title='Hotel Rooms in Pratap Nagar Jaipur | Budget AC Rooms — Hotel Rama Hindustani'
+      description='Browse budget AC hotel rooms at Hotel Rama Hindustani, Pratap Nagar Jaipur — Economy, Standard, Deluxe & Superior Double Rooms with free WiFi, free parking & room service. Starting from ₹1,155/night. Book direct for best rates near Airport & JECC.'
       canonicalPath='/rooms'
-      keywords='Hotel Rooms in Pratap Nagar Jaipur, Budget AC Rooms Near Jaipur Airport, Deluxe Room Pratap Nagar, Economy Double Room Jaipur, Standard Double Room Jaipur, Superior Double Room Jaipur, Family Room Jaipur Hotel, Book Room Near JECC Jaipur'
+      keywords='Hotel Rooms in Pratap Nagar Jaipur, Budget AC Rooms Near Jaipur Airport, Deluxe Room Pratap Nagar, Economy Double Room Jaipur, Standard Double Room Jaipur, Superior Double Room Jaipur, Family Room Jaipur Hotel, Book Room Near JECC Jaipur, Budget Room Near Sanganer Railway Station, AC Room With WiFi Jaipur'
     />
     <StructuredData page='rooms' />
     <TopBanner text='Our Rooms' image={hotelImages.deluxeRoom || hotelImages.superiorRoom} heading='div' />
@@ -99,6 +99,38 @@ const Rooms = () => (
         </div>
       </div>
     </Reveal>
+
+    <section className='py-16 md:py-24'>
+      <div className='section-container text-center'>
+        <Reveal>
+          <p className='section-subtitle'>Plan Your Trip</p>
+          <h2 className='section-title'>Helpful Guides for Your Jaipur Stay</h2>
+          <p className='mt-4 text-[#6b677a] max-w-xl mx-auto leading-relaxed'>
+            Read our travel guides to plan the perfect trip to Jaipur.
+          </p>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 max-w-3xl mx-auto'>
+            <Link to='/blog/best-budget-hotel-near-jaipur-airport' className='block p-4 bg-white rounded-xl border border-[#d4b896]/15 hover:border-[#c8a84e]/30 hover:shadow-md transition-all text-left'>
+              <p className='font-semibold text-sm text-[#1a1923]'>Best Budget Hotel Near Jaipur Airport</p>
+              <p className='text-xs text-[#6b677a] mt-1'>Find the perfect affordable stay near the airport</p>
+            </Link>
+            <Link to='/blog/jaipur-travel-guide-first-time-visitors' className='block p-4 bg-white rounded-xl border border-[#d4b896]/15 hover:border-[#c8a84e]/30 hover:shadow-md transition-all text-left'>
+              <p className='font-semibold text-sm text-[#1a1923]'>Jaipur Travel Guide for First-Time Visitors</p>
+              <p className='text-xs text-[#6b677a] mt-1'>Everything you need to know before visiting Jaipur</p>
+            </Link>
+            <Link to='/blog/hotels-near-chokhi-dhani-jaipur' className='block p-4 bg-white rounded-xl border border-[#d4b896]/15 hover:border-[#c8a84e]/30 hover:shadow-md transition-all text-left'>
+              <p className='font-semibold text-sm text-[#1a1923]'>Hotels Near Chokhi Dhani Jaipur</p>
+              <p className='text-xs text-[#6b677a] mt-1'>Stay close to Jaipur&apos;s famous ethnic village</p>
+            </Link>
+          </div>
+          <div className='mt-8'>
+            <Link to='/blog' className='text-[#c8a84e] font-medium text-sm hover:underline'>
+              Read more travel guides →
+            </Link>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+
     <LocalSEOSection compact={true} />
   </>
 )

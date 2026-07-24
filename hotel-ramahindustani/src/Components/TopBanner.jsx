@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { motion } from 'framer-motion'
-import Breadcrumbs from './Breadcrumbs'
 
 const TopBanner = ({ text, image, heading: Heading = 'h1' }) => (
   <section className='relative min-h-[45vh] md:min-h-[50vh] flex items-center justify-center bg-[#1a1923] overflow-hidden'>
@@ -9,6 +8,8 @@ const TopBanner = ({ text, image, heading: Heading = 'h1' }) => (
         src={image}
         alt=''
         role='presentation'
+        width={1920}
+        height={800}
         className='absolute inset-0 w-full h-full object-cover'
         fetchPriority='high'
       />
@@ -23,9 +24,6 @@ const TopBanner = ({ text, image, heading: Heading = 'h1' }) => (
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className='relative z-10 section-container text-center w-full pt-28 md:pt-36'
     >
-      <div className='mb-6'>
-        <Breadcrumbs light />
-      </div>
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

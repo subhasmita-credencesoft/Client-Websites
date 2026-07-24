@@ -287,6 +287,8 @@ const NearbyAttractions = ({ limit }) => {
                   <img
                     src={place.image}
                     alt={place.imageAlt}
+                    width={800}
+                    height={500}
                     loading='lazy'
                     className='w-full h-full object-cover transition-transform duration-700 hover:scale-110'
                     itemProp='image'
@@ -412,6 +414,8 @@ const NearbyAttractions = ({ limit }) => {
                 <img
                   src={selectedPlace.image}
                   alt={selectedPlace.imageAlt}
+                  width={1920}
+                  height={1080}
                   className='w-full h-full object-cover'
                   onError={(e) => {
                     e.target.onerror = null;

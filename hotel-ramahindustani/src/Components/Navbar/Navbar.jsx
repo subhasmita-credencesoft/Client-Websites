@@ -5,18 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BOOKING_ENGINE_URL, getWhatsappShareUrl } from '../../utils/booking'
 import { contactDetails } from '../../data/siteContent'
-
-const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/rooms', label: 'Rooms' },
-  { to: '/restaurant', label: 'Restaurant' },
-  { to: '/tours', label: 'Sightseeing' },
-  { to: '/services', label: 'Services' },
-  { to: '/gallery', label: 'Gallery' },
-  { to: '/blog', label: 'Blog' },
-  { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' },
-]
+import { navLinks } from '../../config/navigation'
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false)
@@ -52,6 +41,8 @@ const Navbar = () => {
               <img
                 src='/hotel-ramahindustani-image/rama-hindustanilogo.avif'
                 alt='Hotel Rama Hindustani logo'
+                width={48}
+                height={48}
                 className='h-10 md:h-12 w-auto'
               />
             </Link>

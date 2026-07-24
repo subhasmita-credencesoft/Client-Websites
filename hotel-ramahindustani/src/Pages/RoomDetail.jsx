@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Seo from '../Components/Seo'
 import StructuredData from '../Components/StructuredData'
@@ -6,13 +7,14 @@ import Reveal from '../Components/Reveal'
 import LocalSEOSection from '../Components/LocalSEOSection'
 import { rooms, contactDetails } from '../data/siteContent'
 import { BOOKING_ENGINE_URL, getWhatsappShareUrl } from '../utils/booking'
-import { Wifi, Tv, Headphones, Thermometer, Snowflake, Refrigerator, Bed, Star, Users, ChevronRight } from 'lucide-react'
+import { featureIcons } from '../config/featureIcons'
+import { Star, Users, ChevronRight } from 'lucide-react'
 import { FaWhatsapp as FaWhatsappIcon } from 'react-icons/fa'
 
 import { SITE_URL } from '../config/site'
 
 const breadcrumbSchema = (room) => ({
-  '@context': 'https://schema.org',
+  '@context': 'schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
@@ -21,15 +23,9 @@ const breadcrumbSchema = (room) => ({
   ],
 })
 
-const featureIcons = {
-  WiFi: Wifi, 'Flat TV': Tv, 'Room Service': Headphones,
-  Geyser: Thermometer, AC: Snowflake, 'Mini Fridge': Refrigerator,
-  'Premium Bedding': Bed,
-}
-
 const RoomDetail = () => {
   const { slug } = useParams()
-  const room = rooms.find(r => r.slug === slug)
+  const room = useMemo(() => rooms.find(r => r.slug === slug), [slug])
 
   if (!room) {
     return (
@@ -90,6 +86,8 @@ const RoomDetail = () => {
                   <img
                     src={room.image}
                     alt={`${room.name} at Hotel Rama Hindustani in Pratap Nagar Jaipur`}
+                    width={1200}
+                    height={800}
                     className='w-full h-72 md:h-96 object-cover'
                   />
                 </div>
@@ -100,6 +98,8 @@ const RoomDetail = () => {
                         <img
                           src={img}
                           alt={`${room.name} interior view ${i + 2} at Hotel Rama Hindustani Pratap Nagar Jaipur`}
+                          width={800}
+                          height={400}
                           loading='lazy'
                           className='w-full h-20 md:h-28 object-cover hover:scale-105 transition-transform duration-500'
                         />
@@ -174,7 +174,7 @@ const RoomDetail = () => {
               <Reveal key={r.slug}>
                 <Link to={`/rooms/${r.slug}`} className='group block bg-white rounded-2xl overflow-hidden border border-[#d4b896]/15 shadow-sm hover:border-[#c8a84e]/30 hover:shadow-lg transition-all duration-300'>
                   <div className='h-44 overflow-hidden'>
-                    <img src={r.image} alt={r.name} loading='lazy' className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-700' />
+                    <img src={r.image} alt={r.name} width={800} height={500} loading='lazy' className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-700' />
                   </div>
                   <div className='p-5'>
                     <h3 className='font-display font-bold text-[#1a1923] group-hover:text-[#c8a84e] transition-colors mb-1'>{r.name}</h3>

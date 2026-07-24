@@ -1,68 +1,35 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaWhatsapp, FaChevronDown, FaCalendarAlt, FaUsers } from 'react-icons/fa'
-import { hotelImages, contactDetails } from '../data/siteContent'
-import { buildBookingEngineUrl, checkAvailability, openExternalUrl, getWhatsappShareUrl, BOOKING_ENGINE_URL } from '../utils/booking'
+import { hotelImages } from '../data/siteContent'
+import { BOOKING_ENGINE_URL } from '../utils/booking'
+import { useBookingForm } from '../hooks/useBookingForm'
 
 const Hero = () => {
-  const today = useMemo(() => new Date(), [])
-  const tomorrow = useMemo(() => {
-    const d = new Date(today)
-    d.setDate(d.getDate() + 1)
-    return d
-  }, [today])
+  const {
+    checkIn, setCheckIn,
+    checkOut, setCheckOut,
+    guests, setGuests,
+    status,
+    isChecking,
+    whatsAppUrl,
+    handleCheck,
+    today,
+    parse,
+  } = useBookingForm()
 
-  const formatDate = (d) => {
-    const y = d.getFullYear()
-    const m = String(d.getMonth() + 1).padStart(2, '0')
-    const day = String(d.getDate()).padStart(2, '0')
-    return `${y}-${m}-${day}`
-  }
-
-  const parseDate = (v) => {
-    if (!v) return null
-    const [y, m, d] = v.split('-').map(Number)
-    return new Date(y, m - 1, d)
-  }
-
-  const [checkIn, setCheckIn] = useState(formatDate(today))
-  const [checkOut, setCheckOut] = useState(formatDate(tomorrow))
-  const [guests, setGuests] = useState('1')
-  const [status, setStatus] = useState('')
-  const [isChecking, setIsChecking] = useState(false)
   const [showBooking, setShowBooking] = useState(false)
-
-  const whatsAppUrl = useMemo(() => getWhatsappShareUrl(contactDetails, false), [])
-
-  const handleCheck = useCallback(async () => {
-    if (!checkIn || !checkOut) { setStatus('Select both dates.'); return }
-    if (checkOut < checkIn) { setStatus('Check-out must be after check-in.'); return }
-    setIsChecking(true)
-    setStatus('')
-    const payload = { fromDate: checkIn, toDate: checkOut, noOfRooms: 1, noOfPersons: Number(guests) }
-    try {
-      const availability = await checkAvailability(payload)
-      if (availability?.roomList?.length > 0) {
-        setStatus('Rooms available! Opening booking engine.')
-        openExternalUrl(buildBookingEngineUrl(payload))
-        return
-      }
-      setStatus('No rooms found for selected dates.')
-    } catch {
-      setStatus('Unable to check availability.')
-    } finally {
-      setIsChecking(false)
-    }
-  }, [checkIn, checkOut, guests])
 
   return (
     <section className='relative min-h-screen flex items-center justify-center bg-[#1a1923]'>
       <img
         src={hotelImages.frontJpg}
         alt='Hotel Rama Hindustani exterior building in Pratap Nagar Jaipur — budget hotel near airport'
+        width={1920}
+        height={1080}
         className='absolute inset-0 w-full h-full object-cover'
         fetchPriority='high'
       />
@@ -156,8 +123,8 @@ const Hero = () => {
                     </label>
                     <DatePicker
                       id='hero-checkin'
-                      selected={parseDate(checkIn)}
-                      onChange={(d) => { if (d) { const n = formatDate(d); setCheckIn(n); if (checkOut < n) setCheckOut(n) }}}
+                      selected={parse(checkIn)}
+                      onChange={(d) => { if (d) { const n = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; setCheckIn(n); if (checkOut < n) setCheckOut(n) }}}
                       dateFormat='dd-MM-yyyy'
                       minDate={today}
                       wrapperClassName='w-full'
@@ -170,10 +137,10 @@ const Hero = () => {
                     </label>
                     <DatePicker
                       id='hero-checkout'
-                      selected={parseDate(checkOut)}
-                      onChange={(d) => { if (d) setCheckOut(formatDate(d)) }}
+                      selected={parse(checkOut)}
+                      onChange={(d) => { if (d) { const n = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; setCheckOut(n) }}}
                       dateFormat='dd-MM-yyyy'
-                      minDate={parseDate(checkIn) ?? today}
+                      minDate={parse(checkIn) ?? today}
                       wrapperClassName='w-full'
                       className='w-full border border-[#d4b896]/30 rounded-xl bg-[#fdf8f0] px-3 h-12 text-sm cursor-pointer focus:outline-none focus:border-[#c8a84e] focus:ring-1 focus:ring-[#c8a84e]/20'
                     />

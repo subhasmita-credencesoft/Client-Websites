@@ -4,6 +4,8 @@ import { Mail, Phone, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { contactDetails } from '../data/siteContent'
 import { getWhatsappShareUrl } from '../utils/booking'
+import { footerLinks } from '../config/navigation'
+import { nearbyLandmarks } from '../data/locations'
 
 const Footer = () => {
   const whatsAppUrl = getWhatsappShareUrl(contactDetails, false)
@@ -19,6 +21,8 @@ const Footer = () => {
             <img
               src='/hotel-ramahindustani-image/rama-hindustanilogo.avif'
               alt='Hotel Rama Hindustani - Best Budget Hotel in Pratap Nagar Jaipur'
+              width={120}
+              height={48}
               loading='lazy'
               className='h-12 w-auto mb-5'
             />
@@ -34,18 +38,7 @@ const Footer = () => {
             </h4>
 
             <ul className='space-y-3'>
-              {[
-                { to: '/', label: 'Home' },
-                { to: '/rooms', label: 'Rooms' },
-                { to: '/restaurant', label: 'Restaurant' },
-                { to: '/tours', label: 'Sightseeing' },
-                { to: '/services', label: 'Services' },
-                { to: '/gallery', label: 'Gallery' },
-                { to: '/blog', label: 'Blog' },
-                { to: '/about', label: 'About' },
-                { to: '/contact', label: 'Contact' },
-                { to: '/book-now', label: 'Book Now' },
-              ].map((link) => (
+              {footerLinks.map((link) => (
                 <li key={link.to}>
                   <Link
                     to={link.to}
@@ -64,12 +57,9 @@ const Footer = () => {
             </h4>
 
             <ul className='space-y-2 text-sm text-white/60'>
-              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>Jaipur International Airport (5 km)</span></li>
-              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>Sanganer Railway Station (3 km)</span></li>
-              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>JECC Convention Centre (4 km)</span></li>
-              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>World Trade Park (6 km)</span></li>
-              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>Chokhi Dhani (8 km)</span></li>
-              <li><span className='hover:text-[#c8a84e] transition-colors cursor-default'>Sitapura / RIICO (3 km)</span></li>
+              {nearbyLandmarks.map((lm) => (
+                <li key={lm.name}><span className='hover:text-[#c8a84e] transition-colors cursor-default'>{lm.name} ({lm.distance})</span></li>
+              ))}
             </ul>
           </div>
 
@@ -81,7 +71,7 @@ const Footer = () => {
             <ul className='space-y-3 text-sm text-white/70'>
               <li className='flex items-start gap-2.5'>
                 <MapPin size={14} className='text-[#c8a84e] mt-0.5 shrink-0' />
-                <span>Indian Bank, 34-B1-B2, Haldighati Marg, Tonk Rd, Sector 5, Pratap Nagar, Jaipur, Rajasthan 302033</span>
+                <span>{contactDetails.address}</span>
               </li>
 
               <li className='flex items-center gap-2.5'>

@@ -157,6 +157,21 @@ const BlogPost = () => {
                 <ArrowLeft size={14} /> Back to Blog
               </Link>
             </div>
+
+            <div className='mt-10 p-6 bg-[#f5f0eb] rounded-2xl border border-[#d4b896]/20'>
+              <h3 className='font-display font-bold text-[#1a1923] mb-3'>Plan Your Jaipur Stay</h3>
+              <p className='text-[#6b677a] text-sm leading-relaxed mb-4'>
+                Looking for a budget hotel near Jaipur Airport? Hotel Rama Hindustani offers clean AC rooms from ₹1,155/night with free WiFi, free parking, and an on-site vegetarian restaurant.
+              </p>
+              <div className='flex flex-wrap gap-2'>
+                <Link to='/rooms' className='text-xs font-medium text-[#c8a84e] bg-white px-3 py-1.5 rounded-full border border-[#c8a84e]/20 hover:bg-[#c8a84e] hover:text-white transition-all'>View Rooms</Link>
+                <Link to='/book-now' className='text-xs font-medium text-[#c8a84e] bg-white px-3 py-1.5 rounded-full border border-[#c8a84e]/20 hover:bg-[#c8a84e] hover:text-white transition-all'>Book Now</Link>
+                <Link to='/restaurant' className='text-xs font-medium text-[#c8a84e] bg-white px-3 py-1.5 rounded-full border border-[#c8a84e]/20 hover:bg-[#c8a84e] hover:text-white transition-all'>Restaurant</Link>
+                <Link to='/tours' className='text-xs font-medium text-[#c8a84e] bg-white px-3 py-1.5 rounded-full border border-[#c8a84e]/20 hover:bg-[#c8a84e] hover:text-white transition-all'>Sightseeing</Link>
+                <Link to='/contact' className='text-xs font-medium text-[#c8a84e] bg-white px-3 py-1.5 rounded-full border border-[#c8a84e]/20 hover:bg-[#c8a84e] hover:text-white transition-all'>Contact Us</Link>
+                <Link to='/services' className='text-xs font-medium text-[#c8a84e] bg-white px-3 py-1.5 rounded-full border border-[#c8a84e]/20 hover:bg-[#c8a84e] hover:text-white transition-all'>Amenities</Link>
+              </div>
+            </div>
           </div>
         </div>
       </article>

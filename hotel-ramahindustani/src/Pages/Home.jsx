@@ -1,8 +1,10 @@
 import { Suspense, lazy } from 'react'
+import { Link } from 'react-router-dom'
 import Seo from '../Components/Seo'
 import StructuredData from '../Components/StructuredData'
 import FAQSection from '../Components/FAQSection'
 import LocalSEOSection from '../Components/LocalSEOSection'
+import Reveal from '../Components/Reveal'
 
 const Hero = lazy(() => import('../Components/Hero'))
 const Features = lazy(() => import('../Components/Features'))
@@ -66,6 +68,27 @@ const Home = () => (
         subtitle='Everything you need to know about our budget family hotel in Pratap Nagar Jaipur.'
         items={homeFaqs}
       />
+      <section className='py-16 md:py-24 bg-white/50'>
+        <div className='section-container'>
+          <Reveal className='text-center mb-12'>
+            <p className='section-subtitle'>Explore Our Hotel</p>
+            <h2 className='section-title'>Plan Your Perfect Jaipur Stay</h2>
+          </Reveal>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto'>
+            {[
+              { to: '/rooms', title: 'Our Rooms', desc: 'Economy, Standard, Deluxe & Superior rooms from ₹1,155/night' },
+              { to: '/restaurant', title: 'Rama Rasoi', desc: 'Pure vegetarian restaurant with Indian thali & homely food' },
+              { to: '/tours', title: 'Sightseeing', desc: 'Explore Chokhi Dhani, Hawa Mahal, Amer Fort & more' },
+              { to: '/blog', title: 'Travel Guides', desc: 'Jaipur travel tips, hotel guides & local attraction reviews' },
+            ].map((item) => (
+              <Link key={item.to} to={item.to} className='block p-5 bg-white rounded-xl border border-[#d4b896]/15 hover:border-[#c8a84e]/30 hover:shadow-md transition-all text-left group'>
+                <p className='font-display font-bold text-[#1a1923] group-hover:text-[#c8a84e] transition-colors'>{item.title}</p>
+                <p className='text-[#6b677a] text-sm mt-1.5 leading-relaxed'>{item.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
       <Contact />
     </Suspense>
   </>

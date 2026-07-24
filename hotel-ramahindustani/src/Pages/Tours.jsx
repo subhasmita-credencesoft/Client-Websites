@@ -7,8 +7,9 @@ import TopBanner from '../Components/TopBanner'
 import Breadcrumbs from '../Components/Breadcrumbs'
 import Reveal from '../Components/Reveal'
 import NearbyAttractions from '../Components/NearbyAttractions'
-import { hotelImages } from '../data/siteContent'
+import { hotelImages, contactDetails } from '../data/siteContent'
 import { MapPin, Phone, Clock } from 'lucide-react'
+import { getWhatsappShareUrl } from '../utils/booking'
 
 const tourFaqs = [
   {
@@ -134,7 +135,7 @@ const Tours = () => {
             </div>
             <div className='flex flex-wrap justify-center gap-3'>
               <a
-                href='https://wa.me/916376707091?text=Hi%2C%20I%20need%20help%20with%20Jaipur%20sightseeing%20tours'
+                href={getWhatsappShareUrl(contactDetails, 'Hi%2C%20I%20need%20help%20with%20Jaipur%20sightseeing%20tours')}
                 target='_blank'
                 rel='noopener noreferrer'
                 className='btn-primary'

@@ -467,18 +467,3 @@ export function getCategoryLabel(categoryId) {
   const cat = blogCategories.find(c => c.id === categoryId)
   return cat ? cat.label : categoryId
 }
-
-export function getBlogBreadcrumbs(postSlug) {
-  if (!postSlug) {
-    return [
-      { name: 'Home', path: '/' },
-      { name: 'Blog', path: '/blog' },
-    ]
-  }
-  const post = getPostBySlug(postSlug)
-  return [
-    { name: 'Home', path: '/' },
-    { name: 'Blog', path: '/blog' },
-    { name: post ? post.title : postSlug.replace(/-/g, ' '), path: `/blog/${postSlug}` },
-  ]
-}

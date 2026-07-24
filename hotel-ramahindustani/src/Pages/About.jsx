@@ -25,12 +25,14 @@ const About = () => (
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
           <Reveal direction='left'>
             <motion.div className='rounded-2xl overflow-hidden shadow-xl' whileHover={{ scale: 1.01 }}>
-              <img
-                src={hotelImages.frontAlt}
-                alt='Hotel Rama Hindustani building exterior view in Pratap Nagar Jaipur'
-                loading='lazy'
-                className='w-full h-[400px] md:h-[500px] object-cover transition-transform duration-700 hover:scale-105'
-              />
+            <img
+              src={hotelImages.frontAlt}
+              alt='Hotel Rama Hindustani building exterior view in Pratap Nagar Jaipur'
+              width={1920}
+              height={1080}
+              loading='lazy'
+              className='w-full h-[400px] md:h-[500px] object-cover transition-transform duration-700 hover:scale-105'
+            />
             </motion.div>
           </Reveal>
 
@@ -84,12 +86,13 @@ const About = () => (
         <p className='section-subtitle'>Explore More</p>
         <h2 className='section-title'>Discover What We Offer</h2>
         <p className='mt-4 text-[#6b677a] max-w-xl mx-auto leading-relaxed'>
-          From comfortable <Link to='/rooms' className='text-[#c8a84e] hover:underline font-medium'>rooms</Link> to delicious meals at <Link to='/restaurant' className='text-[#c8a84e] hover:underline font-medium'>Rama Rasoi</Link>, we ensure a memorable stay. Check our <Link to='/services' className='text-[#c8a84e] hover:underline font-medium'>amenities</Link> or{' '}
+          From comfortable <Link to='/rooms' className='text-[#c8a84e] hover:underline font-medium'>rooms</Link> to delicious meals at <Link to='/restaurant' className='text-[#c8a84e] hover:underline font-medium'>Rama Rasoi</Link>, we ensure a memorable stay. Explore <Link to='/tours' className='text-[#c8a84e] hover:underline font-medium'>nearby tourist places</Link>, check our <Link to='/services' className='text-[#c8a84e] hover:underline font-medium'>amenities</Link>, or{' '}
           <Link to='/book-now' className='text-[#c8a84e] hover:underline font-medium'>book directly</Link> for the best rates.
         </p>
         <div className='flex flex-wrap justify-center gap-3 mt-8'>
           <Link to='/rooms' className='btn-secondary'>Explore Rooms</Link>
           <Link to='/restaurant' className='btn-secondary !text-[#1a1923] !border-[#d4b896]'>Visit Rama Rasoi</Link>
+          <Link to='/tours' className='btn-secondary'>Sightseeing Guide</Link>
           <Link to='/book-now' className='btn-primary'>Book Now</Link>
         </div>
       </div>

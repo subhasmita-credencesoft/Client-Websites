@@ -39,7 +39,7 @@ const Services = () => {
             <p className='section-subtitle'>Ready to Stay?</p>
             <h2 className='section-title'>Experience Our Amenities Firsthand</h2>
             <p className='mt-4 text-[#6b677a] max-w-xl mx-auto leading-relaxed'>
-              Book your room at Hotel Rama Hindustani and enjoy all our amenities. We also offer delicious vegetarian meals at <Link to='/restaurant' className='text-[#c8a84e] hover:underline font-medium'>Rama Rasoi</Link>.
+              Book your room at Hotel Rama Hindustani and enjoy all our amenities. We also offer delicious vegetarian meals at <Link to='/restaurant' className='text-[#c8a84e] hover:underline font-medium'>Rama Rasoi</Link> and comfortable rooms starting from ₹1,155/night. Learn more <Link to='/about' className='text-[#c8a84e] hover:underline font-medium'>about us</Link>.
             </p>
             <div className='flex flex-wrap justify-center gap-3 mt-8'>
               <Link to='/rooms' className='btn-secondary'>View Rooms</Link>

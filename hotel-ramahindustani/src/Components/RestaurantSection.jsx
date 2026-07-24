@@ -48,6 +48,8 @@ const RestaurantSection = () => (
             <img
               src={hotelImages.restaurant}
               alt='Rama Rasoi vegetarian restaurant at Hotel Rama Hindustani in Pratap Nagar Jaipur'
+              width={1920}
+              height={1080}
               loading='lazy'
               className='w-full h-[400px] md:h-[480px] object-cover transition-transform duration-700 hover:scale-105'
             />

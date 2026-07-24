@@ -26,7 +26,7 @@ const Gallery = () => {
           <p className='section-subtitle'>Book Your Stay</p>
           <h2 className='section-title'>See It in Person</h2>
           <p className='mt-4 text-[#6b677a] max-w-xl mx-auto leading-relaxed'>
-            Inspired by what you see? Browse our <Link to='/rooms' className='text-[#c8a84e] hover:underline font-medium'>rooms and suites</Link> or book directly for the best rates.
+            Inspired by what you see? Browse our <Link to='/rooms' className='text-[#c8a84e] hover:underline font-medium'>rooms and suites</Link> or book directly for the best rates. You can also explore <Link to='/restaurant' className='text-[#c8a84e] hover:underline font-medium'>Rama Rasoi restaurant</Link> and <Link to='/tours' className='text-[#c8a84e] hover:underline font-medium'>nearby tourist places</Link>.
           </p>
           <div className='flex flex-wrap justify-center gap-3 mt-8'>
             <Link to='/rooms' className='btn-secondary'>View Rooms</Link>
