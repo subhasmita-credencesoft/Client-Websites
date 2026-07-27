@@ -42,7 +42,7 @@ const experiences = [
 // ✅ No `declare module "gsap/ScrollTrigger"` block needed — GSAP v3.11+ ships its own types.
 gsap.registerPlugin(ScrollTrigger);
 
-const BOOKING_ENGINE_URL = "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true";
+const BOOKING_ENGINE_URL = "https://bookone.io/UK-s-Resort-Khopoli";
 
 export default function ExperiencesExplore() {
   const sectionRef = useRef<HTMLElement | null>(null);

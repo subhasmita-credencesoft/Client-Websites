@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { buildBookingEngineUrl } from "../../lib/booking/bookingEngine";
 
-const BOOKING_BASE_URL = "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true&checkinDay=10&checkinMonth=3&checkinYear=2026&nights=1&numGuests=2&numAdults=2&Children=0&rooms=1";
+const BOOKING_BASE_URL = "https://bookone.io/UK-s-Resort-Khopoli?checkinDay=10&checkinMonth=3&checkinYear=2026&nights=1&numGuests=2&numAdults=2&Children=0&rooms=1";
 gsap.registerPlugin(ScrollTrigger);
 
 type AvailabilityCardProps = {

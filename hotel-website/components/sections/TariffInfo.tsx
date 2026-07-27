@@ -31,7 +31,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BOOKING_ENGINE_URL = "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true";
+const BOOKING_ENGINE_URL = "https://bookone.io/UK-s-Resort-Khopoli";
 
 const dayPicnicFeatureCards = [
   {

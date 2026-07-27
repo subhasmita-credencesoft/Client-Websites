@@ -739,7 +739,7 @@ export default function PicnicDetailSection() {
           </FadeUp>
           <FadeUp delay={150} className="flex flex-wrap justify-center gap-4 pt-4">
             <Link
-              href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
+              href="https://bookone.io/UK-s-Resort-Khopoli"
               target="_blank"
               style={{ color: "#ffffff" }}
               className="bg-accent hover:bg-accent/90 !text-white font-bold uppercase tracking-wider text-xs px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"

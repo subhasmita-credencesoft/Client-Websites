@@ -299,7 +299,7 @@ export default function ContactAttractions() {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a
-                href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
+                href="https://bookone.io/UK-s-Resort-Khopoli"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex h-11 items-center justify-center rounded-full bg-[#c49a3c] px-6 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#143b47] transition hover:bg-[#d1ab58]"

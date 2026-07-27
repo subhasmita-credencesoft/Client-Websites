@@ -327,7 +327,7 @@ export const picnicLandingPageContent: BookingLandingPageContent = {
     "https://wa.me/919822012343?text=Hi%2C%20I%20want%20to%20plan%20a%20picnic%20day%20at%20UK%27s%20Resort.%20Please%20share%20package%20details.",
   secondaryBookingButtonLabel: "Book Online",
   secondaryBookingButtonHref:
-    "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true",
+    "https://bookone.io/UK-s-Resort-Khopoli",
   showIntroButton: false,
   showAtmosphereSection: false,
   showSummarySection: false,

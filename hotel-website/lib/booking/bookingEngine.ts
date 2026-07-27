@@ -28,7 +28,7 @@ export function buildBookingEngineUrl({
   children = 0,
   rooms = 1,
 }: BookingEngineParams) {
-  const safeBaseUrl = baseUrl || "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true";
+  const safeBaseUrl = baseUrl || "https://bookone.io/UK-s-Resort-Khopoli";
   const cleanBaseUrl = safeBaseUrl.split("?")[0];
   const checkInOnly = new Date(checkIn.getFullYear(), checkIn.getMonth(), checkIn.getDate());
   const checkOutOnly = new Date(checkOut.getFullYear(), checkOut.getMonth(), checkOut.getDate());
@@ -38,7 +38,7 @@ export function buildBookingEngineUrl({
   const checkOutIso = `${checkOutOnly.getFullYear()}-${String(checkOutOnly.getMonth() + 1).padStart(2, "0")}-${String(checkOutOnly.getDate()).padStart(2, "0")}`;
 
   const query = [
-    `bookingEngine=true`,
+
     `checkinDay=${checkIn.getDate()}`,
     `checkinMonth=${checkIn.getMonth() + 1}`,
     `checkinYear=${checkIn.getFullYear()}`,

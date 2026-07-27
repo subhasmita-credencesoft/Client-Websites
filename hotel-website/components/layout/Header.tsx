@@ -344,7 +344,7 @@ export default function Header() {
 
             {/* Book CTA */}
             <Link
-              href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true"
+              href="https://bookone.io/UK-s-Resort-Khopoli"
               className="hdr-book-btn"
             >
               <span className="hidden sm:inline">Book Your Stay</span>
@@ -480,7 +480,7 @@ export default function Header() {
                     {whatsappPhone}
                   </a>
                   <span className="hidden h-3 w-px bg-white/18 lg:block" aria-hidden="true" />
-                  <Link href="https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true" onClick={closeMenu}
+                  <Link href="https://bookone.io/UK-s-Resort-Khopoli" onClick={closeMenu}
                     className="hdr-book-btn hdr-book-btn--outline">
                     <span className="hidden sm:inline">Book your stay</span>
                     <span className="sm:hidden">Book</span>

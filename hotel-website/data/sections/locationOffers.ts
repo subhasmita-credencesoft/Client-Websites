@@ -14,7 +14,7 @@ export const LOCATION_OFFER_SLIDES: LocationOfferSlide[] = [
     label: "Early Booking",
     title: "  Reservations",
     description: "Plan ahead and enjoy exclusive savings when you book your stay in advance.",
-    href: "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true",
+    href: "https://bookone.io/UK-s-Resort-Khopoli",
   },
   {
     id: "offer-2",
@@ -22,6 +22,6 @@ export const LOCATION_OFFER_SLIDES: LocationOfferSlide[] = [
     label: "Summer Escape",
     title: "Complimentary Breakfast",
     description: "Start your mornings with a freshly prepared breakfast included in your stay.",
-    href: "https://bookone.io/UK-s-Resort-Khopoli?bookingEngine=true",
+    href: "https://bookone.io/UK-s-Resort-Khopoli",
   },
 ];
