@@ -14,7 +14,6 @@ const Seo = ({
   nofollow = false,
   publishedTime,
   modifiedTime,
-  keywords,
 }) => {
   const fullTitle = title.includes('Hotel Rama Hindustani') ? title : `${title} | Hotel Rama Hindustani`
   const canonical = `${SITE_URL}${canonicalPath}`
@@ -26,7 +25,6 @@ const Seo = ({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name='description' content={description} />
-      {keywords && <meta name='keywords' content={keywords} />}
       <link rel='canonical' href={canonical} />
       <meta name='robots' content={robots} />
       <meta name='googlebot' content={robots} />

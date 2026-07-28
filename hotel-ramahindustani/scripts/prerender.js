@@ -11,6 +11,10 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { rooms, services, testimonials, contactDetails, storyBlocks, homepageHighlights } from '../src/data/siteContent.js'
+import { blogPosts } from '../src/data/blogContent.js'
+import { nearbyLandmarks } from '../src/data/locations.js'
+
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST = resolve(__dirname, '..', 'dist')
 const SITE_URL = 'https://www.hotelramahindustani.com'
@@ -292,6 +296,211 @@ function getBreadcrumbSchema(routePath) {
   return { '@context': 'schema.org', '@type': 'BreadcrumbList', itemListElement: items }
 }
 
+function esc(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+function getPageContent(route) {
+  switch (route.schema) {
+    case 'home':
+      return [
+        '<h1>Hotel Rama Hindustani — Budget Hotel in Pratap Nagar, Jaipur</h1>',
+        `<p>${esc(contactDetails.shortDescription)}</p>`,
+        '<h2>Why Choose Hotel Rama Hindustani?</h2>',
+        '<ul>',
+        ...homepageHighlights.map(h => `<li>${esc(h)}</li>`),
+        '</ul>',
+        '<h2>Our Rooms</h2>',
+        ...rooms.map(r => [
+          `<h3>${esc(r.name)} — ₹${esc(r.price)}/night</h3>`,
+          `<p>${esc(r.description)}</p>`,
+          `<p><strong>Features:</strong> ${r.features.join(', ')}</p>`,
+          `<p><strong>Capacity:</strong> ${r.minimumOccupancy}–${r.maximumOccupancy} guests</p>`,
+        ]).flat(),
+        '<h2>Services & Amenities</h2>',
+        '<ul>',
+        ...services.map(s => `<li><strong>${esc(s.name)}</strong>: ${esc(s.description)}</li>`),
+        '</ul>',
+        '<h2>What Our Guests Say</h2>',
+        ...testimonials.map(t => [
+          `<p>"${esc(t.text)}" — ${esc(t.name)} (${esc(t.location)}) ⭐${t.rating}/5</p>`,
+        ]).flat(),
+        '<h2>Contact Us</h2>',
+        `<p><strong>Address:</strong> ${esc(contactDetails.address)}</p>`,
+        `<p><strong>Phone:</strong> ${esc(contactDetails.phone)}</p>`,
+        `<p><strong>Email:</strong> ${esc(contactDetails.email)}</p>`,
+      ].join('\n        ')
+
+    case 'rooms':
+      return [
+        '<h1>Hotel Rooms in Pratap Nagar Jaipur — Budget AC Rooms</h1>',
+        `<p>${esc(route.description)}</p>`,
+        ...rooms.map(r => [
+          `<h2>${esc(r.name)} — ₹${esc(r.price)}/night</h2>`,
+          `<p>${esc(r.description)}</p>`,
+          `<p><strong>Features:</strong> ${r.features.join(', ')}</p>`,
+          `<p><strong>Capacity:</strong> ${r.minimumOccupancy}–${r.maximumOccupancy} guests</p>`,
+        ]).flat(),
+      ].join('\n        ')
+
+    case 'room-detail': {
+      const room = rooms.find(r => r.slug === route.roomSlug)
+      if (!room) return `<p>${esc(route.description)}</p>`
+      return [
+        `<h1>${esc(room.name)} — ₹${esc(room.price)}/night</h1>`,
+        `<p>${esc(room.description)}</p>`,
+        '<h2>Room Features</h2>',
+        '<ul>',
+        ...room.features.map(f => `<li>${esc(f)}</li>`),
+        '</ul>',
+        `<p><strong>Capacity:</strong> ${room.minimumOccupancy}–${room.maximumOccupancy} guests</p>`,
+        `<p><strong>Price: ₹${esc(room.price)} per night</strong></p>`,
+        '<h2>Book This Room</h2>',
+        `<p>Contact us at ${esc(contactDetails.phone)} or WhatsApp ${esc(contactDetails.whatsApp)} to book the ${esc(room.name)}. Located at ${esc(contactDetails.address)}.</p>`,
+      ].join('\n        ')
+    }
+
+    case 'restaurant':
+      return [
+        '<h1>Rama Rasoi — Pure Vegetarian Restaurant in Pratap Nagar Jaipur</h1>',
+        `<p>${esc(route.description)}</p>`,
+        '<p>Rama Rasoi, the on-site restaurant at Hotel Rama Hindustani, serves authentic Indian cuisine for breakfast, lunch, and dinner. Our menu features traditional Indian thali, North Indian delicacies, and homely meals prepared with fresh ingredients. The restaurant is open to both hotel guests and outside visitors. Located near JECC and Jaipur Airport, it is a popular dining destination in Pratap Nagar.</p>',
+        `<p><strong>Address:</strong> ${esc(contactDetails.address)}</p>`,
+        `<p><strong>Phone:</strong> ${esc(contactDetails.phone)}</p>`,
+      ].join('\n        ')
+
+    case 'services':
+      return [
+        '<h1>Hotel Services & Amenities in Pratap Nagar Jaipur</h1>',
+        `<p>${esc(route.description)}</p>`,
+        ...services.map(s => [
+          `<h2>${esc(s.name)}</h2>`,
+          `<p>${esc(s.description)}</p>`,
+        ]).flat(),
+      ].join('\n        ')
+
+    case 'gallery':
+      return [
+        '<h1>Hotel Rama Hindustani Photo Gallery</h1>',
+        `<p>${esc(route.description)}</p>`,
+        '<p>Browse our photo gallery showcasing rooms — Economy Double Room, Standard Double Room, Deluxe Room, and Superior Double Room — along with our restaurant Rama Rasoi, reception area, rooftop event venue, gym, fun zone, and exterior views. All rooms feature modern amenities including AC, WiFi, flat-screen TV, and attached bathrooms.</p>',
+      ].join('\n        ')
+
+    case 'about':
+      return [
+        '<h1>About Hotel Rama Hindustani — Budget Family Hotel in Pratap Nagar Jaipur</h1>',
+        `<p>${esc(route.description)}</p>`,
+        ...storyBlocks.map(s => [
+          `<h2>${esc(s.title)}</h2>`,
+          `<p>${esc(s.text)}</p>`,
+        ]).flat(),
+        `<p><strong>Manager:</strong> ${esc(contactDetails.manager)}</p>`,
+        `<p><strong>Address:</strong> ${esc(contactDetails.address)}</p>`,
+      ].join('\n        ')
+
+    case 'contact':
+      return [
+        '<h1>Contact Hotel Rama Hindustani — Phone, WhatsApp & Address</h1>',
+        `<p>${esc(route.description)}</p>`,
+        '<h2>Contact Information</h2>',
+        `<p><strong>Address:</strong> ${esc(contactDetails.address)}</p>`,
+        `<p><strong>Phone:</strong> ${esc(contactDetails.phone)}</p>`,
+        `<p><strong>WhatsApp:</strong> ${esc(contactDetails.whatsApp)}</p>`,
+        `<p><strong>Email:</strong> ${esc(contactDetails.email)}</p>`,
+        `<p><strong>Manager:</strong> ${esc(contactDetails.manager)}</p>`,
+        '<h2>Location</h2>',
+        '<p>Located in Pratap Nagar, Jaipur, near Sanganer Railway Station (3 km), Jaipur International Airport (5 km), and JECC Convention Centre (4 km). Easily accessible via Tonk Road.</p>',
+      ].join('\n        ')
+
+    case 'tours':
+      return [
+        '<h1>Tourist Places Near Hotel Rama Hindustani</h1>',
+        `<p>${esc(route.description)}</p>`,
+        '<h2>Nearby Landmarks & Attractions</h2>',
+        '<ul>',
+        ...nearbyLandmarks.map(l => `<li><strong>${esc(l.name)}</strong> — ${esc(l.distance)} (${esc(l.driveTime)} drive)</li>`),
+        '</ul>',
+        '<h2>Major Attractions in Jaipur</h2>',
+        '<ul>',
+        '<li><strong>Amber Fort (Amer Fort)</strong> — 13 km, magnificent hilltop fort with light and sound show</li>',
+        '<li><strong>Hawa Mahal (Palace of Winds)</strong> — 12 km, iconic five-story facade with 953 windows</li>',
+        '<li><strong>City Palace</strong> — 12 km, former royal residence now a museum</li>',
+        '<li><strong>Jantar Mantar</strong> — 12 km, UNESCO astronomical observatory</li>',
+        '<li><strong>Jal Mahal</strong> — 13 km, palace floating on Man Sagar Lake</li>',
+        '<li><strong>Chokhi Dhani</strong> — 8 km, ethnic village resort with Rajasthani culture</li>',
+        '</ul>',
+      ].join('\n        ')
+
+    case 'bookNow':
+      return [
+        '<h1>Book Hotel in Pratap Nagar Jaipur — Direct Booking Best Price</h1>',
+        `<p>${esc(route.description)}</p>`,
+        '<h2>Our Room Options & Prices</h2>',
+        '<ul>',
+        ...rooms.map(r => `<li><strong>${esc(r.name)}</strong> — ₹${esc(r.price)}/night. Features: ${r.features.join(', ')}. Sleeps ${r.minimumOccupancy}–${r.maximumOccupancy} guests.</li>`),
+        '</ul>',
+        '<h2>How to Book</h2>',
+        `<p><strong>Call:</strong> ${esc(contactDetails.phone)}</p>`,
+        `<p><strong>WhatsApp:</strong> ${esc(contactDetails.whatsApp)} (instant confirmation)</p>`,
+        `<p><strong>Email:</strong> ${esc(contactDetails.email)}</p>`,
+        '<p>Book directly through our website for the best available rates. Direct bookings get priority for early check-in and late check-out subject to availability.</p>',
+        `<p><strong>Address:</strong> ${esc(contactDetails.address)}</p>`,
+      ].join('\n        ')
+
+    case 'blog':
+      return [
+        '<h1>Hotel Rama Hindustani Blog — Jaipur Travel Guide & Hotel Tips</h1>',
+        `<p>${esc(route.description)}</p>`,
+        '<h2>Latest Blog Posts</h2>',
+        ...blogPosts.map(p => [
+          `<h3>${esc(p.title)}</h3>`,
+          `<p>${esc(p.excerpt)}</p>`,
+          `<p><em>Category: ${esc(p.category)} | Read time: ${esc(p.readTime)} | Published: ${esc(p.date)}</em></p>`,
+        ]).flat(),
+      ].join('\n        ')
+
+    default:
+      if (route.path.startsWith('/blog/') && route.path !== '/blog') {
+        const slug = route.path.replace('/blog/', '')
+        const post = blogPosts.find(p => p.slug === slug)
+        if (!post) return `<p>${esc(route.description)}</p>`
+
+        const sectionsHtml = post.sections.map(s => {
+          switch (s.type) {
+            case 'heading': return `<${s.level}>${esc(s.content)}</${s.level}>`
+            case 'paragraph': return `<p>${esc(s.content)}</p>`
+            case 'list': return `<ul>${s.items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>`
+            case 'cta': return `<p>${esc(s.content)} <a href="${esc(s.link)}">${esc(s.linkText)}</a></p>`
+            default: return ''
+          }
+        }).join('\n          ')
+
+        const faqsHtml = post.faqs
+          ? '<h2>Frequently Asked Questions</h2>\n          ' +
+            post.faqs.map(f =>
+              `<div>\n            <h3>${esc(f.question)}</h3>\n            <p>${esc(f.answer)}</p>\n          </div>`
+            ).join('\n          ')
+          : ''
+
+        return [
+          `<h1>${esc(post.title)}</h1>`,
+          `<p><strong>Published:</strong> ${esc(post.date)}${post.updatedDate ? ` | <strong>Updated:</strong> ${esc(post.updatedDate)}` : ''} | <strong>Read time:</strong> ${esc(post.readTime)}</p>`,
+          `<p>${esc(post.excerpt)}</p>`,
+          sectionsHtml,
+          faqsHtml,
+        ].join('\n          ')
+      }
+      return [
+        `<h1>${esc(route.title)}</h1>`,
+        `<p>${esc(route.description)}</p>`,
+      ].join('\n        ')
+  }
+}
+
 function buildHtml(route, template) {
   const url = `${SITE_URL}${route.path}`
   const breadcrumb = getBreadcrumbSchema(route.path)
@@ -316,7 +525,7 @@ function buildHtml(route, template) {
       })}</script>`
     : ''
 
-  const html = template
+  let html = template
     .replace(
       /<title[^>]*>.*?<\/title>/,
       `<title>${route.title}</title>`
@@ -326,10 +535,6 @@ function buildHtml(route, template) {
       `<meta name="description" content="${route.description}" />`
     )
     .replace(
-      /<meta[^>]*name="keywords"[^>]*>/,
-      `<meta name="keywords" content="${route.keywords}" />`
-    )
-    .replace(
       '<meta property="og:locale" content="en_IN" />',
       `<meta property="og:title" content="${route.title}" />\n    <meta property="og:description" content="${route.description}" />\n    <meta property="og:url" content="${url}" />\n    <meta property="og:image" content="${SITE_URL}${route.ogImage}" />\n    <meta property="og:locale" content="en_IN" />`
     )
@@ -337,10 +542,24 @@ function buildHtml(route, template) {
       '<meta name="twitter:site" content="@HotelRamaHindustani" />',
       `<meta name="twitter:site" content="@HotelRamaHindustani" />\n    <meta name="twitter:title" content="${route.title}" />\n    <meta name="twitter:description" content="${route.description}" />\n    <meta name="twitter:image" content="${SITE_URL}${route.ogImage}" />`
     )
-    .replace(
-      '<div id="root"></div>',
-      `<link rel="canonical" href="${url}" />\n    ${schemaScripts}${blogPostSchema}\n    <div id="root"></div>\n    <noscript>\n      <div style="padding:40px;text-align:center;font-family:system-ui,sans-serif">\n        <h1 style="font-size:1.5rem;margin-bottom:12px">${route.title}</h1>\n        <p style="color:#555;margin-bottom:8px">${route.description}</p>\n        <p style="color:#555">Call: +91 63767 07091 | WhatsApp for instant booking</p>\n        <p style="color:#555">Address: 34-B1-B2, Haldighati Marg, Tonk Rd, Pratap Nagar, Jaipur 302033</p>\n      </div>\n    </noscript>`
-    )
+
+  // Replace canonical in <head> — find existing or insert before </head>
+  const canonicalTag = `<link rel="canonical" href="${url}" />`
+  if (/<link[^>]*rel="canonical"[^>]*>/.test(html)) {
+    html = html.replace(/<link[^>]*rel="canonical"[^>]*>/, canonicalTag)
+  } else {
+    html = html.replace('</head>', `    ${canonicalTag}\n  </head>`)
+  }
+
+  // Insert schema scripts + page-specific content before </body>
+  const pageContent = getPageContent(route)
+  const noscriptBlock = pageContent
+    ? `<noscript>\n      <div style="padding:40px;font-family:system-ui,sans-serif;max-width:900px;margin:0 auto;line-height:1.8;color:#333">\n        ${pageContent}\n        <hr />\n        <p><strong>Hotel Rama Hindustani</strong><br />${esc(contactDetails.address)}<br />Phone: ${esc(contactDetails.phone)} | WhatsApp: ${esc(contactDetails.whatsApp)}<br />Email: ${esc(contactDetails.email)}</p>\n      </div>\n    </noscript>`
+    : ''
+  html = html.replace(
+    '<div id="root"></div>',
+    `<div id="root"></div>\n    ${schemaScripts}${blogPostSchema}\n    ${noscriptBlock}`
+  )
 
   const dir = resolve(DIST, route.path === '/' ? '' : route.path.replace(/^\//, ''))
   mkdirSync(dir, { recursive: true })
@@ -352,4 +571,4 @@ function buildHtml(route, template) {
 console.log('Prerendering routes...')
 const originalTemplate = readFileSync(resolve(DIST, 'index.html'), 'utf-8')
 allRoutes.forEach(route => buildHtml(route, originalTemplate))
-console.log(`\nDone! ${allRoutes.length} routes prerendered with SEO meta tags.`)
+console.log(`\nDone! ${allRoutes.length} routes prerendered with SEO meta tags and rich static content.`) //
