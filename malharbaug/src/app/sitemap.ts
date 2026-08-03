@@ -5,6 +5,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     '', '/about', '/rooms', '/rooms/luxury-deluxe', '/rooms/family-suite', '/rooms/private-villa',
     '/amenities', '/amenities/swimming-pool', '/amenities/kids-activities',
+    '/amenities/indoor-games', '/amenities/outdoor-games', '/amenities/garden', '/amenities/open-lawn',
+    '/amenities/restaurant', '/amenities/parking', '/amenities/free-wifi', '/amenities/24-hour-front-desk',
+    '/amenities/room-service', '/amenities/family-seating', '/amenities/event-lawn', '/amenities/bbq-area',
+    '/amenities/bonfire-area', '/amenities/rain-dance', '/amenities/conference-space',
+    '/amenities/power-backup', '/amenities/daily-housekeeping',
     '/restaurant', '/gallery', '/events',
     '/events/corporate', '/events/wedding', '/events/birthday', '/events/team-outing',
     '/events/family-gathering', '/events/anniversary', '/events/engagement', '/events/baby-shower',

@@ -28,16 +28,21 @@ export default function AmenitiesPage() {
         <section className="mx-auto max-w-7xl px-6 py-24">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {resortFacilities.map((facility, index) => (
-              <div
-                key={facility.title}
-                className={`animate-on-scroll stagger-${(index % 3) + 1} rounded-2xl bg-white p-8 card-shadow transition-all duration-300 hover:-translate-y-1 dark:bg-earth-800/50`}
+              <a
+                key={facility.slug}
+                href={`/amenities/${facility.slug}`}
+                className={`animate-on-scroll stagger-${(index % 3) + 1} group rounded-2xl bg-white p-8 card-shadow transition-all duration-300 hover:-translate-y-1 dark:bg-earth-800/50`}
               >
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-100 text-brand-600 dark:bg-brand-900/40">
                   <iconify-icon icon={facility.icon} width="28" height="28"></iconify-icon>
                 </div>
                 <h3 className="font-serif text-xl font-semibold text-earth-900 dark:text-white">{facility.title}</h3>
                 <p className="mt-2 font-sans text-sm leading-relaxed text-earth-600 dark:text-earth-300">{facility.description}</p>
-              </div>
+                <span className="mt-4 inline-flex items-center gap-1 font-sans text-sm font-semibold text-brand-600 dark:text-brand-400">
+                  Learn More
+                  <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
+                </span>
+              </a>
             ))}
           </div>
         </section>

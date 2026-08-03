@@ -18,6 +18,7 @@ export interface Room {
 }
 
 export interface Amenity {
+  slug: string;
   icon: string;
   title: string;
   description: string;
