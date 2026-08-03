@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { rooms } from '@/data/rooms';
+import { bookingEngineUrl } from '@/data/booking';
 
 export default function BookingEngine() {
   const [checkIn, setCheckIn] = useState('');
@@ -15,7 +16,7 @@ export default function BookingEngine() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Booking request submitted! Our team will confirm your reservation shortly.');
+    window.open(bookingEngineUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (

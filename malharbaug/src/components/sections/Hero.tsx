@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { bookingEngineUrl } from '@/data/booking';
 
 const heroImages = ['/heroimg1.jpeg', '/heroimg2.jpeg', '/heroimg3.jpeg'];
 
@@ -44,7 +45,7 @@ export default function Hero() {
         </p>
 
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <a href="#contact" className="btn-primary">
+          <a href={bookingEngineUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
             Book Your Stay
           </a>
           <a href="#explore" className="btn-secondary border-white text-white hover:bg-white hover:text-brand-700">

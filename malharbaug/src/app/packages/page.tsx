@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { packages, offers } from '@/data/packages';
+import { bookingEngineUrl } from '@/data/booking';
 
 export default function PackagesPage() {
   return (
@@ -66,7 +67,9 @@ export default function PackagesPage() {
                   </div>
                   <div className="mt-6 flex gap-3">
                     <a
-                      href={`/rooms/${pkg.slug}`}
+                      href={bookingEngineUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="rounded-full bg-brand-600 px-6 py-2.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-brand-700"
                     >
                       Book Now

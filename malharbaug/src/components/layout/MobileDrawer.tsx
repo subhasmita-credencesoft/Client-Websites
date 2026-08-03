@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { closeDrawer, setDrawerOpen, setDrawerRendered } from '@/store/slices/uiSlice';
 import { primaryNav } from '@/data/navigation';
+import { bookingEngineUrl } from '@/data/booking';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 
 export default function MobileDrawer() {
@@ -95,7 +96,9 @@ export default function MobileDrawer() {
 
         <div className="px-6 pb-8">
           <a
-            href="/contact"
+            href={bookingEngineUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={handleClose}
             className="block min-h-[44px] rounded-full bg-brand-600 px-5 py-3 text-center font-sans text-sm font-semibold text-white transition-colors duration-200 ease-out hover:bg-brand-700"
           >

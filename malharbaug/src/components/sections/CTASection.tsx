@@ -1,3 +1,5 @@
+import { bookingEngineUrl } from '@/data/booking';
+
 export default function CTASection() {
   return (
     <section className="bg-brand-600 px-6 py-20">
@@ -11,7 +13,9 @@ export default function CTASection() {
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
           <a
-            href="#contact"
+            href={bookingEngineUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 font-sans text-sm font-semibold text-brand-600 transition-all duration-200 ease-out hover:bg-brand-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Book Now

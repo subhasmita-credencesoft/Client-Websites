@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { rooms } from '@/data/rooms';
+import { bookingEngineUrl } from '@/data/booking';
 import type { Metadata } from 'next';
 
 interface Props {
@@ -51,7 +52,9 @@ export default function RoomDetailPage({ params }: Props) {
               <h2 className="font-serif text-3xl font-bold text-earth-900 dark:text-white">About This Room</h2>
               <p className="mt-4 font-sans text-base leading-relaxed text-earth-600 dark:text-earth-300">{room.description}</p>
               <a
-                href="tel:+919876543210"
+                href={bookingEngineUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-8 py-3.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-brand-700"
               >
                 Book Now

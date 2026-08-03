@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { openDrawer, setScrolled } from '@/store/slices/uiSlice';
 import { primaryNav } from '@/data/navigation';
+import { bookingEngineUrl } from '@/data/booking';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import NavDropdown from './NavDropdown';
 
@@ -72,7 +73,9 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
           <a
-            href="/contact"
+            href={bookingEngineUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden rounded-full bg-brand-600 px-5 py-2.5 font-sans text-sm font-semibold text-white transition-colors duration-200 ease-out hover:bg-brand-700 sm:inline-block"
           >
             Book Now

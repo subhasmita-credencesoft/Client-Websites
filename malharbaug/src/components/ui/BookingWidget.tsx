@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { rooms } from '@/data/rooms';
+import { bookingEngineUrl } from '@/data/booking';
 
 export default function BookingWidget() {
   const [checkIn, setCheckIn] = useState('');
@@ -12,7 +13,7 @@ export default function BookingWidget() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Booking enquiry submitted! Our team will get back to you shortly.');
+    window.open(bookingEngineUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
