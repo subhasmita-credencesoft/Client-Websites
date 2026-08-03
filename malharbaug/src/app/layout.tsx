@@ -4,6 +4,7 @@ import Script from 'next/script';
 import StoreProvider from '@/store/StoreProvider';
 import JsonLd from '@/components/seo/JsonLd';
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat';
+import ScrollAnimationObserver from '@/components/ui/ScrollAnimationObserver';
 import { hotelSchema, localBusinessSchema } from '@/lib/schema';
 import './globals.css';
 
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StoreProvider>
           <JsonLd data={hotelSchema()} />
           <JsonLd data={localBusinessSchema()} />
+          <ScrollAnimationObserver />
           {children}
           <WhatsAppFloat />
         </StoreProvider>

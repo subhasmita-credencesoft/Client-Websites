@@ -1,7 +1,6 @@
 import Announcement from '@/components/layout/Announcement';
 import Header from '@/components/layout/Header';
 import MobileDrawer from '@/components/layout/MobileDrawer';
-import ScrollAnimationObserver from '@/components/ui/ScrollAnimationObserver';
 import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import WhyChooseUs from '@/components/sections/WhyChooseUs';
@@ -17,7 +16,6 @@ import Footer from '@/components/layout/Footer';
 export default function HomePage() {
   return (
     <>
-      <ScrollAnimationObserver />
       <Announcement />
       <Header />
       <MobileDrawer />

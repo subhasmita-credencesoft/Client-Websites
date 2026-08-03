@@ -41,8 +41,9 @@ export default function EventsPage() {
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {eventCategories.map((event, index) => (
-                <div
+                <a
                   key={event.id}
+                  href={`/events/${event.id}`}
                   className={`animate-on-scroll stagger-${(index % 2) + 1} group overflow-hidden rounded-2xl bg-white card-shadow transition-all duration-300 hover:-translate-y-1 dark:bg-earth-800/50`}
                 >
                   <div className="relative h-56 overflow-hidden">
@@ -60,8 +61,12 @@ export default function EventsPage() {
                     </div>
                     <h3 className="font-serif text-xl font-bold text-earth-900 dark:text-white">{event.title}</h3>
                     <p className="mt-2 font-sans text-sm leading-relaxed text-earth-600 dark:text-earth-300">{event.description}</p>
+                    <span className="mt-4 inline-flex items-center gap-1 font-sans text-sm font-semibold text-brand-600 dark:text-brand-400">
+                      Learn More
+                      <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
+                    </span>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>

@@ -27,9 +27,9 @@ export const primaryNav: NavItem[] = [
     label: 'Events',
     href: '/events',
     children: [
-      { label: 'Corporate Outings', href: '/events/corporate-outings' },
-      { label: 'Destination Weddings', href: '/events/weddings' },
-      { label: 'Birthday Parties', href: '/events/birthday' },
+      { label: 'Corporate Meetings', href: '/events/corporate' },
+      { label: 'Wedding Functions', href: '/events/wedding' },
+      { label: 'Birthday Celebrations', href: '/events/birthday' },
     ],
   },
   { label: 'Gallery', href: '/gallery' },
@@ -59,9 +59,9 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
   {
     heading: 'Events',
     links: [
-      { label: 'Corporate Outings', href: '/events/corporate-outings' },
-      { label: 'Destination Weddings', href: '/events/weddings' },
-      { label: 'Birthday Parties', href: '/events/birthday' },
+      { label: 'Corporate Meetings', href: '/events/corporate' },
+      { label: 'Wedding Functions', href: '/events/wedding' },
+      { label: 'Birthday Celebrations', href: '/events/birthday' },
     ],
   },
   {

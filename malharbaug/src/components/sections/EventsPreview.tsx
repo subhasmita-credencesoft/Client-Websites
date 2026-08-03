@@ -14,7 +14,7 @@ export default function EventsPreview() {
           {eventCategories.map((event) => (
             <a
               key={event.id}
-              href="/events"
+              href={`/events/${event.id}`}
               className="group relative overflow-hidden rounded-2xl shadow-lg"
             >
               <div className="relative h-72 w-full">
