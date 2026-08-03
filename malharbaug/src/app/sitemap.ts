@@ -1,0 +1,18 @@
+import { MetadataRoute } from 'next';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://malharbaugresort.com';
+  const pages = [
+    '', '/about', '/rooms', '/rooms/luxury-deluxe', '/rooms/family-suite', '/rooms/private-villa',
+    '/amenities', '/amenities/swimming-pool', '/amenities/kids-activities',
+    '/restaurant', '/gallery', '/events', '/events/corporate-outings', '/events/weddings', '/events/birthday',
+    '/packages', '/offers', '/nearby', '/contact', '/privacy-policy', '/terms-conditions',
+    '/refund-policy', '/cancellation-policy',
+  ];
+  return pages.map((page) => ({
+    url: `${baseUrl}${page}`,
+    lastModified: new Date(),
+    changeFrequency: page === '' ? 'weekly' as const : 'monthly' as const,
+    priority: page === '' ? 1 : page.startsWith('/rooms') || page.startsWith('/packages') ? 0.8 : 0.5,
+  }));
+}

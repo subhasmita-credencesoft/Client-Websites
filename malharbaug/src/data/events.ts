@@ -1,0 +1,81 @@
+import { EventCategory } from '@/types';
+
+export const eventCategories: EventCategory[] = [
+  {
+    id: 'birthday',
+    title: 'Birthday Celebrations',
+    description: 'Make your birthday unforgettable with our tailored party packages, delicious food, and beautiful garden setting.',
+    image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?auto=format&fit=crop&q=80&w=800',
+    icon: 'solar:gift-bold',
+  },
+  {
+    id: 'wedding',
+    title: 'Wedding Functions',
+    description: 'Celebrate your special day in our picturesque venue with elegant decor, catering, and complete event management.',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800',
+    icon: 'solar:heart-angle-bold',
+  },
+  {
+    id: 'corporate',
+    title: 'Corporate Meetings',
+    description: 'Professional event spaces with modern AV equipment, conference facilities, and team-building activities.',
+    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800',
+    icon: 'solar:case-bold',
+  },
+  {
+    id: 'team-outing',
+    title: 'Team Outings',
+    description: 'Fun-filled corporate outings with games, activities, BBQ, and a relaxed environment for team bonding.',
+    image: 'https://images.unsplash.com/photo-1529156069898-0c0ff0a319f0?auto=format&fit=crop&q=80&w=800',
+    icon: 'solar:users-group-two-bold',
+  },
+  {
+    id: 'family-gathering',
+    title: 'Family Gatherings',
+    description: 'Reunite with loved ones in the heart of nature with comfortable accommodation and home-style meals.',
+    image: 'https://images.unsplash.com/photo-1559223607-a43c990c692c?auto=format&fit=crop&q=80&w=800',
+    icon: 'solar:users-group-rounded-bold',
+  },
+  {
+    id: 'anniversary',
+    title: 'Anniversary Celebrations',
+    description: 'Celebrate years of togetherness with a romantic setup, candlelight dinner, and special arrangements.',
+    image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800',
+    icon: 'solar:heart-bold',
+  },
+  {
+    id: 'engagement',
+    title: 'Engagement Parties',
+    description: 'Start your journey together with a beautiful engagement celebration in our garden venue.',
+    image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=800',
+    icon: 'solar:stars-bold',
+  },
+  {
+    id: 'baby-shower',
+    title: 'Baby Shower',
+    description: 'Celebrate the upcoming arrival with a warm and joyous gathering at our resort.',
+    image: 'https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&q=80&w=800',
+    icon: 'solar:baby-bold',
+  },
+  {
+    id: 'bachelor-party',
+    title: 'Bachelor Party',
+    description: 'An unforgettable pre-wedding celebration with pool parties, games, music, and great food.',
+    image: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=800',
+    icon: 'solar:confetti-bold',
+  },
+  {
+    id: 'school-picnic',
+    title: 'School Picnics',
+    description: 'Safe and fun environment for school groups with guided activities and supervised play.',
+    image: 'https://images.unsplash.com/photo-1579213849962-d2a31e6e2e9b?auto=format&fit=crop&q=80&w=800',
+    icon: 'solar:book-bold',
+  },
+  {
+    id: 'private-event',
+    title: 'Private Events',
+    description: 'Custom event arrangements for any special occasion with personalized planning.',
+    image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=800',
+    icon: 'solar:star-bold',
+  },
+];
