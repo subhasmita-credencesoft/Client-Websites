@@ -17,7 +17,7 @@ export const ROOMS: RoomCategory[] = [
     priceUnit: 'per night',
     amenities: ['Wi-Fi', 'Free Parking', 'Room Service'],
     perks: [],
-    image: 'https://bookonelocal.in/cdn/2026-02-09-062607808-DSC_0088.JPG',
+    image: '/newedit/Luxury room.avif',
     gallery: [
       {
         id: 'premium-1',
@@ -64,7 +64,7 @@ export const ROOMS: RoomCategory[] = [
     priceUnit: 'per night',
     amenities: ['Wi-Fi', 'Free Parking', 'Room Service'],
     perks: [],
-    image: 'https://bookonelocal.in/cdn/2026-02-09-062459107-DSC_0108.JPG',
+    image: '/newedit/Warm Hotel Bedroom with Swan Towel Art.avif',
     gallery: [
       {
         id: 'suite-1',

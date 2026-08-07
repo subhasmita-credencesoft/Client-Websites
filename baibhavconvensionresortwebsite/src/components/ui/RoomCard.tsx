@@ -15,22 +15,19 @@ export default function RoomCard({ room }: { room: RoomCategory }) {
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
         />
+        <div className={styles.overlay} aria-hidden="true" />
+        <span className={styles.priceBadge}>
+          &#8377;{room.price.toLocaleString('en-IN')}
+          <span className={styles.priceBadgeUnit}>{room.priceUnit}</span>
+        </span>
       </div>
       <div className={styles.body}>
         <p className={styles.name}>{room.name}</p>
         <p className={styles.subtitle}>{room.subtitle}</p>
         <div className={styles.specs}>
-          <span>{room.beds}</span>
-          <span>&middot;</span>
-          <span>{room.size}</span>
-          <span>&middot;</span>
-          <span>{room.capacity}</span>
-        </div>
-        <div className={styles.footer}>
-          <div>
-            <span className={styles.price}>&#8377;{room.price.toLocaleString('en-IN')}</span>
-            <span className={styles.priceUnit}>{room.priceUnit}</span>
-          </div>
+          <span className={styles.specChip}>{room.beds}</span>
+          <span className={styles.specChip}>{room.size}</span>
+          <span className={styles.specChip}>{room.capacity}</span>
         </div>
         <div className={styles.actions}>
           {room.ctaHref.startsWith('http') ? (
