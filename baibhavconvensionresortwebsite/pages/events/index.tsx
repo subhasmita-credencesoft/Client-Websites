@@ -84,7 +84,7 @@ const EventsPage: NextPage<EventsPageProps> = ({ venues }) => {
   return (
     <>
       <Seo
-        title="Weddings & Events in Odisha"
+        title="Weddings & Events in Bhubaneswar"
         description="Grand banquet halls, open-air lawns and boardrooms on the Bhubaneswar–Cuttack corridor for weddings, corporate MICE and celebrations up to 1,500+ guests."
         path="/events"
         jsonLd={jsonLd}

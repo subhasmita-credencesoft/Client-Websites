@@ -115,6 +115,20 @@ export interface Attraction {
   description: string;
 }
 
+export interface Landmark {
+  name: string;
+  distance: string;
+  drivingTime: string;
+}
+
+export interface LandmarkCluster {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  landmarks: Landmark[];
+}
+
 export type OfferCategory = 'Wedding & Events' | 'Seasonal Stay';
 
 export interface Offer {

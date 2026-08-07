@@ -4,7 +4,7 @@ import InnerHero from '@/components/ui/InnerHero';
 import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/LocationPage.module.scss';
 import { LOCATION_FAQS } from '@/data/faqs';
-import { DISTANCES, ATTRACTIONS, GETTING_HERE, WHY_LOCATION } from '@/data/location';
+import { DISTANCES, ATTRACTIONS, GETTING_HERE, WHY_LOCATION, NEARBY_LANDMARKS } from '@/data/location';
 import { SITE } from '@/data/site';
 import { Attraction, Distance } from '@/types';
 
@@ -173,6 +173,45 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className="container">
+          <p className="caption">Nearby landmarks</p>
+          <h2 className="h2" style={{ marginTop: 8 }}>
+            Hotels, Hospitals & Institutions Around Phulnakhara
+          </h2>
+          <p className={styles.lead}>
+            A stay at Baibhab Resorts puts you minutes from SUM Hospital, DPS Kalinga, EAST and the
+            NH-16 corridor — ideal for patient visits, open days, weddings and corporate travel.
+          </p>
+          <div className={styles.landmarkGrid}>
+            {NEARBY_LANDMARKS.map((cluster) => (
+              <div key={cluster.id} className={styles.landmarkCard} data-reveal data-reveal-stagger>
+                <div className={styles.landmarkHeader}>
+                  <span className={styles.landmarkIcon}>
+                    <iconify-icon icon={cluster.icon} width="22" aria-hidden="true" />
+                  </span>
+                  <h3 className={styles.landmarkTitle}>{cluster.title}</h3>
+                </div>
+                <p className={styles.landmarkText}>{cluster.description}</p>
+                <ul className={styles.landmarkList}>
+                  {cluster.landmarks.map((landmark) => (
+                    <li key={landmark.name} className={styles.landmarkItem}>
+                      <span className={styles.landmarkName}>{landmark.name}</span>
+                      <span className={styles.landmarkMeta}>
+                        {landmark.distance} · {landmark.drivingTime}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className={styles.landmarkNote}>
+            Distances are approximate by road from Phulnakhara and vary with traffic.
+          </p>
         </div>
       </section>
 

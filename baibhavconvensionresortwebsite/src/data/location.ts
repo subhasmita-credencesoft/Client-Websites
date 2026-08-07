@@ -1,4 +1,4 @@
-import { Attraction, Distance } from '@/types';
+import { Attraction, Distance, LandmarkCluster } from '@/types';
 
 export const DISTANCES: Distance[] = [
   {
@@ -95,5 +95,109 @@ export const WHY_LOCATION = [
     title: 'Easy Bus & Highway Connectivity',
     description:
       'Located right along National Highway 16, making transit simple for out-of-town wedding attendees and delegates.',
+  },
+];
+
+export const NEARBY_LANDMARKS: LandmarkCluster[] = [
+  {
+    id: 'healthcare',
+    icon: 'solar:hospital-bold',
+    title: 'Healthcare & Hospitals',
+    description:
+      'Patient attendants and visitors stay minutes away from major hospitals — SUM Hospital is virtually next door on NH-16.',
+    landmarks: [
+      {
+        name: 'IMS & SUM Hospital Campus II (Phulnakhara)',
+        distance: '~1 km',
+        drivingTime: '1–2 mins',
+      },
+      {
+        name: 'HCG Panda Cancer Hospital (Cuttack)',
+        distance: '~6 km',
+        drivingTime: '10–15 mins',
+      },
+      {
+        name: 'Nuabanta hospital cluster',
+        distance: '~4 km',
+        drivingTime: '5–10 mins',
+      },
+    ],
+  },
+  {
+    id: 'education',
+    icon: 'solar:book-bold',
+    title: 'Education & Institutions',
+    description:
+      'A short drive from the region’s leading schools and colleges — ideal for exam-season, open-day and alumni visits.',
+    landmarks: [
+      {
+        name: 'Eastern Academy of Science & Technology (EAST)',
+        distance: '~3 km',
+        drivingTime: '3–5 mins',
+      },
+      {
+        name: 'DPS Kalinga (Adhalia)',
+        distance: '~3 km',
+        drivingTime: '5–8 mins',
+      },
+      {
+        name: 'St. Xavier’s High School, Phulnakhara',
+        distance: '~2 km',
+        drivingTime: '4–6 mins',
+      },
+      {
+        name: 'Bapuji Bidya Pitha, Phulnakhara',
+        distance: '~1 km',
+        drivingTime: '2–4 mins',
+      },
+    ],
+  },
+  {
+    id: 'shopping',
+    icon: 'solar:shopping-bag-bold',
+    title: 'Shopping & Lifestyle',
+    description:
+      'From highway-side sweet shops to a full city mall, shopping and leisure are within easy reach of the resort.',
+    landmarks: [
+      {
+        name: 'Esplanade One Mall, Bhubaneswar',
+        distance: '~11 km',
+        drivingTime: '15–25 mins',
+      },
+      {
+        name: 'Kuakhai River (NH-16)',
+        distance: '~1 km',
+        drivingTime: '2–5 mins',
+      },
+      {
+        name: 'Pahala — famous rasagola hub',
+        distance: '~3 km',
+        drivingTime: '5–8 mins',
+      },
+    ],
+  },
+  {
+    id: 'transport',
+    icon: 'solar:bus-bold',
+    title: 'Transport & Connectivity',
+    description:
+      'Right on National Highway 16 — the perfect midpoint between Bhubaneswar and Cuttack for out-of-town guests.',
+    landmarks: [
+      {
+        name: 'NH-16 (Bhubaneswar–Cuttack Highway)',
+        distance: 'On-site',
+        drivingTime: 'Adjacent',
+      },
+      {
+        name: 'Bhubaneswar city centre',
+        distance: '~15 km',
+        drivingTime: '25–30 mins',
+      },
+      {
+        name: 'Cuttack city centre',
+        distance: '~16 km',
+        drivingTime: '25–30 mins',
+      },
+    ],
   },
 ];

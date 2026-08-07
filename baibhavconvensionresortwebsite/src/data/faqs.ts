@@ -32,6 +32,11 @@ export const HOME_FAQS: PolicyItem[] = [
     answer:
       'Yes. Our multi-cuisine restaurant serves Odia, North and South Indian and Continental fare, and our catering team handles pure-veg menus, live counters and dietary preferences.',
   },
+  {
+    question: 'Is Baibhab Resorts close to hospitals and schools?',
+    answer:
+      'Yes — SUM Hospital is about 1 km away on NH-16, DPS Kalinga and EAST are within 3 km, and we\u2019re the perfect midpoint between Bhubaneswar and Cuttack for weddings and events.',
+  },
 ];
 
 export const STAY_FAQS: PolicyItem[] = [
@@ -64,6 +69,11 @@ export const STAY_FAQS: PolicyItem[] = [
     question: 'Can I cancel or modify my room booking?',
     answer:
       'Cancellations and modifications are handled per our cancellation policy, which you can review on the cancellation policy page or by contacting our reservations team.',
+  },
+  {
+    question: 'Is Baibhab Resorts a 3-star hotel in Phulnakhara?',
+    answer:
+      'Our Premium and Suite rooms deliver a comfortable 3-star-style stay in Phulnakhara, Bhubaneswar, with free parking, high-speed Wi-Fi and complimentary breakfast at budget-friendly rates.',
   },
 ];
 
@@ -130,6 +140,11 @@ export const EVENTS_FAQS: PolicyItem[] = [
     question: 'How do I get a custom event proposal?',
     answer:
       'Fill in our event inquiry form or call us — our team sends a tailored proposal with venue, catering and room-inventory options within 24 hours.',
+  },
+  {
+    question: 'Do you have a banquet hall for weddings in Phulnakhara?',
+    answer:
+      'Yes — the Royal Imperial Hall and Mangal Mini Hall host wedding functions, and the Grand Green Lawn is ideal for receptions, all at our Phulnakhara property between Bhubaneswar and Cuttack.',
   },
 ];
 
@@ -289,6 +304,11 @@ export const OFFERS_FAQS: PolicyItem[] = [
     answer:
       'Book through the offer card link on this page, or contact our reservations team with the offer name to confirm availability and apply the package.',
   },
+  {
+    question: 'Do you have packages for family functions and birthday parties?',
+    answer:
+      'Yes — we bundle venue, catering and guest rooms for rice ceremonies, birthdays, reunions and wedding receptions, and offer special corporate bulk-booking rates.',
+  },
 ];
 
 export const CONTACT_FAQS: PolicyItem[] = [
@@ -344,5 +364,15 @@ export const LOCATION_FAQS: PolicyItem[] = [
     question: 'What attractions are nearby?',
     answer:
       'Nandankanan Zoological Park is 14 km away, Barabati Stadium in Cuttack is 18 km away, and Puri and Konark are reachable within about 2 hours on NH-16.',
+  },
+  {
+    question: 'How far is Baibhab Resorts from SUM Hospital?',
+    answer:
+      'IMS & SUM Hospital Campus II is about 1 km from the resort right on NH-16, roughly 1\u20132 minutes by car. HCG Panda Cancer Hospital in Cuttack is about 6 km (10\u201315 minutes).',
+  },
+  {
+    question: 'Which schools and colleges are near the resort?',
+    answer:
+      'DPS Kalinga (Adhalia) is about 3 km away, Eastern Academy of Science & Technology (EAST) is about 3 km, and St. Xavier\u2019s High School, Phulnakhara is about 2 km from the resort.',
   },
 ];

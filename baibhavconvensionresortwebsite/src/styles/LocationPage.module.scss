@@ -361,3 +361,101 @@
 .tableName {
   font-weight: 500;
 }
+
+// Nearby landmarks (additive)
+.landmarkGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-lg;
+  margin-top: v.$space-lg;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.landmarkCard {
+  display: flex;
+  flex-direction: column;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-lg;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.05);
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.12);
+    transform: translateY(-4px);
+  }
+}
+
+.landmarkHeader {
+  display: flex;
+  align-items: center;
+  gap: v.$space-sm;
+}
+
+.landmarkIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(160deg, rgb(255 215 130 / 0.25), rgb(255 215 130 / 0.08));
+  color: v.$color-foreground;
+  flex-shrink: 0;
+}
+
+.landmarkTitle {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.landmarkText {
+  margin-top: v.$space-sm;
+  color: v.$color-muted;
+  font-size: 0.8125rem;
+  line-height: v.$body-line-height;
+}
+
+.landmarkList {
+  margin: v.$space-md 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+}
+
+.landmarkItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: v.$space-sm;
+  border-top: 1px solid v.$color-border-soft;
+}
+
+.landmarkName {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.landmarkMeta {
+  font-size: 0.72rem;
+  color: v.$color-muted-strong;
+}
+
+.landmarkNote {
+  margin-top: v.$space-md;
+  font-size: 0.75rem;
+  color: v.$color-muted;
+}
