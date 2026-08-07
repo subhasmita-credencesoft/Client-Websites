@@ -1,0 +1,48 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.section {
+  padding-block: v.$space-xxl;
+  background-color: v.$color-surface;
+  border-top: 1px solid v.$color-border;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 64px;
+    height: 3px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, #ffd782, transparent 60%);
+  }
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-xl;
+  margin-top: v.$space-xl;
+
+  @media (min-width: 900px) {
+    grid-template-columns: 360px 1fr;
+    gap: v.$space-xxl;
+  }
+}
+
+.header {
+  @media (min-width: 900px) {
+    position: sticky;
+    top: calc(v.$nav-height + v.$space-lg);
+    align-self: start;
+  }
+}
+
+.subtitle {
+  margin-top: v.$space-md;
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+  max-width: 46ch;
+}
+
+.accordion {
+  min-width: 0;
+}

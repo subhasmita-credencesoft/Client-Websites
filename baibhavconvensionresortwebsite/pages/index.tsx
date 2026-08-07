@@ -8,6 +8,8 @@ import RoomPreview from '@/components/sections/RoomPreview';
 import LocationAdvantage from '@/components/sections/LocationAdvantage';
 import Testimonials from '@/components/sections/Testimonials';
 import LeadMagnet from '@/components/sections/LeadMagnet';
+import FaqSection from '@/components/sections/FaqSection';
+import { HOME_FAQS } from '@/data/faqs';
 import { ROOMS } from '@/data/rooms';
 import { fetchRoomsFromApi } from '@/lib/hotelmate';
 import { VENUES } from '@/data/venues';
@@ -73,6 +75,7 @@ const HomePage: NextPage<HomePageProps> = ({ rooms, venues, testimonials }) => {
       <RoomPreview rooms={rooms} />
       <LocationAdvantage />
       <Testimonials testimonials={testimonials} />
+      <FaqSection items={HOME_FAQS} eyebrow="FAQs" title="Frequently Asked Questions" subtitle="Quick answers about stays, weddings and events at Baibhab Resorts & Conventions." />
       <LeadMagnet />
     </>
   );

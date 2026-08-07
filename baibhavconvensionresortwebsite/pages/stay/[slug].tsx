@@ -2,6 +2,8 @@ import type { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import Seo from '@/components/seo/Seo';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import ProductGallery from '@/components/sections/ProductGallery';
+import FaqSection from '@/components/sections/FaqSection';
+import { STAY_FAQS } from '@/data/faqs';
 import styles from '@/styles/StayPage.module.scss';
 import { getRoomBySlug, ROOMS } from '@/data/rooms';
 import { fetchRoomsFromApi } from '@/lib/hotelmate';
@@ -134,6 +136,13 @@ const RoomPage: NextPage<RoomPageProps> = ({ room }) => {
           <p className={styles.sidebarNote}>You won&apos;t be charged yet — availability confirmed first.</p>
         </aside>
       </div>
+
+      <FaqSection
+        items={STAY_FAQS}
+        eyebrow="Guest FAQs"
+        title="Stay Questions, Answered"
+        subtitle={`Booking, check-in and amenity questions for your ${room.name} stay.`}
+      />
     </>
   );
 };

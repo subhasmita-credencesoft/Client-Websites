@@ -2,7 +2,9 @@ import type { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
 import Seo from '@/components/seo/Seo';
 import InnerHero from '@/components/ui/InnerHero';
+import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/OffersPage.module.scss';
+import { OFFERS_FAQS } from '@/data/faqs';
 import { OFFERS } from '@/data/offers';
 import { Offer } from '@/types';
 
@@ -53,6 +55,13 @@ const OffersPage: NextPage<OffersPageProps> = ({ offers }) => {
           </div>
         </div>
       </section>
+
+      <FaqSection
+        items={OFFERS_FAQS}
+        eyebrow="Offers FAQs"
+        title="Packages & Deals Questions"
+        subtitle="What each package includes, customisation, seasonal stay deals and corporate bulk-booking discounts."
+      />
     </>
   );
 };

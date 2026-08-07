@@ -3,7 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Seo from '@/components/seo/Seo';
 import InnerHero from '@/components/ui/InnerHero';
+import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/EventsPage.module.scss';
+import { VENUES_FAQS } from '@/data/faqs';
 import { VENUES } from '@/data/venues';
 import { SITE } from '@/data/site';
 import { Venue } from '@/types';
@@ -117,6 +119,13 @@ const VenuesPage: NextPage<VenuesPageProps> = ({ venues }) => {
           ))}
         </div>
       </div>
+
+      <FaqSection
+        items={VENUES_FAQS}
+        eyebrow="Venue FAQs"
+        title="Venue & Capacity Questions"
+        subtitle="Capacities, layouts, weather backup and AV equipment across our banquet halls, lawns and boardrooms."
+      />
     </>
   );
 };

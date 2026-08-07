@@ -3,7 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Seo from '@/components/seo/Seo';
 import InnerHero from '@/components/ui/InnerHero';
+import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/EventsPage.module.scss';
+import { WEDDINGS_FAQS } from '@/data/faqs';
 
 const WEDDING_OFFERS = [
   'Dedicated Bridal & Groom Dressing Suites.',
@@ -14,16 +16,16 @@ const WEDDING_OFFERS = [
 
 const WEDDING_IMAGES = [
   {
-    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    alt: 'Reception setup at Royal Imperial Hall',
+    src: '/newedit/Luxurious Courtyard Entrance at Night.avif',
+    alt: 'Luxurious courtyard entrance illuminated at night',
   },
   {
-    src: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    alt: 'Outdoor wedding mandap on the lawn',
+    src: '/newedit/Entrance Pathway.avif',
+    alt: 'Grand entrance pathway of the resort',
   },
   {
-    src: '/images/baibhabgate.avif',
-    alt: 'Baibhab Conventions & Resorts entrance gate',
+    src: '/newedit/Gate new Design.avif',
+    alt: 'Designed entrance gate of Baibhab Resorts',
   },
 ];
 
@@ -36,7 +38,7 @@ const WeddingsPage: NextPage = () => {
         path="/events/weddings"
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        image="/newedit/Preimum Lawn.avif"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Weddings & Events', href: '/events' },
@@ -60,6 +62,7 @@ const WeddingsPage: NextPage = () => {
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
+              <figcaption className={styles.featureCaption}>{img.alt}</figcaption>
             </figure>
           ))}
         </div>
@@ -85,6 +88,13 @@ const WeddingsPage: NextPage = () => {
           </div>
         </div>
       </div>
+
+      <FaqSection
+        items={WEDDINGS_FAQS}
+        eyebrow="Wedding FAQs"
+        title="Wedding Day Questions"
+        subtitle="Dressing suites, décor, Odia menus and guest accommodation for your big day."
+      />
     </>
   );
 };

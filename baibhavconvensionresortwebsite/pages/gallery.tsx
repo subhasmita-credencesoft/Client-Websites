@@ -2,6 +2,8 @@ import type { GetStaticProps, NextPage } from 'next';
 import Seo from '@/components/seo/Seo';
 import InnerHero from '@/components/ui/InnerHero';
 import GalleryFilters from '@/components/sections/GalleryFilters';
+import FaqSection from '@/components/sections/FaqSection';
+import { GALLERY_FAQS } from '@/data/faqs';
 import { GALLERY_ITEMS } from '@/data/gallery';
 import { GalleryItem } from '@/types';
 
@@ -31,6 +33,13 @@ const GalleryPage: NextPage<GalleryPageProps> = ({ items }) => {
       <div className="container" style={{ marginTop: 48, marginBottom: 96 }}>
         <GalleryFilters items={items} />
       </div>
+
+      <FaqSection
+        items={GALLERY_FAQS}
+        eyebrow="Gallery FAQs"
+        title="Gallery Questions"
+        subtitle="About our real photos, site visits and recent event coverage."
+      />
     </>
   );
 };

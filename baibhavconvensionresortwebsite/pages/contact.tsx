@@ -2,7 +2,9 @@ import type { GetStaticProps, NextPage } from 'next';
 import Seo from '@/components/seo/Seo';
 import InnerHero from '@/components/ui/InnerHero';
 import ContactForm from '@/components/sections/ContactForm';
+import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/ContactPage.module.scss';
+import { CONTACT_FAQS } from '@/data/faqs';
 import { SITE } from '@/data/site';
 
 interface ContactPageProps {
@@ -121,6 +123,13 @@ const ContactPage: NextPage<ContactPageProps> = ({ inquiry = '' }) => {
           </div>
         </div>
       </div>
+
+      <FaqSection
+        items={CONTACT_FAQS}
+        eyebrow="Contact FAQs"
+        title="Questions About Reaching Us"
+        subtitle="How to reach the resort, response times, site visits and pickup assistance."
+      />
     </>
   );
 };

@@ -1,7 +1,9 @@
 import type { GetStaticProps, NextPage } from 'next';
 import Seo from '@/components/seo/Seo';
 import InnerHero from '@/components/ui/InnerHero';
+import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/AmenitiesPage.module.scss';
+import { AMENITIES_FAQS } from '@/data/faqs';
 import { FACILITIES } from '@/data/facilities';
 import { Facility } from '@/types';
 
@@ -48,6 +50,13 @@ const AmenitiesPage: NextPage<AmenitiesPageProps> = ({ facilities }) => {
           ))}
         </div>
       </div>
+
+      <FaqSection
+        items={AMENITIES_FAQS}
+        eyebrow="Amenities FAQs"
+        title="Facilities Questions"
+        subtitle="Parking, power backup, security, pool and Wi-Fi — everything you need for a comfortable stay."
+      />
     </>
   );
 };

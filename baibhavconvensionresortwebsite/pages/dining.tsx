@@ -3,7 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Seo from '@/components/seo/Seo';
 import InnerHero from '@/components/ui/InnerHero';
+import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/DiningPage.module.scss';
+import { DINING_FAQS } from '@/data/faqs';
 import { RESTAURANT, CATERING, DINING_SECTION } from '@/data/dining';
 
 const DiningPage: NextPage = () => {
@@ -92,6 +94,13 @@ const DiningPage: NextPage = () => {
           </div>
         </div>
       </section>
+
+      <FaqSection
+        items={DINING_FAQS}
+        eyebrow="Dining FAQs"
+        title="Food & Catering Questions"
+        subtitle="Common questions about our restaurant, menus, dietary options and banquet catering."
+      />
     </>
   );
 };

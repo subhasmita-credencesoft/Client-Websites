@@ -66,16 +66,19 @@ export const GETTING_HERE = {
   steps: [
     {
       title: 'From Bhubaneswar',
+      image: '/newedit/Entrance Pathway.avif',
       description:
         'Take NH-16 toward Cuttack. Cross the Phulnakhara flyover and exit immediately after the flyover. The resort entrance is on the left.',
     },
     {
       title: 'From Cuttack',
+      image: '/newedit/gate front.avif',
       description:
         'Take NH-16 toward Bhubaneswar. About 2 km before the Phulnakhara flyover, the resort entrance is on the right.',
     },
     {
       title: 'From Biju Patnaik International Airport',
+      image: '/newedit/Our Building.avif',
       description:
         '~18 km via NH-16  roughly 30 to 35 minutes. Pre-booked airport pickup is available on request.',
     },

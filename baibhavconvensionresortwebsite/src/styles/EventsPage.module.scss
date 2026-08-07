@@ -1,10 +1,22 @@
 @use 'variables' as v;
 @use 'mixins' as m;
 
+@keyframes kenburns {
+  0% {
+    transform: scale(1.02);
+  }
+  50% {
+    transform: scale(1.16);
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: v.$space-md;
+  gap: v.$space-lg;
   margin-bottom: v.$space-xxl;
 
   @media (min-width: 640px) {
@@ -13,29 +25,121 @@
 }
 
 .card {
+  position: relative;
+  isolation: isolate;
   display: flex;
-  flex-direction: column;
-  gap: v.$space-sm;
-  background-color: v.$color-surface;
-  border: 1px solid v.$color-border;
+  align-items: flex-end;
+  min-height: 460px;
   border-radius: v.$radius-xl;
-  padding: v.$space-xl;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgb(0 0 0 / 0.14);
+  text-decoration: none;
   @include m.transition(box-shadow, transform);
 
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ffd782, transparent 60%);
+    opacity: 0;
+    @include m.transition(opacity);
+  }
+
   &:hover {
-    box-shadow: 0 16px 40px rgb(0 0 0 / 0.1);
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+    box-shadow: 0 30px 64px rgb(0 0 0 / 0.3);
+
+    &::after {
+      opacity: 1;
+    }
+
+    .cardImage {
+      transform: scale(1.07);
+    }
   }
 }
 
+.cardMedia {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.cardImage {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  animation: kenburns 22s ease-in-out infinite;
+  @include m.transition(transform);
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.92) 0%,
+    rgb(0 0 0 / 0.55) 45%,
+    rgb(0 0 0 / 0.15) 75%,
+    rgb(0 0 0 / 0.02) 100%
+  );
+}
+
+.cardIndex {
+  position: absolute;
+  top: v.$space-md;
+  right: v.$space-md;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 32px;
+  padding-inline: v.$space-xs;
+  border-radius: v.$radius-full;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background-color: rgb(0 0 0 / 0.35);
+  border: 1px solid rgb(255 255 255 / 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.cardBody {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: v.$space-xl;
+  color: #fff;
+}
+
+.cardEyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffd782;
+}
+
 .cardTitle {
-  font-size: 1.25rem;
-  font-weight: 500;
+  margin: v.$space-xs 0 0;
+  font-size: 1.6rem;
+  font-weight: 600;
   letter-spacing: -0.02em;
+  color: #fff;
 }
 
 .cardText {
-  color: v.$color-muted;
+  margin: v.$space-sm 0 0;
+  color: rgb(255 255 255 / 0.8);
   line-height: v.$body-line-height;
 }
 
@@ -43,21 +147,24 @@
   display: inline-flex;
   align-items: center;
   gap: v.$space-xs;
-  margin-top: auto;
-  padding-top: v.$space-md;
+  margin-top: v.$space-md;
   font-weight: 500;
   font-size: 0.875rem;
-  @include m.transition(gap);
+  color: #ffd782;
+  border-bottom: 1px solid rgb(255 215 130 / 0.4);
+  padding-bottom: 2px;
+  @include m.transition(gap, border-color);
 
   &:hover {
     gap: v.$space-sm;
+    border-color: #ffd782;
   }
 }
 
 .featureGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: v.$space-md;
+  gap: v.$space-lg;
 
   @media (min-width: 640px) {
     grid-template-columns: repeat(3, 1fr);
@@ -71,12 +178,38 @@
   overflow: hidden;
   aspect-ratio: 4 / 3;
   background-color: v.$color-border-soft;
+  box-shadow: 0 12px 30px rgb(0 0 0 / 0.1);
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 48px rgb(0 0 0 / 0.22);
+
+    .featureImage {
+      transform: scale(1.08);
+    }
+  }
 }
 
 .featureImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  animation: kenburns 26s ease-in-out infinite;
+  @include m.transition(transform);
+}
+
+.featureCaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: v.$space-md;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.78), transparent);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 500;
 }
 
 .contentBlock {
@@ -105,10 +238,18 @@
   gap: v.$space-sm;
   line-height: v.$body-line-height;
   color: v.$color-muted;
+  padding: v.$space-sm v.$space-md;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-lg;
+  background-color: v.$color-surface;
+
+  iconify-icon {
+    color: #ffd782;
+  }
 }
 
 .checkIcon {
-  color: v.$color-success;
+  color: #ffd782;
   flex-shrink: 0;
   margin-top: 2px;
 }

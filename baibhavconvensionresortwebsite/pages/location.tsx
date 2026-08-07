@@ -1,7 +1,9 @@
 import type { GetStaticProps, NextPage } from 'next';
 import Seo from '@/components/seo/Seo';
 import InnerHero from '@/components/ui/InnerHero';
+import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/LocationPage.module.scss';
+import { LOCATION_FAQS } from '@/data/faqs';
 import { DISTANCES, ATTRACTIONS, GETTING_HERE, WHY_LOCATION } from '@/data/location';
 import { SITE } from '@/data/site';
 import { Attraction, Distance } from '@/types';
@@ -12,6 +14,24 @@ interface LocationPageProps {
 }
 
 const MAP_EMBED = 'https://www.google.com/maps?q=Phulnakhara%20Cuttack%20Bhubaneswar%20NH16&output=embed';
+const DIRECTIONS_URL =
+  'https://www.google.com/maps/search/?api=1&query=Phulnakhara%20Cuttack%20Bhubaneswar%20NH16';
+
+const WHY_IMAGES = ['/newedit/Entrance 2.avif', '/newedit/Pathway.avif'];
+const WHY_ICONS = ['solar:car-bold', 'solar:bus-bold'];
+
+const ATTRACTION_IMAGES = [
+  '/newedit/Preimum Lawn.avif',
+  '/newedit/Warmly Lit Modern Colonnade at Night.avif',
+  '/newedit/God.avif',
+  '/newedit/gateeeeee.avif',
+];
+const ATTRACTION_ICONS = [
+  'solar:tree-bold',
+  'solar:sun-2-bold',
+  'solar:building-2-bold',
+  'solar:stadium-bold',
+];
 
 const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) => {
   return (
@@ -22,7 +42,7 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
         path="/location"
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        image="/newedit/Gate new Design.avif"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Location & Local Guide' },
@@ -42,7 +62,20 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
-        <p className={styles.address}>{SITE.address}</p>
+        <div className={styles.mapFooter} data-reveal>
+          <span className={styles.addressBlock}>
+            <iconify-icon icon="solar:map-point-bold" width="18" aria-hidden="true" />
+            <span>{SITE.address}</span>
+          </span>
+          <a
+            href={DIRECTIONS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+          >
+            Get Directions
+          </a>
+        </div>
       </div>
 
       <section className={styles.section}>
@@ -51,13 +84,19 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
           <h2 className="h2" style={{ marginTop: 8 }}>
             {GETTING_HERE.title}
           </h2>
-          <p className={styles.text}>{GETTING_HERE.intro}</p>
-          <div className={styles.steps}>
+          <p className={styles.lead}>{GETTING_HERE.intro}</p>
+          <div className={styles.imageGrid}>
             {GETTING_HERE.steps.map((step, index) => (
-              <div key={step.title} className={styles.step} data-reveal data-reveal-stagger>
-                <span className={styles.stepNumber}>{index + 1}</span>
-                <p className={styles.stepTitle}>{step.title}</p>
-                <p className={styles.stepText}>{step.description}</p>
+              <div key={step.title} className={styles.card} data-reveal data-reveal-stagger>
+                <div className={styles.media}>
+                  <div className={styles.image} style={{ backgroundImage: `url('${step.image}')` }} />
+                  <div className={styles.overlay} />
+                </div>
+                <span className={styles.indexChip}>{String(index + 1).padStart(2, '0')}</span>
+                <div className={styles.body}>
+                  <h3 className={styles.title}>{step.title}</h3>
+                  <p className={styles.text}>{step.description}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -70,25 +109,34 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
           <h2 className="h2" style={{ marginTop: 8 }}>
             Transit hubs at a glance
           </h2>
-          <div className={styles.tableWrap} data-reveal>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>Destination</th>
-                  <th>Distance</th>
-                  <th>Driving Time</th>
-                </tr>
-              </thead>
-              <tbody>
-                {distances.map((item) => (
-                  <tr key={item.destination}>
-                    <td>{item.destination}</td>
-                    <td>{item.distance}</td>
-                    <td>{item.drivingTime}</td>
+          <div className={styles.split}>
+            <div className={styles.splitMedia} data-reveal>
+              <div
+                className={styles.splitImage}
+                style={{ backgroundImage: `url('/newedit/Elegant Nighttime Property Showcase.avif')` }}
+              />
+              <p className={styles.splitCaption}>Elegant Nighttime Property Showcase</p>
+            </div>
+            <div className={styles.tableWrap} data-reveal>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Destination</th>
+                    <th>Distance</th>
+                    <th>Driving Time</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {distances.map((item) => (
+                    <tr key={item.destination}>
+                      <td className={styles.tableName}>{item.destination}</td>
+                      <td>{item.distance}</td>
+                      <td>{item.drivingTime}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
@@ -97,10 +145,22 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
         <div className="container">
           <p className="caption">Why our location matters</p>
           <div className={styles.whyGrid}>
-            {WHY_LOCATION.map((item) => (
-              <div key={item.title} className={styles.whyCard} data-reveal data-reveal-stagger>
-                <p className={styles.whyTitle}>{item.title}</p>
-                <p className={styles.text}>{item.description}</p>
+            {WHY_LOCATION.map((item, index) => (
+              <div key={item.title} className={styles.card} data-reveal data-reveal-stagger>
+                <div className={styles.media}>
+                  <div
+                    className={styles.image}
+                    style={{ backgroundImage: `url('${WHY_IMAGES[index]}')` }}
+                  />
+                  <div className={styles.overlay} />
+                </div>
+                <span className={styles.iconChip}>
+                  <iconify-icon icon={WHY_ICONS[index]} width="22" aria-hidden="true" />
+                </span>
+                <div className={styles.body}>
+                  <h3 className={styles.title}>{item.title}</h3>
+                  <p className={styles.text}>{item.description}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -114,18 +174,39 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
             What to explore around Phulnakhara
           </h2>
           <div className={styles.attractionGrid}>
-            {attractions.map((attraction) => (
-              <div key={attraction.name} className={styles.attractionCard} data-reveal data-reveal-stagger>
-                <p className={styles.attractionTitle}>{attraction.name}</p>
-                <p className={styles.attractionMeta}>
-                  {attraction.distance} &middot; {attraction.drivingTime}
-                </p>
-                <p className={styles.attractionText}>{attraction.description}</p>
+            {attractions.map((attraction, index) => (
+              <div key={attraction.name} className={styles.card} data-reveal data-reveal-stagger>
+                <div className={styles.media}>
+                  <div
+                    className={styles.image}
+                    style={{ backgroundImage: `url('${ATTRACTION_IMAGES[index]}')` }}
+                  />
+                  <div className={styles.overlay} />
+                </div>
+                <span className={styles.attractionTop}>
+                  <span className={styles.iconChipSmall}>
+                    <iconify-icon icon={ATTRACTION_ICONS[index]} width="18" aria-hidden="true" />
+                  </span>
+                  <span className={styles.attractionChip}>
+                    {attraction.distance} &middot; {attraction.drivingTime}
+                  </span>
+                </span>
+                <div className={styles.body}>
+                  <h3 className={styles.title}>{attraction.name}</h3>
+                  <p className={styles.text}>{attraction.description}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      <FaqSection
+        items={LOCATION_FAQS}
+        eyebrow="Location FAQs"
+        title="Getting Here Questions"
+        subtitle="Distances from Bhubaneswar, Cuttack and the airport, plus nearby attractions."
+      />
     </>
   );
 };

@@ -3,7 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Seo from '@/components/seo/Seo';
 import InnerHero from '@/components/ui/InnerHero';
+import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/EventsPage.module.scss';
+import { CORPORATE_FAQS } from '@/data/faqs';
 
 const CORPORATE_FEATURES = [
   'High-definition projection screens and premium sound systems.',
@@ -14,16 +16,16 @@ const CORPORATE_FEATURES = [
 
 const CORPORATE_IMAGES = [
   {
-    src: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    alt: 'Corporate conference in the Imperial Hall',
+    src: '/newedit/Waiting area 2.avif',
+    alt: 'Elegant waiting lounge for delegates',
   },
   {
-    src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    alt: 'Executive Boardroom meeting',
+    src: '/newedit/Luxury Courtyard Pathway at Night.avif',
+    alt: 'Luxury courtyard pathway at night',
   },
   {
-    src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    alt: 'Keynote presentation with stage lighting',
+    src: '/newedit/Reciption.avif',
+    alt: 'Reception desk for event check-in',
   },
 ];
 
@@ -36,7 +38,7 @@ const CorporatePage: NextPage = () => {
         path="/events/corporate"
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        image="/newedit/Warm-Lit Luxury Hotel Corridor.avif"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Weddings & Events', href: '/events' },
@@ -60,6 +62,7 @@ const CorporatePage: NextPage = () => {
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
+              <figcaption className={styles.featureCaption}>{img.alt}</figcaption>
             </figure>
           ))}
         </div>
@@ -85,6 +88,13 @@ const CorporatePage: NextPage = () => {
           </div>
         </div>
       </div>
+
+      <FaqSection
+        items={CORPORATE_FAQS}
+        eyebrow="Corporate FAQs"
+        title="Conference & MICE Questions"
+        subtitle="AV, Wi-Fi, capacity and corporate day-package questions for your next conference."
+      />
     </>
   );
 };
