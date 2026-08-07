@@ -31,79 +31,138 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.grid}>
-        <div>
-          <Link href="/" className={styles.logo} aria-label={`${SITE.name} home`}>
-            <Image
-              src="/images/baibhablogo.webp"
-              alt=""
-              width={1560}
-              height={878}
-              className={styles.logoImg}
-            />
-          </Link>
-          <p className={styles.tagline}>{SITE.description}</p>
-          <p className={styles.address}>{SITE.address}</p>
-          <a href={`tel:+${SITE.phoneReservationsRaw}`} className={styles.contactLink}>
-            {SITE.phoneReservations}
-          </a>
-          <a href={`mailto:${SITE.emailGeneral}`} className={styles.contactLink}>
-            {SITE.emailGeneral}
-          </a>
-          <div className={styles.social}>
-            <a href={SITE.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className={styles.socialLink}>
-              <iconify-icon icon="simple-icons:facebook" width="18" aria-hidden="true" />
+      <div className="container">
+        <div className={styles.ctaBand} data-reveal>
+          <div>
+            <p className={styles.ctaEyebrow}>Plan your visit</p>
+            <p className={styles.ctaTitle}>Ready to book your stay or plan a grand celebration?</p>
+          </div>
+          <div className={styles.ctaActions}>
+            <a
+              href={SITE.bookingEngine}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+            >
+              Book a Room
             </a>
-            <a href={SITE.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={styles.socialLink}>
-              <iconify-icon icon="simple-icons:instagram" width="18" aria-hidden="true" />
-            </a>
-            <a href="#" aria-label="YouTube" className={styles.socialLink}>
-              <iconify-icon icon="simple-icons:youtube" width="18" aria-hidden="true" />
-            </a>
+            <Link href="/contact" className="btn btn-light">
+              Plan an Event
+            </Link>
           </div>
         </div>
 
-        <div>
-          <p className={styles.columnTitle}>Quick Links</p>
-          {QUICK_LINKS.map((link) => (
-            <Link key={link.label} href={link.href} className={styles.columnLink}>
-              {link.label}
+        <div className={styles.grid}>
+          <div className={styles.brandCol}>
+            <Link href="/" className={styles.logo} aria-label={`${SITE.name} home`}>
+              <Image
+                src="/images/baibhablogo.webp"
+                alt=""
+                width={1560}
+                height={878}
+                className={styles.logoImg}
+              />
             </Link>
-          ))}
-        </div>
+            <p className={styles.tagline}>{SITE.description}</p>
+            <div className={styles.contacts}>
+              <a href={`tel:+${SITE.phoneReservationsRaw}`} className={styles.contactRow}>
+                <iconify-icon icon="solar:phone-bold" width="18" aria-hidden="true" />
+                <span>{SITE.phoneReservations}</span>
+              </a>
+              <a href={`mailto:${SITE.emailGeneral}`} className={styles.contactRow}>
+                <iconify-icon icon="solar:letter-bold" width="18" aria-hidden="true" />
+                <span>{SITE.emailGeneral}</span>
+              </a>
+              <span className={styles.contactRow}>
+                <iconify-icon icon="solar:map-point-bold" width="18" aria-hidden="true" />
+                <span>{SITE.address}</span>
+              </span>
+            </div>
+            <div className={styles.social}>
+              <a
+                href={SITE.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className={styles.socialLink}
+              >
+                <iconify-icon icon="simple-icons:facebook" width="18" aria-hidden="true" />
+              </a>
+              <a
+                href={SITE.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className={styles.socialLink}
+              >
+                <iconify-icon icon="simple-icons:instagram" width="18" aria-hidden="true" />
+              </a>
+              <a
+                href={`https://wa.me/${SITE.whatsappRaw}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className={styles.socialLink}
+              >
+                <iconify-icon icon="simple-icons:whatsapp" width="18" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
 
-        <div>
-          <p className={styles.columnTitle}>Event Focus</p>
-          {EVENT_LINKS.map((link) => (
-            <Link key={link.label} href={link.href} className={styles.columnLink}>
-              {link.label}
+          <div className={styles.col}>
+            <p className={styles.columnTitle}>Quick Links</p>
+            <div className={styles.titleLine} aria-hidden="true" />
+            {QUICK_LINKS.map((link) => (
+              <Link key={link.label} href={link.href} className={styles.columnLink}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className={styles.col}>
+            <p className={styles.columnTitle}>Event Focus</p>
+            <div className={styles.titleLine} aria-hidden="true" />
+            {EVENT_LINKS.map((link) => (
+              <Link key={link.label} href={link.href} className={styles.columnLink}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className={styles.col}>
+            <p className={styles.columnTitle}>Get in Touch</p>
+            <div className={styles.titleLine} aria-hidden="true" />
+            <p className={styles.introText}>
+              Chat with our team directly for bookings, queries, and tailored event plans.
+            </p>
+            <a
+              className={styles.whatsapp}
+              href={`https://wa.me/${SITE.whatsappRaw}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <iconify-icon icon="simple-icons:whatsapp" width="18" aria-hidden="true" />
+              WhatsApp Us
+            </a>
+            <Link
+              href="/contact?inquiry=Banquets+%2F+Events"
+              className={styles.enquiryLink}
+            >
+              Send an Event Inquiry
             </Link>
-          ))}
+          </div>
         </div>
 
-        <div>
-          <p className={styles.columnTitle}>Stay in the Loop</p>
-          <a
-            className={styles.whatsapp}
-            href={`https://wa.me/${SITE.whatsappRaw}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <iconify-icon icon="simple-icons:whatsapp" width="18" aria-hidden="true" />
-            Chat with us on WhatsApp
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.bottom}>
-        <span>
-          &copy; {mounted ? year : '2024'} {SITE.legalName}. All rights reserved.
-        </span>
-        <div className={styles.legal}>
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <Link href="/terms">Terms & Conditions</Link>
-          <Link href="/cancellation-policy">Cancellation & Refund</Link>
-          <Link href="/sitemap">Sitemap</Link>
+        <div className={styles.bottom}>
+          <span>
+            &copy; {mounted ? year : '2024'} {SITE.legalName}. All rights reserved.
+          </span>
+          <div className={styles.legal}>
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link href="/terms">Terms & Conditions</Link>
+            <Link href="/cancellation-policy">Cancellation & Refund</Link>
+            <Link href="/sitemap">Sitemap</Link>
+          </div>
         </div>
       </div>
     </footer>
