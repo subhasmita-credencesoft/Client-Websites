@@ -1,0 +1,185 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.mapWrap {
+  border-radius: v.$radius-xl;
+  overflow: hidden;
+  border: 1px solid v.$color-border;
+}
+
+.map {
+  width: 100%;
+  height: 420px;
+  border: 0;
+  display: block;
+}
+
+.address {
+  margin-top: v.$space-md;
+  color: v.$color-muted;
+  font-size: 0.875rem;
+}
+
+.section {
+  padding-block: v.$space-xxl;
+  border-top: 1px solid v.$color-border;
+
+  &:first-of-type {
+    border-top: none;
+  }
+}
+
+.text {
+  margin-top: v.$space-md;
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+  margin-top: v.$space-lg;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.step {
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-lg;
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.1);
+    transform: translateY(-4px);
+  }
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: v.$radius-full;
+  background-color: v.$color-accent;
+  color: v.$color-surface;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.stepTitle {
+  margin-top: v.$space-md;
+  font-weight: 500;
+}
+
+.stepText {
+  margin-top: v.$space-xs;
+  color: v.$color-muted;
+  font-size: 0.8125rem;
+  line-height: v.$body-line-height;
+}
+
+.tableWrap {
+  margin-top: v.$space-lg;
+  overflow-x: auto;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+}
+
+.table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: v.$body-size;
+
+  th,
+  td {
+    text-align: left;
+    padding: v.$space-md v.$space-lg;
+    border-bottom: 1px solid v.$color-border-soft;
+  }
+
+  thead th {
+    @include m.caption;
+    color: v.$color-muted;
+    background-color: v.$color-border-soft;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+  margin-top: v.$space-lg;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.whyCard {
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-lg;
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.1);
+    transform: translateY(-4px);
+  }
+}
+
+.whyTitle {
+  font-weight: 500;
+}
+
+.attractionGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+  margin-top: v.$space-lg;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.attractionCard {
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-lg;
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.1);
+    transform: translateY(-4px);
+  }
+}
+
+.attractionTitle {
+  font-weight: 500;
+}
+
+.attractionMeta {
+  margin-top: v.$space-xs;
+  color: v.$color-muted;
+  font-size: 0.75rem;
+}
+
+.attractionText {
+  margin-top: v.$space-xs;
+  color: v.$color-muted;
+  font-size: 0.8125rem;
+  line-height: v.$body-line-height;
+}

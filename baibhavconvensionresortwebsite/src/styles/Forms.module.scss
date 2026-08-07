@@ -1,0 +1,151 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-md;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+
+  @media (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.requiredStar {
+  color: v.$color-error;
+  margin-left: 2px;
+}
+
+.inlineError {
+  display: flex;
+  align-items: center;
+  gap: v.$space-xs;
+  padding: v.$space-sm v.$space-md;
+  border: 1px solid v.$color-error;
+  border-radius: v.$radius-md;
+  background-color: rgba(239, 68, 68, 0.08);
+  color: v.$color-error;
+  font-size: 0.875rem;
+}
+
+.input,
+.textarea {
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  padding: v.$space-sm v.$space-md;
+  font-family: v.$font-family;
+  font-size: v.$body-size;
+  outline: none;
+  background-color: v.$color-surface;
+  @include m.transition(border-color);
+
+  &:focus {
+    border-color: v.$color-accent;
+  }
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: v.$space-md;
+  padding: v.$space-xl;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  background-color: v.$color-surface;
+}
+
+.successTitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.successText {
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: v.$space-md;
+  padding: v.$space-xl;
+  border: 1px solid v.$color-error;
+  border-radius: v.$radius-xl;
+  background-color: v.$color-surface;
+}
+
+.errorTitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: v.$color-error;
+}
+
+.errorText {
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+}
+
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-xl;
+  margin-bottom: v.$space-xxl;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1.4fr;
+    align-items: start;
+  }
+}
+
+.side {
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-xl;
+}
+
+.sideTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.steps {
+  margin: v.$space-md 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-lg;
+  color: v.$color-muted;
+  font-size: 0.875rem;
+  line-height: v.$body-line-height;
+}
+
+.stepLabel {
+  display: block;
+  color: v.$color-foreground;
+  font-weight: 500;
+  margin-bottom: 2px;
+}

@@ -1,0 +1,79 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.card {
+  display: block;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  overflow: hidden;
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.1);
+    transform: translateY(-4px);
+  }
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  @include m.transition(transform);
+
+  .card:hover & {
+    transform: scale(1.04);
+  }
+}
+
+.tag {
+  position: absolute;
+  top: v.$space-md;
+  left: v.$space-md;
+  background-color: rgb(255 255 255 / 0.92);
+  color: v.$color-foreground;
+  padding: v.$space-xs v.$space-sm;
+  border-radius: v.$radius-full;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.body {
+  padding: v.$space-lg;
+}
+
+.name {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.capacity {
+  display: flex;
+  gap: v.$space-lg;
+  margin-top: v.$space-md;
+}
+
+.capacityValue {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.capacityLabel {
+  display: block;
+  color: v.$color-muted;
+  font-size: 0.75rem;
+}
+
+.idealFor {
+  margin-top: v.$space-md;
+  color: v.$color-muted;
+  font-size: 0.8125rem;
+  line-height: v.$body-line-height;
+}

@@ -1,0 +1,79 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+  margin-bottom: v.$space-xxl;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  align-items: flex-end;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  overflow: hidden;
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.18);
+    transform: translateY(-4px);
+
+    .cardImage {
+      transform: scale(1.06);
+    }
+  }
+}
+
+.cardImage {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  @include m.transition(transform);
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.85) 0%,
+    rgb(0 0 0 / 0.4) 45%,
+    rgb(0 0 0 / 0.05) 75%,
+    rgb(0 0 0 / 0) 100%
+  );
+}
+
+.cardBody {
+  position: relative;
+  z-index: 1;
+  padding: v.$space-lg;
+  color: v.$color-surface;
+  width: 100%;
+}
+
+.cardTitle {
+  margin-top: v.$space-md;
+  font-weight: 600;
+  color: v.$color-surface;
+}
+
+.cardText {
+  margin-top: v.$space-xs;
+  color: rgb(255 255 255 / 0.85);
+  font-size: 0.8125rem;
+  line-height: v.$body-line-height;
+}

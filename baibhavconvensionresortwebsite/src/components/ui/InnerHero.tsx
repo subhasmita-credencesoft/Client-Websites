@@ -1,0 +1,55 @@
+import Link from 'next/link';
+import styles from '@/styles/InnerHero.module.scss';
+
+export interface InnerHeroBreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface InnerHeroProps {
+  image: string;
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  cta?: { label: string; href: string };
+  breadcrumb?: InnerHeroBreadcrumbItem[];
+}
+
+export default function InnerHero({ image, eyebrow, title, subtitle, cta, breadcrumb }: InnerHeroProps) {
+  return (
+    <section className={styles.hero} aria-label={title}>
+      <div className={styles.background} style={{ backgroundImage: `url(${image})` }} role="img" aria-label={title} />
+      <div className={styles.overlay} />
+      <div className={styles.content}>
+        {breadcrumb && breadcrumb.length > 0 && (
+          <nav className={styles.breadcrumb} aria-label="Breadcrumb">
+            {breadcrumb.map((item, i) => (
+              <span key={item.label} className={styles.breadcrumbItem}>
+                {item.href ? (
+                  <Link href={item.href} className={styles.breadcrumbLink}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className={styles.breadcrumbCurrent} aria-current="page">
+                    {item.label}
+                  </span>
+                )}
+                {i < breadcrumb.length - 1 && <span className={styles.breadcrumbSeparator}>/</span>}
+              </span>
+            ))}
+          </nav>
+        )}
+        {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
+        <h1 className={styles.title}>{title}</h1>
+        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+        {cta && (
+          <div className={styles.ctaRow}>
+            <Link href={cta.href} className="btn btn-light">
+              {cta.label}
+            </Link>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}

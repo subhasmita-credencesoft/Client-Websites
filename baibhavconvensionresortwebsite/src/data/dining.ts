@@ -1,0 +1,57 @@
+import { CateringOption, DiningHighlight } from '@/types';
+
+export const RESTAURANT = {
+  name: 'The Baibhab Kitchen',
+  concept:
+    'A multi-cuisine restaurant serving authentic regional Odia delicacies alongside popular North Indian, South Indian, and Continental fare  from sunrise thalis to slow dinners.',
+  hours: '7:00 AM \u2013 10:30 PM',
+  specialties: [
+    'Local coastal seafood dishes',
+    'Traditional Odia thalis',
+    'Signature tandoori appetizers',
+    'Fresh breakfast counter with daily specials',
+  ],
+  highlights: [
+    {
+      title: 'Local Odia Specialties',
+      description: 'Handed-down recipes, coastal seafood, and traditional thalis served fresh daily.',
+    },
+    {
+      title: 'North & South Indian',
+      description: 'Rich gravies, dosas, and regional curries prepared by experienced master chefs.',
+    },
+    {
+      title: 'Continental & Café Favorites',
+      description: 'Pastas, grills, sandwiches, and barista-style coffee through the day.',
+    },
+    {
+      title: 'Room Service',
+      description: 'A complete room service menu available 24/7 for in-room dining.',
+    },
+  ] as DiningHighlight[],
+};
+
+export const CATERING = {
+  description:
+    'Food is the heart of every great event. Our banquet culinary team offers customizable menu templates suited to your palate and budget  from traditional rituals to modern live counters.',
+  options: [
+    {
+      title: 'Traditional Pure-Veg / Satvik Menus',
+      description: 'Prepared with strict dietary standards for traditional rituals and ceremonies.',
+    },
+    {
+      title: 'Multi-Cuisine Buffet Counters',
+      description: 'Live chaat stalls, tandoori stations, Chinese wok counters, and artisanal dessert displays.',
+    },
+    {
+      title: 'Custom Dietary Requirements',
+      description: 'Special options available for Jain, vegan, and gluten-free diets upon request.',
+    },
+  ] as CateringOption[],
+};
+
+export const DINING_SECTION = {
+  title: 'Exceptional Flavors, Masterfully Crafted',
+  subtitle:
+    'From intimate dinners to banquets catering to thousands, our culinary team delivers excellence on every plate.',
+};

@@ -1,0 +1,274 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: v.$z-nav;
+  background-color: #ffffff;
+  backdrop-filter: blur(v.$nav-blur);
+  -webkit-backdrop-filter: blur(v.$nav-blur);
+  border-bottom: 1px solid transparent;
+  @include m.transition(background-color, box-shadow);
+
+  &.scrolled {
+    background-color: #ffffff;
+    box-shadow: v.$sidebar-shadow;
+    border-bottom-color: v.$color-border;
+  }
+}
+
+.inner {
+  @include m.container;
+  height: v.$nav-height;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$space-lg;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  display: block;
+  height: 65px;
+  width: auto;
+}
+
+.logoSub {
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: v.$color-muted;
+  text-transform: none;
+}
+
+.links {
+  display: none;
+  align-items: center;
+  gap: v.$space-lg;
+
+  @media (min-width: 1024px) {
+    display: flex;
+  }
+}
+
+.linkItem {
+  position: relative;
+
+  // Invisible bridge over the gap between the trigger and the dropdown, so
+  // the hover state is never lost while the cursor travels down into the menu.
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: v.$space-md;
+  }
+
+  &:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+    // Small intent delay so the menu doesn't flash open on a passing hover,
+    // then a smooth fade-in. Keeping the full translate(-50%, 0) transform
+    // prevents the dropdown from jumping sideways when it appears.
+    transition:
+      opacity 200ms v.$timing 100ms,
+      transform 200ms v.$timing 100ms,
+      visibility 0s 100ms;
+  }
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: v.$space-xs;
+  font-size: v.$body-size;
+  font-weight: 500;
+  color: v.$color-foreground;
+  @include m.transition(color);
+
+  &:hover {
+    color: v.$color-muted;
+  }
+}
+
+.chevron {
+  @include m.transition(transform);
+  font-size: 1rem;
+}
+
+.linkItem:hover .chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + #{v.$space-md});
+  left: 50%;
+  transform: translate(-50%, v.$space-sm);
+  min-width: 280px;
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-lg;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.08);
+  padding: v.$space-sm;
+  opacity: 0;
+  visibility: hidden;
+  // Stay visible while fading out (and briefly after), so the pointer can
+  // re-enter the menu without it snapping shut. visibility flips to hidden
+  // only after the fade completes.
+  transition:
+    opacity 250ms v.$timing,
+    transform 250ms v.$timing,
+    visibility 0s linear 250ms;
+}
+
+.dropdownItem {
+  display: block;
+  padding: v.$space-sm v.$space-md;
+  border-radius: v.$radius-md;
+  @include m.transition(background-color);
+
+  &:hover {
+    background-color: v.$color-border-soft;
+  }
+}
+
+.dropdownLabel {
+  display: block;
+  font-size: v.$body-size;
+  font-weight: 500;
+}
+
+.dropdownDescription {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.75rem;
+  color: v.$color-muted;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: v.$space-sm;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: v.$radius-full;
+  @include m.transition(background-color);
+
+  &:hover {
+    background-color: v.$color-border-soft;
+  }
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px v.$space-lg;
+  background-color: v.$color-accent;
+  color: v.$color-surface;
+  border-radius: v.$radius-full;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.12);
+  @include m.transition(opacity, box-shadow);
+
+  &:hover {
+    opacity: 0.88;
+    box-shadow: 0 6px 16px rgb(0 0 0 / 0.2);
+  }
+}
+
+.ctaOutline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: v.$space-sm v.$space-md;
+  border: 1px solid v.$color-border;
+  color: v.$color-foreground;
+  border-radius: v.$radius-full;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  @include m.transition(background-color, border-color);
+
+  &:hover {
+    background-color: v.$color-border-soft;
+  }
+}
+
+.desktopCta {
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: inline-flex;
+  }
+}
+
+.menuButton {
+  display: flex;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
+.mobileMenu {
+  position: fixed;
+  top: v.$nav-height;
+  left: 0;
+  right: 0;
+  background-color: v.$color-surface;
+  border-bottom: 1px solid v.$color-border;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.08);
+  padding: v.$space-md v.$space-lg v.$space-xl;
+  max-height: calc(100vh - #{v.$nav-height});
+  overflow-y: auto;
+}
+
+.mobileGroup {
+  padding-block: v.$space-sm;
+  border-bottom: 1px solid v.$color-border-soft;
+}
+
+.mobileLink {
+  display: block;
+  font-weight: 500;
+  font-size: 1rem;
+  padding-block: v.$space-xs;
+}
+
+.mobileChildren {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xs;
+  padding: v.$space-xs 0 v.$space-sm v.$space-sm;
+}
+
+.mobileChild {
+  font-size: v.$body-size;
+  color: v.$color-muted;
+}
+
+.mobileCtas {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+  margin-top: v.$space-lg;
+}

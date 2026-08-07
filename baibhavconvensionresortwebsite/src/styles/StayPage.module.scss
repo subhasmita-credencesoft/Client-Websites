@@ -1,0 +1,226 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+  margin-bottom: v.$space-xxl;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.searchSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$space-md;
+  flex-wrap: wrap;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-lg;
+  margin-bottom: v.$space-md;
+}
+
+.searchTitle {
+  font-weight: 500;
+}
+
+.searchMeta {
+  margin-top: v.$space-xs;
+  color: v.$color-muted;
+  font-size: 0.875rem;
+}
+
+.adjustLink {
+  color: v.$color-accent;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: v.$space-md;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-xl;
+  margin-bottom: v.$space-xxl;
+}
+
+.emptyText {
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+  max-width: 68ch;
+}
+
+.policies {
+  padding-block: v.$space-xxl;
+  background-color: v.$color-surface;
+}
+
+.roomLayout {
+  @include m.container;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-xxl;
+  padding-block: v.$space-xl v.$space-xxl;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.roomMain {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xl;
+}
+
+.roomHeader {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+}
+
+.roomTitle {
+  font-size: v.$h2-size;
+  font-weight: v.$h2-weight;
+  letter-spacing: v.$h2-tracking;
+}
+
+.roomSubtitle {
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+}
+
+.roomSection {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-md;
+}
+
+.roomSectionTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.roomText {
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+  max-width: 68ch;
+}
+
+.specStrip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-lg;
+
+  @media (min-width: 480px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.specLabel {
+  display: block;
+  @include m.caption;
+  color: v.$color-muted;
+}
+
+.specValue {
+  display: block;
+  margin-top: v.$space-xs;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.checklist {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-sm;
+
+  @media (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.checkItem {
+  display: flex;
+  align-items: flex-start;
+  gap: v.$space-sm;
+  font-size: v.$body-size;
+}
+
+.checkIcon {
+  color: v.$color-success;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.perks {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xs;
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+}
+
+.roomSidebar {
+  position: sticky;
+  top: v.$sidebar-sticky-offset;
+  align-self: start;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-lg;
+  box-shadow: v.$sidebar-shadow;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-md;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: v.$space-sm;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: #d1d5db;
+}
+
+.priceUnit {
+  color: v.$color-muted;
+  font-size: 0.8125rem;
+}
+
+.sidebarNote {
+  color: v.$color-muted;
+  font-size: 0.75rem;
+  line-height: v.$body-line-height;
+  text-align: center;
+}

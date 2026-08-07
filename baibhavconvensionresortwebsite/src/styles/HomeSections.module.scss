@@ -1,0 +1,276 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+// Dual path
+.dualPath {
+  padding-top: v.$space-xxl;
+}
+
+.dualGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-lg;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dualCard {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-xl;
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.1);
+    transform: translateY(-4px);
+  }
+}
+
+.dualTitle {
+  margin-top: v.$space-sm;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.dualText {
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+}
+
+.dualCta {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-xs;
+  margin-top: auto;
+  padding-top: v.$space-md;
+  font-weight: 500;
+  font-size: 0.875rem;
+  @include m.transition(gap);
+
+  &:hover {
+    gap: v.$space-sm;
+  }
+}
+
+// Highlights
+.highlights {
+  padding-block: v.$space-xxl;
+}
+
+.highlightsHeader {
+  margin-bottom: v.$space-xl;
+}
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+
+  @media (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.highlightCard {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  align-items: flex-end;
+  border-radius: v.$radius-xl;
+  overflow: hidden;
+  border: 1px solid v.$color-border;
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.18);
+    transform: translateY(-4px);
+
+    .highlightImage {
+      transform: scale(1.06);
+    }
+  }
+}
+
+.highlightImage {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  @include m.transition(transform);
+}
+
+.highlightOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.85) 0%,
+    rgb(0 0 0 / 0.4) 45%,
+    rgb(0 0 0 / 0.05) 75%,
+    rgb(0 0 0 / 0) 100%
+  );
+}
+
+.highlightContent {
+  position: relative;
+  z-index: 1;
+  padding: v.$space-lg;
+  color: v.$color-surface;
+  width: 100%;
+}
+
+.highlightTitle {
+  margin-top: v.$space-md;
+  font-weight: 600;
+  color: v.$color-surface;
+}
+
+.highlightText {
+  margin-top: v.$space-xs;
+  color: rgb(255 255 255 / 0.85);
+  font-size: 0.8125rem;
+  line-height: v.$body-line-height;
+}
+
+// Venue capacity
+.venueSection {
+  padding-block: v.$space-xl v.$space-xxl;
+  background-color: v.$color-surface;
+}
+
+.venueHeader {
+  margin-bottom: v.$space-xl;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+}
+
+.capacityTable {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: v.$body-size;
+
+  th,
+  td {
+    text-align: left;
+    padding: v.$space-md v.$space-lg;
+    border-bottom: 1px solid v.$color-border-soft;
+    vertical-align: top;
+  }
+
+  thead th {
+    @include m.caption;
+    color: v.$color-muted;
+    background-color: v.$color-border-soft;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.tableName {
+  font-weight: 500;
+}
+
+// Room preview
+.roomPreview {
+  padding-block: v.$space-xxl;
+}
+
+.roomHeader {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-md;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: v.$space-xl;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
+.roomGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Location advantage
+.locationAdvantage {
+  padding-block: v.$space-xxl;
+  background-color: v.$color-surface;
+}
+
+.locationCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: v.$space-xl;
+  align-items: center;
+
+  & > * {
+    min-width: 0;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.locationText {
+  margin-top: v.$space-md;
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+  max-width: 60ch;
+}
+
+.locationPoints {
+  margin: v.$space-lg 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+  color: v.$color-muted;
+  font-size: 0.875rem;
+}
+
+.locationImageWrap {
+  position: relative;
+  min-height: 320px;
+  max-height: 420px;
+  border-radius: v.$radius-xl;
+  overflow: hidden;
+}
+
+.locationImage {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+}

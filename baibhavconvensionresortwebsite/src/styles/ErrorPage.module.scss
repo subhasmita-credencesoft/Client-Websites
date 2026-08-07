@@ -1,0 +1,42 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.wrap {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-block: v.$space-xxl;
+  padding-inline: v.$container-padding;
+}
+
+.code {
+  font-size: clamp(4rem, 3rem + 8vw, 8rem);
+  font-weight: v.$h1-weight;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.title {
+  margin-top: v.$space-md;
+  font-size: v.$h2-size;
+  font-weight: v.$h2-weight;
+  letter-spacing: v.$h2-tracking;
+}
+
+.text {
+  max-width: 46ch;
+  margin-top: v.$space-md;
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: v.$space-md;
+  margin-top: v.$space-xl;
+}

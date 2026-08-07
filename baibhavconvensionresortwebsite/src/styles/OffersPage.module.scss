@@ -1,0 +1,88 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.section {
+  padding-block: v.$space-xl;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+  margin-top: v.$space-lg;
+  margin-bottom: v.$space-xl;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-lg;
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.1);
+    transform: translateY(-4px);
+  }
+}
+
+.cardTag {
+  @include m.caption;
+  color: v.$color-muted;
+}
+
+.cardTitle {
+  margin-top: v.$space-xs;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.cardText {
+  margin-top: v.$space-xs;
+  color: v.$color-muted;
+  font-size: 0.8125rem;
+  line-height: v.$body-line-height;
+}
+
+.cardList {
+  margin: v.$space-md 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xs;
+  color: v.$color-muted;
+  font-size: 0.8125rem;
+  line-height: v.$body-line-height;
+}
+
+.checkIcon {
+  color: v.$color-success;
+  flex-shrink: 0;
+  margin-right: v.$space-xs;
+  vertical-align: -2px;
+}
+
+.cardFooter {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-md;
+  align-items: flex-start;
+  margin-top: auto;
+  padding-top: v.$space-md;
+}
+
+.price {
+  font-weight: 500;
+  font-size: 0.875rem;
+}

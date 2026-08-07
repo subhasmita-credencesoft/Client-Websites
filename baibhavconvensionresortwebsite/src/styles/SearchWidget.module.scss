@@ -1,0 +1,121 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.widget {
+  background-color: v.$color-surface;
+  border-radius: v.$radius-xl;
+  box-shadow: 0 20px 48px rgb(0 0 0 / 0.12);
+  padding: v.$space-sm;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: v.$space-sm v.$space-md;
+  border-radius: v.$radius-lg;
+  @include m.transition(background-color);
+
+  &:hover {
+    background-color: v.$color-border-soft;
+  }
+
+  @media (max-width: 480px) {
+    padding: v.$space-xs v.$space-sm;
+  }
+}
+
+.divider {
+  display: none;
+  width: 1px;
+  margin-block: v.$space-sm;
+  background-color: v.$color-border;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.label {
+  @include m.caption;
+  color: v.$color-muted;
+  display: flex;
+  align-items: center;
+  gap: v.$space-xs;
+}
+
+.input {
+  border: none;
+  outline: none;
+  background: none;
+  font-family: v.$font-family;
+  font-size: v.$body-size;
+  color: v.$color-foreground;
+  padding: 0;
+
+  &::placeholder {
+    color: v.$color-muted;
+  }
+}
+
+.guestsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stepperButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: v.$radius-full;
+  border: 1px solid v.$color-border;
+  @include m.transition(border-color);
+
+  &:hover {
+    border-color: v.$color-foreground;
+  }
+}
+
+.searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: v.$space-xs;
+  margin-top: v.$space-sm;
+  padding: v.$space-md v.$space-lg;
+  background-color: v.$color-accent;
+  color: v.$color-surface;
+  border-radius: v.$radius-lg;
+  font-weight: 500;
+  white-space: nowrap;
+  @include m.transition(opacity, transform);
+
+  &:hover {
+    opacity: 0.88;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: v.$space-xs;
+    padding: v.$space-sm v.$space-md;
+  }
+}

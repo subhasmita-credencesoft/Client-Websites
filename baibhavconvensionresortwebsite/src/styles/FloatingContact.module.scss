@@ -1,0 +1,37 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.stack {
+  position: fixed;
+  right: v.$space-lg;
+  bottom: calc(v.$space-lg + 56px);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: v.$radius-full;
+  color: v.$color-surface;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.2);
+  @include m.transition(transform, opacity);
+
+  &:hover {
+    transform: scale(1.05);
+    opacity: 0.92;
+  }
+}
+
+.call {
+  background-color: v.$color-accent;
+}
+
+.whatsapp {
+  background-color: #25d366;
+}

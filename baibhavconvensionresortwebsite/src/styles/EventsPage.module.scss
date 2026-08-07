@@ -1,0 +1,234 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+  margin-bottom: v.$space-xxl;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-xl;
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.1);
+    transform: translateY(-4px);
+  }
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.cardText {
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+}
+
+.cardCta {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-xs;
+  margin-top: auto;
+  padding-top: v.$space-md;
+  font-weight: 500;
+  font-size: 0.875rem;
+  @include m.transition(gap);
+
+  &:hover {
+    gap: v.$space-sm;
+  }
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.featureImageWrap {
+  position: relative;
+  margin: 0;
+  border-radius: v.$radius-xl;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background-color: v.$color-border-soft;
+}
+
+.featureImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contentBlock {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-lg;
+  margin-block: v.$space-xl v.$space-xxl;
+}
+
+.checklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-sm;
+
+  @media (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.checkItem {
+  display: flex;
+  align-items: flex-start;
+  gap: v.$space-sm;
+  line-height: v.$body-line-height;
+  color: v.$color-muted;
+}
+
+.checkIcon {
+  color: v.$color-success;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ctaBlock {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-sm;
+}
+
+.venueList {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xxl;
+  margin-bottom: v.$space-xxl;
+}
+
+.venue {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: v.$space-xl;
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  overflow: hidden;
+
+  & > * {
+    min-width: 0;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: minmax(0, 1fr) 1.2fr;
+  }
+}
+
+.venueMedia {
+  position: relative;
+  min-height: 320px;
+}
+
+.venueImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.venueBody {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-md;
+  padding: v.$space-xl;
+}
+
+.venueMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-sm;
+  align-items: center;
+}
+
+.venueType {
+  @include m.caption;
+  background-color: v.$color-border-soft;
+  padding: v.$space-xs v.$space-sm;
+  border-radius: v.$radius-full;
+}
+
+.venueMetaText {
+  color: v.$color-muted;
+  font-size: 0.8125rem;
+}
+
+.venueTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.venueText {
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+}
+
+.venueTable {
+  width: 100%;
+  max-width: 420px;
+  border-collapse: collapse;
+  font-size: v.$body-size;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-lg;
+  overflow: hidden;
+
+  th,
+  td {
+    text-align: left;
+    padding: v.$space-sm v.$space-md;
+    border-bottom: 1px solid v.$color-border-soft;
+  }
+
+  thead th {
+    @include m.caption;
+    color: v.$color-muted;
+    background-color: v.$color-border-soft;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.featureList {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-xs;
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+
+  @media (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}

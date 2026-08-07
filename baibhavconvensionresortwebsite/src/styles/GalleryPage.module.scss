@@ -1,0 +1,91 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-sm;
+  margin-bottom: v.$space-xl;
+}
+
+.filter {
+  padding: v.$space-sm v.$space-md;
+  border-radius: v.$radius-full;
+  border: 1px solid v.$color-border;
+  background-color: v.$color-surface;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  @include m.transition(background-color, color, border-color);
+
+  &:hover {
+    border-color: v.$color-foreground;
+  }
+}
+
+.filterActive {
+  background-color: v.$color-accent;
+  color: v.$color-surface;
+  border-color: v.$color-accent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.item {
+  position: relative;
+  margin: 0;
+  border-radius: v.$radius-xl;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background-color: v.$color-border-soft;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  @include m.transition(transform, opacity);
+
+  .item:hover & {
+    transform: scale(1.04);
+  }
+}
+
+.caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: v.$space-md;
+  background: linear-gradient(0deg, rgb(0 0 0 / 0.6), transparent);
+  color: v.$color-surface;
+  font-size: 0.8125rem;
+  opacity: 0;
+  @include m.transition(opacity);
+
+  .item:hover & {
+    opacity: 1;
+  }
+
+  @media (hover: none) {
+    opacity: 1;
+  }
+}
+
+.captionTag {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}

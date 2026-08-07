@@ -1,0 +1,41 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.list {
+  border-top: 1px solid v.$color-border;
+}
+
+.details {
+  border-bottom: 1px solid v.$color-border;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: v.$space-md;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 500;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.icon {
+  @include m.transition(transform);
+  flex-shrink: 0;
+  color: v.$color-muted;
+}
+
+.details[open] .icon {
+  transform: rotate(180deg);
+}
+
+.answer {
+  padding-bottom: v.$space-md;
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+  max-width: 65ch;
+}

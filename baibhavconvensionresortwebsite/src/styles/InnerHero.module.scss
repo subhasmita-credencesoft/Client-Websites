@@ -1,0 +1,139 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+@keyframes inner-hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero {
+  position: relative;
+  min-height: clamp(360px, 48vh, 500px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: v.$nav-height;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: v.$z-hero-bg;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: v.$z-hero-overlay;
+  background-color: rgb(0 0 0 / 0.5);
+}
+
+.content {
+  position: relative;
+  z-index: v.$z-hero-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: v.$color-surface;
+  padding-block: v.$space-xl;
+  padding-inline: v.$container-padding;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: v.$space-sm;
+  margin-bottom: v.$space-lg;
+  animation: inner-hero-fade-up 0.7s v.$timing both;
+  animation-delay: 0.05s;
+}
+
+.breadcrumbItem {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-sm;
+}
+
+.breadcrumbLink {
+  color: rgb(255 255 255 / 0.75);
+  text-decoration: none;
+
+  &:hover {
+    color: v.$color-surface;
+    text-decoration: underline;
+  }
+}
+
+.breadcrumbCurrent {
+  color: v.$color-surface;
+  font-weight: 500;
+}
+
+.breadcrumbSeparator {
+  color: rgb(255 255 255 / 0.5);
+}
+
+.eyebrow {
+  @include m.caption;
+  color: rgb(255 255 255 / 0.85);
+  margin-bottom: v.$space-md;
+  animation: inner-hero-fade-up 0.7s v.$timing both;
+  animation-delay: 0.15s;
+}
+
+.title {
+  max-width: 20ch;
+  font-size: clamp(2rem, 1.25rem + 2.2vw, 3.75rem);
+  font-weight: v.$h1-weight;
+  letter-spacing: v.$h1-tracking;
+  line-height: 1.1;
+  animation: inner-hero-fade-up 0.7s v.$timing both;
+  animation-delay: 0.25s;
+}
+
+.subtitle {
+  max-width: 56ch;
+  margin-top: v.$space-lg;
+  color: rgb(255 255 255 / 0.85);
+  line-height: v.$body-line-height;
+  animation: inner-hero-fade-up 0.7s v.$timing both;
+  animation-delay: 0.35s;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: v.$space-md;
+  margin-top: v.$space-xl;
+  animation: inner-hero-fade-up 0.7s v.$timing both;
+  animation-delay: 0.45s;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    flex-direction: column;
+    gap: v.$space-sm;
+    margin-top: v.$space-lg;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}

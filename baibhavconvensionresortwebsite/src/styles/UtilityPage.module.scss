@@ -1,0 +1,68 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.content {
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-xl;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xl;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+}
+
+.heading {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.body {
+  color: v.$color-muted;
+  line-height: v.$body-line-height;
+  max-width: 72ch;
+}
+
+.sitemapGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-xl;
+
+  @media (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.sitemapGroupTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: v.$space-md;
+}
+
+.sitemapList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xs;
+}
+
+.sitemapLink {
+  color: v.$color-muted;
+  font-size: 0.875rem;
+  @include m.transition(color);
+
+  &:hover {
+    color: v.$color-foreground;
+  }
+}

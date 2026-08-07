@@ -1,0 +1,45 @@
+@use 'variables' as v;
+
+@mixin container {
+  width: 100%;
+  max-width: v.$container-max;
+  margin-inline: auto;
+  padding-inline: v.$container-padding;
+}
+
+@mixin caption {
+  font-size: v.$caption-size;
+  font-weight: v.$caption-weight;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+@mixin transition($props...) {
+  $list: if(length($props) == 0, (all,), $props);
+  transition-property: $list;
+  transition-duration: v.$duration;
+  transition-timing-function: v.$timing;
+}
+
+@mixin button-reset {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid v.$color-accent;
+    outline-offset: 2px;
+  }
+}
+
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

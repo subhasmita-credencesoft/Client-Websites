@@ -1,0 +1,59 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.section {
+  padding-block: v.$space-xxl;
+}
+
+.container {
+  @include m.container;
+}
+
+.header {
+  margin-bottom: v.$space-xl;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: v.$space-md;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-lg;
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.1);
+    transform: translateY(-4px);
+  }
+}
+
+.quote {
+  margin-top: v.$space-md;
+  line-height: v.$body-line-height;
+}
+
+.author {
+  margin-top: v.$space-lg;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.meta {
+  color: v.$color-muted;
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
