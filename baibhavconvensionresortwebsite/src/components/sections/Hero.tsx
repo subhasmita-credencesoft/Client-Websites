@@ -2,17 +2,24 @@ import Link from 'next/link';
 import styles from '@/styles/Hero.module.scss';
 import SearchWidget from './SearchWidget';
 
-const HERO_IMAGE = '/images/banner-baibhav-1.avif';
+const HERO_IMAGES = [
+  { src: '/newedit/collage.avif', alt: 'Collage of Baibhab Resorts' },
+  { src: '/newedit/Elegant Nighttime Property Showcase.avif', alt: 'Elegant nighttime showcase of Baibhab Resorts' },
+];
 
 export default function Hero() {
   return (
     <section className={styles.hero} aria-label="Hero">
-      <div
-        className={styles.background}
-        style={{ backgroundImage: `url(${HERO_IMAGE})` }}
-        role="img"
-        aria-label="Grand banquet hall and lawns at Baibhab Resorts"
-      />
+      <div className={styles.background} role="img" aria-label="Grand banquet hall and lawns at Baibhab Resorts">
+        {HERO_IMAGES.map((img, i) => (
+          <div
+            key={i}
+            className={styles.slide}
+            style={{ backgroundImage: `url('${img.src}')` }}
+            aria-hidden="true"
+          />
+        ))}
+      </div>
       <div className={styles.overlay} />
       <div className={styles.content}>
         <span className={styles.eyebrow}>Baibhab Resorts & Conventions</span>

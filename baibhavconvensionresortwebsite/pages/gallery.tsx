@@ -25,7 +25,7 @@ const GalleryPage: NextPage<GalleryPageProps> = ({ items }) => {
         ]}
         eyebrow="Gallery & Media"
         title="Moments from Baibhab"
-        subtitle="Filter by Rooms, Weddings, Corporate events, Dining, or our open-air Lawns."
+        subtitle="Filter by Rooms or our open-air Lawns and grounds."
       />
 
       <div className="container" style={{ marginTop: 48, marginBottom: 96 }}>

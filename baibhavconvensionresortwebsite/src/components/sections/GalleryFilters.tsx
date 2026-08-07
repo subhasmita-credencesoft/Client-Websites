@@ -5,7 +5,7 @@ import { useState } from 'react';
 import styles from '@/styles/GalleryPage.module.scss';
 import { GalleryItem } from '@/types';
 
-const FILTERS = ['All', 'Rooms', 'Weddings', 'Corporate', 'Dining', 'Lawns'] as const;
+const FILTERS = ['All', 'Rooms', 'Lawns'] as const;
 
 export default function GalleryFilters({ items }: { items: GalleryItem[] }) {
   const [active, setActive] = useState<(typeof FILTERS)[number]>('All');

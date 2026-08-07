@@ -27,8 +27,8 @@ export default function LocationAdvantage() {
           </div>
             <div className={styles.locationImageWrap} data-reveal>
               <Image
-                src="/images/banner-baibhav-1.avif"
-                alt="Highway corridor connecting Bhubaneswar and Cuttack"
+                src="/newedit/Reciption.avif"
+                alt="Reception at Baibhab Resorts & Conventions"
                 className={styles.locationImage}
                 loading="lazy"
                 fill
