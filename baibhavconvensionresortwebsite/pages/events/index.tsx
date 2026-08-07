@@ -7,6 +7,7 @@ import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/EventsPage.module.scss';
 import { EVENTS_FAQS } from '@/data/faqs';
 import { VENUES } from '@/data/venues';
+import { SITE } from '@/data/site';
 import { Venue } from '@/types';
 
 interface EventsPageProps {
@@ -62,19 +63,28 @@ const EventsPage: NextPage<EventsPageProps> = ({ venues }) => {
     '@type': 'EventVenue',
     name: 'Baibhab Resorts & Conventions',
     description: 'Odisha\u2019s premier event and wedding destination on the Bhubaneswar\u2013Cuttack corridor.',
+    url: `${SITE.domain}/events`,
     maximumAttendeeCapacity: 1500,
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Near Phulnakhara Flyover, Bhubaneswar\u2013Cuttack Highway',
+      addressLocality: 'Phulnakhara',
       addressRegion: 'Odisha',
       addressCountry: 'IN',
     },
+    telephone: SITE.phoneEvents,
+    sameAs: [SITE.facebook, SITE.instagram],
+    containsPlace: venues.map((venue) => ({
+      '@type': 'EventVenue',
+      name: venue.name,
+      maximumAttendeeCapacity: venue.floatingCapacity,
+    })),
   };
 
   return (
     <>
       <Seo
-        title="Conventions, Weddings & Events Odisha's Premier Event Destination"
+        title="Weddings & Events at Baibhab Resorts — Odisha's Premier Event Destination"
         description="Grand banquet halls, open-air lawns and executive boardrooms on the Bhubaneswar\u2013Cuttack corridor  for weddings, corporate MICE, and social celebrations up to 1,500+ guests."
         path="/events"
         jsonLd={jsonLd}

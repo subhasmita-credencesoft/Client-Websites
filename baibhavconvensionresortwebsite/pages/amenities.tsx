@@ -15,12 +15,12 @@ const AmenitiesPage: NextPage<AmenitiesPageProps> = ({ facilities }) => {
   return (
     <>
       <Seo
-        title="Resort & Amenities"
+        title="Resort Amenities — Parking, Pool, Power Backup & Wi-Fi"
         description="Parking for 200+ vehicles, full power backup, 24/7 security, swimming pool, driver rest areas, high-speed Wi-Fi and in-house catering at Baibhab Resorts & Conventions."
         path="/amenities"
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        image="/newedit/Waiting area 2.avif"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Amenities' },
@@ -36,7 +36,7 @@ const AmenitiesPage: NextPage<AmenitiesPageProps> = ({ facilities }) => {
             <div key={facility.title} className={styles.card} data-reveal data-reveal-stagger>
               <div
                 className={styles.cardImage}
-                style={{ backgroundImage: `url(${facility.image})` }}
+                style={{ backgroundImage: `url('${facility.image}')` }}
                 role="img"
                 aria-label={facility.title}
               />

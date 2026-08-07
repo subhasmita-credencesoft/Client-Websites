@@ -1,5 +1,6 @@
 import type { NextPageContext } from 'next';
 import Link from 'next/link';
+import Seo from '@/components/seo/Seo';
 import styles from '@/styles/ErrorPage.module.scss';
 
 interface ErrorPageProps {
@@ -11,7 +12,14 @@ function ErrorPage({ statusCode }: ErrorPageProps) {
   const isNotFound = code === 404;
 
   return (
-    <div className="container">
+    <>
+      <Seo
+        title={isNotFound ? 'Page Not Found' : 'Server Error'}
+        description="The page you are looking for could not be found at Baibhab Resorts & Conventions. Browse rooms, weddings and events on the Bhubaneswar–Cuttack corridor."
+        path={`/${code}`}
+        noIndex
+      />
+      <div className="container">
       <div className={styles.wrap} data-reveal>
         <p className={styles.code} aria-hidden="true">
           {code}
@@ -36,7 +44,8 @@ function ErrorPage({ statusCode }: ErrorPageProps) {
           </Link>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

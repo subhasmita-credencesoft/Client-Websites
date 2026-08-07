@@ -1,10 +1,18 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
+import Seo from '@/components/seo/Seo';
 import styles from '@/styles/ErrorPage.module.scss';
 
 const NotFoundPage: NextPage = () => {
   return (
-    <div className="container">
+    <>
+      <Seo
+        title="Page Not Found"
+        description="The page you are looking for could not be found at Baibhab Resorts & Conventions. Browse rooms, weddings and events on the Bhubaneswar–Cuttack corridor."
+        path="/404"
+        noIndex
+      />
+      <div className="container">
       <div className={styles.wrap} data-reveal>
         <p className={styles.code} aria-hidden="true">
           404
@@ -26,7 +34,8 @@ const NotFoundPage: NextPage = () => {
           </Link>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

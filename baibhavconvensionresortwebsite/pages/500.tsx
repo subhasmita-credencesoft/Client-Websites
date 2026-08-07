@@ -1,10 +1,18 @@
 import type { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
+import Seo from '@/components/seo/Seo';
 import styles from '@/styles/ErrorPage.module.scss';
 
 const ServerErrorPage: NextPage = () => {
   return (
-    <div className="container">
+    <>
+      <Seo
+        title="Server Error"
+        description="An unexpected error occurred on the Baibhab Resorts & Conventions website. Please try again shortly or contact our team for help."
+        path="/500"
+        noIndex
+      />
+      <div className="container">
       <div className={styles.wrap} data-reveal>
         <p className={styles.code} aria-hidden="true">
           500
@@ -26,7 +34,8 @@ const ServerErrorPage: NextPage = () => {
           </Link>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

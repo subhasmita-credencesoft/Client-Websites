@@ -15,12 +15,12 @@ const GalleryPage: NextPage<GalleryPageProps> = ({ items }) => {
   return (
     <>
       <Seo
-        title="Gallery & Media"
+        title="Photo Gallery — Rooms, Weddings & Events at Baibhab Resorts"
         description="Photos and video highlights of rooms, weddings, corporate events, dining and lawns at Baibhab Resorts & Conventions."
         path="/gallery"
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        image="/newedit/collage.avif"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Gallery & Media' },

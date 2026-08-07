@@ -173,6 +173,24 @@ input {
   border: 0;
 }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  z-index: 9999;
+  transform: translateX(-50%);
+  padding: v.$space-sm v.$space-md;
+  border-radius: v.$radius-md;
+  background-color: v.$color-accent;
+  color: v.$color-surface;
+  font-weight: 500;
+  @include m.transition(top);
+
+  &:focus {
+    top: v.$space-sm;
+  }
+}
+
 // Scroll-reveal animation system (driven by RevealObserver)
 html:not(.js) [data-reveal] {
   opacity: 1 !important;

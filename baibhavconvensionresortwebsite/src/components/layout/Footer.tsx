@@ -56,10 +56,10 @@ export default function Footer() {
           <div className={styles.brandCol}>
             <Link href="/" className={styles.logo} aria-label={`${SITE.name} home`}>
               <Image
-                src="/images/baibhablogo.webp"
+                src="/images/baibhablogo-sm.webp"
                 alt=""
-                width={1560}
-                height={878}
+                width={264}
+                height={176}
                 className={styles.logoImg}
               />
             </Link>

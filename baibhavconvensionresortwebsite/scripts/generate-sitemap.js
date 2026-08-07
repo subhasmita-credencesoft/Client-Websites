@@ -12,7 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const DEFAULT_DOMAIN = 'https://www.baibhabresorts.example';
+const DEFAULT_DOMAIN = 'https://baibhabresortsandconventions.com';
 const DOMAIN = (process.env.SITE_DOMAIN || DEFAULT_DOMAIN).replace(/\/+$/, '');
 
 const OUT_DIR = path.join(__dirname, '..', 'out');

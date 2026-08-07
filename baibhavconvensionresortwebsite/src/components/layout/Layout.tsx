@@ -9,9 +9,12 @@ import RevealObserver from '@/components/ui/RevealObserver';
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
       <RevealObserver />
       <Navbar />
-      <main>
+      <main id="main-content">
         <ErrorBoundary>{children}</ErrorBoundary>
       </main>
       <Footer />

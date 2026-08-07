@@ -12,12 +12,12 @@ const DiningPage: NextPage = () => {
   return (
     <>
       <Seo
-        title="Dining & Catering  Exceptional Flavors, Masterfully Crafted"
+        title="Dining & Catering in Bhubaneswar — Exceptional Flavors, Masterfully Crafted"
         description="A multi-cuisine restaurant serving Odia, North and South Indian, and Continental fare, plus banquet catering with pure-veg menus, live counters and dietary options."
         path="/dining"
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        image="/newedit/Minimal Hotel Refreshment Station.avif"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Dining & Catering' },
@@ -32,7 +32,7 @@ const DiningPage: NextPage = () => {
           <div className={styles.split} data-reveal>
             <div className={styles.splitImageWrap}>
               <Image
-                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                src="/newedit/Warm-Lit Luxury Hotel Corridor.avif"
                 alt={RESTAURANT.name}
                 loading="lazy"
                 fill

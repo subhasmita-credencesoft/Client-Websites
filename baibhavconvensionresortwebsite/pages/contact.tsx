@@ -57,13 +57,13 @@ const ContactPage: NextPage<ContactPageProps> = ({ inquiry = '' }) => {
   return (
     <>
       <Seo
-        title="Contact & Inquiries"
+        title="Contact Baibhab Resorts — Phone, WhatsApp & Address"
         description="Reach Baibhab Resorts & Conventions  room reservations, event and wedding sales, WhatsApp instant support, and a quick contact form."
         path="/contact"
         jsonLd={jsonLd}
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        image="/newedit/Gate new Design.avif"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Contact & Inquiries' },

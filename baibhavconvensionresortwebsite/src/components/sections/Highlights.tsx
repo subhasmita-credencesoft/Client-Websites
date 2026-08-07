@@ -28,8 +28,7 @@ const HIGHLIGHTS = [
     icon: 'solar:parking-square-bold',
     title: 'Hassle-Free Parking',
     description: 'Dedicated parking space for over 200+ vehicles with valet capability.',
-    image:
-      'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    image: '/newedit/gate front.avif',
   },
 ];
 

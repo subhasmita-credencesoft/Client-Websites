@@ -40,10 +40,11 @@ const RoomPage: NextPage<RoomPageProps> = ({ room }) => {
   return (
     <>
       <Seo
-        title={`${room.name} — ${room.subtitle}`}
+        title={`${room.name} at Baibhab Resorts, Bhubaneswar`}
         description={room.overview}
         path={`/stay/${room.slug}`}
         image={room.image}
+        imageAlt={`${room.name} at Baibhab Resorts & Conventions, Bhubaneswar\u2013Cuttack, Odisha`}
         type="product"
         jsonLd={jsonLd}
       />

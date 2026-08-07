@@ -32,7 +32,7 @@ const HomePage: NextPage<HomePageProps> = ({ rooms, venues, testimonials }) => {
         name: SITE.name,
         url: SITE.domain,
         description: SITE.description,
-        image: SITE.ogImage,
+        image: `${SITE.domain}${SITE.ogImage}`,
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Near Phulnakhara Flyover, Bhubaneswar\u2013Cuttack Highway',
@@ -42,6 +42,21 @@ const HomePage: NextPage<HomePageProps> = ({ rooms, venues, testimonials }) => {
         },
         telephone: SITE.phoneReservations,
         priceRange: '\u20b9\u20b9\u20b9',
+        sameAs: [SITE.facebook, SITE.instagram],
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.95',
+          reviewCount: '4',
+          bestRating: '5',
+        },
+        checkinTime: '14:00',
+        checkoutTime: '12:00',
+        numberOfRooms: '13',
+        amenityFeature: [
+          { '@type': 'LocationFeatureSpecification', name: 'Banquet halls', value: true },
+          { '@type': 'LocationFeatureSpecification', name: 'Open-air lawns', value: true },
+          { '@type': 'LocationFeatureSpecification', name: 'Conference rooms', value: true },
+        ],
       },
       {
         '@type': 'EventVenue',
@@ -52,6 +67,7 @@ const HomePage: NextPage<HomePageProps> = ({ rooms, venues, testimonials }) => {
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Near Phulnakhara Flyover, Bhubaneswar\u2013Cuttack Highway',
+          addressLocality: 'Khordha',
           addressRegion: 'Odisha',
           addressCountry: 'IN',
         },
@@ -63,7 +79,7 @@ const HomePage: NextPage<HomePageProps> = ({ rooms, venues, testimonials }) => {
   return (
     <>
       <Seo
-        title="Where Grand Celebrations Meet Effortless Comfort"
+        title="Baibhab Resorts & Conventions — Where Grand Celebrations Meet Effortless Comfort"
         description={SITE.description}
         path="/"
         jsonLd={jsonLd}

@@ -19,12 +19,12 @@ const OffersPage: NextPage<OffersPageProps> = ({ offers }) => {
   return (
     <>
       <Seo
-        title="Offers & Packages"
+        title="Offers & Packages — Wedding, Event & Stay Deals"
         description="Wedding and event packages bundling venue, catering and guest rooms  plus seasonal stay deals and corporate bulk-booking discounts at Baibhab Resorts & Conventions."
         path="/offers"
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        image="/newedit/Luxurious Courtyard Entrance at Night.avif"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Offers & Packages' },

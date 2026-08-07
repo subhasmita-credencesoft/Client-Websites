@@ -37,7 +37,7 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
   return (
     <>
       <Seo
-        title="Location & Local Guide  The Perfect Midpoint: Phulnakhara"
+        title="Location & Local Guide — The Perfect Midpoint: Phulnakhara"
         description="Baibhab Resorts on NH-16 at Phulnakhara  minutes from Bhubaneswar and Cuttack, Nandankanan, and Puri/Konark connectivity. See distances, directions and attractions."
         path="/location"
       />
@@ -89,7 +89,12 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
             {GETTING_HERE.steps.map((step, index) => (
               <div key={step.title} className={styles.card} data-reveal data-reveal-stagger>
                 <div className={styles.media}>
-                  <div className={styles.image} style={{ backgroundImage: `url('${step.image}')` }} />
+                  <div
+                    className={styles.image}
+                    style={{ backgroundImage: `url('${step.image}')` }}
+                    role="img"
+                    aria-label={`Driving direction to Baibhab Resorts — ${step.title}`}
+                  />
                   <div className={styles.overlay} />
                 </div>
                 <span className={styles.indexChip}>{String(index + 1).padStart(2, '0')}</span>
@@ -114,6 +119,8 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
               <div
                 className={styles.splitImage}
                 style={{ backgroundImage: `url('/newedit/Elegant Nighttime Property Showcase.avif')` }}
+                role="img"
+                aria-label="Elegant nighttime showcase of the Baibhab Resorts property"
               />
               <p className={styles.splitCaption}>Elegant Nighttime Property Showcase</p>
             </div>
@@ -151,6 +158,8 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
                   <div
                     className={styles.image}
                     style={{ backgroundImage: `url('${WHY_IMAGES[index]}')` }}
+                    role="img"
+                    aria-label={`Baibhab Resorts location advantage — ${item.title}`}
                   />
                   <div className={styles.overlay} />
                 </div>
@@ -180,6 +189,8 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
                   <div
                     className={styles.image}
                     style={{ backgroundImage: `url('${ATTRACTION_IMAGES[index]}')` }}
+                    role="img"
+                    aria-label={`Baibhab Resorts nearby attraction — ${attraction.name}`}
                   />
                   <div className={styles.overlay} />
                 </div>

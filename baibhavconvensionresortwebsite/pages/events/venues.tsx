@@ -25,9 +25,11 @@ const VenuesPage: NextPage<VenuesPageProps> = ({ venues }) => {
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Near Phulnakhara Flyover, Bhubaneswar–Cuttack Highway',
+      addressLocality: 'Phulnakhara',
       addressRegion: 'Odisha',
       addressCountry: 'IN',
     },
+    telephone: SITE.phoneEvents,
   }));
 
   return (
@@ -39,7 +41,7 @@ const VenuesPage: NextPage<VenuesPageProps> = ({ venues }) => {
         jsonLd={jsonLd}
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        image="/newedit/Warmly Lit Modern Colonnade at Night.avif"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Weddings & Events', href: '/events' },

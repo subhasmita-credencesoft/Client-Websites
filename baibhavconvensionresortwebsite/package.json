@@ -1,8 +1,8 @@
 {
-  "name": "atlas-travel",
+  "name": "baibhab-resorts-and-conventions-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Atlas Travel  luxury travel booking platform built with Next.js, TypeScript, SCSS and Redux Toolkit.",
+  "description": "Official website for Baibhab Resorts & Conventions, Bhubaneswar - stays, weddings and events built with Next.js, TypeScript and SCSS.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

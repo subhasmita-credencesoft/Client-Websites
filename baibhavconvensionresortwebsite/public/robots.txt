@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.baibhabresorts.example/sitemap.xml
+Sitemap: https://baibhabresortsandconventions.com/sitemap.xml

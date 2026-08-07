@@ -2,7 +2,7 @@ export const SITE = {
   name: 'Baibhab Resorts & Conventions',
   shortName: 'Baibhab Resorts',
   legalName: 'Baibhab Resorts & Conventions',
-  domain: 'https://www.baibhabresorts.example',
+  domain: 'https://baibhabresortsandconventions.com',
   bookingEngine: 'https://bookone.io/Baibhab-Conventions-Resorts?bookingEngine=true',
   description:
     'Premium banquet halls, sprawling open-air lawns, and modern accommodations on the Bhubaneswar Cuttack corridor. Grand weddings, corporate events, and restful stays under one roof.',
@@ -22,6 +22,5 @@ export const SITE = {
     'https://www.facebook.com/profile.php?id=61586952698000&rdid=5gBBNSmeFpLSad2n&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BZ8k6myZR%2F%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio',
   instagram:
     'https://www.instagram.com/baibhabconvention_resort123?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
-  ogImage:
-    'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+  ogImage: '/images/og-image.jpg',
 };

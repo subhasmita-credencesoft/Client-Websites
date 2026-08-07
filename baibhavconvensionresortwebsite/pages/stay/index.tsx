@@ -17,12 +17,12 @@ const StayPage: NextPage<StayPageProps> = ({ rooms }) => {
   return (
     <>
       <Seo
-        title="Stay & Accommodations — Restful Stay Between Twin Cities"
+        title="Rooms & Stay in Bhubaneswar–Cuttack — Premium & Suite Rooms"
         description="Modern rooms on the Bhubaneswar–Cuttack corridor — Premium and Suite Rooms with Wi-Fi and warm Odia hospitality."
         path="/stay"
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        image="/newedit/Luxury room.avif"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Stay' },

@@ -11,7 +11,6 @@ const nextConfig = {
   images: {
     unoptimized: isProd,
     remotePatterns: [
-      { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'hoirqrkdgbmvpwutwuwj.supabase.co' },
       { protocol: 'https', hostname: 'bookonelocal.in' },
     ],

@@ -204,7 +204,7 @@
   padding: 10px v.$space-md;
   border-radius: v.$radius-full;
   background-color: #25d366;
-  color: #fff;
+  color: v.$color-foreground;
   font-size: 0.8125rem;
   font-weight: 600;
   @include m.transition(opacity, transform);

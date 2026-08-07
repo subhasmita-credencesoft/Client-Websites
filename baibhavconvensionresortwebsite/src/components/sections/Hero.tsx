@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import styles from '@/styles/Hero.module.scss';
 import SearchWidget from './SearchWidget';
@@ -10,6 +11,9 @@ const HERO_IMAGES = [
 export default function Hero() {
   return (
     <section className={styles.hero} aria-label="Hero">
+      <Head>
+        <link rel="preload" as="image" href={HERO_IMAGES[0].src} fetchPriority="high" />
+      </Head>
       <div className={styles.background} role="img" aria-label="Grand banquet hall and lawns at Baibhab Resorts">
         {HERO_IMAGES.map((img, i) => (
           <div

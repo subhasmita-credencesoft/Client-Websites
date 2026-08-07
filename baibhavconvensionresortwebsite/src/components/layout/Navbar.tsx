@@ -23,10 +23,10 @@ export default function Navbar() {
       <div className={styles.inner}>
         <Link href="/" className={styles.logo} aria-label={`${SITE.name} home`}>
           <Image
-            src="/images/baibhablogo.webp"
+            src="/images/baibhablogo-sm.webp"
             alt=""
-            width={1560}
-            height={878}
+            width={264}
+            height={176}
             priority
             className={styles.logoImg}
           />
