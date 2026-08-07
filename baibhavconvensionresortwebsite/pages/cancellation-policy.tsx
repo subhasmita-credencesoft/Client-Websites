@@ -19,7 +19,7 @@ const CancellationPolicyPage: NextPage = () => {
                 paid.
               </li>
               <li>
-                <strong>3\u20137 days before check-in:</strong> 50% of the first night is retained as a cancellation
+                <strong>3–7 days before check-in:</strong> 50% of the first night is retained as a cancellation
                 charge.
               </li>
               <li>
@@ -37,7 +37,7 @@ const CancellationPolicyPage: NextPage = () => {
                 party costs already incurred.
               </li>
               <li>
-                <strong>15\u201330 days before the event:</strong> 50% of the token advance is refunded.
+                <strong>15–30 days before the event:</strong> 50% of the token advance is refunded.
               </li>
               <li>
                 <strong>Within 15 days of the event:</strong> the token advance is non-refundable.
@@ -58,7 +58,7 @@ const CancellationPolicyPage: NextPage = () => {
           heading: '4. Refund processing',
           body: (
             <p>
-              Approved refunds are processed to the original payment method within 7\u201310 business days.
+              Approved refunds are processed to the original payment method within 7–10 business days.
             </p>
           ),
         },

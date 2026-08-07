@@ -179,7 +179,7 @@ export default function ContactForm({ initialInquiry = '' }: ContactFormProps) {
       </label>
 
       <button type="submit" className="btn btn-primary btn-block" disabled={status === 'submitting'}>
-        {status === 'submitting' ? 'Sending\u2026' : 'Send Message'}
+        {status === 'submitting' ? 'Sending…' : 'Send Message'}
       </button>
     </form>
   );

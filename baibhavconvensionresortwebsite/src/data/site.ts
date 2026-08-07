@@ -5,11 +5,13 @@ export const SITE = {
   domain: 'https://baibhabresortsandconventions.com',
   bookingEngine: 'https://bookone.io/Baibhab-Conventions-Resorts?bookingEngine=true',
   description:
-    'Premium banquet halls, open-air lawns and modern accommodations on the Bhubaneswar\u2013Cuttack corridor \u2014 grand weddings, corporate events and restful stays.',
+    'Premium banquet halls, open-air lawns and modern accommodations on the Bhubaneswar–Cuttack corridor — grand weddings, corporate events and restful stays.',
+  metaKeywords:
+    'resort in phulnakhara, banquet hall bhubaneswar cuttack, wedding venue phulnakhara, resort near sum hospital phulnakhara, baibhab resorts, corporate event venue cuttack bhubaneswar',
   locale: 'en_IN',
   twitterHandle: '@baibhabresorts',
   themeColor: '#111111',
-  address: 'Near Phulnakhara Flyover, Bhubaneswar\u2013Cuttack Highway, Odisha, India',
+  address: 'Near Phulnakhara Flyover, Bhubaneswar–Cuttack Highway, Odisha, India',
   phoneReservations: '+91 9938875749',
   phoneReservationsRaw: '919938875749',
   phoneEvents: '+91 9938875749',

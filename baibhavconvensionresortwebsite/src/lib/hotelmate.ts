@@ -80,7 +80,7 @@ const mapApiRoom = (room: HotelmateRoom): RoomCategory | null => {
     idealFor: 'Business & leisure travelers',
     beds: max > 2 ? 'Twin / double bed' : 'Double bed',
     size: `${room.noOfRooms ?? 0} rooms`,
-    capacity: `${min}\u2013${max} guests`,
+    capacity: `${min}–${max} guests`,
     price,
     priceUnit: 'per night',
     amenities: amenities.length > 0 ? amenities : ['Wi-Fi'],

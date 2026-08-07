@@ -16,7 +16,7 @@ const EVENT_LINKS = [
   { label: 'Weddings & Social', href: '/events/weddings' },
   { label: 'Corporate & MICE', href: '/events/corporate' },
   { label: 'Wedding Venue, Phulnakhara', href: '/events/weddings' },
-  { label: 'Conference Hall, Cuttack\u2013Bhubaneswar', href: '/events/corporate' },
+  { label: 'Conference Hall, Cuttack–Bhubaneswar', href: '/events/corporate' },
   { label: 'Event Inquiry', href: '/contact?inquiry=Banquets+%2F+Events' },
 ];
 

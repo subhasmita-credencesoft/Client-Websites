@@ -33,7 +33,7 @@ export default function Seo({
   const fullTitle = path === '/' ? title : `${title} | ${SITE.name}`;
   const absoluteImage = absolutizeUrl(image);
   const imageAltText =
-    imageAlt ?? `Baibhab Resorts & Conventions, Bhubaneswar\u2013Cuttack, Odisha`;
+    imageAlt ?? `Baibhab Resorts & Conventions, Bhubaneswar–Cuttack, Odisha`;
   const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
   return (

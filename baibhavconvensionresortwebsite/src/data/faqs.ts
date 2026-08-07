@@ -35,7 +35,7 @@ export const HOME_FAQS: PolicyItem[] = [
   {
     question: 'Is Baibhab Resorts close to hospitals and schools?',
     answer:
-      'Yes — SUM Hospital is about 1 km away on NH-16, DPS Kalinga and EAST are within 3 km, and we\u2019re the perfect midpoint between Bhubaneswar and Cuttack for weddings and events.',
+      'Yes — SUM Hospital is about 1 km away on NH-16, DPS Kalinga and EAST are within 3 km, and we’re the perfect midpoint between Bhubaneswar and Cuttack for weddings and events.',
   },
 ];
 
@@ -368,11 +368,11 @@ export const LOCATION_FAQS: PolicyItem[] = [
   {
     question: 'How far is Baibhab Resorts from SUM Hospital?',
     answer:
-      'IMS & SUM Hospital Campus II is about 1 km from the resort right on NH-16, roughly 1\u20132 minutes by car. HCG Panda Cancer Hospital in Cuttack is about 6 km (10\u201315 minutes).',
+      'IMS & SUM Hospital Campus II is about 1 km from the resort right on NH-16, roughly 1–2 minutes by car. HCG Panda Cancer Hospital in Cuttack is about 6 km (10–15 minutes).',
   },
   {
     question: 'Which schools and colleges are near the resort?',
     answer:
-      'DPS Kalinga (Adhalia) is about 3 km away, Eastern Academy of Science & Technology (EAST) is about 3 km, and St. Xavier\u2019s High School, Phulnakhara is about 2 km from the resort.',
+      'DPS Kalinga (Adhalia) is about 3 km away, Eastern Academy of Science & Technology (EAST) is about 3 km, and St. Xavier’s High School, Phulnakhara is about 2 km from the resort.',
   },
 ];

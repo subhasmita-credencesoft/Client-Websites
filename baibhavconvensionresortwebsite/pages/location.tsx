@@ -49,7 +49,7 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
         ]}
         eyebrow="Location & Local Guide"
         title="The Perfect Midpoint: Phulnakhara"
-        subtitle="Situated right on the NH-16 highway  effortless access from both Bhubaneswar and Cuttack."
+        subtitle="Situated right on the NH-16 highway — effortless access from both Bhubaneswar and Cuttack."
       />
 
       <div className="container" style={{ marginTop: 48 }}>

@@ -58,7 +58,7 @@ export default function NewsletterForm() {
         aria-label="Email address"
       />
       <button type="submit" className={styles.newsletterButton} disabled={status === 'submitting'}>
-        {status === 'submitting' ? 'Subscribing\u2026' : 'Subscribe'}
+        {status === 'submitting' ? 'Subscribing…' : 'Subscribe'}
       </button>
     </form>
   );

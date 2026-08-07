@@ -4,7 +4,7 @@ export const RESTAURANT = {
   name: 'The Baibhab Kitchen',
   concept:
     'A multi-cuisine restaurant serving authentic regional Odia delicacies alongside popular North Indian, South Indian, and Continental fare  from sunrise thalis to slow dinners.',
-  hours: '7:00 AM \u2013 10:30 PM',
+  hours: '7:00 AM – 10:30 PM',
   specialties: [
     'Local coastal seafood dishes',
     'Traditional Odia thalis',

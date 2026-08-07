@@ -4,17 +4,17 @@ export const DISTANCES: Distance[] = [
   {
     destination: 'Biju Patnaik International Airport (Bhubaneswar)',
     distance: '~18 km',
-    drivingTime: '30\u201335 mins',
+    drivingTime: '30–35 mins',
   },
   {
     destination: 'Bhubaneswar Railway Station',
     distance: '~15 km',
-    drivingTime: '25\u201330 mins',
+    drivingTime: '25–30 mins',
   },
   {
     destination: 'Cuttack Railway Station',
     distance: '~16 km',
-    drivingTime: '25\u201330 mins',
+    drivingTime: '25–30 mins',
   },
   {
     destination: 'Nandankanan Zoological Park',
@@ -34,7 +34,7 @@ export const ATTRACTIONS: Attraction[] = [
     distance: '~14 km',
     drivingTime: '20 mins',
     description:
-      'One of India s finest zoos and botanical gardens  a great half-day outing for families staying with us.',
+      'One of India’s finest zoos and botanical gardens — a great half-day outing for families staying with us.',
   },
   {
     name: 'Puri & Konark Connectivity',
@@ -45,24 +45,24 @@ export const ATTRACTIONS: Attraction[] = [
   },
   {
     name: 'Local Temples & Heritage',
-    distance: 'Within 15\u201320 km',
-    drivingTime: '20\u201330 mins',
+    distance: 'Within 15–20 km',
+    drivingTime: '20–30 mins',
     description:
-      'Temples across Bhubaneswar and Cuttack including Lingaraj, Mukteshwar, and Cuttack\u2019s old town heritage precincts.',
+      'Temples across Bhubaneswar and Cuttack including Lingaraj, Mukteshwar, and Cuttack’s old town heritage precincts.',
   },
   {
     name: 'Barabati Stadium (Cuttack)',
     distance: '~18 km',
     drivingTime: '30 mins',
     description:
-      'Cuttack\u2019s iconic cricket and events stadium  convenient for match-day travel and large public functions.',
+      'Cuttack’s iconic cricket and events stadium — convenient for match-day travel and large public functions.',
   },
 ];
 
 export const GETTING_HERE = {
   title: 'Getting Here',
   intro:
-    'We sit right on National Highway 16 at Phulnakhara  the perfect midpoint between Bhubaneswar and Cuttack.',
+    'We sit right on National Highway 16 at Phulnakhara — the perfect midpoint between Bhubaneswar and Cuttack.',
   steps: [
     {
       title: 'From Bhubaneswar',
@@ -80,7 +80,7 @@ export const GETTING_HERE = {
       title: 'From Biju Patnaik International Airport',
       image: '/newedit/Our Building.avif',
       description:
-        '~18 km via NH-16  roughly 30 to 35 minutes. Pre-booked airport pickup is available on request.',
+        '~18 km via NH-16 — roughly 30 to 35 minutes. Pre-booked airport pickup is available on request.',
     },
   ],
 };

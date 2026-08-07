@@ -44,7 +44,7 @@ const RoomPage: NextPage<RoomPageProps> = ({ room }) => {
         description={room.overview}
         path={`/stay/${room.slug}`}
         image={room.image}
-        imageAlt={`${room.name} at Baibhab Resorts & Conventions, Bhubaneswar\u2013Cuttack, Odisha`}
+        imageAlt={`${room.name} at Baibhab Resorts & Conventions, Bhubaneswar–Cuttack, Odisha`}
         type="product"
         jsonLd={jsonLd}
       />

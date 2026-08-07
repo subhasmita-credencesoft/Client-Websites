@@ -58,14 +58,11 @@ export default function Navbar() {
         </nav>
 
         <div className={styles.actions}>
-          <a href={`tel:+${SITE.phoneReservationsRaw}`} className={styles.iconButton} aria-label={`Call ${SITE.phoneReservations}`}>
-            <iconify-icon icon="solar:phone-calling-rounded-bold" width="20" aria-hidden="true" />
-          </a>
           <a
             href={SITE.bookingEngine}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${styles.ctaPrimary} ${styles.desktopCta}`}
+            className={styles.ctaPrimary}
           >
             Book a Stay
           </a>

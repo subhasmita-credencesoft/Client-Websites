@@ -13,11 +13,11 @@ interface ChatMessage {
 
 const GREETING: ChatMessage = {
   from: 'bot',
-  text: 'Hi! I\u2019m Baibhab Assistant. How can I help you today?',
+  text: 'Hi! I’m Baibhab Assistant. How can I help you today?',
 };
 
 const QUICK_REPLIES = [
-  { label: 'Check availability', text: 'I\u2019d like to check room availability' },
+  { label: 'Check availability', text: 'I’d like to check room availability' },
   { label: 'Plan an event', text: 'I want to plan a wedding or event' },
   { label: 'View offers', text: 'What offers do you have?' },
   { label: 'Contact us', text: 'How can I contact you?' },
@@ -44,7 +44,7 @@ const getReply = (input: string): ChatMessage => {
   if (/(offer|package|deal|discount|price|cost|bundl)/.test(q)) {
     return {
       from: 'bot',
-      text: 'We have bundled wedding & event packages plus seasonal stay deals. Take a look at what\u2019s currently on offer.',
+      text: 'We have bundled wedding & event packages plus seasonal stay deals. Take a look at what’s currently on offer.',
       href: '/offers',
       hrefLabel: 'View offers & packages',
     };
@@ -68,7 +68,7 @@ const getReply = (input: string): ChatMessage => {
   if (/(location|address|reach|map|distance|parking|where)/.test(q)) {
     return {
       from: 'bot',
-      text: 'We\u2019re right on the NH-16 highway at Phulnakhara  the midpoint between Bhubaneswar and Cuttack, with parking for 200+ vehicles.',
+      text: 'We’re right on the NH-16 highway at Phulnakhara — the midpoint between Bhubaneswar and Cuttack, with parking for 200+ vehicles.',
       href: '/location',
       hrefLabel: 'See location & directions',
     };
@@ -86,6 +86,130 @@ const getReply = (input: string): ChatMessage => {
     text: 'I can help you with room availability, events, offers, dining, amenities, location and contact details. Try one of the quick options or rephrase your question.',
   };
 };
+
+const AIBotAvatar = ({ size = 30 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 36 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ flexShrink: 0 }}
+    aria-hidden="true"
+  >
+    {/* Outer Glow Halo */}
+    <circle cx="18" cy="18" r="17" fill="url(#avatarHalo)" opacity="0.25" />
+    <circle cx="18" cy="18" r="16" fill="url(#avatarBg)" stroke="url(#goldBorder)" strokeWidth="1.2" />
+
+    {/* Antenna */}
+    <path d="M18 6V9.5" stroke="url(#goldGradient)" strokeWidth="2" strokeLinecap="round" />
+    <circle cx="18" cy="4.5" r="2" fill="#F59E0B" />
+    <circle cx="18" cy="4.5" r="1" fill="#FFF" />
+
+    {/* Ear Nodes */}
+    <rect x="4" y="14" width="2.5" height="6" rx="1.25" fill="url(#goldGradient)" />
+    <rect x="29.5" y="14" width="2.5" height="6" rx="1.25" fill="url(#goldGradient)" />
+
+    {/* Bot Head Body */}
+    <rect x="6.5" y="9.5" width="23" height="15" rx="5.5" fill="url(#headBody)" stroke="url(#goldBorder)" strokeWidth="1.2" />
+
+    {/* Visor Area */}
+    <rect x="9.5" y="12" width="17" height="6" rx="3" fill="#0B132B" stroke="#1E293B" strokeWidth="1" />
+
+    {/* Glowing Eyes */}
+    <circle cx="13.5" cy="15" r="2" fill="#38BDF8" />
+    <circle cx="22.5" cy="15" r="2" fill="#38BDF8" />
+    <circle cx="14" cy="14.3" r="0.7" fill="#FFFFFF" />
+    <circle cx="23" cy="14.3" r="0.7" fill="#FFFFFF" />
+
+    {/* Smile Arc */}
+    <path
+      d="M14 19.5C15.2 20.8 20.8 20.8 22 19.5"
+      stroke="url(#goldGradient)"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+    />
+
+    {/* Chest Indicator Spark */}
+    <circle cx="18" cy="27" r="1.5" fill="#38BDF8" />
+
+    {/* Gradients */}
+    <defs>
+      <radialGradient id="avatarHalo" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.8" />
+        <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
+      </radialGradient>
+      <linearGradient id="avatarBg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#1E293B" />
+        <stop offset="100%" stopColor="#0F172A" />
+      </linearGradient>
+      <linearGradient id="headBody" x1="6.5" y1="9.5" x2="29.5" y2="24.5" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#1E293B" />
+        <stop offset="100%" stopColor="#0D1527" />
+      </linearGradient>
+      <linearGradient id="goldGradient" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#FCD34D" />
+        <stop offset="50%" stopColor="#F59E0B" />
+        <stop offset="100%" stopColor="#B45309" />
+      </linearGradient>
+      <linearGradient id="goldBorder" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#FCD34D" />
+        <stop offset="100%" stopColor="#78350F" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const AIBotLauncherIcon = () => (
+  <svg
+    width="26"
+    height="26"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    style={{ flexShrink: 0 }}
+  >
+    <path d="M16 4V7" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round" />
+    <circle cx="16" cy="3" r="1.5" fill="#FCD34D" />
+    <rect x="4" y="7" width="24" height="17" rx="6" fill="#0F172A" stroke="url(#launcherGold)" strokeWidth="1.5" />
+    <rect x="7.5" y="10" width="17" height="6.5" rx="3.25" fill="#1E293B" />
+    <circle cx="12" cy="13.25" r="2" fill="#38BDF8" />
+    <circle cx="20" cy="13.25" r="2" fill="#38BDF8" />
+    <circle cx="12.5" cy="12.5" r="0.75" fill="#FFFFFF" />
+    <circle cx="20.5" cy="12.5" r="0.75" fill="#FFFFFF" />
+    <path d="M12 18.5C13.5 20 18.5 20 20 18.5" stroke="#F59E0B" strokeWidth="1.8" strokeLinecap="round" />
+    <rect x="1" y="12.5" width="3" height="6" rx="1.5" fill="#F59E0B" />
+    <rect x="28" y="12.5" width="3" height="6" rx="1.5" fill="#F59E0B" />
+    <defs>
+      <linearGradient id="launcherGold" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#FCD34D" />
+        <stop offset="100%" stopColor="#D97706" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const SendIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const ArrowRightIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 export default function AIAssistant() {
   const [open, setOpen] = useState(false);
@@ -130,7 +254,7 @@ export default function AIAssistant() {
         aria-expanded={open}
         aria-controls="ai-assistant-panel"
       >
-        <iconify-icon icon="solar:chat-round-dots-bold" width="20" aria-hidden="true" />
+        <AIBotLauncherIcon />
         <span className={styles.launcherText}>How can I help you?</span>
       </button>
 
@@ -138,10 +262,13 @@ export default function AIAssistant() {
         <div className={styles.panel} id="ai-assistant-panel" role="dialog" aria-label="AI assistant">
           <div className={styles.header}>
             <div className={styles.headerTitleWrap}>
-              <iconify-icon icon="solar:chat-round-dots-bold" width="18" aria-hidden="true" />
+              <div style={{ position: 'relative', display: 'flex' }}>
+                <AIBotAvatar size={34} />
+                <span className={styles.onlinePulseDot} />
+              </div>
               <div>
-                <p className={styles.headerTitle}>Baibhab Assistant</p>
-                <p className={styles.headerSub}>Online replies instantly</p>
+                <p className={styles.headerTitle}>Baibhab Concierge AI</p>
+                <p className={styles.headerSub}>✦ Instant 24/7 Resort Assistance</p>
               </div>
             </div>
             <button
@@ -150,20 +277,23 @@ export default function AIAssistant() {
               onClick={() => setOpen(false)}
               aria-label="Close assistant"
             >
-              <iconify-icon icon="solar:close-circle-bold" width="22" aria-hidden="true" />
+              <CloseIcon />
             </button>
           </div>
 
           <div className={styles.messages} ref={messagesRef}>
             {messages.map((msg, i) => (
-              <div key={i} className={`${styles.bubble} ${styles[msg.from]}`}>
-                <p className={styles.bubbleText}>{msg.text}</p>
-                {msg.href && (
-                  <Link href={msg.href} className={styles.bubbleLink} onClick={() => setOpen(false)}>
-                    {msg.hrefLabel}
-                    <iconify-icon icon="solar:arrow-right-linear" width="14" aria-hidden="true" />
-                  </Link>
-                )}
+              <div key={i} className={`${styles.bubbleRow} ${styles[msg.from]}`}>
+                {msg.from === 'bot' && <AIBotAvatar size={28} />}
+                <div className={styles.bubble}>
+                  <p className={styles.bubbleText}>{msg.text}</p>
+                  {msg.href && (
+                    <Link href={msg.href} className={styles.bubbleLink} onClick={() => setOpen(false)}>
+                      {msg.hrefLabel}
+                      <ArrowRightIcon />
+                    </Link>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -188,13 +318,13 @@ export default function AIAssistant() {
               ref={inputRef}
               className={styles.input}
               type="text"
-              placeholder="Type your question\u2026"
+              placeholder="Type your question…"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               aria-label="Ask the assistant"
             />
             <button type="submit" className={styles.sendButton} aria-label="Send message">
-              <iconify-icon icon="solar:plain-bold" width="18" aria-hidden="true" />
+              <SendIcon />
             </button>
           </form>
         </div>
