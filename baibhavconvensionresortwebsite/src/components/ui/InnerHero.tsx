@@ -18,7 +18,7 @@ interface InnerHeroProps {
 export default function InnerHero({ image, eyebrow, title, subtitle, cta, breadcrumb }: InnerHeroProps) {
   return (
     <section className={styles.hero} aria-label={title}>
-      <div className={styles.background} style={{ backgroundImage: `url(${image})` }} role="img" aria-label={title} />
+      <div className={styles.background} style={{ backgroundImage: `url('${image}')` }} role="img" aria-label={title} />
       <div className={styles.overlay} />
       <div className={styles.content}>
         {breadcrumb && breadcrumb.length > 0 && (

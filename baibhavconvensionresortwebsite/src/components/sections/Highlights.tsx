@@ -3,27 +3,28 @@ import SectionLabel from '@/components/ui/SectionLabel';
 
 const HIGHLIGHTS = [
   {
+    index: '01',
     icon: 'solar:map-point-wave-bold',
     title: 'Strategic Location',
     description: 'Located at Phulnakhara  seamlessly connecting Bhubaneswar & Cuttack.',
-    image:
-      'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    image: '/newedit/Entrance Pathway.avif',
   },
   {
+    index: '02',
     icon: 'solar:users-group-rounded-bold',
     title: 'Large Event Capacity',
     description: 'Multiple indoor banquets & manicured lawns for gatherings of all sizes.',
-    image:
-      'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    image: '/newedit/Preimum Lawn.avif',
   },
   {
+    index: '03',
     icon: 'solar:chef-hat-bold',
     title: 'Seamless Catering',
     description: 'In-house culinary teams serving authentic Odia, Indian, and international cuisines.',
-    image:
-      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    image: '/newedit/Minimal Hotel Refreshment Station.avif',
   },
   {
+    index: '04',
     icon: 'solar:parking-square-bold',
     title: 'Hassle-Free Parking',
     description: 'Dedicated parking space for over 200+ vehicles with valet capability.',
@@ -44,11 +45,12 @@ export default function Highlights() {
             <div key={item.title} className={styles.highlightCard} data-reveal data-reveal-stagger>
               <div
                 className={styles.highlightImage}
-                style={{ backgroundImage: `url(${item.image})` }}
+                style={{ backgroundImage: `url('${item.image}')` }}
                 role="img"
                 aria-label={item.title}
               />
               <div className={styles.highlightOverlay} aria-hidden="true" />
+              <span className={styles.highlightIndex}>{item.index}</span>
               <div className={styles.highlightContent}>
                 <iconify-icon icon={item.icon} width="24" aria-hidden="true" />
                 <p className={styles.highlightTitle}>{item.title}</p>

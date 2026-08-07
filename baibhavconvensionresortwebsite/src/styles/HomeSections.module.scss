@@ -185,20 +185,34 @@
 
 .highlightCard {
   position: relative;
-  min-height: 300px;
+  min-height: 340px;
   display: flex;
   align-items: flex-end;
   border-radius: v.$radius-xl;
   overflow: hidden;
   border: 1px solid v.$color-border;
-  @include m.transition(box-shadow, transform);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.08);
+  @include m.transition(box-shadow, transform, border-color);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 64px;
+    height: 3px;
+    background: linear-gradient(90deg, #ffd782, transparent);
+    opacity: 0;
+    @include m.transition(opacity);
+  }
 
   &:hover {
-    box-shadow: 0 12px 32px rgb(0 0 0 / 0.18);
-    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgb(0 0 0 / 0.22);
+    transform: translateY(-6px);
+    border-color: rgb(255 215 130 / 0.7);
 
-    .highlightImage {
-      transform: scale(1.06);
+    &::after {
+      opacity: 1;
     }
   }
 }
@@ -208,6 +222,7 @@
   inset: 0;
   background-size: cover;
   background-position: center;
+  animation: kenburns 20s ease-in-out infinite;
   @include m.transition(transform);
 }
 
@@ -216,11 +231,33 @@
   inset: 0;
   background: linear-gradient(
     to top,
-    rgb(0 0 0 / 0.85) 0%,
-    rgb(0 0 0 / 0.4) 45%,
+    rgb(0 0 0 / 0.88) 0%,
+    rgb(0 0 0 / 0.45) 45%,
     rgb(0 0 0 / 0.05) 75%,
     rgb(0 0 0 / 0) 100%
   );
+}
+
+.highlightIndex {
+  position: absolute;
+  top: v.$space-md;
+  right: v.$space-md;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 32px;
+  padding-inline: v.$space-xs;
+  border-radius: v.$radius-full;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background-color: rgb(0 0 0 / 0.35);
+  border: 1px solid rgb(255 255 255 / 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .highlightContent {
@@ -235,6 +272,15 @@
   margin-top: v.$space-md;
   font-weight: 600;
   color: v.$color-surface;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 2px;
+    margin-bottom: v.$space-sm;
+    background: linear-gradient(90deg, #ffd782, transparent);
+  }
 }
 
 .highlightText {
