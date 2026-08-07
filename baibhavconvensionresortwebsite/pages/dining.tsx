@@ -12,8 +12,8 @@ const DiningPage: NextPage = () => {
   return (
     <>
       <Seo
-        title="Dining & Catering in Bhubaneswar — Exceptional Flavors, Masterfully Crafted"
-        description="A multi-cuisine restaurant serving Odia, North and South Indian, and Continental fare, plus banquet catering with pure-veg menus, live counters and dietary options."
+        title="Dining & Catering in Bhubaneswar"
+        description="Multi-cuisine restaurant serving Odia, North and South Indian and Continental fare, plus pure-veg banquet catering and live counters."
         path="/dining"
       />
       <InnerHero

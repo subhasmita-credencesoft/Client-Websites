@@ -43,12 +43,6 @@ const HomePage: NextPage<HomePageProps> = ({ rooms, venues, testimonials }) => {
         telephone: SITE.phoneReservations,
         priceRange: '\u20b9\u20b9\u20b9',
         sameAs: [SITE.facebook, SITE.instagram],
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.95',
-          reviewCount: '4',
-          bestRating: '5',
-        },
         checkinTime: '14:00',
         checkoutTime: '12:00',
         numberOfRooms: '13',
@@ -79,7 +73,7 @@ const HomePage: NextPage<HomePageProps> = ({ rooms, venues, testimonials }) => {
   return (
     <>
       <Seo
-        title="Baibhab Resorts & Conventions — Where Grand Celebrations Meet Effortless Comfort"
+        title="Baibhab Resorts & Conventions — Weddings, Events & Stay"
         description={SITE.description}
         path="/"
         jsonLd={jsonLd}

@@ -57,8 +57,8 @@ const ContactPage: NextPage<ContactPageProps> = ({ inquiry = '' }) => {
   return (
     <>
       <Seo
-        title="Contact Baibhab Resorts — Phone, WhatsApp & Address"
-        description="Reach Baibhab Resorts & Conventions  room reservations, event and wedding sales, WhatsApp instant support, and a quick contact form."
+        title="Contact & Enquiries"
+        description="Reach Baibhab Resorts & Conventions for room reservations, event and wedding sales, WhatsApp support and via the contact form."
         path="/contact"
         jsonLd={jsonLd}
       />

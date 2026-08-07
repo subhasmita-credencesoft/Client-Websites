@@ -27,7 +27,9 @@ export default function Seo({
   jsonLd,
   noIndex = false,
 }: SeoProps) {
-  const url = `${SITE.domain}${path}`;
+  const cleanPath = path.split('?')[0];
+  const normalizedPath = cleanPath === '/' ? '/' : cleanPath.endsWith('/') ? cleanPath : `${cleanPath}/`;
+  const url = `${SITE.domain}${normalizedPath}`;
   const fullTitle = path === '/' ? title : `${title} | ${SITE.name}`;
   const absoluteImage = absolutizeUrl(image);
   const imageAltText =

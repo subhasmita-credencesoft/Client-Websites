@@ -37,8 +37,8 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
   return (
     <>
       <Seo
-        title="Location & Local Guide — The Perfect Midpoint: Phulnakhara"
-        description="Baibhab Resorts on NH-16 at Phulnakhara  minutes from Bhubaneswar and Cuttack, Nandankanan, and Puri/Konark connectivity. See distances, directions and attractions."
+        title="Phulnakhara Location & Directions"
+        description="Baibhab Resorts on NH-16 at Phulnakhara, minutes from Bhubaneswar and Cuttack — with distances, directions and nearby attractions."
         path="/location"
       />
       <InnerHero

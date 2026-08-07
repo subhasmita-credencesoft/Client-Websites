@@ -1,5 +1,7 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import styles from '@/styles/InnerHero.module.scss';
+import { SITE } from '@/data/site';
 
 export interface InnerHeroBreadcrumbItem {
   label: string;
@@ -16,8 +18,32 @@ interface InnerHeroProps {
 }
 
 export default function InnerHero({ image, eyebrow, title, subtitle, cta, breadcrumb }: InnerHeroProps) {
+  const jsonLd =
+    breadcrumb && breadcrumb.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: breadcrumb.map((item, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: item.label,
+            ...(item.href ? { item: `${SITE.domain}${item.href}` } : {}),
+          })),
+        }
+      : null;
+
   return (
-    <section className={styles.hero} aria-label={title}>
+    <>
+      <Head>
+        <link rel="preload" as="image" href={image} fetchPriority="high" />
+        {jsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        )}
+      </Head>
+      <section className={styles.hero} aria-label={title}>
       <div className={styles.background} style={{ backgroundImage: `url('${image}')` }} role="img" aria-label={title} />
       <div className={styles.overlay} />
       <div className={styles.content}>
@@ -51,5 +77,6 @@ export default function InnerHero({ image, eyebrow, title, subtitle, cta, breadc
         )}
       </div>
     </section>
+    </>
   );
 }

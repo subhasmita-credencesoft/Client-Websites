@@ -158,7 +158,7 @@ input {
 
 .caption {
   @include m.caption;
-  color: v.$color-muted;
+  color: v.$color-muted-strong;
 }
 
 .visually-hidden {

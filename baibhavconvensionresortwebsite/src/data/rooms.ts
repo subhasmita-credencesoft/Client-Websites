@@ -8,7 +8,7 @@ export const ROOMS: RoomCategory[] = [
     name: 'Premium Room',
     subtitle: 'Comfortable stay with private bathroom & work desk',
     overview:
-      'Premium Room features a private bathroom, TV, work desk, electric kettle, wardrobe, slippers, and complimentary toiletries, offering a comfortable and relaxing stay.',
+      'Premium Room features a private bathroom, TV, work desk, electric kettle, wardrobe, slippers and complimentary toiletries for a comfortable, relaxing stay.',
     idealFor: 'Business & leisure travelers',
     beds: 'Twin / double bed',
     size: '17 rooms',
@@ -55,7 +55,7 @@ export const ROOMS: RoomCategory[] = [
     name: 'Suite Room',
     subtitle: 'Spacious stay with private bathroom & work desk',
     overview:
-      'Suite Room offers a spacious and comfortable stay with a private bathroom, TV, work desk, electric kettle, wardrobe, slippers, and complimentary toiletries.',
+      'Suite Room offers a spacious, comfortable stay with a private bathroom, TV, work desk, electric kettle, wardrobe and complimentary toiletries.',
     idealFor: 'Business & leisure travelers',
     beds: 'Twin / double bed',
     size: '8 rooms',

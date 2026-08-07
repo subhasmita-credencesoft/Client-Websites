@@ -15,8 +15,8 @@ const GalleryPage: NextPage<GalleryPageProps> = ({ items }) => {
   return (
     <>
       <Seo
-        title="Photo Gallery — Rooms, Weddings & Events at Baibhab Resorts"
-        description="Photos and video highlights of rooms, weddings, corporate events, dining and lawns at Baibhab Resorts & Conventions."
+        title="Photo Gallery — Rooms & Weddings"
+        description="Real photos of rooms, weddings, corporate events, dining and lawns at Baibhab Resorts & Conventions, Bhubaneswar."
         path="/gallery"
       />
       <InnerHero

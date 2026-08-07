@@ -5,7 +5,7 @@ export const SITE = {
   domain: 'https://baibhabresortsandconventions.com',
   bookingEngine: 'https://bookone.io/Baibhab-Conventions-Resorts?bookingEngine=true',
   description:
-    'Premium banquet halls, sprawling open-air lawns, and modern accommodations on the Bhubaneswar Cuttack corridor. Grand weddings, corporate events, and restful stays under one roof.',
+    'Premium banquet halls, open-air lawns and modern accommodations on the Bhubaneswar\u2013Cuttack corridor \u2014 grand weddings, corporate events and restful stays.',
   locale: 'en_IN',
   twitterHandle: '@baibhabresorts',
   themeColor: '#111111',

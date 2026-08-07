@@ -4,6 +4,8 @@ const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  // Allow building into a separate directory (e.g. while the dev server is running).
+  distDir: process.env.NEXT_DIST_DIR || '.next',
   ...(isProd && {
     output: 'export',
     trailingSlash: true,

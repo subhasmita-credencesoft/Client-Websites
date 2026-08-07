@@ -40,7 +40,7 @@ const RoomPage: NextPage<RoomPageProps> = ({ room }) => {
   return (
     <>
       <Seo
-        title={`${room.name} at Baibhab Resorts, Bhubaneswar`}
+        title={`${room.name} — Bhubaneswar`}
         description={room.overview}
         path={`/stay/${room.slug}`}
         image={room.image}

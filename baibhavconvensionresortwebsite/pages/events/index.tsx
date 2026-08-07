@@ -84,8 +84,8 @@ const EventsPage: NextPage<EventsPageProps> = ({ venues }) => {
   return (
     <>
       <Seo
-        title="Weddings & Events at Baibhab Resorts — Odisha's Premier Event Destination"
-        description="Grand banquet halls, open-air lawns and executive boardrooms on the Bhubaneswar\u2013Cuttack corridor  for weddings, corporate MICE, and social celebrations up to 1,500+ guests."
+        title="Weddings & Events in Odisha"
+        description="Grand banquet halls, open-air lawns and boardrooms on the Bhubaneswar–Cuttack corridor for weddings, corporate MICE and celebrations up to 1,500+ guests."
         path="/events"
         jsonLd={jsonLd}
       />

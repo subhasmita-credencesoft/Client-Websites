@@ -1,5 +1,7 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import styles from '@/styles/Breadcrumb.module.scss';
+import { SITE } from '@/data/site';
 
 export interface BreadcrumbItem {
   label: string;
@@ -7,8 +9,26 @@ export interface BreadcrumbItem {
 }
 
 export default function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.label,
+      ...(item.href ? { item: `${SITE.domain}${item.href}` } : {}),
+    })),
+  };
+
   return (
-    <nav className={styles.breadcrumb} aria-label="Breadcrumb" data-reveal>
+    <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </Head>
+      <nav className={styles.breadcrumb} aria-label="Breadcrumb" data-reveal>
       {items.map((item, i) => (
         <span key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           {item.href ? (
@@ -24,5 +44,6 @@ export default function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
         </span>
       ))}
     </nav>
+    </>
   );
 }

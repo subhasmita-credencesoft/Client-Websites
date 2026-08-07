@@ -19,8 +19,8 @@ const OffersPage: NextPage<OffersPageProps> = ({ offers }) => {
   return (
     <>
       <Seo
-        title="Offers & Packages — Wedding, Event & Stay Deals"
-        description="Wedding and event packages bundling venue, catering and guest rooms  plus seasonal stay deals and corporate bulk-booking discounts at Baibhab Resorts & Conventions."
+        title="Wedding, Event & Stay Offers"
+        description="Wedding and event packages bundling venue, catering and guest rooms, plus seasonal stay deals and corporate bulk-booking discounts."
         path="/offers"
       />
       <InnerHero
