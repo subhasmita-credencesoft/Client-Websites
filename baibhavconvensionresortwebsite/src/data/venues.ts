@@ -27,8 +27,7 @@ export const VENUES: Venue[] = [
       { name: 'U-Shape', value: '120' },
       { name: 'Floating / Cocktail', value: '600' },
     ],
-    image:
-      'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80',
+    image: '/newedit/Luxurious Courtyard Entrance at Night.avif',
   },
   {
     id: 'venue-lawn',
@@ -55,8 +54,7 @@ export const VENUES: Venue[] = [
       { name: 'Floating / Cocktail', value: '1,500+' },
       { name: 'Exhibition', value: '2,000 sq. ft. booths' },
     ],
-    image:
-      'https://images.unsplash.com/photo-1505236858219-8359eb29e329?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80',
+    image: '/newedit/Preimum Lawn.avif',
   },
   {
     id: 'venue-boardroom',
@@ -82,8 +80,7 @@ export const VENUES: Venue[] = [
       { name: 'U-Shape', value: '24' },
       { name: 'Breakout', value: '4 zones' },
     ],
-    image:
-      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80',
+    image: '/newedit/Waiting area.avif',
   },
   {
     id: 'venue-mini',
@@ -109,8 +106,7 @@ export const VENUES: Venue[] = [
       { name: 'U-Shape', value: '60' },
       { name: 'Floating / Cocktail', value: '200' },
     ],
-    image:
-      'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80',
+    image: '/newedit/Minimal Hotel Refreshment Station.avif',
   },
 ];
 

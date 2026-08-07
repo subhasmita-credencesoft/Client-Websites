@@ -149,6 +149,18 @@
 }
 
 // Highlights
+@keyframes kenburns {
+  0% {
+    transform: scale(1.02);
+  }
+  50% {
+    transform: scale(1.16);
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+
 .highlights {
   padding-block: v.$space-xxl;
 }
@@ -234,7 +246,7 @@
 
 // Venue capacity
 .venueSection {
-  padding-block: v.$space-xl v.$space-xxl;
+  padding-block: v.$space-xxl;
   background-color: v.$color-surface;
 }
 
@@ -242,39 +254,160 @@
   margin-bottom: v.$space-xl;
 }
 
-.tableWrap {
-  overflow-x: auto;
-  border: 1px solid v.$color-border;
+.venueGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-lg;
+
+  @media (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.venueCard {
+  position: relative;
+  isolation: isolate;
+  min-height: 460px;
+  display: flex;
+  align-items: flex-end;
   border-radius: v.$radius-xl;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgb(0 0 0 / 0.14);
+  @include m.transition(box-shadow, transform);
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 64px rgb(0 0 0 / 0.3);
+
+    .venueCardImage {
+      transform: scale(1.07);
+    }
+  }
 }
 
-.capacityTable {
+.venueCardMedia {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.venueCardImage {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  animation: kenburns 22s ease-in-out infinite;
+  @include m.transition(transform);
+}
+
+.venueCardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.92) 0%,
+    rgb(0 0 0 / 0.55) 45%,
+    rgb(0 0 0 / 0.15) 75%,
+    rgb(0 0 0 / 0.02) 100%
+  );
+}
+
+.venueCardBody {
   width: 100%;
-  min-width: 640px;
-  border-collapse: collapse;
-  font-size: v.$body-size;
-
-  th,
-  td {
-    text-align: left;
-    padding: v.$space-md v.$space-lg;
-    border-bottom: 1px solid v.$color-border-soft;
-    vertical-align: top;
-  }
-
-  thead th {
-    @include m.caption;
-    color: v.$color-muted;
-    background-color: v.$color-border-soft;
-  }
-
-  tbody tr:last-child td {
-    border-bottom: none;
-  }
+  padding: v.$space-lg;
+  color: #fff;
 }
 
-.tableName {
+.venueCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$space-sm;
+  flex-wrap: wrap;
+}
+
+.venueTypeChip,
+.venueAreaChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: v.$radius-full;
+  font-size: 0.72rem;
   font-weight: 500;
+  letter-spacing: 0.06em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.venueTypeChip {
+  color: #ffd782;
+  background: rgb(255 215 130 / 0.14);
+  border: 1px solid rgb(255 215 130 / 0.35);
+}
+
+.venueAreaChip {
+  color: rgb(255 255 255 / 0.85);
+  background: rgb(0 0 0 / 0.32);
+  border: 1px solid rgb(255 255 255 / 0.28);
+}
+
+.venueCardTitle {
+  margin: v.$space-md 0 0;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.venueCardIdeal {
+  margin: v.$space-xs 0 0;
+  color: rgb(255 255 255 / 0.8);
+  font-size: 0.85rem;
+}
+
+.venueCardStats {
+  margin-top: v.$space-md;
+  display: flex;
+  align-items: flex-end;
+  gap: v.$space-lg;
+}
+
+.venueStat {
+  display: flex;
+  flex-direction: column;
+}
+
+.venueStatValue {
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+}
+
+.venueStatLabel {
+  margin-top: 4px;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(255 215 130 / 0.85);
+}
+
+.venueCardLink {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffd782;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgb(255 215 130 / 0.4);
+  padding-bottom: 2px;
+  @include m.transition(color, border-color);
+
+  &:hover {
+    color: #ffe9bb;
+    border-color: #ffe9bb;
+  }
 }
 
 // Room preview
