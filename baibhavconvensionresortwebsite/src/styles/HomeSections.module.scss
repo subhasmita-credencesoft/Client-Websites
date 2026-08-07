@@ -17,30 +17,115 @@
 }
 
 .dualCard {
+  position: relative;
+  isolation: isolate;
   display: flex;
-  flex-direction: column;
-  gap: v.$space-sm;
-  background-color: v.$color-surface;
-  border: 1px solid v.$color-border;
+  min-height: 500px;
   border-radius: v.$radius-xl;
-  padding: v.$space-xl;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.08);
   @include m.transition(box-shadow, transform);
 
   &:hover {
-    box-shadow: 0 16px 40px rgb(0 0 0 / 0.1);
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+    box-shadow: 0 28px 64px rgb(0 0 0 / 0.28);
+
+    .dualMedia {
+      transform: scale(1.1);
+    }
+
+    .dualOverlay {
+      background: linear-gradient(
+        180deg,
+        rgb(0 0 0 / 0.05) 0%,
+        rgb(0 0 0 / 0.4) 45%,
+        rgb(0 0 0 / 0.92) 100%
+      );
+    }
+
+    .dualShine {
+      opacity: 1;
+    }
   }
+}
+
+.dualMedia {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: transform 1s v.$timing;
+}
+
+.dualOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0.1) 0%,
+    rgb(0 0 0 / 0.55) 45%,
+    rgb(0 0 0 / 0.88) 100%
+  );
+  @include m.transition(background);
+}
+
+.dualShine {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgb(255 255 255 / 0.16) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  opacity: 0;
+  transition:
+    transform 0.9s v.$timing,
+    opacity 0.9s v.$timing;
+
+  .dualCard:hover & {
+    transform: translateX(100%);
+  }
+}
+
+.dualBody {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+  margin-top: auto;
+  padding: v.$space-xl;
+  color: v.$color-surface;
+}
+
+.dualIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: v.$radius-full;
+  background-color: rgb(255 255 255 / 0.18);
+  border: 1px solid rgb(255 255 255 / 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .dualTitle {
   margin-top: v.$space-sm;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 500;
   letter-spacing: -0.02em;
 }
 
 .dualText {
-  color: v.$color-muted;
+  color: rgb(255 255 255 / 0.85);
   line-height: v.$body-line-height;
 }
 
@@ -52,10 +137,14 @@
   padding-top: v.$space-md;
   font-weight: 500;
   font-size: 0.875rem;
-  @include m.transition(gap);
+  border-bottom: 1px solid rgb(255 255 255 / 0.5);
+  padding-bottom: v.$space-xs;
+  align-self: flex-start;
+  @include m.transition(gap, border-color);
 
   &:hover {
     gap: v.$space-sm;
+    border-color: v.$color-surface;
   }
 }
 
