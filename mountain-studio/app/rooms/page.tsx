@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { RoomsPageClient } from "@/components/rooms/RoomsPageClient";
+import { FaqSection } from "@/components/sections/FaqSection";
 import {
   breadcrumbSchema,
+  faqSchema,
   jsonLd,
   SITE_URL,
 } from "@/lib/structured-data";
@@ -61,7 +63,45 @@ export default function RoomsPage() {
           ),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(roomsFaqs, "/rooms")) }}
+      />
       <RoomsPageClient />
+      <FaqSection
+        eyebrow="Rooms & Stay"
+        title="Frequently asked questions about rooms in Arpora, Goa"
+        description="Answers about room types, prices, pool access, and what every studio apartment includes at Redwings Studio."
+        faqs={roomsFaqs}
+      />
     </>
   );
 }
+
+const roomsFaqs = [
+  {
+    question: "What room types are available at Redwings Studio in Arpora?",
+    answer:
+      "Redwings Studio offers 5 room types across 10 studio apartments: Budget Double Room, Standard Room, Superior King Room, Standard Room Pool Access, and Superior Pool View. Rates start from ₹1,950/night.",
+  },
+  {
+    question: "Do all rooms at Redwings Studio have pool access?",
+    answer:
+      "The Standard Room Pool Access and Superior Pool View rooms are closest to the swimming pool. All guests can use the pool and garden lawn during their stay regardless of room type.",
+  },
+  {
+    question: "Which is the best room for couples in North Goa?",
+    answer:
+      "Couples usually choose the Superior Pool View or Superior King Room — the largest rooms with the best resort outlook. Budget-conscious couples often pick the Standard Room or Budget Double Room.",
+  },
+  {
+    question: "What amenities are included with the rooms?",
+    answer:
+      "Every studio apartment includes free Wi-Fi, a flat-screen TV, room service, and geyser hot water, with access to the swimming pool and garden lawn. See the individual room page for the complete amenity list.",
+  },
+  {
+    question: "Can I book multiple rooms for a family or group stay?",
+    answer:
+      "Yes. You can reserve multiple studio apartments for family or group stays. Call +91-9167680996 or +91-9763988999 for group room blocks and better rates near Baga Beach.",
+  },
+];

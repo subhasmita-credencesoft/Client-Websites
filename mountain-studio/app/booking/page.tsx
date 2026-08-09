@@ -16,6 +16,10 @@ export const metadata: Metadata = {
     "Budget Hotel Booking Arpora",
     "Reserve Room Goa",
   ],
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: { canonical: "https://redwingsstudio.com/booking" },
   openGraph: {
     title: "Book a Room — Redwings Studio Goa | Studio Apartments Arpora",

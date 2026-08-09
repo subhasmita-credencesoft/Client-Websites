@@ -4,7 +4,7 @@
 
   <url>
     <loc>https://redwingsstudio.com</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -15,7 +15,7 @@
 
   <url>
     <loc>https://redwingsstudio.com/rooms</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -26,42 +26,42 @@
 
   <url>
     <loc>https://redwingsstudio.com/rooms/budget-double-room</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/rooms/standard-room</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/rooms/superior-king-room</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/rooms/standard-room-pool-access</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/rooms/superior-pool-view</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/tariff</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -72,7 +72,7 @@
 
   <url>
     <loc>https://redwingsstudio.com/about</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -83,21 +83,14 @@
 
   <url>
     <loc>https://redwingsstudio.com/contact</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://redwingsstudio.com/booking</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/gallery</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -108,7 +101,7 @@
 
   <url>
     <loc>https://redwingsstudio.com/amenities</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -119,7 +112,7 @@
 
   <url>
     <loc>https://redwingsstudio.com/dining</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -130,14 +123,14 @@
 
   <url>
     <loc>https://redwingsstudio.com/events</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/events/wedding-lawns</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -148,7 +141,7 @@
 
   <url>
     <loc>https://redwingsstudio.com/events/poolside-celebrations</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -159,7 +152,7 @@
 
   <url>
     <loc>https://redwingsstudio.com/corporate-events</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -170,21 +163,21 @@
 
   <url>
     <loc>https://redwingsstudio.com/activities</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/picnic</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/nearby-attractions</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -195,35 +188,35 @@
 
   <url>
     <loc>https://redwingsstudio.com/offers</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/faq</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/cancellation-policy</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.50</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/privacy-policy</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.30</priority>
   </url>
 
   <url>
     <loc>https://redwingsstudio.com/hotel-near-baga-beach</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
     <image:image>
@@ -234,7 +227,7 @@
 
   <url>
     <loc>https://redwingsstudio.com/hotel-near-calangute-beach</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
     <image:image>
@@ -245,7 +238,7 @@
 
   <url>
     <loc>https://redwingsstudio.com/hotel-near-anjuna-beach</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
     <image:image>
@@ -256,7 +249,7 @@
 
   <url>
     <loc>https://redwingsstudio.com/blog</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>

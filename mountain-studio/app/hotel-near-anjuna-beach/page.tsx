@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
 import { bookingEngineUrl, rooms } from "@/lib/data";
 import {
   breadcrumbSchema,
+  faqSchema,
   jsonLd,
   SITE_URL,
 } from "@/lib/structured-data";
@@ -127,6 +129,14 @@ export default function HotelNearAnjunaBeachPage() {
           }),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            faqSchema(anjunaFaqs, "/hotel-near-anjuna-beach")
+          ),
+        }}
+      />
 
       <PageHero
         image="/nearbyattraction/anjunabeach.jpg"
@@ -209,6 +219,74 @@ export default function HotelNearAnjunaBeachPage() {
 
       <section className="section-space">
         <div className="container-shell">
+          <p className="eyebrow">A Local&apos;s View</p>
+          <h2 className="display-title text-5xl">
+            Anjuna&apos;s hippie heritage, the flea market and Chapora
+          </h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-[28px] border border-gold/16 bg-dark p-7">
+              <h3 className="font-display text-2xl">Don&apos;t miss the flea market</h3>
+              <p className="mt-4 text-base leading-8 text-ivory/68">
+                The Anjuna Flea Market runs every Wednesday, spilling across
+                the clifftop with boho clothing, jewellery, antiques, spices,
+                and live music. Around it, Anjuna&apos;s beach shacks like
+                Curlies and Shiva Valley still carry the old hippie energy that
+                put the village on the map in the 1960s. Sunset here is an
+                event in itself.
+              </p>
+            </div>
+            <div className="rounded-[28px] border border-gold/16 bg-dark p-7">
+              <h3 className="font-display text-2xl">Chapora Fort and Vagator</h3>
+              <p className="mt-4 text-base leading-8 text-ivory/68">
+                A short drive from Anjuna, Chapora Fort is the viewpoint made
+                famous by Dil Chahta Hai, with a steep climb rewarded by
+                panoramic views over the Chapora River and Vagator Beach.
+                Nearby Vagator&apos;s red-cliff coastline is far quieter than
+                Baga or Calangute — perfect for a relaxed afternoon with a
+                beach bar in sight.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 flex flex-wrap items-center gap-3 text-sm">
+            <span className="uppercase tracking-[0.24em] text-ivory/48">
+              Explore more:
+            </span>
+            <Link
+              href="/hotel-near-baga-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Baga Beach
+            </Link>
+            <Link
+              href="/hotel-near-calangute-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Calangute Beach
+            </Link>
+            <Link
+              href="/nearby-attractions"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Nearby Attractions
+            </Link>
+            <Link
+              href="/dining"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Dining & Restaurants
+            </Link>
+            <Link
+              href="/activities"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Things to Do
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-space">
+        <div className="container-shell">
           <p className="eyebrow">Rooms Near Anjuna Beach</p>
           <h2 className="display-title text-5xl">
             Studio apartments from ₹1,950/night
@@ -264,6 +342,41 @@ export default function HotelNearAnjunaBeachPage() {
           </div>
         </div>
       </section>
+
+      <FaqSection
+        eyebrow="Staying Near Anjuna"
+        title="Frequently asked questions about hotels near Anjuna Beach, Goa"
+        description="Distances, the flea market, Chapora Fort, and stays near Anjuna from Redwings Studio, Arpora."
+        faqs={anjunaFaqs}
+      />
     </>
   );
 }
+
+const anjunaFaqs = [
+  {
+    question: "How far is Redwings Studio from Anjuna Beach?",
+    answer:
+      "Redwings Studio is 5 km from Anjuna Beach — about a 15-minute drive from the beach, the Anjuna Flea Market, and the beach shacks along the rocky coastline.",
+  },
+  {
+    question: "Is Redwings Studio close to the Anjuna Flea Market?",
+    answer:
+      "Yes. The Anjuna Flea Market runs every Wednesday about 5 km away, and staying in Arpora means you avoid the busiest stretch of Anjuna accommodation while staying within a short drive.",
+  },
+  {
+    question: "Can I visit Chapora Fort and Vagator from Redwings Studio?",
+    answer:
+      "Yes. Chapora Fort and Vagator Beach are about 7 km (18 minutes) from the property — a classic half-day route with sunset views over the Chapora River.",
+  },
+  {
+    question: "Is Anjuna a good base for a quiet Goa holiday?",
+    answer:
+      "Anjuna has a laid-back, bohemian vibe, while Arpora gives you that quiet setting with easy access to Anjuna's beaches and markets. Redwings Studio suits travellers who want both.",
+  },
+  {
+    question: "Which is closer — Baga or Anjuna?",
+    answer:
+      "Baga Beach is 3 km and Anjuna Beach is 5 km from Redwings Studio, so you can comfortably visit both, plus Calangute at 4 km, during a single Goa holiday.",
+  },
+];

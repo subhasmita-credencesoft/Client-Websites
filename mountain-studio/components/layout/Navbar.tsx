@@ -168,7 +168,7 @@ export function Navbar() {
             href={bookingEngineUrl}
             className="rounded-full border border-gold bg-gold/10 px-4 py-2 text-[10px] font-medium uppercase tracking-[0.22em] text-gold transition hover:bg-gold hover:text-dark sm:px-5 sm:py-2.5 sm:text-[11px]"
           >
-            Check Availability
+            Book a Stay
           </Link>
         </div>
 
@@ -211,7 +211,7 @@ export function Navbar() {
             onClick={() => setOpen(false)}
             className="inline-block rounded-full border border-gold bg-gold/10 px-6 py-3 text-[11px] font-medium uppercase tracking-[0.22em] text-gold transition hover:bg-gold hover:text-dark"
           >
-            Check Availability
+            Book a Stay
           </Link>
         </div>
       </div>

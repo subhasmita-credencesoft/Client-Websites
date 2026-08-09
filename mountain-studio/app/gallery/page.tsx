@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { GalleryPageClient } from "@/components/gallery/GalleryPageClient";
-import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+import { FaqSection } from "@/components/sections/FaqSection";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  SITE_URL,
+} from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title:
@@ -51,7 +57,45 @@ export default function GalleryPage() {
           ),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(galleryFaqs, "/gallery")) }}
+      />
       <GalleryPageClient />
+      <FaqSection
+        eyebrow="Property Photos"
+        title="Frequently asked questions about the Redwings Studio gallery"
+        description="About the property photos, rooms, and what to expect before you book."
+        faqs={galleryFaqs}
+      />
     </>
   );
 }
+
+const galleryFaqs = [
+  {
+    question: "What photos are included in the Redwings Studio gallery?",
+    answer:
+      "The gallery shows the studio apartments, poolside setting, exterior and garden views, interior styling, dining spaces, and event-ready areas of Redwings Studio at Abalone Resort, Arpora, Goa.",
+  },
+  {
+    question: "Are the room photos real photos of Redwings Studio?",
+    answer:
+      "Yes. The images reflect the actual studio apartments and property spaces in Arpora, Goa. For the most current views, you can also check the live room images on the individual room pages.",
+  },
+  {
+    question: "Can I see photos of the pool and garden before booking?",
+    answer:
+      "Yes, the gallery includes the swimming pool, garden lawn, and resort surroundings shared by all guests, along with pool-access and pool-view room imagery.",
+  },
+  {
+    question: "Do the photos show the wedding and event spaces?",
+    answer:
+      "Yes, the gallery includes event-ready areas, celebration setups, and the lawn spaces used for weddings and private gatherings at Redwings Studio.",
+  },
+  {
+    question: "Where is Redwings Studio located?",
+    answer:
+      "Redwings Studio is at House No. 275/1, F30, Abalone Resort, Gorbhat, Goa 403516 — 3 km from Baga Beach and 2 km from the Arpora Saturday Night Market.",
+  },
+];

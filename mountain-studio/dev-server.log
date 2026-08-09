@@ -1,0 +1,20 @@
+
+> redwings-studio@1.0.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+  - Experiments (use with caution):
+    · scrollRestoration
+
+ ✓ Starting...
+ ✓ Ready in 8.5s
+ ○ Compiling /rooms ...
+ ✓ Compiled /rooms in 13s (1386 modules)
+ GET /rooms 200 in 16100ms
+ ✓ Compiled in 4.8s (692 modules)
+ ✓ Compiled in 1417ms (692 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 2.1s (1398 modules)
+ GET / 200 in 3677ms
+ GET / 200 in 634ms

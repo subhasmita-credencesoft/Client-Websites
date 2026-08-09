@@ -1,6 +1,12 @@
 ﻿import type { Metadata } from "next";
 import { WeddingLawnsPageClient } from "./WeddingLawnsPageClient";
-import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+import { FaqSection } from "@/components/sections/FaqSection";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  SITE_URL,
+} from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title:
@@ -53,7 +59,45 @@ export default function WeddingLawnsPage() {
           ),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(weddingLawnsFaqs, "/events/wedding-lawns")) }}
+      />
       <WeddingLawnsPageClient />
+      <FaqSection
+        eyebrow="Wedding Venue"
+        title="Frequently asked questions about the wedding lawns at Redwings Studio"
+        description="Open lawn weddings, capacities, planning, and guest stays in Arpora, Goa."
+        faqs={weddingLawnsFaqs}
+      />
     </>
   );
 }
+
+const weddingLawnsFaqs = [
+  {
+    question: "Can I host a full wedding at Redwings Studio's lawn in Arpora?",
+    answer:
+      "Yes. The open lawns support the full celebration flow — haldi, mehendi, sangeet, ceremony, and reception — with scenic greenery and resort surroundings as the backdrop.",
+  },
+  {
+    question: "How many guests fit on the wedding lawn?",
+    answer:
+      "The lawn accommodates intimate to medium-sized weddings comfortably. Share your guest count and event plan with the team for exact capacity, layout, and seating arrangements.",
+  },
+  {
+    question: "Can wedding guests stay overnight at Redwings Studio?",
+    answer:
+      "Yes. Redwings Studio has 10 studio apartments on site, making it convenient for destination wedding families and outstation guests to stay at the venue.",
+  },
+  {
+    question: "Is Redwings Studio a good destination wedding venue near Baga Beach?",
+    answer:
+      "Yes. The property is 3 km from Baga Beach, set within a private 7-acre estate in Arpora — a practical and scenic base for destination weddings with photography-ready corners.",
+  },
+  {
+    question: "How do I check availability and pricing for the wedding lawns?",
+    answer:
+      "Contact the Redwings Studio team through the contact page or call +91 9167680996 / +91 9763988999 with your date and estimated guest count for a personalised quote.",
+  },
+];

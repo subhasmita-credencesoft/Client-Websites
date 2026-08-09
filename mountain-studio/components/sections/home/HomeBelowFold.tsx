@@ -224,6 +224,35 @@ export default function HomeBelowFold() {
               </Link>
             ))}
           </div>
+          <div className="mt-10 flex flex-wrap items-center gap-3 border-t border-gold/12 pt-8 text-sm">
+            <span className="uppercase tracking-[0.24em] text-ivory/48">
+              Staying near a specific beach?
+            </span>
+            <Link
+              href="/hotel-near-baga-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Baga Beach
+            </Link>
+            <Link
+              href="/hotel-near-calangute-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Calangute Beach
+            </Link>
+            <Link
+              href="/hotel-near-anjuna-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Anjuna Beach
+            </Link>
+            <Link
+              href="/nearby-attractions"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Nearby Attractions & Places to Visit
+            </Link>
+          </div>
         </div>
       </section>
 

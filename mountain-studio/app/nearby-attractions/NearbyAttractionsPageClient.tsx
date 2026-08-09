@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { MapPin, Clock, Navigation, ChevronDown } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
@@ -65,6 +66,56 @@ export function NearbyAttractionsPageClient({ attractions }: NearbyAttractionsPa
                 <div className="mt-4 font-display text-4xl text-gold-light">{item.title}</div>
                 <p className="mt-3 text-sm leading-7 text-ivory/64">{item.body}</p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stay Near a Specific Beach */}
+      <section className="section-space bg-dark-2">
+        <div className="container-shell">
+          <div className="mb-8">
+            <p className="eyebrow">Stay Near Your Favourite Beach</p>
+            <h2 className="display-title text-4xl">
+              Planning to spend most of your trip at one beach?
+            </h2>
+            <p className="mt-4 max-w-3xl text-lg leading-8 text-ivory/68">
+              Redwings Studio sits in Arpora, with quick access to all of North
+              Goa&apos;s famous stretches. Pick a beach and see why we are a
+              great base for it.
+            </p>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-3">
+            {[
+              {
+                name: "Hotel Near Baga Beach",
+                href: "/hotel-near-baga-beach",
+                note: "3 km · 10 min · nightlife & water sports",
+              },
+              {
+                name: "Hotel Near Calangute Beach",
+                href: "/hotel-near-calangute-beach",
+                note: "4 km · 12 min · shops, food & family beaches",
+              },
+              {
+                name: "Hotel Near Anjuna Beach",
+                href: "/hotel-near-anjuna-beach",
+                note: "5 km · 15 min · flea market & Chapora",
+              },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="group rounded-[24px] border border-gold/16 bg-dark p-6 transition duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-glow"
+              >
+                <h3 className="font-display text-2xl text-ivory transition group-hover:text-gold-light">
+                  {link.name}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-ivory/64">{link.note}</p>
+                <span className="mt-4 inline-block text-xs uppercase tracking-[0.28em] text-gold">
+                  Explore →
+                </span>
+              </Link>
             ))}
           </div>
         </div>

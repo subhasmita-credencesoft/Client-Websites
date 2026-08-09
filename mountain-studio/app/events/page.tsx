@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+import { breadcrumbSchema, faqSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
 import Link from "next/link";
 import { bookingEngineUrl, imageSet, studioGallery } from "@/lib/data";
@@ -126,6 +127,10 @@ export default function EventsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema([{ name: "Home", url: SITE_URL }, { name: "Events", url: `${SITE_URL}/events` }])) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(eventsFaqs, "/events")) }}
+      />
       <PageHero
         image={imageSet.homeHero}
         eyebrow="Property Spaces"
@@ -204,6 +209,49 @@ export default function EventsPage() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-space">
+        <div className="container-shell">
+          <div className="mb-8">
+            <p className="eyebrow">More Ways to Host</p>
+            <h2 className="display-title text-4xl">
+              Planning a picnic or a corporate gathering instead?
+            </h2>
+            <p className="mt-4 max-w-3xl text-lg leading-8 text-ivory/68">
+              The same 7-acre estate hosts relaxed open-air picnics and
+              structured corporate day events with private coordination.
+            </p>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Link
+              href="/picnic"
+              className="group rounded-[24px] border border-gold/16 bg-dark-2 p-6 transition duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-glow"
+            >
+              <h3 className="font-display text-3xl">Picnic Experiences</h3>
+              <p className="mt-3 text-sm leading-7 text-ivory/64">
+                Family outings and corporate lawn events with curated outdoor
+                packages, games, and catering.
+              </p>
+              <span className="mt-4 inline-block text-xs uppercase tracking-[0.28em] text-gold">
+                Explore Picnics →
+              </span>
+            </Link>
+            <Link
+              href="/corporate-events"
+              className="group rounded-[24px] border border-gold/16 bg-dark-2 p-6 transition duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-glow"
+            >
+              <h3 className="font-display text-3xl">Corporate Events</h3>
+              <p className="mt-3 text-sm leading-7 text-ivory/64">
+                Company day events, team retreats, and group stays with fast
+                private check-in and full coordination.
+              </p>
+              <span className="mt-4 inline-block text-xs uppercase tracking-[0.28em] text-gold">
+                Explore Corporate →
+              </span>
+            </Link>
           </div>
         </div>
       </section>
@@ -361,6 +409,41 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
+
+      <FaqSection
+        eyebrow="Events & Weddings"
+        title="Frequently asked questions about events at Redwings Studio, Goa"
+        description="Venue spaces, capacities, planning, and celebrations at our Arpora estate."
+        faqs={eventsFaqs}
+      />
     </>
   );
 }
+
+const eventsFaqs = [
+  {
+    question: "Can Redwings Studio host weddings in Goa?",
+    answer:
+      "Yes. The 7-acre estate in Arpora offers open lawns for ceremonies, sangeet, mehendi, haldi, cocktail nights, and receptions, with scenic greenery as a photography-ready backdrop. See the Wedding Lawns page for details.",
+  },
+  {
+    question: "How many guests can the event space accommodate?",
+    answer:
+      "The open lawns and poolside zones can accommodate intimate to medium-sized celebrations and private gatherings. Contact the team with your guest count and event type for exact capacity and layout.",
+  },
+  {
+    question: "Is Redwings Studio good for a destination wedding?",
+    answer:
+      "Yes. Being near Baga Beach (3 km) with accommodation on site, scenic lawns, and a private estate feel makes Redwings Studio a practical destination wedding venue for couples and their families.",
+  },
+  {
+    question: "Can I host a poolside celebration?",
+    answer:
+      "Yes. The poolside area is available for cocktails, music nights, and relaxed celebrations. View the Poolside Celebrations page for the atmosphere and setup options.",
+  },
+  {
+    question: "Do you host corporate events and picnics too?",
+    answer:
+      "Yes. The same estate hosts corporate day events, team retreats, and curated family or corporate picnic experiences with private coordination.",
+  },
+];

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { FAQPageClient } from "./FAQPageClient";
 import { breadcrumbSchema, faqSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
 
@@ -103,6 +104,96 @@ export default function FAQPage() {
         }}
       />
       <FAQPageClient faqs={faqs} />
+
+      <section className="section-space bg-dark-2">
+        <div className="container-shell">
+          <div className="mb-8">
+            <p className="eyebrow">Topic FAQs</p>
+            <h2 className="display-title text-4xl">
+              Need a more specific answer?
+            </h2>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-ivory/68">
+              Each page below has its own FAQ section with detailed answers on
+              rooms, rates, beaches, dining, activities, and events near
+              Redwings Studio, Arpora.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 text-sm">
+            <Link
+              href="/rooms"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Rooms FAQ
+            </Link>
+            <Link
+              href="/tariff"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Tariff & Rates FAQ
+            </Link>
+            <Link
+              href="/hotel-near-baga-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Baga Beach
+            </Link>
+            <Link
+              href="/hotel-near-calangute-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Calangute Beach
+            </Link>
+            <Link
+              href="/hotel-near-anjuna-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Anjuna Beach
+            </Link>
+            <Link
+              href="/nearby-attractions"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Nearby Attractions
+            </Link>
+            <Link
+              href="/dining"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Dining & Restaurants
+            </Link>
+            <Link
+              href="/activities"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Things to Do
+            </Link>
+            <Link
+              href="/events"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Events & Weddings
+            </Link>
+            <Link
+              href="/picnic"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Picnic Experiences
+            </Link>
+            <Link
+              href="/corporate-events"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Corporate Events
+            </Link>
+            <Link
+              href="/about"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              About Redwings Studio
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

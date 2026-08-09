@@ -17,14 +17,18 @@ const exploreLinks = [
   { label: "Amenities & Facilities", href: "/amenities" },
   { label: "Dining & Restaurants", href: "/dining" },
   { label: "Events & Weddings", href: "/events" },
+  { label: "Picnic Experiences", href: "/picnic" },
+  { label: "Corporate Events", href: "/corporate-events" },
   { label: "Activities & Things to Do", href: "/activities" },
   { label: "Goa Travel Blog", href: "/blog" },
   { label: "Offers & Benefits", href: "/offers" },
 ];
 
 const nearbyLinks = [
-  { label: "Hotel Near Baga Beach", href: "/nearby-attractions" },
-  { label: "Places to Visit in Goa", href: "/nearby-attractions" },
+  { label: "Hotel Near Baga Beach", href: "/hotel-near-baga-beach" },
+  { label: "Hotel Near Calangute Beach", href: "/hotel-near-calangute-beach" },
+  { label: "Hotel Near Anjuna Beach", href: "/hotel-near-anjuna-beach" },
+  { label: "Nearby Attractions & Tourist Places", href: "/nearby-attractions" },
   { label: "About Redwings Studio", href: "/about" },
   { label: "Contact & Directions", href: "/contact" },
   { label: "FAQ — Rooms & Booking", href: "/faq" },

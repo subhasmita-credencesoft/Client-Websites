@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { activities, bookingEngineUrl, imageSet } from "@/lib/data";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
-import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  SITE_URL,
+} from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title:
@@ -48,6 +54,10 @@ export default function ActivitiesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema([{ name: "Home", url: SITE_URL }, { name: "Activities", url: `${SITE_URL}/activities` }])) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(activitiesFaqs, "/activities")) }}
       />
       <PageHero
         image={imageSet.homeHero}
@@ -108,6 +118,41 @@ export default function ActivitiesPage() {
           </form>
         </div>
       </section>
+
+      <FaqSection
+        eyebrow="Things To Do"
+        title="Frequently asked questions about activities near Arpora, Goa"
+        description="Beaches, water sports, markets, and experiences you can enjoy from Redwings Studio."
+        faqs={activitiesFaqs}
+      />
     </>
   );
 }
+
+const activitiesFaqs = [
+  {
+    question: "What activities can I do near Redwings Studio in Arpora?",
+    answer:
+      "Guests can enjoy beach days at Baga (3 km), Calangute (4 km), and Anjuna (5 km), water sports like parasailing and jet skiing, the Arpora Saturday Night Market (2 km), Chapora Fort, and poolside relaxation at the resort.",
+  },
+  {
+    question: "Are water sports available near Baga Beach?",
+    answer:
+      "Yes. Baga Beach offers parasailing, jet skiing, banana boat rides, and speedboat trips, all within a 10-minute drive from Redwings Studio. The team can help you compare operators.",
+  },
+  {
+    question: "How far is the Saturday Night Market from Redwings Studio?",
+    answer:
+      "The Saturday Night Market in Arpora is just 2 km from the property — about an 8-minute drive or a 20-minute walk. It runs weekly with food stalls, live music, and handcrafted goods.",
+  },
+  {
+    question: "Can the hotel arrange scooters or day trips?",
+    answer:
+      "Yes. Scooter and bike rentals are available locally in Arpora, and the concierge can arrange private car hire, airport transfers, and full-day itineraries to places like Fort Aguada, Dudhsagar, and Old Goa.",
+  },
+  {
+    question: "Is Redwings Studio a good base for a Goa honeymoon?",
+    answer:
+      "Yes. Quiet resort surroundings, pool access, and proximity to romantic spots like Anjuna's sunset shacks and Chapora Fort make Redwings Studio a comfortable base for couples.",
+  },
+];

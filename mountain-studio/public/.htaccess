@@ -1,0 +1,33 @@
+# Redwings Studio - Hostinger / Apache / LiteSpeed redirect rules
+#
+# NOTE: This file only has effect if the hosting server runs Apache or
+# LiteSpeed with mod_rewrite enabled. Hostinger static hosting may ignore it;
+# the definitive www -> non-www 301 should also be configured in the
+# hosting panel (Domain -> Redirects). Both are required for a clean setup.
+#
+# Canonical host is NON-www: https://redwingsstudio.com
+# (all canonical tags, sitemap URLs and internal links use the non-www host)
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 301: redirect www -> non-www (single canonical host for Google)
+  RewriteCond %{HTTP_HOST} ^www\.redwingsstudio\.com$ [NC]
+  RewriteRule ^(.*)$ https://redwingsstudio.com/$1 [R=301,L]
+
+  # 301: redirect index.html to the root URL
+  RewriteRule ^index\.html$ https://redwingsstudio.com/ [R=301,L,NC]
+
+  # 301: redirect *.html variants to clean URLs so Google does not index
+  # duplicate HTML-file URLs (e.g. /rooms.html -> /rooms)
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^(.*)\.html$ https://redwingsstudio.com/$1 [R=301,L,NC]
+
+  # 301: strip trailing slash from directories that have no index.html.
+  # Next.js App Router static export emits flat files (rooms.html, not
+  # rooms/index.html), so /rooms/ would hit the real /rooms directory with
+  # no index file and return 403. Redirect it to the working clean URL.
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} ^(.+)/$
+  RewriteRule ^ %1 [R=301,L]
+</IfModule>

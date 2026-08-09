@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
 import { bookingEngineUrl, imageSet, rooms } from "@/lib/data";
 import {
   breadcrumbSchema,
+  faqSchema,
   jsonLd,
   SITE_URL,
 } from "@/lib/structured-data";
@@ -129,6 +131,14 @@ export default function HotelNearBagaBeachPage() {
           }),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            faqSchema(bagaFaqs, "/hotel-near-baga-beach")
+          ),
+        }}
+      />
 
       <PageHero
         image="/nearbyattraction/bagabeach.jpg"
@@ -211,6 +221,74 @@ export default function HotelNearBagaBeachPage() {
 
       <section className="section-space">
         <div className="container-shell">
+          <p className="eyebrow">A Local&apos;s View</p>
+          <h2 className="display-title text-5xl">
+            Why stay in Arpora instead of right on Baga Beach
+          </h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-[28px] border border-gold/16 bg-dark p-7">
+              <h3 className="font-display text-2xl">Quieter nights, cheaper rooms</h3>
+              <p className="mt-4 text-base leading-8 text-ivory/68">
+                Rooms directly on Baga Beach Road come with premium prices and
+                loud nights during peak season. Arpora gives you the same access
+                to Baga&apos;s water sports, Tito&apos;s Lane, and the Saturday
+                Night Market — with free parking, a pool, and a good
+                night&apos;s sleep for a fraction of the price. It is a
+                10-minute drive (or 20-minute scooty ride) to the sand.
+              </p>
+            </div>
+            <div className="rounded-[28px] border border-gold/16 bg-dark p-7">
+              <h3 className="font-display text-2xl">Best time to visit Baga</h3>
+              <p className="mt-4 text-base leading-8 text-ivory/68">
+                November to March is peak season: expect full beaches, live
+                music on every corner, and water sports running from sunrise to
+                sunset. June to September is quiet and green with frequent
+                showers. For a balance of weather, beach action, and room
+                availability, late October to mid-December and February are
+                ideal.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 flex flex-wrap items-center gap-3 text-sm">
+            <span className="uppercase tracking-[0.24em] text-ivory/48">
+              Explore more:
+            </span>
+            <Link
+              href="/hotel-near-calangute-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Calangute Beach
+            </Link>
+            <Link
+              href="/hotel-near-anjuna-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Anjuna Beach
+            </Link>
+            <Link
+              href="/nearby-attractions"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Nearby Attractions
+            </Link>
+            <Link
+              href="/dining"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Dining & Restaurants
+            </Link>
+            <Link
+              href="/activities"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Things to Do
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-space">
+        <div className="container-shell">
           <p className="eyebrow">Rooms Near Baga Beach</p>
           <h2 className="display-title text-5xl">
             Studio apartments from ₹1,950/night
@@ -266,6 +344,41 @@ export default function HotelNearBagaBeachPage() {
           </div>
         </div>
       </section>
+
+      <FaqSection
+        eyebrow="Staying Near Baga"
+        title="Frequently asked questions about hotels near Baga Beach, Goa"
+        description="Distances, nightlife access, water sports, and stays near Baga from Redwings Studio, Arpora."
+        faqs={bagaFaqs}
+      />
     </>
   );
 }
+
+const bagaFaqs = [
+  {
+    question: "How far is Redwings Studio from Baga Beach?",
+    answer:
+      "Redwings Studio is just 3 km from Baga Beach — about a 10-minute drive or a 20-minute scooty ride from the sand, the beach shacks, and the water sports jetty.",
+  },
+  {
+    question: "Is Redwings Studio a budget hotel near Baga Beach?",
+    answer:
+      "Yes. Rooms start from ₹1,950/night, making Redwings Studio one of the more affordable stays near Baga — with a pool, free Wi-Fi, and free parking included.",
+  },
+  {
+    question: "Can I walk to Tito's Lane from Redwings Studio?",
+    answer:
+      "Tito's Lane in Baga is 3 km away — a 10-minute drive or a short auto ride. Arpora's quieter location means you get easy nightlife access without the late-night noise at your room.",
+  },
+  {
+    question: "Which water sports are available near Baga Beach?",
+    answer:
+      "Baga Beach offers parasailing, jet skiing, banana boat rides, speedboat trips, and dolphin-watching tours, most of which run between late morning and sunset.",
+  },
+  {
+    question: "Is Redwings Studio family friendly for a Baga Beach holiday?",
+    answer:
+      "Yes. The resort setting, swimming pool, garden lawn, and free parking make it a comfortable base for families exploring Baga and the Arpora Saturday Night Market.",
+  },
+];

@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { AmenitiesPageClient } from "@/components/amenities/AmenitiesPageClient";
-import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+import { FaqSection } from "@/components/sections/FaqSection";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  SITE_URL,
+} from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title:
@@ -56,7 +62,45 @@ export default function AmenitiesPage() {
           ),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(amenitiesFaqs, "/amenities")) }}
+      />
       <AmenitiesPageClient />
+      <FaqSection
+        eyebrow="Facilities"
+        title="Frequently asked questions about amenities at Redwings Studio"
+        description="Facilities, free inclusions, and resort facilities available to guests staying in Arpora, Goa."
+        faqs={amenitiesFaqs}
+      />
     </>
   );
 }
+
+const amenitiesFaqs = [
+  {
+    question: "What amenities are available at Redwings Studio, Goa?",
+    answer:
+      "Guests at Redwings Studio enjoy a swimming pool, free Wi-Fi, free parking, a garden lawn, in-house dining, a fitness area, bar and lounge, room service, and event space — all within the Abalone Resort estate in Arpora.",
+  },
+  {
+    question: "Is Wi-Fi and parking free at Redwings Studio?",
+    answer:
+      "Yes. Free Wi-Fi and free parking are included for all guests staying at Redwings Studio, making it convenient for couples, families, and guests arriving by car or two-wheeler.",
+  },
+  {
+    question: "Does Redwings Studio have a swimming pool?",
+    answer:
+      "Yes, the resort has a swimming pool with pool-access and pool-view room options. All guests can use the pool during their stay.",
+  },
+  {
+    question: "Are there dining options at Redwings Studio?",
+    answer:
+      "In-house dining is available within the resort, and the property team can guide you to the best local restaurants and beach shacks near Baga, Calangute, and Anjuna.",
+  },
+  {
+    question: "Which amenities do the rooms include?",
+    answer:
+      "Every studio apartment includes free Wi-Fi, a flat-screen TV, room service, and geyser hot water, plus access to the pool, garden lawn, and resort common areas.",
+  },
+];

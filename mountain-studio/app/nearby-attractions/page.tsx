@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { NearbyAttractionsPageClient } from "./NearbyAttractionsPageClient";
-import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+import { FaqSection } from "@/components/sections/FaqSection";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  SITE_URL,
+} from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title:
@@ -239,7 +245,45 @@ export default function NearbyAttractionsPage() {
           }),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(nearbyFaqs, "/nearby-attractions")) }}
+      />
       <NearbyAttractionsPageClient attractions={sortedAttractions} />
+      <FaqSection
+        eyebrow="Places To Visit"
+        title="Frequently asked questions about attractions near Arpora, Goa"
+        description="Beaches, forts, markets, and day trips from Redwings Studio."
+        faqs={nearbyFaqs}
+      />
     </>
   );
 }
+
+const nearbyFaqs = [
+  {
+    question: "Which beaches are closest to Redwings Studio in Arpora?",
+    answer:
+      "Baga Beach is 3 km (10 min), Calangute Beach is 4 km (12 min), and Anjuna Beach is 5 km (15 min) from Redwings Studio. Candolim and Vagator beaches are 15–18 minutes away.",
+  },
+  {
+    question: "What is there to do near Redwings Studio, Arpora?",
+    answer:
+      "Top activities include the Arpora Saturday Night Market (2 km), Baga water sports and Tito's Lane nightlife, Anjuna Flea Market, Chapora Fort, Fort Aguada, Fontainhas, and day trips to Dudhsagar Waterfalls.",
+  },
+  {
+    question: "Is the Saturday Night Market walking distance from the hotel?",
+    answer:
+      "The Saturday Night Market in Arpora is 2 km from Redwings Studio — about an 8-minute drive or a 20-minute walk, depending on where it sets up for the season.",
+  },
+  {
+    question: "Can I visit Dudhsagar Waterfalls as a day trip?",
+    answer:
+      "Yes. Dudhsagar is about 58 km (roughly 1.5 hours) from the property and is a popular full-day trip, often combined with a spice plantation visit in Ponda.",
+  },
+  {
+    question: "How far is the airport from Redwings Studio?",
+    answer:
+      "Dabolim Airport is about 40 km and Mopa Airport is about 30 km from Redwings Studio. The concierge can arrange pre-booked airport transfers.",
+  },
+];

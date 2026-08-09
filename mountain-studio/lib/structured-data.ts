@@ -57,7 +57,6 @@ export const orgSchema = {
   ],
   email: "psomvanshi9@gmail.com",
   address: propertyAddress,
-  sameAs: [SITE_URL],
 };
 
 // ─── LodgingBusiness Schema ───────────────────────────────────────────────────
@@ -96,20 +95,7 @@ export const lodgingSchema = {
     { "@type": "LocationFeatureSpecification", name: "Garden Lawn", value: true },
     { "@type": "LocationFeatureSpecification", name: "Concierge Service", value: true },
   ],
-  starRating: {
-    "@type": "Rating",
-    ratingValue: "4",
-    bestRating: "5",
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "8",
-    bestRating: "5",
-    worstRating: "1",
-  },
   hasMap: "https://maps.google.com/?q=Abalone+Resort+Gorbhat+Goa+403516",
-  sameAs: [SITE_URL],
   isPartOf: {
     "@id": `${SITE_URL}/#organization`,
   },
@@ -126,13 +112,6 @@ export const websiteSchema = {
   inLanguage: "en-IN",
   publisher: {
     "@id": `${SITE_URL}/#organization`,
-  },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${SITE_URL}/rooms`,
-    },
   },
 };
 
@@ -196,11 +175,14 @@ export function webPageSchema(opts: {
 
 // ─── FAQPage Schema ───────────────────────────────────────────────────────────
 
-export function faqSchema(faqs: Array<{ question: string; answer: string }>) {
+export function faqSchema(
+  faqs: Array<{ question: string; answer: string }>,
+  path = "/faq"
+) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "@id": `${SITE_URL}/faq#faqpage`,
+    "@id": `${SITE_URL}${path}#faqpage`,
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,

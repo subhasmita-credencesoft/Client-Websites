@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
 import { bookingEngineUrl, rooms } from "@/lib/data";
 import {
   breadcrumbSchema,
+  faqSchema,
   jsonLd,
   SITE_URL,
 } from "@/lib/structured-data";
@@ -126,6 +128,14 @@ export default function HotelNearCalanguteBeachPage() {
           }),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            faqSchema(calanguteFaqs, "/hotel-near-calangute-beach")
+          ),
+        }}
+      />
 
       <PageHero
         image="/nearbyattraction/chalanguebeach.png"
@@ -207,6 +217,68 @@ export default function HotelNearCalanguteBeachPage() {
 
       <section className="section-space">
         <div className="container-shell">
+          <p className="eyebrow">A Local&apos;s View</p>
+          <h2 className="display-title text-5xl">
+            Calangute: the Queen of Beaches for shoppers and families
+          </h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-[28px] border border-gold/16 bg-dark p-7">
+              <h3 className="font-display text-2xl">More than just a beach</h3>
+              <p className="mt-4 text-base leading-8 text-ivory/68">
+                Calangute is North Goa&apos;s biggest and most developed beach
+                town. Beyond the sand you will find the busy Calangute Market
+                Road for clothes and handicrafts, local seafood shacks, and
+                waterside cafés that stay open late. It is also the easiest
+                base for day trips to Candolim, Baga, and Anjuna — all within a
+                15-minute drive of Redwings Studio.
+              </p>
+            </div>
+            <div className="rounded-[28px] border border-gold/16 bg-dark p-7">
+              <h3 className="font-display text-2xl">Families and first-timers</h3>
+              <p className="mt-4 text-base leading-8 text-ivory/68">
+                With its shallow, wide stretch of sand and plenty of laid-back
+                restaurants, Calangute suits families and first-time visitors
+                who want easy everything. If the main beach feels busy, head a
+                few minutes north to Candolim for a quieter stretch, or come
+                back to our pool at Redwings Studio in the afternoon for a
+                break from the sun.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 flex flex-wrap items-center gap-3 text-sm">
+            <span className="uppercase tracking-[0.24em] text-ivory/48">
+              Explore more:
+            </span>
+            <Link
+              href="/hotel-near-baga-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Baga Beach
+            </Link>
+            <Link
+              href="/hotel-near-anjuna-beach"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Hotel Near Anjuna Beach
+            </Link>
+            <Link
+              href="/nearby-attractions"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Nearby Attractions
+            </Link>
+            <Link
+              href="/dining"
+              className="rounded-full border border-gold/30 px-4 py-2 text-gold transition hover:border-gold hover:bg-gold/10"
+            >
+              Dining & Restaurants
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-space">
+        <div className="container-shell">
           <p className="eyebrow">Rooms Near Calangute Beach</p>
           <h2 className="display-title text-5xl">
             Studio apartments from ₹1,950/night
@@ -262,6 +334,41 @@ export default function HotelNearCalanguteBeachPage() {
           </div>
         </div>
       </section>
+
+      <FaqSection
+        eyebrow="Staying Near Calangute"
+        title="Frequently asked questions about hotels near Calangute Beach, Goa"
+        description="Distances, family-friendly beaches, shopping, and stays near Calangute from Redwings Studio, Arpora."
+        faqs={calanguteFaqs}
+      />
     </>
   );
 }
+
+const calanguteFaqs = [
+  {
+    question: "How far is Redwings Studio from Calangute Beach?",
+    answer:
+      "Redwings Studio is 4 km from Calangute Beach — about a 12-minute drive from the Queen of Beaches and its Calangute Market Road shops and eateries.",
+  },
+  {
+    question: "Is Calangute Beach family friendly?",
+    answer:
+      "Yes. Calangute's wide, gentle stretch of sand and its relaxed restaurants make it one of the most family-friendly beaches in North Goa, and it is an easy drive from Redwings Studio.",
+  },
+  {
+    question: "Is there a hotel near Calangute with a swimming pool?",
+    answer:
+      "Yes. Redwings Studio in Arpora has a swimming pool, free Wi-Fi, free parking, and a garden lawn — rooms start from ₹1,950/night, close to both Calangute and Baga.",
+  },
+  {
+    question: "Can I shop near Calangute Beach?",
+    answer:
+      "Yes. Calangute Market Road is known for beachwear, clothes, and handicrafts. The Arpora Saturday Night Market is also just 2 km from Redwings Studio.",
+  },
+  {
+    question: "Which other beaches are close to Redwings Studio?",
+    answer:
+      "Besides Calangute (4 km), you are also close to Baga Beach (3 km), Anjuna Beach (5 km), and Candolim Beach (6 km) — all within a 15-minute drive.",
+  },
+];

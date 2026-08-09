@@ -1,6 +1,12 @@
 ﻿import type { Metadata } from "next";
 import { PoolsideCelebrationsPageClient } from "./PoolsideCelebrationsPageClient";
-import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+import { FaqSection } from "@/components/sections/FaqSection";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  SITE_URL,
+} from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title:
@@ -55,7 +61,45 @@ export default function PoolsideCelebrationsPage() {
           ),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(poolsideFaqs, "/events/poolside-celebrations")) }}
+      />
       <PoolsideCelebrationsPageClient />
+      <FaqSection
+        eyebrow="Poolside Events"
+        title="Frequently asked questions about poolside celebrations at Redwings Studio"
+        description="Cocktail evenings, music nights, and poolside events in Arpora, Goa."
+        faqs={poolsideFaqs}
+      />
     </>
   );
 }
+
+const poolsideFaqs = [
+  {
+    question: "What kind of events can be hosted poolside at Redwings Studio?",
+    answer:
+      "The poolside area is ideal for cocktail evenings, music nights, private parties, engagement celebrations, and relaxed social gatherings in a scenic resort setting.",
+  },
+  {
+    question: "How many guests can a poolside celebration accommodate?",
+    answer:
+      "The poolside zone suits intimate to medium-sized groups. Contact the team with your guest count for the right layout, seating, and service arrangement.",
+  },
+  {
+    question: "Can I arrange catering and music for a poolside party?",
+    answer:
+      "Yes. The property team can arrange catering, beverages, decor, and music setups for your poolside celebration — share your requirements when you enquire.",
+  },
+  {
+    question: "Is the poolside available for daytime events?",
+    answer:
+      "Both daytime and evening poolside events can be arranged. Evening cocktail and music setups are especially popular near the pool lights.",
+  },
+  {
+    question: "How do I book the poolside celebration space?",
+    answer:
+      "Contact the team through the contact page or call +91 9167680996 / +91 9763988999 with your date, guest count, and event type to reserve the space.",
+  },
+];

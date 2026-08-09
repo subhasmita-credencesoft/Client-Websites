@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { OffersPageClient } from "./OffersPageClient";
-import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+import { FaqSection } from "@/components/sections/FaqSection";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  SITE_URL,
+} from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title:
@@ -53,7 +59,45 @@ export default function OffersPage() {
           ),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(offersFaqs, "/offers")) }}
+      />
       <OffersPageClient />
+      <FaqSection
+        eyebrow="Direct Booking Benefits"
+        title="Frequently asked questions about offers at Redwings Studio"
+        description="Direct booking advantages, group stays, and seasonal benefits in Arpora, Goa."
+        faqs={offersFaqs}
+      />
     </>
   );
 }
+
+const offersFaqs = [
+  {
+    question: "What direct booking benefits does Redwings Studio offer?",
+    answer:
+      "Guests who book directly get the best available rate, instant confirmation, free cancellation terms, and direct support from the owner-managed team — without third-party commission markups.",
+  },
+  {
+    question: "Are there discounts for longer stays in Goa?",
+    answer:
+      "Discounts are often available for stays of 3 nights or more, especially on weekdays outside the December–February peak season. Contact the property for a custom quote for your dates.",
+  },
+  {
+    question: "Do group bookings get special rates?",
+    answer:
+      "Yes. Group and multi-room bookings receive negotiated rates and coordinated rooming. Call +91 9167680996 or +91 9763988999 to plan a group stay near Baga Beach.",
+  },
+  {
+    question: "Do the offers apply during the Goa peak season?",
+    answer:
+      "Promotional offers may be limited during Christmas, New Year, and the December–February peak window. Always confirm current availability and rates for your exact travel dates.",
+  },
+  {
+    question: "How do I redeem a direct booking offer?",
+    answer:
+      "Book through the website booking engine or contact the property directly and mention the offer you saw on this page. The team will confirm the applicable rate and any terms.",
+  },
+];

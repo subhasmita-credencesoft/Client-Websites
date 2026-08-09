@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
+import { FaqSection } from "@/components/sections/FaqSection";
 import {
   bookingEngineUrl,
   imageSet,
@@ -10,6 +11,7 @@ import {
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
 import {
   breadcrumbSchema,
+  faqSchema,
   jsonLd,
   SITE_URL,
 } from "@/lib/structured-data";
@@ -93,6 +95,34 @@ const bookingFlow = [
   },
 ];
 
+const aboutFaqs = [
+  {
+    question: "What is Redwings Studio Goa?",
+    answer:
+      "Redwings Studio is an owner-managed stay property set within Abalone Resort at Gorbhat, Arpora, North Goa. It brings together 10 studio apartments under one banner with direct phone and email booking support.",
+  },
+  {
+    question: "Where is Redwings Studio located?",
+    answer:
+      "Redwings Studio is at House No. 275/1, F30, Abalone Resort, Gorbhat, Goa 403516 — close to Baga Beach (3 km), the Arpora Saturday Night Market (2 km), Calangute (4 km), and Anjuna (5 km).",
+  },
+  {
+    question: "How many rooms does Redwings Studio have?",
+    answer:
+      "Redwings Studio has 10 studio apartments across 5 room types — Budget Double, Standard, Superior King, Standard Room Pool Access, and Superior Pool View.",
+  },
+  {
+    question: "Is Redwings Studio suitable for groups and families?",
+    answer:
+      "Yes. The flexible multi-room inventory makes it easy to plan stays for couples, families, and small groups, with free parking, a swimming pool, and a garden lawn shared with the resort.",
+  },
+  {
+    question: "What are the check-in and check-out times at Redwings Studio?",
+    answer:
+      "Check-in is from 1:00 PM and check-out is by 11:00 AM. Early arrival and late departure can be requested in advance, subject to availability.",
+  },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -106,6 +136,10 @@ export default function AboutPage() {
             ])
           ),
         }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(aboutFaqs, "/about")) }}
       />
       <PageHero
         image="/mountain-studio/hero-secondary.jpeg"
@@ -262,6 +296,13 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <FaqSection
+        eyebrow="Common Questions"
+        title="About Redwings Studio and staying in Arpora, Goa"
+        description="The details guests usually want before booking an owner-managed stay at Redwings Studio."
+        faqs={aboutFaqs}
+      />
 
       <section className="section-space">
         <div className="container-shell text-center">

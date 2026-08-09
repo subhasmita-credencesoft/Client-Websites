@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { corporateHighlights, imageSet } from "@/lib/data";
-import { breadcrumbSchema, jsonLd, SITE_URL } from "@/lib/structured-data";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  SITE_URL,
+} from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title:
@@ -47,6 +54,10 @@ export default function CorporateEventsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema([{ name: "Home", url: SITE_URL }, { name: "Corporate Events", url: `${SITE_URL}/corporate-events` }])) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(corporateFaqs, "/corporate-events")) }}
       />
       <PageHero
         image={imageSet.ballroom}
@@ -110,6 +121,71 @@ export default function CorporateEventsPage() {
           </div>
         </div>
       </section>
+      <section className="section-space">
+        <div className="container-shell grid gap-5 sm:grid-cols-2">
+          <Link
+            href="/events"
+            className="group rounded-[24px] border border-gold/16 bg-dark-2 p-6 transition duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-glow"
+          >
+            <h2 className="font-display text-3xl">Events & Weddings</h2>
+            <p className="mt-3 text-sm leading-7 text-ivory/64">
+              Explore the open lawns, poolside zones, and 7-acre estate used
+              for weddings and private celebrations.
+            </p>
+            <span className="mt-4 inline-block text-xs uppercase tracking-[0.28em] text-gold">
+              Explore Events →
+            </span>
+          </Link>
+          <Link
+            href="/picnic"
+            className="group rounded-[24px] border border-gold/16 bg-dark-2 p-6 transition duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-glow"
+          >
+            <h2 className="font-display text-3xl">Picnic Experiences</h2>
+            <p className="mt-3 text-sm leading-7 text-ivory/64">
+              Looking for a more relaxed outdoor gathering? See curated family
+              and corporate picnic packages.
+            </p>
+            <span className="mt-4 inline-block text-xs uppercase tracking-[0.28em] text-gold">
+              Explore Picnics →
+            </span>
+          </Link>
+        </div>
+      </section>
+
+      <FaqSection
+        eyebrow="Corporate Events"
+        title="Frequently asked questions about corporate events at Redwings Studio"
+        description="Company gatherings, team retreats, and group stays in Arpora, Goa."
+        faqs={corporateFaqs}
+      />
     </>
   );
 }
+
+const corporateFaqs = [
+  {
+    question: "Can Redwings Studio host corporate events and team offsites?",
+    answer:
+      "Yes. Redwings Studio hosts company day events, team retreats, group gatherings, and corporate picnics with private coordination, fast check-in, and a relaxed resort setting near Baga Beach.",
+  },
+  {
+    question: "Can the whole team stay overnight at the venue?",
+    answer:
+      "Yes. With 10 studio apartments under one banner, the property can plan group accommodation, including multi-room blocks for overnight retreats and company outings.",
+  },
+  {
+    question: "What facilities are available for corporate gatherings?",
+    answer:
+      "Facilities include open lawns and poolside zones, executive dining areas, fast private check-in, AV production support, and free parking for delegates.",
+  },
+  {
+    question: "How do I request a proposal for a corporate event?",
+    answer:
+      "Use the proposal form on this page or contact the team directly with your company details, date, guest count, and requirements for a tailored quote.",
+  },
+  {
+    question: "Where is the corporate events venue located?",
+    answer:
+      "Redwings Studio is at House No. 275/1, F30, Abalone Resort, Gorbhat, Goa 403516 — 3 km from Baga Beach and 2 km from the Arpora Saturday Night Market.",
+  },
+];

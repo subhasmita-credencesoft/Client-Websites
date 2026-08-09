@@ -88,8 +88,8 @@ export const rooms: Room[] = [
     code: "RWS-8615",
     badges: ["Budget Stay", "Best Value"],
     description:
-      "Perfect for budget travelers, this room offers essential amenities and a comfortable space for a relaxing stay at Redwings Studio.",
-    highlights: ["Comfortable studio layout", "Easy access to resort common areas", "Good fit for short Goa stays"],
+      "The most affordable room at Redwings Studio — a compact 280 sq ft studio that keeps the essentials covered without stretching your budget. Perfect for solo travelers and backpackers who want a clean, safe base in Arpora and easy access to Baga Beach, the Saturday Night Market, and North Goa's nightlife.",
+    highlights: ["Entry-level pricing for budget travelers", "Easy access to resort common areas", "Ideal for short 1–2 night Goa stops"],
     includes: ["Direct booking support", "Private bathroom", "Balcony or sit-out access"],
     images: [
       "https://bookonelocal.in/cdn/2026-04-13-121856321-image_0.jpg",
@@ -112,8 +112,8 @@ export const rooms: Room[] = [
     code: "RWS-8616",
     badges: ["Standard", "Popular Choice"],
     description:
-      "Designed for comfort, this room features modern facilities and a cozy ambiance for a pleasant stay in Goa.",
-    highlights: ["Comfort-led room design", "Useful for couples or friends", "Simple stay planning"],
+      "A step up from the budget room, the Standard Room adds more floor space (320 sq ft) and a calmer courtyard outlook. A balanced pick for couples and friends who want modern essentials, a comfortable workspace, and the option to step straight out to the resort garden and pool area.",
+    highlights: ["Larger footprint than the budget room", "Courtyard-facing and naturally bright", "Works well for couples or friends"],
     includes: ["Direct support on call", "Private bathroom", "Essential in-room comforts"],
     images: [
       "https://bookonelocal.in/cdn/2026-04-13-121857444-image_0.jpg",
@@ -136,8 +136,8 @@ export const rooms: Room[] = [
     code: "RWS-8617",
     badges: ["King Room", "Recommended"],
     description:
-      "A spacious room with a king-size bed and premium amenities, ideal for a more comfortable and elevated stay experience.",
-    highlights: ["King-size comfort", "More spacious layout", "Better suited for longer stays"],
+      "Our most spacious resort-view room (360 sq ft) with a proper king-size bed — a meaningful upgrade if you are staying longer or simply want more room to spread out. The top-rated choice for guests who value sleep quality and a relaxed, resort-facing setting in Arpora.",
+    highlights: ["Genuine king-size bed", "Biggest standard floor plan (360 sq ft)", "Better suited for longer stays"],
     includes: ["Direct reservation guidance", "Private bathroom", "Comfort-focused interior setup"],
     images: [
       "https://bookonelocal.in/cdn/2026-04-13-121858910-image_0.jpg",
@@ -160,8 +160,8 @@ export const rooms: Room[] = [
     code: "RWS-8618",
     badges: ["Pool Access", "Guest Favorite"],
     description:
-      "Enjoy direct pool access from this stylish room, ideal for guests who want convenience, leisure, and a resort-style stay feel.",
-    highlights: ["Direct pool access", "Convenient common-area connection", "Relaxed Goa stay mood"],
+      "Walk straight from your room to the pool. The Pool Access room sits on the poolside wing, so you can skip the lobby and towel-carrying walk entirely. A favorite for families and guests who plan to spend their afternoons lounging by the water instead of in the room.",
+    highlights: ["Direct walk-in pool access", "Poolside wing of the property", "Great for families and pool lovers"],
     includes: ["Direct booking support", "Private bathroom", "Easy poolside movement"],
     images: [
       "https://bookonelocal.in/cdn/2026-04-13-121900099-image_0.jpg",
@@ -184,8 +184,8 @@ export const rooms: Room[] = [
     code: "RWS-8619",
     badges: ["Pool View", "Premium Stay"],
     description:
-      "A room with excellent views of the pool, suited for guests who want a brighter resort outlook with added comfort.",
-    highlights: ["Pool-facing outlook", "Higher-category stay feel", "Strong fit for couples"],
+      "The brightest and highest room in the house. Set on the upper studio wing, the Superior Pool View (380 sq ft) looks out across the pool and garden, making it a strong fit for couples celebrating a special trip or guests who simply want the best outlook Redwings Studio has to offer.",
+    highlights: ["Pool-facing outlook from the upper wing", "Largest room at 380 sq ft", "Strong fit for couples"],
     includes: ["Direct booking support", "Private bathroom", "Comfortable studio layout"],
     images: [
       "https://bookonelocal.in/cdn/2026-04-13-121901060-image_0.jpg",

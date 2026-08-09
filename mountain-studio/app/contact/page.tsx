@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin, Phone, MessageCircle } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { bookingEngineUrl, imageSet } from "@/lib/data";
 import {
   breadcrumbSchema,
+  faqSchema,
   localBusinessSchema,
   jsonLd,
   SITE_URL,
@@ -48,6 +50,34 @@ export const metadata: Metadata = {
   },
 };
 
+const contactFaqs = [
+  {
+    question: "How do I contact Redwings Studio in Arpora, Goa?",
+    answer:
+      "Call +91 9167680996 or +91 9763988999, or email psomvanshi9@gmail.com. The team provides direct availability checks, group booking support, and arrival guidance without intermediaries.",
+  },
+  {
+    question: "What is the official address of Redwings Studio Goa?",
+    answer:
+      "Redwings Studio is at House No. 275/1, F30, Abalone Resort, Gorbhat, Goa 403516 — near Baga Beach (3 km) and the Arpora Saturday Night Market (2 km).",
+  },
+  {
+    question: "Can I book a room by phone?",
+    answer:
+      "Yes. Call +91 9167680996 to check live availability and confirm your studio apartment directly with the owner-managed team for the best available rate.",
+  },
+  {
+    question: "What are the check-in and check-out times?",
+    answer:
+      "Check-in starts at 1:00 PM and check-out is by 11:00 AM. Request early arrival or late departure in advance, subject to availability on your date.",
+  },
+  {
+    question: "Is Redwings Studio near Baga and Calangute beaches?",
+    answer:
+      "Yes. Redwings Studio is 3 km from Baga Beach, 4 km from Calangute Beach, and 5 km from Anjuna Beach — an ideal base for exploring North Goa.",
+  },
+];
+
 export default function ContactPage() {
   return (
     <>
@@ -67,6 +97,10 @@ export default function ContactPage() {
             ])
           ),
         }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(contactFaqs, "/contact")) }}
       />
       <PageHero
         image={imageSet.homeHero}
@@ -194,6 +228,13 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <FaqSection
+        eyebrow="Getting In Touch"
+        title="Frequently asked questions about contacting Redwings Studio"
+        description="How to reach us, where we are, and how to book directly in Arpora, Goa."
+        faqs={contactFaqs}
+      />
 
       <section className="section-space bg-dark-2">
         <div className="container-shell text-center">

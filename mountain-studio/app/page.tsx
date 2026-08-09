@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Suspense, lazy } from "react";
 import { HomeHero } from "@/components/sections/home/HomeHero";
+import { FaqSection } from "@/components/sections/FaqSection";
 import {
   lodgingSchema,
   websiteSchema,
   orgSchema,
   breadcrumbSchema,
+  faqSchema,
   jsonLd,
   SITE_URL,
 } from "@/lib/structured-data";
@@ -13,6 +15,39 @@ import {
 const HomeBelowFold = lazy(
   () => import("@/components/sections/home/HomeBelowFold")
 );
+
+const homeFaqs = [
+  {
+    question: "Where is Redwings Studio located in Goa?",
+    answer:
+      "Redwings Studio is located at House No. 275/1, F30, Abalone Resort, Gorbhat, Arpora, Goa 403516 — in the heart of North Goa's beach belt, about 3 km from Baga Beach, 4 km from Calangute, and 5 km from Anjuna.",
+  },
+  {
+    question: "How far is Redwings Studio from Baga Beach?",
+    answer:
+      "Redwings Studio is just 3 km from Baga Beach — roughly a 10-minute drive or a short scooty ride. The Saturday Night Market in Arpora is only 2 km away, and Calangute and Anjuna beaches are within 15 minutes.",
+  },
+  {
+    question: "What are the check-in and check-out timings?",
+    answer:
+      "Check-in is from 1:00 PM and check-out is by 11:00 AM. Early check-in or late check-out can be requested in advance and is subject to room availability on your travel date.",
+  },
+  {
+    question: "Is Redwings Studio couple friendly and family friendly?",
+    answer:
+      "Yes. Redwings Studio welcomes couples, families, and group travellers. The 10 owner-managed studio apartments include pool access rooms, a garden lawn, and quiet resort surroundings that work well for families and romantic Goa stays alike.",
+  },
+  {
+    question: "Does Redwings Studio offer free parking and free Wi-Fi?",
+    answer:
+      "Yes. Free parking and free Wi-Fi are included for all guests, along with a swimming pool, room service, flat-screen TV, and hot water in every studio apartment.",
+  },
+  {
+    question: "How do I book a room at Redwings Studio directly?",
+    answer:
+      "You can book directly through the booking engine on this website for instant confirmation, or call +91-9167680996 / +91-9763988999 to reserve your studio apartment and get the best available rate.",
+  },
+];
 
 export const metadata: Metadata = {
   title:
@@ -109,10 +144,21 @@ export default function HomePage() {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(homeFaqs, "/")) }}
+      />
+
       <HomeHero />
       <Suspense fallback={<div className="section-space" />}>
         <HomeBelowFold />
       </Suspense>
+      <FaqSection
+        eyebrow="Guest Questions"
+        title="Frequently asked questions about staying at Redwings Studio"
+        description="Quick answers about location, timings, facilities, and direct booking at our Arpora, North Goa property."
+        faqs={homeFaqs}
+      />
     </>
   );
 }
