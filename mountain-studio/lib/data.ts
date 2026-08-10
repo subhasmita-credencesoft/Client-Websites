@@ -34,6 +34,9 @@ export const imageSet = {
 
 export const bookingEngineUrl = "https://bookone.io/Redwings-Studio?bookingEngine=true";
 
+export const whatsAppEnquiryUrl =
+  "https://api.whatsapp.com/send?phone=919004126958&text=*This%20is%20an%20Enquiry%20from%20%3A*%20The%20HotelMate%20Website%0AHotel%20Name%3A%20Redwings%20Studio%2C%0AProperty%20Id%3A%203534%2C%0AexternalSite%3A%20WebSite%2C%0AAddress%3A%20HQ77%2BCF%2CResort%20Rio%20road%2Chotels-in-arpora%2CArpora%2CIndia";
+
 export const studioGallery = [
   { image: imageSet.homeHero, category: "Exterior", title: "Redwings Studio main arrival view" },
   { image: imageSet.exterior, category: "Exterior", title: "Redwings Studio secondary hero view" },
