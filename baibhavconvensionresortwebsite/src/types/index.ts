@@ -94,11 +94,13 @@ export interface GalleryItem {
 export interface DiningHighlight {
   title: string;
   description: string;
+  image: string;
 }
 
 export interface CateringOption {
   title: string;
   description: string;
+  image: string;
 }
 
 export interface Facility {

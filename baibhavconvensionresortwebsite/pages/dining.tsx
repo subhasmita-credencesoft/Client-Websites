@@ -64,6 +64,12 @@ const DiningPage: NextPage = () => {
           <div className={styles.cardGrid}>
             {RESTAURANT.highlights.map((highlight) => (
               <div key={highlight.title} className={styles.card} data-reveal data-reveal-stagger>
+                <div
+                  className={styles.cardImage}
+                  style={{ backgroundImage: `url('${highlight.image}')` }}
+                  role="img"
+                  aria-label={highlight.title}
+                />
                 <p className={styles.cardTitle}>{highlight.title}</p>
                 <p className={styles.cardText}>{highlight.description}</p>
               </div>
@@ -82,12 +88,21 @@ const DiningPage: NextPage = () => {
           <div className={styles.cardGrid} data-reveal-stagger>
             {CATERING.options.map((option) => (
               <div key={option.title} className={styles.card} data-reveal>
+                <div
+                  className={styles.cardImage}
+                  style={{ backgroundImage: `url('${option.image}')` }}
+                  role="img"
+                  aria-label={option.title}
+                />
                 <p className={styles.cardTitle}>{option.title}</p>
                 <p className={styles.cardText}>{option.description}</p>
               </div>
             ))}
           </div>
           <div className={styles.ctaBlock}>
+            <Link href="/dining/premium-banquet" className="btn btn-outline">
+              Explore Premium Fusion Bites
+            </Link>
             <Link href="/contact?inquiry=Banquets+%2F+Events" className="btn btn-primary">
               Plan Catering for Your Event
             </Link>

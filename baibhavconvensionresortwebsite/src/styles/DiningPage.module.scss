@@ -92,12 +92,20 @@
   border: 1px solid v.$color-border;
   border-radius: v.$radius-xl;
   padding: v.$space-lg;
+  overflow: hidden;
   @include m.transition(box-shadow, transform);
 
   &:hover {
     box-shadow: 0 16px 40px rgb(0 0 0 / 0.1);
     transform: translateY(-4px);
   }
+}
+
+.cardImage {
+  height: 180px;
+  margin: calc(-1 * v.$space-lg) calc(-1 * v.$space-lg) v.$space-lg;
+  background-size: cover;
+  background-position: center;
 }
 
 .cardTitle {

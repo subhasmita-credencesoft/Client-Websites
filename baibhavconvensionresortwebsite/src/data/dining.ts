@@ -15,18 +15,22 @@ export const RESTAURANT = {
     {
       title: 'Local Odia Specialties',
       description: 'Handed-down recipes, coastal seafood, and traditional thalis served fresh daily.',
+      image: '/newedit/Minimal Hotel Refreshment Station.avif',
     },
     {
       title: 'North & South Indian',
       description: 'Rich gravies, dosas, and regional curries prepared by experienced master chefs.',
+      image: '/newedit/Warm-Lit Luxury Hotel Corridor.avif',
     },
     {
       title: 'Continental & Café Favorites',
       description: 'Pastas, grills, sandwiches, and barista-style coffee through the day.',
+      image: '/newedit/Reciption.avif',
     },
     {
       title: 'Room Service',
       description: 'A complete room service menu available 24/7 for in-room dining.',
+      image: '/newedit/Warm Modern Hotel Room Collage.avif',
     },
   ] as DiningHighlight[],
 };
@@ -38,14 +42,17 @@ export const CATERING = {
     {
       title: 'Traditional Pure-Veg / Satvik Menus',
       description: 'Prepared with strict dietary standards for traditional rituals and ceremonies.',
+      image: '/newedit/Minimal Hotel Refreshment Station.avif',
     },
     {
       title: 'Multi-Cuisine Buffet Counters',
       description: 'Live chaat stalls, tandoori stations, Chinese wok counters, and artisanal dessert displays.',
+      image: '/newedit/Luxurious Courtyard Entrance at Night.avif',
     },
     {
       title: 'Custom Dietary Requirements',
       description: 'Special options available for Jain, vegan, and gluten-free diets upon request.',
+      image: '/newedit/Preimum Lawn.avif',
     },
   ] as CateringOption[],
 };
