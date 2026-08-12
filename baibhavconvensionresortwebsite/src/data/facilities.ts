@@ -13,7 +13,7 @@ export const FACILITIES: Facility[] = [
     title: 'Full Power Backup',
     description:
       'Complete generator backup across halls, lawns, and rooms so your event or stay is never interrupted.',
-    image: '/newedit/Our Building.avif',
+    image: '/images/gensetpowerbackup.png',
   },
   {
     icon: 'solar:shield-user-bold',
@@ -21,13 +21,6 @@ export const FACILITIES: Facility[] = [
     description:
       'Round-the-clock trained security, CCTV coverage, and controlled entry points for guest safety and event assets.',
     image: '/newedit/gate front.avif',
-  },
-  {
-    icon: 'solar:swimming-bold',
-    title: 'Swimming Pool & Lawns',
-    description:
-      'A landscaped pool area and open lawns for pre-event functions, leisure, and photo sessions.',
-    image: '/newedit/Preimum Lawn.avif',
   },
   {
     icon: 'solar:bus-bold',
