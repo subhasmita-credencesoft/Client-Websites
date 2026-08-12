@@ -16,11 +16,11 @@ const WEDDING_OFFERS = [
 
 const WEDDING_IMAGES = [
   {
-    src: '/newedit/Luxurious Courtyard Entrance at Night.avif',
+    src: '/wedding/entrance.jpeg',
     alt: 'Luxurious courtyard entrance illuminated at night',
   },
   {
-    src: '/newedit/Entrance Pathway.avif',
+    src: '/wedding/entrance12.jpeg',
     alt: 'Grand entrance pathway of the resort',
   },
   {
@@ -38,7 +38,7 @@ const WeddingsPage: NextPage = () => {
         path="/events/weddings"
       />
       <InnerHero
-        image="/newedit/Preimum Lawn.avif"
+        image="/wedding/weddinghero.jpeg"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Weddings & Events', href: '/events' },

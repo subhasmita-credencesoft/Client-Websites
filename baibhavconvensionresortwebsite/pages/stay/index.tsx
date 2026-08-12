@@ -18,7 +18,7 @@ const StayPage: NextPage<StayPageProps> = ({ rooms }) => {
     <>
       <Seo
         title="Rooms & Stay in Phulnakhara"
-        description="3-star-style Premium and Suite rooms at Phulnakhara on NH-16, between Bhubaneswar and Cuttack — with Wi-Fi and free parking."
+        description="3-star-style Premium and Deluxe Rooms at Phulnakhara on NH-16, between Bhubaneswar and Cuttack — with Wi-Fi and free parking."
         path="/stay"
       />
       <InnerHero

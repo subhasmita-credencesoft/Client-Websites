@@ -6,7 +6,7 @@ import { SITE } from '@/data/site';
 
 const QUICK_LINKS = [
   { label: 'Premium Room', href: '/stay/premium-room' },
-  { label: 'Suite Room', href: '/stay/suite-room' },
+  { label: 'Deluxe Room', href: '/stay/deluxe-room' },
   { label: 'Venues & Capacity', href: '/events/venues' },
   { label: 'Dining & Catering', href: '/dining' },
   { label: 'Offers & Packages', href: '/offers' },

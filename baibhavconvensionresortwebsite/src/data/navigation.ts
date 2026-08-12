@@ -6,7 +6,7 @@ export const NAV_LINKS: NavLink[] = [
     href: '/stay',
     children: [
       { label: 'Premium Room', href: '/stay/premium-room', description: 'Comfortable stay with modern amenities' },
-      { label: 'Suite Room', href: '/stay/suite-room', description: 'Spacious & comfortable accommodation' },
+      { label: 'Deluxe Room', href: '/stay/deluxe-room', description: 'Spacious & comfortable accommodation' },
     ],
   },
   {
@@ -24,7 +24,7 @@ export const NAV_LINKS: NavLink[] = [
     href: '/dining',
     children: [
       { label: 'In-House Restaurant', href: '/dining#restaurant', description: 'Odia, Indian & continental' },
-      { label: 'Banquet Catering', href: '/dining#catering', description: 'Buffets, live counters & more' },
+      { label: 'Fusion bites', href: '/dining#catering', description: 'Buffets, live counters & more' },
     ],
   },
   { label: 'Amenities', href: '/amenities' },

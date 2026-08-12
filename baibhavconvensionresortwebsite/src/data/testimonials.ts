@@ -25,7 +25,7 @@ export const TESTIMONIALS: Testimonial[] = [
     location: 'Kolkata, West Bengal',
     rating: 5,
     quote:
-      'We stayed in the Suite Room during a family wedding at the lawn. Spotless rooms, warm staff, and the morning thali at the restaurant was a highlight.',
+      'We stayed in the Deluxe Room during a family wedding at the lawn. Spotless rooms, warm staff, and the morning thali at the restaurant was a highlight.',
     tripName: 'Stay & Wedding at Grand Green Lawn',
   },
   {

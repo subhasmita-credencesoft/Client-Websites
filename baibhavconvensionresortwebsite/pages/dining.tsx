@@ -13,7 +13,7 @@ const DiningPage: NextPage = () => {
     <>
       <Seo
         title="Dining & Catering in Bhubaneswar"
-        description="Multi-cuisine restaurant serving Odia, North and South Indian and Continental fare, plus pure-veg banquet catering and live counters."
+        description="Multi-cuisine restaurant serving Odia, North and South Indian and Continental fare, plus pure-veg Fusion bites and live counters."
         path="/dining"
       />
       <InnerHero
@@ -99,7 +99,7 @@ const DiningPage: NextPage = () => {
         items={DINING_FAQS}
         eyebrow="Dining FAQs"
         title="Food & Catering Questions"
-        subtitle="Common questions about our restaurant, menus, dietary options and banquet catering."
+        subtitle="Common questions about our restaurant, menus, dietary options and Fusion bites catering."
       />
     </>
   );

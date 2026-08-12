@@ -26,7 +26,7 @@ export const packages: Package[] = [
     title: 'Romantic Escape Package',
     slug: 'romantic-escape',
     tagline: 'A private retreat for couples',
-    description: 'Escape with your special someone for a romantic getaway. Enjoy candlelight dinners, peaceful walks in the garden, and quality time by the pool. Our Luxury Deluxe Room with garden view sets the perfect mood.',
+    description: 'Escape with your special someone for a romantic getaway. Enjoy candlelight dinners, peaceful walks in the garden, and quality time by the pool. Our Luxury Deluxe room with garden view sets the perfect mood.',
     price: '₹5,499/night',
     duration: '2 Nights / 3 Days',
     includes: [

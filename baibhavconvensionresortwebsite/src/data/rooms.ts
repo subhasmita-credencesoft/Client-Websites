@@ -51,11 +51,11 @@ export const ROOMS: RoomCategory[] = [
   },
   {
     id: 'room-8463',
-    slug: 'suite-room',
-    name: 'Suite Room',
+    slug: 'deluxe-room',
+    name: 'Deluxe Room',
     subtitle: 'Spacious stay with private bathroom & work desk',
     overview:
-      'Suite Room offers a spacious, comfortable stay with a private bathroom, TV, work desk, electric kettle, wardrobe and complimentary toiletries.',
+      'Deluxe Room offers a spacious, comfortable stay with a private bathroom, TV, work desk, electric kettle, wardrobe and complimentary toiletries.',
     idealFor: 'Business & leisure travelers',
     beds: 'Twin / double bed',
     size: '8 rooms',
@@ -69,36 +69,36 @@ export const ROOMS: RoomCategory[] = [
       {
         id: 'suite-1',
         src: 'https://bookonelocal.in/cdn/2026-02-09-062459107-DSC_0108.JPG',
-        alt: 'Suite Room spacious bedroom with double bed at Baibhab Resorts',
+        alt: 'Deluxe Room spacious bedroom with double bed at Baibhab Resorts',
         span: 'main',
       },
       {
         id: 'suite-2',
         src: 'https://bookonelocal.in/cdn/2026-02-09-062504123-DSC_0117.JPG',
-        alt: 'Suite Room bed with swan towel art at Baibhab Resorts',
+        alt: 'Deluxe Room bed with swan towel art at Baibhab Resorts',
       },
       {
         id: 'suite-3',
         src: 'https://bookonelocal.in/cdn/2026-02-09-062511816-DSC_9995.JPG',
-        alt: 'Suite Room work desk and seating at Baibhab Resorts',
+        alt: 'Deluxe Room work desk and seating at Baibhab Resorts',
       },
       {
         id: 'suite-4',
         src: 'https://bookonelocal.in/cdn/2026-02-09-062516743-DSC_9980.JPG',
-        alt: 'Suite Room private bathroom at Baibhab Resorts',
+        alt: 'Deluxe Room private bathroom at Baibhab Resorts',
       },
       {
         id: 'suite-5',
         src: 'https://bookonelocal.in/cdn/2026-02-09-062525662-DSC_9984.JPG',
-        alt: 'Suite Room wardrobe and amenities at Baibhab Resorts',
+        alt: 'Deluxe Room wardrobe and amenities at Baibhab Resorts',
       },
       {
         id: 'suite-6',
         src: 'https://bookonelocal.in/cdn/2026-02-09-062546906-DSC_0119.JPG',
-        alt: 'Suite Room lounge corner at Baibhab Resorts',
+        alt: 'Deluxe Room lounge corner at Baibhab Resorts',
       },
     ],
-    ctaLabel: 'Book Suite Room',
+    ctaLabel: 'Book Deluxe Room',
     ctaHref: SITE.bookingEngine,
   },
 ];

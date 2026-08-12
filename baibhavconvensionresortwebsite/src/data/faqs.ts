@@ -73,7 +73,7 @@ export const STAY_FAQS: PolicyItem[] = [
   {
     question: 'Is Baibhab Resorts a 3-star hotel in Phulnakhara?',
     answer:
-      'Our Premium and Suite rooms deliver a comfortable 3-star-style stay in Phulnakhara, Bhubaneswar, with free parking, high-speed Wi-Fi and complimentary breakfast at budget-friendly rates.',
+      'Our Premium and Deluxe Rooms deliver a comfortable 3-star-style stay in Phulnakhara, Bhubaneswar, with free parking, high-speed Wi-Fi and complimentary breakfast at budget-friendly rates.',
   },
 ];
 
@@ -94,7 +94,7 @@ export const DINING_FAQS: PolicyItem[] = [
       'Yes. We arrange live counters for chaat, dosa, pasta, grills and desserts, and can theme menus around your event or celebration.',
   },
   {
-    question: 'How many guests can banquet catering serve?',
+    question: 'How many guests can Fusionbites catering serve?',
     answer:
       'Our in-house kitchen caters from intimate gatherings of 50 guests up to large events of 1,500+ guests across our banquet halls and lawns.',
   },
