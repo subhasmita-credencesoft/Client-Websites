@@ -267,11 +267,6 @@ export const AMENITIES_FAQS: PolicyItem[] = [
       'Yes. We maintain 24/7 on-site security with CCTV coverage across the property for the safety of guests and their vehicles.',
   },
   {
-    question: 'Is there a swimming pool?',
-    answer:
-      'Yes, the resort includes a swimming pool, and pool access is included with your stay.',
-  },
-  {
     question: 'Is Wi-Fi available throughout the property?',
     answer:
       'Yes. High-speed Wi-Fi is available in guest rooms and throughout the event and dining areas.',

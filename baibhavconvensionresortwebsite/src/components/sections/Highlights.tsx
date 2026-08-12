@@ -14,7 +14,7 @@ const HIGHLIGHTS = [
     icon: 'solar:users-group-rounded-bold',
     title: 'Large Event Capacity',
     description: 'Multiple indoor banquets & manicured lawns for gatherings of all sizes.',
-    image: '/newedit/Preimum Lawn.avif',
+    image: '/wedding/entrance.jpeg',
   },
   {
     index: '03',

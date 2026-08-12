@@ -23,7 +23,7 @@ const EVENT_PATHS = [
       'Mandap setups, Sangeet and Mehendi, grand receptions indoors or under the open sky, with dedicated dressing suites and flexible decorator policy.',
     cta: 'Explore Weddings',
     href: '/events/weddings',
-    image: '/newedit/Luxurious Courtyard Entrance at Night.avif',
+    image: '/wedding/entrance.jpeg',
   },
   {
     index: '02',
@@ -33,7 +33,7 @@ const EVENT_PATHS = [
       'AGMs, product launches, seminars and workshops with full AV, dedicated Wi-Fi, breakout zones, and seamless catering.',
     cta: 'Explore Corporate & MICE',
     href: '/events/corporate',
-    image: '/newedit/Warm-Lit Luxury Hotel Corridor.avif',
+    image: '/newedit/Waiting area 2.avif',
   },
   {
     index: '03',
