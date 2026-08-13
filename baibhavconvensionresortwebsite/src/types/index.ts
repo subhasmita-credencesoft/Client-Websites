@@ -74,6 +74,7 @@ export interface Venue {
   features: string[];
   layouts: { name: string; value: string }[];
   image: string;
+  video?: string;
 }
 
 export interface Distance {

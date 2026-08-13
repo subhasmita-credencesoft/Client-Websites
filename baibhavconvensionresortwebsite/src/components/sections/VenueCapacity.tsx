@@ -23,12 +23,26 @@ export default function VenueCapacity({ venues }: { venues: Venue[] }) {
               data-reveal-stagger
             >
               <div className={styles.venueCardMedia}>
-                <div
-                  className={styles.venueCardImage}
-                  role="img"
-                  aria-label={venue.name}
-                  style={{ backgroundImage: `url('${venue.image}')` }}
-                />
+                {venue.video ? (
+                  <video
+                    className={styles.venueCardVideo}
+                    src={venue.video}
+                    poster={venue.image}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <div
+                    className={styles.venueCardImage}
+                    role="img"
+                    aria-label={venue.name}
+                    style={{ backgroundImage: `url('${venue.image}')` }}
+                  />
+                )}
                 <div className={styles.venueCardOverlay} />
               </div>
               <div className={styles.venueCardBody}>

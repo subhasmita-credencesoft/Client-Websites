@@ -28,6 +28,7 @@ export const VENUES: Venue[] = [
       { name: 'Floating / Cocktail', value: '500' },
     ],
     image: '/newedit/Luxurious Courtyard Entrance at Night.avif',
+    video: 'https://bookonelocal.in/cdn/imperialhall.MP4',
   },
   {
     id: 'venue-lawn',
@@ -55,6 +56,7 @@ export const VENUES: Venue[] = [
       { name: 'Exhibition', value: '2,000 sq. ft. booths' },
     ],
     image: '/newedit/Preimum Lawn.avif',
+    video: 'https://bookonelocal.in/cdn/GrandGreenLawn.MP4',
   },
   {
     id: 'venue-boardroom',
@@ -106,7 +108,7 @@ export const VENUES: Venue[] = [
       { name: 'U-Shape', value: '60' },
       { name: 'Floating / Cocktail', value: '200' },
     ],
-    image: '/newedit/Minimal Hotel Refreshment Station.avif',
+    image: '/minimangalhall.jpeg',
   },
 ];
 

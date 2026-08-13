@@ -49,6 +49,20 @@
   overflow: hidden;
   aspect-ratio: 4 / 3;
   background-color: v.$color-border-soft;
+  cursor: pointer;
+}
+
+.itemButton {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: v.$radius-xl;
+  overflow: hidden;
 }
 
 .image {
@@ -57,8 +71,182 @@
   object-fit: cover;
   @include m.transition(transform, opacity);
 
-  .item:hover & {
+  .item:hover &,
+  .item:focus-within & {
     transform: scale(1.04);
+  }
+}
+
+// Lightbox preview
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: v.$space-lg;
+  background-color: rgb(0 0 0 / 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: lightboxFadeIn 0.25s v.$timing;
+}
+
+.lightboxStage {
+  position: relative;
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: v.$space-md;
+  animation: lightboxZoomIn 0.3s v.$timing;
+}
+
+.lightboxImageWrap {
+  position: relative;
+  width: 100%;
+  height: min(68vh, 640px);
+  border-radius: v.$radius-lg;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 0.5);
+  background-color: #111;
+}
+
+.lightboxImage {
+  object-fit: contain;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: -8px;
+  right: 0;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: v.$radius-full;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  background-color: rgb(0 0 0 / 0.4);
+  color: #fff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  @include m.transition(background-color, transform);
+
+  &:hover {
+    background-color: rgb(255 255 255 / 0.18);
+    transform: rotate(90deg);
+  }
+}
+
+.lightboxNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: v.$radius-full;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  background-color: rgb(0 0 0 / 0.4);
+  color: #fff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  @include m.transition(background-color, transform);
+
+  &:hover {
+    background-color: rgb(255 255 255 / 0.18);
+  }
+}
+
+.lightboxNavPrev {
+  left: -8px;
+
+  &:hover {
+    transform: translateY(-50%) translateX(-3px);
+  }
+}
+
+.lightboxNavNext {
+  right: -8px;
+
+  &:hover {
+    transform: translateY(-50%) translateX(3px);
+  }
+}
+
+.lightboxInfo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  gap: v.$space-sm;
+  flex-wrap: wrap;
+  color: #fff;
+  text-align: left;
+  padding: v.$space-md v.$space-md;
+  border-radius: v.$radius-lg;
+  background-color: rgb(255 255 255 / 0.06);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.lightboxTag {
+  display: inline-flex;
+  align-items: center;
+  padding: v.$space-xs v.$space-sm;
+  border-radius: v.$radius-full;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #111;
+  background: linear-gradient(90deg, #ffd782, #ffc94d);
+  flex-shrink: 0;
+}
+
+.lightboxCaption {
+  flex: 1;
+  min-width: 200px;
+  margin: 0;
+  color: rgb(255 255 255 / 0.9);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.lightboxCounter {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: rgb(255 255 255 / 0.55);
+}
+
+@keyframes lightboxFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lightboxZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -70,6 +258,7 @@
   color: v.$color-surface;
   font-size: 0.8125rem;
   opacity: 0;
+  pointer-events: none;
   @include m.transition(opacity);
 
   .item:hover & {

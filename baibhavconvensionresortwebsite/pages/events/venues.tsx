@@ -58,14 +58,28 @@ const VenuesPage: NextPage<VenuesPageProps> = ({ venues }) => {
           {venues.map((venue) => (
             <article key={venue.id} id={venue.slug} className={styles.venue} data-reveal>
               <div className={styles.venueMedia}>
-                <Image
-                src={venue.image}
-                alt={venue.name}
-                className={styles.venueImage}
-                loading="lazy"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+                {venue.video ? (
+                  <video
+                    className={styles.venueVideo}
+                    src={venue.video}
+                    poster={venue.image}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <Image
+                    src={venue.image}
+                    alt={venue.name}
+                    className={styles.venueImage}
+                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                )}
               </div>
               <div className={styles.venueBody}>
                 <div className={styles.venueMeta}>
