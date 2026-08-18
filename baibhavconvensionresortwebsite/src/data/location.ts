@@ -26,6 +26,16 @@ export const DISTANCES: Distance[] = [
     distance: '~18 km',
     drivingTime: '30 mins',
   },
+  {
+    destination: 'Ocean World Water Park',
+    distance: '~9.5 km',
+    drivingTime: '15–20 mins',
+  },
+  {
+    destination: 'State Botanical Garden',
+    distance: '~11.9 km',
+    drivingTime: '20–25 mins',
+  },
 ];
 
 export const ATTRACTIONS: Attraction[] = [
@@ -34,28 +44,49 @@ export const ATTRACTIONS: Attraction[] = [
     distance: '~14 km',
     drivingTime: '20 mins',
     description:
-      'One of India’s finest zoos and botanical gardens — a great half-day outing for families staying with us.',
-  },
-  {
-    name: 'Puri & Konark Connectivity',
-    distance: '~90 km to Puri',
-    drivingTime: '2 hrs',
-    description:
-      'Drive on from our NH-16 location to the Jagannath Temple in Puri or the Sun Temple at Konark for a full coastal circuit.',
-  },
-  {
-    name: 'Local Temples & Heritage',
-    distance: 'Within 15–20 km',
-    drivingTime: '20–30 mins',
-    description:
-      'Temples across Bhubaneswar and Cuttack including Lingaraj, Mukteshwar, and Cuttack’s old town heritage precincts.',
+      'One of India\'s finest zoos and botanical gardens — a great half-day outing for families staying with us.',
   },
   {
     name: 'Barabati Stadium (Cuttack)',
     distance: '~18 km',
     drivingTime: '30 mins',
     description:
-      'Cuttack’s iconic cricket and events stadium — convenient for match-day travel and large public functions.',
+      'Cuttack\'s iconic cricket and events stadium — convenient for match-day travel and large public functions.',
+  },
+  {
+    name: 'Ocean World Water Park',
+    distance: '~9.5 km',
+    drivingTime: '15–20 mins',
+    description:
+      'A popular amusement and water park located about 9.5 km away, ideal for family outings.',
+  },
+  {
+    name: 'State Botanical Garden',
+    distance: '~11.9 km',
+    drivingTime: '20–25 mins',
+    description:
+      'A sprawling nature reserve with diverse flora located roughly 11.9 km away.',
+  },
+  {
+    name: 'Local Temples',
+    distance: 'Within 1 km',
+    drivingTime: '2–5 mins',
+    description:
+      'Historic spots like Maa Rautanee Pitha and Shree Shree Lakheswara Mahadev Peeth sit within a 1-kilometer radius.',
+  },
+  {
+    name: 'Cuttack City Landmarks',
+    distance: '~14–15 km',
+    drivingTime: '25–30 mins',
+    description:
+      'Historic sites like Barabati Fort and the Mahanadi River Ghats are roughly 14–15 km north down the highway.',
+  },
+  {
+    name: 'Bhubaneswar Heritage',
+    distance: '~15 km',
+    drivingTime: '20–30 mins',
+    description:
+      'Temple city attractions like the Lingaraja Temple and Ekamra Kanan are accessible via a 20-30 minute drive south.',
   },
 ];
 
@@ -66,19 +97,19 @@ export const GETTING_HERE = {
   steps: [
     {
       title: 'From Bhubaneswar',
-      image: '/newedit/Entrance Pathway.avif',
+      image: '/bhubaneswR.png',
       description:
         'Take NH-16 toward Cuttack. Cross the Phulnakhara flyover and exit immediately after the flyover. The resort entrance is on the left.',
     },
     {
       title: 'From Cuttack',
-      image: '/newedit/gate front.avif',
+      image: '/cuttack.png',
       description:
         'Take NH-16 toward Bhubaneswar. About 2 km before the Phulnakhara flyover, the resort entrance is on the right.',
     },
     {
       title: 'From Biju Patnaik International Airport',
-      image: '/newedit/Our Building.avif',
+      image: '/BijuPatnaikInternationalAirport.png',
       description:
         '~18 km via NH-16 — roughly 30 to 35 minutes. Pre-booked airport pickup is available on request.',
     },
@@ -128,7 +159,7 @@ export const NEARBY_LANDMARKS: LandmarkCluster[] = [
     icon: 'solar:book-bold',
     title: 'Education & Institutions',
     description:
-      'A short drive from the region’s leading schools and colleges — ideal for exam-season, open-day and alumni visits.',
+      'A short drive from the region\'s leading schools and colleges — ideal for exam-season, open-day and alumni visits.',
     landmarks: [
       {
         name: 'Eastern Academy of Science & Technology (EAST)',
@@ -141,7 +172,7 @@ export const NEARBY_LANDMARKS: LandmarkCluster[] = [
         drivingTime: '5–8 mins',
       },
       {
-        name: 'St. Xavier’s High School, Phulnakhara',
+        name: 'St. Xavier\'s High School, Phulnakhara',
         distance: '~2 km',
         drivingTime: '4–6 mins',
       },
@@ -149,6 +180,25 @@ export const NEARBY_LANDMARKS: LandmarkCluster[] = [
         name: 'Bapuji Bidya Pitha, Phulnakhara',
         distance: '~1 km',
         drivingTime: '2–4 mins',
+      },
+    ],
+  },
+  {
+    id: 'temples',
+    icon: 'solar:altar-bold',
+    title: 'Local Temples & Heritage',
+    description:
+      'Historic temples within a 1-kilometer radius — Maa Rautanee Pitha and Shree Shree Lakheswara Mahadev Peeth are walking distance.',
+    landmarks: [
+      {
+        name: 'Maa Rautanee Pitha',
+        distance: 'Within 1 km',
+        drivingTime: '2–5 mins',
+      },
+      {
+        name: 'Shree Shree Lakheswara Mahadev Peeth',
+        distance: 'Within 1 km',
+        drivingTime: '2–5 mins',
       },
     ],
   },
@@ -173,6 +223,35 @@ export const NEARBY_LANDMARKS: LandmarkCluster[] = [
         name: 'Pahala — famous rasagola hub',
         distance: '~3 km',
         drivingTime: '5–8 mins',
+      },
+    ],
+  },
+  {
+    id: 'heritage',
+    icon: 'solar:castle-bold',
+    title: 'Cuttack & Bhubaneswar Heritage',
+    description:
+      'Historic landmarks in both twin cities — Barabati Fort, Mahanadi River Ghats, Lingaraja Temple and Ekamra Kanan.',
+    landmarks: [
+      {
+        name: 'Barabati Fort, Cuttack',
+        distance: '~14–15 km',
+        drivingTime: '25–30 mins',
+      },
+      {
+        name: 'Mahanadi River Ghats, Cuttack',
+        distance: '~14–15 km',
+        drivingTime: '25–30 mins',
+      },
+      {
+        name: 'Lingaraja Temple, Bhubaneswar',
+        distance: '~15 km',
+        drivingTime: '25–30 mins',
+      },
+      {
+        name: 'Ekamra Kanan Botanical Garden',
+        distance: '~12 km',
+        drivingTime: '20–25 mins',
       },
     ],
   },

@@ -358,7 +358,7 @@ export const LOCATION_FAQS: PolicyItem[] = [
   {
     question: 'What attractions are nearby?',
     answer:
-      'Nandankanan Zoological Park is 14 km away, Barabati Stadium in Cuttack is 18 km away, and Puri and Konark are reachable within about 2 hours on NH-16.',
+      'Nandankanan Zoological Park is about 14 km away, Barabati Stadium in Cuttack is 18 km away, Ocean World Water Park is 9.5 km away, State Botanical Garden is 11.9 km away, and local temples like Maa Rautanee Pitha are within 1 km.',
   },
   {
     question: 'How far is Baibhab Resorts from SUM Hospital?',
@@ -368,6 +368,6 @@ export const LOCATION_FAQS: PolicyItem[] = [
   {
     question: 'Which schools and colleges are near the resort?',
     answer:
-      'DPS Kalinga (Adhalia) is about 3 km away, Eastern Academy of Science & Technology (EAST) is about 3 km, and St. Xavier’s High School, Phulnakhara is about 2 km from the resort.',
+      'DPS Kalinga (Adhalia) is about 3 km away, Eastern Academy of Science & Technology (EAST) is about 3 km, and St. Xavier\'s High School, Phulnakhara is about 2 km from the resort.',
   },
 ];

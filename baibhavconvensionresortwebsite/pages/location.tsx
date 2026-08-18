@@ -17,20 +17,26 @@ const MAP_EMBED = 'https://www.google.com/maps?q=Phulnakhara%20Cuttack%20Bhubane
 const DIRECTIONS_URL =
   'https://www.google.com/maps/search/?api=1&query=Phulnakhara%20Cuttack%20Bhubaneswar%20NH16';
 
-const WHY_IMAGES = ['/newedit/Entrance 2.avif', '/newedit/Pathway.avif'];
+const WHY_IMAGES = ['/nocitytrafic.png', '/cuttackhighway.png'];
 const WHY_ICONS = ['solar:car-bold', 'solar:bus-bold'];
 
 const ATTRACTION_IMAGES = [
-  '/newedit/Preimum Lawn.avif',
-  '/newedit/Warmly Lit Modern Colonnade at Night.avif',
-  '/newedit/God.avif',
-  '/newedit/gateeeeee.avif',
+  '/nandankanan.png',
+  '/barabatistadium.png',
+  '/oceanpark.png',
+  '/botanicalgarden.png',
+  '/localtemple.png',
+  '/locallandmark.png',
+  '/bhubaneswarheritage.png',
 ];
 const ATTRACTION_ICONS = [
   'solar:tree-bold',
-  'solar:sun-2-bold',
-  'solar:building-2-bold',
   'solar:stadium-bold',
+  'solar:water-sun-bold',
+  'solar:leaf-bold',
+  'solar:chair-bold',
+  'solar:building-2-bold',
+  'solar:city-bold',
 ];
 
 const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) => {
@@ -180,11 +186,11 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
         <div className="container">
           <p className="caption">Nearby landmarks</p>
           <h2 className="h2" style={{ marginTop: 8 }}>
-            Hotels, Hospitals & Institutions Around Phulnakhara
+            Hotels, Hospitals, Schools & Heritage Sites Around Phulnakhara
           </h2>
           <p className={styles.lead}>
-            A stay at Baibhab Resorts puts you minutes from SUM Hospital, DPS Kalinga, EAST and the
-            NH-16 corridor — ideal for patient visits, open days, weddings and corporate travel.
+            A stay at Baibhab Resorts puts you minutes from SUM Hospital, DPS Kalinga, EAST,
+            local temples, and the NH-16 corridor — ideal for patient visits, open days, weddings and corporate travel.
           </p>
           <div className={styles.landmarkGrid}>
             {NEARBY_LANDMARKS.map((cluster) => (
@@ -221,6 +227,9 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
           <h2 className="h2" style={{ marginTop: 8 }}>
             What to explore around Phulnakhara
           </h2>
+          <p className={styles.lead}>
+            From water parks and botanical gardens to ancient temples and historic landmarks — discover the best of Odisha from our central location.
+          </p>
           <div className={styles.attractionGrid}>
             {attractions.map((attraction, index) => (
               <div key={attraction.name} className={styles.card} data-reveal data-reveal-stagger>
