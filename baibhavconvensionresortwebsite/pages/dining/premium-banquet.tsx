@@ -16,15 +16,15 @@ const PREMIUM_BANQUET_OFFERS = [
 
 const PREMIUM_BANQUET_IMAGES = [
   {
-    src: '/newedit/Luxurious Courtyard Entrance at Night.avif',
+    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80&fit=crop',
     alt: 'Premium banquet hall at Baibhab Resorts',
   },
   {
-    src: '/newedit/Reciption.avif',
+    src: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80&fit=crop',
     alt: 'Reception area for premium events',
   },
   {
-    src: '/newedit/Preimum Lawn.avif',
+    src: 'https://images.unsplash.com/photo-1478146059778-26028b07395a?w=800&q=80&fit=crop',
     alt: 'Premium lawn for grand receptions',
   },
 ];
@@ -38,7 +38,7 @@ const PremiumBanquetPage: NextPage = () => {
         path="/dining/premium-banquet"
       />
       <InnerHero
-        image="/newedit/Luxurious Courtyard Entrance at Night.avif"
+        image="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1920&q=80&fit=crop"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Dining', href: '/dining' },
