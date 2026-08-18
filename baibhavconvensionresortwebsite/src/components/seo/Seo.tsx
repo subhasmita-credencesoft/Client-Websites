@@ -59,7 +59,7 @@ export default function Seo({
       <meta property="og:url" content={url} />
       <meta property="og:image" content={absoluteImage} />
       <meta property="og:image:alt" content={imageAltText} />
-      <meta property="og:image:type" content="image/jpeg" />
+      <meta property="og:image:type" content="image/avif" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content={SITE.locale} />
