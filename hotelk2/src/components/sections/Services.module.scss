@@ -40,6 +40,7 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
   gap: t.$space-6;
   list-style: none;
   margin: 0;
@@ -49,7 +50,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include m.from(t.$breakpoint-xl) {
+  @include m.from(t.$breakpoint-lg) {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -61,18 +62,15 @@
   justify-content: center;
   gap: t.$space-5;
   text-align: center;
-  // Use padding instead of a fixed height so the tile never overflows its content
-  padding: t.$space-10 t.$space-7;
+  padding: t.$space-8 t.$space-7;
   background-color: t.$color-surface-strong; // #F8F5F0
   border: 2px solid t.$color-tile-border; // #D9D9D9
   border-radius: 0.25rem;
-  min-height: 200px;
   transition: transform 0.4s t.$motion-ease-standard,
     background-color 0.3s t.$motion-ease-standard;
 
   @include m.from(t.$breakpoint-md) {
-    min-height: 260px;
-    padding: t.$space-11 t.$space-8;
+    padding: t.$space-10 t.$space-8;
   }
 
   @include m.reduced-motion {
@@ -119,12 +117,13 @@
 
 .label {
   font-family: t.$font-family-primary;
-  font-size: t.$font-size-xl;
+  font-size: t.$font-size-lg;
   font-weight: t.$font-weight-bold;
   color: t.$color-border-strong;
   margin: 0;
+  line-height: 1.3;
 
   @include m.from(t.$breakpoint-md) {
-    font-size: 20px;
+    font-size: t.$font-size-xl;
   }
 }

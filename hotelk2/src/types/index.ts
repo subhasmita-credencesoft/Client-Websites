@@ -54,6 +54,7 @@ export interface Service {
   icon: string;
   label: string;
   invert?: boolean;
+  svgIcon?: string;
 }
 
 export interface Testimonial {

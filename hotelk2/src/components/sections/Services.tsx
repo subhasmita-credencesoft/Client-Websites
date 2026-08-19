@@ -19,15 +19,27 @@ export function Services() {
 
         <ul className={styles.grid}>
           {SERVICES.map((service, index) => (
-            <Reveal as="li" key={service.icon} delay={(index % 3) * 100} className={styles.item}>
+            <Reveal as="li" key={service.label} delay={(index % 3) * 100} className={styles.item}>
               <span className={styles.iconWrap} aria-hidden="true">
-                <Image
-                  src={service.icon}
-                  alt=""
-                  width={50}
-                  height={50}
-                  className={`${styles.icon} ${service.invert ? styles.iconInvert : ''}`}
-                />
+                {service.svgIcon ? (
+                  <svg
+                    className={`${styles.icon} ${service.invert ? styles.iconInvert : ''}`}
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width="50"
+                    height="50"
+                  >
+                    <path d={service.svgIcon} />
+                  </svg>
+                ) : (
+                  <Image
+                    src={service.icon}
+                    alt=""
+                    width={50}
+                    height={50}
+                    className={`${styles.icon} ${service.invert ? styles.iconInvert : ''}`}
+                  />
+                )}
               </span>
               <h3 className={styles.label}>{service.label}</h3>
             </Reveal>
