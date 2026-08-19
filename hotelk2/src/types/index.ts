@@ -68,4 +68,15 @@ export interface GalleryImage {
   alt: string;
 }
 
+export type NearbyCategory = 'transport' | 'landmark' | 'nature' | 'market';
+
+export interface NearbyPlace {
+  name: string;
+  distance: string;
+  category: NearbyCategory;
+  image: string;
+  featured?: boolean;
+  description?: string;
+}
+
 export type FieldStatus = 'default' | 'error' | 'success';

@@ -1,0 +1,312 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Premium Nearby Places — luxury hotel section with masonry grid,
+// glass-morphism cards, terracotta accents, and sophisticated hover effects.
+
+.section {
+  position: relative;
+  padding-block: 80px 96px;
+  overflow: hidden;
+  isolation: isolate;
+
+  @include m.from(t.$breakpoint-md) {
+    padding-block: 100px 120px;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    padding-block: 120px 140px;
+  }
+}
+
+// ── Background ────────────────────────────────────────────────────────────
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: t.$color-navy;
+  background-image:
+    radial-gradient(ellipse at 15% 50%, rgba(154, 74, 52, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 30%, rgba(154, 74, 52, 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 80%, rgba(154, 74, 52, 0.06) 0%, transparent 40%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.25) 0%,
+      transparent 25%,
+      transparent 75%,
+      rgba(0, 0, 0, 0.25) 100%
+    );
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  @include m.container;
+}
+
+// ── Header ────────────────────────────────────────────────────────────────
+.header {
+  max-width: 680px;
+  margin-inline: auto;
+  margin-block-end: 64px;
+  text-align: center;
+
+  @include m.from(t.$breakpoint-md) {
+    margin-block-end: 80px;
+  }
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-4;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-semibold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: t.$color-border-strong;
+  margin-block-end: t.$space-5;
+
+  &::before,
+  &::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, t.$color-border-strong, transparent);
+  }
+}
+
+.heading {
+  margin: 0 0 t.$space-6;
+  color: t.$color-text-inverse;
+  font-size: t.$font-size-h3;
+
+  @include m.from(t.$breakpoint-lg) {
+    font-size: t.$font-size-h2;
+  }
+}
+
+.subtitle {
+  margin: 0;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-md;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.65);
+
+  @include m.from(t.$breakpoint-md) {
+    font-size: t.$font-size-lg;
+  }
+}
+
+// ── Featured grid (2 large cards) ─────────────────────────────────────────
+.featuredGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-6;
+  margin-block-end: t.$space-8;
+
+  @include m.from(t.$breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: t.$space-7;
+    margin-block-end: t.$space-9;
+  }
+}
+
+.featuredCard {
+  .cardInner {
+    height: 280px;
+
+    @include m.from(t.$breakpoint-md) {
+      height: 320px;
+    }
+
+    @include m.from(t.$breakpoint-lg) {
+      height: 360px;
+    }
+  }
+}
+
+// ── Regular grid (4 cards) ────────────────────────────────────────────────
+.regularGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: t.$space-5;
+
+  @include m.from(t.$breakpoint-sm) {
+    gap: t.$space-6;
+  }
+
+  @include m.from(t.$breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// ── Card (shared) ─────────────────────────────────────────────────────────
+.card,
+.featuredCard {
+  cursor: default;
+
+  &:hover {
+    .cardImage {
+      transform: scale(1.08);
+    }
+
+    .cardOverlay {
+      opacity: 0.5;
+    }
+
+    .cardInner {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+.cardInner {
+  position: relative;
+  height: 200px;
+  border-radius: t.$radius-md;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: box-shadow t.$motion-duration-normal t.$motion-ease-standard,
+    transform t.$motion-duration-normal t.$motion-ease-standard;
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  .card:hover &,
+  .featuredCard:hover & {
+    transform: translateY(-6px);
+  }
+
+  @include m.from(t.$breakpoint-md) {
+    height: 220px;
+  }
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform t.$motion-duration-slow t.$motion-ease-standard;
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(19, 23, 43, 0.6) 70%,
+    rgba(19, 23, 43, 0.9) 100%
+  );
+  opacity: 0.7;
+  transition: opacity t.$motion-duration-normal t.$motion-ease-standard;
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+}
+
+.cardContent {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: t.$space-5;
+}
+
+// ── Category badge ────────────────────────────────────────────────────────
+.categoryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-start;
+  padding: 4px 10px;
+  background-color: t.$color-border-strong;
+  color: t.$color-text-inverse;
+  font-family: t.$font-family-primary;
+  font-size: 10px;
+  font-weight: t.$font-weight-bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: t.$radius-xs;
+  margin-block-end: t.$space-3;
+
+  svg {
+    color: inherit;
+  }
+}
+
+// ── Card title ────────────────────────────────────────────────────────────
+.cardTitle {
+  margin: 0;
+  font-family: t.$font-family-display;
+  font-size: t.$font-size-xl;
+  font-weight: t.$font-weight-bold;
+  color: t.$color-text-inverse;
+  line-height: t.$line-height-heading;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+  .featuredCard & {
+    font-size: t.$font-size-2xl;
+
+    @include m.from(t.$breakpoint-md) {
+      font-size: t.$font-size-3xl;
+    }
+  }
+}
+
+.cardDesc {
+  margin: t.$space-2 0 0;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-sm;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+
+  @include m.from(t.$breakpoint-md) {
+    font-size: t.$font-size-base;
+  }
+}
+
+// ── Distance badge ────────────────────────────────────────────────────────
+.distanceBadge {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: t.$space-2;
+  padding: 3px 10px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: t.$color-border-strong;
+  font-family: t.$font-family-primary;
+  font-size: 11px;
+  font-weight: t.$font-weight-bold;
+  letter-spacing: 0.5px;
+  border-radius: t.$radius-xs;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}

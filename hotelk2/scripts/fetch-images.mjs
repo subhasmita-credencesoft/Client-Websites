@@ -1,13 +1,15 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const HOST = 'https://www.hhickp.com';
 const OUT_DIR = path.resolve('public/cached');
 const MANIFEST_PATH = path.resolve('public/image-manifest.json');
 
 const SCAN_DIRS = ['src/data', 'src/components'];
-const URL_RE = /https:\/\/www\.hhickp\.com\/[^\s"'`)\]}]+/g;
+// Match both hhickp.com and unsplash URLs
+const URL_RE = /https:\/\/(?:www\.hhickp\.com|images\.unsplash\.com)\/[^\s"'`)\]}]+/g;
 const ICONS_BASE_RE = /const ICONS = ['"]([^'"]+)['"]/;
 const ICON_REF_RE = /\$\{ICONS\}\/([A-Za-z0-9._\-]+)/g;
 
@@ -50,22 +52,40 @@ async function recursive(dir) {
   return out;
 }
 
-async function download(url) {
+function getLocalPath(url) {
   const u = new URL(url);
-  if (u.hostname !== 'www.hhickp.com' && u.hostname !== 'hhickp.com') return null;
-  const relative = u.pathname.replace(/^\/+/, '');
-  const parts = relative.split('/').filter((p) => p && p !== '..');
-  const dest = path.join(OUT_DIR, ...parts);
+
+  // hhickp.com images — preserve original path structure
+  if (u.hostname === 'www.hhickp.com' || u.hostname === 'hhickp.com') {
+    const relative = u.pathname.replace(/^\/+/, '');
+    const parts = relative.split('/').filter((p) => p && p !== '..');
+    return { parts, dir: path.join(OUT_DIR, ...parts) };
+  }
+
+  // Unsplash images — use hash-based naming under cached/unsplash/
+  const hash = crypto.createHash('md5').update(url).digest('hex').slice(0, 12);
+  const ext = u.pathname.split('.').pop()?.split('?')[0] || 'jpg';
+  const parts = ['unsplash', `${hash}.${ext}`];
+  return { parts, dir: path.join(OUT_DIR, ...parts) };
+}
+
+async function download(url) {
+  const { parts, dir: dest } = getLocalPath(url);
 
   if (existsSync(dest)) return { url, dest: `/cached/${parts.join('/')}` };
 
-  const res = await fetch(url, {
-    headers: {
-      Referer: `${HOST}/`,
-      'User-Agent': 'Mozilla/5.0 (compatible; HotelHariSite/1.0)',
-      Accept: 'image/webp,image/avif,image/*,*/*;q=0.8',
-    },
-  });
+  const headers = {
+    'User-Agent': 'Mozilla/5.0 (compatible; HotelK2Site/1.0)',
+    Accept: 'image/webp,image/avif,image/*,*/*;q=0.8',
+  };
+
+  // Add referer for hhickp.com
+  const u = new URL(url);
+  if (u.hostname === 'www.hhickp.com' || u.hostname === 'hhickp.com') {
+    headers.Referer = `${HOST}/`;
+  }
+
+  const res = await fetch(url, { headers });
 
   if (!res.ok) {
     console.warn(`  ! skip ${url} (HTTP ${res.status})`);

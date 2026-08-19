@@ -2,6 +2,7 @@ import { HeroCarousel } from '@/components/sections/HeroCarousel';
 import { About } from '@/components/sections/About';
 import { RoomsGrid } from '@/components/sections/RoomsGrid';
 import { Services } from '@/components/sections/Services';
+import { NearbyPlaces } from '@/components/sections/NearbyPlaces';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { Gallery } from '@/components/sections/Gallery';
 import { ContactSection } from '@/components/sections/ContactSection';
@@ -13,6 +14,7 @@ export default function HomePage() {
       <About />
       <RoomsGrid />
       <Services />
+      <NearbyPlaces />
       <Testimonials />
       <Gallery />
       <ContactSection />
