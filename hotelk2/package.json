@@ -1,0 +1,30 @@
+{
+  "name": "hotel-k2",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marketing site for Hotel K2 — Next.js + TypeScript + SCSS, token-driven design system.",
+  "scripts": {
+    "predev": "node scripts/fetch-images.mjs",
+    "dev": "next dev",
+    "prebuild": "node scripts/fetch-images.mjs",
+    "build": "next build",
+    "start": "npx serve out",
+    "export": "npm run build",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.14.2",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.35",
+    "sass": "1.77.6",
+    "typescript": "5.5.2"
+  }
+}

@@ -1,0 +1,179 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live Bootstrap hero slider:
+// 550px slides, bottom-left caption (custom-btn) on each slide, chevron arrow
+// controls with a white 1px border, and — at ≤576px — CSS-background slides
+// (500px) in place of the images.
+
+.hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  // Fluid height: 280px mobile → 420px tablet → 550px desktop
+  height: 280px;
+
+  @include m.from(t.$breakpoint-sm) {
+    height: 380px;
+  }
+
+  @include m.from(t.$breakpoint-md) {
+    height: 460px;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    height: 550px;
+  }
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity t.$motion-duration-slow t.$motion-ease-standard;
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+}
+
+.slideActive {
+  opacity: 1;
+  z-index: 1;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+
+  @media (max-width: #{t.$breakpoint-sm - 1}) {
+    display: none;
+  }
+}
+
+// ≤480px: image replaced by a CSS background (mirrors `customstyle.css`).
+.mobileBg {
+  display: none;
+
+  @media (max-width: #{t.$breakpoint-sm - 1}) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+}
+
+.liveStatus {
+  @include m.visually-hidden;
+}
+
+// Bottom-left caption
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: t.$space-8;
+  z-index: 3;
+  margin: 0 auto;
+  padding: 0 t.$container-gutter;
+  text-align: left;
+  font-size: 13px;
+
+  @include m.from(t.$breakpoint-sm) {
+    bottom: t.$space-10;
+    font-size: 14px;
+  }
+
+  @include m.from(t.$breakpoint-md) {
+    bottom: 5%;
+    font-size: 15px;
+  }
+}
+
+// `.custom-btn.buttombtn`: Lora, 1.5px letter-spacing, drop shadow.
+.caption .heroBtn {
+  padding: 6px 18px;
+  font-family: t.$font-family-display;
+  letter-spacing: 1.5px;
+  box-shadow: 0 1px 3px #000;
+  font-size: 12px;
+
+  @include m.from(t.$breakpoint-sm) {
+    padding: 8px 20px;
+    font-size: 13px;
+  }
+
+  @include m.from(t.$breakpoint-md) {
+    padding: 0 15px;
+    font-size: inherit;
+  }
+}
+
+// Previous / Next controls — Bootstrap-style chevron boxes.
+.arrow {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid t.$color-text-inverse;
+  border-radius: 5px;
+  background-color: transparent;
+  color: t.$color-text-inverse;
+  font-size: 22px;
+  line-height: 1;
+  text-shadow: 1px 1px 2px #000;
+  cursor: pointer;
+  transition: background-color t.$motion-duration-fast t.$motion-ease-standard;
+
+  @include m.from(t.$breakpoint-md) {
+    width: 50px;
+    height: 50px;
+    font-size: 26px;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+
+  @include m.focus-visible;
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+}
+
+.arrowPrev {
+  left: t.$space-5;
+
+  @include m.from(t.$breakpoint-md) {
+    left: t.$container-gutter;
+  }
+}
+
+.arrowNext {
+  right: t.$space-5;
+
+  @include m.from(t.$breakpoint-md) {
+    right: t.$container-gutter;
+  }
+}

@@ -1,0 +1,202 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live room card (`room__item--style3`): white card, 200px cover
+// thumb that scales to 1.1 on hover, 1rem content padding, a two-column
+// amenity/feature list (30px icon + 13px label), and two bordered buttons.
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: t.$color-surface-page;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  box-shadow: t.$shadow-2;
+  transition: box-shadow t.$motion-duration-normal t.$motion-ease-standard;
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  &:hover {
+    box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.media {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  background-color: t.$color-surface-strong;
+
+  @include m.from(t.$breakpoint-sm) {
+    height: 200px;
+  }
+
+  @include m.from(t.$breakpoint-xl) {
+    height: 220px;
+  }
+}
+
+.priceTag {
+  position: absolute;
+  bottom: t.$space-3;
+  right: t.$space-3;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  padding: t.$space-2 t.$space-4;
+  background-color: t.$color-border-strong;
+  color: t.$color-text-inverse;
+  border-radius: t.$radius-xs;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  z-index: 2;
+}
+
+.priceCurrency {
+  font-size: t.$font-size-xs;
+  font-weight: t.$font-weight-medium;
+}
+
+.priceValue {
+  font-size: t.$font-size-lg;
+}
+
+.priceUnit {
+  font-size: t.$font-size-xs;
+  font-weight: t.$font-weight-base;
+  opacity: 0.85;
+}
+
+.availability {
+  position: absolute;
+  top: t.$space-3;
+  left: t.$space-3;
+  padding: t.$space-1 t.$space-3;
+  background-color: t.$color-state-success;
+  color: t.$color-text-inverse;
+  border-radius: t.$radius-xs;
+  font-size: t.$font-size-xs;
+  font-weight: t.$font-weight-medium;
+  z-index: 2;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  .card:hover & {
+    transform: scale(1.08);
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem;
+
+  @include m.from(t.$breakpoint-md) {
+    padding: 1.25rem;
+  }
+}
+
+.title {
+  font-size: t.$font-size-xl;
+  margin-block-end: t.$space-3;
+
+  a {
+    color: t.$color-text-secondary;
+    text-decoration: none;
+
+    @include m.focus-visible;
+
+    &:hover {
+      color: t.$color-border-strong;
+    }
+  }
+}
+
+.summary {
+  font-size: t.$font-size-base;
+  color: t.$color-text-primary;
+  text-align: justify;
+  margin-block-end: t.$space-5;
+  @include m.line-clamp(3);
+}
+
+.amenities {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: t.$space-3 t.$space-4;
+  padding: 0;
+  margin: 0 0 t.$space-6;
+  list-style: none;
+}
+
+.amenity {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-2;
+  font-size: 12px;
+  color: t.$color-text-secondary;
+
+  @include m.from(t.$breakpoint-md) {
+    font-size: 13px;
+  }
+}
+
+.amenityIcon {
+  object-fit: contain;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+
+  @include m.from(t.$breakpoint-md) {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-5;
+  justify-content: center;
+  margin-top: auto;
+  padding-block-start: t.$space-6;
+}
+
+.roomBtn {
+  font-size: 12px;
+  min-width: 110px;
+
+  @include m.from(t.$breakpoint-md) {
+    font-size: 13px;
+    min-width: 120px;
+  }
+}
+
+// Live `.room__item--style3:hover .room__item-header .custom-btn--bordered`:
+// hovering the card slides the terracotta sweeps in and shifts the label to
+// navy. `.roomBtn.roomBtn` bumps specificity above the button's own hover.
+.card:hover {
+  .roomBtn.roomBtn {
+    color: t.$color-text-secondary;
+
+    &::before {
+      border-bottom-color: t.$color-border-strong;
+      transform: translateX(-49%);
+    }
+
+    &::after {
+      border-top-color: t.$color-border-strong;
+      transform: translateX(49%);
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@use '../../styles/tokens' as t;
+
+// AOS-style scroll-triggered entrance (matches the live `data-aos` usage:
+// ~1s duration, 100px travel). Elements fade/slide in the first time they
+// enter the viewport; disabled under reduced motion.
+
+.reveal {
+  opacity: 0;
+  transition: opacity 1000ms ease-in-out, transform 1000ms ease-in-out;
+  will-change: opacity, transform;
+
+  &.up {
+    transform: translateY(100px);
+  }
+
+  &.right {
+    transform: translateX(-100px);
+  }
+
+  &.left {
+    transform: translateX(100px);
+  }
+
+  &.fade {
+    transform: none;
+  }
+
+  &.visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,201 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live testimonial block: fixed-photo background (deluxe-room/1),
+// 30px padding, white heading, 100px circular avatar over a white card with
+// rounded top corners, terracotta stars, and justified quotes.
+
+.section {
+  position: relative;
+  padding-block: 60px;
+  overflow: hidden;
+
+  @include m.from(t.$breakpoint-md) {
+    padding-block: 80px;
+  }
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/cached/hari-img/deluxe-room/1.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  // background-attachment: fixed causes rendering bugs on iOS/Safari.
+  // Use a pseudo-element parallax workaround or just scroll naturally.
+  background-attachment: scroll;
+
+  // Overlay scrim for legibility
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  @include m.container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-9;
+}
+
+.heading {
+  color: t.$color-text-inverse;
+  text-align: center;
+  margin: 0;
+  font-size: t.$font-size-h3;
+
+  @include m.from(t.$breakpoint-lg) {
+    font-size: t.$font-size-h2;
+  }
+}
+
+.viewport {
+  width: 100%;
+  max-width: 860px;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  transition: transform t.$motion-duration-normal t.$motion-ease-standard;
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+}
+
+.slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-inline: t.$space-2;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-5;
+  margin: 0;
+  padding: 0 t.$space-7 t.$space-7;
+  width: 100%;
+  max-width: 720px;
+  background-color: t.$color-surface-page;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  @include m.from(t.$breakpoint-md) {
+    padding: 0 30px 20px;
+  }
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  margin-top: -25px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: t.$color-surface-page;
+  flex-shrink: 0;
+
+  @include m.from(t.$breakpoint-md) {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-4;
+  text-align: center;
+  width: 100%;
+}
+
+.author {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-semibold;
+  color: t.$color-text-secondary;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.stars {
+  color: t.$color-border-strong;
+  font-size: t.$font-size-lg;
+  letter-spacing: 2px;
+}
+
+.quote {
+  margin: 0;
+  font-size: t.$font-size-base;
+  line-height: t.$line-height-base;
+  color: t.$color-text-secondary;
+  text-align: justify;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: t.$space-6;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: t.$touch-target-comfortable;
+  height: t.$touch-target-comfortable;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background-color: transparent;
+  color: t.$color-text-inverse;
+  font-size: t.$font-size-3xl;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color t.$motion-duration-fast t.$motion-ease-standard;
+
+  @include m.focus-visible;
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.dots {
+  display: flex;
+  gap: t.$space-4;
+}
+
+.dot {
+  width: t.$touch-target-min;
+  height: t.$touch-target-min;
+  border-radius: 50%;
+  border: 2px solid t.$color-text-inverse;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color t.$motion-duration-fast t.$motion-ease-standard;
+
+  @include m.focus-visible;
+  @include m.reduced-motion {
+    transition: none;
+  }
+}
+
+.dotActive {
+  background-color: t.$color-text-inverse;
+}

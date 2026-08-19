@@ -1,0 +1,107 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live gallery block: white section, centered header with a
+// letter-spaced navy subtitle, and #F8F5F0 tiles with 200px cover images
+// that zoom to 1.1 on hover.
+
+.section {
+  padding-block: t.$space-14;
+  background-color: t.$color-surface-page;
+
+  @include m.from(t.$breakpoint-lg) {
+    padding-block: t.$space-15;
+  }
+}
+
+.container {
+  @include m.container;
+}
+
+.headingWrap {
+  max-width: 600px;
+  margin-inline: auto;
+  margin-block-end: 32px;
+  text-align: center;
+
+  @include m.from(t.$breakpoint-md) {
+    margin-block-end: 40px;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    margin-block-end: 60px;
+  }
+}
+
+.subtitle {
+  font-size: t.$font-size-base;
+  color: t.$color-text-secondary;
+  letter-spacing: 0.2em;
+  margin: 0 0 1rem;
+}
+
+.heading {
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  // 1 column on tiny screens, 2 columns from 360px+
+  grid-template-columns: 1fr;
+  gap: t.$space-5;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @media (min-width: 360px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: t.$space-5;
+  }
+
+  @include m.from(t.$breakpoint-sm) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: t.$space-6;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.itemWrap {
+  display: block;
+}
+
+.item {
+  position: relative;
+  // Responsive tile height — taller on larger screens
+  height: 150px;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: t.$color-surface-strong;
+
+  @include m.from(t.$breakpoint-sm) {
+    height: 180px;
+  }
+
+  @include m.from(t.$breakpoint-md) {
+    height: 200px;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    height: 220px;
+  }
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  .item:hover & {
+    transform: scale(1.08);
+  }
+}

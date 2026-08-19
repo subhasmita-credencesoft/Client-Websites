@@ -1,0 +1,90 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live About block: white section, justified body copy, the page's
+// single h1 at 25px, a "Book Now" CTA below the text, and the property photo
+// (400px, 5px radius) on the left at desktop.
+
+.section {
+  padding-block: t.$space-12;
+  background-color: t.$color-surface-page;
+}
+
+.container {
+  @include m.container;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-9;
+  align-items: center;
+
+  @include m.from(t.$breakpoint-md) {
+    gap: t.$space-11;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    grid-template-columns: 1fr 1fr;
+    gap: t.$space-13;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-5;
+  // Remove max-width constraint that caused misalignment inside grid
+  text-align: justify;
+}
+
+.heading {
+  font-size: 22px;
+  margin: 0;
+  line-height: t.$line-height-heading;
+  text-align: left; // headings always left-aligned, only body is justified
+
+  @include m.from(t.$breakpoint-md) {
+    font-size: 25px;
+  }
+}
+
+.body {
+  font-size: t.$font-size-base;
+  line-height: t.$line-height-base;
+  color: t.$color-text-primary;
+  margin: 0;
+}
+
+.actions {
+  margin-top: t.$space-9;
+  text-align: left;
+}
+
+.mediaWrap {
+  border-radius: 5px;
+  overflow: hidden;
+
+  @include m.from(t.$breakpoint-lg) {
+    order: -1; // image on the left (mirrors `flex-lg-row-reverse`)
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 260px;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 5px;
+
+  @include m.from(t.$breakpoint-md) {
+    min-height: 340px;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    height: 400px;
+    max-height: none;
+  }
+}

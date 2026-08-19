@@ -1,0 +1,276 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live site's header: white bar with a soft drop shadow,
+// a navy top contact bar, uppercase 13px nav links, and a bordered
+// "Book Now" CTA (Lora, 12px, letter-spaced, terracotta).
+
+// CSS custom property so the mobile menu can always offset itself correctly
+// regardless of whether the topbar is rendered.
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: t.$color-surface-page;
+  box-shadow: t.$shadow-2;
+
+  &.scrolled {
+    animation: fadeInDown 0.5s ease-in-out;
+
+    @include m.reduced-motion {
+      animation: none;
+    }
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Dark top contact bar (hidden on small screens, matches source site)
+.topbar {
+  display: none;
+  background-color: t.$color-navy; // #13172B
+  color: t.$color-text-inverse;
+
+  @include m.from(t.$breakpoint-lg) {
+    display: block;
+  }
+}
+
+.topbarInner {
+  @include m.container;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-6 t.$space-9;
+  min-height: 40px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 13px;
+}
+
+.topbarItem {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-2;
+  color: t.$color-text-inverse;
+  text-decoration: none;
+  white-space: nowrap;
+
+  @include m.focus-visible;
+
+  &:hover {
+    color: t.$color-text-inverse;
+    opacity: 0.85;
+  }
+}
+
+.topbarIcon {
+  color: t.$color-border-strong;
+  flex-shrink: 0;
+}
+
+.bar {
+  background-color: t.$color-surface-page;
+}
+
+.barInner {
+  @include m.container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+  gap: t.$space-6;
+
+  @include m.from(t.$breakpoint-lg) {
+    min-height: 76px;
+  }
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-2;
+  text-decoration: none;
+  flex-shrink: 0;
+  white-space: nowrap;
+
+  @include m.focus-visible;
+}
+
+.logoText {
+  font-family: t.$font-family-display;
+  font-size: t.$font-size-3xl;
+  font-weight: t.$font-weight-bold;
+  line-height: 1;
+  color: t.$color-navy;
+}
+
+.logoTextAccent {
+  color: t.$color-border-strong;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  // Take remaining space so the toggle stays at the right edge
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.navList {
+  display: none;
+  align-items: center;
+  gap: t.$space-7;
+
+  @include m.from(t.$breakpoint-lg) {
+    display: flex;
+    gap: t.$space-8;
+  }
+}
+
+// Mobile drawer — always offset from the full header (topbar + bar).
+// We avoid a fixed pixel offset by using position:fixed so it sits
+// below the sticky header no matter how tall it is.
+.navListOpen {
+  display: flex;
+  position: fixed;
+  top: 68px; // matches .barInner min-height (mobile — no topbar)
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  background-color: t.$color-surface-page;
+  box-shadow: t.$shadow-2;
+  padding: t.$space-4 t.$container-gutter t.$space-7;
+  z-index: 98;
+  max-height: calc(100dvh - 68px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @include m.from(t.$breakpoint-lg) {
+    position: static;
+    flex-direction: row;
+    box-shadow: none;
+    padding: 0;
+    max-height: none;
+    overflow-y: visible;
+    gap: t.$space-8;
+    align-items: center;
+  }
+}
+
+.navLink {
+  display: block;
+  padding: t.$space-4 0;
+  font-size: 13px;
+  font-weight: t.$font-weight-bold;
+  text-transform: uppercase;
+  color: t.$color-navy;
+  text-decoration: none;
+  border-bottom: 1px solid t.$color-border-subtle;
+  transition: color t.$motion-duration-fast t.$motion-ease-standard;
+
+  @include m.from(t.$breakpoint-lg) {
+    border-bottom: none;
+    padding: t.$space-3 0;
+  }
+
+  @include m.focus-visible;
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  &:hover {
+    color: t.$color-border-strong;
+  }
+}
+
+.navCta {
+  margin-top: t.$space-5;
+  border-bottom: none;
+
+  @include m.from(t.$breakpoint-lg) {
+    margin-top: 0;
+  }
+}
+
+// "Book Now" — terracotta fill, white Lora text, radius .25rem.
+// Visible at md and above on desktop nav; always visible inside mobile drawer.
+.bookingBtn {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid t.$color-border-strong;
+  border-radius: 0.25rem;
+  background-color: t.$color-border-strong;
+  color: t.$color-text-inverse !important;
+  font-family: t.$font-family-display;
+  font-size: 12px;
+  font-weight: t.$font-weight-semibold;
+  line-height: 1.5;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color t.$motion-duration-fast t.$motion-ease-standard,
+    border-color t.$motion-duration-fast t.$motion-ease-standard;
+
+  @include m.focus-visible;
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  &:hover {
+    background-color: t.$color-border-strong-hover;
+    border-color: t.$color-border-strong-hover;
+    color: t.$color-text-inverse !important;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: t.$touch-target-comfortable;
+  height: t.$touch-target-comfortable;
+  padding: t.$space-4;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  @include m.focus-visible;
+
+  @include m.from(t.$breakpoint-lg) {
+    display: none;
+  }
+}
+
+.toggleBar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: t.$color-text-secondary;
+  border-radius: 1px;
+  transition: transform t.$motion-duration-fast t.$motion-ease-standard,
+    opacity t.$motion-duration-fast t.$motion-ease-standard;
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+}

@@ -1,0 +1,85 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+  margin-bottom: t.$space-8; // 24px — matches Bootstrap `.row.g-4` gutter
+}
+
+// Removes the wrapper margin when the field sits inside a grid row.
+.inline {
+  margin-bottom: 0;
+}
+
+.label {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.$color-text-secondary;
+}
+
+.required {
+  color: t.$color-state-error;
+}
+
+.field {
+  width: 100%;
+  height: 56px;
+  padding: 6px 1.5rem;
+  border: 1px solid t.$color-form-border; // #ced4da — matches live `.form-control`
+  border-radius: t.$radius-form; // .375rem
+  background-color: t.$color-surface-page;
+  color: t.$color-text-secondary;
+  font-size: t.$font-size-lg;
+  line-height: t.$line-height-base;
+  transition: border-color t.$motion-duration-fast t.$motion-ease-standard;
+
+  @include m.focus-visible;
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  &:focus {
+    border-color: t.$color-border-strong; // matches live `.form-control:focus`
+  }
+
+  &:hover {
+    border-color: t.$color-border-strong;
+  }
+
+  &::placeholder {
+    color: t.$color-text-primary; // #70717B — matches live placeholder
+    opacity: 0.7;
+  }
+
+  &:disabled {
+    background-color: t.$color-surface-strong;
+    color: t.$color-text-primary;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+textarea.field {
+  min-height: 160px; // matches live `.form-control.textarea`
+  height: auto;
+  padding-block: 1rem; // matches live `padding-block: 1rem`
+  resize: vertical;
+}
+
+.fieldError {
+  border-color: t.$color-state-error;
+  background-color: t.$color-state-error-bg;
+}
+
+.hint {
+  font-size: t.$font-size-xs;
+  color: t.$color-text-primary;
+}
+
+.error {
+  font-size: t.$font-size-xs;
+  color: t.$color-state-error;
+  font-weight: t.$font-weight-medium;
+}

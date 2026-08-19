@@ -1,0 +1,190 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live site's `.custom-btn` (final override block in style.css):
+// 1px terracotta border, 0.25rem radius, terracotta fill, uppercase Montserrat,
+// min-height 40px (touch-safe), and two champagne diagonal sweeps
+// that slide in on hover. Hover switches the label to terracotta and the border
+// to navy. Font size is inherited (hero captions set 15px/12px, room buttons 13px).
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 2rem;
+  min-height: 40px;
+  border: 1px solid t.$color-border-strong;
+  border-radius: 0.25rem;
+  background-color: t.$color-border-strong;
+  color: t.$color-text-inverse;
+  font-family: t.$font-family-primary;
+  font-size: inherit;
+  font-weight: t.$font-weight-bold;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden; // clip the sweep triangles
+  transition: color t.$motion-duration-normal t.$motion-ease-standard,
+    border-color t.$motion-duration-normal t.$motion-ease-standard,
+    background-color t.$motion-duration-normal t.$motion-ease-standard;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  @include m.focus-visible;
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  // Sweep triangles — geometry verbatim from live `.custom-btn:before/:after`.
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: all t.$motion-duration-normal t.$motion-ease-standard;
+    pointer-events: none;
+
+    @include m.reduced-motion {
+      transition: none;
+    }
+  }
+
+  // Champagne sweep sliding in from the right edge.
+  &::before {
+    right: calc(-60px - 5px);
+    border-right: calc(60px + 5px) solid transparent;
+    border-bottom: calc(60px + 5px) solid t.$color-champagne;
+    transform: translateX(-100%);
+  }
+
+  // Champagne sweep sliding in from the left edge.
+  &::after {
+    left: calc(-60px - 5px);
+    border-left: calc(60px + 5px) solid transparent;
+    border-top: calc(60px + 5px) solid t.$color-champagne;
+    transform: translateX(100%);
+  }
+
+  &:hover:not(:disabled) {
+    color: t.$color-border-strong;
+    border-color: t.$color-navy;
+    background-color: t.$color-border-strong;
+
+    &::before {
+      transform: translateX(-49%);
+    }
+
+    &::after {
+      transform: translateX(49%);
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// Bordered variant (`.custom-btn--bordered`): transparent fill, terracotta text,
+// terracotta border and terracotta sweeps on hover.
+.secondary {
+  background-color: transparent;
+  color: t.$color-border-strong;
+
+  &:hover:not(:disabled) {
+    background-color: transparent;
+    border-color: t.$color-border-strong;
+    color: t.$color-text-inverse;
+
+    &::before {
+      border-bottom-color: t.$color-border-strong;
+    }
+
+    &::after {
+      border-top-color: t.$color-border-strong;
+    }
+  }
+}
+
+.ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: t.$color-text-secondary;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: t.$color-surface-strong;
+    color: t.$color-text-secondary;
+  }
+}
+
+.inverse {
+  background-color: transparent;
+  border-color: t.$color-text-inverse;
+  color: t.$color-text-inverse;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: t.$color-text-inverse;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.loading {
+  .label {
+    opacity: 0.7;
+  }
+}
+
+.spinner {
+  position: relative;
+  z-index: 1;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin t.$motion-duration-slow linear infinite;
+  flex-shrink: 0;
+  margin-right: t.$space-3;
+
+  @include m.reduced-motion {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,39 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live `.scrollToTop`: fixed at left 10%, 40×40 terracotta square
+// with 5px radius, tucked below the viewport until the user scrolls 300px,
+// then raised to bottom 5%; hover lifts it with a gold glow.
+
+.button {
+  position: fixed;
+  bottom: -30%;
+  left: 10%;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border: none;
+  border-radius: 5px;
+  color: t.$color-text-inverse;
+  background-color: t.$color-border-strong; // #9A4A34
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  @include m.focus-visible;
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: t.$shadow-gold; // 0px 5px 20px 0px rgba(232,164,29,0.5)
+  }
+
+  &.visible {
+    bottom: 5%;
+  }
+}

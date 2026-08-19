@@ -1,0 +1,130 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live services tiles (`service__item2`): white section band, a
+// centered header, and 2px-#D9D9D9-bordered tiles on #F8F5F0 with an
+// 80px terracotta icon plate; hover lifts the tile and turns it champagne.
+
+.section {
+  padding-block: 60px t.$space-14;
+  background-color: t.$color-surface-page;
+
+  @include m.from(t.$breakpoint-lg) {
+    padding-block-end: t.$space-15;
+  }
+}
+
+.container {
+  @include m.container;
+}
+
+.headingWrap {
+  max-width: 600px;
+  margin-inline: auto;
+  margin-block-end: 32px;
+  text-align: center;
+
+  @include m.from(t.$breakpoint-md) {
+    margin-block-end: 40px;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    margin-block-end: 60px;
+  }
+}
+
+.heading {
+  margin-block-end: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-6;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include m.from(t.$breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.from(t.$breakpoint-xl) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-5;
+  text-align: center;
+  // Use padding instead of a fixed height so the tile never overflows its content
+  padding: t.$space-10 t.$space-7;
+  background-color: t.$color-surface-strong; // #F8F5F0
+  border: 2px solid t.$color-tile-border; // #D9D9D9
+  border-radius: 0.25rem;
+  min-height: 200px;
+  transition: transform 0.4s t.$motion-ease-standard,
+    background-color 0.3s t.$motion-ease-standard;
+
+  @include m.from(t.$breakpoint-md) {
+    min-height: 260px;
+    padding: t.$space-11 t.$space-8;
+  }
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    background-color: t.$color-champagne;
+  }
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 0.25rem;
+  background-color: t.$color-border-strong;
+  box-shadow: t.$shadow-icon;
+
+  @include m.from(t.$breakpoint-md) {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.icon {
+  object-fit: contain;
+  width: 44px;
+  height: 44px;
+
+  @include m.from(t.$breakpoint-md) {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.iconInvert {
+  filter: grayscale(1) invert(1);
+}
+
+.label {
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-xl;
+  font-weight: t.$font-weight-bold;
+  color: t.$color-border-strong;
+  margin: 0;
+
+  @include m.from(t.$breakpoint-md) {
+    font-size: 20px;
+  }
+}

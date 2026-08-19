@@ -1,0 +1,68 @@
+@use 'tokens' as t;
+
+// Responsive breakpoints — mobile-first
+@mixin from($breakpoint) {
+  @media (min-width: $breakpoint) { @content; }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: t.$container-max-width;
+  margin-inline: auto;
+  padding-inline: t.$container-gutter;
+}
+
+// Visible focus indicator — required on every interactive element.
+// Never remove outline without supplying this replacement.
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid t.$color-focus-ring;
+    outline-offset: 2px;
+    border-radius: t.$radius-xs;
+  }
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin skip-link-target {
+  &:focus {
+    position: fixed;
+    top: t.$space-4;
+    left: t.$space-4;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+    padding: t.$space-3 t.$space-6;
+    margin: 0;
+    clip: auto;
+    background: t.$color-surface-page;
+    color: t.$color-text-secondary;
+    box-shadow: t.$shadow-2;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

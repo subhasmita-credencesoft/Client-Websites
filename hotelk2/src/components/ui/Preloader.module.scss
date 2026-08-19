@@ -1,0 +1,85 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live preloader: white overlay with a 53px dotted navy ring
+// rotating 2s, and a 30px dotted terracotta inner ring rotating 1s in reverse.
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: t.$color-surface-page;
+  transition: opacity t.$motion-duration-normal t.$motion-ease-standard,
+    visibility t.$motion-duration-normal t.$motion-ease-standard;
+
+  &.done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.loader {
+  position: relative;
+  width: 53px;
+  height: 53px;
+  border: 5px dotted t.$color-navy;
+  border-style: solid solid dotted dotted;
+  border-radius: 50%;
+  animation: rotation 2s linear infinite;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px dotted t.$color-border-strong;
+    border-style: solid solid dotted;
+    border-radius: 50%;
+    animation: rotationBack 1s linear infinite;
+    transform-origin: center center;
+  }
+}
+
+.srOnly {
+  @include m.visually-hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader {
+    transition: none;
+  }
+
+  .loader,
+  .loader::after {
+    animation: none;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}

@@ -1,0 +1,37 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live `.whatsapp_float`: a 50×67 WhatsApp flag anchored to the
+// bottom-left corner (56px from the edge), 10px radius on the bottom-left
+// corner only; hover scales it up and brings it to the top layer.
+
+.button {
+  position: fixed;
+  bottom: 0;
+  left: 56px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 67px;
+  border-radius: 0 0 0 10px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+
+  @include m.focus-visible;
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  &:hover {
+    transform: scale(1.2);
+    z-index: 9999;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

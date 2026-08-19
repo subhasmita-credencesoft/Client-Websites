@@ -1,0 +1,233 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+.page {
+  display: block;
+}
+
+.hero {
+  position: relative;
+  min-height: 360px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+
+  @include m.from(t.$breakpoint-md) {
+    min-height: 440px;
+  }
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, t.$color-overlay-scrim 0%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  @include m.container;
+  padding-block: t.$space-9;
+  color: t.$color-text-inverse;
+}
+
+.breadcrumb {
+  font-size: t.$font-size-xs;
+  margin-bottom: t.$space-4;
+
+  a {
+    color: t.$color-text-inverse;
+  }
+}
+
+.heading {
+  font-size: t.$font-size-4xl;
+  color: t.$color-text-inverse;
+  margin-bottom: t.$space-3;
+}
+
+.occupancy {
+  font-size: t.$font-size-md;
+  color: t.$color-text-inverse;
+  opacity: 0.9;
+}
+
+.heroPrice {
+  font-size: t.$font-size-2xl;
+  font-weight: t.$font-weight-bold;
+  color: t.$color-text-inverse;
+  margin: t.$space-4 0 0;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.heroPriceCurrency {
+  font-size: t.$font-size-md;
+  font-weight: t.$font-weight-medium;
+}
+
+.heroPriceValue {
+  font-size: t.$font-size-3xl;
+}
+
+.heroPriceUnit {
+  font-size: t.$font-size-md;
+  font-weight: t.$font-weight-base;
+  opacity: 0.85;
+}
+
+.container {
+  @include m.container;
+  padding-block: t.$space-11;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-11;
+
+  @include m.from(t.$breakpoint-lg) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.sectionHeading {
+  font-size: t.$font-size-2xl;
+  margin-bottom: t.$space-5;
+  margin-top: t.$space-10;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.description {
+  font-size: t.$font-size-lg;
+  color: t.$color-text-secondary;
+  max-width: 68ch;
+}
+
+.amenityList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-4;
+}
+
+.amenityItem {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-2;
+  font-size: t.$font-size-sm;
+  color: t.$color-text-secondary;
+  background-color: t.$color-surface-strong;
+  border-radius: t.$radius-xs;
+  padding: t.$space-3 t.$space-6;
+}
+
+.amenityIcon {
+  object-fit: contain;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: t.$space-5;
+
+  @include m.from(t.$breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.galleryItem {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: t.$radius-sm;
+  overflow: hidden;
+}
+
+.galleryImage {
+  object-fit: cover;
+}
+
+.sidebar {
+  align-self: start;
+
+  @include m.from(t.$breakpoint-lg) {
+    position: sticky;
+    top: 96px;
+  }
+}
+
+.bookingCard {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-5;
+  padding: t.$space-8;
+  background-color: t.$color-surface-strong;
+  border-radius: t.$radius-md;
+}
+
+.bookingLabel {
+  font-size: t.$font-size-xl;
+  font-weight: t.$font-weight-semibold;
+  color: t.$color-text-secondary;
+}
+
+.bookingCopy {
+  font-size: t.$font-size-sm;
+  color: t.$color-text-secondary;
+}
+
+.bookingPrice {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  padding: t.$space-3 0;
+}
+
+.bookingPriceCurrency {
+  font-size: t.$font-size-md;
+  font-weight: t.$font-weight-medium;
+  color: t.$color-text-secondary;
+}
+
+.bookingPriceValue {
+  font-size: t.$font-size-3xl;
+  font-weight: t.$font-weight-bold;
+  color: t.$color-border-strong;
+}
+
+.bookingPriceUnit {
+  font-size: t.$font-size-md;
+  font-weight: t.$font-weight-base;
+  color: t.$color-text-primary;
+}
+
+.bookingAvailability {
+  font-size: t.$font-size-sm;
+  color: t.$color-state-success;
+  font-weight: t.$font-weight-medium;
+  margin: 0;
+}
+
+.actions {
+  margin-top: t.$space-5;
+
+  a {
+    color: t.$color-border-strong;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: t.$font-weight-semibold;
+
+    @include m.focus-visible;
+
+    &:hover {
+      color: t.$color-border-strong-hover;
+    }
+  }
+}

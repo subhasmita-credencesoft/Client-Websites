@@ -1,0 +1,563 @@
+
+> hotel-hari-international@1.0.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1442ms
+ ○ Compiling / ...
+ ✓ Compiled /_not-found in 18.5s (633 modules)
+ GET /about 404 in 8263ms
+ GET /accommodations 404 in 53ms
+ GET /services 404 in 51ms
+ GET /gallery 404 in 59ms
+ GET /contact 404 in 54ms
+ ○ Compiling /rooms/[slug] ...
+ ✓ Compiled /rooms/[slug] in 872ms (655 modules)
+ GET /rooms/standard-room 200 in 2979ms
+ GET /rooms/deluxe-room 200 in 74ms
+ GET /rooms/premium-room 200 in 95ms
+ ○ Compiling /api/image ...
+ ✓ Compiled /api/image in 598ms (361 modules)
+ GET /api/image?src=https%3A%2F%2Fhhickp.com%2Fhari-img%2Flogo.webp 200 in 3657ms
+ GET / 200 in 176ms
+ GET / 200 in 116ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 23.3s (863 modules)
+ GET / 404 in 23ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ GET / 404 in 278ms
+ GET / 404 in 28ms
+ GET / 404 in 20ms
+ GET / 404 in 28ms
+ GET / 404 in 20ms
+ GET / 404 in 24ms
+ GET / 404 in 56ms
+ GET / 404 in 21ms
+ GET / 404 in 10ms
+ GET / 404 in 17ms
+ GET / 404 in 25ms
+ GET / 404 in 21ms
+ GET / 404 in 18ms
+ GET / 404 in 29ms
+ GET / 404 in 17ms
+ GET / 404 in 19ms
+ GET / 404 in 17ms
+ GET / 404 in 21ms
+ GET / 404 in 20ms
+ GET / 404 in 19ms
+ GET / 404 in 41ms
+ GET / 404 in 26ms
+ GET / 404 in 30ms
+ GET / 404 in 42ms
+ GET / 404 in 37ms
+ GET / 404 in 34ms
+ GET / 404 in 38ms
+ GET / 404 in 28ms
+ GET / 404 in 50ms
+ GET / 404 in 34ms
+ GET / 404 in 30ms
+ GET / 404 in 28ms
+ GET / 404 in 32ms
+ GET / 404 in 106ms
+ GET / 404 in 28ms
+ GET / 404 in 40ms
+ GET / 404 in 39ms
+ GET / 404 in 32ms
+ GET / 404 in 31ms
+ GET / 404 in 33ms
+ GET / 404 in 26ms
+ GET / 404 in 24ms
+ GET / 404 in 41ms
+ GET / 404 in 28ms
+ GET / 404 in 29ms
+ GET / 404 in 33ms
+ GET / 404 in 28ms
+ GET / 404 in 34ms
+ GET / 404 in 35ms
+ GET / 404 in 31ms
+ GET / 404 in 32ms
+ ✓ Compiled in 6s (1037 modules)
+ ✓ Compiled in 3.6s (1037 modules)
+ ✓ Compiled in 3.1s (1037 modules)
+ ✓ Compiled in 3.4s (1037 modules)
+ ✓ Compiled in 354ms (514 modules)
+ ✓ Compiled in 882ms (871 modules)
+ ✓ Compiled in 1850ms (861 modules)
+ ✓ Compiled in 799ms (861 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 2.2s (871 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 1083ms (861 modules)
+ ✓ Compiled in 1739ms (861 modules)
+ ✓ Compiled in 1069ms (871 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 1774ms (871 modules)
+ ✓ Compiled in 676ms (361 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 2.2s (871 modules)
+ ✓ Compiled in 434ms (871 modules)
+ ⨯ ./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block-end: t.$space-14;
+   │                        ^^^^^^^^^^^
+   ╵
+  src\components\sections\RoomsGrid.module.scss 13:24  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+./src/components/sections/RoomsGrid.module.scss
+ ⨯ ./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block-end: t.$space-14;
+   │                        ^^^^^^^^^^^
+   ╵
+  src\components\sections\RoomsGrid.module.scss 13:24  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+./src/components/sections/RoomsGrid.module.scss
+ ⨯ ./src/components/sections/RoomsGrid.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block-end: t.$space-14;
+   │                        ^^^^^^^^^^^
+   ╵
+  src\components\sections\RoomsGrid.module.scss 13:24  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/RoomsGrid.module.scss
+./src/components/sections/RoomsGrid.tsx
+./src/app/page.tsx
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\RoomsGrid.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ⨯ ./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block-end: t.$space-14;
+   │                        ^^^^^^^^^^^
+   ╵
+  src\components\sections\RoomsGrid.module.scss 13:24  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+./src/components/sections/RoomsGrid.module.scss
+ ⨯ ./src/components/sections/RoomsGrid.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block-end: t.$space-14;
+   │                        ^^^^^^^^^^^
+   ╵
+  src\components\sections\RoomsGrid.module.scss 13:24  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/RoomsGrid.module.scss
+./src/components/sections/RoomsGrid.tsx
+./src/app/page.tsx
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Services.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\RoomsGrid.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+ ⨯ ./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block-end: t.$space-14;
+   │                        ^^^^^^^^^^^
+   ╵
+  src\components\sections\RoomsGrid.module.scss 13:24  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+./src/components/sections/RoomsGrid.module.scss
+ ⨯ ./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block-end: t.$space-14;
+   │                        ^^^^^^^^^^^
+   ╵
+  src\components\sections\RoomsGrid.module.scss 13:24  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+./src/components/sections/RoomsGrid.module.scss
+ ⨯ ./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block-end: t.$space-14;
+   │                        ^^^^^^^^^^^
+   ╵
+  src\components\sections\RoomsGrid.module.scss 13:24  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/RoomsGrid.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/RoomsGrid.module.scss
+./src/components/sections/RoomsGrid.module.scss
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Services.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\RoomsGrid.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Gallery.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Services.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\RoomsGrid.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+ ⨯ ./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.tsx
+./src/app/page.tsx
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Gallery.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Services.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\RoomsGrid.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\RoomsGrid.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Services.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Gallery.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Gallery.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Services.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\RoomsGrid.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Gallery.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\Services.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[2]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[9].use[3]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js??ruleSet[1].rules[14].oneOf[9].use[4]!E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\compiled\sass-loader\cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!E:\premiumnewtemp 19.7.26\hotel-hari-international\src\components\sections\RoomsGrid.module.scss': No serializer registered for SassError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> SassError
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+ ⨯ ./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+SassError: Undefined variable.
+   ╷
+13 │     padding-block: t.$space-14;
+   │                    ^^^^^^^^^^^
+   ╵
+  src\components\sections\Gallery.module.scss 13:20  root stylesheet
+
+Import trace for requested module:
+./src/components/sections/Gallery.module.scss.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/sections/Gallery.module.scss
+./src/components/sections/Gallery.module.scss
+ ✓ Compiled in 3.5s (1037 modules)
+ ✓ Compiled in 574ms (871 modules)
+ ✓ Compiled in 416ms (871 modules)
+ ✓ Compiled in 699ms (871 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/image/route' in E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/image/route' in 'E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/image/route (expected E:\premiumnewtemp 19.7.26\hotel-hari-international\.next\server\app\api\image\route.js)
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\require.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\utils.js
+<w>  at file dependencies E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs E:\premiumnewtemp 19.7.26\hotel-hari-international\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js

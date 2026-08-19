@@ -1,0 +1,68 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Mirrors the live rooms section: `bg--section-color` (#F8F5F0) band with a
+// 60px top padding, centered section header ("Explore Our Rooms"), and a
+// responsive 1/2/3-column grid of white room cards.
+
+.section {
+  padding-block: 60px t.$space-14;
+  background-color: t.$color-surface-strong; // #F8F5F0
+
+  @include m.from(t.$breakpoint-lg) {
+    padding-block-end: t.$space-15;
+  }
+}
+
+.container {
+  @include m.container;
+}
+
+.header {
+  max-width: 600px;
+  margin-inline: auto;
+  margin-block-end: 32px;
+  text-align: center;
+
+  @include m.from(t.$breakpoint-md) {
+    margin-block-end: 40px;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    margin-block-end: 60px;
+  }
+}
+
+.heading {
+  margin-block-end: 12px;
+}
+
+.subheading {
+  font-size: t.$font-size-lg;
+  color: t.$color-text-primary;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-8;
+
+  @include m.from(t.$breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: t.$space-7;
+  }
+
+  @include m.from(t.$breakpoint-xl) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: t.$space-8;
+  }
+}
+
+.empty {
+  padding: t.$space-9;
+  text-align: center;
+  color: t.$color-text-primary;
+  background-color: t.$color-surface-page;
+  border-radius: t.$radius-md;
+}

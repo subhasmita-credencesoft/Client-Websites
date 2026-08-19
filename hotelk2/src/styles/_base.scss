@@ -1,0 +1,130 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+// Anchor targets clear the sticky header (top contact bar + main bar on desktop).
+[id] {
+  scroll-margin-top: 88px;
+
+  @media (min-width: t.$breakpoint-lg) {
+    scroll-margin-top: 132px;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-base;
+  line-height: t.$line-height-base;
+  color: t.$color-text-primary; // #70717B — matches live site body copy
+  background-color: t.$color-surface-page;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: t.$font-family-display; // Lora — matches live site headings
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-display;
+  color: t.$color-text-secondary;
+}
+
+h1 {
+  font-size: t.$font-size-h1;
+
+  @media (min-width: t.$breakpoint-hd) {
+    font-size: t.$font-size-h1-hd;
+  }
+}
+
+h2 {
+  font-size: t.$font-size-h2;
+
+  @media (min-width: t.$breakpoint-hd) {
+    font-size: t.$font-size-h2-hd;
+  }
+}
+
+h3 {
+  font-size: t.$font-size-h3;
+
+  @media (min-width: t.$breakpoint-hd) {
+    font-size: t.$font-size-h3-hd;
+  }
+}
+
+h4 {
+  font-size: t.$font-size-h4;
+
+  @media (min-width: t.$breakpoint-hd) {
+    font-size: t.$font-size-h4-hd;
+  }
+}
+
+h5 {
+  font-size: t.$font-size-h5;
+}
+
+h6 {
+  font-size: t.$font-size-h6;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: t.$color-border-strong; // brand accent, 6.17:1 on white
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+  @include m.focus-visible;
+
+  &:hover {
+    color: t.$color-border-strong-hover;
+  }
+}
+
+button {
+  font-family: inherit;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: t.$font-size-lg;
+}
+
+:focus-visible {
+  outline: 2px solid t.$color-focus-ring;
+  outline-offset: 2px;
+}
+
+.skip-link {
+  @include m.visually-hidden;
+  @include m.skip-link-target;
+}
