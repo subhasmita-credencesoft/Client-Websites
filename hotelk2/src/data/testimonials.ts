@@ -24,3 +24,12 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: 'Wonderful experience. Highly recommend. Best hotel in Chakradharpur.',
   },
 ];
+
+export function getInitials(name: string): string {
+  return name
+    .split(' ')
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
+}

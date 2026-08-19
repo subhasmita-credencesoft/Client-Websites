@@ -1,17 +1,37 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import { TESTIMONIALS } from '@/data/testimonials';
+import { TESTIMONIALS, getInitials } from '@/data/testimonials';
 import styles from './Testimonials.module.scss';
 const AUTOPLAY_MS = 5000;
 
 function Stars({ rating }: { rating: number }) {
   return (
     <span className={styles.stars} role="img" aria-label={`Rated ${rating} out of 5 stars`}>
-      {'★'.repeat(rating)}
-      {'☆'.repeat(5 - rating)}
+      {Array.from({ length: 5 }, (_, i) => (
+        <svg
+          key={i}
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill={i < rating ? 'currentColor' : 'none'}
+          stroke="currentColor"
+          strokeWidth="1.5"
+          aria-hidden="true"
+        >
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        </svg>
+      ))}
     </span>
+  );
+}
+
+function Avatar({ name }: { name: string }) {
+  const initials = getInitials(name);
+  return (
+    <div className={styles.avatar} aria-hidden="true">
+      <span className={styles.initials}>{initials}</span>
+    </div>
   );
 }
 
@@ -67,13 +87,7 @@ export function Testimonials() {
             {TESTIMONIALS.map((testimonial) => (
               <div key={testimonial.author} className={styles.slide} role="group" aria-label={`Testimonial ${index + 1} of ${count}`}>
                 <figure className={styles.card}>
-                  <Image
-                    src={testimonial.avatar ?? ''}
-                    alt=""
-                    width={72}
-                    height={72}
-                    className={styles.avatar}
-                  />
+                  <Avatar name={testimonial.author} />
                   <figcaption className={styles.caption}>
                     <p className={styles.author}>{testimonial.author}</p>
                     <Stars rating={testimonial.rating} />
