@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import styles from '@/styles/UtilityPage.module.scss';
 import { ROOMS } from '@/data/rooms';
 import { VENUES } from '@/data/venues';
+import { BLOG_POSTS } from '@/data/blog';
 
 interface SitemapLink {
   label: string;
@@ -25,6 +26,7 @@ const GROUPS: { title: string; links: SitemapLink[] }[] = [
       { label: 'Offers & Packages', href: '/offers' },
       { label: 'Location & Local Guide', href: '/location' },
       { label: 'Contact & Inquiries', href: '/contact' },
+      { label: 'Blog', href: '/blog' },
     ],
   },
   {
@@ -48,6 +50,13 @@ const GROUPS: { title: string; links: SitemapLink[] }[] = [
       { label: 'Terms & Conditions', href: '/terms' },
       { label: 'Cancellation & Refund Policy', href: '/cancellation-policy' },
       { label: 'Sitemap (XML)', href: '/sitemap.xml' },
+    ],
+  },
+  {
+    title: 'Blog',
+    links: [
+      { label: 'All Posts', href: '/blog' },
+      ...BLOG_POSTS.map((post) => ({ label: post.title, href: `/blog/${post.slug}` })),
     ],
   },
 ];

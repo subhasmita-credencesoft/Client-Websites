@@ -10,6 +10,7 @@ const QUICK_LINKS = [
   { label: 'Venues & Capacity', href: '/events/venues' },
   { label: 'Dining & Catering', href: '/dining' },
   { label: 'Offers & Packages', href: '/offers' },
+  { label: 'Blog', href: '/blog' },
 ];
 
 const EVENT_LINKS = [
