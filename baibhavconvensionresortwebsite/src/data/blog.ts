@@ -1,4 +1,4 @@
-import { BlogPost } from '@/types';
+import { BlogPost, PolicyItem } from '@/types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
@@ -52,30 +52,6 @@ export const BLOG_POSTS: BlogPost[] = [
         body: 'For corporate travellers, our Corporate & MICE page covers conference and meeting facilities available on-site.',
       },
       {
-        heading: 'Frequently Asked Questions',
-        body: '',
-      },
-      {
-        heading: '',
-        body: 'Are Phulnakhara and Nakhara the same place? Yes. Nakhara is simply another name locally used for Phulnakhara, the area on NH-16 between Bhubaneswar and Cuttack where the resort is located.',
-      },
-      {
-        heading: '',
-        body: 'Is Baibhab Resorts close to Phulnakhara and Nakhara? Yes. The resort is located near the Phulnakhara flyover on NH-16, in the same area known as Nakhara.',
-      },
-      {
-        heading: '',
-        body: 'How far is the hotel from Bhubaneswar and Cuttack? About 15-18 km from both city centres, making it equally convenient from either side.',
-      },
-      {
-        heading: '',
-        body: 'Does the hotel offer free parking? Yes, with space for over 200 vehicles and a dedicated driver rest area.',
-      },
-      {
-        heading: '',
-        body: 'Can I book a room and also enquire about an event? Yes, use the links below to book a room or send an event enquiry directly.',
-      },
-      {
         heading: 'Book Your Stay Today',
         body: 'Ready to book? Book a Room directly, or send us an Event Inquiry if you are planning a wedding or corporate gathering near Phulnakhara or Nakhara.',
       },
@@ -83,29 +59,40 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 ];
 
-export const BLOG_FAQS = [
+export const BLOG_FAQS: PolicyItem[] = [
   {
     question: 'Are Phulnakhara and Nakhara the same place?',
     answer:
-      'Yes. Nakhara is simply another name locally used for Phulnakhara, the area on NH-16 between Bhubaneswar and Cuttack where the resort is located.',
+      'Yes. Nakhara is simply another name locally used for Phulnakhara, the area on NH-16 between Bhubaneswar and Cuttack where the resort is located. Both names refer to the same stretch of the highway, so whether you search for "hotel near Phulnakhara" or "hotel near Nakhara," you will find the same area — and Baibhab Resorts & Conventions is right here.',
   },
   {
     question: 'Is Baibhab Resorts close to Phulnakhara and Nakhara?',
     answer:
-      'Yes. The resort is located near the Phulnakhara flyover on NH-16, in the same area known as Nakhara.',
+      'Yes. The resort is located near the Phulnakhara flyover on NH-16, in the same area known as Nakhara. It sits directly on the Bhubaneswar–Cuttack highway, making it equally convenient from both cities — about 15 km from Bhubaneswar and 16 km from Cuttack.',
   },
   {
     question: 'How far is the hotel from Bhubaneswar and Cuttack?',
     answer:
-      'About 15-18 km from both city centres, making it equally convenient from either side.',
+      'About 15–18 km from both city centres, making it equally convenient from either side. Biju Patnaik International Airport is approximately 18 km away, roughly a 30–35 minute drive along NH-16. The midpoint location means guests avoid inner-city traffic while staying well-connected to both cities.',
   },
   {
     question: 'Does the hotel offer free parking?',
-    answer: 'Yes, with space for over 200 vehicles and a dedicated driver rest area.',
+    answer:
+      'Yes. Baibhab Resorts provides free parking for over 200 vehicles, along with a dedicated driver rest area. This is especially useful for wedding and event guests driving in from Bhubaneswar, Cuttack or other parts of Odisha.',
   },
   {
     question: 'Can I book a room and also enquire about an event?',
     answer:
-      'Yes. You can book a room through our Stay page or send an event enquiry directly via our Contact page.',
+      'Absolutely. You can book a room through our Stay page or via the BookOne booking engine, and send an event enquiry directly through our Contact page. Our team handles both room reservations and event planning, so you can coordinate everything in one place.',
+  },
+  {
+    question: 'What room types are available and what do they cost?',
+    answer:
+      'We offer Premium Rooms and Deluxe Rooms, both starting at ₹2,500 per night. Each room includes a private bathroom, TV, work desk, electric kettle, wardrobe and complimentary toiletries. Breakfast and high-speed Wi-Fi are included with every stay.',
+  },
+  {
+    question: 'Is the resort suitable for weddings and corporate events?',
+    answer:
+      'Yes. Baibhab Resorts & Conventions is a full events venue with banquet halls and open-air lawns that can host gatherings from intimate parties to celebrations of 1,500+ guests. We have the Royal Imperial Hall, Grand Green Lawn, Executive Boardroom and Mangal Mini Hall — all with flexible seating layouts and in-house catering.',
   },
 ];
