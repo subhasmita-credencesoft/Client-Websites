@@ -1,20 +1,17 @@
 @use '../../styles/tokens' as t;
 @use '../../styles/mixins' as m;
 
-// Hotel K2 branded preloader with logo text and double-ring circle spinner.
+// Premium Hotel K2 preloader — elegant brand with SVG circular spinner.
 
 .preloader {
   position: fixed;
   inset: 0;
   z-index: 999;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 28px;
-  background-color: t.$color-surface-page;
-  transition: opacity t.$motion-duration-normal t.$motion-ease-standard,
-    visibility t.$motion-duration-normal t.$motion-ease-standard;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f5f0 100%);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 
   &.done {
     opacity: 0;
@@ -23,65 +20,147 @@
   }
 }
 
-.brand {
+.content {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
 }
 
-.brandName {
+.spinner {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s ease-out both;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ringOuter {
+  fill: none;
+  stroke: t.$color-navy;
+  stroke-width: 2.5;
+  stroke-dasharray: 165;
+  stroke-dashoffset: 50;
+  stroke-linecap: round;
+  animation: spinOuter 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transform-origin: center;
+}
+
+.ringInner {
+  fill: none;
+  stroke: t.$color-border-strong;
+  stroke-width: 2;
+  stroke-dasharray: 110;
+  stroke-dashoffset: 35;
+  stroke-linecap: round;
+  animation: spinInner 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transform-origin: center;
+}
+
+.logo {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+.logoText {
   font-family: t.$font-family-primary;
-  font-size: 36px;
-  font-weight: t.$font-weight-bold;
+  font-size: 14px;
+  font-weight: t.$font-weight-semibold;
   color: t.$color-text-secondary;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  line-height: 1;
 
   @include m.from(t.$breakpoint-md) {
-    font-size: 48px;
+    font-size: 16px;
+    letter-spacing: 5px;
   }
 }
 
-.brandAccent {
+.logoAccent {
   font-family: t.$font-family-display;
-  font-size: 48px;
+  font-size: 32px;
   font-weight: t.$font-weight-bold;
   color: t.$color-border-strong;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  line-height: 1.1;
 
   @include m.from(t.$breakpoint-md) {
-    font-size: 64px;
+    font-size: 38px;
   }
 }
 
-.loader {
-  position: relative;
-  width: 48px;
-  height: 48px;
-  border: 4px dotted t.$color-navy;
-  border-style: solid solid dotted dotted;
-  border-radius: 50%;
-  animation: rotation 2s linear infinite;
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: 26px;
-    height: 26px;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    border: 3px dotted t.$color-border-strong;
-    border-style: solid solid dotted;
-    border-radius: 50%;
-    animation: rotationBack 1s linear infinite;
-    transform-origin: center center;
-  }
+.tagline {
+  font-family: t.$font-family-primary;
+  font-size: 11px;
+  font-weight: t.$font-weight-medium;
+  color: t.$color-text-primary;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out 0.5s both;
 }
 
 .srOnly {
   @include m.visually-hidden;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spinOuter {
+  0% {
+    transform: rotate(0deg);
+    stroke-dashoffset: 50;
+  }
+  50% {
+    stroke-dashoffset: 125;
+  }
+  100% {
+    transform: rotate(360deg);
+    stroke-dashoffset: 50;
+  }
+}
+
+@keyframes spinInner {
+  0% {
+    transform: rotate(0deg);
+    stroke-dashoffset: 35;
+  }
+  50% {
+    stroke-dashoffset: 85;
+  }
+  100% {
+    transform: rotate(-360deg);
+    stroke-dashoffset: 35;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -89,28 +168,15 @@
     transition: none;
   }
 
-  .loader,
-  .loader::after {
+  .logo,
+  .tagline {
     animation: none;
-  }
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
+    opacity: 1;
   }
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes rotationBack {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(-360deg);
+  .ringOuter,
+  .ringInner {
+    animation: none;
+    stroke-dashoffset: 0;
   }
 }
