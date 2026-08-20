@@ -184,6 +184,110 @@ const KEYWORDS = [
   'Chakradharpur hotels',
   'Hotel K2 Chakradharpur Jharkhand',
   'Hotel in Chakradharpur Jharkhand',
+  // Nearby Location — Railway Station (TOP PRIORITY)
+  'Hotel near Chakradharpur Railway Station',
+  'Best hotel near Chakradharpur Railway Station',
+  'Hotels near Chakradharpur Railway Station',
+  'Hotel near Chakradharpur Railway Station booking',
+  'Hotel rooms near Chakradharpur Railway Station',
+  'AC hotel near Chakradharpur Railway Station',
+  'Best AC hotel near Chakradharpur Railway Station',
+  'Budget hotel near Chakradharpur Railway Station',
+  'Affordable hotel near Chakradharpur Railway Station',
+  'Hotel stay near Chakradharpur Railway Station',
+  'Room booking near Chakradharpur Railway Station',
+  'Hotel accommodation near Chakradharpur Railway Station',
+  'Best place to stay near Chakradharpur Railway Station',
+  'Hotel near Chakradharpur railway station with WiFi',
+  'Hotel near Chakradharpur railway station with room service',
+  'Hotel near Chakradharpur railway station with AC rooms',
+  'Hotels close to Chakradharpur Railway Station',
+  'Hotels walking distance from Chakradharpur Railway Station',
+  'Hotel near CKP Railway Station',
+  'Hotel near CKP Station Chakradharpur',
+  'Hotel near Chakradharpur Station',
+  'Hotels near Chakradharpur Station',
+  // Nearby Location — Etwari Bazar
+  'Hotel in Etwari Bazar Chakradharpur',
+  'Hotel near Etwari Bazar Chakradharpur',
+  'Hotels in Etwari Bazar',
+  'Best hotel in Etwari Bazar',
+  'Best hotel near Etwari Bazar',
+  'Hotel booking Etwari Bazar Chakradharpur',
+  'Hotel rooms Etwari Bazar',
+  'AC hotel Etwari Bazar',
+  'Hotel stay Etwari Bazar',
+  'Affordable hotel Etwari Bazar',
+  'Hotel near Etwari Bazar market',
+  'Accommodation near Etwari Bazar',
+  'Hotel near Etwari Bazar Station Link Road',
+  'Hotel booking near Etwari Bazar Chakradharpur',
+  // Nearby Location — Station Link Road
+  'Hotel on Station Link Road Chakradharpur',
+  'Hotel near Station Link Road Chakradharpur',
+  'Best hotel Station Link Road Chakradharpur',
+  'Hotels on Station Link Road Chakradharpur',
+  'Hotel booking Station Link Road',
+  'AC hotel Station Link Road Chakradharpur',
+  'Hotel rooms Station Link Road Chakradharpur',
+  'Hotel near Station Road Chakradharpur',
+  'Hotel near railway station road Chakradharpur',
+  // Nearby Location — Carmel School
+  'Hotel near Carmel School Chakradharpur',
+  'Hotels near Carmel School Chakradharpur',
+  'Best hotel near Carmel School',
+  'Hotel near Carmel School Chakradharpur booking',
+  'AC hotel near Carmel School',
+  'Hotel rooms near Carmel School',
+  'Accommodation near Carmel School Chakradharpur',
+  'Hotel stay near Carmel School',
+  // Nearby Location — Railway Colony
+  'Hotel near Railway R.E. Colony Chakradharpur',
+  'Hotel near Railway Colony Chakradharpur',
+  'Hotels near Railway Colony Chakradharpur',
+  'Best hotel near Railway Colony',
+  'Hotel near South Eastern Railway Colony',
+  'Hotel near SER Colony Chakradharpur',
+  'Hotel near Railway Colony Chakradharpur booking',
+  'AC hotel near Railway Colony',
+  // Nearby Location — Chakradharpur Local Areas
+  'Hotel near Chakradharpur market',
+  'Hotel near Chakradharpur main market',
+  'Hotel near Chakradharpur city centre',
+  'Hotel near Chakradharpur town',
+  'Hotel near Bara Bazar Chakradharpur',
+  'Hotel near Tambaku Patti Chakradharpur',
+  'Hotel near Chandmari Road Chakradharpur',
+  'Hotel near NH 75 Chakradharpur',
+  'Hotel near NH 20 Chakradharpur',
+  'Hotel near Station Road Chakradharpur',
+  // Nearby Location — Landmarks
+  'Hotel near Rani Sati Mandir Chakradharpur',
+  'Hotels near Rani Sati Mandir',
+  'Hotel near Ambedkar Chowk Chakradharpur',
+  'Hotel near Raja Arjun Singh Chowk',
+  'Hotel near Rly Park Chakradharpur',
+  'Hotel near Railway Children\'s Park Chakradharpur',
+  'Hotel near local attractions Chakradharpur',
+  // Tourist-Intent Keywords
+  'Hotels near Hirni Water Falls',
+  'Hotel near Hirni Waterfall Jharkhand',
+  'Where to stay near Hirni Water Falls',
+  'Hotels near Deori Mandir',
+  'Hotel near Sun Temple Jharkhand',
+  'Hotels near Dassam Falls',
+  'Hotels near Perwaghagh Falls',
+  'Best hotel for tourists in Chakradharpur',
+  'Best place to stay in Chakradharpur',
+  'Hotels for tourists in Chakradharpur',
+  'Accommodation for tourists Chakradharpur',
+  // Nearby Food / Restaurant Keywords
+  'Hotel near restaurants in Chakradharpur',
+  'Hotel near restaurants Chakradharpur',
+  'Hotel near food places Chakradharpur',
+  'Hotel near Bara Bazar restaurants',
+  'Hotel near Chakradharpur market restaurants',
+  'Stay near restaurants Chakradharpur',
 ].join(', ');
 
 export const metadata: Metadata = {
@@ -330,7 +434,7 @@ const FAQ_SCHEMA = {
       name: 'What is the best hotel in Chakradharpur, Jharkhand?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Hotel K2 is the best hotel in Chakradharpur, Jharkhand. Located near Chakradharpur Railway Station at Etwari Bazar, Station Link Road, it offers AC rooms with free Wi-Fi, TV, geyser, power backup, 24-hour room service, banquet hall, and catering services.',
+        text: 'Hotel K2 is the best hotel in Chakradharpur, Jharkhand. Located near Chakradharpur Railway Station at Etwari Bazar, Station Link Road, near Carmel School. It offers AC rooms with free Wi-Fi, TV, geyser, power backup, 24-hour room service, banquet hall, and catering services.',
       },
     },
     {
@@ -354,7 +458,7 @@ const FAQ_SCHEMA = {
       name: 'Is Hotel K2 near Chakradharpur Railway Station?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, Hotel K2 is located near Chakradharpur Railway Station at Etwari Bazar, Station Link Road, near Carmel School, Chakradharpur, Jharkhand 833102. It is one of the best hotels near Chakradharpur Railway Station.',
+        text: 'Yes, Hotel K2 is located near Chakradharpur Railway Station at Etwari Bazar, Station Link Road, near Carmel School, Chakradharpur, Jharkhand 833102. It is one of the best hotels near Chakradharpur Railway Station, within walking distance.',
       },
     },
     {
@@ -389,6 +493,189 @@ const FAQ_SCHEMA = {
         text: 'Yes, Hotel K2 is a popular business hotel in Chakradharpur. It offers conference hall, free Wi-Fi, power backup, and 24-hour front desk service, making it ideal for corporate and business travelers.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'Hotel near Chakradharpur Railway Station with AC rooms?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Hotel K2 is the best hotel near Chakradharpur Railway Station with AC rooms. Located at Etwari Bazar, Station Link Road, near Carmel School, it offers comfortable AC rooms with free Wi-Fi, TV, geyser, and power backup.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Best hotel near Etwari Bazar Chakradharpur?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Hotel K2 is the best hotel near Etwari Bazar, Chakradharpur. Located on Station Link Road, near Carmel School, it offers AC rooms, free Wi-Fi, 24-hour room service, and is walking distance from Etwari Bazar market.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where to stay near Hirni Water Falls Jharkhand?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Hotel K2 in Chakradharpur is a great base for exploring Hirni Water Falls and other attractions in Jharkhand. Located near Chakradharpur Railway Station, it offers comfortable AC rooms and can arrange transport to nearby tourist spots.',
+      },
+    },
+  ],
+};
+
+const NEARBY_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Places Near Hotel K2, Chakradharpur',
+  description: 'Popular places and attractions near Hotel K2 in Chakradharpur, Jharkhand',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      item: {
+        '@type': 'TrainStation',
+        name: 'Chakradharpur Railway Station',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Chakradharpur',
+          addressRegion: 'Jharkhand',
+          addressCountry: 'IN',
+        },
+        description: 'Major railway station near Hotel K2, within walking distance',
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      item: {
+        '@type': 'Place',
+        name: 'Etwari Bazar',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Chakradharpur',
+          addressRegion: 'Jharkhand',
+          addressCountry: 'IN',
+        },
+        description: 'Vibrant local market near Hotel K2 for shopping and dining',
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      item: {
+        '@type': 'School',
+        name: 'Carmel School',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Chakradharpur',
+          addressRegion: 'Jharkhand',
+          addressCountry: 'IN',
+        },
+        description: 'School near Hotel K2, Chakradharpur',
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 4,
+      item: {
+        '@type': 'TouristAttraction',
+        name: 'Hirni Water Falls',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Chakradharpur',
+          addressRegion: 'Jharkhand',
+          addressCountry: 'IN',
+        },
+        description: 'Breathtaking cascade hidden in the lush forests of Jharkhand',
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 5,
+      item: {
+        '@type': 'TouristAttraction',
+        name: 'Secret Water Fall',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Chakradharpur',
+          addressRegion: 'Jharkhand',
+          addressCountry: 'IN',
+        },
+        description: 'An untouched gem surrounded by pristine wilderness',
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 6,
+      item: {
+        '@type': 'TouristAttraction',
+        name: 'Nakti Dam',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Chakradharpur',
+          addressRegion: 'Jharkhand',
+          addressCountry: 'IN',
+        },
+        description: 'Scenic reservoir surrounded by hills',
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 7,
+      item: {
+        '@type': 'HinduTemple',
+        name: 'Mahadevsal Temple',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Chakradharpur',
+          addressRegion: 'Jharkhand',
+          addressCountry: 'IN',
+        },
+        description: 'Ancient temple with spiritual significance',
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 8,
+      item: {
+        '@type': 'HinduTemple',
+        name: 'Kera Mandir',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Chakradharpur',
+          addressRegion: 'Jharkhand',
+          addressCountry: 'IN',
+        },
+        description: 'A serene place of worship',
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 9,
+      item: {
+        '@type': 'GovernmentBuilding',
+        name: 'DRM Office',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Chakradharpur',
+          addressRegion: 'Jharkhand',
+          addressCountry: 'IN',
+        },
+        description: 'Important administrative landmark',
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 10,
+      item: {
+        '@type': 'LocalBusiness',
+        name: 'Etwari Bazar Market',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Chakradharpur',
+          addressRegion: 'Jharkhand',
+          addressCountry: 'IN',
+        },
+        description: 'Vibrant local market for shopping',
+      },
+    },
   ],
 };
 
@@ -411,6 +698,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(NEARBY_SCHEMA) }}
         />
         <Preloader />
         <Header />
