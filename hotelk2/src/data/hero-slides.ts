@@ -22,6 +22,13 @@ export const HERO_SLIDES: HeroSlide[] = [
     captionHref: '/#gallery',
     interval: 2000,
   },
+   {
+    image: '/newimages/PremiumroomDoublebed3.png',
+    alt: 'Premium Room, Hotel K2 Chakradharpur',
+    captionLabel: 'Our Rooms',
+    captionHref: '/#rooms',
+    interval: 3000,
+  },
   {
     image: '/newimages/receptionmain.png',
     alt: 'Reception, Hotel K2',
