@@ -16,7 +16,10 @@ export const SITE = {
   copyrightYear: 2026,
   mapEmbedSrc:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d85.630322!3d22.670806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDQwJzE0LjkiTiA4NcKwMzcnNDkuMiJF!5e0!3m2!1sen!2sin!4v1756190741493!5m2!1sen!2sin',
-  phones: [{ display: '+91 8709490824', href: 'tel:+918709490824' }],
+  phones: [
+    { display: '+91 8709490824', href: 'tel:+918709490824' },
+    { display: '+91 9123490131', href: 'tel:+919123490131' },
+  ],
   emails: [{ display: 'hotelk2.ckp@gmail.com', href: 'mailto:hotelk2.ckp@gmail.com' }],
 };
 
@@ -31,6 +34,7 @@ export const NAV_LINKS: NavLink[] = [
 
 export const HEADER_CONTACTS: HeaderContact[] = [
   { icon: 'phone', label: 'Phone', value: '+91 8709490824', href: 'tel:+918709490824' },
+  { icon: 'phone', label: 'Alt Phone', value: '+91 9123490131', href: 'tel:+919123490131' },
   { icon: 'email', label: 'Email', value: 'hotelk2.ckp@gmail.com', href: 'mailto:hotelk2.ckp@gmail.com' },
   {
     icon: 'location',
@@ -69,6 +73,11 @@ export const CONTACT_DETAILS: ContactDetail[] = [
     label: '24 X 7 FRONT DESK',
     value: '+91 8709490824',
     href: 'tel:+918709490824',
+  },
+  {
+    label: 'ALTERNATE NUMBER',
+    value: '+91 9123490131',
+    href: 'tel:+919123490131',
   },
   {
     label: 'ADDRESS',

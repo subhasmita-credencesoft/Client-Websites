@@ -106,19 +106,25 @@ export function Footer() {
 
       <div className={styles.copyright}>
         <p className={styles.copyrightText}>
-          © Copyright {SITE.copyrightYear}. All Rights Reserved by{' '}
-          <span className={styles.copyrightBrand}>{SITE.name}</span>
-        </p>
-        <p className={styles.copyrightText}>
-          Designed &amp; Developed By{' '}
+          Designed and Developed By{' '}
           <a
             href="https://www.credencesoft.in/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.copyrightLink}
           >
-            credencesoft
+            CredenceSoft
           </a>
+          , Powered By{' '}
+          <a
+            href="https://bookonepms.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.copyrightLink}
+          >
+            BookOne
+          </a>
+          .
         </p>
       </div>
     </footer>
