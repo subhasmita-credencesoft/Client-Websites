@@ -12,6 +12,7 @@ type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 const DETAIL_ICONS: Record<string, string> = {
   '24 X 7 FRONT DESK': 'bell',
+  'ALTERNATE NUMBER': 'phone',
   ADDRESS: 'location',
   'E-Mail': 'email',
 };
@@ -31,6 +32,8 @@ export function ContactSection() {
     const data = new FormData(form);
     const name = String(data.get('name') ?? '').trim();
     const email = String(data.get('email') ?? '').trim();
+    const phone = String(data.get('phone') ?? '').trim();
+    const message = String(data.get('message') ?? '').trim();
 
     if (!name || !email) {
       setStatus('error');
@@ -42,8 +45,19 @@ export function ContactSection() {
     setError(undefined);
 
     try {
-      // Replace with the real submission endpoint.
-      await new Promise((resolve) => setTimeout(resolve, 900));
+      const whatsappMessage = [
+        '*New Inquiry from Hotel K2 Website*',
+        '',
+        `*Name:* ${name}`,
+        `*Email:* ${email}`,
+        phone ? `*Phone:* ${phone}` : '',
+        message ? `*Message:* ${message}` : '',
+      ].filter(Boolean).join('\n');
+
+      const whatsappUrl = `https://wa.me/918709490824?text=${encodeURIComponent(whatsappMessage)}`;
+      window.open(whatsappUrl, '_blank');
+
+      await new Promise((resolve) => setTimeout(resolve, 500));
       setStatus('success');
       form.reset();
     } catch {

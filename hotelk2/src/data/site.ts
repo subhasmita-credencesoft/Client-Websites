@@ -45,9 +45,7 @@ export const HEADER_CONTACTS: HeaderContact[] = [
 
 export const SOCIAL_LINKS: SocialLink[] = [
   { label: 'Facebook', href: 'https://www.facebook.com/', icon: 'facebook' },
-  { label: 'Instagram', href: 'https://www.instagram.com/', icon: 'instagram' },
-  { label: 'Twitter', href: 'https://twitter.com/', icon: 'twitter' },
-  { label: 'YouTube', href: 'https://www.youtube.com/', icon: 'youtube' },
+  { label: 'Instagram', href: 'https://www.instagram.com/_hotel_k2_/', icon: 'instagram' },
 ];
 
 export const HERO = {
