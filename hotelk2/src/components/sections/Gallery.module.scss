@@ -74,11 +74,16 @@
 
 .item {
   position: relative;
-  // Responsive tile height — taller on larger screens
+  display: block;
+  width: 100%;
   height: 150px;
   border-radius: 0.25rem;
   overflow: hidden;
   background-color: t.$color-surface-strong;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  font: inherit;
 
   @include m.from(t.$breakpoint-sm) {
     height: 180px;
@@ -104,4 +109,92 @@
   .item:hover & {
     transform: scale(1.08);
   }
+}
+
+// ── Lightbox ──────────────────────────────────────────────────────────────
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.92);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightboxContent {
+  position: relative;
+  width: 90vw;
+  height: 85vh;
+  max-width: 1200px;
+}
+
+.lightboxImage {
+  object-fit: contain !important;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  z-index: 10;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 8px 12px;
+  line-height: 1;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.lightboxPrev,
+.lightboxNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 48px;
+  cursor: pointer;
+  padding: 8px 16px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.lightboxPrev {
+  left: 16px;
+}
+
+.lightboxNext {
+  right: 16px;
+}
+
+.lightboxCaption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-lg;
+  text-align: center;
+  white-space: nowrap;
 }

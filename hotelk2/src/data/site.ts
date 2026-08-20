@@ -7,7 +7,7 @@ export const SITE = {
   address: 'K2 Complex, Etwari Bazar, Station Link Road, Chakradharpur, West Singhbhum, Jharkhand 833102',
   url: 'https://www.hotelk2.in/',
   bookingUrl: 'https://bookone.io/Hotel-K2?bookingEngine=true',
-  whatsappUrl: 'https://wa.me/08069641075',
+  whatsappUrl: 'https://wa.me/918709490824',
   logo: 'https://www.hhickp.com/hari-img/logo.webp',
   description:
     'A premium hotel in Chakradharpur, Jharkhand, offering modern comfort with traditional hospitality for business travelers, families, and tourists.',
