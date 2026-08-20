@@ -5,8 +5,8 @@ import styles from './Preloader.module.scss';
 
 /**
  * Preloader
- * Brief loading screen on first paint with the live site's double-ring spinner
- * (no brand logo), then fades out. Skipped immediately under reduced motion.
+ * Hotel K2 branded loading screen with double-ring spinner, then fades out.
+ * Skipped immediately under reduced motion.
  */
 export function Preloader() {
   const [done, setDone] = useState(false);
@@ -20,7 +20,7 @@ export function Preloader() {
       window.setTimeout(() => setGone(true), 500);
     };
 
-    const timer = window.setTimeout(hide, reduce ? 0 : 650);
+    const timer = window.setTimeout(hide, reduce ? 0 : 1200);
 
     const onLoad = () => {
       if (document.readyState === 'complete') {
@@ -40,6 +40,10 @@ export function Preloader() {
 
   return (
     <div className={`${styles.preloader} ${done ? styles.done : ''}`} role="status" aria-label="Loading page">
+      <div className={styles.brand} aria-hidden="true">
+        <span className={styles.brandName}>Hotel</span>
+        <span className={styles.brandAccent}>K2</span>
+      </div>
       <span className={styles.loader} aria-hidden="true" />
       <span className={styles.srOnly}>Loading…</span>
     </div>
