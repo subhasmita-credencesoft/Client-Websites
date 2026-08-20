@@ -43,7 +43,7 @@ export const STAY_FAQS: PolicyItem[] = [
   {
     question: 'What are the check-in and check-out times?',
     answer:
-      'Check-in is from 2:00 PM and check-out is until 11:00 AM. Late checkout is available on request subject to availability.',
+      'Check-in is from 4:00 AM to 12:00 AM, and check-out is from 10:00 AM to 11:00 AM. Late check-out is available on request, subject to availability.',
   },
   {
     question: 'Are breakfast and Wi-Fi included in the room rate?',
