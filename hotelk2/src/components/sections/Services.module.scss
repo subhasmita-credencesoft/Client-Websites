@@ -127,3 +127,16 @@
     font-size: t.$font-size-xl;
   }
 }
+
+.status {
+  display: inline-block;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-xs;
+  font-weight: t.$font-weight-semibold;
+  color: t.$color-text-inverse;
+  background-color: t.$color-state-error;
+  padding: 2px 8px;
+  border-radius: t.$radius-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

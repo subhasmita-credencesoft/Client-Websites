@@ -15,7 +15,7 @@ export const SITE = {
     'Welcome to Hotel K2, where comfort meets elegance. Conveniently located near Etwari Bazar in Chakradharpur, we provide top-class hospitality and modern amenities for business and leisure travelers.',
   copyrightYear: 2026,
   mapEmbedSrc:
-    'https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d56465.905463273884!2d84.576825!3d21.475317!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDI4JzMxLjEiTiA4NMKwMzQnMzYuNiJF!5e1!3m2!1sen!2sus!4v1756190741493!5m2!1sen!2sus',
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d85.630322!3d22.670806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDQwJzE0LjkiTiA4NcKwMzcnNDkuMiJF!5e0!3m2!1sen!2sin!4v1756190741493!5m2!1sen!2sin',
   phones: [{ display: '+91 8709490824', href: 'tel:+918709490824' }],
   emails: [{ display: 'hotelk2.ckp@gmail.com', href: 'mailto:hotelk2.ckp@gmail.com' }],
 };

@@ -42,6 +42,7 @@ export function Services() {
                 )}
               </span>
               <h3 className={styles.label}>{service.label}</h3>
+              {service.status && <span className={styles.status}>{service.status}</span>}
             </Reveal>
           ))}
         </ul>
