@@ -62,11 +62,11 @@ export const OFFERS: Offer[] = [
     category: 'Seasonal Stay',
     tagline: 'Stay 2 nights, 3rd night free',
     description:
-      'Unwind on the Bhubaneswar Cuttack corridor  pool access, breakfast for two, and a late checkout to make the most of your weekend.',
+      'Unwind on the Bhubaneswar Cuttack corridor  access, breakfast for two, and a late checkout to make the most of your weekend.',
     includes: [
       '2 nights with complimentary 3rd night',
       'Breakfast for two each day',
-      'Swimming pool & lawn access',
+      'lawn access',
       'Late checkout until 2 PM',
     ],
     price: 'From ₹6,500 / night',

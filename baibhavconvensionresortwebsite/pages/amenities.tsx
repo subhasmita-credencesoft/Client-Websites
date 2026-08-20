@@ -15,8 +15,8 @@ const AmenitiesPage: NextPage<AmenitiesPageProps> = ({ facilities }) => {
   return (
     <>
       <Seo
-        title="Amenities — Parking, Pool & Wi-Fi"
-        description="Free parking for 200+ vehicles, full power backup, 24/7 security, a swimming pool, driver rest areas and high-speed Wi-Fi at Baibhab Resorts."
+        title="Amenities — Parking,  & i-Fi"
+        description="Free parking for 200+ vehicles, full power backup, 24/7 security, driver rest areas and high-speed Wi-Fi at Baibhab Resorts."
         path="/amenities"
       />
       <InnerHero
@@ -55,7 +55,7 @@ const AmenitiesPage: NextPage<AmenitiesPageProps> = ({ facilities }) => {
         items={AMENITIES_FAQS}
         eyebrow="Amenities FAQs"
         title="Facilities Questions"
-        subtitle="Parking, power backup, security, pool and Wi-Fi — everything you need for a comfortable stay."
+        subtitle="Parking, power backup, security and Wi-Fi — everything you need for a comfortable stay."
       />
     </>
   );

@@ -60,7 +60,7 @@ const getReply = (input: string): ChatMessage => {
   if (/(dining|restaurant|food|menu|veg|cater|breakfast)/.test(q)) {
     return {
       from: 'bot',
-      text: 'Our in-house restaurant serves Odia, North & South Indian and Continental cuisine, with pure-veg banquet catering and live counters.',
+      text: 'Our Fusion bites serves Odia, North & South Indian and Continental cuisine, with pure-veg banquet catering and live counters.',
       href: '/dining',
       hrefLabel: 'Explore dining',
     };
@@ -73,10 +73,10 @@ const getReply = (input: string): ChatMessage => {
       hrefLabel: 'See location & directions',
     };
   }
-  if (/(amenit|pool|swim|wifi|internet|backup|security|gym|spa)/.test(q)) {
+  if (/(amenit|swim|wifi|internet|backup|security|gym|spa)/.test(q)) {
     return {
       from: 'bot',
-      text: 'We offer a swimming pool, high-speed Wi-Fi, full power backup, 24/7 security and thoughtful amenities for every guest.',
+      text: 'We offer high-speed Wi-Fi, full power backup, 24/7 security and thoughtful amenities for every guest.',
       href: '/amenities',
       hrefLabel: 'View amenities',
     };

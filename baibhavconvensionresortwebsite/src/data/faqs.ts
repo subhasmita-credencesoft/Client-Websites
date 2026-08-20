@@ -28,7 +28,7 @@ export const HOME_FAQS: PolicyItem[] = [
       `Call us at ${SITE.phoneReservations}, message us on WhatsApp, or use the booking and contact forms on this website. Our team responds within 24 hours for event proposals.`,
   },
   {
-    question: 'Does the resort have an in-house restaurant?',
+    question: 'Does the resort have an Fusion bites?',
     answer:
       'Yes. Our multi-cuisine restaurant serves Odia, North and South Indian and Continental fare, and our catering team handles pure-veg menus, live counters and dietary preferences.',
   },
@@ -48,7 +48,7 @@ export const STAY_FAQS: PolicyItem[] = [
   {
     question: 'Are breakfast and Wi-Fi included in the room rate?',
     answer:
-      'Yes — every room includes complimentary breakfast and high-speed Wi-Fi. Pool and lawn access is also included with your stay.',
+      'Yes — every room includes complimentary breakfast and high-speed Wi-Fi and lawn access is also included with your stay.',
   },
   {
     question: 'What amenities are provided inside the rooms?',
