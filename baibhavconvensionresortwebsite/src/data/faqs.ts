@@ -20,7 +20,7 @@ export const HOME_FAQS: PolicyItem[] = [
   {
     question: 'Is parking available for guests and event attendees?',
     answer:
-      'Yes, we provide free parking for 200+ vehicles along with dedicated driver rest areas, making arrival effortless for large wedding and corporate gatherings.',
+      'Yes, we provide free parking for 50+ vehicles along with dedicated driver rest areas, making arrival effortless for large wedding and corporate gatherings.',
   },
   {
     question: 'How do I book a room or plan an event?',
@@ -58,7 +58,7 @@ export const STAY_FAQS: PolicyItem[] = [
   {
     question: 'Is parking free for hotel guests?',
     answer:
-      'Yes, free parking for 200+ vehicles is available to all guests, along with driver rest areas for outstation travellers.',
+      'Yes, free parking for 50+ vehicles is available to all guests, along with driver rest areas for outstation travellers.',
   },
   {
     question: 'Can I book a block of rooms for a wedding or event?',

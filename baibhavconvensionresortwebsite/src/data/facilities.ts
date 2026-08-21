@@ -3,9 +3,9 @@ import { Facility } from '@/types';
 export const FACILITIES: Facility[] = [
   {
     icon: 'solar:parking-square-bold',
-    title: 'Parking for 200+ Vehicles',
+    title: 'Parking for 50+ Vehicles',
     description:
-      'Dedicated parking for over 200 cars plus dedicated bus bays  critical for large weddings and corporate events, with valet capability.',
+      'Dedicated parking for over 50 cars plus dedicated bus bays  critical for large weddings and corporate events, with valet capability.',
     image: '/newedit/Entrance 2.avif',
   },
   {

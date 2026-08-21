@@ -31,7 +31,7 @@ export const BLOG_POSTS: BlogPost[] = [
         list: [
           'Comfortable stays: Premium and Deluxe rooms with private bathrooms, TV, a work desk, electric kettle and complimentary toiletries.',
           'Easy access: About 15 km from Bhubaneswar Railway Station, 16 km from Cuttack Railway Station and 18 km from Biju Patnaik International Airport.',
-          'Hassle-free parking: Dedicated space for 200+ vehicles, useful for guests driving in from either city.',
+          'Hassle-free parking: Dedicated space for 50+ vehicles, useful for guests driving in from either city.',
           'In-house dining: A multi-cuisine restaurant serving Odia, Indian and continental food.',
         ],
       },
@@ -78,7 +78,7 @@ export const BLOG_FAQS: PolicyItem[] = [
   {
     question: 'Does the hotel offer free parking?',
     answer:
-      'Yes. Baibhab Resorts provides free parking for over 200 vehicles, along with a dedicated driver rest area. This is especially useful for wedding and event guests driving in from Bhubaneswar, Cuttack or other parts of Odisha.',
+      'Yes. Baibhab Resorts provides free parking for over 50 vehicles, along with a dedicated driver rest area. This is especially useful for wedding and event guests driving in from Bhubaneswar, Cuttack or other parts of Odisha.',
   },
   {
     question: 'Can I book a room and also enquire about an event?',

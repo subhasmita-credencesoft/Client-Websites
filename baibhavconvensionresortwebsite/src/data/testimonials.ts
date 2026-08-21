@@ -34,7 +34,7 @@ export const TESTIMONIALS: Testimonial[] = [
     location: 'Delhi NCR',
     rating: 4.8,
     quote:
-      'Parking for 200 cars and a driver rest area sealed the deal for our event. Guests from both cities reached easily  no traffic, right off NH-16.',
+      'Parking for 50 cars and a driver rest area sealed the deal for our event. Guests from both cities reached easily  no traffic, right off NH-16.',
     tripName: 'Corporate Gala at Baibhab',
   },
 ];
