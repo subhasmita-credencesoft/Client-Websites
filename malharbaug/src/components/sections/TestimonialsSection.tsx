@@ -8,6 +8,9 @@ export default function TestimonialsSection() {
       <div className="mx-auto mb-16 max-w-2xl text-center">
         <p className="section-subtitle">What Our Guests Say</p>
         <h2 className="section-title">Hear from Our Happy Guests</h2>
+        <p className="mt-4 font-sans text-sm leading-relaxed text-earth-600 dark:text-earth-300">
+          Families from Mumbai, Pune and across Maharashtra rate their stay at Malhar Baug Resort 4.1 out of 5 on Google — read why below.
+        </p>
       </div>
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

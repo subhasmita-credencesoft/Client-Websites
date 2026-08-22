@@ -1,7 +1,15 @@
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { eventCategories } from '@/data/events';
+
+export const metadata: Metadata = {
+  title: 'Events & Celebrations',
+  description:
+    'Host weddings, corporate meetings, birthdays and family gatherings at Malhar Baug Resort, Alibaug. Event lawns, catering, decor and customised packages near Nagaon Beach.',
+  alternates: { canonical: '/events' },
+};
 
 export default function EventsPage() {
   return (
@@ -11,7 +19,7 @@ export default function EventsPage() {
         <section className="relative flex min-h-[400px] items-center overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2068"
-            alt="Events"
+            alt="Weddings, birthdays and corporate events at Malhar Baug Resort Alibaug event lawns"
             fill
             priority
             className="absolute inset-0 z-0 object-cover"

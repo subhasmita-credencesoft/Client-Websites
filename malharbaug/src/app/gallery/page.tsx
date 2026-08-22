@@ -18,7 +18,7 @@ export default function GalleryPage() {
         <section className="relative flex min-h-[400px] items-center overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=2068"
-            alt="Gallery"
+            alt="Photo gallery of Malhar Baug Resort Alibaug – rooms, pool, garden and dining"
             fill
             priority
             className="absolute inset-0 z-0 object-cover"
@@ -61,7 +61,7 @@ export default function GalleryPage() {
                 >
                   <Image
                     src={img}
-                    alt={`${currentCategory.title} image ${i + 1}`}
+                    alt={`${currentCategory.title} at Malhar Baug Resort Alibaug – photo ${i + 1}`}
                     fill
                     sizes="(min-width: 1024px) 33vw, 100vw"
                     className="object-cover transition-transform duration-500 hover:scale-105"

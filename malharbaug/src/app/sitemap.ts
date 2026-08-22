@@ -1,26 +1,42 @@
 import { MetadataRoute } from 'next';
+import { siteConfig } from '@/lib/site';
+import { rooms } from '@/data/rooms';
+import { resortFacilities } from '@/data/amenities';
+import { eventCategories } from '@/data/events';
+import { travelGuides } from '@/data/travelGuide';
+import { blogPosts } from '@/data/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://malharbaugresort.com';
-  const pages = [
-    '', '/about', '/rooms', '/rooms/luxury-deluxe', '/rooms/family-suite', '/rooms/private-villa',
-    '/amenities', '/amenities/swimming-pool', '/amenities/kids-activities',
-    '/amenities/indoor-games', '/amenities/outdoor-games', '/amenities/garden', '/amenities/open-lawn',
-    '/amenities/restaurant', '/amenities/parking', '/amenities/free-wifi', '/amenities/24-hour-front-desk',
-    '/amenities/room-service', '/amenities/family-seating', '/amenities/event-lawn', '/amenities/bbq-area',
-    '/amenities/bonfire-area', '/amenities/rain-dance', '/amenities/conference-space',
-    '/amenities/power-backup', '/amenities/daily-housekeeping',
-    '/restaurant', '/gallery', '/events',
-    '/events/corporate', '/events/wedding', '/events/birthday', '/events/team-outing',
-    '/events/family-gathering', '/events/anniversary', '/events/engagement', '/events/baby-shower',
-    '/events/bachelor-party', '/events/school-picnic', '/events/private-event',
-    '/packages', '/offers', '/nearby', '/contact', '/privacy-policy', '/terms-conditions',
-    '/refund-policy', '/cancellation-policy',
+  const baseUrl = siteConfig.url;
+
+  const staticPages: { path: string; priority: number; freq: 'daily' | 'weekly' | 'monthly' | 'yearly' }[] = [
+    { path: '', priority: 1, freq: 'weekly' },
+    { path: '/rooms', priority: 0.9, freq: 'monthly' },
+    ...rooms.map((r) => ({ path: `/rooms/${r.slug}`, priority: 0.9, freq: 'monthly' as const })),
+    { path: '/amenities', priority: 0.7, freq: 'monthly' },
+    ...resortFacilities.map((f) => ({ path: `/amenities/${f.slug}`, priority: 0.6, freq: 'monthly' as const })),
+    { path: '/restaurant', priority: 0.7, freq: 'monthly' },
+    { path: '/packages', priority: 0.8, freq: 'monthly' },
+    { path: '/events', priority: 0.7, freq: 'monthly' },
+    ...eventCategories.map((e) => ({ path: `/events/${e.id}`, priority: 0.6, freq: 'monthly' as const })),
+    { path: '/gallery', priority: 0.5, freq: 'monthly' },
+    { path: '/nearby', priority: 0.7, freq: 'monthly' },
+    { path: '/travel-guide', priority: 0.8, freq: 'weekly' },
+    ...travelGuides.map((g) => ({ path: `/travel-guide/${g.slug}`, priority: 0.8, freq: 'monthly' as const })),
+    { path: '/blog', priority: 0.7, freq: 'weekly' },
+    ...blogPosts.map((p) => ({ path: `/blog/${p.slug}`, priority: 0.7, freq: 'monthly' as const })),
+    { path: '/about', priority: 0.5, freq: 'yearly' },
+    { path: '/contact', priority: 0.8, freq: 'monthly' },
+    { path: '/privacy-policy', priority: 0.2, freq: 'yearly' },
+    { path: '/terms-conditions', priority: 0.2, freq: 'yearly' },
+    { path: '/refund-policy', priority: 0.3, freq: 'yearly' },
+    { path: '/cancellation-policy', priority: 0.3, freq: 'yearly' },
   ];
-  return pages.map((page) => ({
-    url: `${baseUrl}${page}`,
+
+  return staticPages.map(({ path, priority, freq }) => ({
+    url: `${baseUrl}${path}`,
     lastModified: new Date(),
-    changeFrequency: page === '' ? 'weekly' as const : 'monthly' as const,
-    priority: page === '' ? 1 : page.startsWith('/rooms') || page.startsWith('/packages') ? 0.8 : 0.5,
+    changeFrequency: freq,
+    priority,
   }));
 }

@@ -1,69 +1,60 @@
+import { siteConfig } from '@/lib/site';
+
 export function hotelSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Hotel',
-    name: 'Malhar Baug Resort',
-    description: 'Peaceful nature retreat located near Nagaon Beach, Alibaug offering luxury rooms, villas, swimming pool, garden, and authentic cuisine.',
-    url: 'https://malharbaugresort.com',
-    telephone: '+919876543210',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Palhe, Nagaon',
-      addressLocality: 'Alibaug',
-      addressRegion: 'Maharashtra',
-      postalCode: '402201',
-      addressCountry: 'IN',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 18.6553,
-      longitude: 72.8772,
-    },
-    image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&q=80&w=1200',
+    name: siteConfig.name,
+    description:
+      'Family-friendly resort in Nagaon, Alibaug offering luxury rooms, private villas, swimming pool, gardens, and home-style Konkan cuisine near Nagaon Beach.',
+    url: siteConfig.url,
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
+    address: { ...siteConfig.address },
+    geo: { ...siteConfig.geo },
+    image: `${siteConfig.url}/heroimg1.jpeg`,
     priceRange: '₹4,500 - ₹15,000',
+    checkinTime: '12:00',
+    checkoutTime: '10:00',
+    numberOfRooms: '12',
+    petsAllowed: false,
     amenityFeature: [
       { '@type': 'LocationFeatureSpecification', name: 'Swimming Pool' },
       { '@type': 'LocationFeatureSpecification', name: 'Restaurant' },
       { '@type': 'LocationFeatureSpecification', name: 'Free WiFi' },
-      { '@type': 'LocationFeatureSpecification', name: 'Parking' },
+      { '@type': 'LocationFeatureSpecification', name: 'Free Parking' },
       { '@type': 'LocationFeatureSpecification', name: 'Garden' },
       { '@type': 'LocationFeatureSpecification', name: 'Room Service' },
+      { '@type': 'LocationFeatureSpecification', name: 'Kids Play Area' },
+      { '@type': 'LocationFeatureSpecification', name: 'Event Lawn' },
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '156',
-      bestRating: '5',
-    },
-    checkinTime: '12:00',
-    checkoutTime: '10:00',
   };
 }
 
 export function localBusinessSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'Malhar Baug Resort',
-    image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&q=80&w=1200',
-    '@id': 'https://malharbaugresort.com',
-    url: 'https://malharbaugresort.com',
-    telephone: '+919876543210',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Palhe, Nagaon',
-      addressLocality: 'Alibaug',
-      addressRegion: 'Maharashtra',
-      postalCode: '402201',
-      addressCountry: 'IN',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 18.6553,
-      longitude: 72.8772,
-    },
+    '@type': ['LocalBusiness', 'LodgingBusiness'],
+    '@id': `${siteConfig.url}/#localbusiness`,
+    name: siteConfig.name,
+    image: `${siteConfig.url}/heroimg1.jpeg`,
+    url: siteConfig.url,
+    telephone: siteConfig.phone,
+    address: { ...siteConfig.address },
+    geo: { ...siteConfig.geo },
     openingHours: 'Mo-Su 00:00-23:59',
     priceRange: '₹₹₹',
+  };
+}
+
+export function websiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${siteConfig.url}/#website`,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    publisher: { '@id': `${siteConfig.url}/#localbusiness` },
   };
 }
 
@@ -90,21 +81,7 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: item.url,
+      item: `${siteConfig.url}${item.url}`,
     })),
-  };
-}
-
-export function reviewSchema(reviews: { name: string; reviewBody: string; ratingValue: number }[]) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'AggregateRating',
-    itemReviewed: {
-      '@type': 'Hotel',
-      name: 'Malhar Baug Resort',
-    },
-    ratingValue: reviews.length > 0 ? (reviews.reduce((s, r) => s + r.ratingValue, 0) / reviews.length).toFixed(1) : '4.8',
-    bestRating: '5',
-    reviewCount: reviews.length || 156,
   };
 }

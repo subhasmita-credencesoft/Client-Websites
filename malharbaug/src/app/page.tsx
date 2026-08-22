@@ -10,6 +10,7 @@ import DiningPreview from '@/components/sections/DiningPreview';
 import EventsPreview from '@/components/sections/EventsPreview';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import NearbyAttractionsGrid from '@/components/sections/NearbyAttractionsGrid';
+import FAQSection from '@/components/sections/FAQSection';
 import CTASection from '@/components/sections/CTASection';
 import Footer from '@/components/layout/Footer';
 
@@ -29,6 +30,7 @@ export default function HomePage() {
         <EventsPreview />
         <TestimonialsSection />
         <NearbyAttractionsGrid />
+        <FAQSection />
         <CTASection />
       </main>
       <Footer />

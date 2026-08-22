@@ -1,7 +1,15 @@
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { rooms } from '@/data/rooms';
+
+export const metadata: Metadata = {
+  title: 'Rooms & Villas',
+  description:
+    'Choose from luxury deluxe rooms, spacious family suites and private villas at Malhar Baug Resort, Alibaug. AC rooms with modern amenities, garden views and rates starting ₹4,500/night near Nagaon Beach.',
+  alternates: { canonical: '/rooms' },
+};
 
 export default function RoomsPage() {
   return (
@@ -11,7 +19,7 @@ export default function RoomsPage() {
         <section className="relative flex min-h-[400px] items-center overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=2068"
-            alt="Luxury rooms"
+            alt="Luxury rooms and villas at Malhar Baug Resort, family resort in Alibaug near Nagaon Beach"
             fill
             priority
             className="absolute inset-0 z-0 object-cover"

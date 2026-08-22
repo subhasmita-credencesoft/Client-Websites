@@ -116,3 +116,35 @@ export interface BlogPost {
   image: string;
   tags: string[];
 }
+
+export interface GuideSection {
+  heading: string;
+  paragraphs?: string[];
+  list?: string[];
+}
+
+export interface BlogArticle {
+  slug: string;
+  title: string;
+  description: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  readTime: string;
+  image: string;
+  imageAlt: string;
+  tags: string[];
+  sections: GuideSection[];
+}
+
+export interface TravelGuide {
+  slug: string;
+  title: string;
+  description: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  image: string;
+  imageAlt: string;
+  sections: GuideSection[];
+}

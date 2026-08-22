@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { eventCategories } from '@/data/events';
 
 export default function EventsPreview() {
@@ -12,7 +13,7 @@ export default function EventsPreview() {
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {eventCategories.map((event) => (
-            <a
+            <Link
               key={event.id}
               href={`/events/${event.id}`}
               className="group relative overflow-hidden rounded-2xl shadow-lg"
@@ -20,7 +21,7 @@ export default function EventsPreview() {
               <div className="relative h-72 w-full">
                 <Image
                   src={event.image}
-                  alt={event.title}
+                  alt={`${event.title} at Malhar Baug Resort Alibaug`}
                   fill
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -33,14 +34,14 @@ export default function EventsPreview() {
                 </div>
                 <h3 className="font-serif text-lg font-bold text-white">{event.title}</h3>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 
         <div className="mt-12 text-center">
-          <a href="/events" className="btn-secondary">
+          <Link href="/events" className="btn-secondary">
             View All Events
-          </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,5 +1,12 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions',
+  description: 'Terms and conditions for bookings and stays at Malhar Baug Resort, Alibaug near Nagaon Beach.',
+  alternates: { canonical: '/terms-conditions' },
+};
 
 export default function TermsConditionsPage() {
   return (

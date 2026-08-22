@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { diningDescription, menuCategories } from '@/data/dining';
 
 export default function DiningPreview() {
@@ -9,7 +10,7 @@ export default function DiningPreview() {
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-2xl">
             <Image
               src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800"
-              alt="Restaurant at Malhar Baug Resort"
+              alt="Konkan seafood and Maharashtrian thali served at Malhar Baug Resort restaurant, Alibaug"
               fill
               sizes="(min-width: 1024px) 40vw, 90vw"
               className="object-cover"
@@ -35,12 +36,12 @@ export default function DiningPreview() {
             ))}
           </div>
 
-          <a
+          <Link
             href="/restaurant"
             className="btn-primary mt-8 inline-flex"
           >
             View Full Menu
-          </a>
+          </Link>
         </div>
       </div>
     </section>

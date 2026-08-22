@@ -1,7 +1,15 @@
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { nearbyAttractions } from '@/data/nearby';
+
+export const metadata: Metadata = {
+  title: 'Places to Visit Near Nagaon Beach',
+  description:
+    'Discover the best places to visit near Malhar Baug Resort — Nagaon Beach (2 km), Alibaug Beach, Kolaba Fort, Kihim Beach, Kashid Beach, Murud Janjira and top things to do in Alibaug.',
+  alternates: { canonical: '/nearby' },
+};
 
 export default function NearbyPage() {
   return (
@@ -11,7 +19,7 @@ export default function NearbyPage() {
         <section className="relative flex min-h-[400px] items-center overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2068"
-            alt="Nearby attractions"
+            alt="Nagaon Beach near Malhar Baug Resort Alibaug – places to visit around the resort"
             fill
             priority
             className="absolute inset-0 z-0 object-cover"

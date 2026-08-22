@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { resortFacilities } from '@/data/amenities';
 
 export default function AmenitiesGrid() {
@@ -28,6 +29,12 @@ export default function AmenitiesGrid() {
               </p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link href="/amenities" className="btn-secondary">
+            Explore All Amenities
+          </Link>
         </div>
       </div>
     </section>

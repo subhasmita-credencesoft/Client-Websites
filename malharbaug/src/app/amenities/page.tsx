@@ -1,7 +1,15 @@
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { resortFacilities } from '@/data/amenities';
+
+export const metadata: Metadata = {
+  title: 'Resort Amenities',
+  description:
+    'Explore amenities at Malhar Baug Resort, Alibaug — swimming pool, garden lawns, indoor & outdoor games, rain dance, BBQ area, free WiFi, parking and 24-hour room service.',
+  alternates: { canonical: '/amenities' },
+};
 
 export default function AmenitiesPage() {
   return (
@@ -11,7 +19,7 @@ export default function AmenitiesPage() {
         <section className="relative flex min-h-[400px] items-center overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?auto=format&fit=crop&q=80&w=2068"
-            alt="Resort amenities"
+            alt="Resort amenities at Malhar Baug Resort Alibaug – swimming pool and gardens"
             fill
             priority
             className="absolute inset-0 z-0 object-cover"

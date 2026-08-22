@@ -1,8 +1,16 @@
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { packages, offers } from '@/data/packages';
 import { bookingEngineUrl } from '@/data/booking';
+
+export const metadata: Metadata = {
+  title: 'Resort Packages & Offers',
+  description:
+    'View stay packages and offers at Malhar Baug Resort, Alibaug — family packages, group bookings, corporate outings and celebration deals near Nagaon Beach. Book direct for best rates.',
+  alternates: { canonical: '/packages' },
+};
 
 export default function PackagesPage() {
   return (
@@ -12,7 +20,7 @@ export default function PackagesPage() {
         <section className="relative flex min-h-[400px] items-center overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1559223607-a43c990c692c?auto=format&fit=crop&q=80&w=2068"
-            alt="Packages"
+            alt="Stay packages and offers at Malhar Baug Resort Alibaug"
             fill
             priority
             className="absolute inset-0 z-0 object-cover"

@@ -5,7 +5,8 @@ import StoreProvider from '@/store/StoreProvider';
 import JsonLd from '@/components/seo/JsonLd';
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat';
 import ScrollAnimationObserver from '@/components/ui/ScrollAnimationObserver';
-import { hotelSchema, localBusinessSchema } from '@/lib/schema';
+import { hotelSchema, localBusinessSchema, websiteSchema } from '@/lib/schema';
+import { siteConfig } from '@/lib/site';
 import './globals.css';
 
 const inter = Inter({
@@ -23,10 +24,45 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'Malhar Baug Resort Alibaug | Luxury Resort Near Nagaon Beach',
-  description:
-    'Experience a peaceful stay at Malhar Baug Resort in Alibaug near Nagaon Beach. Enjoy luxury rooms, villas, swimming pool, gardens, authentic food, family vacations, corporate outings, and direct online booking.',
-  metadataBase: new URL('https://malharbaugresort.com'),
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: 'Malhar Baug Resort Alibaug | Family Resort Near Nagaon Beach',
+    template: `%s | ${siteConfig.name} Alibaug`,
+  },
+  description: siteConfig.description,
+  keywords: [
+    'resort in Alibaug',
+    'family resort in Alibaug',
+    'resort near Nagaon Beach',
+    'Nagaon Beach resort',
+    'Alibaug resort with swimming pool',
+    'villa resort in Alibaug',
+    'hotel near Nagaon Beach',
+    'group stay in Alibaug',
+  ],
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: 'Malhar Baug Resort Alibaug | Family Resort Near Nagaon Beach',
+    description: siteConfig.description,
+    images: [{ url: '/heroimg1.jpeg', width: 1200, height: 630, alt: 'Malhar Baug Resort garden and rooms in Nagaon, Alibaug' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Malhar Baug Resort Alibaug | Family Resort Near Nagaon Beach',
+    description: siteConfig.description,
+    images: ['/heroimg1.jpeg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
+  },
   icons: {
     icon: '/malharlogo.jpeg',
     apple: '/malharlogo.jpeg',
@@ -60,6 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StoreProvider>
           <JsonLd data={hotelSchema()} />
           <JsonLd data={localBusinessSchema()} />
+          <JsonLd data={websiteSchema()} />
           <ScrollAnimationObserver />
           {children}
           <WhatsAppFloat />

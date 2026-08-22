@@ -1,9 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import JsonLd from '@/components/seo/JsonLd';
 import { eventCategories } from '@/data/events';
 import { bookingEngineUrl } from '@/data/booking';
+import { breadcrumbSchema } from '@/lib/schema';
 import type { Metadata } from 'next';
 
 interface Props {
@@ -18,8 +21,14 @@ export function generateMetadata({ params }: Props): Metadata {
   const event = eventCategories.find((e) => e.id === params.slug);
   if (!event) return { title: 'Event Not Found' };
   return {
-    title: `${event.title} | Malhar Baug Resort Alibaug`,
-    description: event.description,
+    title: `${event.title} in Alibaug`,
+    description: `${event.title} at Malhar Baug Resort, Alibaug — ${event.description} Garden lawns, catering and customised packages near Nagaon Beach.`,
+    alternates: { canonical: `/events/${event.id}` },
+    openGraph: {
+      title: `${event.title} | Malhar Baug Resort Alibaug`,
+      description: event.description,
+      images: [{ url: event.image, alt: `${event.title} at Malhar Baug Resort Alibaug` }],
+    },
   };
 }
 
@@ -30,13 +39,21 @@ export default function EventDetailPage({ params }: Props) {
   return (
     <>
       <Header />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Events', url: '/events' },
+          { name: event.title, url: `/events/${event.id}` },
+        ])}
+      />
       <main>
         <section className="relative flex min-h-[500px] items-end overflow-hidden">
           <Image
             src={event.image}
-            alt={event.title}
+            alt={`${event.title} at Malhar Baug Resort, Alibaug`}
             fill
             priority
+            sizes="100vw"
             className="absolute inset-0 z-0 object-cover"
           />
           <div className="hero-overlay absolute inset-0 z-0" />
@@ -66,12 +83,12 @@ export default function EventDetailPage({ params }: Props) {
               >
                 Book Now
               </a>
-              <a
+              <Link
                 href="/contact"
                 className="rounded-full border-2 border-brand-600 px-8 py-3.5 font-sans text-sm font-semibold text-brand-600 transition-colors hover:bg-brand-600 hover:text-white dark:border-brand-400 dark:text-brand-400"
               >
                 Contact Us
-              </a>
+              </Link>
             </div>
           </div>
         </section>

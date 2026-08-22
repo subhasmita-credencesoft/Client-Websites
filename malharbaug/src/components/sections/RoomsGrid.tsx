@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { rooms } from '@/data/rooms';
 
 export default function RoomsGrid() {
@@ -18,7 +19,7 @@ export default function RoomsGrid() {
             <div className="relative h-64 w-full overflow-hidden">
               <Image
                 src={room.image}
-                alt={room.title}
+                alt={`${room.title} at Malhar Baug Resort, Alibaug – ${room.tagline}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -53,15 +54,21 @@ export default function RoomsGrid() {
                 ))}
               </div>
 
-              <a
+              <Link
                 href={`/rooms/${room.slug}`}
                 className="btn-primary mt-6 inline-flex"
               >
                 View Details
-              </a>
+              </Link>
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-12 text-center">
+        <Link href="/rooms" className="btn-secondary">
+          Compare All Rooms &amp; Villas
+        </Link>
       </div>
     </section>
   );

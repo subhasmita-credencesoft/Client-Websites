@@ -1,6 +1,14 @@
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+
+export const metadata: Metadata = {
+  title: 'About Our Resort',
+  description:
+    'Learn about Malhar Baug Resort — a family-run garden resort in Nagaon, Palhe, Alibaug offering comfortable rooms, private villas, swimming pool and warm Konkan hospitality since day one.',
+  alternates: { canonical: '/about' },
+};
 
 export default function AboutPage() {
   return (
@@ -45,7 +53,7 @@ export default function AboutPage() {
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-2xl">
                 <Image
                   src="https://images.unsplash.com/photo-1615460549969-36fa19521c4f?auto=format&fit=crop&q=80&w=800"
-                  alt="Resort garden view"
+                  alt="Lush gardens at Malhar Baug Resort, Alibaug – family resort near Nagaon Beach"
                   fill
                   sizes="(min-width: 1024px) 40vw, 90vw"
                   className="object-cover"

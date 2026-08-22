@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { openDrawer, setScrolled } from '@/store/slices/uiSlice';
 import { primaryNav } from '@/data/navigation';
@@ -30,17 +31,18 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="/">
+        <Link href="/" aria-label="Malhar Baug Resort – home">
           <Image
             src="/malharlogo.jpeg"
-            alt="Malhar Baug Resort"
+            alt="Malhar Baug Resort logo – family resort in Alibaug"
             width={70}
             height={70}
+            priority
             className="rounded-full"
           />
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
           {primaryNav.map((item) =>
             item.children ? (
               <div
@@ -60,13 +62,13 @@ export default function Header() {
                 <NavDropdown open={activeDropdown === item.label} items={item.children} />
               </div>
             ) : (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 className="font-sans text-sm font-medium text-neutral-700 transition-colors duration-200 ease-out hover:text-brand-600 dark:text-neutral-200"
               >
                 {item.label}
-              </a>
+              </Link>
             )
           )}
         </nav>

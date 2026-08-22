@@ -59,7 +59,7 @@ export default function MobileDrawer() {
           <div className="flex items-center gap-2">
             <Image
               src="/malharlogo.jpeg"
-              alt="Malhar Baug Resort"
+              alt="Malhar Baug Resort logo – Alibaug resort near Nagaon Beach"
               width={36}
               height={36}
               className="rounded-full"

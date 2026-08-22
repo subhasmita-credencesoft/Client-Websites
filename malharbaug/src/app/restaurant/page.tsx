@@ -16,7 +16,7 @@ export default function RestaurantPage() {
         <section className="relative flex min-h-[400px] items-center overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=2068"
-            alt="Restaurant"
+            alt="Garden restaurant at Malhar Baug Resort Alibaug serving Konkan cuisine"
             fill
             priority
             className="absolute inset-0 z-0 object-cover"
