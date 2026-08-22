@@ -23,7 +23,7 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: `${event.title} in Alibaug`,
     description: `${event.title} at Malhar Baug Resort, Alibaug — ${event.description} Garden lawns, catering and customised packages near Nagaon Beach.`,
-    alternates: { canonical: `/events/${event.id}` },
+    alternates: { canonical: `/events/${event.id}/` },
     openGraph: {
       title: `${event.title} | Malhar Baug Resort Alibaug`,
       description: event.description,

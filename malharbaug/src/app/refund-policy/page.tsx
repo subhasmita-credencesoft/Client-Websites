@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Refund Policy',
   description: 'Refund policy for bookings at Malhar Baug Resort, Alibaug — cancellation windows, refund timelines and modification charges.',
-  alternates: { canonical: '/refund-policy' },
+  alternates: { canonical: '/refund-policy/' },
 };
 
 export default function RefundPolicyPage() {

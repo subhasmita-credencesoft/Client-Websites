@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Events & Celebrations',
   description:
     'Host weddings, corporate meetings, birthdays and family gatherings at Malhar Baug Resort, Alibaug. Event lawns, catering, decor and customised packages near Nagaon Beach.',
-  alternates: { canonical: '/events' },
+  alternates: { canonical: '/events/' },
 };
 
 export default function EventsPage() {

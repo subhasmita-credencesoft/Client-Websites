@@ -44,6 +44,10 @@ export function localBusinessSchema() {
     geo: { ...siteConfig.geo },
     openingHours: 'Mo-Su 00:00-23:59',
     priceRange: '₹₹₹',
+    sameAs: [
+      'https://www.instagram.com/malhar_baug_resort/',
+      'https://www.facebook.com/p/Malharbaug-Resort-61584448151255/',
+    ],
   };
 }
 
@@ -77,11 +81,11 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
+    itemListElement: items.map((entry, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      name: item.name,
-      item: `${siteConfig.url}${item.url}`,
+      name: entry.name,
+      item: entry.url === '/' ? `${siteConfig.url}/` : `${siteConfig.url}${entry.url}/`,
     })),
   };
 }

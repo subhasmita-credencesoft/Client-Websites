@@ -34,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return staticPages.map(({ path, priority, freq }) => ({
-    url: `${baseUrl}${path}`,
+    url: path === '' ? `${baseUrl}/` : `${baseUrl}${path}/`,
     lastModified: new Date(),
     changeFrequency: freq,
     priority,

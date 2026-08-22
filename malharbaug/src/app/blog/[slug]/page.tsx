@@ -23,7 +23,7 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: post.title,
     description: post.description,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: { canonical: `/blog/${post.slug}/` },
     openGraph: {
       title: post.title,
       description: post.description,
@@ -58,7 +58,7 @@ export default function BlogArticlePage({ params }: Props) {
       logo: { '@type': 'ImageObject', url: `${siteConfig.url}/malharlogo.jpeg` },
     },
     keywords: post.tags.join(', '),
-    mainEntityOfPage: `${siteConfig.url}/blog/${post.slug}`,
+    mainEntityOfPage: `${siteConfig.url}/blog/${post.slug}/`,
   };
 
   return (

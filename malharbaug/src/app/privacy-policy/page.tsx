@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'Read the privacy policy of Malhar Baug Resort, Alibaug — how we collect, use and protect your personal information.',
-  alternates: { canonical: '/privacy-policy' },
+  alternates: { canonical: '/privacy-policy/' },
 };
 
 export default function PrivacyPolicyPage() {

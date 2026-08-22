@@ -23,7 +23,7 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: `${room.title} in Alibaug`,
     description: `${room.title} at Malhar Baug Resort, Alibaug near Nagaon Beach. ${room.tagline}. ${room.capacity}. Rates ${room.price} — book direct for best rates.`,
-    alternates: { canonical: `/rooms/${room.slug}` },
+    alternates: { canonical: `/rooms/${room.slug}/` },
     openGraph: {
       title: `${room.title} | Malhar Baug Resort Alibaug`,
       description: room.description,
@@ -66,7 +66,7 @@ export default function RoomDetailPage({ params }: Props) {
         priceCurrency: 'INR',
       },
       availability: 'https://schema.org/InStock',
-      url: `${siteConfig.url}/rooms/${room.slug}`,
+      url: `${siteConfig.url}/rooms/${room.slug}/`,
     },
   };
 

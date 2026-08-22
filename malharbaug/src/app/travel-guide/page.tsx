@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Alibaug Travel Guide',
   description:
     'Free Alibaug travel guides — things to do in Alibaug, Nagaon Beach guide, Mumbai & Pune weekend trip plans, best time to visit and a 2-day itinerary by Malhar Baug Resort.',
-  alternates: { canonical: '/travel-guide' },
+  alternates: { canonical: '/travel-guide/' },
 };
 
 const formatDate = (iso: string) =>

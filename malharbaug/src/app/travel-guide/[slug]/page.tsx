@@ -23,7 +23,7 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: guide.title,
     description: guide.description,
-    alternates: { canonical: `/travel-guide/${guide.slug}` },
+    alternates: { canonical: `/travel-guide/${guide.slug}/` },
     openGraph: {
       title: guide.title,
       description: guide.description,

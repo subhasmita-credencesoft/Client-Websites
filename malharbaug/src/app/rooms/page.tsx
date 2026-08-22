@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Rooms & Villas',
   description:
     'Choose from luxury deluxe rooms, spacious family suites and private villas at Malhar Baug Resort, Alibaug. AC rooms with modern amenities, garden views and rates starting ₹4,500/night near Nagaon Beach.',
-  alternates: { canonical: '/rooms' },
+  alternates: { canonical: '/rooms/' },
 };
 
 export default function RoomsPage() {

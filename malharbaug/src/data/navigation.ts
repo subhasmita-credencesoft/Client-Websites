@@ -46,6 +46,7 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
       { label: 'Rooms', href: '/rooms' },
       { label: 'Amenities', href: '/amenities' },
       { label: 'Gallery', href: '/gallery' },
+      { label: 'Nearby', href: '/nearby' },
       { label: 'Contact', href: '/contact' },
     ],
   },
@@ -55,6 +56,7 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
       { label: 'Luxury Deluxe Room', href: '/rooms/luxury-deluxe' },
       { label: 'Family Suite', href: '/rooms/family-suite' },
       { label: 'Private Villa', href: '/rooms/private-villa' },
+      { label: 'Packages & Offers', href: '/packages' },
     ],
   },
   {
@@ -64,33 +66,16 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
       { label: 'Things to Do in Alibaug', href: '/travel-guide/things-to-do-in-alibaug' },
       { label: 'Nagaon Beach Guide', href: '/travel-guide/nagaon-beach-travel-guide' },
       { label: 'Mumbai to Alibaug Trip', href: '/travel-guide/mumbai-to-alibaug-weekend-trip' },
-      { label: 'Nearby Attractions', href: '/nearby' },
+      { label: 'Blog', href: '/blog' },
     ],
   },
   {
     heading: 'Events',
     links: [
+      { label: 'All Events', href: '/events' },
       { label: 'Corporate Meetings', href: '/events/corporate' },
       { label: 'Wedding Functions', href: '/events/wedding' },
       { label: 'Birthday Celebrations', href: '/events/birthday' },
-    ],
-  },
-  {
-    heading: 'From the Blog',
-    links: [
-      { label: 'All Blog Posts', href: '/blog' },
-      { label: 'Family Resort Checklist', href: '/blog/family-resort-in-alibaug' },
-      { label: 'Resort With Swimming Pool', href: '/blog/alibaug-resort-with-swimming-pool' },
-      { label: 'Villa vs Rooms for Groups', href: '/blog/group-stay-villa-vs-rooms-alibaug' },
-    ],
-  },
-  {
-    heading: 'Policies',
-    links: [
-      { label: 'Privacy Policy', href: '/privacy-policy' },
-      { label: 'Terms & Conditions', href: '/terms-conditions' },
-      { label: 'Refund Policy', href: '/refund-policy' },
-      { label: 'Cancellation Policy', href: '/cancellation-policy' },
     ],
   },
 ];

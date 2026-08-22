@@ -22,7 +22,7 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: `${facility.title} at the Resort`,
     description: `${facility.title} at Malhar Baug Resort, Alibaug — ${facility.description} Book your stay near Nagaon Beach with direct booking rates.`,
-    alternates: { canonical: `/amenities/${facility.slug}` },
+    alternates: { canonical: `/amenities/${facility.slug}/` },
   };
 }
 

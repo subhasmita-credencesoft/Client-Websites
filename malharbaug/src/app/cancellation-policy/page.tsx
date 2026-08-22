@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Cancellation Policy',
   description:
     'Cancellation policy for Malhar Baug Resort, Alibaug — free cancellation up to 7 days before check-in, refund timelines and group booking terms.',
-  alternates: { canonical: '/cancellation-policy' },
+  alternates: { canonical: '/cancellation-policy/' },
 };
 
 export default function CancellationPolicyPage() {
