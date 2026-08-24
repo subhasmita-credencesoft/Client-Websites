@@ -32,8 +32,8 @@ export const DISTANCES: Distance[] = [
     drivingTime: '15–20 mins',
   },
   {
-    destination: 'State Botanical Garden',
-    distance: '~11.9 km',
+    destination: 'State Museum Cuttack',
+    distance: '~16.0 km',
     drivingTime: '20–25 mins',
   },
 ];
@@ -61,19 +61,19 @@ export const ATTRACTIONS: Attraction[] = [
       'A popular amusement and water park located about 9.5 km away, ideal for family outings.',
   },
   {
-    name: 'State Botanical Garden',
-    distance: '~11.9 km',
+    name: 'State Museum Cuttack',
+    distance: '~16.0 km',
     drivingTime: '20–25 mins',
     description:
-      'A sprawling nature reserve with diverse flora located roughly 11.9 km away.',
+      'A historic museum showcasing the cultural heritage of Odisha, located roughly 16.0 km away.',
   },
-  {
-    name: 'Local Temples',
-    distance: 'Within 1 km',
-    drivingTime: '2–5 mins',
-    description:
-      'Historic spots like Maa Rautanee Pitha and Shree Shree Lakheswara Mahadev Peeth sit within a 1-kilometer radius.',
-  },
+ {
+  name: 'Dhakulai Temple',
+  distance: '6 km',
+  drivingTime: '5–9 mins',
+  description:
+    'Visit the historic Dhakulai Temple, a revered local landmark known for its spiritual significance and peaceful surroundings.'
+},
   {
     name: 'Cuttack City Landmarks',
     distance: '~14–15 km',
@@ -186,7 +186,7 @@ export const NEARBY_LANDMARKS: LandmarkCluster[] = [
   {
     id: 'temples',
     icon: 'solar:altar-bold',
-    title: 'Local Temples & Heritage',
+    title: 'Dhakulai Temples & Heritage',
     description:
       'Historic temples within a 1-kilometer radius — Maa Rautanee Pitha and Shree Shree Lakheswara Mahadev Peeth are walking distance.',
     landmarks: [

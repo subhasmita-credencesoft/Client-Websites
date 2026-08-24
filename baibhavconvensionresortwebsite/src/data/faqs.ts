@@ -358,7 +358,7 @@ export const LOCATION_FAQS: PolicyItem[] = [
   {
     question: 'What attractions are nearby?',
     answer:
-      'Nandankanan Zoological Park is about 14 km away, Barabati Stadium in Cuttack is 18 km away, Ocean World Water Park is 9.5 km away, State Botanical Garden is 11.9 km away, and local temples like Maa Rautanee Pitha are within 1 km.',
+      'Nandankanan Zoological Park is about 14 km away, Barabati Stadium in Cuttack is 18 km away, Ocean World Water Park is 9.5 km away, State  museum cuttack is 16.1 km away, and Dhakulai temples like Maa Rautanee Pitha are within 1 km.',
   },
   {
     question: 'How far is Baibhab Resorts from SUM Hospital?',

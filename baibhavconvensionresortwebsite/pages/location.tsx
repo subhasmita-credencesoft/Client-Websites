@@ -24,8 +24,8 @@ const ATTRACTION_IMAGES = [
   '/nandankanan.png',
   '/barabatistadium.png',
   '/oceanpark.png',
-  '/botanicalgarden.png',
-  '/localtemple.png',
+  '/statemuseumcuttack.png',
+  '/dhakulaimandir.png',
   '/locallandmark.png',
   '/bhubaneswarheritage.png',
 ];
@@ -190,7 +190,7 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
           </h2>
           <p className={styles.lead}>
             A stay at Baibhab Resorts puts you minutes from SUM Hospital, DPS Kalinga, EAST,
-            local temples, and the NH-16 corridor — ideal for patient visits, open days, weddings and corporate travel.
+            Dhakulai temples, and the NH-16 corridor — ideal for patient visits, open days, weddings and corporate travel.
           </p>
           <div className={styles.landmarkGrid}>
             {NEARBY_LANDMARKS.map((cluster) => (
