@@ -6,7 +6,6 @@ import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/StayPage.module.scss';
 import { STAY_FAQS } from '@/data/faqs';
 import { ROOMS } from '@/data/rooms';
-import { fetchRoomsFromApi } from '@/lib/hotelmate';
 import { RoomCategory } from '@/types';
 
 interface StayPageProps {
@@ -51,10 +50,9 @@ const StayPage: NextPage<StayPageProps> = ({ rooms }) => {
 };
 
 export const getStaticProps: GetStaticProps<StayPageProps> = async () => {
-  const liveRooms = await fetchRoomsFromApi();
   return {
     props: {
-      rooms: liveRooms ?? ROOMS,
+      rooms: ROOMS,
     },
   };
 };

@@ -11,7 +11,6 @@ import LeadMagnet from '@/components/sections/LeadMagnet';
 import FaqSection from '@/components/sections/FaqSection';
 import { HOME_FAQS } from '@/data/faqs';
 import { ROOMS } from '@/data/rooms';
-import { fetchRoomsFromApi } from '@/lib/hotelmate';
 import { VENUES } from '@/data/venues';
 import { TESTIMONIALS } from '@/data/testimonials';
 import { SITE } from '@/data/site';
@@ -92,10 +91,9 @@ const HomePage: NextPage<HomePageProps> = ({ rooms, venues, testimonials }) => {
 };
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  const liveRooms = await fetchRoomsFromApi();
   return {
     props: {
-      rooms: liveRooms ?? ROOMS,
+      rooms: ROOMS,
       venues: VENUES,
       testimonials: TESTIMONIALS,
     },

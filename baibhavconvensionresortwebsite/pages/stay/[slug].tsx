@@ -6,7 +6,6 @@ import FaqSection from '@/components/sections/FaqSection';
 import { STAY_FAQS } from '@/data/faqs';
 import styles from '@/styles/StayPage.module.scss';
 import { getRoomBySlug, ROOMS } from '@/data/rooms';
-import { fetchRoomsFromApi } from '@/lib/hotelmate';
 import { SITE } from '@/data/site';
 import { RoomCategory } from '@/types';
 
@@ -149,17 +148,15 @@ const RoomPage: NextPage<RoomPageProps> = ({ room }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const rooms = (await fetchRoomsFromApi()) ?? ROOMS;
   return {
-    paths: rooms.map((room) => ({ params: { slug: room.slug } })),
+    paths: ROOMS.map((room) => ({ params: { slug: room.slug } })),
     fallback: false,
   };
 };
 
 export const getStaticProps: GetStaticProps<RoomPageProps> = async ({ params }) => {
   const slug = typeof params?.slug === 'string' ? params.slug : undefined;
-  const rooms = (await fetchRoomsFromApi()) ?? ROOMS;
-  const room = slug ? rooms.find((r) => r.slug === slug) ?? getRoomBySlug(slug) : undefined;
+  const room = slug ? getRoomBySlug(slug) : undefined;
 
   if (!room) {
     return { notFound: true };
@@ -169,5 +166,3 @@ export const getStaticProps: GetStaticProps<RoomPageProps> = async ({ params }) 
 };
 
 export default RoomPage;
-
-export const ALL_ROOM_SLUGS = ROOMS.map((r) => r.slug);
