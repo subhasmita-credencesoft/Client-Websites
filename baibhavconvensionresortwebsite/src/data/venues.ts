@@ -108,7 +108,7 @@ export const VENUES: Venue[] = [
       { name: 'U-Shape', value: '60' },
       { name: 'Floating / Cocktail', value: '200' },
     ],
-    image: '/minimangalhall.jpeg',
+    image: '/mangalhall.jpeg',
   },
 ];
 

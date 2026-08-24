@@ -28,7 +28,7 @@ export default function Seo({
   noIndex = false,
 }: SeoProps) {
   const cleanPath = path.split('?')[0];
-  const normalizedPath = cleanPath === '/' ? '/' : cleanPath.endsWith('/') ? cleanPath : `${cleanPath}/`;
+  const normalizedPath = cleanPath === '/' ? '/' : cleanPath.replace(/\/+$/, '');
   const url = `${SITE.domain}${normalizedPath}`;
   const fullTitle = path === '/' ? title : `${title} | ${SITE.name}`;
   const absoluteImage = absolutizeUrl(image);

@@ -41,7 +41,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
     image: `${SITE.domain}${post.image}`,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE.domain}/blog/${post.slug}/`,
+      '@id': `${SITE.domain}/blog/${post.slug}`,
     },
   };
 

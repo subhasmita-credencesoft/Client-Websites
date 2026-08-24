@@ -8,7 +8,6 @@ const nextConfig = {
   distDir: process.env.NEXT_DIST_DIR || '.next',
   ...(isProd && {
     output: 'export',
-    trailingSlash: true,
   }),
   images: {
     unoptimized: isProd,

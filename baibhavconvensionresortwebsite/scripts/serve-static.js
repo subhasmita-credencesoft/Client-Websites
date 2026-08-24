@@ -63,6 +63,11 @@ function resolvePath(urlPath) {
     return trailing;
   }
 
+  const withHtml = `${filePath}.html`;
+  if (fs.existsSync(withHtml) && fs.statSync(withHtml).isFile()) {
+    return withHtml;
+  }
+
   return null;
 }
 
