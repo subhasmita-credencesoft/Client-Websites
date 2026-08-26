@@ -30,7 +30,7 @@ export const RESTAURANT = {
     {
       title: 'Room Service',
       description: 'A complete room service menu available 24/7 for in-room dining.',
-      image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=600&q=80&fit=crop',
+      image: '/images/roomservice.png',
     },
   ] as DiningHighlight[],
 };

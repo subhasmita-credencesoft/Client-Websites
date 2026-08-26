@@ -68,11 +68,11 @@ export const ATTRACTIONS: Attraction[] = [
       'A historic museum showcasing the cultural heritage of Odisha, located roughly 16.0 km away.',
   },
  {
-  name: 'Dhakulai Temple',
+  name: 'Chandi mandir',
   distance: '6 km',
   drivingTime: '5–9 mins',
   description:
-    'Visit the historic Dhakulai Temple, a revered local landmark known for its spiritual significance and peaceful surroundings.'
+    'A revered local landmark, Chandi Mandir is known for its spiritual significance and peaceful surroundings. Visitors can experience the temple’s serene atmosphere and connect with the rich cultural and religious heritage of the area..'
 },
   {
     name: 'Cuttack City Landmarks',
@@ -186,7 +186,7 @@ export const NEARBY_LANDMARKS: LandmarkCluster[] = [
   {
     id: 'temples',
     icon: 'solar:altar-bold',
-    title: 'Dhakulai Temples & Heritage',
+    title: 'chandi Temples & Heritage',
     description:
       'Historic temples within a 1-kilometer radius — Maa Rautanee Pitha and Shree Shree Lakheswara Mahadev Peeth are walking distance.',
     landmarks: [
