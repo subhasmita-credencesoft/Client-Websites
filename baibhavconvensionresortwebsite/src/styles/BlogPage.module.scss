@@ -21,14 +21,13 @@
 .postImageWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
 .postImage {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   @include m.transition(transform);
 }
 

@@ -62,7 +62,8 @@ const BlogIndexPage: NextPage<BlogPageProps> = ({ posts }) => {
                       <Image
                         src={post.coverImageUrl}
                         alt={post.coverImageAlt || post.title}
-                        fill
+                        width={1600}
+                        height={1040}
                         sizes="(max-width: 768px) 100vw, 760px"
                         className={styles.postImage}
                       />

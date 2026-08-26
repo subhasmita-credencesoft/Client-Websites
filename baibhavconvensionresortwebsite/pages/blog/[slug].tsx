@@ -94,16 +94,15 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
           </div>
 
           {post.coverImageUrl && (
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', borderRadius: 16, overflow: 'hidden', marginBottom: 48 }}>
-              <Image
-                src={post.coverImageUrl}
-                alt={post.coverImageAlt || post.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 760px"
-                style={{ objectFit: 'cover' }}
-                priority
-              />
-            </div>
+            <Image
+              src={post.coverImageUrl}
+              alt={post.coverImageAlt || post.title}
+              width={1600}
+              height={1040}
+              sizes="(max-width: 768px) 100vw, 760px"
+              style={{ width: '100%', height: 'auto', borderRadius: 16, marginBottom: 48 }}
+              priority
+            />
           )}
         </div>
 
