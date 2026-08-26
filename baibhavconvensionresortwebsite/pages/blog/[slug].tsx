@@ -5,16 +5,19 @@ import Seo from '@/components/seo/Seo';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/BlogPage.module.scss';
-import { BLOG_POSTS, BLOG_FAQS } from '@/data/blog';
+import { BLOG_FAQS } from '@/data/faqs';
 import { SITE } from '@/data/site';
-import { BlogPost } from '@/types';
+import { fetchBlogsFromApi, ApiBlogPost } from '@/lib/blog-api';
 
 interface BlogPostPageProps {
-  post: BlogPost;
+  post: ApiBlogPost;
 }
 
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-IN', {
+function formatDate(dateStr?: string | null): string | null {
+  if (!dateStr) return null;
+  const parsed = Date.parse(dateStr);
+  if (Number.isNaN(parsed)) return null;
+  return new Date(parsed).toLocaleDateString('en-IN', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -22,12 +25,16 @@ function formatDate(dateStr: string): string {
 }
 
 const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
-  const jsonLd = {
+  const canonicalUrl =
+    post.seo?.canonicalUrl || `${SITE.domain}/blog/${post.slug}`;
+  const coverImage = post.seo?.ogImage || post.coverImageUrl || SITE.ogImage;
+  const date = formatDate(post.publishedAt);
+
+  const jsonLd: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
-    description: post.description,
-    datePublished: post.date,
+    description: post.excerpt,
     author: {
       '@type': 'Organization',
       name: SITE.name,
@@ -38,18 +45,21 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
       name: SITE.name,
       url: SITE.domain,
     },
-    image: `${SITE.domain}${post.image}`,
+    image: coverImage.startsWith('http') ? coverImage : `${SITE.domain}${coverImage}`,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE.domain}/blog/${post.slug}`,
+      '@id': canonicalUrl,
     },
   };
+  if (date) jsonLd.datePublished = new Date(post.publishedAt as string).toISOString();
 
   return (
     <>
       <Seo
-        title={post.title}
-        description={post.description}
+        title={post.seo?.metaTitle || post.title}
+        description={post.seo?.metaDescription || post.excerpt}
+        image={coverImage}
+        imageAlt={post.coverImageAlt || post.title}
         path={`/blog/${post.slug}`}
         type="article"
         jsonLd={jsonLd}
@@ -68,38 +78,40 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
         <div data-reveal>
           <h1 className="h2" style={{ marginBottom: 16 }}>{post.title}</h1>
           <div className={styles.articleMeta}>
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
-            <span>|</span>
-            <span>{SITE.name}</span>
+            {date && (
+              <>
+                <time dateTime={date}>{date}</time>
+                <span>|</span>
+              </>
+            )}
+            <span>{post.authorName || SITE.name}</span>
+            {typeof post.readTime === 'number' && post.readTime > 0 && (
+              <>
+                <span>|</span>
+                <span>{post.readTime} min read</span>
+              </>
+            )}
           </div>
 
-          <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', borderRadius: 16, overflow: 'hidden', marginBottom: 48 }}>
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              sizes="(max-width: 768px) 100vw, 760px"
-              style={{ objectFit: 'cover' }}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.articleContent} data-reveal>
-          {post.content.map((section, i) => (
-            <div key={i} className={styles.articleSection}>
-              {section.heading && <h2 className={styles.articleHeading}>{section.heading}</h2>}
-              {section.body && <p className={styles.articleBody}>{section.body}</p>}
-              {section.list && (
-                <ul className={styles.articleList}>
-                  {section.list.map((item, j) => (
-                    <li key={j}>{item}</li>
-                  ))}
-                </ul>
-              )}
+          {post.coverImageUrl && (
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', borderRadius: 16, overflow: 'hidden', marginBottom: 48 }}>
+              <Image
+                src={post.coverImageUrl}
+                alt={post.coverImageAlt || post.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 760px"
+                style={{ objectFit: 'cover' }}
+                priority
+              />
             </div>
-          ))}
+          )}
         </div>
+
+        <div
+          className={styles.articleContent}
+          data-reveal
+          dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+        />
 
         <div className={styles.ctaRow} style={{ marginTop: 48 }} data-reveal>
           <a
@@ -127,8 +139,9 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await fetchBlogsFromApi();
   return {
-    paths: BLOG_POSTS.map((post) => ({
+    paths: posts.map((post) => ({
       params: { slug: post.slug },
     })),
     fallback: false,
@@ -136,7 +149,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<BlogPostPageProps> = async ({ params }) => {
-  const post = BLOG_POSTS.find((p) => p.slug === params?.slug);
+  const posts = await fetchBlogsFromApi();
+  const post = posts.find((p) => p.slug === params?.slug);
   if (!post) return { notFound: true };
   return { props: { post } };
 };

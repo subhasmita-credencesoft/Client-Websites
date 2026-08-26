@@ -6,11 +6,15 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import styles from '@/styles/UtilityPage.module.scss';
 import { ROOMS } from '@/data/rooms';
 import { VENUES } from '@/data/venues';
-import { BLOG_POSTS } from '@/data/blog';
+import { fetchBlogsFromApi } from '@/lib/blog-api';
 
 interface SitemapLink {
   label: string;
   href: string;
+}
+
+interface SitemapPageProps {
+  blogLinks: SitemapLink[];
 }
 
 const GROUPS: { title: string; links: SitemapLink[] }[] = [
@@ -56,12 +60,17 @@ const GROUPS: { title: string; links: SitemapLink[] }[] = [
     title: 'Blog',
     links: [
       { label: 'All Posts', href: '/blog' },
-      ...BLOG_POSTS.map((post) => ({ label: post.title, href: `/blog/${post.slug}` })),
     ],
   },
 ];
 
-const SitemapPage: NextPage = () => {
+const SitemapPage: NextPage<SitemapPageProps> = ({ blogLinks }) => {
+  const groups = GROUPS.map((group) =>
+    group.title === 'Blog'
+      ? { ...group, links: [...group.links, ...blogLinks] }
+      : group
+  );
+
   return (
     <>
       <Seo title="Sitemap" description="Browse every page on the Baibhab Resorts & Conventions website." path="/sitemap" />
@@ -80,7 +89,7 @@ const SitemapPage: NextPage = () => {
 
       <div className="container" style={{ marginTop: 48, marginBottom: 96 }}>
         <div className={styles.sitemapGrid}>
-          {GROUPS.map((group) => (
+          {groups.map((group) => (
             <div key={group.title}>
               <h2 className={styles.sitemapGroupTitle}>{group.title}</h2>
               <ul className={styles.sitemapList}>
@@ -100,9 +109,12 @@ const SitemapPage: NextPage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<SitemapPageProps> = async () => {
+  const blogs = await fetchBlogsFromApi();
   return {
-    props: {},
+    props: {
+      blogLinks: blogs.map((post) => ({ label: post.title, href: `/blog/${post.slug}` })),
+    },
   };
 };
 

@@ -145,18 +145,3 @@ export interface Offer {
   ctaLabel: string;
   ctaHref: string;
 }
-
-export interface BlogPost {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  image: string;
-  content: BlogSection[];
-}
-
-export interface BlogSection {
-  heading?: string;
-  body: string;
-  list?: string[];
-}

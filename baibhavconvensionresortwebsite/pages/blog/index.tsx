@@ -5,15 +5,18 @@ import Seo from '@/components/seo/Seo';
 import PageHeader from '@/components/ui/PageHeader';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import styles from '@/styles/BlogPage.module.scss';
-import { BLOG_POSTS } from '@/data/blog';
-import { BlogPost } from '@/types';
+import { SITE } from '@/data/site';
+import { fetchBlogsFromApi, ApiBlogPost } from '@/lib/blog-api';
 
 interface BlogPageProps {
-  posts: BlogPost[];
+  posts: ApiBlogPost[];
 }
 
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-IN', {
+function formatDate(dateStr?: string | null): string | null {
+  if (!dateStr) return null;
+  const parsed = Date.parse(dateStr);
+  if (Number.isNaN(parsed)) return null;
+  return new Date(parsed).toLocaleDateString('en-IN', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -46,39 +49,49 @@ const BlogIndexPage: NextPage<BlogPageProps> = ({ posts }) => {
       </div>
 
       <div className="container" style={{ marginTop: 48, marginBottom: 96 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 32 }}>
-          {posts.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.post} data-reveal data-reveal-stagger>
-              <div className={styles.postImageWrap}>
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 760px"
-                  className={styles.postImage}
-                />
-                <span className={styles.postDate}>{formatDate(post.date)}</span>
-              </div>
-              <div className={styles.postBody}>
-                <h2 className={styles.postTitle}>{post.title}</h2>
-                <p className={styles.postDesc}>{post.description}</p>
-                <span className={styles.postLink}>
-                  Read more
-                  <iconify-icon icon="solar:arrow-right-linear" width="16" aria-hidden="true" />
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        {posts.length === 0 ? (
+          <p style={{ textAlign: 'center' }}>New stories are on their way. Check back soon.</p>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 32 }}>
+            {posts.map((post) => {
+              const date = formatDate(post.publishedAt);
+              return (
+                <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.post} data-reveal data-reveal-stagger>
+                  <div className={styles.postImageWrap}>
+                    {post.coverImageUrl && (
+                      <Image
+                        src={post.coverImageUrl}
+                        alt={post.coverImageAlt || post.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 760px"
+                        className={styles.postImage}
+                      />
+                    )}
+                    {date && <span className={styles.postDate}>{date}</span>}
+                  </div>
+                  <div className={styles.postBody}>
+                    <h2 className={styles.postTitle}>{post.title}</h2>
+                    <p className={styles.postDesc}>{post.excerpt}</p>
+                    <span className={styles.postLink}>
+                      Read more
+                      <iconify-icon icon="solar:arrow-right-linear" width="16" aria-hidden="true" />
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
+  const posts = await fetchBlogsFromApi();
   return {
     props: {
-      posts: BLOG_POSTS,
+      posts,
     },
   };
 };

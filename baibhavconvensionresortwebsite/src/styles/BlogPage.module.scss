@@ -102,6 +102,74 @@
   gap: v.$space-lg;
   color: v.$color-muted;
   line-height: v.$body-line-height;
+
+  > * {
+    margin: 0;
+    max-width: 72ch;
+  }
+
+  h2,
+  h3,
+  h4 {
+    color: v.$color-foreground;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-top: v.$space-md;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+  }
+
+  a {
+    color: v.$color-foreground;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  strong,
+  b {
+    color: v.$color-foreground;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-sm;
+
+    li::marker {
+      color: v.$color-muted-strong;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  blockquote {
+    margin: 0;
+    padding-left: v.$space-md;
+    border-left: 3px solid v.$color-border;
+    font-style: italic;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid v.$color-border;
+    width: 100%;
+  }
 }
 
 .articleSection {

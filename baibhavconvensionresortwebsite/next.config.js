@@ -14,6 +14,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'hoirqrkdgbmvpwutwuwj.supabase.co' },
       { protocol: 'https', hostname: 'bookonelocal.in' },
+      { protocol: 'https', hostname: 'cdn.bookone.io' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
