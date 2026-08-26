@@ -15,7 +15,7 @@ export const SITE = {
     'Hotel K2 is the best hotel in Chakradharpur, Jharkhand, located near Chakradharpur Railway Station at Etwari Bazar, Station Link Road. We offer comfortable AC rooms with free Wi-Fi, TV, geyser, power backup, 24-hour room service, banquet hall, and catering services. Whether you are a business traveler, family, or tourist, Hotel K2 provides affordable accommodation and warm hospitality in the heart of West Singhbhum, Jharkhand.',
   copyrightYear: 2026,
   mapEmbedSrc:
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d85.630322!3d22.670806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDQwJzE0LjkiTiA4NcKwMzcnNDkuMiJF!5e0!3m2!1sen!2sin!4v1756190741493!5m2!1sen!2sin',
+    'https://www.google.com/maps/embed?pb=!4v1756190741493!6m8!1m7!1sCAoSLEFGMVFraEw0X0x4Y3F5WV9xU1Vkb3lRejRwLWdvVmpxa2c!2m2!1d22.670806!2d85.630322!3f186.22617!4f0!5f0.7820865974627469',
   phones: [
     { display: '+91 8709490824', href: 'tel:+918709490824' },
     { display: '+91 9123490131', href: 'tel:+919123490131' },
