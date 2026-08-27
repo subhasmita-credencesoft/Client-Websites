@@ -2,8 +2,8 @@ import type { ApiPropertyResponse, ApiRoom } from '@/types/api';
 import type { Room, RoomAmenity } from '@/types';
 
 const API_BASE = 'https://api.thehotelmate.co/api/thm/checkAvailability';
-const PROPERTY_ID = 1297;
-const BOOKING_URL = 'https://bookone.io/Hotel-K2?bookingEngine=true';
+const PROPERTY_ID = 3626;
+const BOOKING_URL = 'https://bookone.io/Hotel-K2-Chakradharpur?bookingEngine=true';
 
 export interface AvailabilityParams {
   fromDate?: string;
