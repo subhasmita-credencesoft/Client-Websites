@@ -119,7 +119,7 @@ const RoomPage: NextPage<RoomPageProps> = ({ room }) => {
             <span className={styles.price}>&#8377;{room.price.toLocaleString('en-IN')}</span>
             <span className={styles.priceUnit}>{room.priceUnit}</span>
           </div>
-          <p className={styles.sidebarNote}>Breakfast & Wi-Fi included. Taxes extra.</p>
+          <p className={styles.sidebarNote}> Wi-Fi included. Taxes extra.</p>
           <a
             href={room.ctaHref}
             className="btn btn-primary btn-block"

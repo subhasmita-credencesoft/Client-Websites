@@ -24,7 +24,7 @@ export const NAV_LINKS: NavLink[] = [
     href: '/dining',
     children: [
       { label: 'Fusion bites', href: '/dining#restaurant', description: 'Odia, Indian & continental' },
-      { label: 'premium-banquet', href: '/dining/premium-banquet', description: 'Buffets, live counters & more' },
+      { label: 'The Baibhab Kitchen', href: '/dining/premium-banquet', description: 'Buffets, live counters & more' },
     ],
   },
   { label: 'Amenities', href: '/amenities' },

@@ -1,7 +1,7 @@
 import { CateringOption, DiningHighlight } from '@/types';
 
 export const RESTAURANT = {
-  name: 'The Baibhab Kitchen',
+  name: 'Fusion bites ',
   concept:
     'A multi-cuisine restaurant serving authentic regional Odia delicacies alongside popular North Indian, South Indian, and Continental fare  from sunrise thalis to slow dinners.',
   hours: '7:00 AM – 10:30 PM',
