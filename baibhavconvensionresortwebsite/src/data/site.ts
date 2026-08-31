@@ -21,8 +21,8 @@ export const SITE = {
   emailGeneral: 'baibhabresorts@gmail.com',
   whatsappRaw: '919938875749',
   facebook:
-    'https://www.facebook.com/profile.php?id=61586952698000&rdid=5gBBNSmeFpLSad2n&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BZ8k6myZR%2F%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio',
+    'https://www.facebook.com/baibhabconventionsanresorts?utm_source=ig&utm_medium=social&utm_content=link_in_bio',
   instagram:
-    'https://www.instagram.com/baibhabconvention_resort123?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+    'https://www.instagram.com/baibhab_conventionsanresorts/',
   ogImage: '/newedit/Elegant Nighttime Property Showcase.avif',
 };

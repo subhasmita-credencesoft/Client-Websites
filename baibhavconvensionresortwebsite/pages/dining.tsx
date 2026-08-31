@@ -100,8 +100,8 @@ const DiningPage: NextPage = () => {
             ))}
           </div>
           <div className={styles.ctaBlock}>
-            <Link href="/dining/premium-banquet" className="btn btn-outline">
-              Explore Premium Fusion Bites
+            <Link href="/dining/baibhab-kitchen" className="btn btn-outline">
+              The Baibhab Kitchen
             </Link>
             <Link href="/contact?inquiry=Banquets+%2F+Events" className="btn btn-primary">
               Plan Catering for Your Event

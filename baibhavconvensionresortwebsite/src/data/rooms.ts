@@ -10,7 +10,7 @@ export const ROOMS: RoomCategory[] = [
     overview:
       'Premium Room features a private bathroom, TV, work desk, electric kettle, wardrobe, slippers and complimentary toiletries for a comfortable, relaxing stay.',
     idealFor: 'Business & leisure travelers',
-    beds: 'kings bed',
+    beds: 'King Size Bed',
     size: '9 rooms',
     capacity: '2 guests',
     price: 1905,
@@ -57,7 +57,7 @@ export const ROOMS: RoomCategory[] = [
     overview:
       'Deluxe Room offers a spacious, comfortable stay with a private bathroom, TV, work desk, electric kettle, wardrobe and complimentary toiletries.',
     idealFor: 'Business & leisure travelers',
-    beds: ' double bed',
+    beds: ' Double Bed',
     size: '8 rooms',
     capacity: '2 guests',
     price: 1714,

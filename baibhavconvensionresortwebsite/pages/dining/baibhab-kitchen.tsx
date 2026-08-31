@@ -33,20 +33,20 @@ const PremiumBanquetPage: NextPage = () => {
   return (
     <>
       <Seo
-        title="Premium Banquet & Fine Catering"
-        description="Signature premium banquet experience at the Royal Imperial Hall — fine-dining menus, live counters, ambient lighting and dedicated banquet service at Baibhab Resorts."
-        path="/dining/premium-banquet"
+        title="The Baibhab Kitchen — Premium Catering"
+        description="Signature premium catering at The Baibhab Kitchen — fine-dining menus, live counters, ambient lighting and dedicated banquet service at Baibhab Resorts."
+        path="/dining/baibhab-kitchen"
       />
       <InnerHero
         image="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1920&q=80&fit=crop"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Dining', href: '/dining' },
-          { label: 'Premium Banquet' },
+          { label: 'The Baibhab Kitchen' },
         ]}
-        eyebrow="Premium Banquet & Catering"
-        title="A Premium Banquet Experience"
-        subtitle="Signature Royal Imperial Hall catering with fine-dining menus, live counters and dedicated service for weddings, receptions and corporate galas."
+        eyebrow="The Baibhab Kitchen"
+        title="The Baibhab Kitchen"
+        subtitle="Fine-dining menus, live counters and dedicated service for weddings, receptions and corporate galas."
         cta={{ label: 'Request a Proposal', href: '/contact?inquiry=Banquets+%2F+Events' }}
       />
 
@@ -68,7 +68,7 @@ const PremiumBanquetPage: NextPage = () => {
         </div>
 
         <div className={styles.contentBlock} data-reveal>
-          <h2 className="h2">The premium banquet difference</h2>
+          <h2 className="h2">The Baibhab Kitchen difference</h2>
           <ul className={styles.checklist}>
             {PREMIUM_BANQUET_OFFERS.map((offer) => (
               <li key={offer} className={styles.checkItem}>
@@ -80,7 +80,7 @@ const PremiumBanquetPage: NextPage = () => {
 
           <div className={styles.ctaBlock}>
             <Link href="/contact?inquiry=Banquets+%2F+Events" className="btn btn-primary">
-              Enquire About Premium Banquet
+              Enquire About The Baibhab Kitchen
             </Link>
             <Link href="/events/venues" className="btn btn-outline">
               View Venue Spaces
@@ -91,9 +91,9 @@ const PremiumBanquetPage: NextPage = () => {
 
       <FaqSection
         items={DINING_FAQS}
-        eyebrow="Banquet FAQs"
-        title="Premium Catering Questions"
-        subtitle="Menus, live counters, dietary options and banquet service for your premium event."
+        eyebrow="Kitchen FAQs"
+        title="The Baibhab Kitchen Questions"
+        subtitle="Menus, live counters, dietary options and catering service for your event."
       />
     </>
   );
