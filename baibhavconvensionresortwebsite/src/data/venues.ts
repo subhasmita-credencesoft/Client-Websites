@@ -28,7 +28,7 @@ export const VENUES: Venue[] = [
       { name: 'Floating / Cocktail', value: '500' },
     ],
     image: '/newedit/Luxurious Courtyard Entrance at Night.avif',
-    video: 'https://bookonelocal.in/cdn/imperialhall.MP4',
+    video: 'https://bookonelocal.in/cdn/Camera+zooming+into+imperialhall.mp4',
   },
   {
     id: 'venue-lawn',
@@ -89,7 +89,7 @@ export const VENUES: Venue[] = [
     slug: 'mangal-mini-hall',
     name: 'Mangal Mini Hall',
     venueType: 'Indoor Banquet',
-    area: '1200 sq. ft.',
+    area: '2000 sq. ft.',
     ceilingHeight: '14 ft',
     seatedCapacity: 120,
     floatingCapacity: 200,

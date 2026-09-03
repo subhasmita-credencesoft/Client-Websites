@@ -9,7 +9,6 @@ export const RESTAURANT = {
     'Local coastal seafood dishes',
     'Traditional Odia thalis',
     'Signature tandoori appetizers',
-    'Fresh breakfast counter with daily specials',
   ],
   highlights: [
     {
