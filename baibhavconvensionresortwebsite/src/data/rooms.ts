@@ -60,7 +60,7 @@ export const ROOMS: RoomCategory[] = [
     beds: ' Double Bed',
     size: '13 rooms',
     capacity: '2 guests',
-    price: 1714,
+    price: 1805,
     priceUnit: 'per night',
     amenities: ['Wi-Fi', 'Free Parking', 'Room Service'],
     perks: [],
