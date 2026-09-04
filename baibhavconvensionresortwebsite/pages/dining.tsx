@@ -17,7 +17,7 @@ const DiningPage: NextPage = () => {
         path="/dining"
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80&fit=crop"
+        image="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=1920&q=80&fit=crop"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Dining & Catering' },
@@ -32,7 +32,7 @@ const DiningPage: NextPage = () => {
           <div className={styles.split} data-reveal>
             <div className={styles.splitImageWrap}>
               <Image
-                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80&fit=crop"
+                src="/fusionbitesdining.png"
                 alt={RESTAURANT.name}
                 loading="lazy"
                 fill

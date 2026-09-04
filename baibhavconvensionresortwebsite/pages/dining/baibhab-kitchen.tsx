@@ -16,16 +16,16 @@ const PREMIUM_BANQUET_OFFERS = [
 
 const PREMIUM_BANQUET_IMAGES = [
   {
-    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80&fit=crop',
-    alt: 'Premium banquet hall at Baibhab Resorts',
+    src: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&q=80&fit=crop',
+    alt: 'Crispy Chicken 65 — an Indo-Chinese starter favourite',
   },
   {
-    src: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80&fit=crop',
-    alt: 'Reception area for premium events',
+    src: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&q=80&fit=crop',
+    alt: 'Tandoori chicken, char-grilled in the clay oven',
   },
   {
-    src: 'https://images.unsplash.com/photo-1478146059778-26028b07395a?w=800&q=80&fit=crop',
-    alt: 'Premium lawn for grand receptions',
+    src: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=800&q=80&fit=crop',
+    alt: 'Rich Indian curries served with freshly baked breads',
   },
 ];
 
@@ -38,7 +38,7 @@ const PremiumBanquetPage: NextPage = () => {
         path="/dining/baibhab-kitchen"
       />
       <InnerHero
-        image="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1920&q=80&fit=crop"
+        image="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=1920&q=80&fit=crop"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Dining', href: '/dining' },
