@@ -53,7 +53,7 @@ export const STAY_FAQS: PolicyItem[] = [
   {
     question: 'What amenities are provided inside the rooms?',
     answer:
-      'Rooms come with a private bathroom, TV, work desk, electric kettle, wardrobe, slippers and complimentary toiletries for a comfortable and relaxing stay.',
+      'Rooms come with a private bathroom, TV, work desk, electric kettle, wardrobe and complimentary toiletries for a comfortable and relaxing stay.',
   },
   {
     question: 'Is parking free for hotel guests?',
