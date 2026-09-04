@@ -7,14 +7,14 @@ import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/EventsPage.module.scss';
 import { DINING_FAQS } from '@/data/faqs';
 
-const PREMIUM_BANQUET_OFFERS = [
-  'Signature Royal Imperial Hall experience for premium wedding receptions and galas.',
-  'Curated fine-dining menus with live chef counters, carving stations and artisanal desserts.',
-  'Premium table settings, ambient lighting and dedicated banquet captain service.',
-  'End-to-end coordination with décor, AV and guest accommodation under one roof.',
+const KITCHEN_OFFERS = [
+  'Fresh in-house cooking across Odia, North & South Indian and Continental cuisines.',
+  'Live chaat, tandoor and wok counters fired up through lunch and dinner.',
+  'Hearty breakfast, lunch and dinner buffets for resort guests and events.',
+  'Pure-veg, Jain, vegan and gluten-free menus prepared on request.',
 ];
 
-const PREMIUM_BANQUET_IMAGES = [
+const KITCHEN_IMAGES = [
   {
     src: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&q=80&fit=crop',
     alt: 'Crispy Chicken 65 — an Indo-Chinese starter favourite',
@@ -29,12 +29,12 @@ const PREMIUM_BANQUET_IMAGES = [
   },
 ];
 
-const PremiumBanquetPage: NextPage = () => {
+const KitchenPage: NextPage = () => {
   return (
     <>
       <Seo
-        title="The Baibhab Kitchen — Premium Catering"
-        description="Signature premium catering at The Baibhab Kitchen — fine-dining menus, live counters, ambient lighting and dedicated banquet service at Baibhab Resorts."
+        title="The Baibhab Kitchen — Buffets & Live Counters"
+        description="The Baibhab Kitchen at Baibhab Resorts — fresh in-house multi-cuisine cooking, live chaat and tandoor counters, and breakfast, lunch and dinner buffets."
         path="/dining/baibhab-kitchen"
       />
       <InnerHero
@@ -44,15 +44,15 @@ const PremiumBanquetPage: NextPage = () => {
           { label: 'Dining', href: '/dining' },
           { label: 'The Baibhab Kitchen' },
         ]}
-        eyebrow="The Baibhab Kitchen"
+        eyebrow="Buffets & Live Counters"
         title="The Baibhab Kitchen"
-        subtitle="Fine-dining menus, live counters and dedicated service for weddings, receptions and corporate galas."
-        cta={{ label: 'Request a Proposal', href: '/contact?inquiry=Banquets+%2F+Events' }}
+        subtitle="Our in-house multi-cuisine kitchen serves fresh Odia, Indian and Continental fare — from breakfast buffets to live-counter lunches and dinners."
+        cta={{ label: 'Talk to the Kitchen', href: '/contact' }}
       />
 
       <div className="container" style={{ marginTop: 56 }}>
         <div className={styles.featureGrid} data-reveal>
-          {PREMIUM_BANQUET_IMAGES.map((img) => (
+          {KITCHEN_IMAGES.map((img) => (
             <figure key={img.src} className={styles.featureImageWrap}>
               <Image
                 src={img.src}
@@ -68,9 +68,15 @@ const PremiumBanquetPage: NextPage = () => {
         </div>
 
         <div className={styles.contentBlock} data-reveal>
-          <h2 className="h2">The Baibhab Kitchen difference</h2>
+          <h2 className="h2">Fresh from our in-house kitchen</h2>
+          <p className={styles.featureText}>
+            Every meal at Baibhab Resorts is prepared on-site by our own culinary team — from the
+            breakfast buffet and the Fusion bites restaurant to banquet catering for hundreds of
+            guests. Seasonal Odia recipes, Indian favourites and Continental classics are all cooked
+            to order or served from live counters.
+          </p>
           <ul className={styles.checklist}>
-            {PREMIUM_BANQUET_OFFERS.map((offer) => (
+            {KITCHEN_OFFERS.map((offer) => (
               <li key={offer} className={styles.checkItem}>
                 <iconify-icon icon="solar:check-circle-linear" className={styles.checkIcon} aria-hidden="true" />
                 {offer}
@@ -79,11 +85,11 @@ const PremiumBanquetPage: NextPage = () => {
           </ul>
 
           <div className={styles.ctaBlock}>
-            <Link href="/contact?inquiry=Banquets+%2F+Events" className="btn btn-primary">
-              Enquire About The Baibhab Kitchen
+            <Link href="/contact" className="btn btn-primary">
+              Talk to the Kitchen
             </Link>
-            <Link href="/events/venues" className="btn btn-outline">
-              View Venue Spaces
+            <Link href="/dining#restaurant" className="btn btn-outline">
+              Explore Fusion bites
             </Link>
           </div>
         </div>
@@ -93,7 +99,7 @@ const PremiumBanquetPage: NextPage = () => {
         items={DINING_FAQS}
         eyebrow="Kitchen FAQs"
         title="The Baibhab Kitchen Questions"
-        subtitle="Menus, live counters, dietary options and catering service for your event."
+        subtitle="Meal timings, buffets, live counters and dietary options at The Baibhab Kitchen."
       />
     </>
   );
@@ -105,4 +111,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default PremiumBanquetPage;
+export default KitchenPage;

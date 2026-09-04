@@ -41,14 +41,18 @@ const DiningPage: NextPage = () => {
               />
             </div>
             <div>
-              <p className="caption">In-house dining</p>
+              <p className="caption">In-house dining · Lunch & Dinner</p>
               <h2 className="h2" style={{ marginTop: 8 }}>
                 {RESTAURANT.name}
               </h2>
               <p className={styles.text}>{RESTAURANT.concept}</p>
               <p className={styles.hours}>
                 <iconify-icon icon="solar:clock-circle-bold" aria-hidden="true" />
-                Operating Hours: {RESTAURANT.hours}
+                Lunch: {RESTAURANT.hours.lunch}
+              </p>
+              <p className={styles.hours}>
+                <iconify-icon icon="solar:moon-stars-bold" aria-hidden="true" />
+                Dinner: {RESTAURANT.hours.dinner}
               </p>
               <ul className={styles.list}>
                 {RESTAURANT.specialties.map((specialty) => (

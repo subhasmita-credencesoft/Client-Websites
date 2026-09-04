@@ -219,6 +219,13 @@
   margin-block: v.$space-xl v.$space-xxl;
 }
 
+.featureText {
+  margin: 0;
+  max-width: 46rem;
+  line-height: v.$body-line-height;
+  color: v.$color-muted;
+}
+
 .checklist {
   margin: 0;
   padding: 0;
