@@ -75,6 +75,10 @@ $color-state-success-bg: #eaf3ea;      // Success surface tint.
 $color-overlay-scrim: rgba(0, 0, 0, 0.55); // Hero image scrim — ensures inverse text meets AA over photography.
 $color-focus-ring: $color-border-strong; // Explicit alias: focus-visible always uses the brand accent, never a default browser blue.
 
+// Color — floating contact actions.
+$color-whatsapp: #25d366;       // Official WhatsApp green — recognizable hand-off color.
+$color-whatsapp-dark: #1eb85a;  // Bottom stop / hover shade for the WhatsApp action.
+
 // -----------------------------------------------------------------------------
 // Spacing (8px-adjacent scale as supplied — do not introduce one-off values)
 // -----------------------------------------------------------------------------

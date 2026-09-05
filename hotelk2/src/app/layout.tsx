@@ -4,7 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Preloader } from '@/components/ui/Preloader';
 import { ScrollToTop } from '@/components/ui/ScrollToTop';
-import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
+import { FloatingActions } from '@/components/ui/FloatingActions';
 import { SITE } from '@/data/site';
 import './globals.scss';
 
@@ -708,7 +708,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main-content">{children}</main>
         <Footer />
         <ScrollToTop />
-        <WhatsAppButton />
+        <FloatingActions />
       </body>
     </html>
   );
