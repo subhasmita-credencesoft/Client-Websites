@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import styles from '@/styles/Footer.module.scss';
 import { SITE } from '@/data/site';
 
@@ -22,14 +21,6 @@ const EVENT_LINKS = [
 ];
 
 export default function Footer() {
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setYear(new Date().getFullYear());
-  }, []);
-
   return (
     <footer className={styles.footer}>
       <div className="container">
@@ -156,7 +147,7 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <span>
-            &copy; {mounted ? year : '2024'} {SITE.legalName}. All rights reserved.
+            &copy; 2026 {SITE.legalName}. All rights reserved.
           </span>
           <div className={styles.legal}>
             <Link href="/privacy-policy">Privacy Policy</Link>
@@ -165,6 +156,27 @@ export default function Footer() {
             <Link href="/sitemap">Sitemap</Link>
           </div>
         </div>
+
+        <p className={styles.attribution}>
+          Designed and Developed By{' '}
+          <a
+            href="http://credencesoft.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.attributionLink}
+          >
+            CredenceSoft
+          </a>
+          , Powered By{' '}
+          <a
+            href="https://bookonepms.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.attributionLink}
+          >
+            BookOne
+          </a>
+        </p>
       </div>
     </footer>
   );

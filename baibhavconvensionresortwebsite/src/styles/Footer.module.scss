@@ -275,3 +275,21 @@
     }
   }
 }
+
+.attribution {
+  margin: v.$space-lg 0 0;
+  color: v.$color-muted;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.attributionLink {
+  color: v.$color-muted;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  @include m.transition(color);
+
+  &:hover {
+    color: v.$color-foreground;
+  }
+}
