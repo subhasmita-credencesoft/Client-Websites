@@ -1,10 +1,7 @@
 {
   "include": [
-    "app/**/*",
-    "components/**/*",
-    "lib/**/*",
+    "src/**/*",
     "next-env.d.ts",
-    "shared/**/*",
     ".next/types/**/*.ts"
   ],
   "exclude": [
@@ -19,6 +16,8 @@
     "noEmit": true,
     "module": "ESNext",
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "lib": [
       "esnext",
       "dom",
@@ -40,10 +39,7 @@
     ],
     "paths": {
       "@/*": [
-        "./*"
-      ],
-      "@shared/*": [
-        "./shared/*"
+        "./src/*"
       ]
     },
     "target": "ES2017",

@@ -1,4 +1,4 @@
-import { mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 
 // await rm(".next", { recursive: true, force: true });
 // await rm("out", { recursive: true, force: true });
