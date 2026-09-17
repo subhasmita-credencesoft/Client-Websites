@@ -1,7 +1,7 @@
 "use client";
 
 import type { SVGProps } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu } from "lucide-react";
@@ -12,6 +12,14 @@ import { siteContact } from "@/data/site";
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPackagesOpen, setIsPackagesOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -19,7 +27,13 @@ export function Navbar() {
   };
 
   return (
-    <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent py-4 md:py-6">
+    <nav
+      className={`top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "fixed bg-background/95 py-3 shadow-[0_1px_0_0_rgb(0_0_0_/_0.05)] backdrop-blur-xl md:py-4"
+          : "absolute bg-transparent py-4 md:py-6"
+      }`}
+    >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex h-16 items-center justify-between gap-4 sm:h-20">
           <Link href="/" className="flex shrink-0 items-center" aria-label={`${navigationData.brand.name} home`}>
@@ -33,11 +47,15 @@ export function Navbar() {
             />
           </Link>
 
-          <div className="hidden items-center gap-10 text-sm font-bold uppercase tracking-wider text-primary md:flex [text-shadow:_0_1px_2px_rgb(0_0_0_/_20%)]">
+          <div
+            className={`hidden items-center gap-9 text-sm font-bold uppercase tracking-wider text-primary md:flex ${
+              isScrolled ? "" : "[text-shadow:_0_1px_2px_rgb(0_0_0_/_20%)]"
+            }`}
+          >
             {navigationData.links.map((link) =>
               link.children?.length ? (
                 <div key={link.label} className="group relative">
-                  <button type="button" className="flex items-center gap-1 transition-colors hover:text-primary">
+                  <button type="button" className="nav-underline flex items-center gap-1 transition-colors hover:text-primary">
                     {link.label}
                     <ChevronDown className="h-4 w-4" />
                   </button>
@@ -56,7 +74,7 @@ export function Navbar() {
                   </div>
                 </div>
               ) : (
-                <Link key={link.label} href={link.href} className="transition-colors hover:text-primary">
+                <Link key={link.label} href={link.href} className="nav-underline transition-colors hover:text-primary">
                   {link.label}
                 </Link>
               ),

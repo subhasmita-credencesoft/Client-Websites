@@ -14,7 +14,8 @@ export function GallerySection({ images }: GallerySectionProps) {
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-2">{gallery.title}</h2>
-          <p className="text-muted-foreground text-sm uppercase tracking-widest">{gallery.subtitle}</p>
+          <div className="gold-rule-center mb-6 md:mb-10" />
+          <p className="text-sm text-muted-foreground mb-2">{gallery.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

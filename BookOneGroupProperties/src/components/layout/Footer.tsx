@@ -8,23 +8,24 @@ export function Footer() {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
           <div className="col-span-1 md:col-span-1">
-            <h3 className="text-3xl font-bold mb-6 font-serif italic">{footerData.brand.title}</h3>
+            <h3 className="text-3xl font-bold mb-4 font-serif italic">{footerData.brand.title}</h3>
+            <div className="gold-rule mb-6" />
             <p className="text-primary-foreground/80 leading-relaxed text-sm max-w-sm">
               {footerData.brand.description}
             </p>
           </div>
 
           <div>
-            <h4 className="font-bold mb-6 text-sm uppercase tracking-widest border-b border-primary-foreground/20 pb-2 inline-block">Quick Links</h4>
+            <h4 className="font-bold mb-6 text-sm uppercase tracking-widest border-b border-gold/50 pb-2 inline-block">Quick Links</h4>
             <ul className="space-y-4 text-primary-foreground/80 text-sm font-medium">
               {footerData.quickLinks.map((link) => (
-                <li key={link.label}><a href={link.href} className="hover:text-white transition-colors flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-white/50"></div> {link.label}</a></li>
+                <li key={link.label}><a href={link.href} className="hover:text-white transition-colors flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-gold/50"></div> {link.label}</a></li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-6 text-sm uppercase tracking-widest border-b border-primary-foreground/20 pb-2 inline-block">Contact Us</h4>
+            <h4 className="font-bold mb-6 text-sm uppercase tracking-widest border-b border-gold/50 pb-2 inline-block">Contact Us</h4>
             <ul className="space-y-4 text-primary-foreground/80 text-sm">
               <li className="flex items-center gap-3 break-all sm:break-normal">
                 <Mail className="w-4 h-4 shrink-0" />
@@ -40,7 +41,7 @@ export function Footer() {
                   {footerData.contact.socialLinks.map((link) => {
                     const Icon = link.icon;
                     return (
-                      <a key={link.label} href={link.href} className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors" aria-label={link.label}>
+                      <a key={link.label} href={link.href} className="bg-gold/10 p-2 rounded-full border border-white/15 hover:bg-gold/20 transition-colors hover:-translate-y-0.5" aria-label={link.label}>
                         <Icon className="w-4 h-4" />
                       </a>
                     );
@@ -51,7 +52,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold mb-6 text-sm uppercase tracking-widest border-b border-primary-foreground/20 pb-2 inline-block">Reach Us</h4>
+            <h4 className="font-bold mb-6 text-sm uppercase tracking-widest border-b border-gold/50 pb-2 inline-block">Reach Us</h4>
             <ul className="space-y-6 text-primary-foreground/80 text-sm">
               {footerData.locations.map((location) => (
                 <li key={location} className="flex gap-3 items-start">

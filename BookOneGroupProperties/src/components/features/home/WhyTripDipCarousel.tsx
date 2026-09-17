@@ -40,10 +40,10 @@ export function WhyTripDipCarousel() {
                     sizes="100vw"
                     className="absolute inset-0 z-0 h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent z-10" />
 
                   <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 md:p-16 z-20 text-white flex flex-col items-center md:items-start text-center md:text-left">
-                    <div className="bg-primary p-3 sm:p-4 rounded-full mb-5 md:mb-6 text-white shadow-lg animate-bounce">
+                    <div className="bg-primary p-3 sm:p-4 rounded-full mb-5 md:mb-6 text-white shadow-lg ring-1 ring-gold/30">
                       <reason.icon className="w-6 h-6 sm:w-8 sm:h-8" />
                     </div>
                     <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4">{reason.title}</h3>

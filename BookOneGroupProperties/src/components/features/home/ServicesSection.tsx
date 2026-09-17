@@ -27,6 +27,7 @@ export function ServicesSection() {
         <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-10 md:gap-16">
           <div className="lg:w-1/2">
             <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6 md:mb-8">{services.title}</h2>
+            <div className="gold-rule-center mb-10 md:mb-14" />
             <p className="text-muted-foreground leading-relaxed mb-10 md:mb-12 text-base md:text-lg">
               {services.description}
             </p>

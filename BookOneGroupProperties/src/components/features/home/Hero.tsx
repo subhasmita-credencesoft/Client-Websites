@@ -119,11 +119,13 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center text-white flex flex-col items-center justify-center h-full pt-24 md:pt-20 pb-10 md:pb-0">
-        <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4 text-primary animate-in fade-in slide-in-from-bottom-4 duration-700 bg-white/10 backdrop-blur-md py-2 px-4 rounded-full border border-white/20">
-          {hero.badge}
-        </p>
+<p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4 text-primary animate-in fade-in slide-in-from-bottom-4 duration-700 bg-white/10 backdrop-blur-md py-2 px-4 rounded-full border border-white/20">
+            {hero.badge}
+          </p>
 
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tight animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100 drop-shadow-lg">
+          <div className="gold-rule-center mb-8 md:mb-10" />
+
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tight animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100 drop-shadow-lg">
           {hero.title}
         </h1>
 
@@ -131,7 +133,7 @@ export function Hero() {
           {hero.description}
         </p>
 
-        <div className="relative z-[100] w-full max-w-5xl bg-white rounded-lg shadow-2xl p-2 animate-in fade-in slide-in-from-bottom-10 duration-700 delay-300 flex flex-col md:flex-row gap-2">
+        <div className="relative z-[100] w-full max-w-5xl bg-white rounded-2xl ring-1 ring-black/5 shadow-2xl p-2 animate-in fade-in slide-in-from-bottom-10 duration-700 delay-300 flex flex-col md:flex-row gap-2">
           {!mounted ? (
             <div className="w-full h-20 bg-gray-50 flex items-center justify-center text-gray-400 font-medium">
               Initializing search bar...

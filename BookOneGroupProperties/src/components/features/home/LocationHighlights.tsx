@@ -64,6 +64,7 @@ function LocationHighlightsContent({ locationFromUrl, data }: LocationHighlights
         <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
             <h2 className="text-2xl font-bold text-primary md:text-3xl">{locationHighlights.title}</h2>
+            <div className="gold-rule-center mb-4 md:mb-6" />
             <p className="mt-1 text-sm text-muted-foreground sm:text-base">{locationHighlights.description}</p>
           </div>
           <div className="no-scrollbar flex w-full gap-2 overflow-x-auto pb-2 md:w-auto">

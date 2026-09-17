@@ -15,7 +15,7 @@ interface PropertyCardProps {
 export function PropertyCard({ id, slug, title, location, amenity, price, image }: PropertyCardProps) {
   return (
     <Link href={`/${slug}`} className="group cursor-pointer flex flex-col items-center text-center gap-4" data-testid={`card-property-${id}`}>
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-gray-100 shadow-md">
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl ring-1 ring-black/5 shadow-sm hover:shadow-lg bg-white">
         <Image
           src={image}
           alt={title}
@@ -23,7 +23,7 @@ export function PropertyCard({ id, slug, title, location, amenity, price, image 
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gold/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
       <div className="flex flex-col gap-2 px-2">

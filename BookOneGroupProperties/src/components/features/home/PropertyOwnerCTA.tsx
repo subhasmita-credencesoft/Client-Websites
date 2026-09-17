@@ -15,9 +15,10 @@ export function PropertyOwnerCTA() {
             <span className="inline-block py-1 px-3 border border-white/30 rounded-full text-xs font-bold tracking-wider uppercase mb-6 w-fit bg-white/10">
               {propertyOwnerCta.badge}
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
               {propertyOwnerCta.title}
             </h2>
+            <div className="gold-rule-center mb-6 md:mb-8" />
             <p className="text-white/80 text-base md:text-lg mb-8 leading-relaxed">
               {propertyOwnerCta.description}
             </p>
