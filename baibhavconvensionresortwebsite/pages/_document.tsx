@@ -6,6 +6,18 @@ export default function Document() {
   return (
     <Html lang="en-IN">
       <Head>
+        {/* Google Tag Manager */}
+        {/* eslint-disable-next-line @next/next/next-script-for-ga -- GTM must load as the first inline script in <head> for static export */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${SITE.gtmId}');`,
+          }}
+        />
+        {/* End Google Tag Manager */}
         <meta charSet="utf-8" />
         <meta name="theme-color" content={SITE.themeColor} />
         <meta name="format-detection" content="telephone=yes" />
@@ -28,6 +40,16 @@ export default function Document() {
         />
       </Head>
       <body>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${SITE.gtmId}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <Main />
         <NextScript />
       </body>

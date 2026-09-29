@@ -11,6 +11,7 @@ export const SITE = {
   locale: 'en_IN',
   twitterHandle: '@baibhabresorts',
   themeColor: '#111111',
+  gtmId: 'GTM-K2FVW6KC',
   address: 'Near Phulnakhara Flyover, Bhubaneswar–Cuttack Highway, Odisha, India',
   phoneReservations: '+91 9938875749',
   phoneReservationsRaw: '919938875749',
