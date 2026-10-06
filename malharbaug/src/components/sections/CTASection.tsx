@@ -1,7 +1,8 @@
 import { bookingEngineUrl } from '@/data/booking';
-import { siteConfig } from '@/lib/site';
+import { getContact } from '@/lib/api';
 
-export default function CTASection() {
+export default async function CTASection() {
+  const contact = await getContact();
   return (
     <section className="bg-brand-600 px-6 py-20">
       <div className="mx-auto max-w-3xl text-center">
@@ -22,11 +23,11 @@ export default function CTASection() {
             Book Now
           </a>
           <a
-            href={`tel:${siteConfig.phone}`}
+            href={`tel:${contact.phone}`}
             className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-white hover:text-brand-100"
           >
             <iconify-icon icon="solar:phone-bold" width="18" height="18"></iconify-icon>
-            {siteConfig.phoneDisplay}
+            {contact.phoneDisplay}
           </a>
         </div>
       </div>

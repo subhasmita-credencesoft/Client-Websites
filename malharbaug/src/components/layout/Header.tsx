@@ -5,7 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { openDrawer, setScrolled } from '@/store/slices/uiSlice';
-import { primaryNav } from '@/data/navigation';
+import { buildPrimaryNav } from '@/data/navigation';
+import { useRooms } from '@/components/providers/PropertyProvider';
 import { bookingEngineUrl } from '@/data/booking';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import NavDropdown from './NavDropdown';
@@ -13,6 +14,8 @@ import NavDropdown from './NavDropdown';
 export default function Header() {
   const dispatch = useAppDispatch();
   const isScrolled = useAppSelector((state) => state.ui.isScrolled);
+  const rooms = useRooms();
+  const nav = buildPrimaryNav(rooms);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
@@ -43,7 +46,7 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
-          {primaryNav.map((item) =>
+          {nav.map((item) =>
             item.children ? (
               <div
                 key={item.label}

@@ -1,25 +1,34 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { rooms } from '@/data/rooms';
+import { getRooms } from '@/lib/api';
 
-export const metadata: Metadata = {
-  title: 'Rooms & Villas',
-  description:
-    'Choose from luxury deluxe rooms, spacious family suites and private villas at Malhar Baug Resort, Alibaug. AC rooms with modern amenities, garden views and rates starting ₹4,500/night near Nagaon Beach.',
-  alternates: { canonical: '/rooms/' },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const rooms = await getRooms();
+  const titles = rooms.map((room) => room.title).join(', ');
+  const prices = rooms.map((room) => room.priceValue).filter((value): value is number => typeof value === 'number');
+  const from = prices.length > 0 ? ` Rates starting ₹${Math.min(...prices).toLocaleString('en-IN')}/night.` : '';
 
-export default function RoomsPage() {
+  return {
+    title: 'Rooms & Villas',
+    description: `Choose from ${titles} at Malhar Baug Resort, Alibaug near Nagaon Beach.${from}`,
+    alternates: { canonical: '/rooms/' },
+  };
+}
+
+export default async function RoomsPage() {
+  const rooms = await getRooms();
+
   return (
     <>
       <Header />
       <main>
         <section className="relative flex min-h-[400px] items-center overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=2068"
-            alt="Luxury rooms and villas at Malhar Baug Resort, family resort in Alibaug near Nagaon Beach"
+            src={rooms[0]?.image || '/heroimg1.jpeg'}
+            alt="Rooms and villas at Malhar Baug Resort, family resort in Alibaug near Nagaon Beach"
             fill
             priority
             className="absolute inset-0 z-0 object-cover"
@@ -67,9 +76,9 @@ export default function RoomsPage() {
                       <span className="font-serif text-xl font-bold text-brand-700 dark:text-brand-400">{room.price}</span>
                       <p className="font-sans text-xs text-earth-500">{room.capacity}</p>
                     </div>
-                    <a href={`/rooms/${room.slug}`} className="rounded-full bg-brand-600 px-6 py-2.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-brand-700">
+                    <Link href={`/rooms/${room.slug}`} className="rounded-full bg-brand-600 px-6 py-2.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-brand-700">
                       View Details
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

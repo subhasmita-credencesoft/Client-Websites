@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { useContact } from '@/components/providers/PropertyProvider';
 
 export default function ContactPage() {
+  const contact = useContact();
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
@@ -82,7 +84,7 @@ export default function ContactPage() {
                       value={formData.phone}
                       onChange={handleChange}
                       className="mt-1 w-full rounded-xl border border-earth-200 bg-white px-4 py-3 font-sans text-sm text-earth-900 placeholder-earth-400 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-earth-700 dark:bg-earth-800 dark:text-white"
-                      placeholder="+91 98765 43210"
+                      placeholder={contact.phoneDisplay}
                     />
                   </div>
                   <div>
@@ -116,14 +118,14 @@ export default function ContactPage() {
 
               <div className="aspect-video w-full overflow-hidden rounded-2xl shadow-lg">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30229.534399614856!2d72.8736!3d18.6495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be87a2f3b0b0b0b%3A0x0!2sAlibaug!5e0!3m2!1sen!2sin!4v1"
+                  src={contact.mapEmbedUrl}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Malhar Baug Resort Location"
+                  title={`${contact.address.addressLocality || 'Malhar Baug Resort'} Location`}
                 />
               </div>
 
@@ -135,8 +137,12 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-serif text-base font-semibold text-earth-900 dark:text-white">Address</h3>
                     <p className="mt-1 font-sans text-sm text-earth-600 dark:text-earth-300">
-                      Malhar Baug Resort, Nagaon Beach Road,<br />
-                      Alibaug, Maharashtra 402204
+                      {contact.addressLines.map((line, index) => (
+                        <span key={line}>
+                          {index > 0 && <br />}
+                          {line}
+                        </span>
+                      ))}
                     </p>
                   </div>
                 </div>
@@ -147,8 +153,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-serif text-base font-semibold text-earth-900 dark:text-white">Phone</h3>
-                    <a href="tel:+919876543210" className="mt-1 block font-sans text-sm text-brand-600 hover:underline dark:text-brand-400">
-                      +91 98765 43210
+                    <a href={`tel:${contact.phone}`} className="mt-1 block font-sans text-sm text-brand-600 hover:underline dark:text-brand-400">
+                      {contact.phoneDisplay}
                     </a>
                   </div>
                 </div>
@@ -160,12 +166,12 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-serif text-base font-semibold text-earth-900 dark:text-white">WhatsApp</h3>
                     <a
-                      href="https://wa.me/919876543210"
+                      href={`https://wa.me/${contact.whatsapp}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-1 block font-sans text-sm text-brand-600 hover:underline dark:text-brand-400"
                     >
-                      +91 98765 43210
+                      {contact.whatsappDisplay}
                     </a>
                   </div>
                 </div>
@@ -177,10 +183,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-serif text-base font-semibold text-earth-900 dark:text-white">Email</h3>
                     <a
-                      href="mailto:info@malharbaugresort.com"
+                      href={`mailto:${contact.email}`}
                       className="mt-1 block font-sans text-sm text-brand-600 hover:underline dark:text-brand-400"
                     >
-                      info@malharbaugresort.com
+                      {contact.email}
                     </a>
                   </div>
                 </div>

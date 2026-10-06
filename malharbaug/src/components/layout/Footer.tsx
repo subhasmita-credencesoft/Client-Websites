@@ -1,6 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { footerNav } from '@/data/navigation';
+import { buildFooterNav } from '@/data/navigation';
+import { useContact, useRooms } from '@/components/providers/PropertyProvider';
 import { siteConfig } from '@/lib/site';
 
 const socialLinks = [
@@ -16,6 +19,10 @@ const policyLinks = [
 ];
 
 export default function Footer() {
+  const rooms = useRooms();
+  const contact = useContact();
+  const footerNav = buildFooterNav(rooms);
+
   return (
     <footer className="bg-brand-900">
       <div className="mx-auto max-w-7xl px-6 py-14">
@@ -35,26 +42,30 @@ export default function Footer() {
             <ul className="mt-5 space-y-2.5">
               <li>
                 <a
-                  href={`tel:${siteConfig.phone}`}
+                  href={`tel:${contact.phone}`}
                   className="inline-flex items-center gap-2 font-sans text-sm text-brand-200 transition-colors hover:text-white"
                 >
                   <iconify-icon icon="solar:phone-bold" width="16" height="16" aria-hidden="true"></iconify-icon>
-                  {siteConfig.phoneDisplay}
+                  {contact.phoneDisplay}
                 </a>
               </li>
               <li>
                 <a
-                  href={`mailto:${siteConfig.email}`}
+                  href={`mailto:${contact.email}`}
                   className="inline-flex items-center gap-2 font-sans text-sm text-brand-200 transition-colors hover:text-white"
                 >
                   <iconify-icon icon="solar:letter-bold" width="16" height="16" aria-hidden="true"></iconify-icon>
-                  {siteConfig.email}
+                  {contact.email}
                 </a>
               </li>
             </ul>
             <address className="mt-4 max-w-sm font-sans text-sm not-italic leading-relaxed text-brand-200">
-              H.No. 3116, Palhe, Nagaon,<br />
-              Alibag, Raigad, Maharashtra 402204
+              {contact.addressLines.map((line, index) => (
+                <span key={line}>
+                  {index > 0 && <br />}
+                  {line}
+                </span>
+              ))}
             </address>
             <div className="mt-5 flex items-center gap-3">
               {socialLinks.map((social) => (

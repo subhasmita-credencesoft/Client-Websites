@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { rooms } from '@/data/rooms';
+import { getRooms } from '@/lib/api';
 
-export default function RoomsGrid() {
+export default async function RoomsGrid() {
+  const rooms = await getRooms();
+
   return (
     <section className="mx-auto max-w-7xl px-6 py-24">
       <div className="mx-auto mb-16 max-w-2xl text-center">

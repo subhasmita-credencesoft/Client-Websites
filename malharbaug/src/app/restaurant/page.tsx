@@ -5,9 +5,11 @@ import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { menuCategories, diningDescription } from '@/data/dining';
+import { useContact } from '@/components/providers/PropertyProvider';
 
 export default function RestaurantPage() {
   const [activeTab, setActiveTab] = useState(0);
+  const contact = useContact();
 
   return (
     <>
@@ -84,7 +86,7 @@ export default function RestaurantPage() {
             Call us to reserve your dining experience.
           </p>
           <a
-            href="tel:+919876543210"
+            href={`tel:${contact.phone}`}
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-600 px-8 py-3.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-brand-700"
           >
             Call to Reserve

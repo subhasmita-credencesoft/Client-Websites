@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import Script from 'next/script';
 import StoreProvider from '@/store/StoreProvider';
+import { PropertyProvider } from '@/components/providers/PropertyProvider';
 import JsonLd from '@/components/seo/JsonLd';
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat';
 import ScrollAnimationObserver from '@/components/ui/ScrollAnimationObserver';
 import { hotelSchema, localBusinessSchema, websiteSchema } from '@/lib/schema';
+import { getContact, getRooms } from '@/lib/api';
 import { siteConfig } from '@/lib/site';
 import './globals.css';
 
@@ -82,7 +84,9 @@ const themeBootstrapScript = `
 })();
 `;
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const [rooms, contact] = await Promise.all([getRooms(), getContact()]);
+
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
       <head>
@@ -93,14 +97,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
-        <StoreProvider>
-          <JsonLd data={hotelSchema()} />
-          <JsonLd data={localBusinessSchema()} />
-          <JsonLd data={websiteSchema()} />
-          <ScrollAnimationObserver />
-          {children}
-          <WhatsAppFloat />
-        </StoreProvider>
+        <PropertyProvider rooms={rooms} contact={contact}>
+          <StoreProvider>
+            <JsonLd data={hotelSchema(contact, rooms)} />
+            <JsonLd data={localBusinessSchema(contact)} />
+            <JsonLd data={websiteSchema()} />
+            <ScrollAnimationObserver />
+            {children}
+            <WhatsAppFloat />
+          </StoreProvider>
+        </PropertyProvider>
       </body>
     </html>
   );

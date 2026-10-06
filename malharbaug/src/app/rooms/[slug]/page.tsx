@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import JsonLd from '@/components/seo/JsonLd';
-import { rooms } from '@/data/rooms';
+import { getContact, getRooms, legacyRoomSlugs, resolveRoom, roomSlugs } from '@/lib/api';
 import { bookingEngineUrl } from '@/data/booking';
 import { siteConfig } from '@/lib/site';
 import type { Metadata } from 'next';
@@ -13,12 +13,13 @@ interface Props {
   params: { slug: string };
 }
 
-export function generateStaticParams() {
-  return rooms.map((room) => ({ slug: room.slug }));
+export async function generateStaticParams(): Promise<Props['params'][]> {
+  const [slugs, legacySlugs] = await Promise.all([roomSlugs(), legacyRoomSlugs()]);
+  return [...slugs, ...legacySlugs].map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const room = rooms.find((r) => r.slug === params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const room = resolveRoom(await getRooms(), params.slug);
   if (!room) return { title: 'Room Not Found' };
   return {
     title: `${room.title} in Alibaug`,
@@ -32,16 +33,12 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function RoomDetailPage({ params }: Props) {
-  const room = rooms.find((r) => r.slug === params.slug);
+export default async function RoomDetailPage({ params }: Props) {
+  const [rooms, contact] = await Promise.all([getRooms(), getContact()]);
+  const room = resolveRoom(rooms, params.slug);
   if (!room) notFound();
 
   const otherRooms = rooms.filter((r) => r.slug !== room.slug);
-  const breadcrumbs = [
-    { name: 'Home', url: '/' },
-    { name: 'Rooms & Villas', url: '/rooms' },
-    { name: room.title, url: `/rooms/${room.slug}` },
-  ];
 
   const roomSchema = {
     '@context': 'https://schema.org',
@@ -62,10 +59,10 @@ export default function RoomDetailPage({ params }: Props) {
       '@type': 'Offer',
       priceSpecification: {
         '@type': 'PriceSpecification',
-        price: parseInt(room.price.replace(/[^0-9]/g, ''), 10) || undefined,
+        price: room.priceValue ?? (parseInt(room.price.replace(/[^0-9]/g, ''), 10) || undefined),
         priceCurrency: 'INR',
       },
-      availability: 'https://schema.org/InStock',
+      availability: room.available === false ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
       url: `${siteConfig.url}/rooms/${room.slug}/`,
     },
   };
@@ -213,10 +210,10 @@ export default function RoomDetailPage({ params }: Props) {
               Check Availability & Prices
             </a>
             <a
-              href={`tel:${siteConfig.phone}`}
+              href={`tel:${contact.phone}`}
               className="rounded-full border-2 border-white px-8 py-3.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-white hover:text-brand-700"
             >
-              Call {siteConfig.phoneDisplay}
+              Call {contact.phoneDisplay}
             </a>
           </div>
         </section>

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { eventCategories } from '@/data/events';
+import { getContact } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: 'Events & Celebrations',
@@ -11,7 +12,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/events/' },
 };
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const contact = await getContact();
+
   return (
     <>
       <Header />
@@ -93,7 +96,7 @@ export default function EventsPage() {
               Contact Us
             </a>
             <a
-              href="tel:+919876543210"
+              href={`tel:${contact.phone}`}
               className="rounded-full border-2 border-brand-600 px-8 py-3.5 font-sans text-sm font-semibold text-brand-600 transition-colors hover:bg-brand-600 hover:text-white dark:border-brand-400 dark:text-brand-400"
             >
               Call Now

@@ -9,7 +9,7 @@ export default function DiningPreview() {
         <div className="relative">
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-2xl">
             <Image
-              src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800"
+              src="https://bookonelocal.in/cdn/2025-04-23-114720822-4.jpg"
               alt="Konkan seafood and Maharashtrian thali served at Malhar Baug Resort restaurant, Alibaug"
               fill
               sizes="(min-width: 1024px) 40vw, 90vw"

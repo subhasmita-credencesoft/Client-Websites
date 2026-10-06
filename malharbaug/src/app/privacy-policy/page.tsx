@@ -1,5 +1,6 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { getContact } from '@/lib/api';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -8,7 +9,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacy-policy/' },
 };
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const contact = await getContact();
+
   return (
     <>
       <Header />
@@ -63,7 +66,11 @@ export default function PrivacyPolicyPage() {
             <div>
               <h2 className="font-serif text-2xl font-bold text-earth-900 dark:text-white">Contact Us</h2>
               <p className="mt-2">
-                If you have any questions about this Privacy Policy, please contact us at info@malharbaugresort.com.
+                If you have any questions about this Privacy Policy, please contact us at{' '}
+                <a href={`mailto:${contact.email}`} className="text-brand-600 underline hover:text-brand-700 dark:text-brand-400">
+                  {contact.email}
+                </a>
+                .
               </p>
             </div>
 

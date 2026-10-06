@@ -1,6 +1,19 @@
 import { siteConfig } from '@/lib/site';
+import type { ContactInfo } from '@/lib/api';
+import type { Room } from '@/types';
 
-export function hotelSchema() {
+function priceRangeFromRooms(rooms: Room[]): string {
+  const prices = rooms
+    .map((room) => room.priceValue ?? Number(room.price.replace(/[^0-9]/g, '')))
+    .filter((value) => Number.isFinite(value) && value > 0);
+  if (prices.length === 0) return '₹₹₹';
+  const min = Math.min(...prices);
+  const max = Math.max(...prices);
+  const formatter = new Intl.NumberFormat('en-IN');
+  return min === max ? `₹${formatter.format(min)}` : `₹${formatter.format(min)} - ₹${formatter.format(max)}`;
+}
+
+export function hotelSchema(contact: ContactInfo, rooms: Room[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Hotel',
@@ -8,15 +21,15 @@ export function hotelSchema() {
     description:
       'Family-friendly resort in Nagaon, Alibaug offering luxury rooms, private villas, swimming pool, gardens, and home-style Konkan cuisine near Nagaon Beach.',
     url: siteConfig.url,
-    telephone: siteConfig.phone,
-    email: siteConfig.email,
-    address: { ...siteConfig.address },
-    geo: { ...siteConfig.geo },
+    telephone: contact.phone,
+    email: contact.email,
+    address: { ...contact.address },
+    geo: { ...contact.geo },
     image: `${siteConfig.url}/heroimg1.jpeg`,
-    priceRange: '₹4,500 - ₹15,000',
+    priceRange: priceRangeFromRooms(rooms),
     checkinTime: '12:00',
     checkoutTime: '10:00',
-    numberOfRooms: '12',
+    numberOfRooms: String(rooms.length),
     petsAllowed: false,
     amenityFeature: [
       { '@type': 'LocationFeatureSpecification', name: 'Swimming Pool' },
@@ -31,7 +44,7 @@ export function hotelSchema() {
   };
 }
 
-export function localBusinessSchema() {
+export function localBusinessSchema(contact: ContactInfo) {
   return {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'LodgingBusiness'],
@@ -39,9 +52,9 @@ export function localBusinessSchema() {
     name: siteConfig.name,
     image: `${siteConfig.url}/heroimg1.jpeg`,
     url: siteConfig.url,
-    telephone: siteConfig.phone,
-    address: { ...siteConfig.address },
-    geo: { ...siteConfig.geo },
+    telephone: contact.phone,
+    address: { ...contact.address },
+    geo: { ...contact.geo },
     openingHours: 'Mo-Su 00:00-23:59',
     priceRange: '₹₹₹',
     sameAs: [

@@ -1,13 +1,14 @@
 import { MetadataRoute } from 'next';
 import { siteConfig } from '@/lib/site';
-import { rooms } from '@/data/rooms';
+import { getRooms } from '@/lib/api';
 import { resortFacilities } from '@/data/amenities';
 import { eventCategories } from '@/data/events';
 import { travelGuides } from '@/data/travelGuide';
 import { blogPosts } from '@/data/blog';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
+  const rooms = await getRooms();
 
   const staticPages: { path: string; priority: number; freq: 'daily' | 'weekly' | 'monthly' | 'yearly' }[] = [
     { path: '', priority: 1, freq: 'weekly' },

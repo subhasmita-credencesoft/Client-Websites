@@ -1,5 +1,6 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { getContact } from '@/lib/api';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/cancellation-policy/' },
 };
 
-export default function CancellationPolicyPage() {
+export default async function CancellationPolicyPage() {
+  const contact = await getContact();
+
   return (
     <>
       <Header />
@@ -23,8 +26,11 @@ export default function CancellationPolicyPage() {
         <section className="mx-auto max-w-3xl px-6 py-24">
           <div className="animate-on-scroll space-y-8 font-sans text-base leading-relaxed text-earth-700 dark:text-earth-200">
             <p>
-              We keep our cancellation policy simple and guest-friendly. All cancellation requests must be sent in writing to
-              info@malharbaugresort.com or confirmed over the phone with our front desk.
+              We keep our cancellation policy simple and guest-friendly. All cancellation requests must be sent in writing to{' '}
+              <a href={`mailto:${contact.email}`} className="text-brand-600 underline hover:text-brand-700 dark:text-brand-400">
+                {contact.email}
+              </a>{' '}
+              or confirmed over the phone with our front desk.
             </p>
 
             <div>
@@ -65,8 +71,8 @@ export default function CancellationPolicyPage() {
               <h2 className="font-serif text-2xl font-bold text-earth-900 dark:text-white">Need Help?</h2>
               <p className="mt-2">
                 Call us at{' '}
-                <a href="tel:+919876543210" className="text-brand-600 underline hover:text-brand-700 dark:text-brand-400">
-                  +91 98765 43210
+                <a href={`tel:${contact.phone}`} className="text-brand-600 underline hover:text-brand-700 dark:text-brand-400">
+                  {contact.phoneDisplay}
                 </a>{' '}
                 or WhatsApp us — we are happy to help you reschedule instead of cancelling.
               </p>

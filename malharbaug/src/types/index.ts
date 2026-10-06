@@ -15,6 +15,8 @@ export interface Room {
   image: string;
   amenities: string[];
   images: string[];
+  priceValue?: number;
+  available?: boolean;
 }
 
 export interface Amenity {

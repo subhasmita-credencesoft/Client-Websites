@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { closeDrawer, setDrawerOpen, setDrawerRendered } from '@/store/slices/uiSlice';
-import { primaryNav } from '@/data/navigation';
+import { buildPrimaryNav } from '@/data/navigation';
+import { useRooms } from '@/components/providers/PropertyProvider';
 import { bookingEngineUrl } from '@/data/booking';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 
@@ -12,6 +13,7 @@ export default function MobileDrawer() {
   const dispatch = useAppDispatch();
   const isDrawerOpen = useAppSelector((state) => state.ui.isDrawerOpen);
   const isDrawerRendered = useAppSelector((state) => state.ui.isDrawerRendered);
+  const nav = buildPrimaryNav(useRooms());
 
   useEffect(() => {
     if (isDrawerRendered && !isDrawerOpen) {
@@ -82,7 +84,7 @@ export default function MobileDrawer() {
         </div>
 
         <nav className="flex flex-col gap-1 px-6 py-6">
-          {primaryNav.map((item) => (
+          {nav.map((item) => (
             <a
               key={item.label}
               href={item.href}

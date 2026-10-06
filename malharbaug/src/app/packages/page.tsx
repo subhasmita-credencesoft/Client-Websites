@@ -4,6 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { packages, offers } from '@/data/packages';
 import { bookingEngineUrl } from '@/data/booking';
+import { getContact } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: 'Resort Packages & Offers',
@@ -12,7 +13,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/packages/' },
 };
 
-export default function PackagesPage() {
+export default async function PackagesPage() {
+  const contact = await getContact();
+
   return (
     <>
       <Header />
@@ -83,7 +86,7 @@ export default function PackagesPage() {
                       Book Now
                     </a>
                     <a
-                      href="tel:+919876543210"
+                      href={`tel:${contact.phone}`}
                       className="rounded-full border-2 border-brand-600 px-6 py-2.5 font-sans text-sm font-semibold text-brand-600 transition-colors hover:bg-brand-600 hover:text-white dark:border-brand-400 dark:text-brand-400"
                     >
                       Call Us

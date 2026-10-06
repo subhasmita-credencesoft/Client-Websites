@@ -1,9 +1,17 @@
 'use client';
 
+import { useContact } from '@/components/providers/PropertyProvider';
+
+const MESSAGE = "Hello Malhar Baug Resort, I'd like to make a booking";
+
 export default function WhatsAppFloat() {
+  const contact = useContact();
+
+  if (!contact.whatsapp) return null;
+
   return (
     <a
-      href="https://wa.me/919876543210?text=Hello%20Malhar%20Baug%20Resort%2C%20I%27d%20like%20to%20make%20a%20booking"
+      href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(MESSAGE)}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

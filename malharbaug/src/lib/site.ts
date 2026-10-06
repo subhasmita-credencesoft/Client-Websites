@@ -1,3 +1,10 @@
+/**
+ * Static site identity (name, canonical URL, SEO copy).
+ *
+ * Contact details (phone, WhatsApp, email, address, geo) are NOT hardcoded here:
+ * they are fetched at build time from the booking API — see `src/lib/api.ts`
+ * (`getContact()`) and `src/components/providers/PropertyProvider.tsx`.
+ */
 export const siteConfig = {
   name: 'Malhar Baug Resort',
   legalName: 'Malhar Baug Resort, Alibaug',
@@ -5,21 +12,4 @@ export const siteConfig = {
   tagline: 'Family Resort in Alibaug Near Nagaon Beach',
   description:
     'Malhar Baug Resort in Nagaon, Alibaug — a family-friendly resort with luxury rooms, private villas, swimming pool, lush gardens and home-style Konkan dining, just 2 km from Nagaon Beach.',
-  phone: '+919876543210',
-  phoneDisplay: '+91 98765 43210',
-  whatsapp: '919876543210',
-  email: 'info@malharbaugresort.com',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'H.No. 3116, Palhe, Nagaon',
-    addressLocality: 'Alibag',
-    addressRegion: 'Maharashtra',
-    postalCode: '402204',
-    addressCountry: 'IN',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 18.6553,
-    longitude: 72.8772,
-  },
 } as const;
