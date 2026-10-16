@@ -1,6 +1,6 @@
 import type { Room } from '@/types';
 
-const BOOKING_URL = 'https://bookone.io/Hotel-K2?bookingEngine=true';
+const BOOKING_URL = 'https://bookone.io/Hotel-K2-Chakradharpur?bookingEngine=true';
 
 export const ROOMS: Room[] = [
   {

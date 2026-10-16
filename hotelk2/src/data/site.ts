@@ -6,7 +6,7 @@ export const SITE = {
   location: 'Chakradharpur, West Singhbhum, Jharkhand',
   address: 'K2 Complex, Etwari Bazar, Station Link Road, Chakradharpur, West Singhbhum, Jharkhand 833102',
   url: 'https://www.hotelk2.in/',
-  bookingUrl: 'https://bookone.io/Hotel-K2?bookingEngine=true',
+  bookingUrl: 'https://bookone.io/Hotel-K2-Chakradharpur?bookingEngine=true',
   whatsappUrl: 'https://wa.me/918709490824',
   logo: 'https://www.hhickp.com/hari-img/logo.webp',
   description:
