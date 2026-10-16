@@ -1,0 +1,23 @@
+.note { border-left:2px solid var(--orange); padding:14px 18px; background:var(--paper-deep); color:var(--muted); line-height:1.7; font-size:13px; margin-top:26px; }
+.feature-list { display:flex; flex-wrap:wrap; gap:10px; list-style:none; padding:0; margin:23px 0 0; }
+.feature-list li { border:1px solid var(--line); padding:11px 14px; font-size:11px; letter-spacing:.02em; }
+.destination-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; }
+.destination-card { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); background:var(--paper-deep); min-height:250px; }
+.destination-card img { width:100%; height:100%; min-height:250px; object-fit:cover; }
+.destination-card div { padding:24px; align-self:center; }
+.destination-card--text .destination-art { min-height:250px; display:flex; align-items:center; justify-content:center; background:var(--ink); color:var(--paper); }
+.destination-art span { color:var(--orange); font:400 clamp(64px, 8vw, 112px) var(--serif); opacity:.8; }
+.destination-card h2 { font:400 27px var(--serif); margin:0 0 9px; }
+.destination-card p { color:var(--muted); line-height:1.65; font-size:13px; margin:0; }
+.contact-layout { display:grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap:9vw; align-items:start; }
+.contact-details { border-top:1px solid var(--line); }
+.contact-row { padding:22px 0; border-bottom:1px solid var(--line); }
+.contact-row span { display:block; font-size:9px; text-transform:uppercase; letter-spacing:.17em; color:var(--muted); margin-bottom:9px; }
+.contact-row a, .contact-row address { font-size:17px; line-height:1.6; font-style:normal; overflow-wrap:anywhere; }
+.map-panel { min-height:450px; background:linear-gradient(135deg,#dbd2c1,#c5bba8); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; text-align:center; padding:25px; }
+.map-panel::before,.map-panel::after { content:""; position:absolute; width:150%; height:1px; background:rgba(81,91,67,.22); transform:rotate(-24deg); }
+.map-panel::after { transform:rotate(28deg); }
+.map-pin { z-index:1; background:var(--paper); padding:28px 34px; box-shadow:0 10px 35px #564f3e22; color:var(--ink); }
+.map-pin strong { display:block; font:24px var(--serif); }
+.map-pin p { color:var(--muted); font-size:12px; line-height:1.7; }
+.map-pin .text-link { margin-top:8px; }

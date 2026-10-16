@@ -1,0 +1,29 @@
+{
+  "name": "krishna-palace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Official guest website for Hotel Krishna Palace, Hosapete, Karnataka.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "npx serve out",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "gsap": "^3.13.0",
+    "lenis": "^1.3.11",
+    "next": "^15.5.27",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sass": "^1.90.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

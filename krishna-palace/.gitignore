@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+.npm-cache/
+.npmrc
+
+# next.js build output
+.next/
+out/
+next-env.d.ts
+
+# misc
+*.tsbuildinfo
+.devserver.log
+.devserver.err.log
+.DS_Store
+*.pem
+npm-debug.log*
+
+# env
+.env*
+!.env.example
+
+# vercel
+.vercel

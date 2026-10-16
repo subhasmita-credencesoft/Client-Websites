@@ -1,0 +1,73 @@
+/* Scroll-led editorial sequence */
+.cinematic-hero { position: relative; width: 100%; min-height: 100svh; background: #29251f; color: #fff; }
+.cinematic-pin { height: 100svh; min-height: 560px; width: 100%; position: relative; overflow: hidden; background: #29251f; }
+.cinematic-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cinematic-photo--base { z-index: 0; }
+.cinematic-photo--after { z-index: 2; clip-path: inset(0 100% 0 0); }
+.cinematic-wordmark { position: absolute; z-index: 1; left: 50%; top: 50%; width: max-content; transform: translate(-50%,-55%); color: #f4eee4; font: 400 clamp(90px,20vw,300px)/.8 var(--serif); letter-spacing: -.085em; white-space: nowrap; opacity: .3; pointer-events: none; mix-blend-mode: screen; }
+.cinematic-scrim { position: absolute; z-index: 3; inset: 0; background: linear-gradient(90deg,rgba(21,22,19,.66),rgba(21,22,19,.12) 78%),linear-gradient(0deg,rgba(20,19,15,.5),transparent 60%); pointer-events: none; }
+.cinematic-copy { position: absolute; z-index: 5; left: var(--page-pad); bottom: 14vh; width: min(770px,79vw); }
+.cinematic-copy--first { opacity: 1; }
+.cinematic-copy--second { opacity: 0; transform: translateY(26px); pointer-events: none; }
+.cinematic-copy h1,.cinematic-copy h2 { font: 400 clamp(56px,8.6vw,126px)/.98 var(--serif); letter-spacing: -.065em; max-width: 900px; margin: 23px 0; text-wrap: balance; }
+.cinematic-copy p { max-width: 470px; color: rgba(255,255,255,.9); font-size: clamp(14px,1.3vw,17px); line-height: 1.75; }
+.cinematic-copy .eyebrow { color: #ffc27d; }
+.cinematic-copy :is(a, button):focus-visible { outline-color: #ffc27d; }
+.cinematic-copy .hero-actions { margin-top: 29px; }
+.cinematic-index { position: absolute; z-index: 5; right: var(--page-pad); bottom: 43px; font: 10px var(--sans); letter-spacing: .17em; color: rgba(255,255,255,.82); }
+.cinematic-progress { position: absolute; z-index: 42; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,.26); }
+.cinematic-progress span { display: block; width: 100%; height: 100%; background: var(--orange); transform: scaleX(0); transform-origin: left center; }
+.cinematic-scroll-cue { position: absolute; z-index: 5; right: var(--page-pad); bottom: 73px; color: rgba(255,255,255,.8); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
+.cinematic-scroll-cue i { display: block; height: 1px; width: 74px; margin-top: 9px; background: rgba(255,255,255,.6); }
+.regional-route { margin: 0 0 68px; padding: 32px 34px 20px; background: var(--paper-deep); overflow: hidden; }
+.regional-route__intro { display: flex; justify-content: space-between; align-items: baseline; gap: 30px; }
+.regional-route__intro p { margin: 0; max-width: 400px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.regional-route__map { display: block; width: 100%; height: auto; margin: 20px 0 0; overflow: visible; }
+.regional-route__line { stroke: var(--orange-dark); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 2 8; }
+.regional-route__stop { fill: var(--paper); stroke: var(--orange-dark); stroke-width: 2; transform-box: fill-box; transform-origin: center; }
+.regional-route__label { fill: var(--ink); font: 500 12px var(--sans); letter-spacing: .02em; text-anchor: middle; }
+.regional-route__footer { border-top: 1px solid var(--line); padding-top: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; font-size: 9px; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
+.site-footer { position: relative; overflow: hidden; isolation: isolate; }
+.site-footer::before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .42; pointer-events: none; background: radial-gradient(500px circle at var(--pointer-x, 50%) var(--pointer-y, 50%), rgba(205,117,48,.2), transparent 72%); transition: opacity .25s ease; }
+.footer-marquee { overflow: hidden; margin: -66px calc(-1 * var(--page-pad)) 49px; padding: 22px 0 20px; border-bottom: 1px solid rgba(255,255,255,.15); }
+.footer-marquee__track { display: flex; width: max-content; animation: regional-marquee 34s linear infinite; }
+.footer-marquee__track span { flex: none; font: 400 clamp(27px,4vw,52px)/1.2 var(--serif); letter-spacing: -.025em; white-space: nowrap; padding-right: 24px; color: #eee6d7; }
+.footer-marquee__track i { color: #de9956; font-style: normal; padding: 0 .3em; }
+@keyframes regional-marquee { to { transform: translateX(-50%); } }
+
+@media (max-width: 850px) {
+  .cinematic-pin { min-height: 520px; }
+  .cinematic-copy { left: var(--page-pad); bottom: 14vh; width: 86vw; }
+  .cinematic-copy h1,.cinematic-copy h2 { font-size: clamp(52px,11vw,86px); }
+  .cinematic-index { font-size: 8px; }
+  .regional-route { padding: 24px 18px 16px; }
+  .regional-route__label { font-size: 17px; }
+  .regional-route__footer { font-size: 8px; }
+}
+@media (max-width: 560px) {
+  .cinematic-pin { height: 100svh; min-height: 580px; }
+  .cinematic-photo { object-position: 58% center; }
+  .cinematic-wordmark { font-size: 22vw; opacity: .27; }
+  .cinematic-copy { bottom: 16vh; }
+  .cinematic-copy h1,.cinematic-copy h2 { font-size: clamp(47px,12.6vw,69px); margin: 17px 0; }
+  .cinematic-copy p { max-width: 350px; font-size: 13px; }
+  .cinematic-index { left: var(--page-pad); right: auto; bottom: 27px; }
+  .cinematic-scroll-cue { bottom: 56px; right: var(--page-pad); font-size: 9px; }
+  .cinematic-scroll-cue i { width: 52px; }
+  .regional-route { margin-bottom: 44px; padding: 20px 12px 13px; }
+  .regional-route__intro { display: block; }
+  .regional-route__intro p { margin-top: 10px; font-size: 11px; }
+  .regional-route__map { width:100%; max-width:100%; margin:26px 0 0; }
+  .regional-route__label { font-size: 23px; }
+  .regional-route__footer { flex-direction: column; gap: 8px; }
+  .footer-marquee { margin-top: -75px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-hero { height: auto; }
+  .cinematic-pin { position: relative; height: min(78svh,740px); min-height: 520px; }
+  .cinematic-photo--after,.cinematic-copy--second,.cinematic-scroll-cue { display: none; }
+  .cinematic-progress span { transform: scaleX(1); }
+  .footer-marquee__track { animation: none; }
+  .site-footer::before { transition: none; }
+  .footer-mandala, .footer-wave, .footer-star, .footer-glow-pulse { animation: none !important; }
+}

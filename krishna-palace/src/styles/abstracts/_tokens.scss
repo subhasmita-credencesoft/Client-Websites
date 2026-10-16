@@ -1,0 +1,29 @@
+:root {
+  color-scheme: light;
+  --content-max: 1250px;
+  --page-pad: max(5.5vw, calc((100vw - var(--content-max)) / 2));
+  --paper: #f3eee4;
+  --paper-deep: #e8dece;
+  --ink: #29251f;
+  --muted: #746d60;
+  --orange: #cb6e26;
+  --orange-dark: #964817;
+  --olive: #485044;
+  --line: rgba(41, 37, 31, .19);
+  --serif: 'Bodoni Moda', Georgia, serif;
+  --sans: 'Inter', sans-serif;
+  --header-bg: rgba(243, 238, 228, .93);
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #242720;
+  --paper-deep: #30332b;
+  --ink: #f1ebdf;
+  --muted: #c0b8a9;
+  --orange: #e49a54;
+  --orange-dark: #f0ad68;
+  --olive: #343a31;
+  --line: rgba(241, 235, 223, .2);
+  --header-bg: rgba(36, 39, 32, .94);
+}

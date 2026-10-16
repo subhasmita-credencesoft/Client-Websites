@@ -1,0 +1,286 @@
+.site-footer {
+  position: relative;
+  background: radial-gradient(circle at 85% 15%, rgba(203, 110, 38, 0.12) 0%, transparent 55%),
+              radial-gradient(circle at 12% 85%, rgba(150, 72, 23, 0.1) 0%, transparent 45%),
+              linear-gradient(180deg, #1b1c17 0%, #10110d 100%);
+  color: #f5f0e7;
+  padding: 68px var(--page-pad) 28px;
+  overflow: hidden;
+  isolation: isolate;
+  border-top: 1px solid rgba(232, 164, 94, 0.22);
+}
+
+.footer-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.footer-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ─── Animated SVG Background Components ─── */
+.footer-glow-pulse {
+  animation: footerGlowPulse 10s ease-in-out infinite alternate;
+  transform-origin: 50% 60%;
+}
+@keyframes footerGlowPulse {
+  0% { opacity: 0.45; transform: scale(0.9); }
+  100% { opacity: 0.85; transform: scale(1.12); }
+}
+
+.footer-wave {
+  &--1 { animation: footerWaveFloat1 16s ease-in-out infinite alternate; }
+  &--2 { animation: footerWaveFloat2 22s ease-in-out infinite alternate; }
+  &--3 { animation: footerWaveFloat3 18s ease-in-out infinite alternate; }
+}
+@keyframes footerWaveFloat1 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-14px) scaleY(1.03); }
+}
+@keyframes footerWaveFloat2 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(12px) scaleY(0.97); }
+}
+@keyframes footerWaveFloat3 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.footer-mandala {
+  &--right {
+    transform-origin: 1220px 300px;
+    animation: footerMandalaSpin 110s linear infinite;
+  }
+  &--left {
+    transform-origin: 180px 480px;
+    animation: footerMandalaSpin 85s linear infinite reverse;
+  }
+}
+@keyframes footerMandalaSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.footer-star {
+  animation: footerStarPulse 4s ease-in-out infinite;
+  &--1 { animation-delay: 0.3s; animation-duration: 3.4s; }
+  &--2 { animation-delay: 1.2s; animation-duration: 4.6s; }
+  &--3 { animation-delay: 2.1s; animation-duration: 3.1s; }
+  &--4 { animation-delay: 0.7s; animation-duration: 5.2s; }
+  &--5 { animation-delay: 1.8s; animation-duration: 4s; }
+  &--6 { animation-delay: 2.8s; animation-duration: 3.6s; }
+  &--7 { animation-delay: 0.4s; animation-duration: 4.4s; }
+  &--8 { animation-delay: 3s; animation-duration: 3.8s; }
+  &--9 { animation-delay: 1.6s; animation-duration: 4.2s; }
+}
+@keyframes footerStarPulse {
+  0%, 100% { opacity: 0.2; transform: scale(0.85); }
+  50% { opacity: 0.95; transform: scale(1.35); }
+}
+
+/* ─── Redesigned Footer Columns & Typography ─── */
+.footer-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(26px, 3.2vw, 54px);
+  padding-bottom: 46px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-col {
+  min-width: 0;
+
+  &__eyebrow {
+    font-size: 9px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #e8a45e;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  h3 {
+    font: 400 20px/1.2 var(--serif);
+    letter-spacing: -.01em;
+    color: #fbf7f0;
+    margin: 0 0 18px;
+  }
+}
+
+.footer-logo {
+  width: clamp(145px, 11vw, 175px);
+  max-height: 75px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  display: block;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, .45));
+}
+
+.footer-brand {
+  font: 400 30px/1.1 var(--serif);
+  letter-spacing: -.02em;
+  color: #fff;
+}
+
+.footer-subbrand {
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #e8a45e;
+  display: block;
+  margin: 3px 0 14px;
+}
+
+.footer-brand-desc {
+  color: #b8b4a7;
+  line-height: 1.75;
+  font-size: 12.5px;
+  max-width: 320px;
+  margin: 0 0 20px;
+}
+
+.footer-book-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 99px;
+  background: linear-gradient(135deg, #c9893a 0%, #e4ad5a 100%);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(201, 137, 58, .35);
+  transition: transform .2s, filter .2s;
+
+  &:hover {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+  }
+
+  svg {
+    transition: transform .2s;
+  }
+  &:hover svg {
+    transform: translateX(3px);
+  }
+}
+
+.footer-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    color: #cfccc2;
+    font-size: 12.5px;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: color .2s, transform .2s;
+    display: inline-block;
+
+    &:hover {
+      color: #f1b269;
+      transform: translateX(3px);
+    }
+  }
+}
+
+.footer-col--contact address {
+  color: #cfccc2;
+  font-size: 12.5px;
+  line-height: 1.7;
+  font-style: normal;
+  margin-bottom: 16px;
+}
+
+.footer-contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #cfccc2;
+  font-size: 12px;
+  text-decoration: none;
+  transition: color .2s;
+
+  &:hover {
+    color: #f1b269;
+  }
+}
+
+.footer-contact-icon {
+  font-size: 12px;
+  opacity: .8;
+}
+
+.footer-stay-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .1);
+  font-size: 11px;
+  color: #cfccc2;
+  width: fit-content;
+
+  strong {
+    color: #e8a45e;
+    font-weight: 700;
+  }
+}
+
+/* ─── Footer Bottom Ribbon ─── */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, .14);
+  padding-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  color: #a3a096;
+  font-size: 10.5px;
+  letter-spacing: .06em;
+  position: relative;
+  z-index: 1;
+
+  a {
+    color: #cfccc2;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color .2s;
+
+    &:hover {
+      color: #f1b269;
+    }
+  }
+}
+.spaced { letter-spacing:.08em; }

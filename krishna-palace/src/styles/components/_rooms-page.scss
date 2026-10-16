@@ -1,0 +1,300 @@
+/* ══════════════════════════════════════════════════
+   Premium Cinematic Rooms & Rates Page
+   ══════════════════════════════════════════════════ */
+
+/* Editorial intro */
+.rooms-editorial-intro {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 56px;
+}
+.rooms-editorial-intro h2 {
+  font: 400 clamp(38px, 5.2vw, 68px)/1.04 var(--serif);
+  letter-spacing: -.03em;
+  margin: 16px 0 20px;
+}
+.rooms-editorial-intro p {
+  color: var(--muted);
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.85;
+}
+
+/* Quick nav bar */
+.rooms-quick-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+.rooms-quick-pill {
+  padding: 10px 22px;
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: all .25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.rooms-quick-pill span {
+  color: var(--orange-dark);
+  font-weight: 700;
+}
+.rooms-quick-pill:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.rooms-quick-pill:hover span {
+  color: var(--orange);
+}
+
+/* ── Room Showcase (mirrors outlet-showcase) ── */
+.room-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(40px, 7vw, 100px);
+  margin-bottom: 96px;
+  padding-bottom: 96px;
+  border-bottom: 1px solid var(--line);
+}
+.room-showcase:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.room-showcase--reverse {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+}
+.room-showcase--reverse .room-showcase__media {
+  order: 2;
+}
+.room-showcase--reverse .room-showcase__content {
+  order: 1;
+}
+
+.room-showcase__media {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, .11);
+}
+.room-showcase__media .room-media {
+  height: clamp(380px, 46vw, 560px);
+  width: 100%;
+}
+.room-showcase__media img {
+  display: block;
+  width: 100%;
+  height: clamp(380px, 46vw, 560px);
+  object-fit: cover;
+  transition: transform .9s cubic-bezier(.2, .7, .2, 1);
+}
+.room-showcase:hover .room-showcase__media img {
+  transform: scale(1.035);
+}
+.room-showcase__number {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font: 400 clamp(48px, 6vw, 76px)/1 var(--serif);
+  color: #fff;
+  opacity: .85;
+  text-shadow: 0 2px 14px rgba(0,0,0,.6);
+  pointer-events: none;
+}
+.room-showcase__badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: rgba(20, 19, 15, .86);
+  color: #ffc27d;
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  backdrop-filter: blur(8px);
+}
+
+.room-showcase__content {
+  display: flex;
+  flex-direction: column;
+}
+.room-showcase__tagline {
+  font: italic 400 18px/1.4 var(--serif);
+  color: var(--orange-dark);
+  margin: 6px 0 14px;
+}
+.room-showcase__content h3 {
+  font: 400 clamp(36px, 4.4vw, 56px)/1.06 var(--serif);
+  letter-spacing: -.03em;
+  margin: 0 0 18px;
+}
+.room-showcase__desc {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+  margin: 0 0 22px;
+}
+.room-showcase__meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 0 0 28px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.room-showcase__meta-item span {
+  display: block;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.room-showcase__meta-item strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.room-showcase__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ── Amenities Pillars (dark section) ── */
+.rooms-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 48px;
+}
+.rooms-pillar-card {
+  padding: 32px 28px;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .12);
+  transition: background .25s ease;
+}
+.rooms-pillar-card:hover {
+  background: rgba(255, 255, 255, .07);
+}
+.rooms-pillar-card span {
+  display: block;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: #ffc27d;
+  margin-bottom: 12px;
+}
+.rooms-pillar-card h3 {
+  font: 400 24px/1.15 var(--serif);
+  margin: 0 0 12px;
+  color: #f3eee4;
+}
+.rooms-pillar-card p {
+  color: #cbc6b9;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ── Gallery Strip ── */
+.rooms-gallery-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+  overflow: hidden;
+}
+.rooms-gallery-strip img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform .8s cubic-bezier(.2, .7, .2, 1);
+}
+.rooms-gallery-strip img:hover {
+  transform: scale(1.04);
+}
+
+/* ── Location editorial variant ── */
+.editorial--rooms {
+  gap: clamp(45px, 8vw, 130px);
+}
+.editorial--rooms .editorial-image {
+  height: 580px;
+}
+
+/* ── button--ink variant ── */
+.button--ink {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.button--ink:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* ── Responsive: Rooms Page ── */
+@media (max-width: 1024px) {
+  .room-showcase,
+  .room-showcase--reverse {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .room-showcase--reverse .room-showcase__media {
+    order: 0;
+  }
+  .room-showcase--reverse .room-showcase__content {
+    order: 0;
+  }
+  .room-showcase__media .room-media,
+  .room-showcase__media img {
+    height: 360px;
+  }
+  .rooms-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rooms-gallery-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .rooms-gallery-strip img {
+    height: 200px;
+  }
+  .editorial--rooms {
+    grid-template-columns: 1fr;
+  }
+  .editorial--rooms .editorial-image {
+    height: 420px;
+    order: -1;
+  }
+}
+@media (max-width: 700px) {
+  .rooms-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+  .rooms-gallery-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .room-showcase__meta {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .rooms-gallery-strip {
+    grid-template-columns: 1fr;
+  }
+  .rooms-gallery-strip img {
+    height: 240px;
+  }
+}
