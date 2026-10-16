@@ -7,28 +7,31 @@ import { NearbyPlaces } from '@/components/sections/NearbyPlaces';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { Gallery } from '@/components/sections/Gallery';
 import { ContactSection } from '@/components/sections/ContactSection';
+import { SITE_KEYWORDS } from '@/data/seo';
+import { FAQ_SCHEMA, NEARBY_SCHEMA } from '@/data/schema';
 
 export const metadata: Metadata = {
-  title: 'Hotel K2 — Best Hotel in Chakradharpur, Jharkhand | AC Rooms, Free Wi-Fi',
+  title: {
+    absolute: 'Hotel in Chakradharpur | Hotel K2 — AC Rooms, Free Wi-Fi & Banquet Hall',
+  },
   description:
-    'Hotel K2 is the best hotel in Chakradharpur, Jharkhand. Located near Chakradharpur Railway Station, Etwari Bazar, Station Link Road, near Carmel School. AC rooms with free Wi-Fi, TV, geyser, power backup. 24-hour room service, banquet hall & catering. Book now — affordable hotel booking in Chakradharpur. Hotel K2 room booking, online hotel booking Chakradharpur.',
-  keywords:
-    'Hotel K2 Chakradharpur, Hotel in Chakradharpur, Best hotel in Chakradharpur, Hotels in Chakradharpur, AC rooms Chakradharpur, Hotel near Chakradharpur Railway Station, Banquet hall Chakradharpur, Hotel booking Chakradharpur, Budget hotel Chakradharpur, Hotel in West Singhbhum, Best hotel in West Singhbhum, Book hotel in Chakradharpur, Online hotel booking Chakradharpur, Hotel K2 booking, Affordable hotel Chakradharpur, Hotel near Etwari Bazar, Hotel near Carmel School Chakradharpur, Hotel with free WiFi Chakradharpur, Hotel with room service Chakradharpur, Best place to stay in Chakradharpur, Hotel in Chakradharpur Jharkhand, Hotel K2 Chakradharpur Jharkhand, Chakradharpur hotel, Chakradharpur hotels, Hotel deals Chakradharpur, Best hotel deals in Chakradharpur, Hotel reservation Chakradharpur, Top hotel in Chakradharpur, Family hotel Chakradharpur, Business hotel Chakradharpur, Hotel near railway station Chakradharpur',
+    'Hotel K2 is a hotel in Chakradharpur, Jharkhand, near Chakradharpur Railway Station at Etwari Bazar, Station Link Road, near Carmel School. AC rooms with free Wi-Fi, TV, geyser and power backup. 24-hour room service, banquet hall, conference hall and catering. Book your stay in Chakradharpur — Hotel K2.',
+  keywords: SITE_KEYWORDS.join(', '),
   openGraph: {
-    title: 'Hotel K2 — Best Hotel in Chakradharpur, Jharkhand',
+    title: 'Hotel in Chakradharpur | Hotel K2, Jharkhand',
     description:
-      'Best hotel in Chakradharpur near Railway Station. AC rooms, free Wi-Fi, TV, geyser, power backup, 24-hour room service, banquet hall & catering. Book Hotel K2, Etwari Bazar, Chakradharpur.',
+      'Hotel in Chakradharpur near Railway Station. AC rooms, free Wi-Fi, TV, geyser, power backup, 24-hour room service, banquet hall & catering. Book Hotel K2, Etwari Bazar, Chakradharpur.',
     url: '/',
     images: [
-      { url: '/homehero1.png', width: 1200, height: 630, alt: 'Hotel K2 — Best Hotel in Chakradharpur, Jharkhand' },
+      { url: '/homehero1.png', width: 1200, height: 630, alt: 'Hotel K2 — Hotel in Chakradharpur, Jharkhand' },
       { url: '/newimages/receptionmain.png', width: 1200, height: 630, alt: 'Hotel K2 Reception, Chakradharpur' },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hotel K2 — Best Hotel in Chakradharpur, Jharkhand',
+    title: 'Hotel in Chakradharpur | Hotel K2, Jharkhand',
     description:
-      'Best hotel in Chakradharpur near Railway Station. AC rooms, free Wi-Fi, banquet hall & 24-hour room service. Book now at Hotel K2.',
+      'Hotel in Chakradharpur near Railway Station. AC rooms, free Wi-Fi, banquet hall & 24-hour room service. Book now at Hotel K2.',
     images: ['/homehero1.png'],
   },
   alternates: {
@@ -39,6 +42,14 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(NEARBY_SCHEMA) }}
+      />
       <HeroCarousel />
       <About />
       <RoomsGrid />

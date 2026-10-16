@@ -1,69 +1,148 @@
-import type { Room } from '@/types';
+import type { Room, RoomAmenity } from '@/types';
 
 const BOOKING_URL = 'https://bookone.io/Hotel-K2-Chakradharpur?bookingEngine=true';
+const CDN = 'https://bookonelocal.in/cdn';
 
+const AMENITIES: RoomAmenity[] = [
+  { icon: `${CDN}/2021-06-22-103047106-ac.png`, label: 'Air-Condition' },
+  { icon: `${CDN}/2021-06-22-103115784-wifi.png`, label: 'Wifi' },
+  { icon: `${CDN}/2021-06-22-103307110-roomservice.png`, label: 'Room Service' },
+  { icon: `${CDN}/2021-06-22-103611168-flattv.png`, label: 'Flat TV' },
+  { icon: `${CDN}/2021-06-22-103813263-24hrsservice.png`, label: '24 Hours Room Service' },
+  { icon: `${CDN}/2021-11-27-045437766-3260813.png`, label: 'Geyser' },
+];
+
+/**
+ * Static room catalogue, mirrored from the live availability API
+ * (https://api.thehotelmate.co/api/thm/checkAvailability/3626).
+ *
+ * Slugs are the slugified API room names so `useRoom(slug)` matches the rooms
+ * returned by `fetchRooms()` — this keeps the exported room pages, the homepage
+ * grid, and the sitemap in sync with live inventory.
+ */
 export const ROOMS: Room[] = [
   {
-    slug: 'standard-room',
-    name: 'Standard Room',
-    summary: 'Standard room means accommodation with basic amenities such as proper lighting, toilet with running water, ventilation and door locking system.',
-    description: 'Standard room means accommodation with basic amenities such as proper lighting, toilet with running water, ventilation and door locking system.',
+    slug: 'four-bed-suite-room',
+    name: 'Four Bed Suite Room',
+    summary: 'Spacious suite with four comfortable beds, ideal for families or groups.',
+    description:
+      'Spacious suite with four comfortable beds, ideal for families or groups, offering a relaxing stay with ample space.',
     occupancy: '2–4 Guests',
-    image: 'https://bookonelocal.in/cdn/2023-08-29-102212548-gallery_7_1707169027.png',
+    image: `${CDN}/2026-08-29-054939153-4a.jpg`,
     gallery: [
-      'https://bookonelocal.in/cdn/2023-08-29-102212548-gallery_7_1707169027.png',
-      'https://bookonelocal.in/cdn/2023-08-29-102217355-gallery_7_552185080.png',
-      'https://bookonelocal.in/cdn/2023-08-29-102222235-gallery_4_2724246198.png',
-      'https://bookonelocal.in/cdn/2023-08-29-102226727-gallery_7_1367733729.png',
-      'https://bookonelocal.in/cdn/2023-08-29-102237749-gallery_7_636002057.png',
+      `${CDN}/2026-08-29-054939153-4a.jpg`,
+      `${CDN}/2026-08-29-054947144-4c.jpg`,
     ],
-    amenities: [
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103047106-ac.png', label: 'Air-Condition' },
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103115784-wifi.png', label: 'Wifi' },
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103307110-roomservice.png', label: 'Room Service' },
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103449340-handsanitizer.png', label: 'Hand Sanitizer' },
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103611168-flattv.png', label: 'Flat TV' },
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103813263-24hrsservice.png', label: '24 Hours Room Service' },
-      { icon: 'https://bookonelocal.in/cdn/2021-11-27-045437766-3260813.png', label: 'Geyser' },
-    ],
+    amenities: AMENITIES,
     bookingUrl: BOOKING_URL,
     hasDetailPage: true,
-    apiRoomId: 2972,
-    price: 1000,
+    apiRoomId: 8847,
+    price: 2150,
     currency: 'INR',
-    availableRooms: 3,
-    ratePlanCode: 'SR-1',
+    availableRooms: 2,
   },
   {
-    slug: 'deluxe-room',
-    name: 'Deluxe Room',
-    summary: 'Deluxe rooms are modern decorated, can accommodate up to 2 persons, totally soundproofed and equipped with high tech comforts such as high speed internet access, USB ports, smart TV, room cleaning touch system.',
-    description: 'Deluxe rooms are modern decorated, can accommodate up to 2 persons, totally soundproofed and equipped with high tech comforts such as high speed internet access, USB ports, smart TV, room cleaning touch system.',
+    slug: 'double-bed-standard-room',
+    name: 'Double Bed Standard Room',
+    summary: 'Comfortable room with a double bed, suitable for couples or two guests.',
+    description:
+      'Comfortable room with a double bed, suitable for couples or two guests, offering essential facilities for a pleasant stay.',
     occupancy: '2–4 Guests',
-    image: 'https://bookonelocal.in/cdn/2023-08-29-102348369-gallery_13_709575560.png',
+    image: `${CDN}/2026-08-29-053059366-b1.jpg`,
     gallery: [
-      'https://bookonelocal.in/cdn/2023-08-29-102348369-gallery_13_709575560.png',
-      'https://bookonelocal.in/cdn/2023-08-29-102351913-gallery_13_2769008168.png',
-      'https://bookonelocal.in/cdn/2023-08-29-102355686-gallery_14_388721208.png',
-      'https://bookonelocal.in/cdn/2023-08-29-102359194-gallery_14_1202825415.png',
-      'https://bookonelocal.in/cdn/2023-08-29-102403761-gallery_7_371560241.png',
+      `${CDN}/2026-08-29-053059366-b1.jpg`,
+      `${CDN}/2026-08-29-053106077-b2.jpg`,
     ],
-    amenities: [
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103047106-ac.png', label: 'Air-Condition' },
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103115784-wifi.png', label: 'Wifi' },
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103307110-roomservice.png', label: 'Room Service' },
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103449340-handsanitizer.png', label: 'Hand Sanitizer' },
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103611168-flattv.png', label: 'Flat TV' },
-      { icon: 'https://bookonelocal.in/cdn/2021-06-22-103813263-24hrsservice.png', label: '24 Hours Room Service' },
-      { icon: 'https://bookonelocal.in/cdn/2021-11-27-045437766-3260813.png', label: 'Geyser' },
-    ],
+    amenities: AMENITIES,
     bookingUrl: BOOKING_URL,
     hasDetailPage: true,
-    apiRoomId: 2973,
-    price: 1500,
+    apiRoomId: 8848,
+    price: 999,
+    currency: 'INR',
+    availableRooms: 2,
+  },
+  {
+    slug: 'double-bed-classic-room',
+    name: 'Double Bed Classic Room',
+    summary: 'Cozy classic room with a comfortable double bed, designed for couples.',
+    description:
+      'Cozy classic room with a comfortable double bed, designed for couples seeking a simple, relaxing, and convenient stay.',
+    occupancy: '2–4 Guests',
+    image: `${CDN}/2026-08-29-053026515-a1.jpg`,
+    gallery: [
+      `${CDN}/2026-08-29-053026515-a1.jpg`,
+      `${CDN}/2026-08-29-053034344-a2.jpg`,
+    ],
+    amenities: AMENITIES,
+    bookingUrl: BOOKING_URL,
+    hasDetailPage: true,
+    apiRoomId: 8849,
+    price: 1260,
     currency: 'INR',
     availableRooms: 5,
-    ratePlanCode: 'DR-1',
+  },
+  {
+    slug: 'double-bed-premium-room',
+    name: 'Double Bed Premium Room',
+    summary: 'Spacious premium room with a double bed and modern facilities.',
+    description:
+      'Spacious premium room with a comfortable double bed, offering a pleasant stay with modern facilities and extra comfort.',
+    occupancy: '2–4 Guests',
+    image: `${CDN}/2026-08-29-052912835-dbp1.jpg`,
+    gallery: [
+      `${CDN}/2026-08-29-052912835-dbp1.jpg`,
+      `${CDN}/2026-08-29-052919707-sdp3.jpg`,
+      `${CDN}/2026-08-29-052928172-sdp2.jpg`,
+    ],
+    amenities: AMENITIES,
+    bookingUrl: BOOKING_URL,
+    hasDetailPage: true,
+    apiRoomId: 8850,
+    price: 1650,
+    currency: 'INR',
+    availableRooms: 6,
+  },
+  {
+    slug: 'single-bed-premium-room',
+    name: 'Single Bed Premium Room',
+    summary: 'Comfortable premium room with a single bed, ideal for solo travelers.',
+    description:
+      'Comfortable premium room with a single bed, ideal for solo travelers seeking privacy, convenience, and a relaxing stay.',
+    occupancy: '2–4 Guests',
+    image: `${CDN}/2026-08-29-055002514-cc3.jpg`,
+    gallery: [
+      `${CDN}/2026-08-29-055002514-cc3.jpg`,
+      `${CDN}/2026-08-29-055017395-c1.jpg`,
+      `${CDN}/2026-08-29-055025185-cc1.jpg`,
+    ],
+    amenities: AMENITIES,
+    bookingUrl: BOOKING_URL,
+    hasDetailPage: true,
+    apiRoomId: 8851,
+    price: 1199,
+    currency: 'INR',
+    availableRooms: 1,
+  },
+  {
+    slug: 'triple-bed-premium-room',
+    name: 'Triple Bed Premium Room',
+    summary: 'Spacious premium room with three beds, suitable for families or groups.',
+    description:
+      'Spacious premium room with three comfortable beds, suitable for families or groups seeking convenience, comfort, and a pleasant stay.',
+    occupancy: '2–4 Guests',
+    image: `${CDN}/2026-08-29-052712583-tp3.jpg`,
+    gallery: [
+      `${CDN}/2026-08-29-052712583-tp3.jpg`,
+      `${CDN}/2026-08-29-052719850-tp1.jpg`,
+      `${CDN}/2026-08-29-052732403-tp2.jpg`,
+    ],
+    amenities: AMENITIES,
+    bookingUrl: BOOKING_URL,
+    hasDetailPage: true,
+    apiRoomId: 8852,
+    price: 2150,
+    currency: 'INR',
+    availableRooms: 1,
   },
 ];
 

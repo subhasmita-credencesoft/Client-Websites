@@ -6,7 +6,7 @@ import { Reveal } from '@/components/ui/Reveal';
 import styles from './RoomsGrid.module.scss';
 
 export function RoomsGrid() {
-  const { rooms, loading, error } = useRooms();
+  const { rooms } = useRooms();
 
   return (
     <section id="rooms" className={styles.section} aria-labelledby="rooms-heading">
@@ -20,19 +20,7 @@ export function RoomsGrid() {
           </p>
         </Reveal>
 
-        {loading && (
-          <p className={styles.empty}>Loading rooms...</p>
-        )}
-
-        {!loading && error && (
-          <p className={styles.empty}>Unable to load room information. Please check back shortly.</p>
-        )}
-
-        {!loading && !error && rooms.length === 0 && (
-          <p className={styles.empty}>Room information is being updated. Please check back shortly.</p>
-        )}
-
-        {!loading && !error && rooms.length > 0 && (
+        {rooms.length > 0 ? (
           <div className={styles.grid}>
             {rooms.map((room, index) => (
               <Reveal key={room.slug} delay={(index % 3) * 120}>
@@ -40,6 +28,10 @@ export function RoomsGrid() {
               </Reveal>
             ))}
           </div>
+        ) : (
+          <p className={styles.empty}>
+            Room information is being updated. Please check back shortly.
+          </p>
         )}
       </div>
     </section>

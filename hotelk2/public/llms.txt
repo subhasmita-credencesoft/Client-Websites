@@ -1,0 +1,31 @@
+# Hotel K2
+
+> Hotel K2 is a hotel in Chakradharpur, West Singhbhum, Jharkhand, located near Chakradharpur Railway Station at Etwari Bazar, Station Link Road. It offers AC rooms with free Wi-Fi, TV, geyser and power backup, plus 24-hour room service, 24-hour front desk, banquet hall, conference hall, catering, car rental and self-drive scooty.
+
+Key details:
+
+- Name: Hotel K2
+- Type: Hotel / accommodation
+- Location: Chakradharpur, West Singhbhum, Jharkhand, India
+- Address: K2 Complex, Etwari Bazar, Station Link Road, near Carmel School, Chakradharpur, West Singhbhum, Jharkhand 833102, India
+- Phone: +91 8709490824, +91 9123490131
+- Email: hotelk2.ckp@gmail.com
+- Check-in: 12:00 — Check-out: 11:00
+- Currency: INR
+- Booking: https://bookone.io/Hotel-K2-Chakradharpur?bookingEngine=true
+- Nearby: Chakradharpur Railway Station, Etwari Bazar market, Carmel School, DRM Office
+
+## Pages
+
+- [Home](https://www.hotelk2.in/): Hotel in Chakradharpur — AC rooms, free Wi-Fi, banquet hall, conference hall and 24-hour room service.
+- [Four Bed Suite Room](https://www.hotelk2.in/rooms/four-bed-suite-room): Spacious suite with four beds for families or groups — from ₹2,150 per night.
+- [Double Bed Standard Room](https://www.hotelk2.in/rooms/double-bed-standard-room): Comfortable double-bed room for couples or two guests — from ₹999 per night.
+- [Double Bed Classic Room](https://www.hotelk2.in/rooms/double-bed-classic-room): Cozy classic double-bed room designed for couples — from ₹1,260 per night.
+- [Double Bed Premium Room](https://www.hotelk2.in/rooms/double-bed-premium-room): Spacious premium double-bed room with extra comfort — from ₹1,650 per night.
+- [Single Bed Premium Room](https://www.hotelk2.in/rooms/single-bed-premium-room): Premium single-bed room ideal for solo travellers — from ₹1,199 per night.
+- [Triple Bed Premium Room](https://www.hotelk2.in/rooms/triple-bed-premium-room): Spacious premium room with three beds for families or groups — from ₹2,150 per night.
+
+## Optional
+
+- [Sitemap](https://www.hotelk2.in/sitemap.xml)
+- [Robots](https://www.hotelk2.in/robots.txt)
