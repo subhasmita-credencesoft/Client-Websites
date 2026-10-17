@@ -68,6 +68,7 @@ export default function AboutPage() {
         subtitle="Comfort, convenience and warm hospitality in the heart of Chakradharpur, West Singhbhum — near the railway station and local market."
         breadcrumbLabel="About Us"
         path="/about"
+        image="/homehero1.png"
       />
 
       <section className={styles.band}>

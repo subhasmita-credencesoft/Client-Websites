@@ -39,6 +39,27 @@
   }
 }
 
+// Optional background photograph. Sits above the navy base + pattern, below
+// the overlay and content, so the H1 stays legible on any image.
+.bgPhoto {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+// Navy scrim to guarantee text contrast over the photograph.
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(19, 23, 43, 0.74) 0%,
+    rgba(19, 23, 43, 0.82) 100%
+  );
+}
+
 .container {
   position: relative;
   z-index: 1;

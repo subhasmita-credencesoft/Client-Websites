@@ -66,6 +66,7 @@ export default function RoomsPage() {
         subtitle="Choose from AC single, double, triple and suite rooms with free Wi-Fi, LED TV and geyser — all just minutes from Chakradharpur Railway Station."
         breadcrumbLabel="Accommodations"
         path="/rooms"
+        image="/newimages/PremiumroomDoublebed3.png"
       />
 
       <section className={styles.band}>

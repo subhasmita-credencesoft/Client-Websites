@@ -58,6 +58,7 @@ export default function TravelGuidePage() {
         subtitle="Waterfalls, temples and local markets — a traveller's guide to what to see around Chakradharpur, with Hotel K2 as your base in West Singhbhum."
         breadcrumbLabel="Travel Guide"
         path="/travel-guide"
+        image="/nearbyimage/hirnifall.png"
       />
 
       <NearbyPlaces />

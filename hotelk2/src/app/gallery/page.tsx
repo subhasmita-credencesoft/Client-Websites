@@ -28,6 +28,7 @@ export default function GalleryPage() {
         subtitle="A look inside Hotel K2 — our rooms, reception, exterior and conference hall, all in Chakradharpur, Jharkhand."
         breadcrumbLabel="Gallery"
         path="/gallery"
+        image="/homehero2.png"
       />
 
       <Gallery />

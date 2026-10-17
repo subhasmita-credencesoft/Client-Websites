@@ -71,6 +71,7 @@ export default function BlogIndexPage() {
         subtitle="Practical advice for visitors to Chakradharpur, Jharkhand — where to stay, what to see, how to get here and how to plan events, from the team at Hotel K2."
         breadcrumbLabel="Blog"
         path="/blog"
+        image="/newimages/receptionmain.png"
       />
 
       <section className={`${page.band} ${page.bandAlt}`}>

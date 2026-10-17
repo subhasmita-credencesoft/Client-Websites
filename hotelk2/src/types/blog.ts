@@ -19,6 +19,9 @@ export interface BlogCategory {
   name: string;
   /** Short, unique intro shown on the category archive page. */
   description: string;
+  /** Representative photo (path under /public) used on the category banner. */
+  image: string;
+  imageAlt: string;
 }
 
 /**

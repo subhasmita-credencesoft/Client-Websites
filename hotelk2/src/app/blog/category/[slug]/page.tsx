@@ -77,6 +77,7 @@ export default async function BlogCategoryPage({ params }: Props) {
         breadcrumbLabel={category.name}
         path={`/blog/category/${category.slug}`}
         parent={{ label: 'Blog', href: '/blog' }}
+        image={category.image}
       />
 
       <section className={`${page.band} ${page.bandAlt}`}>

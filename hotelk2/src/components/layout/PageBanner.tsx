@@ -16,6 +16,8 @@ interface PageBannerProps {
   path: string;
   /** Optional middle crumb, e.g. Blog on an article page (Home → parent → current). */
   parent?: { label: string; href: string };
+  /** Optional background photograph (path under /public) behind the title. */
+  image?: string;
 }
 
 /**
@@ -24,7 +26,7 @@ interface PageBannerProps {
  * a breadcrumb trail, and an auto-generated BreadcrumbList structured-data
  * block (Home → current page), so interior pages stay consistent and unique.
  */
-export function PageBanner({ eyebrow, title, subtitle, breadcrumbLabel, path, parent }: PageBannerProps) {
+export function PageBanner({ eyebrow, title, subtitle, breadcrumbLabel, path, parent, image }: PageBannerProps) {
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -55,7 +57,12 @@ export function PageBanner({ eyebrow, title, subtitle, breadcrumbLabel, path, pa
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className={styles.bg} aria-hidden="true" />
+      <div className={styles.bg} aria-hidden="true">
+        {image && (
+          <span className={styles.bgPhoto} style={{ backgroundImage: `url(${image})` }} />
+        )}
+        {image && <span className={styles.bgOverlay} />}
+      </div>
 
       <div className={styles.container}>
         <nav className={styles.breadcrumb} aria-label="Breadcrumb">

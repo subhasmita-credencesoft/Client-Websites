@@ -27,6 +27,7 @@ export default function ContactPage() {
         subtitle="Questions about your stay, bookings or directions? Our 24-hour front desk is here to help — call, email or send us a message."
         breadcrumbLabel="Contact Us"
         path="/contact"
+        image="/newimages/receptionentry.png"
       />
 
       <ContactSection />

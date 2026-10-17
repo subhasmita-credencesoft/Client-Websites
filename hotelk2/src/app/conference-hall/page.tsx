@@ -68,6 +68,7 @@ export default function ConferenceHallPage() {
         subtitle="Host business meetings, seminars, functions and celebrations in a well-located hall at Hotel K2, with catering and front-desk support."
         breadcrumbLabel="Conference Hall"
         path="/conference-hall"
+        image="/conference/confresshall1.jpeg"
       />
 
       <section className={styles.band}>

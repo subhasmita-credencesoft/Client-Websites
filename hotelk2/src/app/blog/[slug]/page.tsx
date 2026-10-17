@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PageBanner } from '@/components/layout/PageBanner';
@@ -103,22 +102,12 @@ export default async function BlogArticlePage({ params }: Props) {
         breadcrumbLabel={post.title}
         path={`/blog/${post.slug}`}
         parent={{ label: 'Blog', href: '/blog' }}
+        image={post.featuredImage}
       />
 
       <article className={styles.article}>
         <div className={styles.heroWrap}>
           <div className={styles.container}>
-            <div className={styles.heroImage}>
-              <Image
-                src={post.featuredImage}
-                alt={post.featuredImageAlt}
-                fill
-                priority
-                sizes="100vw"
-                className={styles.heroImg}
-              />
-            </div>
-
             <div className={styles.meta}>
               <span className={styles.metaAuthor}>By {post.author}</span>
               <span className={styles.metaDot} aria-hidden="true">

@@ -77,6 +77,7 @@ export default function ServicesPage() {
         subtitle="Everything you need for a comfortable stay — from free Wi-Fi and 24-hour room service to car rental, banquet hall and catering."
         breadcrumbLabel="Services"
         path="/services"
+        image="/newimages/receptionmain.png"
       />
 
       <Services />
