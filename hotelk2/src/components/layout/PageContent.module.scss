@@ -1,0 +1,321 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Shared building blocks for interior-page bodies. Pages compose these classes
+// so every page inherits the same section rhythm, tile, list, FAQ and CTA
+// treatment as the homepage sections.
+
+.band {
+  padding-block: t.$space-12;
+  background-color: t.$color-surface-page;
+
+  @include m.from(t.$breakpoint-lg) {
+    padding-block: t.$space-13;
+  }
+}
+
+.bandAlt {
+  background-color: t.$color-surface-strong; // #F8F5F0
+}
+
+.container {
+  @include m.container;
+}
+
+.narrow {
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.sectionHead {
+  max-width: 640px;
+  margin-inline: auto;
+  margin-block-end: 32px;
+  text-align: center;
+
+  @include m.from(t.$breakpoint-md) {
+    margin-block-end: 40px;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    margin-block-end: 60px;
+  }
+}
+
+.kicker {
+  display: block;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-semibold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: t.$color-border-strong;
+  margin-block-end: t.$space-4;
+}
+
+.heading {
+  margin-block-end: t.$space-5;
+}
+
+.lead {
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-md;
+  line-height: 1.8;
+  color: t.$color-text-primary;
+  margin: 0;
+
+  @include m.from(t.$breakpoint-md) {
+    font-size: t.$font-size-lg;
+  }
+}
+
+// ── Long-form prose ────────────────────────────────────────────────────────
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-6;
+  max-width: 80ch;
+  margin-inline: auto;
+
+  p {
+    font-size: t.$font-size-lg;
+    line-height: t.$line-height-base;
+    color: t.$color-text-primary;
+    margin: 0;
+  }
+
+  h3 {
+    margin-block-start: t.$space-4;
+    color: t.$color-text-secondary;
+  }
+}
+
+// ── Card grids ─────────────────────────────────────────────────────────────
+.grid2,
+.grid3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: t.$space-6;
+}
+
+@include m.from(t.$breakpoint-sm) {
+  .grid2,
+  .grid3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include m.from(t.$breakpoint-lg) {
+  .grid3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+  padding: t.$space-8 t.$space-7;
+  background-color: t.$color-surface-strong; // #F8F5F0
+  border: 2px solid t.$color-tile-border; // #D9D9D9
+  border-radius: 0.25rem;
+  transition: transform 0.4s t.$motion-ease-standard,
+    background-color 0.3s t.$motion-ease-standard;
+
+  @include m.from(t.$breakpoint-md) {
+    padding: t.$space-10 t.$space-8;
+  }
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    background-color: t.$color-champagne;
+  }
+
+  h3 {
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-xl;
+    font-weight: t.$font-weight-bold;
+    line-height: 1.3;
+    color: t.$color-border-strong;
+    margin: 0;
+  }
+
+  p {
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-md;
+    line-height: 1.7;
+    color: t.$color-text-primary;
+    margin: 0;
+  }
+}
+
+.tileIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 0.25rem;
+  background-color: t.$color-border-strong;
+  color: t.$color-text-inverse;
+  box-shadow: t.$shadow-icon;
+
+  @include m.from(t.$breakpoint-md) {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+// ── Feature list ───────────────────────────────────────────────────────────
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-5;
+  max-width: 860px;
+  margin-inline: auto;
+  list-style: none;
+  padding: 0;
+
+  @include m.from(t.$breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.listItem {
+  display: flex;
+  align-items: flex-start;
+  gap: t.$space-4;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-lg;
+  color: t.$color-text-secondary;
+}
+
+.listIcon {
+  color: t.$color-border-strong;
+  flex-shrink: 0;
+  margin-block-start: 3px;
+}
+
+// ── FAQ accordion ──────────────────────────────────────────────────────────
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.faqItem {
+  background-color: t.$color-surface-page;
+  border: 1px solid t.$color-border-subtle;
+  border-radius: t.$radius-md;
+  overflow: hidden;
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: t.$space-5;
+    padding: t.$space-6;
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-lg;
+    font-weight: t.$font-weight-semibold;
+    color: t.$color-text-secondary;
+    cursor: pointer;
+    list-style: none;
+
+    @include m.focus-visible;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  &[open] summary {
+    color: t.$color-border-strong;
+  }
+}
+
+.faqAnswer {
+  padding: 0 t.$space-6 t.$space-6;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-md;
+  line-height: 1.8;
+  color: t.$color-text-primary;
+}
+
+// ── Call to action panel ───────────────────────────────────────────────────
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-5;
+  padding: t.$space-11 t.$space-8;
+  text-align: center;
+  background-color: t.$color-surface-about; // #F9F5EC
+  border: 1px solid t.$color-border-subtle;
+  border-radius: 0.5rem;
+}
+
+.ctaTitle {
+  font-size: t.$font-size-h3;
+  color: t.$color-text-secondary;
+  margin: 0;
+}
+
+.ctaText {
+  max-width: 60ch;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-lg;
+  line-height: 1.7;
+  color: t.$color-text-primary;
+  margin: 0;
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: t.$space-5;
+}
+
+// ── Image strip ────────────────────────────────────────────────────────────
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: t.$space-4;
+
+  @include m.from(t.$breakpoint-md) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: t.$space-5;
+  }
+}
+
+.galleryItem {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: t.$radius-md;
+  overflow: hidden;
+  background-color: t.$color-surface-strong;
+}
+
+.galleryImage {
+  object-fit: cover;
+}
+
+.mediaWrap {
+  margin-block-start: t.$space-10;
+}
+
+.mediaImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: t.$radius-md;
+}

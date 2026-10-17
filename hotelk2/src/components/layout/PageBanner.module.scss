@@ -1,0 +1,145 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Shared interior-page banner. Mirrors the Nearby Places band (navy + subtle
+// terracotta radials + pattern) so every page opens with the same look while
+// presenting its own H1, kicker and supporting line.
+
+.banner {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: 56px 48px;
+
+  @include m.from(t.$breakpoint-md) {
+    padding-block: 72px 60px;
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    padding-block: 88px 72px;
+  }
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: t.$color-navy;
+  background-image:
+    radial-gradient(ellipse at 15% 50%, rgba(154, 74, 52, 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 30%, rgba(154, 74, 52, 0.09) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 90%, rgba(154, 74, 52, 0.07) 0%, transparent 45%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  @include m.container;
+}
+
+.breadcrumb {
+  margin-block-end: t.$space-7;
+  text-align: center;
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: t.$space-3;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: t.$space-3;
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-sm;
+    color: rgba(255, 255, 255, 0.6);
+
+    & + li::before {
+      content: '/';
+      color: rgba(255, 255, 255, 0.35);
+    }
+  }
+
+  a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    transition: color t.$motion-duration-fast t.$motion-ease-standard;
+
+    @include m.focus-visible;
+    @include m.reduced-motion {
+      transition: none;
+    }
+
+    &:hover {
+      color: t.$color-text-inverse;
+    }
+  }
+
+  li[aria-current='page'] {
+    color: t.$color-border-strong;
+    font-weight: t.$font-weight-semibold;
+  }
+}
+
+.inner {
+  max-width: 780px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-4;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-semibold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: t.$color-border-strong;
+  margin-block-end: t.$space-5;
+
+  &::before,
+  &::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, t.$color-border-strong, transparent);
+  }
+}
+
+.title {
+  margin: 0;
+  color: t.$color-text-inverse;
+  font-size: t.$font-size-h3;
+
+  @include m.from(t.$breakpoint-md) {
+    font-size: t.$font-size-h2;
+  }
+}
+
+.subtitle {
+  margin: t.$space-6 0 0;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-md;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.72);
+
+  @include m.from(t.$breakpoint-md) {
+    font-size: t.$font-size-lg;
+  }
+}

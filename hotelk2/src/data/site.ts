@@ -25,11 +25,13 @@ export const SITE = {
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/#about' },
-  { label: 'Accommodations', href: '/#rooms' },
-  { label: 'Services', href: '/#services' },
-  { label: 'Gallery', href: '/#gallery' },
-  { label: 'Contact Us', href: '/#contact' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Accommodations', href: '/rooms' },
+  { label: 'Services', href: '/services' },
+  { label: 'Conference Hall', href: '/conference-hall' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact Us', href: '/contact' },
 ];
 
 export const HEADER_CONTACTS: HeaderContact[] = [

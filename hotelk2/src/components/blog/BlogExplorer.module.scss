@@ -1,0 +1,163 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Client-side search + category filter for the blog index. Card markup still
+// server-renders (client components are pre-rendered), so content stays in the
+// HTML for crawlers; this only narrows what is shown.
+
+.srOnly {
+  @include m.visually-hidden;
+}
+
+.explorer {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-9;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-6;
+
+  @include m.from(t.$breakpoint-lg) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.search {
+  position: relative;
+  width: 100%;
+
+  @include m.from(t.$breakpoint-lg) {
+    max-width: 360px;
+  }
+}
+
+.searchInput {
+  width: 100%;
+  padding: t.$space-5 t.$space-6 t.$space-5 t.$space-11;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-lg;
+  color: t.$color-text-secondary;
+  background-color: t.$color-surface-page;
+  border: 1px solid t.$color-border-subtle;
+  border-radius: 999px;
+
+  &::placeholder {
+    color: t.$color-text-primary;
+  }
+
+  @include m.focus-visible;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  left: t.$space-6;
+  transform: translateY(-50%);
+  color: t.$color-text-primary;
+  pointer-events: none;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-4;
+}
+
+.chip {
+  padding: t.$space-3 t.$space-6;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-semibold;
+  letter-spacing: 0.4px;
+  color: t.$color-text-secondary;
+  background-color: t.$color-surface-page;
+  border: 1px solid t.$color-border-subtle;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.3s t.$motion-ease-standard,
+    background-color 0.3s t.$motion-ease-standard,
+    border-color 0.3s t.$motion-ease-standard;
+
+  @include m.focus-visible;
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  &:hover {
+    border-color: t.$color-border-strong;
+    color: t.$color-border-strong;
+  }
+}
+
+.chipActive {
+  color: t.$color-text-inverse;
+  background-color: t.$color-border-strong;
+  border-color: t.$color-border-strong;
+
+  &:hover {
+    color: t.$color-text-inverse;
+    background-color: t.$color-border-strong-hover;
+    border-color: t.$color-border-strong-hover;
+  }
+}
+
+.status {
+  margin: 0;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-sm;
+  color: t.$color-text-primary;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-8;
+
+  @include m.from(t.$breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.featured {
+  margin-block-end: t.$space-9;
+}
+
+.empty {
+  max-width: 60ch;
+  margin-inline: auto;
+  padding: t.$space-11 t.$space-8;
+  text-align: center;
+  background-color: t.$color-surface-strong;
+  border: 1px solid t.$color-border-subtle;
+  border-radius: 0.5rem;
+
+  p {
+    margin: 0 0 t.$space-5;
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-lg;
+    color: t.$color-text-secondary;
+  }
+
+  button {
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-md;
+    font-weight: t.$font-weight-semibold;
+    color: t.$color-border-strong;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+
+    @include m.focus-visible;
+  }
+}

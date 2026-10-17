@@ -1,0 +1,314 @@
+@use '../../styles/tokens' as t;
+@use '../../styles/mixins' as m;
+
+// Long-form article styles + the table of contents and related-articles
+// sections that sit alongside the article body.
+
+// ── Prose ──────────────────────────────────────────────────────────────────
+.prose {
+  color: t.$color-text-secondary;
+
+  p {
+    margin: 0 0 t.$space-7;
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-lg;
+    line-height: 1.85;
+    color: t.$color-text-secondary;
+  }
+
+  a {
+    color: t.$color-border-strong;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+
+    @include m.focus-visible;
+
+    &:hover {
+      color: t.$color-border-strong-hover;
+    }
+  }
+
+  strong {
+    font-weight: t.$font-weight-semibold;
+    color: t.$color-text-secondary;
+  }
+
+  h2 {
+    margin: t.$space-11 0 t.$space-6;
+    font-family: t.$font-family-display;
+    font-size: t.$font-size-h3;
+    line-height: t.$line-height-heading;
+    color: t.$color-text-secondary;
+    scroll-margin-top: 132px;
+  }
+
+  h3 {
+    margin: t.$space-9 0 t.$space-5;
+    font-family: t.$font-family-display;
+    font-size: t.$font-size-h4;
+    line-height: t.$line-height-heading;
+    color: t.$color-text-secondary;
+    scroll-margin-top: 132px;
+  }
+
+  > :first-child {
+    margin-block-start: 0;
+  }
+}
+
+.list {
+  margin: 0 0 t.$space-7;
+  padding-inline-start: t.$space-8;
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+
+  li {
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-lg;
+    line-height: 1.75;
+    color: t.$color-text-secondary;
+  }
+}
+
+// ── Table ──────────────────────────────────────────────────────────────────
+.tableWrap {
+  margin: 0 0 t.$space-8;
+  overflow-x: auto;
+  border: 1px solid t.$color-border-subtle;
+  border-radius: t.$radius-md;
+}
+
+.table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-md;
+
+  caption {
+    padding: t.$space-5 t.$space-6;
+    caption-side: top;
+    text-align: left;
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-sm;
+    color: t.$color-text-primary;
+    background-color: t.$color-surface-strong;
+    border-block-end: 1px solid t.$color-border-subtle;
+  }
+
+  th,
+  td {
+    padding: t.$space-5 t.$space-6;
+    text-align: left;
+    vertical-align: top;
+    border-block-end: 1px solid t.$color-border-subtle;
+  }
+
+  thead th {
+    font-weight: t.$font-weight-semibold;
+    color: t.$color-text-secondary;
+    background-color: t.$color-surface-strong;
+    white-space: nowrap;
+  }
+
+  tbody tr:last-child th,
+  tbody tr:last-child td {
+    border-block-end: none;
+  }
+
+  td {
+    color: t.$color-text-secondary;
+  }
+
+  a {
+    color: t.$color-border-strong;
+    font-weight: t.$font-weight-semibold;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    @include m.focus-visible;
+  }
+}
+
+// ── Callout ────────────────────────────────────────────────────────────────
+.callout {
+  margin: 0 0 t.$space-8;
+  padding: t.$space-7 t.$space-8;
+  background-color: t.$color-surface-about;
+  border-inline-start: 4px solid t.$color-border-strong;
+  border-radius: 0 t.$radius-md t.$radius-md 0;
+
+  p {
+    margin: 0;
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-lg;
+    line-height: 1.7;
+    color: t.$color-text-secondary;
+  }
+}
+
+.calloutTitle {
+  display: block;
+  margin-block-end: t.$space-3;
+  font-family: t.$font-family-display;
+  font-size: t.$font-size-2xl;
+  color: t.$color-border-strong;
+}
+
+// ── Quote ──────────────────────────────────────────────────────────────────
+.quote {
+  margin: 0 0 t.$space-8;
+  padding-inline-start: t.$space-8;
+  border-inline-start: 3px solid t.$color-border-strong;
+
+  p {
+    margin: 0;
+    font-family: t.$font-family-display;
+    font-size: t.$font-size-h4;
+    font-style: italic;
+    line-height: 1.5;
+    color: t.$color-text-secondary;
+  }
+
+  cite {
+    display: block;
+    margin-block-start: t.$space-4;
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-sm;
+    font-style: normal;
+    color: t.$color-text-primary;
+  }
+}
+
+// ── Figure ─────────────────────────────────────────────────────────────────
+.figure {
+  margin: 0 0 t.$space-8;
+}
+
+.figureImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: t.$radius-md;
+}
+
+.figcaption {
+  margin-block-start: t.$space-4;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-sm;
+  color: t.$color-text-primary;
+}
+
+// ── Links panel ────────────────────────────────────────────────────────────
+.linkList {
+  margin: 0 0 t.$space-8;
+  padding: t.$space-7 t.$space-8;
+  background-color: t.$color-surface-strong;
+  border: 1px solid t.$color-border-subtle;
+  border-radius: t.$radius-md;
+}
+
+.linkListTitle {
+  display: block;
+  margin-block-end: t.$space-5;
+  font-family: t.$font-family-display;
+  font-size: t.$font-size-2xl;
+  color: t.$color-text-secondary;
+}
+
+.linkListItems {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  a {
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-lg;
+    font-weight: t.$font-weight-semibold;
+    color: t.$color-border-strong;
+    text-decoration: none;
+
+    @include m.focus-visible;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ── Table of contents ──────────────────────────────────────────────────────
+.toc {
+  padding: t.$space-7 t.$space-8;
+  background-color: t.$color-surface-strong;
+  border: 1px solid t.$color-border-subtle;
+  border-radius: t.$radius-md;
+
+  @include m.from(t.$breakpoint-lg) {
+    position: sticky;
+    top: 120px;
+  }
+}
+
+.tocTitle {
+  margin: 0 0 t.$space-5;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-semibold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: t.$color-border-strong;
+}
+
+.tocList {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  a {
+    font-family: t.$font-family-primary;
+    font-size: t.$font-size-md;
+    line-height: 1.5;
+    color: t.$color-text-primary;
+    text-decoration: none;
+
+    @include m.focus-visible;
+
+    &:hover {
+      color: t.$color-border-strong;
+    }
+  }
+}
+
+.tocSub {
+  padding-inline-start: t.$space-6;
+  font-size: t.$font-size-sm;
+}
+
+// ── Related articles section ───────────────────────────────────────────────
+.related {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-8;
+
+  @include m.from(t.$breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.from(t.$breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.moreWrap {
+  display: flex;
+  justify-content: center;
+  margin-block-start: t.$space-9;
+}

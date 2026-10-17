@@ -1,13 +1,18 @@
+import Link from 'next/link';
 import { SITE, SOCIAL_LINKS } from '@/data/site';
 import { Icon } from '@/components/ui/Icon';
 import styles from './Footer.module.scss';
 
 const USEFUL_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/#about' },
-  { label: 'Gallery', href: '/#gallery' },
-  { label: 'Contact Us', href: '/#contact' },
-  { label: 'Services', href: '/#services' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Accommodations', href: '/rooms' },
+  { label: 'Services', href: '/services' },
+  { label: 'Conference Hall', href: '/conference-hall' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Travel Guide', href: '/travel-guide' },
+  { label: 'Contact Us', href: '/contact' },
 ];
 
 const [BRAND_WORD, BRAND_ACCENT] = SITE.name.split(' ');
@@ -18,10 +23,10 @@ export function Footer() {
       <div className={styles.main}>
         <div className={styles.container}>
           <div className={styles.about}>
-            <a href="/" className={styles.brand} aria-label={`${SITE.name} home`}>
+            <Link href="/" className={styles.brand} aria-label={`${SITE.name} home`}>
               <span className={styles.brandText}>{BRAND_WORD}</span>
               <span className={styles.brandTextAccent}>{BRAND_ACCENT}</span>
-            </a>
+            </Link>
             <p className={styles.aboutText}>{SITE.footerAbout}</p>
             <div className={styles.socialBlock}>
               <h6 className={styles.socialTitle}>Follow Us:</h6>
@@ -48,10 +53,10 @@ export function Footer() {
             <ul className={styles.links}>
               {USEFUL_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className={styles.link}>
+                  <Link href={link.href} className={styles.link}>
                     <Icon name="chevron-right" size={12} className={styles.linkIcon} />
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

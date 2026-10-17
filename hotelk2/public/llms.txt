@@ -18,12 +18,37 @@ Key details:
 ## Pages
 
 - [Home](https://www.hotelk2.in/): Hotel in Chakradharpur — AC rooms, free Wi-Fi, banquet hall, conference hall and 24-hour room service.
+- [About Us](https://www.hotelk2.in/about): About Hotel K2 — location near Chakradharpur Railway Station, amenities and hospitality.
+- [Accommodations](https://www.hotelk2.in/rooms): Rooms in Chakradharpur — single, double, triple and suite AC rooms from ₹999 a night.
+- [Services](https://www.hotelk2.in/services): Hotel facilities in Chakradharpur — Wi-Fi, room service, car rental, catering and more.
+- [Conference Hall](https://www.hotelk2.in/conference-hall): Conference and banquet hall in Chakradharpur for meetings, seminars and celebrations.
+- [Gallery](https://www.hotelk2.in/gallery): Photos of Hotel K2 rooms, reception, exterior and conference hall in Chakradharpur.
+- [Travel Guide](https://www.hotelk2.in/travel-guide): Places to visit in Chakradharpur — Hirni Falls, Nakti Dam, Mahadevsal Temple and more.
+- [Blog](https://www.hotelk2.in/blog): Travel and stay guides for Chakradharpur, Jharkhand — accommodation, local attractions and event planning.
+- [Contact Us](https://www.hotelk2.in/contact): Contact Hotel K2, Chakradharpur — phone, email, address and directions.
 - [Four Bed Suite Room](https://www.hotelk2.in/rooms/four-bed-suite-room): Spacious suite with four beds for families or groups — from ₹2,150 per night.
 - [Double Bed Standard Room](https://www.hotelk2.in/rooms/double-bed-standard-room): Comfortable double-bed room for couples or two guests — from ₹999 per night.
 - [Double Bed Classic Room](https://www.hotelk2.in/rooms/double-bed-classic-room): Cozy classic double-bed room designed for couples — from ₹1,260 per night.
 - [Double Bed Premium Room](https://www.hotelk2.in/rooms/double-bed-premium-room): Spacious premium double-bed room with extra comfort — from ₹1,650 per night.
 - [Single Bed Premium Room](https://www.hotelk2.in/rooms/single-bed-premium-room): Premium single-bed room ideal for solo travellers — from ₹1,199 per night.
 - [Triple Bed Premium Room](https://www.hotelk2.in/rooms/triple-bed-premium-room): Spacious premium room with three beds for families or groups — from ₹2,150 per night.
+
+## Blog
+
+Blog categories:
+
+- [Stay & Rooms](https://www.hotelk2.in/blog/category/stay-rooms): Choosing and booking accommodation in Chakradharpur.
+- [Local Travel](https://www.hotelk2.in/blog/category/local-travel): Reaching Chakradharpur and what to see around West Singhbhum.
+- [Hotel Guide & Events](https://www.hotelk2.in/blog/category/hotel-guide): Staying and celebrating at Hotel K2.
+
+Articles:
+
+- [Where to Stay in Chakradharpur](https://www.hotelk2.in/blog/where-to-stay-in-chakradharpur): Location, room types and amenities at Hotel K2.
+- [Hotels Near Chakradharpur Railway Station](https://www.hotelk2.in/blog/hotels-near-chakradharpur-railway-station): What to check before you book near the station.
+- [Places to Visit Near Chakradharpur](https://www.hotelk2.in/blog/places-to-visit-near-chakradharpur): Waterfalls, temples and dams around Chakradharpur.
+- [Choosing the Right Room at Hotel K2](https://www.hotelk2.in/blog/choosing-a-room-at-hotel-k2): A comparison of the six room types and tariffs.
+- [Banquet & Conference Hall in Chakradharpur](https://www.hotelk2.in/blog/banquet-and-conference-hall-chakradharpur): Planning weddings, meetings and events.
+- [How to Reach Chakradharpur](https://www.hotelk2.in/blog/how-to-reach-chakradharpur): Train, road and air travel guide.
 
 ## Optional
 

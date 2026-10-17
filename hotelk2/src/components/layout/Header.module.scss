@@ -134,7 +134,7 @@
 
   @include m.from(t.$breakpoint-lg) {
     display: flex;
-    gap: t.$space-8;
+    gap: t.$space-7;
   }
 }
 

@@ -1,0 +1,97 @@
+@use '../../../styles/tokens' as t;
+@use '../../../styles/mixins' as m;
+
+.article {
+  padding-block: t.$space-10 t.$space-12;
+}
+
+.container {
+  @include m.container;
+}
+
+.heroWrap {
+  padding-block-end: t.$space-7;
+}
+
+.heroImage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: t.$color-surface-strong;
+
+  @include m.from(t.$breakpoint-lg) {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+.heroImg {
+  object-fit: cover;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-4;
+  margin-block-start: t.$space-6;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-sm;
+  color: t.$color-text-primary;
+}
+
+.metaAuthor {
+  font-weight: t.$font-weight-semibold;
+  color: t.$color-text-secondary;
+}
+
+.metaDot {
+  color: t.$color-border-subtle;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-10;
+
+  @include m.from(t.$breakpoint-lg) {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: t.$space-12;
+    align-items: start;
+  }
+}
+
+.main {
+  min-width: 0;
+}
+
+.aside {
+  order: -1;
+
+  @include m.from(t.$breakpoint-lg) {
+    order: 0;
+  }
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-3;
+  margin-block-start: t.$space-8;
+  font-family: t.$font-family-primary;
+  font-size: t.$font-size-md;
+  font-weight: t.$font-weight-semibold;
+  color: t.$color-border-strong;
+  text-decoration: none;
+
+  @include m.focus-visible;
+
+  &::before {
+    content: '←';
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -82,9 +82,9 @@ export function Header() {
             <ul id="primary-nav-list" className={`${styles.navList} ${isOpen ? styles.navListOpen : ''}`}>
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className={styles.navLink} onClick={close}>
+                  <Link href={link.href} className={styles.navLink} onClick={close}>
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li className={styles.navCta}>

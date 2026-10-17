@@ -82,7 +82,7 @@ export default async function RoomDetailPage({ params }: Props) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
-      { '@type': 'ListItem', position: 2, name: 'Rooms', item: `${SITE.url}#rooms` },
+      { '@type': 'ListItem', position: 2, name: 'Rooms', item: `${SITE.url}rooms` },
       { '@type': 'ListItem', position: 3, name: room.name, item: `${SITE.url}rooms/${room.slug}` },
     ],
   };
@@ -110,7 +110,7 @@ export default async function RoomDetailPage({ params }: Props) {
         <div className={styles.heroScrim} aria-hidden="true" />
         <div className={styles.heroContent}>
           <p className={styles.breadcrumb}>
-            <Link href="/">Home</Link> / <Link href="/#rooms">Rooms</Link> / {room.name}
+            <Link href="/">Home</Link> / <Link href="/rooms">Rooms</Link> / {room.name}
           </p>
           <h1 className={styles.heading}>{room.name}</h1>
           <p className={styles.occupancy}>{room.occupancy}</p>
