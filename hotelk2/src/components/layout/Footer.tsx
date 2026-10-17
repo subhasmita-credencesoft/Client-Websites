@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { SITE, SOCIAL_LINKS } from '@/data/site';
 import { Icon } from '@/components/ui/Icon';
 import styles from './Footer.module.scss';
@@ -15,8 +16,6 @@ const USEFUL_LINKS = [
   { label: 'Contact Us', href: '/contact' },
 ];
 
-const [BRAND_WORD, BRAND_ACCENT] = SITE.name.split(' ');
-
 export function Footer() {
   return (
     <footer className={styles.footer}>
@@ -24,8 +23,13 @@ export function Footer() {
         <div className={styles.container}>
           <div className={styles.about}>
             <Link href="/" className={styles.brand} aria-label={`${SITE.name} home`}>
-              <span className={styles.brandText}>{BRAND_WORD}</span>
-              <span className={styles.brandTextAccent}>{BRAND_ACCENT}</span>
+              <Image
+                src="/favicon.png"
+                alt={`${SITE.name} logo`}
+                width={100}
+                height={100}
+                className={styles.brandMark}
+              />
             </Link>
             <p className={styles.aboutText}>{SITE.footerAbout}</p>
             <div className={styles.socialBlock}>

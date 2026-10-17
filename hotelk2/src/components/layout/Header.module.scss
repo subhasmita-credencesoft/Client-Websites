@@ -107,16 +107,16 @@
   @include m.focus-visible;
 }
 
-.logoText {
-  font-family: t.$font-family-display;
-  font-size: t.$font-size-3xl;
-  font-weight: t.$font-weight-bold;
-  line-height: 1;
-  color: t.$color-navy;
-}
+// Brand mark (favicon.png). Square source image, kept compact in the bar.
+.logoMark {
+  display: block;
+  width: auto;
+  height: 44px;
+  object-fit: contain;
 
-.logoTextAccent {
-  color: t.$color-border-strong;
+  @include m.from(t.$breakpoint-lg) {
+    height: 52px;
+  }
 }
 
 .nav {

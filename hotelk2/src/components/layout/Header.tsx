@@ -2,11 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { HEADER_CONTACTS, NAV_LINKS, SITE } from '@/data/site';
 import { Icon } from '@/components/ui/Icon';
 import styles from './Header.module.scss';
-
-const [BRAND_WORD, BRAND_ACCENT] = SITE.name.split(' ');
 
 /**
  * Header (site navigation)
@@ -70,8 +69,14 @@ export function Header() {
       <div className={styles.bar}>
         <div className={styles.barInner}>
           <Link href="/" className={styles.logo} onClick={close} aria-label={`${SITE.name} home`}>
-            <span className={styles.logoText}>{BRAND_WORD}</span>
-            <span className={styles.logoTextAccent}>{BRAND_ACCENT}</span>
+            <Image
+              src="/favicon.png"
+              alt=""
+              width={56}
+              height={56}
+              priority
+              className={styles.logoMark}
+            />
           </Link>
 
           <nav

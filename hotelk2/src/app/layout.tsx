@@ -96,7 +96,7 @@ const SCHEMA = {
   name: SITE.name,
   alternateName: ['Hotel K2 Chakradharpur', 'Hotel K2 in Chakradharpur', 'Hotel K2 Jharkhand'],
   url: SITE.url,
-  logo: `${SITE.url}homehero1.png`,
+  logo: `${SITE.url}favicon.png`,
   image: [
     `${SITE.url}homehero1.png`,
     `${SITE.url}newimages/receptionmain.png`,

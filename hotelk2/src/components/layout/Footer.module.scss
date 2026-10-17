@@ -59,16 +59,17 @@
   @include m.focus-visible;
 }
 
-.brandText {
-  font-family: t.$font-family-display;
-  font-size: t.$font-size-3xl;
-  font-weight: t.$font-weight-bold;
-  line-height: 1;
-  color: t.$color-navy;
-}
+// 100px brand mark (favicon.png), matching the live footer.
+.brandMark {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
 
-.brandTextAccent {
-  color: t.$color-border-strong;
+  @include m.from(t.$breakpoint-md) {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .aboutText {

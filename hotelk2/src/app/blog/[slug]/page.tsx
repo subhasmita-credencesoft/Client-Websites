@@ -80,7 +80,7 @@ export default async function BlogArticlePage({ params }: Props) {
       '@type': 'Organization',
       name: SITE.name,
       url: SITE.url,
-      logo: { '@type': 'ImageObject', url: `${SITE.url}homehero1.png` },
+      logo: { '@type': 'ImageObject', url: `${SITE.url}favicon.png` },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
     url: articleUrl,

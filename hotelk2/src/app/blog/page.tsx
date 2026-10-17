@@ -47,7 +47,7 @@ export default function BlogIndexPage() {
       '@type': 'Organization',
       name: SITE.name,
       url: SITE.url,
-      logo: { '@type': 'ImageObject', url: `${SITE.url}homehero1.png` },
+      logo: { '@type': 'ImageObject', url: `${SITE.url}favicon.png` },
     },
     blogPost: published.map((post) => ({
       '@type': 'BlogPosting',
