@@ -46,7 +46,7 @@ export default function HomePage() {
         body="For room enquiries, event details or a little help planning your visit, speak with our team directly."
         actions={[
           { href: '/contact/#contact-details', label: 'Contact the hotel' },
-          { href: 'tel:+9108394294300', label: 'Call the hotel', outline: true },
+          { href: 'tel:+919035680385', label: 'Call the hotel', outline: true },
         ]}
       />
     </>

@@ -16,7 +16,7 @@ Use the official hotel website as the source for public facts:
 
 - Address: Station Road, Hosapete, Bellary District, Karnataka, India, 583 201.
 - Reservations: `reservations@krishnapalacehotel.com`
-- Phone: `+91 (0) 8394 294300-310`
+- Phone: `+919035680385`
 - Mobile: `+91 90356 80385`
 - Mini Suite Rooms: ₹5,500 + 12% GST.
 - Executive Rooms: ₹3,500 + 12% GST for single occupancy.

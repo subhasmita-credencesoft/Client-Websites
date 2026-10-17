@@ -9,7 +9,7 @@ export default function HomeRooms() {
       <SectionHead
         eyebrow="Rooms & rates"
         title={<>Rest easy.<br />Roam far.</>}
-        body="Live availability and published tariff for every room at the hotel, refreshed as bookings come in."
+        body=" For every room at the hotel, refreshed as bookings come in."
       />
       <RoomsList compact />
       <div className="hero-actions">
