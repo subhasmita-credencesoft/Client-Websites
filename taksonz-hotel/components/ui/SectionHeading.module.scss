@@ -1,0 +1,15 @@
+@use "../../styles/mixins" as *;
+
+.wrap { max-width: 46rem; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.center { margin-inline: auto; text-align: center; }
+.eyebrow { @include eyebrow; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.9rem; }
+.rule { display: inline-block; width: 2.5rem; height: 1px; background: var(--champagne); transform-origin: left; animation: ruleGrow 1.2s var(--ease-out) both; }
+@keyframes ruleGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.center .eyebrow { justify-content: center; }
+.title { font-size: var(--fs-h2); }
+.intro { margin-top: 1.1rem; font-size: 1.0625rem; color: var(--grey); max-width: 56ch; }
+.center .intro { margin-inline: auto; }
+.inverse {
+  .eyebrow { color: rgba(255, 255, 255, 0.65); }
+  .intro { color: rgba(255, 255, 255, 0.75); }
+}

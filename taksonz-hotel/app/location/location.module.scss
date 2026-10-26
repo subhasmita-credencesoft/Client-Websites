@@ -1,0 +1,8 @@
+@use "../../styles/mixins" as *;
+
+.grid { display: grid; gap: clamp(2rem, 5vw, 4rem); @include up(lg) { grid-template-columns: 1fr 1.2fr; align-items: start; } }
+.address { font-style: normal; display: grid; gap: 1rem; p { display: flex; gap: 0.8rem; align-items: flex-start; svg { flex: none; margin-top: 0.2rem; color: var(--champagne-deep); } } a { text-decoration: underline; text-underline-offset: 3px; } }
+.note { margin-top: 1.5rem; font-size: 0.8125rem; color: var(--grey); max-width: 46ch; }
+.actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+.maplink { text-decoration: underline; text-underline-offset: 3px; }
+.map { aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--white); iframe { width: 100%; height: 100%; border: 0; } }

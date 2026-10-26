@@ -1,0 +1,8 @@
+.band { overflow: hidden; padding-block: clamp(1.5rem, 4vw, 3rem); border-block: 1px solid var(--border); background: var(--ivory); }
+.track { display: flex; width: max-content; will-change: transform; }
+.item {
+  display: inline-flex; align-items: center; gap: clamp(1.5rem, 4vw, 3.5rem); padding-right: clamp(1.5rem, 4vw, 3.5rem);
+  font-family: var(--font-serif); font-size: clamp(2.5rem, 1.5rem + 5vw, 6rem); line-height: 1; white-space: nowrap;
+  color: transparent; -webkit-text-stroke: 1px var(--charcoal);
+}
+.dot { width: 0.35em; height: 0.35em; border-radius: 50%; background: var(--champagne); display: inline-block; flex: none; }

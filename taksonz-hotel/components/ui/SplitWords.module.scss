@@ -1,0 +1,6 @@
+.mask { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.08em 0 0.16em; margin: -0.08em 0 -0.16em; }
+.word { display: inline-block; animation: wordUp 1.1s var(--ease-out) both; will-change: transform; }
+@keyframes wordUp {
+  from { transform: translateY(108%) rotate(4deg); }
+  to { transform: none; }
+}

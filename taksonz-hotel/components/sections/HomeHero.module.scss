@@ -1,0 +1,122 @@
+@use "../../styles/mixins" as *;
+
+.hero {
+  position: relative;
+  color: var(--white);
+  background: #1a1410;
+  min-height: min(92svh, 860px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  // Extra bottom padding on desktop to make room for the overlapping panel
+  padding-bottom: clamp(1.25rem, 3vw, 2rem);
+  @include up(lg) { padding-bottom: clamp(2rem, 4vw, 3.5rem); }
+  overflow: clip;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 14, 10, 0.5) 0%,
+    rgba(20, 14, 10, 0.18) 35%,
+    rgba(20, 14, 10, 0.82) 100%
+  );
+}
+
+.inner {
+  position: relative;
+  padding-top: calc(var(--header-h) + 3rem);
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.eyebrow {
+  @include eyebrow;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 1.25rem;
+  animation: rise 1s var(--ease-out) 0.1s both;
+}
+
+.title {
+  font-size: clamp(2.75rem, 1.5rem + 7vw, 6.5rem);
+  line-height: 1;
+}
+
+.sub {
+  margin-top: 1.25rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 1rem + 1vw, 1.75rem);
+  max-width: 30ch;
+  line-height: 1.3;
+  opacity: 0.92;
+  animation: rise 1s var(--ease-out) 0.9s both;
+}
+
+.cta {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  animation: rise 1s var(--ease-out) 1.1s both;
+}
+
+// ─── Booking panel strip (desktop only) ──────────────────────────────
+.panelWrap {
+  display: none;
+
+  @include up(lg) {
+    display: block;
+    position: relative;
+    // Pull panel down so it overlaps the next section — luxe "floating" effect
+    margin-bottom: -2.75rem;
+    padding-bottom: 0;
+    animation: rise 1s var(--ease-out) 1.3s both;
+    // Ensure it sits above the hero overflow:clip boundary
+    z-index: 2;
+  }
+}
+
+// ─── Animated "Scroll" cue — desktop only ────────────────────────────
+.cue {
+  display: none;
+
+  @include up(lg) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    position: absolute;
+    right: var(--gutter);
+    bottom: 10rem;
+    z-index: 2;
+    font-size: 0.6875rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    color: rgba(255, 255, 255, 0.8);
+    animation: rise 1s var(--ease-out) 1.6s both;
+
+    i {
+      width: 1px;
+      height: 56px;
+      background: rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 40%;
+        background: var(--white);
+        animation: cue 2.2s var(--ease) infinite;
+      }
+    }
+  }
+}
+
+@keyframes cue {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(260%); }
+}

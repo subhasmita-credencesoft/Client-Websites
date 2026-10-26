@@ -1,0 +1,39 @@
+@use "../../styles/mixins" as *;
+
+.form { display: grid; gap: 1.1rem; }
+.row { display: grid; gap: 1.1rem; @include up(sm) { grid-template-columns: 1fr 1fr; } }
+.field {
+  display: grid; gap: 0.4rem; min-width: 0;
+  label { font-size: 0.8125rem; font-weight: 500; }
+  input, select, textarea {
+    width: 100%; min-height: 50px; padding: 0.7rem 0.9rem;
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    &:hover { border-color: #cfc9be; }
+    &:focus-visible { outline: none; border-color: var(--charcoal); box-shadow: 0 0 0 3px rgba(32, 32, 32, 0.12); }
+    &[aria-invalid="true"] { border-color: var(--error); }
+  }
+  textarea { resize: vertical; min-height: 130px; }
+}
+.opt { color: var(--grey); font-weight: 400; }
+.err { font-size: 0.8125rem; color: var(--error); &::before { content: "⚠ "; } } // icon + text: not colour alone
+.copy { summary { cursor: pointer; text-decoration: underline; text-underline-offset: 3px; } textarea { width: 100%; margin-top: 0.75rem; padding: 0.7rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.875rem; } }
+.banner { padding: 0.9rem 1rem; border-radius: var(--radius-sm); background: #fbeae6; color: var(--error); font-size: 0.9rem; a { text-decoration: underline; } }
+.note { font-size: 0.8125rem; color: var(--grey); a { text-decoration: underline; text-underline-offset: 3px; } }
+.success {
+  padding: 2rem; border-radius: var(--radius); background: var(--white); border: 1px solid var(--border);
+  display: grid; gap: 0.75rem; animation: rise 0.6s var(--ease-out);
+  h3 { color: var(--success); }
+  p { color: var(--grey); a { text-decoration: underline; text-underline-offset: 3px; color: var(--charcoal); } }
+}
+.successIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #eaf4ed;
+  color: var(--success);
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+}

@@ -1,0 +1,4 @@
+.line { display: inline; }
+// Mask clips the rising word; padding/negative margin keeps ascenders and descenders from being cut.
+.mask { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.08em 0 0.16em; margin: -0.08em 0 -0.16em; }
+.word { display: inline-block; transform-origin: 0 100%; will-change: transform; }

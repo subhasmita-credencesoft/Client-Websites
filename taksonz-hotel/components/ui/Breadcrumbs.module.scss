@@ -1,0 +1,7 @@
+.nav {
+  ol { display: flex; flex-wrap: wrap; gap: 0.35rem; font-size: 0.8125rem; color: var(--grey); }
+  li + li::before { content: "/"; margin-right: 0.35rem; opacity: 0.5; }
+  a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: transparent; transition: text-decoration-color 0.2s; }
+  a:hover { text-decoration-color: currentColor; }
+  [aria-current] { color: var(--charcoal); }
+}

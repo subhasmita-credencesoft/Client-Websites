@@ -1,0 +1,44 @@
+@use "../../styles/mixins" as *;
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-decoration: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+  @include focus-ring;
+
+  &:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+}
+
+.image {
+  display: block;
+  height: 62px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+
+  @include up(lg) {
+    height: 72px;
+  }
+}
+
+.large .image {
+  height: 96px;
+  width: auto;
+  max-width: 240px;
+
+  @include up(md) {
+    height: 116px;
+  }
+}
+
+/* On dark backgrounds (transparent hero header, dark footer), enhance contrast of dark text elements while preserving rich golden crest */
+.inverse .image {
+  filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.95)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+}
+

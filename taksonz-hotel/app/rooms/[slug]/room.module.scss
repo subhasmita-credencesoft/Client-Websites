@@ -1,0 +1,14 @@
+@use "../../../styles/mixins" as *;
+
+.price { font-family: var(--font-serif); font-size: 2rem; span { font-size: 1rem; opacity: 0.8; font-family: var(--font-sans); } }
+.facts { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; margin: 1.5rem 0 2rem; padding-block: 1.1rem; border-block: 1px solid var(--border); font-size: 0.9375rem; li { display: inline-flex; align-items: center; gap: 0.6rem; } }
+.note { margin-top: 0.9rem; font-size: 0.8125rem; color: var(--grey); }
+.overview { display: grid; gap: 1.5rem; max-width: 56rem; > p { font-size: 1.1875rem; color: #3a3a3c; } }
+.h { font-size: var(--fs-h3); margin-top: 1rem; }
+.amen { display: grid; gap: 0.9rem 2rem; @include up(sm) { grid-template-columns: 1fr 1fr; } li { display: flex; gap: 0.7rem; align-items: center; svg { color: var(--champagne-deep); flex: none; } } }
+.facilityIcon { width: 22px; height: 22px; object-fit: contain; flex: none; border-radius: 4px; }
+.rules { display: grid; gap: 0.8rem; list-style: disc; padding-left: 1.2rem; color: #3a3a3c; }
+.link { text-decoration: underline; text-underline-offset: 3px; }
+.related { display: grid; gap: clamp(1.25rem, 3vw, 2rem); @include up(md) { grid-template-columns: 1fr 1fr; } }
+.ratePlansSection { padding-block: clamp(2.5rem, 5vw, 4rem); background: #faf9f6; border-block: 1px solid var(--border); }
+

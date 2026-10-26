@@ -1,0 +1,25 @@
+@use "../../styles/mixins" as *;
+
+.list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.tab {
+  flex: none;
+  min-height: 44px;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--white);
+  font-size: 0.9rem;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s;
+  @include focus-ring;
+  &[aria-selected="true"] { background: var(--charcoal); color: var(--white); border-color: var(--charcoal); }
+  @include hover-device { &[aria-selected="false"]:hover { border-color: var(--charcoal); } }
+}
+.panel {
+  margin-top: 2rem;
+  animation: rise 0.6s var(--ease-out) both;
+  &:focus-visible { outline-offset: 6px; }
+}

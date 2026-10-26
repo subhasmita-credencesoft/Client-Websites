@@ -1,0 +1,11 @@
+@use "../../styles/mixins" as *;
+
+.banner {
+  position: relative; overflow: hidden; border-radius: var(--radius); color: var(--white);
+  min-height: clamp(260px, 36vw, 380px); display: flex; align-items: center; background: #1a1410;
+}
+.bg { position: absolute; inset: 0; transition: transform 1.6s var(--ease-out); }
+.banner:hover .bg { transform: scale(1.04); }
+.shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20, 14, 10, 0.88) 0%, rgba(20, 14, 10, 0.45) 70%, rgba(20, 14, 10, 0.2) 100%); }
+.copy { position: relative; padding: clamp(1.75rem, 5vw, 4rem); max-width: 40rem; display: grid; gap: 1rem; h2 { font-size: var(--fs-h2); } p { opacity: 0.85; } }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }

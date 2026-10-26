@@ -1,0 +1,43 @@
+// Breakpoints: sm 600 · md 768 · lg 1024 · xl 1280 · 2xl 1600
+@mixin up($bp) {
+  @if $bp == sm {
+    @media (min-width: 600px) { @content; }
+  } @else if $bp == md {
+    @media (min-width: 768px) { @content; }
+  } @else if $bp == lg {
+    @media (min-width: 1024px) { @content; }
+  } @else if $bp == xl {
+    @media (min-width: 1280px) { @content; }
+  } @else if $bp == xxl {
+    @media (min-width: 1600px) { @content; }
+  }
+}
+
+@mixin focus-ring($color: var(--charcoal)) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@mixin eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--grey);
+}
+
+@mixin container {
+  width: min(100% - (var(--gutter) * 2), var(--container));
+  margin-inline: auto;
+}
+
+@mixin hover-device {
+  @media (hover: hover) and (pointer: fine) { @content; }
+}
+
+@mixin no-motion {
+  @media (prefers-reduced-motion: reduce) { @content; }
+}
