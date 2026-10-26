@@ -9,7 +9,7 @@ import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import { content } from "@/data/content";
 import { faqsByTopic } from "@/data/faqs";
 import { pages } from "@/data/pages";
-import { banquetVenues } from "@/data/venues";
+import { venues } from "@/data/venues";
 import { metaFor } from "@/lib/seo/metadata";
 
 const page = pages.banquets;
@@ -25,7 +25,7 @@ export default function BanquetsPage() {
           <Breadcrumbs items={[{ label: page.title }]} />
           <div style={{ height: "2rem" }} />
           <SectionHeading title={c.venues.title} intro={c.venues.intro} />
-          <VenueCards venues={banquetVenues} />
+          <VenueCards venues={venues} />
           <p style={{ marginTop: "1.25rem", fontSize: "0.8125rem", color: "var(--grey)" }}>{c.venues.note}</p>
         </div>
       </section>

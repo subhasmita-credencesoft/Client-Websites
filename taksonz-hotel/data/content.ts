@@ -78,7 +78,7 @@ export const content = {
   },
 
   banquets: {
-    venues: { title: "Our banquet halls", intro: "Elegant and versatile spaces for your special occasions, from weddings to corporate events.", note: "Capacities and areas are indicative; the events team will confirm details." },
+    venues: { title: "Banquets & Meeting Spaces", intro: "Elegant and versatile spaces for every occasion — from weddings and social celebrations to corporate conferences and executive meetings.", note: "Capacities and areas are indicative; the events team will confirm details." },
     occasions: {
       eyebrow: "Occasions",
       title: "Perfect for every occasion.",

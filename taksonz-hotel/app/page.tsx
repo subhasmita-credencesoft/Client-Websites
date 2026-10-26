@@ -100,8 +100,11 @@ export default function HomePage() {
         <div className="container">
           <Split image={c.location.image} eyebrow={c.location.eyebrow} title={c.location.title}>
             <p>{addressLine}</p>
-            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-              <ButtonLink href="/location" variant="secondary" arrow>Directions & map</ButtonLink>
+            <p style={{ fontSize: "0.9375rem", color: "var(--grey)", marginTop: "0.5rem" }}>
+              Steps from Ludhiana Railway Station (0–0.5 km) and Clock Tower (0.5 km), with immediate access to GT Road, Chaura Bazaar, and Civil Lines.
+            </p>
+            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}>
+              <ButtonLink href="/location" variant="secondary" arrow>Distances & Map</ButtonLink>
               <a href={mapLinkUrl} target="_blank" rel="noopener noreferrer" style={{ alignSelf: "center", textDecoration: "underline", textUnderlineOffset: 3 }}>Open in Google Maps<span className="visually-hidden"> (opens in new tab)</span></a>
             </div>
           </Split>

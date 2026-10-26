@@ -43,6 +43,20 @@ export default function LocationPage() {
           </div>
         </div>
       </section>
+
+      {/* Link to Dedicated Nearby Locations Page */}
+      <section className="section section--white">
+        <div className="container" style={{ textAlign: "center", maxWidth: "48rem" }}>
+          <SectionHeading
+            eyebrow="Explore the Area"
+            title="Looking for Distances to Key Areas in Ludhiana?"
+            intro="View our complete neighborhood guide with exact distances, travel times, and landmark details for railway stations, historic monuments, wholesale bazaars, and corporate zones."
+          />
+          <div style={{ marginTop: "1.75rem", display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
+            <ButtonLink href="/nearby-locations" arrow>View Nearby Locations Page</ButtonLink>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -62,6 +62,14 @@ export const pages = {
     heroSubtitle: "Moments that stay with you.",
     heroImage: "hero-gallery",
   },
+  nearby: {
+    path: "/nearby-locations",
+    title: "Nearby Locations",
+    description: `Distances and connectivity from ${site.name} to key areas, railway station, markets and landmarks in ${city}.`,
+    heroTitle: "Nearby Locations",
+    heroSubtitle: "Explore the neighborhood & key distances.",
+    heroImage: "hero-location",
+  },
   location: {
     path: "/location",
     title: "Location & Directions",

@@ -7,11 +7,13 @@ export const primaryNav: NavItem[] = [
   { label: "Stay", href: "/rooms" },
   { label: "Dining", href: "/dining" },
   { label: "Banquets & Meetings", href: "/banquets" },
+  { label: "Nearby", href: "/nearby-locations" },
   { label: "Gallery", href: "/gallery" },
   { label: "About", href: "/about" },
 ];
 
 export const secondaryNav: NavItem[] = [
+  { label: "Nearby Locations", href: "/nearby-locations" },
   { label: "Location", href: "/location" },
   { label: "Contact", href: "/contact" },
   { label: "FAQ", href: "/faq" },
@@ -23,7 +25,8 @@ export const footerGroups: { title: string; links: NavItem[] }[] = [
     links: [
       { label: "Rooms & Suites", href: "/rooms" },
       { label: "Book Online", href: "https://bookone.io/Hotel-The-Taksonz?bookingEngine=true" },
-      { label: "Location", href: "/location" },
+      { label: "Location & Directions", href: "/location" },
+      { label: "Nearby Locations", href: "/nearby-locations" },
     ],
   },
   {
@@ -31,6 +34,7 @@ export const footerGroups: { title: string; links: NavItem[] }[] = [
     links: [
       { label: "Dining & Bar", href: "/dining" },
       { label: "Banquets & Meetings", href: "/banquets" },
+      { label: "Nearby Locations", href: "/nearby-locations" },
       { label: "Gallery", href: "/gallery" },
     ],
   },
@@ -57,6 +61,8 @@ export const heroRoutes = [
   "/dining",
   "/banquets",
   "/meetings",
+  "/nearby-locations",
+  "/nearby",
   "/about",
   "/gallery",
   "/location",
