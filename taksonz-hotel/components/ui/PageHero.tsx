@@ -18,7 +18,7 @@ export function PageHero({ title, subtitle, image, children }: Props) {
   return (
     <section className={styles.hero}>
       <div className={styles.media}>
-        <Parallax amount={10} scale={1.22}><Photo src={image} alt="" decorative priority sizes="100vw" /></Parallax>
+        <Parallax amount={4} scale={1.05}><Photo src={image} alt="" decorative priority sizes="100vw" /></Parallax>
       </div>
       <div className={styles.shade} />
       <div className={`container ${styles.inner}`}>

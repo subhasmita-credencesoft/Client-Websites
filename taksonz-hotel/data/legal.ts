@@ -20,7 +20,7 @@ export const legal: Record<"privacy" | "terms" | "cancellation", LegalSection[]>
     { heading: "Use of this website", body: "The information on this website is provided for general guidance. Rates, availability, capacities and services may change and are confirmed by the hotel at the time of booking." },
     { heading: "Enquiries and booking requests", body: "Submitting an enquiry or booking request does not create a confirmed reservation. A reservation exists only when the hotel confirms it in writing." },
     { heading: "Hotel policies", body: "Check-in and check-out times, identification requirements, and child, extra-bed and pet policies are confirmed by the hotel and apply to every stay." },
-    { heading: "Images", body: "Photographs and video on this website are stock media and may not show the hotel itself." },
+    { heading: "Images", body: "Photographs on this website show Hotel The Taksonz premises, rooms, and facilities." },
     { heading: "Contact", body: `Questions about these terms: ${site.email}.` },
   ],
   cancellation: [

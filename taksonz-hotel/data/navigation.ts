@@ -6,8 +6,7 @@ export interface NavItem {
 export const primaryNav: NavItem[] = [
   { label: "Stay", href: "/rooms" },
   { label: "Dining", href: "/dining" },
-  { label: "Banquets", href: "/banquets" },
-  { label: "Meetings", href: "/meetings" },
+  { label: "Banquets & Meetings", href: "/banquets" },
   { label: "Gallery", href: "/gallery" },
   { label: "About", href: "/about" },
 ];
@@ -31,8 +30,7 @@ export const footerGroups: { title: string; links: NavItem[] }[] = [
     title: "Experience",
     links: [
       { label: "Dining & Bar", href: "/dining" },
-      { label: "Banquets", href: "/banquets" },
-      { label: "Meetings", href: "/meetings" },
+      { label: "Banquets & Meetings", href: "/banquets" },
       { label: "Gallery", href: "/gallery" },
     ],
   },

@@ -43,7 +43,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section section--white" aria-labelledby="featured-rooms">
+      {/* About Hotel The Taksonz */}
+      <section className="section section--white" aria-labelledby="home-about">
+        <div className="container">
+          <Split
+            image={c.about.image}
+            eyebrow={c.about.eyebrow}
+            title={c.about.title}
+            aspectRatio="16/9"
+          >
+            <p>{c.about.text}</p>
+            <div style={{ marginTop: "1.5rem" }}>
+              <ButtonLink href="/about" variant="secondary" arrow>{c.about.cta}</ButtonLink>
+            </div>
+          </Split>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="featured-rooms">
         <div className="container">
           <SectionHeading eyebrow={c.rooms.eyebrow} title={<span id="featured-rooms">{c.rooms.title}</span>} intro={c.rooms.intro} />
           <FeaturedRooms className={styles.rooms} />
@@ -51,7 +68,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section--white">
         <div className="container" style={{ display: "grid", gap: "clamp(4rem,8vw,8rem)" }}>
           <Split image={c.diningSplit.image} eyebrow={c.diningSplit.eyebrow} title={c.diningSplit.title}>
             <p>{c.diningSplit.text}</p>
@@ -64,14 +81,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section section--white" aria-labelledby="why">
+      <section className="section" aria-labelledby="why">
         <div className="container">
           <SectionHeading eyebrow={c.why.eyebrow} title={<span id="why">{c.why.title}</span>} />
           <FeatureGrid items={c.why.items} />
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section--white">
         <div className="container">
           <SectionHeading eyebrow={c.gallery.eyebrow} title={c.gallery.title} />
           <ImageGrid images={galleryImages.slice(0, 4)} variant="strip" />
@@ -79,7 +96,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section section--white">
+      <section className="section">
         <div className="container">
           <Split image={c.location.image} eyebrow={c.location.eyebrow} title={c.location.title}>
             <p>{addressLine}</p>
@@ -91,7 +108,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="faq-h">
+      <section className="section section--white" aria-labelledby="faq-h">
         <div className="container">
           <SectionHeading eyebrow={c.faq.eyebrow} title={<span id="faq-h">{c.faq.title}</span>} />
           <FaqAccordion items={faqs.slice(0, 4)} />

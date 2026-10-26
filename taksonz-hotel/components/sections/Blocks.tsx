@@ -10,11 +10,45 @@ import type { IconName } from "@/data/content";
 import styles from "./Blocks.module.scss";
 
 /** Image + copy two-column section. */
-export function Split({ image, reverse, eyebrow, title, children }: { image: string; reverse?: boolean; eyebrow?: string; title: string; children: ReactNode }) {
+export function Split({
+  image,
+  reverse,
+  eyebrow,
+  title,
+  aspectRatio,
+  objectFit,
+  disableParallax,
+  children,
+}: {
+  image: string;
+  reverse?: boolean;
+  eyebrow?: string;
+  title: string;
+  aspectRatio?: string;
+  objectFit?: "cover" | "contain";
+  disableParallax?: boolean;
+  children: ReactNode;
+}) {
+  const isWide = aspectRatio === "16/9" || (!aspectRatio && image.includes("taksonzhome"));
+  const resolvedRatio = aspectRatio || (isWide ? "16 / 9" : "4 / 3");
+  const resolvedFit = objectFit || (isWide ? "cover" : "cover");
+
   return (
     <div className={[styles.split, reverse ? styles.reverse : ""].join(" ")}>
-      <Reveal variant="clip" className={styles.splitMedia}>
-        <Parallax><Photo src={image} alt="" decorative sizes="(min-width: 1024px) 50vw, 100vw" /></Parallax>
+      <Reveal
+        variant="clip"
+        className={styles.splitMedia}
+        style={{ aspectRatio: resolvedRatio }}
+      >
+        <Parallax scale={isWide ? 1.01 : 1.03} amount={isWide ? 2 : 4} disabled={disableParallax}>
+          <Photo
+            src={image}
+            alt=""
+            decorative
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            objectFit={resolvedFit}
+          />
+        </Parallax>
       </Reveal>
       <Reveal delay={0.12} className={styles.splitCopy}>
         {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}

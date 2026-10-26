@@ -22,15 +22,22 @@ export const content = {
       intro:
         "Whether you're here for business, a celebration or a well-deserved break, The Taksonz offers a seamless blend of comfort, convenience and contemporary style.",
       tiles: [
-        { href: "/rooms", image: img("room-deluxe-1"), title: "Rooms & Suites", text: "Elegant rooms and suites designed for your comfort." },
-        { href: "/dining", image: img("dining-restaurant"), title: "Dining & Bar", text: "Savour a range of cuisines, from local favourites to global flavours." },
-        { href: "/banquets", image: img("banquet-grand"), title: "Banquets & Meetings", text: "Elegant spaces for weddings, social events and corporate gatherings." },
+        { href: "/rooms", image: img("altroom"), title: "Rooms & Suites", text: "Elegant rooms and suites designed for your comfort." },
+        { href: "/dining", image: img("dining"), title: "Dining & Bar", text: "Savour a range of cuisines, from local favourites to global flavours." },
+        { href: "/banquets", image: img("banquets"), title: "Banquets & Meetings", text: "Elegant spaces for weddings, social events and corporate gatherings." },
         { href: "/location", image: img("city-landmark"), title: `Discover ${city}`, text: "Explore the city and find your way to the hotel." },
       ],
     },
+    about: {
+      eyebrow: "About Hotel The Taksonz",
+      title: `A warm welcome in the heart of ${city}.`,
+      text: "Hotel The Taksonz blends contemporary comfort, refined spaces, and warm hospitality right on Grand Trunk Road, Ludhiana. From restful stays and rich dining to grand banquets and business conferences, we craft every detail for a seamless stay.",
+      cta: "Learn more about us",
+      image: img("taksonzhome"),
+    },
     rooms: { eyebrow: "Accommodation", title: "Rooms made for rest.", intro: "Four categories, each planned around comfort, light and quiet.", cta: "View all rooms" },
     diningSplit: { eyebrow: "Dining & Bar", title: "A culinary journey awaits.", text: "Indulge in a delightful culinary experience with a diverse menu featuring local and international cuisines, crafted with the finest ingredients.", cta: "Explore dining", image: img("dining-restaurant") },
-    eventsSplit: { eyebrow: "Banquets & Meetings", title: "Celebrate. Connect. Create.", text: "Elegant halls and meeting spaces for weddings, celebrations and corporate events, supported by our events team.", cta: "Plan Your Event", image: img("banquet-royal") },
+    eventsSplit: { eyebrow: "Banquets & Meetings", title: "Celebrate. Connect. Create.", text: "Elegant halls and meeting spaces for weddings, celebrations and corporate events, supported by our events team.", cta: "Plan Your Event", image: img("banquets") },
     why: {
       eyebrow: "Why stay here",
       title: "Comfort, without the complication.",

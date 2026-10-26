@@ -32,9 +32,9 @@ export const pages = {
   },
   banquets: {
     path: "/banquets",
-    title: "Banquets & Events",
-    description: `Banquet halls for weddings, celebrations and corporate events at ${site.name}, ${city}.`,
-    heroTitle: "Banquets & Events",
+    title: "Banquets & Meetings",
+    description: `Banquet halls and meeting spaces for weddings, celebrations and corporate events at ${site.name}, ${city}.`,
+    heroTitle: "Banquets & Meetings",
     heroSubtitle: "Celebrate. Connect. Create.",
     heroImage: "hero-banquets",
   },
