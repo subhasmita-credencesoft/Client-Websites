@@ -1,0 +1,13 @@
+export { CalloutSection } from '@/features/home/components/callout-section';
+export { CardsBand } from '@/features/home/components/cards-band';
+export { ExperienceSection } from '@/features/home/components/experience-section';
+export { HighlightGrid } from '@/features/home/components/highlight-grid';
+export { HomeHero } from '@/features/home/components/home-hero';
+export { HeroSlide } from '@/features/home/components/hero-slide';
+export { HeroControls } from '@/features/home/components/hero-controls';
+export { heroSlides } from '@/features/home/components/hero-slides';
+export type { HeroSlide as HeroSlideData } from '@/features/home/components/hero-slides';
+export { SplitFeature } from '@/features/home/components/split-feature';
+export { VenueSection } from '@/features/home/components/venue-section';
+export { WelcomeSection } from '@/features/home/components/welcome-section';
+export type { Callout } from '@/features/home/components/types';

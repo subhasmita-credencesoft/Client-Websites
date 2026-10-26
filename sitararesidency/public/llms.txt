@@ -1,0 +1,77 @@
+# Hotel Sitara Residency
+> Premium boutique hotel accommodation located in Kalamboli, Navi Mumbai / Panvel, Maharashtra, India. Tailored for corporate executives, business travelers, families, and couples.
+
+## About
+Hotel Sitara Residency is a premier hospitality destination in Kalamboli, Navi Mumbai. Located close to the Mumbai-Pune Expressway, Sion-Panvel Highway, Kalamboli Steel Market, JNPT Port, and the Navi Mumbai International Airport (NMIA). The property features contemporary executive rooms, executive triple rooms, and family suites equipped with air conditioning, high-speed Wi-Fi, flat-screen TVs, 24-hour room service, and secure on-site parking.
+
+## Location & Contact
+- Address: Riddhi Arcade, Plot No. 857, C & D Sector KWC, Near Bima Complex, Kalamboli, Navi Mumbai – 410 218, India
+- Mobile: +91 74004 32396 / +91 74004 32397
+- Landline: 022-4715 2396 / 022-4715 2397
+- Email: info@sitararesidency.com
+- Official Website: https://hotelsitararesidency.com
+- Google Maps: https://maps.google.com/?q=Hotel+Sitara+Residency,+Kalamboli,+Navi+Mumbai
+- Check-in Time: 12:00 PM (IST)
+- Check-out Time: 11:00 AM (IST)
+
+## Direct Booking
+- Direct Booking Engine: https://bookone.io/Hotel-Sitara-Residency?bookingEngine=true
+- Direct Booking Benefits: Guaranteed lowest rate, flexible cancellation policies, priority room allocation, complimentary high-speed Wi-Fi, and 24-hour front desk assistance.
+
+## Accommodations (Rooms & Suites)
+
+### 1. Executive Room
+- Slug: /bedrooms/executive-room
+- Room ID: 8857
+- Ideal For: Solo corporate travelers, business visitors, couples
+- Occupancy: 1 to 2 Adults
+- Key Features: Premium king or queen bed, individually controlled air conditioning, high-speed Wi-Fi, flat-screen TV with satellite channels, modern ensuite bathroom with 24/7 hot water geyser, dedicated work desk, daily housekeeping, and 24-hour room service.
+
+### 2. Executive Triple Room
+- Slug: /bedrooms/executive-triple-room
+- Room ID: 8858
+- Ideal For: Traveling colleagues, small groups, families of 3
+- Occupancy: Up to 3 Adults
+- Key Features: Three comfortable single/twin beds with fresh linens, individual climate control, complimentary Wi-Fi, television entertainment, private bathroom with toiletries, workstation, and 24-hour room service.
+
+### 3. Executive Family Suite
+- Slug: /bedrooms/executive-family-suite
+- Room ID: 8859
+- Ideal For: Families, executive delegations, extended stays
+- Occupancy: 2 to 6 Guests
+- Key Features: Expansive multi-bed configuration (two double beds plus lounge seating), sitting lounge with sofa, coffee area, dual air conditioning units, high-speed Wi-Fi, flat-screen TV, spacious wardrobe, continuous hot water geyser, and 24-hour concierge service.
+
+## Property Facilities & Amenities
+- Complimentary High-Speed Wi-Fi across the property
+- 24-Hour Front Desk and Concierge
+- Individual Climate-Controlled Air Conditioning in all rooms
+- Secure On-Site Vehicle Parking
+- Full Power Backup (Generators) for uninterrupted power
+- Daily Housekeeping with fresh linens and sanitized toiletries
+- Geyser for 24-Hour Hot & Cold Water
+- Flat-Screen TV in every room
+- Hand Sanitizer and Enhanced Safety Protocols
+
+## Proximity & Landmarks
+- Navi Mumbai International Airport (NMIA): ~15–20 minutes drive
+- Kalamboli Steel Market: Walking distance / 2 minutes
+- Mumbai-Pune Expressway Start: ~3 minutes drive
+- Sion-Panvel Expressway: Immediate access
+- Panvel Railway Station / Bus Depot: ~10 minutes drive
+- JNPT (Jawaharlal Nehru Port Trust): ~25 minutes drive
+- Kharghar Central Park & Golf Course: ~12 minutes drive
+- Orion Mall & D-Mart Panvel: ~10 minutes drive
+
+## Core Website Pages
+- Homepage: https://hotelsitararesidency.com/
+- Rooms & Suites: https://hotelsitararesidency.com/bedrooms
+- Executive Room: https://hotelsitararesidency.com/bedrooms/executive-room
+- Executive Triple Room: https://hotelsitararesidency.com/bedrooms/executive-triple-room
+- Executive Family Suite: https://hotelsitararesidency.com/bedrooms/executive-family-suite
+- Photo Gallery: https://hotelsitararesidency.com/gallery
+- Location & Map: https://hotelsitararesidency.com/location
+- Contact: https://hotelsitararesidency.com/contact
+- Local Guide / Blog: https://hotelsitararesidency.com/blog
+- Leisure & Amenities: https://hotelsitararesidency.com/leisure
+- Family & Kids: https://hotelsitararesidency.com/kids
+- Things To Do: https://hotelsitararesidency.com/things-to-do

@@ -1,0 +1,41 @@
+# dependencies
+node_modules
+
+# next.js
+.next
+out
+dist
+
+# misc
+*.tsbuildinfo
+
+# environment
+.env
+.env.local
+.env*.local
+
+# local image originals backup (pre-optimization)
+_image-backup/
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# production
+build/
+
+# vercel
+.vercel
+
+# IDEs and editors
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# OS
+.DS_Store
+Thumbs.db

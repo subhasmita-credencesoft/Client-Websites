@@ -1,0 +1,49 @@
+/* Design tokens: theme variables + font stacks */
+@theme inline {
+  --font-sans: var(--font-roboto);
+  --font-serif: var(--font-playfair);
+  --font-display: var(--font-playfair);
+  --font-menu: var(--font-nunito);
+
+  --color-bg: #ffffff;
+  --color-fg: #686868;
+  --color-heading: #515151;
+  --color-muted: #686868;
+
+  --color-primary: #ad3074;
+  --color-primary-hover: #ad425b;
+  --color-primary-light: #811167;
+
+  --color-secondary: #6f7f71;
+  --color-secondary-hover: #96a687;
+  --color-secondary-light: #E5E5E5;
+
+  --color-light-gray: #E5E5E5;
+  --color-form-bg: #d8d8d8;
+  --color-border: #d8d8d8;
+  --color-cream: #faf9f6;
+  --color-parchment: #f2f0ec;
+  --color-forest: #26382e;
+  --color-terracotta: #ad3074;
+  --color-apricot: #d7b49a;
+  --color-sage: #6f7f71;
+  --color-sage-muted: #686868;
+
+  --color-menu-bg: rgba(100, 38, 52, 0.91);
+  --color-header-overlay-start: rgba(0, 0, 0, 0.8);
+  --color-header-overlay-mid: rgba(0, 0, 0, 0.5);
+  --color-header-overlay-end: rgba(0, 0, 0, 0);
+
+  --radius: 0;
+
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}
+
+:root {
+  --font-roboto: 'Montserrat', 'Roboto', sans-serif;
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-nunito: 'Nunito', sans-serif;
+}

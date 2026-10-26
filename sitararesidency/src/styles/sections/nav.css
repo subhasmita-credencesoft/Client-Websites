@@ -1,0 +1,27 @@
+/* Navigation, drawer, footer shell, skip-link, and shared helpers */
+.site-nav{position:fixed;inset:0 0 auto;z-index:100;background:linear-gradient(180deg,rgba(10,18,13,0.48) 0%,rgba(10,18,13,0.18) 50%,transparent 100%);color:#fff;transition:background 0.35s ease,box-shadow 0.35s ease,backdrop-filter 0.35s ease}
+.site-nav--solid{background:#1a2820;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 24px rgba(0,0,0,0.18)}
+.site-nav__bar{position:relative;height:88px;width:100%;margin:auto;padding:0 clamp(16px,3vw,40px);padding-left:max(clamp(16px,3vw,40px),env(safe-area-inset-left));padding-right:max(clamp(16px,3vw,40px),env(safe-area-inset-right));display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
+.site-nav__menu-btn{display:inline-flex;align-items:center;gap:10px;background:none;border:0;cursor:pointer;padding:0;color:inherit;justify-self:start;min-width:0}
+.site-nav__logo-wrapper{grid-column:2;grid-row:1;display:flex;justify-content:center;align-items:center;justify-self:center}
+.site-nav__book-btn-wrap{justify-self:end;min-width:0}
+.site-nav__logo{display:grid;place-items:center;width:74px;height:74px;overflow:hidden;border-radius:50%;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,0.18);border:2px solid rgba(215,180,154,0.4);transition:transform 0.3s ease}
+.site-nav__logo:hover{transform:scale(1.04)}
+.site-nav__logo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:none!important}
+.site-nav__book-btn{display:inline-flex;align-items:center;justify-content:center;background:#ad3074;color:#fff!important;border:1px solid #ad3074;padding:12px 22px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;transition:all 0.25s ease;text-decoration:none;border-radius:1px}
+.site-nav__book-btn:hover{background:#fff;color:#26382e!important;border-color:#fff}
+.nav-drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.68);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:105;opacity:0;pointer-events:none;transition:opacity 0.4s ease}
+.nav-drawer-backdrop--open{opacity:1;pointer-events:auto}
+.nav-drawer-panel{position:fixed;inset:0 auto 0 0;width:min(480px,94vw);background:#1a2820;color:#fff;z-index:110;transform:translateX(-102%);transition:transform 0.45s cubic-bezier(0.22,1,0.36,1);display:flex;flex-direction:column;box-shadow:25px 0 60px rgba(0,0,0,0.55);padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);padding-left:env(safe-area-inset-left)}
+.nav-drawer-panel--open{transform:translateX(0)}
+.nav-drawer-panel__header{display:flex;align-items:center;justify-content:space-between;padding:22px 24px 18px;border-bottom:1px solid rgba(255,255,255,0.12);background:rgba(0,0,0,0.25)}
+.site-footer{background:#17221b!important;padding-top:80px!important}
+.site-footer a{color:#fff!important}
+.site-footer input{border-radius:0}
+.site-footer .footer-row-1{max-width:1400px;margin:auto}
+.site-footer .footer-row-2{max-width:1400px;margin-left:auto;margin-right:auto}
+.site-footer .font-display{font-family:var(--font-playfair)}
+.skip-link{position:fixed;left:14px;top:-60px;z-index:200;background:#fff;color:#26382e!important;padding:9px 12px;font-size:12px;transition:top .2s}
+.skip-link:focus{top:14px}
+.bg-cream{background:#faf9f6!important}.bg-parchment{background:#f2f0ec!important}.bg-forest{background:#26382e!important}.text-forest{color:#26382e!important}.text-terracotta{color:#ad3074!important}.text-apricot{color:#d7b49a!important}.text-sage-muted{color:#686868!important}.font-display{font-family:var(--font-playfair)!important}.font-serif{font-family:var(--font-playfair)!important}.font-mono-label{font-family:var(--font-roboto);letter-spacing:.16em;text-transform:uppercase;font-weight:700}.image-fade{transition:transform .7s ease,filter .7s ease}.group:hover .image-fade{transform:scale(1.045);filter:saturate(1.08)}
+@media(max-width:768px){.site-nav__bar{height:72px;padding:0 clamp(12px,4vw,14px)}.site-nav__logo{width:clamp(48px,12vw,58px);height:clamp(48px,12vw,58px)}.site-nav__book-btn{padding:clamp(8px,3vw,9px) clamp(10px,4vw,14px);font-size:clamp(9px,3vw,10px);letter-spacing:0.08em}.site-footer{padding-bottom:calc(90px + env(safe-area-inset-bottom))!important}.home-hero{min-height:100svh;min-height:100dvh;padding:calc(72px + 1rem) clamp(12px,5vw,14px) 2rem}.home-hero__video{object-position:center 20%!important;min-height:100%!important;width:100%!important;height:100%!important}}

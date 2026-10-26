@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+@import './tokens.css';
+@import './base.css';
+@import './sections/nav.css';
+@import './sections/home.css';
+@import './sections/rooms.css';
+@import './sections/listing.css';
+@import './sections/contact.css';
+@import './sections/responsive.css';
