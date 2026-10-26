@@ -1,0 +1,19 @@
+@use '../../styles/abstracts' as *;
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+.link {
+  display: inline-flex;
+  padding: 4px;
+  color: inherit;
+  transition: color $transition, transform $transition;
+
+  &:hover {
+    color: $gold;
+    transform: translateY(-1px);
+  }
+}

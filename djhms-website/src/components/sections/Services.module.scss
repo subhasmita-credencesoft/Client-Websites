@@ -1,0 +1,95 @@
+@use '../../styles/abstracts' as *;
+
+.section {
+  @include section-padding;
+  background: $surface-blue;
+}
+
+.grid {
+  display: grid;
+  gap: $space-5;
+  margin-top: $space-7;
+
+  @include up(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: $white;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  box-shadow: $shadow-sm;
+  transition: transform $transition, box-shadow $transition;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.wide {
+  @include up(sm) {
+    grid-column: span 2;
+  }
+
+  @include up(md) {
+    flex-direction: row;
+
+    .media {
+      flex: 0 0 38%;
+      aspect-ratio: auto;
+      min-height: 150px;
+    }
+  }
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 16 / 7;
+}
+
+.media {
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+
+  .card:hover & {
+    transform: scale(1.08);
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding: $space-4 $space-5 $space-5;
+
+  h3 {
+    font-family: $font-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: $navy;
+  }
+
+  p {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: $text-muted;
+  }
+}
+
+.icon {
+  color: $navy;
+}

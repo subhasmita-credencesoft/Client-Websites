@@ -1,0 +1,299 @@
+@use '../../styles/abstracts' as *;
+
+.section {
+  @include section-padding;
+  background: $white;
+}
+
+.sliderContainer {
+  margin-top: $space-6;
+}
+
+.sliderControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+  margin-bottom: $space-4;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: 8px 16px;
+  background: $surface-cream;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  color: $navy;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: $gold;
+    color: $navy-deep;
+  }
+
+  &.activeTab {
+    background: $navy;
+    color: $white;
+    border-color: $navy;
+    box-shadow: $shadow-sm;
+
+    .tabBadge {
+      background: $gold;
+      color: $navy-deep;
+    }
+  }
+}
+
+.tabBadge {
+  padding: 2px 6px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba($navy, 0.08);
+  color: $navy;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.tabTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.arrows {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.arrowBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: $white;
+  color: $navy;
+  border: 1px solid $border;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: $gold;
+    border-color: $gold;
+    color: $navy-deep;
+    transform: translateY(-1px);
+    box-shadow: $shadow-sm;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.counter {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: $text-muted;
+  min-width: 50px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.slideAnimated {
+  animation: slideFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footerAction {
+  display: flex;
+  justify-content: center;
+  margin-top: $space-6;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-7;
+  margin-top: $space-7;
+}
+
+.card {
+  display: grid;
+  overflow: hidden;
+  background: $white;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  box-shadow: $shadow-sm;
+
+  @include up(lg) {
+    grid-template-columns: 1fr 1.3fr 0.9fr;
+  }
+}
+
+.media {
+  position: relative;
+  min-height: 260px;
+  overflow: hidden;
+}
+
+.badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  padding: 4px 10px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $navy;
+  background: rgba($white, 0.94);
+  backdrop-filter: blur(4px);
+  border-radius: $radius-sm;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.img {
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+
+  .card:hover & {
+    transform: scale(1.06);
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: $space-3;
+  padding: $space-6;
+}
+
+.headerBlock {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+
+  h3 {
+    font-family: $font-serif;
+    font-size: 1.5rem;
+    color: $navy;
+  }
+}
+
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: $text-muted;
+}
+
+.desc {
+  max-width: 52ch;
+  margin-bottom: $space-1;
+  font-size: 0.875rem;
+  color: $text-muted;
+}
+
+.amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block: $space-1;
+}
+
+.amenityTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  color: $navy;
+  background: $surface-cream;
+  border: 1px solid rgba($gold, 0.35);
+  border-radius: $radius-sm;
+  font-weight: 500;
+}
+
+.checkIcon {
+  color: $gold-text;
+  flex-shrink: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-3;
+  margin-top: $space-2;
+}
+
+.mapBtn {
+  font-size: 0.8125rem;
+}
+
+.rooms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $space-5;
+  padding: $space-6;
+  border-top: 1px solid $border;
+
+  @include up(lg) {
+    border-top: 0;
+    border-left: 1px solid $border;
+  }
+}
+
+.roomBox {
+  padding: $space-5;
+  background: $surface-blue;
+  border-radius: $radius-sm;
+
+  h4 {
+    margin-bottom: $space-3;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: $navy;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    padding-block: 6px;
+    font-size: 0.8125rem;
+    color: $text;
+
+    svg {
+      color: $navy;
+    }
+  }
+}

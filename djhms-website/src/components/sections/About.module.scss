@@ -1,0 +1,139 @@
+@use '../../styles/abstracts' as *;
+
+.section {
+  @include section-padding;
+  background: $white;
+}
+
+.grid {
+  display: grid;
+  gap: $space-6;
+
+  @include up(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include up(lg) {
+    grid-template-columns: 1fr 1fr 1.25fr;
+    align-items: stretch;
+  }
+}
+
+.media {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  border-radius: $radius-sm;
+  box-shadow: $shadow-md;
+}
+
+.img {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+
+  .media:hover & {
+    transform: scale(1.06);
+  }
+}
+
+.badge {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: $space-3 $space-5;
+  background: rgba($navy-deep, 0.9);
+  color: $white;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: $space-3;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  color: $navy;
+}
+
+.text {
+  margin-bottom: $space-3;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: $text-muted;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+  padding: $space-6;
+  background: $surface-cream;
+  border-radius: $radius-md;
+
+  @include up(md) {
+    grid-column: 1 / -1;
+  }
+
+  @include up(lg) {
+    grid-column: auto;
+  }
+}
+
+.item {
+  display: flex;
+  gap: $space-4;
+
+  h3 {
+    margin-bottom: 4px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: $navy;
+  }
+
+  p {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: $text-muted;
+  }
+}
+
+.icon {
+  flex: none;
+  color: $navy;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px $space-5;
+  font-size: 0.8125rem;
+  color: $text-muted;
+
+  li {
+    position: relative;
+    padding-left: 12px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: $gold;
+    }
+  }
+}

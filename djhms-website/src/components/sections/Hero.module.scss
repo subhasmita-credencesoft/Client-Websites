@@ -1,0 +1,339 @@
+@use '../../styles/abstracts' as *;
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 560px;
+  overflow: hidden;
+  background: #f1dfb9;
+  color: $white;
+
+  @include up(lg) {
+    min-height: 640px;
+  }
+}
+
+.parallax {
+  position: absolute;
+  inset: 0;
+}
+
+.layer {
+  position: absolute;
+  inset: -4%;
+  will-change: transform;
+}
+
+.zoom {
+  position: absolute;
+  inset: 0;
+  animation: kenburns 24s ease-in-out infinite alternate;
+}
+
+.bg {
+  object-fit: cover;
+  object-position: center;
+}
+
+// Lighter overlay than before: keeps text readable on the left, leaves the scene bright on the right.
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba($navy-deep, 0.84) 0%, rgba($navy-deep, 0.5) 34%, rgba($navy-deep, 0) 64%);
+}
+
+// Slow sweeping light beam for an "immersive" glow.
+.light {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 236, 190, 0.28) 50%, transparent 65%);
+  mix-blend-mode: soft-light;
+  animation: sweep 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  span {
+    position: absolute;
+    bottom: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff6d0 0%, $gold 60%, transparent 70%);
+    opacity: 0;
+    animation: rise linear infinite;
+  }
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 60% 50%, transparent 45%, rgba(4, 18, 42, 0.45) 100%),
+    linear-gradient(180deg, rgba(4, 18, 42, 0.35) 0%, transparent 18%, transparent 80%, rgba(4, 18, 42, 0.4) 100%);
+  pointer-events: none;
+}
+
+// Film grain for a cinematic texture.
+.grain {
+  position: absolute;
+  inset: -50%;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 0.9s steps(6) infinite;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  display: grid;
+  gap: $space-7;
+  padding-block: $space-8;
+
+  @include up(lg) {
+    grid-template-columns: 1fr 320px;
+    align-items: center;
+  }
+}
+
+.eyebrow {
+  margin-bottom: $space-4;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: $gold-light;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.15;
+  text-shadow: 0 2px 18px rgba(4, 18, 42, 0.45);
+}
+
+.line {
+  display: block;
+}
+
+.lead {
+  max-width: 46ch;
+  margin-top: $space-5;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: rgba($white, 0.95);
+  text-shadow: 0 1px 10px rgba(4, 18, 42, 0.45);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
+  margin-top: $space-6;
+}
+
+// Staggered entrance (CSS only – works before hydration).
+.in1,
+.in2,
+.in3,
+.in4,
+.in5 {
+  opacity: 0;
+  animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.in1 {
+  animation-delay: 0.1s;
+}
+.in2 {
+  animation-delay: 0.25s;
+}
+.in3 {
+  animation-delay: 0.45s;
+}
+.in4 {
+  animation-delay: 0.7s;
+}
+.in5 {
+  animation-delay: 0.9s;
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  padding: $space-3 $space-5;
+  background: rgba($navy, 0.86);
+  border: 1px solid rgba($gold, 0.28);
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+  backdrop-filter: blur(8px);
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+    padding-block: $space-5;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    opacity: 0;
+    animation: slideIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transition: transform $transition;
+
+    &:hover {
+      transform: translateX(6px);
+    }
+
+    & + li {
+      border-top: 1px solid rgba($white, 0.14);
+    }
+  }
+}
+
+.icon {
+  flex: none;
+  color: $gold;
+}
+
+.scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  display: none;
+  width: 24px;
+  height: 38px;
+  border: 2px solid rgba($white, 0.7);
+  border-radius: 14px;
+  transform: translateX(-50%);
+
+  @include up(lg) {
+    display: block;
+  }
+
+  span {
+    position: absolute;
+    left: 50%;
+    top: 7px;
+    width: 4px;
+    height: 8px;
+    margin-left: -2px;
+    border-radius: 2px;
+    background: $gold;
+    animation: wheel 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.14) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+@keyframes sweep {
+  0%,
+  100% {
+    transform: translateX(-35%);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateX(35%);
+    opacity: 1;
+  }
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-640px) translateX(40px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes grain {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-3%, 2%);
+  }
+  50% {
+    transform: translate(2%, -3%);
+  }
+  75% {
+    transform: translate(3%, 3%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wheel {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zoom,
+  .light,
+  .particles span,
+  .grain,
+  .scroll span {
+    animation: none;
+  }
+
+  .in1,
+  .in2,
+  .in3,
+  .in4,
+  .in5,
+  .highlights li {
+    opacity: 1;
+    animation: none;
+  }
+}

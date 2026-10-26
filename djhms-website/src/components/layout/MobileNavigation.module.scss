@@ -1,0 +1,46 @@
+@use '../../styles/abstracts' as *;
+
+.drawer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: calc(100vh - #{$header-height});
+  overflow-y: auto;
+  padding: $space-4 $gutter $space-6;
+  background: $white;
+  border-top: 1px solid $border;
+  box-shadow: $shadow-md;
+
+  &[hidden] {
+    display: none;
+  }
+
+  @include up(lg) {
+    display: none;
+  }
+}
+
+.link {
+  display: block;
+  padding: 14px 4px;
+  border-bottom: 1px solid $border;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $navy;
+
+  &.active {
+    color: $gold-text;
+  }
+}
+
+.call {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  margin-top: $space-5;
+  font-weight: 600;
+  color: $navy;
+}

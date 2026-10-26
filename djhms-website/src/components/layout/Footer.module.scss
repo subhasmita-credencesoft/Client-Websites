@@ -1,0 +1,60 @@
+@use '../../styles/abstracts' as *;
+
+.footer {
+  background: $navy-deep;
+  color: rgba($white, 0.85);
+  font-size: 0.8125rem;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-5;
+  padding-block: $space-7 $space-5;
+
+  @include up(lg) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3 $space-5;
+
+  a:hover {
+    color: $gold-light;
+  }
+}
+
+.social {
+  color: $white;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  padding-block: $space-5;
+  border-top: 1px solid rgba($white, 0.14);
+  font-size: 0.75rem;
+  color: rgba($white, 0.7);
+
+  @include up(md) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-4;
+
+  a:hover {
+    color: $gold-light;
+  }
+}

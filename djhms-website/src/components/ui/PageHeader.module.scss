@@ -1,0 +1,136 @@
+@use '../../styles/abstracts' as *;
+
+.header {
+  position: relative;
+  overflow: hidden;
+  padding-block: $space-8;
+  background: linear-gradient(120deg, $navy-deep 0%, $navy 55%, $navy-soft 100%);
+  color: $white;
+
+  @include up(lg) {
+    padding-block: $space-9 $space-8;
+  }
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  opacity: 0.38;
+  mix-blend-mode: luminosity;
+  animation: zoom 22s ease-in-out infinite alternate;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.orb1,
+.orb2 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.orb1 {
+  top: -120px;
+  right: 8%;
+  width: 380px;
+  height: 380px;
+  background: rgba($gold, 0.35);
+  animation: drift 14s ease-in-out infinite alternate;
+}
+
+.orb2 {
+  bottom: -160px;
+  left: -60px;
+  width: 340px;
+  height: 340px;
+  background: rgba(75, 134, 200, 0.4);
+  animation: drift 18s ease-in-out infinite alternate-reverse;
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: 0.8125rem;
+  color: rgba($white, 0.8);
+
+  a:hover {
+    color: $gold-light;
+  }
+
+  [aria-current] {
+    color: $gold-light;
+  }
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  line-height: 1.15;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 64px;
+    height: 3px;
+    margin-top: $space-4;
+    border-radius: 2px;
+    background: linear-gradient(90deg, $gold, $gold-light);
+  }
+}
+
+.subtitle {
+  max-width: 60ch;
+  font-size: 1.0625rem;
+  color: rgba($white, 0.9);
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(40px, 30px, 0) scale(1.15);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo,
+  .orb1,
+  .orb2,
+  .inner {
+    animation: none;
+  }
+}

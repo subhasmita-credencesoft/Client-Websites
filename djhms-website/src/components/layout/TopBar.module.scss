@@ -1,0 +1,44 @@
+@use '../../styles/abstracts' as *;
+
+.bar {
+  background: $navy-deep;
+  color: $white;
+  font-size: 0.75rem;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+  gap: $space-4;
+}
+
+.contacts {
+  display: flex;
+  align-items: center;
+  gap: $space-5;
+
+  a,
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  a {
+    white-space: nowrap;
+  }
+
+  a:hover {
+    color: $gold-light;
+  }
+}
+
+.location {
+  display: none !important;
+
+  @include up(md) {
+    display: inline-flex !important;
+  }
+}
