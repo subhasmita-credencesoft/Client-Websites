@@ -118,7 +118,7 @@ export const homePageCopy = {
   rooms: { eyebrow: 'Accommodation', heading: 'Rooms & Suites', action: 'View all accommodation' },
   dining: { eyebrow: 'Culinary', heading: 'Dine with distinction', action: 'All dining experiences' },
   location: {
-    image: receptionLocationImage,
+    image: receptionWelcomeImage,
     eyebrow: 'Location',
     heading: 'Perfectly placed in Navi Mumbai',
     description: "Set at the crossroads of connectivity — Kalamboli places you minutes from Panvel station, the expressway and Mumbai's international airport corridor.",
