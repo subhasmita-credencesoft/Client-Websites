@@ -35,6 +35,13 @@ export const content = {
       cta: "Learn more about us",
       image: img("taksonzhome"),
     },
+    lobby: {
+      eyebrow: "Lobby & Reception",
+      title: "24-Hour Welcome & Dedicated Front Desk",
+      text: "Step into our welcoming lobby on Grand Trunk Road. Operating 24/7 with express check-in, secure luggage storage, and warm Punjabi hospitality, we ensure your arrival in Ludhiana is effortless and relaxing.",
+      cta: "Contact Front Desk",
+      image: img("reception"),
+    },
     rooms: { eyebrow: "Accommodation", title: "Rooms made for rest.", intro: "Four categories, each planned around comfort, light and quiet.", cta: "View all rooms" },
     diningSplit: { eyebrow: "Dining & Bar", title: "A culinary journey awaits.", text: "Indulge in a delightful culinary experience with a diverse menu featuring local and international cuisines, crafted with the finest ingredients.", cta: "Explore dining", image: img("dining-restaurant") },
     eventsSplit: { eyebrow: "Banquets & Meetings", title: "Celebrate. Connect. Create.", text: "Elegant halls and meeting spaces for weddings, celebrations and corporate events, supported by our events team.", cta: "Plan Your Event", image: img("banquets") },
@@ -112,6 +119,13 @@ export const content = {
       ],
     },
     values: { eyebrow: "Our values", title: "Comfort, care and hospitality.", text: "We believe in comfort, care and hospitality. Every detail is designed to make your stay exceptional.", cta: "Learn more", image: img("about-exterior") },
+    lobby: {
+      eyebrow: "Lobby & Reception",
+      title: "A Gracious Welcome Around the Clock",
+      text: "Our spacious lobby and 24-hour reception desk provide a calm sanctuary from the bustling city outside. Whether you are arriving on an early-morning train, checking in after a long journey, or heading out for business meetings, our courteous front desk team is always here to assist with luggage, local travel advice, and smooth check-ins.",
+      cta: "Contact the hotel",
+      image: img("reception"),
+    },
     stats: [
       { value: 100, suffix: "+", label: "Rooms & Suites" },
       { value: 5, label: "Banquet Halls" },

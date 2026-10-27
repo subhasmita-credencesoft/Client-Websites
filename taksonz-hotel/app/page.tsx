@@ -70,6 +70,13 @@ export default function HomePage() {
 
       <section className="section section--white">
         <div className="container" style={{ display: "grid", gap: "clamp(4rem,8vw,8rem)" }}>
+          <Split image={c.lobby.image} reverse eyebrow={c.lobby.eyebrow} title={c.lobby.title}>
+            <p>{c.lobby.text}</p>
+            <div style={{ marginTop: "1.5rem", display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+              <ButtonLink href="/contact" variant="secondary" arrow>{c.lobby.cta}</ButtonLink>
+              <ButtonLink href="/about" arrow>About the Hotel</ButtonLink>
+            </div>
+          </Split>
           <Split image={c.diningSplit.image} eyebrow={c.diningSplit.eyebrow} title={c.diningSplit.title}>
             <p>{c.diningSplit.text}</p>
             <div><ButtonLink href="/dining" variant="secondary" arrow>{c.diningSplit.cta}</ButtonLink></div>

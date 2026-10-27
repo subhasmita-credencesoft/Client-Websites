@@ -26,9 +26,21 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section section--white">
+      <section className="section section--white" aria-labelledby="about-lobby">
         <div className="container">
-          <Split image={c.values.image} eyebrow={c.values.eyebrow} title={c.values.title}>
+          <Split image={c.lobby.image} eyebrow={c.lobby.eyebrow} title={c.lobby.title}>
+            <p>{c.lobby.text}</p>
+            <div style={{ marginTop: "1.5rem", display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+              <ButtonLink href="/contact" variant="secondary" arrow>{c.lobby.cta}</ButtonLink>
+              <ButtonLink href="/rooms" arrow>Explore Rooms</ButtonLink>
+            </div>
+          </Split>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <Split image={c.values.image} reverse eyebrow={c.values.eyebrow} title={c.values.title}>
             <p>{c.values.text}</p>
             <div><ButtonLink href="/rooms" variant="secondary" arrow>{c.values.cta}</ButtonLink></div>
           </Split>
