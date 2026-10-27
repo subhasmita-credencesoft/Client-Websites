@@ -1,0 +1,36 @@
+{
+  "name": "Hotel Sitara Residency",
+  "short_name": "Sitara Residency",
+  "description": "Comfortable rooms and thoughtful stays in Kalamboli, Navi Mumbai. 24x7 reception, free Wi-Fi and parking near Panvel and the Mumbai-Pune Expressway.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0b203c",
+  "theme_color": "#0b203c",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["travel", "hotel"],
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

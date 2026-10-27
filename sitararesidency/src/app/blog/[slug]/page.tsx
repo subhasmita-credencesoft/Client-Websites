@@ -6,6 +6,8 @@ import { ArrowLeft, ArrowRight, Calendar, CheckCircle2, Clock, Phone, Sparkles }
 
 import { blogArticlesMap, journalCards } from '@/features/blog/data/blog';
 import { business } from '@/core/config/business';
+import { JsonLdScript } from '@/shared/ui/json-ld';
+import { articleSchema, breadcrumbSchema, pageMetadata, webPageSchema } from '@/core/lib/seo';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -18,11 +20,20 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const article = blogArticlesMap[slug];
-  if (!article) return { title: 'Journal Article' };
-  return {
-    title: `${article.title} | The Sitara Journal`,
+  if (!article) {
+    return pageMetadata({
+      title: 'Journal Article',
+      description: 'Travel guides and local insights from Hotel Sitara Residency, Kalamboli, Navi Mumbai.',
+      path: '/blog',
+      noIndex: true,
+    });
+  }
+  return pageMetadata({
+    title: article.title,
     description: article.intro,
-  };
+    path: `/blog/${slug}`,
+    keywords: [article.category, 'Navi Mumbai', 'Kalamboli', 'Hotel Sitara Residency'],
+  });
 }
 
 export default async function JournalEntryPage({ params }: PageProps) {
@@ -38,6 +49,27 @@ export default async function JournalEntryPage({ params }: PageProps) {
 
   return (
     <main className="bg-[#faf9f6]">
+      <JsonLdScript
+        data={[
+          webPageSchema({
+            name: article.title,
+            description: article.intro,
+            path: `/blog/${slug}`,
+          }),
+          breadcrumbSchema([
+            { name: 'Blog', path: '/blog' },
+            { name: article.title, path: `/blog/${slug}` },
+          ]),
+          articleSchema({
+            headline: article.title,
+            description: article.intro,
+            path: `/blog/${slug}`,
+            image: article.image,
+            datePublished: article.date,
+            category: article.category,
+          }),
+        ]}
+      />
       {/* ═══ ARTICLE HERO HEADER ═══ */}
       <section className="relative min-h-[440px] md:min-h-[500px] flex items-end overflow-hidden pt-32 pb-16 px-5 sm:px-8 md:px-12 bg-[#121c16] text-white">
         <Image

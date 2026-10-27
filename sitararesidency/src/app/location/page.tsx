@@ -6,7 +6,22 @@ import { ContactDetailGrid, LocationMapPanel } from '@/features/contact';
 import { business } from '@/core/config/business';
 import { locationPage } from '@/features/common/data/pages';
 
-export const metadata: Metadata = { title: locationPage.title, description: locationPage.description };
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? business.website;
+
+export const metadata: Metadata = {
+  title: 'Location & Directions | Hotel Sitara Residency Kalamboli Navi Mumbai',
+  description: 'Find Hotel Sitara Residency at Riddhi Arcade, Kalamboli, Navi Mumbai. Near Kalamboli Railway Station, Mumbai-Pune Expressway, Panvel. Get directions, map & contact details.',
+  alternates: {
+    canonical: '/location',
+  },
+  openGraph: {
+    title: 'Location & Directions | Hotel Sitara Residency Kalamboli Navi Mumbai',
+    description: 'Directions to Hotel Sitara Residency, Kalamboli, Navi Mumbai. Easy access from Panvel, Kalamboli Railway Station & Mumbai-Pune Expressway.',
+    url: `${siteUrl}/location`,
+    type: 'website',
+    siteName: business.name,
+  },
+};
 
 export default function LocationPage() {
   return (

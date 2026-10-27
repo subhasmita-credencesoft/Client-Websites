@@ -25,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: ROUTES.thingsToDo, priority: 0.75, changeFrequency: 'monthly' },
     { path: ROUTES.leisure, priority: 0.7, changeFrequency: 'monthly' },
     { path: ROUTES.kids, priority: 0.7, changeFrequency: 'monthly' },
+    { path: ROUTES.search, priority: 0.6, changeFrequency: 'weekly' },
+    { path: ROUTES.manageBooking, priority: 0.6, changeFrequency: 'weekly' },
   ];
 
   const now = new Date();

@@ -14,11 +14,28 @@ import {
 
 import { BookButton, defaultStayParams, getHotelMateProperty, roomsToCards } from '@/features/booking';
 import { business } from '@/core/config/business';
+import { JsonLdScript } from '@/shared/ui/json-ld';
+import { breadcrumbSchema, pageMetadata, roomSchema, webPageSchema } from '@/core/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Rooms & Suites',
-  description: `Discover premium rooms and suites at ${business.name}, Kalamboli, Navi Mumbai. Book direct for the best rate.`,
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Rooms & Suites | Hotel Sitara Residency Kalamboli Navi Mumbai',
+  description:
+    'Comfortable & well-appointed rooms at Hotel Sitara Residency, Kalamboli Navi Mumbai. Executive Rooms, Family Suites & more. 24x7 reception, Wi-Fi, parking. Book direct for best rates.',
+  path: '/bedrooms',
+  keywords: [
+    'hotel rooms in Kalamboli',
+    'Executive Room Navi Mumbai',
+    'Family Suite Kalamboli',
+    'rooms near Panvel',
+    'hotel booking Navi Mumbai',
+  ],
+  image: {
+    url: '/og-image.jpg',
+    width: 1200,
+    height: 630,
+    alt: 'Rooms and Suites at Hotel Sitara Residency, Kalamboli, Navi Mumbai',
+  },
+});
 
 const amenities = [
   { Icon: Wifi, label: 'High-Speed Wi-Fi', desc: 'Complimentary across the property' },
@@ -39,6 +56,37 @@ export default async function BedroomsPage() {
 
   return (
     <main className="rooms-listing-page">
+      <JsonLdScript
+        data={[
+          webPageSchema({
+            name: 'Rooms & Suites | Hotel Sitara Residency Kalamboli Navi Mumbai',
+            description:
+              'Spacious, clean and comfortable rooms at Hotel Sitara Residency, Kalamboli, Navi Mumbai. Book online for best rates.',
+            path: '/bedrooms',
+            type: 'CollectionPage',
+          }),
+          breadcrumbSchema([{ name: 'Rooms & Suites', path: '/bedrooms' }]),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Room types at Hotel Sitara Residency',
+            itemListElement: roomCards.map((card, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: card.title,
+              url: `${process.env.NEXT_PUBLIC_SITE_URL ?? business.website}/bedrooms/${card.slug}`,
+            })),
+          },
+          ...roomCards.map((card) =>
+            roomSchema({
+              name: card.title,
+              description: card.description,
+              path: `/bedrooms/${card.slug}`,
+              image: card.image,
+            }),
+          ),
+        ]}
+      />
       {/* ═══ CINEMATIC HERO ═══ */}
       <section className="rooms-listing-hero">
         <Image

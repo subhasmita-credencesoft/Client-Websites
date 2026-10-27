@@ -14,11 +14,21 @@ import {
 } from 'lucide-react';
 
 import { business } from '@/core/config/business';
+import { JsonLdScript } from '@/shared/ui/json-ld';
+import { breadcrumbSchema, pageMetadata, webPageSchema } from '@/core/lib/seo';
 
-export const metadata: Metadata = {
-  title: `Contact Us | ${business.name}`,
-  description: `Get in touch with ${business.name} in Kalamboli, Navi Mumbai. Call, email or find us on the map. We're here 24/7.`,
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Contact Us | Hotel Sitara Residency Kalamboli Navi Mumbai',
+  description:
+    'Contact Hotel Sitara Residency in Kalamboli, Navi Mumbai. Call +91 74004 32396 / 74004 32397 for reservations. 24x7 reception, free parking & Wi-Fi.',
+  path: '/contact',
+  keywords: [
+    'Hotel Sitara Residency contact',
+    'hotel phone number Kalamboli',
+    'hotel address Navi Mumbai',
+    'Kalamboli hotel booking contact',
+  ],
+});
 
 const nearbyLandmarks = [
   'Kalamboli Railway Station — 1.2 km',
@@ -37,6 +47,38 @@ const amenityHighlights = [
 export default function ContactPage() {
   return (
     <main className="contact-page">
+      <JsonLdScript
+        data={[
+          webPageSchema({
+            name: 'Contact Us | Hotel Sitara Residency',
+            description:
+              'Contact Hotel Sitara Residency in Kalamboli, Navi Mumbai for reservations, directions and enquiries.',
+            path: '/contact',
+            type: 'ContactPage',
+          }),
+          breadcrumbSchema([{ name: 'Contact', path: '/contact' }]),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ContactPage',
+            url: `${process.env.NEXT_PUBLIC_SITE_URL ?? business.website}/contact`,
+            mainEntity: {
+              '@type': 'Hotel',
+              '@id': `${process.env.NEXT_PUBLIC_SITE_URL ?? business.website}/#hotel`,
+              name: business.name,
+              telephone: business.phones.primary,
+              email: business.email,
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: business.address.streetAddress,
+                addressLocality: business.address.locality,
+                addressRegion: business.address.region,
+                postalCode: business.address.postalCode,
+                addressCountry: business.address.country,
+              },
+            },
+          },
+        ]}
+      />
 
       {/* ── HERO ── */}
       <section className="contact-hero">

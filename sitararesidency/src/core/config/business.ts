@@ -19,9 +19,9 @@ export const business: Business = {
     landlinesDisplay: '022-4715 2396 / 022-4715 2397',
   },
   social: {
-    instagram: 'https://instagram.com',
-    facebook: 'https://facebook.com',
-    x: 'https://x.com',
+    instagram: 'https://www.instagram.com/hotelsitararesidency',
+    facebook: 'https://www.facebook.com/hotelsitararesidency',
+    x: 'https://x.com/',
   },
   address: {
     lines: [
@@ -42,6 +42,6 @@ export const business: Business = {
 };
 
 export const siteMetadata: SiteMetadata = {
-  title: `${business.name} | Kalamboli, Navi Mumbai`,
-  description: `${business.name} in Kalamboli, Navi Mumbai. Comfortable rooms and thoughtful stays near Panvel.`,
+  title: 'Hotel Sitara Residency | Best Hotel in Kalamboli, Navi Mumbai',
+  description: 'Hotel Sitara Residency in Kalamboli, Navi Mumbai offers comfortable, well-appointed rooms, 24x7 reception, free Wi-Fi & parking, near Panvel, Mumbai-Pune Expressway & Kalamboli Railway Station. Book direct for best rates.',
 };

@@ -5,11 +5,21 @@ import { ArrowRight, Clock, Sparkles, Phone, MessageSquare } from 'lucide-react'
 
 import { journalCards } from '@/features/blog/data/blog';
 import { business } from '@/core/config/business';
+import { JsonLdScript } from '@/shared/ui/json-ld';
+import { breadcrumbSchema, pageMetadata, SITE_URL, webPageSchema } from '@/core/lib/seo';
 
-export const metadata: Metadata = {
-  title: `The Sitara Journal | Travel Guides & Stories | ${business.name}`,
-  description: `Discover local Navi Mumbai travel itineraries, Panvel sightseeing guides, business transit advice, and hospitality stories from ${business.name}, Kalamboli.`,
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Blog | Hotel Sitara Residency Kalamboli Navi Mumbai',
+  description:
+    'Travel guides, things to do in Navi Mumbai, stay tips and news from Hotel Sitara Residency, Kalamboli. Local itineraries and corporate travel advice.',
+  path: '/blog',
+  keywords: [
+    'Navi Mumbai travel guide',
+    'things to do near Panvel',
+    'Kalamboli hotel blog',
+    'Navi Mumbai airport hotel tips',
+  ],
+});
 
 export default function BlogPage() {
   const featuredArticle = journalCards[0];
@@ -17,6 +27,29 @@ export default function BlogPage() {
 
   return (
     <main className="bg-[#faf9f6]">
+      <JsonLdScript
+        data={[
+          webPageSchema({
+            name: 'The Sitara Journal | Travel Guides & Stories',
+            description:
+              'Travel guides, itineraries and local insights for Kalamboli and Navi Mumbai from Hotel Sitara Residency.',
+            path: '/blog',
+            type: 'CollectionPage',
+          }),
+          breadcrumbSchema([{ name: 'Blog', path: '/blog' }]),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'The Sitara Journal articles',
+            itemListElement: journalCards.map((card, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: card.title,
+              url: `${SITE_URL}/blog/${card.slug}`,
+            })),
+          },
+        ]}
+      />
       {/* ═══ CINEMATIC HERO ═══ */}
       <section className="relative min-h-[500px] md:min-h-[540px] flex items-end overflow-hidden pt-32 pb-16 px-5 sm:px-8 md:px-12 bg-[#121c16] text-white">
         <Image

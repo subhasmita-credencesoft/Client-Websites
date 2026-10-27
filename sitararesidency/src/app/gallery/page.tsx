@@ -6,11 +6,20 @@ import { ChevronRight, Phone, Sparkles } from 'lucide-react';
 import { GallerySection, type GalleryItem } from '@/features/gallery';
 import { BookButton, defaultStayParams, getHotelMateProperty } from '@/features/booking';
 import { business } from '@/core/config/business';
+import { JsonLdScript } from '@/shared/ui/json-ld';
+import { breadcrumbSchema, pageMetadata, webPageSchema } from '@/core/lib/seo';
 
-export const metadata: Metadata = {
-  title: `Photo Gallery | ${business.name}`,
-  description: `Browse verified high-resolution photographs of rooms, suites, and reception at ${business.name}, Kalamboli, Navi Mumbai.`,
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Photo Gallery | Hotel Sitara Residency Kalamboli Navi Mumbai',
+  description:
+    'Browse photos of Hotel Sitara Residency Kalamboli, Navi Mumbai — rooms, lobby, reception, amenities and surroundings.',
+  path: '/gallery',
+  keywords: [
+    'Hotel Sitara Residency photos',
+    'Kalamboli hotel gallery',
+    'Navi Mumbai hotel rooms pictures',
+  ],
+});
 
 export default async function GalleryPage() {
   const property = await getHotelMateProperty(defaultStayParams());
@@ -66,6 +75,28 @@ export default async function GalleryPage() {
 
   return (
     <main className="min-h-screen bg-cream pt-24 md:pt-28">
+      <JsonLdScript
+        data={[
+          webPageSchema({
+            name: 'Photo Gallery | Hotel Sitara Residency',
+            description:
+              'Browse photos of Hotel Sitara Residency, Kalamboli, Navi Mumbai — rooms, lobby, reception and amenities.',
+            path: '/gallery',
+            type: 'CollectionPage',
+          }),
+          breadcrumbSchema([{ name: 'Gallery', path: '/gallery' }]),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ImageGallery',
+            name: 'Hotel Sitara Residency Photo Gallery',
+            image: galleryItems.slice(0, 20).map((item) =>
+              item.src.startsWith('http')
+                ? item.src
+                : `${process.env.NEXT_PUBLIC_SITE_URL ?? business.website}${item.src}`,
+            ),
+          },
+        ]}
+      />
       {/* ── Breadcrumb Bar ── */}
       <nav aria-label="Breadcrumb" className="border-b border-forest/10 bg-white/70 px-5 py-3 backdrop-blur-md md:px-10">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between text-xs">
