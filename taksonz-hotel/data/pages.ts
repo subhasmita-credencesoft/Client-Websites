@@ -86,6 +86,14 @@ export const pages = {
     heroSubtitle: "We're here to help.",
     heroImage: "hero-location",
   },
+  blog: {
+    path: "/blog",
+    title: "Blog & Travel Guides",
+    description: `Discover local travel guides, shopping tips, railway transit information, and business travel insights from ${site.name}, ${city}.`,
+    heroTitle: "Blog & Travel Guides",
+    heroSubtitle: "Stories, guides & local insights from the heart of Ludhiana.",
+    heroImage: "hero-about",
+  },
   faq: {
     path: "/faq",
     title: "Frequently Asked Questions",

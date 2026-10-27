@@ -13,6 +13,7 @@ export const primaryNav: NavItem[] = [
 ];
 
 export const secondaryNav: NavItem[] = [
+  { label: "Blog & Guides", href: "/blog" },
   { label: "Nearby Locations", href: "/nearby-locations" },
   { label: "Location", href: "/location" },
   { label: "Contact", href: "/contact" },
@@ -34,8 +35,8 @@ export const footerGroups: { title: string; links: NavItem[] }[] = [
     links: [
       { label: "Dining & Bar", href: "/dining" },
       { label: "Banquets & Meetings", href: "/banquets" },
-      { label: "Nearby Locations", href: "/nearby-locations" },
       { label: "Gallery", href: "/gallery" },
+      { label: "Blog & Travel Guides", href: "/blog" },
     ],
   },
   {
@@ -44,6 +45,7 @@ export const footerGroups: { title: string; links: NavItem[] }[] = [
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
       { label: "FAQ", href: "/faq" },
+      { label: "Blog", href: "/blog" },
     ],
   },
 ];
@@ -65,6 +67,7 @@ export const heroRoutes = [
   "/nearby",
   "/about",
   "/gallery",
+  "/blog",
   "/location",
   "/contact",
   "/offers",
