@@ -35,8 +35,12 @@ export const metadata: Metadata = {
     default: siteMetadata.title,
     template: `%s | ${business.name}`,
   },
-  description:
-    siteMetadata.description,
+  description: siteMetadata.description,
+  icons: {
+    icon: [{ url: '/sitaralogo.jpg', type: 'image/jpeg' }],
+    shortcut: ['/sitaralogo.jpg'],
+    apple: [{ url: '/sitaralogo.jpg', type: 'image/jpeg' }],
+  },
   openGraph: {
     title: siteMetadata.title,
     description:
