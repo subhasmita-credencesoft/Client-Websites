@@ -3,6 +3,8 @@
  * Sourced exclusively from official hotel photography (in /public)
  * and TheHotelMate property CDN. Zero stock / Unsplash images.
  */
+const U = (id: string) => `https://images.unsplash.com/photo-${id}`;
+
 export const images = {
   // Heroes
   "hero-home": "/taksonzhome.avif",
@@ -45,15 +47,15 @@ export const images = {
   "dining": "/dining.avif",
   "dining-bar": "/dining.avif",
   "dining-room": "/dining.avif",
-  "dish-thali": "/dining.avif",
-  "dish-platter": "/dining.avif",
-  "dish-cocktail": "/dining.avif",
+  "dish-thali": U("1742281257687-092746ad6021"),
+  "dish-platter": U("1565556250026-9ba22083e3e0"),
+  "dish-cocktail": U("1470337458703-46ad1756a187"),
 
   // Events
   "banquet-grand": "/dinignconference.avif",
   "banquets": "/dinignconference.avif",
   "banquet-royal": "/dinignconference.avif",
-  "banquet-board": "/dinignconference.avif",
+  "banquet-board": "/Corporate Raining and Conferences4.avif",
 
   // Property & city
   "taksonzhome": "/taksonzhome.avif",

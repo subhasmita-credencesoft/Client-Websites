@@ -12,7 +12,7 @@ export const galleryImages: GalleryImage[] = [
   { src: img("room-deluxe-1"), alt: "Hotel The Taksonz Deluxe Room", category: "Rooms" },
   { src: img("dining-restaurant"), alt: "The Taksonz Restaurant & Dining Hall", category: "Dining" },
   { src: img("room-executive-1"), alt: "Hotel The Taksonz Executive Suite", category: "Rooms" },
-  { src: img("banquet-royal"), alt: "Conference & Banquet Hall at The Taksonz", category: "Banquets" },
+  { src: img("banquet-board"), alt: "Corporate Training & Conference Hall at The Taksonz", category: "Banquets" },
   { src: img("property-exterior"), alt: "Hotel The Taksonz Building & Exterior Facade", category: "Exterior" },
   { src: img("banquet-grand"), alt: "Grand Celebration & Banquet Hall", category: "Banquets" },
   { src: img("dining-bar"), alt: "Dining & Drinks at The Taksonz", category: "Dining" },

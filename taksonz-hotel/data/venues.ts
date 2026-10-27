@@ -23,24 +23,14 @@ export const venues: Venue[] = [
     suitableFor: ["Weddings", "Receptions", "Large celebrations"],
   },
   {
-    slug: "royal-hall",
-    name: "Royal Hall",
-    kind: "banquet",
-    capacity: 180,
-    areaSqFt: 2500,
-    image: img("banquet-royal"),
-    description: "A versatile mid-sized hall for engagements, parties and corporate functions.",
-    suitableFor: ["Engagements", "Social gatherings", "Corporate events"],
-  },
-  {
-    slug: "board-room",
-    name: "Board Room",
+    slug: "corporate-training-conferences",
+    name: "Corporate Training & Conferences",
     kind: "meeting",
     capacity: 30,
     areaSqFt: 500,
     image: img("banquet-board"),
-    description: "A private room for board meetings, interviews and small corporate sessions.",
-    suitableFor: ["Board meetings", "Interviews", "Small workshops"],
+    description: "A private room for corporate training, conferences, board meetings and workshops.",
+    suitableFor: ["Corporate training", "Conferences", "Board meetings", "Workshops"],
   },
 ];
 

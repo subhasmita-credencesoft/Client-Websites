@@ -36,6 +36,18 @@
   }
   &:active { transform: translateY(0) scale(0.98); }
   &:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+  > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  svg {
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
 }
 
 .lg { min-height: 56px; padding-inline: 2.1rem; font-size: 1rem; }
