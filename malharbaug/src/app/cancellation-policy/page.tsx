@@ -4,7 +4,7 @@ import { getContact } from '@/lib/api';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Cancellation Policy',
+  title: 'Cancellation Policy | Malhar Baug Resort',
   description:
     'Cancellation policy for Malhar Baug Resort, Alibaug — free cancellation up to 7 days before check-in, refund timelines and group booking terms.',
   alternates: { canonical: '/cancellation-policy/' },

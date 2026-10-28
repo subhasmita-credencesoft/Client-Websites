@@ -4,7 +4,7 @@ import { getContact } from '@/lib/api';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy',
+  title: 'Privacy Policy | Malhar Baug Resort',
   description: 'Read the privacy policy of Malhar Baug Resort, Alibaug — how we collect, use and protect your personal information.',
   alternates: { canonical: '/privacy-policy/' },
 };

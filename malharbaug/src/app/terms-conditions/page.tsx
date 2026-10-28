@@ -4,7 +4,7 @@ import { getContact } from '@/lib/api';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions',
+  title: 'Terms & Conditions | Malhar Baug Resort',
   description: 'Terms and conditions for bookings and stays at Malhar Baug Resort, Alibaug near Nagaon Beach.',
   alternates: { canonical: '/terms-conditions/' },
 };
