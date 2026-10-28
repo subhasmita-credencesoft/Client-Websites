@@ -75,7 +75,8 @@ export interface NearbyAttraction {
   name: string;
   distance: string;
   description: string;
-  image: string;
+  image?: string;
+  icon?: string;
 }
 
 export interface TeamMember {
