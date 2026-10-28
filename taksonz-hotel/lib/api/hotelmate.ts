@@ -157,7 +157,8 @@ export function transformApiRooms(rawRooms: ApiRoom[]): Room[] {
         "Government-issued photo ID required for all adult guests at check-in",
         "Children and extra bed policies apply as per hotel guidelines",
       ],
-      images: images.length > 0 ? images : [{ src: "/images/placeholder-room.jpg", alt: name }],
+      // Never substitute old local/seed images for API photos.
+      images,
     };
   });
 }
@@ -217,24 +218,7 @@ export const apiRooms: Room[] = [
       "Government-issued photo ID required for all adult guests at check-in",
       "Children and extra bed policies apply as per hotel guidelines",
     ],
-    images: [
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074327432-WhatsApp%20Image%202026-04-16%20at%2011.46.21%20(1).jpg",
-        alt: "Deluxe Room interior - photo 1",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074331897-WhatsApp%20Image%202026-04-16%20at%2011.46.22%20(1).jpg",
-        alt: "Deluxe Room interior - photo 2",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074335750-WhatsApp%20Image%202026-04-16%20at%2011.46.22.jpg",
-        alt: "Deluxe Room interior - photo 3",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074340031-WhatsApp%20Image%202026-04-16%20at%2011.46.22%20(1).jpg",
-        alt: "Deluxe Room interior - photo 4",
-      },
-    ],
+    images: [],
   },
   {
     id: 8630,
@@ -299,16 +283,7 @@ export const apiRooms: Room[] = [
       "Government-issued photo ID required for all adult guests at check-in",
       "Children and extra bed policies apply as per hotel guidelines",
     ],
-    images: [
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074447425-WhatsApp%20Image%202026-04-16%20at%2011.52.02.jpg",
-        alt: "Business Class interior - photo 1",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074450255-WhatsApp%20Image%202026-04-16%20at%2011.52.03.jpg",
-        alt: "Business Class interior - photo 2",
-      },
-    ],
+    images: [],
   },
   {
     id: 8631,
@@ -363,24 +338,7 @@ export const apiRooms: Room[] = [
       "Government-issued photo ID required for all adult guests at check-in",
       "Children and extra bed policies apply as per hotel guidelines",
     ],
-    images: [
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074714314-WhatsApp%20Image%202026-04-16%20at%2011.52.46%20(3).jpg",
-        alt: "Executive Suite interior - photo 1",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074717903-WhatsApp%20Image%202026-04-16%20at%2011.52.46%20(1).jpg",
-        alt: "Executive Suite interior - photo 2",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074724092-WhatsApp%20Image%202026-04-16%20at%2011.52.46%20(2).jpg",
-        alt: "Executive Suite interior - photo 3",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074728274-WhatsApp%20Image%202026-04-16%20at%2011.52.46.jpg",
-        alt: "Executive Suite interior - photo 4",
-      },
-    ],
+    images: [],
   },
   {
     id: 8632,
@@ -445,28 +403,7 @@ export const apiRooms: Room[] = [
       "Government-issued photo ID required for all adult guests at check-in",
       "Children and extra bed policies apply as per hotel guidelines",
     ],
-    images: [
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-102642520-WhatsApp%20Image%202026-04-22%20at%2013.51.18%20(3).jpg",
-        alt: "Family Suite interior - photo 1",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-102647018-WhatsApp%20Image%202026-04-22%20at%2013.51.18%20(2).jpg",
-        alt: "Family Suite interior - photo 2",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-102651319-WhatsApp%20Image%202026-04-22%20at%2013.51.18%20(1).jpg",
-        alt: "Family Suite interior - photo 3",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-102654566-WhatsApp%20Image%202026-04-22%20at%2013.51.18.jpg",
-        alt: "Family Suite interior - photo 4",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-102657634-WhatsApp%20Image%202026-04-22%20at%2013.51.17.jpg",
-        alt: "Family Suite interior - photo 5",
-      },
-    ],
+    images: [],
   },
   {
     id: 8633,
@@ -531,20 +468,7 @@ export const apiRooms: Room[] = [
       "Government-issued photo ID required for all adult guests at check-in",
       "Children and extra bed policies apply as per hotel guidelines",
     ],
-    images: [
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074905099-WhatsApp%20Image%202026-04-16%20at%2011.50.48%20(1).jpg",
-        alt: "Twin Bed interior - photo 1",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074909457-WhatsApp%20Image%202026-04-16%20at%2011.50.48.jpg",
-        alt: "Twin Bed interior - photo 2",
-      },
-      {
-        src: "https://bookonelocal.in/cdn/2026-04-22-074916645-WhatsApp%20Image%202026-04-16%20at%2011.50.48%20(2).jpg",
-        alt: "Twin Bed interior - photo 3",
-      },
-    ],
+    images: [],
   },
 ];
 
@@ -557,29 +481,25 @@ export async function fetchLiveRooms(
   noOfRooms = 1,
   noOfPersons = 1
 ): Promise<Room[]> {
-  try {
-    const today = new Date().toISOString().split("T")[0];
-    const tomorrow = new Date(Date.now() + 86400000).toISOString().split("T")[0];
-    const from = fromDate || today;
-    const to = toDate || tomorrow;
+  const today = new Date().toISOString().split("T")[0];
+  const tomorrow = new Date(Date.now() + 86400000).toISOString().split("T")[0];
+  const from = fromDate || today;
+  const to = toDate || tomorrow;
 
-    const url = `${HOTELMATE_API_URL}?fromDate=${from}&toDate=${to}&noOfRooms=${noOfRooms}&noOfPersons=${noOfPersons}`;
-    const res = await fetch(url, {
-      method: "GET",
-      headers: { Accept: "application/json" },
-    });
+  const url = `${HOTELMATE_API_URL}?fromDate=${from}&toDate=${to}&noOfRooms=${noOfRooms}&noOfPersons=${noOfPersons}`;
+  const res = await fetch(url, {
+    method: "GET",
+    headers: { Accept: "application/json" },
+    cache: "no-store",
+  });
 
-    if (!res.ok) {
-      throw new Error(`TheHotelMate API returned HTTP ${res.status}`);
-    }
-
-    const data = await res.json();
-    if (data?.roomList && Array.isArray(data.roomList) && data.roomList.length > 0) {
-      return transformApiRooms(data.roomList);
-    }
-    return apiRooms;
-  } catch (error) {
-    console.warn("Could not retrieve live rooms from TheHotelMate API, falling back to cached API data", error);
-    return apiRooms;
+  if (!res.ok) {
+    throw new Error(`TheHotelMate API returned HTTP ${res.status}`);
   }
+
+  const data = await res.json();
+  if (!Array.isArray(data?.roomList) || data.roomList.length === 0) {
+    throw new Error("TheHotelMate API returned no rooms.");
+  }
+  return transformApiRooms(data.roomList);
 }

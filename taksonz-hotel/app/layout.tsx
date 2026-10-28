@@ -11,6 +11,7 @@ import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { hotelSchema } from "@/lib/seo/schema";
 import { site } from "@/data/site";
+import { LiveRoomsProvider } from "@/lib/api/LiveRoomsProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -37,7 +38,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="skip-link">Skip to content</a>
         <ScrollProgress />
         <Header />
-        <main id="main">{children}</main>
+        <LiveRoomsProvider>
+          <main id="main">{children}</main>
+        </LiveRoomsProvider>
         <Footer />
         <WhatsAppFloat />
         {schema && <JsonLd data={schema} />}

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BedDouble, Check, Maximize2, Mountain, Users } from "lucide-react";
-import { PageHero } from "@/components/ui/PageHero";
+import { LiveRoomGallery, LiveRoomHero } from "@/components/rooms/LiveRoomMedia";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Tabs } from "@/components/ui/Tabs";
-import { ImageGrid } from "@/components/gallery/ImageGrid";
 import { RoomCard } from "@/components/rooms/RoomCard";
 import { RoomRatePlans } from "@/components/rooms/RoomRatePlans";
 import { BookingPanel } from "@/components/booking/BookingPanel";
@@ -30,7 +29,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { slug } = await params;
   const room = getRoom(slug);
   if (!room) return {};
-  return buildMetadata({ title: room.name, description: room.description, path: `/rooms/${room.slug}`, image: room.images[0]!.src });
+  return buildMetadata({ title: room.name, description: room.description, path: `/rooms/${room.slug}` });
 }
 
 export default async function RoomPage({ params }: { params: Params }) {
@@ -41,9 +40,9 @@ export default async function RoomPage({ params }: { params: Params }) {
 
   return (
     <>
-      <PageHero title={room.name} subtitle={room.tagline} image={room.images[0]!.src}>
+      <LiveRoomHero slug={room.slug} title={room.name} subtitle={room.tagline}>
         <p className={styles.price}>{formatINR(room.fromRate)} <span>/ night</span></p>
-      </PageHero>
+      </LiveRoomHero>
 
       <section className="section" style={{ paddingBottom: 0 }}>
         <div className="container">
@@ -120,7 +119,7 @@ export default async function RoomPage({ params }: { params: Params }) {
                   <ul className={styles.amen}>{room.inclusions.map((a) => <li key={a}><Check size={18} aria-hidden />{a}</li>)}</ul>
                 </div>
               ) },
-              { id: "gallery", label: "Gallery", content: <ImageGrid images={room.images} variant="strip" /> },
+              { id: "gallery", label: "Gallery", content: <LiveRoomGallery slug={room.slug} /> },
               { id: "rules", label: "Room Rules", content: (
                 <div className={styles.overview}>
                   <ul className={styles.rules}>{room.rules.map((r) => <li key={r}>{r}</li>)}</ul>

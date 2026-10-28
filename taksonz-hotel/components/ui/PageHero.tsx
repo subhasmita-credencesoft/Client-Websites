@@ -9,7 +9,7 @@ import styles from "./PageHero.module.scss";
 interface Props {
   title: string;
   subtitle?: string;
-  image: string;
+  image?: string;
   children?: ReactNode;
 }
 
@@ -17,9 +17,9 @@ interface Props {
 export function PageHero({ title, subtitle, image, children }: Props) {
   return (
     <section className={styles.hero}>
-      <div className={styles.media}>
+      {image && <div className={styles.media}>
         <Parallax amount={4} scale={1.05}><Photo src={image} alt="" decorative priority sizes="100vw" /></Parallax>
-      </div>
+      </div>}
       <div className={styles.shade} />
       <div className={`container ${styles.inner}`}>
         <h1 className={styles.title}><SplitWords text={title} /></h1>

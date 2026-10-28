@@ -33,6 +33,18 @@
   }
 }
 
+.photoStatus {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #2b1f16, #514236);
+  color: #fff;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
 .badgeUrgent {
   position: absolute;
   top: 12px;

@@ -2,11 +2,10 @@
 
 import { RoomCard } from "./RoomCard";
 import { Reveal } from "@/components/ui/Reveal";
-import { rooms as initialRooms } from "@/data/rooms";
-import { useLiveRooms } from "@/lib/api/useLiveRooms";
+import { useLiveRooms } from "@/lib/api/LiveRoomsProvider";
 
 export function FeaturedRooms({ className }: { className?: string }) {
-  const { rooms } = useLiveRooms(initialRooms);
+  const { rooms } = useLiveRooms();
 
   return (
     <ul className={className}>

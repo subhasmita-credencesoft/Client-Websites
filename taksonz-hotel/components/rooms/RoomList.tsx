@@ -3,12 +3,12 @@
 import { useState } from "react";
 import { RoomCard } from "./RoomCard";
 import { Reveal } from "@/components/ui/Reveal";
-import { roomCategories, rooms as initialRooms } from "@/data/rooms";
-import { useLiveRooms } from "@/lib/api/useLiveRooms";
+import { roomCategories } from "@/data/rooms";
+import { useLiveRooms } from "@/lib/api/LiveRoomsProvider";
 import styles from "./RoomList.module.scss";
 
 export function RoomList() {
-  const { rooms } = useLiveRooms(initialRooms);
+  const { rooms } = useLiveRooms();
   const [cat, setCat] = useState<(typeof roomCategories)[number]>("All Rooms");
   const shown = cat === "All Rooms" ? rooms : rooms.filter((r) => r.category === cat);
 
