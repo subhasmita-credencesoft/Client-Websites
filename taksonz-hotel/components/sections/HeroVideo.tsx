@@ -78,7 +78,7 @@ export function HeroVideo({ children, sources }: Props) {
               onPlaying={() => { setReady(true); setPlaying(true); }}
               onPause={() => setPlaying(false)}
             >
-              {sources.map((src) => <source key={src} src={src} type="video/mp4" />)}
+              {sources.map((src, i) => <source key={i} src={src} type="video/mp4" />)}
             </video>
           )}
         </HeroMediaFx>

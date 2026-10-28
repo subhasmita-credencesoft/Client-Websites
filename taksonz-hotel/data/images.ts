@@ -78,7 +78,7 @@ export const img = (key: ImageKey): string => images[key];
 export const heroVideo = {
   poster: images["hero-home"],
   sources: [
-    "https://assets.mixkit.co/videos/4196/4196-720.mp4",
-    "https://assets.mixkit.co/videos/4196/4196-360.mp4",
+    "https://bookonelocal.in/cdn/Taksonz+website+video+2.mp4",
+    "https://bookonelocal.in/cdn/Taksonz+website+video+2.mp4",
   ],
 };
