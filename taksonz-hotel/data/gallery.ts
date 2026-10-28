@@ -18,6 +18,11 @@ export const galleryImages: GalleryImage[] = [
   { src: img("banquet-grand"), alt: "Grand Celebration & Banquet Hall", category: "Banquets" },
   { src: img("dining-bar"), alt: "Dining & Drinks at The Taksonz", category: "Dining" },
   { src: img("room-premium-2"), alt: "Hotel The Taksonz Premium Room", category: "Rooms" },
+  {
+    src: "https://bookonelocal.in/cdn/Taksonz+website+video+2.mp4",
+    alt: "Taksonz Hotel Background Video",
+    category: "Hotel & Lobby",
+  },
 ];
 
 export const galleryCategories: ("All" | GalleryCategory)[] = ["All", "Rooms", "Dining", "Banquets", "Hotel & Lobby"];
