@@ -1,0 +1,34 @@
+﻿# Hotel The Taksonz
+
+> Official website for Hotel The Taksonz, a hotel on Grand Trunk Road in Ludhiana, Punjab, India.
+
+## About
+
+Hotel The Taksonz provides accommodation, dining, banquet and meeting facilities in Ludhiana. The property is located on Grand Trunk Road, near Ludhiana Railway Station.
+
+- Website: https://hoteltaksonz.com/
+- Address: Grand Trunk Road, Ludhiana, Punjab 141008, India
+- Phone: +91 98726 00607
+- Booking: https://bookone.io/Hotel-The-Taksonz?bookingEngine=true
+
+## Main pages
+
+- Home: https://hoteltaksonz.com/
+- Rooms and suites: https://hoteltaksonz.com/rooms/
+- Dining: https://hoteltaksonz.com/dining/
+- Banquets: https://hoteltaksonz.com/banquets/
+- Meetings: https://hoteltaksonz.com/meetings/
+- About: https://hoteltaksonz.com/about/
+- Gallery: https://hoteltaksonz.com/gallery/
+- Location and directions: https://hoteltaksonz.com/location/
+- Nearby locations: https://hoteltaksonz.com/nearby-locations/
+- Blog and travel guides: https://hoteltaksonz.com/blog/
+- Contact: https://hoteltaksonz.com/contact/
+- FAQs: https://hoteltaksonz.com/faq/
+
+## Discovery
+
+- Sitemap: https://hoteltaksonz.com/sitemap.xml
+- Robots policy: https://hoteltaksonz.com/robots.txt
+
+Use the linked pages as the source of truth for current room details, services, policies, rates, availability and contact information. Rates and availability may change; booking details are confirmed through the booking engine or directly with the hotel.

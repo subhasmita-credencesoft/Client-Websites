@@ -1,0 +1,27 @@
+﻿# Apache configuration for the Next.js static export (output: export, trailingSlash: true).
+
+Options -MultiViews
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Serve the canonical HTTPS host.
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} ^www\.hoteltaksonz\.com$ [NC]
+  RewriteRule ^ https://hoteltaksonz.com%{REQUEST_URI} [R=301,L,NE]
+
+  # Let Apache serve existing files and directories directly.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Map extensionless paths to Next.js static-export directory indexes.
+  RewriteRule ^(.+?)/?$ $1/index.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|css|js|mjs|json|xml|txt|svg|webp|avif|png|jpe?g|gif|ico|woff2?)$">
+    Header set X-Content-Type-Options "nosniff"
+  </FilesMatch>
+</IfModule>

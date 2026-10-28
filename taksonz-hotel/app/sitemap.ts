@@ -6,6 +6,8 @@ import { site } from "@/data/site";
 
 export const dynamic = "force-static";
 
+const siteOrigin = site.url.replace(/\/+$/, "");
+
 export default function sitemap(): MetadataRoute.Sitemap {
   // Booking steps are intentionally excluded (noindex).
   const indexable = [
@@ -33,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return paths.map((p) => ({
-    url: p === "/" ? `${site.url}/` : `${site.url}${p}/`,
+    url: p === "/" ? `${siteOrigin}/` : `${siteOrigin}${p}/`,
     changeFrequency: p === "/" ? "weekly" : p.startsWith("/blog") ? "weekly" : "monthly",
     priority: p === "/" ? 1 : p.startsWith("/rooms") ? 0.8 : p.startsWith("/blog") ? 0.7 : 0.6,
   }));
