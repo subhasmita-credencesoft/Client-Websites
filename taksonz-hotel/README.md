@@ -1,6 +1,6 @@
 # Hotel The Taksonz — Website
 
-A fully static site: **no API, no server, no environment variables.**
+A static Next.js site that does not need a Node.js server after export. The browser can call TheHotelMate APIs for room data and enquiries; those external services must be available for the related live features.
 Next.js 15 · TypeScript (strict) · SCSS modules · Framer Motion · Zod.
 
 ## Run
@@ -12,7 +12,22 @@ npm run build        # writes the finished site to ./out
 npx serve out        # preview the build
 ```
 
-Upload the contents of `out/` to any static host (Netlify, Vercel, Cloudflare Pages, S3, cPanel/shared hosting).
+The production build writes the deployable static site to `out/`.
+
+## Hostinger deployment (static export)
+
+This project uses Next.js App Router with `output: "export"`. No Next.js server process is required after the build.
+
+```bash
+npm ci
+npm run build
+```
+
+In hPanel, open the **specific `hoteltaksonz.com` website** and confirm its document root. Upload the **contents** of `out/` into that domain's document root so `index.html`, `.htaccess`, `_next/`, `robots.txt`, and `sitemap.xml` are directly inside the root. Do not upload the project source, `.next/`, or the `out/` folder itself as a nested directory. This project does not configure `krishnapalacehotel.com` or `hotelsitararesidency.com`.
+
+Before replacing existing document-root files, make a backup and verify they belong to this domain. Confirm that the deployed root has this build's `index.html`. If an `index.php` or old `index.html` is present, inspect and back it up first; `.htaccess` sets `DirectoryIndex index.html` so the exported homepage takes precedence once this configuration is active. The `.htaccess` file also redirects HTTP and `www` requests to `https://hoteltaksonz.com` and serves the exported directory-index routes on refresh. Enable/confirm SSL for the domain in hPanel.
+
+After upload, open `https://hoteltaksonz.com/`, refresh a nested route such as `/rooms/twin-bed/`, and check `/robots.txt`, `/sitemap.xml`, `/llms.txt`, and browser DevTools Network for missing `/_next/` assets or images.
 
 ## Where to edit things — everything is in `/data`
 

@@ -1,6 +1,5 @@
 ﻿# Apache configuration for the Next.js static export (output: export, trailingSlash: true).
 
-Options -MultiViews
 DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>

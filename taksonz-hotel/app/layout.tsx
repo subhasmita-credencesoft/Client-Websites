@@ -6,6 +6,7 @@ import "@fontsource/cormorant-garamond/600.css";
 import "./globals.scss";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { hotelSchema } from "@/lib/seo/schema";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <WhatsAppFloat />
         {schema && <JsonLd data={schema} />}
       </body>
     </html>

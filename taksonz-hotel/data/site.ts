@@ -2,6 +2,15 @@
  * Property information — the single source of truth for contact details.
  * Values marked PLACEHOLDER came from the design mockups and should be confirmed by the hotel.
  */
+const whatsappPhone = "+91 98726 00607";
+const whatsappMessage = [
+  "*This is an Enquiry from :* BookOne Bookmax",
+  "Hotel Name: Hotel The Taksonz,",
+  "Property Id: 3538,",
+  "externalSite: WebSite,",
+  "Address: WR7X+MQ,Grand Trunk Road,hotels-in-ludhiana,Ludhiana,India",
+].join("\n");
+
 export const site = {
   name: "Hotel The Taksonz",
   shortName: "The Taksonz",
@@ -16,8 +25,8 @@ export const site = {
   timezone: "Asia/Kolkata",
   phone: "+91 98726 00607",
   phoneHref: "tel:+919872600607",
-  whatsapp: "+91 98726 00607",
-  whatsappHref: "https://wa.me/919872600607",
+  whatsapp: whatsappPhone,
+  whatsappHref: `https://api.whatsapp.com/send?phone=${whatsappPhone.replace(/\D/g, "")}&text=${encodeURIComponent(whatsappMessage)}`,
   email: "hptakkar1@gmail.com",
   address: {
     street: "Grand Trunk Road",
