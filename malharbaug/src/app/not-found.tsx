@@ -8,12 +8,12 @@ export default function NotFound() {
       <p className="mt-2 text-center font-sans text-base text-earth-600 dark:text-earth-300">
         The page you&apos;re looking for doesn&apos;t exist.
       </p>
-      <a
+      <Link
         href="/"
         className="mt-8 rounded-full bg-brand-600 px-8 py-3 font-sans text-sm font-semibold text-white transition-colors hover:bg-brand-700"
       >
         Return Home
-      </a>
+      </Link>
     </div>
   );
 }

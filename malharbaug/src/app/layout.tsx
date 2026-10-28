@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: 'Malhar Baug Resort Alibaug | Family Resort Near Nagaon Beach',
-    template: `%s | ${siteConfig.name} Alibaug`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: 'Malhar Baug Resort Alibaug | Family Resort Near Nagaon Beach',
     description: siteConfig.description,
-    images: [{ url: '/heroimg1.jpeg', width: 1200, height: 630, alt: 'Malhar Baug Resort garden and rooms in Nagaon, Alibaug' }],
+    images: [{ url: '/heroimg1.jpeg', width: 1200, height: 630, alt: 'Malhar Baug Resort - Family resort with garden, rooms and pool near Nagaon Beach Alibaug' }],
   },
   twitter: {
     card: 'summary_large_image',
