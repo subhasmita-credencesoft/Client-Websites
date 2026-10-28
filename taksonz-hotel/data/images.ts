@@ -79,6 +79,5 @@ export const heroVideo = {
   poster: images["hero-home"],
   sources: [
     "https://bookonelocal.in/cdn/Taksonz+website+video+2.mp4",
-    "https://bookonelocal.in/cdn/Taksonz+website+video+2.mp4",
   ],
 };

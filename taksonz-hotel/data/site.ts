@@ -8,7 +8,7 @@ export const site = {
   tagline: "A better way to stay.",
   logo: "/logo.png",
   /** PLACEHOLDER — set to the live domain before deploying (used for canonical URLs and the sitemap). */
-  url: "https://www.thetaksonz.com",
+  url: "https://hoteltaksonz.com/",
   /** Official BookOne booking engine URL */
   bookingUrl: "https://bookone.io/Hotel-The-Taksonz?bookingEngine=true",
   /** Set to true only after the hotel has confirmed every detail in /data. Enables Hotel + FAQ structured data. */
