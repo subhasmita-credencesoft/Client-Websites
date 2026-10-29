@@ -2,9 +2,7 @@ import type { Metadata } from 'next';
 
 export const SITE_URL = 'https://krishnapalacehotel.com';
 export const SITE_NAME = 'Hotel Krishna Palace';
-export const DEFAULT_OG_IMAGE = '/images/13-kp-hosapete-suit-room-1.jpg';
-
-const BRAND = 'Hotel Krishna Palace';
+export const DEFAULT_OG_IMAGE = '/facecadeimage.avif';
 
 type SeoInput = {
   title?: string;
@@ -16,8 +14,10 @@ type SeoInput = {
   noIndex?: boolean;
 };
 
-function absolute(url: string): string {
-  return new URL(url, SITE_URL).toString();
+export function absoluteUrl(url: string): string {
+  if (/^https?:\/\//i.test(url)) return url;
+  const cleanPath = url.startsWith('/') ? url : `/${url}`;
+  return new URL(cleanPath, SITE_URL).toString();
 }
 
 export function seo({
@@ -29,43 +29,43 @@ export function seo({
   type = 'website',
   noIndex = false,
 }: SeoInput): Metadata {
-  const url = absolute(path);
-  const imageUrl = absolute(image);
-  const socialTitle = title
-    ? title.includes(BRAND)
-      ? title
-      : `${title} | ${BRAND}`
-    : `${BRAND} | Hosapete, Karnataka`;
+  const url = absoluteUrl(path);
+  const imageUrl = absoluteUrl(image);
+  const pageTitle = title || `${SITE_NAME}, Hospet | Stay Near Hampi`;
 
   const metadata: Metadata = {
+    title: { absolute: pageTitle },
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       type,
       url,
-      title: socialTitle,
+      title: pageTitle,
       description,
       siteName: SITE_NAME,
       locale: 'en_IN',
       images: [
         {
           url: imageUrl,
-          width: 900,
-          height: 500,
-          alt: imageAlt ?? `${BRAND} - Hosapete, Karnataka`,
+          width: 1200,
+          height: 630,
+          alt: imageAlt ?? `${SITE_NAME} - Hosapete, Karnataka`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: socialTitle,
+      title: pageTitle,
       description,
       images: [imageUrl],
     },
   };
 
-  if (title) metadata.title = title.includes(BRAND) ? { absolute: title } : title;
-  if (noIndex) metadata.robots = { index: false, follow: true };
+  if (noIndex) {
+    metadata.robots = { index: false, follow: true };
+  }
 
   return metadata;
 }

@@ -6,14 +6,18 @@ import BanquetOccasions from '@/components/sections/banquet/BanquetOccasions';
 import BanquetPillars from '@/components/sections/banquet/BanquetPillars';
 import BanquetGallery from '@/components/sections/banquet/BanquetGallery';
 import EditorialQuote from '@/components/sections/shared/EditorialQuote';
+import FaqSection from '@/components/common/FaqSection';
 import CalloutCTA from '@/components/sections/shared/CalloutCTA';
+import JsonLd from '@/components/seo/JsonLd';
+import { banquetFaqs } from '@/data/faqs';
 import { hotel } from '@/data/site';
+import { getBanquetSchema, getBreadcrumbSchema, getFaqSchema } from '@/lib/schema';
 import { seo } from '@/lib/seo';
 
 export const metadata: Metadata = seo({
-  title: 'Banquet & Events | Grand Celebrations & Conferences at Hotel Krishna Palace',
+  title: 'Banquet Hall in Hospet | Krishna Palace Hotel',
   description:
-    'Host corporate conferences, product launches, fashion galas, cocktail dinners, and weddings in Hosapete. Up to 300+ guests with catering and audiovisual support.',
+    'Host corporate conferences, business meets, product launches, galas and weddings in Hosapete. Multipurpose banquet hall with 300+ guest capacity and catering.',
   path: '/banquet/',
   image: '/images/05-kp-hosapete-16.jpg',
   imageAlt: 'Banquet hall arranged for an event at Hotel Krishna Palace, Hosapete',
@@ -22,8 +26,19 @@ export const metadata: Metadata = seo({
 export default function BanquetPage() {
   return (
     <>
+      <JsonLd
+        schema={[
+          getBreadcrumbSchema([
+            { name: 'Home', url: 'https://krishnapalacehotel.com/' },
+            { name: 'Banquets & Celebrations', url: 'https://krishnapalacehotel.com/banquet/' },
+          ]),
+          getBanquetSchema(),
+          getFaqSchema(banquetFaqs),
+        ]}
+      />
+
       <PageHero
-        title="Hosapete’s Place to Gather."
+        title="Banquet Hall in Hospet"
         eyebrow="Banquets & Celebrations"
         description="A contemporary multipurpose venue designed for prestigious corporate conferences, weddings, fashion galas, and festive cocktail dinners for 300+ guests."
         image="/images/05-kp-hosapete-16.jpg"
@@ -45,6 +60,13 @@ export default function BanquetPage() {
       <BanquetOccasions />
       <BanquetPillars />
       <BanquetGallery />
+
+      <FaqSection
+        eyebrow="Event Planning FAQs"
+        title="Banquet & conference details."
+        body="Answers to help you plan corporate conventions, launches, weddings, and private social events in Hosapete."
+        items={banquetFaqs}
+      />
 
       <CalloutCTA
         id="reserve"

@@ -5,23 +5,41 @@ import DiningShowcases from '@/components/sections/dining/DiningShowcases';
 import DiningTimeline from '@/components/sections/dining/DiningTimeline';
 import DiningPillars from '@/components/sections/dining/DiningPillars';
 import EditorialQuote from '@/components/sections/shared/EditorialQuote';
+import FaqSection from '@/components/common/FaqSection';
 import CalloutCTA from '@/components/sections/shared/CalloutCTA';
+import JsonLd from '@/components/seo/JsonLd';
+import { diningFaqs } from '@/data/faqs';
 import { hotel } from '@/data/site';
+import { getBarSchema, getBreadcrumbSchema, getFaqSchema, getRestaurantSchema } from '@/lib/schema';
 import { seo } from '@/lib/seo';
 
 export const metadata: Metadata = seo({
-  title: 'Dining & Bar | Fiesta & Madira The Bar',
-  description: 'Discover the dining and bar destinations at Hotel Krishna Palace, Hosapete: Fiesta All-Day Dining and Madira The Bar & Lounge.',
+  title: 'Restaurant & Dining in Hospet | Krishna Palace',
+  description:
+    'Experience dining in Hosapete at Hotel Krishna Palace: Fiesta all-day multi-cuisine restaurant and Madira The Bar & Lounge for cocktails and dinner.',
   path: '/dining/',
-  image: '/compressed_FOC00707_converted.jpg',
-  imageAlt: 'Madira The Bar at Hotel Krishna Palace, Hosapete',
+  image: '/compressed_FOC00545.jpg',
+  imageAlt: 'Fiesta multi-cuisine dining hall at Hotel Krishna Palace, Hosapete',
 });
 
 export default function DiningOverviewPage() {
   return (
     <>
+      <JsonLd
+        schema={[
+          getBreadcrumbSchema([
+            { name: 'Home', url: 'https://krishnapalacehotel.com/' },
+            { name: 'Dining & Bar', url: 'https://krishnapalacehotel.com/dining/' },
+          ]),
+          getRestaurantSchema(),
+          getBarSchema(),
+          getFaqSchema(diningFaqs),
+        ]}
+      />
+
       <PageHero
-        title="Flavours shaped by time."
+        title="Restaurant & Dining in Hospet"
+        eyebrow="Dining & Bar"
         description="From slow morning South Indian griddles at Fiesta to wood-paneled spirits at Madira The Bar."
         image="/compressed_FOC00545.jpg"
         alt="Fiesta all-day dining room at Hotel Krishna Palace"
@@ -41,6 +59,13 @@ export default function DiningOverviewPage() {
       <DiningShowcases />
       <DiningTimeline />
       <DiningPillars />
+
+      <FaqSection
+        eyebrow="Dining Questions & Answers"
+        title="Restaurant & bar FAQs."
+        body="Helpful details on menus, cuisines, bar operating hours, and table reservations."
+        items={diningFaqs}
+      />
 
       <CalloutCTA
         eyebrow="Table & Event Reservations"

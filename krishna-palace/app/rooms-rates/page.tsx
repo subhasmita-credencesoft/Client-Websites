@@ -3,28 +3,43 @@ import PageHero from '@/components/hero/PageHero';
 import CinematicRoomsShowcase from '@/components/rooms/CinematicRoomsShowcase';
 import StayInclusions from '@/components/rooms/StayInclusions';
 import RoomsLocation from '@/components/sections/rooms-rates/RoomsLocation';
+import FaqSection from '@/components/common/FaqSection';
 import CalloutCTA from '@/components/sections/shared/CalloutCTA';
+import JsonLd from '@/components/seo/JsonLd';
+import { roomsFaqs } from '@/data/faqs';
 import { hotel } from '@/data/site';
+import { getBreadcrumbSchema, getFaqSchema, getRoomsCatalogSchema } from '@/lib/schema';
 import { seo } from '@/lib/seo';
 
 export const metadata: Metadata = seo({
-  title: 'Rooms & Rates | Hotel Krishna Palace Hosapete',
+  title: 'Hotel Rooms & Suites in Hospet | Krishna Palace',
   description:
-    'Live room tariffs, availability and published inclusions directly synchronized with Hotel Krishna Palace in Hosapete, near the heritage of Hampi.',
+    'Explore executive rooms and mini suites at Hotel Krishna Palace in Hosapete. View published tariffs, room inclusions, breakfast options and direct booking.',
   path: '/rooms-rates/',
-  image: '/images/13-kp-hosapete-suit-room-1.jpg',
-  imageAlt: 'Guest room at Hotel Krishna Palace, Hosapete',
+  image: '/DSC_2597.avif',
+  imageAlt: 'Comfortable guest room with warm wood furnishings at Hotel Krishna Palace, Hosapete',
 });
 
 export default function RoomsPage() {
   return (
     <>
+      <JsonLd
+        schema={[
+          getBreadcrumbSchema([
+            { name: 'Home', url: 'https://krishnapalacehotel.com/' },
+            { name: 'Rooms & Rates', url: 'https://krishnapalacehotel.com/rooms-rates/' },
+          ]),
+          getRoomsCatalogSchema(),
+          getFaqSchema(roomsFaqs),
+        ]}
+      />
+
       <PageHero
-        title="Rest easy. Roam far."
+        title="Hotel Rooms & Suites in Hospet"
         eyebrow="Rooms & Rates"
         description="A comfortable base in Hosapete, made for slow mornings and days spent discovering the heritage of Hampi."
         image="/DSC_2597.avif"
-        alt="Comfortable guest room with warm wood furnishings"
+        alt="Comfortable guest room with warm wood furnishings at Hotel Krishna Palace"
         secondImage="/FOC00586_converted.jpg"
         secondAlt="Luxurious guest room interior at Hotel Krishna Palace"
         secondTitle="Wake up near a world of stories."
@@ -36,6 +51,13 @@ export default function RoomsPage() {
       <StayInclusions />
 
       <RoomsLocation />
+
+      <FaqSection
+        eyebrow="Accommodation FAQs"
+        title="Rooms, tariffs & policies."
+        body="Clear answers regarding room amenities, occupancy, check-in schedules, and tariff details."
+        items={roomsFaqs}
+      />
 
       <CalloutCTA
         eyebrow="Ready to Reserve?"

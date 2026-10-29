@@ -9,7 +9,9 @@
 .cinematic-copy { position: absolute; z-index: 5; left: var(--page-pad); bottom: 14vh; width: min(770px,79vw); }
 .cinematic-copy--first { opacity: 1; }
 .cinematic-copy--second { opacity: 0; transform: translateY(26px); pointer-events: none; }
-.cinematic-copy h1,.cinematic-copy h2 { font: 400 clamp(56px,8.6vw,126px)/.98 var(--serif); letter-spacing: -.065em; max-width: 900px; margin: 23px 0; text-wrap: balance; }
+.cinematic-copy h1,.cinematic-copy h2 { font: 400 clamp(52px,7.5vw,110px)/1.02 var(--serif); letter-spacing: -.05em; max-width: 900px; margin: 20px 0; text-wrap: balance; }
+.cinematic-hero--home .cinematic-copy h1 { font-size: clamp(40px,5.8vw,82px); line-height: 1.05; letter-spacing: -.04em; }
+.cinematic-tagline { display: block; font: 400 clamp(20px,2.6vw,34px)/1.2 var(--serif); color: #ffc27d; font-style: italic; margin: -10px 0 16px; letter-spacing: -.015em; }
 .cinematic-copy p { max-width: 470px; color: rgba(255,255,255,.9); font-size: clamp(14px,1.3vw,17px); line-height: 1.75; }
 .cinematic-copy .eyebrow { color: #ffc27d; }
 .cinematic-copy :is(a, button):focus-visible { outline-color: #ffc27d; }
@@ -38,7 +40,9 @@
 @media (max-width: 850px) {
   .cinematic-pin { min-height: 520px; }
   .cinematic-copy { left: var(--page-pad); bottom: 14vh; width: 86vw; }
-  .cinematic-copy h1,.cinematic-copy h2 { font-size: clamp(52px,11vw,86px); }
+  .cinematic-copy h1,.cinematic-copy h2 { font-size: clamp(44px,8.5vw,78px); }
+  .cinematic-hero--home .cinematic-copy h1 { font-size: clamp(36px,7.5vw,66px); }
+  .cinematic-tagline { font-size: clamp(18px,3.2vw,28px); }
   .cinematic-index { font-size: 8px; }
   .regional-route { padding: 24px 18px 16px; }
   .regional-route__label { font-size: 17px; }
@@ -49,7 +53,9 @@
   .cinematic-photo { object-position: 58% center; }
   .cinematic-wordmark { font-size: 22vw; opacity: .27; }
   .cinematic-copy { bottom: 16vh; }
-  .cinematic-copy h1,.cinematic-copy h2 { font-size: clamp(47px,12.6vw,69px); margin: 17px 0; }
+  .cinematic-copy h1,.cinematic-copy h2 { font-size: clamp(38px,9.5vw,58px); margin: 15px 0; }
+  .cinematic-hero--home .cinematic-copy h1 { font-size: clamp(32px,8.5vw,52px); }
+  .cinematic-tagline { font-size: clamp(16px,4vw,24px); margin: -8px 0 12px; }
   .cinematic-copy p { max-width: 350px; font-size: 13px; }
   .cinematic-index { left: var(--page-pad); right: auto; bottom: 27px; }
   .cinematic-scroll-cue { bottom: 56px; right: var(--page-pad); font-size: 9px; }

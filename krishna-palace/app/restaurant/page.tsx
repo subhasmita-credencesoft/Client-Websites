@@ -2,12 +2,15 @@ import type { Metadata } from 'next';
 import PageHero from '@/components/hero/PageHero';
 import RestaurantOutlets from '@/components/sections/restaurant/RestaurantOutlets';
 import CalloutCTA from '@/components/sections/shared/CalloutCTA';
+import JsonLd from '@/components/seo/JsonLd';
 import { hotel } from '@/data/site';
+import { getBreadcrumbSchema } from '@/lib/schema';
 import { seo } from '@/lib/seo';
 
 export const metadata: Metadata = seo({
-  title: 'Restaurant & Bar | Hotel Krishna Palace Hosapete',
-  description: 'Hotel Krishna Palace features two distinct dining destinations in Hosapete: Fiesta All-Day Dining and Madira The Bar & Lounge.',
+  title: 'Restaurant & Dining in Hospet | Hotel Krishna Palace',
+  description:
+    'Hotel Krishna Palace features two distinct dining destinations in Hosapete: Fiesta All-Day Dining and Madira The Bar & Lounge.',
   path: '/restaurant/',
   image: '/images/21-kp-hosapete-21.jpg',
   imageAlt: 'Wood-paneled bar at Hotel Krishna Palace, Hosapete',
@@ -16,6 +19,13 @@ export const metadata: Metadata = seo({
 export default function RestaurantPage() {
   return (
     <>
+      <JsonLd
+        schema={getBreadcrumbSchema([
+          { name: 'Home', url: 'https://krishnapalacehotel.com/' },
+          { name: 'Restaurant', url: 'https://krishnapalacehotel.com/restaurant/' },
+        ])}
+      />
+
       <PageHero
         title="Dining & Bar"
         description="Hotel Krishna Palace features two distinct food and beverage destinations: Fiesta All-Day Dining and Madira The Bar & Lounge."

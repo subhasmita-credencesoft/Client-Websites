@@ -34,7 +34,7 @@ export default function SiteFooter() {
             </linearGradient>
             <linearGradient id="footerWaveGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#ffd8a8" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#cb6e26" stopOpacity="0" />
+              <stop offset="100%" stopColor="#cb6e26" stopOpacity="0.0" />
             </linearGradient>
             <radialGradient id="footerGlowOrb" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#e8a45e" stopOpacity="0.2" />
@@ -151,6 +151,7 @@ export default function SiteFooter() {
             <li><Link href="/banquet/">Banquets &amp; Events</Link></li>
             <li><Link href="/tourism/">Places to Explore</Link></li>
             <li><Link href="/contact/#contact-details">Location &amp; Contact</Link></li>
+            <li><Link href="/#faq">Guest FAQs</Link></li>
           </ul>
         </div>
 

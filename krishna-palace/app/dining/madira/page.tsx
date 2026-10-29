@@ -4,12 +4,15 @@ import MadiraIntro from '@/components/sections/madira/MadiraIntro';
 import MadiraDetails from '@/components/sections/madira/MadiraDetails';
 import OtherOutlets from '@/components/sections/shared/OtherOutlets';
 import CalloutCTA from '@/components/sections/shared/CalloutCTA';
+import JsonLd from '@/components/seo/JsonLd';
 import { hotel } from '@/data/site';
+import { getBarSchema, getBreadcrumbSchema } from '@/lib/schema';
 import { seo } from '@/lib/seo';
 
 export const metadata: Metadata = seo({
-  title: 'Madira The Bar – Fine Dining & Bar | Hotel Krishna Palace Hosapete',
-  description: 'Madira The Bar at Hotel Krishna Palace offers an elegant lounge atmosphere, North Indian dining favourites, fine bar service and operating hours from 10:00 AM to 11:00 PM in Hosapete.',
+  title: 'Madira The Bar & Lounge | Hotel Krishna Palace Hosapete',
+  description:
+    'Madira The Bar at Hotel Krishna Palace offers an elegant lounge atmosphere, North Indian dining favourites, fine bar service and operating hours from 10:00 AM to 11:00 PM in Hosapete.',
   path: '/dining/madira/',
   image: '/compressed_FOC00707_converted.jpg',
   imageAlt: 'Madira The Bar lounge at Hotel Krishna Palace, Hosapete',
@@ -18,6 +21,17 @@ export const metadata: Metadata = seo({
 export default function MadiraPage() {
   return (
     <>
+      <JsonLd
+        schema={[
+          getBreadcrumbSchema([
+            { name: 'Home', url: 'https://krishnapalacehotel.com/' },
+            { name: 'Dining & Bar', url: 'https://krishnapalacehotel.com/dining/' },
+            { name: 'Madira The Bar & Lounge', url: 'https://krishnapalacehotel.com/dining/madira/' },
+          ]),
+          getBarSchema(),
+        ]}
+      />
+
       <PageHero
         title="Madira · The Bar"
         description="An elegant bar experience at Hotel Krishna Palace, bringing together refined ambience, refreshing beverages and a selection of Indian culinary favourites."

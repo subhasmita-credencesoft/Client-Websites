@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import SiteHeader from '@/components/layout/SiteHeader';
 import { hotel } from '@/data/site';
+import { DEFAULT_PROPERTY, DEFAULT_ROOM_DETAILS } from '@/data/rooms';
 import { fetchRoom } from '@/lib/api/hotel';
 import { formatINR, formatStayDate } from '@/lib/format';
 import type { PropertyInfo, RoomDetail } from '@/types/hotel';
@@ -26,21 +27,21 @@ function occupancyLabel(min: number | null, max: number | null): string | null {
 }
 
 export default function RoomDetail({ id }: { id: string }) {
-  const [state, setState] = useState<LoadState>('loading');
-  const [room, setRoom] = useState<RoomDetail | null>(null);
-  const [property, setProperty] = useState<PropertyInfo | null>(null);
+  const initialRoom = DEFAULT_ROOM_DETAILS[id] ?? null;
+  const [state, setState] = useState<LoadState>(initialRoom ? 'ready' : 'loading');
+  const [room, setRoom] = useState<RoomDetail | null>(initialRoom);
+  const [property, setProperty] = useState<PropertyInfo | null>(DEFAULT_PROPERTY);
   const [activeImage, setActiveImage] = useState(0);
 
   useEffect(() => {
     const controller = new AbortController();
-    setState('loading');
     setActiveImage(0);
 
     fetchRoom(id, controller.signal)
       .then((result) => {
         if (controller.signal.aborted) return;
         if (!result) {
-          setState('missing');
+          if (!initialRoom) setState('missing');
           return;
         }
         setRoom(result.room);
@@ -49,13 +50,15 @@ export default function RoomDetail({ id }: { id: string }) {
       })
       .catch((error: unknown) => {
         if (controller.signal.aborted || (error instanceof DOMException && error.name === 'AbortError')) return;
-        setState('error');
+        if (!initialRoom) {
+          setState('error');
+        }
       });
 
     return () => controller.abort();
-  }, [id]);
+  }, [id, initialRoom]);
 
-  if (state === 'missing' || state === 'error') {
+  if (state === 'missing' || (state === 'error' && !room)) {
     return (
       <>
         <SiteHeader solid />
@@ -72,7 +75,7 @@ export default function RoomDetail({ id }: { id: string }) {
     );
   }
 
-  if (state === 'loading' || !room) {
+  if ((state === 'loading' && !room) || !room) {
     return (
       <>
         <SiteHeader solid />
@@ -96,7 +99,6 @@ export default function RoomDetail({ id }: { id: string }) {
   ].filter((fact): fact is { label: string; value: string } => Boolean(fact.value));
 
   const image = room.images[activeImage] ?? room.image;
-  const enquiryHref = `mailto:${hotel.reservationEmail}?subject=${encodeURIComponent(`Room enquiry — ${room.name}`)}`;
 
   return (
     <div data-room-id={room.id}>

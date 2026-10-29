@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { hotel } from '@/data/site';
+import { DEFAULT_PROPERTY, DEFAULT_ROOMS } from '@/data/rooms';
 import { fetchAvailability, selectPrimaryPlan } from '@/lib/api/hotel';
 import { formatINR, isRoomId } from '@/lib/format';
 import type { PropertyInfo, RoomOffer } from '@/types/hotel';
@@ -15,14 +16,13 @@ function formatOccupancy(min: number | null, max: number | null): string {
 }
 
 export default function CinematicRoomsShowcase() {
-  const [rooms, setRooms] = useState<RoomOffer[]>([]);
-  const [property, setProperty] = useState<PropertyInfo | null>(null);
-  const [gstPercent, setGstPercent] = useState<number | null>(null);
-  const [state, setState] = useState<'loading' | 'live' | 'failed'>('loading');
+  const [rooms, setRooms] = useState<RoomOffer[]>(DEFAULT_ROOMS);
+  const [property, setProperty] = useState<PropertyInfo | null>(DEFAULT_PROPERTY);
+  const [gstPercent, setGstPercent] = useState<number | null>(12);
+  const [state, setState] = useState<'idle' | 'loading' | 'live' | 'failed'>('idle');
 
   useEffect(() => {
     const controller = new AbortController();
-    setState('loading');
 
     fetchAvailability(controller.signal)
       .then((data) => {
@@ -34,13 +34,15 @@ export default function CinematicRoomsShowcase() {
       })
       .catch((error: unknown) => {
         if (controller.signal.aborted || (error instanceof DOMException && error.name === 'AbortError')) return;
-        setState('failed');
+        if (!rooms.length) {
+          setState('failed');
+        }
       });
 
     return () => controller.abort();
-  }, []);
+  }, [rooms.length]);
 
-  if (state === 'loading') {
+  if (state === 'loading' && !rooms.length) {
     return (
       <section className="section" style={{ textAlign: 'center', padding: '100px 0' }}>
         <span className="eyebrow">Hospitality · Hosapete</span>
@@ -50,7 +52,7 @@ export default function CinematicRoomsShowcase() {
     );
   }
 
-  if (state === 'failed' || !rooms.length) {
+  if ((state === 'failed' && !rooms.length) || !rooms.length) {
     return (
       <section className="section" style={{ textAlign: 'center', padding: '80px 0' }}>
         <p style={{ color: 'var(--muted)' }}>
@@ -61,12 +63,12 @@ export default function CinematicRoomsShowcase() {
     );
   }
 
-  // All room images are taken 100% directly from API room.images
+  // All room images are taken directly from room.images or room.image
   const allPropertyPhotos = rooms.flatMap((r) => r.images).filter(Boolean);
 
   return (
     <>
-      {/* ─── Editorial Quick Navigation (Dynamic from API) ─── */}
+      {/* ─── Editorial Quick Navigation ─── */}
       <section className="section" style={{ paddingBottom: 0 }}>
         <div className="rooms-editorial-intro">
           <span className="eyebrow">View All rooms </span>
@@ -94,7 +96,7 @@ export default function CinematicRoomsShowcase() {
         <span className="editorial-quote-cite">{property?.name || 'Hotel Krishna Palace'} · {property?.address || 'Station Road, Hosapete'}</span>
       </div>
 
-      {/* ─── Alternating Room Showcases (100% API-Driven, NO Hardcoded Data) ─── */}
+      {/* ─── Alternating Room Showcases ─── */}
       <section className="section">
         {rooms.map((room, index) => {
           const isReverse = index % 2 === 1;
@@ -105,7 +107,6 @@ export default function CinematicRoomsShowcase() {
               ? `${room.available} of ${room.totalRooms} available`
               : 'Available for reservation';
 
-          // Strictly use API room images
           const roomImages = room.images && room.images.length > 0 ? room.images : (room.image ? [room.image] : []);
 
           return (
@@ -144,7 +145,7 @@ export default function CinematicRoomsShowcase() {
                     <strong>
                       {formatINR(displayPrice)}{' '}
                       <small style={{ fontWeight: 400, fontSize: 11, color: 'var(--muted)' }}>
-                        + {gstPercent ?? 5}% GST
+                        + {gstPercent ?? 12}% GST
                       </small>
                     </strong>
                   </div>
@@ -162,7 +163,7 @@ export default function CinematicRoomsShowcase() {
                   </div>
                 </div>
 
-                {/* Live Synchronized Rate Plans */}
+                {/* Synchronized Rate Plans */}
                 {room.plans.length > 0 && (
                   <div className="room-plans" style={{ marginTop: 0, marginBottom: 26 }}>
                     <div className="room-plans__head">
@@ -211,7 +212,7 @@ export default function CinematicRoomsShowcase() {
         })}
       </section>
 
-      {/* ─── Dynamic API Photo Gallery Strip ─── */}
+      {/* ─── Photo Gallery Strip ─── */}
       {allPropertyPhotos.length > 0 && (
         <section className="rooms-gallery-strip">
           {allPropertyPhotos.slice(0, 5).map((imgUrl, i) => (

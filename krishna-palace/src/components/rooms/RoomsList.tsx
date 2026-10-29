@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { hotel } from '@/data/site';
+import { DEFAULT_ROOMS } from '@/data/rooms';
 import RoomCarousel from '@/components/rooms/RoomCarousel';
 import { fetchAvailability } from '@/lib/api/hotel';
 import { formatINR, isRoomId } from '@/lib/format';
@@ -22,13 +23,12 @@ export default function RoomsList({
   withNote?: boolean;
   compact?: boolean;
 }) {
-  const [rooms, setRooms] = useState<RoomOffer[]>([]);
-  const [gstPercent, setGstPercent] = useState<number | null>(null);
+  const [rooms, setRooms] = useState<RoomOffer[]>(DEFAULT_ROOMS);
+  const [gstPercent, setGstPercent] = useState<number | null>(12);
   const [state, setState] = useState<'idle' | 'loading' | 'live' | 'failed'>('idle');
 
   useEffect(() => {
     const controller = new AbortController();
-    setState('loading');
 
     fetchAvailability(controller.signal)
       .then((data: Availability) => {
@@ -39,11 +39,13 @@ export default function RoomsList({
       })
       .catch((error: unknown) => {
         if (controller.signal.aborted || (error instanceof DOMException && error.name === 'AbortError')) return;
-        setState('failed');
+        if (!rooms.length) {
+          setState('failed');
+        }
       });
 
     return () => controller.abort();
-  }, []);
+  }, [rooms.length]);
 
   const list = (
     <div className={`room-list${compact ? ' room-list--compact' : ''}`} data-rooms-source={state}>

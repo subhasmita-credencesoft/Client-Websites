@@ -7,6 +7,7 @@ import { hotel } from '@/data/site';
 type CinematicHeroProps = {
   eyebrow?: string;
   title: ReactNode;
+  tagline?: ReactNode;
   description: string;
   image: string;
   alt: string;
@@ -20,7 +21,7 @@ type CinematicHeroProps = {
 };
 
 export default function CinematicHero({
-  eyebrow, title, description, image, alt, video, secondImage, secondAlt,
+  eyebrow, title, tagline, description, image, alt, video, secondImage, secondAlt,
   secondEyebrow, secondTitle, secondDescription, home = false,
 }: CinematicHeroProps) {
   return (
@@ -36,6 +37,7 @@ export default function CinematicHero({
         <div className="cinematic-copy cinematic-copy--first">
           {eyebrow && <span className="eyebrow">{eyebrow}</span>}
           <h1>{title}</h1>
+          {tagline && <p className="cinematic-tagline">{tagline}</p>}
           <p>{description}</p>
           {home && <div className="hero-actions"><a className="button" href={hotel.bookingUrl} target="_blank" rel="noopener noreferrer">Book now</a><Link className="button button--outline" href="/tourism/">Explore the region</Link></div>}
         </div>
