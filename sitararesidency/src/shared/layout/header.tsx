@@ -98,6 +98,12 @@ export function Header() {
                 Rooms &amp; Suites
               </Link>
               <Link
+                href="/events"
+                className="font-mono-label text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors whitespace-nowrap"
+              >
+                Events &amp; Banquets
+              </Link>
+              <Link
                 href="/gallery"
                 className="font-mono-label text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors"
               >

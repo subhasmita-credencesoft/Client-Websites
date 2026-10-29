@@ -25,6 +25,7 @@ import {
   getEventSpace,
   EventInquiryForm,
   EventCinematicGallery,
+  EventBannerAlert,
 } from '@/features/events';
 
 type PageProps = {
@@ -123,6 +124,8 @@ export default async function EventSpaceDetailPage({ params }: PageProps) {
           venueSchema,
         ]}
       />
+
+      <EventBannerAlert />
 
       {/* ═══ 1. BREADCRUMBS & TOP BAR ═══ */}
       <section className="bg-forest text-cream pt-28 pb-12 px-5 sm:px-8 border-b border-cream/10">

@@ -6,7 +6,7 @@ import { ROUTES } from '@/core/constants/routes';
 
 export function EventSpacesGrid() {
   return (
-    <div className="grid gap-10 lg:grid-cols-3">
+    <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
       {eventSpaces.map((space) => (
         <article
           key={space.id}
@@ -44,7 +44,7 @@ export function EventSpacesGrid() {
               </div>
             </Link>
 
-            <div className="p-6 sm:p-7">
+            <div className="p-5 sm:p-7">
               <p className="font-mono-label text-[10px] uppercase tracking-wider text-terracotta">
                 {space.eyebrow}
               </p>
@@ -91,7 +91,7 @@ export function EventSpacesGrid() {
           </div>
 
           {/* Action Footer */}
-          <div className="p-6 pt-0 flex items-center justify-between gap-3 border-t border-forest/10 mt-2">
+          <div className="p-5 sm:p-7 pt-0 flex items-center justify-between gap-3 border-t border-forest/10 mt-2">
             <Link
               href={ROUTES.eventDetail(space.id)}
               className="flex-1 text-center bg-forest px-4 py-3 font-mono-label text-[10px] uppercase tracking-widest text-cream hover:bg-terracotta transition-colors shadow-sm flex items-center justify-center gap-1.5"

@@ -77,6 +77,12 @@ export function Footer() {
             </h4>
             <ul className="space-y-3 text-sm text-white/75">
               <li>
+                <Link href="/events" className="transition-colors hover:text-white font-medium text-apricot flex items-center gap-1.5">
+                  <span>Events &amp; Banquets</span>
+                  <span className="rounded-full bg-apricot/20 px-1.5 py-0.2 text-[8px] font-bold text-apricot border border-apricot/30">75 Pax</span>
+                </Link>
+              </li>
+              <li>
                 <Link href="/gallery" className="transition-colors hover:text-white">
                   Photo Gallery
                 </Link>

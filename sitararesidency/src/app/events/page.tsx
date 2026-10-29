@@ -25,6 +25,7 @@ import {
   EventCapacityTable,
   EventInquiryForm,
   HostedFunctionsGrid,
+  EventBannerAlert,
 } from '@/features/events';
 
 export const metadata: Metadata = pageMetadata({
@@ -115,6 +116,8 @@ export default function EventsPage() {
         ]}
       />
 
+      <EventBannerAlert />
+
       {/* ═══ 1. HERO BANNER ═══ */}
       <section className="relative min-h-[58vh] sm:min-h-[65vh] flex items-end bg-forest text-cream overflow-hidden">
         <Image
@@ -169,26 +172,26 @@ export default function EventsPage() {
 
       {/* ═══ 2. KEY HIGHLIGHTS BAR ═══ */}
       <section className="border-b border-forest/10 bg-cream py-6 px-5 sm:px-8">
-        <div className="mx-auto max-w-[1240px] grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-forest/10">
-          <div className="pt-2 md:pt-0">
+        <div className="mx-auto max-w-[1240px] grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 text-center">
+          <div className="p-3 sm:p-4 border border-forest/10 md:border-0 md:border-r md:border-forest/15 bg-white md:bg-transparent">
             <div className="font-serif text-2xl sm:text-3xl font-semibold text-terracotta">Up to 75 Guests</div>
             <div className="font-mono-label text-[10px] uppercase tracking-wider text-sage-muted mt-1">
               Celebrations & Conference Capacity
             </div>
           </div>
-          <div className="pt-2 md:pt-0">
+          <div className="p-3 sm:p-4 border border-forest/10 md:border-0 md:border-r md:border-forest/15 bg-white md:bg-transparent">
             <div className="font-serif text-2xl sm:text-3xl font-semibold text-terracotta">Custom Themes</div>
             <div className="font-mono-label text-[10px] uppercase tracking-wider text-sage-muted mt-1">
               Ring Ceremony & Birthday Backdrops
             </div>
           </div>
-          <div className="pt-2 md:pt-0">
+          <div className="p-3 sm:p-4 border border-forest/10 md:border-0 md:border-r md:border-forest/15 bg-white md:bg-transparent">
             <div className="font-serif text-2xl sm:text-3xl font-semibold text-terracotta">100% Power Backup</div>
             <div className="font-mono-label text-[10px] uppercase tracking-wider text-sage-muted mt-1">
               Uninterrupted Generator Coverage
             </div>
           </div>
-          <div className="pt-2 md:pt-0">
+          <div className="p-3 sm:p-4 border border-forest/10 md:border-0 md:border-r md:border-forest/15 bg-white md:bg-transparent">
             <div className="font-serif text-2xl sm:text-3xl font-semibold text-terracotta">Expressway & NMIA</div>
             <div className="font-mono-label text-[10px] uppercase tracking-wider text-sage-muted mt-1">
               Prime Kalamboli Highway Junction
