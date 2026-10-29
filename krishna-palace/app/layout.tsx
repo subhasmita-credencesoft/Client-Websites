@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   title: { default: 'Hotel Krishna Palace | Hosapete, Karnataka', template: '%s | Hotel Krishna Palace' },
   description: 'A warm, established stay in Hosapete for discovering Hampi and Karnataka’s remarkable heritage region.',
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: '/logo.jpg',
+    shortcut: '/logo.jpg',
+    apple: '/logo.jpg',
   },
   openGraph: {
     type: 'website',
