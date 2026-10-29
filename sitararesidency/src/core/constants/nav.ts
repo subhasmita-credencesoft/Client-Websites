@@ -17,6 +17,17 @@ export const navItems: NavItem[] = [
     ],
   },
   {
+    label: 'Events & Banquets',
+    href: ROUTES.events,
+    hasSubmenu: true,
+    subItems: [
+      { label: 'All Event Spaces & Venues', href: ROUTES.events },
+      { label: 'Grand Conference Hall (75 Pax)', href: ROUTES.eventDetail('grand-hall') },
+      { label: 'Executive Boardroom (16 Pax)', href: ROUTES.eventDetail('executive-boardroom') },
+      { label: 'Celebrations & Social Lounge (50 Pax)', href: ROUTES.eventDetail('celebrations-lounge') },
+    ],
+  },
+  {
     label: 'Leisure',
     href: ROUTES.leisure,
     hasSubmenu: true,
@@ -52,8 +63,10 @@ export const footerNavGroups: FooterNavGroup[] = [
     label: 'Find your way',
     items: [
       { label: 'Bedrooms', href: ROUTES.bedrooms, testId: 'link-footer-stay' },
+      { label: 'Events & Banquets', href: ROUTES.events, testId: 'link-footer-events' },
       { label: 'Gallery', href: ROUTES.gallery, testId: 'link-footer-gallery' },
       { label: 'Leisure', href: ROUTES.leisure, testId: 'link-footer-leisure' },
+      { label: 'Contact', href: ROUTES.contact, testId: 'link-footer-contact' },
     ],
   },
 ];

@@ -6,6 +6,8 @@ export const ROUTES = {
   home: '/',
   bedrooms: '/bedrooms',
   bedroom: (slug: string) => `/bedrooms/${slug}`,
+  events: '/events',
+  eventDetail: (slug: string) => `/events/${slug}`,
   dining: '/dining',
   diningDetail: (slug: string) => `/dining/${slug}`,
   blog: '/blog',

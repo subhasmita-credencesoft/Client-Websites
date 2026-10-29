@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
 
 import { ListingView } from '@/features/common';
-import { sectionConfig } from '@/features/common/data/section-config';
 import { business } from '@/core/config/business';
 
-const config = sectionConfig('things-to-do');
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? business.website;
 
 export const metadata: Metadata = {

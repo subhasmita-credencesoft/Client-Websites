@@ -41,6 +41,20 @@ Hotel Sitara Residency is a premier hospitality destination in Kalamboli, Navi M
 - Occupancy: 2 to 6 Guests
 - Key Features: Expansive multi-bed configuration (two double beds plus lounge seating), sitting lounge with sofa, coffee area, dual air conditioning units, high-speed Wi-Fi, flat-screen TV, spacious wardrobe, continuous hot water geyser, and 24-hour concierge service.
 
+## Events, Banquets & Functions Hosted
+- Slug: /events
+- Venue Spaces: Grand Conference & Banquet Hall (up to 75 attendees), Executive Boardroom (up to 16 delegates), and Celebrations Lounge (up to 50 guests).
+- All Functions Hosted:
+  1. Ring Ceremony & Engagements (Sagai, Roka, ceremonial stage decor, ambient photography lighting)
+  2. Birthday Celebrations (Kids cartoon/superhero theme parties, 1st birthdays, 50th/60th milestone jubilees, cake tables)
+  3. Corporate Meetings, Seminars & Conferences (Steel Market & JNPT delegations, HD projection, sound, 100+ Mbps Wi-Fi)
+  4. Family Gatherings & Anniversaries (Reunions, silver/golden jubilees, multi-generational festive lunches/dinners)
+  5. Baby Showers & Naming Ceremonies (Godh Bharai, Dohale Jevan with decorated Jhula swing, Namkaran pooja rituals)
+  6. Pre-Wedding Functions (Haldi ceremonies with yellow marigold decor, Mehendi afternoons, family Sangeet dance setups)
+  7. Executive Board Meetings & Leadership Offsites (Confidential boardrooms with 65" 4K Smart Cast display, conference phones)
+  8. Residential Conferences & Group Stays (All-inclusive hall hire + Executive room blocks + buffet meal packages)
+- Facilities: High-definition projector & motorized screen, wireless lapel/cordless mics, high-speed enterprise Wi-Fi, customizable gourmet catering (Veg/Non-Veg), 100% generator power backup, and on-site parking.
+
 ## Property Facilities & Amenities
 - Complimentary High-Speed Wi-Fi across the property
 - 24-Hour Front Desk and Concierge
@@ -68,6 +82,10 @@ Hotel Sitara Residency is a premier hospitality destination in Kalamboli, Navi M
 - Executive Room: https://hotelsitararesidency.com/bedrooms/executive-room
 - Executive Triple Room: https://hotelsitararesidency.com/bedrooms/executive-triple-room
 - Executive Family Suite: https://hotelsitararesidency.com/bedrooms/executive-family-suite
+- Events & Banquets: https://hotelsitararesidency.com/events
+- Grand Hall: https://hotelsitararesidency.com/events/grand-hall
+- Executive Boardroom: https://hotelsitararesidency.com/events/executive-boardroom
+- Celebrations Lounge: https://hotelsitararesidency.com/events/celebrations-lounge
 - Photo Gallery: https://hotelsitararesidency.com/gallery
 - Location & Map: https://hotelsitararesidency.com/location
 - Contact: https://hotelsitararesidency.com/contact

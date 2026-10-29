@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Wifi, ShieldCheck, Clock3, Car, BedDouble, UtensilsCrossed } from 'lucide-react';
 
-import { business } from '@/core/config/business';
+import { PageIntro } from '@/features/common';
+import { leisurePage } from '@/features/common/data/pages';
 import { JsonLdScript } from '@/shared/ui/json-ld';
-import { pageMetadata, SITE_URL, webPageSchema } from '@/core/lib/seo';
+import { pageMetadata, webPageSchema } from '@/core/lib/seo';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Leisure & Amenities | Hotel Sitara Residency Kalamboli Navi Mumbai',
@@ -19,9 +19,11 @@ export const metadata: Metadata = pageMetadata({
   ],
 });
 
+const icons = [BedDouble, Car, UtensilsCrossed, Wifi, Clock3, ShieldCheck];
+
 export default function LeisurePage() {
   return (
-    <main className="leisure-page">
+    <main className="leisure-page bg-bg text-forest">
       <JsonLdScript
         data={[
           webPageSchema({
@@ -46,8 +48,42 @@ export default function LeisurePage() {
           },
         ]}
       />
-      {/* ═══ LEISURE CONTENT ═══ */}
-      {/* ... existing content ... */}
+
+      <PageIntro
+        eyebrow={leisurePage.eyebrow}
+        title={leisurePage.heading}
+        intro={leisurePage.intro}
+        image={leisurePage.image}
+      />
+
+      <section className="bg-cream px-5 py-16 md:px-10 md:py-24 border-t border-forest/10">
+        <div className="mx-auto max-w-[1240px]">
+          <div className="mb-12 max-w-2xl">
+            <p className="font-mono-label text-[10px] uppercase tracking-wider text-terracotta">
+              Everything for your comfort
+            </p>
+            <h2 className="mt-2 font-serif text-3xl italic text-forest">
+              Practical Amenities, Thoughtfully Delivered
+            </h2>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {leisurePage.tiles.map((tile, i) => {
+              const Icon = icons[i % icons.length];
+              return (
+                <div
+                  key={i}
+                  className="border border-forest/15 bg-white p-6 shadow-sm hover:border-terracotta transition-colors"
+                >
+                  <Icon className="h-6 w-6 text-terracotta mb-4" />
+                  <h3 className="font-serif text-xl font-semibold text-forest">{tile.title}</h3>
+                  <p className="mt-2 text-xs text-sage-muted leading-relaxed">{tile.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

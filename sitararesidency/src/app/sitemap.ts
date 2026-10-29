@@ -3,6 +3,7 @@ import type { MetadataRoute } from 'next';
 import { journalCards } from '@/features/blog';
 import { business } from '@/core/config/business';
 import { roomSlugsById } from '@/core/config/hotelmate';
+import { eventSpaces } from '@/features/events/data/events';
 import { ROUTES } from '@/core/constants/routes';
 
 const BASE_URL =
@@ -18,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }> = [
     { path: ROUTES.home, priority: 1.0, changeFrequency: 'daily' },
     { path: ROUTES.bedrooms, priority: 0.9, changeFrequency: 'daily' },
+    { path: ROUTES.events, priority: 0.85, changeFrequency: 'weekly' },
     { path: ROUTES.location, priority: 0.8, changeFrequency: 'monthly' },
     { path: ROUTES.contact, priority: 0.8, changeFrequency: 'monthly' },
     { path: ROUTES.gallery, priority: 0.75, changeFrequency: 'weekly' },
@@ -38,6 +40,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'daily' as const,
       priority: 0.85,
+    })),
+    // Event venue detail pages
+    ...eventSpaces.map((space) => ({
+      url: `${BASE_URL}${ROUTES.eventDetail(space.id)}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
     })),
     // Blog articles
     ...journalCards.map((c) => ({
