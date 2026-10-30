@@ -21,9 +21,6 @@ import {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  verification: {
-    google: "znQlYYRNneGgHa3FKgi1gYodTqDph9wRRzpreI19udU",
-  },
   applicationName: SITE_NAME,
   title: {
     default: SITE_NAME,
