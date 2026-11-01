@@ -1,5 +1,6 @@
 import { siteConfig } from '@/config/site';
 import { formatPriceINR } from '@/utils';
+import { testimonials } from '@/data/testimonials';
 import type { ContactInfo } from '@/types';
 import type { Room } from '@/types';
 
@@ -77,6 +78,20 @@ export function hotelSchema(contact: ContactInfo, rooms: Room[]) {
       worstRating: '1',
     },
     sameAs: RESORT_SAME_AS,
+    review: testimonials.map((t) => ({
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: t.name,
+      },
+      reviewBody: t.text,
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: String(t.rating),
+        bestRating: '5',
+        worstRating: '1',
+      },
+    })),
     amenityFeature: [
       { '@type': 'LocationFeatureSpecification', name: 'Swimming Pool', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Free WiFi', value: true },
@@ -143,6 +158,20 @@ export function localBusinessSchema(contact: ContactInfo) {
       worstRating: '1',
     },
     sameAs: RESORT_SAME_AS,
+    review: testimonials.map((t) => ({
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: t.name,
+      },
+      reviewBody: t.text,
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: String(t.rating),
+        bestRating: '5',
+        worstRating: '1',
+      },
+    })),
   };
 }
 

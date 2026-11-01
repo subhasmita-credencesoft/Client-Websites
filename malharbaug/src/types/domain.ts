@@ -65,6 +65,9 @@ export interface Testimonial {
   location: string;
   rating: number;
   text: string;
+  source?: string;
+  date?: string;
+  stayType?: string;
 }
 
 export interface FAQ {
