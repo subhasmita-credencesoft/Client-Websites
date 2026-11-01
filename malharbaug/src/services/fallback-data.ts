@@ -21,9 +21,9 @@ export const fallbackProperty: ApiProperty = {
   latitude: 18.6019,
   longitude: 72.9056,
   imageList: [
-    { url: '/heroimg1.jpeg', mainImage: true },
-    { url: '/heroimg2.jpeg' },
-    { url: '/heroimg3.jpeg' },
+    { url: '/hero1.jpeg', mainImage: true },
+    { url: '/hero2.jpeg' },
+    { url: '/hero3.jpeg' },
     { url: '/dining/fishthali.jpeg' },
   ],
   propertyServicesList: [
@@ -46,8 +46,8 @@ export const fallbackProperty: ApiProperty = {
       minimumOccupancy: 1,
       maximumOccupancy: 3,
       imageList: [
-        { url: '/heroimg1.jpeg', mainImage: true },
-        { url: '/heroimg2.jpeg' },
+        { url: '/hero1.jpeg', mainImage: true },
+        { url: '/hero2.jpeg' },
       ],
       roomFacilities: [
         { id: 10, name: 'Air Conditioning' },
@@ -70,8 +70,8 @@ export const fallbackProperty: ApiProperty = {
       minimumOccupancy: 2,
       maximumOccupancy: 6,
       imageList: [
-        { url: '/heroimg2.jpeg', mainImage: true },
-        { url: '/heroimg3.jpeg' },
+        { url: '/hero2.jpeg', mainImage: true },
+        { url: '/hero3.jpeg' },
       ],
       roomFacilities: [
         { id: 20, name: '2 King Bedrooms' },
@@ -94,9 +94,9 @@ export const fallbackProperty: ApiProperty = {
       minimumOccupancy: 8,
       maximumOccupancy: 16,
       imageList: [
-        { url: '/heroimg3.jpeg', mainImage: true },
-        { url: '/heroimg1.jpeg' },
-        { url: '/heroimg2.jpeg' },
+        { url: '/hero3.jpeg', mainImage: true },
+        { url: '/hero1.jpeg' },
+        { url: '/hero2.jpeg' },
       ],
       roomFacilities: [
         { id: 30, name: '4 Master Bedrooms' },

@@ -6,8 +6,10 @@ export const galleryCategories: GalleryCategory[] = [
     title: 'Food & Dining',
     images: [
       '/dininghero.jpeg',
+      '/dininghero2.jpeg',
       '/dining/fishthali.jpeg',
       '/dining/vegthali.jpeg',
+      '/dining/misalpaw.png',
       '/dining/chickensukha.jpeg',
       '/dining/chana koliwada.jpeg',
       '/dining/kanda bhaji.jpeg',
@@ -23,17 +25,17 @@ export const galleryCategories: GalleryCategory[] = [
     id: 'rooms',
     title: 'Rooms & Villas',
     images: [
-      '/heroimg1.jpeg',
-      '/heroimg3.jpeg',
-      '/hero2.jpeg',
       '/hero1.jpeg',
+      '/hero2.jpeg',
+      '/hero3.jpeg',
+      '/heroimg1.jpeg',
     ],
   },
   {
     id: 'pool',
     title: 'Swimming Pool',
     images: [
-      '/heroimg2.jpeg',
+      '/swimmingpool.jpeg',
       '/hero2.jpeg',
       '/hero3.jpeg',
     ],
@@ -43,8 +45,8 @@ export const galleryCategories: GalleryCategory[] = [
     title: 'Gardens & Lawns',
     images: [
       '/hero1.jpeg',
+      '/hero3.jpeg',
       '/aboutimg.jpeg',
-      '/heroimg1.jpeg',
     ],
   },
   {
@@ -52,8 +54,10 @@ export const galleryCategories: GalleryCategory[] = [
     title: 'Restaurant & Dining',
     images: [
       '/dininghero.jpeg',
+      '/dininghero2.jpeg',
       '/dining/fishthali.jpeg',
       '/dining/vegthali.jpeg',
+      '/dining/misalpaw.png',
       '/dining/chickensukha.jpeg',
       '/dining/WhatsApp Image 2026-10-30 at 3.51.18 PM (1).jpeg',
       '/dining/WhatsApp Image 2026-10-30 at 3.51.19 PM.jpeg',
@@ -63,8 +67,8 @@ export const galleryCategories: GalleryCategory[] = [
     id: 'events',
     title: 'Events & Lawns',
     images: [
-      '/heroimg2.jpeg',
       '/hero1.jpeg',
+      '/hero2.jpeg',
       '/dining/WhatsApp Image 2026-10-30 at 3.51.19 PM.jpeg',
     ],
   },
@@ -72,8 +76,8 @@ export const galleryCategories: GalleryCategory[] = [
     id: 'activities',
     title: 'Recreation & Play',
     images: [
-      '/aboutimg.jpeg',
       '/hero3.jpeg',
+      '/aboutimg.jpeg',
     ],
   },
 ];

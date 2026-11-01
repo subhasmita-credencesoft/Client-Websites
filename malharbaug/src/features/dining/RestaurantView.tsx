@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer';
 import { menuCategories, diningDescription, diningGalleryImages } from '@/data/dining';
 import { getContact } from '@/lib/api';
 import RestaurantMenu from './RestaurantMenu';
+import RestaurantHero from './RestaurantHero';
 
 export default async function RestaurantView() {
   const contact = await getContact();
@@ -12,28 +13,8 @@ export default async function RestaurantView() {
     <>
       <Header />
       <main>
-        {/* Hero Section */}
-        <section className="relative flex min-h-[460px] items-center overflow-hidden">
-          <Image
-            src="/dininghero.jpeg"
-            alt="Garden restaurant at Malhar Baug Resort Alibaug serving authentic Konkan and Maharashtrian cuisine"
-            fill
-            priority
-            className="absolute inset-0 z-0 object-cover"
-          />
-          <div className="hero-overlay absolute inset-0 z-0" />
-          <div className="relative z-10 mx-auto max-w-7xl px-6 text-center">
-            <span className="inline-block rounded-full bg-brand-600/80 px-4 py-1.5 font-sans text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
-              Malhar Baug Kitchen
-            </span>
-            <h1 className="mt-4 font-serif text-5xl font-bold text-white sm:text-6xl">
-              Restaurant &amp; Dining
-            </h1>
-            <p className="mx-auto mt-4 max-w-2xl font-sans text-lg text-earth-100">
-              Savour authentic Maharashtrian coastal flavours, fresh seafood, and multi-cuisine delights in our peaceful garden setting.
-            </p>
-          </div>
-        </section>
+        {/* Animated Hero Carousel with dininghero and dininghero2 */}
+        <RestaurantHero />
 
         {/* Culinary Story Section */}
         <section className="mx-auto max-w-7xl px-6 py-20">

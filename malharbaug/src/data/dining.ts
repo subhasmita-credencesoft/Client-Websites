@@ -57,6 +57,18 @@ export const diningGalleryImages: DiningDishImage[] = [
     category: 'Breakfast',
   },
   {
+    src: '/dining/misalpaw.png',
+    alt: 'Authentic spicy Maharashtrian Misal Pav served with fresh pav, farsan, chopped onions, and lemon at Malhar Baug Resort',
+    title: 'Misal Pav',
+    category: 'Breakfast',
+  },
+  {
+    src: '/dininghero2.jpeg',
+    alt: 'Garden restaurant seating and dining ambiance at Malhar Baug Resort Alibaug',
+    title: 'Restaurant & Dining Lawn',
+    category: 'Ambiance',
+  },
+  {
     src: '/dining/WhatsApp Image 2026-10-30 at 3.51.18 PM (1).jpeg',
     alt: 'Serene garden restaurant ambiance at Malhar Baug Resort Alibaug',
     title: 'Garden Dining Ambiance',
@@ -79,7 +91,7 @@ export const diningGalleryImages: DiningDishImage[] = [
 export const menuCategories: MenuCategory[] = [
   {
     title: 'Breakfast',
-    items: ['Upma', 'Poha', 'Idli-Sambar', 'Aloo Paratha', 'Masala Dosa', 'Bread Omelette', 'Cereal & Fruits', 'Tea & Coffee'],
+    items: ['Misal Pav', 'Upma', 'Poha', 'Idli-Sambar', 'Aloo Paratha', 'Masala Dosa', 'Bread Omelette', 'Cereal & Fruits', 'Tea & Coffee'],
   },
   {
     title: 'Lunch',
@@ -91,7 +103,7 @@ export const menuCategories: MenuCategory[] = [
   },
   {
     title: 'Snacks & Starters',
-    items: ['Chana Koliwada', 'Kanda Bhaji', 'Potato Pakoda', 'Crispy Starters & Snacks', 'Samosa', 'Vada Pav', 'French Fries', 'Sandwich'],
+    items: ['Misal Pav', 'Chana Koliwada', 'Kanda Bhaji', 'Potato Pakoda', 'Crispy Starters & Snacks', 'Samosa', 'Vada Pav', 'French Fries', 'Sandwich'],
   },
   {
     title: 'Non-Vegetarian',
@@ -120,4 +132,4 @@ export const menuCategories: MenuCategory[] = [
 ];
 
 export const diningDescription =
-  'Experience authentic Maharashtrian flavors along with coastal seafood and multi-cuisine specialties prepared using fresh, locally sourced ingredients. Our garden restaurant offers freshly prepared Fish Thali, Veg Thali, Chicken Sukha, Chana Koliwada, Kanda Bhaji, Potato Pakoda, Upma, and seasonal coastal delicacies that celebrate the rich culinary culture of Alibaug and Konkan.';
+  'Experience authentic Maharashtrian flavors along with coastal seafood and multi-cuisine specialties prepared using fresh, locally sourced ingredients. Our garden restaurant offers freshly prepared Fish Thali, Veg Thali, Chicken Sukha, Misal Pav, Chana Koliwada, Kanda Bhaji, Potato Pakoda, Upma, and seasonal coastal delicacies that celebrate the rich culinary culture of Alibaug and Konkan.';

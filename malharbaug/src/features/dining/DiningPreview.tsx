@@ -30,7 +30,7 @@ export default function DiningPreview() {
               />
             </div>
             <div className="pr-2">
-              <p className="font-serif text-sm font-bold text-earth-900 dark:text-white">Fresh Konkan Thali</p>
+              <p className="font-serif text-sm font-bold text-earth-900 dark:text-white">Fish Thali</p>
               <p className="font-sans text-xs text-brand-600 dark:text-brand-400">Authentic Taste</p>
             </div>
           </div>
