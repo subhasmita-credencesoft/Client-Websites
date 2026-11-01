@@ -99,7 +99,25 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-5 md:flex-row">
           <p className="font-sans text-xs text-brand-300">
-            &copy; 2026 Malhar Baug Resort, Alibaug. All rights reserved.
+            Designed and Developed By{' '}
+            <a
+              href="https://credencesoft.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-white underline-offset-2 hover:underline"
+            >
+              CredenceSoft
+            </a>
+            , Powered By{' '}
+            <a
+              href="https://bookonepms.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-white underline-offset-2 hover:underline"
+            >
+              BookOne
+            </a>
+            .
           </p>
           <nav aria-label="Legal">
             <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">

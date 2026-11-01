@@ -68,24 +68,6 @@ export const diningGalleryImages: DiningDishImage[] = [
     title: 'Restaurant & Dining Lawn',
     category: 'Ambiance',
   },
-  {
-    src: '/dining/WhatsApp Image 2026-10-30 at 3.51.18 PM (1).jpeg',
-    alt: 'Serene garden restaurant ambiance at Malhar Baug Resort Alibaug',
-    title: 'Garden Dining Ambiance',
-    category: 'Ambiance',
-  },
-  {
-    src: '/dining/WhatsApp Image 2026-10-30 at 3.51.18 PM (2).jpeg',
-    alt: 'Fresh morning breakfast and buffet spread at Malhar Baug Resort',
-    title: 'Breakfast & Dining Setup',
-    category: 'Breakfast',
-  },
-  {
-    src: '/dining/WhatsApp Image 2026-10-30 at 3.51.19 PM.jpeg',
-    alt: 'Evening dinner table and food spread at Malhar Baug garden restaurant',
-    title: 'Evening Garden Dinner',
-    category: 'Dinner',
-  },
 ];
 
 export const menuCategories: MenuCategory[] = [

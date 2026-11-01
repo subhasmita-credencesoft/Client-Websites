@@ -56,7 +56,7 @@ export default async function RestaurantView() {
         </section>
 
         {/* Real Food Gallery Showcase */}
-        <section className="bg-earth-50 py-20 dark:bg-earth-900/40">
+        <section id="menu" className="scroll-mt-20 bg-earth-50 py-20 dark:bg-earth-900/40">
           <div className="mx-auto max-w-7xl px-6">
             <div className="text-center">
               <p className="section-subtitle">Food &amp; Dining Gallery</p>

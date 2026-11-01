@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const restaurantHeroImages = [
   {
@@ -77,12 +78,12 @@ export default function RestaurantHero() {
           >
             Explore Menu
           </a>
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="rounded-full border border-white/60 bg-white/10 px-7 py-3 font-sans text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white hover:text-earth-900"
           >
             Reserve Table
-          </a>
+          </Link>
         </div>
       </div>
 
