@@ -64,8 +64,8 @@ export default async function RestaurantView() {
             </div>
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-xl">
               <Image
-                src="/dining/WhatsApp Image 2026-10-29 at 10.07.16 AM.jpeg"
-                alt="Traditional Malhar Baug special thali meal"
+                src="/dining/fishthali.jpeg"
+                alt="Authentic Malhar Baug fresh fish thali meal with coastal curry and solkadhi"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"

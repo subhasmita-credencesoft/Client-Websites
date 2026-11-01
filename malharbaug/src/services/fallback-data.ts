@@ -24,7 +24,7 @@ export const fallbackProperty: ApiProperty = {
     { url: '/heroimg1.jpeg', mainImage: true },
     { url: '/heroimg2.jpeg' },
     { url: '/heroimg3.jpeg' },
-    { url: '/dining/WhatsApp Image 2026-10-30 at 3.51.19 PM.jpeg' },
+    { url: '/dining/fishthali.jpeg' },
   ],
   propertyServicesList: [
     { id: 1, name: 'Swimming Pool' },

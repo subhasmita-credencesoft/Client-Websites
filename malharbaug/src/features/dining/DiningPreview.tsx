@@ -22,8 +22,8 @@ export default function DiningPreview() {
           <div className="absolute -bottom-6 -right-4 hidden sm:flex items-center gap-3 rounded-2xl border border-neutral-200 bg-white/95 p-3 shadow-xl backdrop-blur-md dark:border-neutral-700 dark:bg-earth-900/95">
             <div className="relative h-16 w-16 overflow-hidden rounded-xl">
               <Image
-                src="/dining/WhatsApp Image 2026-10-29 at 10.07.16 AM.jpeg"
-                alt="Fresh authentic Malhar Baug thali"
+                src="/dining/fishthali.jpeg"
+                alt="Fresh authentic Malhar Baug fish thali"
                 fill
                 sizes="64px"
                 className="object-cover"

@@ -9,98 +9,109 @@ export interface DiningDishImage {
 
 export const diningGalleryImages: DiningDishImage[] = [
   {
-    src: '/dining/WhatsApp Image 2026-10-29 at 10.07.16 AM.jpeg',
-    alt: 'Authentic Maharashtrian Konkan thali with fresh coastal specialties at Malhar Baug Resort Alibaug',
-    title: 'Authentic Konkan Thali',
+    src: '/dining/fishthali.jpeg',
+    alt: 'Authentic Konkan Fish Thali with Surmai, Pomfret, coastal fish curry, steamed rice, and Solkadhi at Malhar Baug Resort Alibaug',
+    title: 'Fish Thali',
+    category: 'Seafood',
+  },
+  {
+    src: '/dining/vegthali.jpeg',
+    alt: 'Special Maharashtrian Veg Thali with fresh seasonal vegetables, dal, rice, hot chapatis, and sweet at Malhar Baug Resort',
+    title: 'Veg Thali',
     category: 'Thali',
   },
   {
-    src: '/dining/WhatsApp Image 2026-10-29 at 10.07.17 AM.jpeg',
-    alt: 'Freshly prepared coastal seafood dish at Malhar Baug Resort restaurant Alibaug',
-    title: 'Coastal Seafood Special',
-    category: 'Seafood',
-  },
-  {
-    src: '/dining/WhatsApp Image 2026-10-29 at 10.07.18 AM (1).jpeg',
-    alt: 'Traditional Alibaug fish fry seasoned with local Konkan spices',
-    title: 'Crispy Fish Fry',
-    category: 'Seafood',
-  },
-  {
-    src: '/dining/WhatsApp Image 2026-10-29 at 10.07.18 AM.jpeg',
-    alt: 'Home-style Indian vegetable curry with aromatic rice at Malhar Baug Resort',
-    title: 'Home-Style Veg Delicacy',
-    category: 'Vegetarian',
-  },
-  {
-    src: '/dining/WhatsApp Image 2026-10-29 at 10.07.19 AM.jpeg',
-    alt: 'Special non-vegetarian chicken preparation cooked in traditional coastal gravy',
-    title: 'Chicken Sukka & Curry',
+    src: '/dining/chickensukha.jpeg',
+    alt: 'Authentic coastal Chicken Sukha cooked in roasted coconut and aromatic spices at Malhar Baug Resort',
+    title: 'Chicken Sukha',
     category: 'Non-Vegetarian',
   },
   {
-    src: '/dining/WhatsApp Image 2026-10-29 at 10.07.21 AM (1).jpeg',
-    alt: 'Crispy hot starters served fresh at Malhar Baug garden restaurant',
+    src: '/dining/chana koliwada.jpeg',
+    alt: 'Crispy spicy Chana Koliwada starter served fresh at Malhar Baug garden restaurant',
+    title: 'Chana Koliwada',
+    category: 'Snacks',
+  },
+  {
+    src: '/dining/kanda bhaji.jpeg',
+    alt: 'Crispy hot golden Kanda Bhaji (onion pakoda) served fresh at Malhar Baug Resort garden restaurant',
+    title: 'Kanda Bhaji',
+    category: 'Snacks',
+  },
+  {
+    src: '/dining/potatopakoda.jpeg',
+    alt: 'Crispy golden Potato Pakoda (Aloo Bhajiya) served hot with spicy mint and tamarind chutneys',
+    title: 'Potato Pakoda',
+    category: 'Snacks',
+  },
+  {
+    src: '/dining/Crispy Starters & Snacks.jpeg',
+    alt: 'Crispy hot starters and evening snacks served at Malhar Baug garden restaurant',
     title: 'Crispy Starters & Snacks',
     category: 'Snacks',
   },
   {
-    src: '/dining/WhatsApp Image 2026-10-29 at 10.07.21 AM.jpeg',
-    alt: 'Tandoori and starter delicacies at Malhar Baug Resort restaurant',
-    title: 'Tandoori & Starters',
-    category: 'Starters',
+    src: '/dining/upma.jpeg',
+    alt: 'Freshly prepared traditional South Indian and Maharashtrian Upma with curry leaves and mustard seeds',
+    title: 'Upma',
+    category: 'Breakfast',
   },
   {
-    src: '/dining/WhatsApp Image 2026-10-29 at 10.07.22 AM.jpeg',
-    alt: 'Complete family dinner spread at Malhar Baug Resort restaurant near Nagaon Beach',
-    title: 'Family Feast Spread',
-    category: 'Dinner',
+    src: '/dining/WhatsApp Image 2026-10-30 at 3.51.18 PM (1).jpeg',
+    alt: 'Serene garden restaurant ambiance at Malhar Baug Resort Alibaug',
+    title: 'Garden Dining Ambiance',
+    category: 'Ambiance',
   },
   {
-    src: '/dining/WhatsApp Image 2026-10-29 at 7.23.06 PM.jpeg',
+    src: '/dining/WhatsApp Image 2026-10-30 at 3.51.18 PM (2).jpeg',
+    alt: 'Fresh morning breakfast and buffet spread at Malhar Baug Resort',
+    title: 'Breakfast & Dining Setup',
+    category: 'Breakfast',
+  },
+  {
+    src: '/dining/WhatsApp Image 2026-10-30 at 3.51.19 PM.jpeg',
     alt: 'Evening dinner table and food spread at Malhar Baug garden restaurant',
     title: 'Evening Garden Dinner',
     category: 'Dinner',
   },
-  
 ];
 
 export const menuCategories: MenuCategory[] = [
   {
     title: 'Breakfast',
-    items: ['Poha', 'Upma', 'Idli-Sambar', 'Aloo Paratha', 'Masala Dosa', 'Bread Omelette', 'Cereal & Fruits', 'Tea & Coffee'],
+    items: ['Upma', 'Poha', 'Idli-Sambar', 'Aloo Paratha', 'Masala Dosa', 'Bread Omelette', 'Cereal & Fruits', 'Tea & Coffee'],
   },
   {
     title: 'Lunch',
-    items: ['Vegetable Thali', 'Chicken Thali', 'Fish Thali', 'Dal Khichdi', 'Paneer Butter Masala', 'Chicken Curry', 'Steamed Rice', 'Roti/Naan'],
+    items: ['Fish Thali', 'Veg Thali', 'Chicken Thali', 'Chicken Sukha', 'Dal Khichdi', 'Paneer Butter Masala', 'Steamed Rice', 'Roti/Naan'],
   },
   {
     title: 'Dinner',
-    items: ['Special Veg Thali', 'Special Non-Veg Thali', 'Seafood Special', 'Mutton Curry', 'Veg Biryani', 'Chicken Biryani', 'Dal Tadka', ' Salad'],
+    items: ['Special Fish Thali', 'Special Veg Thali', 'Chicken Sukha & Curry', 'Mutton Curry', 'Veg Biryani', 'Chicken Biryani', 'Dal Tadka', 'Salad'],
   },
   {
-    title: 'Vegetarian',
-    items: ['Veg Kolhapuri', 'Bhindi Masala', 'Baingan Bharta', 'Mushroom Masala', 'Aloo Gobi', 'Mix Veg', 'Dal Fry', 'Veg Pulao'],
+    title: 'Snacks & Starters',
+    items: ['Chana Koliwada', 'Kanda Bhaji', 'Potato Pakoda', 'Crispy Starters & Snacks', 'Samosa', 'Vada Pav', 'French Fries', 'Sandwich'],
   },
   {
     title: 'Non-Vegetarian',
-    items: ['Chicken Kolhapuri', 'Egg Curry', 'Fish Fry', 'Prawn Curry', 'Chicken Tandoori', 'Mutton Sukka', 'Bombil Fry', 'Sukka Chicken'],
+    items: ['Chicken Sukha', 'Chicken Kolhapuri', 'Egg Curry', 'Fish Fry', 'Prawn Curry', 'Chicken Tandoori', 'Mutton Sukka', 'Bombil Fry'],
   },
   {
-    title: 'Seafood',
-    items: ['Suranam Fry', 'Prawns Koliwada', 'Bombil Rawa Fry', 'Crab Masala', 'Fish Curry', 'Prawns Biryani', 'Lobster (Seasonal)', 'Clam Sukka'],
+    title: 'Seafood Specials',
+    items: ['Fish Thali (Surmai / Pomfret)', 'Prawns Koliwada', 'Bombil Rawa Fry', 'Crab Masala', 'Fish Curry', 'Prawns Biryani', 'Lobster (Seasonal)', 'Solkadhi'],
+  },
+  {
+    title: 'Vegetarian',
+    items: ['Veg Thali', 'Chana Koliwada', 'Veg Kolhapuri', 'Bhindi Masala', 'Baingan Bharta', 'Mushroom Masala', 'Aloo Gobi', 'Dal Fry'],
   },
   {
     title: 'Chinese',
     items: ['Veg Manchurian', 'Chicken Manchurian', 'Fried Rice', 'Noodles', 'Chilli Chicken', 'Gobi Manchurian', 'Schezwan Rice', 'Spring Rolls'],
   },
   {
-    title: 'Snacks',
-    items: ['Samosa', 'Vada Pav', 'Bhel Puri', 'Pani Puri', 'French Fries', 'Onion Rings', 'Sandwich', 'Pakoras'],
-  },
-  {
     title: 'Beverages',
-    items: ['Fresh Lime Soda', 'Buttermilk', 'Lassi', 'Cold Drinks', 'Fresh Juice', 'Coconut Water', 'Tea', 'Coffee'],
+    items: ['Solkadhi', 'Fresh Lime Soda', 'Buttermilk', 'Lassi', 'Cold Drinks', 'Fresh Juice', 'Coconut Water', 'Tea & Coffee'],
   },
   {
     title: 'Desserts',
@@ -109,4 +120,4 @@ export const menuCategories: MenuCategory[] = [
 ];
 
 export const diningDescription =
-  'Experience authentic Maharashtrian flavors along with Indian and seasonal specialties prepared using fresh, locally sourced ingredients. Our multi-cuisine restaurant offers a delightful culinary journey with a menu that celebrates the rich food culture of the Konkan region alongside popular Indian and Chinese dishes.';
+  'Experience authentic Maharashtrian flavors along with coastal seafood and multi-cuisine specialties prepared using fresh, locally sourced ingredients. Our garden restaurant offers freshly prepared Fish Thali, Veg Thali, Chicken Sukha, Chana Koliwada, Kanda Bhaji, Potato Pakoda, Upma, and seasonal coastal delicacies that celebrate the rich culinary culture of Alibaug and Konkan.';
