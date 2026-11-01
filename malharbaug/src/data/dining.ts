@@ -62,24 +62,7 @@ export const diningGalleryImages: DiningDishImage[] = [
     title: 'Evening Garden Dinner',
     category: 'Dinner',
   },
-  {
-    src: '/dining/WhatsApp Image 2026-10-30 at 3.51.18 PM (1).jpeg',
-    alt: 'Fresh morning breakfast spread with tea at Malhar Baug Resort Alibaug',
-    title: 'Morning Breakfast Spread',
-    category: 'Breakfast',
-  },
-  {
-    src: '/dining/WhatsApp Image 2026-10-30 at 3.51.18 PM (2).jpeg',
-    alt: 'Traditional Konkan breakfast specialties prepared fresh every morning',
-    title: 'Fresh Konkan Breakfast',
-    category: 'Breakfast',
-  },
-  {
-    src: '/dining/WhatsApp Image 2026-10-30 at 3.51.19 PM.jpeg',
-    alt: 'Refreshing local drinks and dessert accompaniment at Malhar Baug Resort',
-    title: 'Special Refreshments & Sweets',
-    category: 'Beverages',
-  },
+  
 ];
 
 export const menuCategories: MenuCategory[] = [
