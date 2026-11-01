@@ -14,7 +14,7 @@ export default async function EventsListView() {
       <main>
         <section className="relative flex min-h-[400px] items-center overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2068"
+            src="/heroimg2.jpeg"
             alt="Weddings, birthdays and corporate events at Malhar Baug Resort Alibaug event lawns"
             fill
             priority
@@ -46,15 +46,15 @@ export default async function EventsListView() {
         <section className="bg-earth-100 pb-24 pt-12 dark:bg-earth-800/30">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              {eventCategories.map((event, index) => (
+              {eventCategories.map((event) => (
                 <Link
                   key={event.id}
                   href={`/events/${event.id}`}
-                  className={`animate-on-scroll stagger-${(index % 2) + 1} group overflow-hidden rounded-2xl bg-white card-shadow transition-all duration-300 hover:-translate-y-1 dark:bg-earth-800/50`}
+                  className="group block overflow-hidden rounded-2xl bg-white card-shadow transition-all duration-300 hover:-translate-y-1 dark:bg-earth-800/50"
                 >
-                  <div className="relative h-56 overflow-hidden">
+                  <div className="relative h-56 w-full overflow-hidden bg-earth-200 dark:bg-earth-700">
                     <Image
-                      src={event.image}
+                      src={event.image || '/heroimg1.jpeg'}
                       alt={event.title}
                       fill
                       sizes="(min-width: 768px) 50vw, 100vw"
@@ -95,7 +95,7 @@ export default async function EventsListView() {
               Contact Us
             </Link>
             <a
-              href={`tel:${contact.phone}`}
+              href={`tel:${contact.phone || '+919035198520'}`}
               className="rounded-full border-2 border-brand-600 px-8 py-3.5 font-sans text-sm font-semibold text-brand-600 transition-colors hover:bg-brand-600 hover:text-white dark:border-brand-400 dark:text-brand-400"
             >
               Call Now

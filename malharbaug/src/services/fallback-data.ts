@@ -1,18 +1,17 @@
-import type { ApiProperty, ContactInfo } from '@/types';
-import type { Room } from '@/types';
+import type { ApiProperty } from '@/types';
 
 export const fallbackProperty: ApiProperty = {
   id: 2970,
   name: 'Malhar Baug Resort',
   email: 'bookings@malharbaugresort.com',
-  mobile: '+919152018635',
-  whatsApp: '+919152018635',
-  managerContactNo: '+919324068153',
+  mobile: '+919035198520',
+  whatsApp: '+919987552273',
+  managerContactNo: '+919035198520',
   managerEmailAddress: 'manager@malharbaugresort.com',
   address: {
-    streetNumber: 'Near Nagaon High School',
-    streetName: 'Palhe, Nagaon Beach Road',
-    suburb: 'Nagaon',
+    streetNumber: 'H.No. 3116',
+    streetName: 'Palhe, Nagaon',
+    suburb: 'Palhe',
     city: 'Alibaug',
     state: 'Maharashtra',
     locality: 'Nagaon',
@@ -43,7 +42,7 @@ export const fallbackProperty: ApiProperty = {
       name: 'Super Deluxe Room',
       description:
         'Spacious, air-conditioned luxury room featuring plush king bedding, private balcony overlooking the greenery, modern en-suite bathroom, flat-screen TV, and tea/coffee maker. Ideal for couples and small families.',
-      roomOnlyPrice: 3500,
+      roomOnlyPrice: 4229,
       minimumOccupancy: 1,
       maximumOccupancy: 3,
       imageList: [
@@ -59,24 +58,23 @@ export const fallbackProperty: ApiProperty = {
         { id: 15, name: 'Free WiFi' },
       ],
       ratesAndAvailabilityDtos: [
-        { id: 1, price: 3500, noOfAvailable: 5 },
+        { id: 1, price: 4229, noOfAvailable: 4 },
       ],
     },
     {
       id: 102,
       name: '2-Bedroom Hall Villa',
       description:
-        'Expansive 2-BHK private villa with two separate master bedrooms, cozy hall living area, private sit-out verandah facing the gardens, and direct pool access. Perfect for families with kids and elderly parents.',
+        'Ideal family sanctuary with two independent air-conditioned bedrooms, common sitting and dining hall, wide veranda overlooking gardens, and rapid pool access. Sleeps 4 adults and 2 children with comfort.',
       roomOnlyPrice: 7500,
-      minimumOccupancy: 4,
-      maximumOccupancy: 8,
+      minimumOccupancy: 2,
+      maximumOccupancy: 6,
       imageList: [
         { url: '/heroimg2.jpeg', mainImage: true },
         { url: '/heroimg3.jpeg' },
-        { url: '/heroimg1.jpeg' },
       ],
       roomFacilities: [
-        { id: 20, name: '2 Master Bedrooms' },
+        { id: 20, name: '2 King Bedrooms' },
         { id: 21, name: 'Living Hall & Dining Area' },
         { id: 22, name: 'Air Conditioning in Both Rooms' },
         { id: 23, name: '2 En-Suite Bathrooms' },

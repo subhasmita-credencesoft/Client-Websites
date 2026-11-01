@@ -216,7 +216,7 @@ export const blogPosts: BlogArticle[] = [
         list: [
           'Cake: order locally in Alibaug a day early; carry a cooler box in summer months',
           'Decor: balloons-and-flowers standard package, or themed setup arranged on request',
-          'Catering: fixed menu counts work better than unlimited buffets for kids\u2019 parties',
+          'Catering: fixed menu counts work better than unlimited buffets for kids’ parties',
           'Music: lawn sound permitted till 10 PM — plan the loud part earlier',
           'Weather plan B: covered seating option confirmed at booking, especially June–September',
           'Photos: golden hour on the lawns beats any indoor backdrop — schedule the cake cutting accordingly',
@@ -232,6 +232,105 @@ export const blogPosts: BlogArticle[] = [
         heading: 'Tell Us Your Date, We Will Handle the Rest',
         paragraphs: [
           'Share your date, headcount and budget range via our contact page — our events team sends back a decor-and-menu proposal with pricing, and handles coordination with local vendors you bring in. See more on our events page.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'best-family-resort-in-nagaon-alibaug',
+    title: 'Why Malhar Baug Resort is Rated Among the Best Family Resorts in Nagaon Alibaug',
+    description:
+      'Looking for the best resort in Nagaon Alibaug for your family weekend? Discover why Malhar Baug Resort stands out — swimming pool, private villas, home-style Konkan food, and just 2 km to Nagaon Beach.',
+    excerpt:
+      'From child-friendly pools and lush green lawns to authentic Konkani seafood thalis, here is what makes Malhar Baug Resort a favorite family getaway in Nagaon, Alibaug.',
+    author: 'Team Malhar Baug',
+    date: '2026-10-15',
+    readTime: '5 min read',
+    image: '/heroimg1.jpeg',
+    imageAlt: 'Best family resort in Nagaon Alibaug - Malhar Baug Resort gardens and swimming pool',
+    tags: ['Family Vacation', 'Nagaon Beach', 'Resort Guide'],
+    sections: [
+      {
+        heading: '1. Peaceful Nature Setting Near Nagaon Beach',
+        paragraphs: [
+          'Located in Palhe, Nagaon, Malhar Baug Resort offers the ideal balance: peaceful green surroundings away from noisy traffic, yet only 2 km (a quick 5-minute drive) from the exciting water sports and golden sands of Nagaon Beach. Guests enjoy quiet sleep without missing out on beach adventures.',
+        ],
+      },
+      {
+        heading: '2. Spotless Swimming Pool for Adults & Children',
+        paragraphs: [
+          'A swimming pool is the centerpiece of any tropical vacation. Our open-air pool is cleaned and filtered daily, featuring a safe shallow section where young children can splash comfortably while parents relax on poolside loungers under coconut palms.',
+        ],
+      },
+      {
+        heading: '3. Flexible Stays: Luxury AC Rooms & Private Group Villas',
+        paragraphs: [
+          'Whether traveling as a couple with a toddler or organizing an extended 3-generation family reunion, we offer matching accommodation. Choose our Super Deluxe AC Rooms with garden-view balconies, or book our exclusive 2-Bedroom and 4-Bedroom Hall Villas with living spaces for up to 15 family members.',
+        ],
+      },
+      {
+        heading: '4. Pure Home-Style Konkan Cuisine',
+        paragraphs: [
+          'Nothing beats genuine coastal food prepared with local spices, freshly grated coconut, and kokum. Resident guests praise our fresh Surmai and Pomfret fish fry, coastal chicken sukka, steaming Solkadhi, and customized vegetarian thalis. We happily prepare mild meals and warm milk for young kids upon request.',
+        ],
+      },
+      {
+        heading: '5. Outdoor Lawns, Children Play Area & Indoor Games',
+        paragraphs: [
+          'Children have room to run on wide natural grass lawns equipped with swings and play slides. For afternoons, our recreation space features carrom boards, chess, and badminton, while cool evenings are capped off with lawn bonfires and music.',
+        ],
+      },
+      {
+        heading: 'Direct Booking Advantage',
+        paragraphs: [
+          'Direct bookings through our official website or direct WhatsApp line always get guaranteed lowest rates starting from ₹4,229 per night, early check-in flexibility, and personalized trip advice from our local hosts.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'alibaug-2-day-weekend-trip-itinerary',
+    title: 'The Ultimate 2-Day Alibaug Weekend Trip Itinerary from Mumbai & Pune (2026)',
+    description:
+      'Plan the perfect 48-hour Alibaug weekend getaway from Mumbai or Pune. Complete itinerary covering Ro-Pax ferry, Nagaon Beach water sports, Kolaba Fort, and a peaceful stay at Malhar Baug Resort.',
+    excerpt:
+      'Ferry routes, beach timings, water sports costs, and the best places to eat fresh surmai thalis — our tested 48-hour weekend guide to Alibaug.',
+    author: 'Team Malhar Baug',
+    date: '2026-10-22',
+    readTime: '6 min read',
+    image: '/heroimg2.jpeg',
+    imageAlt: 'Alibaug 2 day weekend itinerary from Mumbai and Pune staying at Malhar Baug Resort',
+    tags: ['Weekend Getaway', 'Mumbai to Alibaug', 'Travel Itinerary'],
+    sections: [
+      {
+        heading: 'How to Reach Alibaug in Under 2 Hours',
+        paragraphs: [
+          'For travelers from Mumbai, the fastest route is the Mandwa speedboat from Gateway of India (50 mins) or the M2M Ro-Pax ferry from Bhaucha Dhakka which carries your car across Mumbai harbour in 60 minutes. From Pune, driving via the Mumbai-Pune Expressway and Khopoli exit reaches Alibaug in ~3.5 hours.',
+        ],
+      },
+      {
+        heading: 'Day 1: Arrival, Pool Relaxation & Nagaon Beach Water Sports',
+        list: [
+          '11:00 AM – Arrive at Malhar Baug Resort in Nagaon, complete quick check-in, and unpack in your air-conditioned room or villa.',
+          '12:30 PM – Enjoy an authentic Konkani lunch featuring fresh coastal thali and refreshing Solkadhi at the resort restaurant.',
+          '02:30 PM – Unwind with an afternoon dip in the resort swimming pool or relax under garden shade.',
+          '04:30 PM – Head to Nagaon Beach (5 minutes away) for thrilling water sports: jet ski, parasailing, and banana boat rides followed by a spectacular Arabian Sea sunset.',
+          '08:00 PM – Evening lawn bonfire and barbecue dinner at Malhar Baug Resort.',
+        ],
+      },
+      {
+        heading: 'Day 2: Coastal Forts, Akshi Beach & Souvenir Shopping',
+        list: [
+          '08:30 AM – Traditional breakfast (Poha, Misal Pav, tea/coffee) on the resort garden terrace.',
+          '10:00 AM – Check out and visit Akshi Beach, a tranquil casuarina-fringed shoreline just 10 minutes away, great for quiet strolls.',
+          '11:30 AM – Visit historical Kolaba Fort in Alibaug town, reachable on foot during low tide.',
+          '01:30 PM – Pick up local Alibaug white onions, handmade chikki, and Kolhapuri masala from the local bazaar before heading back to Mumbai/Pune.',
+        ],
+      },
+      {
+        heading: 'Booking Tips for Peak Weekends',
+        paragraphs: [
+          'Weekends sell out quickly across Alibaug resorts. To secure your preferred Super Deluxe room or private family villa, book at least 1–2 weeks ahead directly via our website or WhatsApp (+91 99875 52273) to lock in the direct booking rate starting at ₹4,229.',
         ],
       },
     ],
