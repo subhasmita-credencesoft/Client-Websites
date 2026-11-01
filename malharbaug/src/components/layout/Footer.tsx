@@ -2,21 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { buildFooterNav } from '@/data/navigation';
+import { buildFooterNav } from '@/config/navigation';
 import { useContact, useRooms } from '@/components/providers/PropertyProvider';
-import { siteConfig } from '@/lib/site';
-
-const socialLinks = [
-  { label: 'Instagram', icon: 'mdi:instagram', href: 'https://www.instagram.com/malhar_baug_resort/' },
-  { label: 'Facebook', icon: 'mdi:facebook', href: 'https://www.facebook.com/p/Malharbaug-Resort-61584448151255/' },
-];
-
-const policyLinks = [
-  { label: 'Privacy Policy', href: '/privacy-policy' },
-  { label: 'Terms & Conditions', href: '/terms-conditions' },
-  { label: 'Refund Policy', href: '/refund-policy' },
-  { label: 'Cancellation Policy', href: '/cancellation-policy' },
-];
+import { siteConfig } from '@/config/site';
+import { SOCIAL_LINKS, POLICY_LINKS } from '@/constants';
 
 export default function Footer() {
   const rooms = useRooms();
@@ -60,7 +49,7 @@ export default function Footer() {
               </li>
             </ul>
             <address className="mt-4 max-w-sm font-sans text-sm not-italic leading-relaxed text-brand-200">
-              {contact.addressLines.map((line, index) => (
+              {contact.addressLines.map((line: string, index: number) => (
                 <span key={line}>
                   {index > 0 && <br />}
                   {line}
@@ -68,7 +57,7 @@ export default function Footer() {
               ))}
             </address>
             <div className="mt-5 flex items-center gap-3">
-              {socialLinks.map((social) => (
+              {SOCIAL_LINKS.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
@@ -114,7 +103,7 @@ export default function Footer() {
           </p>
           <nav aria-label="Legal">
             <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-              {policyLinks.map((link) => (
+              {POLICY_LINKS.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}

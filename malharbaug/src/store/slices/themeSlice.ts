@@ -18,7 +18,7 @@ const themeSlice = createSlice({
       state.mode = action.payload;
       if (typeof document !== 'undefined') {
         document.documentElement.classList.toggle('dark', action.payload === 'dark');
-        window.localStorage.setItem('acuiderm-theme', action.payload);
+        window.localStorage.setItem('malhar-theme', action.payload);
       }
     },
     toggleTheme: (state) => {
@@ -26,7 +26,7 @@ const themeSlice = createSlice({
       state.mode = next;
       if (typeof document !== 'undefined') {
         document.documentElement.classList.toggle('dark', next === 'dark');
-        window.localStorage.setItem('acuiderm-theme', next);
+        window.localStorage.setItem('malhar-theme', next);
       }
     },
     hydrateTheme: (state, action: PayloadAction<ThemeMode>) => {

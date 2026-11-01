@@ -1,16 +1,14 @@
 'use client';
 
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { toggleTheme } from '@/store/slices/themeSlice';
+import { useTheme } from '@/hooks';
 
 export default function ThemeToggle() {
-  const dispatch = useAppDispatch();
-  const mode = useAppSelector((state) => state.theme.mode);
+  const { mode, toggle } = useTheme();
 
   return (
     <button
       type="button"
-      onClick={() => dispatch(toggleTheme())}
+      onClick={toggle}
       aria-label={mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
       className="flex h-10 w-10 items-center justify-center rounded-full border border-earth-200 text-earth-600 transition-colors duration-200 ease-out hover:bg-earth-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 dark:border-earth-700 dark:text-earth-300 dark:hover:bg-earth-800"
     >

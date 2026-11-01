@@ -1,1 +1,1 @@
-export const bookingEngineUrl = 'https://bookone.io/Malhar-Baug-Resort?bookingEngine=true';
+export * from '@/config/booking';

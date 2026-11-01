@@ -3,27 +3,24 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { openDrawer, setScrolled } from '@/store/slices/uiSlice';
-import { buildPrimaryNav } from '@/data/navigation';
-import { useRooms } from '@/components/providers/PropertyProvider';
-import { bookingEngineUrl } from '@/data/booking';
+import { useUI, useRooms } from '@/hooks';
+import { buildPrimaryNav } from '@/config/navigation';
+import { bookingEngineUrl } from '@/config/booking';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import NavDropdown from './NavDropdown';
 
 export default function Header() {
-  const dispatch = useAppDispatch();
-  const isScrolled = useAppSelector((state) => state.ui.isScrolled);
+  const { isScrolled, openDrawer, setScrolled } = useUI();
   const rooms = useRooms();
   const nav = buildPrimaryNav(rooms);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
-    const onScroll = () => dispatch(setScrolled(window.scrollY > 8));
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [dispatch]);
+  }, [setScrolled]);
 
   return (
     <header
@@ -88,7 +85,7 @@ export default function Header() {
           <ThemeToggle />
           <button
             type="button"
-            onClick={() => dispatch(openDrawer())}
+            onClick={openDrawer}
             aria-label="Open menu"
             className="flex h-11 w-11 items-center justify-center rounded-full text-neutral-700 lg:hidden dark:text-white"
           >

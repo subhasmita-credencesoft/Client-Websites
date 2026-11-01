@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 interface NavDropdownProps {
   open: boolean;
   items: { label: string; href: string }[];
@@ -16,13 +18,13 @@ export default function NavDropdown({ open, items }: NavDropdownProps) {
       <ul className="flex flex-col gap-2">
         {items.map((item) => (
           <li key={item.label}>
-            <a
+            <Link
               href={item.href}
               role="menuitem"
               className="block whitespace-nowrap font-sans text-sm text-neutral-700 transition-colors duration-200 ease-out hover:text-brand-600 dark:text-neutral-200 dark:hover:text-brand-400"
             >
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

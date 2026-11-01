@@ -1,6 +1,6 @@
 'use client';
 
-import { useContact } from '@/components/providers/PropertyProvider';
+import { useContact } from '@/hooks';
 
 const MESSAGE = "Hello Malhar Baug Resort, I'd like to make a booking";
 
