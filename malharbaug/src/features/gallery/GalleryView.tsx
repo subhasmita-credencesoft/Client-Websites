@@ -17,10 +17,11 @@ export default function GalleryView() {
       <main>
         <section className="relative flex min-h-[400px] items-center overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=2068"
+            src="/heroimg2.jpeg"
             alt="Photo gallery of Malhar Baug Resort Alibaug – rooms, pool, garden and dining"
             fill
             priority
+            sizes="100vw"
             className="absolute inset-0 z-0 object-cover"
           />
           <div className="hero-overlay absolute inset-0 z-0" />

@@ -5,6 +5,7 @@ import StoreProvider from '@/store/StoreProvider';
 import { PropertyProvider } from '@/components/providers/PropertyProvider';
 import JsonLd from '@/components/seo/JsonLd';
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat';
+import MobileDrawer from '@/components/layout/MobileDrawer';
 import ScrollAnimationObserver from '@/components/ui/ScrollAnimationObserver';
 import { hotelSchema, localBusinessSchema, websiteSchema } from '@/lib/schema';
 import { getContact, getRooms } from '@/lib/api';
@@ -52,13 +53,13 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: 'Malhar Baug Resort Alibaug | Family Resort Near Nagaon Beach',
     description: siteConfig.description,
-    images: [{ url: '/heroimg1.jpeg', width: 1200, height: 630, alt: 'Malhar Baug Resort - Family resort with garden, rooms and pool near Nagaon Beach Alibaug' }],
+    images: [{ url: '/hero1.jpeg', width: 1200, height: 630, alt: 'Malhar Baug Resort - Family resort with garden, rooms and pool near Nagaon Beach Alibaug' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Malhar Baug Resort Alibaug | Family Resort Near Nagaon Beach',
     description: siteConfig.description,
-    images: ['/heroimg1.jpeg'],
+    images: ['/hero1.jpeg'],
   },
   robots: {
     index: true,
@@ -104,6 +105,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <JsonLd data={websiteSchema()} />
             <ScrollAnimationObserver />
             {children}
+            <MobileDrawer />
             <WhatsAppFloat />
           </StoreProvider>
         </PropertyProvider>

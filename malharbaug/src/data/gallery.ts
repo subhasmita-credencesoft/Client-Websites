@@ -2,6 +2,25 @@ import { GalleryCategory } from '@/types';
 
 export const galleryCategories: GalleryCategory[] = [
   {
+    id: 'food',
+    title: 'Food & Dining',
+    images: [
+      '/dininghero.jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 10.07.16 AM.jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 10.07.17 AM.jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 10.07.18 AM (1).jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 10.07.18 AM.jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 10.07.19 AM.jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 10.07.21 AM (1).jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 10.07.21 AM.jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 10.07.22 AM.jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 7.23.06 PM.jpeg',
+      '/dining/WhatsApp Image 2026-10-30 at 3.51.18 PM (1).jpeg',
+      '/dining/WhatsApp Image 2026-10-30 at 3.51.18 PM (2).jpeg',
+      '/dining/WhatsApp Image 2026-10-30 at 3.51.19 PM.jpeg',
+    ],
+  },
+  {
     id: 'rooms',
     title: 'Luxury Rooms',
     images: [
@@ -31,8 +50,10 @@ export const galleryCategories: GalleryCategory[] = [
     id: 'restaurant',
     title: 'Restaurant',
     images: [
-      'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=800',
+      '/dininghero.jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 10.07.22 AM.jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 7.23.06 PM.jpeg',
+      '/dining/WhatsApp Image 2026-10-29 at 10.07.16 AM.jpeg',
     ],
   },
   {
@@ -49,14 +70,6 @@ export const galleryCategories: GalleryCategory[] = [
     images: [
       'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800',
       'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=800',
-    ],
-  },
-  {
-    id: 'food',
-    title: 'Food',
-    images: [
-      'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=800',
     ],
   },
   {

@@ -1,31 +1,30 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 const ANIMATED_SELECTORS = '.animate-on-scroll, .fade-in, .slide-up, .scale-in';
 
 export default function ScrollAnimationObserver() {
+  const pathname = usePathname();
+
   useEffect(() => {
-    const elements = Array.from(document.querySelectorAll(ANIMATED_SELECTORS));
+    const revealAll = () => {
+      const elements = document.querySelectorAll(ANIMATED_SELECTORS);
+      elements.forEach((el) => {
+        el.classList.add('animate');
+      });
+    };
 
-    if (elements.length === 0) return;
+    revealAll();
+    const raf = requestAnimationFrame(revealAll);
+    const timer = setTimeout(revealAll, 120);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
+  }, [pathname]);
 
   return null;
 }

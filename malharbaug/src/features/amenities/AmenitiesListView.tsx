@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
+import Link from 'next/link';
 import { resortFacilities } from '@/data/amenities';
 
 export default function AmenitiesListView() {
@@ -30,7 +31,7 @@ export default function AmenitiesListView() {
         <section className="mx-auto max-w-7xl px-6 py-24">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {resortFacilities.map((facility, index) => (
-              <a
+              <Link
                 key={facility.slug}
                 href={`/amenities/${facility.slug}`}
                 className={`animate-on-scroll stagger-${(index % 3) + 1} group rounded-2xl bg-white p-8 card-shadow transition-all duration-300 hover:-translate-y-1 dark:bg-earth-800/50`}
@@ -48,7 +49,7 @@ export default function AmenitiesListView() {
                   Learn More
                   <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
                 </span>
-              </a>
+              </Link>
             ))}
           </div>
         </section>

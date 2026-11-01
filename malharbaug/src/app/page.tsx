@@ -1,6 +1,5 @@
 import Announcement from '@/components/layout/Announcement';
 import Header from '@/components/layout/Header';
-import MobileDrawer from '@/components/layout/MobileDrawer';
 import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import WhyChooseUs from '@/components/sections/WhyChooseUs';
@@ -19,7 +18,6 @@ export default function HomePage() {
     <>
       <Announcement />
       <Header />
-      <MobileDrawer />
       <main>
         <Hero />
         <About />

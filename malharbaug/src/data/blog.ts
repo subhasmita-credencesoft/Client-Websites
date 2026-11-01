@@ -157,7 +157,7 @@ export const blogPosts: BlogArticle[] = [
     author: 'Team Malhar Baug',
     date: '2026-08-18',
     readTime: '4 min read',
-    image: '/aboutimg.jpeg',
+    image: '/dining/WhatsApp Image 2026-10-30 at 3.51.19 PM.jpeg',
     imageAlt: 'Corporate outing resort near Mumbai – event lawn and conference space at Malhar Baug Resort, Alibaug',
     tags: ['Corporate', 'Events', 'Offsite'],
     sections: [

@@ -47,19 +47,30 @@ export default function Header() {
             item.children ? (
               <div
                 key={item.label}
-                className="relative"
+                className="relative flex items-center"
                 onMouseEnter={() => setActiveDropdown(item.label)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button
-                  type="button"
-                  className="flex items-center gap-1 font-sans text-sm font-medium text-neutral-700 transition-colors duration-200 ease-out hover:text-brand-600 dark:text-neutral-200"
-                  aria-expanded={activeDropdown === item.label}
+                <Link
+                  href={item.href}
+                  className="font-sans text-sm font-medium text-neutral-700 transition-colors duration-200 ease-out hover:text-brand-600 dark:text-neutral-200"
                 >
                   {item.label}
-                  <iconify-icon icon="solar:alt-arrow-down-linear" width="16" height="16"></iconify-icon>
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setActiveDropdown((prev) => (prev === item.label ? null : item.label))}
+                  className="ml-1 flex items-center text-neutral-500 transition-colors hover:text-brand-600 dark:text-neutral-400"
+                  aria-expanded={activeDropdown === item.label}
+                  aria-label={`Toggle ${item.label} menu`}
+                >
+                  <iconify-icon icon="solar:alt-arrow-down-linear" width="14" height="14"></iconify-icon>
                 </button>
-                <NavDropdown open={activeDropdown === item.label} items={item.children} />
+                <NavDropdown
+                  open={activeDropdown === item.label}
+                  items={item.children}
+                  onClose={() => setActiveDropdown(null)}
+                />
               </div>
             ) : (
               <Link

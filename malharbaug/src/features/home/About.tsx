@@ -35,7 +35,7 @@ export default function About() {
         <div className="relative">
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-2xl">
             <Image
-              src="/aboutimg.jpeg"
+              src="/dining/WhatsApp Image 2026-10-30 at 3.51.19 PM.jpeg"
               alt="Malhar Baug Resort garden and greenery in Nagaon, Alibaug"
               fill
               sizes="(min-width: 1024px) 40vw, 90vw"

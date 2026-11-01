@@ -47,7 +47,7 @@ export default async function EventsListView() {
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {eventCategories.map((event, index) => (
-                <a
+                <Link
                   key={event.id}
                   href={`/events/${event.id}`}
                   className={`animate-on-scroll stagger-${(index % 2) + 1} group overflow-hidden rounded-2xl bg-white card-shadow transition-all duration-300 hover:-translate-y-1 dark:bg-earth-800/50`}
@@ -76,7 +76,7 @@ export default async function EventsListView() {
                       <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
                     </span>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -88,12 +88,12 @@ export default async function EventsListView() {
             Get in touch with us to discuss your event requirements.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <a
+            <Link
               href="/contact"
               className="rounded-full bg-brand-600 px-8 py-3.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-brand-700"
             >
               Contact Us
-            </a>
+            </Link>
             <a
               href={`tel:${contact.phone}`}
               className="rounded-full border-2 border-brand-600 px-8 py-3.5 font-sans text-sm font-semibold text-brand-600 transition-colors hover:bg-brand-600 hover:text-white dark:border-brand-400 dark:text-brand-400"

@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { bookingEngineUrl } from '@/config/booking';
 
 const heroImages = [
-  { src: '/heroimg1.jpeg', alt: 'Malhar Baug Resort garden and rooms in Nagaon, Alibaug' },
-  { src: '/heroimg2.jpeg', alt: 'Swimming pool at Malhar Baug Resort near Nagaon Beach, Alibaug' },
-  { src: '/heroimg3.jpeg', alt: 'Private villa stay at Malhar Baug Resort, family resort in Alibaug' },
+  { src: '/hero1.jpeg', alt: 'Malhar Baug Resort garden and rooms in Nagaon, Alibaug' },
+  { src: '/hero3.jpeg', alt: 'Private villa stay at Malhar Baug Resort, family resort in Alibaug' },
+  { src: '/hero2.jpeg', alt: 'Swimming pool at Malhar Baug Resort near Nagaon Beach, Alibaug' },
 ];
 
 export default function Hero() {
@@ -16,24 +16,33 @@ export default function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % heroImages.length);
-    }, 4000);
+    }, 4500);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
-      <div key={current} className="absolute inset-0 z-0 animate-fade-in">
-        <Image
-          src={heroImages[current].src}
-          alt={heroImages[current].alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      </div>
+      {/* Background Slides with Smooth Cross-Fade */}
+      {heroImages.map((img, index) => (
+        <div
+          key={img.src}
+          className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${
+            index === current ? 'opacity-100' : 'pointer-events-none opacity-0'
+          }`}
+        >
+          <Image
+            src={img.src}
+            alt={img.alt}
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      ))}
       <div className="hero-overlay absolute inset-0 z-10" />
 
+      {/* Hero Content */}
       <div className="relative z-20 mx-auto w-full max-w-4xl px-6 text-center">
         <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md">
           <span className="font-sans text-xs font-semibold uppercase tracking-wide text-white">
@@ -57,6 +66,21 @@ export default function Hero() {
             Explore Resort
           </a>
         </div>
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 gap-2.5">
+        {heroImages.map((img, idx) => (
+          <button
+            key={img.src}
+            type="button"
+            onClick={() => setCurrent(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
+            className={`h-2.5 rounded-full transition-all duration-300 ${
+              idx === current ? 'w-8 bg-white shadow-md' : 'w-2.5 bg-white/50 hover:bg-white/80'
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
