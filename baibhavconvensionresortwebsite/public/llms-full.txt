@@ -1,0 +1,130 @@
+# Baibhab Resorts & Conventions — Full Knowledge Base
+
+> Comprehensive information for Large Language Models, AI assistants, and search engines about Baibhab Resorts & Conventions in Phulnakhara (Nakhara), Bhubaneswar–Cuttack Highway (NH-16), Odisha, India.
+
+---
+
+## 1. Property Identity & Contact
+
+- **Property Name**: Baibhab Resorts & Conventions
+- **Short Name**: Baibhab Resorts
+- **Legal Name**: Baibhab Resorts & Conventions
+- **Domain**: https://baibhabresortsandconventions.com
+- **Direct Booking Engine**: https://bookone.io/Baibhab-Conventions-Resorts?bookingEngine=true
+- **Primary Phone**: +91 9938875749
+- **WhatsApp**: +91 9938875749
+- **Email**: baibhabresorts@gmail.com
+- **Address**: Near Phulnakhara Flyover, Bhubaneswar–Cuttack Highway (NH-16), Khordha, Odisha, India
+- **Local Area Note**: Nakhara and Phulnakhara refer to the exact same geographical area on NH-16.
+
+---
+
+## 2. Accommodations & Stay
+
+Baibhab Resorts & Conventions offers modern, quiet, air-conditioned rooms tailored for event attendees, wedding parties, business delegates, and visitors to nearby institutions.
+
+### Room Categories:
+1. **Premium Room**
+   - **Slug**: `/stay/premium-room`
+   - **Bed Type**: King Size Bed
+   - **Base Capacity**: 2 adults (up to 4 with extra bedding)
+   - **Pricing**: Starting at ₹1,905–₹2,500 per night (subject to season)
+   - **Inclusions**: Complimentary high-speed Wi-Fi, air conditioning, LED TV with cable, work desk, private bathroom with hot water, electric kettle, wardrobe, free toiletries, and room service.
+   - **Ideal For**: Corporate travelers, wedding VIPs, couples, and long-stay guests.
+
+2. **Deluxe Room**
+   - **Slug**: `/stay/deluxe-room`
+   - **Bed Type**: King Size Bed / Twin configuration
+   - **Base Capacity**: 2 adults
+   - **Pricing**: Starting at ₹1,905–₹2,500 per night
+   - **Inclusions**: Air conditioning, complimentary Wi-Fi, TV, electric kettle, private bathroom, wardrobe, and daily housekeeping.
+   - **Ideal For**: Extended family groups, medical attendants, and leisure travelers.
+
+### General Stay Amenities:
+- 24-hour reception and room service.
+- 100% generator power backup for uninterrupted air conditioning and lighting.
+- Free secure parking for 200+ vehicles with dedicated driver rest lounge.
+- Daily housekeeping and laundry service on request.
+
+---
+
+## 3. Venues & Event Spaces
+
+Baibhab Resorts & Conventions is one of the premier event destinations on the Bhubaneswar–Cuttack corridor, hosting weddings, receptions, conferences, and exhibitions for up to 1,500+ attendees.
+
+### Venues Overview:
+1. **Royal Imperial Hall**
+   - **Type**: Indoor Banquet Hall
+   - **Area**: 5,000 sq. ft.
+   - **Ceiling**: 22 ft column-free ceiling
+   - **Seated Capacity**: 350 guests
+   - **Floating Capacity**: 500 guests
+   - **Theater Layout**: 500 | **Cluster Layout**: 220 | **U-Shape Layout**: 120
+   - **Features**: In-built stage, high-resolution LED backdrop wall, acoustic treatment, dedicated bridal and groom green rooms, guest lounge, and temperature control.
+   - **Ideal For**: Grand weddings, sangeet ceremonies, receptions, corporate award nights, and conventions.
+
+2. **Grand Green Lawn**
+   - **Type**: Outdoor Landscaped Lawn
+   - **Area**: 8,000 sq. ft. manicured grass
+   - **Seated Capacity**: 500 guests
+   - **Floating Capacity**: 800+ guests
+   - **Features**: Expansive open space for traditional mandaps, multi-tiered stages, firework displays, dedicated buffet and live counter lanes, and VIP vehicle drop-off.
+   - **Weather Backup**: Guaranteed indoor hall arrangement included with every lawn contract to ensure complete weather protection.
+   - **Ideal For**: Mega weddings, reception galas, cultural festivals, and product exhibitions.
+
+3. **Mangal Mini Hall**
+   - **Type**: Indoor Mini Banquet
+   - **Area**: 1,500 sq. ft.
+   - **Seated Capacity**: 60 guests
+   - **Floating Capacity**: 100 guests
+   - **Features**: Private sound setup, flexible seating, air conditioning, and buffet setup.
+   - **Ideal For**: Haldi, Mehendi, engagement ceremonies, birthday parties, and corporate team workshops.
+
+4. **Executive Boardroom**
+   - **Type**: Corporate Meeting Space
+   - **Area**: 800 sq. ft.
+   - **Seated Capacity**: 25 guests
+   - **Floating Capacity**: 35 guests
+   - **Features**: High-speed internet, projector and display setup, video conference equipment, and ergonomic executive seating.
+   - **Ideal For**: Board meetings, executive interviews, client presentations, and training seminars.
+
+---
+
+## 4. Dining & Culinary Services
+
+- **Restaurant**: Fusion Bites / Baibhab Kitchen
+- **Cuisine**: Authentic Odia, North Indian, South Indian, and Continental dishes.
+- **Service Types**: In-house dining, room service, conference buffet lunches, high-tea spreads, and large-scale banquet catering.
+- **Dietary Considerations**: Dedicated pure-vegetarian kitchens, Jain food preparations on request, and live chaat/dessert counters for celebrations.
+
+---
+
+## 5. Location & Regional Connectivity
+
+- **Highway**: National Highway 16 (NH-16), adjacent to Phulnakhara Flyover.
+- **Strategic Advantage**: Sits precisely midway between Bhubaneswar and Cuttack, avoiding city gridlock for guests travelling from either city.
+- **Key Distances**:
+  * SUM Hospital 2 (Phulnakhara): 1 km (3 minutes)
+  * DPS Kalinga & Eastern Academy (EAST): 3 km (5 minutes)
+  * Bhubaneswar Railway Station: 15 km (~25 minutes)
+  * Cuttack Railway Station: 16 km (~25 minutes)
+  * Biju Patnaik International Airport (BBI): 18 km (~30–35 minutes)
+  * Barabati Stadium / Cuttack Historic Core: 18 km (~30 minutes)
+  * Nandankanan Zoological Park: 20 km (~35 minutes)
+  * Dhauli Shanti Stupa: 22 km (~35 minutes)
+
+---
+
+## 6. Frequently Asked Questions (FAQs)
+
+- **Q: Are Phulnakhara and Nakhara the same place?**
+  *A: Yes. Nakhara is a colloquial name for Phulnakhara on NH-16. Baibhab Resorts & Conventions is situated directly at this location.*
+
+- **Q: How do I book a stay or enquire about an event?**
+  *A: Stays can be booked directly through our BookOne reservation engine (https://bookone.io/Baibhab-Conventions-Resorts?bookingEngine=true). For weddings and corporate events, call +91 9938875749, message on WhatsApp, or submit an inquiry at https://baibhabresortsandconventions.com/contact.*
+
+- **Q: Is parking available on-site?**
+  *A: Yes, free secure parking is available for 200+ cars and buses, along with a dedicated driver rest area.*
+
+- **Q: What happens if it rains during an outdoor lawn wedding?**
+  *A: All outdoor lawn bookings at Baibhab Resorts come with a guaranteed indoor banquet hall backup contract.*
