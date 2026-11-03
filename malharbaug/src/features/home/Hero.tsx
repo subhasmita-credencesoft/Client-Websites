@@ -6,8 +6,10 @@ import { bookingEngineUrl } from '@/config/booking';
 
 const heroImages = [
   { src: '/hero1.jpeg', alt: 'Malhar Baug Resort garden and rooms in Nagaon, Alibaug' },
+  { src: '/hero4.avif', alt: 'Beautiful Nagaon Beach near Malhar Baug Resort, Alibaug' },
   { src: '/hero3.jpeg', alt: 'Private villa stay at Malhar Baug Resort, family resort in Alibaug' },
   { src: '/hero2.jpeg', alt: 'Swimming pool at Malhar Baug Resort near Nagaon Beach, Alibaug' },
+  
 ];
 
 export default function Hero() {
