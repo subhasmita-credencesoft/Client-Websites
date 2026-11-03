@@ -82,6 +82,17 @@ export interface NearbyAttraction {
   description: string;
   image?: string;
   icon?: string;
+  category?: 'Beach' | 'Fort & Heritage' | 'Transport & Ferry' | 'Experience';
+  driveTime?: string;
+  highlights?: string[];
+  mapsQuery?: string;
+  longDescription?: string;
+  bestTime?: string;
+  duration?: string;
+  galleryImages?: string[];
+  activities?: string[];
+  travelTips?: string[];
+  seoKeywords?: string[];
 }
 
 export interface TeamMember {
