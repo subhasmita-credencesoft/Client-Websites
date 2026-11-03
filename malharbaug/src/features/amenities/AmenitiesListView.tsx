@@ -68,7 +68,7 @@ export default function AmenitiesListView() {
               nearby attractions
             </Link>{' '}
             or unwind by the pool with our{' '}
-            <Link href="/dining/" className="text-brand-600 underline hover:text-brand-700 dark:text-brand-400">
+            <Link href="/restaurant/" className="text-brand-600 underline hover:text-brand-700 dark:text-brand-400">
               home-style Konkan cuisine
             </Link>.
           </p>
