@@ -130,3 +130,50 @@ body {
   right: 24px;
   z-index: 999;
 }
+
+
+/* 
+ * Premium Hero Animations
+ */
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroProgressBar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-hero-fade-up {
+  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-scale-in {
+  animation: heroScaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-progress {
+  animation: heroProgressBar 5s linear forwards;
+}
