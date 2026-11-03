@@ -1,96 +1,320 @@
 # Malhar Baug Resort Alibaug — Complete Knowledge Base & Guest Guide
 
-> Canonical documentation, room specifications, dining menus, event packages, travel directions, and FAQs for Malhar Baug Resort, Alibaug.
-
-## About Malhar Baug Resort
-Malhar Baug Resort is a highly rated 3-star farm-style resort located in Nagaon (Palhe), Alibaug, Raigad, Maharashtra 402204. Surrounded by betel-nut groves, swaying coconut palms, and manicured green lawns, Malhar Baug provides a serene nature retreat just 2 km away from Nagaon Beach.
-
-### Property Metadata
-- **Legal Name**: Malhar Baug Resort, Alibaug
-- **Google Star Rating**: 3-Star Resort
-- **Google Customer Rating**: 4.2 / 5 (46 verified Google Reviews)
-- **Starting Price**: ₹4,229 to ₹6,500 per night (subject to season, taxes, and occupancy)
-- **Check-In Time**: 12:00 PM (early check-in subject to room availability)
-- **Check-Out Time**: 10:00 AM
-- **Booking Engine Property ID**: 2970 (on BookOne / TheHotelMate)
-- **Phone**: +91 90351 98520
-- **WhatsApp**: +91 99875 52273 / +91 91520 18635
-- **Email**: bookings@malharbaugresort.com
-- **Full Address**: H.No. 3116, Nagaon, Palhe, Raigad, Maharashtra 402204, India
-- **Geo Coordinates**: 18.6019° N, 72.9056° E
+> Canonical documentation, room specifications, dining menus, event packages, travel directions, amenities, nearby attractions, and FAQs for Malhar Baug Resort, Alibaug.
+> This file is intended for AI assistants, LLMs, search engines, and automated agents.
+> For the human-readable version see: https://www.malharbaugresort.com/about/
+> Last updated: 2026-11-03
 
 ---
 
-## Accommodation & Room Categories
+## 1. Property Overview
 
-### 1. Super Deluxe Room
-- **Occupancy**: 2 Adults + 1 Child
-- **Bedding**: Plush King-Size Bed with premium linen
-- **Features**: Split air-conditioning, attached private bathroom with 24/7 hot water geyser, garden-view balcony, flat-screen LED TV with satellite channels, complimentary high-speed Wi-Fi, electric kettle with tea/coffee amenities, daily housekeeping.
-- **Starting Rate**: ₹4,229 / night.
+Malhar Baug Resort is a 3-star farm-style family resort established in 2018, located in the village of Palhe, Nagaon, Alibaug, Raigad district, Maharashtra, India. The property covers more than 2 acres of lush gardens, coconut groves and manicured lawns. It is consistently rated 4.2 out of 5 on Google (46+ verified reviews) and is one of the highest-rated resorts near Nagaon Beach.
 
-### 2. 2-Bedroom Hall Family Villa
+### Identity & Contact
+
+| Field | Value |
+|---|---|
+| Legal / Brand Name | Malhar Baug Resort |
+| Property Type | 3-Star Farm-Style Family Resort |
+| Established | 2018 |
+| Google Rating | 4.2 / 5 (46+ Google Reviews) |
+| Total Rooms | 18 Rooms & Villas |
+| Land Area | 2+ Acres of Gardens & Lawns |
+| Phone | +91 90351 98520 |
+| WhatsApp | +91 99875 52273 |
+| WhatsApp (alt) | +91 91520 18635 |
+| Email | bookings@malharbaugresort.com |
+| Website | https://www.malharbaugresort.com |
+| Booking Engine | https://bookone.io/Malhar-Baug-Resort?bookingEngine=true |
+| Booking Engine Property ID | 2970 (BookOne / TheHotelMate) |
+| Check-In | 12:00 PM (noon) |
+| Check-Out | 10:00 AM |
+
+### Physical Address & Location
+
+- **Full Address**: H.No. 3116, Palhe, Nagaon, Alibaug, Raigad, Maharashtra 402204, India
+- **GPS Coordinates**: 18.6019° N, 72.9056° E
+- **Google Maps**: https://maps.app.goo.gl/malharbaugresort (search "Malhar Baug Resort Alibaug")
+- **What3Words Zone**: Near Nagaon village, Raigad district
+- **Administrative Region**: Raigad District, Konkan Division, Maharashtra, India
+
+### Distances from Key Landmarks
+
+| Destination | Distance | Drive Time |
+|---|---|---|
+| Nagaon Beach (main entry) | 2.0 km | ~5 min |
+| Nagaon Beach (far end) | 3.7 km | ~8 min |
+| Akshi Beach | 4.2 km | ~10 min |
+| Revdanda Beach & Fort | 8.0 km | ~18 min |
+| Kolaba Fort / Alibaug Beach | 9.0 km | ~20 min |
+| Alibaug Bus Stand / Town | 9.0 km | ~20 min |
+| Kashid Beach | 22 km | ~40 min |
+| Birla Temple, Salav | 15 km | ~25 min |
+| Mandwa Jetty (Mumbai ferry) | 28 km | ~45 min |
+| Mumbai (via road, NH 66) | 95 km | ~2.5–3 hrs |
+| Pune (via Expressway) | 140 km | ~3.5–4 hrs |
+| Navi Mumbai / Panvel | 55 km | ~1.5 hrs |
+
+---
+
+## 2. Accommodation
+
+Malhar Baug Resort has 18 total rooms and villas across three categories. All rooms include complimentary access to the swimming pool, gardens, Wi-Fi, and parking.
+
+### 2.1 Super Deluxe AC Room
+
+- **Occupancy**: 2 Adults + 1 Child (max)
+- **Bedding**: Plush king-size bed with premium linen & pillows
+- **Room Size**: Standard double
+- **Starting Rate**: ₹4,229 per night (direct booking, weekday)
+- **Features**:
+  - Split air-conditioning with remote control
+  - Attached private en-suite bathroom
+  - 24-hour hot water geyser (electric)
+  - Garden-view or lawn-view private balcony
+  - Flat-screen LED TV with satellite channels
+  - Complimentary high-speed Wi-Fi
+  - Electric kettle with complimentary tea & coffee sachets
+  - In-room mirror, wardrobe, and luggage rack
+  - Daily housekeeping service
+
+### 2.2 2-Bedroom Hall Family Villa
+
 - **Occupancy**: Up to 6 guests (4 Adults + 2 Children)
-- **Layout**: Two private air-conditioned bedrooms, spacious living hall, dining space, private porch overlooking lawns.
-- **Features**: Ideal for nuclear families and grandparents traveling together. Includes two attached en-suite bathrooms, comfortable sofa seating, LED TV, high-speed Wi-Fi, and direct garden access.
-- **Starting Rate**: ₹7,500 / night.
+- **Layout**: Two private air-conditioned bedrooms + spacious common living hall + dining area + private porch
+- **Starting Rate**: ₹7,500 per night
+- **Best For**: Nuclear families, couples traveling with parents, small friend groups
+- **Features**:
+  - Two attached en-suite bathrooms (one per bedroom)
+  - Comfortable sofa seating in hall
+  - LED TV in living area
+  - Garden porch with outdoor seating
+  - High-speed Wi-Fi throughout
+  - Direct lawn access from the villa porch
 
-### 3. 4-Bedroom Hall Private Villa
+### 2.3 4-Bedroom Hall Private Villa
+
 - **Occupancy**: Up to 12–15 guests
-- **Layout**: Four master bedrooms with en-suite bathrooms, huge common living area, private terrace, direct pool access path.
-- **Features**: Tailored for family reunions, friend group getaways, and corporate leadership retreats. Complete privacy, lawn sit-out, and dedicated room service.
-- **Starting Rate**: ₹14,000 / night.
+- **Layout**: Four master bedrooms with en-suite bathrooms + huge common living area + private terrace + garden sit-out
+- **Starting Rate**: ₹14,000 per night
+- **Best For**: Family reunions, large friend groups, corporate leadership retreats, villa buyouts
+- **Features**:
+  - Complete villa privacy — no shared walls with other units
+  - Four attached bathrooms with hot water
+  - Large common area with sofas and dining table
+  - Private terrace and garden sit-out area
+  - Dedicated room service and housekeeping
+  - Ideal for group events with private catering
 
 ---
 
-## Amenities & Facilities
-- **Outdoor Swimming Pool**: Well-maintained, crystal-clear pool with a separated safe shallow section for children. Open daily 8:00 AM – 7:00 PM for resident guests only. Loungers and pool towels provided.
-- **Home-Style Konkan Dining**: Resident kitchen serving authentic Maharashtrian and Konkani recipes: Surmai Fry, Pomfret Thali, Prawns Masala, Kombdi Vade, Solkadhi, Modak, Poha, Misal Pav, and vegetarian thalis.
-- **Spacious Event Lawns**: Ideal for open-air lawn weddings (up to 150 guests), birthday celebrations, anniversary dinners, and family get-togethers.
-- **Power Backup & Security**: 100% heavy-duty generator power backup for uninterrupted AC and lighting during outages; CCTV surveillance and 24-hour manned reception.
-- **Free Wi-Fi & Parking**: Fast optical-fiber Wi-Fi covering all rooms and lawn areas; free secure on-site parking for cars and tourist coaches.
-- **Recreation**: Kids outdoor swings and slides, indoor carrom, chess, playing cards, badminton, and evening bonfire setup on request.
+## 3. Amenities & Facilities
+
+All amenities listed below are complimentary for resident guests unless otherwise noted.
+
+### Swimming Pool
+- Open-air outdoor pool with natural surroundings
+- Timings: 8:00 AM to 7:00 PM daily (residents only)
+- Shallow section for children (depth: ~2 feet)
+- Surrounding area: pool loungers, garden chairs, grass lawn
+- Hygiene: Regularly treated and cleaned; no outside visitors
+- Towels available at the pool area on request
+
+### Gardens & Outdoor Spaces
+- 2+ acres of landscaped gardens with coconut palms, fruit trees, and flowering plants
+- Multiple outdoor seating zones: hammocks, benches, gazebos
+- Open lawns for outdoor dining, picnics, and evening events
+- Bonfire area (seasonal — October to February, on request)
+
+### Party Lawn & Event Space
+- Large open lawn for events: capacity up to 300 guests (seated dining) or 500 (cocktail style)
+- Stage/performance area available
+- Power sockets, lighting rigging points
+- Adjacent to dining hall for seamless F&B service
+- Suitable for: weddings, sangeet, birthday celebrations, corporate dinners, team-building activities
+
+### Dining & Restaurant
+- In-house kitchen and dining hall
+- Serves: breakfast, lunch, dinner, and snacks
+- Cuisine: Authentic Konkani, Maharashtrian, and multi-cuisine options
+- Seafood: Fresh daily catch — Surmai (kingfish), Pomfret, Prawns, Crab (seasonal)
+- Vegetarian: Veg thali, dal tadka, sabji, roti, rice
+- Specialties: Fish curry rice, Kombdi Vade, Solkadhi, Modak, Aamras
+- BBQ Garden: Evening outdoor BBQ on advance request (chargeable)
+
+### Recreation
+- Kids' outdoor play area (swings, slides)
+- Indoor games room: carrom boards, chess, playing cards, ludo, Scrabble
+- Badminton court (outdoor)
+- Rain dance area (seasonal, additional charges may apply)
+- Evening bonfire setups on request (October–February)
+- Garden walking path
+
+### Essential Services
+- Free high-speed optical-fiber Wi-Fi (all rooms + garden)
+- 100% generator power backup (AC + lighting + water pumps)
+- 24-hour reception and security
+- CCTV surveillance throughout property
+- Free secure parking: private cars and tourist coaches
+- Laundry service (on request, chargeable)
+- First aid available at reception
 
 ---
 
-## How to Reach Malhar Baug Resort
+## 4. Events & Celebration Services
 
-### From Mumbai:
-1. **Speedboat / Catamaran from Gateway of India**: Take PNP, Maldar, or Ajanta ferries to Mandwa Jetty (50–60 minutes), followed by the connecting bus or private cab to Nagaon (approx. 40 minutes).
-2. **M2M Ro-Pax Ferry from Bhaucha Dhakka (Ferry Wharf)**: Drive your car directly onto the M2M ferry to Mandwa (60 minutes), then take a scenic 45-minute drive via Alibaug bypass to Palhe, Nagaon.
-3. **By Road via Mumbai-Goa Highway (NH 66)**: Drive via Navi Mumbai, Panvel, Pen, and Wadkhal Naka onto Alibaug-Revdanda road (~95 km, 2.5 to 3 hours).
+Malhar Baug Resort is a popular destination event venue for Alibaug, offering:
 
-### From Pune:
-- **By Road via Khopoli / Pen**: Pune &rarr; Express Highway &rarr; Khopoli Exit &rarr; Pen &rarr; Wadkhal &rarr; Alibaug &rarr; Nagaon (~140 km, 3.5 to 4 hours).
+### Wedding & Sangeet
+- Open lawn weddings for up to 300 seated guests
+- In-house or external décor coordination
+- Full-day / multi-day event packages
+- Baraat entry arrangements (band, horse, DJ — coordinated externally)
+- Separate accommodation for bride, groom and families (entire resort available for buyout)
+
+### Birthday & Anniversary
+- Customised birthday setups: balloons, banners, themed décor
+- Surprise packages: room decoration, cake cutting with pool-side or garden backdrop
+- DJ or live music coordination on request
+- Packages from half-day to full-weekend
+
+### Corporate Offsites & Team-Building
+- Meeting hall / open-air conference area
+- Team-building activities: outdoor games, treasure hunts, cricket, tug-of-war
+- Full-board packages (accommodation + all meals + activities)
+- Wi-Fi for virtual calls and presentations
+- Capacity: 20 to 150 guests for corporate groups
+
+### Contact for Events
+- Phone: +91 90351 98520
+- WhatsApp: +91 99875 52273
+- Email: bookings@malharbaugresort.com
 
 ---
 
-## Nearby Beaches & Sightseeing Attractions
-- **Nagaon Beach (2.0 km - 3.7 km)**: Flat, safe black sand beach famous for water sports (parasailing, jet-ski, banana ride, bumper ride) and scenic sunset walks.
-- **Akshi Beach (5.7 km)**: Quieter, peaceful beach lined with suru (casuarina) trees, popular among bird watchers and morning joggers.
-- **Revdanda Beach & Fort (8.2 km)**: Historic Portuguese fort ruins right where the Kundalika river meets the Arabian Sea.
-- **Kolaba Fort (9.0 km)**: Sea fort built by Chhatrapati Shivaji Maharaj, accessible by foot or horse cart during low tide from Alibaug Beach.
-- **Kashid Beach (22 km)**: Renowned white sand beach with high waves, water sports, and beach shacks.
-- **Birla Temple, Salav (15 km)**: Magnificent white marble Hindu temple situated atop a small hillock with panoramic coastal views.
+## 5. How to Reach Malhar Baug Resort
+
+### 5.1 From Mumbai
+
+**Option A — Catamaran Ferry + Road (Most Popular)**
+1. Take a catamaran ferry from Gateway of India to Mandwa Jetty (PNP, Maldar, or Ajanta ferries — journey time: 50–60 minutes).
+2. At Mandwa Jetty, take an ST bus (every 30 min) or private cab to Nagaon / Palhe — journey time: ~40–45 minutes.
+3. Total travel time from South Mumbai: ~2 hours.
+
+**Option B — M2M Ro-Pax Ferry (Car + Passengers)**
+1. Drive to Bhaucha Dhakka / Ferry Wharf, Mumbai and board the M2M Ro-Pax ferry with your car.
+2. Ferry to Mandwa Jetty: ~60 minutes.
+3. Drive from Mandwa to the resort via Alibaug Bypass: ~45 minutes.
+
+**Option C — Full Road Journey via NH 66**
+1. Drive via Navi Mumbai → Panvel → Pen → Wadkhal Naka → Alibaug → Nagaon.
+2. Total distance: ~95 km | Time: ~2.5 to 3 hours (depending on traffic near Navi Mumbai).
+
+### 5.2 From Pune
+
+**By Road via Pune Expressway**
+1. Pune → Mumbai-Pune Expressway → Khopoli Exit → Pen → Wadkhal → Alibaug → Nagaon.
+2. Total distance: ~140 km | Time: ~3.5 to 4 hours.
+
+### 5.3 From Navi Mumbai / Panvel
+
+- Drive via Pen → Wadkhal → Alibaug → Nagaon: ~55 km, ~1.5 hours.
 
 ---
 
-## Frequently Asked Questions (FAQs)
+## 6. Nearby Attractions & Day Trips
 
-**Q1: What is the check-in and check-out time at Malhar Baug Resort?**
-A: Standard check-in begins at 12:00 PM and check-out is by 10:00 AM. Early check-in or late check-out is available on request depending on room status.
+### Beaches (within 25 km)
+- **Nagaon Beach (2 km)**: Main beach, water sports (parasailing, jet-ski, banana boat, bumper ride), flat black sand, sunset walks. Lifeguards present.
+- **Akshi Beach (4.2 km)**: Quiet, secluded beach lined with casuarina trees. No water sports. Good for morning walks.
+- **Revdanda Beach (8 km)**: Historic beach at the mouth of Kundalika river. Adjacent to Revdanda Fort.
+- **Alibag Beach / Alibaug Beach (9 km)**: Town beach with Kolaba Fort visible at low tide.
+- **Chaul Beach (10 km)**: Less-visited historic beach town.
+- **Kashid Beach (22 km)**: White sand beach, popular among Pune tourists.
+- **Kihim Beach (18 km)**: Beautiful forested beach, quiet and clean.
 
-**Q2: Is swimming pool access included in the room tariff?**
-A: Yes, all resident guests have complimentary access to the swimming pool between 8:00 AM and 7:00 PM daily.
+### Forts & Historical Sites
+- **Kolaba Fort (9 km)**: Sea fort built by Chhatrapati Shivaji Maharaj. Accessible on foot at low tide. Features old cannons, Ganesh temple, panoramic views.
+- **Revdanda Fort (8 km)**: Portuguese fort ruins at the Kundalika river mouth.
+- **Murud-Janjira Fort (50 km)**: Unconquered island fort — a half-day excursion.
 
-**Q3: How far is Malhar Baug Resort from Nagaon Beach?**
-A: The resort is situated approximately 2 km (5 minutes by car or auto-rickshaw) from the main Nagaon Beach entrance.
+### Temples & Religious Sites
+- **Birla Temple, Salav (15 km)**: White marble temple on a hillock with coastal views.
+- **Kanakeshwar Temple (12 km)**: Ancient Shiva temple in forested hills.
 
-**Q4: Is home-cooked seafood and vegetarian food available on-site?**
-A: Yes, our restaurant serves freshly prepared Konkani fish thalis (Surmai, Pomfret, Prawns), chicken specialties, and vegetarian thalis made with fresh local coconut, kokum, and spices.
+### Activities & Experiences
+- **Nagaon Water Sports**: Parasailing ₹500–700, Jet-ski ₹400, Banana Boat ₹200/person, Bumper Ride ₹200/person.
+- **Mandwa Ferry (28 km)**: Gateway to Mumbai by sea.
+- **Konkan Food Trail**: Fish markets at Alibaug (morning 6–9 AM) for freshest catch.
 
-**Q5: Can we host private events, birthdays, or weddings at Malhar Baug Resort?**
-A: Yes, we provide full event lawn setup, music permission coordination, festive lighting, and custom catering packages for birthdays, weddings, anniversaries, and corporate retreats.
+---
 
-**Q6: What is the direct booking price for rooms?**
-A: Direct room rates start from ₹4,229 per night on weekdays. Special weekend packages and villa buyout rates are available directly via WhatsApp or phone.
+## 7. Frequently Asked Questions
+
+**Q: What is the exact address of Malhar Baug Resort?**
+A: H.No. 3116, Palhe, Nagaon, Alibaug, Raigad, Maharashtra 402204, India. GPS: 18.6019° N, 72.9056° E.
+
+**Q: What are the check-in and check-out times?**
+A: Check-in is at 12:00 PM and check-out is at 10:00 AM. Early check-in and late check-out available on request subject to room availability.
+
+**Q: Is pool access included in the room rate?**
+A: Yes. All resident guests get complimentary swimming pool access daily from 8:00 AM to 7:00 PM.
+
+**Q: How far is the resort from Nagaon Beach?**
+A: Approximately 2 km — around 5 minutes by auto-rickshaw or cab.
+
+**Q: Is food available on-site? Is it non-veg?**
+A: Yes. The in-house restaurant serves breakfast, lunch, and dinner. Both veg and non-veg food is available including fresh seafood (surmai fry, pomfret thali, prawn masala) and vegetarian thalis.
+
+**Q: Can we host a wedding or birthday party?**
+A: Yes. The resort has open lawns for up to 300 guests with full catering, décor coordination, and 18 rooms for guest accommodation. Contact +91 90351 98520 for packages.
+
+**Q: Is parking available?**
+A: Yes. Free secure parking for private cars and tourist coaches.
+
+**Q: What is the best time to visit?**
+A: October to March is ideal. The weather is pleasant, beaches are clean, and all outdoor activities are available. Monsoon (June–September) is lush and green but beaches have rough seas.
+
+**Q: Is the resort good for families with children?**
+A: Yes. The resort has a kids' pool section, outdoor play area, indoor games, and safe open lawns. It is one of the most family-friendly resorts near Nagaon Beach.
+
+**Q: How do I book directly?**
+A: Book online at https://bookone.io/Malhar-Baug-Resort?bookingEngine=true or call/WhatsApp +91 90351 98520 for best rates.
+
+**Q: Is there Wi-Fi at the resort?**
+A: Yes. Free high-speed optical-fiber Wi-Fi is available in all rooms, villas, and garden areas.
+
+**Q: Is the resort pet-friendly?**
+A: Please contact the resort directly at +91 90351 98520 to discuss pet-friendly arrangements.
+
+---
+
+## 8. Reviews & Reputation
+
+- **Google Rating**: 4.2 / 5 (46+ verified reviews as of 2026)
+- **Commonly praised by guests**: Friendly staff, clean rooms, good food, beautiful garden, swimming pool, peaceful environment, great for families, good value for money.
+- **Typical guest profile**: Mumbai & Pune families, couples on weekend getaways, corporate groups, friend groups for birthdays, wedding parties.
+
+---
+
+## 9. Website Structure & Sitemap
+
+| Page | URL | Purpose |
+|---|---|---|
+| Home | https://www.malharbaugresort.com/ | Resort overview, highlights, reviews, booking |
+| Rooms & Villas | https://www.malharbaugresort.com/rooms/ | All room categories with photos, rates, amenities |
+| Amenities | https://www.malharbaugresort.com/amenities/ | Full list of resort facilities |
+| Dining | https://www.malharbaugresort.com/restaurant/ | Menu, timings, Konkan food details |
+| Events | https://www.malharbaugresort.com/events/ | Wedding, birthday, corporate packages |
+| Packages | https://www.malharbaugresort.com/packages/ | Stay packages, group offers, seasonal deals |
+| Nearby | https://www.malharbaugresort.com/nearby/ | Attractions, beaches, forts near the resort |
+| Travel Guide | https://www.malharbaugresort.com/travel-guide/ | How to reach, what to do in Alibaug |
+| Gallery | https://www.malharbaugresort.com/gallery/ | Photo gallery: rooms, pool, events, dining |
+| About | https://www.malharbaugresort.com/about/ | Resort story, values, team |
+| Blog | https://www.malharbaugresort.com/blog/ | Planning guides, tips, local content |
+| Contact | https://www.malharbaugresort.com/contact/ | Map, phone, WhatsApp, inquiry form |
+| Sitemap | https://www.malharbaugresort.com/sitemap.xml | XML sitemap |
+| Robots | https://www.malharbaugresort.com/robots.txt | Crawler directives |
+| LLMs Quick | https://www.malharbaugresort.com/llms.txt | AI quick reference |
+| LLMs Full | https://www.malharbaugresort.com/llms-full.txt | This file — complete AI knowledge base |
