@@ -99,6 +99,7 @@ export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const touchStartXRef = useRef<number | null>(null);
 
   const nextSlide = useCallback(() => {
     setCurrent((prev) => (prev + 1) % slides.length);
@@ -117,14 +118,36 @@ export default function Hero() {
     };
   }, [nextSlide, isPaused, current]);
 
+  // Touch swipe support for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartXRef.current - touchEndX;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+    touchStartXRef.current = null;
+  };
+
   const activeSlide = slides[current];
 
   return (
     <section
-      className="relative flex min-h-[580px] sm:min-h-[640px] md:min-h-[700px] lg:min-h-[86vh] w-full items-center justify-center overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-24"
+      className="relative flex min-h-[560px] sm:min-h-[640px] md:min-h-[700px] lg:min-h-[88vh] w-full items-center justify-center overflow-hidden pt-24 pb-20 sm:pt-28 sm:pb-24 lg:pt-32 lg:pb-24"
       aria-label="Malhar Baug Resort Home Banner"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {/* 4 Background Slides with Ken Burns Smooth Pan/Zoom Effect */}
       {slides.map((slide, index) => {
@@ -151,40 +174,40 @@ export default function Hero() {
       })}
 
       {/* Balanced Transparent Gradient Overlay — Keeps photos vivid & bright while ensuring sharp text */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/40 to-black/50" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/45 to-black/55" />
 
       {/* Animated Hero Text Container — Keyed to `current` so it re-animates smoothly on every slide change */}
       <div
         key={current}
-        className="relative z-20 mx-auto w-full max-w-4xl px-4 py-8 text-center sm:px-6 sm:py-12"
+        className="relative z-20 mx-auto w-full max-w-4xl px-4 py-4 sm:px-6 sm:py-8 text-center"
       >
         {/* Animated Badge */}
-        <div className="animate-hero-scale-in mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/45 px-4 py-1.5 backdrop-blur-md shadow-lg">
+        <div className="animate-hero-scale-in mb-3 sm:mb-4 inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/25 bg-black/50 px-3.5 py-1 sm:px-4 sm:py-1.5 backdrop-blur-md shadow-lg max-w-[94vw]">
           <iconify-icon
             icon={activeSlide.tagIcon}
-            width="16"
-            height="16"
-            className="text-brand-300"
+            width="14"
+            height="14"
+            className="shrink-0 text-brand-300"
           ></iconify-icon>
-          <span className="font-sans text-xs font-semibold uppercase tracking-wider text-white">
+          <span className="font-sans text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-white truncate">
             {activeSlide.tag}
           </span>
         </div>
 
         {/* Animated Main Heading with Highlight */}
         <h1
-          className="animate-hero-fade-up font-serif text-3xl font-bold leading-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl"
+          className="animate-hero-fade-up font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white drop-shadow-lg"
           style={{ animationDelay: '80ms' }}
         >
           <span>{activeSlide.heading} </span>
-          <span className="block text-brand-300 sm:inline sm:text-brand-300">
+          <span className="text-brand-300">
             {activeSlide.highlight}
           </span>
         </h1>
 
         {/* Animated Subtitle */}
         <p
-          className="animate-hero-fade-up mt-2 font-serif text-lg font-medium text-earth-100 drop-shadow sm:text-2xl md:text-3xl"
+          className="animate-hero-fade-up mt-1.5 sm:mt-2 font-serif text-base sm:text-xl md:text-2xl font-medium text-earth-100 drop-shadow"
           style={{ animationDelay: '160ms' }}
         >
           {activeSlide.subtitle}
@@ -192,53 +215,57 @@ export default function Hero() {
 
         {/* Animated Description */}
         <p
-          className="animate-hero-fade-up mx-auto mt-4 max-w-2xl font-sans text-sm leading-relaxed text-neutral-100 drop-shadow sm:text-base md:text-lg"
+          className="animate-hero-fade-up mx-auto mt-2.5 sm:mt-4 max-w-2xl font-sans text-xs sm:text-base leading-relaxed text-neutral-100 drop-shadow line-clamp-3 sm:line-clamp-none"
           style={{ animationDelay: '240ms' }}
         >
           {activeSlide.description}
         </p>
 
-        {/* Animated Action Buttons */}
+        {/* Responsive Action Buttons Layout */}
         <div
-          className="animate-hero-fade-up mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+          className="animate-hero-fade-up mt-5 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto"
           style={{ animationDelay: '320ms' }}
         >
+          {/* Primary CTA (Full width on mobile, auto on desktop) */}
           <a
             href={activeSlide.primaryCtaLink}
             target={activeSlide.isExternalPrimary ? '_blank' : undefined}
             rel={activeSlide.isExternalPrimary ? 'noopener noreferrer' : undefined}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 font-sans text-sm font-semibold text-white shadow-xl transition-all duration-200 hover:bg-brand-500 hover:scale-[1.02] active:scale-[0.98]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 sm:px-7 py-3 sm:py-3.5 font-sans text-xs sm:text-sm font-semibold text-white shadow-xl transition-all duration-200 hover:bg-brand-500 hover:scale-[1.02] active:scale-[0.98]"
           >
             <span>{activeSlide.primaryCtaText}</span>
-            <iconify-icon icon="solar:calendar-bold" width="18" height="18"></iconify-icon>
+            <iconify-icon icon="solar:calendar-bold" width="16" height="16"></iconify-icon>
           </a>
 
-          <Link
-            href={activeSlide.secondaryCtaLink}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/80 bg-white/15 px-7 py-3.5 font-sans text-sm font-semibold text-white backdrop-blur-md transition-all duration-200 hover:bg-white hover:text-earth-900"
-          >
-            <span>{activeSlide.secondaryCtaText}</span>
-            <iconify-icon icon="solar:arrow-right-linear" width="18" height="18"></iconify-icon>
-          </Link>
+          {/* Secondary & WhatsApp (Side-by-side on mobile to save vertical space) */}
+          <div className="flex w-full sm:w-auto items-center gap-2 sm:gap-4">
+            <Link
+              href={activeSlide.secondaryCtaLink}
+              className="flex-1 sm:flex-initial sm:w-auto inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full border border-white/80 bg-white/15 px-4 sm:px-7 py-3 sm:py-3.5 font-sans text-xs sm:text-sm font-semibold text-white backdrop-blur-md transition-all duration-200 hover:bg-white hover:text-earth-900"
+            >
+              <span className="truncate">{activeSlide.secondaryCtaText}</span>
+              <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
+            </Link>
 
-          <a
-            href="https://wa.me/919987552273?text=Hi%20Malhar%20Baug%20Resort,%20I%20would%20like%20to%20enquire%20about%20booking%20a%20stay."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-emerald-400/60 bg-emerald-600/40 px-6 py-3.5 font-sans text-sm font-semibold text-white backdrop-blur-md transition-all duration-200 hover:bg-emerald-600 shadow-md"
-          >
-            <iconify-icon icon="logos:whatsapp-icon" width="18" height="18"></iconify-icon>
-            <span>WhatsApp</span>
-          </a>
+            <a
+              href="https://wa.me/919987552273?text=Hi%20Malhar%20Baug%20Resort,%20I%20would%20like%20to%20enquire%20about%20booking%20a%20stay."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 sm:flex-initial sm:w-auto inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full border border-emerald-400/60 bg-emerald-600/40 px-4 sm:px-6 py-3 sm:py-3.5 font-sans text-xs sm:text-sm font-semibold text-white backdrop-blur-md transition-all duration-200 hover:bg-emerald-600 shadow-md"
+            >
+              <iconify-icon icon="logos:whatsapp-icon" width="16" height="16"></iconify-icon>
+              <span>WhatsApp</span>
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Navigation Arrows — Premium Glassmorphic */}
+      {/* Navigation Arrows — Hidden on mobile to avoid covering text, visible on sm and up */}
       <button
         type="button"
         onClick={prevSlide}
         aria-label="Previous slide"
-        className="absolute left-3 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/20 bg-black/35 p-2.5 text-white backdrop-blur-md transition-all duration-200 hover:scale-110 hover:bg-black/60 sm:left-6 sm:p-3.5"
+        className="hidden sm:flex absolute left-4 sm:left-6 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/20 bg-black/40 p-2.5 sm:p-3.5 text-white backdrop-blur-md transition-all duration-200 hover:scale-110 hover:bg-black/65"
       >
         <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
@@ -249,7 +276,7 @@ export default function Hero() {
         type="button"
         onClick={nextSlide}
         aria-label="Next slide"
-        className="absolute right-3 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/20 bg-black/35 p-2.5 text-white backdrop-blur-md transition-all duration-200 hover:scale-110 hover:bg-black/60 sm:right-6 sm:p-3.5"
+        className="hidden sm:flex absolute right-4 sm:right-6 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/20 bg-black/40 p-2.5 sm:p-3.5 text-white backdrop-blur-md transition-all duration-200 hover:scale-110 hover:bg-black/65"
       >
         <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
@@ -257,7 +284,7 @@ export default function Hero() {
       </button>
 
       {/* Premium Multi-Slide Tabs & Progress Indicator at Bottom */}
-      <div className="absolute bottom-4 sm:bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 sm:gap-3 px-4">
+      <div className="absolute bottom-3 sm:bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1.5 sm:gap-3 px-3 max-w-[95vw]">
         {slides.map((slide, idx) => {
           const isActive = idx === current;
           return (
@@ -266,19 +293,19 @@ export default function Hero() {
               type="button"
               onClick={() => setCurrent(idx)}
               aria-label={`Go to slide ${idx + 1}: ${slide.tabLabel}`}
-              className={`group relative flex items-center gap-2 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 transition-all duration-300 ${
+              className={`group relative flex items-center gap-1.5 sm:gap-2 rounded-full px-2.5 py-1 sm:px-4 sm:py-2 transition-all duration-300 ${
                 isActive
                   ? 'border border-white/40 bg-black/60 backdrop-blur-md text-white shadow-lg'
                   : 'border border-transparent bg-black/30 backdrop-blur-sm text-white/70 hover:bg-black/50 hover:text-white'
               }`}
             >
               {/* Slide Number */}
-              <span className="font-sans text-[11px] sm:text-xs font-bold tracking-wider">
+              <span className="font-sans text-[10px] sm:text-xs font-bold tracking-wider">
                 0{idx + 1}
               </span>
 
-              {/* Slide Label (Visible on small screens and up) */}
-              <span className="hidden sm:inline font-sans text-xs font-medium">
+              {/* Slide Label (Visible on md screens and up) */}
+              <span className="hidden md:inline font-sans text-xs font-medium">
                 {slide.tabLabel}
               </span>
 
