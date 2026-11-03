@@ -50,7 +50,15 @@ export const resortFacilities: Amenity[] = [
     title: 'Garden Restaurant',
     description: 'Multi-cuisine garden restaurant serving authentic Maharashtrian, Konkan thalis, and fresh seafood.',
     image: '/dininghero.jpeg',
-    images: ['/dininghero.jpeg', '/dininghero2.jpeg', '/dining/fishthali.jpeg', '/dining/misalpaw.png'],
+    images: [
+      '/dininghero.jpeg',
+      '/dininghero2.jpeg',
+      '/dining/fishthali.jpeg',
+      '/dining/misalpaw.png',
+      '/dining/Poha.jpeg',
+      '/dining/Kanda& Bhaji.jpeg',
+      '/dining/Anda Bhurji and Pav.jpeg',
+    ],
   },
   {
     slug: 'parking',

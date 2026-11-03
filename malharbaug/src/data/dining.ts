@@ -33,15 +33,15 @@ export const diningGalleryImages: DiningDishImage[] = [
     category: 'Snacks',
   },
   {
-    src: '/dining/kanda bhaji.jpeg',
-    alt: 'Crispy hot golden Kanda Bhaji (onion pakoda) served fresh at Malhar Baug Resort garden restaurant',
+    src: '/dining/Kanda& Bhaji.jpeg',
+    alt: 'Crispy hot golden Kanda Bhaji (onion pakoda) served fresh with chutney at Malhar Baug Resort garden restaurant',
     title: 'Kanda Bhaji',
     category: 'Snacks',
   },
   {
     src: '/dining/potatopakoda.jpeg',
-    alt: 'Crispy golden Potato Pakoda (Aloo Bhajiya) served hot with spicy mint and tamarind chutneys',
-    title: 'Potato Pakoda',
+    alt: 'Crispy golden Batata Bhaji (Aloo Bhajiya) served hot with spicy mint and tamarind chutneys',
+    title: 'Batata Bhaji',
     category: 'Snacks',
   },
   {
@@ -51,15 +51,27 @@ export const diningGalleryImages: DiningDishImage[] = [
     category: 'Snacks',
   },
   {
-    src: '/dining/upma.jpeg',
-    alt: 'Freshly prepared traditional South Indian and Maharashtrian Upma with curry leaves and mustard seeds',
-    title: 'Upma',
+    src: '/dining/Poha.jpeg',
+    alt: 'Freshly prepared traditional Maharashtrian Kanda Poha garnished with fresh coriander, roasted peanuts, and lemon at Malhar Baug Resort',
+    title: 'Kanda Poha',
     category: 'Breakfast',
   },
   {
     src: '/dining/misalpaw.png',
     alt: 'Authentic spicy Maharashtrian Misal Pav served with fresh pav, farsan, chopped onions, and lemon at Malhar Baug Resort',
     title: 'Misal Pav',
+    category: 'Breakfast',
+  },
+  {
+    src: '/dining/Anda Bhurji and Pav.jpeg',
+    alt: 'Authentic spiced Maharashtrian Anda Bhurji served with hot buttered pav, chopped onions, and lemon at Malhar Baug Resort',
+    title: 'Anda Bhurji & Pav',
+    category: 'Breakfast',
+  },
+  {
+    src: '/dining/upma.jpeg',
+    alt: 'Freshly prepared traditional South Indian and Maharashtrian Upma with curry leaves and mustard seeds',
+    title: 'Upma',
     category: 'Breakfast',
   },
   {
@@ -73,7 +85,7 @@ export const diningGalleryImages: DiningDishImage[] = [
 export const menuCategories: MenuCategory[] = [
   {
     title: 'Breakfast',
-    items: ['Misal Pav', 'Upma', 'Poha', 'Idli-Sambar', 'Aloo Paratha', 'Masala Dosa', 'Bread Omelette', 'Cereal & Fruits', 'Tea & Coffee'],
+    items: ['Kanda Poha', 'Misal Pav', 'Anda Bhurji & Pav', 'Upma', 'Idli-Sambar', 'Aloo Paratha', 'Masala Dosa', 'Bread Omelette', 'Cereal & Fruits', 'Tea & Coffee'],
   },
   {
     title: 'Lunch',
@@ -85,11 +97,11 @@ export const menuCategories: MenuCategory[] = [
   },
   {
     title: 'Snacks & Starters',
-    items: ['Misal Pav', 'Chana Koliwada', 'Kanda Bhaji', 'Potato Pakoda', 'Crispy Starters & Snacks', 'Samosa', 'Vada Pav', 'French Fries', 'Sandwich'],
+    items: ['Kanda Bhaji', 'Misal Pav', 'Anda Bhurji & Pav', 'Chana Koliwada', 'Batata Bhaji', 'Crispy Starters & Snacks', 'Samosa', 'Vada Pav', 'French Fries', 'Sandwich'],
   },
   {
     title: 'Non-Vegetarian',
-    items: ['Chicken Sukha', 'Chicken Kolhapuri', 'Egg Curry', 'Fish Fry', 'Prawn Curry', 'Chicken Tandoori', 'Mutton Sukka', 'Bombil Fry'],
+    items: ['Chicken Sukha', 'Anda Bhurji & Pav', 'Chicken Kolhapuri', 'Egg Curry', 'Fish Fry', 'Prawn Curry', 'Chicken Tandoori', 'Mutton Sukka', 'Bombil Fry'],
   },
   {
     title: 'Seafood Specials',
@@ -114,4 +126,4 @@ export const menuCategories: MenuCategory[] = [
 ];
 
 export const diningDescription =
-  'Experience authentic Maharashtrian flavors along with coastal seafood and multi-cuisine specialties prepared using fresh, locally sourced ingredients. Our garden restaurant offers freshly prepared Fish Thali, Veg Thali, Chicken Sukha, Misal Pav, Chana Koliwada, Kanda Bhaji, Potato Pakoda, Upma, and seasonal coastal delicacies that celebrate the rich culinary culture of Alibaug and Konkan.';
+  'Experience authentic Maharashtrian flavors along with coastal seafood and multi-cuisine specialties prepared using fresh, locally sourced ingredients. Our garden restaurant offers freshly prepared Fish Thali, Veg Thali, Chicken Sukha, Kanda Poha, Misal Pav, Anda Bhurji & Pav, Chana Koliwada, Kanda Bhaji, Batata Bhaji, Upma, and seasonal coastal delicacies that celebrate the rich culinary culture of Alibaug and Konkan.';
