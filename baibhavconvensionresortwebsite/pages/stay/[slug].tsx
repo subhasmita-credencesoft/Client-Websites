@@ -1,4 +1,5 @@
 import type { GetStaticProps, GetStaticPaths, NextPage } from 'next';
+import Link from 'next/link';
 import Seo from '@/components/seo/Seo';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import ProductGallery from '@/components/sections/ProductGallery';
@@ -7,6 +8,7 @@ import { STAY_FAQS } from '@/data/faqs';
 import styles from '@/styles/StayPage.module.scss';
 import { getRoomBySlug, ROOMS } from '@/data/rooms';
 import { SITE } from '@/data/site';
+import { createBreadcrumbSchema, createFaqSchema } from '@/lib/schema';
 import { RoomCategory } from '@/types';
 
 interface RoomPageProps {
@@ -14,36 +16,46 @@ interface RoomPageProps {
 }
 
 const RoomPage: NextPage<RoomPageProps> = ({ room }) => {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'HotelRoom',
-    name: room.name,
-    description: room.overview,
-    image: room.gallery.map((g) => g.src),
-    url: `${SITE.domain}/stay/${room.slug}`,
-    bed: { '@type': 'BedDetails', typeOfBed: room.beds },
-    occupancy: { '@type': 'QuantitativeValue', value: 2, maxValue: 4 },
-    amenityFeature: room.amenities.map((amenity) => ({
-      '@type': 'LocationFeatureSpecification',
-      name: amenity,
-      value: true,
-    })),
-    offers: {
-      '@type': 'Offer',
-      price: room.price,
-      priceCurrency: 'INR',
-      availability: 'https://schema.org/InStock',
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Stay', url: '/stay' },
+      { name: room.name, url: `/stay/${room.slug}` },
+    ]),
+    createFaqSchema(STAY_FAQS),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'HotelRoom',
+      name: room.name,
+      description: room.overview,
+      image: room.gallery.map((g) => g.src),
+      url: `${SITE.domain}/stay/${room.slug}`,
+      bed: { '@type': 'BedDetails', typeOfBed: room.beds },
+      occupancy: { '@type': 'QuantitativeValue', value: 2, maxValue: 4 },
+      amenityFeature: room.amenities.map((amenity) => ({
+        '@type': 'LocationFeatureSpecification',
+        name: amenity,
+        value: true,
+      })),
+      offers: {
+        '@type': 'Offer',
+        price: room.price,
+        priceCurrency: 'INR',
+        availability: 'https://schema.org/InStock',
+        url: room.ctaHref,
+      },
     },
-  };
+  ];
 
   return (
     <>
       <Seo
-        title={`${room.name} — Bhubaneswar`}
+        title={`${room.name} — Phulnakhara, Bhubaneswar`}
         description={room.overview}
         path={`/stay/${room.slug}`}
+        keywords={`${room.name} Phulnakhara, ${room.name} Bhubaneswar, resort room near SUM hospital, hotel room booking NH-16, stay near cuttack bhubaneswar highway`}
         image={room.image}
-        imageAlt={`${room.name} at Baibhab Resorts & Conventions, Bhubaneswar–Cuttack, Odisha`}
+        imageAlt={`${room.name} with ${room.beds} at Baibhab Resorts & Conventions, Bhubaneswar–Cuttack, Odisha`}
         type="product"
         jsonLd={jsonLd}
       />
@@ -63,63 +75,99 @@ const RoomPage: NextPage<RoomPageProps> = ({ room }) => {
       </div>
 
       <div className={styles.roomLayout} data-reveal>
-        <div className={styles.roomMain}>
-          <div className={styles.roomHeader}>
-            <h1 className={styles.roomTitle}>{room.name}</h1>
-            <p className={styles.roomSubtitle}>{room.subtitle}</p>
+        <div className={styles.roomContent}>
+          <div className={styles.header}>
+            <p className="caption">Accommodation</p>
+            <h1 className="h2" style={{ marginTop: 8 }}>
+              {room.name}
+            </h1>
+            <p className={styles.subtitle}>{room.subtitle}</p>
           </div>
 
-          <div className={styles.roomSection}>
-            <h2 className={styles.roomSectionTitle}>Overview</h2>
-            <p className={styles.roomText}>{room.overview}</p>
+          <div className={styles.stats}>
+            <div className={styles.statCard}>
+              <span className={styles.statLabel}>Beds</span>
+              <span className={styles.statValue}>{room.beds}</span>
+            </div>
+            <div className={styles.statCard}>
+              <span className={styles.statLabel}>Inventory</span>
+              <span className={styles.statValue}>{room.size}</span>
+            </div>
+            <div className={styles.statCard}>
+              <span className={styles.statLabel}>Capacity</span>
+              <span className={styles.statValue}>{room.capacity}</span>
+            </div>
+            <div className={styles.statCard}>
+              <span className={styles.statLabel}>Ideal For</span>
+              <span className={styles.statValue}>{room.idealFor}</span>
+            </div>
           </div>
 
-          <div className={styles.specStrip}>
-            <div>
-              <span className={styles.specLabel}>Bed</span>
-              <span className={styles.specValue}>{room.beds}</span>
-            </div>
-            <div>
-              <span className={styles.specLabel}>Size</span>
-              <span className={styles.specValue}>{room.size}</span>
-            </div>
-            <div>
-              <span className={styles.specLabel}>Capacity</span>
-              <span className={styles.specValue}>{room.capacity}</span>
-            </div>
+          <div className={styles.block}>
+            <h2 className="h3">Overview</h2>
+            <p className={styles.text}>{room.overview}</p>
           </div>
 
-          <div className={styles.roomSection}>
-            <h2 className={styles.roomSectionTitle}>In-room amenities</h2>
-            <div className={styles.checklist}>
+          <div className={styles.block}>
+            <h2 className="h3">Room Amenities</h2>
+            <ul className={styles.amenitiesGrid}>
               {room.amenities.map((amenity) => (
-                <div key={amenity} className={styles.checkItem}>
+                <li key={amenity}>
                   <iconify-icon icon="solar:check-circle-linear" className={styles.checkIcon} aria-hidden="true" />
-                  <span>{amenity}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.roomSection}>
-            <h2 className={styles.roomSectionTitle}>Guest perks</h2>
-            <ul className={styles.perks}>
-              {room.perks.map((perk) => (
-                <li key={perk}>{perk}</li>
+                  {amenity}
+                </li>
               ))}
             </ul>
-            <p className={styles.roomText}>
-              <strong>Ideal for:</strong> {room.idealFor}
+          </div>
+
+          {room.perks && room.perks.length > 0 && (
+            <div className={styles.block}>
+              <h2 className="h3">Included Perks</h2>
+              <ul className={styles.amenitiesGrid}>
+                {room.perks.map((perk) => (
+                  <li key={perk}>
+                    <iconify-icon icon="solar:star-bold" className={styles.checkIcon} aria-hidden="true" />
+                    {perk}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Cross Links to Dining and Events */}
+          <div className={styles.block} style={{
+            backgroundColor: '#161616',
+            padding: '24px',
+            borderRadius: '12px',
+            border: '1px solid #262626',
+            marginTop: '32px'
+          }}>
+            <h3 style={{ fontSize: '1.15rem', color: '#f5f5f5', marginBottom: '8px' }}>
+              Explore More at Baibhab Resorts
+            </h3>
+            <p style={{ color: '#a3a3a3', fontSize: '0.9rem', marginBottom: '16px' }}>
+              Make the most of your stay with our on-site amenities, dining, and event facilities.
             </p>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              <Link href="/dining" className="btn btn-outline" style={{ fontSize: '0.85rem', padding: '8px 16px' }}>
+                Fusion Bites Restaurant
+              </Link>
+              <Link href="/location" className="btn btn-outline" style={{ fontSize: '0.85rem', padding: '8px 16px' }}>
+                Local Attractions Guide
+              </Link>
+              <Link href="/stay" className="btn btn-outline" style={{ fontSize: '0.85rem', padding: '8px 16px' }}>
+                View All Room Categories
+              </Link>
+            </div>
           </div>
         </div>
 
-        <aside className={styles.roomSidebar} aria-label="Booking">
+        <aside className={styles.sidebar}>
           <div className={styles.priceRow}>
             <span className={styles.price}>&#8377;{room.price.toLocaleString('en-IN')}</span>
             <span className={styles.priceUnit}>{room.priceUnit}</span>
           </div>
-          <p className={styles.sidebarNote}> Wi-Fi included. Taxes extra.</p>
+          <p className={styles.sidebarNote}>Free Wi-Fi and parking included. Taxes extra.</p>
           <a
             href={room.ctaHref}
             className="btn btn-primary btn-block"
@@ -133,7 +181,7 @@ const RoomPage: NextPage<RoomPageProps> = ({ room }) => {
             <iconify-icon icon="solar:phone-calling-rounded-bold" aria-hidden="true" />
             Call {SITE.phoneReservations}
           </a>
-          <p className={styles.sidebarNote}>You won&apos;t be charged yet — availability confirmed first.</p>
+          <p className={styles.sidebarNote}>Instant confirmation via BookOne reservation engine.</p>
         </aside>
       </div>
 

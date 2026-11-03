@@ -6,6 +6,8 @@ import InnerHero from '@/components/ui/InnerHero';
 import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/EventsPage.module.scss';
 import { DINING_FAQS } from '@/data/faqs';
+import { SITE } from '@/data/site';
+import { createBreadcrumbSchema, createFaqSchema } from '@/lib/schema';
 
 const KITCHEN_OFFERS = [
   'Fresh in-house cooking across Odia, North & South Indian and Continental cuisines.',
@@ -17,25 +19,51 @@ const KITCHEN_OFFERS = [
 const KITCHEN_IMAGES = [
   {
     src: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&q=80&fit=crop',
-    alt: 'Crispy Chicken 65 — an Indo-Chinese starter favourite',
+    alt: 'Crispy Indo-Chinese appetizer prepared in Baibhab Kitchen Bhubaneswar',
   },
   {
     src: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&q=80&fit=crop',
-    alt: 'Tandoori chicken, char-grilled in the clay oven',
+    alt: 'Fresh tandoori kebabs from the live clay oven at Baibhab Resorts',
   },
   {
     src: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=800&q=80&fit=crop',
-    alt: 'Rich Indian curries served with freshly baked breads',
+    alt: 'Rich Indian curries and freshly baked naan breads served at Baibhab Resorts',
   },
 ];
 
 const KitchenPage: NextPage = () => {
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Dining', url: '/dining' },
+      { name: 'The Baibhab Kitchen', url: '/dining/baibhab-kitchen' },
+    ]),
+    createFaqSchema(DINING_FAQS),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FoodEstablishment',
+      name: 'The Baibhab Kitchen',
+      url: `${SITE.domain}/dining/baibhab-kitchen`,
+      telephone: SITE.phoneReservations,
+      servesCuisine: ['Odia', 'North Indian', 'South Indian', 'Continental'],
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Near Phulnakhara Flyover, NH-16',
+        addressLocality: 'Phulnakhara',
+        addressRegion: 'Odisha',
+        addressCountry: 'IN',
+      },
+    },
+  ];
+
   return (
     <>
       <Seo
-        title="The Baibhab Kitchen — Buffets & Live Counters"
-        description="The Baibhab Kitchen at Baibhab Resorts — fresh in-house multi-cuisine cooking, live chaat and tandoor counters, and breakfast, lunch and dinner buffets."
+        title="The Baibhab Kitchen — Buffets, Live Counters & Catering"
+        description="Explore The Baibhab Kitchen at Baibhab Resorts — fresh in-house multi-cuisine cooking, live chaat and tandoor counters, and breakfast, lunch, and dinner buffets in Phulnakhara."
         path="/dining/baibhab-kitchen"
+        keywords="baibhab kitchen, resort buffets bhubaneswar, live food counters phulnakhara, banquet food cuttack highway, event catering odisha"
+        jsonLd={jsonLd}
       />
       <InnerHero
         image="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=1920&q=80&fit=crop"

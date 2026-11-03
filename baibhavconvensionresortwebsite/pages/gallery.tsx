@@ -1,10 +1,13 @@
 import type { GetStaticProps, NextPage } from 'next';
+import Link from 'next/link';
 import Seo from '@/components/seo/Seo';
 import InnerHero from '@/components/ui/InnerHero';
 import GalleryFilters from '@/components/sections/GalleryFilters';
 import FaqSection from '@/components/sections/FaqSection';
 import { GALLERY_FAQS } from '@/data/faqs';
 import { GALLERY_ITEMS } from '@/data/gallery';
+import { SITE } from '@/data/site';
+import { createBreadcrumbSchema, createFaqSchema } from '@/lib/schema';
 import { GalleryItem } from '@/types';
 
 interface GalleryPageProps {
@@ -12,12 +15,34 @@ interface GalleryPageProps {
 }
 
 const GalleryPage: NextPage<GalleryPageProps> = ({ items }) => {
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Gallery & Media', url: '/gallery' },
+    ]),
+    createFaqSchema(GALLERY_FAQS),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ImageGallery',
+      name: 'Baibhab Resorts & Conventions Photo Gallery',
+      url: `${SITE.domain}/gallery`,
+      description: 'Photos and architectural views of rooms, banquet halls, wedding lawns, dining, and nighttime illumination.',
+      image: items.map((item) => ({
+        '@type': 'ImageObject',
+        contentUrl: `${SITE.domain}${item.src}`,
+        caption: item.alt,
+      })),
+    },
+  ];
+
   return (
     <>
       <Seo
-        title="Photo Gallery — Rooms & Weddings"
-        description="Real photos of rooms, weddings, corporate events, dining and lawns at Baibhab Resorts & Conventions, Bhubaneswar."
+        title="Photo Gallery — Real Photos of Rooms, Weddings & Lawns"
+        description="Browse authentic photographs of luxury rooms, banquet halls, wedding lawns, dining areas, and nighttime illuminations at Baibhab Resorts & Conventions in Phulnakhara."
         path="/gallery"
+        keywords="resort photos bhubaneswar, banquet hall pictures phulnakhara, wedding lawn images odisha, luxury hotel rooms gallery nh16, baibhab resorts photos"
+        jsonLd={jsonLd}
       />
       <InnerHero
         image="/newedit/collage.avif"
@@ -27,11 +52,42 @@ const GalleryPage: NextPage<GalleryPageProps> = ({ items }) => {
         ]}
         eyebrow="Gallery & Media"
         title="Moments from Baibhab"
-        subtitle="Filter by Rooms or our open-air Lawns and grounds."
+        subtitle="Explore genuine photography of our rooms, banquet halls, and open-air lawns on the Bhubaneswar–Cuttack corridor."
       />
 
-      <div className="container" style={{ marginTop: 48, marginBottom: 96 }}>
+      <div className="container" style={{ marginTop: 48, marginBottom: 48 }}>
         <GalleryFilters items={items} />
+      </div>
+
+      <div className="container" style={{ marginBottom: 64 }} data-reveal>
+        <div style={{
+          backgroundColor: '#161616',
+          border: '1px solid #282828',
+          borderRadius: 16,
+          padding: '32px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 20,
+        }}>
+          <div>
+            <h3 style={{ fontSize: '1.25rem', color: '#f5f5f5', marginBottom: 6 }}>
+              Prefer an In-Person Site Visit?
+            </h3>
+            <p style={{ color: '#a3a3a3', fontSize: '0.95rem', margin: 0 }}>
+              Schedule a guided walkthrough with our property managers to inspect hall layouts, bridal suites, and guest rooms.
+            </p>
+          </div>
+          <div style={{ display: 'flex', gap: 12 }}>
+            <Link href="/contact" className="btn btn-primary">
+              Schedule Site Visit
+            </Link>
+            <Link href="/events/venues" className="btn btn-outline">
+              Venue Matrix
+            </Link>
+          </div>
+        </div>
       </div>
 
       <FaqSection

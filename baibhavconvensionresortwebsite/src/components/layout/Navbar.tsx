@@ -24,7 +24,7 @@ export default function Navbar() {
         <Link href="/" className={styles.logo} aria-label={`${SITE.name} home`}>
           <Image
             src="/images/baibhablogo-sm.webp"
-            alt=""
+            alt="Baibhab Resorts & Conventions Bhubaneswar - Luxury Resort and Banquets"
             width={264}
             height={176}
             priority

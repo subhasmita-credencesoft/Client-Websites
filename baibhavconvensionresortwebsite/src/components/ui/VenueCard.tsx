@@ -9,7 +9,7 @@ export default function VenueCard({ venue }: { venue: Venue }) {
       <div className={styles.imageWrap}>
         <Image
           src={venue.image}
-          alt={venue.name}
+          alt={`${venue.name} ${venue.venueType} wedding and event venue at Baibhab Resorts & Conventions, Bhubaneswar`}
           className={styles.image}
           loading="lazy"
           fill

@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next';
+import Link from 'next/link';
 import Seo from '@/components/seo/Seo';
 import InnerHero from '@/components/ui/InnerHero';
 import FaqSection from '@/components/sections/FaqSection';
@@ -6,6 +7,7 @@ import styles from '@/styles/LocationPage.module.scss';
 import { LOCATION_FAQS } from '@/data/faqs';
 import { DISTANCES, ATTRACTIONS, GETTING_HERE, WHY_LOCATION, NEARBY_LANDMARKS } from '@/data/location';
 import { SITE } from '@/data/site';
+import { createBreadcrumbSchema, createFaqSchema, createHotelSchema } from '@/lib/schema';
 import { Attraction, Distance } from '@/types';
 
 interface LocationPageProps {
@@ -40,12 +42,23 @@ const ATTRACTION_ICONS = [
 ];
 
 const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) => {
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Location & Directions', url: '/location' },
+    ]),
+    createHotelSchema(),
+    createFaqSchema(LOCATION_FAQS),
+  ];
+
   return (
     <>
       <Seo
-        title="Phulnakhara Location & Directions"
-        description="Baibhab Resorts on NH-16 at Phulnakhara, minutes from Bhubaneswar and Cuttack — with distances, directions and nearby attractions."
+        title="Phulnakhara Location & Directions — Between Bhubaneswar & Cuttack"
+        description="Baibhab Resorts is located on NH-16 at Phulnakhara (Nakhara) Flyover, 1 km from SUM Hospital 2 and 15–18 km from Bhubaneswar and Cuttack city centres. View distances, maps, and directions."
         path="/location"
+        keywords="resort in phulnakhara, hotel near sum hospital phulnakhara, hotels between bhubaneswar and cuttack, nakhara resort odisha, nh16 hotel bhubaneswar, directions to baibhab resorts"
+        jsonLd={jsonLd}
       />
       <InnerHero
         image="/newedit/Gate new Design.avif"
@@ -73,14 +86,19 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
             <iconify-icon icon="solar:map-point-bold" width="18" aria-hidden="true" />
             <span>{SITE.address}</span>
           </span>
-          <a
-            href={DIRECTIONS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary"
-          >
-            Get Directions
-          </a>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <a
+              href={DIRECTIONS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+            >
+              Get Directions
+            </a>
+            <Link href="/stay" className="btn btn-outline">
+              Book a Room
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -126,9 +144,9 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
                 className={styles.splitImage}
                 style={{ backgroundImage: `url('/newedit/Elegant Nighttime Property Showcase.avif')` }}
                 role="img"
-                aria-label="Elegant nighttime showcase of the Baibhab Resorts property"
+                aria-label="Elegant nighttime showcase of the Baibhab Resorts property on NH-16"
               />
-              <p className={styles.splitCaption}>Elegant Nighttime Property Showcase</p>
+              <p className={styles.splitCaption}>Nighttime Property Showcase at Phulnakhara</p>
             </div>
             <div className={styles.tableWrap} data-reveal>
               <table className={styles.table}>
@@ -190,7 +208,7 @@ const LocationPage: NextPage<LocationPageProps> = ({ distances, attractions }) =
           </h2>
           <p className={styles.lead}>
             A stay at Baibhab Resorts puts you minutes from SUM Hospital, DPS Kalinga, EAST,
-            cuttackchandimandir temples, and the NH-16 corridor — ideal for patient visits, open days, weddings and corporate travel.
+            temples, and the NH-16 corridor — ideal for patient visits, open days, weddings and corporate travel.
           </p>
           <div className={styles.landmarkGrid}>
             {NEARBY_LANDMARKS.map((cluster) => (

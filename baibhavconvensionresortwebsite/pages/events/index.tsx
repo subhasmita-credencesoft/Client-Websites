@@ -8,6 +8,7 @@ import styles from '@/styles/EventsPage.module.scss';
 import { EVENTS_FAQS } from '@/data/faqs';
 import { VENUES } from '@/data/venues';
 import { SITE } from '@/data/site';
+import { createBreadcrumbSchema, createFaqSchema } from '@/lib/schema';
 import { Venue } from '@/types';
 
 interface EventsPageProps {
@@ -24,6 +25,7 @@ const EVENT_PATHS = [
     cta: 'Explore Weddings',
     href: '/events/weddings',
     image: '/wedding/entrance.jpeg',
+    imageAlt: 'Grand wedding reception entrance and mandap setup at Baibhab Resorts',
   },
   {
     index: '02',
@@ -34,59 +36,70 @@ const EVENT_PATHS = [
     cta: 'Explore Corporate & MICE',
     href: '/events/corporate',
     image: '/newedit/Waiting area 2.avif',
+    imageAlt: 'Corporate delegate lounge and conference facility at Baibhab Resorts',
   },
   {
     index: '03',
     eyebrow: 'Venue Spaces',
     title: 'Venue Spaces & Capacity',
     description:
-      'Compare halls, lawns, and boardrooms  theater, cluster, U-shape and floating layouts, with seating and weather-backup plans.',
+      'Compare halls, lawns, and boardrooms — theater, cluster, U-shape and floating layouts, with seating and weather-backup plans.',
     cta: 'View Venues & Capacity',
     href: '/events/venues',
     image: '/newedit/Our Building.avif',
+    imageAlt: 'Baibhab Resorts & Conventions architectural exterior on NH-16',
   },
   {
     index: '04',
     eyebrow: 'Custom Proposals',
     title: 'Request a Custom Proposal',
     description:
-      'Tell us about your event  type, guests, dates, and catering preferences  and receive a tailored proposal within 24 hours.',
+      'Tell us about your event — type, guests, dates, and catering preferences — and receive a tailored proposal within 24 hours.',
     cta: 'Event Inquiry Form',
     href: '/contact?inquiry=Banquets+%2F+Events',
     image: '/newedit/Reciption.avif',
+    imageAlt: 'Event reception and hospitality registration desk at Baibhab Resorts',
   },
 ];
 
 const EventsPage: NextPage<EventsPageProps> = ({ venues }) => {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'EventVenue',
-    name: 'Baibhab Resorts & Conventions',
-    description: 'Odisha’s premier event and wedding destination on the Bhubaneswar–Cuttack corridor.',
-    url: `${SITE.domain}/events`,
-    maximumAttendeeCapacity: 1500,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Near Phulnakhara Flyover, Bhubaneswar–Cuttack Highway',
-      addressLocality: 'Phulnakhara',
-      addressRegion: 'Odisha',
-      addressCountry: 'IN',
-    },
-    telephone: SITE.phoneEvents,
-    sameAs: [SITE.facebook, SITE.instagram],
-    containsPlace: venues.map((venue) => ({
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Weddings & Events', url: '/events' },
+    ]),
+    createFaqSchema(EVENTS_FAQS),
+    {
+      '@context': 'https://schema.org',
       '@type': 'EventVenue',
-      name: venue.name,
-      maximumAttendeeCapacity: venue.floatingCapacity,
-    })),
-  };
+      name: 'Baibhab Resorts & Conventions',
+      description: 'Odisha’s premier event and wedding destination on the Bhubaneswar–Cuttack corridor.',
+      url: `${SITE.domain}/events`,
+      maximumAttendeeCapacity: 1500,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Near Phulnakhara Flyover, Bhubaneswar–Cuttack Highway',
+        addressLocality: 'Phulnakhara',
+        addressRegion: 'Odisha',
+        addressCountry: 'IN',
+      },
+      telephone: SITE.phoneEvents,
+      sameAs: [SITE.facebook, SITE.instagram],
+      containsPlace: venues.map((venue) => ({
+        '@type': 'EventVenue',
+        name: venue.name,
+        maximumAttendeeCapacity: venue.floatingCapacity,
+      })),
+    },
+  ];
 
   return (
     <>
       <Seo
-        title="Weddings & Events in Bhubaneswar"
-        description="Grand banquet halls, open-air lawns and boardrooms on the Bhubaneswar–Cuttack corridor for weddings, corporate MICE and celebrations up to 1,500+ guests."
+        title="Weddings, Banquets & Events in Bhubaneswar — Cuttack"
+        description="Grand banquet halls, open-air lawns and executive boardrooms on the Bhubaneswar–Cuttack corridor (NH-16) for grand weddings, receptions, and corporate MICE events for up to 1,500+ guests."
         path="/events"
+        keywords="wedding venues bhubaneswar, banquet hall phulnakhara, convention center cuttack bhubaneswar, marriage hall odisha, corporate event venues nh16"
         jsonLd={jsonLd}
       />
       <InnerHero
@@ -97,7 +110,7 @@ const EventsPage: NextPage<EventsPageProps> = ({ venues }) => {
         ]}
         eyebrow="Conventions, Weddings & Events"
         title="Odisha's Premier Event & Wedding Destination"
-        subtitle="Turning your grandest visions into seamless, memorable occasions."
+        subtitle="Turning your grandest visions into seamless, memorable occasions on the Bhubaneswar–Cuttack corridor."
         cta={{ label: 'Plan Your Event', href: '/contact?inquiry=Banquets+%2F+Events' }}
       />
 
@@ -116,7 +129,7 @@ const EventsPage: NextPage<EventsPageProps> = ({ venues }) => {
                   className={styles.cardImage}
                   style={{ backgroundImage: `url('${path.image}')` }}
                   role="img"
-                  aria-label={path.title}
+                  aria-label={path.imageAlt}
                 />
                 <div className={styles.cardOverlay} aria-hidden="true" />
               </div>

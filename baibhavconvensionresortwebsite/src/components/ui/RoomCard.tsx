@@ -9,7 +9,7 @@ export default function RoomCard({ room }: { room: RoomCategory }) {
       <div className={styles.imageWrap}>
         <Image
           src={room.image}
-          alt={room.name}
+          alt={`${room.name} with ${room.beds} at Baibhab Resorts & Conventions, Phulnakhara Bhubaneswar`}
           className={styles.image}
           loading="lazy"
           fill

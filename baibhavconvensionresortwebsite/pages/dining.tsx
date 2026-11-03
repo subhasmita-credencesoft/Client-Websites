@@ -7,14 +7,26 @@ import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/DiningPage.module.scss';
 import { DINING_FAQS } from '@/data/faqs';
 import { RESTAURANT, CATERING, DINING_SECTION } from '@/data/dining';
+import { createBreadcrumbSchema, createFaqSchema, createRestaurantSchema } from '@/lib/schema';
 
 const DiningPage: NextPage = () => {
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Dining & Catering', url: '/dining' },
+    ]),
+    createRestaurantSchema(),
+    createFaqSchema(DINING_FAQS),
+  ];
+
   return (
     <>
       <Seo
-        title="Dining & Catering in Bhubaneswar"
-        description="Multi-cuisine restaurant serving Odia, North and South Indian and Continental fare, plus pure-veg Fusion bites and live counters."
+        title="Fusion Bites Multi-Cuisine Restaurant & Banquet Catering"
+        description="Dine at Fusion Bites at Baibhab Resorts on NH-16. Authentic Odia specialties, North & South Indian, Continental fare, and customized pure-veg banquet catering for weddings and events."
         path="/dining"
+        keywords="restaurants in phulnakhara, fusion bites bhubaneswar, dining near sum hospital phulnakhara, pure veg catering bhubaneswar, multi cuisine restaurant cuttack highway, banquet catering odisha"
+        jsonLd={jsonLd}
       />
       <InnerHero
         image="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=1920&q=80&fit=crop"
@@ -33,7 +45,7 @@ const DiningPage: NextPage = () => {
             <div className={styles.splitImageWrap}>
               <Image
                 src="/restaurantdining.png"
-                alt={RESTAURANT.name}
+                alt="Fusion Bites multi-cuisine restaurant and dining hall at Baibhab Resorts Bhubaneswar"
                 loading="lazy"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -62,6 +74,14 @@ const DiningPage: NextPage = () => {
                   </li>
                 ))}
               </ul>
+              <div style={{ marginTop: 24, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Link href="/dining/baibhab-kitchen" className="btn btn-outline">
+                  The Baibhab Kitchen
+                </Link>
+                <Link href="/contact" className="btn btn-primary">
+                  Reserve a Table
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -72,7 +92,7 @@ const DiningPage: NextPage = () => {
                   className={styles.cardImage}
                   style={{ backgroundImage: `url('${highlight.image}')` }}
                   role="img"
-                  aria-label={highlight.title}
+                  aria-label={`${highlight.title} at Fusion Bites Baibhab Resorts`}
                 />
                 <p className={styles.cardTitle}>{highlight.title}</p>
                 <p className={styles.cardText}>{highlight.description}</p>
@@ -96,7 +116,7 @@ const DiningPage: NextPage = () => {
                   className={styles.cardImage}
                   style={{ backgroundImage: `url('${option.image}')` }}
                   role="img"
-                  aria-label={option.title}
+                  aria-label={`${option.title} catering at Baibhab Resorts`}
                 />
                 <p className={styles.cardTitle}>{option.title}</p>
                 <p className={styles.cardText}>{option.description}</p>
@@ -104,8 +124,8 @@ const DiningPage: NextPage = () => {
             ))}
           </div>
           <div className={styles.ctaBlock}>
-            <Link href="/dining/baibhab-kitchen" className="btn btn-outline">
-              The Baibhab Kitchen
+            <Link href="/events/weddings" className="btn btn-outline">
+              Wedding Venues & Stays
             </Link>
             <Link href="/contact?inquiry=Banquets+%2F+Events" className="btn btn-primary">
               Plan Catering for Your Event
@@ -118,7 +138,7 @@ const DiningPage: NextPage = () => {
         items={DINING_FAQS}
         eyebrow="Dining FAQs"
         title="Food & Catering Questions"
-        subtitle="Common questions about our restaurant, menus, dietary options and Fusion bites catering."
+        subtitle="Common questions about our restaurant, menus, dietary options and banquet catering."
       />
     </>
   );

@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import styles from '@/styles/UtilityPage.module.scss';
 import { ROOMS } from '@/data/rooms';
 import { VENUES } from '@/data/venues';
+import { createBreadcrumbSchema } from '@/lib/schema';
 import { fetchBlogsFromApi } from '@/lib/blog-api';
 
 interface SitemapLink {
@@ -25,6 +26,7 @@ const GROUPS: { title: string; links: SitemapLink[] }[] = [
       { label: 'Stay & Accommodations', href: '/stay' },
       { label: 'Weddings & Events', href: '/events' },
       { label: 'Dining & Catering', href: '/dining' },
+      { label: 'The Baibhab Kitchen', href: '/dining/baibhab-kitchen' },
       { label: 'Resort & Amenities', href: '/amenities' },
       { label: 'Gallery & Media', href: '/gallery' },
       { label: 'Offers & Packages', href: '/offers' },
@@ -34,7 +36,7 @@ const GROUPS: { title: string; links: SitemapLink[] }[] = [
     ],
   },
   {
-    title: 'Stay',
+    title: 'Stay & Rooms',
     links: ROOMS.map((room) => ({ label: room.name, href: `/stay/${room.slug}` })),
   },
   {
@@ -48,18 +50,19 @@ const GROUPS: { title: string; links: SitemapLink[] }[] = [
     ],
   },
   {
-    title: 'Legal',
+    title: 'Legal & Info',
     links: [
       { label: 'Privacy Policy', href: '/privacy-policy' },
       { label: 'Terms & Conditions', href: '/terms' },
       { label: 'Cancellation & Refund Policy', href: '/cancellation-policy' },
-      { label: 'Sitemap (XML)', href: '/sitemap.xml' },
+      { label: 'XML Sitemap (sitemap.xml)', href: '/sitemap.xml' },
+      { label: 'AI Knowledge Base (llms.txt)', href: '/llms.txt' },
     ],
   },
   {
     title: 'Blog',
     links: [
-      { label: 'All Posts', href: '/blog' },
+      { label: 'All Posts Index', href: '/blog' },
     ],
   },
 ];
@@ -71,9 +74,21 @@ const SitemapPage: NextPage<SitemapPageProps> = ({ blogLinks }) => {
       : group
   );
 
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Sitemap', url: '/sitemap' },
+    ]),
+  ];
+
   return (
     <>
-      <Seo title="Sitemap" description="Browse every page on the Baibhab Resorts & Conventions website." path="/sitemap" />
+      <Seo
+        title="HTML Sitemap — Complete Page Directory"
+        description="Browse every page, room category, event venue, and blog article on the Baibhab Resorts & Conventions website."
+        path="/sitemap"
+        jsonLd={jsonLd}
+      />
       <div className="container" style={{ paddingTop: 96 }}>
         <Breadcrumb
           items={[
@@ -84,7 +99,7 @@ const SitemapPage: NextPage<SitemapPageProps> = ({ blogLinks }) => {
       </div>
 
       <div className="container">
-        <PageHeader eyebrow="Sitemap" title="Browse the website" subtitle="Every page, grouped for quick access." />
+        <PageHeader eyebrow="Sitemap" title="Browse the website" subtitle="Every page, grouped for quick access and search engine indexing." />
       </div>
 
       <div className="container" style={{ marginTop: 48, marginBottom: 96 }}>

@@ -6,6 +6,7 @@ import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/ContactPage.module.scss';
 import { CONTACT_FAQS } from '@/data/faqs';
 import { SITE } from '@/data/site';
+import { createBreadcrumbSchema, createFaqSchema } from '@/lib/schema';
 
 interface ContactPageProps {
   inquiry?: string;
@@ -40,26 +41,52 @@ const CONTACT_CARDS = [
 const MAP_EMBED = 'https://www.google.com/maps?q=Phulnakhara%20Cuttack%20Bhubaneswar%20NH16&output=embed';
 
 const ContactPage: NextPage<ContactPageProps> = ({ inquiry = '' }) => {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ContactPage',
-    name: 'Contact Baibhab Resorts & Conventions',
-    url: `${SITE.domain}/contact`,
-    mainEntity: {
-      '@type': 'Hotel',
-      name: SITE.name,
-      telephone: SITE.phoneReservations,
-      email: SITE.emailGeneral,
-      address: { '@type': 'PostalAddress', streetAddress: SITE.address, addressRegion: 'Odisha', addressCountry: 'IN' },
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Contact & Inquiries', url: '/contact' },
+    ]),
+    createFaqSchema(CONTACT_FAQS),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      name: 'Contact Baibhab Resorts & Conventions',
+      url: `${SITE.domain}/contact`,
+      mainEntity: {
+        '@type': 'Hotel',
+        name: SITE.name,
+        telephone: SITE.phoneReservations,
+        email: SITE.emailGeneral,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Near Phulnakhara Flyover, Bhubaneswar–Cuttack Highway (NH-16)',
+          addressLocality: 'Phulnakhara, Khordha',
+          addressRegion: 'Odisha',
+          postalCode: '754001',
+          addressCountry: 'IN',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: '20.3844',
+          longitude: '85.8603',
+        },
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          opens: '00:00',
+          closes: '23:59',
+        },
+      },
     },
-  };
+  ];
 
   return (
     <>
       <Seo
-        title="Contact & Enquiries"
-        description="Reach Baibhab Resorts & Conventions for room reservations, event and wedding sales, WhatsApp support and via the contact form."
+        title="Contact & Enquiries — Reservations & Event Proposals"
+        description="Get in touch with Baibhab Resorts & Conventions on NH-16: phone numbers, WhatsApp chat, email, physical address, driving directions, and custom event proposal forms."
         path="/contact"
+        keywords="contact baibhab resorts, banquet enquiry phulnakhara, resort contact number bhubaneswar, wedding venue booking phone number odisha, resort address nh16"
         jsonLd={jsonLd}
       />
       <InnerHero
@@ -70,51 +97,60 @@ const ContactPage: NextPage<ContactPageProps> = ({ inquiry = '' }) => {
         ]}
         eyebrow="Contact & Inquiries"
         title="Connect With Us"
-        subtitle="Have questions about room availability or planning an event? Our team is ready to help 24/7."
+        subtitle="Have questions about room availability or planning a grand event? Our team is available 24/7 to assist you."
       />
 
       <div className="container" style={{ marginTop: 56 }}>
         <div className={styles.grid}>
-          {CONTACT_CARDS.map((card) => (
-            <div key={card.title} className={styles.card} data-reveal data-reveal-stagger>
-              <iconify-icon icon={card.icon} width="28" aria-hidden="true" />
-              <p className={styles.cardTitle}>{card.title}</p>
-              {card.lines.map((line) => (
-                <p key={line} className={styles.cardText}>
-                  {line}
-                </p>
-              ))}
-              {card.tel && (
-                <a href={card.tel} className={styles.cardLink}>
-                  Call now
-                </a>
-              )}
-              {card.whatsapp && (
-                <a
-                  href={card.whatsapp}
-                  className={styles.cardLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Chat on WhatsApp
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+          {CONTACT_CARDS.map((card) => {
+            const Wrapper = card.tel ? 'a' : card.whatsapp ? 'a' : 'div';
+            const extraProps = card.tel
+              ? { href: card.tel }
+              : card.whatsapp
+                ? { href: card.whatsapp, target: '_blank', rel: 'noopener noreferrer' }
+                : {};
 
-      <div className="container" style={{ marginTop: 72, marginBottom: 96 }}>
-        <div className={styles.split} data-reveal>
-          <div className={styles.formWrap}>
-            <h2 className="h2">Send us a message</h2>
-            <div style={{ marginTop: 24 }}>
-              <ContactForm initialInquiry={inquiry} />
-            </div>
+            return (
+              <Wrapper
+                key={card.title}
+                {...extraProps}
+                className={styles.card}
+                data-reveal
+                data-reveal-stagger
+              >
+                <div className={styles.cardHeader}>
+                  <div className={styles.iconCircle}>
+                    <iconify-icon icon={card.icon} width="22" aria-hidden="true" />
+                  </div>
+                  <h3 className={styles.cardTitle}>{card.title}</h3>
+                </div>
+                <div className={styles.cardBody}>
+                  {card.lines.map((line) => (
+                    <p key={line} className={styles.cardText}>
+                      {line}
+                    </p>
+                  ))}
+                </div>
+              </Wrapper>
+            );
+          })}
+        </div>
+
+        <div className={styles.split} style={{ marginTop: 56 }}>
+          <div className={styles.formCol} data-reveal>
+            <p className="caption">Send an inquiry</p>
+            <h2 className="h2" style={{ marginTop: 8 }}>
+              How can we help you?
+            </h2>
+            <p className={styles.lead}>
+              Share your dates, guest count or event requirements — our team will reply within 24 hours.
+            </p>
+            <ContactForm initialInquiry={inquiry} />
           </div>
-          <div className={styles.mapWrap}>
+
+          <div className={styles.mapCol} data-reveal>
             <iframe
-              title="Map  Baibhab Resorts & Conventions, Phulnakhara"
+              title="Baibhab Resorts & Conventions Location Map"
               src={MAP_EMBED}
               className={styles.map}
               loading="lazy"

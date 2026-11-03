@@ -7,6 +7,7 @@ import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/BlogPage.module.scss';
 import { BLOG_FAQS } from '@/data/faqs';
 import { SITE } from '@/data/site';
+import { createBreadcrumbSchema, createFaqSchema } from '@/lib/schema';
 import { fetchBlogsFromApi, ApiBlogPost } from '@/lib/blog-api';
 
 interface BlogPostPageProps {
@@ -30,20 +31,24 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
   const coverImage = post.seo?.ogImage || post.coverImageUrl || SITE.ogImage;
   const date = formatDate(post.publishedAt);
 
-  const jsonLd: Record<string, unknown> = {
+  const blogPostingSchema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
     author: {
       '@type': 'Organization',
-      name: SITE.name,
+      name: post.authorName || SITE.name,
       url: SITE.domain,
     },
     publisher: {
       '@type': 'Organization',
       name: SITE.name,
       url: SITE.domain,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE.domain}/images/baibhablogo-sm.webp`,
+      },
     },
     image: coverImage.startsWith('http') ? coverImage : `${SITE.domain}${coverImage}`,
     mainEntityOfPage: {
@@ -51,7 +56,23 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
       '@id': canonicalUrl,
     },
   };
-  if (date) jsonLd.datePublished = new Date(post.publishedAt as string).toISOString();
+  if (date && post.publishedAt) {
+    const parsed = Date.parse(post.publishedAt);
+    if (!Number.isNaN(parsed)) {
+      blogPostingSchema.datePublished = new Date(parsed).toISOString();
+      blogPostingSchema.dateModified = new Date(parsed).toISOString();
+    }
+  }
+
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Blog', url: '/blog' },
+      { name: post.title, url: `/blog/${post.slug}` },
+    ]),
+    blogPostingSchema,
+    createFaqSchema(BLOG_FAQS),
+  ];
 
   return (
     <>
@@ -59,7 +80,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
         title={post.seo?.metaTitle || post.title}
         description={post.seo?.metaDescription || post.excerpt}
         image={coverImage}
-        imageAlt={post.coverImageAlt || post.title}
+        imageAlt={post.coverImageAlt || `${post.title} - Baibhab Resorts Bhubaneswar`}
         path={`/blog/${post.slug}`}
         type="article"
         jsonLd={jsonLd}
@@ -96,7 +117,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
           {post.coverImageUrl && (
             <Image
               src={post.coverImageUrl}
-              alt={post.coverImageAlt || post.title}
+              alt={post.coverImageAlt || `${post.title} at Baibhab Resorts & Conventions`}
               width={1600}
               height={1040}
               sizes="(max-width: 768px) 100vw, 760px"
@@ -112,6 +133,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
 
+        {/* Cross-Link Conversion Row */}
         <div className={styles.ctaRow} style={{ marginTop: 48 }} data-reveal>
           <a
             href={SITE.bookingEngine}
@@ -123,6 +145,9 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
           </a>
           <Link href="/contact?inquiry=Banquets+%2F+Events" className="btn btn-outline">
             Send an Event Inquiry
+          </Link>
+          <Link href="/blog" className="btn btn-outline">
+            Back to All Stories
           </Link>
         </div>
       </article>

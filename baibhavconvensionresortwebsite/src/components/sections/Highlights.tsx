@@ -6,28 +6,28 @@ const HIGHLIGHTS = [
     index: '01',
     icon: 'solar:map-point-wave-bold',
     title: 'Strategic Location',
-    description: 'Located at Phulnakhara  seamlessly connecting Bhubaneswar & Cuttack.',
+    description: 'Located at Phulnakhara — seamlessly connecting Bhubaneswar & Cuttack with zero city traffic.',
     image: '/newedit/Entrance Pathway.avif',
   },
   {
     index: '02',
     icon: 'solar:users-group-rounded-bold',
     title: 'Large Event Capacity',
-    description: 'Multiple indoor banquets & manicured lawns for gatherings of all sizes.',
+    description: 'Multiple indoor column-free banquets & manicured lawns accommodating up to 1,500+ guests.',
     image: '/wedding/entrance.jpeg',
   },
   {
     index: '03',
     icon: 'solar:chef-hat-bold',
     title: 'Seamless Catering',
-    description: 'In-house culinary teams serving authentic Odia, Indian, and international cuisines.',
+    description: 'In-house culinary teams serving authentic Odia, Indian, and Continental cuisines with pure-veg facilities.',
     image: '/newedit/Minimal Hotel Refreshment Station.avif',
   },
   {
     index: '04',
     icon: 'solar:parking-square-bold',
     title: 'Hassle-Free Parking',
-    description: 'Dedicated parking space for over 200+ vehicles with valet capability.',
+    description: 'Dedicated parking space for over 200+ vehicles with driver rest lounges.',
     image: '/newedit/gate front.avif',
   },
 ];
@@ -46,7 +46,7 @@ export default function Highlights() {
                 className={styles.highlightImage}
                 style={{ backgroundImage: `url('${item.image}')` }}
                 role="img"
-                aria-label={item.title}
+                aria-label={`${item.title} at Baibhab Resorts & Conventions`}
               />
               <div className={styles.highlightOverlay} aria-hidden="true" />
               <span className={styles.highlightIndex}>{item.index}</span>

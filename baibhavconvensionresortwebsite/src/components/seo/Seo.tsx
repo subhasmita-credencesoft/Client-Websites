@@ -5,6 +5,7 @@ export interface SeoProps {
   title: string;
   description: string;
   path: string;
+  keywords?: string;
   image?: string;
   imageAlt?: string;
   type?: 'website' | 'article' | 'product';
@@ -21,6 +22,7 @@ export default function Seo({
   title,
   description,
   path,
+  keywords = SITE.metaKeywords,
   image = SITE.ogImage,
   imageAlt,
   type = 'website',
@@ -40,14 +42,15 @@ export default function Seo({
     <Head>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={url} />
       {noIndex ? (
         <meta name="robots" content="noindex, nofollow" />
       ) : (
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       )}
       <meta name="geo.region" content="IN-OR" />
-      <meta name="geo.placename" content="Phulnakhara, Odisha" />
+      <meta name="geo.placename" content="Phulnakhara, Bhubaneswar, Cuttack, Odisha" />
       <meta name="geo.position" content="20.3844;85.8603" />
       <meta name="ICBM" content="20.3844, 85.8603" />
 

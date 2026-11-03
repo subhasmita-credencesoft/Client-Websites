@@ -6,6 +6,8 @@ import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/OffersPage.module.scss';
 import { OFFERS_FAQS } from '@/data/faqs';
 import { OFFERS } from '@/data/offers';
+import { SITE } from '@/data/site';
+import { createBreadcrumbSchema, createFaqSchema } from '@/lib/schema';
 import { Offer } from '@/types';
 
 interface OffersPageProps {
@@ -16,12 +18,37 @@ const OffersPage: NextPage<OffersPageProps> = ({ offers }) => {
   const weddingOffers = offers.filter((offer) => offer.category === 'Wedding & Events');
   const stayOffers = offers.filter((offer) => offer.category === 'Seasonal Stay');
 
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Offers & Packages', url: '/offers' },
+    ]),
+    createFaqSchema(OFFERS_FAQS),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'OfferCatalog',
+      name: 'Special Offers and Bundled Packages at Baibhab Resorts',
+      url: `${SITE.domain}/offers`,
+      itemListElement: offers.map((offer, index) => ({
+        '@type': 'Offer',
+        position: index + 1,
+        name: offer.title,
+        description: offer.description,
+        price: offer.price ? offer.price.replace(/[^\d]/g, '') || undefined : undefined,
+        priceCurrency: 'INR',
+        url: offer.ctaHref.startsWith('http') ? offer.ctaHref : `${SITE.domain}${offer.ctaHref}`,
+      })),
+    },
+  ];
+
   return (
     <>
       <Seo
-        title="Wedding, Event & Stay Offers"
-        description="Wedding and event packages bundling venue, catering and guest rooms, plus seasonal stay deals and corporate bulk-booking discounts."
+        title="Wedding, Event & Stay Offers — Bundled Packages"
+        description="Save with bundled wedding and event packages at Baibhab Resorts: banquet hall rentals, multi-cuisine catering, and guest rooms, plus seasonal stay discounts on NH-16."
         path="/offers"
+        keywords="resort packages bhubaneswar, wedding package deals phulnakhara, hotel stay offers nh16, corporate delegate packages odisha, banquet hall discounts bhubaneswar"
+        jsonLd={jsonLd}
       />
       <InnerHero
         image="/newedit/Luxurious Courtyard Entrance at Night.avif"
@@ -31,7 +58,7 @@ const OffersPage: NextPage<OffersPageProps> = ({ offers }) => {
         ]}
         eyebrow="Offers & Packages"
         title="Curated Packages for Every Occasion"
-        subtitle="Bundled wedding and event offerings plus seasonal stay deals  all backed by our in-house catering and room inventory."
+        subtitle="Bundled wedding and event offerings plus seasonal stay deals — all backed by our in-house catering and room inventory."
       />
 
       <section className={styles.section}>
@@ -55,6 +82,30 @@ const OffersPage: NextPage<OffersPageProps> = ({ offers }) => {
           </div>
         </div>
       </section>
+
+      <div className="container" style={{ marginBottom: 32 }} data-reveal>
+        <div style={{
+          backgroundColor: '#161616',
+          border: '1px solid #282828',
+          borderRadius: 16,
+          padding: '32px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 20,
+        }}>
+          <div>
+            <h3 style={{ fontSize: '1.25rem', color: '#f5f5f5', marginBottom: 6 }}>Need a Custom Package?</h3>
+            <p style={{ color: '#a3a3a3', fontSize: '0.95rem', margin: 0 }}>
+              Speak with our event planners to design a personalized package for your wedding, conference, or family gathering.
+            </p>
+          </div>
+          <Link href="/contact?inquiry=Banquets+%2F+Events" className="btn btn-primary">
+            Request Custom Proposal
+          </Link>
+        </div>
+      </div>
 
       <FaqSection
         items={OFFERS_FAQS}

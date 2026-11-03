@@ -3,6 +3,7 @@ import Seo from '@/components/seo/Seo';
 import PageHeader from '@/components/ui/PageHeader';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import styles from '@/styles/UtilityPage.module.scss';
+import { createBreadcrumbSchema } from '@/lib/schema';
 
 export interface PolicySection {
   heading: string;
@@ -19,9 +20,16 @@ interface PolicyPageProps {
 }
 
 export default function PolicyPage({ title, eyebrow, description, path, updated, sections }: PolicyPageProps) {
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: title, url: path },
+    ]),
+  ];
+
   return (
     <>
-      <Seo title={title} description={description} path={path} />
+      <Seo title={title} description={description} path={path} jsonLd={jsonLd} />
       <div className="container" style={{ paddingTop: 96 }}>
         <Breadcrumb
           items={[

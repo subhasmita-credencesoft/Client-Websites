@@ -39,7 +39,7 @@ export default function DualPath() {
                 className={styles.dualMedia}
                 style={{ backgroundImage: `url('${path.image}')` }}
                 role="img"
-                aria-label={path.title}
+                aria-label={`${path.title} at Baibhab Resorts & Conventions`}
               />
               <div className={styles.dualOverlay} aria-hidden="true" />
               <div className={styles.dualShine} aria-hidden="true" />

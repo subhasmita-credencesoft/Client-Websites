@@ -4,20 +4,26 @@ import styles from '@/styles/Footer.module.scss';
 import { SITE } from '@/data/site';
 
 const QUICK_LINKS = [
+  { label: 'Stay & Rooms', href: '/stay' },
   { label: 'Premium Room', href: '/stay/premium-room' },
   { label: 'Deluxe Room', href: '/stay/deluxe-room' },
   { label: 'Venues & Capacity', href: '/events/venues' },
   { label: 'Dining & Catering', href: '/dining' },
+  { label: 'Resort Amenities', href: '/amenities' },
   { label: 'Offers & Packages', href: '/offers' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Location & Guide', href: '/location' },
+  { label: 'Photo Gallery', href: '/gallery' },
+  { label: 'Resort Blog', href: '/blog' },
 ];
 
 const EVENT_LINKS = [
-  { label: 'Weddings & Social', href: '/events/weddings' },
-  { label: 'Corporate & MICE', href: '/events/corporate' },
+  { label: 'Weddings & Social Events', href: '/events/weddings' },
+  { label: 'Corporate & MICE Conferences', href: '/events/corporate' },
+  { label: 'Royal Imperial Hall', href: '/events/venues#royal-imperial-hall' },
+  { label: 'Grand Green Lawn', href: '/events/venues#grand-green-lawn' },
   { label: 'Wedding Venue, Phulnakhara', href: '/events/weddings' },
   { label: 'Conference Hall, Cuttack–Bhubaneswar', href: '/events/corporate' },
-  { label: 'Event Inquiry', href: '/contact?inquiry=Banquets+%2F+Events' },
+  { label: 'Event Inquiry Form', href: '/contact?inquiry=Banquets+%2F+Events' },
 ];
 
 export default function Footer() {
@@ -49,7 +55,7 @@ export default function Footer() {
             <Link href="/" className={styles.logo} aria-label={`${SITE.name} home`}>
               <Image
                 src="/images/baibhablogo-sm.webp"
-                alt=""
+                alt="Baibhab Resorts & Conventions - Phulnakhara Bhubaneswar Cuttack Highway"
                 width={264}
                 height={176}
                 className={styles.logoImg}
@@ -154,6 +160,7 @@ export default function Footer() {
             <Link href="/terms">Terms & Conditions</Link>
             <Link href="/cancellation-policy">Cancellation & Refund</Link>
             <Link href="/sitemap">Sitemap</Link>
+            <Link href="/llms.txt">LLMs Knowledge</Link>
           </div>
         </div>
 

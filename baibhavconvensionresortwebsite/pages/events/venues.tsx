@@ -8,6 +8,7 @@ import styles from '@/styles/EventsPage.module.scss';
 import { VENUES_FAQS } from '@/data/faqs';
 import { VENUES } from '@/data/venues';
 import { SITE } from '@/data/site';
+import { createBreadcrumbSchema, createFaqSchema } from '@/lib/schema';
 import { Venue } from '@/types';
 
 interface VenuesPageProps {
@@ -15,29 +16,39 @@ interface VenuesPageProps {
 }
 
 const VenuesPage: NextPage<VenuesPageProps> = ({ venues }) => {
-  const jsonLd = venues.map((venue) => ({
-    '@context': 'https://schema.org',
-    '@type': 'EventVenue',
-    name: venue.name,
-    description: venue.description,
-    url: `${SITE.domain}/events/venues#${venue.slug}`,
-    maximumAttendeeCapacity: venue.floatingCapacity,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Near Phulnakhara Flyover, Bhubaneswar–Cuttack Highway',
-      addressLocality: 'Phulnakhara',
-      addressRegion: 'Odisha',
-      addressCountry: 'IN',
-    },
-    telephone: SITE.phoneEvents,
-  }));
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Weddings & Events', url: '/events' },
+      { name: 'Venues & Capacity', url: '/events/venues' },
+    ]),
+    createFaqSchema(VENUES_FAQS),
+    ...venues.map((venue) => ({
+      '@context': 'https://schema.org',
+      '@type': 'EventVenue',
+      name: `${venue.name} — Baibhab Resorts`,
+      description: venue.description,
+      url: `${SITE.domain}/events/venues#${venue.slug}`,
+      image: `${SITE.domain}${venue.image}`,
+      maximumAttendeeCapacity: venue.floatingCapacity,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Near Phulnakhara Flyover, Bhubaneswar–Cuttack Highway',
+        addressLocality: 'Phulnakhara',
+        addressRegion: 'Odisha',
+        addressCountry: 'IN',
+      },
+      telephone: SITE.phoneEvents,
+    })),
+  ];
 
   return (
     <>
       <Seo
-        title="Venue Spaces & Capacity Matrix"
-        description="Compare banquet halls, open-air lawns and boardrooms at Baibhab Resorts — seating and floating capacities, layout options and weather-backup plans."
+        title="Venue Spaces & Capacity Matrix — Banquets & Lawns"
+        description="Compare banquet halls, open-air lawns and boardrooms at Baibhab Resorts on the Bhubaneswar–Cuttack corridor. Seating and floating capacities, layout options, and weather-backup plans."
         path="/events/venues"
+        keywords="royal imperial hall bhubaneswar, banquet hall capacity cuttack, wedding lawn phulnakhara, conference hall capacity bhubaneswar, mandap venues odisha"
         jsonLd={jsonLd}
       />
       <InnerHero
@@ -73,7 +84,7 @@ const VenuesPage: NextPage<VenuesPageProps> = ({ venues }) => {
                 ) : (
                   <Image
                     src={venue.image}
-                    alt={venue.name}
+                    alt={`${venue.name} - ${venue.venueType} with ${venue.area} at Baibhab Resorts Bhubaneswar`}
                     className={styles.venueImage}
                     loading="lazy"
                     fill
@@ -83,33 +94,46 @@ const VenuesPage: NextPage<VenuesPageProps> = ({ venues }) => {
               </div>
               <div className={styles.venueBody}>
                 <div className={styles.venueMeta}>
-                  <span className={styles.venueType}>{venue.venueType}</span>
-                  <span className={styles.venueMetaText}>{venue.area}</span>
-                  {venue.ceilingHeight && <span className={styles.venueMetaText}>{venue.ceilingHeight}</span>}
+                  <p className="caption">{venue.venueType}</p>
+                  <h2 className="h2" style={{ marginTop: 8 }}>
+                    {venue.name}
+                  </h2>
+                  <p className={styles.venueText}>{venue.description}</p>
                 </div>
-                <h2 className={styles.venueTitle}>{venue.name}</h2>
-                <p className={styles.venueText}>{venue.description}</p>
 
-                <table className={styles.venueTable}>
+                <div className={styles.capacityGrid}>
+                  <div className={styles.capacityItem}>
+                    <p className={styles.capacityLabel}>Area</p>
+                    <p className={styles.capacityValue}>{venue.area}</p>
+                  </div>
+                  {venue.ceilingHeight && (
+                    <div className={styles.capacityItem}>
+                      <p className={styles.capacityLabel}>Ceiling Height</p>
+                      <p className={styles.capacityValue}>{venue.ceilingHeight}</p>
+                    </div>
+                  )}
+                  <div className={styles.capacityItem}>
+                    <p className={styles.capacityLabel}>Seated Capacity</p>
+                    <p className={styles.capacityValue}>{venue.seatedCapacity}</p>
+                  </div>
+                  <div className={styles.capacityItem}>
+                    <p className={styles.capacityLabel}>Floating Capacity</p>
+                    <p className={styles.capacityValue}>
+                      {venue.floatingCapacity >= 1000
+                        ? `${venue.floatingCapacity.toLocaleString('en-IN')}+`
+                        : venue.floatingCapacity}
+                    </p>
+                  </div>
+                </div>
+
+                <table className={styles.layoutTable} aria-label={`${venue.name} Seating Capacities`}>
                   <thead>
                     <tr>
-                      <th>Layout</th>
-                      <th>Capacity</th>
+                      <th scope="col">Layout</th>
+                      <th scope="col">Capacity</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Seated</td>
-                      <td>{venue.seatedCapacity.toLocaleString('en-IN')}</td>
-                    </tr>
-                    <tr>
-                      <td>Floating</td>
-                      <td>
-                        {venue.floatingCapacity >= 1000
-                          ? `${venue.floatingCapacity.toLocaleString('en-IN')}+`
-                          : venue.floatingCapacity}
-                      </td>
-                    </tr>
                     {venue.layouts.map((layout) => (
                       <tr key={layout.name}>
                         <td>{layout.name}</td>
@@ -128,6 +152,9 @@ const VenuesPage: NextPage<VenuesPageProps> = ({ venues }) => {
                 <div className={styles.ctaBlock}>
                   <Link href="/contact?inquiry=Banquets+%2F+Events" className="btn btn-primary">
                     Enquire About This Venue
+                  </Link>
+                  <Link href="/events/weddings" className="btn btn-outline">
+                    Wedding Packages
                   </Link>
                 </div>
               </div>

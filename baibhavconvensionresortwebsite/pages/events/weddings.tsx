@@ -6,36 +6,54 @@ import InnerHero from '@/components/ui/InnerHero';
 import FaqSection from '@/components/sections/FaqSection';
 import styles from '@/styles/EventsPage.module.scss';
 import { WEDDINGS_FAQS } from '@/data/faqs';
+import { SITE } from '@/data/site';
+import { createBreadcrumbSchema, createEventVenueSchema, createFaqSchema } from '@/lib/schema';
 
 const WEDDING_OFFERS = [
-  'Dedicated Bridal & Groom Dressing Suites.',
+  'Dedicated Bridal & Groom Dressing Suites with private vanity setups.',
   'Flexible decorator policy with in-house and empaneled vendor options.',
-  'Authentic Odia marriage feast menus & custom multi-cuisine buffets.',
-  'Ample room inventory for overnight guest accommodations.',
+  'Authentic Odia marriage feast menus & custom multi-cuisine buffets by Fusion Bites.',
+  'Ample room inventory for overnight guest accommodations (Premium & Deluxe rooms).',
+  'Guaranteed weather-backup indoor banquet halls for outdoor lawn celebrations.',
+  'Free parking for 200+ vehicles with dedicated driver rest lounge.',
 ];
 
 const WEDDING_IMAGES = [
   {
     src: '/wedding/entrance.jpeg',
-    alt: 'Luxurious courtyard entrance illuminated at night',
+    alt: 'Luxurious courtyard entrance and mandap setup illuminated at night at Baibhab Resorts Bhubaneswar',
   },
   {
     src: '/wedding/entrance12.jpeg',
-    alt: 'Grand entrance pathway of the resort',
+    alt: 'Grand wedding venue entrance pathway at Baibhab Resorts & Conventions Phulnakhara',
   },
   {
     src: '/newedit/Gate new Design.avif',
-    alt: 'Designed entrance gate of Baibhab Resorts',
+    alt: 'Decorated entrance gate at Baibhab Resorts & Conventions for wedding celebrations',
   },
 ];
 
 const WeddingsPage: NextPage = () => {
+  const jsonLd = [
+    createBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Weddings & Events', url: '/events' },
+      { name: 'Weddings & Social', url: '/events/weddings' },
+    ]),
+    createEventVenueSchema(),
+    createFaqSchema(WEDDINGS_FAQS),
+  ];
+
   return (
     <>
       <Seo
-        title="Weddings & Social Celebrations"
-        description="Mandap setups, Sangeet, Mehendi and grand receptions at Baibhab Resorts  indoor halls and outdoor lawns with dressing suites, in-house catering and guest rooms."
+        title="Wedding Venues & Banquets in Bhubaneswar — Cuttack"
+        description="Host grand weddings, mandap setups, Sangeet and receptions at Baibhab Resorts on NH-16. Column-free banquet halls, 8000 sq. ft. open lawns, bridal suites, and guest rooms."
         path="/events/weddings"
+        keywords="wedding venues in bhubaneswar, banquet hall for wedding in phulnakhara, wedding resorts near cuttack, open lawn wedding venue odisha, sangeet reception venues bhubaneswar, marriage garden nh16"
+        image="/wedding/weddinghero.jpeg"
+        imageAlt="Grand wedding reception celebration at Baibhab Resorts & Conventions"
+        jsonLd={jsonLd}
       />
       <InnerHero
         image="/wedding/weddinghero.jpeg"
@@ -46,7 +64,7 @@ const WeddingsPage: NextPage = () => {
         ]}
         eyebrow="Weddings & Social Events"
         title="Celebrate Your Special Day at a Venue That Handles Every Detail"
-        subtitle="From pre-wedding rituals like Sangeet and Mehendi to grand reception evenings, Baibhab Resorts offers versatile indoor and outdoor settings."
+        subtitle="From pre-wedding rituals like Sangeet and Mehendi to grand reception evenings, Baibhab Resorts offers versatile indoor and outdoor settings on the Bhubaneswar–Cuttack corridor."
         cta={{ label: 'Plan Your Wedding', href: '/contact?inquiry=Banquets+%2F+Events' }}
       />
 
@@ -68,7 +86,11 @@ const WeddingsPage: NextPage = () => {
         </div>
 
         <div className={styles.contentBlock} data-reveal>
-          <h2 className="h2">What we offer</h2>
+          <h2 className="h2">What we offer for your celebration</h2>
+          <p className={styles.featureText}>
+            Our experienced hospitality and banquet team coordinates every facet of your celebration — from
+            stage decor and floral lighting to live Odia culinary spreads and overnight guest rooms.
+          </p>
           <ul className={styles.checklist}>
             {WEDDING_OFFERS.map((offer) => (
               <li key={offer} className={styles.checkItem}>
@@ -84,6 +106,9 @@ const WeddingsPage: NextPage = () => {
             </Link>
             <Link href="/events/venues" className="btn btn-outline">
               Compare Venue Spaces
+            </Link>
+            <Link href="/stay" className="btn btn-outline">
+              Guest Room Inventory
             </Link>
           </div>
         </div>

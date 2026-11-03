@@ -4,8 +4,8 @@ import styles from '@/styles/Hero.module.scss';
 import SearchWidget from './SearchWidget';
 
 const HERO_IMAGES = [
-  { src: '/newedit/collage.avif', alt: 'Collage of Baibhab Resorts' },
-  { src: '/newedit/Elegant Nighttime Property Showcase.avif', alt: 'Elegant nighttime showcase of Baibhab Resorts' },
+  { src: '/newedit/collage.avif', alt: 'Baibhab Resorts & Conventions luxury property showcase in Phulnakhara' },
+  { src: '/newedit/Elegant Nighttime Property Showcase.avif', alt: 'Nighttime illumination of Royal Imperial Hall and wedding lawns at Baibhab Resorts' },
 ];
 
 export default function Hero() {
@@ -14,7 +14,7 @@ export default function Hero() {
       <Head>
         <link rel="preload" as="image" href={HERO_IMAGES[0].src} fetchPriority="high" />
       </Head>
-      <div className={styles.background} role="img" aria-label="Grand banquet hall and lawns at Baibhab Resorts">
+      <div className={styles.background} role="img" aria-label="Grand banquet hall and lawns at Baibhab Resorts & Conventions Bhubaneswar">
         {HERO_IMAGES.map((img, i) => (
           <div
             key={i}
@@ -30,7 +30,7 @@ export default function Hero() {
         <h1 className={styles.title}>Where Grand Celebrations Meet Effortless Comfort</h1>
         <p className={styles.subtitle}>
           Premium banquet venues, sprawling open-air lawns, and modern accommodations strategically located on
-          the Bhubaneswar Cuttack corridor.
+          the Bhubaneswar–Cuttack NH-16 corridor.
         </p>
         <div className={styles.ctaRow}>
           <Link href="/stay" className="btn btn-light">
