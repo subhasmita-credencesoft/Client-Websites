@@ -121,10 +121,10 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                 className="btn-primary shadow-lg"
               >
                 <iconify-icon icon="solar:phone-calling-bold" width="18" height="18"></iconify-icon>
-                <span>Call +91 90351 98520</span>
+                <span>Call +91 9320062613</span>
               </a>
               <a
-                href={`https://wa.me/${contact.whatsapp || '919987552273'}?text=Hi%20Malhar%20Baug%20Resort,%20I%20would%20like%20to%20enquire%20about%20booking%20a%20stay.`}
+                href={`https://wa.me/${contact.whatsapp || '919320062613'}?text=Hi%20Malhar%20Baug%20Resort,%20I%20would%20like%20to%20enquire%20about%20booking%20a%20stay.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-emerald-400/80 bg-emerald-600/60 px-7 py-3.5 font-sans text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-emerald-600 shadow-md"
@@ -151,7 +151,7 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                   href={`tel:${contact.phone || '+919035198520'}`}
                   className="mt-3 block font-sans text-sm font-bold text-brand-600 hover:underline dark:text-brand-400"
                 >
-                  {contact.phoneDisplay || '+91 90351 98520'}
+                  {contact.phoneDisplay || '+91 9320062613'}
                 </a>
               </div>
 
@@ -163,12 +163,12 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                 <h3 className="font-serif text-lg font-bold text-earth-900 dark:text-white">WhatsApp Chat</h3>
                 <p className="mt-1 font-sans text-xs text-earth-500 dark:text-earth-400">Instant Quotes &amp; Photos</p>
                 <a
-                  href={`https://wa.me/${contact.whatsapp || '919987552273'}`}
+                  href={`https://wa.me/${contact.whatsapp || '919320062613'}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-3 block font-sans text-sm font-bold text-emerald-600 hover:underline dark:text-emerald-400"
                 >
-                  {contact.whatsappDisplay || '+91 99875 52273'}
+                  {contact.whatsappDisplay || '+91 93200 62613'}
                 </a>
               </div>
 
@@ -226,7 +226,7 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                   </p>
                   <div className="mt-6 flex flex-wrap justify-center gap-3">
                     <a
-                      href={`https://wa.me/${contact.whatsapp || '919987552273'}?text=${whatsappMessage}`}
+                      href={`https://wa.me/${contact.whatsapp || '919320062613'}?text=${whatsappMessage}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary shadow-lg"
@@ -379,7 +379,7 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                       <iconify-icon icon="solar:letter-bold" width="18" height="18"></iconify-icon>
                     </button>
                     <a
-                      href={`https://wa.me/${contact.whatsapp || '919987552273'}?text=${whatsappMessage}`}
+                      href={`https://wa.me/${contact.whatsapp || '919320062613'}?text=${whatsappMessage}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-full border border-emerald-500 bg-emerald-50 px-6 py-3.5 font-sans text-sm font-semibold text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-700"

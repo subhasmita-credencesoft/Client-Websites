@@ -248,7 +248,7 @@ export default function Hero() {
             </Link>
 
             <a
-              href="https://wa.me/919987552273?text=Hi%20Malhar%20Baug%20Resort,%20I%20would%20like%20to%20enquire%20about%20booking%20a%20stay."
+              href="https://wa.me/919320062613?text=Hi%20Malhar%20Baug%20Resort,%20I%20would%20like%20to%20enquire%20about%20booking%20a%20stay."
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 sm:flex-initial sm:w-auto inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full border border-emerald-400/60 bg-emerald-600/40 px-4 sm:px-6 py-3 sm:py-3.5 font-sans text-xs sm:text-sm font-semibold text-white backdrop-blur-md transition-all duration-200 hover:bg-emerald-600 shadow-md"

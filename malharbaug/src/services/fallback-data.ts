@@ -3,11 +3,11 @@ import type { ApiProperty } from '@/types';
 export const fallbackProperty: ApiProperty = {
   id: 2970,
   name: 'Malhar Baug Resort',
-  email: 'bookings@malharbaugresort.com',
-  mobile: '+919035198520',
-  whatsApp: '+919987552273',
-  managerContactNo: '+919035198520',
-  managerEmailAddress: 'manager@malharbaugresort.com',
+  email: 'malharvillaresort90@gmail.com',
+  mobile: '+919320062613',
+  whatsApp: '+919320062613',
+  managerContactNo: '+919320062613',
+  managerEmailAddress: 'malharvillaresort90@gmail.com',
   address: {
     streetNumber: 'H.No. 3116',
     streetName: 'Palhe, Nagaon',

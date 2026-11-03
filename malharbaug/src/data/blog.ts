@@ -330,7 +330,7 @@ export const blogPosts: BlogArticle[] = [
       {
         heading: 'Booking Tips for Peak Weekends',
         paragraphs: [
-          'Weekends sell out quickly across Alibaug resorts. To secure your preferred Super Deluxe room or private family villa, book at least 1–2 weeks ahead directly via our website or WhatsApp (+91 99875 52273) to lock in the direct booking rate starting at ₹4,229.',
+          'Weekends sell out quickly across Alibaug resorts. To secure your preferred Super Deluxe room or private family villa, book at least 1–2 weeks ahead directly via our website or WhatsApp (+91 93200 62613) to lock in the direct booking rate starting at ₹4,229.',
         ],
       },
     ],

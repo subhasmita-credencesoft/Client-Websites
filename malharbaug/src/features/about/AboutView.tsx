@@ -347,13 +347,13 @@ export default function AboutView() {
                     <div className="flex items-center gap-3">
                       <iconify-icon icon="solar:phone-calling-linear" width="20" height="20" className="text-brand-400 shrink-0"></iconify-icon>
                       <a href="tel:+919035198520" className="text-earth-200 hover:text-white transition-colors">
-                        +91 90351 98520
+                        +91 9320062613
                       </a>
                     </div>
                     <div className="flex items-center gap-3">
                       <iconify-icon icon="solar:chat-round-dots-linear" width="20" height="20" className="text-brand-400 shrink-0"></iconify-icon>
-                      <a href="https://wa.me/919987552273" target="_blank" rel="noopener noreferrer" className="text-earth-200 hover:text-white transition-colors">
-                        +91 99875 52273 (WhatsApp)
+                      <a href="https://wa.me/919320062613" target="_blank" rel="noopener noreferrer" className="text-earth-200 hover:text-white transition-colors">
+                        +91 93200 62613 (WhatsApp)
                       </a>
                     </div>
                   </div>
@@ -405,7 +405,7 @@ export default function AboutView() {
                 className="inline-flex items-center gap-2 rounded-full border-2 border-white px-7 py-3.5 font-sans text-sm font-semibold text-white transition-all duration-200 hover:bg-white hover:text-brand-900"
               >
                 <iconify-icon icon="solar:phone-calling-bold" width="18" height="18"></iconify-icon>
-                <span>Call +91 90351 98520</span>
+                <span>Call +91 9320062613</span>
               </a>
             </div>
           </div>
