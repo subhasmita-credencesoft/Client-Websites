@@ -29,7 +29,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'Malhar Baug Resort Alibaug | Family Resort Near Nagaon Beach',
+    default: 'Malhar Baug Resort Alibaug | Best Family Resort Near Nagaon Beach',
     template: `%s | ${siteConfig.name}`,
   },
   description:
@@ -61,12 +61,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  other: {
+    'geo.region': 'IN-MH',
+    'geo.placename': 'Nagaon, Alibaug',
+    'geo.position': '18.6019;72.9056',
+    'ICBM': '18.6019, 72.9056',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: 'Malhar Baug Resort Alibaug | Family Resort Near Nagaon Beach',
+    title: 'Malhar Baug Resort Alibaug | Best Family Resort Near Nagaon Beach',
     description:
       'Malhar Baug Resort in Nagaon, Alibaug — 3-star resort with swimming pool, luxury rooms, private villas, lush party lawns, and home-style Konkan dining just 2 km from Nagaon Beach.',
     images: [
@@ -80,7 +86,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Malhar Baug Resort Alibaug | Family Resort Near Nagaon Beach',
+    title: 'Malhar Baug Resort Alibaug | Best Family Resort Near Nagaon Beach',
     description:
       'Malhar Baug Resort in Nagaon, Alibaug — 3-star resort with swimming pool, luxury rooms, private villas, lush party lawns, and home-style Konkan dining.',
     images: ['/hero1.jpeg'],

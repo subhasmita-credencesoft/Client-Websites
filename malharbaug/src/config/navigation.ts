@@ -33,6 +33,7 @@ export function buildPrimaryNav(rooms: Room[]): NavItem[] {
     { label: 'Gallery', href: '/gallery' },
     { label: 'Nearby', href: '/nearby' },
     { label: 'Travel Guide', href: '/travel-guide' },
+    { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ];
 }
@@ -43,11 +44,12 @@ export function buildFooterNav(rooms: Room[]): { heading: string; links: NavItem
       heading: 'Quick Links',
       links: [
         { label: 'Home', href: '/' },
-        { label: 'Rooms', href: '/rooms' },
+        { label: 'About Malhar Baug', href: '/about' },
+        { label: 'Rooms & Villas', href: '/rooms' },
         { label: 'Amenities', href: '/amenities' },
         { label: 'Gallery', href: '/gallery' },
-        { label: 'Nearby', href: '/nearby' },
-        { label: 'Contact', href: '/contact' },
+        { label: 'Nearby Attractions', href: '/nearby' },
+        { label: 'Contact Us', href: '/contact' },
       ],
     },
     {
@@ -61,13 +63,13 @@ export function buildFooterNav(rooms: Room[]): { heading: string; links: NavItem
         { label: 'Things to Do in Alibaug', href: '/travel-guide/things-to-do-in-alibaug' },
         { label: 'Nagaon Beach Guide', href: '/travel-guide/nagaon-beach-travel-guide' },
         { label: 'Mumbai to Alibaug Trip', href: '/travel-guide/mumbai-to-alibaug-weekend-trip' },
-        { label: 'Blog', href: '/blog' },
+        { label: 'Resort Blog', href: '/blog' },
       ],
     },
     {
-      heading: 'Events',
+      heading: 'Events & Functions',
       links: [
-        { label: 'All Events', href: '/events' },
+        { label: 'All Event Venues', href: '/events' },
         { label: 'Corporate Meetings', href: '/events/corporate' },
         { label: 'Wedding Functions', href: '/events/wedding' },
         { label: 'Birthday Celebrations', href: '/events/birthday' },

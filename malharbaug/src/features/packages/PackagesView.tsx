@@ -1,9 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import JsonLd from '@/components/seo/JsonLd';
 import { packages, offers } from '@/data/packages';
 import { bookingEngineUrl } from '@/data/booking';
 import { getContact } from '@/lib/api';
+import { breadcrumbSchema } from '@/lib/schema';
 
 export default async function PackagesView() {
   const contact = await getContact();
@@ -11,30 +14,68 @@ export default async function PackagesView() {
   return (
     <>
       <Header />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Packages & Offers', url: '/packages' },
+        ])}
+      />
       <main>
-        <section className="relative flex min-h-[400px] items-center overflow-hidden">
+        {/* Hero Section */}
+        <section className="relative flex min-h-[460px] items-center overflow-hidden pt-28 pb-16">
           <Image
-            src="https://images.unsplash.com/photo-1559223607-a43c990c692c?auto=format&fit=crop&q=80&w=2068"
-            alt="Stay packages and offers at Malhar Baug Resort Alibaug"
+            src="/hero3.jpeg"
+            alt="Resort stay packages and special offers at Malhar Baug Resort, Alibaug – family packages, group deals near Nagaon Beach"
             fill
             priority
+            sizes="100vw"
             className="absolute inset-0 z-0 object-cover"
           />
           <div className="hero-overlay absolute inset-0 z-0" />
           <div className="relative z-10 mx-auto max-w-7xl px-6 text-center">
-            <h1 className="font-serif text-5xl font-bold text-white sm:text-6xl">
+            <span className="inline-block rounded-full bg-brand-600/80 px-4 py-1.5 font-sans text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+              Best Rates Guaranteed
+            </span>
+            <h1 className="mt-4 font-serif text-5xl font-bold text-white sm:text-6xl">
               Packages &amp; Offers
             </h1>
             <p className="mx-auto mt-4 max-w-2xl font-sans text-lg text-earth-100">
-              Choose from our curated packages and special offers for an unforgettable stay.
+              Choose from our curated packages and special offers for an unforgettable stay at Malhar Baug Resort, Alibaug.
             </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <a
+                href={bookingEngineUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-brand-600 px-8 py-3.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+              >
+                Book Now – Best Price
+              </a>
+              <a
+                href={`tel:${contact.phone || '+919035198520'}`}
+                className="rounded-full border-2 border-white px-8 py-3.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Call for Group Rates
+              </a>
+            </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-6 py-24">
+        {/* Packages Section */}
+        <section className="mx-auto max-w-7xl px-6 py-20">
           <div className="text-center">
             <p className="section-subtitle">Stay Packages</p>
             <h2 className="section-title">Choose Your Perfect Getaway</h2>
+            <p className="mx-auto mt-6 max-w-3xl font-sans text-base leading-relaxed text-earth-600 dark:text-earth-300">
+              Whether you are planning a family vacation, a couple&apos;s retreat, a group getaway or a corporate offsite, our curated packages include accommodation, meals and resort amenities for a hassle-free experience. All packages include complimentary access to the swimming pool, gardens and outdoor spaces. Check our{' '}
+              <Link href="/rooms/" className="text-brand-600 underline hover:text-brand-700 dark:text-brand-400">
+                rooms &amp; villas
+              </Link>{' '}
+              or{' '}
+              <Link href="/contact/" className="text-brand-600 underline hover:text-brand-700 dark:text-brand-400">
+                contact us for customised group deals
+              </Link>.
+            </p>
           </div>
           <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2">
             {packages.map((pkg, index) => (
@@ -45,7 +86,7 @@ export default async function PackagesView() {
                 <div className="relative h-64 overflow-hidden">
                   <Image
                     src={pkg.image}
-                    alt={pkg.title}
+                    alt={`${pkg.title} – stay package at Malhar Baug Resort Alibaug near Nagaon Beach`}
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -103,6 +144,7 @@ export default async function PackagesView() {
           </div>
         </section>
 
+        {/* Special Offers Section */}
         <section className="bg-ocean-50 py-24 dark:bg-ocean-900/20">
           <div className="mx-auto max-w-7xl px-6">
             <div className="text-center">
@@ -118,7 +160,7 @@ export default async function PackagesView() {
                   <div className="relative h-44 overflow-hidden">
                     <Image
                       src={offer.image}
-                      alt={offer.title}
+                      alt={`${offer.title} – special offer at Malhar Baug Resort Alibaug`}
                       fill
                       sizes="(min-width: 768px) 33vw, 100vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -142,6 +184,36 @@ export default async function PackagesView() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Bottom CTA */}
+        <section className="mx-auto max-w-7xl px-6 py-20 text-center">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+            <div className="rounded-2xl bg-white p-8 card-shadow dark:bg-earth-800/50">
+              <iconify-icon icon="solar:bed-bold" width="36" height="36" className="text-brand-600"></iconify-icon>
+              <h3 className="mt-4 font-serif text-lg font-bold text-earth-900 dark:text-white">Rooms &amp; Villas</h3>
+              <p className="mt-2 font-sans text-sm text-earth-600 dark:text-earth-300">Browse all 18 rooms and villas at Malhar Baug Resort.</p>
+              <Link href="/rooms/" className="mt-4 inline-block font-sans text-sm font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400">
+                View Rooms →
+              </Link>
+            </div>
+            <div className="rounded-2xl bg-white p-8 card-shadow dark:bg-earth-800/50">
+              <iconify-icon icon="solar:star-bold" width="36" height="36" className="text-brand-600"></iconify-icon>
+              <h3 className="mt-4 font-serif text-lg font-bold text-earth-900 dark:text-white">Event Packages</h3>
+              <p className="mt-2 font-sans text-sm text-earth-600 dark:text-earth-300">Weddings, birthdays, corporate outings — we have a package for you.</p>
+              <Link href="/events/" className="mt-4 inline-block font-sans text-sm font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400">
+                View Events →
+              </Link>
+            </div>
+            <div className="rounded-2xl bg-white p-8 card-shadow dark:bg-earth-800/50">
+              <iconify-icon icon="solar:phone-bold" width="36" height="36" className="text-brand-600"></iconify-icon>
+              <h3 className="mt-4 font-serif text-lg font-bold text-earth-900 dark:text-white">Group Bookings</h3>
+              <p className="mt-2 font-sans text-sm text-earth-600 dark:text-earth-300">Special rates for groups of 20 or more. Call us to discuss.</p>
+              <Link href="/contact/" className="mt-4 inline-block font-sans text-sm font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400">
+                Contact Us →
+              </Link>
             </div>
           </div>
         </section>
