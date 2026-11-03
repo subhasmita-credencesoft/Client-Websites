@@ -22,15 +22,15 @@ export const TARIFF_MAIN_TABLE_PLAN_HEADER = "All Days (CP Plans — with Breakf
 export const TARIFF_FALLBACK_ROWS: TariffRow[] = [
   {
     name: "Deluxe Room",
-    value: "₹ 4,350 + GST on Double Occupancy with Breakfast",
+    value: "₹ 3,650 + GST on Double Occupancy with Breakfast",
   },
   {
     name: "Super Deluxe Room",
-    value: "₹ 5,350 + GST on Double Occupancy with Breakfast",
+    value: "₹ 4,650 + GST on Double Occupancy with Breakfast",
   },
   {
     name: "Extra Person (Above 5 Years)",
-    value: "₹ 1,400 + GST with Extra Mattress & Breakfast",
+    value: "₹ 1,200 + GST with Extra Mattress & Breakfast",
   },
 ];
 
