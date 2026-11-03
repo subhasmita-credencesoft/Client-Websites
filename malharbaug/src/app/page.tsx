@@ -1,4 +1,3 @@
-import Announcement from '@/components/layout/Announcement';
 import Header from '@/components/layout/Header';
 import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
@@ -16,7 +15,6 @@ import Footer from '@/components/layout/Footer';
 export default function HomePage() {
   return (
     <>
-      <Announcement />
       <Header />
       <main>
         <Hero />

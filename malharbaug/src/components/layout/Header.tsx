@@ -16,29 +16,37 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, [setScrolled]);
 
+  const navLinkClass = isScrolled
+    ? 'font-sans text-sm font-medium text-neutral-700 transition-colors duration-200 ease-out hover:text-brand-600 dark:text-neutral-200'
+    : 'font-sans text-sm font-medium text-white/95 transition-colors duration-200 ease-out hover:text-white drop-shadow-sm';
+
+  const iconClass = isScrolled
+    ? 'text-neutral-500 hover:text-brand-600 dark:text-neutral-400'
+    : 'text-white/80 hover:text-white';
+
   return (
     <header
-      className={`sticky top-0 z-50 border-b backdrop-blur-md transition-colors duration-300 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'border-neutral-200 bg-white/90 dark:border-neutral-800 dark:bg-earth-900/90'
-          : 'border-transparent bg-transparent'
+          ? 'border-b border-neutral-200/60 bg-white/95 shadow-md backdrop-blur-md dark:border-neutral-800 dark:bg-earth-900/95'
+          : 'border-transparent bg-gradient-to-b from-black/60 via-black/20 to-transparent'
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5">
         <Link href="/" aria-label="Malhar Baug Resort – home">
           <Image
             src="/malharlogo.jpeg"
             alt="Malhar Baug Resort logo – family resort in Alibaug"
-            width={70}
-            height={70}
+            width={64}
+            height={64}
             priority
-            className="rounded-full"
+            className="rounded-full shadow-md"
           />
         </Link>
 
@@ -53,14 +61,14 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="font-sans text-sm font-medium text-neutral-700 transition-colors duration-200 ease-out hover:text-brand-600 dark:text-neutral-200"
+                  className={navLinkClass}
                 >
                   {item.label}
                 </Link>
                 <button
                   type="button"
                   onClick={() => setActiveDropdown((prev) => (prev === item.label ? null : item.label))}
-                  className="ml-1 flex items-center text-neutral-500 transition-colors hover:text-brand-600 dark:text-neutral-400"
+                  className={`ml-1 flex items-center transition-colors ${iconClass}`}
                   aria-expanded={activeDropdown === item.label}
                   aria-label={`Toggle ${item.label} menu`}
                 >
@@ -76,7 +84,7 @@ export default function Header() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="font-sans text-sm font-medium text-neutral-700 transition-colors duration-200 ease-out hover:text-brand-600 dark:text-neutral-200"
+                className={navLinkClass}
               >
                 {item.label}
               </Link>
@@ -89,7 +97,7 @@ export default function Header() {
             href={bookingEngineUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-full bg-brand-600 px-5 py-2.5 font-sans text-sm font-semibold text-white transition-colors duration-200 ease-out hover:bg-brand-700 sm:inline-block"
+            className="hidden rounded-full bg-brand-600 px-5 py-2.5 font-sans text-sm font-semibold text-white shadow-md transition-all duration-200 ease-out hover:bg-brand-700 hover:shadow-brand-600/30 sm:inline-block"
           >
             Book Now
           </a>
@@ -98,7 +106,9 @@ export default function Header() {
             type="button"
             onClick={openDrawer}
             aria-label="Open menu"
-            className="flex h-11 w-11 items-center justify-center rounded-full text-neutral-700 lg:hidden dark:text-white"
+            className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors lg:hidden ${
+              isScrolled ? 'text-neutral-700 dark:text-white' : 'text-white'
+            }`}
           >
             <iconify-icon icon="solar:hamburger-menu-linear" width="24" height="24"></iconify-icon>
           </button>
