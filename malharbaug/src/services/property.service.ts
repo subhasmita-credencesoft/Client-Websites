@@ -228,15 +228,20 @@ function mapRooms(property: ApiProperty): Room[] {
   });
 }
 
+const OFFICIAL_CONTACT_PHONE = '+919320062613';
+const OFFICIAL_CONTACT_WHATSAPP = '919320062613';
+const OFFICIAL_CONTACT_EMAIL = 'malharvillaresort90@gmail.com';
+
 function mapContact(property: ApiProperty): ContactInfo {
   const address = property.address ?? {};
-  const phone = formatPhone(property.mobile || property.managerContactNo || '');
-  const whatsapp = formatPhone(property.whatsApp || property.mobile || property.managerContactNo || '');
+  // Always enforce verified official contact number and email for Malhar Baug Resort
+  const phone = formatPhone(OFFICIAL_CONTACT_PHONE);
+  const whatsapp = formatPhone(OFFICIAL_CONTACT_WHATSAPP);
 
-  const streetAddress = [address.streetNumber, address.streetName].filter(Boolean).join(', ');
-  const locality = address.suburb || address.city || address.locality || '';
-  const region = address.state || '';
-  const postalCode = address.postcode || '';
+  const streetAddress = [address.streetNumber, address.streetName].filter(Boolean).join(', ') || 'H.No. 3116, Palhe, Nagaon';
+  const locality = address.suburb || address.city || address.locality || 'Alibaug';
+  const region = address.state || 'Maharashtra';
+  const postalCode = address.postcode || '402204';
   const country = address.country || 'India';
 
   const addressLines = [
@@ -244,20 +249,20 @@ function mapContact(property: ApiProperty): ContactInfo {
     [locality, region, postalCode, country].filter(Boolean).join(', '),
   ].filter(Boolean);
 
-  const latitude = toNumber(property.latitude) ?? 0;
-  const longitude = toNumber(property.longitude) ?? 0;
+  const latitude = toNumber(property.latitude) || 18.6019;
+  const longitude = toNumber(property.longitude) || 72.9056;
 
   const mapEmbedUrl =
     latitude && longitude
       ? `https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`
-      : `https://www.google.com/maps?q=${encodeURIComponent(`${property.name} ${country}`)}&z=15&output=embed`;
+      : `https://www.google.com/maps?q=${encodeURIComponent(`${property.name || 'Malhar Baug Resort'} ${country}`)}&z=15&output=embed`;
 
   return {
     phone: phone.e164,
     phoneDisplay: phone.display,
     whatsapp: whatsapp.e164.replace(/^\+/, ''),
     whatsappDisplay: whatsapp.display,
-    email: property.email || property.managerEmailAddress || '',
+    email: OFFICIAL_CONTACT_EMAIL,
     addressLines,
     address: {
       '@type': 'PostalAddress',

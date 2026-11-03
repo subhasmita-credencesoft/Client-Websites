@@ -26,8 +26,8 @@ const RESORT_SAME_AS = [
 ];
 
 export function hotelSchema(contact: ContactInfo, rooms: Room[]) {
-  const primaryPhone = contact.phone || '+919035198520';
-  const primaryEmail = contact.email || 'bookings@malharbaugresort.com';
+  const primaryPhone = contact.phone || '+919320062613';
+  const primaryEmail = contact.email || 'malharvillaresort90@gmail.com';
 
   return {
     '@context': 'https://schema.org',
@@ -120,8 +120,8 @@ export function hotelSchema(contact: ContactInfo, rooms: Room[]) {
 }
 
 export function localBusinessSchema(contact: ContactInfo) {
-  const primaryPhone = contact.phone || '+919035198520';
-  const primaryEmail = contact.email || 'bookings@malharbaugresort.com';
+  const primaryPhone = contact.phone || '+919320062613';
+  const primaryEmail = contact.email || 'malharvillaresort90@gmail.com';
 
   return {
     '@context': 'https://schema.org',
@@ -189,7 +189,7 @@ export function websiteSchema() {
 }
 
 export function restaurantSchema(contact: ContactInfo) {
-  const primaryPhone = contact.phone || '+919035198520';
+  const primaryPhone = contact.phone || '+919320062613';
 
   return {
     '@context': 'https://schema.org',
@@ -253,4 +253,3 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
     })),
   };
 }
-

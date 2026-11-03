@@ -52,7 +52,7 @@ export default async function PackagesView() {
                 Book Now – Best Price
               </a>
               <a
-                href={`tel:${contact.phone || '+919035198520'}`}
+                href={`tel:${contact.phone || '+919320062613'}`}
                 className="rounded-full border-2 border-white px-8 py-3.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-white/10"
               >
                 Call for Group Rates
@@ -132,7 +132,7 @@ export default async function PackagesView() {
                       Book Now
                     </a>
                     <a
-                      href={`tel:${contact.phone}`}
+                      href={`tel:${contact.phone || '+919320062613'}`}
                       className="rounded-full border-2 border-brand-600 px-6 py-2.5 font-sans text-sm font-semibold text-brand-600 transition-colors hover:bg-brand-600 hover:text-white dark:border-brand-400 dark:text-brand-400"
                     >
                       Call Us

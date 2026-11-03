@@ -49,7 +49,7 @@ export default async function EventsListView() {
                 Enquire for Events
               </Link>
               <a
-                href={`tel:${contact.phone || '+919035198520'}`}
+                href={`tel:${contact.phone || '+919320062613'}`}
                 className="rounded-full border-2 border-white px-8 py-3.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-white/10"
               >
                 Call Us Now
@@ -158,7 +158,7 @@ export default async function EventsListView() {
                 Contact Our Events Team
               </Link>
               <a
-                href={`tel:${contact.phone || '+919035198520'}`}
+                href={`tel:${contact.phone || '+919320062613'}`}
                 className="rounded-full border-2 border-white px-8 py-3.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-white/10"
               >
                 Call Now

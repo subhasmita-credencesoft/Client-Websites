@@ -117,11 +117,11 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <a
-                href={`tel:${contact.phone || '+919035198520'}`}
+                href={`tel:${contact.phone || '+919320062613'}`}
                 className="btn-primary shadow-lg"
               >
                 <iconify-icon icon="solar:phone-calling-bold" width="18" height="18"></iconify-icon>
-                <span>Call +91 9320062613</span>
+                <span>Call {contact.phoneDisplay || '+91 93200 62613'}</span>
               </a>
               <a
                 href={`https://wa.me/${contact.whatsapp || '919320062613'}?text=Hi%20Malhar%20Baug%20Resort,%20I%20would%20like%20to%20enquire%20about%20booking%20a%20stay.`}
@@ -148,10 +148,10 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                 <h3 className="font-serif text-lg font-bold text-earth-900 dark:text-white">Direct Phone</h3>
                 <p className="mt-1 font-sans text-xs text-earth-500 dark:text-earth-400">24/7 Front Desk &amp; Inquiries</p>
                 <a
-                  href={`tel:${contact.phone || '+919035198520'}`}
+                  href={`tel:${contact.phone || '+919320062613'}`}
                   className="mt-3 block font-sans text-sm font-bold text-brand-600 hover:underline dark:text-brand-400"
                 >
-                  {contact.phoneDisplay || '+91 9320062613'}
+                  {contact.phoneDisplay || '+91 93200 62613'}
                 </a>
               </div>
 
@@ -180,10 +180,10 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                 <h3 className="font-serif text-lg font-bold text-earth-900 dark:text-white">Email Us</h3>
                 <p className="mt-1 font-sans text-xs text-earth-500 dark:text-earth-400">Official bookings &amp; invoices</p>
                 <a
-                  href={`mailto:${contact.email || 'bookings@malharbaugresort.com'}`}
+                  href={`mailto:${contact.email || 'malharvillaresort90@gmail.com'}`}
                   className="mt-3 block font-sans text-sm font-bold text-brand-600 hover:underline dark:text-brand-400 truncate"
                 >
-                  {contact.email || 'bookings@malharbaugresort.com'}
+                  {contact.email || 'malharvillaresort90@gmail.com'}
                 </a>
               </div>
 
@@ -219,39 +219,28 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                     <iconify-icon icon="solar:check-circle-bold" width="36" height="36"></iconify-icon>
                   </div>
                   <h3 className="mt-4 font-serif text-2xl font-bold text-earth-900 dark:text-white">
-                    Thank You, {formData.name || 'Valued Guest'}!
+                    Inquiry Received!
                   </h3>
-                  <p className="mt-2 font-sans text-sm text-earth-700 dark:text-earth-300 max-w-md mx-auto">
-                    Your inquiry has been noted. For instant response, click below to forward your details directly to our reservations desk on WhatsApp:
+                  <p className="mt-2 font-sans text-sm text-earth-600 dark:text-earth-300 max-w-md mx-auto">
+                    Thank you, {formData.name || 'Guest'}! Our front office team will get back to you shortly at {formData.phone || 'your phone'} with room availability and current offers.
                   </p>
                   <div className="mt-6 flex flex-wrap justify-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="rounded-full bg-brand-600 px-6 py-2.5 font-sans text-xs font-semibold text-white hover:bg-brand-700 transition"
+                    >
+                      Send Another Inquiry
+                    </button>
                     <a
                       href={`https://wa.me/${contact.whatsapp || '919320062613'}?text=${whatsappMessage}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary shadow-lg"
+                      className="inline-flex items-center gap-2 rounded-full border border-emerald-500 bg-emerald-50 px-6 py-2.5 font-sans text-xs font-semibold text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-700"
                     >
-                      <iconify-icon icon="logos:whatsapp-icon" width="18" height="18"></iconify-icon>
-                      <span>Forward via WhatsApp</span>
+                      <iconify-icon icon="logos:whatsapp-icon" width="16" height="16"></iconify-icon>
+                      <span>Forward to WhatsApp</span>
                     </a>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSubmitted(false);
-                        setFormData({
-                          name: '',
-                          email: '',
-                          phone: '',
-                          inquiryType: 'Room Booking',
-                          guests: '2 Guests',
-                          dates: '',
-                          message: '',
-                        });
-                      }}
-                      className="btn-secondary"
-                    >
-                      <span>Send Another Inquiry</span>
-                    </button>
                   </div>
                 </div>
               ) : (
@@ -274,7 +263,7 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                     </div>
                     <div>
                       <label htmlFor="phone" className="block font-sans text-xs font-semibold uppercase tracking-wider text-earth-700 dark:text-earth-200 mb-1.5">
-                        Phone Number *
+                        Phone / WhatsApp Number *
                       </label>
                       <input
                         type="tel"
@@ -284,7 +273,7 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full rounded-xl border border-earth-200 bg-white px-4 py-3 font-sans text-sm text-earth-900 placeholder-earth-400 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-earth-700 dark:bg-earth-800 dark:text-white"
-                        placeholder="e.g. +91 98765 43210"
+                        placeholder="+91 98765 43210"
                       />
                     </div>
                   </div>
@@ -301,7 +290,7 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                         value={formData.email}
                         onChange={handleChange}
                         className="w-full rounded-xl border border-earth-200 bg-white px-4 py-3 font-sans text-sm text-earth-900 placeholder-earth-400 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-earth-700 dark:bg-earth-800 dark:text-white"
-                        placeholder="e.g. rahul@example.com"
+                        placeholder="yourname@gmail.com"
                       />
                     </div>
                     <div>
@@ -327,7 +316,7 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="guests" className="block font-sans text-xs font-semibold uppercase tracking-wider text-earth-700 dark:text-earth-200 mb-1.5">
-                        Number of Guests
+                        Estimated Number of Guests
                       </label>
                       <input
                         type="text"
