@@ -229,6 +229,7 @@ function mapRooms(property: ApiProperty): Room[] {
 }
 
 const OFFICIAL_CONTACT_PHONE = '+919320062613';
+const OFFICIAL_CONTACT_PHONE2 = '+919987283577';
 const OFFICIAL_CONTACT_WHATSAPP = '919320062613';
 const OFFICIAL_CONTACT_EMAIL = 'malharvillaresort90@gmail.com';
 
@@ -257,9 +258,13 @@ function mapContact(property: ApiProperty): ContactInfo {
       ? `https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`
       : `https://www.google.com/maps?q=${encodeURIComponent(`${property.name || 'Malhar Baug Resort'} ${country}`)}&z=15&output=embed`;
 
+  const phone2 = formatPhone(OFFICIAL_CONTACT_PHONE2);
+
   return {
     phone: phone.e164,
     phoneDisplay: phone.display,
+    phone2: phone2.e164,
+    phone2Display: phone2.display,
     whatsapp: whatsapp.e164.replace(/^\+/, ''),
     whatsappDisplay: whatsapp.display,
     email: OFFICIAL_CONTACT_EMAIL,

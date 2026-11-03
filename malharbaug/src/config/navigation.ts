@@ -54,7 +54,7 @@ export function buildFooterNav(rooms: Room[]): { heading: string; links: NavItem
     },
     {
       heading: 'Accommodation',
-      links: [...roomNavItems(rooms), { label: 'Packages & Offers', href: '/packages' }],
+      links: [...roomNavItems(rooms), { label: 'Contact Us', href: '/contact' }],
     },
     {
       heading: 'Plan Your Trip',

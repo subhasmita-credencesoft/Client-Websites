@@ -7,6 +7,5 @@ export * from './faqs';
 export * from './gallery';
 export * from './navigation';
 export * from './nearby';
-export * from './packages';
 export * from './testimonials';
 export * from './travelGuide';

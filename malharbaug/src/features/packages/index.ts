@@ -1,1 +1,1 @@
-export { default as PackagesView } from './PackagesView';
+// Packages feature removed — page redirects to /contact/

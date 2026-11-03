@@ -16,7 +16,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '',                priority: 1.0, freq: 'daily' },      // Homepage
     { path: '/rooms',          priority: 0.95, freq: 'weekly' },    // Rooms list — high commercial intent
     { path: '/amenities',      priority: 0.85, freq: 'weekly' },    // Amenities — high informational intent
-    { path: '/packages',       priority: 0.85, freq: 'weekly' },    // Packages — transactional
     { path: '/events',         priority: 0.85, freq: 'weekly' },    // Events — high local intent
     { path: '/nearby',         priority: 0.85, freq: 'weekly' },    // Nearby attractions — informational + local
     { path: '/contact',        priority: 0.85, freq: 'weekly' },    // Contact — local SEO crucial

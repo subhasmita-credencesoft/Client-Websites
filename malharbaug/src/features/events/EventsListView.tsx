@@ -66,13 +66,9 @@ export default async function EventsListView() {
             Malhar Baug Resort is one of the most sought-after event venues near Alibaug, offering sprawling open lawns, lush garden settings and dedicated event support. Whether you are planning a destination wedding, a milestone birthday, a corporate offsite or a family reunion, our team handles every detail — from décor and catering to customised packages and accommodation for your guests.
           </p>
           <p className="mt-4 font-sans text-base leading-relaxed text-earth-600 dark:text-earth-300">
-            With capacity for up to 300 guests, on-site accommodation in 18 rooms and villas, and a fully equipped kitchen serving authentic Konkan and multi-cuisine meals, Malhar Baug is the complete event destination just 28 km from Mandwa Jetty. Explore our{' '}
-            <Link href="/packages/" className="text-brand-600 underline hover:text-brand-700 dark:text-brand-400">
-              event packages
-            </Link>{' '}
-            or{' '}
+            With capacity for up to 300 guests, on-site accommodation in 18 rooms and villas, and a fully equipped kitchen serving authentic Konkan and multi-cuisine meals, Malhar Baug is the complete event destination just 28 km from Mandwa Jetty.{' '}
             <Link href="/contact/" className="text-brand-600 underline hover:text-brand-700 dark:text-brand-400">
-              get in touch
+              Get in touch
             </Link>{' '}
             for a customised quote.
           </p>

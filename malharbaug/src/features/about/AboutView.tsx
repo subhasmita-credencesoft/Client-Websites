@@ -346,9 +346,14 @@ export default function AboutView() {
                     </div>
                     <div className="flex items-center gap-3">
                       <iconify-icon icon="solar:phone-calling-linear" width="20" height="20" className="text-brand-400 shrink-0"></iconify-icon>
-                      <a href="tel:+919320062613" className="text-earth-200 hover:text-white transition-colors">
-                        +91 93200 62613
-                      </a>
+                      <div className="flex flex-col">
+                        <a href="tel:+919320062613" className="text-earth-200 hover:text-white transition-colors">
+                          +91 93200 62613
+                        </a>
+                        <a href="tel:+919987283577" className="text-earth-200 hover:text-white transition-colors">
+                          +91 99872 83577
+                        </a>
+                      </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <iconify-icon icon="solar:chat-round-dots-linear" width="20" height="20" className="text-brand-400 shrink-0"></iconify-icon>
@@ -405,7 +410,7 @@ export default function AboutView() {
                 className="inline-flex items-center gap-2 rounded-full border-2 border-white px-7 py-3.5 font-sans text-sm font-semibold text-white transition-all duration-200 hover:bg-white hover:text-brand-900"
               >
                 <iconify-icon icon="solar:phone-calling-bold" width="18" height="18"></iconify-icon>
-                <span>Call +91 93200 62613</span>
+                <span>+91 93200 62613 / 99872 83577</span>
               </a>
             </div>
           </div>

@@ -127,16 +127,6 @@
     </image:image>
   </url>
 
-  <!-- ═══ PACKAGES PAGE ═══ -->
-  <url>
-    <loc>https://www.malharbaugresort.com/packages/</loc>
-    <image:image>
-      <image:loc>https://www.malharbaugresort.com/hero3.jpeg</image:loc>
-      <image:title>Stay packages and offers at Malhar Baug Resort, Alibaug near Nagaon Beach</image:title>
-      <image:caption>Family packages, group deals and special offers at Malhar Baug Resort — book direct for best rates</image:caption>
-    </image:image>
-  </url>
-
   <!-- ═══ NEARBY ATTRACTIONS PAGE ═══ -->
   <url>
     <loc>https://www.malharbaugresort.com/nearby/</loc>

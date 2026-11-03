@@ -69,6 +69,8 @@ export interface ApiProperty {
 export interface ContactInfo {
   phone: string;
   phoneDisplay: string;
+  phone2: string;
+  phone2Display: string;
   whatsapp: string;
   whatsappDisplay: string;
   email: string;

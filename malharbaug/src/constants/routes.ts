@@ -3,7 +3,6 @@ export const ROUTES = {
   ROOMS: '/rooms',
   AMENITIES: '/amenities',
   RESTAURANT: '/restaurant',
-  PACKAGES: '/packages',
   EVENTS: '/events',
   GALLERY: '/gallery',
   NEARBY: '/nearby',

@@ -115,10 +115,10 @@ export default function AmenitiesListView() {
               Browse Rooms &amp; Villas
             </Link>
             <Link
-              href="/packages/"
+              href="/contact/"
               className="rounded-full border-2 border-white px-8 py-3.5 font-sans text-sm font-semibold text-white transition-colors hover:bg-white/10"
             >
-              View Packages &amp; Offers
+              Enquire Now
             </Link>
           </div>
         </section>

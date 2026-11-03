@@ -153,6 +153,12 @@ Message: ${formData.message || 'Looking for stay details and best rates.'}`,
                 >
                   {contact.phoneDisplay || '+91 93200 62613'}
                 </a>
+                <a
+                  href={`tel:${contact.phone2 || '+919987283577'}`}
+                  className="mt-1 block font-sans text-sm font-bold text-brand-600 hover:underline dark:text-brand-400"
+                >
+                  {contact.phone2Display || '+91 99872 83577'}
+                </a>
               </div>
 
               {/* WhatsApp */}

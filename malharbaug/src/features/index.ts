@@ -16,8 +16,6 @@ export * from './gallery';
 export * from './blog';
 // Travel Guide
 export * from './travel-guide';
-// Packages
-export * from './packages';
 // About
 export * from './about';
 // Contact
