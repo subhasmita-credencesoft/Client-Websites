@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ═══ HOMEPAGE ═══ -->
+  <url>
+    <loc>https://www.malharbaugresort.com/</loc>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/hero1.jpeg</image:loc>
+      <image:title>Malhar Baug Resort Alibaug – Garden resort near Nagaon Beach</image:title>
+      <image:caption>Malhar Baug Resort in Nagaon, Alibaug — lush gardens, swimming pool and family resort ambience</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/hero2.jpeg</image:loc>
+      <image:title>Malhar Baug Resort rooms and villas near Nagaon Beach, Alibaug</image:title>
+      <image:caption>Comfortable AC rooms and private villas at Malhar Baug Resort, 2 km from Nagaon Beach</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/hero3.jpeg</image:loc>
+      <image:title>Malhar Baug Resort swimming pool and outdoor spaces, Alibaug</image:title>
+      <image:caption>Crystal-clear outdoor swimming pool surrounded by coconut palms at Malhar Baug Resort</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/hero4.avif</image:loc>
+      <image:title>Malhar Baug Resort garden and lawn, family resort Alibaug</image:title>
+      <image:caption>Sprawling green gardens and open lawns at Malhar Baug Resort, ideal for events and relaxation</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══ ABOUT PAGE ═══ -->
+  <url>
+    <loc>https://www.malharbaugresort.com/about/</loc>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/aboutimg.jpeg</image:loc>
+      <image:title>About Malhar Baug Resort – Family resort in Nagaon, Alibaug since 2018</image:title>
+      <image:caption>Malhar Baug Resort — established 2018, nestled in 2+ acres of Konkan greenery near Nagaon Beach, Alibaug</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/heroimg2.jpeg</image:loc>
+      <image:title>Malhar Baug Resort property highlights – lawns and gardens in Alibaug</image:title>
+      <image:caption>Property overview of Malhar Baug Resort showing lush gardens and resort grounds</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══ ROOMS PAGE ═══ -->
+  <url>
+    <loc>https://www.malharbaugresort.com/rooms/</loc>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/heroimg1.jpeg</image:loc>
+      <image:title>Rooms and villas at Malhar Baug Resort, Alibaug near Nagaon Beach</image:title>
+      <image:caption>Browse all 18 rooms and villas at Malhar Baug Resort — deluxe rooms, family villas and private group villas</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══ AMENITIES PAGE ═══ -->
+  <url>
+    <loc>https://www.malharbaugresort.com/amenities/</loc>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/swimmingpool.jpeg</image:loc>
+      <image:title>Swimming pool and resort facilities at Malhar Baug Resort, Alibaug</image:title>
+      <image:caption>Outdoor swimming pool with garden surroundings at Malhar Baug Resort, near Nagaon Beach</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/pool.jpeg</image:loc>
+      <image:title>Resort swimming pool at Malhar Baug, Nagaon, Alibaug</image:title>
+      <image:caption>Crystal-clear pool with shallow kids' section at Malhar Baug Resort</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/rain-dance.jpeg</image:loc>
+      <image:title>Rain dance facility at Malhar Baug Resort, Alibaug</image:title>
+      <image:caption>Fun rain dance activity at Malhar Baug Resort, Alibaug — popular for group outings</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/indoor-games.jpeg</image:loc>
+      <image:title>Indoor games area at Malhar Baug Resort, Alibaug</image:title>
+      <image:caption>Indoor recreation at Malhar Baug Resort — carrom, chess, table tennis and more</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/kids-play.jpeg</image:loc>
+      <image:title>Kids play area at Malhar Baug Resort, Alibaug – family resort</image:title>
+      <image:caption>Outdoor kids' play area with swings and slides at Malhar Baug Resort, Alibaug</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/outdoor-games.jpeg</image:loc>
+      <image:title>Outdoor sports and games at Malhar Baug Resort, Alibaug</image:title>
+      <image:caption>Outdoor games and activities at Malhar Baug Resort — badminton, cricket and lawn games</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/bbq.jpeg</image:loc>
+      <image:title>BBQ and bonfire area at Malhar Baug Resort, Nagaon, Alibaug</image:title>
+      <image:caption>Evening BBQ setup in the garden at Malhar Baug Resort — ideal for group celebrations</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/bonfire.jpeg</image:loc>
+      <image:title>Bonfire evenings at Malhar Baug Resort, Alibaug</image:title>
+      <image:caption>Cosy bonfire setup at Malhar Baug Resort — available October to February on request</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══ DINING PAGE ═══ -->
+  <url>
+    <loc>https://www.malharbaugresort.com/restaurant/</loc>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/dininghero.jpeg</image:loc>
+      <image:title>Authentic Konkan dining at Malhar Baug Resort, Alibaug</image:title>
+      <image:caption>Home-style Konkani and Maharashtrian cuisine served at Malhar Baug Resort's in-house restaurant</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/dininghero2.jpeg</image:loc>
+      <image:title>Fish thali and Konkan food at Malhar Baug Resort restaurant, Alibaug</image:title>
+      <image:caption>Fresh surmai fry, pomfret thali and prawn masala — authentic seafood at Malhar Baug Resort</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══ EVENTS PAGE ═══ -->
+  <url>
+    <loc>https://www.malharbaugresort.com/events/</loc>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/heroimg2.jpeg</image:loc>
+      <image:title>Wedding and event venue at Malhar Baug Resort, Alibaug</image:title>
+      <image:caption>Open event lawns at Malhar Baug Resort, Alibaug — ideal for weddings, birthdays and corporate events</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/event-lawn.jpeg</image:loc>
+      <image:title>Event lawn and celebration space at Malhar Baug Resort, Alibaug</image:title>
+      <image:caption>Spacious outdoor event lawn at Malhar Baug Resort — capacity up to 300 guests</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══ PACKAGES PAGE ═══ -->
+  <url>
+    <loc>https://www.malharbaugresort.com/packages/</loc>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/hero3.jpeg</image:loc>
+      <image:title>Stay packages and offers at Malhar Baug Resort, Alibaug near Nagaon Beach</image:title>
+      <image:caption>Family packages, group deals and special offers at Malhar Baug Resort — book direct for best rates</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══ NEARBY ATTRACTIONS PAGE ═══ -->
+  <url>
+    <loc>https://www.malharbaugresort.com/nearby/</loc>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/hero4.avif</image:loc>
+      <image:title>Nearby attractions to Malhar Baug Resort – beaches and forts near Alibaug</image:title>
+      <image:caption>Discover beaches, sea forts and Konkan experiences near Malhar Baug Resort, Alibaug</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══ GALLERY PAGE ═══ -->
+  <url>
+    <loc>https://www.malharbaugresort.com/gallery/</loc>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/heroimg2.jpeg</image:loc>
+      <image:title>Photo gallery of Malhar Baug Resort Alibaug – rooms, pool, gardens, dining</image:title>
+      <image:caption>Visual tour of Malhar Baug Resort — luxury rooms, swimming pool, lush gardens and Konkan dining in Alibaug</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/swimmingpool.jpeg</image:loc>
+      <image:title>Swimming pool gallery – Malhar Baug Resort Alibaug</image:title>
+      <image:caption>Pool area at Malhar Baug Resort — clean, well-maintained, open 8 AM to 7 PM daily</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/hero1.jpeg</image:loc>
+      <image:title>Resort gardens and grounds gallery – Malhar Baug Resort</image:title>
+      <image:caption>Beautiful garden surroundings at Malhar Baug Resort in Nagaon, Alibaug</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/dininghero.jpeg</image:loc>
+      <image:title>Dining gallery – authentic Konkan food at Malhar Baug Resort, Alibaug</image:title>
+      <image:caption>Authentic Konkan cuisine served at Malhar Baug Resort restaurant</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══ CONTACT PAGE ═══ -->
+  <url>
+    <loc>https://www.malharbaugresort.com/contact/</loc>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/aboutimg.jpeg</image:loc>
+      <image:title>Contact and location of Malhar Baug Resort, Nagaon, Alibaug, Maharashtra</image:title>
+      <image:caption>Malhar Baug Resort — H.No. 3116, Palhe, Nagaon, Alibaug, Maharashtra 402204 | +91 90351 98520</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ═══ TRAVEL GUIDE PAGE ═══ -->
+  <url>
+    <loc>https://www.malharbaugresort.com/travel-guide/</loc>
+    <image:image>
+      <image:loc>https://www.malharbaugresort.com/heroimg3.jpeg</image:loc>
+      <image:title>Alibaug travel guide – things to do near Malhar Baug Resort</image:title>
+      <image:caption>Complete Alibaug travel guide by Malhar Baug Resort — beaches, forts, food and how to reach from Mumbai</image:caption>
+    </image:image>
+  </url>
+
+</urlset>
