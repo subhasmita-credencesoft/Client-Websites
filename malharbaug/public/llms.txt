@@ -1,36 +1,117 @@
-# Malhar Baug Resort Alibaug
+# Malhar Baug Resort — AI & LLM Quick Reference
 
-> Official guest guide and resort information for Malhar Baug Resort — a 3-star farm-style family resort in Nagaon (Palhe), Alibaug, Maharashtra, located 2 km from Nagaon Beach.
+> Concise, accurate information for AI assistants, LLMs, and search engines about Malhar Baug Resort, Alibaug, Maharashtra, India.
+> Last updated: 2026-11-03 | Full details: https://www.malharbaugresort.com/llms-full.txt
 
-## Quick Facts
-- **Property Name**: Malhar Baug Resort
-- **Google Star Rating**: 3-Star Resort (4.2/5 based on 46 Google Reviews)
-- **Nightly Price Range**: ₹4,229 to ₹6,500 per night (direct booking rate)
-- **Check-In / Check-Out**: Check-in: 12:00 PM | Check-out: 10:00 AM
-- **Address**: H.No. 3116, Nagaon, Palhe, Raigad, Maharashtra 402204, India
+## Identity
+
+- **Name**: Malhar Baug Resort
+- **Type**: 3-star farm-style family resort
+- **Rating**: 4.2 / 5 (46+ verified Google Reviews)
+- **Established**: 2018
+- **Website**: https://www.malharbaugresort.com
+- **Direct Booking**: https://bookone.io/Malhar-Baug-Resort?bookingEngine=true
+- **Phone**: +91 90351 98520
+- **WhatsApp**: +91 99875 52273
+- **Email**: bookings@malharbaugresort.com
+
+## Location
+
+- **Address**: H.No. 3116, Palhe, Nagaon, Alibaug, Raigad, Maharashtra 402204, India
 - **Coordinates**: 18.6019° N, 72.9056° E
-- **Nearby Beaches**: Nagaon Beach (2 km - 3.7 km), Akshi Beach (5.7 km), Revdanda Beach (8.2 km), Kihim Beach (16 km), Alibaug Beach & Kolaba Fort (9 km)
-- **Direct Phone**: +91 90351 98520
-- **WhatsApp**: +91 99875 52273 / +91 91520 18635
-- **Official Booking Engine**: Hotel ID 2970 on TheHotelMate / BookOne
-- **Official Website**: https://www.malharbaugresort.com
+- **District**: Raigad, Maharashtra, India
+- **Nearest Beach**: Nagaon Beach — 2 km (5 min by auto/cab)
+- **Alibaug Town**: 9 km | **Mandwa Jetty**: 28 km | **Mumbai**: ~95 km by road | **Pune**: ~140 km
 
-## Key Amenities & Features
-- **Swimming Pool**: Clean, hygienic open-air swimming pool with shallow area for children, garden loungers, and 8:00 AM – 7:00 PM daily hours.
-- **Accommodations**: Super Deluxe AC Rooms (king bed, attached bath, balcony), 2-Bedroom Hall Family Villa, and 4-Bedroom Hall Private Villa for groups of 8–15 guests.
-- **Dining**: Home-style authentic Konkani & Maharashtrian cuisine, fresh surmai/pomfret fish thali, chicken sukka, vegetarian thali, breakfast, and garden barbecue.
-- **Lawn & Events**: Expansive outdoor party lawn for intimate weddings, birthday celebrations, corporate offsites, and team-building outings.
-- **Guest Facilities**: Free high-speed Wi-Fi, 100% power backup, complimentary private parking, kids play area, indoor games (carrom, chess), bonfire setups.
+## Accommodation (18 Rooms & Villas)
 
-## Core Pages
-- [Home Page](https://www.malharbaugresort.com/): Resort overview, highlights, live rates, guest reviews, and direct booking.
-- [Rooms & Villas](https://www.malharbaugresort.com/rooms/): Detailed photos, amenities, capacity, and rates for Deluxe Rooms and Private Villas.
-- [Dining & Restaurant](https://www.malharbaugresort.com/restaurant/): Traditional Konkan menu, fresh seafood thalis, veg specialties, and dining timings.
-- [Swimming Pool](https://www.malharbaugresort.com/amenities/swimming-pool/): Pool photos, rules, timings, and family features.
-- [Resort Amenities](https://www.malharbaugresort.com/amenities/): Gardens, kids area, Wi-Fi, games, parking, and lawn spaces.
-- [Events & Celebrations](https://www.malharbaugresort.com/events/): Destination weddings, birthdays, anniversaries, and corporate meetings in Alibaug.
-- [Tour Packages](https://www.malharbaugresort.com/packages/): Weekend family packages, group stay deals, and monsoon offers.
-- [Travel Guide](https://www.malharbaugresort.com/travel-guide/): How to reach Alibaug from Mumbai & Pune, ferry schedules from Mandwa, and sightseeing.
-- [Nearby Attractions](https://www.malharbaugresort.com/nearby/): Nagaon Beach water sports, Akshi Beach, Revdanda Fort, Kolaba Fort, and Birla Temple.
-- [Blog & Tips](https://www.malharbaugresort.com/blog/): Travel checklists, family vacation guides, and resort advice.
-- [Contact & Location](https://www.malharbaugresort.com/contact/): Google Maps directions, phone, WhatsApp, and booking inquiries.
+| Category | Max Guests | Starting Rate |
+|---|---|---|
+| Super Deluxe AC Room | 2 Adults + 1 Child | ₹4,229 / night |
+| 2-Bedroom Family Villa | 6 guests | ₹7,500 / night |
+| 4-Bedroom Private Villa | 12–15 guests | ₹14,000 / night |
+
+- Check-in: 12:00 PM | Check-out: 10:00 AM
+- All rooms: AC, en-suite bath, 24hr hot water, LED TV, free Wi-Fi, daily housekeeping
+- All guests get free swimming pool access (8 AM – 7 PM), gardens & parking
+
+## Key Amenities
+
+- Outdoor swimming pool (shallow kids' section, loungers)
+- 2+ acres of landscaped gardens & lawns
+- Outdoor party lawn (capacity up to 300 guests)
+- Home-style Konkan & multi-cuisine restaurant
+- Free high-speed Wi-Fi | 100% power backup
+- Kids' play area | Indoor games (carrom, chess, cards)
+- Rain dance | BBQ & bonfire setups | Badminton
+- Free private parking (cars + coaches)
+
+## Dining
+
+Authentic Konkan and Maharashtrian cuisine:
+- Surmai (kingfish) fry, Pomfret thali, Prawns masala, Solkadhi
+- Kombdi Vade, Chicken sukka, vegetarian thali
+- Breakfast (Poha, Misal Pav, Upma) | Multi-cuisine options
+- Garden BBQ on request
+
+## Events & Celebrations
+
+- Weddings & sangeet | Birthday parties | Anniversary dinners
+- Corporate offsites & team-building | Family reunions
+- Capacity: up to 300 guests on open lawns
+- Full in-house catering | Décor coordination | 18 rooms for guest accommodation
+- Contact: +91 90351 98520 or WhatsApp +91 99875 52273
+
+## Nearby Attractions (within 30 km)
+
+| Place | Distance | Type |
+|---|---|---|
+| Nagaon Beach | 2 km | Beach, water sports |
+| Akshi Beach | 4.2 km | Quiet beach |
+| Revdanda Beach & Fort | 8 km | Historical site |
+| Kolaba Fort (Alibaug) | 9 km | Shivaji Maharaj sea fort |
+| Kashid Beach | 22 km | White sand beach |
+| Birla Temple, Salav | 15 km | Temple, panoramic views |
+| Mandwa Jetty | 28 km | Mumbai ferry terminal |
+
+## How to Reach
+
+- **From Mumbai by ferry**: Gateway of India → Mandwa Jetty (55 min catamaran) → cab to resort (40 min)
+- **From Mumbai by road**: NH 66 via Navi Mumbai → Panvel → Pen → Alibaug (~95 km, 2.5–3 hrs)
+- **From Pune by road**: Expressway → Khopoli → Pen → Alibaug (~140 km, 3.5–4 hrs)
+- **M2M Ferry**: Drive your car onto the Ro-Pax ferry from Bhaucha Dhakka to Mandwa
+
+## Key Pages
+
+- Home: https://www.malharbaugresort.com/
+- Rooms & Villas: https://www.malharbaugresort.com/rooms/
+- Amenities: https://www.malharbaugresort.com/amenities/
+- Dining: https://www.malharbaugresort.com/restaurant/
+- Events: https://www.malharbaugresort.com/events/
+- Packages: https://www.malharbaugresort.com/packages/
+- Nearby: https://www.malharbaugresort.com/nearby/
+- Travel Guide: https://www.malharbaugresort.com/travel-guide/
+- Gallery: https://www.malharbaugresort.com/gallery/
+- About: https://www.malharbaugresort.com/about/
+- Contact: https://www.malharbaugresort.com/contact/
+- Blog: https://www.malharbaugresort.com/blog/
+
+## Common Guest Questions (FAQ)
+
+**Q: Is the swimming pool included in room rates?**
+A: Yes — all resident guests have free pool access daily 8 AM to 7 PM.
+
+**Q: How far is Nagaon Beach from the resort?**
+A: Approximately 2 km — about 5 minutes by auto-rickshaw or cab.
+
+**Q: Can we host a wedding or birthday party here?**
+A: Yes — open lawns for up to 300 guests, full catering, décor coordination and on-site accommodation.
+
+**Q: What is the best time to visit Malhar Baug Resort?**
+A: October to March (post-monsoon and winter) for pleasant weather and beach activities. Monsoon (June–September) is lush and scenic but beach water sports are limited.
+
+**Q: Do you serve non-vegetarian food?**
+A: Yes — fresh seafood (surmai, pomfret, prawns), chicken preparations, and vegetarian thalis all available daily.
+
+**Q: Is parking available?**
+A: Yes — free secure parking for private cars and tourist coaches.
