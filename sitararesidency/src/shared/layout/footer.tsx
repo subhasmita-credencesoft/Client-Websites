@@ -39,6 +39,18 @@ export function Footer() {
               <ShieldCheck size={14} className="text-emerald-400" />
               <span>Official Direct Booking Guarantee</span>
             </div>
+
+            <p className="mt-4 text-xs text-white/60">
+              Managed by{' '}
+              <a
+                href="https://djhms.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-apricot underline underline-offset-4 transition-colors"
+              >
+                Diamond Jubilee Hotel Management Services
+              </a>
+            </p>
           </div>
 
           {/* Column 2: Accommodations */}
