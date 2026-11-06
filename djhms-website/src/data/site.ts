@@ -82,6 +82,10 @@ export const about = {
     'To deliver reliable hospitality services through professional management, operational discipline and a commitment to guest satisfaction.',
   vision: 'To build trusted hospitality partnerships and create comfortable, welcoming experiences for every guest.',
   values: ['Guest Satisfaction', 'Professional Integrity', 'Service Excellence', 'Teamwork', 'Accountability', 'Continuous Improvement'],
+  partners: [
+    { name: 'Abdullah Abdulmohamed Ghaswala', designation: 'Partner', state: 'Maharashtra' },
+    { name: 'Amin Gulam Husain Lokhandwala', designation: 'Partner', state: 'Maharashtra' },
+  ],
 };
 
 export const services: ServiceItem[] = [

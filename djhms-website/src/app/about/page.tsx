@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { About } from '@/components/sections/About';
 import { CtaBand } from '@/components/sections/CtaBand';
 import { ValuesGrid } from '@/components/sections/ValuesGrid';
+import { Partners } from '@/components/sections/Partners';
 import { images } from '@/data/site';
 import { PageHeader } from '@/components/ui/PageHeader';
 
@@ -16,6 +17,7 @@ export default function AboutPage() {
     <>
       <PageHeader image={images.about.src} crumb="About Us" title="About Us" subtitle="A Mumbai-based hospitality management company focused on reliable, professional and guest-centric service." />
       <About />
+      <Partners />
       <ValuesGrid />
       <CtaBand />
     </>
