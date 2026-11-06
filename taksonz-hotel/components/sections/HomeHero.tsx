@@ -7,6 +7,7 @@ import { HeroVideo } from "./HeroVideo";
 import { content } from "@/data/content";
 import { heroVideo } from "@/data/images";
 import { site } from "@/data/site";
+import { Trophy, Leaf, Star } from "lucide-react";
 import styles from "./HomeHero.module.scss";
 
 export function HomeHero() {
@@ -30,6 +31,11 @@ export function HomeHero() {
           <ButtonLink href={site.bookingUrl} target="_blank" rel="noopener noreferrer" variant="light" size="lg" arrow>Book a Stay</ButtonLink>
           <ButtonLink href="/rooms" variant="ghost" size="lg">Explore Rooms</ButtonLink>
         </div>
+        <p className={styles.trustBar} aria-label="Awards and guest review highlights">
+          <span><Trophy size={16} aria-hidden /> Awarded by Ministry of Tourism &amp; HRANI</span>
+          <span><Leaf size={16} aria-hidden /> Punjab Tourism &amp; PHDCCI: Best Energy Conservation Enterprise</span>
+          <span><Star size={16} aria-hidden /> 4.2 stars across 3,160+ Google reviews</span>
+        </p>
       </HeroContentFx>
       <div className={styles.cue} aria-hidden><span>Scroll</span><i /></div>
       <div className={`container ${styles.panelWrap}`}>

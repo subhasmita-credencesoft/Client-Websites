@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HomeHero } from "@/components/sections/HomeHero";
+import { AwardsSection } from "@/components/sections/AwardsSection";
 import { Split, TileLink, FeatureGrid } from "@/components/sections/Blocks";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { FeaturedRooms } from "@/components/rooms/FeaturedRooms";
@@ -59,6 +60,8 @@ export default function HomePage() {
           </Split>
         </div>
       </section>
+
+      <AwardsSection />
 
       <section className="section" aria-labelledby="featured-rooms">
         <div className="container">

@@ -11,6 +11,7 @@ export function Footer() {
         <div className={styles.brand}>
           <Logo inverse large />
           <p>A contemporary hotel in the heart of {site.address.city}, offering comfortable rooms, dining and event spaces.</p>
+          <p className={styles.awards}>🏆 Proud Recipient of the HRANI &amp; Ministry of Tourism Award of Excellence and the Punjab Tourism &amp; PHDCCI Best Energy Conservation Enterprise Award.</p>
         </div>
 
         {footerGroups.map((g) => (

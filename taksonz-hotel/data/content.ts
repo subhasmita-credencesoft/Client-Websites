@@ -101,7 +101,7 @@ export const content = {
   },
 
   meetings: {
-    venues: { title: "Meeting spaces", intro: "From private boardroom sessions to larger corporate functions. Equipment and services are confirmed with the events team for each booking.", note: "Venue specifications are indicative; the events team will confirm details." },
+    venues: { title: "Meeting spaces", intro: "Corporate compliance and sustainability matter. When you book our corporate meeting venues in Ludhiana, you are hosting your event at PHDCCI & Punjab Tourism's Best Energy Conservation Enterprise—making Hotel The Taksonz the premier ESG-compliant venue for corporate conferences and AGMs. From private boardroom sessions to larger corporate functions, equipment and services are confirmed with the events team for each booking.", note: "Venue specifications are indicative; the events team will confirm details." },
     enquiry: { title: "Corporate enquiry", intro: "Share your date, group size and requirements.", submit: "Send corporate enquiry", messageLabel: "Requirements" },
     faqTitle: "Questions",
   },
@@ -127,10 +127,10 @@ export const content = {
       image: img("reception"),
     },
     stats: [
-      { value: 100, suffix: "+", label: "Rooms & Suites" },
+      { value: 70, label: "Rooms" },
       { value: 5, label: "Banquet Halls" },
       { value: 1, label: "Prime Location" },
-      { value: 1000, suffix: "+", label: "Happy Guests" },
+      { value: 2, label: "Major Government & Industry Hospitality Awards (HRANI & Punjab Tourism)" },
     ],
     cta: { title: "Come and see for yourself.", text: "Explore our rooms and suites.", image: img("about-lobby") },
   },

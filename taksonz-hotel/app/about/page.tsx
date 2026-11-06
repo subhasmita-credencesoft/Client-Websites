@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FeatureGrid, Split, Stats } from "@/components/sections/Blocks";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { ButtonLink } from "@/components/ui/Button";
+import { AwardsSection } from "@/components/sections/AwardsSection";
 import { content } from "@/data/content";
 import { pages } from "@/data/pages";
 import { metaFor } from "@/lib/seo/metadata";
@@ -37,6 +38,8 @@ export default function AboutPage() {
           </Split>
         </div>
       </section>
+
+      <AwardsSection compact />
 
       <section className="section">
         <div className="container">

@@ -1,0 +1,11 @@
+@use "../../styles/mixins" as *;
+
+.container { display: grid; gap: clamp(2rem, 4vw, 3.5rem); }
+.intro { max-width: 760px; display: grid; gap: 0.9rem; }
+.eyebrow { color: var(--champagne-deep); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; }
+.intro > p:last-child { color: var(--grey); max-width: 68ch; }
+.grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; @include up(md) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.card { min-width: 0; display: grid; grid-template-columns: minmax(5rem, 0.35fr) minmax(0, 1fr); align-items: start; gap: 1.25rem; padding: clamp(1.25rem, 3vw, 2rem); background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-soft); }
+.image { position: relative; min-height: 9rem; height: 100%; display: grid; place-items: center; background: #f8f6f2; border-radius: var(--radius-sm); overflow: hidden; }
+.trophy { width: 4rem; height: 4rem; display: grid; place-items: center; color: #9c793c; background: #f2ead9; border-radius: 50%; }
+.copy { display: grid; gap: 0.8rem; h3 { font-size: 1.35rem; } p { color: var(--grey); font-size: 0.925rem; } .body { color: var(--champagne-deep); font-size: 0.8rem; font-weight: 600; line-height: 1.5; } }
