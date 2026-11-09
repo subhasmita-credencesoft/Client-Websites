@@ -40,9 +40,22 @@ export interface DiningItem {
   image: string;
 }
 
+export interface MenuItem {
+  name: string;
+  price?: number | string;
+  note?: string;
+}
+
+export interface MenuSubSection {
+  heading: string;
+  items: MenuItem[];
+}
+
 export interface MenuCategory {
   title: string;
-  items: string[];
+  icon?: string;
+  items?: MenuItem[];
+  sections?: MenuSubSection[];
 }
 
 export interface EventCategory {
