@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,7 +8,13 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import styles from '@/styles/BlogPage.module.scss';
 import { SITE } from '@/data/site';
 import { createBreadcrumbSchema } from '@/lib/schema';
-import { fetchBlogsFromApi, ApiBlogPost } from '@/lib/blog-api';
+import {
+  fetchBlogsFromApi,
+  normalizeBlog,
+  PUBLIC_BLOG_API_URL,
+  ApiBlogPost,
+  RawBlogItem,
+} from '@/lib/blog-api';
 
 interface BlogPageProps {
   posts: ApiBlogPost[];
@@ -24,7 +31,50 @@ function formatDate(dateStr?: string | null): string | null {
   });
 }
 
-const BlogIndexPage: NextPage<BlogPageProps> = ({ posts }) => {
+const BlogIndexPage: NextPage<BlogPageProps> = ({ posts: initialPosts }) => {
+  const [posts, setPosts] = useState<ApiBlogPost[]>(initialPosts);
+
+  // Client-side live revalidation: guarantees newly posted blogs in BookOne
+  // appear immediately to visitors without waiting for a rebuild or restart.
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadFreshBlogs() {
+      try {
+        const res = await fetch(PUBLIC_BLOG_API_URL, {
+          headers: { Accept: 'application/json' },
+        });
+        if (!res.ok) return;
+
+        const json = await res.json();
+        const items = json?.data?.items;
+        if (!Array.isArray(items)) return;
+
+        const fresh = items
+          .map((item: RawBlogItem) => normalizeBlog(item))
+          .filter((post): post is ApiBlogPost => post !== null)
+          .sort((a, b) => {
+            const aTime = a.publishedAt ? Date.parse(a.publishedAt) : 0;
+            const bTime = b.publishedAt ? Date.parse(b.publishedAt) : 0;
+            if (bTime !== aTime) return bTime - aTime;
+            return b.id - a.id;
+          });
+
+        if (isMounted && fresh.length > 0) {
+          setPosts(fresh);
+        }
+      } catch {
+        // Fall back gracefully to pre-rendered initialPosts
+      }
+    }
+
+    loadFreshBlogs();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const jsonLd = [
     createBreadcrumbSchema([
       { name: 'Home', url: '/' },
@@ -117,16 +167,17 @@ const BlogIndexPage: NextPage<BlogPageProps> = ({ posts }) => {
         {/* Cross-Link Banner */}
         <div style={{
           marginTop: 64,
-          backgroundColor: '#161616',
-          border: '1px solid #282828',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e7e7e7',
           borderRadius: 16,
-          padding: '32px',
+          padding: '40px 32px',
           textAlign: 'center',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
         }}>
-          <h3 style={{ fontSize: '1.25rem', color: '#f5f5f5', marginBottom: 8 }}>
+          <h3 style={{ fontSize: '1.35rem', fontWeight: 500, color: '#111111', marginBottom: 8 }}>
             Planning a Visit to Baibhab Resorts?
           </h3>
-          <p style={{ color: '#a3a3a3', maxWidth: 540, margin: '0 auto 20px', fontSize: '0.95rem' }}>
+          <p style={{ color: '#6b7280', maxWidth: 540, margin: '0 auto 24px', fontSize: '0.95rem', lineHeight: 1.6 }}>
             Explore our rooms, banquet venues, and restaurant on the Bhubaneswar–Cuttack corridor.
           </p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>

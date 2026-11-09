@@ -61,10 +61,11 @@ const GalleryPage: NextPage<GalleryPageProps> = ({ items }) => {
 
       <div className="container" style={{ marginBottom: 64 }} data-reveal>
         <div style={{
-          backgroundColor: '#161616',
-          border: '1px solid #282828',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e7e7e7',
           borderRadius: 16,
-          padding: '32px',
+          padding: '40px 32px',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'center',
@@ -72,10 +73,10 @@ const GalleryPage: NextPage<GalleryPageProps> = ({ items }) => {
           gap: 20,
         }}>
           <div>
-            <h3 style={{ fontSize: '1.25rem', color: '#f5f5f5', marginBottom: 6 }}>
+            <h3 style={{ fontSize: '1.35rem', fontWeight: 500, color: '#111111', marginBottom: 6 }}>
               Prefer an In-Person Site Visit?
             </h3>
-            <p style={{ color: '#a3a3a3', fontSize: '0.95rem', margin: 0 }}>
+            <p style={{ color: '#6b7280', fontSize: '0.95rem', margin: 0 , lineHeight: 1.6 }}>
               Schedule a guided walkthrough with our property managers to inspect hall layouts, bridal suites, and guest rooms.
             </p>
           </div>

@@ -77,16 +77,17 @@ const AmenitiesPage: NextPage<AmenitiesPageProps> = ({ facilities }) => {
         {/* Cross-linking Action Banner */}
         <div style={{
           marginTop: 56,
-          backgroundColor: '#161616',
-          border: '1px solid #282828',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e7e7e7',
           borderRadius: 16,
-          padding: '32px',
+          padding: '40px 32px',
           textAlign: 'center',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
         }} data-reveal>
-          <h2 style={{ fontSize: '1.5rem', color: '#f5f5f5', marginBottom: 12 }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 500, color: '#111111', marginBottom: 12 }}>
             Experience Comfort & Hospitality Firsthand
           </h2>
-          <p style={{ color: '#a3a3a3', maxWidth: 600, margin: '0 auto 24px', fontSize: '0.95rem' }}>
+          <p style={{ color: '#6b7280', maxWidth: 600, margin: '0 auto 24px', fontSize: '0.95rem' , lineHeight: 1.6 }}>
             Book a relaxing room for your family or enquire about our banquet facilities for your upcoming wedding or conference.
           </p>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>

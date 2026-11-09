@@ -79,17 +79,18 @@ const StayPage: NextPage<StayPageProps> = ({ rooms }) => {
       {/* Contextual Internal Linking */}
       <section className="container" style={{ marginTop: 64, marginBottom: 32 }}>
         <div style={{
-          backgroundColor: '#161616',
-          border: '1px solid #282828',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e7e7e7',
           borderRadius: 16,
-          padding: '36px 32px',
+          padding: '40px 32px',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
           gap: 24,
         }}>
           <div>
-            <h3 style={{ fontSize: '1.25rem', marginBottom: 8, color: '#f5f5f5' }}>Hosting a Wedding or Event?</h3>
-            <p style={{ color: '#a3a3a3', fontSize: '0.95rem', marginBottom: 16 }}>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: 8, color: '#111111', fontWeight: 500 }}>Hosting a Wedding or Event?</h3>
+            <p style={{ color: '#6b7280', lineHeight: 1.6, fontSize: '0.95rem', marginBottom: 16 }}>
               Reserve room blocks alongside our grand banquet halls and open lawns for your wedding entourage.
             </p>
             <Link href="/events/weddings" className="btn btn-outline" style={{ fontSize: '0.875rem' }}>
@@ -97,8 +98,8 @@ const StayPage: NextPage<StayPageProps> = ({ rooms }) => {
             </Link>
           </div>
           <div>
-            <h3 style={{ fontSize: '1.25rem', marginBottom: 8, color: '#f5f5f5' }}>In-House Dining & Room Service</h3>
-            <p style={{ color: '#a3a3a3', fontSize: '0.95rem', marginBottom: 16 }}>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: 8, color: '#111111', fontWeight: 500 }}>In-House Dining & Room Service</h3>
+            <p style={{ color: '#6b7280', lineHeight: 1.6, fontSize: '0.95rem', marginBottom: 16 }}>
               Enjoy authentic Odia thalis, coastal seafood, and multi-cuisine favorites at Fusion Bites.
             </p>
             <Link href="/dining" className="btn btn-outline" style={{ fontSize: '0.875rem' }}>
@@ -106,8 +107,8 @@ const StayPage: NextPage<StayPageProps> = ({ rooms }) => {
             </Link>
           </div>
           <div>
-            <h3 style={{ fontSize: '1.25rem', marginBottom: 8, color: '#f5f5f5' }}>Strategic Highway Location</h3>
-            <p style={{ color: '#a3a3a3', fontSize: '0.95rem', marginBottom: 16 }}>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: 8, color: '#111111', fontWeight: 500 }}>Strategic Highway Location</h3>
+            <p style={{ color: '#6b7280', lineHeight: 1.6, fontSize: '0.95rem', marginBottom: 16 }}>
               Situated 1 km from SUM Hospital 2 and 15–18 km from Bhubaneswar & Cuttack railway stations.
             </p>
             <Link href="/location" className="btn btn-outline" style={{ fontSize: '0.875rem' }}>

@@ -136,16 +136,17 @@ const RoomPage: NextPage<RoomPageProps> = ({ room }) => {
 
           {/* Cross Links to Dining and Events */}
           <div className={styles.block} style={{
-            backgroundColor: '#161616',
-            padding: '24px',
-            borderRadius: '12px',
-            border: '1px solid #262626',
-            marginTop: '32px'
+            backgroundColor: '#ffffff',
+            padding: '28px 24px',
+            borderRadius: '16px',
+            border: '1px solid #e7e7e7',
+            marginTop: '32px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
           }}>
-            <h3 style={{ fontSize: '1.15rem', color: '#f5f5f5', marginBottom: '8px' }}>
+            <h3 style={{ fontSize: '1.15rem', fontWeight: 500, color: '#111111', marginBottom: '8px' }}>
               Explore More at Baibhab Resorts
             </h3>
-            <p style={{ color: '#a3a3a3', fontSize: '0.9rem', marginBottom: '16px' }}>
+            <p style={{ color: '#6b7280', fontSize: '0.9rem', marginBottom: '16px' , lineHeight: 1.6 }}>
               Make the most of your stay with our on-site amenities, dining, and event facilities.
             </p>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
