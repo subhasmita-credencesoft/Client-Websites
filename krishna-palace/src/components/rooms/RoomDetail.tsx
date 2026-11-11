@@ -41,7 +41,7 @@ export default function RoomDetail({ id }: { id: string }) {
       .then((result) => {
         if (controller.signal.aborted) return;
         if (!result) {
-          if (!initialRoom) setState('missing');
+          setState('missing');
           return;
         }
         setRoom(result.room);
@@ -50,13 +50,11 @@ export default function RoomDetail({ id }: { id: string }) {
       })
       .catch((error: unknown) => {
         if (controller.signal.aborted || (error instanceof DOMException && error.name === 'AbortError')) return;
-        if (!initialRoom) {
-          setState('error');
-        }
+        setState('error');
       });
 
     return () => controller.abort();
-  }, [id, initialRoom]);
+  }, [id]);
 
   if (state === 'missing' || (state === 'error' && !room)) {
     return (

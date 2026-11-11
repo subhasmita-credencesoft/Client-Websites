@@ -19,7 +19,7 @@ export default function CinematicRoomsShowcase() {
   const [rooms, setRooms] = useState<RoomOffer[]>(DEFAULT_ROOMS);
   const [property, setProperty] = useState<PropertyInfo | null>(DEFAULT_PROPERTY);
   const [gstPercent, setGstPercent] = useState<number | null>(12);
-  const [state, setState] = useState<'idle' | 'loading' | 'live' | 'failed'>('idle');
+  const [state, setState] = useState<'idle' | 'loading' | 'live' | 'failed'>('loading');
 
   useEffect(() => {
     const controller = new AbortController();
@@ -30,17 +30,15 @@ export default function CinematicRoomsShowcase() {
         setRooms(data.rooms);
         setProperty(data.property);
         setGstPercent(data.gstPercent);
-        setState('live');
+        setState(data.rooms.length > 0 ? 'live' : 'failed');
       })
       .catch((error: unknown) => {
         if (controller.signal.aborted || (error instanceof DOMException && error.name === 'AbortError')) return;
-        if (!rooms.length) {
-          setState('failed');
-        }
+        setState('failed');
       });
 
     return () => controller.abort();
-  }, [rooms.length]);
+  }, []);
 
   if (state === 'loading' && !rooms.length) {
     return (
@@ -132,7 +130,7 @@ export default function CinematicRoomsShowcase() {
                   {formatOccupancy(null, room.maxOccupancy)} · 24-Hour Stay Policy
                 </span>
                 <span className="room-showcase__tagline">
-                  {bestPlan ? bestPlan.name : 'Single Occupancy With Breakfast Plan'}
+                  {bestPlan ? bestPlan.name : 'Published Tariff'}
                 </span>
                 <h3>{room.name}.</h3>
                 <p className="room-showcase__desc">

@@ -148,11 +148,12 @@ export function getBanquetSchema() {
   };
 }
 
-export function getRoomsCatalogSchema() {
+export function getRoomsCatalogSchema(rooms: RoomOffer[] = DEFAULT_ROOMS) {
+  if (!rooms.length) return null;
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    itemListElement: DEFAULT_ROOMS.map((room, index) => ({
+    itemListElement: rooms.map((room, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {

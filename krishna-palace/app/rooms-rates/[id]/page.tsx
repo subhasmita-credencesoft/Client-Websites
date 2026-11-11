@@ -49,13 +49,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: 'Room details | Hotel Krishna Palace',
     description: 'Room details, live tariff and rate plans at Hotel Krishna Palace, Hosapete.',
     path: `/rooms-rates/${id}/`,
-    noIndex: true,
   });
 }
 
 export default async function RoomPage({ params }: PageProps) {
   const { id } = await params;
-  const roomData = await fetchRoom(id);
+  const roomData = await fetchRoom(id).catch(() => null);
   const room = roomData?.room || DEFAULT_ROOM_DETAILS[id];
 
   return (

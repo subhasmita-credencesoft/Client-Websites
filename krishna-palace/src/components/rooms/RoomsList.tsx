@@ -25,7 +25,7 @@ export default function RoomsList({
 }) {
   const [rooms, setRooms] = useState<RoomOffer[]>(DEFAULT_ROOMS);
   const [gstPercent, setGstPercent] = useState<number | null>(12);
-  const [state, setState] = useState<'idle' | 'loading' | 'live' | 'failed'>('idle');
+  const [state, setState] = useState<'idle' | 'loading' | 'live' | 'failed'>('loading');
 
   useEffect(() => {
     const controller = new AbortController();
@@ -35,17 +35,15 @@ export default function RoomsList({
         if (controller.signal.aborted) return;
         setRooms(data.rooms);
         setGstPercent(data.gstPercent);
-        setState('live');
+        setState(data.rooms.length > 0 ? 'live' : 'failed');
       })
       .catch((error: unknown) => {
         if (controller.signal.aborted || (error instanceof DOMException && error.name === 'AbortError')) return;
-        if (!rooms.length) {
-          setState('failed');
-        }
+        setState('failed');
       });
 
     return () => controller.abort();
-  }, [rooms.length]);
+  }, []);
 
   const list = (
     <div className={`room-list${compact ? ' room-list--compact' : ''}`} data-rooms-source={state}>

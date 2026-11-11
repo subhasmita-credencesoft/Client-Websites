@@ -58,7 +58,7 @@ async function loadProperty(signal?: AbortSignal): Promise<{ raw: Raw; gstPercen
       const from = new Date();
       const to = new Date(from.getTime() + 24 * 60 * 60 * 1000);
 
-      const timeoutSignal = AbortSignal.timeout(1000);
+      const timeoutSignal = AbortSignal.timeout(8000);
       const combinedSignal = signal ? AbortSignal.any([signal, timeoutSignal]) : timeoutSignal;
 
       const response = await fetch(availabilityUrl(from, to), {
@@ -72,7 +72,10 @@ async function loadProperty(signal?: AbortSignal): Promise<{ raw: Raw; gstPercen
       const gst = taxes.find((entry) => /gst/i.test(text(entry.name)));
       const gstPercent = toNumber(gst?.percentage) ?? 12;
       return { raw, gstPercent };
-    })();
+    })().catch((err) => {
+      cachedPropertyPromise = null;
+      throw err;
+    });
   }
   return cachedPropertyPromise;
 }
