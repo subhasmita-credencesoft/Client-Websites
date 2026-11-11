@@ -9,7 +9,7 @@ async function main() {
   await sharp(`${pub}/images/hotel-hero.jpg`)
     .resize(1200, 630, { fit: 'cover', position: 'centre' })
     .jpeg({ quality: 88, progressive: true, mozjpeg: true })
-    .toFile(`${pub}/og-image.jpg`);
+    .toFile(`${pub}/Hotel Sitara Residency Kalamboli Reception (5).avif`);
 
   // 2. Square brand icons from the tall 124x180 logo (padded on brand navy)
   const logo = await sharp(`${pub}/sitaralogo.jpg`).toBuffer();
@@ -33,7 +33,7 @@ async function main() {
   await square(32, 'favicon-32x32.png');
   await square(192, 'android-chrome-192x192.png');
 
-  for (const f of ['og-image.jpg', 'icon.png', 'apple-icon.png', 'favicon-32x32.png', 'android-chrome-192x192.png']) {
+  for (const f of ['Hotel Sitara Residency Kalamboli Reception (5).avif', 'icon.png', 'apple-icon.png', 'favicon-32x32.png', 'android-chrome-192x192.png']) {
     const s = fs.statSync(`${pub}/${f}`);
     console.log(`${f} -> ${(s.size / 1024).toFixed(1)} KB`);
   }

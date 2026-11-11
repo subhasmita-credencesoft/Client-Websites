@@ -15,6 +15,7 @@ import {
 import type { HotelMateRoom } from '@/core/types/hotelmate';
 import { JsonLdScript } from '@/shared/ui/json-ld';
 import { breadcrumbSchema, pageMetadata, roomSchema, SITE_URL, webPageSchema } from '@/core/lib/seo';
+import { receptionComfortImageUrl } from '@/features/common/data/images';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -70,7 +71,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     path: `/bedrooms/${slug}`,
     keywords: [`${roomName} Kalamboli`, `${roomName} Navi Mumbai`, 'hotel room booking Kalamboli'],
     image: {
-      url: '/og-image.jpg',
+      url: receptionComfortImageUrl,
       width: 1200,
       height: 630,
       alt: `${roomName} at ${business.name}, Kalamboli, Navi Mumbai`,
@@ -116,7 +117,7 @@ export default async function BedroomDetailPage({ params }: PageProps) {
             '@type': 'Product',
             name: `${room.name ?? 'Room'} — ${business.name}`,
             description: detail.intro,
-            image: `${SITE_URL}${detail.image ?? '/og-image.jpg'}`,
+            image: `${SITE_URL}${detail.image ?? '/Hotel Sitara Residency Kalamboli Reception (5).avif'}`,
             brand: { '@type': 'Brand', name: business.name },
             url: `${SITE_URL}/bedrooms/${slug}`,
             offers: {

@@ -1,17 +1,18 @@
 import type { Metadata } from 'next';
 
 import { business, siteMetadata } from '@/core/config/business';
+import { receptionComfortImageUrl } from '@/features/common/data/images';
 
 /** Canonical production origin, overridable per environment. */
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? business.website;
 
-/** Default social-share image (1200x630 JPEG — required by Facebook/X/LinkedIn). */
+/** Default social-share image (1200×630, URL-encoded for OG/Twitter/Schema crawlers). */
 export const OG_IMAGE = {
-  url: `${SITE_URL}/og-image.jpg`,
+  url: `${SITE_URL}${receptionComfortImageUrl}`,
   width: 1200,
   height: 630,
-  type: 'image/jpeg',
-  alt: `${business.name}, Kalamboli, Navi Mumbai`,
+  type: 'image/avif',
+  alt: `${business.name} – Reception & Lobby, Kalamboli, Navi Mumbai`,
 } as const;
 
 type OgImage = {

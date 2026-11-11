@@ -8,6 +8,7 @@ import { CookiePanel } from '@/shared/layout/cookie-panel';
 import { JsonLdScript } from '@/shared/ui/json-ld';
 import { business, siteMetadata } from '@/core/config/business';
 import { OG_IMAGE, SITE_URL } from '@/core/lib/seo';
+import { receptionComfortImageUrl } from '@/features/common/data/images';
 
 import '@/styles/globals.css';
 
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
     icon: [
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/icon.png', sizes: '192x192', type: 'image/png' },
-      { url: '/sitaralogo.jpg', type: 'image/jpeg' },
+      { url: '/sitaralogo.png', type: 'image/png' },
     ],
     shortcut: ['/favicon-32x32.png'],
     apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
@@ -120,7 +121,7 @@ const hotelSchema = {
   description: siteMetadata.description,
   url: SITE_URL,
   logo: `${SITE_URL}${business.logo}`,
-  image: [`${SITE_URL}/og-image.jpg`],
+  image: [`${SITE_URL}${receptionComfortImageUrl}`],
   telephone: business.phones.primary,
   email: business.email,
   address: {

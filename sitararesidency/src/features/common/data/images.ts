@@ -15,3 +15,12 @@ export const receptionOfferImages = [
 export const localAreaImage = receptionLocationImage;
 export const diningImage = receptionDiningImage;
 export const heroImage = receptionWelcomeImage;
+
+/**
+ * URL-encoded version of the primary reception hero image, safe for use in
+ * Open Graph `url:`, JSON-LD `image:`, and sitemap `<image:loc>` values.
+ * Browsers and Next.js <Image> handle un-encoded paths fine; HTTP crawlers
+ * (Facebook, Google, Twitter) require percent-encoded spaces and parentheses.
+ */
+export const receptionComfortImageUrl =
+  '/Hotel Sitara Residency Kalamboli Reception (5).avif';

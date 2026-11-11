@@ -16,6 +16,7 @@ import { BookButton, defaultStayParams, getHotelMateProperty, roomsToCards } fro
 import { business } from '@/core/config/business';
 import { JsonLdScript } from '@/shared/ui/json-ld';
 import { breadcrumbSchema, pageMetadata, roomSchema, webPageSchema } from '@/core/lib/seo';
+import { receptionComfortImageUrl } from '@/features/common/data/images';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Rooms & Suites | Hotel Sitara Residency Kalamboli Navi Mumbai',
@@ -30,7 +31,7 @@ export const metadata: Metadata = pageMetadata({
     'hotel booking Navi Mumbai',
   ],
   image: {
-    url: '/og-image.jpg',
+    url: receptionComfortImageUrl,
     width: 1200,
     height: 630,
     alt: 'Rooms and Suites at Hotel Sitara Residency, Kalamboli, Navi Mumbai',

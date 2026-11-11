@@ -157,6 +157,7 @@ export function Header() {
                 alt={business.name}
                 width={60}
                 height={60}
+                style={{ objectFit: 'contain' }}
               />
             </div>
             <div>

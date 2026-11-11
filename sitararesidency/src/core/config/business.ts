@@ -4,7 +4,7 @@ export const business: Business = {
   name: 'Hotel Sitara Residency',
   shortName: 'Sitara Residency',
   website: 'https://hotelsitararesidency.com',
-  logo: '/sitaralogo.jpg',
+  logo: '/sitaralogo.png',
   email: 'info@sitararesidency.com',
   phones: {
     primary: '+917400432396',
