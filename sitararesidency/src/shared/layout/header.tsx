@@ -43,8 +43,8 @@ export function Header() {
         </a>
 
         <div className="site-nav__bar">
-          {/* Left: Hamburger menu toggle + desktop concierge phone */}
-          <div className="flex min-w-0 items-center gap-3 md:gap-5 z-10">
+          {/* Left: Hamburger menu toggle + Rooms & Suites + Events & Banquets */}
+          <div className="flex min-w-0 items-center gap-3.5 xl:gap-5 z-10">
             <button
               type="button"
               className="site-nav__menu-btn group"
@@ -61,9 +61,24 @@ export function Header() {
               </span>
             </button>
 
+            <nav className="hidden lg:flex items-center gap-4 xl:gap-6" aria-label="Stay and events navigation">
+              <Link
+                href="/bedrooms"
+                className="font-mono-label text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors whitespace-nowrap"
+              >
+                Rooms &amp; Suites
+              </Link>
+              <Link
+                href="/events"
+                className="font-mono-label text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors whitespace-nowrap"
+              >
+                Events &amp; Banquets
+              </Link>
+            </nav>
+
             <a
               href={`tel:${business.phones.primary}`}
-              className="hidden lg:flex items-center gap-1.5 font-mono-label text-[11px] text-white/80 hover:text-apricot transition-colors"
+              className="hidden 2xl:flex items-center gap-1.5 font-mono-label text-[11px] text-white/80 hover:text-apricot transition-colors"
             >
               <Phone size={13} className="text-apricot" />
               <span>{business.phones.primaryDisplay}</span>
@@ -89,33 +104,19 @@ export function Header() {
             </div>
           </Link>
 
-          {/* Right: Desktop Links + Prominent Book Direct Button */}
-          <div className="flex min-w-0 items-center justify-end gap-5 z-10">
-            <nav className="hidden xl:flex items-center gap-4 2xl:gap-6" aria-label="Quick navigation">
-              <Link
-                href="/bedrooms"
-                className="font-mono-label text-[10.5px] 2xl:text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors whitespace-nowrap"
-              >
-                <span className="2xl:hidden">Rooms</span>
-                <span className="hidden 2xl:inline">Rooms &amp; Suites</span>
-              </Link>
-              <Link
-                href="/events"
-                className="font-mono-label text-[10.5px] 2xl:text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors whitespace-nowrap"
-              >
-                <span className="2xl:hidden">Events</span>
-                <span className="hidden 2xl:inline">Events &amp; Banquets</span>
-              </Link>
+          {/* Right: Gallery, Location + Prominent Book Direct Button */}
+          <div className="flex min-w-0 items-center justify-end gap-4 xl:gap-6 z-10">
+            <nav className="hidden lg:flex items-center gap-4 xl:gap-6" aria-label="Explore navigation">
               <Link
                 href="/gallery"
-                className="font-mono-label text-[10.5px] 2xl:text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors"
+                className="font-mono-label text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors whitespace-nowrap"
               >
                 Gallery
               </Link>
             
               <Link
                 href="/location"
-                className="font-mono-label text-[10.5px] 2xl:text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors"
+                className="font-mono-label text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors whitespace-nowrap"
               >
                 Location
               </Link>
