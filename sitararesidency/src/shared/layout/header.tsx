@@ -44,7 +44,7 @@ export function Header() {
 
         <div className="site-nav__bar">
           {/* Left: Hamburger menu toggle + desktop concierge phone */}
-          <div className="col-start-1 row-start-1 flex min-w-0 items-center gap-3 md:gap-5">
+          <div className="flex min-w-0 items-center gap-3 md:gap-5 z-10">
             <button
               type="button"
               className="site-nav__menu-btn group"
@@ -73,7 +73,7 @@ export function Header() {
           {/* Center: Emblem Logo (always centrally balanced) */}
           <Link
             href="/"
-            className="site-nav__logo-wrapper col-start-2 row-start-1"
+            className="site-nav__logo-wrapper"
             aria-label={`${business.name} home`}
             onClick={() => setOpen(false)}
           >
@@ -81,38 +81,41 @@ export function Header() {
               <Image
                 src={business.logo}
                 alt={business.name}
-                width={86}
-                height={86}
+                width={180}
+                height={94}
                 priority
+                className="h-full w-auto object-contain"
               />
             </div>
           </Link>
 
           {/* Right: Desktop Links + Prominent Book Direct Button */}
-          <div className="col-start-3 row-start-1 flex min-w-0 items-center justify-end gap-5">
-            <nav className="hidden xl:flex items-center gap-6" aria-label="Quick navigation">
+          <div className="flex min-w-0 items-center justify-end gap-5 z-10">
+            <nav className="hidden xl:flex items-center gap-4 2xl:gap-6" aria-label="Quick navigation">
               <Link
                 href="/bedrooms"
-                className="font-mono-label text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors"
+                className="font-mono-label text-[10.5px] 2xl:text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors whitespace-nowrap"
               >
-                Rooms &amp; Suites
+                <span className="2xl:hidden">Rooms</span>
+                <span className="hidden 2xl:inline">Rooms &amp; Suites</span>
               </Link>
               <Link
                 href="/events"
-                className="font-mono-label text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors whitespace-nowrap"
+                className="font-mono-label text-[10.5px] 2xl:text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors whitespace-nowrap"
               >
-                Events &amp; Banquets
+                <span className="2xl:hidden">Events</span>
+                <span className="hidden 2xl:inline">Events &amp; Banquets</span>
               </Link>
               <Link
                 href="/gallery"
-                className="font-mono-label text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors"
+                className="font-mono-label text-[10.5px] 2xl:text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors"
               >
                 Gallery
               </Link>
             
               <Link
                 href="/location"
-                className="font-mono-label text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors"
+                className="font-mono-label text-[10.5px] 2xl:text-[11px] uppercase tracking-widest text-white/90 hover:text-apricot transition-colors"
               >
                 Location
               </Link>
@@ -151,13 +154,13 @@ export function Header() {
             className="flex items-center gap-3.5 text-white"
             onClick={() => setOpen(false)}
           >
-            <div className="site-nav__logo" style={{ width: 60, height: 60 }}>
+            <div className="flex h-12 w-20 shrink-0 items-center justify-center">
               <Image
                 src={business.logo}
                 alt={business.name}
-                width={60}
-                height={60}
-                style={{ objectFit: 'contain' }}
+                width={80}
+                height={52}
+                className="h-full w-auto object-contain drop-shadow-[0_0_1.5px_rgba(255,255,255,0.7)]"
               />
             </div>
             <div>

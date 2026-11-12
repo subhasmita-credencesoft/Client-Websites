@@ -12,13 +12,13 @@ export function Footer() {
           {/* Column 1: Brand & Identity */}
           <div className="flex flex-col items-start">
             <Link href="/" className="inline-flex items-center gap-3.5 mb-5 group">
-              <div className="relative h-14 w-14 flex items-center justify-center transition-transform group-hover:scale-105">
+              <div className="relative h-16 w-24 shrink-0 flex items-center justify-center transition-transform group-hover:scale-105">
                 <Image
                   src={business.logo}
                   alt={business.name}
                   fill
-                  sizes="56px"
-                  className="object-contain drop-shadow-md"
+                  sizes="96px"
+                  className="object-contain drop-shadow-[0_0_1.5px_rgba(255,255,255,0.7)]"
                 />
               </div>
               <div>
