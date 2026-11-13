@@ -37,8 +37,8 @@ export function Contact() {
             <li>
               <Icon name="globe" size={20} />
               <a href={site.hotelWebsite} target="_blank" rel="noopener noreferrer">
-                www.hotelmaharana.com
-                <small>(Hotel Maharana Inn)</small>
+               www.djhms.in
+                <small>(djhms.in)</small>
               </a>
             </li>
           </ul>

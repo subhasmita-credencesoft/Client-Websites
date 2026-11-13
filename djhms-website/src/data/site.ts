@@ -35,7 +35,7 @@ export const site = {
     { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
     { label: 'Instagram', href: 'https://www.instagram.com/' },
   ],
-  hotelWebsite: 'https://www.hotelmaharana.com',
+  hotelWebsite: 'https://djhms.in/',
 } as const;
 
 /**
