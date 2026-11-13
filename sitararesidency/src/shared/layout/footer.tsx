@@ -204,9 +204,14 @@ export function Footer() {
             <Link href="/contact" className="transition-colors hover:text-white">
               Contact
             </Link>
-            <Link href="/location" className="transition-colors hover:text-white">
+            <a
+              href={business.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-white"
+            >
               Map &amp; Directions
-            </Link>
+            </a>
             <a
               href={business.social.instagram}
               target="_blank"
@@ -215,15 +220,6 @@ export function Footer() {
               aria-label="Instagram"
             >
               Instagram
-            </a>
-            <a
-              href={business.social.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-white"
-              aria-label="Facebook"
-            >
-              Facebook
             </a>
           </div>
         </div>
