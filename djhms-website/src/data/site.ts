@@ -15,15 +15,19 @@ export const site = {
   phone: { display: '+91 9892912289', href: '+912240000000' },
   // TODO: confirm the djhms.in mailbox exists
   email: 'info@djhms.in',
-  // Registered address per hotelmaharana.com and GST records (mockup shows "818" – sources say 819)
+  // Registered office address
   address: {
-    lines: ['819, Sagar Tech Plaza - A, A.K. Road,', 'Sakinaka Junction, Andheri Kurla West,', 'Mumbai, Maharashtra - 400072'],
-    street: '819 Sagar Tech Plaza - A, A.K. Road, Sakinaka Junction, Andheri Kurla West',
+    lines: [
+      '819, Sagar Tech Plaza A, Andheri Kurla Road,',
+      'Sakinaka Junction, Andheri East,',
+      'Mumbai 400072',
+    ],
+    street: '819, Sagar Tech Plaza A, Andheri Kurla Road, Sakinaka Junction, Andheri East',
     city: 'Mumbai',
     region: 'Maharashtra',
     postalCode: '400072',
     country: 'IN',
-    short: 'Mumbai, Maharashtra - 400072',
+    short: 'Andheri East, Mumbai 400072',
   },
   mapsEmbed:
     'https://www.google.com/maps?q=Sagar+Tech+Plaza+A+Sakinaka+Junction+Andheri+Kurla+Road+Mumbai+400072&output=embed',
