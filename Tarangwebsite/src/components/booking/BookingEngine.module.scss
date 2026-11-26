@@ -1,0 +1,831 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.engineWrapper {
+  width: 100%;
+}
+
+.stepsBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $color-light-muted;
+  transition: all 0.3s ease;
+
+  &.activeStep {
+    color: $color-forest-ink;
+    .stepNum {
+      background: $color-forest-ink;
+      color: #FFFFFF;
+      border-color: $color-forest-ink;
+    }
+    .stepTitle {
+      font-weight: 700;
+    }
+  }
+}
+
+.stepNum {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid #D6CBC1;
+  background: #FAF7F2;
+  color: $color-muted-ink;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.stepTitle {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+
+  @include mobile {
+    font-size: 12px;
+  }
+}
+
+.stepDivider {
+  width: 32px;
+  height: 2px;
+  background: #E8E1D9;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.engineGrid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 32px;
+  align-items: start;
+
+  @include laptop {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formCol {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.stepBox {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: clamp(20px, 4vw, 36px);
+  border: 1px solid rgba(18, 38, 32, 0.08);
+  box-shadow: 0 10px 30px rgba(18, 38, 32, 0.06);
+}
+
+.placeNoticeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(197, 154, 120, 0.12);
+  border: 1px solid rgba(197, 154, 120, 0.35);
+  border-radius: 30px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  color: $color-forest-ink;
+  margin-bottom: 16px;
+
+  strong {
+    color: $color-terracotta;
+  }
+}
+
+.boxTitle {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: $color-forest-ink;
+  margin: 0 0 4px 0;
+}
+
+.boxSub {
+  font-size: 13.5px;
+  color: $color-muted-ink;
+  margin: 0 0 22px 0;
+  line-height: 1.55;
+}
+
+.roomSelectGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.roomSelectItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1.5px solid #E8E1D9;
+  background: #FAF7F2;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: $color-gold;
+    background: #FFFFFF;
+  }
+
+  &.selectedRoom {
+    border-color: $color-forest-ink;
+    background: #FFFFFF;
+    box-shadow: 0 6px 20px rgba(18, 38, 32, 0.08);
+
+    .checkCircle {
+      background: $color-forest-ink;
+      border-color: $color-forest-ink;
+    }
+  }
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+.roomThumb {
+  width: 88px;
+  height: 68px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+
+  @include mobile {
+    width: 100%;
+    height: 140px;
+  }
+}
+
+.roomSelectInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.roomCategoryTag {
+  font-size: 10px;
+  font-weight: 700;
+  color: $color-gold-dark;
+  text-transform: uppercase;
+}
+
+.roomSelectName {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: $color-forest-ink;
+  margin: 2px 0 4px 0;
+  line-height: 1.25;
+}
+
+.roomSelectMeta {
+  font-size: 12px;
+  color: $color-muted-ink;
+  margin-bottom: 4px;
+}
+
+.roomSelectPrice {
+  font-size: 13px;
+  color: $color-slate-ink;
+
+  strong {
+    color: $color-terracotta;
+    font-size: 15px;
+  }
+}
+
+.checkCircle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid #C59A78;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  @include mobile {
+    align-self: flex-end;
+  }
+}
+
+.datesGrid,
+.guestsGrid,
+.guestInputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: $color-slate-ink;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #D6CBC1;
+    background: #FFFFFF;
+    font-size: 16px; // Stops iOS auto-zoom
+    color: $color-slate-ink;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: $color-forest-ink;
+      box-shadow: 0 0 0 3px rgba(18, 38, 32, 0.08);
+    }
+  }
+}
+
+.fieldHint {
+  font-size: 11px;
+  color: $color-light-muted;
+}
+
+.addonsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.addonCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #E8E1D9;
+  background: #FAF7F2;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  input[type="checkbox"] {
+    margin-top: 4px;
+    width: 20px;
+    height: 20px;
+    accent-color: $color-forest-ink;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: #FFFFFF;
+    border-color: $color-gold;
+  }
+}
+
+.addonIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #FFFFFF;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.addonContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.addonTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.addonName {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: $color-forest-ink;
+}
+
+.addonPrice {
+  font-size: 13px;
+  font-weight: 700;
+  color: $color-terracotta;
+}
+
+.addonDesc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: $color-muted-ink;
+  margin: 0;
+}
+
+.stepActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid #ECE3D8;
+  flex-wrap: wrap;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 1px solid #D6CBC1;
+  background: #FAF7F2;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: $color-muted-ink;
+  cursor: pointer;
+  min-height: 44px;
+
+  &:hover {
+    color: $color-forest-ink;
+    border-color: $color-forest-ink;
+  }
+}
+
+.primaryNextBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 30px;
+  background: $color-forest-ink;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: auto;
+  transition: all 0.25s ease;
+  min-height: 44px;
+
+  &:hover {
+    background: $color-terracotta;
+    transform: translateY(-2px);
+  }
+
+  @include mobile {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+// Step 3 Voucher Box
+.voucherBox {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: clamp(20px, 4vw, 36px);
+  border: 2px dashed #C59A78;
+  box-shadow: 0 16px 40px rgba(18, 38, 32, 0.08);
+}
+
+.voucherHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #ECE3D8;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.voucherBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.voucherLogoImg {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 2px;
+  border: 1.5px solid #c59a78;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+.voucherResortName {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: $color-forest-ink;
+  margin: 0;
+}
+
+.voucherLoc {
+  font-size: 11px;
+  color: $color-gold-dark;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.voucherBadge {
+  background: #FAF7F2;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #E0D6CB;
+  text-align: right;
+}
+
+.badgeLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: $color-muted-ink;
+  display: block;
+}
+
+.badgeVal {
+  font-size: 16px;
+  color: $color-terracotta;
+  letter-spacing: 1px;
+}
+
+.voucherSuccessMsg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(197, 154, 120, 0.15);
+  border: 1px solid rgba(197, 154, 120, 0.3);
+  border-radius: 10px;
+  color: $color-forest-ink;
+  font-size: 13px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.voucherGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  background: #FAF7F2;
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.voucherItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.vLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $color-muted-ink;
+}
+
+.vValue {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: $color-forest-ink;
+}
+
+.voucherAddons {
+  padding: 14px;
+  background: #FAF7F2;
+  border-radius: 10px;
+  margin-bottom: 18px;
+
+  ul {
+    margin: 6px 0 0 18px;
+    padding: 0;
+    font-size: 12.5px;
+    color: $color-slate-ink;
+  }
+}
+
+.voucherTotalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: $color-forest-ink;
+  color: #FFFFFF;
+  border-radius: 12px;
+  margin-bottom: 22px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.totalText {
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+}
+
+.totalHint {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  display: block;
+}
+
+.totalAmount {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: 24px;
+  font-weight: 800;
+  color: $color-gold-light;
+}
+
+.voucherActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.whatsappConfirmBtn {
+  flex: 1;
+  min-width: 240px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  border-radius: 30px;
+  background: #25D366;
+  color: #FFFFFF;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  min-height: 44px;
+
+  &:hover {
+    background: #1ebe5d;
+  }
+}
+
+.printBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 20px;
+  border-radius: 30px;
+  border: 1px solid #D6CBC1;
+  background: #FAF7F2;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: $color-forest-ink;
+  cursor: pointer;
+  min-height: 44px;
+
+  &:hover {
+    background: #FFFFFF;
+    border-color: $color-forest-ink;
+  }
+}
+
+.voucherFooterNotes {
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: $color-light-muted;
+  text-align: center;
+  border-top: 1px solid #ECE3D8;
+  padding-top: 14px;
+  margin: 0;
+}
+
+// Summary Column
+.summaryCol {
+  position: sticky;
+  top: 96px;
+
+  @include laptop {
+    position: relative;
+    top: auto;
+  }
+}
+
+.summaryCard {
+  background: #FFFFFF;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(18, 38, 32, 0.08);
+  border: 1px solid rgba(18, 38, 32, 0.08);
+}
+
+.summaryImg {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-size: cover;
+  background-position: center;
+}
+
+.summaryPriceTag {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 5px 12px;
+  background: rgba(18, 38, 32, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: $color-gold-light;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+.summaryBody {
+  padding: clamp(18px, 3vw, 24px);
+}
+
+.summaryCategory {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $color-gold-dark;
+}
+
+.summaryTitle {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: $color-forest-ink;
+  margin: 2px 0 6px 0;
+}
+
+.summaryView {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: $color-muted-ink;
+  margin-bottom: 16px;
+}
+
+.summaryBreakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  background: #FAF7F2;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+.breakRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+
+  span {
+    color: $color-muted-ink;
+  }
+  strong {
+    color: $color-forest-ink;
+  }
+}
+
+.priceLines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #ECE3D8;
+}
+
+.priceLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: $color-slate-ink;
+}
+
+.totalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 1px dashed #D6CBC1;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: $color-forest-ink;
+}
+
+.finalTotal {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: 20px;
+  color: $color-terracotta;
+}
+
+.summaryGuarantees {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.guaranteeItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: $color-muted-ink;
+}
+
+.directHelpdesk {
+  text-align: center;
+  padding-top: 12px;
+  border-top: 1px solid #ECE3D8;
+  font-size: 12px;
+  color: $color-muted-ink;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: $color-forest-ink;
+    font-weight: 700;
+    margin-top: 4px;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-terracotta;
+    }
+  }
+}
+
+// Print Styles
+@media print {
+  .stepsBar,
+  .summaryCol,
+  .voucherActions {
+    display: none !important;
+  }
+
+  .engineGrid {
+    display: block !important;
+  }
+
+  .voucherBox {
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+    padding: 20px !important;
+  }
+}

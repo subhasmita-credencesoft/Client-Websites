@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <!-- Tarangan Emblem: Sun, Palm & Waves -->
+  <g transform="translate(10, 10)">
+    <circle cx="30" cy="30" r="28" stroke="#C59A78" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.6" />
+    <circle cx="30" cy="30" r="24" fill="#122620" />
+    <!-- Golden Sun Rays -->
+    <path d="M30 10 L30 14 M30 46 L30 50 M10 30 L14 30 M46 30 L50 30" stroke="#E27D60" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Crescent & Palm Silhouette -->
+    <path d="M22 42 C24 33 29 22 35 18 C32 24 33 33 30 42" fill="none" stroke="#E5C198" stroke-width="2" stroke-linecap="round"/>
+    <path d="M35 18 C38 18 42 21 44 24 C40 24 37 22 35 18 Z" fill="#E5C198"/>
+    <path d="M35 18 C32 16 28 17 25 19 C28 20 32 20 35 18 Z" fill="#E5C198"/>
+    <path d="M33 23 C37 24 40 28 41 32 C38 31 35 28 33 23 Z" fill="#E5C198"/>
+    <!-- Water Ripple -->
+    <path d="M18 43 C22 41 26 44 30 43 C34 42 38 45 42 43" fill="none" stroke="#E27D60" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+  <!-- Brand Typography -->
+  <text x="82" y="38" font-family="'Cinzel', 'Playfair Display', 'Georgia', serif" font-size="24" font-weight="600" letter-spacing="3" fill="#122620">TARANGAN</text>
+  <text x="83" y="52" font-family="'Urbanist', 'Montserrat', sans-serif" font-size="9" font-weight="500" letter-spacing="4.5" fill="#C59A78">RESORT • NAGAON, ALIBAUG</text>
+</svg>

@@ -1,0 +1,66 @@
+@use './variables' as *;
+
+// Breakpoint Mixins
+@mixin mobile {
+  @media (max-width: #{$bp-mobile}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$bp-tablet}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (max-width: #{$bp-laptop}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$bp-laptop + 1}) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media (min-width: #{$bp-wide}) {
+    @content;
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: 1380px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(16px, 4vw, 50px);
+  padding-right: clamp(16px, 4vw, 50px);
+}
+
+@mixin glassmorphism($bg: rgba(255, 255, 255, 0.88), $blur: 16px, $border: rgba(255, 255, 255, 0.4)) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $border;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin text-gradient($start: #FFFFFF, $end: rgba(255, 255, 255, 0.5)) {
+  background: linear-gradient(180deg, $start 0%, $end 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

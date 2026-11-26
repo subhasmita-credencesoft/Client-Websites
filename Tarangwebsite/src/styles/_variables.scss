@@ -1,0 +1,54 @@
+// ==========================================
+// Tarangan Resort - Luxury Design Tokens
+// ==========================================
+
+// Color Palette inspired by coastal Alibaug sunset & Konkani tropical greenery
+$color-bg: #FAF7F2;
+$color-bg-peach: #F7D9C6;
+$color-bg-peach-light: #FBE7DA;
+$color-bg-pearl: #FDFBF7;
+$color-surface: #FFFFFF;
+$color-surface-subtle: #F5EFEB;
+
+$color-forest-ink: #122620;
+$color-forest-dark: #0D1C17;
+$color-forest-medium: #1E3A31;
+$color-slate-ink: #1D1A1C;
+$color-muted-ink: #5C5156;
+$color-light-muted: #8A7F83;
+$color-border-subtle: rgba(29, 26, 28, 0.08);
+$color-border-light: rgba(255, 255, 255, 0.22);
+
+// Luxury Accent Tones
+$color-gold: #C59A78;
+$color-gold-light: #E5C198;
+$color-gold-dark: #9E7453;
+$color-terracotta: #E27D60;
+$color-orange-cta: #F39419;
+$color-star-yellow: #F7C325;
+$color-heart-red: #FF4D5E;
+$color-teal-accent: #175A67;
+$color-success: #10B981;
+
+// Typography
+$font-serif: 'Playfair Display', 'Cormorant Garamond', 'Gilda Display', Georgia, serif;
+$font-sans: 'Urbanist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+// Transitions & Easings
+$ease-layout: cubic-bezier(0.65, 0, 0.35, 1);
+$ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+// Elevation Shadows
+$shadow-sm: 0 2px 8px rgba(18, 38, 32, 0.06);
+$shadow-md: 0 8px 24px rgba(18, 38, 32, 0.1);
+$shadow-lg: 0 16px 40px rgba(18, 38, 32, 0.14);
+$shadow-xl: 0 24px 60px rgba(18, 38, 32, 0.18);
+$shadow-floating: 0 18px 60px rgba(120, 70, 60, 0.16);
+
+// Breakpoints
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-laptop: 1024px;
+$bp-desktop: 1280px;
+$bp-wide: 1440px;

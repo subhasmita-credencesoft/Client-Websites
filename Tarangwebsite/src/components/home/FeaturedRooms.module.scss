@@ -1,0 +1,121 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.section {
+  padding: clamp(60px, 8vw, 90px) 0;
+  background-color: #FAF7F2;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 50px);
+}
+
+.headerRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tagBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(197, 154, 120, 0.15);
+  border: 1px solid rgba(197, 154, 120, 0.3);
+  border-radius: 30px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: $color-gold-dark;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: clamp(24px, 3.2vw, 42px);
+  font-weight: 700;
+  color: $color-forest-ink;
+  line-height: 1.15;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 14.5px;
+  color: $color-muted-ink;
+  margin: 0;
+  max-width: 520px;
+  line-height: 1.55;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.filterPills {
+  display: flex;
+  align-items: center;
+  background: #EFE8E1;
+  padding: 4px;
+  border-radius: 30px;
+  gap: 4px;
+}
+
+.filterBtn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: $color-muted-ink;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 36px;
+
+  &:hover {
+    color: $color-forest-ink;
+  }
+
+  &.activeFilter {
+    background: #FFFFFF;
+    color: $color-forest-ink;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.seeAllBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 30px;
+  border: 1.5px solid $color-forest-ink;
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-forest-ink;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  min-height: 38px;
+
+  &:hover {
+    background: $color-forest-ink;
+    color: #FFFFFF;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: clamp(18px, 2.5vw, 30px);
+}

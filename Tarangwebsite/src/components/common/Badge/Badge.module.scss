@@ -1,0 +1,57 @@
+@use '@/styles/variables' as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 30px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+
+  &.sm {
+    padding: 3px 8px;
+    font-size: 10.5px;
+  }
+
+  &.md {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+
+  &.gold {
+    background: rgba(197, 154, 120, 0.15);
+    border: 1px solid rgba(197, 154, 120, 0.4);
+    color: $color-gold-dark;
+  }
+
+  &.terracotta {
+    background: rgba(226, 125, 96, 0.15);
+    border: 1px solid rgba(226, 125, 96, 0.4);
+    color: $color-terracotta;
+  }
+
+  &.forest {
+    background: $color-forest-ink;
+    color: #FFFFFF;
+    border: 1px solid $color-forest-ink;
+  }
+
+  &.neutral {
+    background: #EFE8E1;
+    border: 1px solid #D6CBC1;
+    color: $color-slate-ink;
+  }
+
+  &.glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #FFFFFF;
+  }
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+}

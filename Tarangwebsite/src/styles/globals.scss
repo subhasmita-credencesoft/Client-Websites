@@ -1,0 +1,166 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Urbanist:wght@300;400;500;600;700;800&family=Cinzel:wght@500;600;700&display=swap');
+
+:root {
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Urbanist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-cinzel: 'Cinzel', serif;
+  
+  --bg-peach: #{$color-bg-peach};
+  --bg-peach-light: #{$color-bg-peach-light};
+  --bg-pearl: #{$color-bg-pearl};
+  --forest-ink: #{$color-forest-ink};
+  --forest-dark: #{$color-forest-dark};
+  --gold: #{$color-gold};
+  --gold-light: #{$color-gold-light};
+  --orange-cta: #{$color-orange-cta};
+  --terracotta: #{$color-terracotta};
+  --star-yellow: #{$color-star-yellow};
+  --heart-red: #{$color-heart-red};
+  --slate-ink: #{$color-slate-ink};
+  --muted-ink: #{$color-muted-ink};
+  --light-muted: #{$color-light-muted};
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--bg-peach);
+  color: var(--slate-ink);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-pearl);
+  color: var(--slate-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+  touch-action: manipulation;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: 16px; // Crucial: stops iOS Safari auto-zooming on focus!
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F2E8DF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C59A78;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #122620;
+}
+
+/* Typography Utility Classes */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-cinzel {
+  font-family: var(--font-cinzel);
+}
+
+.container {
+  @include container;
+}
+
+/* Common Card & Grid safety */
+.grid-item, .card {
+  min-width: 0; // Prevents CSS grid blowout with long words/URLs
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes riseUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.animate-riseUp {
+  animation: riseUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media print {
+  header,
+  footer,
+  nav,
+  .floating-buttons,
+  [data-no-print] {
+    display: none !important;
+  }
+}

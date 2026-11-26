@@ -1,0 +1,586 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.page {
+  background-color: #FAF7F2;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.topBand {
+  background-color: #F7D9C6;
+  padding: 105px 0 20px 0;
+  border-bottom: 1px solid rgba(18, 38, 32, 0.08);
+  margin-bottom: 32px;
+
+  @include mobile {
+    padding-top: 85px;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 50px);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: $color-muted-ink;
+  flex-wrap: wrap;
+
+  a {
+    color: $color-forest-ink;
+    text-decoration: none;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .currentCrumb {
+    color: $color-light-muted;
+  }
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+
+  @include laptop {
+    grid-template-columns: 1fr;
+  }
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mainImageBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(18, 38, 32, 0.1);
+  margin-bottom: 14px;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.heartBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &.activeHeart {
+    background: #FFFFFF;
+  }
+}
+
+.categoryBadge {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $color-forest-ink;
+  letter-spacing: 0.5px;
+}
+
+.thumbnailStrip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.thumbBtn {
+  aspect-ratio: 16 / 11;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &.activeThumb {
+    border-color: $color-forest-ink;
+    box-shadow: 0 4px 12px rgba(18, 38, 32, 0.2);
+  }
+}
+
+.hostCard {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(18, 38, 32, 0.06);
+}
+
+.hostAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #122620;
+  color: #FFFFFF;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.hostedBy {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: $color-gold-dark;
+  font-weight: 700;
+}
+
+.hostName {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: $color-forest-ink;
+  margin: 2px 0;
+}
+
+.hostNote {
+  font-size: 12px;
+  color: $color-muted-ink;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.contentSection {
+  margin-bottom: 28px;
+}
+
+.sectionTitle {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: $color-forest-ink;
+  margin: 0 0 10px 0;
+}
+
+.subTitle {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: $color-forest-ink;
+  margin: 0 0 14px 0;
+}
+
+.fullDesc {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: $color-muted-ink;
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: $color-slate-ink;
+}
+
+.amenitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.amenityCard {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(18, 38, 32, 0.05);
+}
+
+.amenityIcon {
+  color: $color-gold-dark;
+  flex-shrink: 0;
+}
+
+.amenityLabel {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: $color-slate-ink;
+}
+
+.policyBox {
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid rgba(18, 38, 32, 0.06);
+}
+
+.policyRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #E5DCD3;
+  gap: 8px;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  strong {
+    color: $color-forest-ink;
+  }
+  span {
+    color: $color-muted-ink;
+    text-align: right;
+  }
+}
+
+// Right Sticky Booking Card
+.rightCol {
+  position: sticky;
+  top: 96px;
+
+  @include laptop {
+    position: relative;
+    top: auto;
+  }
+}
+
+.bookingCard {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: clamp(20px, 3.5vw, 28px);
+  box-shadow: 0 12px 35px rgba(18, 38, 32, 0.08);
+  border: 1px solid rgba(197, 154, 120, 0.3);
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #ECE3D8;
+}
+
+.priceNumber {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: 26px;
+  font-weight: 800;
+  color: $color-forest-ink;
+}
+
+.perNight {
+  font-size: 13px;
+  color: $color-muted-ink;
+}
+
+.originalStrike {
+  font-size: 12px;
+  color: $color-light-muted;
+  text-decoration: line-through;
+  margin-left: 6px;
+}
+
+.ratingBrief {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  strong {
+    color: $color-slate-ink;
+  }
+  span {
+    color: $color-light-muted;
+  }
+}
+
+.dateSelectorBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.dateField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #FAF7F2;
+  border: 1px solid #E5DCD3;
+  padding: 8px 10px;
+  border-radius: 10px;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $color-muted-ink;
+  }
+
+  input {
+    border: none;
+    background: transparent;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: $color-slate-ink;
+    outline: none;
+    width: 100%;
+  }
+}
+
+.guestSelector {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #FAF7F2;
+  border: 1px solid #E5DCD3;
+  padding: 8px 10px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $color-muted-ink;
+  }
+
+  select {
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    color: $color-slate-ink;
+    outline: none;
+    width: 100%;
+  }
+}
+
+.calcBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #ECE3D8;
+}
+
+.calcRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: $color-muted-ink;
+}
+
+.calcTotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: $color-forest-ink;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px dashed #D6CBC1;
+
+  strong {
+    color: $color-terracotta;
+    font-size: 18px;
+  }
+}
+
+.bookNowBtn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 30px;
+  background: $color-forest-ink;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-bottom: 10px;
+  min-height: 44px;
+
+  &:hover {
+    background: $color-terracotta;
+  }
+
+  &.bookedSuccess {
+    background: #10B981;
+  }
+}
+
+.whatsappReserveBtn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 30px;
+  background: #25D366;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 18px;
+  transition: background 0.2s ease;
+  min-height: 44px;
+
+  &:hover {
+    background: #1ebe5d;
+  }
+}
+
+.bookingAssurance {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.assureItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: $color-muted-ink;
+}
+
+.helpRow {
+  text-align: center;
+  font-size: 12px;
+  color: $color-light-muted;
+  border-top: 1px solid #ECE3D8;
+  padding-top: 12px;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: $color-forest-ink;
+    font-weight: 700;
+    margin-left: 6px;
+    text-decoration: none;
+  }
+}
+
+// Similar Rooms
+.similarSection {
+  margin-top: 70px;
+  border-top: 1px solid #E5DCD3;
+  padding-top: 45px;
+}
+
+.similarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 26px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.similarTitle {
+  font-family: var(--font-cinzel), var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: $color-forest-ink;
+  margin: 0;
+}
+
+.viewAllRoomsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-forest-ink;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-terracotta;
+  }
+}
+
+.similarGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 24px;
+}
