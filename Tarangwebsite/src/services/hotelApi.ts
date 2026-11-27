@@ -189,13 +189,16 @@ export async function fetchRawAvailability(
   )}&toDate=${encodeURIComponent(toDate)}&noOfRooms=${noOfRooms}&noOfPersons=${noOfPersons}`;
 
   try {
-    const res = await fetch(url, {
+    const isClient = typeof window !== 'undefined';
+    const fetchOptions: RequestInit = {
       method: 'GET',
       headers: {
         Accept: 'application/json',
       },
-      cache: 'no-store',
-    });
+      ...(isClient ? { cache: 'no-store' } : {}),
+    };
+
+    const res = await fetch(url, fetchOptions);
 
     if (!res.ok) {
       console.warn(`Hotel API returned status ${res.status} for ${url}`);
