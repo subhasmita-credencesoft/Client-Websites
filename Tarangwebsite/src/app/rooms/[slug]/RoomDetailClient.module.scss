@@ -74,6 +74,7 @@
   overflow: hidden;
   box-shadow: 0 12px 35px rgba(18, 38, 32, 0.1);
   margin-bottom: 14px;
+  background-color: #E8DFD8;
 }
 
 .mainImage {
@@ -81,6 +82,54 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
+  display: block;
+}
+
+.navArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(18, 38, 32, 0.6);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 5;
+  backdrop-filter: blur(4px);
+
+  &:hover {
+    background: rgba(18, 38, 32, 0.9);
+    transform: translateY(-50%) scale(1.08);
+  }
+}
+
+.prevArrow {
+  left: 14px;
+}
+
+.nextArrow {
+  right: 14px;
+}
+
+.photoCounter {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  padding: 5px 12px;
+  background: rgba(18, 38, 32, 0.75);
+  color: #FFFFFF;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(4px);
+  z-index: 4;
 }
 
 .heartBtn {
@@ -98,6 +147,7 @@
   place-items: center;
   cursor: pointer;
   transition: transform 0.2s ease;
+  z-index: 5;
 
   &:hover {
     transform: scale(1.1);
@@ -108,11 +158,12 @@
   }
 }
 
+.imageBadge,
 .categoryBadge {
   position: absolute;
   bottom: 14px;
   left: 14px;
-  padding: 5px 12px;
+  padding: 6px 14px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 30px;
   font-size: 11px;
@@ -120,38 +171,62 @@
   text-transform: uppercase;
   color: $color-forest-ink;
   letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  z-index: 4;
 }
 
+.thumbRow,
 .thumbnailStrip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  display: flex;
+  gap: 10px;
   margin-bottom: 28px;
+  overflow-x: auto;
+  padding: 4px 2px 10px 2px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(18, 38, 32, 0.05);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #C59A78;
+    border-radius: 10px;
+  }
 }
 
 .thumbBtn {
+  flex: 0 0 100px;
+  height: 68px;
   aspect-ratio: 16 / 11;
   border-radius: 10px;
   overflow: hidden;
   border: 2px solid transparent;
   padding: 0;
-  background: transparent;
+  background: #E8DFD8;
   cursor: pointer;
   transition: all 0.25s ease;
+  position: relative;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 
   &:hover {
     transform: translateY(-2px);
+    border-color: rgba(197, 154, 120, 0.7);
   }
 
   &.activeThumb {
-    border-color: $color-forest-ink;
-    box-shadow: 0 4px 12px rgba(18, 38, 32, 0.2);
+    border-color: #C59A78;
+    box-shadow: 0 4px 14px rgba(197, 154, 120, 0.4);
+    transform: scale(1.04);
   }
 }
 

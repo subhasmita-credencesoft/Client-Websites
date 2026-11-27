@@ -22,6 +22,7 @@ import {
   Phone,
   ArrowRight,
   ChevronRight,
+  ChevronLeft,
   Sparkles,
   Clock,
 } from 'lucide-react';
@@ -197,7 +198,7 @@ export default function RoomDetailClient({
         <div className={styles.detailGrid}>
           {/* Left Column: Photos & Room Narrative */}
           <div className={styles.leftCol}>
-            {/* Main Active Image Box */}
+            {/* Main Active Image Box with Prev/Next Controls */}
             <div className={styles.mainImageBox}>
               <img
                 src={currentImage}
@@ -207,6 +208,39 @@ export default function RoomDetailClient({
                   e.currentTarget.src = '/images/facilities/pool-day.jpg';
                 }}
               />
+
+              {room.images.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className={`${styles.navArrow} ${styles.prevArrow}`}
+                    onClick={() =>
+                      setActiveImageIndex((prev) =>
+                        prev > 0 ? prev - 1 : room.images.length - 1
+                      )
+                    }
+                    aria-label="Previous photo"
+                  >
+                    <ChevronLeft size={22} />
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.navArrow} ${styles.nextArrow}`}
+                    onClick={() =>
+                      setActiveImageIndex((prev) =>
+                        prev < room.images.length - 1 ? prev + 1 : 0
+                      )
+                    }
+                    aria-label="Next photo"
+                  >
+                    <ChevronRight size={22} />
+                  </button>
+                  <div className={styles.photoCounter}>
+                    {activeImageIndex + 1} / {room.images.length} Photos
+                  </div>
+                </>
+              )}
+
               <button
                 type="button"
                 className={`${styles.heartBtn} ${isLiked ? styles.activeHeart : ''}`}
