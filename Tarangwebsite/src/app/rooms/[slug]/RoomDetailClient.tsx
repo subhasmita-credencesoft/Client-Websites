@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   Heart,
   Star,
@@ -21,9 +22,17 @@ import {
   Phone,
   ArrowRight,
   ChevronRight,
+  Sparkles,
+  Clock,
 } from 'lucide-react';
-import { Room } from '@/data/roomsData';
+import { Room, getRoomBySlugOrId } from '@/data/roomsData';
 import { RESORT_DATA } from '@/data/resortData';
+import { useHotelRooms } from '@/hooks/useHotelRooms';
+import {
+  getTodayDateString,
+  getTomorrowDateString,
+  generateBookingEngineUrl,
+} from '@/services/hotelApi';
 import RoomCard from '@/components/home/RoomCard';
 import styles from './RoomDetailClient.module.scss';
 
@@ -39,37 +48,133 @@ const amenityIcons: Record<string, React.ReactNode> = {
   Trees: <Trees size={20} />,
   Heart: <Heart size={20} />,
   Users: <Users size={20} />,
+  Clock: <Clock size={20} />,
+  Sparkles: <Sparkles size={20} />,
 };
 
 interface Props {
-  room: Room;
-  similarRooms: Room[];
+  slug?: string;
+  room?: Room;
+  initialRoom?: Room;
+  similarRooms?: Room[];
+  initialSimilarRooms?: Room[];
 }
 
-export default function RoomDetailClient({ room, similarRooms }: Props) {
+export default function RoomDetailClient({
+  slug = '',
+  room: propRoom,
+  initialRoom,
+  similarRooms: propSimilarRooms,
+  initialSimilarRooms = [],
+}: Props) {
+  const router = useRouter();
+  const { rooms, loading } = useHotelRooms({
+    initialRooms: initialRoom ? [initialRoom, ...initialSimilarRooms] : undefined,
+  });
+
+  const room =
+    propRoom ||
+    initialRoom ||
+    (slug ? getRoomBySlugOrId(slug, rooms) : undefined);
+
+  const similarRooms =
+    propSimilarRooms && propSimilarRooms.length > 0
+      ? propSimilarRooms
+      : initialSimilarRooms && initialSimilarRooms.length > 0
+      ? initialSimilarRooms
+      : rooms.filter((r) => r.id !== room?.id).slice(0, 3);
+
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
-  const [checkIn, setCheckIn] = useState('2026-11-20');
-  const [checkOut, setCheckOut] = useState('2026-11-22');
+  const [checkIn, setCheckIn] = useState('');
+  const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState(2);
   const [isBooked, setIsBooked] = useState(false);
 
+  useEffect(() => {
+    setCheckIn(getTodayDateString());
+    setCheckOut(getTomorrowDateString());
+  }, []);
+
   // Nights calculation
-  const d1 = new Date(checkIn);
-  const d2 = new Date(checkOut);
+  const d1 = checkIn ? new Date(checkIn) : new Date();
+  const d2 = checkOut ? new Date(checkOut) : new Date();
   const nights = Math.max(1, Math.ceil((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24)));
-  const totalPrice = room.price * nights;
+  const roomPrice = room ? room.price : 0;
+  const totalPrice = roomPrice * nights;
 
   const handleBookNow = () => {
+    if (!room) return;
     setIsBooked(true);
     setTimeout(() => {
-      window.location.href = 'https://bookone.io/Tarangan-Resort?bookingEngine=true';
-    }, 400);
+      router.push(`/booking?room=${room.id}&checkIn=${checkIn}&checkOut=${checkOut}&adults=${guests}`);
+    }, 300);
   };
 
-  const whatsappMessage = encodeURIComponent(
-    `Hello Tarangan Resort! I would like to book the *${room.title}* from ${checkIn} to ${checkOut} (${nights} nights) for ${guests} guests. Please confirm availability!`
-  );
+  const whatsappMessage = room
+    ? encodeURIComponent(
+        `Hello Tarangan Resort! I would like to book the *${room.title}* from ${checkIn} to ${checkOut} (${nights} nights) for ${guests} guests. Please confirm availability!`
+      )
+    : '';
+
+  if (!room) {
+    if (loading) {
+      return (
+        <div className={styles.page}>
+          <div className={styles.topBand}>
+            <div className={styles.container}>
+              <nav className={styles.breadcrumb}>
+                <Link href="/">Home</Link>
+                <ChevronRight size={13} />
+                <Link href="/rooms">Accommodations</Link>
+                <ChevronRight size={13} />
+                <span>Loading Room...</span>
+              </nav>
+            </div>
+          </div>
+          <div className={styles.container} style={{ padding: '80px 20px', textAlign: 'center' }}>
+            <p style={{ fontSize: '1.2rem', color: '#666' }}>Fetching live cottage details...</p>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className={styles.page}>
+        <div className={styles.topBand}>
+          <div className={styles.container}>
+            <nav className={styles.breadcrumb}>
+              <Link href="/">Home</Link>
+              <ChevronRight size={13} />
+              <Link href="/rooms">Accommodations</Link>
+            </nav>
+          </div>
+        </div>
+        <div className={styles.container} style={{ padding: '80px 20px', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '2rem', marginBottom: '16px', color: '#1B2D2A' }}>Room Not Found</h2>
+          <p style={{ color: '#666', marginBottom: '24px' }}>
+            We could not find the requested accommodation in our live inventory.
+          </p>
+          <Link
+            href="/rooms"
+            style={{
+              display: 'inline-block',
+              padding: '12px 28px',
+              backgroundColor: '#C59A78',
+              color: '#fff',
+              borderRadius: '8px',
+              fontWeight: 600,
+              textDecoration: 'none',
+            }}
+          >
+            Browse All Accommodations
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const currentImage = room.images[activeImageIndex] || room.images[0] || '/images/hero/hero-drone-sunset.jpg';
 
   return (
     <div className={styles.page}>
@@ -95,9 +200,12 @@ export default function RoomDetailClient({ room, similarRooms }: Props) {
             {/* Main Active Image Box */}
             <div className={styles.mainImageBox}>
               <img
-                src={room.images[activeImageIndex]}
+                src={currentImage}
                 alt={room.title}
                 className={styles.mainImage}
+                onError={(e) => {
+                  e.currentTarget.src = '/images/facilities/pool-day.jpg';
+                }}
               />
               <button
                 type="button"
@@ -111,25 +219,34 @@ export default function RoomDetailClient({ room, similarRooms }: Props) {
                   color={isLiked ? '#FF4D5E' : '#FFFFFF'}
                 />
               </button>
-
-              <div className={styles.categoryBadge}>{room.category}</div>
+              <div className={styles.imageBadge}>{room.category}</div>
             </div>
 
-            {/* Thumbnail Gallery Strip */}
-            <div className={styles.thumbnailStrip}>
-              {room.images.map((img, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  className={`${styles.thumbBtn} ${
-                    idx === activeImageIndex ? styles.activeThumb : ''
-                  }`}
-                  onClick={() => setActiveImageIndex(idx)}
-                >
-                  <img src={img} alt={`${room.title} photo ${idx + 1}`} />
-                </button>
-              ))}
-            </div>
+            {/* Thumbnail Row */}
+            {room.images.length > 1 && (
+              <div className={styles.thumbRow}>
+                {room.images.map((imgUrl, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className={`${styles.thumbBtn} ${
+                      idx === activeImageIndex ? styles.activeThumb : ''
+                    }`}
+                    onClick={() => setActiveImageIndex(idx)}
+                    aria-label={`Show photo ${idx + 1}`}
+                  >
+                    <img
+                      src={imgUrl}
+                      alt={`${room.title} view ${idx + 1}`}
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/facilities/pool-day.jpg';
+                      }}
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Host & Management Badge */}
             <div className={styles.hostCard}>
@@ -146,7 +263,14 @@ export default function RoomDetailClient({ room, similarRooms }: Props) {
             {/* Full Room Description */}
             <div className={styles.contentSection}>
               <h2 className={styles.sectionTitle}>About this Cottage</h2>
-              <p className={styles.fullDesc}>{room.fullDescription}</p>
+              {room.fullDescription.includes('<p>') ? (
+                <div
+                  className={styles.fullDesc}
+                  dangerouslySetInnerHTML={{ __html: room.fullDescription }}
+                />
+              ) : (
+                <p className={styles.fullDesc}>{room.fullDescription}</p>
+              )}
             </div>
 
             {/* Key Features Bullet List */}
@@ -169,7 +293,18 @@ export default function RoomDetailClient({ room, similarRooms }: Props) {
                 {room.amenities.map((am, i) => (
                   <div key={i} className={styles.amenityCard}>
                     <div className={styles.amenityIcon}>
-                      {amenityIcons[am.icon] || <CheckCircle2 size={20} />}
+                      {am.imageUrl ? (
+                        <img
+                          src={am.imageUrl}
+                          alt={am.label}
+                          style={{ width: '22px', height: '22px', objectFit: 'contain' }}
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      ) : (
+                        amenityIcons[am.icon] || <Sparkles size={20} />
+                      )}
                     </div>
                     <span className={styles.amenityLabel}>{am.label}</span>
                   </div>
@@ -177,52 +312,44 @@ export default function RoomDetailClient({ room, similarRooms }: Props) {
               </div>
             </div>
 
-            {/* Property Rules & Policies */}
+            {/* Check-In / Check-Out Policies */}
             <div className={styles.contentSection}>
               <h3 className={styles.subTitle}>Stay Policies</h3>
-              <div className={styles.policyBox}>
-                <div className={styles.policyRow}>
-                  <strong>Check-In Time:</strong>
-                  <span>{RESORT_DATA.policies.checkInTime}</span>
+              <div className={styles.policyGrid}>
+                <div className={styles.policyItem}>
+                  <strong>Check-in:</strong> {RESORT_DATA.policies.checkInTime}
                 </div>
-                <div className={styles.policyRow}>
-                  <strong>Check-Out Time:</strong>
-                  <span>{RESORT_DATA.policies.checkOutTime}</span>
+                <div className={styles.policyItem}>
+                  <strong>Check-out:</strong> {RESORT_DATA.policies.checkOutTime}
                 </div>
-                <div className={styles.policyRow}>
-                  <strong>Pet Policy:</strong>
-                  <span>{RESORT_DATA.policies.petPolicy}</span>
+                <div className={styles.policyItem}>
+                  <strong>Pets:</strong> {RESORT_DATA.policies.petPolicy}
                 </div>
-                <div className={styles.policyRow}>
-                  <strong>Cancellation Policy:</strong>
-                  <span>{RESORT_DATA.policies.cancellation}</span>
+                <div className={styles.policyItem}>
+                  <strong>Cancellation:</strong> {RESORT_DATA.policies.cancellation}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Sticky Booking Widget */}
+          {/* Right Column: Sticky Booking Card */}
           <div className={styles.rightCol}>
             <div className={styles.bookingCard}>
-              <div className={styles.priceRow}>
+              {/* Header Price */}
+              <div className={styles.priceHeader}>
                 <div>
-                  <span className={styles.priceNumber}>₹{room.price.toLocaleString()}</span>
+                  <span className={styles.currency}>₹</span>
+                  <span className={styles.amount}>{room.price.toLocaleString()}</span>
                   <span className={styles.perNight}> / night</span>
-                  {room.originalPrice > room.price && (
-                    <span className={styles.originalStrike}>
-                      ₹{room.originalPrice.toLocaleString()}
-                    </span>
-                  )}
                 </div>
-                <div className={styles.ratingBrief}>
+                <div className={styles.ratingBadge}>
                   <Star size={14} fill="#F7C325" color="#F7C325" />
-                  <strong>{room.rating}</strong>
-                  <span>({room.reviewsCount})</span>
+                  <span>{room.rating}</span>
                 </div>
               </div>
 
-              {/* Date & Guest Inputs */}
-              <div className={styles.dateSelectorBox}>
+              {/* Date Inputs */}
+              <div className={styles.datePickerGrid}>
                 <div className={styles.dateField}>
                   <label>
                     <Calendar size={13} /> Check-In
@@ -265,7 +392,7 @@ export default function RoomDetailClient({ room, similarRooms }: Props) {
               <div className={styles.calcBox}>
                 <div className={styles.calcRow}>
                   <span>
-                    ₹{room.price.toLocaleString()} × {nights} nights
+                    ₹{room.price.toLocaleString()} × {nights} night{nights > 1 ? 's' : ''}
                   </span>
                   <span>₹{totalPrice.toLocaleString()}</span>
                 </div>
@@ -274,7 +401,7 @@ export default function RoomDetailClient({ room, similarRooms }: Props) {
                   <span>₹{Math.round(totalPrice * 0.12).toLocaleString()}</span>
                 </div>
                 <div className={styles.calcTotal}>
-                  <span>Total Amount</span>
+                  <span>Total Estimated</span>
                   <strong>
                     ₹{(totalPrice + Math.round(totalPrice * 0.12)).toLocaleString()}
                   </strong>
@@ -298,46 +425,33 @@ export default function RoomDetailClient({ room, similarRooms }: Props) {
                 className={styles.whatsappReserveBtn}
               >
                 <MessageCircle size={16} />
-                <span>Quick WhatsApp Reservation</span>
+                <span>Reserve via WhatsApp</span>
               </a>
 
-              <div className={styles.bookingAssurance}>
-                <div className={styles.assureItem}>
-                  <ShieldCheck size={14} color="#10B981" />
-                  <span>Free cancellation up to 72 hours</span>
-                </div>
-                <div className={styles.assureItem}>
-                  <ShieldCheck size={14} color="#10B981" />
-                  <span>Direct resort rate guarantee</span>
-                </div>
-              </div>
+              {/* Direct Desk Call */}
+              <a href={`tel:${RESORT_DATA.phone}`} className={styles.callDeskBtn}>
+                <Phone size={14} />
+                <span>Call Desk: {RESORT_DATA.formattedPhone}</span>
+              </a>
 
-              <div className={styles.helpRow}>
-                <span>Questions before booking?</span>
-                <a href={`tel:${RESORT_DATA.phone}`}>
-                  <Phone size={13} /> {RESORT_DATA.phone}
-                </a>
-              </div>
+              <p className={styles.noCardNeeded}>
+                ✓ Zero hidden fees • Verified Direct Resort Rates • 24/7 Confirmation
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Similar Rooms Section */}
-        <section className={styles.similarSection}>
-          <div className={styles.similarHeader}>
-            <h3 className={styles.similarTitle}>Similar Accommodations</h3>
-            <Link href="/rooms" className={styles.viewAllRoomsLink}>
-              <span>View All 12 Cottages</span>
-              <ArrowRight size={15} />
-            </Link>
+        {/* Similar Recommended Rooms */}
+        {similarRooms.length > 0 && (
+          <div className={styles.similarSection}>
+            <h3 className={styles.similarHeading}>Other Recommended Cottages</h3>
+            <div className={styles.similarGrid}>
+              {similarRooms.map((simRoom) => (
+                <RoomCard key={simRoom.id} room={simRoom} />
+              ))}
+            </div>
           </div>
-
-          <div className={styles.similarGrid}>
-            {similarRooms.map((r) => (
-              <RoomCard key={r.id} room={r} />
-            ))}
-          </div>
-        </section>
+        )}
       </div>
     </div>
   );

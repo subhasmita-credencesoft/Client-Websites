@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: '%s | Tarangan Resort Nagaon-Alibag',
   },
   description:
-    'Experience peaceful coastal bliss at Tarangan Resort, featuring 12 air-conditioned deluxe cottage-style rooms, a clean swimming pool, kids pool, and authentic Maharashtrian Konkani seafood, just 4.1 km from Nagaon Beach, Alibaug.',
+    'Experience peaceful coastal bliss at Tarangan Resort, featuring air-conditioned deluxe boutique cottages and suites, a clean swimming pool, kids pool, and authentic Maharashtrian Konkani seafood, just 4.1 km from Nagaon Beach, Alibaug.',
   keywords: [
     'Tarangan Resort',
     'Tarangan Resort Nagaon Alibag',

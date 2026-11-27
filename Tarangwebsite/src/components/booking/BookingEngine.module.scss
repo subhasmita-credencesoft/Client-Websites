@@ -169,6 +169,8 @@
   width: 88px;
   height: 68px;
   border-radius: 8px;
+  object-fit: cover;
+  display: block;
   background-size: cover;
   background-position: center;
   flex-shrink: 0;
@@ -669,8 +671,16 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
+  overflow: hidden;
   background-size: cover;
   background-position: center;
+}
+
+.summaryImgElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .summaryPriceTag {

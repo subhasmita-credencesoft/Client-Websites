@@ -58,7 +58,7 @@ export default function AboutSection() {
             </p>
 
             <p className={styles.bodyText}>
-              Featuring 12 air-conditioned deluxe cottage-style rooms overlooking our crystal-clear outdoor swimming pool and children pool, we blend nature tranquility with thoughtful hospitality. Here, every morning greets you with refreshing coastal breezes, and every evening invites you to relax by our open lawns, savor fresh Arabian Sea seafood thalis, and share stories around a crackling bonfire.
+              Featuring air-conditioned deluxe cottages and suite accommodations overlooking our crystal-clear outdoor swimming pool and children pool, we blend nature tranquility with thoughtful hospitality. Here, every morning greets you with refreshing coastal breezes, and every evening invites you to relax by our open lawns, savor fresh Arabian Sea seafood thalis, and share stories around a crackling bonfire.
             </p>
 
             {/* Key Value Points */}
@@ -66,7 +66,7 @@ export default function AboutSection() {
               <div className={styles.featureItem}>
                 <CheckCircle2 size={18} color="#C59A78" />
                 <div>
-                  <strong>12 AC Deluxe Cottages:</strong> King beds, geysers, pool views & private sit-outs.
+                  <strong>AC Cottages & Suites:</strong> Comfortable bedding, modern washrooms with geysers & nature views.
                 </div>
               </div>
               <div className={styles.featureItem}>

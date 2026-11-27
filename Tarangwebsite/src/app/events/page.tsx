@@ -35,10 +35,10 @@ export default function EventsPage() {
     },
     {
       title: 'Family Reunions & Group Weekends',
-      desc: 'With 12 private deluxe cottages sleeping up to 45 guests across the property, enjoy exclusive group privacy with children pool, games, and large communal dining.',
+      desc: 'With private deluxe cottages and family suites across the property, enjoy exclusive group privacy with children pool, games, and large communal dining.',
       image: '/images/facilities/lawn-lotus-pond.jpg',
       features: [
-        'Interconnected and neighboring cottage clusters ("हेमंत", "वसंत", "शिशिर")',
+        'Spacious cottage accommodations and family suite layouts',
         'Kids splash pool and open garden lawn',
         'Community dining with home-style Konkani dishes',
         'Group bonfire nights with roasted snacks',

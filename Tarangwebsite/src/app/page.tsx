@@ -8,12 +8,15 @@ import ExperiencesShowcase from '@/components/home/ExperiencesShowcase';
 import ReviewsSlider from '@/components/home/ReviewsSlider';
 import LocationSection from '@/components/home/LocationSection';
 import QuickBookingBanner from '@/components/home/QuickBookingBanner';
+import { fetchAvailableRooms } from '@/services/hotelApi';
 
-export default function HomePage() {
+export default async function HomePage() {
+  const initialRooms = await fetchAvailableRooms();
+
   return (
     <>
       <HeroCinematic />
-      <FeaturedRooms />
+      <FeaturedRooms initialRooms={initialRooms} />
       <AboutSection />
       <FacilitiesGrid />
       <DiningSpotlight />

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import {
   Calendar,
   Users,
@@ -12,6 +13,12 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { useClickOutside } from '@/hooks';
+import {
+  getTodayDateString,
+  getTomorrowDateString,
+  generateBookingEngineUrl,
+  HOTEL_API_CONFIG,
+} from '@/services/hotelApi';
 import styles from './HeroCinematic.module.scss';
 
 const SLIDES = [
@@ -22,7 +29,7 @@ const SLIDES = [
     subtitle: 'Nagaon, Alibaug — 4.1 km from Nagaon Beach',
     captionHeading: 'Authentic Konkani Cottages',
     captionDesc:
-      'Immerse in peaceful green orchards, stone walkways, and standalone deluxe cottages ("वर्षा", "शिशिर", "शरद") with traditional swings (झोपाळा).',
+      'Immerse in peaceful green orchards, stone walkways, and standalone deluxe cottages surrounded by coconut groves.',
     image: '/images/hero/hero-cottage-row.jpg',
     thumb: '/images/hero/hero-cottage-row.jpg',
     thumbLabel: 'Cottages',
@@ -43,12 +50,12 @@ const SLIDES = [
     id: 3,
     titleLine1: 'DELUXE AC',
     titleLine2: 'COTTAGES & SUITES',
-    subtitle: '12 private cottage-style rooms with pool views & king beds',
-    captionHeading: 'Starlit Evening Ambiance',
+    subtitle: 'Private boutique cottages & spacious suites with nature views',
+    captionHeading: 'Starlit Nature Ambiance',
     captionDesc:
-      'Spacious standalone cottages featuring private verandas with traditional swings (झोपाळा), split AC, Bajaj geysers, and 24/7 power backup.',
+      'Spacious standalone cottages featuring private verandas, split AC, instantaneous hot water geysers, and 24/7 power backup.',
     image: '/images/hero/hero-drone-night.jpg',
-    thumb: '/images/rooms/deluxe-pool-view-1.jpg',
+    thumb: '/images/facilities/pool-aerial-night.jpg',
     thumbLabel: 'Deluxe Suites',
   },
   {
@@ -65,18 +72,21 @@ const SLIDES = [
   },
 ];
 
-const BOOKING_URL = 'https://bookone.io/Tarangan-Resort?bookingEngine=true';
-
 export default function HeroCinematic() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isWiping, setIsWiping] = useState(false);
 
-  // Booking Dates & Guests
-  const [checkIn, setCheckIn] = useState('2026-11-20');
-  const [checkOut, setCheckOut] = useState('2026-11-22');
+  // Dynamic Booking Dates & Guests
+  const [checkIn, setCheckIn] = useState('');
+  const [checkOut, setCheckOut] = useState('');
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [guestPickerOpen, setGuestPickerOpen] = useState(false);
+
+  useEffect(() => {
+    setCheckIn(getTodayDateString());
+    setCheckOut(getTomorrowDateString());
+  }, []);
 
   const searchBarRef = useRef<HTMLDivElement>(null);
 
@@ -162,15 +172,13 @@ export default function HeroCinematic() {
 
         {/* Mobile Quick Book CTA Button (shown when booking bar is hidden) */}
         <div className={styles.mobileHeroCtaWrap}>
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={`/booking?checkIn=${checkIn || getTodayDateString()}&checkOut=${checkOut || getTomorrowDateString()}&adults=${adults}&children=${children}`}
             className={styles.mobileHeroBookBtn}
           >
             <span>Book Online (Best Rates)</span>
             <ArrowRight size={16} />
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -353,16 +361,14 @@ export default function HeroCinematic() {
           </div>
 
           {/* Search / Book CTA */}
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={`/booking?checkIn=${checkIn || getTodayDateString()}&checkOut=${checkOut || getTomorrowDateString()}&adults=${adults}&children=${children}`}
             className={styles.searchSubmitBtn}
-            title="Book Online on BookOne"
+            title="Check Room Availability & Rates"
           >
             <span>Check Rates</span>
             <ArrowRight size={18} />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

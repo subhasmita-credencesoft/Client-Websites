@@ -4,7 +4,9 @@ import React, { useEffect } from 'react';
 import { ExternalLink, Sparkles } from 'lucide-react';
 import styles from './BookingPage.module.scss';
 
-const BOOKING_URL = 'https://bookone.io/Tarangan-Resort?bookingEngine=true';
+const BOOKING_URL =
+  process.env.NEXT_PUBLIC_BOOKING_ENGINE_URL ||
+  'https://bookone.io/Tarangan-Resort?bookingEngine=True';
 
 export default function BookingPage() {
   useEffect(() => {

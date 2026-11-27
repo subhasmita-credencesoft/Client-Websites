@@ -1,18 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Sparkles } from 'lucide-react';
-import { ROOMS_DATA } from '@/data/roomsData';
+import { ArrowRight, Sparkles, Loader2 } from 'lucide-react';
+import { useHotelRooms } from '@/hooks';
+import { Room } from '@/types';
 import RoomCard from './RoomCard';
 import styles from './FeaturedRooms.module.scss';
 
-export default function FeaturedRooms() {
-  const [filter, setFilter] = useState<'All' | 'Cottage' | 'Deluxe' | 'Family'>('All');
+interface FeaturedRoomsProps {
+  initialRooms?: Room[];
+}
 
-  const filteredRooms = filter === 'All' 
-    ? ROOMS_DATA 
-    : ROOMS_DATA.filter((r) => r.category === filter);
+export default function FeaturedRooms({ initialRooms }: FeaturedRoomsProps) {
+  const { rooms, loading } = useHotelRooms({ initialRooms });
+  const [filter, setFilter] = useState<string>('All');
+
+  // Compute dynamic category pills from live API rooms
+  const categories = useMemo(() => {
+    const cats = new Set(rooms.map((r) => r.category).filter(Boolean));
+    return ['All', ...Array.from(cats)];
+  }, [rooms]);
+
+  const filteredRooms = useMemo(() => {
+    if (filter === 'All') return rooms;
+    return rooms.filter((r) => r.category.toLowerCase() === filter.toLowerCase());
+  }, [rooms, filter]);
 
   return (
     <section className={styles.section}>
@@ -33,7 +46,7 @@ export default function FeaturedRooms() {
           <div className={styles.headerActions}>
             {/* Category Filter Pills */}
             <div className={styles.filterPills}>
-              {(['All', 'Cottage', 'Deluxe', 'Family'] as const).map((cat) => (
+              {categories.map((cat) => (
                 <button
                   key={cat}
                   type="button"
@@ -46,11 +59,19 @@ export default function FeaturedRooms() {
             </div>
 
             <Link href="/rooms" className={styles.seeAllBtn}>
-              <span>See All (12 Rooms)</span>
+              <span>See All ({rooms.length} Accommodations)</span>
               <ArrowRight size={15} />
             </Link>
           </div>
         </div>
+
+        {/* Loading Indicator */}
+        {loading && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#C59A78', margin: '16px 0' }}>
+            <Loader2 size={16} className="spin" style={{ animation: 'spin 1s linear infinite' }} />
+            <span style={{ fontSize: '13px', letterSpacing: '0.5px' }}>Checking live availability & rates...</span>
+          </div>
+        )}
 
         {/* Room Grid */}
         <div className={styles.grid}>

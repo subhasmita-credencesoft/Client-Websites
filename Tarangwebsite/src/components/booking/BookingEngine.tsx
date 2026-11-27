@@ -19,18 +19,21 @@ import {
   Flame,
   Heart,
   Clock,
+  Loader2,
 } from 'lucide-react';
-import { ROOMS_DATA, Room } from '@/data/roomsData';
+import { Room } from '@/data/roomsData';
 import { RESORT_DATA } from '@/data/resortData';
+import { useHotelRooms } from '@/hooks';
+import { getTodayDateString, getTomorrowDateString } from '@/services/hotelApi';
 import styles from './BookingEngine.module.scss';
 
 export default function BookingEngine() {
   const searchParams = useSearchParams();
 
   const placeParam = searchParams.get('place');
-  const initialRoomId = searchParams.get('room') || 'deluxe-pool-view-cottage';
-  const initialCheckIn = searchParams.get('checkIn') || '2026-11-20';
-  const initialCheckOut = searchParams.get('checkOut') || '2026-11-22';
+  const initialRoomId = searchParams.get('room') || '';
+  const initialCheckIn = searchParams.get('checkIn') || getTodayDateString();
+  const initialCheckOut = searchParams.get('checkOut') || getTomorrowDateString();
   const initialAdults = parseInt(searchParams.get('adults') || '2', 10);
   const initialChildren = parseInt(searchParams.get('children') || '0', 10);
 
@@ -40,6 +43,22 @@ export default function BookingEngine() {
   const [checkOutDate, setCheckOutDate] = useState<string>(initialCheckOut);
   const [adults, setAdults] = useState<number>(initialAdults);
   const [children, setChildren] = useState<number>(initialChildren);
+
+  // Live hotel API room fetching
+  const { rooms, loading, updateDates, updateGuests } = useHotelRooms({
+    fromDate: checkInDate,
+    toDate: checkOutDate,
+    noOfPersons: adults,
+  });
+
+  // Keep selectedRoomId valid with loaded rooms
+  useEffect(() => {
+    if (rooms && rooms.length > 0) {
+      if (!selectedRoomId || !rooms.some((r) => r.id === selectedRoomId || r.slug === selectedRoomId)) {
+        setSelectedRoomId(rooms[0].id);
+      }
+    }
+  }, [rooms, selectedRoomId]);
 
   // Add-ons
   const [addDinner, setAddDinner] = useState(false);
@@ -55,7 +74,9 @@ export default function BookingEngine() {
   const [specialRequests, setSpecialRequests] = useState('');
   const [bookingRef, setBookingRef] = useState('');
 
-  const currentRoom = ROOMS_DATA.find((r) => r.id === selectedRoomId) || ROOMS_DATA[0];
+  const currentRoom =
+    rooms.find((r) => r.id === selectedRoomId || r.slug === selectedRoomId) ||
+    rooms[0];
 
   // Calculate nights
   const calculateNights = () => {
@@ -73,7 +94,7 @@ export default function BookingEngine() {
   const nights = calculateNights();
 
   // Pricing calculations
-  const baseRoomTotal = currentRoom.price * nights;
+  const baseRoomTotal = (currentRoom?.price || 0) * nights;
   const extraGuests = Math.max(0, adults - 2);
   const extraGuestFee = extraGuests * 800 * nights;
 
@@ -140,6 +161,33 @@ Please confirm availability and share bank/UPI payment details for confirmation.
     window.print();
   };
 
+  if (loading && (!rooms || rooms.length === 0)) {
+    return (
+      <div className={styles.engineWrapper} style={{ textAlign: 'center', padding: '100px 20px' }}>
+        <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+          <Loader2 size={36} color="#C59A78" style={{ animation: 'spin 1s linear infinite' }} />
+          <h3 style={{ fontSize: '20px', color: '#122620' }}>
+            Connecting to Hotel Reservation System...
+          </h3>
+          <p style={{ color: '#5C5156', fontSize: '14px' }}>
+            Fetching live cottage availability and real-time tariffs.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!currentRoom) {
+    return (
+      <div className={styles.engineWrapper} style={{ textAlign: 'center', padding: '100px 20px' }}>
+        <h3 style={{ fontSize: '20px', color: '#122620' }}>No Accommodations Available</h3>
+        <p style={{ color: '#5C5156', fontSize: '14px', marginTop: '8px' }}>
+          Please try adjusting your check-in and check-out dates.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.engineWrapper}>
       {/* Progress Steps Header */}
@@ -175,12 +223,12 @@ Please confirm availability and share bank/UPI payment details for confirmation.
               )}
               <h3 className={styles.boxTitle}>1. Choose Accommodation</h3>
               <p className={styles.boxSub}>
-                Select from our 12 air-conditioned cottages overlooking the pool and gardens.
+                Select from our air-conditioned cottages and suites overlooking the pool and gardens.
               </p>
 
               {/* Room Cards Selector */}
               <div className={styles.roomSelectGrid}>
-                {ROOMS_DATA.map((room) => {
+                {rooms.map((room) => {
                   const isSelected = room.id === selectedRoomId;
                   return (
                     <div
@@ -190,15 +238,23 @@ Please confirm availability and share bank/UPI payment details for confirmation.
                       }`}
                       onClick={() => setSelectedRoomId(room.id)}
                     >
-                      <div
+                      <img
+                        src={room.images[0] || '/images/facilities/pool-day.jpg'}
+                        alt={room.title}
                         className={styles.roomThumb}
-                        style={{ backgroundImage: `url(${room.images[0]})` }}
+                        loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.src = '/images/facilities/pool-day.jpg';
+                        }}
                       />
                       <div className={styles.roomSelectInfo}>
                         <div className={styles.roomCategoryTag}>{room.category}</div>
                         <h4 className={styles.roomSelectName}>{room.title}</h4>
                         <div className={styles.roomSelectMeta}>
                           <span>Up to {room.maxGuests} guests</span> • <span>{room.sizeSqFt} sq.ft</span>
+                          {room.noOfAvailable !== undefined && (
+                            <span> • <strong style={{ color: '#10B981' }}>{room.noOfAvailable} left</strong></span>
+                          )}
                         </div>
                         <div className={styles.roomSelectPrice}>
                           <strong>₹{room.price.toLocaleString()}</strong> / night
@@ -226,7 +282,11 @@ Please confirm availability and share bank/UPI payment details for confirmation.
                     type="date"
                     required
                     value={checkInDate}
-                    onChange={(e) => setCheckInDate(e.target.value)}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setCheckInDate(val);
+                      updateDates(val, checkOutDate);
+                    }}
                   />
                   <span className={styles.fieldHint}>Check-in starts at 12:00 PM</span>
                 </div>
@@ -239,7 +299,11 @@ Please confirm availability and share bank/UPI payment details for confirmation.
                     type="date"
                     required
                     value={checkOutDate}
-                    onChange={(e) => setCheckOutDate(e.target.value)}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setCheckOutDate(val);
+                      updateDates(checkInDate, val);
+                    }}
                   />
                   <span className={styles.fieldHint}>Check-out by 10:30 AM</span>
                 </div>
@@ -252,7 +316,11 @@ Please confirm availability and share bank/UPI payment details for confirmation.
                   </label>
                   <select
                     value={adults}
-                    onChange={(e) => setAdults(parseInt(e.target.value, 10))}
+                    onChange={(e) => {
+                      const val = parseInt(e.target.value, 10);
+                      setAdults(val);
+                      updateGuests(val, 1);
+                    }}
                   >
                     {[1, 2, 3, 4, 5, 6].map((num) => (
                       <option key={num} value={num}>
@@ -574,10 +642,16 @@ Please confirm availability and share bank/UPI payment details for confirmation.
         {/* Right Column: Live Booking Summary Card */}
         <div className={styles.summaryCol}>
           <div className={styles.summaryCard}>
-            <div
-              className={styles.summaryImg}
-              style={{ backgroundImage: `url(${currentRoom.images[0]})` }}
-            >
+            <div className={styles.summaryImg}>
+              <img
+                src={currentRoom.images[0] || '/images/facilities/pool-day.jpg'}
+                alt={currentRoom.title}
+                className={styles.summaryImgElement}
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.src = '/images/facilities/pool-day.jpg';
+                }}
+              />
               <div className={styles.summaryPriceTag}>
                 ₹{currentRoom.price.toLocaleString()} / night
               </div>

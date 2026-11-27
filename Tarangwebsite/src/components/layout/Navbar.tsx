@@ -131,17 +131,15 @@ export default function Navbar() {
               <span className={styles.whatsappText}>WhatsApp</span>
             </a>
 
-            <a
-              href="https://bookone.io/Tarangan-Resort?bookingEngine=true"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/booking"
               className={styles.bookNowBtn}
               title="Book Online - Tarangan Booking Engine"
               aria-label="Book Online"
             >
               <CalendarCheck size={16} />
               <span className={styles.bookNowText}>Book Now</span>
-            </a>
+            </Link>
 
             {/* Mobile Hamburger Toggle */}
             <button
@@ -223,16 +221,14 @@ export default function Navbar() {
                 <Phone size={16} />
                 <span>Call {RESORT_DATA.phone}</span>
               </a>
-              <a
-                href="https://bookone.io/Tarangan-Resort?bookingEngine=true"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/booking"
                 className={styles.mobileBookBtn}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <CalendarCheck size={16} />
                 <span>Book Direct & Save</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

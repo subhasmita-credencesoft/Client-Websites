@@ -18,7 +18,7 @@ import styles from './AboutPage.module.scss';
 export const metadata: Metadata = {
   title: 'About Us | Tarangan Resort Nagaon-Alibag',
   description:
-    'Learn about Tarangan Resort on Sahan Bypass Road, Palhe, Nagaon. 12 deluxe AC cottages, a clean swimming pool, and authentic Maharashtrian Konkani hospitality.',
+    'Learn about Tarangan Resort on Sahan Bypass Road, Palhe, Nagaon. Deluxe AC cottages, a clean swimming pool, and authentic Maharashtrian Konkani hospitality.',
 };
 
 export default function AboutPage() {
@@ -51,7 +51,7 @@ export default function AboutPage() {
                 Tarangan Resort was conceived as a peaceful respite from the chaotic pace of Mumbai and Pune. Situated on Sahan Bypass Road in Palhe, Nagaon, our property is surrounded by traditional Konkani betel nut (supari) groves and coconut orchards, offering cool sea air and quiet birdsong throughout the year.
               </p>
               <p className={styles.bodyParagraph}>
-                Featuring 12 private air-conditioned deluxe cottages with king bedding and attached modern bathrooms, our resort centers around a crystal-clear outdoor swimming pool and separate kids splash pool. We pride ourselves on authentic Maharashtrian hospitality — where our cooperative staff and owners treat every guest with personalized warmth.
+                Featuring private air-conditioned deluxe cottages and suites with plush bedding and attached modern bathrooms, our resort centers around a crystal-clear outdoor swimming pool and separate kids splash pool. We pride ourselves on authentic Maharashtrian hospitality — where our cooperative staff and owners treat every guest with personalized warmth.
               </p>
               <p className={styles.bodyParagraph}>
                 From our kitchen, guests delight in authentic coastal Konkani cuisine: daily fresh Surmai, Pomfret fry, juicy Prawns masala, country chicken Kombdi Vade, and freshly made Solkadhi. Whether you are traveling with family, planning a pet-friendly retreat, or gathering for an evening bonfire, Tarangan promises genuine relaxation.

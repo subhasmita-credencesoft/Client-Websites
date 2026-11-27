@@ -50,9 +50,9 @@ export const RESORT_DATA: ResortDetails = {
   legalName: 'The Tarangan Resort, Nagaon-Alibag',
   tagline: 'Lush Nature Retreat & Poolside Sanctuary in Nagaon, Alibaug',
   shortDescription:
-    'Experience peaceful coastal bliss at Tarangan Resort, featuring 12 air-conditioned deluxe cottage-style rooms, a sparkling swimming pool, and authentic Maharashtrian Konkani seafood, just minutes from Nagaon Beach.',
+    'Experience peaceful coastal bliss at Tarangan Resort, featuring air-conditioned deluxe boutique cottages and suites, a sparkling swimming pool, and authentic Maharashtrian Konkani seafood, just minutes from Nagaon Beach.',
   fullDescription:
-    'Nestled along Sahan Bypass Road in the serene environs of Palhe, Nagaon, Tarangan Resort is a tranquil 3-star boutique haven amidst tropical coconut groves and betel nut orchards. Offering 12 elegantly appointed air-conditioned deluxe rooms and cozy cottage accommodations overlooking our crystal-clear outdoor swimming pool, Tarangan is celebrated for warm Maharashtrian hospitality, mouth-watering coastal seafood thalis, and peaceful relaxation away from the bustling city.',
+    'Nestled along Sahan Bypass Road in the serene environs of Palhe, Nagaon, Tarangan Resort is a tranquil 3-star boutique haven amidst tropical coconut groves and betel nut orchards. Offering elegantly appointed air-conditioned deluxe cottages and suite accommodations overlooking our crystal-clear outdoor swimming pool, Tarangan is celebrated for warm Maharashtrian hospitality, mouth-watering coastal seafood thalis, and peaceful relaxation away from the bustling city.',
   rating: 4.7,
   totalReviews: 161,
   phone: '077568 38900',
@@ -60,7 +60,7 @@ export const RESORT_DATA: ResortDetails = {
   whatsapp: '917756838900',
   whatsappMessage:
     'Hello Tarangan Resort! I would like to inquire about room availability and booking details.',
-  email: 'taranganresortalibag@gmail.com',
+  email: 'taranganresort11@gmail.com',
   website: 'https://www.taranganresort.com',
   address: {
     street: 'Sahan Bypass Road, 188 Palhe Post Nagaon',
@@ -91,16 +91,17 @@ export const RESORT_DATA: ResortDetails = {
   highlights: [
     'Crystal-Clear Outdoor Swimming Pool & Kids Pool',
     'Authentic Maharashtrian Konkani Seafood (Surmai, Pomfret, Prawns)',
-    '12 Air-Conditioned Deluxe Cottage-Style Rooms',
+    'Air-Conditioned Deluxe Cottages & Suites',
     '4.1 km from Water-Sports Hub Nagaon Beach',
     'Evening Bonfire, Lawn Sit-outs & Starlit Nights',
     'Pet-Friendly Green Haven with Free Parking',
     'Uninterrupted Power Backup & High-Speed Wi-Fi',
   ],
   social: {
-    instagram: 'https://instagram.com/taranganresort_nagaon',
-    facebook: 'https://facebook.com/taranganresortalibag',
-    tripadvisor: 'https://www.tripadvisor.in/Hotel_Review-Tarangan_Resort_Alibaug',
+    instagram: 'https://www.instagram.com/taranganresort_nagaon/',
+    facebook: 'https://www.facebook.com/taranganresortnagaon/',
+    tripadvisor:
+      'https://www.tripadvisor.in/Hotel_Review-g26454155-d27484991-Reviews-The_Tarangan_Resort-Palhe_Raigad_District_Maharashtra.html',
     makemytrip: 'https://www.makemytrip.com/hotels/the_tarangan_resort-details-alibaug.html',
   },
 };

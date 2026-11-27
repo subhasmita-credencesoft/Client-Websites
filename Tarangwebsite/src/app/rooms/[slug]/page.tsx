@@ -1,12 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import {
-  ROOMS_DATA,
-  Room,
-} from '@/data/roomsData';
-import { RESORT_DATA } from '@/data/resortData';
+import { Room, getRoomBySlugOrId } from '@/data/roomsData';
+import { fetchAvailableRooms } from '@/services/hotelApi';
 import RoomDetailClient from './RoomDetailClient';
 
 interface Props {
@@ -16,44 +11,82 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return ROOMS_DATA.map((room) => ({
-    slug: room.slug,
-  }));
+  try {
+    const rooms = await fetchAvailableRooms();
+    if (rooms && rooms.length > 0) {
+      return rooms.flatMap((room) => [
+        { slug: room.slug },
+        { slug: room.id },
+      ]);
+    }
+  } catch (error) {
+    console.warn('API fetch during generateStaticParams failed, using known room routes', error);
+  }
+
+  // Fallback room route params so static export succeeds even without active build network
+  return [
+    { slug: 'super-deluxe-room' },
+    { slug: '6079' },
+    { slug: 'premium-deluxe-mud-cottages' },
+    { slug: '8675' },
+    { slug: 'luxury-suite-cottage' },
+    { slug: '8676' },
+  ];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const room = ROOMS_DATA.find((r) => r.slug === params.slug);
-  if (!room) {
+  try {
+    const rooms = await fetchAvailableRooms();
+    const room = getRoomBySlugOrId(params.slug, rooms);
+    if (!room) {
+      return {
+        title: 'Accommodations | Tarangan Resort Nagaon-Alibag',
+        description: 'Discover luxury cottages and suites at Tarangan Resort Nagaon-Alibag.',
+      };
+    }
+
     return {
-      title: 'Room Not Found | Tarangan Resort',
+      title: `${room.title} | Tarangan Resort Nagaon-Alibag`,
+      description: room.shortDescription,
+      openGraph: {
+        title: `${room.title} - Tarangan Resort Nagaon-Alibag`,
+        description: room.shortDescription,
+        images: [
+          {
+            url: room.images[0] || '/images/hero/hero-drone-sunset.jpg',
+            width: 1200,
+            height: 630,
+            alt: room.title,
+          },
+        ],
+      },
+    };
+  } catch {
+    return {
+      title: 'Accommodations | Tarangan Resort Nagaon-Alibag',
     };
   }
-
-  return {
-    title: `${room.title} | Tarangan Resort Nagaon-Alibag`,
-    description: room.shortDescription,
-    openGraph: {
-      title: `${room.title} - Tarangan Resort Nagaon-Alibag`,
-      description: room.shortDescription,
-      images: [
-        {
-          url: room.images[0],
-          width: 1200,
-          height: 630,
-          alt: room.title,
-        },
-      ],
-    },
-  };
 }
 
-export default function RoomDetailPage({ params }: Props) {
-  const room = ROOMS_DATA.find((r) => r.slug === params.slug);
-  if (!room) {
-    notFound();
+export default async function RoomDetailPage({ params }: Props) {
+  let room: Room | undefined = undefined;
+  let similarRooms: Room[] = [];
+
+  try {
+    const rooms = await fetchAvailableRooms();
+    room = getRoomBySlugOrId(params.slug, rooms);
+    if (room) {
+      similarRooms = rooms.filter((r) => r.id !== room?.id).slice(0, 3);
+    }
+  } catch (error) {
+    console.error('SSR Room fetch error:', error);
   }
 
-  const similarRooms = ROOMS_DATA.filter((r) => r.id !== room.id).slice(0, 3);
-
-  return <RoomDetailClient room={room} similarRooms={similarRooms} />;
+  return (
+    <RoomDetailClient
+      slug={params.slug}
+      initialRoom={room}
+      initialSimilarRooms={similarRooms}
+    />
+  );
 }

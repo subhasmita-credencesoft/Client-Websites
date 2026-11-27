@@ -17,9 +17,14 @@ export default function RoomCard({ room }: RoomCardProps) {
     <div className={styles.card}>
       {/* Media Box */}
       <div className={styles.mediaBox}>
-        <div
+        <img
+          src={room.images[0] || '/images/facilities/pool-day.jpg'}
+          alt={room.title}
           className={styles.imageLayer}
-          style={{ backgroundImage: `url(${room.images[0]})` }}
+          loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = '/images/facilities/pool-day.jpg';
+          }}
         />
         <div className={styles.imageOverlay} />
 
@@ -94,14 +99,12 @@ export default function RoomCard({ room }: RoomCardProps) {
             <span>View Details</span>
             <ArrowUpRight size={15} />
           </Link>
-          <a
-            href="https://bookone.io/Tarangan-Resort?bookingEngine=true"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={`/booking?room=${room.id}`}
             className={styles.bookBtn}
           >
             Reserve
-          </a>
+          </Link>
         </div>
       </div>
     </div>

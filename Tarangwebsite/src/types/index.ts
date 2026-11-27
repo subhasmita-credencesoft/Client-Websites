@@ -3,6 +3,8 @@
 export interface AmenityItem {
   icon: string;
   label: string;
+  imageUrl?: string;
+  description?: string;
 }
 
 export interface Room {
@@ -10,13 +12,14 @@ export interface Room {
   slug: string;
   title: string;
   subtitle: string;
-  category: 'Cottage' | 'Deluxe' | 'Suite' | 'Family';
+  category: 'Cottage' | 'Deluxe' | 'Suite' | 'Family' | 'Pod' | string;
   price: number;
   originalPrice: number;
   rating: number;
   reviewsCount: number;
   sizeSqFt: number;
   maxGuests: number;
+  minGuests?: number;
   maxAdults: number;
   maxChildren: number;
   bedType: string;
@@ -28,6 +31,9 @@ export interface Room {
   amenities: AmenityItem[];
   isFeatured?: boolean;
   inventoryCount: number;
+  noOfAvailable?: number;
+  ratePlans?: any[];
+  rawApiData?: any;
 }
 
 export interface BookingPlace {

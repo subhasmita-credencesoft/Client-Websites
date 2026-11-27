@@ -16,9 +16,11 @@ import {
   CalendarCheck,
 } from 'lucide-react';
 import { RESORT_DATA } from '@/data/resortData';
+import { useHotelRooms } from '@/hooks/useHotelRooms';
 import styles from './Footer.module.scss';
 
 export default function Footer() {
+  const { rooms } = useHotelRooms();
   return (
     <footer className={styles.footer}>
       {/* Top Wave / Curved Border Accent */}
@@ -51,7 +53,7 @@ export default function Footer() {
             </div>
 
             <p className={styles.brandBlurb}>
-              A serene 3-star boutique sanctuary nestled amidst lush coconut and betel nut groves on Sahan Bypass Road, Palhe. Featuring 12 deluxe AC cottages, a crystal-clear swimming pool, and authentic coastal Konkani cuisine.
+              A serene 3-star boutique sanctuary nestled amidst lush coconut and betel nut groves on Sahan Bypass Road, Palhe. Featuring deluxe AC cottages and suites, a crystal-clear swimming pool, and authentic coastal Konkani cuisine.
             </p>
 
             {/* Google Rating Badge */}
@@ -83,33 +85,22 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Stays & Cottages */}
+          {/* Column 2: Stays & Cottages - 100% Dynamically Fetched from Hotel API */}
           <div className={styles.navCol}>
             <h4 className={styles.colTitle}>Cottages & Suites</h4>
             <ul className={styles.linkList}>
-              <li>
-                <Link href="/rooms/deluxe-pool-view-cottage">Deluxe Pool View Cottage</Link>
-              </li>
-              <li>
-                <Link href="/rooms/premium-garden-cottage">Premium Garden Cottage</Link>
-              </li>
-              <li>
-                <Link href="/rooms/executive-family-suite">Executive Family Suite</Link>
-              </li>
-              <li>
-                <Link href="/rooms/deluxe-ac-cottage-room">Deluxe AC Cottage Room</Link>
-              </li>
+              {rooms && rooms.length > 0 ? (
+                rooms.map((room) => (
+                  <li key={room.id}>
+                    <Link href={`/rooms/${room.slug}`}>{room.title}</Link>
+                  </li>
+                ))
+              ) : null}
               <li>
                 <Link href="/rooms">View All Accommodations</Link>
               </li>
               <li>
-                <a
-                  href="https://bookone.io/Tarangan-Resort?bookingEngine=true"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Check Rates & Availability
-                </a>
+                <Link href="/booking">Check Rates & Availability</Link>
               </li>
             </ul>
           </div>
@@ -175,7 +166,7 @@ export default function Footer() {
             </p>
 
             <a
-              href="https://bookone.io/Tarangan-Resort?bookingEngine=true"
+              href="https://bookone.io/Tarangan-Resort?bookingEngine=True"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.footerBookBtn}

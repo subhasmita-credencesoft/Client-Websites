@@ -44,7 +44,7 @@ export const GALLERY_DATA: GalleryImage[] = [
   },
   {
     id: 'gal-6',
-    title: 'Deluxe Pool View Cottage Porch & Traditional Swing (झोपाळा)',
+    title: 'Boutique Cottage Porch with Traditional Wooden Swing (झोपाळा)',
     category: 'Rooms',
     src: '/images/rooms/deluxe-pool-view-1.jpg',
     aspectRatio: 'landscape',
@@ -72,7 +72,7 @@ export const GALLERY_DATA: GalleryImage[] = [
   },
   {
     id: 'gal-10',
-    title: 'Executive Family Suite with Dual King Bed Comfort',
+    title: 'Spacious Suite Accommodation with King Bed Comfort',
     category: 'Rooms',
     src: '/images/rooms/executive-family-1.jpg',
     aspectRatio: 'landscape',
@@ -114,7 +114,7 @@ export const GALLERY_DATA: GalleryImage[] = [
   },
   {
     id: 'gal-16',
-    title: 'Premium Garden Cottage "शिशिर" Interior Bedding',
+    title: 'Garden Cottage Interior Bedding & Green Views',
     category: 'Rooms',
     src: '/images/rooms/premium-garden-1.jpg',
     aspectRatio: 'landscape',

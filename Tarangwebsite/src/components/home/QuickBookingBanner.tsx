@@ -38,15 +38,13 @@ export default function QuickBookingBanner() {
           </div>
 
           <div className={styles.actionButtons}>
-            <a
-              href="https://bookone.io/Tarangan-Resort?bookingEngine=true"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/booking"
               className={styles.primaryBtn}
             >
               <CalendarCheck size={18} />
               <span>Book Online Instant</span>
-            </a>
+            </Link>
 
             <a
               href={`https://wa.me/${RESORT_DATA.whatsapp}?text=${encodeURIComponent(

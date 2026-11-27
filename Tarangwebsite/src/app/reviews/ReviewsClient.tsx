@@ -79,6 +79,16 @@ export default function ReviewsClient() {
                 <span>View on Google</span>
                 <ExternalLink size={14} />
               </a>
+              <a
+                href={RESORT_DATA.social.tripadvisor}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.viewOnGoogleBtn}
+                style={{ marginTop: '8px' }}
+              >
+                <span>View on TripAdvisor</span>
+                <ExternalLink size={14} />
+              </a>
             </div>
 
             <div className={styles.categoryRatings}>
